@@ -1,0 +1,5 @@
+/Projects/BoxOffice/Classes/AllTheatersViewController.m: In function '-[AllTheatersViewController init]':
+/Projects/BoxOffice/Classes/AllTheatersViewController.m:18: error: request for member 'title' in something not a structure or union
+/Projects/BoxOffice/Classes/AllTheatersViewController.m:23: error: request for member 'view' in something not a structure or union
+/Projects/BoxOffice/Classes/AllTheatersViewController.m: In function '-[AllTheatersViewController dealloc]':
+/Projects/BoxOffice/Classes/AllTheatersViewController.m:31: error: request for member 'view' in something not a structure or union
