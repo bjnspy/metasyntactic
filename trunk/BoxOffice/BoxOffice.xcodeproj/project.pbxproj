@@ -26,6 +26,9 @@
 		746A020B0DC8197A0079D89B /* ZipCodeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */; };
 		746A02100DC819F00079D89B /* BoxOfficeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
+		749DF1710DC9737700A551D9 /* BoxOfficeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */; };
+		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
+		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -64,6 +67,10 @@
 		746A020F0DC819F00079D89B /* BoxOfficeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeModel.m; sourceTree = "<group>"; };
 		746A02140DC81A1A0079D89B /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
+		749DF16F0DC9737700A551D9 /* BoxOfficeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeController.h; sourceTree = "<group>"; };
+		749DF1700DC9737700A551D9 /* BoxOfficeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeController.m; sourceTree = "<group>"; };
+		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -75,6 +82,8 @@
 				1D60589F0D05DD5A006BFB54 /* Foundation.framework in Frameworks */,
 				1DF5F4E00D08C38300B7A737 /* UIKit.framework in Frameworks */,
 				1D3623EC0D0F72F000981E51 /* CoreGraphics.framework in Frameworks */,
+				749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */,
+				749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +106,8 @@
 				746A020F0DC819F00079D89B /* BoxOfficeModel.m */,
 				746A02140DC81A1A0079D89B /* Application.h */,
 				746A02150DC81A1A0079D89B /* Application.m */,
+				749DF16F0DC9737700A551D9 /* BoxOfficeController.h */,
+				749DF1700DC9737700A551D9 /* BoxOfficeController.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -142,6 +153,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */,
+				749DF3250DC9838F00A551D9 /* CFNetwork.framework */,
 				1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */,
 				1DF5F4DF0D08C38300B7A737 /* UIKit.framework */,
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
@@ -240,6 +253,7 @@
 				74447C5A0DC840D100CC146C /* MovieDetailsViewController.m in Sources */,
 				74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */,
 				74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */,
+				749DF1710DC9737700A551D9 /* BoxOfficeController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
