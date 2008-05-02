@@ -1,7 +1,0 @@
-/Projects/BoxOffice/Classes/SettingsViewController.m: In function '-[SettingsViewController initWithTabBarController:]':
-/Projects/BoxOffice/Classes/SettingsViewController.m:25: error: 'settingsView' undeclared (first use in this function)
-/Projects/BoxOffice/Classes/SettingsViewController.m:25: error: (Each undeclared identifier is reported only once
-/Projects/BoxOffice/Classes/SettingsViewController.m:25: error: for each function it appears in.)
-/Projects/BoxOffice/Classes/SettingsViewController.m: At top level:
-/Projects/BoxOffice/Classes/SettingsViewController.m:38: warning: incomplete implementation of class 'SettingsViewController'
-/Projects/BoxOffice/Classes/SettingsViewController.m:38: warning: method definition for '-initWithSettingsView:tabBarController:' not found
