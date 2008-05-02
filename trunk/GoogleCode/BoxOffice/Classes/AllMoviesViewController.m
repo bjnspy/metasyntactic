@@ -15,21 +15,14 @@
 @implementation AllMoviesViewController
 
 @synthesize navigationController;
-@synthesize tableView;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) controller
 {
-    if (self = [super init])
+    if (self = [super initWithStyle:UITableViewStylePlain])
     {
         self.title = @"All Movies";
         self.navigationController = controller;
-        
-        self.tableView = [[[UITableView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-        self.tableView.dataSource = self;
-        self.tableView.delegate = self;
-        self.view = self.tableView;
-        
+                
         UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"        Title        ", @"        Rating        ", nil]] autorelease];
         control.segmentedControlStyle = UISegmentedControlStyleBar;
         self.navigationItem.customTitleView = control;
@@ -41,7 +34,6 @@
 - (void) dealloc
 {
     self.view = nil;
-    self.tableView = nil;
     self.navigationController = nil;
     [super dealloc];
 }

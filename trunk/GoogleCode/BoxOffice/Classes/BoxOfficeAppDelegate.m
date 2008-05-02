@@ -15,7 +15,6 @@
 @synthesize application;
 @synthesize controller;
 @synthesize model;
-@synthesize settingsView;
 @synthesize tabBarController;
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {

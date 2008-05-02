@@ -15,8 +15,6 @@
 	IBOutlet UIWindow* window;
     IBOutlet ApplicationTabBarController* tabBarController;
     
-    IBOutlet UIView* settingsView;
-    
     UIApplication* application;
     BoxOfficeModel* model;
     BoxOfficeController* controller;
@@ -27,7 +25,6 @@
 @property (retain) BoxOfficeController* controller;
 @property (retain) BoxOfficeModel* model;
 @property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) UIView* settingsView;
 
 @end
 

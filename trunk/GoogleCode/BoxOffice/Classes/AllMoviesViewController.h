@@ -10,13 +10,11 @@
 
 @class MoviesNavigationController;
 
-@interface AllMoviesViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
+@interface AllMoviesViewController : UITableViewController {
     MoviesNavigationController* navigationController;
-    UITableView* tableView;
 }
 
 @property (assign) MoviesNavigationController* navigationController;
-@property (retain) UITableView* tableView;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController;
 - (void) dealloc;

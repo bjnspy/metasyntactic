@@ -6,17 +6,20 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-@class ApplicationTabBarController;
+#import "BoxOfficeModel.h"
 
-@interface SettingsViewController : UIViewController {
-    ApplicationTabBarController* tabBarController;
+@class SettingsNavigationController;
+
+@interface SettingsViewController : UITableViewController {
+    SettingsNavigationController* navigationController;
 }
 
-@property (assign) ApplicationTabBarController* tabBarController;
+@property (assign) SettingsNavigationController* navigationController;
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
+- (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
 - (void) dealloc;
 
 - (void) refresh;
+- (BoxOfficeModel*) model;
 
 @end

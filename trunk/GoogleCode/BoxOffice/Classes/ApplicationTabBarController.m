@@ -13,7 +13,7 @@
 
 @synthesize moviesNavigationController;
 @synthesize theatersNavigationController;
-@synthesize settingsViewController;
+@synthesize settingsNavigationController;
 @synthesize appDelegate;
 
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel
@@ -23,13 +23,13 @@
         self.appDelegate = appDel;
         self.moviesNavigationController = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
-        self.settingsViewController = [[[SettingsViewController alloc] initWithTabBarController:self] autorelease];
+        self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
 
         self.allowsCustomizing = NO;
         self.viewControllers =
             [NSArray arrayWithObjects:moviesNavigationController,
                                       theatersNavigationController,
-                                      settingsViewController, nil];
+                                      settingsNavigationController, nil];
     }
     
     return self;
@@ -39,7 +39,7 @@
 {
     self.moviesNavigationController = nil;
     self.theatersNavigationController = nil;
-    self.settingsViewController = nil;
+    self.settingsNavigationController = nil;
     self.appDelegate = nil;
     [super dealloc];
 }
@@ -53,7 +53,7 @@
 {
     [self.moviesNavigationController refresh];
     [self.theatersNavigationController refresh];
-    [self.settingsViewController refresh];
+    [self.settingsNavigationController refresh];
 }
 
 @end

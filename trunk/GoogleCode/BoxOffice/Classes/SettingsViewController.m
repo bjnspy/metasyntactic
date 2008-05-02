@@ -12,19 +12,14 @@
 
 @implementation SettingsViewController
 
-@synthesize tabBarController;
+@synthesize navigationController;
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller
+- (id) initWithNavigationController:(SettingsNavigationController*) controller
 {
-    if (self = [super init])
+    if (self = [super initWithStyle:UITableViewStyleGrouped])
     {
         self.title = @"Settings";
-        self.tabBarController = controller;
-        
-        //UITabBarItem* item = [[[UITabBarItem alloc] initWithTabBarSystemItem:UITabBarSystemItemMore target:nil action:nil] autorelease];
-        
-  //      self.tabBarItem.image = item.image;
-        self.view = self.tabBarController.appDelegate.settingsView;
+        self.navigationController = controller;
     }
     
     return self;
@@ -32,13 +27,49 @@
 
 - (void) dealloc
 {
-    self.tabBarController = nil;
-    self.view = nil;
+    self.navigationController = nil;
     [super dealloc];
+}
+
+- (BoxOfficeModel*) model
+{
+    return [self.navigationController model];
 }
 
 - (void) refresh
 {
+    [self.tableView reloadData];
+}
+
+- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
+          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath
+{
+    return UITableViewCellAccessoryDisclosureIndicator;
+}
+
+- (NSInteger) tableView:(UITableView*) tableView
+  numberOfRowsInSection:(NSInteger) section
+{
+    return 2;
+}
+
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath
+{
+    NSInteger index = [indexPath indexAtPosition:1];
+    
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    
+    if (index == 0)
+    {
+        cell.text = [NSString stringWithFormat:@"Zipcode: %@", [[self model] zipcode]];
+    }
+    else if (index == 1)
+    {
+        cell.text = [NSString stringWithFormat:@"Search radius: %d miles", [[self model] searchRadius]];
+    }
+    
+    return cell;
 }
 
 @end

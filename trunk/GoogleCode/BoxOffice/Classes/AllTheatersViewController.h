@@ -10,13 +10,11 @@
 
 @class TheatersNavigationController;
 
-@interface AllTheatersViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
+@interface AllTheatersViewController : UITableViewController {
     TheatersNavigationController* navigationController;
-    UITableView* tableView;
 }
 
 @property (assign) TheatersNavigationController* navigationController;
-@property (retain) UITableView* tableView;
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
 - (void) dealloc;

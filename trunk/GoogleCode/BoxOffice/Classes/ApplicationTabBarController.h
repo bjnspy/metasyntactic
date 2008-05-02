@@ -8,7 +8,7 @@
 
 #import "MoviesNavigationController.h"
 #import "TheatersNavigationController.h"
-#import "SettingsViewController.h"
+#import "SettingsNavigationController.h"
 #import "BoxOfficeModel.h"
 
 @class BoxOfficeAppDelegate;
@@ -17,13 +17,13 @@
     BoxOfficeAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
-    SettingsViewController* settingsViewController;
+    SettingsNavigationController* settingsNavigationController;
 }
 
 @property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
-@property (retain) SettingsViewController* settingsViewController;
+@property (retain) SettingsNavigationController* settingsNavigationController;
 
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;
 - (void) dealloc;
