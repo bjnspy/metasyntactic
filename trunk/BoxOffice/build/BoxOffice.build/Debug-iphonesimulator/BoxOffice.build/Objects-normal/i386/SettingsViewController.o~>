@@ -1,2 +1,0 @@
-/Projects/BoxOffice/Classes/SettingsViewController.m: In function '-[SettingsViewController initWithSettingsView:]':
-/Projects/BoxOffice/Classes/SettingsViewController.m:21: error: request for member 'view' in something not a structure or union
