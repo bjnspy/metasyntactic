@@ -17,7 +17,9 @@
 @synthesize model;
 @synthesize settingsView;
 @synthesize tabBarController;
+
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
+    NSLog(@"BoxOfficeAppDelegate.applicationDidFinishLaunching");
     self.application = app;
     
     self.model = [[[BoxOfficeModel alloc] init] autorelease];

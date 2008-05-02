@@ -32,4 +32,6 @@
 
 - (NSDictionary*) dictionary;
 
+- (NSString*) description;
+
 @end

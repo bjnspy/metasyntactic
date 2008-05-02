@@ -28,4 +28,6 @@
 - (id) initWithDictionary:(NSDictionary*) dictionary;
 - (NSDictionary*) dictionary;
 
+- (NSString*) description;
+
 @end

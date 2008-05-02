@@ -54,4 +54,9 @@ movieToShowtimesMap:(NSDictionary*) aDictionary
     return dictionary;
 }
 
+- (NSString*) description
+{
+    return [[self dictionary] description];
+}
+
 @end

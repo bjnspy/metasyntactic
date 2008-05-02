@@ -39,4 +39,8 @@
     [super dealloc];
 }
 
+- (void) refresh
+{
+}
+
 @end

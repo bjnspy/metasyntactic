@@ -10,6 +10,7 @@
 #import "Movie.h"
 #import "Theater.h"
 #import "BoxOfficeAppDelegate.h"
+#import "TheaterShowtimesXmlParser.h"
 
 @implementation BoxOfficeController
 
@@ -62,7 +63,7 @@
     
     NSURL* url = [NSURL URLWithString:@"http://i.rottentomatoes.com/syndication/tab/in_theaters.txt"];
 	NSError* httpError = nil;
-	NSString* inTheatres = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&httpError];
+	NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&httpError];
     
     if (httpError != nil)
     {
@@ -70,7 +71,7 @@
         return;
     }
     
-    NSArray* rows = [inTheatres componentsSeparatedByString:@"\n"];
+    NSArray* rows = [inTheaters componentsSeparatedByString:@"\n"];
     NSMutableArray* movies = [[NSMutableArray alloc] init];
     
     // first row are the column headers.  last row is empty.  skip both.
@@ -107,6 +108,54 @@
 
 - (void) lookupTheaters
 {   
+    NSLog(@"Looking up theaters");
+    NSString *post =
+    @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"    
+    "<SOAP-ENV:Envelope "
+        "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" "
+        "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
+        "xmlns:SOAP-ENC=\"http://schemas.xmlsoap.org/soap/encoding/\" "
+        "SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" "
+        "xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">"
+        "<SOAP-ENV:Body>"
+            "<GetTheatersAndMovies xmlns=\"http://www.ignyte.com/whatsshowing\">"
+                "<zipCode xsi:type=\"xsd:string\">10009</zipCode>"
+                "<radius xsi:type=\"xsd:int\">5</radius>"
+            "</GetTheatersAndMovies>"
+        "</SOAP-ENV:Body>"
+    "</SOAP-ENV:Envelope>";
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+        
+    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+    [request setURL:[NSURL URLWithString:@"http://www.ignyte.com/webservices/ignyte.whatsshowing.webservice/moviefunctions.asmx"]];
+    [request setHTTPMethod:@"POST"];
+    
+    [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:@"http://www.ignyte.com/whatsshowing/GetTheatersAndMovies" forHTTPHeaderField:@"Soapaction"];
+    [request setValue:@"www.ignyte.com" forHTTPHeaderField:@"Host"];
+    
+    [request setHTTPBody:postData];    
+    
+    NSURLResponse* response = nil;
+    NSError* error = nil;
+    NSData* result =
+        [NSURLConnection sendSynchronousRequest:request
+                              returningResponse:&response
+                                          error:&error];
+    if (error != nil || result == nil)
+    {
+        return;
+    }
+    
+    TheaterShowtimesXmlParser* parser = [[[TheaterShowtimesXmlParser alloc] initWithData:result] autorelease];
+
+    NSArray* theaters = parser.theaters;
+    
+    if (theaters != nil)
+    {
+        [self setTheaters:theaters];
+    }    
+        
     /*
     NSURL* url = [NSURL URLWithString:@"http://www.ignyte.com/webservices/ignyte.whatsshowing.webservice/moviefunctions.asmx"];
     NSString* method = @"GetTheatersAndMovies";
@@ -135,6 +184,13 @@
         [self setTheaters:[self convertSoapTheaters:soapTheaters]];
     }
      */
+}
+
+- (void) setTheaters:(NSArray*) theaters
+{
+    NSLog(@"BoxOfficeController:setTheaters");
+    [self.model setTheaters:theaters];
+    [self.appDelegate.tabBarController.theatersNavigationController refresh];
 }
 
 /*
@@ -215,13 +271,6 @@
         
         return movieToShowtimesMap;        
     }
-}
-
-- (void) setTheaters:(NSArray*) theaters
-{
-    NSLog(@"BoxOfficeController:setTheaters");
-    [self.model setTheaters:theaters];
-    //[theatersTableView reloadData];
 }
 
 @end
