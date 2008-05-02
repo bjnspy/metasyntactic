@@ -7,20 +7,27 @@
 //
 
 #import "AllTheatersViewController.h"
-
+#import "TheatersNavigationController.h"
+#import "Theater.h"
 
 @implementation AllTheatersViewController
 
-- (id) init
+@synthesize navigationController;
+@synthesize tableView;
+
+- (id) initWithNavigationController:(TheatersNavigationController*) controller
 {
     if (self = [super init])
     {
         self.title = @"All Theaters";
         
-        UIView *view = [[[UIView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        [view setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
-        //[view setBackgroundColor:_color];
-        self.view = view;        
+        self.navigationController = controller;
+        
+        self.tableView = [[[UITableView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
+        self.tableView.dataSource = self;
+        self.tableView.delegate = self;
+        self.view = self.tableView;
     }
     
     return self;
@@ -29,7 +36,48 @@
 - (void) dealloc
 {
     self.view = nil;
+    self.tableView = nil;
+    self.navigationController = nil;
     [super dealloc];
+}
+
+- (BoxOfficeModel*) model
+{
+    return [self.navigationController model];
+}
+
+- (void) refresh
+{
+    [self.tableView reloadData];
+}
+
+- (NSInteger) tableView:(UITableView*) tableView
+  numberOfRowsInSection:(NSInteger) section
+{
+    return [self.model.theaters count];
+}
+
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath
+{
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    Theater* movie = [self.model.theaters objectAtIndex:[indexPath indexAtPosition:1]];
+    cell.text = movie.name;
+    return cell;
+}
+
+- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
+          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath
+{
+    return UITableViewCellAccessoryDisclosureIndicator;
+}
+
+- (void)                     tableView:(UITableView*) tableView
+         selectionDidChangeToIndexPath:(NSIndexPath*) newIndexPath
+                         fromIndexPath:(NSIndexPath*) oldIndexPath
+{
+    //[self.model.movies objectAtIndex:[newIndexPath indexAtPosition:1]]
+    [self.navigationController pushTheaterDetails:nil];
 }
 
 @end

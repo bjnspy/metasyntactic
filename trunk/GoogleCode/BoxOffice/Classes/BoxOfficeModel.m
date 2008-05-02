@@ -13,21 +13,6 @@
 
 @implementation BoxOfficeModel
 
-- (id) init
-{
-    NSLog(@"Initializing BoxOfficeModel");
-    if (self = [super init])
-    {
-    }
-    
-    return self;
-}
-
-- (void) dealloc
-{
-    [super dealloc];
-}
-
 - (NSString*) zipcode
 {
     return [[NSUserDefaults standardUserDefaults] stringForKey:@"zipCode"];
@@ -92,11 +77,11 @@
         return [NSArray array];
     }
     
-    NSMutableArray* decodedTheaters = [[NSMutableArray alloc] init];
+    NSMutableArray* decodedTheaters = [NSMutableArray array];
     
     for (int i = 0; i < [array count]; i++)
     {
-        [decodedTheaters addObject:[[Theater alloc] initWithDictionary:[array objectAtIndex:i]]];
+        [decodedTheaters addObject:[[[Theater alloc] initWithDictionary:[array objectAtIndex:i]] autorelease]];
     }
     
     return decodedTheaters;
@@ -104,7 +89,7 @@
 
 - (void) setTheaters:(NSArray*) theaters
 {
-    NSMutableArray* array = [[NSMutableArray alloc] init];
+    NSMutableArray* array = [NSMutableArray array];
     
     for (int i = 0; i < [theaters count]; i++)
     {

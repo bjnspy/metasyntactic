@@ -28,12 +28,11 @@
         [self.tableView setAutoresizingMask:UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth];
         self.tableView.dataSource = self;
         self.tableView.delegate = self;
+        self.view = self.tableView;
         
         UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"        Title        ", @"        Rating        ", nil]] autorelease];
         control.segmentedControlStyle = UISegmentedControlStyleBar;
         self.navigationItem.customTitleView = control;
-        
-        self.view = self.tableView;
     }
     
     return self;

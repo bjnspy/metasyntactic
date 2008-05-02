@@ -8,6 +8,7 @@
 
 #import "AllTheatersViewController.h"
 #import "TheaterDetailsViewController.h"
+#import "Theater.h"
 
 @class ApplicationTabBarController;
 
@@ -24,6 +25,9 @@
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 - (void) dealloc;
 
+- (BoxOfficeModel*) model;
 - (void) refresh;
+
+- (void) pushTheaterDetails:(Theater*) theater;
 
 @end

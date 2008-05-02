@@ -17,4 +17,6 @@
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 - (void) dealloc;
 
+- (void) refresh;
+
 @end

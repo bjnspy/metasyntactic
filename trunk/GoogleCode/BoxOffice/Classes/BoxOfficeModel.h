@@ -9,9 +9,6 @@
 @interface BoxOfficeModel : NSObject {
 }
 
-- (id) init;
-- (void) dealloc;
-
 - (NSString*) zipcode;
 - (void) setZipcode:(NSString*) zipcode;
 

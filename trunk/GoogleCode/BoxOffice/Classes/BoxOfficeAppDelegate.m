@@ -30,6 +30,8 @@
     [window makeKeyAndVisible];
     
     self.controller = [[[BoxOfficeController alloc] initWithAppDelegate:self] autorelease];
+    
+    [self.tabBarController refresh];
 }
 
 - (void) dealloc {

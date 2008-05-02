@@ -7,7 +7,7 @@
 //
 
 #import "TheatersNavigationController.h"
-
+#import "ApplicationTabBarController.h"
 
 @implementation TheatersNavigationController
 
@@ -20,7 +20,7 @@
     if (self = [super init])
     {   
         self.tabBarController = controller;
-        self.allTheatersViewController = [[[AllTheatersViewController alloc] init] autorelease];
+        self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
         self.theaterDetailsViewController = [[[TheaterDetailsViewController alloc] init] autorelease];
         
         [self pushViewController:allTheatersViewController animated:NO];
@@ -39,8 +39,19 @@
     [super dealloc];
 }
 
+- (BoxOfficeModel*) model
+{
+    return [self.tabBarController model];
+}
+
 - (void) refresh
 {
+    [self.allTheatersViewController refresh];
+}
+
+- (void) pushTheaterDetails:(Theater*) movie
+{
+    [self pushViewController:theaterDetailsViewController animated:YES];
 }
 
 @end

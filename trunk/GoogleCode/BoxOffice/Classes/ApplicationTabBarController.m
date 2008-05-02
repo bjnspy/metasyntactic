@@ -49,4 +49,11 @@
     return [self.appDelegate model];
 }
 
+- (void) refresh
+{
+    [self.moviesNavigationController refresh];
+    [self.theatersNavigationController refresh];
+    [self.settingsViewController refresh];
+}
+
 @end

@@ -29,5 +29,6 @@
 - (void) dealloc;
 
 - (BoxOfficeModel*) model;
+- (void) refresh;
 
 @end

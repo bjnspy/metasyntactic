@@ -29,15 +29,5 @@
 - (void) lookupTheatersBackgroundThreadEntryPoint:(id) anObject;
 - (void) lookupTheaters;
 - (void) setTheaters:(NSArray*) theaters;
-/*
-- (WSMethodInvocationRef) createSOAPRequestWithUrl:(NSURL*) url
-                                            method:(NSString*) method
-                                                ns:(NSString*) ns
-                                        parameters:(NSDictionary*) parameters 
-                                             order:(NSArray*) order
-                                           headers:(NSDictionary*) headers;
-*/
-- (NSDictionary*) convertSoapMovies:(id) soapMovies;
-- (NSArray*) convertSoapTheaters:(NSArray*) soapTheaters;
 
 @end

@@ -6,11 +6,22 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-@interface AllTheatersViewController : UIViewController {
+#import "BoxOfficeModel.h"
 
+@class TheatersNavigationController;
+
+@interface AllTheatersViewController : UIViewController<UITableViewDataSource, UITableViewDelegate> {
+    TheatersNavigationController* navigationController;
+    UITableView* tableView;
 }
 
-- (id) init;
+@property (assign) TheatersNavigationController* navigationController;
+@property (retain) UITableView* tableView;
+
+- (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
 - (void) dealloc;
+
+- (void) refresh;
+- (BoxOfficeModel*) model;
 
 @end

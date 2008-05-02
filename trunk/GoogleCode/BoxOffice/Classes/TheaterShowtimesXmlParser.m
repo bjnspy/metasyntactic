@@ -27,8 +27,10 @@
         NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
         [parser setDelegate:self];
     
+        self.theaters = [NSMutableArray array];
         self.stringBuffer = [NSMutableString string];
         self.movieToShowtimeMap = [NSMutableDictionary dictionary];
+        self.showtimes = [NSMutableArray array];
         
         [parser parse];
     }
@@ -54,6 +56,7 @@
          qualifiedName:(NSString*) qName
             attributes:(NSDictionary*) attributeDict
 {
+    self.stringBuffer = [NSMutableString string]; 
 }
 
 - (void)        parser:(NSXMLParser*) parser
@@ -74,7 +77,7 @@
     else if ([elementName isEqual:@"Movie"])
     {
         [self.movieToShowtimeMap setValue:showtimes forKey:movieName];
-        [self.showtimes removeAllObjects];
+        self.showtimes = [NSMutableArray array];
     }
     else if ([elementName isEqual:@"Address"])
     {
