@@ -57,9 +57,21 @@
     }
     
     [dictionary setValue:self.name forKey:@"name"];
-    [dictionary setValue:self.attributes forKey:@"attributes"];
-    [dictionary setValue:array forKey:@"children"];
-    [dictionary setValue:self.text forKey:@"text"];
+    
+    if (![self.text isEqualToString:@""])
+    {
+        [dictionary setValue:self.text forKey:@"text"];
+    }
+    
+    if ([self.attributes count] > 0)
+    {
+        [dictionary setValue:self.attributes forKey:@"attributes"];
+    }
+    
+    if ([array count] > 0)
+    {
+        [dictionary setValue:array forKey:@"children"];
+    }
     
     return dictionary;
 }

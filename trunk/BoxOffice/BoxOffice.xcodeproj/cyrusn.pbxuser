@@ -30,37 +30,40 @@
 			1D6058900D05DD3D006BFB54 /* BoxOffice */,
 		);
 		breakpoints = (
-			74447D3D0DC845C000CC146C /* MoviesNavigationController.m:27 */,
-			74447D4B0DC845F500CC146C /* MoviesNavigationController.m:27 */,
-			749DF3CC0DC989D100A551D9 /* ApplicationTabBarController.m:23 */,
-			749DF3DD0DC989F300A551D9 /* ApplicationTabBarController.m:24 */,
-			749DF3E40DC98A0E00A551D9 /* MoviesNavigationController.m:24 */,
-			749DF3FD0DC98A4C00A551D9 /* AllMoviesViewController.m:48 */,
-			749DF3FF0DC98A4D00A551D9 /* AllMoviesViewController.m:49 */,
-			749DF4010DC98A4E00A551D9 /* AllMoviesViewController.m:55 */,
-			749DF40B0DC98A7C00A551D9 /* AllMoviesViewController.m:25 */,
-			749DF4990DC98FA600A551D9 /* AllMoviesViewController.m:80 */,
-			74A3487F0DC999EA00AEC095 /* BoxOfficeController.m:61 */,
-			74A348890DC999F700AEC095 /* BoxOfficeController.m:24 */,
-			74A348BC0DC99AAA00AEC095 /* BoxOfficeController.m:51 */,
-			74A348C90DC99B0500AEC095 /* BoxOfficeController.m:67 */,
-			749EBE680DCACC96008B3EE1 /* BoxOfficeController.m:152 */,
-			749EBE6A0DCACC99008B3EE1 /* BoxOfficeController.m:151 */,
-			749EBEA80DCACCC1008B3EE1 /* BoxOfficeController.m:113 */,
-			749EBEAF0DCACCCC008B3EE1 /* BoxOfficeController.m:110 */,
-			7405F6DE0DCAD6DB002E2D06 /* TheaterShowtimesXmlParser.m:66 */,
-			7405F6E00DCAD6E0002E2D06 /* TheaterShowtimesXmlParser.m:113 */,
-			7405F7080DCAD9C3002E2D06 /* BoxOfficeModel.m:80 */,
-			7405F70A0DCAD9C4002E2D06 /* BoxOfficeModel.m:74 */,
-			7405F73F0DCADB2E002E2D06 /* BoxOfficeModel.m:42 */,
-			74D6F2F20DCC1D060097A984 /* BoxOfficeController.m:158 */,
-			7405DCDA0DCC1D8E0023D68A /* BoxOfficeController.m:22 */,
+			7400F4680DCC22C5004D712D /* BoxOfficeController.m:22 */,
+			7400F46A0DCC22CB004D712D /* BoxOfficeController.m:142 */,
+			7400F46F0DCC22D1004D712D /* BoxOfficeController.m:151 */,
+			7400F4710DCC22D4004D712D /* BoxOfficeController.m:155 */,
 		);
 		codeSenseManager = 746A013F0DC818C80079D89B /* Code sense */;
 		executables = (
 			746A01350DC818A90079D89B /* BoxOffice */,
 		);
 		perUserDictionary = {
+			"PBXConfiguration.PBXBreakpointsDataSource.v1:1CA1AED706398EBD00589147" = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXBreakpointsDataSource_BreakpointID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					20,
+					250,
+					20,
+					150,
+					150,
+					80,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXBreakpointsDataSource_ActionID,
+					PBXBreakpointsDataSource_TypeID,
+					PBXBreakpointsDataSource_BreakpointID,
+					PBXBreakpointsDataSource_UseID,
+					PBXBreakpointsDataSource_LocationID,
+					PBXBreakpointsDataSource_ConditionID,
+					PBXBreakpointsDataSource_IgnoreCountID,
+					PBXBreakpointsDataSource_ContinueID,
+				);
+			};
 			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
 				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
 				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
@@ -97,15 +100,14 @@
 					PBXFileDataSource_Target_ColumnID,
 				);
 			};
-			PBXPerProjectTemplateStateSaveDate = 231480648;
-			PBXWorkspaceStateSaveDate = 231480648;
+			PBXPerProjectTemplateStateSaveDate = 231482016;
+			PBXWorkspaceStateSaveDate = 231482016;
 		};
 		perUserProjectItems = {
-			7405DCC30DCC1D510023D68A /* PBXTextBookmark */ = 7405DCC30DCC1D510023D68A /* PBXTextBookmark */;
-			7405DCD60DCC1D8B0023D68A /* PBXTextBookmark */ = 7405DCD60DCC1D8B0023D68A /* PBXTextBookmark */;
-			7405DCDC0DCC1D9E0023D68A /* PBXTextBookmark */ = 7405DCDC0DCC1D9E0023D68A /* PBXTextBookmark */;
-			7405DCE00DCC1DB60023D68A /* PBXTextBookmark */ = 7405DCE00DCC1DB60023D68A /* PBXTextBookmark */;
-			7405DCE30DCC1DD60023D68A /* PBXTextBookmark */ = 7405DCE30DCC1DD60023D68A /* PBXTextBookmark */;
+			7400F4550DCC22A0004D712D /* PBXTextBookmark */ = 7400F4550DCC22A0004D712D /* PBXTextBookmark */;
+			7400F46B0DCC22CD004D712D /* PBXTextBookmark */ = 7400F46B0DCC22CD004D712D /* PBXTextBookmark */;
+			7400F4730DCC22E1004D712D /* PBXTextBookmark */ = 7400F4730DCC22E1004D712D /* PBXTextBookmark */;
+			7405DCE30DCC1DD60023D68A = 7405DCE30DCC1DD60023D68A /* PBXTextBookmark */;
 			7405F6AC0DCAD5EC002E2D06 = 7405F6AC0DCAD5EC002E2D06 /* PBXTextBookmark */;
 			7405F6F30DCAD88F002E2D06 = 7405F6F30DCAD88F002E2D06 /* PBXTextBookmark */;
 			7405F6FE0DCAD94A002E2D06 = 7405F6FE0DCAD94A002E2D06 /* PBXTextBookmark */;
@@ -123,11 +125,25 @@
 			7405F7BB0DCAF2F5002E2D06 = 7405F7BB0DCAF2F5002E2D06 /* PBXTextBookmark */;
 			7405F7E50DCAF425002E2D06 = 7405F7E50DCAF425002E2D06 /* PBXTextBookmark */;
 			7405F7EA0DCAF425002E2D06 = 7405F7EA0DCAF425002E2D06 /* PBXTextBookmark */;
+			740879620DCC2069008947CD = 740879620DCC2069008947CD /* PBXTextBookmark */;
+			740879790DCC2159008947CD = 740879790DCC2159008947CD /* PBXTextBookmark */;
+			7408797A0DCC2159008947CD = 7408797A0DCC2159008947CD /* PBXTextBookmark */;
+			7408797B0DCC2159008947CD = 7408797B0DCC2159008947CD /* PBXTextBookmark */;
+			7408797C0DCC2159008947CD = 7408797C0DCC2159008947CD /* PBXTextBookmark */;
+			740879880DCC2177008947CD = 740879880DCC2177008947CD /* PBXTextBookmark */;
+			740879890DCC2177008947CD = 740879890DCC2177008947CD /* PBXTextBookmark */;
+			7408798A0DCC2177008947CD = 7408798A0DCC2177008947CD /* PBXTextBookmark */;
+			7408798B0DCC2177008947CD = 7408798B0DCC2177008947CD /* PBXTextBookmark */;
+			7408798E0DCC2181008947CD = 7408798E0DCC2181008947CD /* PBXTextBookmark */;
+			740879900DCC2186008947CD = 740879900DCC2186008947CD /* PBXTextBookmark */;
+			740879990DCC21A4008947CD = 740879990DCC21A4008947CD /* PBXTextBookmark */;
+			7408799E0DCC21AE008947CD = 7408799E0DCC21AE008947CD /* PBXTextBookmark */;
 			7412C5950DC85002004F21BD = 7412C5950DC85002004F21BD /* PBXTextBookmark */;
 			7412C59E0DC85002004F21BD = 7412C59E0DC85002004F21BD /* PBXTextBookmark */;
 			7412C5A40DC85002004F21BD = 7412C5A40DC85002004F21BD /* PBXTextBookmark */;
 			7412C5A60DC85002004F21BD = 7412C5A60DC85002004F21BD /* PBXTextBookmark */;
 			7412C5B00DC85054004F21BD = 7412C5B00DC85054004F21BD /* PBXTextBookmark */;
+			741F18AA0DCC1F6D004E6A27 = 741F18AA0DCC1F6D004E6A27 /* PBXTextBookmark */;
 			743ED8350DCAF5FB007A6F9F = 743ED8350DCAF5FB007A6F9F /* PBXTextBookmark */;
 			743ED8360DCAF5FB007A6F9F = 743ED8360DCAF5FB007A6F9F /* PBXTextBookmark */;
 			743ED8370DCAF5FB007A6F9F = 743ED8370DCAF5FB007A6F9F /* PBXTextBookmark */;
@@ -214,63 +230,23 @@
 			74D6F2FF0DCC1D220097A984 = 74D6F2FF0DCC1D220097A984 /* PBXTextBookmark */;
 			74D6F3000DCC1D220097A984 = 74D6F3000DCC1D220097A984 /* PBXTextBookmark */;
 			74D6F3010DCC1D220097A984 = 74D6F3010DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3020DCC1D220097A984 = 74D6F3020DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3030DCC1D220097A984 = 74D6F3030DCC1D220097A984 /* PBXTextBookmark */;
 			74D6F3040DCC1D220097A984 = 74D6F3040DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3050DCC1D220097A984 = 74D6F3050DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3060DCC1D220097A984 = 74D6F3060DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3070DCC1D220097A984 = 74D6F3070DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3080DCC1D220097A984 = 74D6F3080DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3090DCC1D220097A984 = 74D6F3090DCC1D220097A984 /* PBXTextBookmark */;
 			74D6F30A0DCC1D220097A984 = 74D6F30A0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F30B0DCC1D220097A984 = 74D6F30B0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F30C0DCC1D220097A984 = 74D6F30C0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F30D0DCC1D220097A984 = 74D6F30D0DCC1D220097A984 /* PBXTextBookmark */;
 			74D6F30E0DCC1D220097A984 = 74D6F30E0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F30F0DCC1D220097A984 = 74D6F30F0DCC1D220097A984 /* PBXTextBookmark */;
 			74D6F3100DCC1D220097A984 = 74D6F3100DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3110DCC1D220097A984 = 74D6F3110DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3120DCC1D220097A984 = 74D6F3120DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3130DCC1D220097A984 = 74D6F3130DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3140DCC1D220097A984 = 74D6F3140DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3150DCC1D220097A984 = 74D6F3150DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3160DCC1D220097A984 = 74D6F3160DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3170DCC1D220097A984 = 74D6F3170DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3180DCC1D220097A984 = 74D6F3180DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3190DCC1D220097A984 = 74D6F3190DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F31A0DCC1D220097A984 = 74D6F31A0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F31B0DCC1D220097A984 = 74D6F31B0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F31C0DCC1D220097A984 = 74D6F31C0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F31D0DCC1D220097A984 = 74D6F31D0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F31E0DCC1D220097A984 = 74D6F31E0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F31F0DCC1D220097A984 = 74D6F31F0DCC1D220097A984 /* PBXTextBookmark */;
-			74D6F3320DCC1D3B0097A984 = 74D6F3320DCC1D3B0097A984 /* PBXTextBookmark */;
 		};
 		sourceControlManager = 746A013E0DC818C80079D89B /* Source Control */;
 		userBuildSettings = {
 		};
 	};
-	7405DCC30DCC1D510023D68A /* PBXTextBookmark */ = {
+	7400F4550DCC22A0004D712D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
-		name = "BoxOfficeController.m: 14";
-		rLen = 0;
-		rLoc = 314;
-		rType = 0;
-		vrLen = 1191;
-		vrLoc = 4338;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		rLen = 1;
+		rLoc = 21;
+		rType = 1;
 	};
-	7405DCD60DCC1D8B0023D68A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
-		name = "BoxOfficeController.m: 104";
-		rLen = 0;
-		rLoc = 3067;
-		rType = 0;
-		vrLen = 659;
-		vrLoc = 0;
-	};
-	7405DCDA0DCC1D8E0023D68A /* BoxOfficeController.m:22 */ = {
+	7400F4680DCC22C5004D712D /* BoxOfficeController.m:22 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -278,33 +254,81 @@
 		continueAfterActions = 0;
 		countType = 0;
 		delayBeforeContinue = 0;
-		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		fileReference = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		functionName = "-initWithAppDelegate:";
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 22;
-		modificationTime = 231480788.774999;
+		modificationTime = 231482053.915911;
 		state = 1;
 	};
-	7405DCDC0DCC1D9E0023D68A /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
-		name = "BoxOfficeController.m: 104";
-		rLen = 0;
-		rLoc = 3067;
-		rType = 0;
-		vrLen = 1689;
-		vrLoc = 2910;
+	7400F46A0DCC22CB004D712D /* BoxOfficeController.m:142 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 142;
+		modificationTime = 231482059.221776;
+		state = 1;
 	};
-	7405DCE00DCC1DB60023D68A /* PBXTextBookmark */ = {
+	7400F46B0DCC22CD004D712D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
-		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
-		name = "BoxOfficeController.m: 104";
-		rLen = 0;
-		rLoc = 3067;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 22";
+		rLen = 29;
+		rLoc = 439;
 		rType = 0;
-		vrLen = 1689;
-		vrLoc = 2910;
+		vrLen = 1441;
+		vrLoc = 4079;
+	};
+	7400F46F0DCC22D1004D712D /* BoxOfficeController.m:151 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 151;
+		modificationTime = 231482065.096834;
+		state = 1;
+	};
+	7400F4710DCC22D4004D712D /* BoxOfficeController.m:155 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 155;
+		modificationTime = 231482068.480919;
+		state = 1;
+	};
+	7400F4730DCC22E1004D712D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 22";
+		rLen = 29;
+		rLoc = 439;
+		rType = 0;
+		vrLen = 1359;
+		vrLoc = 4079;
 	};
 	7405DCE30DCC1DD60023D68A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -340,47 +364,6 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/TheatersNavigationController.m;
 		sourceTree = "<group>";
 	};
-	7405F6DA0DCAD6D9002E2D06 /* TheaterShowtimesXmlParser.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = TheaterShowtimesXmlParser.m;
-		path = /Projects/GoogleCode/BoxOffice/Classes/TheaterShowtimesXmlParser.m;
-		sourceTree = "<group>";
-	};
-	7405F6DE0DCAD6DB002E2D06 /* TheaterShowtimesXmlParser.m:66 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 7405F6DA0DCAD6D9002E2D06 /* TheaterShowtimesXmlParser.m */;
-		functionName = "-parser:didEndElement:namespaceURI:qualifiedName:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 66;
-		location = BoxOffice;
-		modificationTime = 231480758.232564;
-		state = 2;
-	};
-	7405F6E00DCAD6E0002E2D06 /* TheaterShowtimesXmlParser.m:113 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 7405F6DA0DCAD6D9002E2D06 /* TheaterShowtimesXmlParser.m */;
-		functionName = "-parser:foundCharacters:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 113;
-		location = BoxOffice;
-		modificationTime = 231480758.232571;
-		state = 2;
-	};
 	7405F6F30DCAD88F002E2D06 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 749EBE0F0DCABF72008B3EE1 /* TheaterShowtimesXmlParser.h */;
@@ -401,40 +384,6 @@
 		vrLen = 1247;
 		vrLoc = 981;
 	};
-	7405F7080DCAD9C3002E2D06 /* BoxOfficeModel.m:80 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */;
-		functionName = "-theaters";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 80;
-		location = BoxOffice;
-		modificationTime = 231480758.232577;
-		state = 2;
-	};
-	7405F70A0DCAD9C4002E2D06 /* BoxOfficeModel.m:74 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */;
-		functionName = "-theaters";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 74;
-		location = BoxOffice;
-		modificationTime = 231480758.232583;
-		state = 2;
-	};
 	7405F7150DCADA12002E2D06 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
@@ -454,23 +403,6 @@
 		rType = 0;
 		vrLen = 819;
 		vrLoc = 0;
-	};
-	7405F73F0DCADB2E002E2D06 /* BoxOfficeModel.m:42 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */;
-		functionName = "-movies";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 42;
-		location = BoxOffice;
-		modificationTime = 231480758.232589;
-		state = 2;
 	};
 	7405F7450DCADDAD002E2D06 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -641,6 +573,136 @@
 		vrLen = 248;
 		vrLoc = 0;
 	};
+	740879620DCC2069008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1782;
+		vrLoc = 3299;
+	};
+	740879790DCC2159008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1827;
+		vrLoc = 3299;
+	};
+	7408797A0DCC2159008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 62";
+		rLen = 0;
+		rLoc = 1448;
+		rType = 0;
+		vrLen = 771;
+		vrLoc = 608;
+	};
+	7408797B0DCC2159008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1827;
+		vrLoc = 3299;
+	};
+	7408797C0DCC2159008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 66";
+		rLen = 0;
+		rLoc = 1353;
+		rType = 0;
+		vrLen = 801;
+		vrLoc = 679;
+	};
+	740879880DCC2177008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 55";
+		rLen = 0;
+		rLoc = 1063;
+		rType = 0;
+		vrLen = 801;
+		vrLoc = 679;
+	};
+	740879890DCC2177008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1782;
+		vrLoc = 3299;
+	};
+	7408798A0DCC2177008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 55";
+		rLen = 0;
+		rLoc = 1063;
+		rType = 0;
+		vrLen = 801;
+		vrLoc = 679;
+	};
+	7408798B0DCC2177008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 659;
+		vrLoc = 0;
+	};
+	7408798E0DCC2181008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1009;
+		vrLoc = 4525;
+	};
+	740879900DCC2186008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1125;
+		vrLoc = 4409;
+	};
+	740879990DCC21A4008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1125;
+		vrLoc = 4409;
+	};
+	7408799E0DCC21AE008947CD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1125;
+		vrLoc = 4409;
+	};
 	7412C5920DC85002004F21BD /* UITabBarItem.h */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.h;
@@ -739,6 +801,16 @@
 		rType = 0;
 		vrLen = 2113;
 		vrLoc = 1432;
+	};
+	741F18AA0DCC1F6D004E6A27 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1764;
+		vrLoc = 3357;
 	};
 	743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */ = {
 		isa = PBXFileReference;
@@ -1265,40 +1337,6 @@
 		vrLen = 714;
 		vrLoc = 0;
 	};
-	74447D3D0DC845C000CC146C /* MoviesNavigationController.m:27 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */;
-		functionName = "-init";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 27;
-		location = BoxOffice;
-		modificationTime = 231480758.232339;
-		state = 2;
-	};
-	74447D4B0DC845F500CC146C /* MoviesNavigationController.m:27 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */;
-		functionName = "-init";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 27;
-		location = BoxOffice;
-		modificationTime = 231480758.232356;
-		state = 2;
-	};
 	744DDE5F0DC9992F005BFCF6 /* NSArray.h */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.h;
@@ -1695,9 +1733,9 @@
 	};
 	749DF1700DC9737700A551D9 /* BoxOfficeController.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {798, 2408}}";
-			sepNavSelRange = "{314, 0}";
-			sepNavVisRange = "{4409, 1125}";
+			sepNavIntBoundsRect = "{{0, 0}, {798, 1974}}";
+			sepNavSelRange = "{439, 29}";
+			sepNavVisRange = "{4079, 1359}";
 			sepNavWindowFrame = "{{62, -5}, {851, 878}}";
 		};
 	};
@@ -1745,136 +1783,6 @@
 		vrLen = 1269;
 		vrLoc = 0;
 	};
-	749DF3CA0DC989D100A551D9 /* ApplicationTabBarController.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = ApplicationTabBarController.m;
-		path = /Projects/BoxOffice/Classes/ApplicationTabBarController.m;
-		sourceTree = "<group>";
-	};
-	749DF3CC0DC989D100A551D9 /* ApplicationTabBarController.m:23 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749DF3CA0DC989D100A551D9 /* ApplicationTabBarController.m */;
-		functionName = "-initWithSettingsView:appDelegate:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 23;
-		modificationTime = 231480758.232363;
-		state = 2;
-	};
-	749DF3DD0DC989F300A551D9 /* ApplicationTabBarController.m:24 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749DF3CA0DC989D100A551D9 /* ApplicationTabBarController.m */;
-		functionName = "-initWithSettingsView:appDelegate:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 24;
-		location = BoxOffice;
-		modificationTime = 231480758.232369;
-		state = 2;
-	};
-	749DF3E20DC98A0E00A551D9 /* MoviesNavigationController.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = MoviesNavigationController.m;
-		path = /Projects/BoxOffice/Classes/MoviesNavigationController.m;
-		sourceTree = "<group>";
-	};
-	749DF3E40DC98A0E00A551D9 /* MoviesNavigationController.m:24 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749DF3E20DC98A0E00A551D9 /* MoviesNavigationController.m */;
-		functionName = "-initWithTabBarController:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 24;
-		modificationTime = 231480758.232376;
-		state = 2;
-	};
-	749DF3FD0DC98A4C00A551D9 /* AllMoviesViewController.m:48 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
-		functionName = "-tableView:numberOfRowsInSection:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 48;
-		modificationTime = 231480758.232382;
-		state = 2;
-	};
-	749DF3FF0DC98A4D00A551D9 /* AllMoviesViewController.m:49 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
-		functionName = "-tableView:numberOfRowsInSection:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 49;
-		location = BoxOffice;
-		modificationTime = 231480758.232387;
-		state = 2;
-	};
-	749DF4010DC98A4E00A551D9 /* AllMoviesViewController.m:55 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
-		functionName = "-tableView:cellForRowAtIndexPath:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 55;
-		location = BoxOffice;
-		modificationTime = 231480758.232393;
-		state = 2;
-	};
-	749DF40B0DC98A7C00A551D9 /* AllMoviesViewController.m:25 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
-		functionName = "-initWithNavigationController:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 25;
-		location = BoxOffice;
-		modificationTime = 231480758.232399;
-		state = 2;
-	};
 	749DF4470DC98C3E00A551D9 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 749DF4480DC98C3E00A551D9 /* NSIndexPath.h */;
@@ -1891,29 +1799,6 @@
 		name = NSIndexPath.h;
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSIndexPath.h;
 		sourceTree = "<absolute>";
-	};
-	749DF4970DC98FA600A551D9 /* AllMoviesViewController.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = AllMoviesViewController.m;
-		path = /Projects/BoxOffice/Classes/AllMoviesViewController.m;
-		sourceTree = "<group>";
-	};
-	749DF4990DC98FA600A551D9 /* AllMoviesViewController.m:80 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749DF4970DC98FA600A551D9 /* AllMoviesViewController.m */;
-		functionName = "-tableView:accessoryButtonTappedForRowWithIndexPath:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 80;
-		modificationTime = 231480788.774968;
-		state = 1;
 	};
 	749EBDD30DCAB94A008B3EE1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -2020,44 +1905,6 @@
 		name = BoxOfficeController.m;
 		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m;
 		sourceTree = "<group>";
-		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {798, 2408}}";
-			sepNavSelRange = "{3067, 0}";
-			sepNavVisRange = "{3357, 1769}";
-		};
-	};
-	749EBE680DCACC96008B3EE1 /* BoxOfficeController.m:152 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
-		functionName = "-lookupTheaters";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 152;
-		location = BoxOffice;
-		modificationTime = 231480758.232433;
-		state = 2;
-	};
-	749EBE6A0DCACC99008B3EE1 /* BoxOfficeController.m:151 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
-		functionName = "-lookupTheaters";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 151;
-		modificationTime = 231480788.774916;
-		state = 1;
 	};
 	749EBE720DCACC9E008B3EE1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -2160,119 +2007,6 @@
 		vrLen = 1297;
 		vrLoc = 1732;
 	};
-	749EBEA80DCACCC1008B3EE1 /* BoxOfficeController.m:113 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
-		functionName = "-lookupTheaters";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 113;
-		modificationTime = 231480788.774838;
-		state = 1;
-	};
-	749EBEAF0DCACCCC008B3EE1 /* BoxOfficeController.m:110 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
-		functionName = "-lookupTheaters";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 110;
-		modificationTime = 231480758.232534;
-		state = 2;
-	};
-	74A3487D0DC999EA00AEC095 /* BoxOfficeController.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = BoxOfficeController.m;
-		path = /Projects/BoxOffice/Classes/BoxOfficeController.m;
-		sourceTree = "<group>";
-	};
-	74A3487F0DC999EA00AEC095 /* BoxOfficeController.m:61 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74A3487D0DC999EA00AEC095 /* BoxOfficeController.m */;
-		functionName = "-lookupMovies";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 61;
-		location = BoxOffice;
-		modificationTime = 231480758.23241;
-		state = 2;
-	};
-	74A348890DC999F700AEC095 /* BoxOfficeController.m:24 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74A3487D0DC999EA00AEC095 /* BoxOfficeController.m */;
-		functionName = "-initWithAppDelegate:model:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 24;
-		location = BoxOffice;
-		modificationTime = 231480758.232416;
-		state = 2;
-	};
-	74A348BA0DC99AAA00AEC095 /* BoxOfficeController.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = BoxOfficeController.m;
-		path = /Projects/BoxOffice/Classes/BoxOfficeController.m;
-		sourceTree = "<group>";
-	};
-	74A348BC0DC99AAA00AEC095 /* BoxOfficeController.m:51 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74A348BA0DC99AAA00AEC095 /* BoxOfficeController.m */;
-		functionName = "-lookupMoviesBackgroundThreadEntryPoint:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 51;
-		location = BoxOffice;
-		modificationTime = 231480758.232421;
-		state = 2;
-	};
-	74A348C90DC99B0500AEC095 /* BoxOfficeController.m:67 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 74A348BA0DC99AAA00AEC095 /* BoxOfficeController.m */;
-		functionName = "-lookupMovies";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 67;
-		modificationTime = 231480788.774959;
-		state = 1;
-	};
 	74A348CB0DC99B1C00AEC095 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 74447C580DC840D100CC146C /* MovieDetailsViewController.h */;
@@ -2338,20 +2072,6 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/XmlElement.m;
 		sourceTree = "<absolute>";
 	};
-	74D6F2D30DCC1AA30097A984 /* XmlElement.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = XmlElement.m;
-		path = /Projects/GoogleCode/BoxOffice/Classes/XmlElement.m;
-		sourceTree = "<absolute>";
-	};
-	74D6F2D70DCC1AA60097A984 /* XmlParser.h */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.h;
-		name = XmlParser.h;
-		path = /Projects/GoogleCode/BoxOffice/Classes/XmlParser.h;
-		sourceTree = "<absolute>";
-	};
 	74D6F2E10DCC1AF80097A984 /* XmlParser.h */ = {
 		isa = PBXFileReference;
 		lastKnownFileType = sourcecode.c.h;
@@ -2371,29 +2091,6 @@
 		lastKnownFileType = sourcecode.c.objc;
 		name = XmlElement.m;
 		path = /Projects/GoogleCode/BoxOffice/Classes/XmlElement.m;
-		sourceTree = "<absolute>";
-	};
-	74D6F2F20DCC1D060097A984 /* BoxOfficeController.m:158 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
-		functionName = "-lookupTheaters";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 158;
-		modificationTime = 231480788.774976;
-		state = 1;
-	};
-	74D6F2F50DCC1D090097A984 /* BoxOfficeController.m */ = {
-		isa = PBXFileReference;
-		lastKnownFileType = sourcecode.c.objc;
-		name = BoxOfficeController.m;
-		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m;
 		sourceTree = "<absolute>";
 	};
 	74D6F2FB0DCC1D220097A984 /* PBXTextBookmark */ = {
@@ -2461,27 +2158,10 @@
 		fRef = 74D6F2EF0DCC1CAB0097A984 /* XmlElement.m */;
 		name = "XmlElement.m: 62";
 		rLen = 0;
-		rLoc = 1315;
+		rLoc = 1448;
 		rType = 0;
 		vrLen = 765;
 		vrLoc = 614;
-	};
-	74D6F3020DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2F50DCC1D090097A984 /* BoxOfficeController.m */;
-		rLen = 1;
-		rLoc = 154;
-		rType = 1;
-	};
-	74D6F3030DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
-		name = "SettingsNavigationController.m: 6";
-		rLen = 0;
-		rLoc = 122;
-		rType = 0;
-		vrLen = 884;
-		vrLoc = 0;
 	};
 	74D6F3040DCC1D220097A984 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -2491,56 +2171,6 @@
 		rLoc = 402;
 		rType = 0;
 		vrLen = 343;
-		vrLoc = 0;
-	};
-	74D6F3050DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
-		name = "XmlParser.h: 19";
-		rLen = 0;
-		rLoc = 652;
-		rType = 0;
-		vrLen = 361;
-		vrLoc = 0;
-	};
-	74D6F3060DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
-		name = "XmlParser.h: 13";
-		rLen = 11;
-		rLoc = 203;
-		rType = 0;
-		vrLen = 486;
-		vrLoc = 0;
-	};
-	74D6F3070DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 749EBE800DCACC9E008B3EE1 /* NSXMLParser.h */;
-		name = "NSXMLParser.h: 85";
-		rLen = 2029;
-		rLoc = 3583;
-		rType = 0;
-		vrLen = 3252;
-		vrLoc = 2995;
-	};
-	74D6F3080DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
-		name = "XmlParser.h: 13";
-		rLen = 11;
-		rLoc = 203;
-		rType = 0;
-		vrLen = 486;
-		vrLoc = 0;
-	};
-	74D6F3090DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
-		name = "XmlParser.h: 15";
-		rLen = 13;
-		rLoc = 269;
-		rType = 0;
-		vrLen = 481;
 		vrLoc = 0;
 	};
 	74D6F30A0DCC1D220097A984 /* PBXTextBookmark */ = {
@@ -2553,36 +2183,6 @@
 		vrLen = 502;
 		vrLoc = 0;
 	};
-	74D6F30B0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
-		name = "XmlParser.h: 17";
-		rLen = 0;
-		rLoc = 398;
-		rType = 0;
-		vrLen = 536;
-		vrLoc = 0;
-	};
-	74D6F30C0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2BC0DCC176D0097A984 /* XmlElement.h */;
-		name = "XmlElement.h: 27";
-		rLen = 0;
-		rLoc = 643;
-		rType = 0;
-		vrLen = 640;
-		vrLoc = 0;
-	};
-	74D6F30D0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2BC0DCC176D0097A984 /* XmlElement.h */;
-		name = "XmlElement.h: 27";
-		rLen = 0;
-		rLoc = 643;
-		rType = 0;
-		vrLen = 640;
-		vrLoc = 0;
-	};
 	74D6F30E0DCC1D220097A984 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */;
@@ -2591,16 +2191,6 @@
 		rLoc = 2457;
 		rType = 0;
 		vrLen = 613;
-		vrLoc = 0;
-	};
-	74D6F30F0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
-		name = "XmlElement.h: 20";
-		rLen = 0;
-		rLoc = 485;
-		rType = 0;
-		vrLen = 672;
 		vrLoc = 0;
 	};
 	74D6F3100DCC1D220097A984 /* PBXTextBookmark */ = {
@@ -2612,165 +2202,5 @@
 		rType = 0;
 		vrLen = 202;
 		vrLoc = 0;
-	};
-	74D6F3110DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
-		name = "XmlElement.h: 17";
-		rLen = 148;
-		rLoc = 354;
-		rType = 0;
-		vrLen = 672;
-		vrLoc = 0;
-	};
-	74D6F3120DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
-		name = "XmlElement.m: 19";
-		rLen = 0;
-		rLoc = 1372;
-		rType = 0;
-		vrLen = 285;
-		vrLoc = 0;
-	};
-	74D6F3130DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
-		name = "XmlElement.h: 22";
-		rLen = 180;
-		rLoc = 504;
-		rType = 0;
-		vrLen = 691;
-		vrLoc = 0;
-	};
-	74D6F3140DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2D30DCC1AA30097A984 /* XmlElement.m */;
-		name = "XmlElement.m: 41";
-		rLen = 0;
-		rLoc = 772;
-		rType = 0;
-		vrLen = 635;
-		vrLoc = 141;
-	};
-	74D6F3150DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2D70DCC1AA60097A984 /* XmlParser.h */;
-		name = "XmlParser.h: 22";
-		rLen = 0;
-		rLoc = 668;
-		rType = 0;
-		vrLen = 509;
-		vrLoc = 0;
-	};
-	74D6F3160DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2D30DCC1AA30097A984 /* XmlElement.m */;
-		name = "XmlElement.m: 41";
-		rLen = 0;
-		rLoc = 772;
-		rType = 0;
-		vrLen = 635;
-		vrLoc = 141;
-	};
-	74D6F3170DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */;
-		name = "XmlParser.m: 76";
-		rLen = 0;
-		rLoc = 2457;
-		rType = 0;
-		vrLen = 607;
-		vrLoc = 36;
-	};
-	74D6F3180DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2E10DCC1AF80097A984 /* XmlParser.h */;
-		name = "XmlParser.h: 27";
-		rLen = 38;
-		rLoc = 654;
-		rType = 0;
-		vrLen = 698;
-		vrLoc = 0;
-	};
-	74D6F3190DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2E80DCC1B5F0097A984 /* XmlParser.m */;
-		name = "XmlParser.m: 83";
-		rLen = 5;
-		rLoc = 2461;
-		rType = 0;
-		vrLen = 710;
-		vrLoc = 0;
-	};
-	74D6F31A0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
-		name = "XmlElement.h: 22";
-		rLen = 180;
-		rLoc = 504;
-		rType = 0;
-		vrLen = 691;
-		vrLoc = 0;
-	};
-	74D6F31B0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2E10DCC1AF80097A984 /* XmlParser.h */;
-		name = "XmlParser.h: 17";
-		rLen = 197;
-		rLoc = 400;
-		rType = 0;
-		vrLen = 698;
-		vrLoc = 0;
-	};
-	74D6F31C0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2E80DCC1B5F0097A984 /* XmlParser.m */;
-		name = "XmlParser.m: 16";
-		rLen = 0;
-		rLoc = 280;
-		rType = 0;
-		vrLen = 773;
-		vrLoc = 0;
-	};
-	74D6F31D0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2D30DCC1AA30097A984 /* XmlElement.m */;
-		name = "XmlElement.m: 41";
-		rLen = 0;
-		rLoc = 772;
-		rType = 0;
-		vrLen = 643;
-		vrLoc = 138;
-	};
-	74D6F31E0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
-		name = "XmlElement.h: 29";
-		rLen = 56;
-		rLoc = 686;
-		rType = 0;
-		vrLen = 749;
-		vrLoc = 0;
-	};
-	74D6F31F0DCC1D220097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 74D6F2EF0DCC1CAB0097A984 /* XmlElement.m */;
-		name = "XmlElement.m: 62";
-		rLen = 0;
-		rLoc = 1315;
-		rType = 0;
-		vrLen = 765;
-		vrLoc = 614;
-	};
-	74D6F3320DCC1D3B0097A984 /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
-		name = "BoxOfficeController.m: 14";
-		rLen = 0;
-		rLoc = 314;
-		rType = 0;
-		vrLen = 1125;
-		vrLoc = 4409;
 	};
 }
