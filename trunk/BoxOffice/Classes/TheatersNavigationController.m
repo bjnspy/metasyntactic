@@ -21,7 +21,6 @@
     {   
         self.tabBarController = controller;
         self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
-        self.theaterDetailsViewController = [[[TheaterDetailsViewController alloc] init] autorelease];
         
         [self pushViewController:allTheatersViewController animated:NO];
         
@@ -47,10 +46,13 @@
 - (void) refresh
 {
     [self.allTheatersViewController refresh];
+    [self.theaterDetailsViewController refresh];
 }
 
-- (void) pushTheaterDetails:(Theater*) movie
+- (void) pushTheaterDetails:(Theater*) theater
 {
+    self.theaterDetailsViewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self theater:theater] autorelease];
+
     [self pushViewController:theaterDetailsViewController animated:YES];
 }
 

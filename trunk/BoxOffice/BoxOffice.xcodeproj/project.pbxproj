@@ -102,6 +102,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				740DE12F0DCC3D5400B4E69A /* Utilities */,
 				74D6F2B40DCC14420097A984 /* Xml */,
 				74447D550DC8474A00CC146C /* UI */,
 				1D3623240D0F684500981E51 /* BoxOfficeAppDelegate.h */,
@@ -170,6 +171,13 @@
 				1D30AB110D05D00D00671497 /* Foundation.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Utilities;
 			sourceTree = "<group>";
 		};
 		74447D550DC8474A00CC146C /* UI */ = {

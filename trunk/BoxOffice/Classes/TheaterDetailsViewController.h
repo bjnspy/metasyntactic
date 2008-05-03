@@ -6,11 +6,27 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-@interface TheaterDetailsViewController : UIViewController {
+#import "Theater.h"
 
+@class TheatersNavigationController;
+
+@interface TheaterDetailsViewController : UITableViewController {
+    TheatersNavigationController* navigationController;
+    Theater* theater;
+    
+    NSArray* movieNames;
+    NSArray* movieShowtimes;
 }
 
-- (id) init;
+@property (assign) TheatersNavigationController* navigationController;
+@property (retain) Theater* theater;
+@property (retain) NSArray* movieNames;
+@property (retain) NSArray* movieShowtimes;
+
+- (id) initWithNavigationController:(TheatersNavigationController*) navigationController
+                            theater:(Theater*) theater;
 - (void) dealloc;
+
+- (void) refresh;
 
 @end

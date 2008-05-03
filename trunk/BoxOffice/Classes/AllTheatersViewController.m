@@ -52,8 +52,8 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath
 {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-    Theater* movie = [self.model.theaters objectAtIndex:[indexPath indexAtPosition:1]];
-    cell.text = movie.name;
+    Theater* theater = [self.model.theaters objectAtIndex:[indexPath indexAtPosition:1]];
+    cell.text = theater.name;
     return cell;
 }
 
@@ -67,8 +67,8 @@
          selectionDidChangeToIndexPath:(NSIndexPath*) newIndexPath
                          fromIndexPath:(NSIndexPath*) oldIndexPath
 {
-    //[self.model.movies objectAtIndex:[newIndexPath indexAtPosition:1]]
-    [self.navigationController pushTheaterDetails:nil];
+    Theater* theater = [self.model.theaters objectAtIndex:[newIndexPath indexAtPosition:1]];
+    [self.navigationController pushTheaterDetails:theater];
 }
 
 @end

@@ -192,7 +192,7 @@
             [array addObject:date];
         }
         
-        [dictionary setValue:array forKey:nameElement.name];
+        [dictionary setValue:array forKey:nameElement.text];
     }
     
     return dictionary;
