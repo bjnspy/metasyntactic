@@ -1,0 +1,2776 @@
+// !$*UTF8*$!
+{
+	1D3623240D0F684500981E51 /* BoxOfficeAppDelegate.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{792, 0}";
+			sepNavVisRange = "{0, 800}";
+		};
+	};
+	1D3623250D0F684500981E51 /* BoxOfficeAppDelegate.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 672}}";
+			sepNavSelRange = "{958, 0}";
+			sepNavVisRange = "{149, 988}";
+			sepNavWindowFrame = "{{392, 0}, {851, 878}}";
+		};
+	};
+	1D6058900D05DD3D006BFB54 /* BoxOffice */ = {
+		activeExec = 0;
+		executables = (
+			746A01350DC818A90079D89B /* BoxOffice */,
+		);
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeArchitecture = i386;
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 746A01350DC818A90079D89B /* BoxOffice */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* BoxOffice */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* BoxOffice */,
+		);
+		breakpoints = (
+			74447D3D0DC845C000CC146C /* MoviesNavigationController.m:27 */,
+			74447D4B0DC845F500CC146C /* MoviesNavigationController.m:27 */,
+			749DF3CC0DC989D100A551D9 /* ApplicationTabBarController.m:23 */,
+			749DF3DD0DC989F300A551D9 /* ApplicationTabBarController.m:24 */,
+			749DF3E40DC98A0E00A551D9 /* MoviesNavigationController.m:24 */,
+			749DF3FD0DC98A4C00A551D9 /* AllMoviesViewController.m:48 */,
+			749DF3FF0DC98A4D00A551D9 /* AllMoviesViewController.m:49 */,
+			749DF4010DC98A4E00A551D9 /* AllMoviesViewController.m:55 */,
+			749DF40B0DC98A7C00A551D9 /* AllMoviesViewController.m:25 */,
+			749DF4990DC98FA600A551D9 /* AllMoviesViewController.m:80 */,
+			74A3487F0DC999EA00AEC095 /* BoxOfficeController.m:61 */,
+			74A348890DC999F700AEC095 /* BoxOfficeController.m:24 */,
+			74A348BC0DC99AAA00AEC095 /* BoxOfficeController.m:51 */,
+			74A348C90DC99B0500AEC095 /* BoxOfficeController.m:67 */,
+			749EBE680DCACC96008B3EE1 /* BoxOfficeController.m:152 */,
+			749EBE6A0DCACC99008B3EE1 /* BoxOfficeController.m:151 */,
+			749EBEA80DCACCC1008B3EE1 /* BoxOfficeController.m:113 */,
+			749EBEAF0DCACCCC008B3EE1 /* BoxOfficeController.m:110 */,
+			7405F6DE0DCAD6DB002E2D06 /* TheaterShowtimesXmlParser.m:66 */,
+			7405F6E00DCAD6E0002E2D06 /* TheaterShowtimesXmlParser.m:113 */,
+			7405F7080DCAD9C3002E2D06 /* BoxOfficeModel.m:80 */,
+			7405F70A0DCAD9C4002E2D06 /* BoxOfficeModel.m:74 */,
+			7405F73F0DCADB2E002E2D06 /* BoxOfficeModel.m:42 */,
+			74D6F2F20DCC1D060097A984 /* BoxOfficeController.m:158 */,
+			7405DCDA0DCC1D8E0023D68A /* BoxOfficeController.m:22 */,
+		);
+		codeSenseManager = 746A013F0DC818C80079D89B /* Code sense */;
+		executables = (
+			746A01350DC818A90079D89B /* BoxOffice */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXErrorsWarningsDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXErrorsWarningsDataSource_LocationID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					360,
+					345.20849609375,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXErrorsWarningsDataSource_TypeID,
+					PBXErrorsWarningsDataSource_MessageID,
+					PBXErrorsWarningsDataSource_LocationID,
+				);
+			};
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = 1;
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					515,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 231480648;
+			PBXWorkspaceStateSaveDate = 231480648;
+		};
+		perUserProjectItems = {
+			7405DCC30DCC1D510023D68A /* PBXTextBookmark */ = 7405DCC30DCC1D510023D68A /* PBXTextBookmark */;
+			7405DCD60DCC1D8B0023D68A /* PBXTextBookmark */ = 7405DCD60DCC1D8B0023D68A /* PBXTextBookmark */;
+			7405DCDC0DCC1D9E0023D68A /* PBXTextBookmark */ = 7405DCDC0DCC1D9E0023D68A /* PBXTextBookmark */;
+			7405DCE00DCC1DB60023D68A /* PBXTextBookmark */ = 7405DCE00DCC1DB60023D68A /* PBXTextBookmark */;
+			7405DCE30DCC1DD60023D68A /* PBXTextBookmark */ = 7405DCE30DCC1DD60023D68A /* PBXTextBookmark */;
+			7405F6AC0DCAD5EC002E2D06 = 7405F6AC0DCAD5EC002E2D06 /* PBXTextBookmark */;
+			7405F6F30DCAD88F002E2D06 = 7405F6F30DCAD88F002E2D06 /* PBXTextBookmark */;
+			7405F6FE0DCAD94A002E2D06 = 7405F6FE0DCAD94A002E2D06 /* PBXTextBookmark */;
+			7405F7150DCADA12002E2D06 = 7405F7150DCADA12002E2D06 /* PBXTextBookmark */;
+			7405F72F0DCADA99002E2D06 = 7405F72F0DCADA99002E2D06 /* PBXTextBookmark */;
+			7405F7450DCADDAD002E2D06 = 7405F7450DCADDAD002E2D06 /* PBXTextBookmark */;
+			7405F7470DCADDAD002E2D06 = 7405F7470DCADDAD002E2D06 /* PBXTextBookmark */;
+			7405F7710DCAF198002E2D06 = 7405F7710DCAF198002E2D06 /* PBXTextBookmark */;
+			7405F7750DCAF198002E2D06 = 7405F7750DCAF198002E2D06 /* PBXTextBookmark */;
+			7405F7820DCAF198002E2D06 = 7405F7820DCAF198002E2D06 /* PBXTextBookmark */;
+			7405F7A30DCAF1D1002E2D06 = 7405F7A30DCAF1D1002E2D06 /* PBXTextBookmark */;
+			7405F7A40DCAF1D1002E2D06 = 7405F7A40DCAF1D1002E2D06 /* PBXTextBookmark */;
+			7405F7B70DCAF2F5002E2D06 = 7405F7B70DCAF2F5002E2D06 /* PBXTextBookmark */;
+			7405F7B80DCAF2F5002E2D06 = 7405F7B80DCAF2F5002E2D06 /* PBXTextBookmark */;
+			7405F7BB0DCAF2F5002E2D06 = 7405F7BB0DCAF2F5002E2D06 /* PBXTextBookmark */;
+			7405F7E50DCAF425002E2D06 = 7405F7E50DCAF425002E2D06 /* PBXTextBookmark */;
+			7405F7EA0DCAF425002E2D06 = 7405F7EA0DCAF425002E2D06 /* PBXTextBookmark */;
+			7412C5950DC85002004F21BD = 7412C5950DC85002004F21BD /* PBXTextBookmark */;
+			7412C59E0DC85002004F21BD = 7412C59E0DC85002004F21BD /* PBXTextBookmark */;
+			7412C5A40DC85002004F21BD = 7412C5A40DC85002004F21BD /* PBXTextBookmark */;
+			7412C5A60DC85002004F21BD = 7412C5A60DC85002004F21BD /* PBXTextBookmark */;
+			7412C5B00DC85054004F21BD = 7412C5B00DC85054004F21BD /* PBXTextBookmark */;
+			743ED8350DCAF5FB007A6F9F = 743ED8350DCAF5FB007A6F9F /* PBXTextBookmark */;
+			743ED8360DCAF5FB007A6F9F = 743ED8360DCAF5FB007A6F9F /* PBXTextBookmark */;
+			743ED8370DCAF5FB007A6F9F = 743ED8370DCAF5FB007A6F9F /* PBXTextBookmark */;
+			743ED8470DCAF5FB007A6F9F = 743ED8470DCAF5FB007A6F9F /* PBXTextBookmark */;
+			743ED8650DCAF6D3007A6F9F = 743ED8650DCAF6D3007A6F9F /* PBXTextBookmark */;
+			743ED8660DCAF6D3007A6F9F = 743ED8660DCAF6D3007A6F9F /* PBXTextBookmark */;
+			743ED8680DCAF6D3007A6F9F = 743ED8680DCAF6D3007A6F9F /* PBXTextBookmark */;
+			743ED8690DCAF6D3007A6F9F = 743ED8690DCAF6D3007A6F9F /* PBXTextBookmark */;
+			743ED86A0DCAF6D3007A6F9F = 743ED86A0DCAF6D3007A6F9F /* PBXTextBookmark */;
+			743ED8850DCAFA4A007A6F9F = 743ED8850DCAFA4A007A6F9F /* PBXTextBookmark */;
+			743ED8870DCAFA4A007A6F9F = 743ED8870DCAFA4A007A6F9F /* PBXTextBookmark */;
+			743ED8AE0DCAFC01007A6F9F = 743ED8AE0DCAFC01007A6F9F /* PBXTextBookmark */;
+			743ED8AF0DCAFC01007A6F9F = 743ED8AF0DCAFC01007A6F9F /* PBXTextBookmark */;
+			743ED8B00DCAFC01007A6F9F = 743ED8B00DCAFC01007A6F9F /* PBXTextBookmark */;
+			743ED8B10DCAFC01007A6F9F = 743ED8B10DCAFC01007A6F9F /* PBXTextBookmark */;
+			743ED8B20DCAFC01007A6F9F = 743ED8B20DCAFC01007A6F9F /* PBXTextBookmark */;
+			743ED8B30DCAFC01007A6F9F = 743ED8B30DCAFC01007A6F9F /* PBXTextBookmark */;
+			743ED8B40DCAFC01007A6F9F = 743ED8B40DCAFC01007A6F9F /* PBXTextBookmark */;
+			743ED8B50DCAFC01007A6F9F = 743ED8B50DCAFC01007A6F9F /* PBXTextBookmark */;
+			743ED8B70DCAFC01007A6F9F = 743ED8B70DCAFC01007A6F9F /* PBXTextBookmark */;
+			74447C730DC844BA00CC146C = 74447C730DC844BA00CC146C /* PBXTextBookmark */;
+			74447C860DC844BA00CC146C = 74447C860DC844BA00CC146C /* PBXTextBookmark */;
+			74447C870DC844BA00CC146C = 74447C870DC844BA00CC146C /* PBXTextBookmark */;
+			74447C920DC844BA00CC146C = 74447C920DC844BA00CC146C /* PBXTextBookmark */;
+			74447C950DC844BA00CC146C = 74447C950DC844BA00CC146C /* PBXTextBookmark */;
+			74447C980DC844BA00CC146C = 74447C980DC844BA00CC146C /* PBXTextBookmark */;
+			74447C990DC844BA00CC146C = 74447C990DC844BA00CC146C /* PBXTextBookmark */;
+			74447CB50DC844BA00CC146C = 74447CB50DC844BA00CC146C /* PBXTextBookmark */;
+			74447CB70DC844BA00CC146C = 74447CB70DC844BA00CC146C /* PBXTextBookmark */;
+			74447CB80DC844BA00CC146C = 74447CB80DC844BA00CC146C /* PBXTextBookmark */;
+			74447CDF0DC844BA00CC146C = 74447CDF0DC844BA00CC146C /* PBXTextBookmark */;
+			74447CE30DC844BA00CC146C = 74447CE30DC844BA00CC146C /* PBXTextBookmark */;
+			74447CE40DC844BA00CC146C = 74447CE40DC844BA00CC146C /* PBXTextBookmark */;
+			74447CE80DC844BA00CC146C = 74447CE80DC844BA00CC146C /* PBXTextBookmark */;
+			746A02610DC8293D0079D89B = 746A02610DC8293D0079D89B /* PBXBookmark */;
+			746A026B0DC8293D0079D89B = 746A026B0DC8293D0079D89B /* PBXTextBookmark */;
+			746A026C0DC8293D0079D89B = 746A026C0DC8293D0079D89B /* PBXTextBookmark */;
+			746A026D0DC8293D0079D89B = 746A026D0DC8293D0079D89B /* PBXTextBookmark */;
+			746A026E0DC8293D0079D89B = 746A026E0DC8293D0079D89B /* PBXTextBookmark */;
+			746A026F0DC8293D0079D89B = 746A026F0DC8293D0079D89B /* PBXTextBookmark */;
+			746A027B0DC8293D0079D89B = 746A027B0DC8293D0079D89B /* PBXTextBookmark */;
+			746A027C0DC8293D0079D89B = 746A027C0DC8293D0079D89B /* PBXTextBookmark */;
+			746A02840DC8293D0079D89B = 746A02840DC8293D0079D89B /* PBXTextBookmark */;
+			746A02890DC8293D0079D89B = 746A02890DC8293D0079D89B /* PBXTextBookmark */;
+			746A028C0DC8293D0079D89B = 746A028C0DC8293D0079D89B /* PBXTextBookmark */;
+			746A02920DC8293D0079D89B = 746A02920DC8293D0079D89B /* PBXBookmark */;
+			746A029E0DC8293D0079D89B = 746A029E0DC8293D0079D89B /* PBXTextBookmark */;
+			748AC8F90DC9980A00C6592F = 748AC8F90DC9980A00C6592F /* PBXTextBookmark */;
+			748AC9040DC9980A00C6592F = 748AC9040DC9980A00C6592F /* PBXTextBookmark */;
+			748AC9250DC9987200C6592F = 748AC9250DC9987200C6592F /* PBXTextBookmark */;
+			748AC9270DC9987200C6592F = 748AC9270DC9987200C6592F /* PBXTextBookmark */;
+			749DF0DD0DC96FBD00A551D9 = 749DF0DD0DC96FBD00A551D9 /* PBXTextBookmark */;
+			749DF0DE0DC96FBD00A551D9 = 749DF0DE0DC96FBD00A551D9 /* PBXTextBookmark */;
+			749DF0DF0DC96FBD00A551D9 = 749DF0DF0DC96FBD00A551D9 /* PBXTextBookmark */;
+			749DF0E40DC96FBD00A551D9 = 749DF0E40DC96FBD00A551D9 /* PBXTextBookmark */;
+			749DF0F50DC96FBD00A551D9 = 749DF0F50DC96FBD00A551D9 /* PBXTextBookmark */;
+			749DF1070DC96FBD00A551D9 = 749DF1070DC96FBD00A551D9 /* PBXTextBookmark */;
+			749DF1550DC9732F00A551D9 = 749DF1550DC9732F00A551D9 /* PBXTextBookmark */;
+			749DF15B0DC9732F00A551D9 = 749DF15B0DC9732F00A551D9 /* PBXTextBookmark */;
+			749DF17C0DC975B100A551D9 = 749DF17C0DC975B100A551D9 /* PBXTextBookmark */;
+			749DF1840DC975B100A551D9 = 749DF1840DC975B100A551D9 /* PBXTextBookmark */;
+			749DF3B60DC989BB00A551D9 = 749DF3B60DC989BB00A551D9 /* PBXTextBookmark */;
+			749DF4470DC98C3E00A551D9 = 749DF4470DC98C3E00A551D9 /* PBXTextBookmark */;
+			749EBDD30DCAB94A008B3EE1 = 749EBDD30DCAB94A008B3EE1 /* PBXTextBookmark */;
+			749EBDDB0DCAB94A008B3EE1 = 749EBDDB0DCAB94A008B3EE1 /* PBXTextBookmark */;
+			749EBDE50DCABB38008B3EE1 = 749EBDE50DCABB38008B3EE1 /* PBXTextBookmark */;
+			749EBDEA0DCABB38008B3EE1 = 749EBDEA0DCABB38008B3EE1 /* PBXTextBookmark */;
+			749EBDF50DCABB68008B3EE1 = 749EBDF50DCABB68008B3EE1 /* PBXTextBookmark */;
+			749EBE720DCACC9E008B3EE1 = 749EBE720DCACC9E008B3EE1 /* PBXTextBookmark */;
+			749EBE790DCACC9E008B3EE1 = 749EBE790DCACC9E008B3EE1 /* PBXTextBookmark */;
+			749EBE7A0DCACC9E008B3EE1 = 749EBE7A0DCACC9E008B3EE1 /* PBXTextBookmark */;
+			749EBE7B0DCACC9E008B3EE1 = 749EBE7B0DCACC9E008B3EE1 /* PBXTextBookmark */;
+			749EBE7E0DCACC9E008B3EE1 = 749EBE7E0DCACC9E008B3EE1 /* PBXTextBookmark */;
+			749EBE7F0DCACC9E008B3EE1 = 749EBE7F0DCACC9E008B3EE1 /* PBXTextBookmark */;
+			749EBE8D0DCACC9E008B3EE1 = 749EBE8D0DCACC9E008B3EE1 /* PBXTextBookmark */;
+			749EBE960DCACC9E008B3EE1 = 749EBE960DCACC9E008B3EE1 /* PBXTextBookmark */;
+			74A348CB0DC99B1C00AEC095 = 74A348CB0DC99B1C00AEC095 /* PBXTextBookmark */;
+			74A348CD0DC99B1C00AEC095 = 74A348CD0DC99B1C00AEC095 /* PBXTextBookmark */;
+			74A348E70DC99DBF00AEC095 = 74A348E70DC99DBF00AEC095 /* PBXTextBookmark */;
+			74D6F2FB0DCC1D220097A984 = 74D6F2FB0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F2FC0DCC1D220097A984 = 74D6F2FC0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F2FD0DCC1D220097A984 = 74D6F2FD0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F2FE0DCC1D220097A984 = 74D6F2FE0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F2FF0DCC1D220097A984 = 74D6F2FF0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3000DCC1D220097A984 = 74D6F3000DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3010DCC1D220097A984 = 74D6F3010DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3020DCC1D220097A984 = 74D6F3020DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3030DCC1D220097A984 = 74D6F3030DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3040DCC1D220097A984 = 74D6F3040DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3050DCC1D220097A984 = 74D6F3050DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3060DCC1D220097A984 = 74D6F3060DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3070DCC1D220097A984 = 74D6F3070DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3080DCC1D220097A984 = 74D6F3080DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3090DCC1D220097A984 = 74D6F3090DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F30A0DCC1D220097A984 = 74D6F30A0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F30B0DCC1D220097A984 = 74D6F30B0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F30C0DCC1D220097A984 = 74D6F30C0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F30D0DCC1D220097A984 = 74D6F30D0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F30E0DCC1D220097A984 = 74D6F30E0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F30F0DCC1D220097A984 = 74D6F30F0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3100DCC1D220097A984 = 74D6F3100DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3110DCC1D220097A984 = 74D6F3110DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3120DCC1D220097A984 = 74D6F3120DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3130DCC1D220097A984 = 74D6F3130DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3140DCC1D220097A984 = 74D6F3140DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3150DCC1D220097A984 = 74D6F3150DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3160DCC1D220097A984 = 74D6F3160DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3170DCC1D220097A984 = 74D6F3170DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3180DCC1D220097A984 = 74D6F3180DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3190DCC1D220097A984 = 74D6F3190DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F31A0DCC1D220097A984 = 74D6F31A0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F31B0DCC1D220097A984 = 74D6F31B0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F31C0DCC1D220097A984 = 74D6F31C0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F31D0DCC1D220097A984 = 74D6F31D0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F31E0DCC1D220097A984 = 74D6F31E0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F31F0DCC1D220097A984 = 74D6F31F0DCC1D220097A984 /* PBXTextBookmark */;
+			74D6F3320DCC1D3B0097A984 = 74D6F3320DCC1D3B0097A984 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 746A013E0DC818C80079D89B /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	7405DCC30DCC1D510023D68A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 14";
+		rLen = 0;
+		rLoc = 314;
+		rType = 0;
+		vrLen = 1191;
+		vrLoc = 4338;
+	};
+	7405DCD60DCC1D8B0023D68A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 659;
+		vrLoc = 0;
+	};
+	7405DCDA0DCC1D8E0023D68A /* BoxOfficeController.m:22 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		functionName = "-initWithAppDelegate:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 22;
+		modificationTime = 231480788.774999;
+		state = 1;
+	};
+	7405DCDC0DCC1D9E0023D68A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1689;
+		vrLoc = 2910;
+	};
+	7405DCE00DCC1DB60023D68A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1689;
+		vrLoc = 2910;
+	};
+	7405DCE30DCC1DD60023D68A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 104";
+		rLen = 0;
+		rLoc = 3067;
+		rType = 0;
+		vrLen = 1769;
+		vrLoc = 3357;
+	};
+	7405F6A60DCAD5DB002E2D06 /* TheatersNavigationController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = TheatersNavigationController.h;
+		path = /Projects/GoogleCode/BoxOffice/Classes/TheatersNavigationController.h;
+		sourceTree = "<absolute>";
+	};
+	7405F6AC0DCAD5EC002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02040DC819430079D89B /* Theater.m */;
+		name = "Theater.m: 59";
+		rLen = 0;
+		rLoc = 1350;
+		rType = 0;
+		vrLen = 974;
+		vrLoc = 399;
+	};
+	7405F6C80DCAD5FF002E2D06 /* TheatersNavigationController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = TheatersNavigationController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/TheatersNavigationController.m;
+		sourceTree = "<group>";
+	};
+	7405F6DA0DCAD6D9002E2D06 /* TheaterShowtimesXmlParser.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = TheaterShowtimesXmlParser.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/TheaterShowtimesXmlParser.m;
+		sourceTree = "<group>";
+	};
+	7405F6DE0DCAD6DB002E2D06 /* TheaterShowtimesXmlParser.m:66 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 7405F6DA0DCAD6D9002E2D06 /* TheaterShowtimesXmlParser.m */;
+		functionName = "-parser:didEndElement:namespaceURI:qualifiedName:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 66;
+		location = BoxOffice;
+		modificationTime = 231480758.232564;
+		state = 2;
+	};
+	7405F6E00DCAD6E0002E2D06 /* TheaterShowtimesXmlParser.m:113 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 7405F6DA0DCAD6D9002E2D06 /* TheaterShowtimesXmlParser.m */;
+		functionName = "-parser:foundCharacters:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 113;
+		location = BoxOffice;
+		modificationTime = 231480758.232571;
+		state = 2;
+	};
+	7405F6F30DCAD88F002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE0F0DCABF72008B3EE1 /* TheaterShowtimesXmlParser.h */;
+		name = "TheaterShowtimesXmlParser.h: 33";
+		rLen = 234;
+		rLoc = 818;
+		rType = 0;
+		vrLen = 1094;
+		vrLoc = 237;
+	};
+	7405F6FE0DCAD94A002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE100DCABF72008B3EE1 /* TheaterShowtimesXmlParser.m */;
+		name = "TheaterShowtimesXmlParser.m: 59";
+		rLen = 0;
+		rLoc = 1465;
+		rType = 0;
+		vrLen = 1247;
+		vrLoc = 981;
+	};
+	7405F7080DCAD9C3002E2D06 /* BoxOfficeModel.m:80 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */;
+		functionName = "-theaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 80;
+		location = BoxOffice;
+		modificationTime = 231480758.232577;
+		state = 2;
+	};
+	7405F70A0DCAD9C4002E2D06 /* BoxOfficeModel.m:74 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */;
+		functionName = "-theaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 74;
+		location = BoxOffice;
+		modificationTime = 231480758.232583;
+		state = 2;
+	};
+	7405F7150DCADA12002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 35";
+		rLen = 0;
+		rLoc = 947;
+		rType = 0;
+		vrLen = 1197;
+		vrLoc = 323;
+	};
+	7405F72F0DCADA99002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF16F0DC9737700A551D9 /* BoxOfficeController.h */;
+		name = "BoxOfficeController.h: 31";
+		rLen = 0;
+		rLoc = 812;
+		rType = 0;
+		vrLen = 819;
+		vrLoc = 0;
+	};
+	7405F73F0DCADB2E002E2D06 /* BoxOfficeModel.m:42 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */;
+		functionName = "-movies";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 42;
+		location = BoxOffice;
+		modificationTime = 231480758.232589;
+		state = 2;
+	};
+	7405F7450DCADDAD002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A020E0DC819F00079D89B /* BoxOfficeModel.h */;
+		name = "BoxOfficeModel.h: 11";
+		rLen = 0;
+		rLoc = 199;
+		rType = 0;
+		vrLen = 476;
+		vrLoc = 0;
+	};
+	7405F7470DCADDAD002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 14";
+		rLen = 0;
+		rLoc = 255;
+		rType = 0;
+		vrLen = 755;
+		vrLoc = 0;
+	};
+	7405F7560DCAF100002E2D06 /* AllMoviesViewController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = AllMoviesViewController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/AllMoviesViewController.m;
+		sourceTree = "<absolute>";
+	};
+	7405F76E0DCAF172002E2D06 /* AllTheatersViewController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = AllTheatersViewController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/AllTheatersViewController.m;
+		sourceTree = "<absolute>";
+	};
+	7405F7710DCAF198002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 14";
+		rLen = 0;
+		rLoc = 255;
+		rType = 0;
+		vrLen = 983;
+		vrLoc = 52;
+	};
+	7405F7750DCAF198002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F7760DCAF198002E2D06 /* UITableViewController.h */;
+		name = "UITableViewController.h: 14";
+		rLen = 116;
+		rLoc = 492;
+		rType = 0;
+		vrLen = 793;
+		vrLoc = 0;
+	};
+	7405F7760DCAF198002E2D06 /* UITableViewController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UITableViewController.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewController.h;
+		sourceTree = "<absolute>";
+	};
+	7405F7820DCAF198002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C550DC8405200CC146C /* AllMoviesViewController.h */;
+		name = "AllMoviesViewController.h: 17";
+		rLen = 0;
+		rLoc = 406;
+		rType = 0;
+		vrLen = 566;
+		vrLoc = 0;
+	};
+	7405F78F0DCAF1A8002E2D06 /* BoxOfficeAppDelegate.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = BoxOfficeAppDelegate.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeAppDelegate.m;
+		sourceTree = "<absolute>";
+	};
+	7405F7A30DCAF1D1002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* BoxOfficeAppDelegate.h */;
+		name = "BoxOfficeAppDelegate.h: 27";
+		rLen = 0;
+		rLoc = 792;
+		rType = 0;
+		vrLen = 800;
+		vrLoc = 0;
+	};
+	7405F7A40DCAF1D1002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F78F0DCAF1A8002E2D06 /* BoxOfficeAppDelegate.m */;
+		name = "BoxOfficeAppDelegate.m: 17";
+		rLen = 0;
+		rLoc = 344;
+		rType = 0;
+		vrLen = 955;
+		vrLoc = 0;
+	};
+	7405F7B70DCAF2F5002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C630DC843B200CC146C /* AllTheatersViewController.h */;
+		name = "AllTheatersViewController.h: 17";
+		rLen = 0;
+		rLoc = 416;
+		rType = 0;
+		vrLen = 578;
+		vrLoc = 0;
+	};
+	7405F7B80DCAF2F5002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F76E0DCAF172002E2D06 /* AllTheatersViewController.m */;
+		name = "AllTheatersViewController.m: 19";
+		rLen = 0;
+		rLoc = 474;
+		rType = 0;
+		vrLen = 763;
+		vrLoc = 0;
+	};
+	7405F7BB0DCAF2F5002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A029F0DC8293D0079D89B /* UITableViewCell.h */;
+		name = "UITableViewCell.h: 40";
+		rLen = 57;
+		rLoc = 1152;
+		rType = 0;
+		vrLen = 3795;
+		vrLoc = 3338;
+	};
+	7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{624, 0}";
+			sepNavVisRange = "{0, 676}";
+		};
+	};
+	7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 558}}";
+			sepNavSelRange = "{563, 0}";
+			sepNavVisRange = "{3, 590}";
+		};
+	};
+	7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = SettingsNavigationController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/SettingsNavigationController.m;
+		sourceTree = "<absolute>";
+	};
+	7405F7E50DCAF425002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F6A60DCAD5DB002E2D06 /* TheatersNavigationController.h */;
+		name = "TheatersNavigationController.h: 13";
+		rLen = 597;
+		rLoc = 261;
+		rType = 0;
+		vrLen = 960;
+		vrLoc = 0;
+	};
+	7405F7EA0DCAF425002E2D06 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */;
+		name = "SettingsNavigationController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 248;
+		vrLoc = 0;
+	};
+	7412C5920DC85002004F21BD /* UITabBarItem.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UITabBarItem.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITabBarItem.h;
+		sourceTree = "<absolute>";
+	};
+	7412C5950DC85002004F21BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7412C5960DC85002004F21BD /* UIView.h */;
+		name = "UIView.h: 57";
+		rLen = 61;
+		rLoc = 1919;
+		rType = 0;
+		vrLen = 2171;
+		vrLoc = 4117;
+	};
+	7412C5960DC85002004F21BD /* UIView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIView.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIView.h;
+		sourceTree = "<absolute>";
+	};
+	7412C59A0DC85002004F21BD /* UIViewController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIViewController.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIViewController.h;
+		sourceTree = "<absolute>";
+	};
+	7412C59E0DC85002004F21BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7412C59F0DC85002004F21BD /* UINavigationController.h */;
+		name = "UINavigationController.h: 29";
+		rLen = 16;
+		rLoc = 1020;
+		rType = 0;
+		vrLen = 1430;
+		vrLoc = 563;
+	};
+	7412C59F0DC85002004F21BD /* UINavigationController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UINavigationController.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UINavigationController.h;
+		sourceTree = "<absolute>";
+	};
+	7412C5A40DC85002004F21BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7412C5A50DC85002004F21BD /* UITabBarController.h */;
+		name = "UITabBarController.h: 79";
+		rLen = 12;
+		rLoc = 3183;
+		rType = 0;
+		vrLen = 2113;
+		vrLoc = 1432;
+	};
+	7412C5A50DC85002004F21BD /* UITabBarController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UITabBarController.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITabBarController.h;
+		sourceTree = "<absolute>";
+	};
+	7412C5A60DC85002004F21BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7412C5A70DC85002004F21BD /* UITabBarItem.h */;
+		name = "UITabBarItem.h: 29";
+		rLen = 57;
+		rLoc = 625;
+		rType = 0;
+		vrLen = 1071;
+		vrLoc = 509;
+	};
+	7412C5A70DC85002004F21BD /* UITabBarItem.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UITabBarItem.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITabBarItem.h;
+		sourceTree = "<absolute>";
+	};
+	7412C5AA0DC85002004F21BD /* UITabBarController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UITabBarController.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITabBarController.h;
+		sourceTree = "<absolute>";
+	};
+	7412C5B00DC85054004F21BD /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7412C5AA0DC85002004F21BD /* UITabBarController.h */;
+		name = "UITabBarController.h: 79";
+		rLen = 12;
+		rLoc = 3183;
+		rType = 0;
+		vrLen = 2113;
+		vrLoc = 1432;
+	};
+	743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = ApplicationTabBarController.h;
+		path = /Projects/GoogleCode/BoxOffice/Classes/ApplicationTabBarController.h;
+		sourceTree = "<absolute>";
+	};
+	743ED8240DCAF50F007A6F9F /* ApplicationTabBarController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = ApplicationTabBarController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/ApplicationTabBarController.m;
+		sourceTree = "<absolute>";
+	};
+	743ED8350DCAF5FB007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F6C80DCAD5FF002E2D06 /* TheatersNavigationController.m */;
+		name = "TheatersNavigationController.m: 23";
+		rLen = 311;
+		rLoc = 559;
+		rType = 0;
+		vrLen = 1080;
+		vrLoc = 55;
+	};
+	743ED8360DCAF5FB007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
+		name = "ApplicationTabBarController.h: 11";
+		rLen = 0;
+		rLoc = 267;
+		rType = 0;
+		vrLen = 1053;
+		vrLoc = 0;
+	};
+	743ED8370DCAF5FB007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED8240DCAF50F007A6F9F /* ApplicationTabBarController.m */;
+		name = "ApplicationTabBarController.m: 56";
+		rLen = 49;
+		rLoc = 1634;
+		rType = 0;
+		vrLen = 880;
+		vrLoc = 811;
+	};
+	743ED8470DCAF5FB007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
+		name = "SettingsNavigationController.m: 22";
+		rLen = 5;
+		rLoc = 522;
+		rType = 0;
+		vrLen = 791;
+		vrLoc = 3;
+	};
+	743ED8520DCAF5FB007A6F9F /* UIBarButtonItem.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIBarButtonItem.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIBarButtonItem.h;
+		sourceTree = "<absolute>";
+	};
+	743ED8650DCAF6D3007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 748AC9280DC9987200C6592F /* UIControl.h */;
+		name = "UIControl.h: 67";
+		rLen = 51;
+		rLoc = 2611;
+		rType = 0;
+		vrLen = 1474;
+		vrLoc = 1672;
+	};
+	743ED8660DCAF6D3007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED8670DCAF6D3007A6F9F /* UIButton.h */;
+		name = "UIButton.h: 32";
+		rLen = 9;
+		rLoc = 1072;
+		rType = 0;
+		vrLen = 1241;
+		vrLoc = 0;
+	};
+	743ED8670DCAF6D3007A6F9F /* UIButton.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIButton.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIButton.h;
+		sourceTree = "<absolute>";
+	};
+	743ED8680DCAF6D3007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7412C59A0DC85002004F21BD /* UIViewController.h */;
+		name = "UIViewController.h: 119";
+		rLen = 8;
+		rLoc = 5921;
+		rType = 0;
+		vrLen = 2729;
+		vrLoc = 3361;
+	};
+	743ED8690DCAF6D3007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 748AC9050DC9980A00C6592F /* UINavigationBar.h */;
+		name = "UINavigationBar.h: 105";
+		rLen = 62;
+		rLoc = 4073;
+		rType = 0;
+		vrLen = 1928;
+		vrLoc = 2207;
+	};
+	743ED86A0DCAF6D3007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED8520DCAF5FB007A6F9F /* UIBarButtonItem.h */;
+		name = "UIBarButtonItem.h: 46";
+		rLen = 60;
+		rLoc = 1195;
+		rType = 0;
+		vrLen = 1373;
+		vrLoc = 1041;
+	};
+	743ED8850DCAFA4A007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED8860DCAFA4A007A6F9F /* objc.h */;
+		name = "objc.h: 43";
+		rLen = 0;
+		rLoc = 1333;
+		rType = 0;
+		vrLen = 743;
+		vrLoc = 989;
+	};
+	743ED8860DCAFA4A007A6F9F /* objc.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = objc.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/usr/include/objc/objc.h;
+		sourceTree = "<absolute>";
+	};
+	743ED8870DCAFA4A007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF18C0DC975B100A551D9 /* UITableView.h */;
+		name = "UITableView.h: 197";
+		rLen = 4;
+		rLoc = 9193;
+		rType = 0;
+		vrLen = 2730;
+		vrLoc = 8012;
+	};
+	743ED8A00DCAFB78007A6F9F /* SettingsViewController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = SettingsViewController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/SettingsViewController.m;
+		sourceTree = "<absolute>";
+	};
+	743ED8A50DCAFBB9007A6F9F /* SettingsViewController.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = SettingsViewController.h;
+		path = /Projects/GoogleCode/BoxOffice/Classes/SettingsViewController.h;
+		sourceTree = "<absolute>";
+	};
+	743ED8AA0DCAFBC6007A6F9F /* SettingsViewController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = SettingsViewController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/SettingsViewController.m;
+		sourceTree = "<absolute>";
+	};
+	743ED8AE0DCAFC01007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE770DCACC9E008B3EE1 /* NSString.h */;
+		name = "NSString.h: 269";
+		rLen = 48;
+		rLoc = 15614;
+		rType = 0;
+		vrLen = 2935;
+		vrLoc = 14161;
+	};
+	743ED8AF0DCAFC01007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C550DC8405200CC146C /* AllMoviesViewController.h */;
+		name = "AllMoviesViewController.h: 23";
+		rLen = 26;
+		rLoc = 533;
+		rType = 0;
+		vrLen = 566;
+		vrLoc = 0;
+	};
+	743ED8B00DCAFC01007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED8A50DCAFBB9007A6F9F /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 9";
+		rLen = 0;
+		rLoc = 181;
+		rType = 0;
+		vrLen = 572;
+		vrLoc = 0;
+	};
+	743ED8B10DCAFC01007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED8AA0DCAFBC6007A6F9F /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 36";
+		rLen = 46;
+		rLoc = 709;
+		rType = 0;
+		vrLen = 755;
+		vrLoc = 0;
+	};
+	743ED8B20DCAFC01007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C320DC83C2000CC146C /* MoviesNavigationController.h */;
+		name = "MoviesNavigationController.h: 30";
+		rLen = 26;
+		rLoc = 853;
+		rType = 0;
+		vrLen = 929;
+		vrLoc = 0;
+	};
+	743ED8B30DCAFC01007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */;
+		name = "MoviesNavigationController.m: 47";
+		rLen = 73;
+		rLoc = 1227;
+		rType = 0;
+		vrLen = 878;
+		vrLoc = 546;
+	};
+	743ED8B40DCAFC01007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F7560DCAF100002E2D06 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 39";
+		rLen = 77;
+		rLoc = 1078;
+		rType = 0;
+		vrLen = 1166;
+		vrLoc = 476;
+	};
+	743ED8B50DCAFC01007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */;
+		name = "SettingsNavigationController.h: 24";
+		rLen = 0;
+		rLoc = 624;
+		rType = 0;
+		vrLen = 676;
+		vrLoc = 0;
+	};
+	743ED8B70DCAFC01007A6F9F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED8A00DCAFB78007A6F9F /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 59";
+		rLen = 88;
+		rLoc = 1447;
+		rType = 0;
+		vrLen = 913;
+		vrLoc = 678;
+	};
+	74447C320DC83C2000CC146C /* MoviesNavigationController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{853, 26}";
+			sepNavVisRange = "{0, 929}";
+			sepNavWindowFrame = "{{59, -5}, {851, 878}}";
+		};
+	};
+	74447C330DC83C2000CC146C /* MoviesNavigationController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {774, 840}}";
+			sepNavSelRange = "{1227, 73}";
+			sepNavVisRange = "{546, 878}";
+		};
+	};
+	74447C350DC83D0900CC146C /* ApplicationTabBarController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{852, 28}";
+			sepNavVisRange = "{0, 1047}";
+		};
+	};
+	74447C360DC83D0900CC146C /* ApplicationTabBarController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {774, 840}}";
+			sepNavSelRange = "{1672, 0}";
+			sepNavVisRange = "{524, 1167}";
+		};
+	};
+	74447C390DC83E7400CC146C /* TheatersNavigationController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 521}}";
+			sepNavSelRange = "{906, 0}";
+			sepNavVisRange = "{0, 940}";
+		};
+	};
+	74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {762, 812}}";
+			sepNavSelRange = "{289, 816}";
+			sepNavVisRange = "{98, 1035}";
+		};
+	};
+	74447C3C0DC83E8800CC146C /* SettingsViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{538, 0}";
+			sepNavVisRange = "{0, 544}";
+			sepNavWindowFrame = "{{60, -5}, {851, 878}}";
+		};
+	};
+	74447C3D0DC83E8800CC146C /* SettingsViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {840, 630}}";
+			sepNavSelRange = "{943, 0}";
+			sepNavVisRange = "{154, 796}";
+		};
+	};
+	74447C550DC8405200CC146C /* AllMoviesViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{533, 26}";
+			sepNavVisRange = "{0, 566}";
+		};
+	};
+	74447C560DC8405200CC146C /* AllMoviesViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1086, 1232}}";
+			sepNavSelRange = "{1284, 0}";
+			sepNavVisRange = "{323, 1197}";
+		};
+	};
+	74447C580DC840D100CC146C /* MovieDetailsViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {732, 457}}";
+			sepNavSelRange = "{311, 68}";
+			sepNavVisRange = "{0, 512}";
+		};
+	};
+	74447C590DC840D100CC146C /* MovieDetailsViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 602}}";
+			sepNavSelRange = "{841, 0}";
+			sepNavVisRange = "{0, 882}";
+		};
+	};
+	74447C630DC843B200CC146C /* AllTheatersViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 505}}";
+			sepNavSelRange = "{416, 0}";
+			sepNavVisRange = "{0, 578}";
+		};
+	};
+	74447C640DC843B200CC146C /* AllTheatersViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {750, 1232}}";
+			sepNavSelRange = "{2446, 0}";
+			sepNavVisRange = "{1175, 1282}";
+			sepNavWindowFrame = "{{60, -5}, {851, 878}}";
+		};
+	};
+	74447C660DC843D900CC146C /* TheaterDetailsViewController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 521}}";
+			sepNavSelRange = "{219, 0}";
+			sepNavVisRange = "{0, 263}";
+		};
+	};
+	74447C670DC843D900CC146C /* TheaterDetailsViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 521}}";
+			sepNavSelRange = "{558, 0}";
+			sepNavVisRange = "{0, 728}";
+		};
+	};
+	74447C730DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C740DC844BA00CC146C /* UILabel.h */;
+		name = "UILabel.h: 18";
+		rLen = 23;
+		rLoc = 296;
+		rType = 0;
+		vrLen = 836;
+		vrLoc = 0;
+	};
+	74447C740DC844BA00CC146C /* UILabel.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UILabel.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UILabel.h;
+		sourceTree = "<absolute>";
+	};
+	74447C860DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C320DC83C2000CC146C /* MoviesNavigationController.h */;
+		name = "MoviesNavigationController.h: 14";
+		rLen = 0;
+		rLoc = 732;
+		rType = 0;
+		vrLen = 245;
+		vrLoc = 0;
+	};
+	74447C870DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C350DC83D0900CC146C /* ApplicationTabBarController.h */;
+		name = "ApplicationTabBarController.h: 18";
+		rLen = 0;
+		rLoc = 982;
+		rType = 0;
+		vrLen = 446;
+		vrLoc = 0;
+	};
+	74447C920DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */;
+		name = "MoviesNavigationController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 249;
+		vrLoc = 0;
+	};
+	74447C950DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C390DC83E7400CC146C /* TheatersNavigationController.h */;
+		name = "TheatersNavigationController.h: 12";
+		rLen = 0;
+		rLoc = 362;
+		rType = 0;
+		vrLen = 263;
+		vrLoc = 0;
+	};
+	74447C980DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */;
+		name = "TheatersNavigationController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 255;
+		vrLoc = 0;
+	};
+	74447C990DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C3C0DC83E8800CC146C /* SettingsViewController.h */;
+		name = "SettingsViewController.h: 9";
+		rLen = 0;
+		rLoc = 278;
+		rType = 0;
+		vrLen = 219;
+		vrLoc = 0;
+	};
+	74447CB50DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C580DC840D100CC146C /* MovieDetailsViewController.h */;
+		name = "MovieDetailsViewController.h: 16";
+		rLen = 0;
+		rLoc = 486;
+		rType = 0;
+		vrLen = 259;
+		vrLoc = 0;
+	};
+	74447CB70DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
+		name = "MovieDetailsViewController.m: 22";
+		rLen = 0;
+		rLoc = 706;
+		rType = 0;
+		vrLen = 649;
+		vrLoc = 0;
+	};
+	74447CB80DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447CB90DC844BA00CC146C /* UILabel.h */;
+		name = "UILabel.h: 18";
+		rLen = 23;
+		rLoc = 296;
+		rType = 0;
+		vrLen = 836;
+		vrLoc = 0;
+	};
+	74447CB90DC844BA00CC146C /* UILabel.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UILabel.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UILabel.h;
+		sourceTree = "<absolute>";
+	};
+	74447CDF0DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C630DC843B200CC146C /* AllTheatersViewController.h */;
+		name = "AllTheatersViewController.h: 10";
+		rLen = 0;
+		rLoc = 342;
+		rType = 0;
+		vrLen = 217;
+		vrLoc = 0;
+	};
+	74447CE30DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */;
+		name = "AllTheatersViewController.m: 18";
+		rLen = 0;
+		rLoc = 498;
+		rType = 0;
+		vrLen = 646;
+		vrLoc = 0;
+	};
+	74447CE40DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C660DC843D900CC146C /* TheaterDetailsViewController.h */;
+		name = "TheaterDetailsViewController.h: 7";
+		rLen = 0;
+		rLoc = 159;
+		rType = 0;
+		vrLen = 223;
+		vrLoc = 0;
+	};
+	74447CE80DC844BA00CC146C /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */;
+		name = "TheaterDetailsViewController.m: 27";
+		rLen = 64;
+		rLoc = 657;
+		rType = 0;
+		vrLen = 714;
+		vrLoc = 0;
+	};
+	74447D3D0DC845C000CC146C /* MoviesNavigationController.m:27 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */;
+		functionName = "-init";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 27;
+		location = BoxOffice;
+		modificationTime = 231480758.232339;
+		state = 2;
+	};
+	74447D4B0DC845F500CC146C /* MoviesNavigationController.m:27 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */;
+		functionName = "-init";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 27;
+		location = BoxOffice;
+		modificationTime = 231480758.232356;
+		state = 2;
+	};
+	744DDE5F0DC9992F005BFCF6 /* NSArray.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSArray.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSArray.h;
+		sourceTree = "<absolute>";
+	};
+	746A01350DC818A90079D89B /* BoxOffice */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = BoxOffice;
+		savedGlobals = {
+		};
+		sourceDirectories = (
+		);
+		variableFormatDictionary = {
+		};
+	};
+	746A013E0DC818C80079D89B /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryName = metasyntactic;
+		};
+	};
+	746A013F0DC818C80079D89B /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	746A01410DC819270079D89B /* Movie.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 532}}";
+			sepNavSelRange = "{729, 0}";
+			sepNavVisRange = "{15, 721}";
+		};
+	};
+	746A01420DC819270079D89B /* Movie.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 1078}}";
+			sepNavSelRange = "{1742, 0}";
+			sepNavVisRange = "{903, 879}";
+		};
+	};
+	746A02030DC819430079D89B /* Theater.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {917, 485}}";
+			sepNavSelRange = "{680, 26}";
+			sepNavVisRange = "{0, 713}";
+		};
+	};
+	746A02040DC819430079D89B /* Theater.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 882}}";
+			sepNavSelRange = "{1350, 0}";
+			sepNavVisRange = "{399, 974}";
+			sepNavWindowFrame = "{{59, -5}, {851, 878}}";
+		};
+	};
+	746A02090DC8197A0079D89B /* ZipCodeFormatter.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {643, 517}}";
+			sepNavSelRange = "{151, 0}";
+			sepNavVisRange = "{0, 227}";
+		};
+	};
+	746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {643, 494}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 219}";
+		};
+	};
+	746A020E0DC819F00079D89B /* BoxOfficeModel.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{199, 0}";
+			sepNavVisRange = "{0, 476}";
+		};
+	};
+	746A020F0DC819F00079D89B /* BoxOfficeModel.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {678, 1456}}";
+			sepNavSelRange = "{2267, 0}";
+			sepNavVisRange = "{2188, 416}";
+		};
+	};
+	746A02140DC81A1A0079D89B /* Application.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {643, 517}}";
+			sepNavSelRange = "{153, 0}";
+			sepNavVisRange = "{0, 251}";
+		};
+	};
+	746A02150DC81A1A0079D89B /* Application.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {822, 700}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 955}";
+			sepNavWindowFrame = "{{86, 1}, {679, 851}}";
+		};
+	};
+	746A02610DC8293D0079D89B /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		name = /Projects/BoxOffice/Info.plist;
+	};
+	746A026B0DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623240D0F684500981E51 /* BoxOfficeAppDelegate.h */;
+		name = "BoxOfficeAppDelegate.h: 9";
+		rLen = 0;
+		rLoc = 275;
+		rType = 0;
+		vrLen = 333;
+		vrLoc = 0;
+	};
+	746A026C0DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A01410DC819270079D89B /* Movie.h */;
+		name = "Movie.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 405;
+		vrLoc = 0;
+	};
+	746A026D0DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A01420DC819270079D89B /* Movie.m */;
+		name = "Movie.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 316;
+		vrLoc = 0;
+	};
+	746A026E0DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02030DC819430079D89B /* Theater.h */;
+		name = "Theater.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 418;
+		vrLoc = 0;
+	};
+	746A026F0DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02040DC819430079D89B /* Theater.m */;
+		name = "Theater.m: 8";
+		rLen = 0;
+		rLoc = 150;
+		rType = 0;
+		vrLen = 290;
+		vrLoc = 0;
+	};
+	746A027B0DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02090DC8197A0079D89B /* ZipCodeFormatter.h */;
+		name = "ZipCodeFormatter.h: 8";
+		rLen = 0;
+		rLoc = 148;
+		rType = 0;
+		vrLen = 225;
+		vrLoc = 0;
+	};
+	746A027C0DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */;
+		name = "ZipCodeFormatter.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 219;
+		vrLoc = 0;
+	};
+	746A02840DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A020E0DC819F00079D89B /* BoxOfficeModel.h */;
+		name = "BoxOfficeModel.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 351;
+		vrLoc = 0;
+	};
+	746A02890DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02140DC81A1A0079D89B /* Application.h */;
+		name = "Application.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 251;
+		vrLoc = 0;
+	};
+	746A028C0DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02150DC81A1A0079D89B /* Application.m */;
+		name = "Application.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 336;
+		vrLoc = 0;
+	};
+	746A02920DC8293D0079D89B /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		name = /Projects/BoxOffice/Info.plist;
+	};
+	746A029E0DC8293D0079D89B /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A029F0DC8293D0079D89B /* UITableViewCell.h */;
+		name = "UITableViewCell.h: 40";
+		rLen = 57;
+		rLoc = 1152;
+		rType = 0;
+		vrLen = 1267;
+		vrLoc = 2302;
+	};
+	746A029F0DC8293D0079D89B /* UITableViewCell.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UITableViewCell.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableViewCell.h;
+		sourceTree = "<absolute>";
+	};
+	748AC8F90DC9980A00C6592F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7412C59F0DC85002004F21BD /* UINavigationController.h */;
+		name = "UINavigationController.h: 72";
+		rLen = 16;
+		rLoc = 3236;
+		rType = 0;
+		vrLen = 2291;
+		vrLoc = 1368;
+	};
+	748AC9040DC9980A00C6592F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 748AC9050DC9980A00C6592F /* UINavigationBar.h */;
+		name = "UINavigationBar.h: 83";
+		rLen = 16;
+		rLoc = 2894;
+		rType = 0;
+		vrLen = 1698;
+		vrLoc = 2016;
+	};
+	748AC9050DC9980A00C6592F /* UINavigationBar.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UINavigationBar.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UINavigationBar.h;
+		sourceTree = "<absolute>";
+	};
+	748AC9250DC9987200C6592F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 748AC9260DC9987200C6592F /* UISegmentedControl.h */;
+		name = "UISegmentedControl.h: 23";
+		rLen = 9;
+		rLoc = 559;
+		rType = 0;
+		vrLen = 1140;
+		vrLoc = 0;
+	};
+	748AC9260DC9987200C6592F /* UISegmentedControl.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UISegmentedControl.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UISegmentedControl.h;
+		sourceTree = "<absolute>";
+	};
+	748AC9270DC9987200C6592F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 748AC9280DC9987200C6592F /* UIControl.h */;
+		name = "UIControl.h: 67";
+		rLen = 0;
+		rLoc = 2654;
+		rType = 0;
+		vrLen = 3227;
+		vrLoc = 3277;
+	};
+	748AC9280DC9987200C6592F /* UIControl.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIControl.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIControl.h;
+		sourceTree = "<absolute>";
+	};
+	749DF0DD0DC96FBD00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7412C5920DC85002004F21BD /* UITabBarItem.h */;
+		name = "UITabBarItem.h: 54";
+		rLen = 0;
+		rLoc = 1424;
+		rType = 0;
+		vrLen = 1104;
+		vrLoc = 476;
+	};
+	749DF0DE0DC96FBD00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02150DC81A1A0079D89B /* Application.m */;
+		name = "Application.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 955;
+		vrLoc = 0;
+	};
+	749DF0DF0DC96FBD00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02140DC81A1A0079D89B /* Application.h */;
+		name = "Application.h: 7";
+		rLen = 0;
+		rLoc = 153;
+		rType = 0;
+		vrLen = 251;
+		vrLoc = 0;
+	};
+	749DF0E40DC96FBD00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02090DC8197A0079D89B /* ZipCodeFormatter.h */;
+		name = "ZipCodeFormatter.h: 9";
+		rLen = 0;
+		rLoc = 151;
+		rType = 0;
+		vrLen = 227;
+		vrLoc = 0;
+	};
+	749DF0F50DC96FBD00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C660DC843D900CC146C /* TheaterDetailsViewController.h */;
+		name = "TheaterDetailsViewController.h: 9";
+		rLen = 0;
+		rLoc = 219;
+		rType = 0;
+		vrLen = 263;
+		vrLoc = 0;
+	};
+	749DF1070DC96FBD00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 1D3623250D0F684500981E51 /* BoxOfficeAppDelegate.m */;
+		name = "BoxOfficeAppDelegate.m: 19";
+		rLen = 27;
+		rLoc = 635;
+		rType = 0;
+		vrLen = 790;
+		vrLoc = 47;
+	};
+	749DF1550DC9732F00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7412C5960DC85002004F21BD /* UIView.h */;
+		name = "UIView.h: 55";
+		rLen = 0;
+		rLoc = 1909;
+		rType = 0;
+		vrLen = 1233;
+		vrLoc = 1231;
+	};
+	749DF15B0DC9732F00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */;
+		name = "ZipCodeFormatter.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 219;
+		vrLoc = 0;
+	};
+	749DF16F0DC9737700A551D9 /* BoxOfficeController.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{812, 0}";
+			sepNavVisRange = "{0, 819}";
+		};
+	};
+	749DF1700DC9737700A551D9 /* BoxOfficeController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {798, 2408}}";
+			sepNavSelRange = "{314, 0}";
+			sepNavVisRange = "{4409, 1125}";
+			sepNavWindowFrame = "{{62, -5}, {851, 878}}";
+		};
+	};
+	749DF17C0DC975B100A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF17D0DC975B100A551D9 /* UIScrollView.h */;
+		name = "UIScrollView.h: 22";
+		rLen = 54;
+		rLoc = 611;
+		rType = 0;
+		vrLen = 1147;
+		vrLoc = 0;
+	};
+	749DF17D0DC975B100A551D9 /* UIScrollView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UIScrollView.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIScrollView.h;
+		sourceTree = "<absolute>";
+	};
+	749DF1840DC975B100A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF16F0DC9737700A551D9 /* BoxOfficeController.h */;
+		name = "BoxOfficeController.h: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 231;
+		vrLoc = 0;
+	};
+	749DF18C0DC975B100A551D9 /* UITableView.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = UITableView.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UITableView.h;
+		sourceTree = "<absolute>";
+	};
+	749DF3B60DC989BB00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */;
+		name = "ApplicationTabBarController.m: 50";
+		rLen = 0;
+		rLoc = 1515;
+		rType = 0;
+		vrLen = 1269;
+		vrLoc = 0;
+	};
+	749DF3CA0DC989D100A551D9 /* ApplicationTabBarController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = ApplicationTabBarController.m;
+		path = /Projects/BoxOffice/Classes/ApplicationTabBarController.m;
+		sourceTree = "<group>";
+	};
+	749DF3CC0DC989D100A551D9 /* ApplicationTabBarController.m:23 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749DF3CA0DC989D100A551D9 /* ApplicationTabBarController.m */;
+		functionName = "-initWithSettingsView:appDelegate:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 23;
+		modificationTime = 231480758.232363;
+		state = 2;
+	};
+	749DF3DD0DC989F300A551D9 /* ApplicationTabBarController.m:24 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749DF3CA0DC989D100A551D9 /* ApplicationTabBarController.m */;
+		functionName = "-initWithSettingsView:appDelegate:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 24;
+		location = BoxOffice;
+		modificationTime = 231480758.232369;
+		state = 2;
+	};
+	749DF3E20DC98A0E00A551D9 /* MoviesNavigationController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = MoviesNavigationController.m;
+		path = /Projects/BoxOffice/Classes/MoviesNavigationController.m;
+		sourceTree = "<group>";
+	};
+	749DF3E40DC98A0E00A551D9 /* MoviesNavigationController.m:24 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749DF3E20DC98A0E00A551D9 /* MoviesNavigationController.m */;
+		functionName = "-initWithTabBarController:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 24;
+		modificationTime = 231480758.232376;
+		state = 2;
+	};
+	749DF3FD0DC98A4C00A551D9 /* AllMoviesViewController.m:48 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
+		functionName = "-tableView:numberOfRowsInSection:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 48;
+		modificationTime = 231480758.232382;
+		state = 2;
+	};
+	749DF3FF0DC98A4D00A551D9 /* AllMoviesViewController.m:49 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
+		functionName = "-tableView:numberOfRowsInSection:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 49;
+		location = BoxOffice;
+		modificationTime = 231480758.232387;
+		state = 2;
+	};
+	749DF4010DC98A4E00A551D9 /* AllMoviesViewController.m:55 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
+		functionName = "-tableView:cellForRowAtIndexPath:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 55;
+		location = BoxOffice;
+		modificationTime = 231480758.232393;
+		state = 2;
+	};
+	749DF40B0DC98A7C00A551D9 /* AllMoviesViewController.m:25 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
+		functionName = "-initWithNavigationController:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 25;
+		location = BoxOffice;
+		modificationTime = 231480758.232399;
+		state = 2;
+	};
+	749DF4470DC98C3E00A551D9 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF4480DC98C3E00A551D9 /* NSIndexPath.h */;
+		name = "NSIndexPath.h: 25";
+		rLen = 0;
+		rLoc = 695;
+		rType = 0;
+		vrLen = 1035;
+		vrLoc = 0;
+	};
+	749DF4480DC98C3E00A551D9 /* NSIndexPath.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSIndexPath.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSIndexPath.h;
+		sourceTree = "<absolute>";
+	};
+	749DF4970DC98FA600A551D9 /* AllMoviesViewController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = AllMoviesViewController.m;
+		path = /Projects/BoxOffice/Classes/AllMoviesViewController.m;
+		sourceTree = "<group>";
+	};
+	749DF4990DC98FA600A551D9 /* AllMoviesViewController.m:80 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749DF4970DC98FA600A551D9 /* AllMoviesViewController.m */;
+		functionName = "-tableView:accessoryButtonTappedForRowWithIndexPath:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 80;
+		modificationTime = 231480788.774968;
+		state = 1;
+	};
+	749EBDD30DCAB94A008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBDD40DCAB94A008B3EE1 /* NSURLRequest.h */;
+		name = "NSURLRequest.h: 472";
+		rLen = 36;
+		rLoc = 18485;
+		rType = 0;
+		vrLen = 1665;
+		vrLoc = 17495;
+	};
+	749EBDD40DCAB94A008B3EE1 /* NSURLRequest.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSURLRequest.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSURLRequest.h;
+		sourceTree = "<absolute>";
+	};
+	749EBDDB0DCAB94A008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBDDC0DCAB94A008B3EE1 /* NSURLDownload.h */;
+		name = "NSURLDownload.h: 29";
+		rLen = 36;
+		rLoc = 921;
+		rType = 0;
+		vrLen = 1017;
+		vrLoc = 0;
+	};
+	749EBDDC0DCAB94A008B3EE1 /* NSURLDownload.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSURLDownload.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSURLDownload.h;
+		sourceTree = "<absolute>";
+	};
+	749EBDE50DCABB38008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBDE60DCABB38008B3EE1 /* NSURLConnection.h */;
+		name = "NSURLConnection.h: 391";
+		rLen = 129;
+		rLoc = 18615;
+		rType = 0;
+		vrLen = 1606;
+		vrLoc = 17152;
+	};
+	749EBDE60DCABB38008B3EE1 /* NSURLConnection.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSURLConnection.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSURLConnection.h;
+		sourceTree = "<absolute>";
+	};
+	749EBDEA0DCABB38008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBDEB0DCABB38008B3EE1 /* NSURLConnection.h */;
+		name = "NSURLConnection.h: 391";
+		rLen = 129;
+		rLoc = 18615;
+		rType = 0;
+		vrLen = 1606;
+		vrLoc = 17152;
+	};
+	749EBDEB0DCABB38008B3EE1 /* NSURLConnection.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSURLConnection.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSURLConnection.h;
+		sourceTree = "<absolute>";
+	};
+	749EBDF50DCABB68008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBDDC0DCAB94A008B3EE1 /* NSURLDownload.h */;
+		name = "NSURLDownload.h: 29";
+		rLen = 36;
+		rLoc = 921;
+		rType = 0;
+		vrLen = 1198;
+		vrLoc = 0;
+	};
+	749EBE0F0DCABF72008B3EE1 /* TheaterShowtimesXmlParser.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 672}}";
+			sepNavSelRange = "{818, 234}";
+			sepNavVisRange = "{237, 1094}";
+		};
+	};
+	749EBE100DCABF72008B3EE1 /* TheaterShowtimesXmlParser.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 1666}}";
+			sepNavSelRange = "{1465, 0}";
+			sepNavVisRange = "{981, 1247}";
+		};
+	};
+	749EBE620DCACBAF008B3EE1 /* TheaterShowtimesXmlParser.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = TheaterShowtimesXmlParser.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/TheaterShowtimesXmlParser.m;
+		sourceTree = "<absolute>";
+	};
+	749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = BoxOfficeController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m;
+		sourceTree = "<group>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {798, 2408}}";
+			sepNavSelRange = "{3067, 0}";
+			sepNavVisRange = "{3357, 1769}";
+		};
+	};
+	749EBE680DCACC96008B3EE1 /* BoxOfficeController.m:152 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 152;
+		location = BoxOffice;
+		modificationTime = 231480758.232433;
+		state = 2;
+	};
+	749EBE6A0DCACC99008B3EE1 /* BoxOfficeController.m:151 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 151;
+		modificationTime = 231480788.774916;
+		state = 1;
+	};
+	749EBE720DCACC9E008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE730DCACC9E008B3EE1 /* NSDictionary.h */;
+		name = "NSDictionary.h: 64";
+		rLen = 46;
+		rLoc = 2300;
+		rType = 0;
+		vrLen = 1430;
+		vrLoc = 1002;
+	};
+	749EBE730DCACC9E008B3EE1 /* NSDictionary.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSDictionary.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSDictionary.h;
+		sourceTree = "<absolute>";
+	};
+	749EBE770DCACC9E008B3EE1 /* NSString.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSString.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSString.h;
+		sourceTree = "<absolute>";
+	};
+	749EBE790DCACC9E008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A02030DC819430079D89B /* Theater.h */;
+		name = "Theater.h: 31";
+		rLen = 26;
+		rLoc = 680;
+		rType = 0;
+		vrLen = 713;
+		vrLoc = 0;
+	};
+	749EBE7A0DCACC9E008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A01410DC819270079D89B /* Movie.h */;
+		name = "Movie.h: 35";
+		rLen = 0;
+		rLoc = 729;
+		rType = 0;
+		vrLen = 721;
+		vrLoc = 15;
+	};
+	749EBE7B0DCACC9E008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 746A01420DC819270079D89B /* Movie.m */;
+		name = "Movie.m: 73";
+		rLen = 0;
+		rLoc = 1742;
+		rType = 0;
+		vrLen = 879;
+		vrLoc = 903;
+	};
+	749EBE7E0DCACC9E008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 149";
+		rLen = 0;
+		rLoc = 5079;
+		rType = 0;
+		vrLen = 935;
+		vrLoc = 4431;
+	};
+	749EBE7F0DCACC9E008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE800DCACC9E008B3EE1 /* NSXMLParser.h */;
+		name = "NSXMLParser.h: 11";
+		rLen = 36;
+		rLoc = 234;
+		rType = 0;
+		vrLen = 1239;
+		vrLoc = 85;
+	};
+	749EBE800DCACC9E008B3EE1 /* NSXMLParser.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = NSXMLParser.h;
+		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/Foundation.framework/Versions/C/Headers/NSXMLParser.h;
+		sourceTree = "<absolute>";
+	};
+	749EBE8D0DCACC9E008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE0F0DCABF72008B3EE1 /* TheaterShowtimesXmlParser.h */;
+		name = "TheaterShowtimesXmlParser.h: 17";
+		rLen = 14;
+		rLoc = 368;
+		rType = 0;
+		vrLen = 1018;
+		vrLoc = 35;
+	};
+	749EBE960DCACC9E008B3EE1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE620DCACBAF008B3EE1 /* TheaterShowtimesXmlParser.m */;
+		name = "TheaterShowtimesXmlParser.m: 113";
+		rLen = 0;
+		rLoc = 3370;
+		rType = 0;
+		vrLen = 1297;
+		vrLoc = 1732;
+	};
+	749EBEA80DCACCC1008B3EE1 /* BoxOfficeController.m:113 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 113;
+		modificationTime = 231480788.774838;
+		state = 1;
+	};
+	749EBEAF0DCACCCC008B3EE1 /* BoxOfficeController.m:110 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 110;
+		modificationTime = 231480758.232534;
+		state = 2;
+	};
+	74A3487D0DC999EA00AEC095 /* BoxOfficeController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = BoxOfficeController.m;
+		path = /Projects/BoxOffice/Classes/BoxOfficeController.m;
+		sourceTree = "<group>";
+	};
+	74A3487F0DC999EA00AEC095 /* BoxOfficeController.m:61 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74A3487D0DC999EA00AEC095 /* BoxOfficeController.m */;
+		functionName = "-lookupMovies";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 61;
+		location = BoxOffice;
+		modificationTime = 231480758.23241;
+		state = 2;
+	};
+	74A348890DC999F700AEC095 /* BoxOfficeController.m:24 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74A3487D0DC999EA00AEC095 /* BoxOfficeController.m */;
+		functionName = "-initWithAppDelegate:model:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 24;
+		location = BoxOffice;
+		modificationTime = 231480758.232416;
+		state = 2;
+	};
+	74A348BA0DC99AAA00AEC095 /* BoxOfficeController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = BoxOfficeController.m;
+		path = /Projects/BoxOffice/Classes/BoxOfficeController.m;
+		sourceTree = "<group>";
+	};
+	74A348BC0DC99AAA00AEC095 /* BoxOfficeController.m:51 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74A348BA0DC99AAA00AEC095 /* BoxOfficeController.m */;
+		functionName = "-lookupMoviesBackgroundThreadEntryPoint:";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 51;
+		location = BoxOffice;
+		modificationTime = 231480758.232421;
+		state = 2;
+	};
+	74A348C90DC99B0500AEC095 /* BoxOfficeController.m:67 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 74A348BA0DC99AAA00AEC095 /* BoxOfficeController.m */;
+		functionName = "-lookupMovies";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 67;
+		modificationTime = 231480788.774959;
+		state = 1;
+	};
+	74A348CB0DC99B1C00AEC095 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C580DC840D100CC146C /* MovieDetailsViewController.h */;
+		name = "MovieDetailsViewController.h: 15";
+		rLen = 68;
+		rLoc = 311;
+		rType = 0;
+		vrLen = 512;
+		vrLoc = 0;
+	};
+	74A348CD0DC99B1C00AEC095 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */;
+		name = "TheaterDetailsViewController.m: 22";
+		rLen = 0;
+		rLoc = 558;
+		rType = 0;
+		vrLen = 722;
+		vrLoc = 0;
+	};
+	74A348E70DC99DBF00AEC095 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 748AC9260DC9987200C6592F /* UISegmentedControl.h */;
+		name = "UISegmentedControl.h: 23";
+		rLen = 72;
+		rLoc = 508;
+		rType = 0;
+		vrLen = 975;
+		vrLoc = 0;
+	};
+	74D6F2B50DCC144D0097A984 /* XmlParser.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{400, 0}";
+			sepNavVisRange = "{0, 536}";
+		};
+	};
+	74D6F2B60DCC144D0097A984 /* XmlParser.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 1078}}";
+			sepNavSelRange = "{2198, 0}";
+			sepNavVisRange = "{36, 823}";
+		};
+	};
+	74D6F2BC0DCC176D0097A984 /* XmlElement.h */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {693, 528}}";
+			sepNavSelRange = "{611, 0}";
+			sepNavVisRange = "{0, 640}";
+		};
+	};
+	74D6F2C70DCC1A080097A984 /* XmlElement.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = XmlElement.h;
+		path = /Projects/GoogleCode/BoxOffice/Classes/XmlElement.h;
+		sourceTree = "<absolute>";
+	};
+	74D6F2CC0DCC1A200097A984 /* XmlElement.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XmlElement.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/XmlElement.m;
+		sourceTree = "<absolute>";
+	};
+	74D6F2D30DCC1AA30097A984 /* XmlElement.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XmlElement.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/XmlElement.m;
+		sourceTree = "<absolute>";
+	};
+	74D6F2D70DCC1AA60097A984 /* XmlParser.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = XmlParser.h;
+		path = /Projects/GoogleCode/BoxOffice/Classes/XmlParser.h;
+		sourceTree = "<absolute>";
+	};
+	74D6F2E10DCC1AF80097A984 /* XmlParser.h */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
+		name = XmlParser.h;
+		path = /Projects/GoogleCode/BoxOffice/Classes/XmlParser.h;
+		sourceTree = "<absolute>";
+	};
+	74D6F2E80DCC1B5F0097A984 /* XmlParser.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XmlParser.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/XmlParser.m;
+		sourceTree = "<absolute>";
+	};
+	74D6F2EF0DCC1CAB0097A984 /* XmlElement.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = XmlElement.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/XmlElement.m;
+		sourceTree = "<absolute>";
+	};
+	74D6F2F20DCC1D060097A984 /* BoxOfficeController.m:158 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 158;
+		modificationTime = 231480788.774976;
+		state = 1;
+	};
+	74D6F2F50DCC1D090097A984 /* BoxOfficeController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = BoxOfficeController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m;
+		sourceTree = "<absolute>";
+	};
+	74D6F2FB0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
+		name = "SettingsNavigationController.m: 6";
+		rLen = 0;
+		rLoc = 122;
+		rType = 0;
+		vrLen = 884;
+		vrLoc = 0;
+	};
+	74D6F2FC0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE800DCACC9E008B3EE1 /* NSXMLParser.h */;
+		name = "NSXMLParser.h: 85";
+		rLen = 2029;
+		rLoc = 3583;
+		rType = 0;
+		vrLen = 3252;
+		vrLoc = 2995;
+	};
+	74D6F2FD0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744DDE5F0DC9992F005BFCF6 /* NSArray.h */;
+		name = "NSArray.h: 37";
+		rLen = 18;
+		rLoc = 1260;
+		rType = 0;
+		vrLen = 1314;
+		vrLoc = 0;
+	};
+	74D6F2FE0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2E10DCC1AF80097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 17";
+		rLen = 197;
+		rLoc = 400;
+		rType = 0;
+		vrLen = 698;
+		vrLoc = 0;
+	};
+	74D6F2FF0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2E80DCC1B5F0097A984 /* XmlParser.m */;
+		name = "XmlParser.m: 16";
+		rLen = 0;
+		rLoc = 280;
+		rType = 0;
+		vrLen = 773;
+		vrLoc = 0;
+	};
+	74D6F3000DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
+		name = "XmlElement.h: 29";
+		rLen = 56;
+		rLoc = 686;
+		rType = 0;
+		vrLen = 749;
+		vrLoc = 0;
+	};
+	74D6F3010DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2EF0DCC1CAB0097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 62";
+		rLen = 0;
+		rLoc = 1315;
+		rType = 0;
+		vrLen = 765;
+		vrLoc = 614;
+	};
+	74D6F3020DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2F50DCC1D090097A984 /* BoxOfficeController.m */;
+		rLen = 1;
+		rLoc = 154;
+		rType = 1;
+	};
+	74D6F3030DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
+		name = "SettingsNavigationController.m: 6";
+		rLen = 0;
+		rLoc = 122;
+		rType = 0;
+		vrLen = 884;
+		vrLoc = 0;
+	};
+	74D6F3040DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 16";
+		rLen = 289;
+		rLoc = 402;
+		rType = 0;
+		vrLen = 343;
+		vrLoc = 0;
+	};
+	74D6F3050DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 19";
+		rLen = 0;
+		rLoc = 652;
+		rType = 0;
+		vrLen = 361;
+		vrLoc = 0;
+	};
+	74D6F3060DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 13";
+		rLen = 11;
+		rLoc = 203;
+		rType = 0;
+		vrLen = 486;
+		vrLoc = 0;
+	};
+	74D6F3070DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749EBE800DCACC9E008B3EE1 /* NSXMLParser.h */;
+		name = "NSXMLParser.h: 85";
+		rLen = 2029;
+		rLoc = 3583;
+		rType = 0;
+		vrLen = 3252;
+		vrLoc = 2995;
+	};
+	74D6F3080DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 13";
+		rLen = 11;
+		rLoc = 203;
+		rType = 0;
+		vrLen = 486;
+		vrLoc = 0;
+	};
+	74D6F3090DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 15";
+		rLen = 13;
+		rLoc = 269;
+		rType = 0;
+		vrLen = 481;
+		vrLoc = 0;
+	};
+	74D6F30A0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2BC0DCC176D0097A984 /* XmlElement.h */;
+		name = "XmlElement.h: 24";
+		rLen = 0;
+		rLoc = 665;
+		rType = 0;
+		vrLen = 502;
+		vrLoc = 0;
+	};
+	74D6F30B0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2B50DCC144D0097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 17";
+		rLen = 0;
+		rLoc = 398;
+		rType = 0;
+		vrLen = 536;
+		vrLoc = 0;
+	};
+	74D6F30C0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2BC0DCC176D0097A984 /* XmlElement.h */;
+		name = "XmlElement.h: 27";
+		rLen = 0;
+		rLoc = 643;
+		rType = 0;
+		vrLen = 640;
+		vrLoc = 0;
+	};
+	74D6F30D0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2BC0DCC176D0097A984 /* XmlElement.h */;
+		name = "XmlElement.h: 27";
+		rLen = 0;
+		rLoc = 643;
+		rType = 0;
+		vrLen = 640;
+		vrLoc = 0;
+	};
+	74D6F30E0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */;
+		name = "XmlParser.m: 76";
+		rLen = 0;
+		rLoc = 2457;
+		rType = 0;
+		vrLen = 613;
+		vrLoc = 0;
+	};
+	74D6F30F0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
+		name = "XmlElement.h: 20";
+		rLen = 0;
+		rLoc = 485;
+		rType = 0;
+		vrLen = 672;
+		vrLoc = 0;
+	};
+	74D6F3100DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 14";
+		rLen = 0;
+		rLoc = 276;
+		rType = 0;
+		vrLen = 202;
+		vrLoc = 0;
+	};
+	74D6F3110DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
+		name = "XmlElement.h: 17";
+		rLen = 148;
+		rLoc = 354;
+		rType = 0;
+		vrLen = 672;
+		vrLoc = 0;
+	};
+	74D6F3120DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 19";
+		rLen = 0;
+		rLoc = 1372;
+		rType = 0;
+		vrLen = 285;
+		vrLoc = 0;
+	};
+	74D6F3130DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
+		name = "XmlElement.h: 22";
+		rLen = 180;
+		rLoc = 504;
+		rType = 0;
+		vrLen = 691;
+		vrLoc = 0;
+	};
+	74D6F3140DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2D30DCC1AA30097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 41";
+		rLen = 0;
+		rLoc = 772;
+		rType = 0;
+		vrLen = 635;
+		vrLoc = 141;
+	};
+	74D6F3150DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2D70DCC1AA60097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 22";
+		rLen = 0;
+		rLoc = 668;
+		rType = 0;
+		vrLen = 509;
+		vrLoc = 0;
+	};
+	74D6F3160DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2D30DCC1AA30097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 41";
+		rLen = 0;
+		rLoc = 772;
+		rType = 0;
+		vrLen = 635;
+		vrLoc = 141;
+	};
+	74D6F3170DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */;
+		name = "XmlParser.m: 76";
+		rLen = 0;
+		rLoc = 2457;
+		rType = 0;
+		vrLen = 607;
+		vrLoc = 36;
+	};
+	74D6F3180DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2E10DCC1AF80097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 27";
+		rLen = 38;
+		rLoc = 654;
+		rType = 0;
+		vrLen = 698;
+		vrLoc = 0;
+	};
+	74D6F3190DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2E80DCC1B5F0097A984 /* XmlParser.m */;
+		name = "XmlParser.m: 83";
+		rLen = 5;
+		rLoc = 2461;
+		rType = 0;
+		vrLen = 710;
+		vrLoc = 0;
+	};
+	74D6F31A0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
+		name = "XmlElement.h: 22";
+		rLen = 180;
+		rLoc = 504;
+		rType = 0;
+		vrLen = 691;
+		vrLoc = 0;
+	};
+	74D6F31B0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2E10DCC1AF80097A984 /* XmlParser.h */;
+		name = "XmlParser.h: 17";
+		rLen = 197;
+		rLoc = 400;
+		rType = 0;
+		vrLen = 698;
+		vrLoc = 0;
+	};
+	74D6F31C0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2E80DCC1B5F0097A984 /* XmlParser.m */;
+		name = "XmlParser.m: 16";
+		rLen = 0;
+		rLoc = 280;
+		rType = 0;
+		vrLen = 773;
+		vrLoc = 0;
+	};
+	74D6F31D0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2D30DCC1AA30097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 41";
+		rLen = 0;
+		rLoc = 772;
+		rType = 0;
+		vrLen = 643;
+		vrLoc = 138;
+	};
+	74D6F31E0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
+		name = "XmlElement.h: 29";
+		rLen = 56;
+		rLoc = 686;
+		rType = 0;
+		vrLen = 749;
+		vrLoc = 0;
+	};
+	74D6F31F0DCC1D220097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D6F2EF0DCC1CAB0097A984 /* XmlElement.m */;
+		name = "XmlElement.m: 62";
+		rLen = 0;
+		rLoc = 1315;
+		rType = 0;
+		vrLen = 765;
+		vrLoc = 614;
+	};
+	74D6F3320DCC1D3B0097A984 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 14";
+		rLen = 0;
+		rLoc = 314;
+		rType = 0;
+		vrLen = 1125;
+		vrLoc = 4409;
+	};
+}
