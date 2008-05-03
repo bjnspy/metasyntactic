@@ -10,7 +10,6 @@
 #import "Movie.h"
 #import "Theater.h"
 #import "BoxOfficeAppDelegate.h"
-#import "TheaterShowtimesXmlParser.h"
 #import "XmlParser.h"
 
 @implementation BoxOfficeController

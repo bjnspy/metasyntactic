@@ -373,7 +373,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>XmlParser.m</string>
+								<string>BoxOfficeController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -381,11 +381,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>XmlParser.m</string>
+										<string>BoxOfficeController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7400F4C90DCC2A62004D712D</string>
+										<string>7400F4DC0DCC2AF9004D712D</string>
 										<key>history</key>
 										<array>
 											<string>746A02610DC8293D0079D89B</string>
@@ -446,9 +446,9 @@
 											<string>7400F4860DCC2751004D712D</string>
 											<string>7400F4990DCC29AB004D712D</string>
 											<string>7400F4BF0DCC2A62004D712D</string>
-											<string>7400F4C00DCC2A62004D712D</string>
 											<string>7400F4C10DCC2A62004D712D</string>
-											<string>7400F4C20DCC2A62004D712D</string>
+											<string>7400F4D90DCC2AF9004D712D</string>
+											<string>7400F4DA0DCC2AF9004D712D</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -518,6 +518,7 @@
 											<string>7400F4C60DCC2A62004D712D</string>
 											<string>7400F4C70DCC2A62004D712D</string>
 											<string>7400F4C80DCC2A62004D712D</string>
+											<string>7400F4DB0DCC2AF9004D712D</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -696,7 +697,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>231484002.72755399</real>
+	<real>231484153.277329</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -711,7 +712,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7400F4CA0DCC2A62004D712D</string>
+		<string>7400F4DD0DCC2AF9004D712D</string>
 		<string>7400F4770DCC22E1004D712D</string>
 		<string>7400F4780DCC22E1004D712D</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -719,7 +720,7 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>7400F4CB0DCC2A62004D712D</string>
+		<string>7400F4DE0DCC2AF9004D712D</string>
 	</array>
 	<key>WindowString</key>
 	<string>49 31 1073 847 0 0 1440 878 </string>

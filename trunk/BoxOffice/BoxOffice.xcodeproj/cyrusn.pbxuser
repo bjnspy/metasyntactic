@@ -30,10 +30,10 @@
 			1D6058900D05DD3D006BFB54 /* BoxOffice */,
 		);
 		breakpoints = (
-			7400F4680DCC22C5004D712D /* BoxOfficeController.m:22 */,
-			7400F46A0DCC22CB004D712D /* BoxOfficeController.m:142 */,
-			7400F46F0DCC22D1004D712D /* BoxOfficeController.m:161 */,
-			7400F4710DCC22D4004D712D /* BoxOfficeController.m:163 */,
+			7400F4680DCC22C5004D712D /* BoxOfficeController.m:21 */,
+			7400F46A0DCC22CB004D712D /* BoxOfficeController.m:141 */,
+			7400F46F0DCC22D1004D712D /* BoxOfficeController.m:160 */,
+			7400F4710DCC22D4004D712D /* BoxOfficeController.m:162 */,
 		);
 		codeSenseManager = 746A013F0DC818C80079D89B /* Code sense */;
 		executables = (
@@ -141,6 +141,10 @@
 			7400F4C70DCC2A62004D712D /* PBXTextBookmark */ = 7400F4C70DCC2A62004D712D /* PBXTextBookmark */;
 			7400F4C80DCC2A62004D712D /* PBXTextBookmark */ = 7400F4C80DCC2A62004D712D /* PBXTextBookmark */;
 			7400F4C90DCC2A62004D712D /* PBXTextBookmark */ = 7400F4C90DCC2A62004D712D /* PBXTextBookmark */;
+			7400F4D90DCC2AF9004D712D /* PBXTextBookmark */ = 7400F4D90DCC2AF9004D712D /* PBXTextBookmark */;
+			7400F4DA0DCC2AF9004D712D /* PBXTextBookmark */ = 7400F4DA0DCC2AF9004D712D /* PBXTextBookmark */;
+			7400F4DB0DCC2AF9004D712D /* PBXTextBookmark */ = 7400F4DB0DCC2AF9004D712D /* PBXTextBookmark */;
+			7400F4DC0DCC2AF9004D712D /* PBXTextBookmark */ = 7400F4DC0DCC2AF9004D712D /* PBXTextBookmark */;
 			7405DCE30DCC1DD60023D68A = 7405DCE30DCC1DD60023D68A /* PBXTextBookmark */;
 			7405F6AC0DCAD5EC002E2D06 = 7405F6AC0DCAD5EC002E2D06 /* PBXTextBookmark */;
 			7405F6F30DCAD88F002E2D06 = 7405F6F30DCAD88F002E2D06 /* PBXTextBookmark */;
@@ -277,10 +281,10 @@
 		isa = PBXTextBookmark;
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		rLen = 1;
-		rLoc = 21;
+		rLoc = 20;
 		rType = 1;
 	};
-	7400F4680DCC22C5004D712D /* BoxOfficeController.m:22 */ = {
+	7400F4680DCC22C5004D712D /* BoxOfficeController.m:21 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -290,58 +294,14 @@
 		delayBeforeContinue = 0;
 		fileReference = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		functionName = "-initWithAppDelegate:";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 22;
+		lineNumber = 21;
 		location = BoxOffice;
-		modificationTime = 231482455.459;
+		modificationTime = 231484153.231154;
 		state = 1;
 	};
-	7400F46A0DCC22CB004D712D /* BoxOfficeController.m:142 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
-		functionName = "-lookupTheaters";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 142;
-		location = BoxOffice;
-		modificationTime = 231482458.427215;
-		state = 1;
-	};
-	7400F46B0DCC22CD004D712D /* PBXTextBookmark */ = {
-		isa = PBXTextBookmark;
-		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
-		name = "BoxOfficeController.m: 22";
-		rLen = 29;
-		rLoc = 439;
-		rType = 0;
-		vrLen = 1441;
-		vrLoc = 4079;
-	};
-	7400F46F0DCC22D1004D712D /* BoxOfficeController.m:161 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
-		functionName = "-lookupTheaters";
-		hitCount = 1;
-		ignoreCount = 0;
-		lineNumber = 161;
-		location = BoxOffice;
-		modificationTime = 231482468.749659;
-		state = 1;
-	};
-	7400F4710DCC22D4004D712D /* BoxOfficeController.m:163 */ = {
+	7400F46A0DCC22CB004D712D /* BoxOfficeController.m:141 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -353,9 +313,53 @@
 		functionName = "-lookupTheaters";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 163;
+		lineNumber = 141;
 		location = BoxOffice;
-		modificationTime = 231482454.008929;
+		modificationTime = 231484153.231729;
+		state = 1;
+	};
+	7400F46B0DCC22CD004D712D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 22";
+		rLen = 29;
+		rLoc = 401;
+		rType = 0;
+		vrLen = 1441;
+		vrLoc = 4079;
+	};
+	7400F46F0DCC22D1004D712D /* BoxOfficeController.m:160 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 160;
+		location = BoxOffice;
+		modificationTime = 231484153.232081;
+		state = 1;
+	};
+	7400F4710DCC22D4004D712D /* BoxOfficeController.m:162 */ = {
+		isa = PBXFileBreakpoint;
+		actions = (
+		);
+		breakpointStyle = 0;
+		continueAfterActions = 0;
+		countType = 0;
+		delayBeforeContinue = 0;
+		fileReference = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
+		functionName = "-lookupTheaters";
+		hitCount = 0;
+		ignoreCount = 0;
+		lineNumber = 162;
+		location = BoxOffice;
+		modificationTime = 231484153.232448;
 		state = 1;
 	};
 	7400F4730DCC22E1004D712D /* PBXTextBookmark */ = {
@@ -363,7 +367,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 22";
 		rLen = 29;
-		rLoc = 439;
+		rLoc = 401;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 4079;
@@ -413,7 +417,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 151";
 		rLen = 10;
-		rLoc = 4969;
+		rLoc = 4931;
 		rType = 0;
 		vrLen = 1107;
 		vrLoc = 4333;
@@ -513,7 +517,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 153";
 		rLen = 0;
-		rLoc = 5457;
+		rLoc = 5419;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 4333;
@@ -523,7 +527,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 159";
 		rLen = 0;
-		rLoc = 5451;
+		rLoc = 5413;
 		rType = 0;
 		vrLen = 1210;
 		vrLoc = 4333;
@@ -553,7 +557,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 167";
 		rLen = 0;
-		rLoc = 6113;
+		rLoc = 6075;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 4333;
@@ -563,7 +567,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 167";
 		rLen = 0;
-		rLoc = 6113;
+		rLoc = 6075;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 4333;
@@ -593,7 +597,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 190";
 		rLen = 0;
-		rLoc = 6558;
+		rLoc = 6520;
 		rType = 0;
 		vrLen = 1208;
 		vrLoc = 5463;
@@ -629,9 +633,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {798, 2282}}";
-			sepNavSelRange = "{439, 0}";
-			sepNavVisRange = "{4525, 724}";
+			sepNavIntBoundsRect = "{{0, 0}, {798, 2408}}";
+			sepNavSelRange = "{5462, 0}";
+			sepNavVisRange = "{5025, 825}";
 		};
 	};
 	7400F4B70DCC2A40004D712D /* XmlElement.m */ = {
@@ -659,9 +663,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/XmlParser.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {693, 1204}}";
-			sepNavSelRange = "{1006, 0}";
-			sepNavVisRange = "{710, 856}";
+			sepNavIntBoundsRect = "{{0, 0}, {693, 1344}}";
+			sepNavSelRange = "{767, 0}";
+			sepNavVisRange = "{0, 799}";
 		};
 	};
 	7400F4BF0DCC2A62004D712D /* PBXTextBookmark */ = {
@@ -679,7 +683,7 @@
 		fRef = 7400F4B30DCC2A38004D712D /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 162";
 		rLen = 0;
-		rLoc = 5485;
+		rLoc = 5447;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 4338;
@@ -706,7 +710,7 @@
 		fRef = 7400F4A40DCC29F8004D712D /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 165";
 		rLen = 63;
-		rLoc = 5499;
+		rLoc = 5461;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 5463;
@@ -726,7 +730,7 @@
 		fRef = 7400F4A40DCC29F8004D712D /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 179";
 		rLen = 66;
-		rLoc = 6117;
+		rLoc = 6079;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 5463;
@@ -746,7 +750,7 @@
 		fRef = 7400F4B30DCC2A38004D712D /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 162";
 		rLen = 0;
-		rLoc = 5485;
+		rLoc = 5447;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 4338;
@@ -771,12 +775,67 @@
 		vrLen = 856;
 		vrLoc = 710;
 	};
+	7400F4D50DCC2AEF004D712D /* BoxOfficeController.m */ = {
+		isa = PBXFileReference;
+		name = BoxOfficeController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m;
+		sourceTree = "<absolute>";
+	};
+	7400F4D70DCC2AEF004D712D /* BoxOfficeController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = BoxOfficeController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {696, 2184}}";
+			sepNavSelRange = "{254, 0}";
+			sepNavVisRange = "{0, 647}";
+		};
+	};
+	7400F4D90DCC2AF9004D712D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7400F4BC0DCC2A52004D712D /* XmlParser.m */;
+		name = "XmlParser.m: 33";
+		rLen = 0;
+		rLoc = 767;
+		rType = 0;
+		vrLen = 799;
+		vrLoc = 0;
+	};
+	7400F4DA0DCC2AF9004D712D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7400F4D50DCC2AEF004D712D /* BoxOfficeController.m */;
+		rLen = 0;
+		rLoc = 11;
+		rType = 1;
+	};
+	7400F4DB0DCC2AF9004D712D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7400F4BC0DCC2A52004D712D /* XmlParser.m */;
+		name = "XmlParser.m: 33";
+		rLen = 0;
+		rLoc = 767;
+		rType = 0;
+		vrLen = 799;
+		vrLoc = 0;
+	};
+	7400F4DC0DCC2AF9004D712D /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7400F4D70DCC2AEF004D712D /* BoxOfficeController.m */;
+		name = "BoxOfficeController.m: 12";
+		rLen = 0;
+		rLoc = 254;
+		rType = 0;
+		vrLen = 647;
+		vrLoc = 0;
+	};
 	7405DCE30DCC1DD60023D68A /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1769;
 		vrLoc = 3357;
@@ -1019,7 +1078,7 @@
 		fRef = 749EBE660DCACC96008B3EE1 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 3299;
@@ -1029,7 +1088,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1827;
 		vrLoc = 3299;
@@ -1049,7 +1108,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1827;
 		vrLoc = 3299;
@@ -1079,7 +1138,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 3299;
@@ -1099,7 +1158,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 659;
 		vrLoc = 0;
@@ -1109,7 +1168,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1009;
 		vrLoc = 4525;
@@ -1119,7 +1178,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 4409;
@@ -1129,7 +1188,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 4409;
@@ -1139,7 +1198,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 4409;
@@ -1248,7 +1307,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 104";
 		rLen = 0;
-		rLoc = 3067;
+		rLoc = 3029;
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 3357;
@@ -2418,7 +2477,7 @@
 		fRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 149";
 		rLen = 0;
-		rLoc = 5462;
+		rLoc = 5424;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 4431;
