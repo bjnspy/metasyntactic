@@ -7,6 +7,8 @@
 //
 
 #import "BoxOfficeModel.h"
+#import "XmlElement.h"
+#import "Theater.h"
 
 @class BoxOfficeAppDelegate;
 
@@ -29,5 +31,8 @@
 - (void) lookupTheatersBackgroundThreadEntryPoint:(id) anObject;
 - (void) lookupTheaters;
 - (void) setTheaters:(NSArray*) theaters;
+
+- (Theater*) processTheaterElement:(XmlElement*) theaterElement;
+- (NSDictionary*) processMoviesElement:(XmlElement*) moviesElement;
 
 @end

@@ -29,4 +29,6 @@
 - (NSString*) description;
 - (NSDictionary*) dictionary;
 
+- (XmlElement*) element:(NSString*) name;
+
 @end

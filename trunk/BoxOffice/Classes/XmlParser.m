@@ -27,7 +27,10 @@
         
         [self.elementsStack addObject:[NSMutableArray array]];
         
-        [self.parser parse];
+        if ([self.parser parse] == NO)
+        {
+            self.elementsStack = nil;
+        }
     }
     
     return self;
@@ -42,6 +45,12 @@
 + (XmlElement*) parse:(NSData*) data
 {
     XmlParser* xmlParser = [[[XmlParser alloc] initWithData:data] autorelease];
+    
+    if (xmlParser.elementsStack == nil)
+    {
+        return nil;
+    }
+    
     return [[xmlParser.elementsStack lastObject] lastObject];
 }
 

@@ -147,15 +147,56 @@
     {
         return;
     }
-    
-    TheaterShowtimesXmlParser* parser = [[[TheaterShowtimesXmlParser alloc] initWithData:result] autorelease];
 
-    [self setTheaters:parser.theaters];
+    XmlElement* envelopeElement = [XmlParser parse:result];
+    XmlElement* bodyElement = [envelopeElement.children objectAtIndex:0];
+    XmlElement* responseElement = [bodyElement.children objectAtIndex:0];
+    XmlElement* resultElement = [responseElement.children objectAtIndex:0];
+    NSMutableArray* theaters = [NSMutableArray array];
     
-    XmlElement* element = [XmlParser parse:result];
-    NSString* string = [element description];
+    for (XmlElement* theaterElement in resultElement.children)
+    {
+        [theaters addObject:[self processTheaterElement:theaterElement]];
+    }
     
-    NSLog(@"%@ %@", element, string);
+    [self setTheaters:theaters];
+}
+
+- (Theater*) processTheaterElement:(XmlElement*) theaterElement
+{
+    XmlElement* nameElement = [theaterElement element:@"Name"];
+    XmlElement* addressElement = [theaterElement element:@"Address"];
+    XmlElement* moviesElement = [theaterElement element:@"Movies"];
+    NSDictionary* moviesToShowtimeMap = [self processMoviesElement:moviesElement];
+    
+    Theater* theater = [[[Theater alloc] initWithName:nameElement.text
+                                              address:addressElement.text
+                                  movieToShowtimesMap:moviesToShowtimeMap] autorelease];
+    
+    return theater;
+}
+
+- (NSDictionary*) processMoviesElement:(XmlElement*) moviesElement
+{
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    
+    for (XmlElement* movieElement in moviesElement.children)
+    {
+        XmlElement* nameElement = [movieElement element:@"Name"];
+        XmlElement* showtimesElement = [movieElement element:@"ShowTimes"];
+        
+        NSMutableArray* array = [NSMutableArray array];
+        
+        for (NSString* showtime in [showtimesElement.text componentsSeparatedByString:@" | "])
+        {
+            NSDate* date = [NSDate dateWithNaturalLanguageString:showtime];
+            [array addObject:date];
+        }
+        
+        [dictionary setValue:array forKey:nameElement.name];
+    }
+    
+    return dictionary;
 }
 
 - (void) setTheaters:(NSArray*) theaters

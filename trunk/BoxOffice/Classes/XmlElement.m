@@ -76,4 +76,17 @@
     return dictionary;
 }
 
+- (XmlElement*) element:(NSString*) name_
+{
+    for (XmlElement* child in self.children)
+    {
+        if ([name_ isEqualToString:child.name])
+        {
+            return child;
+        }
+    }
+    
+    return nil;
+}
+
 @end

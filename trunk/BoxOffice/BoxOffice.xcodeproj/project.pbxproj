@@ -30,7 +30,6 @@
 		749DF1710DC9737700A551D9 /* BoxOfficeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
-		749EBE110DCABF72008B3EE1 /* TheaterShowtimesXmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 749EBE100DCABF72008B3EE1 /* TheaterShowtimesXmlParser.m */; };
 		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
 /* End PBXBuildFile section */
@@ -77,8 +76,6 @@
 		749DF1700DC9737700A551D9 /* BoxOfficeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeController.m; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
-		749EBE0F0DCABF72008B3EE1 /* TheaterShowtimesXmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterShowtimesXmlParser.h; sourceTree = "<group>"; };
-		749EBE100DCABF72008B3EE1 /* TheaterShowtimesXmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterShowtimesXmlParser.m; sourceTree = "<group>"; };
 		74D6F2B50DCC144D0097A984 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
 		74D6F2B60DCC144D0097A984 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		74D6F2BC0DCC176D0097A984 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlElement.h; sourceTree = "<group>"; };
@@ -121,8 +118,6 @@
 				746A02040DC819430079D89B /* Theater.m */,
 				746A02140DC81A1A0079D89B /* Application.h */,
 				746A02150DC81A1A0079D89B /* Application.m */,
-				749EBE0F0DCABF72008B3EE1 /* TheaterShowtimesXmlParser.h */,
-				749EBE100DCABF72008B3EE1 /* TheaterShowtimesXmlParser.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -282,7 +277,6 @@
 				74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */,
 				74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */,
 				749DF1710DC9737700A551D9 /* BoxOfficeController.m in Sources */,
-				749EBE110DCABF72008B3EE1 /* TheaterShowtimesXmlParser.m in Sources */,
 				7405F7CD0DCAF3B9002E2D06 /* SettingsNavigationController.m in Sources */,
 				74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */,
 				74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */,
