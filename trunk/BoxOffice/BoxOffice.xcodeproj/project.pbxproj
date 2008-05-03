@@ -134,10 +134,10 @@
 				746A02040DC819430079D89B /* Theater.m */,
 				74088BD50DCD0AA800954696 /* PosterCache.h */,
 				74088BD60DCD0AA800954696 /* PosterCache.m */,
-				746A02090DC8197A0079D89B /* ZipCodeFormatter.h */,
-				746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */,
 				74088C6A0DCD17D100954696 /* PosterDownloader.h */,
 				74088C6B0DCD17D100954696 /* PosterDownloader.m */,
+				746A02090DC8197A0079D89B /* ZipCodeFormatter.h */,
+				746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";

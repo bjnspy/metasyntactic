@@ -10,9 +10,12 @@
 
 @interface PosterDownloader : NSObject {
     Movie* movie;
+    NSMutableArray* identifiers;
+    NSMutableDictionary* titleToPostersMap;
 }
 
 @property (retain) Movie* movie;
+@property (retain) NSMutableArray* identifiers;
 
 + (NSData*) download:(Movie*) movie;
 
@@ -20,6 +23,9 @@
 - (void) dealloc;
 
 - (NSData*) go;
-- (void) searchForItem;
+- (void) searchForItems;
+- (void) lookupItems;
+- (void) lookupItem1:(NSString*) item1
+               item2:(NSString*) item2;
 
 @end
