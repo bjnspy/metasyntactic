@@ -30,5 +30,6 @@
 - (NSDictionary*) dictionary;
 
 - (XmlElement*) element:(NSString*) name;
+- (NSArray*) elements:(NSString*) name;
 
 @end

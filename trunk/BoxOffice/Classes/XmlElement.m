@@ -89,4 +89,18 @@
     return nil;
 }
 
+- (NSArray*) elements:(NSString*) name_
+{
+    NSMutableArray* array = [NSMutableArray array];
+    for (XmlElement* child in self.children)
+    {
+        if ([name_ isEqualToString:child.name])
+        {
+            [array addObject:child];
+        }
+    }
+    
+    return array;
+}
+
 @end

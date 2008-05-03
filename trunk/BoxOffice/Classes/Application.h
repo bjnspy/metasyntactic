@@ -13,7 +13,7 @@
 + (void) initialize;
 
 + (NSString*) supportFolder;
-+ (NSString*) posterFolder;
++ (NSString*) postersFolder;
 + (NSString*) formatDate:(NSDate*) date;
 
 @end

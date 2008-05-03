@@ -12,15 +12,15 @@
 @implementation Application
 
 static NSString* _supportFolder = nil;
-static NSLock* gate = nil;
-static NSString* _posterFolder = nil;
+static NSRecursiveLock* gate = nil;
+static NSString* _postersFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
 
 + (void) initialize
 {
     if (self == [Application class])
     {
-        gate = [[NSLock alloc] init];
+        gate = [[NSRecursiveLock alloc] init];
         
         dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterNoStyle];
@@ -50,6 +50,7 @@ static NSDateFormatter* dateFormatter = nil;
             [Application createDirectory:folder];
             
             _supportFolder = folder;
+            [_supportFolder retain];
         }
     }
     [gate unlock];
@@ -57,22 +58,24 @@ static NSDateFormatter* dateFormatter = nil;
     return _supportFolder;
 }
 
-+ (NSString*) posterFolder
++ (NSString*) postersFolder
 {
     [gate lock];
     {
-        if (_posterFolder == nil)
+        if (_postersFolder == nil)
         {
-            NSString* folder = [[Application supportFolder] stringByAppendingPathComponent:@"Posters"];
+            NSString* parent = [Application supportFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
             
             [Application createDirectory:folder];
             
-            _posterFolder = folder;
+            _postersFolder = folder;
+            [_postersFolder retain];
         }
     }
     [gate unlock];
     
-    return _posterFolder;
+    return _postersFolder;
 }
 
 + (NSString*) formatDate:(NSDate*) date

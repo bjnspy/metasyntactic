@@ -18,7 +18,7 @@
 {
     if (self = [super init])
     {
-        self.posterCache = [[PosterCache alloc] init];
+        self.posterCache = [[PosterCache alloc] initWithModel:self];
     }
     
     return self;
@@ -99,6 +99,8 @@
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"movies"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [posterCache update];
 }
 
 - (NSArray*) theaters
