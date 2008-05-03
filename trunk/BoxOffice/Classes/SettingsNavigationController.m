@@ -16,14 +16,11 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller
 {
-    if (self = [super init])
-    {   
-        self.tabBarController = controller;
-        
+    if (self = [super initWithTabBarController:controller])
+    {
         self.viewController = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
         
         [self pushViewController:viewController animated:NO];
-        
         
         self.title = @"Settings";
     }
@@ -33,7 +30,6 @@
 
 - (void) dealloc
 {
-    self.tabBarController = nil;
     self.viewController = nil;
     [super dealloc];
 }
@@ -41,11 +37,6 @@
 - (void) refresh
 {
     [self.viewController refresh];
-}
-
-- (BoxOfficeModel*) model
-{
-    return [self.tabBarController model];
 }
 
 @end

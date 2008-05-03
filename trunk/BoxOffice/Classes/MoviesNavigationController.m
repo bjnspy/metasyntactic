@@ -17,10 +17,8 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller
 {
-    if (self = [super init])
+    if (self = [super initWithTabBarController:controller])
     {
-        self.tabBarController = controller;
-        
         self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
         self.movieDetailsViewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self] autorelease];
         
@@ -36,7 +34,6 @@
 {
     self.allMoviesViewController = nil;
     self.movieDetailsViewController = nil;
-    self.tabBarController = nil;
     [super dealloc];
 }
 
@@ -44,11 +41,6 @@
 {
     [self.allMoviesViewController refresh];
     [self.movieDetailsViewController refresh];
-}
-
-- (BoxOfficeModel*) model
-{
-    return [self.tabBarController model];
 }
 
 - (void) pushMovieDetails:(Movie*) movie

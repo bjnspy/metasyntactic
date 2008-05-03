@@ -6,19 +6,16 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+#import "AbstractNavigationController.h"
 #import "AllMoviesViewController.h"
 #import "MovieDetailsViewController.h"
 #import "Movie.h"
 
-@class ApplicationTabBarController;
-
-@interface MoviesNavigationController : UINavigationController {
-    ApplicationTabBarController* tabBarController;
+@interface MoviesNavigationController : AbstractNavigationController {
     AllMoviesViewController* allMoviesViewController;
     MovieDetailsViewController* movieDetailsViewController;
 }
 
-@property (assign) ApplicationTabBarController* tabBarController;
 @property (retain) AllMoviesViewController* allMoviesViewController;
 @property (retain) MovieDetailsViewController* movieDetailsViewController;
 
@@ -26,8 +23,6 @@
 - (void) dealloc;
 
 - (void) refresh;
-
-- (BoxOfficeModel*) model;
 
 - (void) pushMovieDetails:(Movie*) movie;
 

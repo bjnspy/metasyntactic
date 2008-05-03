@@ -17,9 +17,8 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller
 {
-    if (self = [super init])
+    if (self = [super initWithTabBarController:controller])
     {   
-        self.tabBarController = controller;
         self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
         
         [self pushViewController:allTheatersViewController animated:NO];
@@ -34,13 +33,7 @@
 {
     self.allTheatersViewController = nil;
     self.theaterDetailsViewController = nil;
-    self.tabBarController = nil;
     [super dealloc];
-}
-
-- (BoxOfficeModel*) model
-{
-    return [self.tabBarController model];
 }
 
 - (void) refresh

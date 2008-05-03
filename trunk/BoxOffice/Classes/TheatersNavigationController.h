@@ -9,23 +9,19 @@
 #import "AllTheatersViewController.h"
 #import "TheaterDetailsViewController.h"
 #import "Theater.h"
+#import "AbstractNavigationController.h"
 
-@class ApplicationTabBarController;
-
-@interface TheatersNavigationController : UINavigationController {
-    ApplicationTabBarController* tabBarController;
+@interface TheatersNavigationController : AbstractNavigationController {
     AllTheatersViewController* allTheatersViewController;
     TheaterDetailsViewController* theaterDetailsViewController;
 }
 
-@property (assign) ApplicationTabBarController* tabBarController;
 @property (retain) AllTheatersViewController* allTheatersViewController;
 @property (retain) TheaterDetailsViewController* theaterDetailsViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 - (void) dealloc;
 
-- (BoxOfficeModel*) model;
 - (void) refresh;
 
 - (void) pushTheaterDetails:(Theater*) theater;

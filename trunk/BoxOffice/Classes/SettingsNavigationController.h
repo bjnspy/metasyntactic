@@ -7,21 +7,16 @@
 //
 
 #import "SettingsViewController.h"
+#import "AbstractNavigationController.h"
 
-@class ApplicationTabBarController;
-
-@interface SettingsNavigationController : UINavigationController {
-    ApplicationTabBarController* tabBarController;
+@interface SettingsNavigationController : AbstractNavigationController {
     SettingsViewController* viewController;
 }
 
-@property (assign) ApplicationTabBarController* tabBarController;
 @property (retain) SettingsViewController* viewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 - (void) dealloc;
-
-- (BoxOfficeModel*) model;
 
 - (void) refresh;
 
