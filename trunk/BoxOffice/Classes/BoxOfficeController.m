@@ -11,6 +11,7 @@
 #import "Theater.h"
 #import "BoxOfficeAppDelegate.h"
 #import "XmlParser.h"
+#import "Application.h"
 
 @implementation BoxOfficeController
 
@@ -188,8 +189,7 @@
         
         for (NSString* showtime in [showtimesElement.text componentsSeparatedByString:@" | "])
         {
-            NSDate* date = [NSDate dateWithNaturalLanguageString:showtime];
-            [array addObject:date];
+            [array addObject:showtime];
         }
         
         [dictionary setValue:array forKey:nameElement.text];

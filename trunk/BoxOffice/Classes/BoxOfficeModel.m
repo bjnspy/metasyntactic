@@ -10,8 +10,25 @@
 #import "Movie.h"
 #import "Theater.h"
 
-
 @implementation BoxOfficeModel
+
+@synthesize posterCache;
+
+- (id) init
+{
+    if (self = [super init])
+    {
+        self.posterCache = [[PosterCache alloc] init];
+    }
+    
+    return self;
+}
+
+- (void) dealloc
+{
+    self.posterCache = nil;
+    [super dealloc];
+}
 
 - (NSString*) zipcode
 {
@@ -55,9 +72,24 @@
     return decodedMovies;
 }
 
+- (BOOL) areEqual:(NSArray*) movies1
+         movies:(NSArray*) movies2
+{
+    NSSet* set1 = [NSSet setWithArray:movies1];
+    NSSet* set2 = [NSSet setWithArray:movies2];
+    
+    return [set1 isEqualToSet:set2];
+}
+
 - (void) setMovies:(NSArray*) movies
 {
     NSLog(@"BoxOfficeModel:setMovies");
+    
+    if ([self areEqual:movies movies:self.movies])
+    {
+        return;
+    }
+    
     NSMutableArray* array = [NSMutableArray array];
     
     for (int i = 0; i < [movies count]; i++)
@@ -87,8 +119,22 @@
     return decodedTheaters;
 }
 
+- (BOOL) areEqual:(NSArray*) theaters1
+         theaters:(NSArray*) theaters2
+{
+    NSSet* set1 = [NSSet setWithArray:theaters1];
+    NSSet* set2 = [NSSet setWithArray:theaters2];
+    
+    return [set1 isEqualToSet:set2];
+}
+
 - (void) setTheaters:(NSArray*) theaters
 {
+    if ([self areEqual:theaters theaters:[self theaters]])
+    {
+        return;
+    }
+    
     NSMutableArray* array = [NSMutableArray array];
     
     for (int i = 0; i < [theaters count]; i++)

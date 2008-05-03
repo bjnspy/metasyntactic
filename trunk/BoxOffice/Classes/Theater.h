@@ -30,4 +30,7 @@
 
 - (NSString*) description;
 
+- (BOOL) isEqual:(id) anObject;
+- (NSUInteger) hash;
+
 @end

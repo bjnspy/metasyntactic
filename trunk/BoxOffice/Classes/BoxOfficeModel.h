@@ -6,8 +6,16 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+#import "PosterCache.h"
+
 @interface BoxOfficeModel : NSObject {
+    PosterCache* posterCache;
 }
+
+@property (retain) PosterCache* posterCache;
+
+- (id) init;
+- (void) dealloc;
 
 - (NSString*) zipcode;
 - (void) setZipcode:(NSString*) zipcode;

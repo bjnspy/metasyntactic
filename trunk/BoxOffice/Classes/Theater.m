@@ -59,4 +59,18 @@ movieToShowtimesMap:(NSDictionary*) aDictionary
     return [[self dictionary] description];
 }
 
+- (BOOL) isEqual:(id) anObject
+{
+    Theater* other = anObject;
+    return
+        [self.name isEqual:other.name] &&
+        [self.address isEqual:other.address] &&
+        [self.movieToShowtimesMap isEqual:other.movieToShowtimesMap];
+}
+
+- (NSUInteger) hash
+{
+    return [self.name hash] + [self.address hash] + [self.movieToShowtimesMap hash];
+}
+
 @end

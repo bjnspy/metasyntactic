@@ -8,6 +8,7 @@
 
 #import "BoxOfficeAppDelegate.h"
 #import "BoxOfficeController.h"
+#import "Application.h"
 
 @implementation BoxOfficeAppDelegate
 
@@ -31,6 +32,9 @@
     self.controller = [[[BoxOfficeController alloc] initWithAppDelegate:self] autorelease];
     
     [self.tabBarController refresh];
+    
+    NSString* folder = [Application supportFolder];
+    NSLog(@"%@ ", folder);
 }
 
 - (void) dealloc {

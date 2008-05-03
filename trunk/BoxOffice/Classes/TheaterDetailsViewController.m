@@ -62,13 +62,18 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
 {
-    return [self.movieNames count];
+    return [self.movieNames count] + 1;
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section
 {
-    return [[self.movieShowtimes objectAtIndex:section] count];
+    if (section == 0)
+    {
+        return 1;
+    }
+    
+    return [[self.movieShowtimes objectAtIndex:(section - 1)] count];
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
@@ -79,13 +84,14 @@
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
-    NSDate* date = [[self.movieShowtimes objectAtIndex:section] objectAtIndex:row];
-    
-    NSDateFormatter* dateFormatter = [[[NSDateFormatter alloc] init] autorelease];
-    [dateFormatter setDateStyle:NSDateFormatterNoStyle];
-    [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-    
-    cell.text = [dateFormatter stringFromDate:date]; 
+    if (section == 0)
+    {
+        cell.text = self.theater.address;
+    }
+    else
+    {
+        cell.text = [[self.movieShowtimes objectAtIndex:(section - 1)] objectAtIndex:row];
+    }
     
     return cell;
 }
@@ -93,7 +99,12 @@
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section
 {
-    return [self.movieNames objectAtIndex:section];
+    if (section == 0)
+    {
+        return @"Address";
+    }
+    
+    return [self.movieNames objectAtIndex:(section - 1)];
 }
 
 /*

@@ -11,6 +11,9 @@
 }
 
 + (void) initialize;
+
 + (NSString*) supportFolder;
++ (NSString*) posterFolder;
++ (NSString*) formatDate:(NSDate*) date;
 
 @end
