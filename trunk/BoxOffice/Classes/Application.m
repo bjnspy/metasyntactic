@@ -11,9 +11,10 @@
 
 @implementation Application
 
-static NSString* _supportFolder = nil;
 static NSRecursiveLock* gate = nil;
+static NSString* _supportFolder = nil;
 static NSString* _postersFolder = nil;
+static NSString* _documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
 
 + (void) initialize
@@ -34,6 +35,26 @@ static NSDateFormatter* dateFormatter = nil;
     {
         [[NSFileManager defaultManager] createDirectoryAtPath:folder attributes:nil];
     }    
+}
+
++ (NSString*) documentsFolder
+{
+    [gate lock];
+    {
+        if (_documentsFolder == nil)
+        {
+            NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, /*expandTilde:*/YES);
+            NSString* folder = [paths objectAtIndex:0];
+            
+            [Application createDirectory:folder];
+            
+            _documentsFolder = folder;
+            [_documentsFolder retain];
+        }
+    }
+    [gate unlock];
+    
+    return _documentsFolder;
 }
 
 + (NSString*) supportFolder
@@ -57,6 +78,7 @@ static NSDateFormatter* dateFormatter = nil;
     
     return _supportFolder;
 }
+
 
 + (NSString*) postersFolder
 {

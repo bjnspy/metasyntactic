@@ -10,6 +10,9 @@
     NSMutableArray* array;
 }
 
+@property (retain) NSMutableArray* array;
+
+- (void) dealloc;
 - (id) initWithX:(NSInteger) x 
                Y:(NSInteger) y;
 

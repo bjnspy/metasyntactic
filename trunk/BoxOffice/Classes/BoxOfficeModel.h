@@ -29,4 +29,6 @@
 - (NSArray*) theaters;
 - (void) setTheaters:(NSArray*) theaters;
 
+- (UIImage*) posterForMovie:(Movie*) movie;
+
 @end

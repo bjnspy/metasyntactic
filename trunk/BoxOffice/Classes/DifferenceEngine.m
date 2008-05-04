@@ -160,7 +160,7 @@
         }
     }
     
-    return [self.costTable getX:cached_S_length Y:cached_T_length];    
+    return [self.costTable getX:(cached_S_length - 1) Y:(cached_T_length - 1)];    
 }
 
 @end

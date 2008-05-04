@@ -6,17 +6,24 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+#import "Movie.h"
+#import "BoxOfficeModel.h"
+
 @class MoviesNavigationController;
 
-@interface MovieDetailsViewController : UIViewController {
+@interface MovieDetailsViewController : UITableViewController {
     MoviesNavigationController* navigationController;
+    Movie* movie;
 }
 
 @property (assign) MoviesNavigationController* navigationController;
+@property (retain) Movie* movie;
 
-- (id) initWithNavigationController:(MoviesNavigationController*) navigationController;
+- (id) initWithNavigationController:(MoviesNavigationController*) navigationController
+                              movie:(Movie*) movie;
 - (void) dealloc;
 
 - (void) refresh;
+- (BoxOfficeModel*) model;
 
 @end

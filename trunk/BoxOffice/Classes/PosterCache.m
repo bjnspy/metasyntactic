@@ -15,12 +15,14 @@
 @implementation PosterCache
 
 @synthesize model;
+@synthesize movieToPosterMap;
 
 - (id) initWithModel:(BoxOfficeModel*) model_
 {
     if (self = [super init])
     {
         self.model = model_;
+        self.movieToPosterMap = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -29,6 +31,7 @@
 - (void) dealloc
 {
     self.model = nil;
+    self.movieToPosterMap = nil;
     [super dealloc];
 }
 
@@ -38,6 +41,19 @@
     [self enqueueRequests];
 }
 
+- (BOOL) knownMovie:(NSString*) movieTitle
+{
+    for (Movie* movie in self.model.movies)
+    {
+        if ([movie.title isEqual:movieTitle])
+        {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
 - (void) deleteObsoletePosters
 {
     NSFileManager* manager = [NSFileManager defaultManager];
@@ -45,14 +61,16 @@
     
     for (NSString* filePath in contents)
     {
-        
+        NSString* movieTitle = [filePath stringByDeletingPathExtension];
+        if (![self knownMovie:movieTitle])
+        {
+            [manager removeFileAtPath:movieTitle handler:nil];
+        }
     }
 }
 
 - (void) enqueueRequests
 {
-    NSFileManager* manager = [NSFileManager defaultManager];
-    
     NSMutableArray* moviesWithoutPosters = [NSMutableArray array];
     
     for (Movie* movie in model.movies)
@@ -86,23 +104,43 @@
     }
 }
 
+- (void) setPosterForMovie:(NSArray*) array
+{
+    [self.movieToPosterMap setObject:[array objectAtIndex:1] forKey:[array objectAtIndex:0]];
+}
+
 - (void) getPoster:(Movie*) movie
 {
     NSData* data = [PosterDownloader download:movie];
-    if (data != nil)
-    {
-        [data writeToFile:[self posterFilePath:movie] atomically:YES];
-    }
+    //[date wri
+    NSString* path = [self posterFilePath:movie];
+    NSString* tempPath = [path stringByAppendingPathExtension:@"temp"];
+    NSError* error;
+    BOOL result1 = [[NSFileManager defaultManager] createFileAtPath:tempPath contents:data attributes:nil];
+    BOOL result2 = [[NSFileManager defaultManager] moveItemAtPath:tempPath toPath:path error:&error];
+    //[data writeToFile:path atomically:YES];
+    //NSError* error;
+    //BOOL result = [data writeToFile:path options:NSAtomicWrite error:&error];
+    NSLog(@"%@ %d %d", error, result1, result2);
 }
 
 - (NSString*) posterFilePath:(Movie*) movie
 {
-    return nil;
+   return [[[Application postersFolder] stringByAppendingPathComponent:movie.title]
+                                         stringByAppendingPathExtension:@"image"];
 }
 
 - (BOOL) posterFileExists:(Movie*) movie
 {
-    return NO;
+    return [[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]];
+}
+
+- (UIImage*) posterForMovie:(Movie*) movie
+{
+    NSString* path = [self posterFilePath:movie];
+    NSData* data = [NSData dataWithContentsOfFile:path];
+    return [UIImage imageWithData:data];
+    //return [UIImage imageWithContentsOfFile:[self posterFilePath:movie]];
 }
 
 @end

@@ -135,37 +135,49 @@
     }
 }
 
+- (void) addRequestItem:(NSString*) item
+               elements:(NSMutableArray*) elements
+{
+    if (![@"" isEqual:item])
+    {
+        XmlElement* element = [XmlElement elementWithName:@"Request" children:[NSArray arrayWithObjects:
+                                  [XmlElement elementWithName:@"ItemId" text:item],
+                                  [XmlElement elementWithName:@"ResponseGroup" text:@"Images"],
+                                  [XmlElement elementWithName:@"ResponseGroup" text:@"ItemAttributes"], nil]];
+
+        [elements addObject:element];
+    }
+}
+
 - (void) lookupItem1:(NSString*) item1
                item2:(NSString*) item2
 {
-    /*
-     POST /onca/soap?Service=AWSECommerceService HTTP/1.1
-     Content-Type: text/xml; charset=utf-8
-     SOAPAction: "http://soap.amazon.com"
-     Host: soap.amazon.com
-     Content-Length: 638
-     Expect: 100-continue
-     */
-    NSMutableString* post = 
-    @"<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">"
-    "<s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\""
-    "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">"
-    "<ItemLookup xmlns=\"http://webservices.amazon.com/AWSECommerceService/2008-04-07\">"
-    "<AWSAccessKeyId>1RRVC0BHDPKTXB98FCR2</AWSAccessKeyId>"
-    "<AssociateTag>cyrusnajma-20</AssociateTag>"
-    "<Request>"
-    "<ItemId>B000YABYLA</ItemId>"
-    "<ResponseGroup>Images</ResponseGroup>"
-    "<ResponseGroup>ItemAttributes</ResponseGroup>"
-    "</Request>"
-    "<Request>"
-    "<ItemId>B0014CQNTK</ItemId>"
-    "<ResponseGroup>Images</ResponseGroup>"
-    "<ResponseGroup>ItemAttributes</ResponseGroup>"
-    "</Request>"
-    "</ItemLookup>"
-    "</s:Body>"
-    "</s:Envelope>";
+    NSMutableArray* requestElements = [NSMutableArray array];
+    
+    [requestElements addObject:[XmlElement elementWithName:@"AWSAccessKeyId" text:@"1RRVC0BHDPKTXB98FCR2"]];
+    [requestElements addObject:[XmlElement elementWithName:@"AssociateTag" text:@"cyrusnajma-20"]];
+    
+    [self addRequestItem:item1 elements:requestElements];
+    [self addRequestItem:item2 elements:requestElements];
+    
+    XmlElement* element =
+        [XmlElement elementWithName:
+            @"s:Envelope"
+            attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                @"http://schemas.xmlsoap.org/soap/envelope/", @"xmlns:s", nil]
+            children:[NSArray arrayWithObject:
+                [XmlElement elementWithName:
+                    @"s:Body"
+                    attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                        @"http://www.w3.org/2001/XMLSchema-instance", @"xmlns:xsi",
+                        @"http://www.w3.org/2001/XMLSchema", @"xmlns:xsd", nil]
+                    children:[NSArray arrayWithObject:[XmlElement elementWithName:
+                        @"ItemLookup"
+                        attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                            @"http://webservices.amazon.com/AWSECommerceService/2008-04-07", @"xmlns", nil]
+                        children:requestElements]]]]];
+                        
+    NSString* post = [XmlSerializer serializeElement:element];
     
     NSData* postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
@@ -218,9 +230,12 @@ NSInteger titleSort(id t1, id t2, void *context)
     NSString* title2 = t2;
     NSString* movieTitle = context;
     
-    NSCharacterSet* nonAlphaNumerics = [[NSCharacterSet alphanumericCharacterSet] invertedSet];
-    NSString* trimmed1 = [title1 stringByTrimmingCharactersInSet:nonAlphaNumerics];
-    NSString* trimmed2 = [title2 stringByTrimmingCharactersInSet:nonAlphaNumerics];
+    //NSString* trimmed1 = [title1 stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
+    //NSString* trimmed2 = [title2 stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
+
+    NSString* trimmed1 = [title1 stringByTrimmingCharactersInSet:[NSCharacterSet alphanumericCharacterSet]];
+    NSString* trimmed2 = [title2 stringByTrimmingCharactersInSet:[NSCharacterSet alphanumericCharacterSet]];
+
     
     NSInteger editDistance1 = [[[[DifferenceEngine alloc] init] autorelease] editDistanceFrom:trimmed1 to:movieTitle];
     NSInteger editDistance2 = [[[[DifferenceEngine alloc] init] autorelease] editDistanceFrom:trimmed2 to:movieTitle];
@@ -243,8 +258,13 @@ NSInteger titleSort(id t1, id t2, void *context)
 
 - (NSData*) downloadBestPoster:(NSString*) title
 {
-    NSString* url = [self.titleToPosterUrlMap objectForKey:title];
-    return nil;
+    if (title == nil)
+    {
+        return nil;
+    }
+    
+    NSURL* url = [NSURL URLWithString:[self.titleToPosterUrlMap objectForKey:title]];
+    return [NSData dataWithContentsOfURL:url];
 }
 
 

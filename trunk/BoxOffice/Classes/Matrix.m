@@ -11,11 +11,21 @@
 
 @implementation Matrix
 
+@synthesize array;
+
+- (void) dealloc
+{
+    self.array = nil;
+    [super dealloc];
+}
+
 - (id) initWithX:(NSInteger) x 
                Y:(NSInteger) y
 {
     if (self = [super init])
     {
+        self.array = [NSMutableArray array];
+        
         for (int i = 0; i < x; i++)
         {
             NSMutableArray* inner = [NSMutableArray array];

@@ -148,4 +148,9 @@
     [[NSUserDefaults standardUserDefaults] synchronize];    
 }
 
+- (UIImage*) posterForMovie:(Movie*) movie
+{
+    return [self.posterCache posterForMovie:movie];
+}
+
 @end

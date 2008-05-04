@@ -20,7 +20,6 @@
     if (self = [super initWithTabBarController:controller])
     {
         self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
-        self.movieDetailsViewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self] autorelease];
         
         [self pushViewController:allMoviesViewController animated:NO];
         
@@ -45,6 +44,8 @@
 
 - (void) pushMovieDetails:(Movie*) movie
 {
+    self.movieDetailsViewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self movie:movie] autorelease];
+
     [self pushViewController:movieDetailsViewController animated:YES];
 }
 

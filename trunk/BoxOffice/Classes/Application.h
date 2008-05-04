@@ -14,6 +14,7 @@
 
 + (NSString*) supportFolder;
 + (NSString*) postersFolder;
++ (NSString*) documentsFolder;
 + (NSString*) formatDate:(NSDate*) date;
 
 @end

@@ -12,10 +12,11 @@
 
 @interface PosterCache : NSObject {
     BoxOfficeModel* model;
-    NSThread* backgroundThread;
+    NSMutableDictionary* movieToPosterMap;
 }
 
 @property (assign) BoxOfficeModel* model;
+@property (retain) NSMutableDictionary* movieToPosterMap;
 
 - (id) initWithModel:(BoxOfficeModel*) model;
 - (void) dealloc;
@@ -30,5 +31,7 @@
 
 - (void) getPosters:(NSArray*) moviesWithoutPosters;
 - (void) getPoster:(Movie*) movie;
+
+- (UIImage*) posterForMovie:(Movie*) movie;
 
 @end
