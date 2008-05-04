@@ -16,6 +16,7 @@
 		740078730DCE6E9400B3799F /* MovieDetailsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740078720DCE6E9400B3799F /* MovieDetailsView.xib */; };
 		740078B60DCE7DFD00B3799F /* MostViewed.png in Resources */ = {isa = PBXBuildFile; fileRef = 740078B50DCE7DFD00B3799F /* MostViewed.png */; };
 		740078B90DCE7E5800B3799F /* More.png in Resources */ = {isa = PBXBuildFile; fileRef = 740078B80DCE7E5700B3799F /* More.png */; };
+		740078CB0DCE80B500B3799F /* Featured.png in Resources */ = {isa = PBXBuildFile; fileRef = 740078CA0DCE80B500B3799F /* Featured.png */; };
 		7405F7CD0DCAF3B9002E2D06 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */; };
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		74088C6C0DCD17D100954696 /* PosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088C6B0DCD17D100954696 /* PosterDownloader.m */; };
@@ -60,6 +61,7 @@
 		740078720DCE6E9400B3799F /* MovieDetailsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MovieDetailsView.xib; sourceTree = "<group>"; };
 		740078B50DCE7DFD00B3799F /* MostViewed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MostViewed.png; sourceTree = "<group>"; };
 		740078B80DCE7E5700B3799F /* More.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = More.png; sourceTree = "<group>"; };
+		740078CA0DCE80B500B3799F /* Featured.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Featured.png; sourceTree = "<group>"; };
 		7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavigationController.h; sourceTree = "<group>"; };
 		7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavigationController.m; sourceTree = "<group>"; };
 		74088BD50DCD0AA800954696 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
@@ -199,6 +201,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				740078CA0DCE80B500B3799F /* Featured.png */,
 				740078B80DCE7E5700B3799F /* More.png */,
 				740078B50DCE7DFD00B3799F /* MostViewed.png */,
 				747204020DCDAB8500C11362 /* BoxOffice.db */,
@@ -320,6 +323,7 @@
 				740078730DCE6E9400B3799F /* MovieDetailsView.xib in Resources */,
 				740078B60DCE7DFD00B3799F /* MostViewed.png in Resources */,
 				740078B90DCE7E5800B3799F /* More.png in Resources */,
+				740078CB0DCE80B500B3799F /* Featured.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
