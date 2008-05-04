@@ -112,25 +112,8 @@
 
 - (void) lookupTheaters
 {   
-    NSLog(@"Looking up theaters");
-    /*
-	NSString* post =
-    @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"    
-    "<SOAP-ENV:Envelope "
-        "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" "
-        "xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
-        "xmlns:SOAP-ENC=\"http://schemas.xmlsoap.org/soap/encoding/\" "
-        "SOAP-ENV:encodingStyle=\"http://schemas.xmlsoap.org/soap/encoding/\" "
-        "xmlns:SOAP-ENV=\"http://schemas.xmlsoap.org/soap/envelope/\">"
-        "<SOAP-ENV:Body>"
-            "<GetTheatersAndMovies xmlns=\"http://www.ignyte.com/whatsshowing\">"
-                "<zipCode xsi:type=\"xsd:string\">10009</zipCode>"
-                "<radius xsi:type=\"xsd:int\">5</radius>"
-            "</GetTheatersAndMovies>"
-        "</SOAP-ENV:Body>"
-    "</SOAP-ENV:Envelope>";
-	*/
-	
+  NSLog(@"Looking up theaters");
+  
   NSString* zipCode = @"10009";
   NSString* radius = @"5";
   

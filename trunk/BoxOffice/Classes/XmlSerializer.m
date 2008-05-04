@@ -10,6 +10,15 @@
 
 @implementation XmlSerializer
 
++ (NSString*) sanitizeNonQuotedString:(NSString*) orig
+{
+  NSString* sanitized = [NSString string];
+  sanitized = [orig stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];  
+  sanitized = [sanitized stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"];
+  sanitized = [sanitized stringByReplacingOccurrencesOfString:@">" withString:@"&gt;"];
+  return sanitized;
+}
+
 + (NSString*) serializeAttribute:(NSString*) key 
 						   value:(NSString*) value
 {
@@ -17,7 +26,7 @@
 	[serialized appendString:@" "];
 	[serialized appendString:key];
 	[serialized appendString:@"=\""];
-	[serialized appendString:value];
+	[serialized appendString:[value stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"]];
 	[serialized appendString:@"\""];
 	return serialized;
 }
@@ -32,7 +41,8 @@
 	{		
 		for (NSString* key in node.attributes) 
 		{
-			[serialized appendString:[XmlSerializer serializeAttribute:key value:[node.attributes valueForKey:key]]];
+			[serialized appendString:
+        [XmlSerializer serializeAttribute:key value:[node.attributes valueForKey:key]]];
 		}
 	}
 	
@@ -45,7 +55,7 @@
 	[serialized appendString:@">"];
 	if (node.text != nil) 
 	{
-		 [serialized appendString:node.text];
+		 [serialized appendString:[XmlSerializer sanitizeNonQuotedString:node.text]];
 	}
 		 
 	for (XmlElement* child in node.children)
