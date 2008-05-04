@@ -65,7 +65,7 @@
     
     for (int i = 0; i < [array count]; i++)
     {
-        Movie* movie = [[[Movie alloc] initWithDictionary:[array objectAtIndex:i]] autorelease];
+        Movie* movie = [Movie movieWithDictionary:[array objectAtIndex:i]];
         [decodedMovies addObject:movie];
     }
     
@@ -115,7 +115,7 @@
     
     for (int i = 0; i < [array count]; i++)
     {
-        [decodedTheaters addObject:[[[Theater alloc] initWithDictionary:[array objectAtIndex:i]] autorelease]];
+        [decodedTheaters addObject:[Theater theaterWithDictionary:[array objectAtIndex:i]]];
     }
     
     return decodedTheaters;

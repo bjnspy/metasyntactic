@@ -23,7 +23,11 @@
 
 - (void) dealloc;
 
-- (id) initWithDictionary:(NSDictionary*) dictionary;
++ (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
++ (Movie*) movieWithTitle:(NSString*) title
+                     link:(NSString*) link
+                 synopsis:(NSString*) synopsis
+                   rating:(NSString*) rating;
 
 - (id) initWithTitle:(NSString*) title
                 link:(NSString*) link

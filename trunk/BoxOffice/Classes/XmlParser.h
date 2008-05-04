@@ -9,14 +9,11 @@
 #import "XmlElement.h"
 
 @interface XmlParser : NSObject {
-    NSXMLParser* parser;
-    
     NSMutableArray/*<NSMutableArray>*/* elementsStack;
     NSMutableArray/*<NSMutableString>*/* stringBufferStack;
     NSMutableArray/*<NSDictionary>*/* attributesStack;
 }
 
-@property (retain) NSXMLParser* parser;
 @property (retain) NSMutableArray* elementsStack;
 @property (retain) NSMutableArray* stringBufferStack;
 @property (retain) NSMutableArray* attributesStack;

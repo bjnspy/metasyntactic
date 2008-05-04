@@ -25,13 +25,20 @@
     [super dealloc];
 }
 
-- (id) initWithDictionary:(NSDictionary*) dictionary
++ (Movie*) movieWithTitle:(NSString*) aTitle
+                     link:(NSString*) aLink
+                 synopsis:(NSString*) aSynopsis
+                   rating:(NSString*) aRating
 {
-    return [self initWithTitle:[dictionary objectForKey:@"title"]
-                          link:[dictionary objectForKey:@"link"]
-                      synopsis:[dictionary objectForKey:@"synopsis"]
-                        rating:[dictionary objectForKey:@"rating"]];
-    
+    return [[[Movie alloc] initWithTitle:aTitle link:aLink synopsis:aSynopsis rating:aRating] autorelease];
+}
+
++ (Movie*) movieWithDictionary:(NSDictionary*) dictionary
+{
+    return [Movie movieWithTitle:[dictionary objectForKey:@"title"]
+                            link:[dictionary objectForKey:@"link"]
+                        synopsis:[dictionary objectForKey:@"synopsis"]
+                          rating:[dictionary objectForKey:@"rating"]];
 }
 
 - (void) assignTitle:(NSString*) aTitle

@@ -24,6 +24,20 @@
     [super dealloc];
 }
 
++ (Theater*) theaterWithDictionary:(NSDictionary*) dictionary
+{
+    return [Theater theaterWithName:[dictionary objectForKey:@"name"]
+                            address:[dictionary objectForKey:@"address"]
+                movieToShowtimesMap:[dictionary objectForKey:@"movieToShowtimeMap"]];
+}
+
++ (Theater*) theaterWithName:(NSString*) aName
+                     address:(NSString*) anAddress
+         movieToShowtimesMap:(NSDictionary*) aDictionary
+{
+    return [[[Theater alloc] initWithName:aName address:anAddress movieToShowtimesMap:aDictionary] autorelease];
+}
+
 - (id) initWithName:(NSString*) aName
             address:(NSString*) anAddress
 movieToShowtimesMap:(NSDictionary*) aDictionary
@@ -36,13 +50,6 @@ movieToShowtimesMap:(NSDictionary*) aDictionary
     }
     
     return self;
-}
-
-- (id) initWithDictionary:(NSDictionary*) dictionary
-{
-    return [self initWithName:[dictionary objectForKey:@"name"]
-                      address:[dictionary objectForKey:@"address"]
-          movieToShowtimesMap:[dictionary objectForKey:@"movieToShowtimeMap"]];
 }
 
 - (NSDictionary*) dictionary

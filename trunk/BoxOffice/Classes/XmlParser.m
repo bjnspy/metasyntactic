@@ -10,7 +10,6 @@
 
 @implementation XmlParser
 
-@synthesize parser;
 @synthesize elementsStack;
 @synthesize stringBufferStack;
 @synthesize attributesStack;
@@ -19,15 +18,16 @@
 {
     if (self = [super init])
     {
-        self.parser = [[NSXMLParser alloc] initWithData:data];
-        self.parser.delegate = self;
+        //self.parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
+        NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
+        parser.delegate = self;
         
         self.elementsStack = [NSMutableArray array];
         self.stringBufferStack = [NSMutableArray array];
         
         [self.elementsStack addObject:[NSMutableArray array]];
         
-        if ([self.parser parse] == NO)
+        if ([parser parse] == NO)
         {
             self.elementsStack = nil;
         }
@@ -38,7 +38,6 @@
 
 - (void) dealloc
 {
-    self.parser = nil;
 	self.elementsStack = nil;
 	self.stringBufferStack = nil;
 	self.attributesStack = nil;

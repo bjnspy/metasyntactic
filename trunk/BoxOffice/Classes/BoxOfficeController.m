@@ -76,16 +76,16 @@
     }
     
     NSArray* rows = [inTheaters componentsSeparatedByString:@"\n"];
-    NSMutableArray* movies = [[NSMutableArray alloc] init];
+    NSMutableArray* movies = [NSMutableArray array];
     
     // first row are the column headers.  last row is empty.  skip both.
     for (NSInteger i = 1; i < [rows count] - 1; i++)
     {   
 		NSArray* columns = [[rows objectAtIndex:i] componentsSeparatedByString:@"\t"];
-		Movie* movie = [[Movie alloc] initWithTitle:[columns objectAtIndex:1]
-                                               link:[columns objectAtIndex:2]
-                                           synopsis:[columns objectAtIndex:8]
-                                             rating:[columns objectAtIndex:3]];
+		Movie* movie = [Movie movieWithTitle:[columns objectAtIndex:1]
+                                        link:[columns objectAtIndex:2]
+                                    synopsis:[columns objectAtIndex:8]
+                                      rating:[columns objectAtIndex:3]];
         [movies addObject:movie];
     }
     
@@ -191,9 +191,9 @@
     XmlElement* moviesElement = [theaterElement element:@"Movies"];
     NSDictionary* moviesToShowtimeMap = [self processMoviesElement:moviesElement];
     
-    Theater* theater = [[[Theater alloc] initWithName:nameElement.text
-                                              address:addressElement.text
-                                  movieToShowtimesMap:moviesToShowtimeMap] autorelease];
+    Theater* theater = [Theater theaterWithName:nameElement.text
+                                        address:addressElement.text
+                            movieToShowtimesMap:moviesToShowtimeMap];
     
     return theater;
 }
