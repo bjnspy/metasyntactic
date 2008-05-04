@@ -39,6 +39,9 @@
 - (void) dealloc
 {
     self.parser = nil;
+	self.elementsStack = nil;
+	self.stringBufferStack = nil;
+	self.attributesStack = nil;
     [super dealloc];
 }
 

@@ -16,10 +16,10 @@
     NSMutableArray/*<NSDictionary>*/* attributesStack;
 }
 
-@property (assign) NSXMLParser* parser;
-@property (assign) NSMutableArray* elementsStack;
-@property (assign) NSMutableArray* stringBufferStack;
-@property (assign) NSMutableArray* attributesStack;
+@property (retain) NSXMLParser* parser;
+@property (retain) NSMutableArray* elementsStack;
+@property (retain) NSMutableArray* stringBufferStack;
+@property (retain) NSMutableArray* attributesStack;
 
 - (id) initWithData:(NSData*) data;
 - (void) dealloc;

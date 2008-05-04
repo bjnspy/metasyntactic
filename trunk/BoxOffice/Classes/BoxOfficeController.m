@@ -11,6 +11,9 @@
 #import "Theater.h"
 #import "BoxOfficeAppDelegate.h"
 #import "XmlParser.h"
+#import "XmlDocument.h"
+#import "XmlElement.h"
+#import "XmlSerializer.h"
 #import "Application.h"
 
 @implementation BoxOfficeController
@@ -110,7 +113,8 @@
 - (void) lookupTheaters
 {   
     NSLog(@"Looking up theaters");
-    NSString *post =
+    /*
+	NSString* post =
     @"<?xml version=\"1.0\" encoding=\"UTF-8\"?>"    
     "<SOAP-ENV:Envelope "
         "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\" "
@@ -125,9 +129,44 @@
             "</GetTheatersAndMovies>"
         "</SOAP-ENV:Body>"
     "</SOAP-ENV:Envelope>";
+	*/
+	
+  NSString* zipCode = @"10009";
+  NSString* radius = @"5";
+  
+	NSString* post = [XmlSerializer serializeDocument: 
+		[[[XmlDocument alloc] initWithRoot:
+		  [XmlElement elementWithName:
+        @"SOAP-ENV:Envelope" 
+        attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+          @"http://www.w3.org/2001/XMLSchema", @"xmlns:xsd",
+          @"http://www.w3.org/2001/XMLSchema-instance", @"xmlns:xsi",
+          @"http://schemas.xmlsoap.org/soap/encoding/", @"xmlns:SOAP-ENC",
+          @"http://schemas.xmlsoap.org/soap/encoding/", @"SOAP-ENV:encodingStyle",
+          @"http://schemas.xmlsoap.org/soap/envelope/", @"xmlns:SOAP-ENV", nil]
+        children: [NSArray arrayWithObject:
+          [XmlElement elementWithName:
+            @"SOAP-ENV:Body" 
+            children: [NSArray arrayWithObject:
+              [XmlElement elementWithName:
+                @"GetTheatersAndMovies"
+                attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                  @"http://www.ignyte.com/whatsshowing", @"xmlns", nil]
+                children: [NSArray arrayWithObjects:
+                  [XmlElement elementWithName:
+                    @"zipCode"
+                    attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                      @"xsd:string", @"xsi:type", nil]
+                    text:zipCode],
+                  [XmlElement elementWithName:
+                    @"radius"
+                    attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                      @"xsd:int", @"xsi:type", nil]
+                    text:radius], nil]]]]]]] autorelease]];
+                    
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-        
-    NSMutableURLRequest *request = [[[NSMutableURLRequest alloc] init] autorelease];
+                    
+    NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:[NSURL URLWithString:@"http://www.ignyte.com/webservices/ignyte.whatsshowing.webservice/moviefunctions.asmx"]];
     [request setHTTPMethod:@"POST"];
     
