@@ -24,6 +24,7 @@
         [self pushViewController:allTheatersViewController animated:NO];
         
         self.title = @"Theaters";
+        self.tabBarItem.image = [UIImage imageNamed:@"MostViewed.png"];
     }
     
     return self;

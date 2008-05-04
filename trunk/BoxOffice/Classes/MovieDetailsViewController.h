@@ -11,7 +11,7 @@
 
 @class MoviesNavigationController;
 
-@interface MovieDetailsViewController : UITableViewController {
+@interface MovieDetailsViewController : UIViewController {
     MoviesNavigationController* navigationController;
     Movie* movie;
 }

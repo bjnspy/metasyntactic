@@ -17,11 +17,24 @@
 - (id) initWithNavigationController:(MoviesNavigationController*) controller
                               movie:(Movie*) movie_
 {
-    if (self = [super initWithStyle:UITableViewStyleGrouped])
+    if (self = [super init])
     {
         self.navigationController = controller;
         self.movie = movie_;
-                
+         
+        /*
+        {
+            UIImage* image = [self.model posterForMovie:self.movie];
+            if (image != nil)
+            {
+                UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+                CGRect bounds = { { 20, 20 }, { 100, 140 } };
+                imageView.bounds = bounds;
+                [self.view addSubview:imageView];
+            }
+        }
+         */
+        
         self.title = self.movie.title;
     }
     
@@ -67,7 +80,10 @@
     }
     else
     {
-        [cell.contentView addSubview:[[[UIImageView alloc] initWithImage:image] autorelease]];
+        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        CGRect bounds = { { 20, 20 }, { 100, 140 } };
+        imageView.bounds = bounds;
+        [self.view addSubview:imageView];
     }
     
     return cell;

@@ -23,6 +23,7 @@
         [self pushViewController:viewController animated:NO];
         
         self.title = @"Settings";
+        self.tabBarItem.image = [UIImage imageNamed:@"More.png"];
     }
     
     return self;
