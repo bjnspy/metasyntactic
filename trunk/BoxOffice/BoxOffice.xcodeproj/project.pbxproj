@@ -16,6 +16,8 @@
 		7405F7CD0DCAF3B9002E2D06 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */; };
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		74088C6C0DCD17D100954696 /* PosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088C6B0DCD17D100954696 /* PosterDownloader.m */; };
+		74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E670DCD36AE00954696 /* XmlDocument.m */; };
+		74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */; };
 		740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */; };
 		74447C340DC83C2000CC146C /* MoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */; };
 		74447C370DC83D0900CC146C /* ApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */; };
@@ -55,6 +57,10 @@
 		74088BD60DCD0AA800954696 /* PosterCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterCache.m; sourceTree = "<group>"; };
 		74088C6A0DCD17D100954696 /* PosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterDownloader.h; sourceTree = "<group>"; };
 		74088C6B0DCD17D100954696 /* PosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterDownloader.m; sourceTree = "<group>"; };
+		74088E660DCD36AE00954696 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDocument.h; sourceTree = "<group>"; };
+		74088E670DCD36AE00954696 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDocument.m; sourceTree = "<group>"; };
+		74088E680DCD36AE00954696 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
+		74088E690DCD36AE00954696 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; };
 		740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
 		740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNavigationController.m; sourceTree = "<group>"; };
 		74447C320DC83C2000CC146C /* MoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesNavigationController.h; sourceTree = "<group>"; };
@@ -233,6 +239,10 @@
 		74D6F2B40DCC14420097A984 /* Xml */ = {
 			isa = PBXGroup;
 			children = (
+				74088E660DCD36AE00954696 /* XmlDocument.h */,
+				74088E670DCD36AE00954696 /* XmlDocument.m */,
+				74088E680DCD36AE00954696 /* XmlSerializer.h */,
+				74088E690DCD36AE00954696 /* XmlSerializer.m */,
 				74D6F2B50DCC144D0097A984 /* XmlParser.h */,
 				74D6F2B60DCC144D0097A984 /* XmlParser.m */,
 				74D6F2BC0DCC176D0097A984 /* XmlElement.h */,
@@ -318,6 +328,8 @@
 				74EA274F0DCC5B4B001C03A7 /* Matrix.m in Sources */,
 				74088BD70DCD0AA800954696 /* PosterCache.m in Sources */,
 				74088C6C0DCD17D100954696 /* PosterDownloader.m in Sources */,
+				74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */,
+				74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
