@@ -33,7 +33,8 @@ static NSDateFormatter* dateFormatter = nil;
 {
     if (![[NSFileManager defaultManager] fileExistsAtPath:folder])
     {
-        [[NSFileManager defaultManager] createDirectoryAtPath:folder attributes:nil];
+        NSError* error;
+        [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:&error];
     }    
 }
 

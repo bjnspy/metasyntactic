@@ -229,16 +229,9 @@ NSInteger titleSort(id t1, id t2, void *context)
     NSString* title1 = t1;
     NSString* title2 = t2;
     NSString* movieTitle = context;
-    
-    //NSString* trimmed1 = [title1 stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
-    //NSString* trimmed2 = [title2 stringByTrimmingCharactersInSet:[[NSCharacterSet alphanumericCharacterSet] invertedSet]];
-
-    NSString* trimmed1 = [title1 stringByTrimmingCharactersInSet:[NSCharacterSet alphanumericCharacterSet]];
-    NSString* trimmed2 = [title2 stringByTrimmingCharactersInSet:[NSCharacterSet alphanumericCharacterSet]];
-
-    
-    NSInteger editDistance1 = [[[[DifferenceEngine alloc] init] autorelease] editDistanceFrom:trimmed1 to:movieTitle];
-    NSInteger editDistance2 = [[[[DifferenceEngine alloc] init] autorelease] editDistanceFrom:trimmed2 to:movieTitle];
+        
+    NSInteger editDistance1 = [[[[DifferenceEngine alloc] init] autorelease] editDistanceFrom:title1 to:movieTitle];
+    NSInteger editDistance2 = [[[[DifferenceEngine alloc] init] autorelease] editDistanceFrom:title2 to:movieTitle];
     
     return editDistance1 - editDistance2;
 }

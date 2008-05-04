@@ -28,6 +28,8 @@
 @property (copy) NSString* T;
 @property (retain) Matrix* costTable;
 
+- (void) dealloc;
+
 - (id) init;
 - (id) initWithAddCost:(NSInteger) addCost
             deleteCost:(NSInteger) deleteCost

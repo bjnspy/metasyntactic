@@ -44,7 +44,7 @@
         switchCost = switch_;
         transposeCost = transpose;
         
-        self.costTable = [[Matrix alloc] initWithX:MaxLength Y:MaxLength];
+        self.costTable = [[[Matrix alloc] initWithX:MaxLength Y:MaxLength] autorelease];
         
         for (NSInteger i = 0; i < MaxLength; i++)
         {

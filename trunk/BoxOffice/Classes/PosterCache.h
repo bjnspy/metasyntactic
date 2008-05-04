@@ -29,8 +29,8 @@
 - (NSString*) posterFilePath:(Movie*) movie;
 - (BOOL) posterFileExists:(Movie*) movie;
 
-- (void) getPosters:(NSArray*) moviesWithoutPosters;
-- (void) getPoster:(Movie*) movie;
+- (void) downloadPosters:(NSArray*) moviesWithoutPosters;
+- (void) downloadPoster:(Movie*) movie;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 

@@ -41,11 +41,11 @@
     [self enqueueRequests];
 }
 
-- (BOOL) knownMovie:(NSString*) movieTitle
+- (BOOL) knownMovie:(NSString*) posterPath
 {
     for (Movie* movie in self.model.movies)
     {
-        if ([movie.title isEqual:movieTitle])
+        if ([[self posterFilePath:movie] isEqual:posterPath])
         {
             return YES;
         }
@@ -59,12 +59,12 @@
     NSFileManager* manager = [NSFileManager defaultManager];
     NSArray* contents = [manager directoryContentsAtPath:[Application postersFolder]];
     
-    for (NSString* filePath in contents)
+    for (NSString* fileName in contents)
     {
-        NSString* movieTitle = [filePath stringByDeletingPathExtension];
-        if (![self knownMovie:movieTitle])
+        NSString* filePath = [[Application postersFolder] stringByAppendingPathComponent:fileName];
+        if (![self knownMovie:filePath])
         {
-            [manager removeFileAtPath:movieTitle handler:nil];
+            [manager removeFileAtPath:filePath handler:nil];
         }
     }
 }
@@ -84,50 +84,52 @@
         [moviesWithoutPosters addObject:movie];
     }
     
-    [self performSelectorInBackground:@selector(getPostersBackgroundEntryPoint:) withObject:moviesWithoutPosters];
+    [self performSelectorInBackground:@selector(downloadPostersBackgroundEntryPoint:) withObject:moviesWithoutPosters];
 }
 
-- (void) getPostersBackgroundEntryPoint:(NSArray*) moviesWithoutPosters
+- (void) downloadPostersBackgroundEntryPoint:(NSArray*) moviesWithoutPosters
 {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
-    [self getPosters:moviesWithoutPosters];
-    
-    [autoreleasePool release];
-}
-
-- (void) getPosters:(NSArray*) moviesWithoutPosters
-{
-    for (Movie* movie in moviesWithoutPosters)
+    @try
     {
-        [self getPoster:movie];
+        [self downloadPosters:moviesWithoutPosters];
+    }
+    @finally
+    {
+        [autoreleasePool release];
     }
 }
 
-- (void) setPosterForMovie:(NSArray*) array
+- (void) downloadPosters:(NSArray*) moviesWithoutPosters
 {
-    [self.movieToPosterMap setObject:[array objectAtIndex:1] forKey:[array objectAtIndex:0]];
+    for (Movie* movie in moviesWithoutPosters)
+    {
+        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+        
+        @try
+        {
+            [self downloadPoster:movie];
+        }
+        @finally
+        {
+            [autoreleasePool release];
+        }
+    }
 }
 
-- (void) getPoster:(Movie*) movie
+- (void) downloadPoster:(Movie*) movie
 {
     NSData* data = [PosterDownloader download:movie];
-    //[date wri
     NSString* path = [self posterFilePath:movie];
-    NSString* tempPath = [path stringByAppendingPathExtension:@"temp"];
-    NSError* error;
-    BOOL result1 = [[NSFileManager defaultManager] createFileAtPath:tempPath contents:data attributes:nil];
-    BOOL result2 = [[NSFileManager defaultManager] moveItemAtPath:tempPath toPath:path error:&error];
-    //[data writeToFile:path atomically:YES];
-    //NSError* error;
-    //BOOL result = [data writeToFile:path options:NSAtomicWrite error:&error];
-    NSLog(@"%@ %d %d", error, result1, result2);
+    [data writeToFile:path atomically:YES];
 }
 
 - (NSString*) posterFilePath:(Movie*) movie
 {
-   return [[[Application postersFolder] stringByAppendingPathComponent:movie.title]
-                                         stringByAppendingPathExtension:@"image"];
+    NSString* sanitizedTitle = [movie.title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
+    return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle]
+                                         stringByAppendingPathExtension:@"jpg"];
 }
 
 - (BOOL) posterFileExists:(Movie*) movie
@@ -140,7 +142,6 @@
     NSString* path = [self posterFilePath:movie];
     NSData* data = [NSData dataWithContentsOfFile:path];
     return [UIImage imageWithData:data];
-    //return [UIImage imageWithContentsOfFile:[self posterFilePath:movie]];
 }
 
 @end
