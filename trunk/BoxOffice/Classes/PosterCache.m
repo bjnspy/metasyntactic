@@ -91,14 +91,9 @@
 {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
-    @try
-    {
-        [self downloadPosters:moviesWithoutPosters];
-    }
-    @finally
-    {
-        [autoreleasePool release];
-    }
+    [self downloadPosters:moviesWithoutPosters];
+        
+    [autoreleasePool release];
 }
 
 - (void) downloadPosters:(NSArray*) moviesWithoutPosters
@@ -107,14 +102,9 @@
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        @try
-        {
-            [self downloadPoster:movie];
-        }
-        @finally
-        {
-            [autoreleasePool release];
-        }
+        [self downloadPoster:movie];
+        
+        [autoreleasePool release];
     }
 }
 
