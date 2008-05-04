@@ -12,6 +12,9 @@
 
 @property (retain) NSMutableArray* array;
 
++ (Matrix*) matrixWithX:(NSInteger) x
+                      Y:(NSInteger) y;
+
 - (void) dealloc;
 - (id) initWithX:(NSInteger) x 
                Y:(NSInteger) y;

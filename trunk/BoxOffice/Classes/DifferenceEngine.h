@@ -30,6 +30,8 @@
 
 - (void) dealloc;
 
++ (DifferenceEngine*) engine;
+
 - (id) init;
 - (id) initWithAddCost:(NSInteger) addCost
             deleteCost:(NSInteger) deleteCost

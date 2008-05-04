@@ -216,8 +216,8 @@ NSInteger titleSort(id t1, id t2, void *context)
     NSString* title2 = t2;
     NSString* movieTitle = context;
     
-    NSInteger editDistance1 = [[[[DifferenceEngine alloc] init] autorelease] editDistanceFrom:title1 to:movieTitle];
-    NSInteger editDistance2 = [[[[DifferenceEngine alloc] init] autorelease] editDistanceFrom:title2 to:movieTitle];
+    NSInteger editDistance1 = [[DifferenceEngine engine] editDistanceFrom:title1 to:movieTitle];
+    NSInteger editDistance2 = [[DifferenceEngine engine] editDistanceFrom:title2 to:movieTitle];
     
     return editDistance1 - editDistance2;
 }

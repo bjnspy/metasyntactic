@@ -14,6 +14,11 @@
 @synthesize version;
 @synthesize encoding;
 
++ (XmlDocument*) documentWithRoot:(XmlElement*) root
+{
+    return [[[XmlDocument alloc] initWithRoot:root] autorelease];
+}
+
 - (id) initWithRoot:(XmlElement*) root_
 {
 	return [self initWithRoot:root_ version:@"1.0" encoding:@"UTF-8"];

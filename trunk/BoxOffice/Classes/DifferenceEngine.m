@@ -24,6 +24,11 @@
     [super dealloc];
 }
 
++ (DifferenceEngine*) engine
+{
+    return [[[DifferenceEngine alloc] init] autorelease];
+}
+
 - (id) init
 {
     return [self initWithAddCost:1
@@ -44,7 +49,7 @@
         switchCost = switch_;
         transposeCost = transpose;
         
-        self.costTable = [[[Matrix alloc] initWithX:MaxLength Y:MaxLength] autorelease];
+        self.costTable = [Matrix matrixWithX:MaxLength Y:MaxLength];
         
         for (NSInteger i = 0; i < MaxLength; i++)
         {

@@ -118,7 +118,7 @@
   NSString* radius = @"5";
   
 	NSString* post = [XmlSerializer serializeDocument: 
-		[[[XmlDocument alloc] initWithRoot:
+		[XmlDocument documentWithRoot:
 		  [XmlElement elementWithName:
         @"SOAP-ENV:Envelope" 
         attributes: [NSDictionary dictionaryWithObjectsAndKeys:
@@ -145,7 +145,7 @@
                     @"radius"
                     attributes: [NSDictionary dictionaryWithObjectsAndKeys:
                       @"xsd:int", @"xsi:type", nil]
-                    text:radius], nil]]]]]]] autorelease]];
+                    text:radius], nil]]]]]]]];
                     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
                     

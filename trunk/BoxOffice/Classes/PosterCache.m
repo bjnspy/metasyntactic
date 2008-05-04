@@ -17,6 +17,11 @@
 @synthesize model;
 @synthesize movieToPosterMap;
 
++ (PosterCache*) cacheWithModel:(BoxOfficeModel*) model_
+{
+    return [[[PosterCache alloc] initWithModel:model_] autorelease];
+}
+
 - (id) initWithModel:(BoxOfficeModel*) model_
 {
     if (self = [super init])

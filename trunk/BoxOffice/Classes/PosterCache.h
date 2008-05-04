@@ -18,6 +18,8 @@
 @property (assign) BoxOfficeModel* model;
 @property (retain) NSMutableDictionary* movieToPosterMap;
 
++ (PosterCache*) cacheWithModel:(BoxOfficeModel*) model;
+
 - (id) initWithModel:(BoxOfficeModel*) model;
 - (void) dealloc;
 

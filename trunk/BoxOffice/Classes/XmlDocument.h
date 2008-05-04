@@ -19,6 +19,8 @@
 @property (copy) NSString* version;
 @property (copy) NSString* encoding;
 
++ (XmlDocument*) documentWithRoot:(XmlElement*) root;
+
 - (id) initWithRoot:(XmlElement*) root;
 - (id) initWithRoot:(XmlElement*) root 
 			version:(NSString*) version 

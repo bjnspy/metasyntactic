@@ -19,6 +19,12 @@
     [super dealloc];
 }
 
++ (Matrix*) matrixWithX:(NSInteger) x 
+                      Y:(NSInteger) y
+{
+    return [[[Matrix alloc] initWithX:x Y:y] autorelease];
+}
+
 - (id) initWithX:(NSInteger) x 
                Y:(NSInteger) y
 {

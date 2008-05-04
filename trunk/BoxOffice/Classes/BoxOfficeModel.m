@@ -18,7 +18,7 @@
 {
     if (self = [super init])
     {
-        self.posterCache = [[PosterCache alloc] initWithModel:self];
+        self.posterCache = [PosterCache cacheWithModel:self];
     }
     
     return self;
