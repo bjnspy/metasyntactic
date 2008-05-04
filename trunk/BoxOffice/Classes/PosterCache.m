@@ -14,20 +14,20 @@
 
 @implementation PosterCache
 
-@synthesize model;
+@synthesize gate;
 @synthesize movieToPosterMap;
 
-+ (PosterCache*) cacheWithModel:(BoxOfficeModel*) model_
++ (PosterCache*) cache
 {
-    return [[[PosterCache alloc] initWithModel:model_] autorelease];
+    return [[[PosterCache alloc] init] autorelease];
 }
 
-- (id) initWithModel:(BoxOfficeModel*) model_
+- (id) init
 {
     if (self = [super init])
     {
-        self.model = model_;
         self.movieToPosterMap = [NSMutableDictionary dictionary];
+        self.gate = [[[NSLock alloc] init] autorelease];
     }
     
     return self;
@@ -35,70 +35,55 @@
 
 - (void) dealloc
 {
-    self.model = nil;
     self.movieToPosterMap = nil;
+    self.gate = nil;
     [super dealloc];
 }
 
-- (void) update
+- (void) update:(NSArray*) movies
 {
-    [self deleteObsoletePosters];
-    [self enqueueRequests];
+    [self performSelectorInBackground:@selector(backgroundEntryPoint:)
+                           withObject:[NSArray arrayWithArray:movies]];
 }
 
-- (BOOL) knownMovie:(NSString*) posterPath
-{
-    for (Movie* movie in self.model.movies)
-    {
-        if ([[self posterFilePath:movie] isEqual:posterPath])
-        {
-            return YES;
-        }
-    }
-    
-    return NO;
-}
-
-- (void) deleteObsoletePosters
-{
-    NSFileManager* manager = [NSFileManager defaultManager];
-    NSArray* contents = [manager directoryContentsAtPath:[Application postersFolder]];
-    
-    for (NSString* fileName in contents)
-    {
-        NSString* filePath = [[Application postersFolder] stringByAppendingPathComponent:fileName];
-        if (![self knownMovie:filePath])
-        {
-            [manager removeFileAtPath:filePath handler:nil];
-        }
-    }
-}
-
-- (void) enqueueRequests
-{
-    NSMutableArray* moviesWithoutPosters = [NSMutableArray array];
-    
-    for (Movie* movie in model.movies)
-    {
-        if ([self posterFileExists:movie])
-        {
-            NSLog(@"PosterCache:enqueueRequests: Already have a poster for %@", movie.title);
-            continue;
-        }
-        
-        [moviesWithoutPosters addObject:movie];
-    }
-    
-    [self performSelectorInBackground:@selector(downloadPostersBackgroundEntryPoint:) withObject:moviesWithoutPosters];
-}
-
-- (void) downloadPostersBackgroundEntryPoint:(NSArray*) moviesWithoutPosters
+- (void) backgroundEntryPoint:(NSArray*) movies
 {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
-    [self downloadPosters:moviesWithoutPosters];
-        
+    [self updateInBackground:movies];
+    
     [autoreleasePool release];
+}
+
+- (void) updateInBackground:(NSArray*) movies
+{
+    [gate lock];
+    {
+        [self deleteObsoletePosters:movies];
+        [self downloadPosters:movies];
+    }
+    [gate unlock];
+}
+
+- (void) deleteObsoletePosters:(NSArray*) movies
+{
+    NSMutableSet* set = [NSMutableSet set];
+    NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application postersFolder]];
+    for (NSString* fileName in contents)
+    {
+        NSString* filePath = [[Application postersFolder] stringByAppendingPathComponent:fileName];
+        [set addObject:filePath];
+    }
+    
+    for (Movie* movie in movies)
+    {
+        [set removeObject:[self posterFilePath:movie]];
+    }
+    
+    for (NSString* filePath in set)
+    {
+        [[NSFileManager defaultManager] removeFileAtPath:filePath handler:nil];
+    }
 }
 
 - (void) downloadPosters:(NSArray*) moviesWithoutPosters
@@ -115,6 +100,12 @@
 
 - (void) downloadPoster:(Movie*) movie
 {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]])
+    {
+        // already have the poster.  Don't need to do anything.
+        return;
+    }
+    
     NSData* data = [PosterDownloader download:movie];
     NSString* path = [self posterFilePath:movie];
     [data writeToFile:path atomically:YES];
@@ -125,11 +116,6 @@
     NSString* sanitizedTitle = [movie.title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
     return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle]
                                          stringByAppendingPathExtension:@"jpg"];
-}
-
-- (BOOL) posterFileExists:(Movie*) movie
-{
-    return [[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]];
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie

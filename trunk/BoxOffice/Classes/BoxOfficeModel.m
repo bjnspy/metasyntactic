@@ -18,7 +18,8 @@
 {
     if (self = [super init])
     {
-        self.posterCache = [PosterCache cacheWithModel:self];
+        self.posterCache = [PosterCache cache];
+        [self.posterCache update:self.movies];
     }
     
     return self;
@@ -100,7 +101,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"movies"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [posterCache update];
+    [posterCache update:movies];
 }
 
 - (NSArray*) theaters

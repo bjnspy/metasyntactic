@@ -11,28 +11,27 @@
 @class BoxOfficeModel;
 
 @interface PosterCache : NSObject {
-    BoxOfficeModel* model;
     NSMutableDictionary* movieToPosterMap;
+    NSLock* gate;
 }
 
-@property (assign) BoxOfficeModel* model;
 @property (retain) NSMutableDictionary* movieToPosterMap;
+@property (retain) NSLock* gate;
 
-+ (PosterCache*) cacheWithModel:(BoxOfficeModel*) model;
++ (PosterCache*) cache;
 
-- (id) initWithModel:(BoxOfficeModel*) model;
+- (id) init;
 - (void) dealloc;
 
-- (void) update;
+- (void) update:(NSArray*) movies;
+- (void) updateInBackground:(NSArray*) movies;
 
-- (void) deleteObsoletePosters;
-- (void) enqueueRequests;
+- (void) deleteObsoletePosters:(NSArray*) movies;
+
+- (void) downloadPosters:(NSArray*) movies;
+- (void) downloadPoster:(Movie*) movie;
 
 - (NSString*) posterFilePath:(Movie*) movie;
-- (BOOL) posterFileExists:(Movie*) movie;
-
-- (void) downloadPosters:(NSArray*) moviesWithoutPosters;
-- (void) downloadPoster:(Movie*) movie;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 
