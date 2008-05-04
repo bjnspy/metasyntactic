@@ -10,6 +10,7 @@
 #import "XmlParser.h"
 #import "XmlElement.h"
 #import "DifferenceEngine.h"
+#import "XmlSerializer.h"
 
 @implementation PosterDownloader
 
@@ -59,24 +60,33 @@
 
 - (void) searchForItems
 {
-    NSString* post =
-    @"<s:Envelope xmlns:s=\"http://schemas.xmlsoap.org/soap/envelope/\">"
-    "<s:Body xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" "
-    "xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">"
-    "<ItemSearch xmlns=\"http://webservices.amazon.com/AWSECommerceService/2008-04-07\">"
-    "<AWSAccessKeyId>1RRVC0BHDPKTXB98FCR2</AWSAccessKeyId>"
-    "<AssociateTag>cyrusnajma-20</AssociateTag>"
-    "<Request>"
-    "<SearchIndex>DVD</SearchIndex>"
-    "<Title>Juno</Title>"
-    "</Request>"
-    "<Request>"
-    "<Keywords>Juno</Keywords>"
-    "<SearchIndex>All</SearchIndex>"
-    "</Request>"
-    "</ItemSearch>"
-    "</s:Body>"
-    "</s:Envelope>";
+    XmlElement* element =
+        [XmlElement elementWithName:
+            @"s:Envelope"
+            attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                @"http://schemas.xmlsoap.org/soap/envelope/", @"xmlns:s", nil]
+            children:[NSArray arrayWithObject:
+                [XmlElement elementWithName:
+                    @"s:Body"
+                    attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                        @"http://www.w3.org/2001/XMLSchema-instance", @"xmlns:xsi",
+                        @"http://www.w3.org/2001/XMLSchema", @"xmlns:xsd", nil]
+                    children:[NSArray arrayWithObject:[XmlElement elementWithName:
+                        @"ItemSearch"
+                        attributes:[NSDictionary dictionaryWithObjectsAndKeys:
+                            @"http://webservices.amazon.com/AWSECommerceService/2008-04-07", @"xmlns", nil]
+                        children:[NSArray arrayWithObjects:
+                            [XmlElement elementWithName:@"AWSAccessKeyId" text:@"1RRVC0BHDPKTXB98FCR2"],
+                            [XmlElement elementWithName:@"AssociateTag" text:@"cyrusnajma-20"],
+                            [XmlElement elementWithName:@"Request" children:[NSArray arrayWithObjects:
+                                [XmlElement elementWithName:@"SearchIndex" text:@"DVD"],
+                                [XmlElement elementWithName:@"Title" text:self.movie.title], nil]],
+                            [XmlElement elementWithName:@"Request" children:[NSArray arrayWithObjects:
+                                [XmlElement elementWithName:@"SearchIndex" text:@"All"],
+                                [XmlElement elementWithName:@"Keywords" text:self.movie.title], nil]], nil]]]]]];
+ 
+    NSString* post = [XmlSerializer serializeElement:element];
+
     NSData* postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];

@@ -265,7 +265,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>74088EAE0DCD379B00954696</string>
+						<string>74088EBE0DCD3B2F00954696</string>
 						<key>history</key>
 						<array>
 							<string>74088C1C0DCD0DA000954696</string>
@@ -379,7 +379,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {297, 768}}</string>
+							<string>{{0, 660}, {297, 768}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -428,7 +428,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74088EAD0DCD379B00954696</string>
+										<string>74088EBD0DCD3B2F00954696</string>
 										<key>history</key>
 										<array>
 											<string>746A02610DC8293D0079D89B</string>
@@ -503,9 +503,7 @@
 											<string>74088D450DCD1F3B00954696</string>
 											<string>74088D5E0DCD1FE000954696</string>
 											<string>74088D6B0DCD201500954696</string>
-											<string>74088D7D0DCD225700954696</string>
 											<string>74088D8A0DCD22FB00954696</string>
-											<string>74088D8B0DCD22FB00954696</string>
 											<string>74088E1F0DCD306F00954696</string>
 											<string>74088E350DCD35C100954696</string>
 											<string>74088E360DCD35C100954696</string>
@@ -514,7 +512,13 @@
 											<string>74088E540DCD365000954696</string>
 											<string>74088E880DCD372A00954696</string>
 											<string>74088EA20DCD377500954696</string>
-											<string>74088EA30DCD377500954696</string>
+											<string>74088EB80DCD3B2F00954696</string>
+											<string>74088EB90DCD3B2F00954696</string>
+											<string>74088EBA0DCD3B2F00954696</string>
+										</array>
+										<key>nextStack</key>
+										<array>
+											<string>74088EBC0DCD3B2F00954696</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -678,21 +682,15 @@
 											<string>74088E230DCD306F00954696</string>
 											<string>74088E250DCD306F00954696</string>
 											<string>74088E3C0DCD35C100954696</string>
-											<string>74088E3D0DCD35C100954696</string>
 											<string>74088E3E0DCD35C100954696</string>
-											<string>74088E3F0DCD35C100954696</string>
 											<string>74088E400DCD35C100954696</string>
-											<string>74088E410DCD35C100954696</string>
 											<string>74088E420DCD35C100954696</string>
-											<string>74088E500DCD363700954696</string>
 											<string>74088E560DCD365000954696</string>
 											<string>74088E770DCD36C700954696</string>
-											<string>74088E780DCD36C700954696</string>
 											<string>74088E8B0DCD372A00954696</string>
-											<string>74088E8C0DCD372A00954696</string>
 											<string>74088E8D0DCD372A00954696</string>
-											<string>74088E930DCD375700954696</string>
 											<string>74088EA40DCD377500954696</string>
+											<string>74088EBB0DCD3B2F00954696</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -871,7 +869,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>231552923.197364</real>
+	<real>231553839.50907901</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -886,6 +884,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>74088EC00DCD3B2F00954696</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>74088B0B0DCCFD4600954696</string>
 		<string>74088B0C0DCCFD4600954696</string>
@@ -894,6 +893,7 @@
 		<string>1C78EAAD065D492600B07095</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
+		<string>74088EC10DCD3B2F00954696</string>
 	</array>
 	<key>WindowString</key>
 	<string>46 49 1075 827 0 0 1440 878 </string>
