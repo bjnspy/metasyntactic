@@ -11,6 +11,7 @@
 #import "Movie.h"
 #import "ApplicationTabBarController.h"
 #import "BoxOfficeAppDelegate.h"
+#import "MovieTitleAndRatingTableViewCell.h"
 
 @implementation AllMoviesViewController
 
@@ -52,9 +53,11 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath
 {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    //UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     Movie* movie = [self.model.movies objectAtIndex:[indexPath indexAtPosition:1]];
-    cell.text = movie.title;
+    MovieTitleAndRatingTableViewCell* cell = [[[MovieTitleAndRatingTableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                                                                                movie:movie] autorelease];
+    //cell.text = movie.title;
     return cell;
 }
 
