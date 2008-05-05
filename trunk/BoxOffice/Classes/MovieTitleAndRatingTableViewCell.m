@@ -22,14 +22,11 @@
     {
         self.movie = movie_;
         
-        int ratingValue = [self.movie.rating intValue];
-        if (ratingValue >= 0 && ratingValue <= 100)
-        {
-            self.imageView = [[[RatingsView alloc] initWithFrame:CGRectZero rating:ratingValue] autorelease];
-            
-            self.imageView.opaque = NO;
-            [self.contentView addSubview:self.imageView];
-        }
+        self.imageView = [[[RatingsView alloc] initWithFrame:CGRectZero
+                                                      rating:[self.movie ratingValue]] autorelease];
+        
+        self.imageView.opaque = NO;
+        [self.contentView addSubview:self.imageView];
 		
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.label.text = movie.title;

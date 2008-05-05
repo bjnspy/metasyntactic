@@ -16,6 +16,16 @@
 @implementation AllMoviesViewController
 
 @synthesize navigationController;
+@synthesize sortedMovies;
+@synthesize segmentedControl;
+
+- (void) dealloc
+{
+    self.navigationController = nil;
+    self.sortedMovies = nil;
+    self.segmentedControl = nil;
+    [super dealloc];
+}
 
 - (id) initWithNavigationController:(MoviesNavigationController*) controller
 {
@@ -23,20 +33,60 @@
     {
         self.title = @"All Movies";
         self.navigationController = controller;
+        self.sortedMovies = [NSArray array];
                 
-        UISegmentedControl* control = [[[UISegmentedControl alloc] initWithItems:[NSArray arrayWithObjects:@"        Title        ", @"        Rating        ", nil]] autorelease];
-        control.segmentedControlStyle = UISegmentedControlStyleBar;
-        self.navigationItem.customTitleView = control;
+        segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+                                            [NSArray arrayWithObjects:@"        Title        ", @"        Rating        ", nil]] autorelease];
+        
+        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+        segmentedControl.selectedSegmentIndex = 1;
+        [segmentedControl addTarget:self
+                             action:@selector(onSortOrderChanged:)
+                   forControlEvents:UIControlEventValueChanged];  
+        
+        self.navigationItem.customTitleView = segmentedControl;
     }
     
     return self;
 }
 
-- (void) dealloc
+- (void) onSortOrderChanged:(id) sender
 {
-    self.view = nil;
-    self.navigationController = nil;
-    [super dealloc];
+    [self refresh];
+}
+
+NSInteger sortByTitle(id t1, id t2, void *context)
+{
+    Movie* movie1 = t1;
+    Movie* movie2 = t2;
+    
+    return [movie1.title compare:movie2.title options:NSCaseInsensitiveSearch];
+}
+
+
+NSInteger sortByRating(id t1, id t2, void *context)
+{
+    Movie* movie1 = t1;
+    Movie* movie2 = t2;
+    
+    int compare = [movie1 ratingValue] - [movie2 ratingValue];
+    if (compare < 0)
+    {
+        return NSOrderedDescending;
+    }
+    else if (compare > 0)
+    {
+        return NSOrderedAscending;
+    }
+    
+    return sortByTitle(t1, t2, context);
+}
+
+- (void) sortMovies
+{
+    NSInteger index = segmentedControl.selectedSegmentIndex;
+    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:(index == 0 ? sortByTitle : sortByRating)
+                                                            context:nil];
 }
 
 - (BoxOfficeModel*) model
@@ -47,17 +97,15 @@
 - (NSInteger) tableView:(UITableView*) tableView
   numberOfRowsInSection:(NSInteger) section
 {
-    return [self.model.movies count];
+    return [self.sortedMovies count];
 }
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath
 {
-    //UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-    Movie* movie = [self.model.movies objectAtIndex:[indexPath indexAtPosition:1]];
+    Movie* movie = [self.sortedMovies objectAtIndex:[indexPath indexAtPosition:1]];
     MovieTitleAndRatingTableViewCell* cell = [[[MovieTitleAndRatingTableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                                                                 movie:movie] autorelease];
-    //cell.text = movie.title;
     return cell;
 }
 
@@ -71,11 +119,12 @@
          selectionDidChangeToIndexPath:(NSIndexPath*) newIndexPath
                          fromIndexPath:(NSIndexPath*) oldIndexPath
 {
-    [self.navigationController pushMovieDetails:[self.model.movies objectAtIndex:[newIndexPath indexAtPosition:1]]];
+    [self.navigationController pushMovieDetails:[self.sortedMovies objectAtIndex:[newIndexPath indexAtPosition:1]]];
 }
 
 - (void) refresh
 {
+    [self sortMovies];
     [self.tableView reloadData];
 }
 

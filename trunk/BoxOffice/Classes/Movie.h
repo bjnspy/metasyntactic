@@ -41,4 +41,6 @@
 - (BOOL) isEqual:(id) anObject;
 - (NSUInteger) hash;
 
+- (NSInteger) ratingValue;
+
 @end

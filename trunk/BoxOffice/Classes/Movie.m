@@ -100,4 +100,15 @@
         [self.rating hash];
 }
 
+- (NSInteger) ratingValue
+{
+    int value = [self.rating intValue]; 
+    if (value >= 0 && value <= 100)
+    {
+        return value;
+    }
+    
+    return -1;
+}
+
 @end
