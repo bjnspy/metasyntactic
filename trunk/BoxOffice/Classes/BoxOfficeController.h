@@ -14,25 +14,15 @@
 
 @interface BoxOfficeController : NSObject {
     BoxOfficeAppDelegate* appDelegate;
+    NSLock* movieLookupLock;
+    NSLock* theaterLookupLock;
 }
 
 // Don't retain the BoxOfficeAppDelegate.  It's retaining us.
 @property (assign) BoxOfficeAppDelegate* appDelegate;
+@property (retain) NSLock* movieLookupLock;
+@property (retain) NSLock* theaterLookupLock;
 
 - (BoxOfficeModel*) model;
-
-- (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;
-- (void) dealloc;
-
-- (void) spawnBackgroundThreads;
-- (void) lookupMoviesBackgroundThreadEntryPoint:(id) anObject;
-- (void) lookupMovies;
-- (void) setMovies:(NSArray*) movies;
-- (void) lookupTheatersBackgroundThreadEntryPoint:(id) anObject;
-- (void) lookupTheaters;
-- (void) setTheaters:(NSArray*) theaters;
-
-- (Theater*) processTheaterElement:(XmlElement*) theaterElement;
-- (NSDictionary*) processMoviesElement:(XmlElement*) moviesElement;
-
+ 
 @end
