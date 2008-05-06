@@ -33,7 +33,13 @@
 
 - (NSString*) zipcode
 {
-    return [[NSUserDefaults standardUserDefaults] stringForKey:@"zipCode"];
+    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:@"zipCode"];
+    if (result == nil)
+    {
+        return @"";
+    }
+    
+    return result;
 }
 
 - (void) setZipcode:(NSString*) zipcode
@@ -44,7 +50,7 @@
 
 - (int) searchRadius
 {
-    return MAX(15, [[NSUserDefaults standardUserDefaults] integerForKey:@"searchRadius"]);
+    return MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:@"searchRadius"]);
 }
 
 - (void) setSearchRadius:(NSInteger) searchRadius

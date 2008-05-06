@@ -38,6 +38,7 @@
 		740E7EB80DCFE6BF0066FCE5 /* Spinner8.png in Resources */ = {isa = PBXBuildFile; fileRef = 740E7EAE0DCFE6BF0066FCE5 /* Spinner8.png */; };
 		740E7EB90DCFE6BF0066FCE5 /* Spinner9.png in Resources */ = {isa = PBXBuildFile; fileRef = 740E7EAF0DCFE6BF0066FCE5 /* Spinner9.png */; };
 		740E7F070DCFEC440066FCE5 /* ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */; };
+		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
 		7411734D0DCEC63D00080CA2 /* CurrentPosition.png in Resources */ = {isa = PBXBuildFile; fileRef = 7411734C0DCEC63D00080CA2 /* CurrentPosition.png */; };
 		74447C340DC83C2000CC146C /* MoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */; };
 		74447C370DC83D0900CC146C /* ApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */; };
@@ -53,9 +54,11 @@
 		746A02100DC819F00079D89B /* BoxOfficeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
 		747204030DCDAB8500C11362 /* BoxOffice.db in Resources */ = {isa = PBXBuildFile; fileRef = 747204020DCDAB8500C11362 /* BoxOffice.db */; };
+		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
 		749DF1710DC9737700A551D9 /* BoxOfficeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
+		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
 		74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */; };
@@ -108,6 +111,7 @@
 		740E7EAF0DCFE6BF0066FCE5 /* Spinner9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spinner9.png; sourceTree = "<group>"; };
 		740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicator.h; sourceTree = "<group>"; };
 		740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicator.m; sourceTree = "<group>"; };
+		740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		7411734C0DCEC63D00080CA2 /* CurrentPosition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentPosition.png; sourceTree = "<group>"; };
 		74447C320DC83C2000CC146C /* MoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesNavigationController.h; sourceTree = "<group>"; };
 		74447C330DC83C2000CC146C /* MoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesNavigationController.m; sourceTree = "<group>"; };
@@ -136,10 +140,14 @@
 		746A02140DC81A1A0079D89B /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		747204020DCDAB8500C11362 /* BoxOffice.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoxOffice.db; sourceTree = "<group>"; };
+		748379C90DD0169E00DC3B80 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
+		748379CA0DD0169E00DC3B80 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
 		749DF16F0DC9737700A551D9 /* BoxOfficeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeController.h; sourceTree = "<group>"; };
 		749DF1700DC9737700A551D9 /* BoxOfficeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeController.m; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
+		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		74D6F2B50DCC144D0097A984 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
 		74D6F2B60DCC144D0097A984 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		74D6F2BC0DCC176D0097A984 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlElement.h; sourceTree = "<group>"; };
@@ -165,6 +173,7 @@
 				1D3623EC0D0F72F000981E51 /* CoreGraphics.framework in Frameworks */,
 				749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */,
 				749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */,
+				740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,6 +271,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */,
 				749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */,
 				749DF3250DC9838F00A551D9 /* CFNetwork.framework */,
 				1D3623EB0D0F72F000981E51 /* CoreGraphics.framework */,
@@ -295,22 +305,26 @@
 				74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */,
 				7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */,
 				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
-				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
-				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
 				74447C550DC8405200CC146C /* AllMoviesViewController.h */,
 				74447C560DC8405200CC146C /* AllMoviesViewController.m */,
-				74447C630DC843B200CC146C /* AllTheatersViewController.h */,
-				74447C640DC843B200CC146C /* AllTheatersViewController.m */,
 				74447C580DC840D100CC146C /* MovieDetailsViewController.h */,
 				74447C590DC840D100CC146C /* MovieDetailsViewController.m */,
+				74447C630DC843B200CC146C /* AllTheatersViewController.h */,
+				74447C640DC843B200CC146C /* AllTheatersViewController.m */,
 				74447C660DC843D900CC146C /* TheaterDetailsViewController.h */,
 				74447C670DC843D900CC146C /* TheaterDetailsViewController.m */,
+				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
+				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
 				740078DE0DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.h */,
 				740078DF0DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.m */,
 				7400797B0DCE97D000B3799F /* RatingsView.h */,
 				7400797C0DCE97D000B3799F /* RatingsView.m */,
 				740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */,
 				740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */,
+				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
+				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
+				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
+				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -432,6 +446,8 @@
 				740078E00DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.m in Sources */,
 				7400797D0DCE97D000B3799F /* RatingsView.m in Sources */,
 				740E7F070DCFEC440066FCE5 /* ActivityIndicator.m in Sources */,
+				748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */,
+				74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
