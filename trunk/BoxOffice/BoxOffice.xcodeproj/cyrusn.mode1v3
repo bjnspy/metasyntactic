@@ -337,7 +337,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1204}, {298, 768}}</string>
+							<string>{{0, 592}, {298, 768}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -369,14 +369,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>BoxOfficeController.m</string>
+								<string>BoxOfficeModel.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -384,11 +382,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BoxOfficeController.m</string>
+										<string>BoxOfficeModel.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74CA1FFB0DD0F2C90046D1CE</string>
+										<string>74CA20110DD0F3D20046D1CE</string>
 										<key>history</key>
 										<array>
 											<string>746A02610DC8293D0079D89B</string>
@@ -504,15 +502,11 @@
 											<string>74CA1FB20DD0DE410046D1CE</string>
 											<string>74CA1FC10DD0EF690046D1CE</string>
 											<string>74CA1FEE0DD0F2C90046D1CE</string>
-											<string>74CA1FEF0DD0F2C90046D1CE</string>
 											<string>74CA1FF00DD0F2C90046D1CE</string>
 											<string>74CA1FF10DD0F2C90046D1CE</string>
 											<string>74CA1FF20DD0F2C90046D1CE</string>
-											<string>74CA1FF30DD0F2C90046D1CE</string>
-										</array>
-										<key>nextStack</key>
-										<array>
-											<string>74CA1FFA0DD0F2C90046D1CE</string>
+											<string>74CA20080DD0F3D20046D1CE</string>
+											<string>74CA20090DD0F3D20046D1CE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -670,6 +664,13 @@
 											<string>74CA1FF70DD0F2C90046D1CE</string>
 											<string>74CA1FF80DD0F2C90046D1CE</string>
 											<string>74CA1FF90DD0F2C90046D1CE</string>
+											<string>74CA200A0DD0F3D20046D1CE</string>
+											<string>74CA200B0DD0F3D20046D1CE</string>
+											<string>74CA200C0DD0F3D20046D1CE</string>
+											<string>74CA200D0DD0F3D20046D1CE</string>
+											<string>74CA200E0DD0F3D20046D1CE</string>
+											<string>74CA200F0DD0F3D20046D1CE</string>
+											<string>74CA20100DD0F3D20046D1CE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -691,6 +692,8 @@
 							<string>540pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -848,7 +851,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>231797449.979628</real>
+	<real>231797714.30686</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -863,6 +866,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>74CA20120DD0F3D20046D1CE</string>
 		<string>74CA1E8A0DD022740046D1CE</string>
 		<string>74CA1E8B0DD022740046D1CE</string>
 		<string>1C78EAAD065D492600B07095</string>

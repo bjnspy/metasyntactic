@@ -110,10 +110,27 @@
     [self.movieLookupLock unlock];
 }
 
+- (BOOL) areEqual:(NSArray*) movies1
+           movies:(NSArray*) movies2
+{
+    NSSet* set1 = [NSSet setWithArray:movies1];
+    NSSet* set2 = [NSSet setWithArray:movies2];
+    
+    return [set1 isEqualToSet:set2];
+}
 
 - (void) setMovies:(NSArray*) movies
 {
-    NSLog(@"BoxOfficeController:setMovies");
+    if (movies == nil)
+    {
+        return;
+    }
+    
+    if ([self areEqual:movies movies:[self.model movies]])
+    {
+        return;
+    }
+    
     [self.model setMovies:movies];
     [self.appDelegate.tabBarController.moviesNavigationController refresh];
 }
@@ -154,14 +171,29 @@
     return theater;
 }
 
+- (BOOL) areEqual:(NSArray*) theaters1
+         theaters:(NSArray*) theaters2
+{
+    NSSet* set1 = [NSSet setWithArray:theaters1];
+    NSSet* set2 = [NSSet setWithArray:theaters2];
+    
+    return [set1 isEqualToSet:set2];
+}
+
 - (void) setTheaters:(NSArray*) theaters
 {
-    if (theaters != nil)
+    if (theaters == nil)
     {
-        NSLog(@"BoxOfficeController:setTheaters");
-        [self.model setTheaters:theaters];
-        [self.appDelegate.tabBarController.theatersNavigationController refresh];
+        return;
     }
+    
+    if ([self areEqual:theaters theaters:[self.model theaters]])
+    {
+        return;
+    }
+    
+    [self.model setTheaters:theaters];
+    [self.appDelegate.tabBarController.theatersNavigationController refresh];
 }
 
 - (void) lookupTheaters
