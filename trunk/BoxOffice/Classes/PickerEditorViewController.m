@@ -51,6 +51,35 @@
     [self.picker becomeFirstResponder];
 }
 
+- (void) viewWillAppear:(BOOL) animated
+{
+    CGRect screenRect = self.view.bounds;
+    CGSize pickerSize = [self.picker sizeThatFits:CGSizeZero];
+    CGFloat screenBottom = screenRect.origin.y + screenRect.size.height;
+    CGRect startRect = CGRectMake(0, screenBottom, pickerSize.width, pickerSize.height);
+    self.picker.frame = startRect;
+
+    CGRect pickerRect = CGRectMake(0, screenBottom - pickerSize.height, pickerSize.width, pickerSize.height);
+
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    self.picker.frame = pickerRect;
+    [UIView commitAnimations];
+}
+
+- (void) viewWillDisappear:(BOOL) animated
+{
+    CGRect screenRect = self.view.bounds;
+    CGSize pickerSize = [self.picker sizeThatFits:CGSizeZero];
+    CGFloat screenBottom = screenRect.origin.y + screenRect.size.height;
+    CGRect endRect = CGRectMake(0, screenBottom, pickerSize.width, pickerSize.height);
+    
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.3];
+    self.picker.frame = endRect;
+    [UIView commitAnimations];
+}
+
 - (void) save:(id) sender
 {
     [self.object performSelector:selector
@@ -63,7 +92,6 @@
     return 1;
 }
 
-// returns the # of rows in each component..
 - (NSInteger)           pickerView:(UIPickerView*) pickerView
            numberOfRowsInComponent:(NSInteger) component
 {

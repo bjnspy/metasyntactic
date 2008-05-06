@@ -333,14 +333,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>36</integer>
+									<integer>48</integer>
 									<integer>16</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 158}, {298, 768}}</string>
+							<string>{{0, 455}, {298, 768}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -361,7 +361,7 @@
 							<real>276</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>75 51 1075 827 0 0 1440 878 </string>
+						<string>75 50 1075 827 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -379,7 +379,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SettingsViewController.m</string>
+								<string>PickerEditorViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -387,11 +387,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SettingsViewController.m</string>
+										<string>PickerEditorViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74CA1F7B0DD02CD70046D1CE</string>
+										<string>74CA1FBA0DD0DE5E0046D1CE</string>
 										<key>history</key>
 										<array>
 											<string>746A02610DC8293D0079D89B</string>
@@ -484,7 +484,6 @@
 											<string>7401B7570DD008E80055810A</string>
 											<string>7401B7580DD008E80055810A</string>
 											<string>7401B7590DD008E80055810A</string>
-											<string>7401B75A0DD008E80055810A</string>
 											<string>748379620DD00E8900DC3B80</string>
 											<string>748379B60DD0140500DC3B80</string>
 											<string>74837A010DD01BAC00DC3B80</string>
@@ -504,13 +503,15 @@
 											<string>74CA1EEE0DD0261A0046D1CE</string>
 											<string>74CA1F360DD02BC40046D1CE</string>
 											<string>74CA1F370DD02BC40046D1CE</string>
-											<string>74CA1F380DD02BC40046D1CE</string>
-											<string>74CA1F390DD02BC40046D1CE</string>
 											<string>74CA1F3C0DD02BC40046D1CE</string>
-											<string>74CA1F3D0DD02BC40046D1CE</string>
 											<string>74CA1F670DD02BEC0046D1CE</string>
-											<string>74CA1F740DD02CBA0046D1CE</string>
-											<string>74CA1F750DD02CBA0046D1CE</string>
+											<string>74CA1F820DD02E1D0046D1CE</string>
+											<string>74CA1FA50DD0DDD60046D1CE</string>
+											<string>74CA1FA60DD0DDD60046D1CE</string>
+											<string>74CA1FA70DD0DDD60046D1CE</string>
+											<string>74CA1FA80DD0DDD60046D1CE</string>
+											<string>74CA1FB20DD0DE410046D1CE</string>
+											<string>74CA1FB30DD0DE410046D1CE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -652,6 +653,15 @@
 											<string>74CA1F620DD02BC40046D1CE</string>
 											<string>74CA1F690DD02BEC0046D1CE</string>
 											<string>74CA1F760DD02CBA0046D1CE</string>
+											<string>74CA1F840DD02E1D0046D1CE</string>
+											<string>74CA1F850DD02E1D0046D1CE</string>
+											<string>74CA1F860DD02E1D0046D1CE</string>
+											<string>74CA1F9A0DD02F580046D1CE</string>
+											<string>74CA1FAA0DD0DDD60046D1CE</string>
+											<string>74CA1FAB0DD0DDD60046D1CE</string>
+											<string>74CA1FAC0DD0DDD60046D1CE</string>
+											<string>74CA1FAD0DD0DDD60046D1CE</string>
+											<string>74CA1FB40DD0DE410046D1CE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -665,7 +675,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {755, 540}}</string>
 								<key>RubberWindowFrame</key>
-								<string>75 51 1075 827 0 0 1440 878 </string>
+								<string>75 50 1075 827 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -685,7 +695,7 @@
 								<key>Frame</key>
 								<string>{{0, 545}, {755, 241}}</string>
 								<key>RubberWindowFrame</key>
-								<string>75 51 1075 827 0 0 1440 878 </string>
+								<string>75 50 1075 827 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -830,7 +840,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>231746775.23326799</real>
+	<real>231792222.80909601</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -845,17 +855,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>74CA1F7C0DD02CD70046D1CE</string>
 		<string>74CA1E8A0DD022740046D1CE</string>
 		<string>74CA1E8B0DD022740046D1CE</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>74CA1F7D0DD02CD70046D1CE</string>
 	</array>
 	<key>WindowString</key>
-	<string>75 51 1075 827 0 0 1440 878 </string>
+	<string>75 50 1075 827 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>

@@ -198,7 +198,8 @@
             [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
                                                             withObject:self
                                                           withSelector:@selector(onZipcodeChanged:)
-                                                              withText:[self.model zipcode]] autorelease];
+                                                              withText:[self.model zipcode]
+                                                              withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
         
         [self.navigationController pushViewController:controller animated:YES];
     }

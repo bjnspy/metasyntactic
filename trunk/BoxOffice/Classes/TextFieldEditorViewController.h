@@ -19,6 +19,7 @@
 - (id) initWithController:(UINavigationController*) navigationController
                withObject:(id) object
              withSelector:(SEL) selector
-                 withText:(NSString*) text;
+                 withText:(NSString*) text
+                 withType:(UIKeyboardType) type;
 
 @end

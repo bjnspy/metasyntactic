@@ -23,6 +23,7 @@
                withObject:(id) object_
              withSelector:(SEL) selector_
                  withText:(NSString*) text
+                 withType:(UIKeyboardType) type
 {
     if (self = [super initWithController:controller withObject:object_ withSelector:selector_])
     {
@@ -33,6 +34,7 @@
         self.textField.backgroundColor = [UIColor whiteColor];
         self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.textField.font = [UIFont boldSystemFontOfSize:16];
+        self.textField.keyboardType = type;
     }
     
     return self;
