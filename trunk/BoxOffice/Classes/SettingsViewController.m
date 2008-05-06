@@ -11,6 +11,7 @@
 #import "BoxOfficeAppDelegate.h"
 #import "XmlParser.h"
 #import "TextFieldEditorViewController.h"
+#import "PickerEditorViewController.h"
 
 @implementation SettingsViewController
 
@@ -197,12 +198,24 @@
             [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
                                                             withObject:self
                                                           withSelector:@selector(onZipcodeChanged:)
-                                                              withText:[self.model zipcode] autorelease];
+                                                              withText:[self.model zipcode]] autorelease];
         
         [self.navigationController pushViewController:controller animated:YES];
     }
     else if (section == 1)
     {
+        NSArray* values = [NSArray arrayWithObjects: @"5", @"10", @"15", @"20", @"25", 
+                                                    @"30", @"35", @"40", @"45", @"50", nil];
+        NSString* defaultValue = [NSString stringWithFormat:@"%d", [self.model searchRadius]];
+             
+        PickerEditorViewController* controller = 
+            [[[PickerEditorViewController alloc] initWithController:self.navigationController
+                                                         withObject:self
+                                                       withSelector:@selector(onSearchRadiusChanged:)
+                                                         withValues:values
+                                                       defaultValue:defaultValue] autorelease];
+          
+        [self.navigationController pushViewController:controller animated:YES];
     }
     else
     {
@@ -210,37 +223,16 @@
     }
 }
 
-- (void) onZipcodeChanged:(UITextField*) control
+- (void) onZipcodeChanged:(NSString*) zipcode
 {
+    [self.model setZipcode:zipcode];
+    [self.tableView reloadData];
 }
 
-- (void) onSearchRadiusChanged:(UIPickerView*) picker
+- (void) onSearchRadiusChanged:(NSString*) radius
 {
-}
-
-- (NSInteger) numberOfComponentsInPickerView:(UIPickerView*) pickerView
-{
-    return 1;
-}
-
-// returns the # of rows in each component..
-- (NSInteger)           pickerView:(UIPickerView*) pickerView
-           numberOfRowsInComponent:(NSInteger) component
-{
-    NSArray* array = [NSArray arrayWithObjects: @"5", @"10", @"15", @"20", @"25", 
-                                               @"30", @"35", @"40", @"45", @"50", nil];
-    
-    return [array count];
-}
-
-- (NSString*)     pickerView:(UIPickerView*) pickerView
-                 titleForRow:(NSInteger) row
-                forComponent:(NSInteger) component
-{
-    NSArray* array = [NSArray arrayWithObjects: @"5", @"10", @"15", @"20", @"25", 
-                      @"30", @"35", @"40", @"45", @"50", nil];
-    
-    return [array objectAtIndex:row];
+    [self.model setSearchRadius:[radius intValue]];
+    [self.tableView reloadData];
 }
 
 @end

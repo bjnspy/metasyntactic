@@ -13,7 +13,7 @@
 
 @class SettingsNavigationController;
 
-@interface SettingsViewController : UITableViewController<CLLocationManagerDelegate,UIPickerViewDelegate> {
+@interface SettingsViewController : UITableViewController<CLLocationManagerDelegate> {
     SettingsNavigationController* navigationController;
     UIBarButtonItem* currentLocationItem;
     ActivityIndicator* activityIndicator;
