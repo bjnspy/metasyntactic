@@ -36,13 +36,17 @@
         self.sortedMovies = [NSArray array];
                 
         segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                                            [NSArray arrayWithObjects:@"        Title        ", @"        Rating        ", nil]] autorelease];
+                             [NSArray arrayWithObjects:@"Title", @"Rating", nil]] autorelease];
+    
         
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
         segmentedControl.selectedSegmentIndex = 1;
         [segmentedControl addTarget:self
                              action:@selector(onSortOrderChanged:)
-                   forControlEvents:UIControlEventValueChanged];  
+                   forControlEvents:UIControlEventValueChanged];
+        CGRect rect = segmentedControl.frame;
+        rect.size.width = 200;
+        segmentedControl.frame = rect;
         
         self.navigationItem.customTitleView = segmentedControl;
     }

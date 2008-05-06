@@ -23,7 +23,7 @@
     self.application = app;
     
     self.model = [[[BoxOfficeModel alloc] init] autorelease];
-    
+
     self.tabBarController = [[[ApplicationTabBarController alloc] initWithAppDelegate:self] autorelease];
     
     [window addSubview:tabBarController.view];

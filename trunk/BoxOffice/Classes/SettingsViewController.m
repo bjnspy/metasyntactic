@@ -13,6 +13,16 @@
 @implementation SettingsViewController
 
 @synthesize navigationController;
+@synthesize currentLocationItem;
+@synthesize activityIndicator;
+
+- (void) dealloc
+{
+    self.navigationController = nil;
+    self.currentLocationItem = nil;
+    self.activityIndicator = nil;
+    [super dealloc];
+}
 
 - (id) initWithNavigationController:(SettingsNavigationController*) controller
 {
@@ -20,15 +30,23 @@
     {
         self.title = @"Settings";
         self.navigationController = controller;
+        
+        currentLocationItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
+                                                                style:UIBarButtonItemStyleBordered
+                                                               target:self
+                                                               action:@selector(onCurrentLocationClicked:)] autorelease]; 
+
+        self.navigationItem.customLeftItem = currentLocationItem;
+        
     }
     
     return self;
 }
 
-- (void) dealloc
+- (void) onCurrentLocationClicked:(id) sender
 {
-    self.navigationController = nil;
-    [super dealloc];
+    self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
+    [self.activityIndicator start];
 }
 
 - (BoxOfficeModel*) model

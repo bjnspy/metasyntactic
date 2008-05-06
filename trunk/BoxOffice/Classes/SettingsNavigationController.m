@@ -14,6 +14,12 @@
 @synthesize tabBarController;
 @synthesize viewController;
 
+- (void) dealloc
+{
+    self.viewController = nil;
+    [super dealloc];
+}
+
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller
 {
     if (self = [super initWithTabBarController:controller])
@@ -27,12 +33,6 @@
     }
     
     return self;
-}
-
-- (void) dealloc
-{
-    self.viewController = nil;
-    [super dealloc];
 }
 
 - (void) refresh
