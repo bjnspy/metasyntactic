@@ -804,7 +804,7 @@
 		fRef = 74088C770DCD18C100954696 /* PosterCache.h */;
 		name = "PosterCache.h: 27";
 		rLen = 0;
-		rLoc = 516;
+		rLoc = 566;
 		rType = 0;
 		vrLen = 729;
 		vrLoc = 21;
@@ -814,7 +814,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 105";
 		rLen = 0;
-		rLoc = 2416;
+		rLoc = 2716;
 		rType = 0;
 		vrLen = 686;
 		vrLoc = 38;
@@ -824,7 +824,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 122";
 		rLen = 5;
-		rLoc = 3119;
+		rLoc = 3091;
 		rType = 0;
 		vrLen = 1010;
 		vrLoc = 1930;
@@ -1137,8 +1137,8 @@
 		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {694, 508}}";
-			sepNavSelRange = "{578, 0}";
-			sepNavVisRange = "{0, 640}";
+			sepNavSelRange = "{605, 0}";
+			sepNavVisRange = "{0, 612}";
 		};
 	};
 	7400F4B70DCC2A40004D712D /* XmlElement.m */ = {
@@ -1584,6 +1584,11 @@
 		name = PosterCache.h;
 		path = /Projects/GoogleCode/BoxOffice/Classes/PosterCache.h;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {694, 630}}";
+			sepNavSelRange = "{483, 0}";
+			sepNavVisRange = "{35, 715}";
+		};
 	};
 	74088C930DCD192D00954696 /* NSData.h */ = {
 		isa = PBXFileReference;
@@ -1597,7 +1602,7 @@
 		fRef = 74088BD50DCD0AA800954696 /* PosterCache.h */;
 		name = "PosterCache.h: 28";
 		rLen = 0;
-		rLoc = 567;
+		rLoc = 617;
 		rType = 0;
 		vrLen = 562;
 		vrLoc = 0;
@@ -2589,7 +2594,7 @@
 		fRef = 7400F4AE0DCC2A2E004D712D /* BoxOfficeController.h */;
 		name = "BoxOfficeController.h: 36";
 		rLen = 0;
-		rLoc = 632;
+		rLoc = 605;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 0;
@@ -6582,7 +6587,7 @@
 		fRef = 7400F4AE0DCC2A2E004D712D /* BoxOfficeController.h */;
 		name = "BoxOfficeController.h: 25";
 		rLen = 0;
-		rLoc = 632;
+		rLoc = 605;
 		rType = 0;
 		vrLen = 957;
 		vrLoc = 46;
@@ -6619,7 +6624,7 @@
 		fRef = 7400F4AE0DCC2A2E004D712D /* BoxOfficeController.h */;
 		name = "BoxOfficeController.h: 27";
 		rLen = 0;
-		rLoc = 632;
+		rLoc = 605;
 		rType = 0;
 		vrLen = 967;
 		vrLoc = 29;
@@ -6639,7 +6644,7 @@
 		fRef = 7400F4AE0DCC2A2E004D712D /* BoxOfficeController.h */;
 		name = "BoxOfficeController.h: 25";
 		rLen = 0;
-		rLoc = 632;
+		rLoc = 605;
 		rType = 0;
 		vrLen = 957;
 		vrLoc = 46;
@@ -6768,7 +6773,7 @@
 		fRef = 7400F4AE0DCC2A2E004D712D /* BoxOfficeController.h */;
 		name = "BoxOfficeController.h: 22";
 		rLen = 0;
-		rLoc = 632;
+		rLoc = 605;
 		rType = 0;
 		vrLen = 490;
 		vrLoc = 0;

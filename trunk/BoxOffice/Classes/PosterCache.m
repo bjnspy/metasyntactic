@@ -46,23 +46,11 @@
                            withObject:[NSArray arrayWithArray:movies]];
 }
 
-- (void) backgroundEntryPoint:(NSArray*) movies
+- (NSString*) posterFilePath:(Movie*) movie
 {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    
-    [self updateInBackground:movies];
-    
-    [autoreleasePool release];
-}
-
-- (void) updateInBackground:(NSArray*) movies
-{
-    [gate lock];
-    {
-        [self deleteObsoletePosters:movies];
-        [self downloadPosters:movies];
-    }
-    [gate unlock];
+    NSString* sanitizedTitle = [movie.title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
+    return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle]
+            stringByAppendingPathExtension:@"jpg"];
 }
 
 - (void) deleteObsoletePosters:(NSArray*) movies
@@ -86,18 +74,6 @@
     }
 }
 
-- (void) downloadPosters:(NSArray*) moviesWithoutPosters
-{
-    for (Movie* movie in moviesWithoutPosters)
-    {
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        
-        [self downloadPoster:movie];
-        
-        [autoreleasePool release];
-    }
-}
-
 - (void) downloadPoster:(Movie*) movie
 {
     if ([[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]])
@@ -111,11 +87,35 @@
     [data writeToFile:path atomically:YES];
 }
 
-- (NSString*) posterFilePath:(Movie*) movie
+- (void) downloadPosters:(NSArray*) moviesWithoutPosters
 {
-    NSString* sanitizedTitle = [movie.title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
-    return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle]
-                                         stringByAppendingPathExtension:@"jpg"];
+    for (Movie* movie in moviesWithoutPosters)
+    {
+        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+        
+        [self downloadPoster:movie];
+        
+        [autoreleasePool release];
+    }
+}
+
+- (void) updateInBackground:(NSArray*) movies
+{
+    [gate lock];
+    {
+        [self deleteObsoletePosters:movies];
+        [self downloadPosters:movies];
+    }
+    [gate unlock];
+}
+
+- (void) backgroundEntryPoint:(NSArray*) movies
+{
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    
+    [self updateInBackground:movies];
+    
+    [autoreleasePool release];
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie

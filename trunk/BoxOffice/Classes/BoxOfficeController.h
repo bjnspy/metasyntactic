@@ -22,7 +22,5 @@
 @property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) NSLock* movieLookupLock;
 @property (retain) NSLock* theaterLookupLock;
-
-- (BoxOfficeModel*) model;
  
 @end

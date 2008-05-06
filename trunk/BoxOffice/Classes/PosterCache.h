@@ -18,20 +18,10 @@
 @property (retain) NSMutableDictionary* movieToPosterMap;
 @property (retain) NSLock* gate;
 
+
 + (PosterCache*) cache;
 
-- (id) init;
-- (void) dealloc;
-
 - (void) update:(NSArray*) movies;
-- (void) updateInBackground:(NSArray*) movies;
-
-- (void) deleteObsoletePosters:(NSArray*) movies;
-
-- (void) downloadPosters:(NSArray*) movies;
-- (void) downloadPoster:(Movie*) movie;
-
-- (NSString*) posterFilePath:(Movie*) movie;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 
