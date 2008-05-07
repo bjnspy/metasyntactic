@@ -25,7 +25,6 @@
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
 
-        self.allowsCustomizing = NO;
         self.viewControllers =
             [NSArray arrayWithObjects:moviesNavigationController,
                                       theatersNavigationController,

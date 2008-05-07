@@ -41,7 +41,7 @@
                                                                target:self
                                                                action:@selector(onCurrentLocationClicked:)] autorelease]; 
 
-        self.navigationItem.customLeftItem = currentLocationItem;
+        self.navigationItem.leftBarButtonItem = currentLocationItem;
         
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         self.locationManager.delegate = self;
@@ -186,11 +186,10 @@
     return nil; 
 }
 
-- (void)                     tableView:(UITableView*) tableView
-         selectionDidChangeToIndexPath:(NSIndexPath*) newIndexPath
-                         fromIndexPath:(NSIndexPath*) oldIndexPath
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath;
 {
-    NSInteger section = [newIndexPath section];
+    NSInteger section = [indexPath section];
     
     if (section == 0)
     {

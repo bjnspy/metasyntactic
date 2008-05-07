@@ -51,7 +51,7 @@
         rect.size.width = 200;
         segmentedControl.frame = rect;
         
-        self.navigationItem.customTitleView = segmentedControl;
+        self.navigationItem.titleView = segmentedControl;
         
         //self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
   
@@ -130,11 +130,10 @@ NSInteger sortByRating(id t1, id t2, void *context)
     return UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (void)                     tableView:(UITableView*) tableView
-         selectionDidChangeToIndexPath:(NSIndexPath*) newIndexPath
-                         fromIndexPath:(NSIndexPath*) oldIndexPath
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath;
 {
-    [self.navigationController pushMovieDetails:[self.sortedMovies objectAtIndex:[newIndexPath indexAtPosition:1]]];
+    [self.navigationController pushMovieDetails:[self.sortedMovies objectAtIndex:[indexPath indexAtPosition:1]]];
 }
 
 - (void) refresh

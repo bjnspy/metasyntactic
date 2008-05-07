@@ -31,7 +31,7 @@
         CGRect rect = CGRectMake(20, 72, 280, 30);
         self.textField = [[[UITextField alloc] initWithFrame:rect] autorelease];
         self.textField.text = text;
-        self.textField.borderStyle = UITextFieldBorderStyleRoundedRect;
+        self.textField.borderStyle = UITextBorderStyleRoundedRect;
         //self.textField.backgroundColor = [UIColor whiteColor];
         self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.textField.font = [UIFont boldSystemFontOfSize:17];

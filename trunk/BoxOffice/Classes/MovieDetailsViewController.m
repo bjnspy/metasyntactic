@@ -22,7 +22,6 @@
         self.navigationController = controller;
         self.movie = movie_;
          
-        
         {
             CGRect screenRect = self.view.bounds;
             CGFloat padding = 15;

@@ -43,12 +43,12 @@
     UIBarButtonItem *saveItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave 
                                                                                target:self
                                                                                action:@selector(save:)] autorelease];
-    self.navigationItem.customRightItem = saveItem;
+    self.navigationItem.rightBarButtonItem = saveItem;
     
     UIBarButtonItem *cancelItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel 
                                                                                  target:self
                                                                                  action:@selector(cancel:)] autorelease];
-    self.navigationItem.customLeftItem = cancelItem;   
+    self.navigationItem.leftBarButtonItem = cancelItem;   
     
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }

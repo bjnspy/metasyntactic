@@ -25,7 +25,7 @@
     if (self = [super init])
     {
         self.navigationItem = item;
-        self.startButtonItem = self.navigationItem.customLeftItem;
+        self.startButtonItem = self.navigationItem.leftBarButtonItem;
         running = NO;
     }
     
@@ -48,7 +48,7 @@
                                                              action:nil] autorelease];
    // [currentLocationItem 
     
-    self.navigationItem.customLeftItem = currentLocationItem;
+    self.navigationItem.leftBarButtonItem = currentLocationItem;
     
     [self performSelector:@selector(updateImage:) withObject:[NSNumber numberWithInt:((i + 1) % 10)] afterDelay:0.1];
 }
@@ -62,7 +62,7 @@
 - (void) stop:(id) sender
 {
     running = NO;
-    self.navigationItem.customLeftItem = self.startButtonItem;
+    self.navigationItem.leftBarButtonItem = self.startButtonItem;
 }
 
 - (void) stop

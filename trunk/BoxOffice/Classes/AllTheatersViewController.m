@@ -63,11 +63,10 @@
     return UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (void)                     tableView:(UITableView*) tableView
-         selectionDidChangeToIndexPath:(NSIndexPath*) newIndexPath
-                         fromIndexPath:(NSIndexPath*) oldIndexPath
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath;
 {
-    Theater* theater = [self.model.theaters objectAtIndex:[newIndexPath indexAtPosition:1]];
+    Theater* theater = [self.model.theaters objectAtIndex:[indexPath indexAtPosition:1]];
     [self.navigationController pushTheaterDetails:theater];
 }
 
