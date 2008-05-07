@@ -18,6 +18,7 @@
 @property (retain) NSArray* values;
 
 - (id) initWithController:(UINavigationController*) navigationController
+                withTitle:(NSString*) title
                withObject:(id) object
              withSelector:(SEL) selector
                withValues:(NSArray*) values

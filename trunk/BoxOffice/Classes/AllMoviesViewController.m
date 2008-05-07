@@ -21,6 +21,9 @@
 
 - (void) dealloc
 {
+    [[UIDevice currentDevice] endGeneratingDeviceOrientationNotifications];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+    
     self.navigationController = nil;
     self.sortedMovies = nil;
     self.segmentedControl = nil;
@@ -49,6 +52,14 @@
         segmentedControl.frame = rect;
         
         self.navigationItem.customTitleView = segmentedControl;
+        
+        //self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight | UIViewAutoresizingFlexibleWidth;
+  
+        [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(onDeviceOrientationDidChange:)
+                                                     name:UIDeviceOrientationDidChangeNotification
+                                                   object:nil];
     }
     
     return self;
@@ -130,6 +141,17 @@ NSInteger sortByRating(id t1, id t2, void *context)
 {
     [self sortMovies];
     [self.tableView reloadData];
+}
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation
+{
+    return YES;
+}
+
+- (void) onDeviceOrientationDidChange:(id) argument
+{
+    
+    NSLog(@"device orientation changed");
 }
 
 @end

@@ -195,11 +195,12 @@
     if (section == 0)
     {
         TextFieldEditorViewController* controller = 
-            [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
-                                                            withObject:self
-                                                          withSelector:@selector(onZipcodeChanged:)
-                                                              withText:[self.model zipcode]
-                                                              withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
+        [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
+                                                         withTitle:@"Zipcode"
+                                                        withObject:self
+                                                      withSelector:@selector(onZipcodeChanged:)
+                                                          withText:[self.model zipcode]
+                                                          withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
         
         [self.navigationController pushViewController:controller animated:YES];
     }
@@ -210,11 +211,12 @@
         NSString* defaultValue = [NSString stringWithFormat:@"%d", [self.model searchRadius]];
              
         PickerEditorViewController* controller = 
-            [[[PickerEditorViewController alloc] initWithController:self.navigationController
-                                                         withObject:self
-                                                       withSelector:@selector(onSearchRadiusChanged:)
-                                                         withValues:values
-                                                       defaultValue:defaultValue] autorelease];
+        [[[PickerEditorViewController alloc] initWithController:self.navigationController
+                                                      withTitle:@"Search Radius"
+                                                     withObject:self
+                                                   withSelector:@selector(onSearchRadiusChanged:)
+                                                     withValues:values
+                                                   defaultValue:defaultValue] autorelease];
           
         [self.navigationController pushViewController:controller animated:YES];
     }

@@ -20,6 +20,7 @@
 }
 
 - (id) initWithController:(UINavigationController*) controller
+                withTitle:(NSString*) title
                withObject:(id) object_
              withSelector:(SEL) selector_
                  withText:(NSString*) text
@@ -27,14 +28,17 @@
 {
     if (self = [super initWithController:controller withObject:object_ withSelector:selector_])
     {
-        CGRect rect = CGRectMake(20, 72, 280, 42);
+        CGRect rect = CGRectMake(20, 72, 280, 30);
         self.textField = [[[UITextField alloc] initWithFrame:rect] autorelease];
         self.textField.text = text;
-        self.textField.borderStyle = UITextFieldBorderStyleBezel;
-        self.textField.backgroundColor = [UIColor whiteColor];
+        self.textField.borderStyle = UITextFieldBorderStyleRoundedRect;
+        //self.textField.backgroundColor = [UIColor whiteColor];
         self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        self.textField.font = [UIFont boldSystemFontOfSize:16];
-        self.textField.keyboardType = type;
+        self.textField.font = [UIFont boldSystemFontOfSize:17];
+        self.textField.keyboardType = type;     
+        self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        
+        self.title = title;
     }
     
     return self;

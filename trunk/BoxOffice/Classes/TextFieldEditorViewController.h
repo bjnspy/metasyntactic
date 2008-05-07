@@ -17,6 +17,7 @@
 @property (retain) UITextField* textField;
 
 - (id) initWithController:(UINavigationController*) navigationController
+                withTitle:(NSString*) title
                withObject:(id) object
              withSelector:(SEL) selector
                  withText:(NSString*) text
