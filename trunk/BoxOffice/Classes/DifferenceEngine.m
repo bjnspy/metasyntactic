@@ -168,4 +168,18 @@
     return [self.costTable getX:(cached_S_length - 1) Y:(cached_T_length - 1)];    
 }
 
++ (BOOL) areSimilar:(NSString*) s1
+              other:(NSString*) s2
+{
+    NSInteger threshold = [s1 length] / 4;
+    if (threshold == 0)
+    {
+        threshold = 1;
+    }
+    
+    DifferenceEngine* engine = [DifferenceEngine engine];
+    NSInteger diff = [engine editDistanceFrom:s1 to:s2 withThreshold:threshold];
+    return (diff <= threshold);
+}
+
 @end

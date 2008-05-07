@@ -45,4 +45,7 @@
                             to:(NSString*) to
                  withThreshold:(NSInteger) threshold;
 
+
++ (BOOL) areSimilar:(NSString*) s1
+              other:(NSString*) s2;
 @end

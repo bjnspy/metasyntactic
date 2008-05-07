@@ -8,51 +8,38 @@
 
 #import "MovieDetailsViewController.h"
 #import "MoviesNavigationController.h"
+#import "Theater.h"
+#import "DifferenceEngine.h"
 
 @implementation MovieDetailsViewController
 
 @synthesize navigationController;
 @synthesize movie;
+@synthesize theatersArray;
+@synthesize showtimesArray;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) controller
                               movie:(Movie*) movie_
 {
-    if (self = [super init])
+    if (self = [super initWithStyle:UITableViewStyleGrouped])
     {
         self.navigationController = controller;
         self.movie = movie_;
+        
+        self.theatersArray = [NSMutableArray array];
+        self.showtimesArray = [NSMutableArray array];
          
+        for (Theater* theater in [[self model] theaters])
         {
-            CGRect screenRect = self.view.bounds;
-            CGFloat padding = 15;
-            
-            UIImage* image = [self.model posterForMovie:self.movie];
-            if (image == nil)
+            for (NSString* movieName in theater.movieToShowtimesMap)
             {
-                image = [UIImage imageNamed:@"ImageNotAvailable.png"];
+                if ([DifferenceEngine areSimilar:self.movie.title other:movieName])
+                {
+                    [self.theatersArray addObject:theater];
+                    [self.showtimesArray addObject:[theater.movieToShowtimesMap valueForKey:movieName]];
+                    break;
+                }
             }
-            
-            UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-            CGFloat headerHeight = image.size.height;
-            
-            CGRect imageBounds = { 
-                { padding, padding },
-                { image.size.width, headerHeight }
-            };
-            
-            imageView.frame = imageBounds;
-            
-            CGFloat synopsisStartX = padding + imageBounds.size.width + padding;
-            CGRect synopsisBounds = { 
-                { synopsisStartX, padding },
-                { (screenRect.size.width - padding) - synopsisStartX, headerHeight }
-            };
-            
-            UIWebView* synopsisView = [[[UIWebView alloc] initWithFrame:synopsisBounds] autorelease];
-            [synopsisView loadHTMLString:self.movie.synopsis baseURL:[NSURL URLWithString:@""]];
-            
-            [self.view addSubview:imageView];
-            [self.view addSubview:synopsisView];
         }
         
         self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
@@ -80,34 +67,81 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
 {
-    return 1;
+    return 1 + [self.theatersArray count];
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section
 {
-    return 1;
+    if (section == 0)
+    {
+        return 1;
+    }
+    
+    return [[self.showtimesArray objectAtIndex:(section - 1)] count];
+}
+
+- (UIImage*) posterImage
+{
+    UIImage* image = [self.model posterForMovie:self.movie];
+    if (image == nil)
+    {
+        image = [UIImage imageNamed:@"ImageNotAvailable.png"];
+    }
+    return image;
+}
+
+- (CGFloat)         tableView:(UITableView*) tableView
+      heightForRowAtIndexPath:(NSIndexPath*) indexPath
+{
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+        
+    if (section == 0 && row == 0)
+    {
+        return [self posterImage].size.height + 10;
+    }
+    
+    return 42;
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
                         cellForRowAtIndexPath:(NSIndexPath*) indexPath
 {
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+    
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     
-    UIImage* image = [self.model posterForMovie:self.movie];
-    if (image == nil)
+    if (section == 0 && row == 0)
     {
-        cell.text = @"No image";
+        UIImage* image = [self posterImage];
+        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        imageView.frame = CGRectMake(5, 5, image.size.width, image.size.height);
+        [cell.contentView addSubview:imageView];
+        
+        CGRect webRect = CGRectMake(5 + image.size.width + 5, 5, 190, image.size.height);
+        UIWebView* webView = [[[UIWebView alloc] initWithFrame:webRect] autorelease];
+        [webView loadHTMLString:movie.synopsis baseURL:[NSURL URLWithString:@""]];
+        [cell.contentView addSubview:webView];
     }
     else
     {
-        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-        CGRect bounds = { { 20, 20 }, { 100, 140 } };
-        imageView.bounds = bounds;
-        [self.view addSubview:imageView];
+        cell.text = [[self.showtimesArray objectAtIndex:(section - 1)] objectAtIndex:row];
     }
     
     return cell;
+}
+
+- (NSString*)               tableView:(UITableView*) tableView
+              titleForHeaderInSection:(NSInteger) section
+{
+    if (section == 0)
+    {
+        return nil;
+    }
+    
+    return [[self.theatersArray objectAtIndex:(section - 1)] name];
 }
 
 @end

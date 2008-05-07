@@ -11,13 +11,18 @@
 
 @class MoviesNavigationController;
 
-@interface MovieDetailsViewController : UIViewController {
+@interface MovieDetailsViewController : UITableViewController {
+//UIViewController<UITableViewDelegate, UITableViewDataSource> {
     MoviesNavigationController* navigationController;
     Movie* movie;
+    NSMutableArray* theatersArray;
+    NSMutableArray* showtimesArray;
 }
 
 @property (assign) MoviesNavigationController* navigationController;
 @property (retain) Movie* movie;
+@property (retain) NSMutableArray* theatersArray;
+@property (retain) NSMutableArray* showtimesArray;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController
                               movie:(Movie*) movie;
