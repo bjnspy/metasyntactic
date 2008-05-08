@@ -6,15 +6,13 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "Matrix.h"
-
 @interface DifferenceEngine : NSObject {
     NSInteger addCost;
     NSInteger deleteCost;
     NSInteger switchCost;
     NSInteger transposeCost;
     
-    Matrix* costTable;
+    NSInteger costTable[128][128];
     
     NSString* S;
     NSString* T;
@@ -26,7 +24,6 @@
 
 @property (copy) NSString* S;
 @property (copy) NSString* T;
-@property (retain) Matrix* costTable;
 
 - (void) dealloc;
 

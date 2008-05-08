@@ -14,13 +14,11 @@
 
 @synthesize S;
 @synthesize T;
-@synthesize costTable;
 
 - (void) dealloc
 {
     self.S = nil;
     self.T = nil;
-    self.costTable = nil;
     [super dealloc];
 }
 
@@ -49,12 +47,10 @@
         switchCost = switch_;
         transposeCost = transpose;
         
-        self.costTable = [Matrix matrixWithX:MaxLength Y:MaxLength];
-        
         for (NSInteger i = 0; i < MaxLength; i++)
         {
-            [self.costTable setX:i Y:0 value:(i * deleteCost)];
-            [self.costTable setX:0 Y:i value:(i * addCost)];
+            costTable[i][0] = (i * deleteCost);
+            costTable[0][i] = (i * addCost);
         }
     }
     
@@ -135,22 +131,22 @@
             const NSInteger deletes = 1;
             NSInteger switches = ([self.S characterAtIndex:(i - 1)] == [self.T characterAtIndex:(j - 1)]) ? 0 : 1;
             
-            NSInteger totalDeleteCost = [self.costTable getX:(i - 1) Y:j] + (deletes * deleteCost);
-            NSInteger totalAddCost = [self.costTable getX:i Y:(j - 1)] + (adds * addCost);
-            NSInteger totalSwitchCost = [self.costTable getX:(i - 1) Y:(j - 1)] + (switches * switchCost);
+            NSInteger totalDeleteCost = costTable[i - 1][j] + (deletes * deleteCost);
+            NSInteger totalAddCost = costTable[i][j - 1] + (adds * addCost);
+            NSInteger totalSwitchCost = costTable[i - 1][j - 1] + (switches * switchCost);
             NSInteger cost = [self minX:totalDeleteCost Y:[self minX:totalAddCost Y:totalSwitchCost]];
             
             if (i >= 2 && j >= 2)
             {
                 NSInteger transposes = 1 + (([self.S characterAtIndex:(i - 1)] == [self.T characterAtIndex:j]) ? 0 : 1) + 
                                      (([self.S characterAtIndex:i] == [self.T characterAtIndex:(j - 1)]) ? 0 : 1);
-                NSInteger tCost = [self.costTable getX:(i - 2) Y:(j - 2)] + (transposes * transposeCost);
+                NSInteger tCost = costTable[i - 2][j - 2] + (transposes * transposeCost);
                 
-                [self.costTable setX:i Y:j value:[self minX:cost Y:tCost]];
+                costTable[i][j] = [self minX:cost Y:tCost];
             }
             else
             {
-                [self.costTable setX:i Y:j value:cost];
+                costTable[i][j] = cost;
             }
             
             if (costThreshold >= 0)
@@ -165,7 +161,7 @@
         }
     }
     
-    return [self.costTable getX:(cached_S_length - 1) Y:(cached_T_length - 1)];    
+    return costTable[cached_S_length - 1][cached_T_length - 1];    
 }
 
 + (BOOL) areSimilar:(NSString*) s1
