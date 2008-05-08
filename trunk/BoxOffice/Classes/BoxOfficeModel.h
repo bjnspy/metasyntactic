@@ -7,12 +7,15 @@
 //
 
 #import "PosterCache.h"
+#import "AddressLocationCache.h"
 
 @interface BoxOfficeModel : NSObject {
     PosterCache* posterCache;
+    AddressLocationCache* addressLocationCache;
 }
 
 @property (retain) PosterCache* posterCache;
+@property (retain) AddressLocationCache* addressLocationCache;
 
 - (id) init;
 - (void) dealloc;

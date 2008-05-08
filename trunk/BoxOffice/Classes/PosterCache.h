@@ -11,13 +11,10 @@
 @class BoxOfficeModel;
 
 @interface PosterCache : NSObject {
-    NSMutableDictionary* movieToPosterMap;
     NSLock* gate;
 }
 
-@property (retain) NSMutableDictionary* movieToPosterMap;
 @property (retain) NSLock* gate;
-
 
 + (PosterCache*) cache;
 

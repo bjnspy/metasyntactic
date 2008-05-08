@@ -60,4 +60,6 @@
 - (XmlElement*) element:(NSString*) name;
 - (NSArray*) elements:(NSString*) name;
 
+- (XmlElement*) elementAtIndex:(NSInteger) index;
+
 @end

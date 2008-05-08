@@ -13,13 +13,33 @@
 @implementation BoxOfficeModel
 
 @synthesize posterCache;
+@synthesize addressLocationCache;
+
+- (void) updatePosterCache
+{
+    [self.posterCache update:self.movies];
+}
+
+- (void) updateAddressLocationCache
+{
+    NSMutableArray* addresses = [NSMutableArray array];
+    for (Theater* theater in self.theaters)
+    {
+        [addresses addObject:theater.address];
+    }
+    
+    [self.addressLocationCache update:addresses];
+}
 
 - (id) init
 {
     if (self = [super init])
     {
         self.posterCache = [PosterCache cache];
-        [self.posterCache update:self.movies];
+        self.addressLocationCache = [AddressLocationCache cache];
+        
+        [self updatePosterCache];
+        [self updateAddressLocationCache];
     }
     
     return self;
@@ -91,7 +111,7 @@
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"movies"];
     [[NSUserDefaults standardUserDefaults] synchronize];
     
-    [posterCache update:movies];
+    [self updatePosterCache];
 }
 
 - (NSArray*) theaters
@@ -122,7 +142,9 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"theaters"];
-    [[NSUserDefaults standardUserDefaults] synchronize];    
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self updateAddressLocationCache];
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie

@@ -18,7 +18,8 @@
 @synthesize model;
 @synthesize tabBarController;
 
-- (void) applicationDidFinishLaunching:(UIApplication*) app {
+- (void) applicationDidFinishLaunching:(UIApplication*) app
+{
     NSLog(@"BoxOfficeAppDelegate.applicationDidFinishLaunching");
     self.application = app;
     

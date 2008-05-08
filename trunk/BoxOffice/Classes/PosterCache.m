@@ -15,7 +15,6 @@
 @implementation PosterCache
 
 @synthesize gate;
-@synthesize movieToPosterMap;
 
 + (PosterCache*) cache
 {
@@ -26,7 +25,6 @@
 {
     if (self = [super init])
     {
-        self.movieToPosterMap = [NSMutableDictionary dictionary];
         self.gate = [[[NSLock alloc] init] autorelease];
     }
     
@@ -35,7 +33,6 @@
 
 - (void) dealloc
 {
-    self.movieToPosterMap = nil;
     self.gate = nil;
     [super dealloc];
 }
