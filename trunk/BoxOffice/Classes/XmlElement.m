@@ -111,7 +111,7 @@
     
     [dictionary setValue:self.name forKey:@"name"];
     
-    if (![self.text isEqualToString:@""])
+    if (![self.text isEqual:@""])
     {
         [dictionary setValue:self.text forKey:@"text"];
     }

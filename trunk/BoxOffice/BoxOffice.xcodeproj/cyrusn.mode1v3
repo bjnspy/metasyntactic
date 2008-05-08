@@ -333,11 +333,11 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>91</integer>
+									<integer>93</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 878}, {298, 788}}</string>
+							<string>{{0, 963}, {298, 788}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -358,7 +358,7 @@
 							<real>276</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>47 31 1325 847 0 0 1440 878 </string>
+						<string>48 31 1325 847 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -376,7 +376,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>BoxOfficeAppDelegate.m</string>
+								<string>SettingsViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -384,11 +384,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BoxOfficeAppDelegate.m</string>
+										<string>SettingsViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74EC06430DD2CF98006953A4</string>
+										<string>74EC06C50DD2D775006953A4</string>
 										<key>history</key>
 										<array>
 											<string>74447C730DC844BA00CC146C</string>
@@ -504,24 +504,26 @@
 											<string>74EC05180DD2BFEB006953A4</string>
 											<string>74EC05190DD2BFEB006953A4</string>
 											<string>74EC051A0DD2BFEB006953A4</string>
-											<string>74EC051B0DD2BFEB006953A4</string>
 											<string>74EC051C0DD2BFEB006953A4</string>
 											<string>74EC051E0DD2BFEB006953A4</string>
 											<string>74EC05200DD2BFEB006953A4</string>
-											<string>74EC05450DD2C1AE006953A4</string>
-											<string>74EC05650DD2C481006953A4</string>
 											<string>74EC05B50DD2C9BA006953A4</string>
 											<string>74EC05B60DD2C9BA006953A4</string>
 											<string>74EC05CE0DD2CA73006953A4</string>
 											<string>74EC05FD0DD2CC0A006953A4</string>
 											<string>74EC05FE0DD2CC0A006953A4</string>
-											<string>74EC060D0DD2CCAB006953A4</string>
-											<string>74EC06150DD2CCF2006953A4</string>
-											<string>74EC06240DD2CE0B006953A4</string>
 											<string>74EC063B0DD2CF98006953A4</string>
 											<string>74EC063C0DD2CF98006953A4</string>
 											<string>74EC063D0DD2CF98006953A4</string>
-											<string>74EC063E0DD2CF98006953A4</string>
+											<string>74EC066B0DD2D24A006953A4</string>
+											<string>74EC067B0DD2D34C006953A4</string>
+											<string>74EC06880DD2D4CF006953A4</string>
+											<string>74EC06890DD2D4CF006953A4</string>
+											<string>74EC06990DD2D53D006953A4</string>
+											<string>74EC06BC0DD2D775006953A4</string>
+											<string>74EC06BD0DD2D775006953A4</string>
+											<string>74EC06BE0DD2D775006953A4</string>
+											<string>74EC06BF0DD2D775006953A4</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -660,43 +662,51 @@
 											<string>74EC05A10DD2C64C006953A4</string>
 											<string>74EC05A20DD2C64C006953A4</string>
 											<string>74EC05B80DD2C9BA006953A4</string>
-											<string>74EC05B90DD2C9BA006953A4</string>
 											<string>74EC05BA0DD2C9BA006953A4</string>
 											<string>74EC05BB0DD2C9BA006953A4</string>
-											<string>74EC05C50DD2C9FF006953A4</string>
 											<string>74EC05C60DD2C9FF006953A4</string>
 											<string>74EC05C70DD2C9FF006953A4</string>
-											<string>74EC05C80DD2C9FF006953A4</string>
 											<string>74EC05D00DD2CA73006953A4</string>
 											<string>74EC05D10DD2CA73006953A4</string>
-											<string>74EC05D20DD2CA73006953A4</string>
 											<string>74EC05D30DD2CA73006953A4</string>
-											<string>74EC05D90DD2CAA9006953A4</string>
 											<string>74EC05DA0DD2CAA9006953A4</string>
 											<string>74EC05DF0DD2CAB6006953A4</string>
 											<string>74EC05E60DD2CADF006953A4</string>
 											<string>74EC05E70DD2CADF006953A4</string>
-											<string>74EC05F00DD2CB7E006953A4</string>
 											<string>74EC05F10DD2CB7E006953A4</string>
 											<string>74EC05F20DD2CB7E006953A4</string>
-											<string>74EC05F80DD2CBA3006953A4</string>
 											<string>74EC05F90DD2CBA3006953A4</string>
 											<string>74EC05FF0DD2CC0A006953A4</string>
 											<string>74EC06000DD2CC0A006953A4</string>
 											<string>74EC06010DD2CC0A006953A4</string>
 											<string>74EC06020DD2CC0A006953A4</string>
-											<string>74EC060F0DD2CCAB006953A4</string>
 											<string>74EC06100DD2CCAB006953A4</string>
 											<string>74EC06110DD2CCAB006953A4</string>
-											<string>74EC06170DD2CCF2006953A4</string>
 											<string>74EC06180DD2CCF2006953A4</string>
-											<string>74EC061E0DD2CDDA006953A4</string>
 											<string>74EC061F0DD2CDDA006953A4</string>
-											<string>74EC06260DD2CE0B006953A4</string>
 											<string>74EC063F0DD2CF98006953A4</string>
 											<string>74EC06400DD2CF98006953A4</string>
 											<string>74EC06410DD2CF98006953A4</string>
 											<string>74EC06420DD2CF98006953A4</string>
+											<string>74EC066E0DD2D24A006953A4</string>
+											<string>74EC066F0DD2D24A006953A4</string>
+											<string>74EC06710DD2D24A006953A4</string>
+											<string>74EC06730DD2D24A006953A4</string>
+											<string>74EC06750DD2D24A006953A4</string>
+											<string>74EC068B0DD2D4CF006953A4</string>
+											<string>74EC068C0DD2D4CF006953A4</string>
+											<string>74EC068D0DD2D4CF006953A4</string>
+											<string>74EC068E0DD2D4CF006953A4</string>
+											<string>74EC068F0DD2D4CF006953A4</string>
+											<string>74EC06950DD2D4F3006953A4</string>
+											<string>74EC06960DD2D4F3006953A4</string>
+											<string>74EC069B0DD2D53D006953A4</string>
+											<string>74EC069C0DD2D53D006953A4</string>
+											<string>74EC06C00DD2D775006953A4</string>
+											<string>74EC06C10DD2D775006953A4</string>
+											<string>74EC06C20DD2D775006953A4</string>
+											<string>74EC06C30DD2D775006953A4</string>
+											<string>74EC06C40DD2D775006953A4</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -710,7 +720,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1005, 560}}</string>
 								<key>RubberWindowFrame</key>
-								<string>47 31 1325 847 0 0 1440 878 </string>
+								<string>48 31 1325 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -730,7 +740,7 @@
 								<key>Frame</key>
 								<string>{{0, 565}, {1005, 241}}</string>
 								<key>RubberWindowFrame</key>
-								<string>47 31 1325 847 0 0 1440 878 </string>
+								<string>48 31 1325 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -875,7 +885,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>231919512.28862</real>
+	<real>231921525.855333</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -890,6 +900,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>74EC056D0DD2C481006953A4</string>
 		<string>74EC056E0DD2C481006953A4</string>
 		<string>1CD10A99069EF8BA00B06720</string>
@@ -898,7 +909,7 @@
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>47 31 1325 847 0 0 1440 878 </string>
+	<string>48 31 1325 847 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -1135,7 +1146,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BoxOfficeController.m</string>
+										<string>Utilities.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1193,8 +1204,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>7401B7480DD006510055810A</string>
-				<string>7401B7490DD006510055810A</string>
+				<string>74EC06B00DD2D760006953A4</string>
+				<string>74EC06B10DD2D760006953A4</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>

@@ -11,29 +11,17 @@
 #import "XmlDocument.h"
 #import "XmlElement.h"
 #import "XmlParser.h"
+#import "Utilities.h"
 
 @implementation AddressLocationCache
-
-@synthesize gate;
 
 + (AddressLocationCache*) cache
 {
     return [[[AddressLocationCache alloc] init] autorelease];
 }
 
-- (id) init
-{
-    if (self = [super init])
-    {
-        self.gate = [[[NSLock alloc] init] autorelease];
-    }
-    
-    return self;
-}
-
 - (void) dealloc
 {
-    self.gate = nil;
     [super dealloc];
 }
 
@@ -54,7 +42,7 @@
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (void) update:(NSArray*) addresses
+- (void) updateAddresses:(NSArray*) addresses
 {
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:addresses]];
@@ -158,10 +146,13 @@
             NSString* lat = [latElement text];
             NSString* lng = [lngElement text];
             
-            if (lat != nil && lng != nil && ![lat isEqual:@""] && ![lng isEqual:@""])
+            if ([Utilities isNilOrEmpty:lat] ||
+                [Utilities isNilOrEmpty:lng])
             {
-                return [Location locationWithLatitude:[lat doubleValue] longitude:[lng doubleValue]];
+                continue;
             }
+            
+            return [Location locationWithLatitude:[lat doubleValue] longitude:[lng doubleValue]];
         }
     }
 
@@ -170,16 +161,16 @@
 
 - (void) downloadAddressLocation:(NSString*) address
 {
-    NSMutableDictionary* map = [self addressLocationMap];
-    if ([map objectForKey:address] != nil)
+    if ([self locationForAddress:address] != nil)
     {
-        // already have the poster.  Don't need to do anything.
+        // already have the address, don't need to do anything.
         return;
     }
     
     Location* location = [self downloadAddressLocationFromWebService:address];
     if (location != nil)
     {    
+        NSMutableDictionary* map = [self addressLocationMap];
         [map setValue:[location dictionary] forKey:address];
         [self setAddressLocationMap:map];
     }
@@ -197,20 +188,11 @@
     }
 }
 
-- (void) updateInBackground:(NSArray*) addresses
-{
-    [gate lock];
-    {
-        [self downloadAddressLocations:addresses];
-    }
-    [gate unlock];
-}
-
 - (void) backgroundEntryPoint:(NSArray*) addresses
 {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
-    [self updateInBackground:addresses];
+    [self downloadAddressLocations:addresses];
     
     [autoreleasePool release];
 }
@@ -225,5 +207,50 @@
     
     return [Location locationWithDictionary:dict];
 }
+
+- (Location*) locationForZipcode:(NSString*) zipcode
+{
+    return [self locationForAddress:zipcode];
+}
+
+- (void) downloadZipcodeLocationFromWebService:(NSString*) zipcode
+{
+    if ([Utilities isNilOrEmpty:zipcode])
+    {
+        return;
+    }
+    
+    NSString* escapedZipcode = [zipcode stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/postalCodeSearch?postalcode=%@&maxRows=1", escapedZipcode];
+    NSURL* url = [NSURL URLWithString:urlString];
+    
+    NSData* zipcodeData = [NSData dataWithContentsOfURL:url];
+    if (zipcodeData != nil)
+    {
+        //return [matchedIdElement text];
+    }
+}
+
+- (void) updateZipcodeBackgroundEntryPoint:(NSString*) zipcode
+{
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    
+    [self downloadZipcodeLocationFromWebService:zipcode];
+    
+    [autoreleasePool release];    
+}
+
+- (void) updateZipcode:(NSString*) zipcode
+{
+    if ([self locationForZipcode:zipcode] != nil)
+    {
+        // already have the address, don't need to do anything.
+        return;
+    }    
+    
+    [self performSelectorInBackground:@selector(updateZipcodeBackgroundEntryPoint:)
+                           withObject:zipcode];    
+}
+
 
 @end

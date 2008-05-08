@@ -12,6 +12,7 @@
 #import "XmlParser.h"
 #import "TextFieldEditorViewController.h"
 #import "PickerEditorViewController.h"
+#import "Utilities.h"
 
 @implementation SettingsViewController
 
@@ -112,11 +113,13 @@
 {
     [self stopActivityIndicator];
     
-    if (zipcode != nil && ![@"" isEqual:zipcode])
+    if ([Utilities isNilOrEmpty:zipcode])
     {
-        self.model.zipcode = zipcode;
-        [self.tableView reloadData];
+        return;
     }
+    
+    self.model.zipcode = zipcode;
+    [self.tableView reloadData];
 }
 
 - (void)locationManager:(CLLocationManager*) manager

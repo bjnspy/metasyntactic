@@ -11,15 +11,14 @@
 #import "Location.h"
 
 @interface AddressLocationCache : NSObject {
-    NSLock* gate;
 }
-
-@property (retain) NSLock* gate;
 
 + (AddressLocationCache*) cache;
 
-- (void) update:(NSArray*) addresses;
+- (void) updateAddresses:(NSArray*) addresses;
+- (void) updateZipcode:(NSString*) zipcode;
 
 - (Location*) locationForAddress:(NSString*) address;
+- (Location*) locationForZipcode:(NSString*) zipcode;
 
 @end

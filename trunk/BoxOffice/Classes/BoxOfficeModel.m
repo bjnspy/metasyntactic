@@ -28,7 +28,12 @@
         [addresses addObject:theater.address];
     }
     
-    [self.addressLocationCache update:addresses];
+    [self.addressLocationCache updateAddresses:addresses];
+}
+
+- (void) updateZipcodeAddressLocation
+{
+    [self.addressLocationCache updateZipcode:self.zipcode];
 }
 
 - (id) init
@@ -40,6 +45,7 @@
         
         [self updatePosterCache];
         [self updateAddressLocationCache];
+        [self updateZipcodeAddressLocation];
     }
     
     return self;
@@ -64,8 +70,15 @@
 
 - (void) setZipcode:(NSString*) zipcode
 {
+    if ([zipcode isEqual:[self zipcode]])
+    {
+        return;
+    }
+    
     [[NSUserDefaults standardUserDefaults] setObject:zipcode forKey:@"zipCode"];
     [[NSUserDefaults standardUserDefaults] synchronize];
+    
+    [self updateZipcodeAddressLocation];
 }
 
 - (int) searchRadius
