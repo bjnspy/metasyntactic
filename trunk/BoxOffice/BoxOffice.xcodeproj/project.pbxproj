@@ -68,7 +68,6 @@
 		74EC02DF0DD175BB006953A4 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EC02DE0DD175BB006953A4 /* Icon.png */; };
 		74EC04F20DD2B44E006953A4 /* AddressLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */; };
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
-		74F65B2F0DCE47B10085A39C /* AmazonPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B2E0DCE47B10085A39C /* AmazonPosterDownloader.m */; };
 		74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
 /* End PBXBuildFile section */
 
@@ -168,8 +167,6 @@
 		74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressLocationCache.m; sourceTree = "<group>"; };
 		74EC04F30DD2B704006953A4 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		74EC04F40DD2B704006953A4 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
-		74F65B2D0DCE47B10085A39C /* AmazonPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AmazonPosterDownloader.h; sourceTree = "<group>"; };
-		74F65B2E0DCE47B10085A39C /* AmazonPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AmazonPosterDownloader.m; sourceTree = "<group>"; };
 		74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
 		74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -219,8 +216,6 @@
 				74088C6B0DCD17D100954696 /* PosterDownloader.m */,
 				746A02090DC8197A0079D89B /* ZipCodeFormatter.h */,
 				746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */,
-				74F65B2D0DCE47B10085A39C /* AmazonPosterDownloader.h */,
-				74F65B2E0DCE47B10085A39C /* AmazonPosterDownloader.m */,
 				74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */,
 				74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */,
 				74EC04F30DD2B704006953A4 /* Location.h */,
@@ -462,7 +457,6 @@
 				74088C6C0DCD17D100954696 /* PosterDownloader.m in Sources */,
 				74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */,
 				74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */,
-				74F65B2F0DCE47B10085A39C /* AmazonPosterDownloader.m in Sources */,
 				74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */,
 				740078E00DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.m in Sources */,
 				7400797D0DCE97D000B3799F /* RatingsView.m in Sources */,

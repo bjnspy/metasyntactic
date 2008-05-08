@@ -12,7 +12,6 @@
 #import "DifferenceEngine.h"
 #import "XmlSerializer.h"
 #import "ImdbPosterDownloader.h"
-#import "AmazonPosterDownloader.h"
 
 @implementation PosterDownloader
 
@@ -43,12 +42,6 @@
 - (NSData*) go
 {
     NSData* data = [[[[ImdbPosterDownloader alloc] initWithMovie:self.movie] autorelease] go];
-    if (data != nil)
-    {
-        return data;
-    }
-    
-    data = [[[[AmazonPosterDownloader alloc] initWithMovie:self.movie] autorelease] go];
     if (data != nil)
     {
         return data;
