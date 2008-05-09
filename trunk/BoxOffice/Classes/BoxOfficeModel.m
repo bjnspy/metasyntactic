@@ -15,6 +15,11 @@
 @synthesize posterCache;
 @synthesize addressLocationCache;
 
++ (BoxOfficeModel*) model
+{
+    return [[[BoxOfficeModel alloc] init] autorelease];
+}
+
 - (void) updatePosterCache
 {
     [self.posterCache update:self.movies];

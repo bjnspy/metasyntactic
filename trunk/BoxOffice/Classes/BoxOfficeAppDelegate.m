@@ -23,7 +23,7 @@
     NSLog(@"BoxOfficeAppDelegate.applicationDidFinishLaunching");
     self.application = app;
     
-    self.model = [[[BoxOfficeModel alloc] init] autorelease];
+    self.model = [BoxOfficeModel model];
 
     self.tabBarController = [[[ApplicationTabBarController alloc] initWithAppDelegate:self] autorelease];
     

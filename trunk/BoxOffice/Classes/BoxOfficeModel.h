@@ -17,6 +17,8 @@
 @property (retain) PosterCache* posterCache;
 @property (retain) AddressLocationCache* addressLocationCache;
 
++ (BoxOfficeModel*) model;
+
 - (id) init;
 - (void) dealloc;
 
