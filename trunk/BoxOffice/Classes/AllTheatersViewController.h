@@ -7,14 +7,27 @@
 //
 
 #import "BoxOfficeModel.h"
+#import "MultiDictionary.h"
 
 @class TheatersNavigationController;
 
 @interface AllTheatersViewController : UITableViewController {
     TheatersNavigationController* navigationController;
+    UISegmentedControl* segmentedControl;
+    
+    NSArray* sortedTheaters;
+    NSMutableArray* sectionTitles;
+    MultiDictionary* sectionTitleToContentsMap;
+    
+    NSArray* alphabeticSectionTitles;
 }
 
 @property (assign) TheatersNavigationController* navigationController;
+@property (retain) UISegmentedControl* segmentedControl;
+@property (retain) NSArray* sortedTheaters;
+@property (retain) NSMutableArray* sectionTitles;
+@property (retain) MultiDictionary* sectionTitleToContentsMap;
+@property (retain) NSArray* alphabeticSectionTitles;
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
 - (void) dealloc;

@@ -23,4 +23,6 @@
 
 - (NSDictionary*) dictionary;
 
+- (double) distanceTo:(Location*) to;
+
 @end

@@ -165,4 +165,14 @@
     return [self.posterCache posterForMovie:movie];
 }
 
+- (Location*) locationForAddress:(NSString*) address
+{
+    return [self.addressLocationCache locationForAddress:address];
+}
+
+- (Location*) locationForZipcode:(NSString*) zipcode
+{
+    return [self.addressLocationCache locationForZipcode:zipcode];
+}
+
 @end

@@ -84,11 +84,14 @@
         for (NSInteger i = 1; i < [rows count] - 1; i++)
         {   
             NSArray* columns = [[rows objectAtIndex:i] componentsSeparatedByString:@"\t"];
-            Movie* movie = [Movie movieWithTitle:[columns objectAtIndex:1]
-                                            link:[columns objectAtIndex:2]
-                                        synopsis:[columns objectAtIndex:8]
-                                          rating:[columns objectAtIndex:3]];
-            [movies addObject:movie];
+            if ([columns count] >= 9)
+            {
+                Movie* movie = [Movie movieWithTitle:[columns objectAtIndex:1]
+                                                link:[columns objectAtIndex:2]
+                                            synopsis:[columns objectAtIndex:8]
+                                              rating:[columns objectAtIndex:3]];
+                [movies addObject:movie];
+            }
         }
         
         [self performSelectorOnMainThread:@selector(setMovies:) withObject:movies waitUntilDone:NO];

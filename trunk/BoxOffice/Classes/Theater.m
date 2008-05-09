@@ -44,8 +44,8 @@ movieToShowtimesMap:(NSDictionary*) aDictionary
 {
     if (self = [self init])
     {
-        self.name = aName;
-        self.address = anAddress;
+        self.name = [aName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.address = [anAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.movieToShowtimesMap = aDictionary;
     }
     

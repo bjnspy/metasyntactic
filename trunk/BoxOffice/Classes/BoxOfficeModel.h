@@ -33,5 +33,7 @@
 - (void) setTheaters:(NSArray*) theaters;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
+- (Location*) locationForAddress:(NSString*) address;
+- (Location*) locationForZipcode:(NSString*) zipcode;
 
 @end

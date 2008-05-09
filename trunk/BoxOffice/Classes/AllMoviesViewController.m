@@ -34,7 +34,6 @@
 {
     if (self = [super initWithStyle:UITableViewStylePlain])
     {
-        self.title = @"All Movies";
         self.navigationController = controller;
         self.sortedMovies = [NSArray array];
                 

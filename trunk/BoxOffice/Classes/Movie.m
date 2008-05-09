@@ -46,10 +46,10 @@
             synopsis:(NSString*) aSynopsis
               rating:(NSString*) aRating
 {
-    self.title = aTitle;
-    self.link = aLink;
-    self.synopsis = aSynopsis;
-    self.rating = aRating;
+    self.title    = [aTitle    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.link     = [aLink     stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.synopsis = [aSynopsis stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    self.rating   = [aRating   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 }
 
 - (id) initWithTitle:(NSString*) aTitle
