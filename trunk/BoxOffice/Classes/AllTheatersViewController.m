@@ -183,6 +183,11 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
         
+        if (distance != FLT_MAX && self.model.searchRadius < 50 && distance < self.model.searchRadius)
+        {
+            continue;
+        }
+        
         if (distance <= 0.5) {
             [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
         } else if (distance <= 1) {
