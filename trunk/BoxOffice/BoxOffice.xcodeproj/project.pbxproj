@@ -51,7 +51,6 @@
 		74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
-		746A020B0DC8197A0079D89B /* ZipCodeFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */; };
 		746A02100DC819F00079D89B /* BoxOfficeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
 		747204030DCDAB8500C11362 /* BoxOffice.db in Resources */ = {isa = PBXBuildFile; fileRef = 747204020DCDAB8500C11362 /* BoxOffice.db */; };
@@ -139,8 +138,6 @@
 		746A01420DC819270079D89B /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		746A02030DC819430079D89B /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
 		746A02040DC819430079D89B /* Theater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Theater.m; sourceTree = "<group>"; };
-		746A02090DC8197A0079D89B /* ZipCodeFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipCodeFormatter.h; sourceTree = "<group>"; };
-		746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipCodeFormatter.m; sourceTree = "<group>"; };
 		746A020E0DC819F00079D89B /* BoxOfficeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeModel.h; sourceTree = "<group>"; };
 		746A020F0DC819F00079D89B /* BoxOfficeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeModel.m; sourceTree = "<group>"; };
 		746A02140DC81A1A0079D89B /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
@@ -217,8 +214,6 @@
 				74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */,
 				74088C6A0DCD17D100954696 /* PosterDownloader.h */,
 				74088C6B0DCD17D100954696 /* PosterDownloader.m */,
-				746A02090DC8197A0079D89B /* ZipCodeFormatter.h */,
-				746A020A0DC8197A0079D89B /* ZipCodeFormatter.m */,
 				74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */,
 				74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */,
 				74EC04F30DD2B704006953A4 /* Location.h */,
@@ -441,7 +436,6 @@
 				1D3623260D0F684500981E51 /* BoxOfficeAppDelegate.m in Sources */,
 				746A01430DC819270079D89B /* Movie.m in Sources */,
 				746A02050DC819430079D89B /* Theater.m in Sources */,
-				746A020B0DC8197A0079D89B /* ZipCodeFormatter.m in Sources */,
 				746A02100DC819F00079D89B /* BoxOfficeModel.m in Sources */,
 				746A02160DC81A1A0079D89B /* Application.m in Sources */,
 				74447C340DC83C2000CC146C /* MoviesNavigationController.m in Sources */,
