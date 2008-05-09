@@ -25,27 +25,25 @@
     [super dealloc];
 }
 
-- (NSMutableDictionary*) addressLocationMap
-{
-    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"addressLocationMap"];
-    if (dict == nil)
-    {
-        dict = [NSDictionary dictionary];
-    }
-    
-    return [NSMutableDictionary dictionaryWithDictionary:dict];
-}
-
-- (void) setAddressLocationMap:(NSDictionary*) dictionary
-{
-    [[NSUserDefaults standardUserDefaults] setObject:dictionary forKey:@"addressLocationMap"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-}
-
 - (void) updateAddresses:(NSArray*) addresses
 {
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:addresses]];
+}
+
+- (Location*) locationFromLatitudeElement:(XmlElement*) latElement 
+                       longitutudeElement:(XmlElement*) lngElement
+{
+    NSString* lat = [latElement text];
+    NSString* lng = [lngElement text];
+    
+    if ([Utilities isNilOrEmpty:lat] ||
+        [Utilities isNilOrEmpty:lng])
+    {
+        return nil;
+    }
+    
+    return [Location locationWithLatitude:[lat doubleValue] longitude:[lng doubleValue]];    
 }
 
 - (Location*) downloadAddressLocationFromWebService:(NSString*) address
@@ -143,20 +141,52 @@
             XmlElement* latElement = [child element:@"lat"];
             XmlElement* lngElement = [child element:@"long"];
             
-            NSString* lat = [latElement text];
-            NSString* lng = [lngElement text];
-            
-            if ([Utilities isNilOrEmpty:lat] ||
-                [Utilities isNilOrEmpty:lng])
+            Location* location = [self locationFromLatitudeElement:latElement longitutudeElement:lngElement];
+            if (location != nil)
             {
-                continue;
+                return location;
             }
-            
-            return [Location locationWithLatitude:[lat doubleValue] longitude:[lng doubleValue]];
         }
     }
 
     return nil;
+}
+
+- (NSMutableDictionary*) addressLocationMap
+{
+    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"addressLocationMap"];
+    if (dict == nil)
+    {
+        dict = [NSDictionary dictionary];
+    }
+    
+    return [NSMutableDictionary dictionaryWithDictionary:dict];
+}
+
+- (Location*) locationForAddress:(NSString*) address
+{
+    NSDictionary* dict = [[self addressLocationMap] valueForKey:address];
+    if (dict == nil)
+    {
+        return nil;
+    }
+    
+    return [Location locationWithDictionary:dict];
+}
+
+- (void) setLocation:(Location*) location
+          forAddress:(NSString*) address
+{
+    if (location == nil || [Utilities isNilOrEmpty:address])
+    {
+        return;
+    }
+    
+    NSMutableDictionary* map = [self addressLocationMap];
+    [map setValue:[location dictionary] forKey:address];
+    
+    [[NSUserDefaults standardUserDefaults] setValue:map forKey:@"addressLocationMap"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void) downloadAddressLocation:(NSString*) address
@@ -168,12 +198,7 @@
     }
     
     Location* location = [self downloadAddressLocationFromWebService:address];
-    if (location != nil)
-    {    
-        NSMutableDictionary* map = [self addressLocationMap];
-        [map setValue:[location dictionary] forKey:address];
-        [self setAddressLocationMap:map];
-    }
+    [self setLocation:location forAddress:address];
 }
 
 - (void) downloadAddressLocations:(NSArray*) addresses
@@ -197,17 +222,6 @@
     [autoreleasePool release];
 }
 
-- (Location*) locationForAddress:(NSString*) address
-{
-    NSDictionary* dict = [[self addressLocationMap] valueForKey:address];
-    if (dict == nil)
-    {
-        return nil;
-    }
-    
-    return [Location locationWithDictionary:dict];
-}
-
 - (Location*) locationForZipcode:(NSString*) zipcode
 {
     return [self locationForAddress:zipcode];
@@ -227,7 +241,34 @@
     NSData* zipcodeData = [NSData dataWithContentsOfURL:url];
     if (zipcodeData != nil)
     {
-        //return [matchedIdElement text];
+        /*
+         <?xml version="1.0" encoding="UTF-8" standalone="no"?>
+         <geonames>
+            <totalResultsCount>9</totalResultsCount>
+            <code>
+                <postalcode>20816</postalcode>
+                <name>Bethesda</name>
+                <countryCode>US</countryCode>
+                <lat>38.955907</lat>
+                <lng>-77.1165</lng>
+                <adminCode1>MD</adminCode1>
+                <adminName1>Maryland</adminName1>
+                <adminCode2>031</adminCode2>
+                <adminName2>Montgomery</adminName2>
+                <adminCode3/>
+                <adminName3/>
+            </code>
+         </geonames>
+         */
+        
+        XmlElement* geonamesElement = [XmlParser parse:zipcodeData];
+        XmlElement* codeElement = [geonamesElement element:@"code"];
+        
+        XmlElement* latElement = [codeElement element:@"lat"];
+        XmlElement* lngElement = [codeElement element:@"lng"];
+        
+        Location* location = [self locationFromLatitudeElement:latElement longitutudeElement:lngElement];
+        [self setLocation:location forAddress:zipcode];
     }
 }
 
@@ -251,6 +292,5 @@
     [self performSelectorInBackground:@selector(updateZipcodeBackgroundEntryPoint:)
                            withObject:zipcode];    
 }
-
 
 @end
