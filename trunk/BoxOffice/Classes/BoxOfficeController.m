@@ -15,6 +15,7 @@
 #import "XmlElement.h"
 #import "XmlSerializer.h"
 #import "Application.h"
+#import "Utilities.h"
 
 @implementation BoxOfficeController
 
@@ -203,8 +204,13 @@
 {   
     NSLog(@"Looking up theaters");
     
-    NSString* zipCode = @"10009";
-    NSString* radius = @"5";
+    if ([Utilities isNilOrEmpty:self.model.zipcode])
+    {
+        return;
+    }
+    
+    NSString* zipCode = self.model.zipcode;
+    NSString* radius = [NSString stringWithFormat:@"%d", self.model.searchRadius];
     
 	NSString* post =
     [XmlSerializer serializeDocument: 
