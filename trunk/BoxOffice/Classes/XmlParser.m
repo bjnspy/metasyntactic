@@ -18,7 +18,6 @@
 {
     if (self = [super init])
     {
-        //self.parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
         NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
         parser.delegate = self;
         
