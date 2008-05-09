@@ -124,15 +124,57 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     }    
 }
 
+- (NSDictionary*) theaterDistanceMap
+{
+    Location* userLocation = [self.model locationForZipcode:[self.model zipcode]];
+    
+    NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
+    for (Theater* theater in self.model.theaters)
+    {
+        double d;
+        if (userLocation != nil)
+        {
+            d = [userLocation distanceTo:[self.model locationForAddress:theater.address]];
+        }
+        else
+        {
+            d = FLT_MAX;
+        }
+        
+        NSNumber* value = [NSNumber numberWithDouble:d];
+        NSString* key = theater.address;
+        [theaterDistanceMap setObject:value forKey:key];
+    }    
+    
+    return theaterDistanceMap;
+}
+
+- (BOOL) tooFarAway:(double) distance
+{
+    if (distance != FLT_MAX && self.model.searchRadius < 50 && distance > self.model.searchRadius)
+    {
+        return true;
+    }
+    
+    return false;
+}
+
 - (void) sortTheatersByName
 {
-    // sort by theater name
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:sortByName context:nil];
     
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
     
+    NSDictionary* theaterDistanceMap = [self theaterDistanceMap];
     for (Theater* theater in self.sortedTheaters)
     {
+        double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
+        
+        if ([self tooFarAway:distance])
+        {
+            continue;
+        }
+        
         unichar firstChar = [theater.name characterAtIndex:0];
         firstChar = toupper(firstChar);
         
@@ -150,17 +192,9 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     [self removeUnusedSectionTitles];
 }
 
-- (void) sortTheatersByDistance:(Location*) userLocation
+- (void) sortTheatersByDistance
 {
-    NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
-    for (Theater* theater in self.model.theaters)
-    {
-        double d = [userLocation distanceTo:[self.model locationForAddress:theater.address]];
-        NSNumber* value = [NSNumber numberWithDouble:d];
-        NSString* key = theater.address;
-        [theaterDistanceMap setObject:value forKey:key];
-    }
-    
+    NSDictionary* theaterDistanceMap = [self theaterDistanceMap];    
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:sortByDistance
                                                                 context:theaterDistanceMap];
     
@@ -183,7 +217,7 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
         
-        if (distance != FLT_MAX && self.model.searchRadius < 50 && distance < self.model.searchRadius)
+        if ([self tooFarAway:distance])
         {
             continue;
         }
@@ -225,23 +259,7 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     }
     else
     {
-        // sort by distance
-        Location* userLocation = [self.model locationForZipcode:[self.model zipcode]];
-        
-        if (userLocation == nil)
-        {
-            // can't sort by distance if we don't know where the user is.  Just sort by name
-            // and bucketize everything into the 'unknown distance' range.
-            self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:sortByName context:nil];
-            
-            NSString* sectionTitle = @"Unknown Distance";
-            self.sectionTitles = [NSArray arrayWithObject:sectionTitle];
-            [self.sectionTitleToContentsMap addObjects:self.sortedTheaters forKey:sectionTitle];
-        }
-        else
-        {
-            [self sortTheatersByDistance:userLocation];
-        }
+        [self sortTheatersByDistance];
     }
     
     if ([self.sectionTitles count] == 0)
