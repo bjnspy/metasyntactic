@@ -91,9 +91,12 @@
     NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", coordinates.latitude, coordinates.longitude];
     NSURL* url = [NSURL URLWithString:urlString];
     
+    NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] initWithURL:url] autorelease];
+    //[request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
+    
     NSError* httpError = nil;
     NSURLResponse* response = nil;
-    NSData* data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
+    NSData* data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response
                                                      error:&httpError];
     

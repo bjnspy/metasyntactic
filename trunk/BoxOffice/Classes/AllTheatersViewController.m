@@ -165,16 +165,17 @@ NSInteger sortByDistance(id t1, id t2, void *context)
                                                                 context:theaterDistanceMap];
     
     NSString* reallyCloseBy = @"Realllllly close by";
-    NSString* oneToTwoMiles = @"> 1 mile away";
-    NSString* twoToFileMiles = @"> 2 miles away";
-    NSString* fiveToTenMiles = @"> 5 miles away";
-    NSString* tenToFifteenMiles = @"> 10 miles away";
-    NSString* fifteenToTwentyFiveMiles = @"> 15 miles away";
-    NSString* twentyFiveToFiftyMiles = @"> 25 miles away";
+    NSString* oneHalfToOneMile = @"< 1 mile away";
+    NSString* oneToTwoMiles = @"< 2 miles away";
+    NSString* twoToFileMiles = @"< 5 miles away";
+    NSString* fiveToTenMiles = @"< 10 miles away";
+    NSString* tenToFifteenMiles = @"< 15 miles away";
+    NSString* fifteenToTwentyFiveMiles = @"< 25 miles away";
+    NSString* twentyFiveToFiftyMiles = @"< 50 miles away";
     NSString* wayFarAway = @"Waaaaaay too far away";
     NSString* unknownDistance = @"Unknown Distance";
     
-    self.sectionTitles = [NSMutableArray arrayWithObjects:reallyCloseBy, oneToTwoMiles, twoToFileMiles,
+    self.sectionTitles = [NSMutableArray arrayWithObjects:reallyCloseBy, oneHalfToOneMile, oneToTwoMiles, twoToFileMiles,
                                                           fiveToTenMiles, tenToFifteenMiles, fifteenToTwentyFiveMiles,
                                                           twentyFiveToFiftyMiles, wayFarAway, unknownDistance, nil];
     
@@ -182,8 +183,10 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
         
-        if (distance <= 1) {
+        if (distance <= 0.5) {
             [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
+        } else if (distance <= 1) {
+            [self.sectionTitleToContentsMap addObject:theater forKey:oneHalfToOneMile];
         } else if (distance <= 2) {
             [self.sectionTitleToContentsMap addObject:theater forKey:oneToTwoMiles];
         } else if (distance <= 5) {

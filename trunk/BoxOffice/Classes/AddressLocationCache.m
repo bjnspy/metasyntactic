@@ -75,6 +75,7 @@
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:[NSURL URLWithString:@"http://rpc.geocoder.us/service/soap/"]];
     [request setHTTPMethod:@"POST"];
+    //[request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
     
     [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"http://rpc.geocoder.us/Geo/Coder/US#geocode" forHTTPHeaderField:@"Soapaction"];

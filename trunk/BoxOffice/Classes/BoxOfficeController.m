@@ -237,6 +237,7 @@
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:[NSURL URLWithString:@"http://www.ignyte.com/webservices/ignyte.whatsshowing.webservice/moviefunctions.asmx"]];
     [request setHTTPMethod:@"POST"];
+//    [request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
     
     [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"http://www.ignyte.com/whatsshowing/GetTheatersAndMovies" forHTTPHeaderField:@"Soapaction"];

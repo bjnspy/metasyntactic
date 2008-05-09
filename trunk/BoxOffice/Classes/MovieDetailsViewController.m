@@ -120,10 +120,33 @@
         imageView.frame = CGRectMake(5, 5, image.size.width, image.size.height);
         [cell.contentView addSubview:imageView];
         
-        CGRect webRect = CGRectMake(5 + image.size.width + 5, 5, 190, image.size.height);
+        int webX = 5 + image.size.width + 5;
+        int webWidth = 295 - webX;
+        CGRect webRect = CGRectMake(webX, 5, webWidth, image.size.height);
         UIWebView* webView = [[[UIWebView alloc] initWithFrame:webRect] autorelease];
-        [webView loadHTMLString:movie.synopsis baseURL:[NSURL URLWithString:@""]];
+        
+        
+        
+        NSString* content =
+            [NSString stringWithFormat:
+                @"<html>"
+                    "<head>"
+                        "<style>"
+                            "body {"
+                                "  margin-top: -2;"
+                                "  margin-bottom: 0;"
+                                "  margin-right: 3;"
+                                "  margin-left: 3;"
+                                "  font-family: \"helvetica\";"
+                                "  font-size: 14;"
+                            "}"
+                        "</style>"
+                    "</head>"
+                    "<body>%@</body>"
+                "</html>", movie.synopsis];
+        [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
         [cell.contentView addSubview:webView];
+        
     }
     else
     {
