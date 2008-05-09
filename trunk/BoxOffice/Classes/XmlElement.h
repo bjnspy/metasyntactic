@@ -15,8 +15,8 @@
 }
 
 @property (copy) NSString* name;
-@property (assign) NSDictionary* attributes;
-@property (assign) NSArray* children;
+@property (retain) NSDictionary* attributes;
+@property (retain) NSArray* children;
 @property (copy) NSString* text;
 
 + (id) elementWithName:(NSString*) name;

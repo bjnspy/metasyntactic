@@ -29,6 +29,8 @@
 - (void) dealloc;
 
 - (BoxOfficeModel*) model;
+- (BoxOfficeController*) controller;
+
 - (void) refresh;
 
 @end

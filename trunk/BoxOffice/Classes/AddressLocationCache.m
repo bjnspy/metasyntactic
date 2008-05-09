@@ -46,29 +46,33 @@
     return [Location locationWithLatitude:[lat doubleValue] longitude:[lng doubleValue]];    
 }
 
-- (Location*) downloadAddressLocationFromWebService:(NSString*) address
+- (Location*) downloadAddressLocationFromGeocoderWebService:(NSString*) address
 {
 	NSString* post =
     [XmlSerializer serializeDocument: 
      [XmlDocument documentWithRoot:
-      [XmlElement elementWithName:@"SOAP-ENV:Envelope" 
-                       attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                    @"http://www.w3.org/2001/XMLSchema", @"xmlns:xsd",
-                                    @"http://www.w3.org/2001/XMLSchema-instance", @"xmlns:xsi",
-                                    @"http://schemas.xmlsoap.org/soap/encoding/", @"xmlns:SOAP-ENC",
-                                    @"http://schemas.xmlsoap.org/soap/encoding/", @"SOAP-ENV:encodingStyle",
-                                    @"http://schemas.xmlsoap.org/soap/envelope/", @"xmlns:SOAP-ENV", nil]
-                         children: [NSArray arrayWithObject:
-                                    [XmlElement elementWithName:@"SOAP-ENV:Body" 
-                                                       children: [NSArray arrayWithObject:
-                                                                  [XmlElement elementWithName:@"m:geocode"
-                                                                                   attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                                @"http://rpc.geocoder.us/Geo/Coder/US/", @"xmlns:m", nil]
-                                                                                     children: [NSArray arrayWithObjects:
-                                                                                                [XmlElement elementWithName:@"location"
-                                                                                                                 attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                                                              @"xsd:string", @"xsi:type", nil]
-                                                                                                                       text:address], nil]]]]]]]];
+      [XmlElement
+       elementWithName:@"SOAP-ENV:Envelope" 
+       attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                    @"http://www.w3.org/2001/XMLSchema", @"xmlns:xsd",
+                    @"http://www.w3.org/2001/XMLSchema-instance", @"xmlns:xsi",
+                    @"http://schemas.xmlsoap.org/soap/encoding/", @"xmlns:SOAP-ENC",
+                    @"http://schemas.xmlsoap.org/soap/encoding/", @"SOAP-ENV:encodingStyle",
+                    @"http://schemas.xmlsoap.org/soap/envelope/", @"xmlns:SOAP-ENV", nil]
+       children: [NSArray arrayWithObject:
+                  [XmlElement
+                   elementWithName:@"SOAP-ENV:Body" 
+                   children: [NSArray arrayWithObject:
+                              [XmlElement
+                               elementWithName:@"m:geocode"
+                               attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                            @"http://rpc.geocoder.us/Geo/Coder/US/", @"xmlns:m", nil]
+                               children: [NSArray arrayWithObjects:
+                                          [XmlElement
+                                           elementWithName:@"location"
+                                           attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                        @"xsd:string", @"xsi:type", nil]
+                                           text:address], nil]]]]]]]];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
@@ -153,6 +157,62 @@
     return nil;
 }
 
+- (Location*) processYahooResult:(NSData*) addressData
+{
+    if (addressData != nil)
+    {
+        XmlElement* resultSetElement = [XmlParser parse:addressData];
+        
+        for (XmlElement* child in resultSetElement.children)
+        {
+            XmlElement* latElement = [child element:@"Latitude"];
+            XmlElement* lngElement = [child element:@"Longitude"];
+            
+            Location* location = [self locationFromLatitudeElement:latElement longitutudeElement:lngElement];
+            if (location != nil)
+            {
+                return location;
+            }   
+        }
+    }
+    
+    return nil;    
+}
+
+- (Location*) downloadAddressLocationFromYahooWebService:(NSString*) address
+{
+    NSString* escapedAddress = [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* yahooId = @"TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_";
+    
+    NSString* urlString = [NSString stringWithFormat:@"http://local.yahooapis.com/MapsService/V1/geocode?appid=%@&location=%@", yahooId, escapedAddress];
+    NSURL* url = [NSURL URLWithString:urlString];
+    
+    NSData* addressData = [NSData dataWithContentsOfURL:url];
+    return [self processYahooResult:addressData];
+}
+
+- (Location*) downloadAddressLocationFromWebService:(NSString*) address
+{
+    if ([Utilities isNilOrEmpty:address])
+    {
+        return nil;
+    }
+    
+    Location* location = [self downloadAddressLocationFromYahooWebService:address];
+    if (location != nil)
+    {
+        return location;
+    }
+    
+    location = [self downloadAddressLocationFromGeocoderWebService:address];
+    if (location != nil)
+    {
+        return location;
+    }
+    
+    return nil;
+}
+
 - (NSMutableDictionary*) addressLocationMap
 {
     NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"addressLocationMap"];
@@ -228,13 +288,19 @@
     return [self locationForAddress:zipcode];
 }
 
-- (void) downloadZipcodeLocationFromWebService:(NSString*) zipcode
+- (Location*) downloadZipcodeLocationFromYahooWebService:(NSString*) zipcode
 {
-    if ([Utilities isNilOrEmpty:zipcode])
-    {
-        return;
-    }
+    NSString* yahooId = @"TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_";
     
+    NSString* urlString = [NSString stringWithFormat:@"http://local.yahooapis.com/MapsService/V1/geocode?appid=%@&zip=%@", yahooId, zipcode];
+    NSURL* url = [NSURL URLWithString:urlString];
+    
+    NSData* addressData = [NSData dataWithContentsOfURL:url];
+    return [self processYahooResult:addressData];
+}
+
+- (Location*) downloadZipcodeLocationFromGeonamesWebService:(NSString*) zipcode
+{
     NSString* escapedZipcode = [zipcode stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/postalCodeSearch?postalcode=%@&maxRows=1", escapedZipcode];
     NSURL* url = [NSURL URLWithString:urlString];
@@ -268,9 +334,26 @@
         XmlElement* latElement = [codeElement element:@"lat"];
         XmlElement* lngElement = [codeElement element:@"lng"];
         
-        Location* location = [self locationFromLatitudeElement:latElement longitutudeElement:lngElement];
-        [self setLocation:location forAddress:zipcode];
+        return [self locationFromLatitudeElement:latElement longitutudeElement:lngElement];
     }
+    
+    return nil;
+}
+
+- (void) downloadZipcodeLocationFromWebService:(NSString*) zipcode
+{
+    if ([Utilities isNilOrEmpty:zipcode])
+    {
+        return;
+    }
+    
+    Location* location = [self downloadZipcodeLocationFromYahooWebService:zipcode];
+    if (location == nil)
+    {
+        location = [self downloadZipcodeLocationFromGeonamesWebService:zipcode];
+    }
+    
+    [self setLocation:location forAddress:zipcode];
 }
 
 - (void) updateZipcodeBackgroundEntryPoint:(NSString*) zipcode

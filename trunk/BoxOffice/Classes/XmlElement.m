@@ -16,7 +16,6 @@
 @synthesize children;
 @synthesize text;
 
-
 + (id) elementWithName:(NSString*) name_
 {
 	return [XmlElement elementWithName:name_ attributes:[NSDictionary dictionary] children:[NSArray array] text:[NSString string]];

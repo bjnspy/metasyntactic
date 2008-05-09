@@ -80,10 +80,10 @@
     [self.stringBufferStack removeLastObject];
     [self.attributesStack removeLastObject];
     
-    XmlElement* element = [[[XmlElement alloc] initWithName:elementName
-                                                 attributes:attributes
-                                                   children:children
-                                                       text:text] autorelease];
+    XmlElement* element = [XmlElement elementWithName:elementName
+                                           attributes:attributes
+                                             children:children
+                                                 text:text];
     
     [[self.elementsStack lastObject] addObject:element];
 }

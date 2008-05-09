@@ -48,6 +48,11 @@
     return [self.appDelegate model];
 }
 
+- (BoxOfficeController*) controller
+{
+    return [self.appDelegate controller];
+}
+
 - (void) refresh
 {
     [self.moviesNavigationController refresh];

@@ -215,35 +215,40 @@
 	NSString* post =
     [XmlSerializer serializeDocument: 
      [XmlDocument documentWithRoot:
-      [XmlElement elementWithName:@"SOAP-ENV:Envelope" 
-                       attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                    @"http://www.w3.org/2001/XMLSchema", @"xmlns:xsd",
-                                    @"http://www.w3.org/2001/XMLSchema-instance", @"xmlns:xsi",
-                                    @"http://schemas.xmlsoap.org/soap/encoding/", @"xmlns:SOAP-ENC",
-                                    @"http://schemas.xmlsoap.org/soap/encoding/", @"SOAP-ENV:encodingStyle",
-                                    @"http://schemas.xmlsoap.org/soap/envelope/", @"xmlns:SOAP-ENV", nil]
-                         children: [NSArray arrayWithObject:
-                                    [XmlElement elementWithName:@"SOAP-ENV:Body" 
-                                                       children: [NSArray arrayWithObject:
-                                                                  [XmlElement elementWithName:@"GetTheatersAndMovies"
-                                                                                   attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                                @"http://www.ignyte.com/whatsshowing", @"xmlns", nil]
-                                                                                     children: [NSArray arrayWithObjects:
-                                                                                                [XmlElement elementWithName:@"zipCode"
-                                                                                                                 attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                                                              @"xsd:string", @"xsi:type", nil]
-                                                                                                                       text:zipCode],
-                                                                                                [XmlElement elementWithName:@"radius"
-                                                                                                                 attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                                                                                              @"xsd:int", @"xsi:type", nil]
-                                                                                                                       text:radius], nil]]]]]]]];
+      [XmlElement
+       elementWithName:@"SOAP-ENV:Envelope" 
+       attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                    @"http://www.w3.org/2001/XMLSchema", @"xmlns:xsd",
+                    @"http://www.w3.org/2001/XMLSchema-instance", @"xmlns:xsi",
+                    @"http://schemas.xmlsoap.org/soap/encoding/", @"xmlns:SOAP-ENC",
+                    @"http://schemas.xmlsoap.org/soap/encoding/", @"SOAP-ENV:encodingStyle",
+                    @"http://schemas.xmlsoap.org/soap/envelope/", @"xmlns:SOAP-ENV", nil]
+       children: [NSArray arrayWithObject:
+                  [XmlElement
+                   elementWithName:@"SOAP-ENV:Body" 
+                   children: [NSArray arrayWithObject:
+                              [XmlElement
+                               elementWithName:@"GetTheatersAndMovies"
+                               attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                            @"http://www.ignyte.com/whatsshowing", @"xmlns", nil]
+                               children: [NSArray arrayWithObjects:
+                                          [XmlElement
+                                           elementWithName:@"zipCode"
+                                           attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                        @"xsd:string", @"xsi:type", nil]
+                                           text:zipCode],
+                                          [XmlElement
+                                           elementWithName:@"radius"
+                                           attributes: [NSDictionary dictionaryWithObjectsAndKeys:
+                                                        @"xsd:int", @"xsi:type", nil]
+                                           text:radius], nil]]]]]]]];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:[NSURL URLWithString:@"http://www.ignyte.com/webservices/ignyte.whatsshowing.webservice/moviefunctions.asmx"]];
     [request setHTTPMethod:@"POST"];
-//    [request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
+    //[request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
     
     [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"http://www.ignyte.com/whatsshowing/GetTheatersAndMovies" forHTTPHeaderField:@"Soapaction"];
@@ -285,6 +290,18 @@
         [autoreleasePool release];
     }
     [self.theaterLookupLock unlock];
+}
+
+- (void) setZipcode:(NSString*) zipcode
+{
+    [self.model setZipcode:zipcode];
+    [self spawnTheaterLookupThread];
+}
+
+- (void) setSearchRadius:(NSInteger) radius
+{
+    [self.model setSearchRadius:radius];
+    [self spawnTheaterLookupThread];
 }
 
 @end

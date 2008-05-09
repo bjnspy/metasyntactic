@@ -8,6 +8,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import "BoxOfficeController.h"
 #import "BoxOfficeModel.h"
 #import "ActivityIndicator.h"
 
@@ -30,6 +31,7 @@
 
 - (void) refresh;
 - (BoxOfficeModel*) model;
+- (BoxOfficeController*) controller;
 
 - (void) locationManager:(CLLocationManager*) manager
      didUpdateToLocation:(CLLocation*) newLocation

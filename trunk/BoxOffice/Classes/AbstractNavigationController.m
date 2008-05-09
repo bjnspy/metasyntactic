@@ -34,4 +34,9 @@
     return [self.tabBarController model];
 }
 
+- (BoxOfficeController*) controller
+{
+    return [self.tabBarController controller];
+}
+
 @end

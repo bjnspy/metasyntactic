@@ -136,6 +136,11 @@
     return [self.navigationController model];
 }
 
+- (BoxOfficeController*) controller
+{
+    return [self.navigationController controller];
+}
+
 - (void) refresh
 {
     [self.tableView reloadData];
@@ -233,13 +238,15 @@
 
 - (void) onZipcodeChanged:(NSString*) zipcode
 {
-    [self.model setZipcode:zipcode];
+    [self.controller setZipcode:zipcode];
+//    [self.model setZipcode:zipcode];
     [self.tableView reloadData];
 }
 
 - (void) onSearchRadiusChanged:(NSString*) radius
 {
-    [self.model setSearchRadius:[radius intValue]];
+    [self.controller setSearchRadius:[radius intValue]];
+//    [self.model setSearchRadius:[radius intValue]];
     [self.tableView reloadData];
 }
 

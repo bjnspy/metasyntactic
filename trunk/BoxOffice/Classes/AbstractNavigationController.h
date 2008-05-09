@@ -6,6 +6,7 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+#import "BoxOfficeController.h"
 #import "BoxOfficeModel.h"
 
 @class ApplicationTabBarController;
@@ -20,5 +21,6 @@
 - (void) dealloc;
 
 - (BoxOfficeModel*) model;
+- (BoxOfficeController*) controller;
 
 @end
