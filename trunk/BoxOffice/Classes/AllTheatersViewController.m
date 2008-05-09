@@ -238,6 +238,11 @@ NSInteger sortByDistance(id t1, id t2, void *context)
             [self sortTheatersByDistance:userLocation];
         }
     }
+    
+    if ([self.sectionTitles count] == 0)
+    {
+        self.sectionTitles = [NSArray arrayWithObject:@"No Data Found"];   
+    }
 }
 
 - (void) refresh
@@ -331,6 +336,14 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     }
     
     return 0;
+}
+
+- (void) viewWillAppear:(BOOL) animated
+{
+    if ([self sortingByDistance])
+    {
+        [self refresh];
+    }
 }
 
 @end

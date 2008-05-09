@@ -275,7 +275,7 @@
             [theaters addObject:[self processTheaterElement:theaterElement]];
         }
         
-        [self setTheaters:theaters];
+        [self performSelectorOnMainThread:@selector(setTheaters:) withObject:theaters waitUntilDone:NO];
     }
 }
 
