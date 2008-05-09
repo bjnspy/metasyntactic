@@ -266,7 +266,6 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     [self.navigationController pushTheaterDetails:theater];
 }
 
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
 {
     return [self.sectionTitles count];
