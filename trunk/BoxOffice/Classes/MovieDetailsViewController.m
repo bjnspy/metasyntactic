@@ -11,6 +11,8 @@
 #import "Theater.h"
 #import "DifferenceEngine.h"
 
+#define SHOWTIMES_PER_ROW 6
+
 @implementation MovieDetailsViewController
 
 @synthesize navigationController;
@@ -33,6 +35,11 @@
         {
             for (NSString* movieName in theater.movieToShowtimesMap)
             {
+                if ([[theater.movieToShowtimesMap objectForKey:movieName] count] == 0)
+                {
+                    continue;
+                }
+                
                 if ([DifferenceEngine areSimilar:self.movie.title other:movieName])
                 {
                     [self.theatersArray addObject:theater];
@@ -42,8 +49,9 @@
             }
         }
         
-        self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
         self.title = self.movie.title;
+        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+        self.tableView.separatorColor = [UIColor whiteColor];
     }
     
     return self;
@@ -78,7 +86,16 @@
         return 1;
     }
     
-    return [[self.showtimesArray objectAtIndex:(section - 1)] count];
+    NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:(section - 1)] count];
+    NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
+    NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
+    if (remainder > 0)
+    {
+        rows++;
+    }
+    
+    return rows;
+    //return [[self.showtimesArray objectAtIndex:(section - 1)] count];
 }
 
 - (UIImage*) posterImage
@@ -102,7 +119,7 @@
         return [self posterImage].size.height + 10;
     }
     
-    return 42;
+    return 32;
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
@@ -124,8 +141,6 @@
         int webWidth = 295 - webX;
         CGRect webRect = CGRectMake(webX, 5, webWidth, image.size.height);
         UIWebView* webView = [[[UIWebView alloc] initWithFrame:webRect] autorelease];
-        
-        
         
         NSString* content =
             [NSString stringWithFormat:
@@ -150,7 +165,21 @@
     }
     else
     {
-        cell.text = [[self.showtimesArray objectAtIndex:(section - 1)] objectAtIndex:row];
+        NSInteger startIndex = row * SHOWTIMES_PER_ROW;
+        NSArray* showtimes = [self.showtimesArray objectAtIndex:(section - 1)];
+        NSString* result = [showtimes objectAtIndex:startIndex];
+        for (NSInteger i = startIndex + 1;
+             i < [showtimes count] && i < (startIndex + SHOWTIMES_PER_ROW);
+             i++)
+        {
+            result = [result stringByAppendingString:@", "];
+            result = [result stringByAppendingString:[showtimes objectAtIndex:i]];
+        }
+        
+        
+        cell.font = [UIFont boldSystemFontOfSize:11];
+        cell.text = result;
+        //cell.text = [[self.showtimesArray objectAtIndex:(section - 1)] objectAtIndex:row];
     }
     
     return cell;

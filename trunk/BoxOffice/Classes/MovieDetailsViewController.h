@@ -12,7 +12,6 @@
 @class MoviesNavigationController;
 
 @interface MovieDetailsViewController : UITableViewController {
-//UIViewController<UITableViewDelegate, UITableViewDataSource> {
     MoviesNavigationController* navigationController;
     Movie* movie;
     NSMutableArray* theatersArray;
