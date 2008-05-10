@@ -9,6 +9,7 @@
 #import "AllTheatersViewController.h"
 #import "TheatersNavigationController.h"
 #import "Theater.h"
+#import "Location.h"
 
 @implementation AllTheatersViewController
 
@@ -138,7 +139,7 @@ NSInteger sortByDistance(id t1, id t2, void *context)
         }
         else
         {
-            d = FLT_MAX;
+            d = UNKNOWN_DISTANCE;
         }
         
         NSNumber* value = [NSNumber numberWithDouble:d];
@@ -151,7 +152,7 @@ NSInteger sortByDistance(id t1, id t2, void *context)
 
 - (BOOL) tooFarAway:(double) distance
 {
-    if (distance != FLT_MAX && self.model.searchRadius < 50 && distance > self.model.searchRadius)
+    if (distance != UNKNOWN_DISTANCE && self.model.searchRadius < 50 && distance > self.model.searchRadius)
     {
         return true;
     }
@@ -238,7 +239,7 @@ NSInteger sortByDistance(id t1, id t2, void *context)
             [self.sectionTitleToContentsMap addObject:theater forKey:fifteenToTwentyFiveMiles];
         } else if (distance <= 50) {
             [self.sectionTitleToContentsMap addObject:theater forKey:twentyFiveToFiftyMiles];
-        } else if (distance < FLT_MAX) {
+        } else if (distance < UNKNOWN_DISTANCE) {
             [self.sectionTitleToContentsMap addObject:theater forKey:wayFarAway];
         } else {
             [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
@@ -309,13 +310,18 @@ NSInteger sortByDistance(id t1, id t2, void *context)
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
-                        cellForRowAtIndexPath:(NSIndexPath*) indexPath
-{
+                        cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
     
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    NSString* reuseIdentifier = @"AllTheatersTableViewCell";
+    
+    UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame reuseIdentifier:reuseIdentifier] autorelease];
+    }
+    
     cell.text = theater.name;
     
     return cell;

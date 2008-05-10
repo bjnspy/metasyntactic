@@ -23,28 +23,33 @@
 @synthesize movieLookupLock;
 @synthesize theaterLookupLock;
 
-- (void) spawnMovieLookupThread
-{
+- (void) dealloc {
+    self.appDelegate = nil;
+    self.movieLookupLock = nil;
+    self.theaterLookupLock = nil;
+    [super dealloc];
+}
+
+- (void) spawnMovieLookupThread {
     [self performSelectorInBackground:@selector(lookupMoviesBackgroundThreadEntryPoint:) withObject:nil];
 }
 
-- (void) spawnTheaterLookupThread
-{
+- (void) spawnTheaterLookupThread {
     [self performSelectorInBackground:@selector(lookupTheatersBackgroundThreadEntryPoint:) withObject:nil];
 }
 
-- (void) spawnBackgroundThreads
-{
-    NSLog(@"BoxOfficeController:spawnBackgroundThreads");
-    
-    [self spawnMovieLookupThread];
-    [self spawnTheaterLookupThread];
+- (void) spawnTicketLookupThread {
+    [self performSelectorInBackground:@selector(lookupTicketsBackgroundThreadEntryPoint:) withObject:nil];
 }
 
-- (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel
-{
-    if (self = [super init])
-    {
+- (void) spawnBackgroundThreads {
+    [self spawnMovieLookupThread];
+    [self spawnTheaterLookupThread];
+    [self spawnTicketLookupThread];
+}
+
+- (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel {
+    if (self = [super init]) {
         self.appDelegate = appDel;
         self.movieLookupLock = [[[NSLock alloc] init] autorelease];
         self.theaterLookupLock = [[[NSLock alloc] init] autorelease];
@@ -55,38 +60,28 @@
     return self;
 }
 
-- (void) dealloc
-{
-    self.appDelegate = nil;
-    self.movieLookupLock = nil;
-    self.theaterLookupLock = nil;
-    [super dealloc];
++ (BoxOfficeController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate {
+    return [[[BoxOfficeController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
-- (BoxOfficeModel*) model
-{
+- (BoxOfficeModel*) model {
     return self.appDelegate.model;
 }
 
-- (void) lookupMovies
-{
-    NSLog(@"BoxOfficeController:lookupMovies");
-    
+- (void) lookupMovies {
     NSURL* url = [NSURL URLWithString:@"http://i.rottentomatoes.com/syndication/tab/in_theaters.txt"];
     NSError* httpError = nil;
     NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&httpError];
     
-    if (httpError == nil && inTheaters != nil)
-    {    
+    if (httpError == nil && inTheaters != nil) {    
         NSArray* rows = [inTheaters componentsSeparatedByString:@"\n"];
         NSMutableArray* movies = [NSMutableArray array];
         
         // first row are the column headers.  last row is empty.  skip both.
-        for (NSInteger i = 1; i < [rows count] - 1; i++)
-        {   
+        for (NSInteger i = 1; i < [rows count] - 1; i++) {   
             NSArray* columns = [[rows objectAtIndex:i] componentsSeparatedByString:@"\t"];
-            if ([columns count] >= 9)
-            {
+            
+            if ([columns count] >= 9) {
                 Movie* movie = [Movie movieWithTitle:[columns objectAtIndex:1]
                                                 link:[columns objectAtIndex:2]
                                             synopsis:[columns objectAtIndex:8]
@@ -100,9 +95,7 @@
 }
 
 
-- (void) lookupMoviesBackgroundThreadEntryPoint:(id) anObject
-{	
-    NSLog(@"BoxOfficeController:lookupMoviesBackgroundThreadEntryPoint");
+- (void) lookupMoviesBackgroundThreadEntryPoint:(id) anObject {
     [self.movieLookupLock lock];
     {    
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -115,54 +108,41 @@
 }
 
 - (BOOL) areEqual:(NSArray*) movies1
-           movies:(NSArray*) movies2
-{
+           movies:(NSArray*) movies2 {
     NSSet* set1 = [NSSet setWithArray:movies1];
     NSSet* set2 = [NSSet setWithArray:movies2];
     
     return [set1 isEqualToSet:set2];
 }
 
-- (void) setMovies:(NSArray*) movies
-{
-    if (movies == nil)
-    {
+- (void) setMovies:(NSArray*) movies {
+    if (movies == nil || [movies count] == 0) {
         return;
     }
     
-    if ([self areEqual:movies movies:[self.model movies]])
-    {
+    if ([self areEqual:movies movies:[self.model movies]]) {
         return;
     }
     
     [self.model setMovies:movies];
-    [self.appDelegate.tabBarController.moviesNavigationController refresh];
+    [self.appDelegate.tabBarController refresh];
 }
 
-- (NSDictionary*) processMoviesElement:(XmlElement*) moviesElement
-{
+- (NSDictionary*) processMoviesElement:(XmlElement*) moviesElement {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     
-    for (XmlElement* movieElement in moviesElement.children)
-    {
+    for (XmlElement* movieElement in moviesElement.children) {
         XmlElement* nameElement = [movieElement element:@"Name"];
         XmlElement* showtimesElement = [movieElement element:@"ShowTimes"];
         
-        NSMutableArray* array = [NSMutableArray array];
-        
-        for (NSString* showtime in [showtimesElement.text componentsSeparatedByString:@" | "])
-        {
-            [array addObject:showtime];
-        }
-        
-        [dictionary setValue:array forKey:nameElement.text];
+        [dictionary setValue:[showtimesElement.text componentsSeparatedByString:@" | "]
+                      forKey:nameElement.text];
     }
     
     return dictionary;
 }
 
-- (Theater*) processTheaterElement:(XmlElement*) theaterElement
-{
+- (Theater*) processTheaterElement:(XmlElement*) theaterElement {
     XmlElement* nameElement = [theaterElement element:@"Name"];
     XmlElement* addressElement = [theaterElement element:@"Address"];
     XmlElement* moviesElement = [theaterElement element:@"Movies"];
@@ -176,8 +156,7 @@
 }
 
 - (BOOL) areEqual:(NSArray*) theaters1
-         theaters:(NSArray*) theaters2
-{
+         theaters:(NSArray*) theaters2 {
     NSSet* set1 = [NSSet setWithArray:theaters1];
     NSSet* set2 = [NSSet setWithArray:theaters2];
     
@@ -186,26 +165,20 @@
 
 - (void) setTheaters:(NSArray*) theaters
 {
-    if (theaters == nil)
-    {
+    if (theaters == nil) {
         return;
     }
     
-    if ([self areEqual:theaters theaters:[self.model theaters]])
-    {
+    if ([self areEqual:theaters theaters:[self.model theaters]]) {
         return;
     }
     
     [self.model setTheaters:theaters];
-    [self.appDelegate.tabBarController.theatersNavigationController refresh];
+    [self.appDelegate.tabBarController refresh];
 }
 
-- (void) lookupTheaters
-{   
-    NSLog(@"Looking up theaters");
-    
-    if ([Utilities isNilOrEmpty:self.model.zipcode])
-    {
+- (void) lookupTheaters {
+    if ([Utilities isNilOrEmpty:self.model.zipcode]) {
         return;
     }
     
@@ -248,7 +221,6 @@
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:[NSURL URLWithString:@"http://www.ignyte.com/webservices/ignyte.whatsshowing.webservice/moviefunctions.asmx"]];
     [request setHTTPMethod:@"POST"];
-    //[request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
     
     [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"http://www.ignyte.com/whatsshowing/GetTheatersAndMovies" forHTTPHeaderField:@"Soapaction"];
@@ -262,16 +234,15 @@
     [NSURLConnection sendSynchronousRequest:request
                           returningResponse:&response
                                       error:&error];
-    if (error == nil && result != nil)
-    {
+    if (error == nil && result != nil) {
         XmlElement* envelopeElement = [XmlParser parse:result];
         XmlElement* bodyElement = [envelopeElement.children objectAtIndex:0];
         XmlElement* responseElement = [bodyElement.children objectAtIndex:0];
         XmlElement* resultElement = [responseElement.children objectAtIndex:0];
+        
         NSMutableArray* theaters = [NSMutableArray array];
         
-        for (XmlElement* theaterElement in resultElement.children)
-        {
+        for (XmlElement* theaterElement in resultElement.children) {
             [theaters addObject:[self processTheaterElement:theaterElement]];
         }
         
@@ -279,8 +250,7 @@
     }
 }
 
-- (void) lookupTheatersBackgroundThreadEntryPoint:(id) anObject
-{	
+- (void) lookupTheatersBackgroundThreadEntryPoint:(id) anObject {	
     [self.theaterLookupLock lock];
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -292,14 +262,12 @@
     [self.theaterLookupLock unlock];
 }
 
-- (void) setZipcode:(NSString*) zipcode
-{
+- (void) setZipcode:(NSString*) zipcode {
     [self.model setZipcode:zipcode];
     [self spawnTheaterLookupThread];
 }
 
-- (void) setSearchRadius:(NSInteger) radius
-{
+- (void) setSearchRadius:(NSInteger) radius {
     [self.model setSearchRadius:radius];
     [self spawnTheaterLookupThread];
 }

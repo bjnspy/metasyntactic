@@ -21,25 +21,13 @@
 @property (copy) NSString* synopsis;
 @property (copy) NSString* rating;
 
-- (void) dealloc;
-
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
 + (Movie*) movieWithTitle:(NSString*) title
                      link:(NSString*) link
                  synopsis:(NSString*) synopsis
                    rating:(NSString*) rating;
 
-- (id) initWithTitle:(NSString*) title
-                link:(NSString*) link
-            synopsis:(NSString*) synopsis
-              rating:(NSString*) rating;
-
 - (NSDictionary*) dictionary;
-
-- (NSString*) description;
-
-- (BOOL) isEqual:(id) anObject;
-- (NSUInteger) hash;
 
 - (NSInteger) ratingValue;
 

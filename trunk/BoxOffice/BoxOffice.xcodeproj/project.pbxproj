@@ -49,6 +49,7 @@
 		74447C5A0DC840D100CC146C /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */; };
 		74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */; };
 		74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */; };
+		7464FDBA0DD52F22000CE93F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7464FDB90DD52F22000CE93F /* PosterView.m */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
 		746A02100DC819F00079D89B /* BoxOfficeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */; };
@@ -135,6 +136,8 @@
 		74447C640DC843B200CC146C /* AllTheatersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTheatersViewController.m; sourceTree = "<group>"; };
 		74447C660DC843D900CC146C /* TheaterDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterDetailsViewController.h; sourceTree = "<group>"; };
 		74447C670DC843D900CC146C /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
+		7464FDB80DD52F22000CE93F /* PosterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
+		7464FDB90DD52F22000CE93F /* PosterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
 		746A01410DC819270079D89B /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		746A01420DC819270079D89B /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		746A02030DC819430079D89B /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
@@ -345,6 +348,8 @@
 				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
 				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
+				7464FDB80DD52F22000CE93F /* PosterView.h */,
+				7464FDB90DD52F22000CE93F /* PosterView.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -472,6 +477,7 @@
 				74EC04F50DD2B704006953A4 /* Location.m in Sources */,
 				74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */,
 				74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */,
+				7464FDBA0DD52F22000CE93F /* PosterView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

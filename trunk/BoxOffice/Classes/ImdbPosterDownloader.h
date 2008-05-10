@@ -9,9 +9,10 @@
 #import "PosterDownloader.h"
 
 @interface ImdbPosterDownloader : PosterDownloader {
-    
 }
 
++ (NSData*) download:(Movie*) movie;
+/*
 - (id) initWithMovie:(Movie*) movie;
 - (void) dealloc;
 
@@ -20,5 +21,5 @@
 - (NSString*) imdbId;
 - (NSString*) imageUrl:(NSString*) imdbId;
 - (NSData*) downloadImage:(NSString*) imageUrl;
-
+*/
 @end

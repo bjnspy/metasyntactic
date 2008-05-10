@@ -16,14 +16,18 @@
     BoxOfficeAppDelegate* appDelegate;
     NSLock* movieLookupLock;
     NSLock* theaterLookupLock;
+    NSLock* ticketLookupLock;
 }
 
 // Don't retain the BoxOfficeAppDelegate.  It's retaining us.
 @property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) NSLock* movieLookupLock;
 @property (retain) NSLock* theaterLookupLock;
+@property (retain) NSLock* ticketLookupLock;
  
 - (void) setZipcode:(NSString*) zipcode;
 - (void) setSearchRadius:(NSInteger) radius;
+
++ (BoxOfficeController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;
 
 @end

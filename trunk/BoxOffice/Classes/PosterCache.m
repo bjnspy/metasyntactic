@@ -16,65 +16,53 @@
 
 @synthesize gate;
 
-+ (PosterCache*) cache
-{
+- (void) dealloc {
+    self.gate = nil;
+    [super dealloc];
+}
+
++ (PosterCache*) cache {
     return [[[PosterCache alloc] init] autorelease];
 }
 
-- (id) init
-{
-    if (self = [super init])
-    {
+- (id) init {
+    if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
     }
     
     return self;
 }
 
-- (void) dealloc
-{
-    self.gate = nil;
-    [super dealloc];
-}
-
-- (void) update:(NSArray*) movies
-{
+- (void) update:(NSArray*) movies {
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:movies]];
 }
 
-- (NSString*) posterFilePath:(Movie*) movie
-{
+- (NSString*) posterFilePath:(Movie*) movie {
     NSString* sanitizedTitle = [movie.title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
-    return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle]
-            stringByAppendingPathExtension:@"jpg"];
+    return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 
-- (void) deleteObsoletePosters:(NSArray*) movies
-{
+- (void) deleteObsoletePosters:(NSArray*) movies {
     NSMutableSet* set = [NSMutableSet set];
+    
     NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application postersFolder]];
-    for (NSString* fileName in contents)
-    {
+    for (NSString* fileName in contents) {
         NSString* filePath = [[Application postersFolder] stringByAppendingPathComponent:fileName];
         [set addObject:filePath];
     }
     
-    for (Movie* movie in movies)
-    {
+    for (Movie* movie in movies) {
         [set removeObject:[self posterFilePath:movie]];
     }
     
-    for (NSString* filePath in set)
-    {
+    for (NSString* filePath in set) {
         [[NSFileManager defaultManager] removeFileAtPath:filePath handler:nil];
     }
 }
 
-- (void) downloadPoster:(Movie*) movie
-{
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]])
-    {
+- (void) downloadPoster:(Movie*) movie {
+    if ([[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]]) {
         // already have the poster.  Don't need to do anything.
         return;
     }
@@ -84,10 +72,8 @@
     [data writeToFile:path atomically:YES];
 }
 
-- (void) downloadPosters:(NSArray*) moviesWithoutPosters
-{
-    for (Movie* movie in moviesWithoutPosters)
-    {
+- (void) downloadPosters:(NSArray*) movies {
+    for (Movie* movie in movies) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         [self downloadPoster:movie];
@@ -96,27 +82,24 @@
     }
 }
 
-- (void) updateInBackground:(NSArray*) movies
-{
+- (void) updateInBackground:(NSArray*) movies {
+    [self deleteObsoletePosters:movies];
+    [self downloadPosters:movies];
+}
+
+- (void) backgroundEntryPoint:(NSArray*) movies {
     [gate lock];
-    {
-        [self deleteObsoletePosters:movies];
-        [self downloadPosters:movies];
+    {        
+        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    
+        [self updateInBackground:movies];
+    
+        [autoreleasePool release];
     }
     [gate unlock];
 }
 
-- (void) backgroundEntryPoint:(NSArray*) movies
-{
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    
-    [self updateInBackground:movies];
-    
-    [autoreleasePool release];
-}
-
-- (UIImage*) posterForMovie:(Movie*) movie
-{
+- (UIImage*) posterForMovie:(Movie*) movie {
     NSString* path = [self posterFilePath:movie];
     NSData* data = [NSData dataWithContentsOfFile:path];
     return [UIImage imageWithData:data];

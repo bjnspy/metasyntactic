@@ -25,8 +25,7 @@
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
 
-- (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;
-- (void) dealloc;
++ (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;
 
 - (BoxOfficeModel*) model;
 - (BoxOfficeController*) controller;

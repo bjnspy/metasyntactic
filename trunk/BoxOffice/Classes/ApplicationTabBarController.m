@@ -16,6 +16,15 @@
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
 
+- (void) dealloc
+{
+    self.moviesNavigationController = nil;
+    self.theatersNavigationController = nil;
+    self.settingsNavigationController = nil;
+    self.appDelegate = nil;
+    [super dealloc];
+}
+
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel
 {
     if (self = [super init])
@@ -24,23 +33,19 @@
         self.moviesNavigationController = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
-
+        
         self.viewControllers =
-            [NSArray arrayWithObjects:moviesNavigationController,
-                                      theatersNavigationController,
-                                      settingsNavigationController, nil];
+        [NSArray arrayWithObjects:moviesNavigationController,
+         theatersNavigationController,
+         settingsNavigationController, nil];
     }
     
     return self;
 }
 
-- (void) dealloc
++ (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate
 {
-    self.moviesNavigationController = nil;
-    self.theatersNavigationController = nil;
-    self.settingsNavigationController = nil;
-    self.appDelegate = nil;
-    [super dealloc];
+    return [[[ApplicationTabBarController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
 - (BoxOfficeModel*) model

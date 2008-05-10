@@ -13,36 +13,30 @@
 @implementation BoxOfficeAppDelegate
 
 @synthesize window;
-@synthesize application;
 @synthesize controller;
 @synthesize model;
 @synthesize tabBarController;
-
-- (void) applicationDidFinishLaunching:(UIApplication*) app
-{
-    NSLog(@"BoxOfficeAppDelegate.applicationDidFinishLaunching");
-    self.application = app;
-    
-    self.model = [BoxOfficeModel model];
-
-    self.tabBarController = [[[ApplicationTabBarController alloc] initWithAppDelegate:self] autorelease];
-    
-    [window addSubview:tabBarController.view];
-    [window makeKeyAndVisible];
-    
-    self.controller = [[[BoxOfficeController alloc] initWithAppDelegate:self] autorelease];
-    
-    [self.tabBarController refresh];
-}
 
 - (void) dealloc {
     self.controller = nil;
     self.window = nil;
     self.tabBarController = nil;
     self.model = nil;
-    self.application = nil;
-    
 	[super dealloc];
+} 
+
+- (void) applicationDidFinishLaunching:(UIApplication*) app {
+    NSLog(@"BoxOfficeAppDelegate.applicationDidFinishLaunching");
+    
+    self.model = [BoxOfficeModel model];
+    self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
+    
+    //window.backgroundColor = [UIColor blackColor];
+    [window addSubview:tabBarController.view];
+    [window makeKeyAndVisible];
+    
+    self.controller = [BoxOfficeController controllerWithAppDelegate:self];
+    [self.tabBarController refresh];
 }
 
 @end

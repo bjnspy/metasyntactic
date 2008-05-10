@@ -15,11 +15,20 @@
 @synthesize label;
 @synthesize imageView;
 
-- (id) initWithFrame:(CGRect) frame
-               movie:(Movie*) movie_
-{
-	if (self = [super initWithFrame:frame reuseIdentifier:nil])
-    {
+- (void)dealloc {
+    self.movie = nil;
+    self.label = nil;
+    self.imageView = nil;
+	[super dealloc];
+}
+
++ (NSString*) identifier {
+    return @"MovieTitleAndRatingTableViewCellReuseIdentifier";
+}
+
+- (id) initWithMovie:(Movie*) movie_ {
+	if (self = [super initWithFrame:[UIScreen mainScreen].applicationFrame
+                    reuseIdentifier:[MovieTitleAndRatingTableViewCell identifier]]) {
         self.movie = movie_;
         
         self.imageView = [[[RatingsView alloc] initWithFrame:CGRectZero
@@ -37,16 +46,11 @@
 	return self;
 }
 
-- (void)dealloc
-{
-    self.movie = nil;
-    self.label = nil;
-    self.imageView = nil;
-	[super dealloc];
++ (MovieTitleAndRatingTableViewCell*) cell:(Movie*) movie {
+    return [[[MovieTitleAndRatingTableViewCell alloc] initWithMovie:movie] autorelease];
 }
 
-- (void)layoutSubviews
-{
+- (void)layoutSubviews {
 	[super layoutSubviews];
     
 	CGRect contentRect = self.contentView.bounds;
@@ -55,10 +59,9 @@
 	imageRect.size = CGSizeMake(44, 32);
 	self.imageView.frame = CGRectOffset(imageRect, 6, 6);
     
-	// position the elment name in the content rect
 	CGRect labelRect = contentRect;
 	labelRect.origin.x += labelRect.origin.x+56;
-    labelRect.size.width -= 56 ;
+    labelRect.size.width -= 56;
 	label.frame = labelRect;
     label.font = [UIFont boldSystemFontOfSize:18];
 }

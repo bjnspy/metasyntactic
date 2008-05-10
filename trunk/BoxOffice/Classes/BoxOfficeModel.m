@@ -15,36 +15,36 @@
 @synthesize posterCache;
 @synthesize addressLocationCache;
 
-+ (BoxOfficeModel*) model
-{
+- (void) dealloc {
+    self.posterCache = nil;
+    self.addressLocationCache = nil;
+    [super dealloc];
+}
+
++ (BoxOfficeModel*) model {
     return [[[BoxOfficeModel alloc] init] autorelease];
 }
 
-- (void) updatePosterCache
-{
+- (void) updatePosterCache {
     [self.posterCache update:self.movies];
 }
 
-- (void) updateAddressLocationCache
-{
+- (void) updateAddressLocationCache {
     NSMutableArray* addresses = [NSMutableArray array];
-    for (Theater* theater in self.theaters)
-    {
+    
+    for (Theater* theater in self.theaters) {
         [addresses addObject:theater.address];
     }
     
     [self.addressLocationCache updateAddresses:addresses];
 }
 
-- (void) updateZipcodeAddressLocation
-{
+- (void) updateZipcodeAddressLocation {
     [self.addressLocationCache updateZipcode:self.zipcode];
 }
 
-- (id) init
-{
-    if (self = [super init])
-    {
+- (id) init {
+    if (self = [super init]) {
         self.posterCache = [PosterCache cache];
         self.addressLocationCache = [AddressLocationCache cache];
         
@@ -56,27 +56,17 @@
     return self;
 }
 
-- (void) dealloc
-{
-    self.posterCache = nil;
-    [super dealloc];
-}
-
-- (NSString*) zipcode
-{
+- (NSString*) zipcode {
     NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:@"zipCode"];
-    if (result == nil)
-    {
-        return @"";
+    if (result == nil) {
+        result =  @"";
     }
     
     return result;
 }
 
-- (void) setZipcode:(NSString*) zipcode
-{
-    if ([zipcode isEqual:[self zipcode]])
-    {
+- (void) setZipcode:(NSString*) zipcode {
+    if ([zipcode isEqual:[self zipcode]]) {
         return;
     }
     
@@ -86,30 +76,24 @@
     [self updateZipcodeAddressLocation];
 }
 
-- (int) searchRadius
-{
+- (int) searchRadius {
     return MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:@"searchRadius"]);
 }
 
-- (void) setSearchRadius:(NSInteger) searchRadius
-{
+- (void) setSearchRadius:(NSInteger) searchRadius {
     [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:@"searchRadius"];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
-- (NSArray*) movies
-{
-    NSLog(@"BoxOfficeModel:movies");
+- (NSArray*) movies {
     NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:@"movies"];
-    if (array == nil)
-    {
+    if (array == nil) {
         return [NSArray array];
     }
     
     NSMutableArray* decodedMovies = [NSMutableArray array];
     
-    for (int i = 0; i < [array count]; i++)
-    {
+    for (int i = 0; i < [array count]; i++) {
         Movie* movie = [Movie movieWithDictionary:[array objectAtIndex:i]];
         [decodedMovies addObject:movie];
     }
@@ -117,12 +101,10 @@
     return decodedMovies;
 }
 
-- (void) setMovies:(NSArray*) movies
-{    
+- (void) setMovies:(NSArray*) movies {    
     NSMutableArray* array = [NSMutableArray array];
     
-    for (int i = 0; i < [movies count]; i++)
-    {
+    for (int i = 0; i < [movies count]; i++) {
         [array addObject:[[movies objectAtIndex:i] dictionary]];
     }
     
@@ -132,30 +114,25 @@
     [self updatePosterCache];
 }
 
-- (NSArray*) theaters
-{
+- (NSArray*) theaters {
     NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:@"theaters"];
-    if (array == nil)
-    {
+    if (array == nil) {
         return [NSArray array];
     }
     
     NSMutableArray* decodedTheaters = [NSMutableArray array];
     
-    for (int i = 0; i < [array count]; i++)
-    {
+    for (int i = 0; i < [array count]; i++) {
         [decodedTheaters addObject:[Theater theaterWithDictionary:[array objectAtIndex:i]]];
     }
     
     return decodedTheaters;
 }
 
-- (void) setTheaters:(NSArray*) theaters
-{
+- (void) setTheaters:(NSArray*) theaters {
     NSMutableArray* array = [NSMutableArray array];
     
-    for (int i = 0; i < [theaters count]; i++)
-    {
+    for (int i = 0; i < [theaters count]; i++) {
         [array addObject:[[theaters objectAtIndex:i] dictionary]];
     }
     
@@ -165,18 +142,15 @@
     [self updateAddressLocationCache];
 }
 
-- (UIImage*) posterForMovie:(Movie*) movie
-{
+- (UIImage*) posterForMovie:(Movie*) movie {
     return [self.posterCache posterForMovie:movie];
 }
 
-- (Location*) locationForAddress:(NSString*) address
-{
+- (Location*) locationForAddress:(NSString*) address {
     return [self.addressLocationCache locationForAddress:address];
 }
 
-- (Location*) locationForZipcode:(NSString*) zipcode
-{
+- (Location*) locationForZipcode:(NSString*) zipcode {
     return [self.addressLocationCache locationForZipcode:zipcode];
 }
 

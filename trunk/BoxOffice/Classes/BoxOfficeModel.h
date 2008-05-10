@@ -19,9 +19,6 @@
 
 + (BoxOfficeModel*) model;
 
-- (id) init;
-- (void) dealloc;
-
 - (NSString*) zipcode;
 - (void) setZipcode:(NSString*) zipcode;
 

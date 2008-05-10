@@ -17,37 +17,31 @@
 
 @synthesize movie;
 
-- (id) initWithMovie:(Movie*) movie_
-{
-    if (self = [super init])
-    {
+- (void) dealloc {
+    self.movie = nil;
+    [super dealloc];
+}
+
+- (id) initWithMovie:(Movie*) movie_ {
+    if (self = [super init]) {
         self.movie = movie_;
     }
     
     return self;
 }
 
-- (void) dealloc
-{
-    self.movie = nil;
-    [super dealloc];
-}
-
-+ (NSData*) download:(Movie*) movie
-{
-    PosterDownloader* downloader = [[[PosterDownloader alloc] initWithMovie:movie] autorelease];
-    return [downloader go];
-}
-
-- (NSData*) go
-{
-    NSData* data = [[[[ImdbPosterDownloader alloc] initWithMovie:self.movie] autorelease] go];
-    if (data != nil)
-    {
+- (NSData*) go {
+    NSData* data = [ImdbPosterDownloader download:self.movie];
+    if (data != nil) {
         return data;
     }
     
     return nil;
+}
+
++ (NSData*) download:(Movie*) movie {
+    PosterDownloader* downloader = [[[PosterDownloader alloc] initWithMovie:movie] autorelease];
+    return [downloader go];
 }
 
 @end

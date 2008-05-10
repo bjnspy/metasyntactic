@@ -20,7 +20,6 @@
 @property (retain) UIImageView* imageView;
 @property (retain) UILabel* label;
 
-- (id) initWithFrame:(CGRect) frame
-               movie:(Movie*) movie_;
++ (MovieTitleAndRatingTableViewCell*) cell:(Movie*) movie;
 
 @end

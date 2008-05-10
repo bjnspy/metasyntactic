@@ -17,10 +17,8 @@ static NSString* _postersFolder = nil;
 static NSString* _documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
 
-+ (void) initialize
-{
-    if (self == [Application class])
-    {
++ (void) initialize {
+    if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
         
         dateFormatter = [[NSDateFormatter alloc] init];
@@ -29,21 +27,17 @@ static NSDateFormatter* dateFormatter = nil;
     }
 }
 
-+ (void) createDirectory:(NSString*) folder
-{
-    if (![[NSFileManager defaultManager] fileExistsAtPath:folder])
-    {
++ (void) createDirectory:(NSString*) folder {
+    if (![[NSFileManager defaultManager] fileExistsAtPath:folder]) {
         NSError* error;
         [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:&error];
     }    
 }
 
-+ (NSString*) documentsFolder
-{
++ (NSString*) documentsFolder {
     [gate lock];
     {
-        if (_documentsFolder == nil)
-        {
+        if (_documentsFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, /*expandTilde:*/YES);
             NSString* folder = [paths objectAtIndex:0];
             
@@ -58,12 +52,10 @@ static NSDateFormatter* dateFormatter = nil;
     return _documentsFolder;
 }
 
-+ (NSString*) supportFolder
-{
++ (NSString*) supportFolder {
     [gate lock];
     {
-        if (_supportFolder == nil)
-        {
+        if (_supportFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
             
             NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
@@ -81,12 +73,10 @@ static NSDateFormatter* dateFormatter = nil;
 }
 
 
-+ (NSString*) postersFolder
-{
++ (NSString*) postersFolder {
     [gate lock];
     {
-        if (_postersFolder == nil)
-        {
+        if (_postersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
             
@@ -101,8 +91,7 @@ static NSDateFormatter* dateFormatter = nil;
     return _postersFolder;
 }
 
-+ (NSString*) formatDate:(NSDate*) date
-{
++ (NSString*) formatDate:(NSDate*) date {
     NSString* result;
     [gate lock];
     {

@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+#define UNKNOWN_DISTANCE FLT_MAX
 
 @interface Location : NSObject {
     double latitude;

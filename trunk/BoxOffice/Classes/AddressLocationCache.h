@@ -11,7 +11,10 @@
 #import "Location.h"
 
 @interface AddressLocationCache : NSObject {
+    NSLock* gate;
 }
+
+@property (retain) NSLock* gate;
 
 + (AddressLocationCache*) cache;
 

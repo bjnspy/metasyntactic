@@ -15,8 +15,7 @@
 @synthesize address;
 @synthesize movieToShowtimesMap;
 
-- (void) dealloc
-{
+- (void) dealloc {
     self.name = nil;
     self.address = nil;
     self.movieToShowtimesMap = nil;
@@ -24,26 +23,16 @@
     [super dealloc];
 }
 
-+ (Theater*) theaterWithDictionary:(NSDictionary*) dictionary
-{
++ (Theater*) theaterWithDictionary:(NSDictionary*) dictionary {
     return [Theater theaterWithName:[dictionary objectForKey:@"name"]
                             address:[dictionary objectForKey:@"address"]
                 movieToShowtimesMap:[dictionary objectForKey:@"movieToShowtimeMap"]];
 }
 
-+ (Theater*) theaterWithName:(NSString*) aName
-                     address:(NSString*) anAddress
-         movieToShowtimesMap:(NSDictionary*) aDictionary
-{
-    return [[[Theater alloc] initWithName:aName address:anAddress movieToShowtimesMap:aDictionary] autorelease];
-}
-
-- (id) initWithName:(NSString*) aName
-            address:(NSString*) anAddress
-movieToShowtimesMap:(NSDictionary*) aDictionary
-{
-    if (self = [self init])
-    {
+- (id)         initWithName:(NSString*) aName
+                    address:(NSString*) anAddress
+        movieToShowtimesMap:(NSDictionary*) aDictionary {
+    if (self = [self init]) {
         self.name = [aName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.address = [anAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.movieToShowtimesMap = aDictionary;
@@ -52,8 +41,13 @@ movieToShowtimesMap:(NSDictionary*) aDictionary
     return self;
 }
 
-- (NSDictionary*) dictionary
-{
++ (Theater*) theaterWithName:(NSString*) aName
+                     address:(NSString*) anAddress
+         movieToShowtimesMap:(NSDictionary*) aDictionary {
+    return [[[Theater alloc] initWithName:aName address:anAddress movieToShowtimesMap:aDictionary] autorelease];
+}
+
+- (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:self.name forKey:@"name"];
     [dictionary setValue:self.address forKey:@"address"];
@@ -61,13 +55,11 @@ movieToShowtimesMap:(NSDictionary*) aDictionary
     return dictionary;
 }
 
-- (NSString*) description
-{
+- (NSString*) description {
     return [[self dictionary] description];
 }
 
-- (BOOL) isEqual:(id) anObject
-{
+- (BOOL) isEqual:(id) anObject {
     Theater* other = anObject;
     return
         [self.name isEqual:other.name] &&
@@ -75,8 +67,7 @@ movieToShowtimesMap:(NSDictionary*) aDictionary
         [self.movieToShowtimesMap isEqual:other.movieToShowtimesMap];
 }
 
-- (NSUInteger) hash
-{
+- (NSUInteger) hash {
     return [self.name hash] + [self.address hash] + [self.movieToShowtimesMap hash];
 }
 

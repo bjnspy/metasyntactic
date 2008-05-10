@@ -14,18 +14,14 @@
 #import "BoxOfficeModel.h"
 
 @interface BoxOfficeAppDelegate : NSObject <UIApplicationDelegate> {
-    sqlite3* database;
-
 	IBOutlet UIWindow* window;
     IBOutlet ApplicationTabBarController* tabBarController;
     
-    UIApplication* application;
     BoxOfficeModel* model;
     BoxOfficeController* controller;
 }
 
 @property (nonatomic, retain) UIWindow* window;
-@property (retain) UIApplication* application;
 @property (retain) BoxOfficeController* controller;
 @property (retain) BoxOfficeModel* model;
 @property (retain) ApplicationTabBarController* tabBarController;

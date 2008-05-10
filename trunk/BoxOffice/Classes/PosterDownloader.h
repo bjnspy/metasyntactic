@@ -17,8 +17,5 @@
 + (NSData*) download:(Movie*) movie;
 
 - (id) initWithMovie:(Movie*) movie;
-- (void) dealloc;
-
-- (NSData*) go;
 
 @end

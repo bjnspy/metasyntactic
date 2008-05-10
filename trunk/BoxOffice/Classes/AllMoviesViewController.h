@@ -8,6 +8,7 @@
 
 #import "BoxOfficeModel.h"
 #import "MultiDictionary.h"
+#import "PosterView.h"
 
 @class MoviesNavigationController;
 
@@ -20,6 +21,8 @@
     MultiDictionary* sectionTitleToContentsMap;
     
     NSArray* alphabeticSectionTitles;
+    
+    PosterView* posterView;
 }
 
 @property (assign) MoviesNavigationController* navigationController;
@@ -28,6 +31,7 @@
 @property (retain) NSMutableArray* sectionTitles;
 @property (retain) MultiDictionary* sectionTitleToContentsMap;
 @property (retain) NSArray* alphabeticSectionTitles;
+@property (retain) PosterView* posterView;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController;
 - (void) dealloc;
