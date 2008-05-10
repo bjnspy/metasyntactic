@@ -41,6 +41,7 @@
 		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
 		740F28340DD1267000F66E51 /* ImageNotAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 740F28330DD1267000F66E51 /* ImageNotAvailable.png */; };
 		7411734D0DCEC63D00080CA2 /* CurrentPosition.png in Resources */ = {isa = PBXBuildFile; fileRef = 7411734C0DCEC63D00080CA2 /* CurrentPosition.png */; };
+		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
 		74447C340DC83C2000CC146C /* MoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */; };
 		74447C370DC83D0900CC146C /* ApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */; };
 		74447C3B0DC83E7400CC146C /* TheatersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */; };
@@ -120,6 +121,8 @@
 		740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		740F28330DD1267000F66E51 /* ImageNotAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageNotAvailable.png; sourceTree = "<group>"; };
 		7411734C0DCEC63D00080CA2 /* CurrentPosition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentPosition.png; sourceTree = "<group>"; };
+		742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
+		742CA71F0DD6616600A69B79 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
 		74447C320DC83C2000CC146C /* MoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesNavigationController.h; sourceTree = "<group>"; };
 		74447C330DC83C2000CC146C /* MoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesNavigationController.m; sourceTree = "<group>"; };
 		74447C350DC83D0900CC146C /* ApplicationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationTabBarController.h; sourceTree = "<group>"; };
@@ -350,6 +353,8 @@
 				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
 				7464FDB80DD52F22000CE93F /* PosterView.h */,
 				7464FDB90DD52F22000CE93F /* PosterView.m */,
+				742CA71E0DD6616600A69B79 /* TicketsViewController.h */,
+				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
 			);
 			name = UI;
 			sourceTree = "<group>";
@@ -478,6 +483,7 @@
 				74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */,
 				74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */,
 				7464FDBA0DD52F22000CE93F /* PosterView.m in Sources */,
+				742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
