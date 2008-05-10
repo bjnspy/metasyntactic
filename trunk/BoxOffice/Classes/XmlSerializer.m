@@ -34,6 +34,10 @@
 
 + (NSString*) serializeElement:(XmlElement*) node 
 {
+    if (node == nil) {
+        return @"";
+    }
+    
 	NSMutableString* serialized = [NSMutableString string];
 	[serialized appendString:@"<"];
 	[serialized appendString:node.name];

@@ -16,6 +16,14 @@
 @synthesize children;
 @synthesize text;
 
+- (void) dealloc {
+    self.name = nil;
+    self.attributes = nil;
+    self.children = nil;
+    self.text = nil;
+    [super dealloc];
+}
+
 + (id) elementWithName:(NSString*) name_
 {
 	return [XmlElement elementWithName:name_ attributes:[NSDictionary dictionary] children:[NSArray array] text:[NSString string]];
@@ -84,15 +92,6 @@
     return self;
 }
 
-- (void) dealloc
-{
-    self.name = nil;
-    self.attributes = nil;
-    self.children = nil;
-    self.text = nil;
-    [super dealloc];
-}
-
 - (NSString*) description
 {
     return [[self dictionary] description];
@@ -126,6 +125,35 @@
     }
     
     return dictionary;
+}
+
++ (XmlElement*) elementFromDictionary:(NSDictionary*) dictionary {
+    NSString* name = [dictionary valueForKey:@"name"];
+    if (name == nil) {
+        name = @"";
+    }
+    
+    NSString* text = [dictionary valueForKey:@"text"];
+    if (text == nil) {
+        text = @"";
+    }
+    
+    NSDictionary* attributes = [dictionary valueForKey:@"attributes"];
+    if (attributes == nil) {
+        attributes = [NSDictionary dictionary];
+    }
+    
+    NSArray* childDictionaries = [dictionary valueForKey:@"children"];
+    if (childDictionaries == nil) {
+        childDictionaries = [NSArray array];
+    }
+    
+    NSMutableArray* children = [NSMutableArray array];
+    for (NSDictionary* childDict in childDictionaries) {
+        [children addObject:[XmlElement elementFromDictionary:childDict]];
+    }
+    
+    return [XmlElement elementWithName:name attributes:attributes children:children text:text];
 }
 
 - (XmlElement*) element:(NSString*) name_

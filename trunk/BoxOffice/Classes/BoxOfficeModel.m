@@ -142,6 +142,20 @@
     [self updateAddressLocationCache];
 }
 
+- (XmlElement*) tickets {
+    NSDictionary* dictionary = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"tickets"];
+    if (dictionary == nil) {
+        return nil;
+    }
+    
+    return [XmlElement elementFromDictionary:dictionary];
+}
+
+- (void) setTickets:(XmlElement*) tickets {
+    [[NSUserDefaults standardUserDefaults] setObject:[tickets dictionary] forKey:@"tickets"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 - (UIImage*) posterForMovie:(Movie*) movie {
     return [self.posterCache posterForMovie:movie];
 }

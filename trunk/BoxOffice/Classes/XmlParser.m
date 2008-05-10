@@ -23,6 +23,7 @@
         
         self.elementsStack = [NSMutableArray array];
         self.stringBufferStack = [NSMutableArray array];
+        self.attributesStack = [NSMutableArray array];
         
         [self.elementsStack addObject:[NSMutableArray array]];
         
@@ -63,7 +64,7 @@
 {
     [self.elementsStack addObject:[NSMutableArray array]];
     [self.stringBufferStack addObject:[NSMutableString string]];
-    [self.attributesStack addObject:attributeDict];
+    [self.attributesStack addObject:[NSDictionary dictionaryWithDictionary:attributeDict]];
 }
 
 - (void)            parser:(NSXMLParser*) parser

@@ -55,8 +55,10 @@
 - (void) dealloc;
 
 - (NSString*) description;
-- (NSDictionary*) dictionary;
 
+- (NSDictionary*) dictionary;
++ (XmlElement*) elementFromDictionary:(NSDictionary*) dictionary;
+    
 - (XmlElement*) element:(NSString*) name;
 - (NSArray*) elements:(NSString*) name;
 

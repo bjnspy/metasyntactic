@@ -8,6 +8,7 @@
 
 #import "PosterCache.h"
 #import "AddressLocationCache.h"
+#import "XmlElement.h"
 
 @interface BoxOfficeModel : NSObject {
     PosterCache* posterCache;
@@ -30,6 +31,9 @@
 
 - (NSArray*) theaters;
 - (void) setTheaters:(NSArray*) theaters;
+
+- (XmlElement*) tickets;
+- (void) setTickets:(XmlElement*) tickets;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (Location*) locationForAddress:(NSString*) address;
