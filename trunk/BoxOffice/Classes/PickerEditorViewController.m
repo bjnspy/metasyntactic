@@ -18,7 +18,7 @@
 {
     self.picker = nil;
     self.values = nil;
-	[super dealloc];
+    [super dealloc];
 }
 
 - (id) initWithController:(UINavigationController*) controller
@@ -36,8 +36,8 @@
         self.picker.delegate = self;
         self.picker.showsSelectionIndicator = YES;
         [self.picker selectRow:[values indexOfObject:defaultValue]
-		 inComponent:0
-		 animated:NO];
+         inComponent:0
+         animated:NO];
         
         self.title = title;
     }
@@ -59,7 +59,7 @@
     CGRect screenRect = self.view.bounds;
     CGSize pickerSize = [self.picker sizeThatFits:CGSizeZero];
     CGFloat screenBottom = screenRect.origin.y + screenRect.size.height;
-	
+    
     CGRect pickerRect = CGRectMake(0, screenBottom - pickerSize.height, pickerSize.width, pickerSize.height);
     self.picker.frame = pickerRect;
 }
@@ -67,7 +67,7 @@
 - (void) save:(id) sender
 {
     [self.object performSelector:selector
-	 withObject:[self.values objectAtIndex:[self.picker selectedRowInComponent:0]]];
+     withObject:[self.values objectAtIndex:[self.picker selectedRowInComponent:0]]];
     [super save:sender];
 }
 

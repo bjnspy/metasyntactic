@@ -41,7 +41,7 @@
                                                                 style:UIBarButtonItemStyleBordered
                                                                target:self
                                                                action:@selector(onCurrentLocationClicked:)] autorelease]; 
-		
+        
         self.navigationItem.leftBarButtonItem = currentLocationItem;
         
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
@@ -57,7 +57,7 @@
 {
     self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
     [self.activityIndicator start];
-	
+    
     [self.locationManager startUpdatingLocation];
 }
 
@@ -216,9 +216,9 @@
     else if (section == 1)
     {
         NSArray* values = [NSArray arrayWithObjects: @"5", @"10", @"15", @"20", @"25", 
-						   @"30", @"35", @"40", @"45", @"50", nil];
+                           @"30", @"35", @"40", @"45", @"50", nil];
         NSString* defaultValue = [NSString stringWithFormat:@"%d", [self.model searchRadius]];
-		
+        
         PickerEditorViewController* controller = 
         [[[PickerEditorViewController alloc] initWithController:self.navigationController
                                                       withTitle:@"Search Radius"
@@ -226,7 +226,7 @@
                                                    withSelector:@selector(onSearchRadiusChanged:)
                                                      withValues:values
                                                    defaultValue:defaultValue] autorelease];
-		
+        
         [self.navigationController pushViewController:controller animated:YES];
     }
     else

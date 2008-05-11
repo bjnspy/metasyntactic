@@ -14,8 +14,8 @@
 + (BOOL) isNilOrEmpty:(NSString*) string
 {
     return
-	string == nil ||
-	[@"" isEqual:string];
+    string == nil ||
+    [@"" isEqual:string];
 }
 
 @end

@@ -16,7 +16,7 @@
 - (void)dealloc
 {
     self.textField = nil;
-	[super dealloc];
+    [super dealloc];
 }
 
 - (id) initWithController:(UINavigationController*) controller

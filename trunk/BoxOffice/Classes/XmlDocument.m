@@ -21,28 +21,28 @@
 
 - (id) initWithRoot:(XmlElement*) root_
 {
-	return [self initWithRoot:root_ version:@"1.0" encoding:@"UTF-8"];
+    return [self initWithRoot:root_ version:@"1.0" encoding:@"UTF-8"];
 }
 
 - (id) initWithRoot:(XmlElement*) root_ 
-			version:(NSString*) version_ 
-		   encoding:(NSString*) encoding_
+            version:(NSString*) version_ 
+           encoding:(NSString*) encoding_
 {
-	if (self = [super init])
-	{
-		self.root = root_;
-		self.version = version_;
-		self.encoding = encoding_;
-	}
-	return self;
+    if (self = [super init])
+    {
+        self.root = root_;
+        self.version = version_;
+        self.encoding = encoding_;
+    }
+    return self;
 }
 
 - (void) dealloc
 {
-	self.root = nil;
-	self.version = nil;
-	self.encoding = nil;
-	[super dealloc];
+    self.root = nil;
+    self.version = nil;
+    self.encoding = nil;
+    [super dealloc];
 }
 
 @end

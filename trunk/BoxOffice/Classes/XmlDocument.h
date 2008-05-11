@@ -10,9 +10,9 @@
 
 
 @interface XmlDocument : NSObject {
-	XmlElement* root;
-	NSString* version;
-	NSString* encoding;
+    XmlElement* root;
+    NSString* version;
+    NSString* encoding;
 }
 
 @property (retain) XmlElement* root;
@@ -23,8 +23,8 @@
 
 - (id) initWithRoot:(XmlElement*) root;
 - (id) initWithRoot:(XmlElement*) root 
-			version:(NSString*) version 
-		   encoding:(NSString*) encoding;
+            version:(NSString*) version 
+           encoding:(NSString*) encoding;
 - (void) dealloc;
 
 @end

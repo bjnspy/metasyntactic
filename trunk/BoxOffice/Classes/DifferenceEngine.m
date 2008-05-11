@@ -111,7 +111,7 @@
             
             if (i >= 2 && j >= 2) {
                 NSInteger transposes = 1 + (([S characterAtIndex:(i - 1)] == [T characterAtIndex:j]) ? 0 : 1) + 
-				(([S characterAtIndex:i] == [T characterAtIndex:(j - 1)]) ? 0 : 1);
+                (([S characterAtIndex:i] == [T characterAtIndex:(j - 1)]) ? 0 : 1);
                 NSInteger tCost = costTable[i - 2][j - 2] + (transposes * transposeCost);
                 
                 costTable[i][j] = [self minX:cost Y:tCost];

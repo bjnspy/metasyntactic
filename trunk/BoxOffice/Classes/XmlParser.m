@@ -38,9 +38,9 @@
 
 - (void) dealloc
 {
-	self.elementsStack = nil;
-	self.stringBufferStack = nil;
-	self.attributesStack = nil;
+    self.elementsStack = nil;
+    self.stringBufferStack = nil;
+    self.attributesStack = nil;
     [super dealloc];
 }
 

@@ -19,7 +19,7 @@
     self.movie = nil;
     self.label = nil;
     self.imageView = nil;
-	[super dealloc];
+    [super dealloc];
 }
 
 + (NSString*) identifier {
@@ -27,7 +27,7 @@
 }
 
 - (id) initWithMovie:(Movie*) movie_ {
-	if (self = [super initWithFrame:[UIScreen mainScreen].applicationFrame
+    if (self = [super initWithFrame:[UIScreen mainScreen].applicationFrame
                     reuseIdentifier:[MovieTitleAndRatingTableViewCell identifier]]) {
         self.movie = movie_;
         
@@ -36,14 +36,14 @@
         
         self.imageView.opaque = NO;
         [self.contentView addSubview:self.imageView];
-		
+        
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.label.text = movie.title;
         self.label.opaque = NO;
         [self.contentView addSubview:self.label];
-	}
+    }
     
-	return self;
+    return self;
 }
 
 + (MovieTitleAndRatingTableViewCell*) cell:(Movie*) movie {
@@ -51,18 +51,18 @@
 }
 
 - (void)layoutSubviews {
-	[super layoutSubviews];
+    [super layoutSubviews];
     
-	CGRect contentRect = self.contentView.bounds;
+    CGRect contentRect = self.contentView.bounds;
     
-	CGRect imageRect = contentRect;
-	imageRect.size = CGSizeMake(44, 32);
-	self.imageView.frame = CGRectOffset(imageRect, 6, 6);
+    CGRect imageRect = contentRect;
+    imageRect.size = CGSizeMake(44, 32);
+    self.imageView.frame = CGRectOffset(imageRect, 6, 6);
     
-	CGRect labelRect = contentRect;
-	labelRect.origin.x += labelRect.origin.x+56;
+    CGRect labelRect = contentRect;
+    labelRect.origin.x += labelRect.origin.x+56;
     labelRect.size.width -= 56;
-	label.frame = labelRect;
+    label.frame = labelRect;
     label.font = [UIFont boldSystemFontOfSize:18];
 }
 

@@ -18,7 +18,7 @@
 {
     self.navigationController = nil;
     self.object = nil;
-	[super dealloc];
+    [super dealloc];
 }
 
 - (id) initWithController:(UINavigationController*) controller

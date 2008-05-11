@@ -187,7 +187,7 @@
     NSString* zipCode = self.model.zipcode;
     NSString* radius = [NSString stringWithFormat:@"%d", self.model.searchRadius];
     
-	NSString* post =
+    NSString* post =
     [XmlSerializer serializeDocument: 
      [XmlDocument documentWithRoot:
       [XmlElement
@@ -252,7 +252,7 @@
     }
 }
 
-- (void) lookupTheatersBackgroundThreadEntryPoint:(id) anObject {	
+- (void) lookupTheatersBackgroundThreadEntryPoint:(id) anObject {    
     [self.theaterLookupLock lock];
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -280,7 +280,7 @@
     
     if (httpError == nil && ticketData != nil) {
         XmlElement* element = [XmlParser parse:ticketData];
-		
+        
         [self performSelectorOnMainThread:@selector(setTickets:) withObject:element waitUntilDone:NO];
     }    
 }
@@ -306,7 +306,7 @@
     [self.appDelegate.tabBarController refresh];
 }
 
-- (void) lookupTicketsBackgroundThreadEntryPoint:(id) anObject {	
+- (void) lookupTicketsBackgroundThreadEntryPoint:(id) anObject {    
     [self.theaterLookupLock lock];
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];

@@ -46,7 +46,7 @@
 - (void) pushMovieDetails:(Movie*) movie
 {
     self.movieDetailsViewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self movie:movie] autorelease];
-	
+    
     [self pushViewController:movieDetailsViewController animated:YES];
 }
 

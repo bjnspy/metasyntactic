@@ -22,7 +22,7 @@
     self.window = nil;
     self.tabBarController = nil;
     self.model = nil;
-	[super dealloc];
+    [super dealloc];
 } 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {

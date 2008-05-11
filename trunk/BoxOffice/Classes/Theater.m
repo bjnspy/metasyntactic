@@ -62,9 +62,9 @@
 - (BOOL) isEqual:(id) anObject {
     Theater* other = anObject;
     return
-	[self.name isEqual:other.name] &&
-	[self.address isEqual:other.address] &&
-	[self.movieToShowtimesMap isEqual:other.movieToShowtimesMap];
+    [self.name isEqual:other.name] &&
+    [self.address isEqual:other.address] &&
+    [self.movieToShowtimesMap isEqual:other.movieToShowtimesMap];
 }
 
 - (NSUInteger) hash {

@@ -10,7 +10,7 @@
 
 
 @interface Utilities : NSObject {
-	
+    
 }
 
 + (BOOL) isNilOrEmpty:(NSString*) string;

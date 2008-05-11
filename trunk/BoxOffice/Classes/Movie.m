@@ -69,18 +69,18 @@
     Movie* other = anObject;
     
     return
-	[self.title isEqual:other.title] &&
-	[self.link isEqual:other.link] &&
-	[self.synopsis isEqual:other.synopsis] &&
-	[self.rating isEqual:other.rating];
+    [self.title isEqual:other.title] &&
+    [self.link isEqual:other.link] &&
+    [self.synopsis isEqual:other.synopsis] &&
+    [self.rating isEqual:other.rating];
 }
 
 - (NSUInteger) hash {
     return
-	[self.title hash] +
-	[self.link hash] +
-	[self.synopsis hash] +
-	[self.rating hash];
+    [self.title hash] +
+    [self.link hash] +
+    [self.synopsis hash] +
+    [self.rating hash];
 }
 
 - (NSInteger) ratingValue {

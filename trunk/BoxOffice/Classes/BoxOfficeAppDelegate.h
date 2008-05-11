@@ -14,7 +14,7 @@
 #import "BoxOfficeModel.h"
 
 @interface BoxOfficeAppDelegate : NSObject <UIApplicationDelegate> {
-	IBOutlet UIWindow* window;
+    IBOutlet UIWindow* window;
     IBOutlet ApplicationTabBarController* tabBarController;
     
     BoxOfficeModel* model;

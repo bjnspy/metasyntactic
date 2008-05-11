@@ -41,16 +41,16 @@
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
         self.sortedMovies = [NSArray array];
-		
+        
         self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-								  [NSArray arrayWithObjects:@"Title", @"Rating", nil]] autorelease];
-		
+                                  [NSArray arrayWithObjects:@"Title", @"Rating", nil]] autorelease];
+        
         
         self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
         self.segmentedControl.selectedSegmentIndex = [[self model] allMoviesSelectedSegmentIndex];
         [self.segmentedControl addTarget:self
-		 action:@selector(onSortOrderChanged:)
-		 forControlEvents:UIControlEventValueChanged];
+         action:@selector(onSortOrderChanged:)
+         forControlEvents:UIControlEventValueChanged];
         CGRect rect = self.segmentedControl.frame;
         rect.size.width = 200;
         self.segmentedControl.frame = rect;
@@ -59,8 +59,8 @@
         
         self.alphabeticSectionTitles =
         [NSArray arrayWithObjects:@"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
-		 @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
-		 @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
+         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
     }
     
     return self;
