@@ -141,7 +141,7 @@
     [[[TicketsViewController alloc] initWithController:self.navigationController
                                                theater:self.theater
                                                  movie:movie 
-                                                 title:[NSString stringWithFormat:@"- %@", movie.title]] autorelease];
+                                                 title:movie.title] autorelease];
     [self.navigationController pushViewController:controller
      animated:YES];
 }
