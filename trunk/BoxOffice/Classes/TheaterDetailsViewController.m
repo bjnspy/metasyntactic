@@ -131,6 +131,9 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = [indexPath section];
+	if (section == 0) {
+		return;
+	}
     
     Movie* movie = [self.movies objectAtIndex:(section - 1)];    
     
