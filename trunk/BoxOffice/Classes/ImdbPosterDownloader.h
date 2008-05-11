@@ -12,14 +12,5 @@
 }
 
 + (NSData*) download:(Movie*) movie;
-/*
-- (id) initWithMovie:(Movie*) movie;
-- (void) dealloc;
 
-- (NSData*) go;
-
-- (NSString*) imdbId;
-- (NSString*) imageUrl:(NSString*) imdbId;
-- (NSData*) downloadImage:(NSString*) imageUrl;
-*/
 @end

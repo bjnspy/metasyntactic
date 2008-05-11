@@ -12,6 +12,8 @@
 #import "BoxOfficeModel.h"
 #import "TheatersNavigationController.h"
 
+#define SHOWTIMES_PER_ROW 6
+
 @implementation TheaterDetailsViewController
 
 @synthesize navigationController;
@@ -45,24 +47,6 @@
             [self.movies addObject:movie];
             [self.movieShowtimes addObject:showtimes];
         }
-        
-        /*
-        NSMutableArray* mutableMovieNames = [NSMutableArray array];
-        for (NSString* name in theater.movieToShowtimesMap)
-        {
-            [mutableMovieNames addObject:name];
-        }
-        self.movieNames = [mutableMovieNames sortedArrayUsingSelector:@selector(caseInsensitiveCompare:)];
-        
-        NSMutableArray* mutableMovieShowtimes = [NSMutableArray array];
-        for (NSString* name in self.movieNames)
-        {
-            for (Movie* moie in self.model.movies) {
-            
-            [mutableMovieShowtimes addObject:[theater.movieToShowtimesMap valueForKey:name]];
-        }
-        self.movieShowtimes = mutableMovieShowtimes;
-        */
          
         self.title = self.theater.name;
     }
@@ -122,13 +106,5 @@
     Movie* movie = [self.movies objectAtIndex:(section - 1)];
     return movie.title;
 }
-
-/*
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath
-{
-    return UITableViewCellAccessoryDisclosureIndicator;
-}
- */
 
 @end
