@@ -8,6 +8,7 @@
 
 #import "ApplicationTabBarController.h"
 #import "BoxOfficeAppDelegate.h"
+#import "Utilities.h"
 
 @implementation ApplicationTabBarController
 
@@ -38,6 +39,14 @@
         [NSArray arrayWithObjects:moviesNavigationController,
          theatersNavigationController,
          settingsNavigationController, nil];
+        
+        if ([Utilities isNilOrEmpty:[[self model] zipcode]]) {
+            self.selectedViewController = self.settingsNavigationController;
+        } else {
+            self.selectedViewController = [self.viewControllers objectAtIndex:[self.model selectedTabBarViewControllerIndex]];
+        }
+        
+        self.delegate = self;
     }
     
     return self;
@@ -46,6 +55,11 @@
 + (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate
 {
     return [[[ApplicationTabBarController alloc] initWithAppDelegate:appDelegate] autorelease];
+}
+
+- (void)       tabBarController:(UITabBarController*) tabBarController
+        didSelectViewController:(UIViewController*) viewController {
+    [[self model] setSelectedTabBarViewControllerIndex:self.selectedIndex];
 }
 
 - (BoxOfficeModel*) model

@@ -39,7 +39,7 @@
                              [NSArray arrayWithObjects:@"Name", @"Distance", nil]] autorelease];
         
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
-        segmentedControl.selectedSegmentIndex = 1;
+        segmentedControl.selectedSegmentIndex = [[self model] allTheatersSelectedSegmentIndex];
         [segmentedControl addTarget:self
                              action:@selector(onSortOrderChanged:)
                    forControlEvents:UIControlEventValueChanged];
@@ -69,6 +69,7 @@
 }
 
 - (void) onSortOrderChanged:(id) sender {
+    [[self model] setAllTheatersSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self refresh];
 }
 

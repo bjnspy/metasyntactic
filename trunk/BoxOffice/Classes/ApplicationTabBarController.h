@@ -13,7 +13,7 @@
 
 @class BoxOfficeAppDelegate;
 
-@interface ApplicationTabBarController : UITabBarController {
+@interface ApplicationTabBarController : UITabBarController<UITabBarControllerDelegate> {
     BoxOfficeAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;

@@ -47,7 +47,7 @@
     
         
         self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
-        self.segmentedControl.selectedSegmentIndex = 0;
+        self.segmentedControl.selectedSegmentIndex = [[self model] allMoviesSelectedSegmentIndex];
         [self.segmentedControl addTarget:self
                                   action:@selector(onSortOrderChanged:)
                         forControlEvents:UIControlEventValueChanged];
@@ -78,6 +78,7 @@
 }
 
 - (void) onSortOrderChanged:(id) sender {
+    [[self model] setAllMoviesSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self refresh];
 }
 

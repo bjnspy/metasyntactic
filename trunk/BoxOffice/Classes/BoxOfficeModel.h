@@ -21,6 +21,15 @@
 
 + (BoxOfficeModel*) model;
 
+- (NSInteger) selectedTabBarViewControllerIndex;
+- (void) setSelectedTabBarViewControllerIndex:(NSInteger) index;
+
+- (NSInteger) allMoviesSelectedSegmentIndex;
+- (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index;
+
+- (NSInteger) allTheatersSelectedSegmentIndex;
+- (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index;
+
 - (NSString*) zipcode;
 - (void) setZipcode:(NSString*) zipcode;
 

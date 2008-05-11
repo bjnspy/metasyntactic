@@ -85,8 +85,8 @@
         
     [UIView beginAnimations:nil context:imageView];
     {
-//        [UIView setAnimationDelegate:self];
-  //      [UIView setAnimationDidStopSelector:@selector(decreaseImageViewSize:)];
+        [UIView setAnimationDelegate:self];
+        //[UIView setAnimationDidStopSelector:@selector(decreaseImageViewSize:finished:context:)];
         
         NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
         double baseDelay = (column * duration) / 2;
@@ -99,10 +99,10 @@
             [UIView setAnimationDelay:baseDelay + duration];
         }
         
-        //imageView.bounds = largeBounds;
-        //imageView.alpha = 0.5;
-        imageView.bounds = bounds;
-        imageView.alpha = 1;
+        imageView.bounds = largeBounds;
+        imageView.alpha = 0.25;
+        //imageView.bounds = bounds;
+        //imageView.alpha = 1;
     }
     [UIView commitAnimations];
     
@@ -114,12 +114,20 @@
                        context:(void*) context {
     NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
     
+    UIImageView* imageView = context;
+    
     [UIView beginAnimations:nil context:NULL];
     {
         [UIView setAnimationDuration:duration];
         
-        //imageView.bounds = bounds;
-        //imageView.alpha = 1;
+        CGRect bounds = imageView.bounds;
+        
+        double dx = bounds.size.width / 22;
+        double dy = bounds.size.height / 22;
+        CGRect smallBounds = CGRectMake(bounds.origin.x + dx, bounds.origin.y + dy,
+                                        bounds.size.width - 2 * dx, bounds.size.height - 2 * dy);
+        imageView.bounds = smallBounds;
+        imageView.alpha = 1;
     }
     [UIView commitAnimations];   
 }

@@ -233,7 +233,6 @@
     [map setValue:[location dictionary] forKey:address];
     
     [[NSUserDefaults standardUserDefaults] setValue:map forKey:@"addressLocationMap"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (void) downloadAddressLocation:(NSString*) address {

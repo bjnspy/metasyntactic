@@ -57,6 +57,30 @@
     return self;
 }
 
+- (NSInteger) selectedTabBarViewControllerIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"selectedTabBarViewControllerIndex"];
+}
+
+- (void) setSelectedTabBarViewControllerIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"selectedTabBarViewControllerIndex"];
+}
+
+- (NSInteger) allMoviesSelectedSegmentIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"allMoviesSelectedSegmentIndex"];
+}
+
+- (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"allMoviesSelectedSegmentIndex"];
+}
+
+- (NSInteger) allTheatersSelectedSegmentIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:@"allTheatersSelectedSegmentIndex"];
+}
+
+- (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"allTheatersSelectedSegmentIndex"];
+}
+
 - (NSString*) zipcode {
     NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:@"zipCode"];
     if (result == nil) {
@@ -72,7 +96,6 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:zipcode forKey:@"zipCode"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self updateZipcodeAddressLocation];
 }
@@ -83,7 +106,6 @@
 
 - (void) setSearchRadius:(NSInteger) searchRadius {
     [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:@"searchRadius"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (NSArray*) movies {
@@ -110,7 +132,6 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"movies"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self updatePosterCache];
 }
@@ -138,7 +159,6 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"theaters"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
     
     [self updateAddressLocationCache];
 }
@@ -154,7 +174,6 @@
 
 - (void) setTickets:(XmlElement*) tickets {
     [[NSUserDefaults standardUserDefaults] setObject:[tickets dictionary] forKey:@"tickets"];
-    [[NSUserDefaults standardUserDefaults] synchronize];
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie {
