@@ -183,25 +183,19 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     NSInteger row = [indexPath row];
     
 	static NSString* cellIdentifier = @"TicketsViewControllerCellIdentifier";
-	
+
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellIdentifier] autorelease];
 	}
-    
-    cell.text = [showtimes objectAtIndex:row];
-    NSString* ticketUrl = [self.ticketUrls objectAtIndex:row];
-    if ([Utilities isNilOrEmpty:ticketUrl]) {
-    cell.text = [cell.text stringByAppendingString:@" (No ticketing available)"];
-    } else {
-        cell.text = [cell.text stringByAppendingString:@" (Click to buy tickets)"];
-    }
+     
+    cell.text = [showtimes objectAtIndex:row]; 
     
 	return cell;
 }
 
-- (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+- (void)                            tableView:(UITableView*) tableView
+     accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
     
     NSInteger row = [indexPath row];
     
@@ -209,6 +203,17 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     if (![Utilities isNilOrEmpty:ticketUrl]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ticketUrl]];
     }
+}
+
+- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
+          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
+    NSInteger row = [indexPath row];
+    if ([self.ticketUrls objectAtIndex:row] != nil) {
+        return UITableViewCellAccessoryDetailDisclosureButton;
+    } else {
+        return UITableViewCellAccessoryNone;
+    }
+
 }
 
 @end

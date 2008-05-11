@@ -47,7 +47,7 @@
     
         
         self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
-        self.segmentedControl.selectedSegmentIndex = 1;
+        self.segmentedControl.selectedSegmentIndex = 0;
         [self.segmentedControl addTarget:self
                                   action:@selector(onSortOrderChanged:)
                         forControlEvents:UIControlEventValueChanged];
