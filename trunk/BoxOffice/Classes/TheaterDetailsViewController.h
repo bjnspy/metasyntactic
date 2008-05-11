@@ -14,14 +14,14 @@
     TheatersNavigationController* navigationController;
     Theater* theater;
     
-    NSArray* movieNames;
-    NSArray* movieShowtimes;
+    NSMutableArray* movies;
+    NSMutableArray* movieShowtimes;
 }
 
 @property (assign) TheatersNavigationController* navigationController;
 @property (retain) Theater* theater;
-@property (retain) NSArray* movieNames;
-@property (retain) NSArray* movieShowtimes;
+@property (retain) NSMutableArray* movies;
+@property (retain) NSMutableArray* movieShowtimes;
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController
                             theater:(Theater*) theater;

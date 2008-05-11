@@ -64,4 +64,6 @@
 
 - (XmlElement*) elementAtIndex:(NSInteger) index;
 
+- (NSString*) attributeValue:(NSString*) key;
+
 @end

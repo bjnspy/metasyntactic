@@ -10,6 +10,7 @@
 #import "MoviesNavigationController.h"
 #import "Theater.h"
 #import "DifferenceEngine.h"
+#import "TicketsViewController.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -20,33 +21,26 @@
 @synthesize theatersArray;
 @synthesize showtimesArray;
 
+- (void) dealloc {
+    self.navigationController = nil;
+    self.movie = nil;
+    self.theatersArray = nil;
+    self.showtimesArray = nil;
+    [super dealloc];
+}
+
 - (id) initWithNavigationController:(MoviesNavigationController*) controller
-                              movie:(Movie*) movie_
-{
-    if (self = [super initWithStyle:UITableViewStyleGrouped])
-    {
+                              movie:(Movie*) movie_ {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
         self.movie = movie_;
         
         self.theatersArray = [NSMutableArray array];
         self.showtimesArray = [NSMutableArray array];
          
-        for (Theater* theater in [[self model] theaters])
-        {
-            for (NSString* movieName in theater.movieToShowtimesMap)
-            {
-                if ([[theater.movieToShowtimesMap objectForKey:movieName] count] == 0)
-                {
-                    continue;
-                }
-                
-                if ([DifferenceEngine areSimilar:self.movie.title other:movieName])
-                {
-                    [self.theatersArray addObject:theater];
-                    [self.showtimesArray addObject:[theater.movieToShowtimesMap valueForKey:movieName]];
-                    break;
-                }
-            }
+        for (Theater* theater in [self.model theatersShowingMovie:self.movie]) {
+            [self.theatersArray addObject:theater];
+            [self.showtimesArray addObject:[self.model movieShowtimes:self.movie forTheater:theater]];
         }
         
         self.title = self.movie.title;
@@ -57,40 +51,27 @@
     return self;
 }
 
-- (void) dealloc
-{
-    self.navigationController = nil;
-    self.movie = nil;
-    [super dealloc];
+- (void) refresh {
 }
 
-- (void) refresh
-{
-}
-
-- (BoxOfficeModel*) model
-{
+- (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
-{
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 1 + [self.theatersArray count];
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
-                numberOfRowsInSection:(NSInteger) section
-{
-    if (section == 0)
-    {
+                numberOfRowsInSection:(NSInteger) section {
+    if (section == 0) {
         return 1;
     }
     
     NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:(section - 1)] count];
     NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
     NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
-    if (remainder > 0)
-    {
+    if (remainder > 0) {
         rows++;
     }
     
@@ -98,24 +79,20 @@
     //return [[self.showtimesArray objectAtIndex:(section - 1)] count];
 }
 
-- (UIImage*) posterImage
-{
+- (UIImage*) posterImage {
     UIImage* image = [self.model posterForMovie:self.movie];
-    if (image == nil)
-    {
+    if (image == nil) {
         image = [UIImage imageNamed:@"ImageNotAvailable.png"];
     }
     return image;
 }
 
 - (CGFloat)         tableView:(UITableView*) tableView
-      heightForRowAtIndexPath:(NSIndexPath*) indexPath
-{
+      heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
         
-    if (section == 0 && row == 0)
-    {
+    if (section == 0 && row == 0) {
         return [self posterImage].size.height + 10;
     }
     
@@ -123,15 +100,13 @@
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
-                        cellForRowAtIndexPath:(NSIndexPath*) indexPath
-{
+                        cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     
-    if (section == 0 && row == 0)
-    {
+    if (section == 0 && row == 0) {
         UIImage* image = [self posterImage];
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
         imageView.frame = CGRectMake(5, 5, image.size.width, image.size.height);
@@ -160,17 +135,14 @@
                     "<body>%@</body>"
                 "</html>", movie.synopsis];
         [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
-        [cell.contentView addSubview:webView];
-    }
-    else
-    {
+        [cell.contentView addSubview:webView]; 
+    } else {
         NSInteger startIndex = row * SHOWTIMES_PER_ROW;
         NSArray* showtimes = [self.showtimesArray objectAtIndex:(section - 1)];
         NSString* result = [showtimes objectAtIndex:startIndex];
         for (NSInteger i = startIndex + 1;
              i < [showtimes count] && i < (startIndex + SHOWTIMES_PER_ROW);
-             i++)
-        {
+             i++) {
             result = [result stringByAppendingString:@", "];
             result = [result stringByAppendingString:[showtimes objectAtIndex:i]];
         }
@@ -185,14 +157,23 @@
 }
 
 - (NSString*)               tableView:(UITableView*) tableView
-              titleForHeaderInSection:(NSInteger) section
-{
-    if (section == 0)
-    {
+              titleForHeaderInSection:(NSInteger) section {
+    if (section == 0) {
         return nil;
     }
     
     return [[self.theatersArray objectAtIndex:(section - 1)] name];
+}
+
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
+    NSInteger section = [indexPath section];
+    
+    Theater* theater = [self.theatersArray objectAtIndex:(section - 1)];    
+    [self.navigationController pushViewController:[[[TicketsViewController alloc] initWithController:self.navigationController
+                                                                                            theater:theater
+                                                                                            movie:self.movie] autorelease]
+                                         animated:YES];
 }
 
 @end

@@ -9,6 +9,7 @@
 #import "BoxOfficeModel.h"
 #import "Movie.h"
 #import "Theater.h"
+#import "DifferenceEngine.h"
 
 @implementation BoxOfficeModel
 
@@ -166,6 +167,70 @@
 
 - (Location*) locationForZipcode:(NSString*) zipcode {
     return [self.addressLocationCache locationForZipcode:zipcode];
+}
+
+- (NSArray*) theatersShowingMovie:(Movie*) movie {
+    NSMutableArray* array = [NSMutableArray array];
+    
+    DifferenceEngine* engine = [DifferenceEngine engine];
+    
+    for (Theater* theater in self.theaters) {
+        for (NSString* movieName in theater.movieToShowtimesMap) {
+            if ([[theater.movieToShowtimesMap objectForKey:movieName] count] == 0) {
+                continue;
+            }
+            
+            if ([engine similar:movie.title other:movieName]) {
+            //if ([DifferenceEngine areSimilar:movie.title other:movieName]) {
+                [array addObject:theater];
+                break;
+            }
+        }
+    }    
+    
+    return array;
+}
+
+- (NSArray*) moviesAtTheater:(Theater*) theater {
+    NSMutableArray* array = [NSMutableArray array];
+    
+    for (Movie* movie in self.movies) {
+        for (NSString* movieName in theater.movieToShowtimesMap) {
+            if ([[theater.movieToShowtimesMap objectForKey:movieName] count] == 0) {
+                continue;
+            }
+            
+            if ([DifferenceEngine areSimilar:movie.title other:movieName]) {
+                [array addObject:movie];
+                break;
+            }
+        }
+    }
+    
+    return array;
+}
+
+- (NSArray*) movieShowtimes:(Movie*) movie
+                 forTheater:(Theater*) theater {
+    
+    DifferenceEngine* engine = [DifferenceEngine engine];
+    
+    NSString* bestName = nil;
+    NSInteger bestDistance = NSIntegerMax;
+    
+    for (NSString* name in [theater.movieToShowtimesMap allKeys]) {
+        NSInteger distance = [engine editDistanceFrom:name to:movie.title];
+        if (distance < bestDistance) {
+            bestDistance = distance;
+            bestName = name;
+        }
+    }
+    
+    if ([engine similar:bestName other:movie.title]) {
+        return [theater.movieToShowtimesMap objectForKey:bestName];
+    }
+    
+    return [NSArray array];
 }
 
 @end

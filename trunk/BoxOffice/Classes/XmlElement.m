@@ -193,4 +193,8 @@
     return nil;
 }
 
+- (NSString*) attributeValue:(NSString*) key {
+    return [self.attributes valueForKey:key];
+}
+
 @end

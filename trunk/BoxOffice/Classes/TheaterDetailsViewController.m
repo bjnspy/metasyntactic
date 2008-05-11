@@ -8,24 +8,45 @@
 
 #import "TheaterDetailsViewController.h"
 
+#import "Movie.h"
+#import "BoxOfficeModel.h"
+#import "TheatersNavigationController.h"
 
 @implementation TheaterDetailsViewController
 
 @synthesize navigationController;
 @synthesize theater;
-@synthesize movieNames;
+@synthesize movies;
 @synthesize movieShowtimes;
 
+- (void) dealloc {
+    self.movies = nil;
+    self.movieShowtimes = nil;
+    self.navigationController = nil;
+    self.theater = nil;
+    [super dealloc];
+}
+
+- (BoxOfficeModel*) model {
+    return [self.navigationController model];
+}
+
 - (id) initWithNavigationController:(TheatersNavigationController*) controller
-                            theater:(Theater*) theater_
-{
-    if (self = [super initWithStyle:UITableViewStyleGrouped])
-    {
+                            theater:(Theater*) theater_ {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.theater = theater_;
         self.navigationController = controller;
-        self.movieNames = [NSMutableArray array];
+        self.movies = [NSMutableArray array];
         self.movieShowtimes = [NSMutableArray array];
         
+        for (Movie* movie in [self.model moviesAtTheater:theater]) {
+            NSArray* showtimes = [self.model movieShowtimes:movie forTheater:theater];
+            
+            [self.movies addObject:movie];
+            [self.movieShowtimes addObject:showtimes];
+        }
+        
+        /*
         NSMutableArray* mutableMovieNames = [NSMutableArray array];
         for (NSString* name in theater.movieToShowtimesMap)
         {
@@ -36,23 +57,17 @@
         NSMutableArray* mutableMovieShowtimes = [NSMutableArray array];
         for (NSString* name in self.movieNames)
         {
+            for (Movie* moie in self.model.movies) {
+            
             [mutableMovieShowtimes addObject:[theater.movieToShowtimesMap valueForKey:name]];
         }
         self.movieShowtimes = mutableMovieShowtimes;
-        
+        */
+         
         self.title = self.theater.name;
     }
     
     return self;
-}
-
-- (void) dealloc
-{
-    self.movieNames = nil;
-    self.movieShowtimes = nil;
-    self.navigationController = nil;
-    self.theater = nil;
-    [super dealloc];
 }
 
 - (void) refresh
@@ -62,7 +77,7 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
 {
-    return [self.movieNames count] + 1;
+    return [self.movies count] + 1;
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
@@ -104,7 +119,8 @@
         return @"Address";
     }
     
-    return [self.movieNames objectAtIndex:(section - 1)];
+    Movie* movie = [self.movies objectAtIndex:(section - 1)];
+    return movie.title;
 }
 
 /*

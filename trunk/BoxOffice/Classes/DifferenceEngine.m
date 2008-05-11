@@ -12,43 +12,21 @@
 
 @implementation DifferenceEngine
 
-@synthesize S;
-@synthesize T;
-
-- (void) dealloc
-{
-    self.S = nil;
-    self.T = nil;
-    [super dealloc];
-}
-
-+ (DifferenceEngine*) engine
-{
++ (DifferenceEngine*) engine {
     return [[[DifferenceEngine alloc] init] autorelease];
-}
-
-- (id) init
-{
-    return [self initWithAddCost:1
-                      deleteCost:1
-                      switchCost:1
-                   transposeCost:1];
 }
 
 - (id) initWithAddCost:(NSInteger) add
             deleteCost:(NSInteger) delete
             switchCost:(NSInteger) switch_
-         transposeCost:(NSInteger) transpose
-{
-    if (self = [super init])
-    {
+         transposeCost:(NSInteger) transpose {
+    if (self = [super init]) {
         addCost = add;
         deleteCost = delete;
         switchCost = switch_;
         transposeCost = transpose;
         
-        for (NSInteger i = 0; i < MaxLength; i++)
-        {
+        for (NSInteger i = 0; i < MaxLength; i++) {
             costTable[i][0] = (i * deleteCost);
             costTable[0][i] = (i * addCost);
         }
@@ -57,41 +35,42 @@
     return self;
 }
 
-- (BOOL) initializeFrom:(NSString*) from
-                     to:(NSString*) to
-          withThreshold:(NSInteger) threshold
-{
-    self.S = from;
-    self.T = to;
+- (id) init {
+    return [self initWithAddCost:1
+                      deleteCost:1
+                      switchCost:1
+                   transposeCost:1];
+}
+
+- (BOOL) initializeFrom:(NSString*) S
+                     to:(NSString*) T
+          withThreshold:(NSInteger) threshold {
+    if (S == nil || T == nil) {
+        return NO;
+    }
     
-    cached_S_length = [self.S length];
-    cached_T_length = [self.T length];
+    cached_S_length = [S length];
+    cached_T_length = [T length];
     
-    if (cached_T_length > MaxLength || cached_S_length > MaxLength)
-    {
-        return false;
+    if (cached_T_length > MaxLength || cached_S_length > MaxLength) {
+        return NO;
     }
     
     costThreshold = threshold;
     
-    if (costThreshold >= 0)
-    {
-        if (deleteCost > 0)
-        {
+    if (costThreshold >= 0) {
+        if (deleteCost > 0) {
             NSInteger minimumTLength = cached_S_length - (costThreshold * deleteCost);
             
-            if (cached_T_length < minimumTLength)
-            {
+            if (cached_T_length < minimumTLength) {
                 return NO;
             }
         }
         
-        if (addCost > 0)
-        {
+        if (addCost > 0) {
             NSInteger minimumSLength = cached_T_length - (costThreshold * addCost);
             
-            if (cached_S_length < minimumSLength)
-            {
+            if (cached_S_length < minimumSLength) {
                 return NO;
             }
         }
@@ -101,62 +80,51 @@
 }
 
 - (NSInteger) minX:(NSInteger) x
-                 Y:(NSInteger) y
-{
+                 Y:(NSInteger) y {
     return x < y ? x : y;
 }
 
 - (NSInteger) editDistanceFrom:(NSString*) from
-                            to:(NSString*) to
-{
+                            to:(NSString*) to {
     return [self editDistanceFrom:from to:to withThreshold:-1];
 }
 
-- (NSInteger) editDistanceFrom:(NSString*) from
-                            to:(NSString*) to
-                 withThreshold:(NSInteger) threshold
-{
-    if ([self initializeFrom:from to:to withThreshold:threshold] == NO)
-    {
+- (NSInteger) editDistanceFrom:(NSString*) S
+                            to:(NSString*) T
+                 withThreshold:(NSInteger) threshold {
+    if ([self initializeFrom:S to:T withThreshold:threshold] == NO) {
         return NSIntegerMax;
     }
     
-    for (NSInteger i = 1; i < cached_S_length; i++)
-    {
+    for (NSInteger i = 1; i < cached_S_length; i++) {
         BOOL rowIsUnderThreshold = (costThreshold < 0);
         
-        for (NSInteger j = 1; j < cached_T_length; j++)
-        {
+        for (NSInteger j = 1; j < cached_T_length; j++) {
             const NSInteger adds = 1;
             const NSInteger deletes = 1;
-            NSInteger switches = ([self.S characterAtIndex:(i - 1)] == [self.T characterAtIndex:(j - 1)]) ? 0 : 1;
+            NSInteger switches = ([S characterAtIndex:(i - 1)] == [T characterAtIndex:(j - 1)]) ? 0 : 1;
             
             NSInteger totalDeleteCost = costTable[i - 1][j] + (deletes * deleteCost);
             NSInteger totalAddCost = costTable[i][j - 1] + (adds * addCost);
             NSInteger totalSwitchCost = costTable[i - 1][j - 1] + (switches * switchCost);
             NSInteger cost = [self minX:totalDeleteCost Y:[self minX:totalAddCost Y:totalSwitchCost]];
             
-            if (i >= 2 && j >= 2)
-            {
-                NSInteger transposes = 1 + (([self.S characterAtIndex:(i - 1)] == [self.T characterAtIndex:j]) ? 0 : 1) + 
-                                     (([self.S characterAtIndex:i] == [self.T characterAtIndex:(j - 1)]) ? 0 : 1);
+            if (i >= 2 && j >= 2) {
+                NSInteger transposes = 1 + (([S characterAtIndex:(i - 1)] == [T characterAtIndex:j]) ? 0 : 1) + 
+                                     (([S characterAtIndex:i] == [T characterAtIndex:(j - 1)]) ? 0 : 1);
                 NSInteger tCost = costTable[i - 2][j - 2] + (transposes * transposeCost);
                 
                 costTable[i][j] = [self minX:cost Y:tCost];
-            }
-            else
-            {
+            } else {
                 costTable[i][j] = cost;
             }
             
-            if (costThreshold >= 0)
-            {
+            if (costThreshold >= 0) {
                 rowIsUnderThreshold |= (cost <= costThreshold);
             }
         }
         
-        if (!rowIsUnderThreshold)
-        {
+        if (!rowIsUnderThreshold) {
             return NSIntegerMax;
         }
     }
@@ -165,16 +133,22 @@
 }
 
 + (BOOL) areSimilar:(NSString*) s1
-              other:(NSString*) s2
-{
-    NSInteger threshold = [s1 length] / 4;
-    if (threshold == 0)
-    {
-        threshold = 1;
+              other:(NSString*) s2 {
+    return [[DifferenceEngine engine] similar:s1 other:s2];
+}
+
+- (BOOL) similar:(NSString*) s1
+           other:(NSString*) s2 {
+    if (s1 == nil || s2 == nil) {
+        return NO;
     }
     
-    DifferenceEngine* engine = [DifferenceEngine engine];
-    NSInteger diff = [engine editDistanceFrom:s1 to:s2 withThreshold:threshold];
+    NSInteger threshold = [s1 length] / 4;
+    if (threshold == 0) {
+        threshold = 1;
+    }  
+    
+    NSInteger diff = [self editDistanceFrom:s1 to:s2 withThreshold:threshold];
     return (diff <= threshold);
 }
 
