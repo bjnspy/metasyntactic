@@ -11,11 +11,8 @@
 
 @implementation Utilities
 
-+ (BOOL) isNilOrEmpty:(NSString*) string
-{
-    return
-    string == nil ||
-    [@"" isEqual:string];
++ (BOOL) isNilOrEmpty:(NSString*) string {
+    return string == nil || [@"" isEqual:string];
 }
 
 @end

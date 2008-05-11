@@ -13,21 +13,17 @@
 
 @synthesize dictionary;
 
-- (void) dealloc
-{
+- (void) dealloc {
     self.dictionary = nil;
     [super dealloc];
 }
 
-+ (MultiDictionary*) dictionary
-{
++ (MultiDictionary*) dictionary {
     return [[[MultiDictionary alloc] init] autorelease];
 }
 
-- (id) init
-{
-    if (self = [super init])
-    {
+- (id) init {
+    if (self = [super init]) {
         self.dictionary = [NSMutableDictionary dictionary];
     }
     
@@ -35,11 +31,9 @@
 }
 
 - (void) addObject:(id) object
-            forKey:(id) key
-{
+            forKey:(id) key {
     NSMutableArray* array = [self.dictionary objectForKey:key];
-    if (array == nil)
-    {
+    if (array == nil) {
         array = [NSMutableArray array];
         [self.dictionary setObject:array forKey:key];
     }
@@ -47,22 +41,18 @@
 }
 
 - (void) addObjects:(NSArray*) objects
-             forKey:(id) key
-{
+             forKey:(id) key {
     NSMutableArray* array = [self.dictionary objectForKey:key];
-    if (array == nil)
-    {
+    if (array == nil) {
         array = [NSMutableArray array];
         [self.dictionary setObject:array forKey:key];
     }
     [array addObjectsFromArray:objects];
 }
 
-- (NSArray*) objectsForKey:(id) key
-{
+- (NSArray*) objectsForKey:(id) key {
     NSArray* array = [self.dictionary objectForKey:key];
-    if (array == nil)
-    {
+    if (array == nil) {
         array = [NSArray array];
     }
     return array;
