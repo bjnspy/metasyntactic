@@ -23,7 +23,6 @@
         
         [self pushViewController:allMoviesViewController animated:NO];
         
-        //[self.tabBarItem initWithTabBarSystemItem:UITabBarSystemItem target:<#(id)target#> action:<#(SEL)action#>
         self.title = @"Movies";
         self.tabBarItem.image = [UIImage imageNamed:@"Featured.png"];
     }

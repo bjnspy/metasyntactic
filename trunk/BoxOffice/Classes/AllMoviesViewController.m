@@ -243,7 +243,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 - (NSInteger)               tableView:(UITableView*) tableView 
           sectionForSectionIndexTitle:(NSString*) title
                               atIndex:(NSInteger) index {
-    // first entry in the list always goes to the first section
     if (index == 0) {
         return index;
     }
@@ -282,7 +281,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         
         if (orientation == UIInterfaceOrientationPortrait) {
             self.navigationController.tabBarController.view.alpha = 1;
-            //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleGray animated:YES];
             [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
             
             if (self.posterView != nil) {
@@ -291,7 +289,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
             }
         } else {
             self.navigationController.tabBarController.view.alpha = 0;
-            //[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleOpaqueBlack animated:YES];
             [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
             
             if (self.posterView == nil) {

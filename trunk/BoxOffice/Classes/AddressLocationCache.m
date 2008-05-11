@@ -84,7 +84,6 @@
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
     [request setURL:[NSURL URLWithString:@"http://rpc.geocoder.us/service/soap/"]];
     [request setHTTPMethod:@"POST"];
-    //[request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
     
     [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
     [request setValue:@"http://rpc.geocoder.us/Geo/Coder/US#geocode" forHTTPHeaderField:@"Soapaction"];
@@ -239,7 +238,6 @@
 
 - (void) downloadAddressLocation:(NSString*) address {
     if ([self locationForAddress:address] != nil) {
-        // already have the address, don't need to do anything.
         return;
     }
     
@@ -347,7 +345,6 @@
 - (void) updateZipcode:(NSString*) zipcode
 {
     if ([self locationForZipcode:zipcode] != nil) {
-        // already have the address, don't need to do anything.
         return;
     }    
     

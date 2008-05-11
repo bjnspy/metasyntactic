@@ -38,4 +38,8 @@
     [self.tabBarController refresh];
 }
 
+- (void) applicationWillTerminate:(UIApplication*) application {
+    
+}
+
 @end

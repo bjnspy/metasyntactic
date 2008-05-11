@@ -63,7 +63,6 @@
 
 - (void) downloadPoster:(Movie*) movie {
     if ([[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]]) {
-        // already have the poster.  Don't need to do anything.
         return;
     }
     

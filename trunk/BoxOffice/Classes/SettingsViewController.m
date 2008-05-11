@@ -92,7 +92,6 @@
     NSURL* url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] initWithURL:url] autorelease];
-    //[request setCachePolicy:NSURLRequestReturnCacheDataElseLoad];
     
     NSError* httpError = nil;
     NSURLResponse* response = nil;
@@ -239,14 +238,12 @@
 - (void) onZipcodeChanged:(NSString*) zipcode
 {
     [self.controller setZipcode:zipcode];
-//    [self.model setZipcode:zipcode];
     [self.tableView reloadData];
 }
 
 - (void) onSearchRadiusChanged:(NSString*) radius
 {
     [self.controller setSearchRadius:[radius intValue]];
-//    [self.model setSearchRadius:[radius intValue]];
     [self.tableView reloadData];
 }
 

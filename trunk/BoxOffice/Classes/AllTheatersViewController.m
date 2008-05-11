@@ -20,8 +20,7 @@
 @synthesize sectionTitleToContentsMap;
 @synthesize alphabeticSectionTitles;
 
-- (void) dealloc
-{
+- (void) dealloc {
     self.navigationController = nil;
     self.segmentedControl = nil;
     self.sortedTheaters = nil;
@@ -31,10 +30,8 @@
     [super dealloc];
 }
 
-- (id) initWithNavigationController:(TheatersNavigationController*) controller
-{
-    if (self = [super initWithStyle:UITableViewStylePlain])
-    {
+- (id) initWithNavigationController:(TheatersNavigationController*) controller {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
         self.sortedTheaters = [NSArray array];
         
@@ -63,36 +60,30 @@
     return self;
 }
 
-- (BOOL) sortingByName
-{
+- (BOOL) sortingByName {
     return segmentedControl.selectedSegmentIndex == 0;
 }
 
-- (BOOL) sortingByDistance
-{
+- (BOOL) sortingByDistance {
     return ![self sortingByName];
 }
 
-- (void) onSortOrderChanged:(id) sender
-{
+- (void) onSortOrderChanged:(id) sender {
     [self refresh];
 }
 
-- (BoxOfficeModel*) model
-{
+- (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
 
-NSInteger sortByName(id t1, id t2, void *context)
-{
+NSInteger sortByName(id t1, id t2, void *context) {
     Theater* theater1 = t1;
     Theater* theater2 = t2;
     
     return [theater1.name compare:theater2.name options:NSCaseInsensitiveSearch];
 }
 
-NSInteger sortByDistance(id t1, id t2, void *context)
-{
+NSInteger sortByDistance(id t1, id t2, void *context) {
     NSDictionary* theaterDistanceMap = context;
     
     Theater* theater1 = t1;
@@ -101,44 +92,33 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     double distance1 = [[theaterDistanceMap objectForKey:theater1.address] doubleValue];
     double distance2 = [[theaterDistanceMap objectForKey:theater2.address] doubleValue];
     
-    if (distance1 < distance2)
-    {
+    if (distance1 < distance2) {
         return NSOrderedAscending;
-    }
-    else if (distance1 > distance2)
-    {
+    } else if (distance1 > distance2) {
         return NSOrderedDescending;
     }
     
     return sortByName(t1, t2, nil);
 }
 
-- (void) removeUnusedSectionTitles
-{
-    for (NSInteger i = [self.sectionTitles count] - 1; i >= 0; --i)
-    {
+- (void) removeUnusedSectionTitles {
+    for (NSInteger i = [self.sectionTitles count] - 1; i >= 0; --i) {
         NSString* title = [self.sectionTitles objectAtIndex:i];
-        if ([[self.sectionTitleToContentsMap objectsForKey:title] count] == 0)
-        {
+        if ([[self.sectionTitleToContentsMap objectsForKey:title] count] == 0) {
             [self.sectionTitles removeObjectAtIndex:i];
         }
     }    
 }
 
-- (NSDictionary*) theaterDistanceMap
-{
+- (NSDictionary*) theaterDistanceMap {
     Location* userLocation = [self.model locationForZipcode:[self.model zipcode]];
     
     NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
-    for (Theater* theater in self.model.theaters)
-    {
+    for (Theater* theater in self.model.theaters) {
         double d;
-        if (userLocation != nil)
-        {
+        if (userLocation != nil) {
             d = [userLocation distanceTo:[self.model locationForAddress:theater.address]];
-        }
-        else
-        {
+        } else {
             d = UNKNOWN_DISTANCE;
         }
         
@@ -150,42 +130,34 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     return theaterDistanceMap;
 }
 
-- (BOOL) tooFarAway:(double) distance
-{
-    if (distance != UNKNOWN_DISTANCE && self.model.searchRadius < 50 && distance > self.model.searchRadius)
-    {
+- (BOOL) tooFarAway:(double) distance {
+    if (distance != UNKNOWN_DISTANCE && self.model.searchRadius < 50 && distance > self.model.searchRadius) {
         return true;
     }
     
     return false;
 }
 
-- (void) sortTheatersByName
-{
+- (void) sortTheatersByName {
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:sortByName context:nil];
     
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
     
     NSDictionary* theaterDistanceMap = [self theaterDistanceMap];
-    for (Theater* theater in self.sortedTheaters)
-    {
+    for (Theater* theater in self.sortedTheaters) {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
         
-        if ([self tooFarAway:distance])
-        {
+        if ([self tooFarAway:distance]) {
             continue;
         }
         
         unichar firstChar = [theater.name characterAtIndex:0];
         firstChar = toupper(firstChar);
         
-        if (firstChar >= 'A' && firstChar <= 'Z')
-        {
+        if (firstChar >= 'A' && firstChar <= 'Z') {
             NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
             [self.sectionTitleToContentsMap addObject:theater forKey:sectionTitle];
-        }
-        else
-        {
+        } else {
             [self.sectionTitleToContentsMap addObject:theater forKey:@"#"];
         }
     }
@@ -193,8 +165,7 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     [self removeUnusedSectionTitles];
 }
 
-- (void) sortTheatersByDistance
-{
+- (void) sortTheatersByDistance {
     NSDictionary* theaterDistanceMap = [self theaterDistanceMap];    
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:sortByDistance
                                                                 context:theaterDistanceMap];
@@ -214,12 +185,10 @@ NSInteger sortByDistance(id t1, id t2, void *context)
                                                           fiveToTenMiles, tenToFifteenMiles, fifteenToTwentyFiveMiles,
                                                           twentyFiveToFiftyMiles, wayFarAway, unknownDistance, nil];
     
-    for (Theater* theater in self.sortedTheaters)
-    {
+    for (Theater* theater in self.sortedTheaters) {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
         
-        if ([self tooFarAway:distance])
-        {
+        if ([self tooFarAway:distance]) {
             continue;
         }
         
@@ -249,48 +218,37 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     [self removeUnusedSectionTitles];
 }
 
-- (void) sortTheaters
-{
+- (void) sortTheaters {
     self.sectionTitles = [NSMutableArray array];
     self.sectionTitleToContentsMap = [MultiDictionary dictionary];
     
-    if ([self sortingByName])
-    {
+    if ([self sortingByName]) {
         [self sortTheatersByName];
-    }
-    else
-    {
+    } else {
         [self sortTheatersByDistance];
     }
     
-    if ([self.sectionTitles count] == 0)
-    {
+    if ([self.sectionTitles count] == 0) {
         self.sectionTitles = [NSArray arrayWithObject:@"No Data Found"];   
     }
 }
 
-- (void) refresh
-{
+- (void) refresh {
     [self sortTheaters];
     [self.tableView reloadData];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath
-{
-    if ([self sortingByName])
-    {
+          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
+    if ([self sortingByName]) {
         return UITableViewCellAccessoryNone;
-    }
-    else
-    {
+    } else {
         return UITableViewCellAccessoryDisclosureIndicator;
     }
 }
 
 - (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath;
-{
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
@@ -298,14 +256,12 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     [self.navigationController pushTheaterDetails:theater];
 }
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
-{
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return [self.sectionTitles count];
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
-                numberOfRowsInSection:(NSInteger) section
-{
+                numberOfRowsInSection:(NSInteger) section {
     return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
 }
 
@@ -328,15 +284,12 @@ NSInteger sortByDistance(id t1, id t2, void *context)
 }
 
 - (NSString*)               tableView:(UITableView*) tableView
-              titleForHeaderInSection:(NSInteger) section
-{
+              titleForHeaderInSection:(NSInteger) section {
     return [self.sectionTitles objectAtIndex:section]; 
 }
 
-- (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView
-{
-    if ([self sortingByName])
-    {
+- (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
+    if ([self sortingByName]) {
         return self.alphabeticSectionTitles;
     }
     
@@ -345,21 +298,16 @@ NSInteger sortByDistance(id t1, id t2, void *context)
 
 - (NSInteger)               tableView:(UITableView*) tableView 
           sectionForSectionIndexTitle:(NSString*) title
-                              atIndex:(NSInteger) index
-{
-    // first entry in the list always goes to the first section
-    if (index == 0)
-    {
+                              atIndex:(NSInteger) index {
+    if (index == 0) {
         return index;
     }
         
-    for (unichar c = [title characterAtIndex:0]; c >= 'A'; c--)
-    {
+    for (unichar c = [title characterAtIndex:0]; c >= 'A'; c--) {
         NSString* s = [NSString stringWithFormat:@"%c", c];
         
         NSInteger result = [self.sectionTitles indexOfObject:s];
-        if (result != NSNotFound)
-        {
+        if (result != NSNotFound) {
             return result;
         }  
     }
@@ -367,10 +315,8 @@ NSInteger sortByDistance(id t1, id t2, void *context)
     return 0;
 }
 
-- (void) viewWillAppear:(BOOL) animated
-{
-    if ([self sortingByDistance])
-    {
+- (void) viewWillAppear:(BOOL) animated {
+    if ([self sortingByDistance]) {
         [self refresh];
     }
 }

@@ -17,7 +17,6 @@
     if (self = [super initWithFrame:frame])
     {
         rating = rating_;
-        //rating = 100;
     }
     
     return self;
@@ -29,7 +28,6 @@
     
     if (rating >= 0 && rating <= 100)
     {
-        // get the image that represents the element physical state and draw it
         UIImage* ratingsImage = [UIImage imageNamed:(rating >= 60 ? @"Fresh.png" : @"Rotten.png")];
         CGRect ratingsRectangle = CGRectMake(5, 0, [ratingsImage size].width, [ratingsImage size].height);
         [ratingsImage drawInRect:ratingsRectangle blendMode:kCGBlendModeNormal alpha:0.3];

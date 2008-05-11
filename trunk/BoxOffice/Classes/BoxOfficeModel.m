@@ -181,7 +181,6 @@
             }
             
             if ([engine similar:movie.title other:movieName]) {
-            //if ([DifferenceEngine areSimilar:movie.title other:movieName]) {
                 [array addObject:theater];
                 break;
             }

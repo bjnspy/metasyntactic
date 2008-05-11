@@ -19,7 +19,6 @@
     NSLock* ticketLookupLock;
 }
 
-// Don't retain the BoxOfficeAppDelegate.  It's retaining us.
 @property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) NSLock* movieLookupLock;
 @property (retain) NSLock* theaterLookupLock;

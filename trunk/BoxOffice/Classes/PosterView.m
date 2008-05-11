@@ -36,11 +36,6 @@
 }
 
 - (void) layoutSubviews {
-    //NSNumber* number = [NSNumber numberWithInt:0];
-    //NSNumber* number = [NSNumber numberWithInt:1];
-    
-    //[self performSelector:@selector(showPoster:) withObject:number];
-    
     for (int i = 0; i < 10; i++) {
         [self showPoster:[NSNumber numberWithInt:i]];
     }
@@ -78,7 +73,6 @@
     imageView.transform = transform;
     imageView.center = 
     CGPointMake(row == 0 ? 240 : 80, 60 + column * 120);
-        //CGPointMake(60 + column * 120, row == 0 ? 240 : 80);
     
     CGRect bounds = imageView.bounds;
     double dx = bounds.size.width / 20;
@@ -118,7 +112,6 @@
 - (void) decreaseImageViewSize:(NSString*) animationID
                       finished:(NSNumber*) finished
                        context:(void*) context {
-    //return;
     NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
     
     [UIView beginAnimations:nil context:NULL];

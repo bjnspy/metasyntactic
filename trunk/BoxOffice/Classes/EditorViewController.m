@@ -39,7 +39,6 @@
 {    
     [super loadView];
     
-    // Add navigation item buttons.
     UIBarButtonItem *saveItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave 
                                                                                target:self
                                                                                action:@selector(save:)] autorelease];
