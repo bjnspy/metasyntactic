@@ -31,7 +31,6 @@
     self.model = [BoxOfficeModel model];
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
     
-    //window.backgroundColor = [UIColor blackColor];
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
     

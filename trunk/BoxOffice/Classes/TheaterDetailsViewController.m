@@ -11,6 +11,7 @@
 #import "Movie.h"
 #import "BoxOfficeModel.h"
 #import "TheatersNavigationController.h"
+#import "TicketsViewController.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -54,57 +55,92 @@
     return self;
 }
 
-- (void) refresh
-{
+- (void) refresh {
     [self.tableView reloadData];
 }
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
-{
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return [self.movies count] + 1;
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
-                numberOfRowsInSection:(NSInteger) section
-{
-    if (section == 0)
-    {
+                numberOfRowsInSection:(NSInteger) section {
+    if (section == 0) {
         return 1;
     }
     
-    return [[self.movieShowtimes objectAtIndex:(section - 1)] count];
+    NSInteger showtimesCount = [[self.movieShowtimes objectAtIndex:(section - 1)] count];
+    NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
+    NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
+    if (remainder > 0) {
+        rows++;
+    }
+    
+    return rows;
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
-                        cellForRowAtIndexPath:(NSIndexPath*) indexPath
-{
+                        cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
-    if (section == 0)
-    {
+    if (section == 0) {
         cell.text = self.theater.address;
-    }
-    else
-    {
-        cell.text = [[self.movieShowtimes objectAtIndex:(section - 1)] objectAtIndex:row];
+    } else {
+        NSInteger startIndex = row * SHOWTIMES_PER_ROW;
+        NSArray* showtimes = [self.movieShowtimes objectAtIndex:(section - 1)];
+        NSString* result = [showtimes objectAtIndex:startIndex];
+        for (NSInteger i = startIndex + 1;
+             i < [showtimes count] && i < (startIndex + SHOWTIMES_PER_ROW);
+             i++) {
+            result = [result stringByAppendingString:@", "];
+            result = [result stringByAppendingString:[showtimes objectAtIndex:i]];
+        }
+        
+        cell.font = [UIFont boldSystemFontOfSize:11];
+        cell.text = result;
     }
     
     return cell;
 }
 
 - (NSString*)               tableView:(UITableView*) tableView
-              titleForHeaderInSection:(NSInteger) section
-{
-    if (section == 0)
-    {
+              titleForHeaderInSection:(NSInteger) section {
+    if (section == 0) {
         return @"Address";
     }
     
     Movie* movie = [self.movies objectAtIndex:(section - 1)];
     return movie.title;
+}
+
+- (CGFloat)         tableView:(UITableView*) tableView
+      heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+    
+    if (section == 0 && row == 0) {
+        return 42;
+    }
+    
+    return 32;
+}
+
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
+    NSInteger section = [indexPath section];
+    
+    Movie* movie = [self.movies objectAtIndex:(section - 1)];    
+    
+    TicketsViewController* controller =
+     [[[TicketsViewController alloc] initWithController:self.navigationController
+                                                theater:self.theater
+                                                  movie:movie 
+                                                  title:[NSString stringWithFormat:@"- %@", movie.title]] autorelease];
+    [self.navigationController pushViewController:controller
+                                         animated:YES];
 }
 
 @end

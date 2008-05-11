@@ -30,6 +30,7 @@
 
 - (id) initWithController:(AbstractNavigationController*) controller
                   theater:(Theater*) theater
-                    movie:(Movie*) movie;
+                    movie:(Movie*) movie
+                    title:(NSString*) title;
 
 @end

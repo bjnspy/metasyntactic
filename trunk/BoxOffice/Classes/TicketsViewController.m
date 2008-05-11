@@ -152,7 +152,8 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
 
 - (id) initWithController:(AbstractNavigationController*) controller_
                   theater:(Theater*) theater_
-                    movie:(Movie*) movie_  {
+                    movie:(Movie*) movie_
+                    title:(NSString*) title_ {
 	if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.controller = controller_;
         self.theater = theater_;
@@ -162,7 +163,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
         
         [self findTicketUrls];
         
-        self.title = [NSString stringWithFormat:@"@ %@", theater.name];
+        self.title = title_;
 	}
     
 	return self;

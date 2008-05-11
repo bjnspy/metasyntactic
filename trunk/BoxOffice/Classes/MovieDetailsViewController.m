@@ -76,7 +76,6 @@
     }
     
     return rows;
-    //return [[self.showtimesArray objectAtIndex:(section - 1)] count];
 }
 
 - (UIImage*) posterImage {
@@ -150,7 +149,6 @@
         
         cell.font = [UIFont boldSystemFontOfSize:11];
         cell.text = result;
-        //cell.text = [[self.showtimesArray objectAtIndex:(section - 1)] objectAtIndex:row];
     }
     
     return cell;
@@ -169,10 +167,15 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = [indexPath section];
     
-    Theater* theater = [self.theatersArray objectAtIndex:(section - 1)];    
-    [self.navigationController pushViewController:[[[TicketsViewController alloc] initWithController:self.navigationController
-                                                                                            theater:theater
-                                                                                            movie:self.movie] autorelease]
+    Theater* theater = [self.theatersArray objectAtIndex:(section - 1)];
+    
+    TicketsViewController* controller = 
+     [[[TicketsViewController alloc] initWithController:self.navigationController
+                                                theater:theater
+                                                  movie:self.movie
+                                                  title:[NSString stringWithFormat:@"@ %@", theater.name]] autorelease];
+    
+    [self.navigationController pushViewController:controller
                                          animated:YES];
 }
 
