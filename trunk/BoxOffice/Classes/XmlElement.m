@@ -69,9 +69,9 @@
 }
 
 + (id) elementWithName:(NSString*) name_
-         attributes:(NSDictionary*) attributes_
-           children:(NSArray*) children_
-               text:(NSString*) text_
+			attributes:(NSDictionary*) attributes_
+			  children:(NSArray*) children_
+				  text:(NSString*) text_
 {
 	return [[[XmlElement alloc] initWithName:name_ attributes:attributes_ children:children_ text:text_] autorelease];
 }

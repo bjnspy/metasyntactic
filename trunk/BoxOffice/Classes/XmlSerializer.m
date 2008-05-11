@@ -12,11 +12,11 @@
 
 + (NSString*) sanitizeNonQuotedString:(NSString*) orig
 {
-  NSString* sanitized = [NSString string];
-  sanitized = [orig stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];  
-  sanitized = [sanitized stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"];
-  sanitized = [sanitized stringByReplacingOccurrencesOfString:@">" withString:@"&gt;"];
-  return sanitized;
+	NSString* sanitized = [NSString string];
+	sanitized = [orig stringByReplacingOccurrencesOfString:@"&" withString:@"&amp;"];  
+	sanitized = [sanitized stringByReplacingOccurrencesOfString:@"<" withString:@"&lt;"];
+	sanitized = [sanitized stringByReplacingOccurrencesOfString:@">" withString:@"&gt;"];
+	return sanitized;
 }
 
 + (NSString*) serializeAttribute:(NSString*) key 
@@ -30,7 +30,7 @@
 	[serialized appendString:@"\""];
 	return serialized;
 }
-   
+
 
 + (NSString*) serializeElement:(XmlElement*) node 
 {
@@ -46,7 +46,7 @@
 		for (NSString* key in node.attributes) 
 		{
 			[serialized appendString:
-        [XmlSerializer serializeAttribute:key value:[node.attributes valueForKey:key]]];
+			 [XmlSerializer serializeAttribute:key value:[node.attributes valueForKey:key]]];
 		}
 	}
 	
@@ -59,9 +59,9 @@
 	[serialized appendString:@">"];
 	if (node.text != nil) 
 	{
-		 [serialized appendString:[XmlSerializer sanitizeNonQuotedString:node.text]];
+		[serialized appendString:[XmlSerializer sanitizeNonQuotedString:node.text]];
 	}
-		 
+	
 	for (XmlElement* child in node.children)
 	{
 		[serialized appendString:[self serializeElement:child]];
@@ -71,24 +71,24 @@
 	[serialized appendString:@">"];
 	return serialized;
 }
-		 
+
 + (NSString*) serializeDocument:(XmlDocument*) document
 {
 	NSMutableString* serialized = [NSMutableString string];
 	[serialized appendString:@"<?xml"];
-		 
+	
 	if (document.version != nil) 
 	{
 		[serialized appendString:[XmlSerializer serializeAttribute:@"version" value:document.version]];
 	}
-		 
+	
 	if (document.encoding != nil)
 	{
 		[serialized appendString:[XmlSerializer serializeAttribute:@"encoding" value:document.encoding]];
 	}
-  
-  [serialized appendString:@"?>"];
-     	 
+	
+	[serialized appendString:@"?>"];
+	
 	if (document.root != nil)
 	{
 		[serialized appendString:[XmlSerializer serializeElement:document.root]];

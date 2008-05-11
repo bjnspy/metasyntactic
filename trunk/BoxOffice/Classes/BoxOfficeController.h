@@ -23,7 +23,7 @@
 @property (retain) NSLock* movieLookupLock;
 @property (retain) NSLock* theaterLookupLock;
 @property (retain) NSLock* ticketLookupLock;
- 
+
 - (void) setZipcode:(NSString*) zipcode;
 - (void) setSearchRadius:(NSInteger) radius;
 

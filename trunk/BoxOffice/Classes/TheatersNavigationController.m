@@ -46,7 +46,7 @@
 - (void) pushTheaterDetails:(Theater*) theater
 {
     self.theaterDetailsViewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self theater:theater] autorelease];
-
+	
     [self pushViewController:theaterDetailsViewController animated:YES];
 }
 

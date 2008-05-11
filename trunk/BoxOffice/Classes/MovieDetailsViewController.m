@@ -37,7 +37,7 @@
         
         self.theatersArray = [NSMutableArray array];
         self.showtimesArray = [NSMutableArray array];
-         
+		
         for (Theater* theater in [self.model theatersShowingMovie:self.movie]) {
             [self.theatersArray addObject:theater];
             [self.showtimesArray addObject:[self.model movieShowtimes:self.movie forTheater:theater]];
@@ -90,7 +90,7 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
-        
+	
     if (section == 0 && row == 0) {
         return [self posterImage].size.height + 10;
     }
@@ -117,22 +117,22 @@
         UIWebView* webView = [[[UIWebView alloc] initWithFrame:webRect] autorelease];
         
         NSString* content =
-            [NSString stringWithFormat:
-                @"<html>"
-                    "<head>"
-                        "<style>"
-                            "body {"
-                                "  margin-top: -2;"
-                                "  margin-bottom: 0;"
-                                "  margin-right: 3;"
-                                "  margin-left: 3;"
-                                "  font-family: \"helvetica\";"
-                                "  font-size: 14;"
-                            "}"
-                        "</style>"
-                    "</head>"
-                    "<body>%@</body>"
-                "</html>", movie.synopsis];
+		[NSString stringWithFormat:
+		 @"<html>"
+		 "<head>"
+		 "<style>"
+		 "body {"
+		 "  margin-top: -2;"
+		 "  margin-bottom: 0;"
+		 "  margin-right: 3;"
+		 "  margin-left: 3;"
+		 "  font-family: \"helvetica\";"
+		 "  font-size: 14;"
+		 "}"
+		 "</style>"
+		 "</head>"
+		 "<body>%@</body>"
+		 "</html>", movie.synopsis];
         [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
         [cell.contentView addSubview:webView]; 
     } else {
@@ -170,13 +170,13 @@
     Theater* theater = [self.theatersArray objectAtIndex:(section - 1)];
     
     TicketsViewController* controller = 
-     [[[TicketsViewController alloc] initWithController:self.navigationController
-                                                theater:theater
-                                                  movie:self.movie
-                                                  title:[NSString stringWithFormat:@"@ %@", theater.name]] autorelease];
+	[[[TicketsViewController alloc] initWithController:self.navigationController
+											   theater:theater
+												 movie:self.movie
+												 title:[NSString stringWithFormat:@"@ %@", theater.name]] autorelease];
     
     [self.navigationController pushViewController:controller
-                                         animated:YES];
+	 animated:YES];
 }
 
 @end

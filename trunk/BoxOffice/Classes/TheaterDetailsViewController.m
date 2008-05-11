@@ -48,7 +48,7 @@
             [self.movies addObject:movie];
             [self.movieShowtimes addObject:showtimes];
         }
-         
+		
         self.title = self.theater.name;
     }
     
@@ -135,12 +135,12 @@
     Movie* movie = [self.movies objectAtIndex:(section - 1)];    
     
     TicketsViewController* controller =
-     [[[TicketsViewController alloc] initWithController:self.navigationController
-                                                theater:self.theater
-                                                  movie:movie 
-                                                  title:[NSString stringWithFormat:@"- %@", movie.title]] autorelease];
+	[[[TicketsViewController alloc] initWithController:self.navigationController
+											   theater:self.theater
+												 movie:movie 
+												 title:[NSString stringWithFormat:@"- %@", movie.title]] autorelease];
     [self.navigationController pushViewController:controller
-                                         animated:YES];
+	 animated:YES];
 }
 
 @end

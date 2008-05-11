@@ -79,7 +79,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
             }
         }
     }
-     
+	
     return nil;
 }
 
@@ -90,10 +90,10 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     XmlElement* theatersElement = [dataElement element:@"theaters"];
     
     NSArray* sortedMovieElements = [moviesElement.children sortedArrayUsingFunction:compareMovieElements
-                                                                            context:self.movie.title];
+									context:self.movie.title];
     
     NSArray* sortedTheaterElements = [theatersElement.children sortedArrayUsingFunction:compareTheaterElements
-                                                                                context:self.theater.name];
+									  context:self.theater.name];
     
     XmlElement* bestMovieElement = [sortedMovieElements objectAtIndex:0];
     XmlElement* bestTheaterElement = [sortedTheaterElements objectAtIndex:0];
@@ -125,24 +125,24 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
                 BOOL alreadyAfter = [now compare:date] == NSOrderedDescending;
                 
                 NSDateComponents* components = 
-                    [[NSCalendar currentCalendar]
-                        components:
-                            (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
-                        fromDate:date];
+				[[NSCalendar currentCalendar]
+				 components:
+				 (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
+				 fromDate:date];
                 
                 urlString =
-                  [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
-                    [bestMovieElement attributeValue:@"id"],
-                    [bestTheaterElement attributeValue:@"id"],
-                    [components year],
-                    [components month],
-                    (alreadyAfter ? [components day] + 1 : [components day]),
-                    [components hour],
-                    [components minute]];
-                                
+				[NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
+				 [bestMovieElement attributeValue:@"id"],
+				 [bestTheaterElement attributeValue:@"id"],
+				 [components year],
+				 [components month],
+				 (alreadyAfter ? [components day] + 1 : [components day]),
+				 [components hour],
+				 [components minute]];
+				
                 //urlString =
-                  //[NSString stringWithFormat:@"https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=%@&mid=%@&tid=%@",
-                     //showId, [bestMovieElement attributeValue:@"id"], [bestTheaterElement attributeValue:@"tmsid"]];
+				//[NSString stringWithFormat:@"https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=%@&mid=%@&tid=%@",
+				//showId, [bestMovieElement attributeValue:@"id"], [bestTheaterElement attributeValue:@"tmsid"]];
             }
         }
         
@@ -184,12 +184,12 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     NSInteger row = [indexPath row];
     
 	static NSString* cellIdentifier = @"TicketsViewControllerCellIdentifier";
-
+	
 	UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
 	if (cell == nil) {
 		cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellIdentifier] autorelease];
 	}
-     
+	
     cell.text = [showtimes objectAtIndex:row]; 
     
 	return cell;
@@ -214,7 +214,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     } else {
         return UITableViewCellAccessoryNone;
     }
-
+	
 }
 
 @end

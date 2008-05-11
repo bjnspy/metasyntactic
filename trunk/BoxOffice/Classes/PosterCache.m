@@ -90,9 +90,9 @@
     [gate lock];
     {        
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    
+		
         [self updateInBackground:movies];
-    
+		
         [autoreleasePool release];
     }
     [gate unlock];

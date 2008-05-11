@@ -34,7 +34,7 @@
 		self.version = version_;
 		self.encoding = encoding_;
 	}
-  return self;
+	return self;
 }
 
 - (void) dealloc

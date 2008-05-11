@@ -15,7 +15,7 @@
 @synthesize label;
 @synthesize imageView;
 
-- (void)dealloc {
+- (void) dealloc {
     self.movie = nil;
     self.label = nil;
     self.imageView = nil;

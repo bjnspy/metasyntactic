@@ -51,9 +51,9 @@
         
         {
             self.alphabeticSectionTitles =
-                [NSArray arrayWithObjects:@"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
-                                          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
-                                          @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+			[NSArray arrayWithObjects:@"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
+			 @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
+			 @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
         }
     }
     
@@ -89,7 +89,7 @@ NSInteger sortByDistance(id t1, id t2, void *context) {
     
     Theater* theater1 = t1;
     Theater* theater2 = t2;
-
+	
     double distance1 = [[theaterDistanceMap objectForKey:theater1.address] doubleValue];
     double distance2 = [[theaterDistanceMap objectForKey:theater2.address] doubleValue];
     
@@ -169,7 +169,7 @@ NSInteger sortByDistance(id t1, id t2, void *context) {
 - (void) sortTheatersByDistance {
     NSDictionary* theaterDistanceMap = [self theaterDistanceMap];    
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:sortByDistance
-                                                                context:theaterDistanceMap];
+						   context:theaterDistanceMap];
     
     NSString* reallyCloseBy = @"Realllllly close by";
     NSString* oneHalfToOneMile = @"< 1 mile away";
@@ -183,8 +183,8 @@ NSInteger sortByDistance(id t1, id t2, void *context) {
     NSString* unknownDistance = @"Unknown Distance";
     
     self.sectionTitles = [NSMutableArray arrayWithObjects:reallyCloseBy, oneHalfToOneMile, oneToTwoMiles, twoToFileMiles,
-                                                          fiveToTenMiles, tenToFifteenMiles, fifteenToTwentyFiveMiles,
-                                                          twentyFiveToFiftyMiles, wayFarAway, unknownDistance, nil];
+						  fiveToTenMiles, tenToFifteenMiles, fifteenToTwentyFiveMiles,
+						  twentyFiveToFiftyMiles, wayFarAway, unknownDistance, nil];
     
     for (Theater* theater in self.sortedTheaters) {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
@@ -303,7 +303,7 @@ NSInteger sortByDistance(id t1, id t2, void *context) {
     if (index == 0) {
         return index;
     }
-        
+	
     for (unichar c = [title characterAtIndex:0]; c >= 'A'; c--) {
         NSString* s = [NSString stringWithFormat:@"%c", c];
         

@@ -280,7 +280,7 @@
     
     if (httpError == nil && ticketData != nil) {
         XmlElement* element = [XmlParser parse:ticketData];
-    
+		
         [self performSelectorOnMainThread:@selector(setTickets:) withObject:element waitUntilDone:NO];
     }    
 }

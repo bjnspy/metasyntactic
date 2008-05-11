@@ -33,7 +33,7 @@
     
     return self;
 }
- 
+
 - (void) updateAddresses:(NSArray*) addresses {
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:addresses]];
@@ -100,43 +100,43 @@
     if (error == nil && result != nil)
     {        
         /*
-            <?xml version="1.0" encoding="UTF-8"?>
-            <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
-                               xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" 
-                               xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
-                               xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-                               SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
-                <SOAP-ENV:Body>
-                    <namesp24:geocodeResponse xmlns:namesp24="http://rpc.geocoder.us/Geo/Coder/US/">
-                        <geo:s-gensym118 xsi:type="SOAP-ENC:Array" xmlns:geo="http://rpc.geocoder.us/Geo/Coder/US/" SOAP-ENC:arrayType="geo:GeocoderAddressResult[2]">
-                            <item xsi:type="geo:GeocoderAddressResult">
-                                <number xsi:type="xsd:int">240</number>
-                                <lat xsi:type="xsd:float">40.656591</lat>
-                                <street xsi:type="xsd:string">1st</street>
-                                <state xsi:type="xsd:string">NY</state>
-                                <city xsi:type="xsd:string">New York</city>
-                                <zip xsi:type="xsd:int">11232</zip>
-                                <suffix xsi:type="xsd:string"/>
-                                <long xsi:type="xsd:float">-74.012768</long>
-                                <type xsi:type="xsd:string">Ave</type>
-                                <prefix xsi:type="xsd:string"/>
-                            </item>
-                            <item xsi:type="geo:GeocoderAddressResult">
-                                <number xsi:type="xsd:int">240</number>
-                                <lat xsi:type="xsd:float">40.731885</lat>
-                                <street xsi:type="xsd:string">1st</street>
-                                <state xsi:type="xsd:string">NY</state>
-                                <city xsi:type="xsd:string">New York</city>
-                                <zip xsi:type="xsd:int">10009</zip>
-                                <suffix xsi:type="xsd:string"/>
-                                <long xsi:type="xsd:float">-73.982589</long>
-                                <type xsi:type="xsd:string">Ave</type>
-                                <prefix xsi:type="xsd:string"/>
-                            </item>
-                        </geo:s-gensym118>
-                    </namesp24:geocodeResponse>
-                </SOAP-ENV:Body>
-            </SOAP-ENV:Envelope>
+		 <?xml version="1.0" encoding="UTF-8"?>
+		 <SOAP-ENV:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xmlns:SOAP-ENC="http://schemas.xmlsoap.org/soap/encoding/" 
+		 xmlns:SOAP-ENV="http://schemas.xmlsoap.org/soap/envelope/" 
+		 xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+		 SOAP-ENV:encodingStyle="http://schemas.xmlsoap.org/soap/encoding/">
+		 <SOAP-ENV:Body>
+		 <namesp24:geocodeResponse xmlns:namesp24="http://rpc.geocoder.us/Geo/Coder/US/">
+		 <geo:s-gensym118 xsi:type="SOAP-ENC:Array" xmlns:geo="http://rpc.geocoder.us/Geo/Coder/US/" SOAP-ENC:arrayType="geo:GeocoderAddressResult[2]">
+		 <item xsi:type="geo:GeocoderAddressResult">
+		 <number xsi:type="xsd:int">240</number>
+		 <lat xsi:type="xsd:float">40.656591</lat>
+		 <street xsi:type="xsd:string">1st</street>
+		 <state xsi:type="xsd:string">NY</state>
+		 <city xsi:type="xsd:string">New York</city>
+		 <zip xsi:type="xsd:int">11232</zip>
+		 <suffix xsi:type="xsd:string"/>
+		 <long xsi:type="xsd:float">-74.012768</long>
+		 <type xsi:type="xsd:string">Ave</type>
+		 <prefix xsi:type="xsd:string"/>
+		 </item>
+		 <item xsi:type="geo:GeocoderAddressResult">
+		 <number xsi:type="xsd:int">240</number>
+		 <lat xsi:type="xsd:float">40.731885</lat>
+		 <street xsi:type="xsd:string">1st</street>
+		 <state xsi:type="xsd:string">NY</state>
+		 <city xsi:type="xsd:string">New York</city>
+		 <zip xsi:type="xsd:int">10009</zip>
+		 <suffix xsi:type="xsd:string"/>
+		 <long xsi:type="xsd:float">-73.982589</long>
+		 <type xsi:type="xsd:string">Ave</type>
+		 <prefix xsi:type="xsd:string"/>
+		 </item>
+		 </geo:s-gensym118>
+		 </namesp24:geocodeResponse>
+		 </SOAP-ENV:Body>
+		 </SOAP-ENV:Envelope>
          */
         
         XmlElement* envelopeElement = [XmlParser parse:result];
@@ -154,7 +154,7 @@
             }
         }
     }
-
+	
     return nil;
 }
 
@@ -258,9 +258,9 @@
     [gate lock];
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    
+		
         [self downloadAddressLocations:addresses];
-    
+		
         [autoreleasePool release];
     }
     [gate unlock];
@@ -290,20 +290,20 @@
         /*
          <?xml version="1.0" encoding="UTF-8" standalone="no"?>
          <geonames>
-            <totalResultsCount>9</totalResultsCount>
-            <code>
-                <postalcode>20816</postalcode>
-                <name>Bethesda</name>
-                <countryCode>US</countryCode>
-                <lat>38.955907</lat>
-                <lng>-77.1165</lng>
-                <adminCode1>MD</adminCode1>
-                <adminName1>Maryland</adminName1>
-                <adminCode2>031</adminCode2>
-                <adminName2>Montgomery</adminName2>
-                <adminCode3/>
-                <adminName3/>
-            </code>
+		 <totalResultsCount>9</totalResultsCount>
+		 <code>
+		 <postalcode>20816</postalcode>
+		 <name>Bethesda</name>
+		 <countryCode>US</countryCode>
+		 <lat>38.955907</lat>
+		 <lng>-77.1165</lng>
+		 <adminCode1>MD</adminCode1>
+		 <adminName1>Maryland</adminName1>
+		 <adminCode2>031</adminCode2>
+		 <adminName2>Montgomery</adminName2>
+		 <adminCode3/>
+		 <adminName3/>
+		 </code>
          </geonames>
          */
         

@@ -43,9 +43,9 @@
 				  text:(NSString*) text;
 
 + (id) elementWithName:(NSString*) name
-         attributes:(NSDictionary*) attributes
-           children:(NSArray*) children
-               text:(NSString*) text;
+			attributes:(NSDictionary*) attributes
+			  children:(NSArray*) children
+				  text:(NSString*) text;
 
 - (id) initWithName:(NSString*) name
          attributes:(NSDictionary*) attributes
@@ -58,7 +58,7 @@
 
 - (NSDictionary*) dictionary;
 + (XmlElement*) elementFromDictionary:(NSDictionary*) dictionary;
-    
+
 - (XmlElement*) element:(NSString*) name;
 - (NSArray*) elements:(NSString*) name;
 

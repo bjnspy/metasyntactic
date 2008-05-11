@@ -42,11 +42,10 @@
     NSInteger i = [number intValue];
     NSString* imageName = [NSString stringWithFormat:@"Spinner%d.png", i];
     UIBarButtonItem* currentLocationItem =
-        [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
-                                                              style:UIBarButtonItemStylePlain
-                                                             target:nil
-                                                             action:nil] autorelease];
-   // [currentLocationItem 
+	[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
+									  style:UIBarButtonItemStylePlain
+									 target:nil
+									 action:nil] autorelease];
     
     self.navigationItem.leftBarButtonItem = currentLocationItem;
     

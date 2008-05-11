@@ -79,10 +79,10 @@
     double dy = bounds.size.height / 20;
     CGRect largeBounds = CGRectMake(bounds.origin.x - dx, bounds.origin.y - dy,
                                     bounds.size.width + 2 * dx, bounds.size.height + 2 * dy);
-
+	
     imageView.bounds = CGRectMake(0, 0, 0, 0);
     imageView.alpha = 0;
-        
+	
     [UIView beginAnimations:nil context:imageView];
     {
         [UIView setAnimationDelegate:self];
@@ -90,7 +90,7 @@
         
         NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
         double baseDelay = (column * duration) / 2;
-
+		
         [UIView setAnimationDuration:duration];
         
         if ((index % 2) == 0) {  
