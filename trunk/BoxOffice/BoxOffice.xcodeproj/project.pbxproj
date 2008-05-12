@@ -56,7 +56,6 @@
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
 		746A02100DC819F00079D89B /* BoxOfficeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
-		747204030DCDAB8500C11362 /* BoxOffice.db in Resources */ = {isa = PBXBuildFile; fileRef = 747204020DCDAB8500C11362 /* BoxOffice.db */; };
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
 		749DF1710DC9737700A551D9 /* BoxOfficeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
@@ -152,7 +151,6 @@
 		746A020F0DC819F00079D89B /* BoxOfficeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeModel.m; sourceTree = "<group>"; };
 		746A02140DC81A1A0079D89B /* Application.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Application.h; sourceTree = "<group>"; };
 		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
-		747204020DCDAB8500C11362 /* BoxOffice.db */ = {isa = PBXFileReference; lastKnownFileType = file; path = BoxOffice.db; sourceTree = "<group>"; };
 		748379C90DD0169E00DC3B80 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
 		748379CA0DD0169E00DC3B80 /* EditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditorViewController.m; sourceTree = "<group>"; };
 		749DF16F0DC9737700A551D9 /* BoxOfficeController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BoxOfficeController.h; sourceTree = "<group>"; };
@@ -285,7 +283,6 @@
 				740078CA0DCE80B500B3799F /* Featured.png */,
 				740078B80DCE7E5700B3799F /* More.png */,
 				740078B50DCE7DFD00B3799F /* MostViewed.png */,
-				747204020DCDAB8500C11362 /* BoxOffice.db */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
 			);
@@ -422,7 +419,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */,
-				747204030DCDAB8500C11362 /* BoxOffice.db in Resources */,
 				740078730DCE6E9400B3799F /* MovieDetailsView.xib in Resources */,
 				740078B60DCE7DFD00B3799F /* MostViewed.png in Resources */,
 				740078B90DCE7E5800B3799F /* More.png in Resources */,
