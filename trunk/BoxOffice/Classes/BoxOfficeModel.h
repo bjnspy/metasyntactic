@@ -16,12 +16,14 @@
     AddressLocationCache* addressLocationCache;
 	
 	NSInteger backgroundTaskCount;
-	UIActivityIndicatorView* activityView;
+	UIActivityIndicatorView* activityIndicatorView;
+	UIView* activityView;
 }
 
 @property (retain) PosterCache* posterCache;
 @property (retain) AddressLocationCache* addressLocationCache;
-@property (retain) UIActivityIndicatorView* activityView;
+@property (retain) UIActivityIndicatorView* activityIndicatorView;
+@property (retain) UIView* activityView;
 @property (readonly) NSInteger backgroundTaskCount;
 
 + (BoxOfficeModel*) model;

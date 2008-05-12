@@ -17,6 +17,7 @@
 @synthesize addressLocationCache;
 @synthesize backgroundTaskCount;
 @synthesize activityView;
+@synthesize activityIndicatorView;
 
 - (void) dealloc {
 	self.posterCache.model = nil;
@@ -25,6 +26,7 @@
 	self.addressLocationCache.model = nil;
     self.addressLocationCache = nil;
 	
+	self.activityIndicatorView = nil;
 	self.activityView = nil;
     [super dealloc];
 }
@@ -55,7 +57,13 @@
     if (self = [super init]) {
         self.posterCache = [PosterCache cacheWithModel:self];
         self.addressLocationCache = [AddressLocationCache cacheWithModel:self];
-		self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleBlueSmall] autorelease];
+
+		self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleBlueSmall] autorelease];
+		CGRect frame = self.activityIndicatorView.frame;
+		frame.size.width += 15;
+		
+		self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
+		[self.activityView addSubview:self.activityIndicatorView];
         backgroundTaskCount = 0;
 		
         [self updatePosterCache];
@@ -70,7 +78,7 @@
 	backgroundTaskCount++;
 	
 	if (backgroundTaskCount == 1) {
-		[self.activityView startAnimating];
+		[self.activityIndicatorView startAnimating];
 	}
 }
 
@@ -78,7 +86,7 @@
 	backgroundTaskCount--;
 	
 	if (backgroundTaskCount == 0) {
-		[self.activityView stopAnimating];
+		[self.activityIndicatorView stopAnimating];
 	}
 }
 

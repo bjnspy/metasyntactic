@@ -49,7 +49,6 @@
     UIImage* poster = [[self model] posterForMovie:movie];
 	
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:poster] autorelease];
-    CGRect rect = imageView.frame;
     
     float rotation;
     if ([[UIDevice currentDevice] orientation] == UIDeviceOrientationLandscapeLeft) {
@@ -60,23 +59,19 @@
     
     CGAffineTransform transform = CGAffineTransformMakeRotation(rotation);
     imageView.transform = transform;
-    imageView.center = 
-    CGPointMake(row == 0 ? 240 : 80, 60 + column * 120);
-    
-    CGRect bounds = imageView.bounds;
-    double dx = bounds.size.width / 20;
-    double dy = bounds.size.height / 20;
-    CGRect largeBounds = CGRectMake(bounds.origin.x - dx, bounds.origin.y - dy,
-                                    bounds.size.width + 2 * dx, bounds.size.height + 2 * dy);
+	
+	CGRect originalBounds = imageView.bounds;
+	if (row == 0) {
+		imageView.center = CGPointMake(240 - 10, 60 + column * 120);
+	} else {
+		imageView.center = CGPointMake(80 - 5, 60 + column * 120);
+	}
     
     imageView.bounds = CGRectMake(0, 0, 0, 0);
     imageView.alpha = 0;
     
     [UIView beginAnimations:nil context:imageView];
     {
-        [UIView setAnimationDelegate:self];
-        //[UIView setAnimationDidStopSelector:@selector(decreaseImageViewSize:finished:context:)];
-        
         NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
         double baseDelay = (column * duration) / 2;
         
@@ -88,7 +83,7 @@
             [UIView setAnimationDelay:baseDelay + duration];
         }
         
-        imageView.bounds = largeBounds;
+        imageView.bounds = originalBounds;
         imageView.alpha = 1;
     }
     [UIView commitAnimations];
@@ -112,29 +107,6 @@
     for (int i = 0; i < 10 && i < [moviesWithPosters count]; i++) {
         [self showPoster:[NSNumber numberWithInt:i]];
     }
-}
-
-- (void) decreaseImageViewSize:(NSString*) animationID
-                      finished:(NSNumber*) finished
-                       context:(void*) context {
-    NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
-    
-    UIImageView* imageView = context;
-    
-    [UIView beginAnimations:nil context:NULL];
-    {
-        [UIView setAnimationDuration:duration];
-        
-        CGRect bounds = imageView.bounds;
-        
-        double dx = bounds.size.width / 22;
-        double dy = bounds.size.height / 22;
-        CGRect smallBounds = CGRectMake(bounds.origin.x + dx, bounds.origin.y + dy,
-                                        bounds.size.width - 2 * dx, bounds.size.height - 2 * dy);
-        imageView.bounds = smallBounds;
-        imageView.alpha = 1;
-    }
-    [UIView commitAnimations];   
 }
 
 @end

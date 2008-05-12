@@ -266,7 +266,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return YES;
+    return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (void) onDeviceOrientationDidChange:(id) argument {
@@ -284,10 +284,12 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         [[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:YES];
         
         UIWindow* window = self.navigationController.tabBarController.appDelegate.window;
+
+		[[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:YES];
         
         if (orientation == UIInterfaceOrientationPortrait) {
             self.navigationController.tabBarController.view.alpha = 1;
-            [[UIApplication sharedApplication] setStatusBarHidden:NO animated:YES];
+			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleGray animated:YES];
             
             if (self.posterView != nil) {
                 [self.posterView removeFromSuperview];
@@ -295,7 +297,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
             }
         } else {
             self.navigationController.tabBarController.view.alpha = 0;
-            [[UIApplication sharedApplication] setStatusBarHidden:YES animated:YES];
+			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleTransparentBlack animated:YES];
             
             if (self.posterView == nil) {
                 self.posterView = [PosterView viewWithController:self];

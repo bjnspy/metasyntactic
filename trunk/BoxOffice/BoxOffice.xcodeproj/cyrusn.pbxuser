@@ -44,7 +44,7 @@
 			748861E20DD656C7007E3E7D /* BoxOfficeController.m:204 */,
 			748861EB0DD6575F007E3E7D /* XmlParser.m:41 */,
 			748861FB0DD657E4007E3E7D /* XmlParser.m:41 */,
-			742CA6CE0DD65E5900A69B79 /* BoxOfficeModel.m:350 */,
+			742CA6CE0DD65E5900A69B79 /* BoxOfficeModel.m:358 */,
 			743E32EB0DD67D77004C5161 /* TicketsViewController.m:28 */,
 			743E33560DD68AF2004C5161 /* TicketsViewController.m:28 */,
 			743E336F0DD68B9F004C5161 /* TicketsViewController.m:28 */,
@@ -56,7 +56,7 @@
 			7430B70A0DD7899D00323C15 /* MovieShowtimesCell.m:36 */,
 			744554110DD7A98F008AF706 /* BoxOfficeController.m:47 */,
 			7445541A0DD7A9C1008AF706 /* AbstractNavigationController.m:23 */,
-			744554830DD7ACFF008AF706 /* BoxOfficeModel.m:78 */,
+			744554830DD7ACFF008AF706 /* BoxOfficeModel.m:86 */,
 			744554850DD7AD85008AF706 /* BoxOfficeController.m:80 */,
 			744554870DD7AD86008AF706 /* BoxOfficeController.m:84 */,
 			744554B70DD7B03D008AF706 /* BoxOfficeAppDelegate.m:31 */,
@@ -65,8 +65,8 @@
 			744555550DD7B43A008AF706 /* PosterCache.m:99 */,
 			744555570DD7B444008AF706 /* PosterCache.m:107 */,
 			744555590DD7B44E008AF706 /* AddressLocationCache.m:363 */,
-			744555700DD7B4B0008AF706 /* BoxOfficeModel.m:70 */,
-			744555840DD7B4FC008AF706 /* BoxOfficeModel.m:79 */,
+			744555700DD7B4B0008AF706 /* BoxOfficeModel.m:78 */,
+			744555840DD7B4FC008AF706 /* BoxOfficeModel.m:87 */,
 			744555860DD7B524008AF706 /* PosterView.m:43 */,
 		);
 		codeSenseManager = 746A013F0DC818C80079D89B /* Code sense */;
@@ -104,7 +104,7 @@
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
 					455,
-					558,
+					218,
 				);
 				PBXFileTableDataSourceColumnsKey = (
 					PBXErrorsWarningsDataSource_TypeID,
@@ -117,7 +117,7 @@
 				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
 				PBXFileTableDataSourceColumnWidthsKey = (
 					20,
-					823,
+					483,
 					20,
 					48,
 					43,
@@ -589,6 +589,41 @@
 			744555C00DD7BA87008AF706 /* PBXTextBookmark */ = 744555C00DD7BA87008AF706 /* PBXTextBookmark */;
 			744555C10DD7BA87008AF706 /* PBXTextBookmark */ = 744555C10DD7BA87008AF706 /* PBXTextBookmark */;
 			744555C20DD7BA87008AF706 /* PBXTextBookmark */ = 744555C20DD7BA87008AF706 /* PBXTextBookmark */;
+			744555CA0DD7CD1E008AF706 /* PBXTextBookmark */ = 744555CA0DD7CD1E008AF706 /* PBXTextBookmark */;
+			744555CB0DD7CD1E008AF706 /* PBXTextBookmark */ = 744555CB0DD7CD1E008AF706 /* PBXTextBookmark */;
+			744555CC0DD7CD1E008AF706 /* PBXTextBookmark */ = 744555CC0DD7CD1E008AF706 /* PBXTextBookmark */;
+			744555CD0DD7CD1E008AF706 /* PBXTextBookmark */ = 744555CD0DD7CD1E008AF706 /* PBXTextBookmark */;
+			744555CE0DD7CD1E008AF706 /* PBXTextBookmark */ = 744555CE0DD7CD1E008AF706 /* PBXTextBookmark */;
+			744555CF0DD7CD1E008AF706 /* PBXTextBookmark */ = 744555CF0DD7CD1E008AF706 /* PBXTextBookmark */;
+			744555D00DD7CD1E008AF706 /* PBXTextBookmark */ = 744555D00DD7CD1E008AF706 /* PBXTextBookmark */;
+			744555D50DD7CFC4008AF706 /* PBXTextBookmark */ = 744555D50DD7CFC4008AF706 /* PBXTextBookmark */;
+			744555D60DD7CFC4008AF706 /* PBXTextBookmark */ = 744555D60DD7CFC4008AF706 /* PBXTextBookmark */;
+			744555D70DD7CFC4008AF706 /* PBXTextBookmark */ = 744555D70DD7CFC4008AF706 /* PBXTextBookmark */;
+			744555D80DD7CFC4008AF706 /* PBXTextBookmark */ = 744555D80DD7CFC4008AF706 /* PBXTextBookmark */;
+			744555D90DD7CFC4008AF706 /* PBXTextBookmark */ = 744555D90DD7CFC4008AF706 /* PBXTextBookmark */;
+			744555DA0DD7CFC4008AF706 /* PBXTextBookmark */ = 744555DA0DD7CFC4008AF706 /* PBXTextBookmark */;
+			744555DB0DD7CFC4008AF706 /* PBXTextBookmark */ = 744555DB0DD7CFC4008AF706 /* PBXTextBookmark */;
+			744555DE0DD7D09A008AF706 /* PBXTextBookmark */ = 744555DE0DD7D09A008AF706 /* PBXTextBookmark */;
+			744555DF0DD7D09A008AF706 /* PBXTextBookmark */ = 744555DF0DD7D09A008AF706 /* PBXTextBookmark */;
+			744555E00DD7D09A008AF706 /* PBXTextBookmark */ = 744555E00DD7D09A008AF706 /* PBXTextBookmark */;
+			744555E10DD7D09A008AF706 /* PBXTextBookmark */ = 744555E10DD7D09A008AF706 /* PBXTextBookmark */;
+			744555EA0DD7D0D3008AF706 /* PBXTextBookmark */ = 744555EA0DD7D0D3008AF706 /* PBXTextBookmark */;
+			744555EB0DD7D0D3008AF706 /* PBXTextBookmark */ = 744555EB0DD7D0D3008AF706 /* PBXTextBookmark */;
+			744555EE0DD7D147008AF706 /* PBXTextBookmark */ = 744555EE0DD7D147008AF706 /* PBXTextBookmark */;
+			744555FF0DD7D228008AF706 /* PBXTextBookmark */ = 744555FF0DD7D228008AF706 /* PBXTextBookmark */;
+			744556000DD7D228008AF706 /* PBXTextBookmark */ = 744556000DD7D228008AF706 /* PBXTextBookmark */;
+			744556010DD7D228008AF706 /* PBXTextBookmark */ = 744556010DD7D228008AF706 /* PBXTextBookmark */;
+			744556020DD7D228008AF706 /* PBXTextBookmark */ = 744556020DD7D228008AF706 /* PBXTextBookmark */;
+			744556030DD7D228008AF706 /* PBXTextBookmark */ = 744556030DD7D228008AF706 /* PBXTextBookmark */;
+			744556040DD7D228008AF706 /* PBXTextBookmark */ = 744556040DD7D228008AF706 /* PBXTextBookmark */;
+			744556050DD7D228008AF706 /* PBXTextBookmark */ = 744556050DD7D228008AF706 /* PBXTextBookmark */;
+			7445560A0DD7D256008AF706 /* PBXTextBookmark */ = 7445560A0DD7D256008AF706 /* PBXTextBookmark */;
+			7445560B0DD7D256008AF706 /* PBXTextBookmark */ = 7445560B0DD7D256008AF706 /* PBXTextBookmark */;
+			7445560C0DD7D256008AF706 /* PBXTextBookmark */ = 7445560C0DD7D256008AF706 /* PBXTextBookmark */;
+			7445560D0DD7D256008AF706 /* PBXTextBookmark */ = 7445560D0DD7D256008AF706 /* PBXTextBookmark */;
+			744556110DD7D28B008AF706 /* PBXTextBookmark */ = 744556110DD7D28B008AF706 /* PBXTextBookmark */;
+			744556150DD7D29D008AF706 /* PBXTextBookmark */ = 744556150DD7D29D008AF706 /* PBXTextBookmark */;
+			744556190DD7D2B4008AF706 /* PBXTextBookmark */ = 744556190DD7D2B4008AF706 /* PBXTextBookmark */;
 			745443AD0DD5383F00FB6970 = 745443AD0DD5383F00FB6970 /* PBXTextBookmark */;
 			745443B20DD5383F00FB6970 = 745443B20DD5383F00FB6970 /* PBXTextBookmark */;
 			745443D20DD539A200FB6970 = 745443D20DD539A200FB6970 /* PBXTextBookmark */;
@@ -1606,7 +1641,7 @@
 			sepNavVisRange = "{1250, 562}";
 		};
 	};
-	742CA6CE0DD65E5900A69B79 /* BoxOfficeModel.m:350 */ = {
+	742CA6CE0DD65E5900A69B79 /* BoxOfficeModel.m:358 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -1618,9 +1653,9 @@
 		functionName = "-setTickets:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 350;
+		lineNumber = 358;
 		location = BoxOffice;
-		modificationTime = 232246135.860953;
+		modificationTime = 232247988.90667;
 		state = 2;
 	};
 	742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {
@@ -1668,7 +1703,7 @@
 		ignoreCount = 0;
 		lineNumber = 36;
 		location = BoxOffice;
-		modificationTime = 232246135.86102;
+		modificationTime = 232247988.90683;
 		state = 2;
 	};
 	7430B7570DD78E3100323C15 /* TheaterDetailsViewController.m */ = {
@@ -1879,7 +1914,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 61";
 		rLen = 0;
-		rLoc = 1953;
+		rLoc = 2035;
 		rType = 0;
 		vrLen = 637;
 		vrLoc = 1119;
@@ -1939,7 +1974,7 @@
 		fRef = 742CA6CC0DD65E5900A69B79 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 308";
 		rLen = 0;
-		rLoc = 9184;
+		rLoc = 9497;
 		rType = 0;
 		vrLen = 642;
 		vrLoc = 8336;
@@ -1959,7 +1994,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 60";
 		rLen = 0;
-		rLoc = 1993;
+		rLoc = 2075;
 		rType = 0;
 		vrLen = 510;
 		vrLoc = 1119;
@@ -1969,7 +2004,7 @@
 		fRef = 742CA6CC0DD65E5900A69B79 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 297";
 		rLen = 0;
-		rLoc = 8956;
+		rLoc = 9269;
 		rType = 0;
 		vrLen = 549;
 		vrLoc = 8115;
@@ -1979,7 +2014,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 60";
 		rLen = 0;
-		rLoc = 1927;
+		rLoc = 2009;
 		rType = 0;
 		vrLen = 634;
 		vrLoc = 1120;
@@ -1999,7 +2034,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 61";
 		rLen = 0;
-		rLoc = 1953;
+		rLoc = 2035;
 		rType = 0;
 		vrLen = 637;
 		vrLoc = 1119;
@@ -2009,7 +2044,7 @@
 		fRef = 742CA6CC0DD65E5900A69B79 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 306";
 		rLen = 0;
-		rLoc = 9192;
+		rLoc = 9505;
 		rType = 0;
 		vrLen = 546;
 		vrLoc = 8115;
@@ -2046,7 +2081,7 @@
 		fRef = 742CA6CC0DD65E5900A69B79 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 321";
 		rLen = 0;
-		rLoc = 9718;
+		rLoc = 10031;
 		rType = 0;
 		vrLen = 569;
 		vrLoc = 8545;
@@ -2056,7 +2091,7 @@
 		fRef = 742CA6CC0DD65E5900A69B79 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 321";
 		rLen = 0;
-		rLoc = 9718;
+		rLoc = 10031;
 		rType = 0;
 		vrLen = 569;
 		vrLoc = 8545;
@@ -2215,9 +2250,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeModel.h;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1001, 742}}";
+			sepNavIntBoundsRect = "{{0, 0}, {661, 1022}}";
 			sepNavSelRange = "{409, 0}";
-			sepNavVisRange = "{258, 501}";
+			sepNavVisRange = "{0, 1063}";
 		};
 	};
 	743E32280DD66CEA004C5161 /* PBXTextBookmark */ = {
@@ -2288,7 +2323,7 @@
 		ignoreCount = 0;
 		lineNumber = 28;
 		location = BoxOffice;
-		modificationTime = 232246135.860958;
+		modificationTime = 232247988.90676;
 		state = 2;
 	};
 	743E33540DD68AF2004C5161 /* TicketsViewController.m */ = {
@@ -2297,6 +2332,11 @@
 		name = TicketsViewController.m;
 		path = /Projects/GoogleCode/BoxOffice/Classes/TicketsViewController.m;
 		sourceTree = "<group>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {930, 2576}}";
+			sepNavSelRange = "{7122, 0}";
+			sepNavVisRange = "{6664, 701}";
+		};
 	};
 	743E33560DD68AF2004C5161 /* TicketsViewController.m:28 */ = {
 		isa = PBXFileBreakpoint;
@@ -2312,7 +2352,7 @@
 		ignoreCount = 0;
 		lineNumber = 28;
 		location = BoxOffice;
-		modificationTime = 232246135.860964;
+		modificationTime = 232247988.906773;
 		state = 2;
 	};
 	743E336F0DD68B9F004C5161 /* TicketsViewController.m:28 */ = {
@@ -2329,7 +2369,7 @@
 		ignoreCount = 0;
 		lineNumber = 28;
 		location = BoxOffice;
-		modificationTime = 232246135.860969;
+		modificationTime = 232247988.906781;
 		state = 2;
 	};
 	743E33980DD68DFC004C5161 /* TicketsViewController.m:28 */ = {
@@ -2346,7 +2386,7 @@
 		ignoreCount = 0;
 		lineNumber = 28;
 		location = BoxOffice;
-		modificationTime = 232246135.860975;
+		modificationTime = 232247988.906793;
 		state = 2;
 	};
 	743E33B80DD6941F004C5161 /* PBXTextBookmark */ = {
@@ -2393,7 +2433,7 @@
 		ignoreCount = 0;
 		lineNumber = 28;
 		location = BoxOffice;
-		modificationTime = 232246135.86098;
+		modificationTime = 232247988.9068;
 		state = 2;
 	};
 	743E342D0DD6A100004C5161 /* PBXTextBookmark */ = {
@@ -2443,7 +2483,7 @@
 		rLen = 0;
 		rLoc = 0;
 		rType = 0;
-		vrLen = 570;
+		vrLen = 55;
 		vrLoc = 7702;
 	};
 	743E8EAE0DD6B3D700A93DD1 /* TheaterDetailsViewController.m */ = {
@@ -2499,7 +2539,7 @@
 		ignoreCount = 0;
 		lineNumber = 1;
 		location = BoxOffice;
-		modificationTime = 232246135.860986;
+		modificationTime = 232247988.906805;
 		state = 2;
 	};
 	743E8F1D0DD6C2D800A93DD1 /* PBXTextBookmark */ = {
@@ -2576,7 +2616,7 @@
 		ignoreCount = 0;
 		lineNumber = 1;
 		location = BoxOffice;
-		modificationTime = 232246135.860991;
+		modificationTime = 232247988.906811;
 		state = 1;
 	};
 	743E8F750DD6C87300A93DD1 /* PBXTextBookmark */ = {
@@ -3209,12 +3249,12 @@
 		delayBeforeContinue = 0;
 		fileReference = 743E32E90DD67D77004C5161 /* TicketsViewController.m */;
 		functionName = "-tableView:accessoryButtonTappedForRowWithIndexPath:";
-		hitCount = 0;
+		hitCount = 1;
 		ignoreCount = 0;
 		lineNumber = 199;
 		location = BoxOffice;
-		modificationTime = 232246135.861013;
-		state = 1;
+		modificationTime = 232248087.988394;
+		state = 2;
 	};
 	743E903D0DD6CE7700A93DD1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3571,7 +3611,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 28";
 		rLen = 0;
-		rLoc = 699;
+		rLoc = 781;
 		rType = 0;
 		vrLen = 616;
 		vrLoc = 258;
@@ -3630,7 +3670,7 @@
 		isa = PBXTextBookmark;
 		fRef = 744553CA0DD7A8FD008AF706 /* BoxOfficeModel.m */;
 		rLen = 1;
-		rLoc = 72;
+		rLoc = 80;
 		rType = 1;
 	};
 	744553D50DD7A907008AF706 /* PBXTextBookmark */ = {
@@ -3648,7 +3688,7 @@
 		fRef = 742CA6CC0DD65E5900A69B79 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 321";
 		rLen = 0;
-		rLoc = 9718;
+		rLoc = 10031;
 		rType = 0;
 		vrLen = 454;
 		vrLoc = 364;
@@ -3658,7 +3698,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 26";
 		rLen = 58;
-		rLoc = 700;
+		rLoc = 782;
 		rType = 0;
 		vrLen = 608;
 		vrLoc = 408;
@@ -3668,7 +3708,7 @@
 		fRef = 742CA6CC0DD65E5900A69B79 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 67";
 		rLen = 0;
-		rLoc = 1824;
+		rLoc = 2128;
 		rType = 0;
 		vrLen = 562;
 		vrLoc = 1250;
@@ -3688,7 +3728,7 @@
 		fRef = 744553B10DD7A67C008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 52";
 		rLen = 0;
-		rLoc = 1479;
+		rLoc = 1774;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 747;
@@ -3718,7 +3758,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 26";
 		rLen = 58;
-		rLoc = 700;
+		rLoc = 782;
 		rType = 0;
 		vrLen = 585;
 		vrLoc = 408;
@@ -3728,7 +3768,7 @@
 		fRef = 744553B10DD7A67C008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 67";
 		rLen = 0;
-		rLoc = 1921;
+		rLoc = 2234;
 		rType = 0;
 		vrLen = 521;
 		vrLoc = 1288;
@@ -3738,7 +3778,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 28";
 		rLen = 0;
-		rLoc = 699;
+		rLoc = 781;
 		rType = 0;
 		vrLen = 616;
 		vrLoc = 258;
@@ -3748,7 +3788,7 @@
 		fRef = 744553B10DD7A67C008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 78";
 		rLen = 0;
-		rLoc = 1921;
+		rLoc = 2234;
 		rType = 0;
 		vrLen = 279;
 		vrLoc = 1526;
@@ -3837,8 +3877,8 @@
 		isa = PBXTextBookmark;
 		fRef = 744553CC0DD7A8FD008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 69";
-		rLen = 38;
-		rLoc = 1747;
+		rLen = 47;
+		rLoc = 2042;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 1082;
@@ -3890,7 +3930,7 @@
 		fRef = 744553F50DD7A90A008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 77";
 		rLen = 0;
-		rLoc = 1916;
+		rLoc = 2229;
 		rType = 0;
 		vrLen = 424;
 		vrLoc = 1554;
@@ -3917,7 +3957,7 @@
 		fRef = 744553F50DD7A90A008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 77";
 		rLen = 0;
-		rLoc = 1916;
+		rLoc = 2229;
 		rType = 0;
 		vrLen = 424;
 		vrLoc = 1554;
@@ -3968,7 +4008,7 @@
 		ignoreCount = 0;
 		lineNumber = 47;
 		location = BoxOffice;
-		modificationTime = 232246135.861026;
+		modificationTime = 232247988.906836;
 		state = 2;
 	};
 	744554120DD7A990008AF706 /* PBXTextBookmark */ = {
@@ -4047,7 +4087,7 @@
 		ignoreCount = 0;
 		lineNumber = 23;
 		location = BoxOffice;
-		modificationTime = 232246135.861032;
+		modificationTime = 232247988.906841;
 		state = 2;
 	};
 	7445541C0DD7A9C7008AF706 /* PBXTextBookmark */ = {
@@ -4085,7 +4125,7 @@
 		fRef = 744553F50DD7A90A008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 66";
 		rLen = 0;
-		rLoc = 1688;
+		rLoc = 1983;
 		rType = 0;
 		vrLen = 413;
 		vrLoc = 1404;
@@ -4145,7 +4185,7 @@
 		fRef = 744553F50DD7A90A008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 66";
 		rLen = 0;
-		rLoc = 1688;
+		rLoc = 1983;
 		rType = 0;
 		vrLen = 413;
 		vrLoc = 1404;
@@ -4372,7 +4412,7 @@
 		fRef = 744553F50DD7A90A008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 66";
 		rLen = 0;
-		rLoc = 1688;
+		rLoc = 1983;
 		rType = 0;
 		vrLen = 376;
 		vrLoc = 1404;
@@ -4432,7 +4472,7 @@
 		fRef = 744553F50DD7A90A008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 54";
 		rLen = 0;
-		rLoc = 1454;
+		rLoc = 1652;
 		rType = 0;
 		vrLen = 622;
 		vrLoc = 898;
@@ -4442,7 +4482,7 @@
 		fRef = 744553F50DD7A90A008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 54";
 		rLen = 0;
-		rLoc = 1454;
+		rLoc = 1652;
 		rType = 0;
 		vrLen = 627;
 		vrLoc = 898;
@@ -4452,7 +4492,7 @@
 		fRef = 744553F50DD7A90A008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 54";
 		rLen = 0;
-		rLoc = 1454;
+		rLoc = 1652;
 		rType = 0;
 		vrLen = 638;
 		vrLoc = 898;
@@ -4512,7 +4552,7 @@
 		fRef = 744553F50DD7A90A008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 54";
 		rLen = 0;
-		rLoc = 1454;
+		rLoc = 1652;
 		rType = 0;
 		vrLen = 638;
 		vrLoc = 898;
@@ -4582,7 +4622,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 28";
 		rLen = 0;
-		rLoc = 699;
+		rLoc = 781;
 		rType = 0;
 		vrLen = 615;
 		vrLoc = 259;
@@ -4602,7 +4642,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 18";
 		rLen = 0;
-		rLoc = 409;
+		rLoc = 458;
 		rType = 0;
 		vrLen = 615;
 		vrLoc = 259;
@@ -4630,7 +4670,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 18";
 		rLen = 0;
-		rLoc = 409;
+		rLoc = 458;
 		rType = 0;
 		vrLen = 615;
 		vrLoc = 259;
@@ -4687,7 +4727,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 18";
 		rLen = 0;
-		rLoc = 409;
+		rLoc = 458;
 		rType = 0;
 		vrLen = 615;
 		vrLoc = 259;
@@ -4764,7 +4804,7 @@
 			sepNavVisRange = "{962, 593}";
 		};
 	};
-	744554830DD7ACFF008AF706 /* BoxOfficeModel.m:78 */ = {
+	744554830DD7ACFF008AF706 /* BoxOfficeModel.m:86 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -4776,9 +4816,9 @@
 		functionName = "-removeBackgroundTask";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 78;
+		lineNumber = 86;
 		location = BoxOffice;
-		modificationTime = 232246135.861043;
+		modificationTime = 232247988.906847;
 		state = 2;
 	};
 	744554850DD7AD85008AF706 /* BoxOfficeController.m:80 */ = {
@@ -4795,7 +4835,7 @@
 		ignoreCount = 0;
 		lineNumber = 80;
 		location = BoxOffice;
-		modificationTime = 232246135.861055;
+		modificationTime = 232247988.906902;
 		state = 2;
 	};
 	744554870DD7AD86008AF706 /* BoxOfficeController.m:84 */ = {
@@ -4812,7 +4852,7 @@
 		ignoreCount = 0;
 		lineNumber = 84;
 		location = BoxOffice;
-		modificationTime = 232246135.861063;
+		modificationTime = 232247988.906912;
 		state = 2;
 	};
 	744554890DD7AD8C008AF706 /* PBXTextBookmark */ = {
@@ -4830,7 +4870,7 @@
 		fRef = 744554810DD7ACFF008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 54";
 		rLen = 0;
-		rLoc = 1454;
+		rLoc = 1652;
 		rType = 0;
 		vrLen = 341;
 		vrLoc = 1531;
@@ -4850,7 +4890,7 @@
 		fRef = 744554810DD7ACFF008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 54";
 		rLen = 0;
-		rLoc = 1454;
+		rLoc = 1652;
 		rType = 0;
 		vrLen = 341;
 		vrLoc = 1531;
@@ -4887,7 +4927,7 @@
 		fRef = 744554810DD7ACFF008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 74";
 		rLen = 0;
-		rLoc = 1823;
+		rLoc = 2127;
 		rType = 0;
 		vrLen = 288;
 		vrLoc = 1531;
@@ -4937,7 +4977,7 @@
 		fRef = 744554810DD7ACFF008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 74";
 		rLen = 0;
-		rLoc = 1823;
+		rLoc = 2127;
 		rType = 0;
 		vrLen = 288;
 		vrLoc = 1531;
@@ -5047,7 +5087,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 18";
 		rLen = 0;
-		rLoc = 409;
+		rLoc = 458;
 		rType = 0;
 		vrLen = 501;
 		vrLoc = 259;
@@ -5067,7 +5107,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 18";
 		rLen = 0;
-		rLoc = 409;
+		rLoc = 458;
 		rType = 0;
 		vrLen = 501;
 		vrLoc = 259;
@@ -5077,7 +5117,7 @@
 		fRef = 744554810DD7ACFF008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 74";
 		rLen = 0;
-		rLoc = 1823;
+		rLoc = 2127;
 		rType = 0;
 		vrLen = 288;
 		vrLoc = 1531;
@@ -5092,11 +5132,11 @@
 		delayBeforeContinue = 0;
 		fileReference = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
 		functionName = "-applicationDidFinishLaunching:";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 31;
 		location = BoxOffice;
-		modificationTime = 232246139.933485;
+		modificationTime = 232247988.906922;
 		state = 2;
 	};
 	744554B90DD7B040008AF706 /* PBXTextBookmark */ = {
@@ -5104,7 +5144,7 @@
 		fRef = 744554810DD7ACFF008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 74";
 		rLen = 0;
-		rLoc = 1823;
+		rLoc = 2127;
 		rType = 0;
 		vrLen = 291;
 		vrLoc = 1531;
@@ -5114,7 +5154,7 @@
 		fRef = 744554810DD7ACFF008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 74";
 		rLen = 0;
-		rLoc = 1823;
+		rLoc = 2127;
 		rType = 0;
 		vrLen = 291;
 		vrLoc = 1531;
@@ -5297,7 +5337,7 @@
 		fRef = 744555120DD7B38D008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 57";
 		rLen = 0;
-		rLoc = 1327;
+		rLoc = 1397;
 		rType = 0;
 		vrLen = 731;
 		vrLoc = 775;
@@ -5334,7 +5374,7 @@
 		fRef = 744554810DD7ACFF008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 74";
 		rLen = 0;
-		rLoc = 1823;
+		rLoc = 2127;
 		rType = 0;
 		vrLen = 285;
 		vrLoc = 1536;
@@ -5354,7 +5394,7 @@
 		fRef = 744554810DD7ACFF008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 74";
 		rLen = 0;
-		rLoc = 1823;
+		rLoc = 2127;
 		rType = 0;
 		vrLen = 593;
 		vrLoc = 962;
@@ -5424,7 +5464,7 @@
 		fRef = 744554F30DD7B167008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 52";
 		rLen = 0;
-		rLoc = 1247;
+		rLoc = 1317;
 		rType = 0;
 		vrLen = 715;
 		vrLoc = 699;
@@ -5444,7 +5484,7 @@
 		fRef = 744554F30DD7B167008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 52";
 		rLen = 0;
-		rLoc = 1247;
+		rLoc = 1317;
 		rType = 0;
 		vrLen = 715;
 		vrLoc = 699;
@@ -5484,7 +5524,7 @@
 		fRef = 744554F30DD7B167008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 22";
 		rLen = 0;
-		rLoc = 453;
+		rLoc = 488;
 		rType = 0;
 		vrLen = 389;
 		vrLoc = 158;
@@ -5514,7 +5554,7 @@
 		fRef = 744554F30DD7B167008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 24";
 		rLen = 0;
-		rLoc = 523;
+		rLoc = 558;
 		rType = 0;
 		vrLen = 411;
 		vrLoc = 157;
@@ -5544,7 +5584,7 @@
 		fRef = 744554F30DD7B167008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 27";
 		rLen = 0;
-		rLoc = 562;
+		rLoc = 632;
 		rType = 0;
 		vrLen = 430;
 		vrLoc = 344;
@@ -5584,7 +5624,7 @@
 		fRef = 744555120DD7B38D008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 57";
 		rLen = 0;
-		rLoc = 1327;
+		rLoc = 1397;
 		rType = 0;
 		vrLen = 731;
 		vrLoc = 775;
@@ -5614,7 +5654,7 @@
 		fRef = 744555120DD7B38D008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 78";
 		rLen = 0;
-		rLoc = 1837;
+		rLoc = 2141;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
@@ -5654,7 +5694,7 @@
 		fRef = 744555120DD7B38D008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 78";
 		rLen = 0;
-		rLoc = 1837;
+		rLoc = 2141;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
@@ -5676,9 +5716,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/AddressLocationCache.m;
 		sourceTree = "<group>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {930, 4718}}";
-			sepNavSelRange = "{12975, 0}";
-			sepNavVisRange = "{12443, 908}";
+			sepNavIntBoundsRect = "{{0, 0}, {834, 3878}}";
+			sepNavSelRange = "{12903, 0}";
+			sepNavVisRange = "{12635, 532}";
 		};
 	};
 	744555500DD7B42E008AF706 /* AddressLocationCache.m:268 */ = {
@@ -5695,7 +5735,7 @@
 		ignoreCount = 0;
 		lineNumber = 268;
 		location = BoxOffice;
-		modificationTime = 232246135.861103;
+		modificationTime = 232247988.90693;
 		state = 2;
 	};
 	744555520DD7B431008AF706 /* AddressLocationCache.m:346 */ = {
@@ -5708,11 +5748,11 @@
 		delayBeforeContinue = 0;
 		fileReference = 7445554E0DD7B42E008AF706 /* AddressLocationCache.m */;
 		functionName = "-updateZipcodeBackgroundEntryPoint:";
-		hitCount = 1;
+		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 346;
 		location = BoxOffice;
-		modificationTime = 232246143.677257;
+		modificationTime = 232247988.906991;
 		state = 2;
 	};
 	744555530DD7B43A008AF706 /* PosterCache.m */ = {
@@ -5741,7 +5781,7 @@
 		ignoreCount = 0;
 		lineNumber = 99;
 		location = BoxOffice;
-		modificationTime = 232246135.861228;
+		modificationTime = 232247988.907059;
 		state = 2;
 	};
 	744555570DD7B444008AF706 /* PosterCache.m:107 */ = {
@@ -5758,7 +5798,7 @@
 		ignoreCount = 0;
 		lineNumber = 107;
 		location = BoxOffice;
-		modificationTime = 232246135.86124;
+		modificationTime = 232247988.907071;
 		state = 2;
 	};
 	744555590DD7B44E008AF706 /* AddressLocationCache.m:363 */ = {
@@ -5775,7 +5815,7 @@
 		ignoreCount = 0;
 		lineNumber = 363;
 		location = BoxOffice;
-		modificationTime = 232246135.861248;
+		modificationTime = 232247988.907088;
 		state = 2;
 	};
 	7445555B0DD7B45D008AF706 /* PBXTextBookmark */ = {
@@ -5937,7 +5977,7 @@
 			sepNavVisRange = "{9234, 511}";
 		};
 	};
-	744555700DD7B4B0008AF706 /* BoxOfficeModel.m:70 */ = {
+	744555700DD7B4B0008AF706 /* BoxOfficeModel.m:78 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5949,9 +5989,9 @@
 		functionName = "-addBackgroundTask";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 70;
+		lineNumber = 78;
 		location = BoxOffice;
-		modificationTime = 232246135.861304;
+		modificationTime = 232247988.907139;
 		state = 2;
 	};
 	744555710DD7B4B1008AF706 /* PBXTextBookmark */ = {
@@ -5989,7 +6029,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 18";
 		rLen = 0;
-		rLoc = 409;
+		rLoc = 458;
 		rType = 0;
 		vrLen = 501;
 		vrLoc = 258;
@@ -5999,7 +6039,7 @@
 		fRef = 744555120DD7B38D008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 78";
 		rLen = 0;
-		rLoc = 1837;
+		rLoc = 2141;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
@@ -6029,7 +6069,7 @@
 		fRef = 744555120DD7B38D008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 78";
 		rLen = 0;
-		rLoc = 1837;
+		rLoc = 2141;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
@@ -6049,7 +6089,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 18";
 		rLen = 0;
-		rLoc = 409;
+		rLoc = 458;
 		rType = 0;
 		vrLen = 502;
 		vrLoc = 258;
@@ -6059,7 +6099,7 @@
 		fRef = 744555120DD7B38D008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 78";
 		rLen = 0;
-		rLoc = 1837;
+		rLoc = 2141;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
@@ -6079,7 +6119,7 @@
 		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 18";
 		rLen = 0;
-		rLoc = 409;
+		rLoc = 458;
 		rType = 0;
 		vrLen = 501;
 		vrLoc = 258;
@@ -6089,12 +6129,12 @@
 		fRef = 7445556E0DD7B4B0008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 78";
 		rLen = 0;
-		rLoc = 1837;
+		rLoc = 2141;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
 	};
-	744555840DD7B4FC008AF706 /* BoxOfficeModel.m:79 */ = {
+	744555840DD7B4FC008AF706 /* BoxOfficeModel.m:87 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -6106,9 +6146,9 @@
 		functionName = "-removeBackgroundTask";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 79;
+		lineNumber = 87;
 		location = BoxOffice;
-		modificationTime = 232246135.861313;
+		modificationTime = 232247988.90721;
 		state = 2;
 	};
 	744555860DD7B524008AF706 /* PosterView.m:43 */ = {
@@ -6125,7 +6165,7 @@
 		ignoreCount = 0;
 		lineNumber = 43;
 		location = BoxOffice;
-		modificationTime = 232246135.861323;
+		modificationTime = 232247988.907268;
 		state = 2;
 	};
 	744555880DD7B52A008AF706 /* PBXTextBookmark */ = {
@@ -6153,7 +6193,7 @@
 		fRef = 7445556E0DD7B4B0008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 70";
 		rLen = 0;
-		rLoc = 1688;
+		rLoc = 1983;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
@@ -6183,7 +6223,7 @@
 		fRef = 7445556E0DD7B4B0008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 78";
 		rLen = 0;
-		rLoc = 1837;
+		rLoc = 2141;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
@@ -6203,7 +6243,7 @@
 		fRef = 7445556E0DD7B4B0008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 70";
 		rLen = 0;
-		rLoc = 1688;
+		rLoc = 1983;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
@@ -6223,7 +6263,7 @@
 		fRef = 7445556E0DD7B4B0008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 78";
 		rLen = 0;
-		rLoc = 1823;
+		rLoc = 2127;
 		rType = 0;
 		vrLen = 422;
 		vrLoc = 1659;
@@ -6253,7 +6293,7 @@
 		fRef = 7445556E0DD7B4B0008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 70";
 		rLen = 0;
-		rLoc = 1688;
+		rLoc = 1983;
 		rType = 0;
 		vrLen = 421;
 		vrLoc = 1659;
@@ -6303,9 +6343,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/PosterView.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1001, 1904}}";
-			sepNavSelRange = "{2732, 0}";
-			sepNavVisRange = "{2426, 438}";
+			sepNavIntBoundsRect = "{{0, 0}, {661, 1876}}";
+			sepNavSelRange = "{1640, 0}";
+			sepNavVisRange = "{1248, 1165}";
 		};
 	};
 	744555AA0DD7BA49008AF706 /* PBXTextBookmark */ = {
@@ -6323,7 +6363,7 @@
 		fRef = 7445556E0DD7B4B0008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 205";
 		rLen = 0;
-		rLoc = 5585;
+		rLoc = 5898;
 		rType = 0;
 		vrLen = 463;
 		vrLoc = 9282;
@@ -6390,7 +6430,7 @@
 		fRef = 7445556E0DD7B4B0008AF706 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 205";
 		rLen = 0;
-		rLoc = 5585;
+		rLoc = 5898;
 		rType = 0;
 		vrLen = 463;
 		vrLoc = 9282;
@@ -6470,7 +6510,7 @@
 		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
 		name = "PosterView.m: 117";
 		rLen = 0;
-		rLoc = 3241;
+		rLoc = 2877;
 		rType = 0;
 		vrLen = 614;
 		vrLoc = 3056;
@@ -6497,7 +6537,7 @@
 		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
 		name = "PosterView.m: 117";
 		rLen = 0;
-		rLoc = 3241;
+		rLoc = 2877;
 		rType = 0;
 		vrLen = 614;
 		vrLoc = 3056;
@@ -6517,10 +6557,387 @@
 		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
 		name = "PosterView.m: 92";
 		rLen = 0;
-		rLoc = 2732;
+		rLoc = 2368;
 		rType = 0;
 		vrLen = 438;
 		vrLoc = 2426;
+	};
+	744555CA0DD7CD1E008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
+		name = "BoxOfficeAppDelegate.m: 32";
+		rLen = 0;
+		rLoc = 731;
+		rType = 0;
+		vrLen = 595;
+		vrLoc = 523;
+	};
+	744555CB0DD7CD1E008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7445554E0DD7B42E008AF706 /* AddressLocationCache.m */;
+		name = "AddressLocationCache.m: 346";
+		rLen = 0;
+		rLoc = 12903;
+		rType = 0;
+		vrLen = 536;
+		vrLoc = 12641;
+	};
+	744555CC0DD7CD1E008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
+		name = "PosterView.m: 92";
+		rLen = 0;
+		rLoc = 2368;
+		rType = 0;
+		vrLen = 436;
+		vrLoc = 2426;
+	};
+	744555CD0DD7CD1E008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
+		name = "PosterView.m: 92";
+		rLen = 0;
+		rLoc = 2368;
+		rType = 0;
+		vrLen = 438;
+		vrLoc = 2426;
+	};
+	744555CE0DD7CD1E008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
+		name = "BoxOfficeAppDelegate.m: 32";
+		rLen = 0;
+		rLoc = 731;
+		rType = 0;
+		vrLen = 595;
+		vrLoc = 523;
+	};
+	744555CF0DD7CD1E008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7445554E0DD7B42E008AF706 /* AddressLocationCache.m */;
+		name = "AddressLocationCache.m: 346";
+		rLen = 0;
+		rLoc = 12903;
+		rType = 0;
+		vrLen = 536;
+		vrLoc = 12641;
+	};
+	744555D00DD7CD1E008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
+		name = "PosterView.m: 91";
+		rLen = 0;
+		rLoc = 2338;
+		rType = 0;
+		vrLen = 415;
+		vrLoc = 2417;
+	};
+	744555D50DD7CFC4008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
+		name = "PosterView.m: 88";
+		rLen = 0;
+		rLoc = 2251;
+		rType = 0;
+		vrLen = 415;
+		vrLoc = 2417;
+	};
+	744555D60DD7CFC4008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7464FD340DD52886000CE93F /* UIApplication.h */;
+		name = "UIApplication.h: 117";
+		rLen = 83;
+		rLoc = 5112;
+		rType = 0;
+		vrLen = 2397;
+		vrLoc = 4671;
+	};
+	744555D70DD7CFC4008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 290";
+		rLen = 0;
+		rLoc = 9423;
+		rType = 0;
+		vrLen = 903;
+		vrLoc = 8846;
+	};
+	744555D80DD7CFC4008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
+		name = "PosterView.m: 88";
+		rLen = 0;
+		rLoc = 2251;
+		rType = 0;
+		vrLen = 415;
+		vrLoc = 2417;
+	};
+	744555D90DD7CFC4008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 290";
+		rLen = 0;
+		rLoc = 9423;
+		rType = 0;
+		vrLen = 903;
+		vrLoc = 8846;
+	};
+	744555DA0DD7CFC4008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7464FD340DD52886000CE93F /* UIApplication.h */;
+		name = "UIApplication.h: 117";
+		rLen = 83;
+		rLoc = 5112;
+		rType = 0;
+		vrLen = 2397;
+		vrLoc = 4671;
+	};
+	744555DB0DD7CFC4008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 302";
+		rLen = 0;
+		rLoc = 9855;
+		rType = 0;
+		vrLen = 1530;
+		vrLoc = 8841;
+	};
+	744555DE0DD7D09A008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 291";
+		rLen = 0;
+		rLoc = 9423;
+		rType = 0;
+		vrLen = 1465;
+		vrLoc = 8302;
+	};
+	744555DF0DD7D09A008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
+		name = "PosterView.m: 88";
+		rLen = 0;
+		rLoc = 2251;
+		rType = 0;
+		vrLen = 1086;
+		vrLoc = 2016;
+	};
+	744555E00DD7D09A008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 291";
+		rLen = 0;
+		rLoc = 9423;
+		rType = 0;
+		vrLen = 1465;
+		vrLoc = 8302;
+	};
+	744555E10DD7D09A008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555A70DD7BA33008AF706 /* PosterView.m */;
+		name = "PosterView.m: 65";
+		rLen = 0;
+		rLoc = 1653;
+		rType = 0;
+		vrLen = 1165;
+		vrLoc = 1248;
+	};
+	744555E50DD7D0CB008AF706 /* PosterView.m */ = {
+		isa = PBXFileReference;
+		name = PosterView.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/PosterView.m;
+		sourceTree = "<absolute>";
+	};
+	744555E70DD7D0CB008AF706 /* PosterView.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = PosterView.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/PosterView.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {661, 1582}}";
+			sepNavSelRange = "{2877, 0}";
+			sepNavVisRange = "{2050, 834}";
+		};
+	};
+	744555EA0DD7D0D3008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555E50DD7D0CB008AF706 /* PosterView.m */;
+		rLen = 0;
+		rLoc = 50;
+		rType = 1;
+	};
+	744555EB0DD7D0D3008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555E70DD7D0CB008AF706 /* PosterView.m */;
+		name = "PosterView.m: 51";
+		rLen = 0;
+		rLoc = 1247;
+		rType = 0;
+		vrLen = 1043;
+		vrLoc = 711;
+	};
+	744555EE0DD7D147008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555E70DD7D0CB008AF706 /* PosterView.m */;
+		name = "PosterView.m: 110";
+		rLen = 0;
+		rLoc = 2877;
+		rType = 0;
+		vrLen = 834;
+		vrLoc = 2050;
+	};
+	744555FC0DD7D20F008AF706 /* BoxOfficeModel.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = BoxOfficeModel.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeModel.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {936, 3108}}";
+			sepNavSelRange = "{1625, 0}";
+			sepNavVisRange = "{939, 1103}";
+		};
+	};
+	744555FF0DD7D228008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555E70DD7D0CB008AF706 /* PosterView.m */;
+		name = "PosterView.m: 110";
+		rLen = 0;
+		rLoc = 2877;
+		rType = 0;
+		vrLen = 834;
+		vrLoc = 2050;
+	};
+	744556000DD7D228008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555FC0DD7D20F008AF706 /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 20";
+		rLen = 35;
+		rLoc = 403;
+		rType = 0;
+		vrLen = 767;
+		vrLoc = 0;
+	};
+	744556010DD7D228008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
+		name = "BoxOfficeModel.h: 25";
+		rLen = 0;
+		rLoc = 681;
+		rType = 0;
+		vrLen = 997;
+		vrLoc = 0;
+	};
+	744556020DD7D228008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555E70DD7D0CB008AF706 /* PosterView.m */;
+		name = "PosterView.m: 110";
+		rLen = 0;
+		rLoc = 2877;
+		rType = 0;
+		vrLen = 834;
+		vrLoc = 2050;
+	};
+	744556030DD7D228008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
+		name = "BoxOfficeModel.h: 25";
+		rLen = 0;
+		rLoc = 681;
+		rType = 0;
+		vrLen = 996;
+		vrLoc = 0;
+	};
+	744556040DD7D228008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555FC0DD7D20F008AF706 /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 20";
+		rLen = 35;
+		rLoc = 403;
+		rType = 0;
+		vrLen = 767;
+		vrLoc = 0;
+	};
+	744556050DD7D228008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
+		name = "BoxOfficeModel.h: 25";
+		rLen = 0;
+		rLoc = 635;
+		rType = 0;
+		vrLen = 1002;
+		vrLoc = 0;
+	};
+	7445560A0DD7D256008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
+		name = "BoxOfficeModel.h: 18";
+		rLen = 0;
+		rLoc = 409;
+		rType = 0;
+		vrLen = 1063;
+		vrLoc = 0;
+	};
+	7445560B0DD7D256008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555FC0DD7D20F008AF706 /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 20";
+		rLen = 35;
+		rLoc = 403;
+		rType = 0;
+		vrLen = 799;
+		vrLoc = 0;
+	};
+	7445560C0DD7D256008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743E31CD0DD668DD004C5161 /* BoxOfficeModel.h */;
+		name = "BoxOfficeModel.h: 18";
+		rLen = 0;
+		rLoc = 409;
+		rType = 0;
+		vrLen = 1063;
+		vrLoc = 0;
+	};
+	7445560D0DD7D256008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555FC0DD7D20F008AF706 /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 62";
+		rLen = 0;
+		rLoc = 1688;
+		rType = 0;
+		vrLen = 1103;
+		vrLoc = 939;
+	};
+	744556110DD7D28B008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555FC0DD7D20F008AF706 /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 65";
+		rLen = 0;
+		rLoc = 1683;
+		rType = 0;
+		vrLen = 1103;
+		vrLoc = 939;
+	};
+	744556150DD7D29D008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555FC0DD7D20F008AF706 /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 63";
+		rLen = 0;
+		rLoc = 1624;
+		rType = 0;
+		vrLen = 1103;
+		vrLoc = 939;
+	};
+	744556190DD7D2B4008AF706 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 744555FC0DD7D20F008AF706 /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 63";
+		rLen = 0;
+		rLoc = 1625;
+		rType = 0;
+		vrLen = 1103;
+		vrLoc = 939;
 	};
 	744DDE5F0DC9992F005BFCF6 /* NSArray.h */ = {
 		isa = PBXFileReference;
@@ -6556,9 +6973,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/AllMoviesViewController.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1001, 3458}}";
-			sepNavSelRange = "{5358, 0}";
-			sepNavVisRange = "{4847, 543}";
+			sepNavIntBoundsRect = "{{0, 0}, {768, 3962}}";
+			sepNavSelRange = "{9423, 0}";
+			sepNavVisRange = "{8302, 1465}";
 		};
 	};
 	745443D20DD539A200FB6970 /* PBXTextBookmark */ = {
@@ -6624,7 +7041,7 @@
 		ignoreCount = 0;
 		lineNumber = 20;
 		location = BoxOffice;
-		modificationTime = 232246135.860887;
+		modificationTime = 232247988.906596;
 		state = 2;
 	};
 	745444350DD53EB700FB6970 /* PBXTextBookmark */ = {
@@ -6675,7 +7092,7 @@
 		ignoreCount = 0;
 		lineNumber = 20;
 		location = BoxOffice;
-		modificationTime = 232246135.860895;
+		modificationTime = 232247988.906602;
 		state = 2;
 	};
 	745444BB0DD5661900FB6970 /* PosterView.m:20 */ = {
@@ -6692,7 +7109,7 @@
 		ignoreCount = 0;
 		lineNumber = 20;
 		location = BoxOffice;
-		modificationTime = 232246135.860902;
+		modificationTime = 232247988.906607;
 		state = 2;
 	};
 	745445370DD56D6500FB6970 /* PosterView.m */ = {
@@ -6716,7 +7133,7 @@
 		ignoreCount = 0;
 		lineNumber = 20;
 		location = BoxOffice;
-		modificationTime = 232246135.860908;
+		modificationTime = 232247988.906613;
 		state = 2;
 	};
 	745445860DD5765F00FB6970 /* PosterView.m */ = {
@@ -6745,7 +7162,7 @@
 		ignoreCount = 0;
 		lineNumber = 20;
 		location = BoxOffice;
-		modificationTime = 232246135.860914;
+		modificationTime = 232247988.906618;
 		state = 2;
 	};
 	745445D60DD57B6800FB6970 /* AllMoviesViewController.m */ = {
@@ -6769,7 +7186,7 @@
 		ignoreCount = 0;
 		lineNumber = 44;
 		location = BoxOffice;
-		modificationTime = 232246135.860919;
+		modificationTime = 232247988.906624;
 		state = 2;
 	};
 	745446060DD57E3800FB6970 /* PBXTextBookmark */ = {
@@ -6882,7 +7299,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libobjc.A.dylib;
-		modificationTime = 232246135.861969;
+		modificationTime = 232247988.907795;
 		state = 1;
 		symbolName = objc_exception_throw;
 	};
@@ -6900,7 +7317,7 @@
 		ignoreCount = 0;
 		lineNumber = 1;
 		location = BoxOffice;
-		modificationTime = 232246135.860775;
+		modificationTime = 232247988.90657;
 		state = 1;
 	};
 	7464FB110DD4ECCA000CE93F /* PBXTextBookmark */ = {
@@ -6927,7 +7344,7 @@
 		ignoreCount = 0;
 		lineNumber = 54;
 		location = BoxOffice;
-		modificationTime = 232246135.860847;
+		modificationTime = 232247988.906589;
 		state = 2;
 	};
 	7464FB690DD4FEF4000CE93F /* ApplicationTabBarController.m */ = {
@@ -7004,6 +7421,11 @@
 		name = UIApplication.h;
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIApplication.h;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1416, 2436}}";
+			sepNavSelRange = "{5112, 83}";
+			sepNavVisRange = "{4671, 2397}";
+		};
 	};
 	7464FD5B0DD52C06000CE93F /* UIScreen.h */ = {
 		isa = PBXFileReference;
@@ -7337,7 +7759,7 @@
 		ignoreCount = 0;
 		lineNumber = 204;
 		location = BoxOffice;
-		modificationTime = 232246135.860925;
+		modificationTime = 232247988.90663;
 		state = 2;
 	};
 	748861D70DD65622007E3E7D /* BoxOfficeController.m:204 */ = {
@@ -7354,7 +7776,7 @@
 		ignoreCount = 0;
 		lineNumber = 204;
 		location = BoxOffice;
-		modificationTime = 232246135.860931;
+		modificationTime = 232247988.906635;
 		state = 2;
 	};
 	748861E20DD656C7007E3E7D /* BoxOfficeController.m:204 */ = {
@@ -7371,7 +7793,7 @@
 		ignoreCount = 0;
 		lineNumber = 204;
 		location = BoxOffice;
-		modificationTime = 232246135.860936;
+		modificationTime = 232247988.906641;
 		state = 2;
 	};
 	748861E90DD6575F007E3E7D /* XmlParser.m */ = {
@@ -7395,7 +7817,7 @@
 		ignoreCount = 0;
 		lineNumber = 41;
 		location = BoxOffice;
-		modificationTime = 232246135.860941;
+		modificationTime = 232247988.906647;
 		state = 2;
 	};
 	748861EF0DD65768007E3E7D /* PBXTextBookmark */ = {
@@ -7432,7 +7854,7 @@
 		ignoreCount = 0;
 		lineNumber = 41;
 		location = BoxOffice;
-		modificationTime = 232246135.860947;
+		modificationTime = 232247988.906658;
 		state = 2;
 	};
 	748AC9050DC9980A00C6592F /* UINavigationBar.h */ = {
