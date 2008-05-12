@@ -103,7 +103,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
 	}
 	[UIView commitAnimations];	
 	
-	[self performSelector:@selector(update:) withObject:nil afterDelay:2];
+	[self performSelector:@selector(update:) withObject:nil afterDelay:1];
 }
 
 - (void) update:(id) object {

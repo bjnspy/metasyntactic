@@ -230,7 +230,9 @@
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         [self downloadAddressLocations:addresses];
-		[self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:) withObject:nil waitUntilDone:NO];
+		[self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:)
+							   withObject:@"Finished Finding Theater Locations"
+							waitUntilDone:NO];
         
         [autoreleasePool release];
     }
@@ -288,7 +290,9 @@
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
     [self downloadZipcodeLocationFromWebService:zipcode];
-	[self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:) withObject:nil waitUntilDone:NO];
+	[self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:)
+						   withObject:@"Finished Finding Zipcode Location"
+						waitUntilDone:NO];
     
     [autoreleasePool release];    
 }
@@ -308,9 +312,9 @@
                            withObject:zipcode];    
 }
 
-- (void) onBackgroundThreadFinished:(id) object {
+- (void) onBackgroundThreadFinished:(NSString*) description {
 	if (self.model != nil) {
-		[self.model removeBackgroundTask:@"Finished Finding Location"];
+		[self.model removeBackgroundTask:description];
 	}
 }
 
