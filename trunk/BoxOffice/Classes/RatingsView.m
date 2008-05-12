@@ -30,8 +30,13 @@
     {
         UIImage* ratingsImage = [UIImage imageNamed:(rating >= 60 ? @"Fresh.png" : @"Rotten.png")];
         CGRect ratingsRectangle = CGRectMake(5, 0, [ratingsImage size].width, [ratingsImage size].height);
-        [ratingsImage drawInRect:ratingsRectangle blendMode:kCGBlendModeNormal alpha:0.3];
-        
+		
+		if (rating >= 60) {
+			[ratingsImage drawInRect:ratingsRectangle blendMode:kCGBlendModeNormal alpha:0.7];
+        } else {
+			[ratingsImage drawInRect:ratingsRectangle blendMode:kCGBlendModeNormal alpha:0.5];
+		}
+		
         UIFont* boldSmallfont = [UIFont boldSystemFontOfSize:10];
         
         NSString* ratingString = [NSString stringWithFormat:@"%d", rating];
@@ -42,6 +47,12 @@
         
         int x = ((rect.size.width - (ratingStringSize.width + percentStringSize.width)) / 2) + 1;
         
+		if (rating == 100) {
+			x += 1;
+		} else if (rating < 10) {
+			x -= 2;
+		}
+		
         CGPoint point1 = CGPointMake(x, 6);
         [ratingString drawAtPoint:point1 withFont:boldLargefont];
         

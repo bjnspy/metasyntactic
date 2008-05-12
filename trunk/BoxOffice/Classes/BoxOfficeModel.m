@@ -64,7 +64,8 @@
 		
 		self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
 		[self.activityView addSubview:self.activityIndicatorView];
-        backgroundTaskCount = 0;
+        
+		backgroundTaskCount = 0;
 		
         [self updatePosterCache];
         [self updateAddressLocationCache];
