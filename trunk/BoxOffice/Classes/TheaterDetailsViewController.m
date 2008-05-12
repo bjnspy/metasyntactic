@@ -12,6 +12,7 @@
 #import "BoxOfficeModel.h"
 #import "TheatersNavigationController.h"
 #import "TicketsViewController.h"
+#import "MovieShowtimesCell.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -55,6 +56,10 @@
     return self;
 }
 
+- (void) viewWillAppear:(BOOL) animated {
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+}
+
 - (void) refresh {
     [self.tableView reloadData];
 }
@@ -65,45 +70,21 @@
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
-    if (section == 0) {
-        return 1;
-    }
-    
-    NSInteger showtimesCount = [[self.movieShowtimes objectAtIndex:(section - 1)] count];
-    NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
-    NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
-    if (remainder > 0) {
-        rows++;
-    }
-    
-    return rows;
+    return 1;
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
                         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     
     NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
     
     if (section == 0) {
+		UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         cell.text = self.theater.address;
+		return cell;
     } else {
-        NSInteger startIndex = row * SHOWTIMES_PER_ROW;
-        NSArray* showtimes = [self.movieShowtimes objectAtIndex:(section - 1)];
-        NSString* result = [showtimes objectAtIndex:startIndex];
-        for (NSInteger i = startIndex + 1;
-             i < [showtimes count] && i < (startIndex + SHOWTIMES_PER_ROW);
-             i++) {
-            result = [result stringByAppendingString:@", "];
-            result = [result stringByAppendingString:[showtimes objectAtIndex:i]];
-        }
-        
-        cell.font = [UIFont boldSystemFontOfSize:11];
-        cell.text = result;
+		return [MovieShowtimesCell cellWithShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];
     }
-    
-    return cell;
 }
 
 - (NSString*)               tableView:(UITableView*) tableView
@@ -122,10 +103,19 @@
     NSInteger row = [indexPath row];
     
     if (section == 0 && row == 0) {
-        return 42;
+		return [tableView rowHeight];
     }
     
-    return 32;
+	NSInteger showtimesCount = [[self.movieShowtimes objectAtIndex:(section - 1)] count];
+    NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
+    NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
+    if (remainder > 0) {
+        rows++;
+    }
+    
+    return (rows * 14) + 18;
+	
+//    return 32;
 }
 
 - (void)            tableView:(UITableView*) tableView

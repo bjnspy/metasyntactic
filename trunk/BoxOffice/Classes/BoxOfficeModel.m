@@ -15,10 +15,17 @@
 
 @synthesize posterCache;
 @synthesize addressLocationCache;
+@synthesize backgroundTaskCount;
+@synthesize activityView;
 
 - (void) dealloc {
+	self.posterCache.model = nil;
     self.posterCache = nil;
+	
+	self.addressLocationCache.model = nil;
     self.addressLocationCache = nil;
+	
+	self.activityView = nil;
     [super dealloc];
 }
 
@@ -46,15 +53,33 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.posterCache = [PosterCache cache];
-        self.addressLocationCache = [AddressLocationCache cache];
-        
+        self.posterCache = [PosterCache cacheWithModel:self];
+        self.addressLocationCache = [AddressLocationCache cacheWithModel:self];
+		self.activityView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleBlueSmall] autorelease];
+        backgroundTaskCount = 0;
+		
         [self updatePosterCache];
         [self updateAddressLocationCache];
         [self updateZipcodeAddressLocation];
     }
     
     return self;
+}
+
+- (void) addBackgroundTask {
+	backgroundTaskCount++;
+	
+	if (backgroundTaskCount == 1) {
+		[self.activityView startAnimating];
+	}
+}
+
+- (void) removeBackgroundTask {
+	backgroundTaskCount--;
+	
+	if (backgroundTaskCount == 0) {
+		[self.activityView stopAnimating];
+	}
 }
 
 - (NSInteger) selectedTabBarViewControllerIndex {
@@ -249,6 +274,76 @@
     }
     
     return [NSArray array];
+}
+
+- (NSDictionary*) theaterDistanceMap {
+    Location* userLocation = [self locationForZipcode:[self zipcode]];
+    
+    NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
+    for (Theater* theater in self.theaters) {
+        double d;
+        if (userLocation != nil) {
+            d = [userLocation distanceTo:[self locationForAddress:theater.address]];
+        } else {
+            d = UNKNOWN_DISTANCE;
+        }
+        
+        NSNumber* value = [NSNumber numberWithDouble:d];
+        NSString* key = theater.address;
+        [theaterDistanceMap setObject:value forKey:key];
+    }    
+    
+    return theaterDistanceMap;
+}
+
+
+
+- (BOOL) tooFarAway:(double) distance {
+    if (distance != UNKNOWN_DISTANCE && self.searchRadius < 50 && distance > self.searchRadius) {
+        return true;
+    }
+    
+    return false;
+}
+
+- (NSArray*) theatersInRange:(NSArray*) theaters {
+	NSDictionary* theaterDistanceMap = [self theaterDistanceMap];
+	NSMutableArray* result = [NSMutableArray array];
+	
+	for (Theater* theater in theaters) {
+		double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
+		
+		if (![self tooFarAway:distance]) {
+			[result addObject:theater];
+		}
+	}
+	
+	return result;
+}
+
+NSInteger compareTheatersByName(id t1, id t2, void *context) {
+    Theater* theater1 = t1;
+    Theater* theater2 = t2;
+    
+    return [theater1.name compare:theater2.name options:NSCaseInsensitiveSearch];
+}
+
+NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
+    NSDictionary* theaterDistanceMap = context;
+    
+    Theater* theater1 = t1;
+    Theater* theater2 = t2;
+    
+    double distance1 = [[theaterDistanceMap objectForKey:theater1.address] doubleValue];
+    double distance2 = [[theaterDistanceMap objectForKey:theater2.address] doubleValue];
+    
+    if (distance1 < distance2) {
+        return NSOrderedAscending;
+    } else if (distance1 > distance2) {
+        return NSOrderedDescending;
+    }
+    
+    return compareTheatersByName(t1, t2, nil);
 }
 
 @end

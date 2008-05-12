@@ -13,29 +13,24 @@
 
 @synthesize tabBarController;
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller
-{
-    if (self = [super init])
-    {   
+- (void) dealloc {
+    self.tabBarController = nil;
+    [super dealloc];
+}
+
+- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
+    if (self = [super init]) {   
         self.tabBarController = controller;
     }
     
     return self;
 }
 
-- (void) dealloc
-{
-    self.tabBarController = nil;
-    [super dealloc];
-}
-
-- (BoxOfficeModel*) model
-{
+- (BoxOfficeModel*) model {
     return [self.tabBarController model];
 }
 
-- (BoxOfficeController*) controller
-{
+- (BoxOfficeController*) controller {
     return [self.tabBarController controller];
 }
 

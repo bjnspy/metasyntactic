@@ -56,7 +56,7 @@
         self.segmentedControl.frame = rect;
         
         self.navigationItem.titleView = segmentedControl;
-        
+		
         self.alphabeticSectionTitles =
         [NSArray arrayWithObjects:@"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
@@ -67,6 +67,7 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onDeviceOrientationDidChange:)
                                                  name:UIDeviceOrientationDidChangeNotification
@@ -157,6 +158,10 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     } else {
         [self sortMoviesByRating];
     }
+
+	if ([self.sectionTitles count] == 0) {
+		self.sectionTitles = [NSArray arrayWithObject:@"No Information Found"];
+	}
 }
 
 - (BoxOfficeModel*) model {

@@ -12,29 +12,34 @@
 #import "XmlElement.h"
 #import "XmlParser.h"
 #import "Utilities.h"
+#import "BoxOfficeModel.h"
 
 @implementation AddressLocationCache
 
+@synthesize model;
 @synthesize gate;
 
 - (void) dealloc {
+	self.model = nil;
     self.gate = nil;
     [super dealloc];
 }
 
-+ (AddressLocationCache*) cache {
-    return [[[AddressLocationCache alloc] init] autorelease];
-}
-
-- (id) init {
+- (id) initWithModel:(BoxOfficeModel*) model_ {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
+		self.model = model_;
     }
     
     return self;
 }
 
++ (AddressLocationCache*) cacheWithModel:(BoxOfficeModel*) model {
+    return [[[AddressLocationCache alloc] initWithModel:model] autorelease];
+}
+
 - (void) updateAddresses:(NSArray*) addresses {
+	[self.model addBackgroundTask];
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:addresses]];
 }
@@ -260,6 +265,7 @@
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         [self downloadAddressLocations:addresses];
+		[self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:) withObject:nil waitUntilDone:NO];
         
         [autoreleasePool release];
     }
@@ -337,6 +343,7 @@
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
     [self downloadZipcodeLocationFromWebService:zipcode];
+	[self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:) withObject:nil waitUntilDone:NO];
     
     [autoreleasePool release];    
 }
@@ -347,8 +354,15 @@
         return;
     }    
     
+	[self.model addBackgroundTask];
     [self performSelectorInBackground:@selector(updateZipcodeBackgroundEntryPoint:)
                            withObject:zipcode];    
+}
+
+- (void) onBackgroundThreadFinished:(id) object {
+	if (self.model != nil) {
+		[self.model removeBackgroundTask];
+	}
 }
 
 @end

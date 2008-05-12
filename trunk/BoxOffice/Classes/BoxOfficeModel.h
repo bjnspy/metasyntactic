@@ -14,12 +14,20 @@
 @interface BoxOfficeModel : NSObject {
     PosterCache* posterCache;
     AddressLocationCache* addressLocationCache;
+	
+	NSInteger backgroundTaskCount;
+	UIActivityIndicatorView* activityView;
 }
 
 @property (retain) PosterCache* posterCache;
 @property (retain) AddressLocationCache* addressLocationCache;
+@property (retain) UIActivityIndicatorView* activityView;
+@property (readonly) NSInteger backgroundTaskCount;
 
 + (BoxOfficeModel*) model;
+
+- (void) addBackgroundTask;
+- (void) removeBackgroundTask;
 
 - (NSInteger) selectedTabBarViewControllerIndex;
 - (void) setSelectedTabBarViewControllerIndex:(NSInteger) index;
@@ -53,5 +61,11 @@
 - (NSArray*) moviesAtTheater:(Theater*) theater;
 - (NSArray*) movieShowtimes:(Movie*) movie
                  forTheater:(Theater*) theater;
+
+- (NSDictionary*) theaterDistanceMap;
+- (NSArray*) theatersInRange:(NSArray*) theaters;
+
+NSInteger compareTheatersByName(id t1, id t2, void *context);
+NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
 @end

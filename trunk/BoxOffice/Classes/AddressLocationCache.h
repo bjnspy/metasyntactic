@@ -10,13 +10,17 @@
 
 #import "Location.h"
 
+@class BoxOfficeModel;
+
 @interface AddressLocationCache : NSObject {
+	BoxOfficeModel* model;
     NSLock* gate;
 }
 
+@property (assign) BoxOfficeModel* model;
 @property (retain) NSLock* gate;
 
-+ (AddressLocationCache*) cache;
++ (AddressLocationCache*) cacheWithModel:(BoxOfficeModel*) model;
 
 - (void) updateAddresses:(NSArray*) addresses;
 - (void) updateZipcode:(NSString*) zipcode;

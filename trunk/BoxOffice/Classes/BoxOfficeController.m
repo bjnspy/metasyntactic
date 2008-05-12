@@ -19,28 +19,37 @@
 
 @implementation BoxOfficeController
 
-@synthesize appDelegate;
 @synthesize movieLookupLock;
 @synthesize theaterLookupLock;
 @synthesize ticketLookupLock;
 
 - (void) dealloc {
-    self.appDelegate = nil;
     self.movieLookupLock = nil;
     self.theaterLookupLock = nil;
     self.ticketLookupLock = nil;
     [super dealloc];
 }
 
+- (BoxOfficeModel*) model {
+    return appDelegate.model;
+}
+
+- (void) onBackgroundTaskStarted {
+	[[self model] addBackgroundTask];
+}
+
 - (void) spawnMovieLookupThread {
+	[self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(lookupMoviesBackgroundThreadEntryPoint:) withObject:nil];
 }
 
 - (void) spawnTheaterLookupThread {
+	[self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(lookupTheatersBackgroundThreadEntryPoint:) withObject:nil];
 }
 
 - (void) spawnTicketLookupThread {
+	[self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(lookupTicketsBackgroundThreadEntryPoint:) withObject:nil];
 }
 
@@ -50,9 +59,9 @@
     [self spawnTicketLookupThread];
 }
 
-- (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel {
+- (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate_ {
     if (self = [super init]) {
-        self.appDelegate = appDel;
+        appDelegate = appDelegate_;
         self.movieLookupLock = [[[NSLock alloc] init] autorelease];
         self.theaterLookupLock = [[[NSLock alloc] init] autorelease];
         self.ticketLookupLock = [[[NSLock alloc] init] autorelease];
@@ -67,11 +76,7 @@
     return [[[BoxOfficeController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
-- (BoxOfficeModel*) model {
-    return self.appDelegate.model;
-}
-
-- (void) lookupMovies {
+- (NSArray*) lookupMovies {
     NSURL* url = [NSURL URLWithString:@"http://i.rottentomatoes.com/syndication/tab/in_theaters.txt"];
     NSError* httpError = nil;
     NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&httpError];
@@ -93,8 +98,10 @@
             }
         }
         
-        [self performSelectorOnMainThread:@selector(setMovies:) withObject:movies waitUntilDone:NO];
+		return movies;
     }
+	
+	return nil;
 }
 
 - (void) lookupMoviesBackgroundThreadEntryPoint:(id) anObject {
@@ -102,8 +109,9 @@
     {    
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        [self lookupMovies];
-        
+        NSArray* movies = [self lookupMovies];
+        [self performSelectorOnMainThread:@selector(setMovies:) withObject:movies waitUntilDone:NO];
+		
         [autoreleasePool release];
     }
     [self.movieLookupLock unlock];
@@ -111,23 +119,29 @@
 
 - (BOOL) areEqual:(NSArray*) movies1
            movies:(NSArray*) movies2 {
+	if (movies1 == nil || movies2 == nil) {
+		return NO;
+	}
+	
     NSSet* set1 = [NSSet setWithArray:movies1];
     NSSet* set2 = [NSSet setWithArray:movies2];
     
     return [set1 isEqualToSet:set2];
 }
 
+- (void) onBackgroundTaskEnded {
+	[self.model removeBackgroundTask];
+    [appDelegate.tabBarController refresh];	
+}
+
 - (void) setMovies:(NSArray*) movies {
-    if (movies == nil || [movies count] == 0) {
-        return;
-    }
+	if (movies != nil) {
+		if (![self areEqual:movies movies:[self.model movies]]) {
+			[self.model setMovies:movies];
+		}
+	}
     
-    if ([self areEqual:movies movies:[self.model movies]]) {
-        return;
-    }
-    
-    [self.model setMovies:movies];
-    [self.appDelegate.tabBarController refresh];
+	[self onBackgroundTaskEnded];
 }
 
 - (NSDictionary*) processMoviesElement:(XmlElement*) moviesElement {
@@ -159,29 +173,29 @@
 
 - (BOOL) areEqual:(NSArray*) theaters1
          theaters:(NSArray*) theaters2 {
+	if (theaters1 == nil || theaters2 == nil) {
+		return NO;
+	}
+	
     NSSet* set1 = [NSSet setWithArray:theaters1];
     NSSet* set2 = [NSSet setWithArray:theaters2];
     
     return [set1 isEqualToSet:set2];
 }
 
-- (void) setTheaters:(NSArray*) theaters
-{
-    if (theaters == nil) {
-        return;
-    }
+- (void) setTheaters:(NSArray*) theaters {
+	if (theaters != nil) {
+		if (![self areEqual:theaters theaters:[self.model theaters]]) {
+			[self.model setTheaters:theaters];
+		}
+	}
     
-    if ([self areEqual:theaters theaters:[self.model theaters]]) {
-        return;
-    }
-    
-    [self.model setTheaters:theaters];
-    [self.appDelegate.tabBarController refresh];
+	[self onBackgroundTaskEnded];
 }
 
-- (void) lookupTheaters {
+- (NSArray*) lookupTheaters {
     if ([Utilities isNilOrEmpty:self.model.zipcode]) {
-        return;
+        return nil;
     }
     
     NSString* zipCode = self.model.zipcode;
@@ -247,9 +261,11 @@
         for (XmlElement* theaterElement in resultElement.children) {
             [theaters addObject:[self processTheaterElement:theaterElement]];
         }
-        
-        [self performSelectorOnMainThread:@selector(setTheaters:) withObject:theaters waitUntilDone:NO];
-    }
+		
+		return theaters;
+	}
+	
+	return nil;
 }
 
 - (void) lookupTheatersBackgroundThreadEntryPoint:(id) anObject {    
@@ -257,16 +273,17 @@
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        [self lookupTheaters];
-        
+        NSArray* theaters = [self lookupTheaters];
+		[self performSelectorOnMainThread:@selector(setTheaters:) withObject:theaters waitUntilDone:NO];
+
         [autoreleasePool release];
     }
     [self.theaterLookupLock unlock];
 }
 
-- (void) lookupTickets {
+- (XmlElement*) lookupTickets {
     if ([Utilities isNilOrEmpty:self.model.zipcode]) {
-        return;
+        return nil;
     }
     
     NSString* urlString = [NSString stringWithFormat:@"http://www.fandango.com/frdi/?pid=A99D3D1A-774C-49149E&op=performancesbypostalcodesearch&verbosity=1&postalcode=%@", self.model.zipcode];
@@ -279,14 +296,18 @@
                                                            error:&httpError];
     
     if (httpError == nil && ticketData != nil) {
-        XmlElement* element = [XmlParser parse:ticketData];
-        
-        [self performSelectorOnMainThread:@selector(setTickets:) withObject:element waitUntilDone:NO];
-    }    
+        return [XmlParser parse:ticketData];
+	}    
+	
+	return nil;
 }
 
 - (BOOL) areEqual:(XmlElement*) tickets1
           tickets:(XmlElement*) tickets2 {
+	if (tickets1 == nil || tickets2 == nil) {
+		return NO;
+	}
+	
     NSString* s1 = [XmlSerializer serializeElement:tickets1];
     NSString* s2 = [XmlSerializer serializeElement:tickets2];
     
@@ -294,16 +315,13 @@
 }
 
 - (void) setTickets:(XmlElement*) tickets {
-    if (tickets == nil) {
-        return;
-    }
+	if (tickets != nil) {
+		if (![self areEqual:tickets tickets:[self.model tickets]]) {
+			[self.model setTickets:tickets];
+		}
+	}
     
-    if ([self areEqual:tickets tickets:[self.model tickets]]) {
-        return;
-    }
-    
-    [self.model setTickets:tickets];
-    [self.appDelegate.tabBarController refresh];
+	[self onBackgroundTaskEnded];
 }
 
 - (void) lookupTicketsBackgroundThreadEntryPoint:(id) anObject {    
@@ -311,8 +329,9 @@
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        [self lookupTickets];
-        
+        XmlElement* element = [self lookupTickets];
+		[self performSelectorOnMainThread:@selector(setTickets:) withObject:element waitUntilDone:NO];
+
         [autoreleasePool release];
     }
     [self.theaterLookupLock unlock];
@@ -321,11 +340,13 @@
 - (void) setZipcode:(NSString*) zipcode {
     [self.model setZipcode:zipcode];
     [self spawnBackgroundThreads];
+    [appDelegate.tabBarController refresh];
 }
 
 - (void) setSearchRadius:(NSInteger) radius {
     [self.model setSearchRadius:radius];
     [self spawnBackgroundThreads];
+    [appDelegate.tabBarController refresh];
 }
 
 @end

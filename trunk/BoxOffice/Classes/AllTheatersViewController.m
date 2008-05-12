@@ -46,7 +46,7 @@
         CGRect rect = segmentedControl.frame;
         rect.size.width = 200;
         segmentedControl.frame = rect;
-        
+		
         self.navigationItem.titleView = segmentedControl;
         
         {
@@ -77,31 +77,6 @@
     return [self.navigationController model];
 }
 
-NSInteger sortByName(id t1, id t2, void *context) {
-    Theater* theater1 = t1;
-    Theater* theater2 = t2;
-    
-    return [theater1.name compare:theater2.name options:NSCaseInsensitiveSearch];
-}
-
-NSInteger sortByDistance(id t1, id t2, void *context) {
-    NSDictionary* theaterDistanceMap = context;
-    
-    Theater* theater1 = t1;
-    Theater* theater2 = t2;
-    
-    double distance1 = [[theaterDistanceMap objectForKey:theater1.address] doubleValue];
-    double distance2 = [[theaterDistanceMap objectForKey:theater2.address] doubleValue];
-    
-    if (distance1 < distance2) {
-        return NSOrderedAscending;
-    } else if (distance1 > distance2) {
-        return NSOrderedDescending;
-    }
-    
-    return sortByName(t1, t2, nil);
-}
-
 - (void) removeUnusedSectionTitles {
     for (NSInteger i = [self.sectionTitles count] - 1; i >= 0; --i) {
         NSString* title = [self.sectionTitles objectAtIndex:i];
@@ -111,47 +86,12 @@ NSInteger sortByDistance(id t1, id t2, void *context) {
     }    
 }
 
-- (NSDictionary*) theaterDistanceMap {
-    Location* userLocation = [self.model locationForZipcode:[self.model zipcode]];
-    
-    NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
-    for (Theater* theater in self.model.theaters) {
-        double d;
-        if (userLocation != nil) {
-            d = [userLocation distanceTo:[self.model locationForAddress:theater.address]];
-        } else {
-            d = UNKNOWN_DISTANCE;
-        }
-        
-        NSNumber* value = [NSNumber numberWithDouble:d];
-        NSString* key = theater.address;
-        [theaterDistanceMap setObject:value forKey:key];
-    }    
-    
-    return theaterDistanceMap;
-}
-
-- (BOOL) tooFarAway:(double) distance {
-    if (distance != UNKNOWN_DISTANCE && self.model.searchRadius < 50 && distance > self.model.searchRadius) {
-        return true;
-    }
-    
-    return false;
-}
-
 - (void) sortTheatersByName {
-    self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:sortByName context:nil];
+    self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
     
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
     
-    NSDictionary* theaterDistanceMap = [self theaterDistanceMap];
-    for (Theater* theater in self.sortedTheaters) {
-        double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
-        
-        if ([self tooFarAway:distance]) {
-            continue;
-        }
-        
+    for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         unichar firstChar = [theater.name characterAtIndex:0];
         firstChar = toupper(firstChar);
         
@@ -167,9 +107,9 @@ NSInteger sortByDistance(id t1, id t2, void *context) {
 }
 
 - (void) sortTheatersByDistance {
-    NSDictionary* theaterDistanceMap = [self theaterDistanceMap];    
-    self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:sortByDistance
-                           context:theaterDistanceMap];
+    NSDictionary* theaterDistanceMap = [self.model theaterDistanceMap];    
+    self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
+																context:theaterDistanceMap];
     
     NSString* reallyCloseBy = @"Realllllly close by";
     NSString* oneHalfToOneMile = @"< 1 mile away";
@@ -186,12 +126,8 @@ NSInteger sortByDistance(id t1, id t2, void *context) {
                           fiveToTenMiles, tenToFifteenMiles, fifteenToTwentyFiveMiles,
                           twentyFiveToFiftyMiles, wayFarAway, unknownDistance, nil];
     
-    for (Theater* theater in self.sortedTheaters) {
+    for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
-        
-        if ([self tooFarAway:distance]) {
-            continue;
-        }
         
         if (distance <= 0.5) {
             [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
@@ -230,7 +166,7 @@ NSInteger sortByDistance(id t1, id t2, void *context) {
     }
     
     if ([self.sectionTitles count] == 0) {
-        self.sectionTitles = [NSArray arrayWithObject:@"No Data Found"];   
+        self.sectionTitles = [NSArray arrayWithObject:@"No Information Found"]; 
     }
 }
 
@@ -317,6 +253,8 @@ NSInteger sortByDistance(id t1, id t2, void *context) {
 }
 
 - (void) viewWillAppear:(BOOL) animated {
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+
     if ([self sortingByDistance]) {
         [self refresh];
     }

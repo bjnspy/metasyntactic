@@ -14,13 +14,13 @@
 @interface MovieDetailsViewController : UITableViewController {
     MoviesNavigationController* navigationController;
     Movie* movie;
-    NSMutableArray* theatersArray;
+    NSArray* theatersArray;
     NSMutableArray* showtimesArray;
 }
 
 @property (assign) MoviesNavigationController* navigationController;
 @property (retain) Movie* movie;
-@property (retain) NSMutableArray* theatersArray;
+@property (retain) NSArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController

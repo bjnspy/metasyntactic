@@ -19,7 +19,7 @@
     NSLock* ticketLookupLock;
 }
 
-@property (assign) BoxOfficeAppDelegate* appDelegate;
+//@property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) NSLock* movieLookupLock;
 @property (retain) NSLock* theaterLookupLock;
 @property (retain) NSLock* ticketLookupLock;

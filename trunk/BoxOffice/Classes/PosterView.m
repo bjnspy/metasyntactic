@@ -12,9 +12,11 @@
 @implementation PosterView
 
 @synthesize controller;
+@synthesize moviesWithPosters;
 
 - (void) dealloc {
     controller = nil;
+	moviesWithPosters = nil;
     [super dealloc];
 }
 
@@ -35,30 +37,17 @@
     return [controller model];
 }
 
-- (void) layoutSubviews {
-    for (int i = 0; i < 10; i++) {
-        [self showPoster:[NSNumber numberWithInt:i]];
-    }
-}
-
 - (void) showPoster:(NSNumber*) number {
     const double pi = 3.14159265358979323846;
     
     int index = [number intValue];
     
-    BoxOfficeModel* model = [self model];
-    NSArray* movies = model.movies;
-    
-    if (index >= [movies count] || index > 8) {
-        return;
-    }
-    
     int row = index % 2;
     int column = index / 2;
     
-    Movie* movie = [movies objectAtIndex:index];
-    UIImage* poster = [model posterForMovie:movie];
-    
+	Movie* movie = [moviesWithPosters objectAtIndex:index];
+    UIImage* poster = [[self model] posterForMovie:movie];
+	
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:poster] autorelease];
     CGRect rect = imageView.frame;
     
@@ -100,13 +89,29 @@
         }
         
         imageView.bounds = largeBounds;
-        imageView.alpha = 0.25;
-        //imageView.bounds = bounds;
-        //imageView.alpha = 1;
+        imageView.alpha = 1;
     }
     [UIView commitAnimations];
     
     [self addSubview:imageView];
+}
+
+- (void) layoutSubviews {
+	[super layoutSubviews];
+	
+	NSArray* movies = [[self model] movies];
+	moviesWithPosters = [NSMutableArray array];
+	
+	for (Movie* movie in movies) {
+		UIImage* image = [[self model] posterForMovie:movie];
+		if (image != nil) {
+			[moviesWithPosters addObject:movie];
+		}
+	}
+	
+    for (int i = 0; i < 10 && i < [moviesWithPosters count]; i++) {
+        [self showPoster:[NSNumber numberWithInt:i]];
+    }
 }
 
 - (void) decreaseImageViewSize:(NSString*) animationID

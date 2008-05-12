@@ -14,8 +14,7 @@
 @synthesize navigationController;
 @synthesize object;
 
-- (void)dealloc
-{
+- (void) dealloc {
     self.navigationController = nil;
     self.object = nil;
     [super dealloc];
@@ -23,10 +22,8 @@
 
 - (id) initWithController:(UINavigationController*) controller
                withObject:(id) object_
-             withSelector:(SEL) selector_
-{
-    if (self = [super init])
-    {
+             withSelector:(SEL) selector_ {
+    if (self = [super init]) {
         self.navigationController = controller;
         self.object = object_;
         selector = selector_;
@@ -35,8 +32,7 @@
     return self;
 }
 
-- (void)loadView
-{    
+- (void) loadView {    
     [super loadView];
     
     UIBarButtonItem *saveItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave 
@@ -52,13 +48,11 @@
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
-- (void) cancel:(id) sender
-{
+- (void) cancel:(id) sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (void) save:(id) sender
-{
+- (void) save:(id) sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 

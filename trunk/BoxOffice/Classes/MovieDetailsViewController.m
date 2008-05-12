@@ -11,6 +11,7 @@
 #import "Theater.h"
 #import "DifferenceEngine.h"
 #import "TicketsViewController.h"
+#import "MovieShowtimesCell.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -29,29 +30,39 @@
     [super dealloc];
 }
 
+- (void) initializeData {
+	self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:[self.model theatersShowingMovie:self.movie]]];
+	self.theatersArray = [self.theatersArray sortedArrayUsingFunction:compareTheatersByDistance
+															  context:[self.model theaterDistanceMap]];
+	
+	self.showtimesArray = [NSMutableArray array];
+	
+	for (Theater* theater in self.theatersArray) {
+		[self.showtimesArray addObject:[self.model movieShowtimes:self.movie forTheater:theater]];
+	}
+}
+
 - (id) initWithNavigationController:(MoviesNavigationController*) controller
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
         self.movie = movie_;
-        
-        self.theatersArray = [NSMutableArray array];
-        self.showtimesArray = [NSMutableArray array];
-        
-        for (Theater* theater in [self.model theatersShowingMovie:self.movie]) {
-            [self.theatersArray addObject:theater];
-            [self.showtimesArray addObject:[self.model movieShowtimes:self.movie forTheater:theater]];
-        }
-        
+		
         self.title = self.movie.title;
-        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
-        self.tableView.separatorColor = [UIColor whiteColor];
+		
+		[self initializeData];
     }
     
     return self;
 }
 
+- (void) viewWillAppear:(BOOL) animated {
+	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+}
+
 - (void) refresh {
+	[self initializeData];
+	[self.tableView reloadData];
 }
 
 - (BoxOfficeModel*) model {
@@ -64,18 +75,7 @@
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
-    if (section == 0) {
-        return 1;
-    }
-    
-    NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:(section - 1)] count];
-    NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
-    NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
-    if (remainder > 0) {
-        rows++;
-    }
-    
-    return rows;
+    return 1;
 }
 
 - (UIImage*) posterImage {
@@ -95,7 +95,14 @@
         return [self posterImage].size.height + 10;
     }
     
-    return 32;
+	NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:(section - 1)] count];
+    NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
+    NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
+    if (remainder > 0) {
+        rows++;
+    }
+    
+    return (rows * 14) + 18;
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
@@ -103,9 +110,10 @@
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     
     if (section == 0 && row == 0) {
+		UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+		
         UIImage* image = [self posterImage];
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
         imageView.frame = CGRectMake(5, 5, image.size.width, image.size.height);
@@ -135,23 +143,11 @@
          "</html>", movie.synopsis];
         [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
         [cell.contentView addSubview:webView]; 
+		
+		return cell;
     } else {
-        NSInteger startIndex = row * SHOWTIMES_PER_ROW;
-        NSArray* showtimes = [self.showtimesArray objectAtIndex:(section - 1)];
-        NSString* result = [showtimes objectAtIndex:startIndex];
-        for (NSInteger i = startIndex + 1;
-             i < [showtimes count] && i < (startIndex + SHOWTIMES_PER_ROW);
-             i++) {
-            result = [result stringByAppendingString:@", "];
-            result = [result stringByAppendingString:[showtimes objectAtIndex:i]];
-        }
-        
-        
-        cell.font = [UIFont boldSystemFontOfSize:11];
-        cell.text = result;
-    }
-    
-    return cell;
+		return [MovieShowtimesCell cellWithShowtimes:[self.showtimesArray objectAtIndex:(section - 1)]];
+	}
 }
 
 - (NSString*)               tableView:(UITableView*) tableView
@@ -167,6 +163,10 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = [indexPath section];
     
+	if (section == 0) {
+		return;
+	}
+	
     Theater* theater = [self.theatersArray objectAtIndex:(section - 1)];
     
     TicketsViewController* controller = 
