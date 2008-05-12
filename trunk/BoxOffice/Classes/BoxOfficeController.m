@@ -34,22 +34,30 @@
     return appDelegate.model;
 }
 
-- (void) onBackgroundTaskStarted {
-	[[self model] addBackgroundTask];
+- (void) onBackgroundTaskStarted:(NSString*) description {
+	[[self model] addBackgroundTask:description];
 }
 
 - (void) spawnMovieLookupThread {
-	[self onBackgroundTaskStarted];
+	[self onBackgroundTaskStarted:@"Downloading Movie List"];
     [self performSelectorInBackground:@selector(lookupMoviesBackgroundThreadEntryPoint:) withObject:nil];
 }
 
 - (void) spawnTheaterLookupThread {
-	[self onBackgroundTaskStarted];
+    if ([Utilities isNilOrEmpty:self.model.zipcode]) {
+        return;
+    }
+	
+	[self onBackgroundTaskStarted:@"Downloading Theater List"];
     [self performSelectorInBackground:@selector(lookupTheatersBackgroundThreadEntryPoint:) withObject:nil];
 }
 
 - (void) spawnTicketLookupThread {
-	[self onBackgroundTaskStarted];
+    if ([Utilities isNilOrEmpty:self.model.zipcode]) {
+        return;
+    }
+	
+	[self onBackgroundTaskStarted:@"Downloading Ticketing Data"];
     [self performSelectorInBackground:@selector(lookupTicketsBackgroundThreadEntryPoint:) withObject:nil];
 }
 
@@ -129,8 +137,8 @@
     return [set1 isEqualToSet:set2];
 }
 
-- (void) onBackgroundTaskEnded {
-	[self.model removeBackgroundTask];
+- (void) onBackgroundTaskEnded:(NSString*) description {
+	[self.model removeBackgroundTask:description];
     [appDelegate.tabBarController refresh];	
 }
 
@@ -141,7 +149,7 @@
 		}
 	}
     
-	[self onBackgroundTaskEnded];
+	[self onBackgroundTaskEnded:@"Finished Downloading Movie List"];
 }
 
 - (NSDictionary*) processMoviesElement:(XmlElement*) moviesElement {
@@ -190,7 +198,7 @@
 		}
 	}
     
-	[self onBackgroundTaskEnded];
+	[self onBackgroundTaskEnded:@"Finished Downloading Theater List"];
 }
 
 - (NSArray*) lookupTheaters {
@@ -285,7 +293,7 @@
     if ([Utilities isNilOrEmpty:self.model.zipcode]) {
         return nil;
     }
-    
+	
     NSString* urlString = [NSString stringWithFormat:@"http://www.fandango.com/frdi/?pid=A99D3D1A-774C-49149E&op=performancesbypostalcodesearch&verbosity=1&postalcode=%@", self.model.zipcode];
     NSURL* url = [NSURL URLWithString:urlString];
     
@@ -321,7 +329,7 @@
 		}
 	}
     
-	[self onBackgroundTaskEnded];
+	[self onBackgroundTaskEnded:@"Finished Downloading Ticketing Data"];
 }
 
 - (void) lookupTicketsBackgroundThreadEntryPoint:(id) anObject {    

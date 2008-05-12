@@ -10,8 +10,11 @@
 #import "AddressLocationCache.h"
 #import "XmlElement.h"
 #import "Theater.h"
+#import "NotificationCenter.h"
 
 @interface BoxOfficeModel : NSObject {
+	NotificationCenter* notificationCenter;
+	
     PosterCache* posterCache;
     AddressLocationCache* addressLocationCache;
 	
@@ -20,16 +23,17 @@
 	UIView* activityView;
 }
 
+@property (retain) NotificationCenter* notificationCenter;
 @property (retain) PosterCache* posterCache;
 @property (retain) AddressLocationCache* addressLocationCache;
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
 @property (retain) UIView* activityView;
 @property (readonly) NSInteger backgroundTaskCount;
 
-+ (BoxOfficeModel*) model;
++ (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter;
 
-- (void) addBackgroundTask;
-- (void) removeBackgroundTask;
+- (void) addBackgroundTask:(NSString*) description;
+- (void) removeBackgroundTask:(NSString*) description;
 
 - (NSInteger) selectedTabBarViewControllerIndex;
 - (void) setSelectedTabBarViewControllerIndex:(NSInteger) index;

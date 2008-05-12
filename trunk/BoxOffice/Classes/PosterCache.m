@@ -37,7 +37,7 @@
 }
 
 - (void) update:(NSArray*) movies {
-	[self.model addBackgroundTask];
+	[self.model addBackgroundTask:@"Downloading Posters"];
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:movies]];
 }
@@ -105,7 +105,7 @@
 
 - (void) onBackgroundThreadFinished:(id) object {
 	if (self.model != nil) {
-		[self.model removeBackgroundTask];
+		[self.model removeBackgroundTask:@"Finished Downloading Posters"];
 	}
 }
 

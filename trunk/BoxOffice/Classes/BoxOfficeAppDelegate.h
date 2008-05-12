@@ -12,10 +12,12 @@
 #import "ApplicationTabBarController.h"
 #import "BoxOfficeController.h"
 #import "BoxOfficeModel.h"
+#import "NotificationCenter.h"
 
 @interface BoxOfficeAppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow* window;
     IBOutlet ApplicationTabBarController* tabBarController;
+	NotificationCenter* notificationCenter;
     
     BoxOfficeModel* model;
     BoxOfficeController* controller;
@@ -25,6 +27,7 @@
 @property (retain) BoxOfficeController* controller;
 @property (retain) BoxOfficeModel* model;
 @property (retain) ApplicationTabBarController* tabBarController;
+@property (retain) NotificationCenter* notificationCenter;
 
 @end
 

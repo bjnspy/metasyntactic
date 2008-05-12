@@ -13,6 +13,7 @@
 
 @implementation BoxOfficeModel
 
+@synthesize notificationCenter;
 @synthesize posterCache;
 @synthesize addressLocationCache;
 @synthesize backgroundTaskCount;
@@ -20,6 +21,8 @@
 @synthesize activityIndicatorView;
 
 - (void) dealloc {
+	self.notificationCenter = nil;
+	
 	self.posterCache.model = nil;
     self.posterCache = nil;
 	
@@ -29,10 +32,6 @@
 	self.activityIndicatorView = nil;
 	self.activityView = nil;
     [super dealloc];
-}
-
-+ (BoxOfficeModel*) model {
-    return [[[BoxOfficeModel alloc] init] autorelease];
 }
 
 - (void) updatePosterCache {
@@ -53,11 +52,12 @@
     [self.addressLocationCache updateZipcode:self.zipcode];
 }
 
-- (id) init {
+- (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
     if (self = [super init]) {
+		self.notificationCenter = notificationCenter_;
         self.posterCache = [PosterCache cacheWithModel:self];
         self.addressLocationCache = [AddressLocationCache cacheWithModel:self];
-
+		
 		self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleBlueSmall] autorelease];
 		CGRect frame = self.activityIndicatorView.frame;
 		frame.size.width += 15;
@@ -75,20 +75,28 @@
     return self;
 }
 
-- (void) addBackgroundTask {
++ (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter {
+    return [[[BoxOfficeModel alloc] initWithCenter:notificationCenter] autorelease];
+}
+
+- (void) addBackgroundTask:(NSString*) description {
 	backgroundTaskCount++;
 	
 	if (backgroundTaskCount == 1) {
 		[self.activityIndicatorView startAnimating];
 	}
+	
+	[self.notificationCenter addStatusMessage:description];
 }
 
-- (void) removeBackgroundTask {
+- (void) removeBackgroundTask:(NSString*) description {
 	backgroundTaskCount--;
 	
 	if (backgroundTaskCount == 0) {
 		[self.activityIndicatorView stopAnimating];
 	}
+	
+	[self.notificationCenter addStatusMessage:description];
 }
 
 - (NSInteger) selectedTabBarViewControllerIndex {

@@ -58,7 +58,8 @@
         self.navigationItem.titleView = segmentedControl;
 		
         self.alphabeticSectionTitles =
-        [NSArray arrayWithObjects:@"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
+        [NSArray arrayWithObjects:
+		 @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
          @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
     }
@@ -274,9 +275,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     
     [UIView beginAnimations:nil context:NULL];
     {
-        [UIView setAnimationDelegate:self];
-        [UIView setAnimationDidStopSelector:@selector(animationDidStop)];
-        
         [UIView setAnimationDuration:duration];
         
         UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
@@ -309,12 +307,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         }
     }    
     [UIView commitAnimations];
-}
-
-- (void) animationDidStop:(NSString*) animationID
-                 finished:(NSNumber*) finished
-                  context:(void*) context {
-    NSLog(@"");
 }
 
 @end
