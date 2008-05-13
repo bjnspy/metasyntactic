@@ -152,6 +152,16 @@
     [self onBackgroundTaskEnded:@"Finished Downloading Movie List"];
 }
 
+NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
+    NSString* s1 = t1;
+    NSString* s2 = t2;
+    
+    NSDate* d1 = [NSDate dateWithNaturalLanguageString:s1];
+    NSDate* d2 = [NSDate dateWithNaturalLanguageString:s2];
+    
+    return [d1 compare:d2];
+}
+
 - (NSDictionary*) processMoviesElement:(XmlElement*) moviesElement {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     
@@ -159,7 +169,10 @@
         XmlElement* nameElement = [movieElement element:@"Name"];
         XmlElement* showtimesElement = [movieElement element:@"ShowTimes"];
         
-        [dictionary setValue:[showtimesElement.text componentsSeparatedByString:@" | "]
+        NSMutableArray* showtimes = [NSMutableArray arrayWithArray:[showtimesElement.text componentsSeparatedByString:@" | "]];
+        [showtimes sortUsingFunction:compareDateStrings context:nil];
+        
+        [dictionary setValue:showtimes
                       forKey:nameElement.text];
     }
     
