@@ -17,10 +17,8 @@
 		740078B60DCE7DFD00B3799F /* MostViewed.png in Resources */ = {isa = PBXBuildFile; fileRef = 740078B50DCE7DFD00B3799F /* MostViewed.png */; };
 		740078B90DCE7E5800B3799F /* More.png in Resources */ = {isa = PBXBuildFile; fileRef = 740078B80DCE7E5700B3799F /* More.png */; };
 		740078CB0DCE80B500B3799F /* Featured.png in Resources */ = {isa = PBXBuildFile; fileRef = 740078CA0DCE80B500B3799F /* Featured.png */; };
-		740078E00DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740078DF0DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.m */; };
 		740079460DCE907F00B3799F /* Fresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 740079450DCE907F00B3799F /* Fresh.png */; };
 		740079540DCE91DB00B3799F /* Rotten.png in Resources */ = {isa = PBXBuildFile; fileRef = 740079530DCE91DB00B3799F /* Rotten.png */; };
-		7400797D0DCE97D000B3799F /* RatingsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7400797C0DCE97D000B3799F /* RatingsView.m */; };
 		7405F7CD0DCAF3B9002E2D06 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */; };
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
 		74088C6C0DCD17D100954696 /* PosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088C6B0DCD17D100954696 /* PosterDownloader.m */; };
@@ -89,12 +87,8 @@
 		740078B50DCE7DFD00B3799F /* MostViewed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MostViewed.png; sourceTree = "<group>"; };
 		740078B80DCE7E5700B3799F /* More.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = More.png; sourceTree = "<group>"; };
 		740078CA0DCE80B500B3799F /* Featured.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Featured.png; sourceTree = "<group>"; };
-		740078DE0DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTitleAndRatingTableViewCell.h; sourceTree = "<group>"; };
-		740078DF0DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTitleAndRatingTableViewCell.m; sourceTree = "<group>"; };
 		740079450DCE907F00B3799F /* Fresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Fresh.png; sourceTree = "<group>"; };
 		740079530DCE91DB00B3799F /* Rotten.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Rotten.png; sourceTree = "<group>"; };
-		7400797B0DCE97D000B3799F /* RatingsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsView.h; sourceTree = "<group>"; };
-		7400797C0DCE97D000B3799F /* RatingsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsView.m; sourceTree = "<group>"; };
 		7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavigationController.h; sourceTree = "<group>"; };
 		7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavigationController.m; sourceTree = "<group>"; };
 		74088BD50DCD0AA800954696 /* PosterCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterCache.h; sourceTree = "<group>"; };
@@ -342,10 +336,6 @@
 				74447C670DC843D900CC146C /* TheaterDetailsViewController.m */,
 				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
 				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
-				740078DE0DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.h */,
-				740078DF0DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.m */,
-				7400797B0DCE97D000B3799F /* RatingsView.h */,
-				7400797C0DCE97D000B3799F /* RatingsView.m */,
 				740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */,
 				740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */,
 				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
@@ -478,8 +468,6 @@
 				74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */,
 				74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */,
 				74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */,
-				740078E00DCE87C300B3799F /* MovieTitleAndRatingTableViewCell.m in Sources */,
-				7400797D0DCE97D000B3799F /* RatingsView.m in Sources */,
 				740E7F070DCFEC440066FCE5 /* ActivityIndicator.m in Sources */,
 				748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */,
 				74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */,

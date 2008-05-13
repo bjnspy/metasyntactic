@@ -40,6 +40,10 @@
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.label.text = movie.title;
         self.label.opaque = NO;
+        self.label.font = [UIFont boldSystemFontOfSize:18];
+        self.label.adjustsFontSizeToFitWidth = YES;
+        self.label.minimumFontSize = 14;
+        
         [self.contentView addSubview:self.label];
     }
     
@@ -56,14 +60,13 @@
     CGRect contentRect = self.contentView.bounds;
     
     CGRect imageRect = contentRect;
-    imageRect.size = CGSizeMake(44, 32);
-    self.imageView.frame = CGRectOffset(imageRect, 6, 6);
+    imageRect.size = CGSizeMake(40, 32);
+    self.imageView.frame = CGRectOffset(imageRect, 6, 5);
     
     CGRect labelRect = contentRect;
-    labelRect.origin.x += labelRect.origin.x+56;
-    labelRect.size.width -= 56;
+    labelRect.origin.x += 52;
+    labelRect.size.width -= 52;
     label.frame = labelRect;
-    label.font = [UIFont boldSystemFontOfSize:18];
 }
 
 @end

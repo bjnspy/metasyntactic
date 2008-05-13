@@ -181,7 +181,39 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         movie = [self.sortedMovies objectAtIndex:row];
     }
     
-    return [MovieTitleAndRatingTableViewCell cell:movie];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:nil] autorelease];
+    cell.text = movie.title;
+    
+    int ratingValue = [movie ratingValue];
+    if (ratingValue >= 0 && ratingValue <= 100) {
+        
+        if (ratingValue >= 60) {
+            cell.image = [UIImage imageNamed:@"Fresh.png"];
+        } else if (ratingValue >= 0 && ratingValue < 60) {
+            cell.image = [UIImage imageNamed:@"Rotten.png"];
+        }
+        
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        label.text = [NSString stringWithFormat:@"%d", ratingValue];
+        label.backgroundColor = [UIColor clearColor];
+        label.opaque = NO;
+        label.textAlignment = UITextAlignmentCenter;
+        
+        if (ratingValue >= 60) {
+            label.adjustsFontSizeToFitWidth = YES;
+            label.font = [UIFont boldSystemFontOfSize:15];
+            label.textColor = [UIColor whiteColor];
+            label.frame = CGRectMake(10, 8, 32, 32);
+        } else {
+            label.font = [UIFont boldSystemFontOfSize:16];
+            label.frame = CGRectMake(8, 7, 30, 32);
+        }
+        
+        [cell addSubview:label];
+    }
+    
+    return cell;
+    //return [MovieTitleAndRatingTableViewCell cell:movie];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
