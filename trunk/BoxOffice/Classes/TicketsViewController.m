@@ -223,5 +223,17 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     }
 }
 
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
+    NSString* urlString = [self.ticketUrls objectAtIndex:[indexPath row]];
+    if ([Utilities isNilOrEmpty:urlString]) {
+        return;
+    }
+    
+    NSURL* url = [NSURL URLWithString:urlString];
+    
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 @end
 
