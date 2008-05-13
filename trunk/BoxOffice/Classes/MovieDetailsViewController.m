@@ -31,38 +31,38 @@
 }
 
 - (void) initializeData {
-	self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:[self.model theatersShowingMovie:self.movie]]];
-	self.theatersArray = [self.theatersArray sortedArrayUsingFunction:compareTheatersByDistance
-															  context:[self.model theaterDistanceMap]];
-	
-	self.showtimesArray = [NSMutableArray array];
-	
-	for (Theater* theater in self.theatersArray) {
-		[self.showtimesArray addObject:[self.model movieShowtimes:self.movie forTheater:theater]];
-	}
+    self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:[self.model theatersShowingMovie:self.movie]]];
+    self.theatersArray = [self.theatersArray sortedArrayUsingFunction:compareTheatersByDistance
+                                                              context:[self.model theaterDistanceMap]];
+    
+    self.showtimesArray = [NSMutableArray array];
+    
+    for (Theater* theater in self.theatersArray) {
+        [self.showtimesArray addObject:[self.model movieShowtimes:self.movie forTheater:theater]];
+    }
 }
 
 - (id) initWithNavigationController:(MoviesNavigationController*) controller
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
-        self.movie = movie_;
-		
+        self.movie = movie_;    
+        
         self.title = self.movie.title;
-		
-		[self initializeData];
+        
+        [self initializeData];
     }
     
     return self;
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 }
 
 - (void) refresh {
-	[self initializeData];
-	[self.tableView reloadData];
+    [self initializeData];
+    [self.tableView reloadData];
 }
 
 - (BoxOfficeModel*) model {
@@ -95,7 +95,7 @@
         return [self posterImage].size.height + 10;
     }
     
-	NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:(section - 1)] count];
+    NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:(section - 1)] count];
     NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
     NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
     if (remainder > 0) {
@@ -112,8 +112,8 @@
     
     
     if (section == 0 && row == 0) {
-		UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-		
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        
         UIImage* image = [self posterImage];
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
         imageView.frame = CGRectMake(5, 5, image.size.width, image.size.height);
@@ -143,11 +143,11 @@
          "</html>", movie.synopsis];
         [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
         [cell.contentView addSubview:webView]; 
-		
-		return cell;
+        
+        return cell;
     } else {
-		return [MovieShowtimesCell cellWithShowtimes:[self.showtimesArray objectAtIndex:(section - 1)]];
-	}
+        return [MovieShowtimesCell cellWithShowtimes:[self.showtimesArray objectAtIndex:(section - 1)]];
+    }
 }
 
 - (NSString*)               tableView:(UITableView*) tableView
@@ -163,10 +163,10 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = [indexPath section];
     
-	if (section == 0) {
-		return;
-	}
-	
+    if (section == 0) {
+        return;
+    }
+    
     Theater* theater = [self.theatersArray objectAtIndex:(section - 1)];
     
     TicketsViewController* controller = 

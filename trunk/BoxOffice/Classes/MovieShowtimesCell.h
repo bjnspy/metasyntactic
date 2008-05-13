@@ -10,7 +10,7 @@
 
 
 @interface MovieShowtimesCell : UITableViewCell {
-	NSArray* showtimes;
+    NSArray* showtimes;
 }
 
 @property (retain) NSArray* showtimes;

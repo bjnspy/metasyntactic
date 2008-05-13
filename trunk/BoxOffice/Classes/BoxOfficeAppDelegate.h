@@ -17,7 +17,7 @@
 @interface BoxOfficeAppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow* window;
     IBOutlet ApplicationTabBarController* tabBarController;
-	NotificationCenter* notificationCenter;
+    NotificationCenter* notificationCenter;
     
     BoxOfficeModel* model;
     BoxOfficeController* controller;

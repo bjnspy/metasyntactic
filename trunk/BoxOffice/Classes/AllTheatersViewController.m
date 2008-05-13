@@ -46,7 +46,7 @@
         CGRect rect = segmentedControl.frame;
         rect.size.width = 200;
         segmentedControl.frame = rect;
-		
+        
         self.navigationItem.titleView = segmentedControl;
         
         {
@@ -109,7 +109,7 @@
 - (void) sortTheatersByDistance {
     NSDictionary* theaterDistanceMap = [self.model theaterDistanceMap];    
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
-																context:theaterDistanceMap];
+                                                                context:theaterDistanceMap];
     
     NSString* reallyCloseBy = @"Realllllly close by";
     NSString* oneHalfToOneMile = @"< 1 mile away";
@@ -253,7 +253,7 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
     if ([self sortingByDistance]) {
         [self refresh];

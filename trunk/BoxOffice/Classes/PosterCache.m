@@ -19,14 +19,14 @@
 
 - (void) dealloc {
     self.gate = nil;
-	self.model = nil;
+    self.model = nil;
     [super dealloc];
 }
 
 - (id) initWithModel:(BoxOfficeModel*) model_ {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
-		self.model = model_;
+        self.model = model_;
     }
     
     return self;
@@ -37,7 +37,7 @@
 }
 
 - (void) update:(NSArray*) movies {
-	[self.model addBackgroundTask:@"Downloading Posters"];
+    [self.model addBackgroundTask:@"Downloading Posters"];
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:movies]];
 }
@@ -96,7 +96,7 @@
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         [self updateInBackground:movies];
-		[self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:) withObject:nil waitUntilDone:NO];
         
         [autoreleasePool release];
     }
@@ -104,9 +104,9 @@
 }
 
 - (void) onBackgroundThreadFinished:(id) object {
-	if (self.model != nil) {
-		[self.model removeBackgroundTask:@"Finished Downloading Posters"];
-	}
+    if (self.model != nil) {
+        [self.model removeBackgroundTask:@"Finished Downloading Posters"];
+    }
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie {

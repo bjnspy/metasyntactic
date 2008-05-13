@@ -30,34 +30,32 @@
     {
         UIImage* ratingsImage = [UIImage imageNamed:(rating >= 60 ? @"Fresh.png" : @"Rotten.png")];
         CGRect ratingsRectangle = CGRectMake(5, 0, [ratingsImage size].width, [ratingsImage size].height);
-		
-		if (rating >= 60) {
-			[ratingsImage drawInRect:ratingsRectangle blendMode:kCGBlendModeNormal alpha:0.7];
+
+        CGRect labelRectangle;
+        if (rating >= 60) {
+            labelRectangle = CGRectMake(ratingsRectangle.origin.x, ratingsRectangle.origin.y + 2,
+                                        ratingsRectangle.size.width, ratingsRectangle.size.height);
         } else {
-			[ratingsImage drawInRect:ratingsRectangle blendMode:kCGBlendModeNormal alpha:0.5];
-		}
-		
-        UIFont* boldSmallfont = [UIFont boldSystemFontOfSize:10];
+            labelRectangle = CGRectMake(ratingsRectangle.origin.x - 2, ratingsRectangle.origin.y + 1,
+                                        ratingsRectangle.size.width, ratingsRectangle.size.height);
+        }
         
-        NSString* ratingString = [NSString stringWithFormat:@"%d", rating];
-        NSString* percentString = @"%";
+        UILabel* label = [[[UILabel alloc] initWithFrame:labelRectangle] autorelease];        label.text = [NSString stringWithFormat:@"%d", rating];
+        label.opaque = NO;
+        label.backgroundColor = [UIColor clearColor];
+        label.textAlignment = UITextAlignmentCenter;
         
-        CGSize ratingStringSize = [ratingString sizeWithFont:boldLargefont];
-        CGSize percentStringSize = [ratingString sizeWithFont:boldSmallfont];
-        
-        int x = ((rect.size.width - (ratingStringSize.width + percentStringSize.width)) / 2) + 1;
-        
-		if (rating == 100) {
-			x += 1;
-		} else if (rating < 10) {
-			x -= 2;
-		}
-		
-        CGPoint point1 = CGPointMake(x, 6);
-        [ratingString drawAtPoint:point1 withFont:boldLargefont];
-        
-        CGPoint point2 = CGPointMake(point1.x + ratingStringSize.width, 10);
-        [percentString drawAtPoint:point2 withFont:boldSmallfont];
+        if (rating >= 60) {
+            label.font = [UIFont boldSystemFontOfSize:15];
+            label.textColor = [UIColor whiteColor];
+            
+            [ratingsImage drawInRect:ratingsRectangle blendMode:kCGBlendModeNormal alpha:1];
+        } else {
+            label.font = [UIFont boldSystemFontOfSize:16];
+            [ratingsImage drawInRect:ratingsRectangle blendMode:kCGBlendModeNormal alpha:0.5];
+        }
+
+        [label drawTextInRect:labelRectangle];
     }
     else
     {

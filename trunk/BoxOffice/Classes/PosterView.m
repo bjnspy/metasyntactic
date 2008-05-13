@@ -16,7 +16,7 @@
 
 - (void) dealloc {
     controller = nil;
-	moviesWithPosters = nil;
+    moviesWithPosters = nil;
     [super dealloc];
 }
 
@@ -45,9 +45,9 @@
     int row = index % 2;
     int column = index / 2;
     
-	Movie* movie = [moviesWithPosters objectAtIndex:index];
+    Movie* movie = [moviesWithPosters objectAtIndex:index];
     UIImage* poster = [[self model] posterForMovie:movie];
-	
+    
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:poster] autorelease];
     
     float rotation;
@@ -59,13 +59,13 @@
     
     CGAffineTransform transform = CGAffineTransformMakeRotation(rotation);
     imageView.transform = transform;
-	
-	CGRect originalBounds = imageView.bounds;
-	if (row == 0) {
-		imageView.center = CGPointMake(240 - 10, 60 + column * 120);
-	} else {
-		imageView.center = CGPointMake(80 - 5, 60 + column * 120);
-	}
+    
+    CGRect originalBounds = imageView.bounds;
+    if (row == 0) {
+        imageView.center = CGPointMake(240 - 10, 60 + column * 120);
+    } else {
+        imageView.center = CGPointMake(80 - 5, 60 + column * 120);
+    }
     
     imageView.bounds = CGRectMake(0, 0, 0, 0);
     imageView.alpha = 0;
@@ -92,18 +92,18 @@
 }
 
 - (void) layoutSubviews {
-	[super layoutSubviews];
-	
-	NSArray* movies = [[self model] movies];
-	moviesWithPosters = [NSMutableArray array];
-	
-	for (Movie* movie in movies) {
-		UIImage* image = [[self model] posterForMovie:movie];
-		if (image != nil) {
-			[moviesWithPosters addObject:movie];
-		}
-	}
-	
+    [super layoutSubviews];
+    
+    NSArray* movies = [[self model] movies];
+    moviesWithPosters = [NSMutableArray array];
+    
+    for (Movie* movie in movies) {
+        UIImage* image = [[self model] posterForMovie:movie];
+        if (image != nil) {
+            [moviesWithPosters addObject:movie];
+        }
+    }
+    
     for (int i = 0; i < 10 && i < [moviesWithPosters count]; i++) {
         [self showPoster:[NSNumber numberWithInt:i]];
     }

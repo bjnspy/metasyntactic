@@ -57,7 +57,7 @@
     for (XmlElement* child in node.children) {
         [serialized appendString:[self serializeElement:child]];
     }
-	
+    
     [serialized appendString:@"</"];
     [serialized appendString:node.name];
     [serialized appendString:@">"];
@@ -81,7 +81,7 @@
     if (document.root != nil) {
         [serialized appendString:[XmlSerializer serializeElement:document.root]];
     }
-	
+    
     return serialized;
 }
 

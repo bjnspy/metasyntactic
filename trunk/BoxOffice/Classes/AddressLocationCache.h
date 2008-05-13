@@ -13,7 +13,7 @@
 @class BoxOfficeModel;
 
 @interface AddressLocationCache : NSObject {
-	BoxOfficeModel* model;
+    BoxOfficeModel* model;
     NSLock* gate;
 }
 

@@ -21,16 +21,16 @@
 @synthesize activityIndicatorView;
 
 - (void) dealloc {
-	self.notificationCenter = nil;
-	
-	self.posterCache.model = nil;
+    self.notificationCenter = nil;
+    
+    self.posterCache.model = nil;
     self.posterCache = nil;
-	
-	self.addressLocationCache.model = nil;
+    
+    self.addressLocationCache.model = nil;
     self.addressLocationCache = nil;
-	
-	self.activityIndicatorView = nil;
-	self.activityView = nil;
+    
+    self.activityIndicatorView = nil;
+    self.activityView = nil;
     [super dealloc];
 }
 
@@ -54,19 +54,19 @@
 
 - (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
     if (self = [super init]) {
-		self.notificationCenter = notificationCenter_;
+        self.notificationCenter = notificationCenter_;
         self.posterCache = [PosterCache cacheWithModel:self];
         self.addressLocationCache = [AddressLocationCache cacheWithModel:self];
-		
-		self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleBlueSmall] autorelease];
-		CGRect frame = self.activityIndicatorView.frame;
-		frame.size.width += 15;
-		
-		self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
-		[self.activityView addSubview:self.activityIndicatorView];
         
-		backgroundTaskCount = 0;
-		
+        self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleBlueSmall] autorelease];
+        CGRect frame = self.activityIndicatorView.frame;
+        frame.size.width += 15;
+        
+        self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
+        [self.activityView addSubview:self.activityIndicatorView];
+        
+        backgroundTaskCount = 0;
+        
         [self updatePosterCache];
         [self updateAddressLocationCache];
         [self updateZipcodeAddressLocation];
@@ -80,23 +80,23 @@
 }
 
 - (void) addBackgroundTask:(NSString*) description {
-	backgroundTaskCount++;
-	
-	if (backgroundTaskCount == 1) {
-		[self.activityIndicatorView startAnimating];
-	}
-	
-	[self.notificationCenter addStatusMessage:description];
+    backgroundTaskCount++;
+    
+    if (backgroundTaskCount == 1) {
+        [self.activityIndicatorView startAnimating];
+    }
+    
+    [self.notificationCenter addStatusMessage:description];
 }
 
 - (void) removeBackgroundTask:(NSString*) description {
-	backgroundTaskCount--;
-	
-	if (backgroundTaskCount == 0) {
-		[self.activityIndicatorView stopAnimating];
-	}
-	
-	[self.notificationCenter addStatusMessage:description];
+    backgroundTaskCount--;
+    
+    if (backgroundTaskCount == 0) {
+        [self.activityIndicatorView stopAnimating];
+    }
+    
+    [self.notificationCenter addStatusMessage:description];
 }
 
 - (NSInteger) selectedTabBarViewControllerIndex {
@@ -324,18 +324,18 @@
 }
 
 - (NSArray*) theatersInRange:(NSArray*) theaters {
-	NSDictionary* theaterDistanceMap = [self theaterDistanceMap];
-	NSMutableArray* result = [NSMutableArray array];
-	
-	for (Theater* theater in theaters) {
-		double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
-		
-		if (![self tooFarAway:distance]) {
-			[result addObject:theater];
-		}
-	}
-	
-	return result;
+    NSDictionary* theaterDistanceMap = [self theaterDistanceMap];
+    NSMutableArray* result = [NSMutableArray array];
+    
+    for (Theater* theater in theaters) {
+        double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
+        
+        if (![self tooFarAway:distance]) {
+            [result addObject:theater];
+        }
+    }
+    
+    return result;
 }
 
 NSInteger compareTheatersByName(id t1, id t2, void *context) {

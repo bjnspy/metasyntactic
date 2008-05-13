@@ -54,7 +54,7 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 }
 
 - (void) onCurrentLocationClicked:(id) sender

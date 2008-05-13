@@ -13,14 +13,14 @@
 #import "NotificationCenter.h"
 
 @interface BoxOfficeModel : NSObject {
-	NotificationCenter* notificationCenter;
-	
+    NotificationCenter* notificationCenter;
+    
     PosterCache* posterCache;
     AddressLocationCache* addressLocationCache;
-	
-	NSInteger backgroundTaskCount;
-	UIActivityIndicatorView* activityIndicatorView;
-	UIView* activityView;
+    
+    NSInteger backgroundTaskCount;
+    UIActivityIndicatorView* activityIndicatorView;
+    UIView* activityView;
 }
 
 @property (retain) NotificationCenter* notificationCenter;

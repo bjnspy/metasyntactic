@@ -56,10 +56,10 @@
         self.segmentedControl.frame = rect;
         
         self.navigationItem.titleView = segmentedControl;
-		
+        
         self.alphabeticSectionTitles =
         [NSArray arrayWithObjects:
-		 @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
+         @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
          @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
     }
@@ -68,7 +68,7 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(onDeviceOrientationDidChange:)
                                                  name:UIDeviceOrientationDidChangeNotification
@@ -160,9 +160,9 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         [self sortMoviesByRating];
     }
 
-	if ([self.sectionTitles count] == 0) {
-		self.sectionTitles = [NSArray arrayWithObject:@"No Information Found"];
-	}
+    if ([self.sectionTitles count] == 0) {
+        self.sectionTitles = [NSArray arrayWithObject:@"No Information Found"];
+    }
 }
 
 - (BoxOfficeModel*) model {
@@ -283,11 +283,11 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         
         UIWindow* window = self.navigationController.tabBarController.appDelegate.window;
 
-		[[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:YES];
+        [[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:YES];
         
         if (orientation == UIInterfaceOrientationPortrait) {
             self.navigationController.tabBarController.view.alpha = 1;
-			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleGray animated:YES];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleGray animated:YES];
             
             if (self.posterView != nil) {
                 [self.posterView removeFromSuperview];
@@ -295,7 +295,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
             }
         } else {
             self.navigationController.tabBarController.view.alpha = 0;
-			[[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleTransparentBlack animated:YES];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleTransparentBlack animated:YES];
             
             if (self.posterView == nil) {
                 self.posterView = [PosterView viewWithController:self];

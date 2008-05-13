@@ -23,21 +23,21 @@
     self.window = nil;
     self.tabBarController = nil;
     self.model = nil;
-	self.notificationCenter = nil;
+    self.notificationCenter = nil;
     [super dealloc];
 } 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     NSLog(@"BoxOfficeAppDelegate.applicationDidFinishLaunching");
     
-	self.notificationCenter = [NotificationCenter centerWithWindow:window];
+    self.notificationCenter = [NotificationCenter centerWithWindow:window];
     self.model = [BoxOfficeModel modelWithCenter:notificationCenter];
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];   
-	
+    
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
-	[self.notificationCenter addToWindow];
-    	
+    [self.notificationCenter addToWindow];
+        
     self.controller = [BoxOfficeController controllerWithAppDelegate:self];
     [self.tabBarController refresh];
 }

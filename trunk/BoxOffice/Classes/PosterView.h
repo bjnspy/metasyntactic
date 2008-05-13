@@ -12,7 +12,7 @@
 
 @interface PosterView : UIView {
     AllMoviesViewController* controller;
-	NSMutableArray* moviesWithPosters;
+    NSMutableArray* moviesWithPosters;
 }
 
 @property (assign) AllMoviesViewController* controller;

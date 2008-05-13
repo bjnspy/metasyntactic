@@ -10,11 +10,11 @@
 
 
 @interface NotificationCenter : NSObject {
-	UIWindow* window;
-	NSMutableArray* messages;
-	
-	UILabel* background;
-	UILabel* currentlyDisplayedMessage;
+    UIWindow* window;
+    NSMutableArray* messages;
+    
+    UILabel* background;
+    UILabel* currentlyDisplayedMessage;
 }
 
 @property (retain) UIWindow* window;

@@ -57,7 +57,7 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-	self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 }
 
 - (void) refresh {
@@ -79,11 +79,11 @@
     NSInteger section = [indexPath section];
     
     if (section == 0) {
-		UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         cell.text = self.theater.address;
-		return cell;
+        return cell;
     } else {
-		return [MovieShowtimesCell cellWithShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];
+        return [MovieShowtimesCell cellWithShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];
     }
 }
 
@@ -103,10 +103,10 @@
     NSInteger row = [indexPath row];
     
     if (section == 0 && row == 0) {
-		return [tableView rowHeight];
+        return [tableView rowHeight];
     }
     
-	NSInteger showtimesCount = [[self.movieShowtimes objectAtIndex:(section - 1)] count];
+    NSInteger showtimesCount = [[self.movieShowtimes objectAtIndex:(section - 1)] count];
     NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
     NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
     if (remainder > 0) {
@@ -114,16 +114,16 @@
     }
     
     return (rows * 14) + 18;
-	
+    
 //    return 32;
 }
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = [indexPath section];
-	if (section == 0) {
-		return;
-	}
+    if (section == 0) {
+        return;
+    }
     
     Movie* movie = [self.movies objectAtIndex:(section - 1)];    
     

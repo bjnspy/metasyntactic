@@ -11,7 +11,7 @@
 @class BoxOfficeModel;
 
 @interface PosterCache : NSObject {
-	BoxOfficeModel* model;
+    BoxOfficeModel* model;
     NSLock* gate;
 }
 
