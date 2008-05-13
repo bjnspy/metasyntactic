@@ -11,7 +11,6 @@
 #import "Movie.h"
 #import "ApplicationTabBarController.h"
 #import "BoxOfficeAppDelegate.h"
-#import "MovieTitleAndRatingTableViewCell.h"
 #import "PosterView.h"
 
 @implementation AllMoviesViewController
@@ -192,7 +191,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         } else if (ratingValue >= 0 && ratingValue < 60) {
             cell.image = [UIImage imageNamed:@"Rotten.png"];
         }
-        
+         
         UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         label.text = [NSString stringWithFormat:@"%d", ratingValue];
         label.backgroundColor = [UIColor clearColor];
@@ -213,7 +212,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     }
     
     return cell;
-    //return [MovieTitleAndRatingTableViewCell cell:movie];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView

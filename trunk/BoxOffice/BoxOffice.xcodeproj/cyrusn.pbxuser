@@ -38,7 +38,7 @@
 			745444BB0DD5661900FB6970 /* PosterView.m:19 */,
 			745445390DD56D6500FB6970 /* PosterView.m:19 */,
 			745445880DD5765F00FB6970 /* PosterView.m:19 */,
-			745445D80DD57B6800FB6970 /* AllMoviesViewController.m:44 */,
+			745445D80DD57B6800FB6970 /* AllMoviesViewController.m:43 */,
 			748861D30DD65612007E3E7D /* BoxOfficeController.m:38 */,
 			748861D70DD65622007E3E7D /* BoxOfficeController.m:38 */,
 			748861E20DD656C7007E3E7D /* BoxOfficeController.m:38 */,
@@ -300,6 +300,9 @@
 			7414B7D50DD95CDB00ED9CE0 /* PBXTextBookmark */ = 7414B7D50DD95CDB00ED9CE0 /* PBXTextBookmark */;
 			7414B7D90DD95CFF00ED9CE0 /* PBXTextBookmark */ = 7414B7D90DD95CFF00ED9CE0 /* PBXTextBookmark */;
 			7414B7DC0DD95D1900ED9CE0 /* PBXTextBookmark */ = 7414B7DC0DD95D1900ED9CE0 /* PBXTextBookmark */;
+			7414B7E70DD9608D00ED9CE0 /* PBXTextBookmark */ = 7414B7E70DD9608D00ED9CE0 /* PBXTextBookmark */;
+			7414B7E80DD9608D00ED9CE0 /* PBXTextBookmark */ = 7414B7E80DD9608D00ED9CE0 /* PBXTextBookmark */;
+			7414B7EF0DD960A200ED9CE0 /* PBXTextBookmark */ = 7414B7EF0DD960A200ED9CE0 /* PBXTextBookmark */;
 			7430B6F00DD7896B00323C15 = 7430B6F00DD7896B00323C15 /* PBXTextBookmark */;
 			7430B7670DD78E5C00323C15 = 7430B7670DD78E5C00323C15 /* PBXTextBookmark */;
 			7430B7A20DD7912F00323C15 = 7430B7A20DD7912F00323C15 /* PBXTextBookmark */;
@@ -1601,8 +1604,8 @@
 	7414B7300DD9515F00ED9CE0 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
-		rLen = 32;
-		rLoc = 7193;
+		rLen = 0;
+		rLoc = 7134;
 		rType = 0;
 	};
 	7414B7310DD9515F00ED9CE0 /* PBXTextBookmark */ = {
@@ -1610,7 +1613,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 186";
 		rLen = 0;
-		rLoc = 6199;
+		rLoc = 6154;
 		rType = 0;
 		vrLen = 1034;
 		vrLoc = 5469;
@@ -1679,8 +1682,8 @@
 		isa = PBXTextBookmark;
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 14";
-		rLen = 32;
-		rLoc = 331;
+		rLen = 0;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 0;
@@ -1719,8 +1722,8 @@
 		isa = PBXTextBookmark;
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 14";
-		rLen = 32;
-		rLoc = 331;
+		rLen = 0;
+		rLoc = 321;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 0;
@@ -1740,7 +1743,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 184";
 		rLen = 0;
-		rLoc = 6058;
+		rLoc = 6013;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 5390;
@@ -1750,7 +1753,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 188";
 		rLen = 0;
-		rLoc = 7178;
+		rLoc = 7134;
 		rType = 0;
 		vrLen = 1247;
 		vrLoc = 5390;
@@ -1760,7 +1763,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 191";
 		rLen = 0;
-		rLoc = 6199;
+		rLoc = 6154;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 5390;
@@ -1770,7 +1773,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 187";
 		rLen = 0;
-		rLoc = 6134;
+		rLoc = 6089;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 5390;
@@ -1800,7 +1803,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 184";
 		rLen = 15;
-		rLoc = 5932;
+		rLoc = 5887;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 5390;
@@ -1830,7 +1833,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 196";
 		rLen = 0;
-		rLoc = 7156;
+		rLoc = 7112;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 5390;
@@ -1840,7 +1843,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 195";
 		rLen = 0;
-		rLoc = 7156;
+		rLoc = 7112;
 		rType = 0;
 		vrLen = 1232;
 		vrLoc = 5390;
@@ -1850,7 +1853,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 199";
 		rLen = 0;
-		rLoc = 6722;
+		rLoc = 6678;
 		rType = 0;
 		vrLen = 1377;
 		vrLoc = 5390;
@@ -1860,7 +1863,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 195";
 		rLen = 0;
-		rLoc = 6485;
+		rLoc = 6441;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 5526;
@@ -1870,7 +1873,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 195";
 		rLen = 0;
-		rLoc = 6485;
+		rLoc = 6441;
 		rType = 0;
 		vrLen = 1464;
 		vrLoc = 5526;
@@ -1880,7 +1883,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 202";
 		rLen = 0;
-		rLoc = 6970;
+		rLoc = 6926;
 		rType = 0;
 		vrLen = 1380;
 		vrLoc = 5526;
@@ -1890,7 +1893,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 204";
 		rLen = 0;
-		rLoc = 6917;
+		rLoc = 6873;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 5526;
@@ -1920,7 +1923,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 203";
 		rLen = 0;
-		rLoc = 6917;
+		rLoc = 6873;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 5526;
@@ -1930,7 +1933,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 203";
 		rLen = 0;
-		rLoc = 6917;
+		rLoc = 6873;
 		rType = 0;
 		vrLen = 1416;
 		vrLoc = 5526;
@@ -1960,7 +1963,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 208";
 		rLen = 0;
-		rLoc = 7098;
+		rLoc = 7054;
 		rType = 0;
 		vrLen = 1465;
 		vrLoc = 5722;
@@ -1970,7 +1973,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 208";
 		rLen = 0;
-		rLoc = 7084;
+		rLoc = 7040;
 		rType = 0;
 		vrLen = 1465;
 		vrLoc = 5722;
@@ -1980,7 +1983,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 208";
 		rLen = 0;
-		rLoc = 7084;
+		rLoc = 7040;
 		rType = 0;
 		vrLen = 1465;
 		vrLoc = 5722;
@@ -1990,7 +1993,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 205";
 		rLen = 0;
-		rLoc = 6917;
+		rLoc = 6873;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 6419;
@@ -2000,7 +2003,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 205";
 		rLen = 0;
-		rLoc = 6917;
+		rLoc = 6873;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 6419;
@@ -2010,7 +2013,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 205";
 		rLen = 0;
-		rLoc = 6917;
+		rLoc = 6873;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 6419;
@@ -2020,7 +2023,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 205";
 		rLen = 0;
-		rLoc = 6917;
+		rLoc = 6873;
 		rType = 0;
 		vrLen = 1270;
 		vrLoc = 6419;
@@ -2030,7 +2033,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 213";
 		rLen = 0;
-		rLoc = 7098;
+		rLoc = 7054;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 6419;
@@ -2040,7 +2043,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 209";
 		rLen = 0;
-		rLoc = 6970;
+		rLoc = 6926;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 6419;
@@ -2050,7 +2053,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 209";
 		rLen = 0;
-		rLoc = 6970;
+		rLoc = 6926;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 6419;
@@ -2060,7 +2063,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 209";
 		rLen = 0;
-		rLoc = 6970;
+		rLoc = 6926;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 6419;
@@ -2070,7 +2073,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 209";
 		rLen = 0;
-		rLoc = 6970;
+		rLoc = 6926;
 		rType = 0;
 		vrLen = 1344;
 		vrLoc = 6419;
@@ -2080,7 +2083,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 205";
 		rLen = 0;
-		rLoc = 6863;
+		rLoc = 6819;
 		rType = 0;
 		vrLen = 1344;
 		vrLoc = 6419;
@@ -2090,7 +2093,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 208";
 		rLen = 0;
-		rLoc = 6987;
+		rLoc = 6943;
 		rType = 0;
 		vrLen = 1207;
 		vrLoc = 6137;
@@ -2100,7 +2103,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 208";
 		rLen = 0;
-		rLoc = 7093;
+		rLoc = 7049;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 6137;
@@ -2110,7 +2113,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 205";
 		rLen = 0;
-		rLoc = 6917;
+		rLoc = 6873;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 6137;
@@ -2120,7 +2123,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 205";
 		rLen = 0;
-		rLoc = 6917;
+		rLoc = 6873;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 6137;
@@ -2130,7 +2133,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 204";
 		rLen = 0;
-		rLoc = 6865;
+		rLoc = 6821;
 		rType = 0;
 		vrLen = 1409;
 		vrLoc = 6137;
@@ -2140,7 +2143,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 204";
 		rLen = 0;
-		rLoc = 6865;
+		rLoc = 6821;
 		rType = 0;
 		vrLen = 1405;
 		vrLoc = 6137;
@@ -2150,7 +2153,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 203";
 		rLen = 0;
-		rLoc = 6807;
+		rLoc = 6763;
 		rType = 0;
 		vrLen = 1405;
 		vrLoc = 6137;
@@ -2160,7 +2163,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 203";
 		rLen = 0;
-		rLoc = 6806;
+		rLoc = 6762;
 		rType = 0;
 		vrLen = 1443;
 		vrLoc = 6137;
@@ -2180,7 +2183,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 184";
 		rLen = 15;
-		rLoc = 5932;
+		rLoc = 5887;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 5390;
@@ -2200,7 +2203,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 209";
 		rLen = 0;
-		rLoc = 7092;
+		rLoc = 7048;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 5923;
@@ -2210,7 +2213,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 209";
 		rLen = 0;
-		rLoc = 6987;
+		rLoc = 6943;
 		rType = 0;
 		vrLen = 1371;
 		vrLoc = 5923;
@@ -2220,7 +2223,7 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 208";
 		rLen = 0;
-		rLoc = 6987;
+		rLoc = 6943;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 5923;
@@ -2230,10 +2233,40 @@
 		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 207";
 		rLen = 0;
-		rLoc = 6987;
+		rLoc = 6943;
 		rType = 0;
 		vrLen = 1387;
 		vrLoc = 5923;
+	};
+	7414B7E70DD9608D00ED9CE0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 207";
+		rLen = 0;
+		rLoc = 6943;
+		rType = 0;
+		vrLen = 1387;
+		vrLoc = 5923;
+	};
+	7414B7E80DD9608D00ED9CE0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 10";
+		rLen = 0;
+		rLoc = 230;
+		rType = 0;
+		vrLen = 954;
+		vrLoc = 0;
+	};
+	7414B7EF0DD960A200ED9CE0 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745443CE0DD5398000FB6970 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 18";
+		rLen = 0;
+		rLoc = 397;
+		rType = 0;
+		vrLen = 955;
+		vrLoc = 0;
 	};
 	742CA6CC0DD65E5900A69B79 /* BoxOfficeModel.m */ = {
 		isa = PBXFileReference;
@@ -4258,7 +4291,7 @@
 		fRef = 745445D60DD57B6800FB6970 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 310";
 		rLen = 0;
-		rLoc = 11377;
+		rLoc = 11273;
 		rType = 0;
 		vrLen = 1359;
 		vrLoc = 8721;
@@ -5148,9 +5181,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/AllMoviesViewController.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {810, 3752}}";
-			sepNavSelRange = "{7150, 0}";
-			sepNavVisRange = "{5469, 1111}";
+			sepNavIntBoundsRect = "{{0, 0}, {612, 2842}}";
+			sepNavSelRange = "{397, 0}";
+			sepNavVisRange = "{0, 955}";
 		};
 	};
 	745443D20DD539A200FB6970 /* PBXTextBookmark */ = {
@@ -5330,7 +5363,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/AllMoviesViewController.m;
 		sourceTree = "<group>";
 	};
-	745445D80DD57B6800FB6970 /* AllMoviesViewController.m:44 */ = {
+	745445D80DD57B6800FB6970 /* AllMoviesViewController.m:43 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5342,7 +5375,7 @@
 		functionName = "-animationDidStop:finished:context:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 44;
+		lineNumber = 43;
 		location = BoxOffice;
 		modificationTime = 232349664.781533;
 		state = 2;
