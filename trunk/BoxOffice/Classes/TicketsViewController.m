@@ -181,14 +181,24 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     
     NSInteger row = [indexPath row];
     
-    static NSString* cellIdentifier = @"TicketsViewControllerCellIdentifier";
-    
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:cellIdentifier] autorelease];
-    }
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
     
     cell.text = [showtimes objectAtIndex:row]; 
+
+    if (![Utilities isNilOrEmpty:[self.ticketUrls objectAtIndex:[indexPath row]]]) {
+        CGRect rect = 
+        CGRectMake(0, 0,
+                   [UIScreen mainScreen].bounds.size.width - 48, tableView.rowHeight - 2);
+        
+        UILabel* label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+        label.textAlignment = UITextAlignmentRight;
+        label.textColor = [UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1];
+        label.text = @"Order Tickets";
+        label.opaque = NO;
+        label.backgroundColor = [UIColor clearColor];
+        
+        [cell.contentView addSubview:label];
+    }
     
     return cell;
 }
@@ -206,13 +216,11 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger row = [indexPath row];
-    if (![Utilities isNilOrEmpty:[self.ticketUrls objectAtIndex:row]]) {
-        return UITableViewCellAccessoryDetailDisclosureButton;
+    if (![Utilities isNilOrEmpty:[self.ticketUrls objectAtIndex:[indexPath row]]]) {
+        return UITableViewCellAccessoryDisclosureIndicator;
     } else {
         return UITableViewCellAccessoryNone;
     }
-    
 }
 
 @end
