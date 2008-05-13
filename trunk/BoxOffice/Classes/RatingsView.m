@@ -40,7 +40,8 @@
                                         ratingsRectangle.size.width, ratingsRectangle.size.height);
         }
         
-        UILabel* label = [[[UILabel alloc] initWithFrame:labelRectangle] autorelease];        label.text = [NSString stringWithFormat:@"%d", rating];
+        UILabel* label = [[[UILabel alloc] initWithFrame:labelRectangle] autorelease];
+        label.text = [NSString stringWithFormat:@"%d", rating];
         label.opaque = NO;
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = UITextAlignmentCenter;
