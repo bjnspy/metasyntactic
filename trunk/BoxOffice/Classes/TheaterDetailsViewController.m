@@ -14,6 +14,7 @@
 #import "TicketsViewController.h"
 #import "MovieShowtimesCell.h"
 #import "Application.h"
+#import "Utilities.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -71,6 +72,11 @@
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
+    if (section == 0) {
+        // theater address and possibly phone number
+        return [Utilities isNilOrEmpty:theater.phoneNumber] ? 1 : 2;
+    }
+    
     return 1;
 }
 
@@ -78,18 +84,24 @@
                         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     
     NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
     
     if (section == 0) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
         UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)] autorelease];
         
         label.textAlignment = UITextAlignmentCenter;
-        label.text = self.theater.address;
         label.textColor = [Application lightBlueTextColor];
         label.opaque = NO;
         label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont boldSystemFontOfSize:14];
         label.adjustsFontSizeToFitWidth = YES;
+        
+        if (row == 0) {
+            label.text = self.theater.address;
+        } else {
+            label.text = self.theater.phoneNumber;
+        }
         
         [cell.contentView addSubview:label];
         return cell;
@@ -101,7 +113,8 @@
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
-        return @"Address";
+        //return @"Address";
+        return nil;
     }
     
     Movie* movie = [self.movies objectAtIndex:(section - 1)];
@@ -111,9 +124,8 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
     
-    if (section == 0 && row == 0) {
+    if (section == 0) {
         return [tableView rowHeight];
     }
     
@@ -133,6 +145,11 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = [indexPath section];
     if (section == 0) {
+        NSString* urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
+                               [theater.address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+
+        NSURL* url = [NSURL URLWithString:urlString];
+        [[UIApplication sharedApplication] openURL:url];
         return;
     }
     
