@@ -20,6 +20,7 @@
 - (id) initWithShowtimes: (NSArray*) showtimes_ {
     if (self = [super initWithFrame:CGRectZero reuseIdentifier:nil]) {
         self.showtimes = showtimes_;
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
     
     return self;
@@ -42,7 +43,7 @@
     }
     
     UILabel* label = [[[UILabel alloc] initWithFrame:labelBounds] autorelease];
-    label.backgroundColor = [UIColor clearColor];
+    //label.backgroundColor = [UIColor clearColor];
     label.text = text;
     label.numberOfLines = 0;
     label.font = [UIFont boldSystemFontOfSize:11];
