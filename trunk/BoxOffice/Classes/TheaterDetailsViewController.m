@@ -144,10 +144,24 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+    
     if (section == 0) {
-        NSString* urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
-                               [theater.address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
-
+        if (row == 1) {
+            if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
+                // can't make a phonecall if you're not an iPhone.
+                return;
+            }
+        }
+        
+        NSString* urlString;
+        if (row == 0) {
+            urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
+                         [theater.address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+        } else {
+            urlString = [NSString stringWithFormat:@"tel:%@", theater.phoneNumber];
+        }
+        
         NSURL* url = [NSURL URLWithString:urlString];
         [[UIApplication sharedApplication] openURL:url];
         return;

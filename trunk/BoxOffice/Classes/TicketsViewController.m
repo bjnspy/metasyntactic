@@ -10,6 +10,7 @@
 #import "AbstractNavigationController.h"
 #import "DifferenceEngine.h"
 #import "Utilities.h"
+#import "Application.h"
 
 @implementation TicketsViewController
 
@@ -183,21 +184,17 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
     
-    cell.text = [showtimes objectAtIndex:row]; 
+    cell.textAlignment = UITextAlignmentCenter;
+    cell.font = [UIFont boldSystemFontOfSize:14];
+    //cell.text = [showtimes objectAtIndex:row]; 
 
-    if (![Utilities isNilOrEmpty:[self.ticketUrls objectAtIndex:[indexPath row]]]) {
-        CGRect rect = 
-        CGRectMake(0, 0,
-                   [UIScreen mainScreen].bounds.size.width - 48, tableView.rowHeight - 2);
-        
-        UILabel* label = [[[UILabel alloc] initWithFrame:rect] autorelease];
-        label.textAlignment = UITextAlignmentRight;
-        label.textColor = [UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1];
-        label.text = @"Order Tickets";
-        label.opaque = NO;
-        label.backgroundColor = [UIColor clearColor];
-        
-        [cell.contentView addSubview:label];
+    NSString* showtime = [showtimes objectAtIndex:row];
+    if ([Utilities isNilOrEmpty:[self.ticketUrls objectAtIndex:[indexPath row]]]) {
+        cell.text = [NSString stringWithFormat:@"%@ (No Online Ticketing)", showtime];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    } else {
+        cell.textColor = [Application lightBlueTextColor];
+        cell.text = [NSString stringWithFormat:@"Order Tickets for %@ Show", showtime];
     }
     
     return cell;
@@ -211,15 +208,6 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     NSString* ticketUrl = [self.ticketUrls objectAtIndex:row];
     if (![Utilities isNilOrEmpty:ticketUrl]) {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:ticketUrl]];
-    }
-}
-
-- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (![Utilities isNilOrEmpty:[self.ticketUrls objectAtIndex:[indexPath row]]]) {
-        return UITableViewCellAccessoryDisclosureIndicator;
-    } else {
-        return UITableViewCellAccessoryNone;
     }
 }
 

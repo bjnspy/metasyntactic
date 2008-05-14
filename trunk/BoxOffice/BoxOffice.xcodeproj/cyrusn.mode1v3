@@ -386,7 +386,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74C3A6CB0DDAC83800707976</string>
+										<string>74C3A6D40DDAC9D200707976</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -541,8 +541,8 @@
 											<string>74C3A68C0DDAC62800707976</string>
 											<string>74C3A6AB0DDAC68700707976</string>
 											<string>74C3A6AC0DDAC68700707976</string>
-											<string>74C3A6C70DDAC83800707976</string>
-											<string>74C3A6C80DDAC83800707976</string>
+											<string>74C3A6D00DDAC9D200707976</string>
+											<string>74C3A6D10DDAC9D200707976</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -674,6 +674,8 @@
 											<string>74C3A6C00DDAC71A00707976</string>
 											<string>74C3A6C90DDAC83800707976</string>
 											<string>74C3A6CA0DDAC83800707976</string>
+											<string>74C3A6D20DDAC9D200707976</string>
+											<string>74C3A6D30DDAC9D200707976</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -852,7 +854,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>232441912.80136999</real>
+	<real>232442322.76460701</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -867,7 +869,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>74C3A6CC0DDAC83800707976</string>
+		<string>74C3A6D50DDAC9D200707976</string>
 		<string>74C3A6650DDAC2AB00707976</string>
 		<string>74C3A6740DDAC33300707976</string>
 		<string>74C3A6750DDAC33300707976</string>
@@ -875,7 +877,7 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>74C3A6CD0DDAC83800707976</string>
+		<string>74C3A6D60DDAC9D200707976</string>
 	</array>
 	<key>WindowString</key>
 	<string>61 31 957 847 0 0 1440 878 </string>
