@@ -16,6 +16,7 @@ static NSString* _supportFolder = nil;
 static NSString* _postersFolder = nil;
 static NSString* _documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
+static UIColor* lightBlueTextColor = nil;
 
 + (void) initialize {
     if (self == [Application class]) {
@@ -24,6 +25,9 @@ static NSDateFormatter* dateFormatter = nil;
         dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateStyle:NSDateFormatterNoStyle];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        
+        lightBlueTextColor = [UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1];
+        [lightBlueTextColor retain];
     }
 }
 
@@ -99,6 +103,10 @@ static NSDateFormatter* dateFormatter = nil;
     }
     [gate unlock];
     return result;
+}
+
++ (UIColor*) lightBlueTextColor {
+    return lightBlueTextColor;
 }
 
 @end

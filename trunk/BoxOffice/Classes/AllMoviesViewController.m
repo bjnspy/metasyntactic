@@ -181,7 +181,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     }
     
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:nil] autorelease];
-    cell.text = movie.title;
     
     int ratingValue = [movie ratingValue];
     if (ratingValue >= 0 && ratingValue <= 100) {
@@ -209,6 +208,10 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         }
         
         [cell addSubview:label];
+        
+        cell.text = movie.title;
+    } else {
+        cell.text = [NSString stringWithFormat:@"N/A  %@", movie.title];
     }
     
     return cell;

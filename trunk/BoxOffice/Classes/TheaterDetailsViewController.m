@@ -13,6 +13,7 @@
 #import "TheatersNavigationController.h"
 #import "TicketsViewController.h"
 #import "MovieShowtimesCell.h"
+#import "Application.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -79,8 +80,18 @@
     NSInteger section = [indexPath section];
     
     if (section == 0) {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        cell.text = self.theater.address;
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)] autorelease];
+        
+        label.textAlignment = UITextAlignmentCenter;
+        label.text = self.theater.address;
+        label.textColor = [Application lightBlueTextColor];
+        label.opaque = NO;
+        label.backgroundColor = [UIColor clearColor];
+        label.font = [UIFont boldSystemFontOfSize:14];
+        label.adjustsFontSizeToFitWidth = YES;
+        
+        [cell.contentView addSubview:label];
         return cell;
     } else {
         return [MovieShowtimesCell cellWithShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];

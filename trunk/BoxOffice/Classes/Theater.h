@@ -12,15 +12,18 @@
 @interface Theater : NSObject {
     NSString* name;
     NSString* address;
+    NSString* phoneNumber;
     NSDictionary* movieToShowtimesMap;
 }
 
 @property (copy) NSString* name;
 @property (copy) NSString* address;
+@property (copy) NSString* phoneNumber;
 @property (retain) NSDictionary* movieToShowtimesMap;
 
 + (Theater*) theaterWithName:(NSString*) name
                      address:(NSString*) address
+                 phoneNumber:(NSString*) phoneNumber
          movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap;
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
 

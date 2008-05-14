@@ -16,5 +16,6 @@
 + (NSString*) postersFolder;
 + (NSString*) documentsFolder;
 + (NSString*) formatDate:(NSDate*) date;
++ (UIColor*) lightBlueTextColor;
 
 @end
