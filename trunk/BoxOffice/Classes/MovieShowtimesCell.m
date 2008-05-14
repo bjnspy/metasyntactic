@@ -33,14 +33,14 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     
-    CGRect bounds = self.contentView.frame;
-    CGRect labelBounds = CGRectMake(bounds.origin.x + 9, bounds.origin.y + 9, bounds.size.width - 10, bounds.size.height - 18);
-    
     NSString* text = [self.showtimes objectAtIndex:0];
     for (int i = 1; i < [self.showtimes count]; i++) {
         text = [text stringByAppendingString:@", "];
         text = [text stringByAppendingString:[self.showtimes objectAtIndex:i]];
     }
+    
+    CGRect bounds = self.contentView.frame;
+    CGRect labelBounds = CGRectMake(bounds.origin.x + 9, bounds.origin.y + 9, bounds.size.width - 10, bounds.size.height - 18);
     
     UILabel* label = [[[UILabel alloc] initWithFrame:labelBounds] autorelease];
     //label.backgroundColor = [UIColor clearColor];

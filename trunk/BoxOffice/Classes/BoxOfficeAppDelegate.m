@@ -17,7 +17,7 @@
 @synthesize model;
 @synthesize tabBarController;
 @synthesize notificationCenter;
-
+ 
 - (void) dealloc {
     self.controller = nil;
     self.window = nil;

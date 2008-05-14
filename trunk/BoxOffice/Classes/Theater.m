@@ -32,6 +32,53 @@
                 movieToShowtimesMap:[dictionary objectForKey:@"movieToShowtimeMap"]];
 }
 
+NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
+    NSString* s1 = t1;
+    NSString* s2 = t2;
+    
+    NSDate* d1 = [NSDate dateWithNaturalLanguageString:s1];
+    NSDate* d2 = [NSDate dateWithNaturalLanguageString:s2];
+    
+    return [d1 compare:d2];
+}
+
++ (NSArray*) processShowtimes:(NSArray*) showtimes {
+    NSArray* sortedArray = [showtimes sortedArrayUsingFunction:compareDateStrings context:nil];
+    
+    NSMutableArray* result = [NSMutableArray array];
+    
+    for (NSString* dateString in sortedArray) {
+        NSDate* date = [NSDate dateWithNaturalLanguageString:dateString];
+        
+        NSDateComponents* components = 
+            [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
+                                            fromDate:date];
+        
+        int hour = [components hour];
+        int minute = [components minute];
+        NSString* formattedString = 
+        [NSString stringWithFormat:@"%d:%02d%@",
+         (hour > 12 ? hour - 12 : hour),
+         minute,
+         (hour > 12) ? @"pm" : @"am" ];
+        
+        [result addObject:formattedString];
+    }
+    
+    return result;
+}
+
++ (NSDictionary*) prepareShowtimesMap:(NSDictionary*) movieToShowtimesMap {
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    
+    for (NSString* movie in movieToShowtimesMap) {
+        [result setObject:[self processShowtimes:[movieToShowtimesMap objectForKey:movie]]
+                   forKey:movie];
+    }
+    
+    return result;
+}
+
 - (id)         initWithName:(NSString*) aName
                     address:(NSString*) anAddress
                 phoneNumber:(NSString*) aPhoneNumber

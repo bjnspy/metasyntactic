@@ -27,6 +27,8 @@
          movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap;
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
 
++ (NSDictionary*) prepareShowtimesMap:(NSDictionary*) movieToShowtimesMap;
+
 - (NSDictionary*) dictionary;
 
 @end

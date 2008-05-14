@@ -61,10 +61,11 @@
             continue;
         }
         
+        NSDictionary* preparedShowtimes = [Theater prepareShowtimesMap:movieToShowtimesMap];
         Theater* theater = [Theater theaterWithName:name
                                             address:address
                                         phoneNumber:phoneNumber
-                                movieToShowtimesMap:movieToShowtimesMap];
+                                movieToShowtimesMap:preparedShowtimes];
         
         [array addObject:theater];
     }
