@@ -90,14 +90,14 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     XmlElement* moviesElement = [dataElement element:@"movies"];
     XmlElement* theatersElement = [dataElement element:@"theaters"];
     
-    NSArray* sortedMovieElements = [moviesElement.children sortedArrayUsingFunction:compareMovieElements
-                                    context:self.movie.title];
+    XmlElement* bestMovieElement = [Utilities findSmallestElementInArray:moviesElement.children
+                                                           usingFunction:compareMovieElements
+                                                                 context:self.movie.title];
     
-    NSArray* sortedTheaterElements = [theatersElement.children sortedArrayUsingFunction:compareTheaterElements
-                                      context:self.theater.name];
+    XmlElement* bestTheaterElement = [Utilities findSmallestElementInArray:theatersElement.children
+                                                             usingFunction:compareTheaterElements
+                                                                   context:self.theater.name]; 
     
-    XmlElement* bestMovieElement = [sortedMovieElements objectAtIndex:0];
-    XmlElement* bestTheaterElement = [sortedTheaterElements objectAtIndex:0];
     
     if ([DifferenceEngine areSimilar:[bestMovieElement element:@"title"].text other:self.movie.title] &&
         [DifferenceEngine areSimilar:[bestTheaterElement element:@"name"].text other:self.theater.name] &&
@@ -113,7 +113,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
             if (showId != nil) {
                 //https://mobile.fandango.com/tickets.jsp?mk=98591&tk=557&showtime=2008:5:11:16:00
                 //https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=1601099982&mid=98591&tid=AAJNK
-                
+                 
                 NSDate* date = [NSDate dateWithNaturalLanguageString:showtime];
                 NSDate* now = [NSDate date];
                 BOOL alreadyAfter = [now compare:date] == NSOrderedDescending;

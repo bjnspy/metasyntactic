@@ -15,4 +15,25 @@
     return string == nil || [@"" isEqual:string];
 }
 
++ (id) findSmallestElementInArray:(NSArray*) array 
+                    usingFunction:(NSInteger(*)(id, id, void *)) comparator
+                          context:(void*) context {
+    if ([array count] == 0) {
+        return nil;
+    }
+    
+    id value = [array objectAtIndex:0];
+    
+    for (NSInteger i = 1; i < [array count]; i++) {
+        id current = [array objectAtIndex:i];
+        
+        NSComparisonResult result = comparator(value, current, context);
+        if (result == NSOrderedDescending) {
+            value = current;
+        }
+    }
+    
+    return value;
+}
+
 @end

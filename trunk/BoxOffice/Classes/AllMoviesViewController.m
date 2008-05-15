@@ -318,10 +318,12 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+    return NO;
     return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
 - (void) onDeviceOrientationDidChange:(id) argument {
+    return;
     NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
     
     [UIView beginAnimations:nil context:NULL];

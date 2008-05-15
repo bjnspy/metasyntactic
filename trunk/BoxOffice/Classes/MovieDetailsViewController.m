@@ -146,6 +146,7 @@
         
         return cell;
     } else {
+        //static NSString* @"MovieDetailsCell";
         return [MovieShowtimesCell cellWithShowtimes:[self.showtimesArray objectAtIndex:(section - 1)]];
     }
 }

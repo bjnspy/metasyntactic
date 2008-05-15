@@ -12,4 +12,8 @@
 
 + (BOOL) isNilOrEmpty:(NSString*) string;
 
++ (id) findSmallestElementInArray:(NSArray*) array 
+                    usingFunction:(NSInteger(*)(id, id, void *)) comparator
+                          context:(void*) context;
+
 @end
