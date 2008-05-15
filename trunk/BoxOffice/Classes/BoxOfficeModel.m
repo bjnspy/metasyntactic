@@ -284,6 +284,7 @@
 }
 
 - (NSArray*) moviesAtTheater:(Theater*) theater {
+    DifferenceEngine* engine = [DifferenceEngine engine];
     NSMutableArray* array = [NSMutableArray array];
     
     for (Movie* movie in self.movies) {
@@ -292,7 +293,7 @@
                 continue;
             }
             
-            if ([DifferenceEngine areSimilar:movie.title other:movieName]) {
+            if ([engine similar:movie.title other:movieName]) {
                 [array addObject:movie];
                 break;
             }

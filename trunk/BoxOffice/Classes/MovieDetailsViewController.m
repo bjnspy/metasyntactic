@@ -147,20 +147,20 @@
             NSString* content =
             [NSString stringWithFormat:
              @"<html>"
-             "<head>"
-             "<style>"
-             "body {"
-             "  margin-top: -2;"
-             "  margin-bottom: 0;"
-             "  margin-right: 3;"
-             "  margin-left: 3;"
-             "  font-family: \"helvetica\";"
-             "  font-size: 14;"
-             "}"
-             "</style>"
-             "</head>"
-             "<body>%@</body>"
-             "</html>", movie.synopsis];
+             "  <head>"
+             "   <style>"
+             "    body {"
+             "     margin-top: -2;"
+             "     margin-bottom: 0;"
+             "     margin-right: 3;"
+             "     margin-left: 3;"
+             "     font-family: \"helvetica\";"
+             "     font-size: 14;"
+             "    }"
+             "   </style>"
+             "  </head>"
+             "  <body>%@</body>"
+             " </html>", movie.synopsis];
             [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
             [cell.contentView addSubview:webView]; 
             
@@ -171,11 +171,11 @@
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.textAlignment = UITextAlignmentCenter;
             
-            cell.text = [NSString stringWithFormat:@"Show %d theater%@ outside search radius",
+            cell.text = [NSString stringWithFormat:@"Show %d Theater%@ Outside Search Radius",
                          self.hiddenTheaterCount, self.hiddenTheaterCount == 1 ? @"" : @"s"];
             
             cell.textColor = [Application lightBlueTextColor];
-            cell.font = [UIFont boldSystemFontOfSize:11];
+            cell.font = [UIFont boldSystemFontOfSize:14];
             
             return cell;
         }
@@ -224,7 +224,7 @@
                                                  title:[NSString stringWithFormat:@"@ %@", theater.name]] autorelease];
     
     [self.navigationController pushViewController:controller
-     animated:YES];
+                                         animated:YES];
 }
 
 @end

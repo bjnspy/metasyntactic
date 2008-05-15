@@ -185,7 +185,18 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textColor = [Application lightBlueTextColor];
-        cell.text = [NSString stringWithFormat:@"Order Tickets for %@ Show", showtime];
+        
+        NSDate* now = [NSDate date];
+        NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:showtime];
+        
+        NSString* day;
+        if ([now compare:showtimeDate] == NSOrderedAscending) {
+            day = @"Today";
+        } else {
+            day = @"Tomorrow";
+        }
+        
+        cell.text = [NSString stringWithFormat:@"Order Tickets for %@ %@", showtime, day];
     }
     
     return cell;
