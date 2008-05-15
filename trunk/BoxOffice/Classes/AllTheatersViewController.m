@@ -190,7 +190,7 @@
     NSInteger row = [indexPath row];
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
     
-    [self.navigationController pushTheaterDetails:theater];
+    [self.navigationController pushTheaterDetails:theater animated:YES];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
@@ -255,6 +255,8 @@
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
+    [self.model setCurrentlySelectedMovie:nil theater:nil];
+    
     if ([self sortingByDistance]) {
         [self refresh];
     }

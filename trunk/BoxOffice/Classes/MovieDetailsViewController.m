@@ -69,6 +69,8 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+
+    [self.model setCurrentlySelectedMovie:self.movie theater:nil];
 }
 
 - (void) refresh {
@@ -217,14 +219,11 @@
     
     Theater* theater = [self.theatersArray objectAtIndex:(section - 1)];
     
-    TicketsViewController* controller = 
-    [[[TicketsViewController alloc] initWithController:self.navigationController
-                                               theater:theater
-                                                 movie:self.movie
-                                                 title:[NSString stringWithFormat:@"@ %@", theater.name]] autorelease];
+
+    [self.navigationController pushTicketsView:self.movie
+                                       theater:theater
+                                      animated:YES];
     
-    [self.navigationController pushViewController:controller
-                                         animated:YES];
 }
 
 @end

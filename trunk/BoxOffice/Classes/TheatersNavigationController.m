@@ -8,12 +8,20 @@
 
 #import "TheatersNavigationController.h"
 #import "ApplicationTabBarController.h"
+#import "TicketsViewController.h"
 
 @implementation TheatersNavigationController
 
 @synthesize allTheatersViewController;
 @synthesize theaterDetailsViewController;
 @synthesize tabBarController;
+
+- (void) dealloc {
+    self.allTheatersViewController = nil;
+    self.theaterDetailsViewController = nil;
+    self.tabBarController = nil;
+    [super dealloc];
+}
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller
 {
@@ -30,11 +38,18 @@
     return self;
 }
 
-- (void) dealloc
-{
-    self.allTheatersViewController = nil;
-    self.theaterDetailsViewController = nil;
-    [super dealloc];
+- (void) navigateToLastViewedPage {
+    Theater* currentTheater = [[self model] currentlySelectedTheater];
+    if (currentTheater != nil) {
+        [self pushTheaterDetails:currentTheater animated:NO];
+        
+        Movie* currentMovie = [[self model] currentlySelectedMovie];
+        if (currentMovie != nil) {
+            [self pushTicketsView:currentTheater
+                            movie:currentMovie
+                         animated:NO]; 
+        }
+    }
 }
 
 - (void) refresh
@@ -43,11 +58,17 @@
     [self.theaterDetailsViewController refresh];
 }
 
-- (void) pushTheaterDetails:(Theater*) theater
+- (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated
 {
     self.theaterDetailsViewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self theater:theater] autorelease];
     
-    [self pushViewController:theaterDetailsViewController animated:YES];
+    [self pushViewController:theaterDetailsViewController animated:animated];
 }
-
+                
+- (void) pushTicketsView:(Theater*) theater
+                   movie:(Movie*) movie
+                animated:(BOOL) animated {
+    return [self pushTicketsView:movie theater:theater title:movie.title animated:animated];
+}
+                
 @end

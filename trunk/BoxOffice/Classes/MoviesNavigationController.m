@@ -30,6 +30,20 @@
     return self;
 }
 
+- (void) navigateToLastViewedPage {
+    Movie* currentMovie = [[self model] currentlySelectedMovie];
+    if (currentMovie != nil) {
+        [self pushMovieDetails:currentMovie animated:NO];
+        
+        Theater* currentTheater = [[self model] currentlySelectedTheater];
+        if (currentTheater != nil) {
+            [self pushTicketsView:currentMovie
+                          theater:currentTheater
+                         animated:NO];
+        }
+    }    
+}
+
 - (void) dealloc
 {
     self.allMoviesViewController = nil;
@@ -44,10 +58,21 @@
 }
 
 - (void) pushMovieDetails:(Movie*) movie
+                 animated:(BOOL) animated
 {
     self.movieDetailsViewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self movie:movie] autorelease];
     
-    [self pushViewController:movieDetailsViewController animated:YES];
+    [self pushViewController:movieDetailsViewController animated:animated];
+}
+
+- (void) pushTicketsView:(Movie*) movie
+                 theater:(Theater*) theater
+                animated:(BOOL) animated {
+    
+    return [self pushTicketsView:movie
+                         theater:theater
+                           title:[NSString stringWithFormat:@"@ %@", theater.name]
+                        animated:animated];
 }
 
 @end

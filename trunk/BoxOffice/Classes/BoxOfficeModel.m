@@ -414,5 +414,40 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     [self updateZipcodeAddressLocation];
 }
 
+- (Movie*) currentlySelectedMovie {
+    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentlySelectedMovie"];
+    if (dict == nil) {
+        return nil;
+    }
+    
+    return [Movie movieWithDictionary:dict];
+}
+
+- (Theater*) currentlySelectedTheater {
+    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentlySelectedTheater"];
+    if (dict == nil) {
+        return nil;
+    }
+    
+    return [Theater theaterWithDictionary:dict];
+}
+
+- (void) setCurrentlySelectedMovie:(Movie*) movie 
+                           theater:(Theater*) theater {
+    if (movie == nil) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"currentlySelectedMovie"];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setObject:[movie dictionary]
+                                                  forKey:@"currentlySelectedMovie"];
+    }
+    
+    if (theater == nil) {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"currentlySelectedTheater"];
+    } else {
+        [[NSUserDefaults standardUserDefaults] setObject:[theater dictionary]
+                                                  forKey:@"currentlySelectedTheater"];
+    }
+}
+
 @end
     

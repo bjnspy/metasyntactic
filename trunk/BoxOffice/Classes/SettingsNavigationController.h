@@ -20,4 +20,6 @@
 
 - (void) refresh;
 
+- (void) navigateToLastViewedPage;
+
 @end

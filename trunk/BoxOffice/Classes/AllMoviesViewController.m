@@ -49,8 +49,8 @@
         self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
         self.segmentedControl.selectedSegmentIndex = [[self model] allMoviesSelectedSegmentIndex];
         [self.segmentedControl addTarget:self
-         action:@selector(onSortOrderChanged:)
-         forControlEvents:UIControlEventValueChanged];
+                                  action:@selector(onSortOrderChanged:)
+                        forControlEvents:UIControlEventValueChanged];
         CGRect rect = self.segmentedControl.frame;
         rect.size.width = 200;
         self.segmentedControl.frame = rect;
@@ -73,6 +73,8 @@
                                              selector:@selector(onDeviceOrientationDidChange:)
                                                  name:UIDeviceOrientationDidChangeNotification
                                                object:nil];
+    
+    [self.model setCurrentlySelectedMovie:nil theater:nil];
 }
 
 - (void) viewWillDisappear:(BOOL) animated {
@@ -188,50 +190,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
     }
     
-    [movieCell setMovie:movie];
-    
-    /*
-    static NSString* reuseIdentifier = @"AllMoviesIdentifier";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {    
-        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
-    //}
-    
-    
-    int ratingValue = [movie ratingValue];
-    if (ratingValue >= 0 && ratingValue <= 100) {
-        
-        if (ratingValue >= 60) {
-            cell.image = [UIImage imageNamed:@"Fresh.png"];
-        } else if (ratingValue >= 0 && ratingValue < 60) {
-            cell.image = [UIImage imageNamed:@"Rotten.png"];
-        }
-         
-        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        label.text = [NSString stringWithFormat:@"%d", ratingValue];
-        label.backgroundColor = [UIColor clearColor];
-        label.opaque = NO;
-        label.textAlignment = UITextAlignmentCenter;
-        
-        if (ratingValue >= 60) {
-            label.adjustsFontSizeToFitWidth = YES;
-            label.font = [UIFont boldSystemFontOfSize:15];
-            label.textColor = [UIColor whiteColor];
-            label.frame = CGRectMake(10, 8, 32, 32);
-        } else {
-            label.font = [UIFont boldSystemFontOfSize:16];
-            label.frame = CGRectMake(8, 7, 30, 32);
-        }
-        
-        [cell addSubview:label];
-        
-        cell.text = movie.title;
-    } else {
-        cell.text = [NSString stringWithFormat:@"N/A  %@", movie.title];
-    }
-}
-     */
-    
+    [movieCell setMovie:movie];    
     return movieCell;
 }
 
@@ -256,7 +215,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         movie = [self.sortedMovies objectAtIndex:row];
     }
     
-    [self.navigationController pushMovieDetails:movie];
+    [self.navigationController pushMovieDetails:movie animated:YES];
 }
 
 - (void) refresh {

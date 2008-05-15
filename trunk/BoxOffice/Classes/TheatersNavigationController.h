@@ -24,6 +24,13 @@
 
 - (void) refresh;
 
-- (void) pushTheaterDetails:(Theater*) theater;
+- (void) pushTheaterDetails:(Theater*) theater
+                   animated:(BOOL) animated;
+
+- (void) pushTicketsView:(Theater*) theater
+                   movie:(Movie*) movie
+                animated:(BOOL) animated;
+
+- (void) navigateToLastViewedPage;
 
 @end

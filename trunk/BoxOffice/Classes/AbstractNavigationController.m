@@ -8,6 +8,7 @@
 
 #import "AbstractNavigationController.h"
 #import "ApplicationTabBarController.h"
+#import "TicketsViewController.h"
 
 @implementation AbstractNavigationController
 
@@ -32,6 +33,22 @@
 
 - (BoxOfficeController*) controller {
     return [self.tabBarController controller];
+}
+
+- (void) pushTicketsView:(Movie*) movie
+                 theater:(Theater*) theater
+                   title:(NSString*) title
+                animated:(BOOL) animated {
+    TicketsViewController* controller = 
+    [[[TicketsViewController alloc] initWithController:self
+                                               theater:theater
+                                                 movie:movie
+                                                 title:title] autorelease];
+    
+    [self pushViewController:controller animated:animated];    
+}
+
+- (void) navigateToLastViewedPage {
 }
 
 @end

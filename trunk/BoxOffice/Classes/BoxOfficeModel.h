@@ -50,6 +50,12 @@
 - (NSInteger) allTheatersSelectedSegmentIndex;
 - (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index;
 
+- (Movie*) currentlySelectedMovie;
+- (Theater*) currentlySelectedTheater;
+
+- (void) setCurrentlySelectedMovie:(Movie*) movie 
+                           theater:(Theater*) theater;
+
 - (NSString*) zipcode;
 - (void) setZipcode:(NSString*) zipcode;
 

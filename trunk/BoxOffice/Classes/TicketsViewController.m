@@ -90,10 +90,14 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
     return nil;
 }
 
+- (BoxOfficeModel*) model {
+    return [self.controller model];
+}
+
 - (void) findShowIds {
     DifferenceEngine* engine = [DifferenceEngine engine];
     
-    XmlElement* ticketElement = [[self.controller model] tickets];
+    XmlElement* ticketElement = [[self model] tickets];
     XmlElement* dataElement = [ticketElement element:@"data"];
     XmlElement* moviesElement = [dataElement element:@"movies"];
     XmlElement* theatersElement = [dataElement element:@"theaters"];
@@ -137,7 +141,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
         self.controller = controller_;
         self.theater = theater_;
         self.movie = movie_;
-        self.showtimes = [[self.controller model] movieShowtimes:self.movie forTheater:self.theater];
+        self.showtimes = [[self model] movieShowtimes:self.movie forTheater:self.theater];
 
         self.showIds = [NSMutableArray array];
         self.movieIds = [NSMutableArray array];
@@ -154,6 +158,12 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
     }
     
     return self;
+}
+
+- (void) viewWillAppear:(BOOL) animated {
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[self model].activityView] autorelease];
+    
+    [self.model setCurrentlySelectedMovie:self.movie theater:self.theater];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {

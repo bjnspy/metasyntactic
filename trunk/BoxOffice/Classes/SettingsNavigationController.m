@@ -41,4 +41,7 @@
     [self.viewController refresh];
 }
 
+- (void) navigateToLastViewedPage {
+}
+
 @end

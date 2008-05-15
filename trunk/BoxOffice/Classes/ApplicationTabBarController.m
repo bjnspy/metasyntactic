@@ -43,7 +43,9 @@
         if ([Utilities isNilOrEmpty:[[self model] zipcode]]) {
             self.selectedViewController = self.settingsNavigationController;
         } else {
-            self.selectedViewController = [self.viewControllers objectAtIndex:[self.model selectedTabBarViewControllerIndex]];
+            AbstractNavigationController* controller = [self.viewControllers objectAtIndex:[self.model selectedTabBarViewControllerIndex]];
+            self.selectedViewController = controller;
+            [controller navigateToLastViewedPage];
         }
         
         self.delegate = self;

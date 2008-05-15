@@ -23,4 +23,11 @@
 - (BoxOfficeModel*) model;
 - (BoxOfficeController*) controller;
 
+- (void) pushTicketsView:(Movie*) movie
+                 theater:(Theater*) theater
+                   title:(NSString*) title
+                animated:(BOOL) animated;
+
+- (void) navigateToLastViewedPage;
+
 @end
