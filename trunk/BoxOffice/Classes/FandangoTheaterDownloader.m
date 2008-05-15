@@ -29,6 +29,16 @@
     return result;
 }
 
++ (NSString*) processShowtime:(NSString*) showtime {
+    if ([showtime hasSuffix:@" PM"]) {
+        return [NSString stringWithFormat:@"%@pm", [showtime substringToIndex:[showtime length] - 3]];
+    } else if ([showtime hasSuffix:@" AM"]) {
+        return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:[showtime length] - 3]];        
+    }
+    
+    return showtime;
+}
+
 + (NSArray*) processTheatersElement:(XmlElement*) theatersElement
                             withMap:movieIdToTitleMap {
     NSMutableArray* array = [NSMutableArray array];
@@ -51,7 +61,9 @@
             
             XmlElement* performancesElement = [movieElement element:@"performances"];
             for (XmlElement* performanceElement in performancesElement.children) {
-                [showtimes addObject:[performanceElement attributeValue:@"showtime"]];
+                NSString* showtime = [performanceElement attributeValue:@"showtime"];
+                showtime = [self processShowtime:showtime];
+                [showtimes addObject:showtime];
             }
             
             [movieToShowtimesMap setObject:showtimes forKey:title];
@@ -73,8 +85,7 @@
     return array;
 }
 
-+ (NSArray*) download:(NSString*) zipcode
-               radius:(NSInteger) radius {
++ (NSArray*) download:(NSString*) zipcode {
     NSString* urlString = [NSString stringWithFormat:@"http://www.fandango.com/frdi/?pid=A99D3D1A-774C-49149E&op=performancesbypostalcodesearch&verbosity=1&postalcode=%@", zipcode];
     NSURL* url = [NSURL URLWithString:urlString];
     

@@ -10,7 +10,6 @@
 
 }
 
-+ (NSArray*) download:(NSString*) zipcode
-               radius:(NSInteger) radius;
++ (NSArray*) download:(NSString*) zipcode;
 
 @end

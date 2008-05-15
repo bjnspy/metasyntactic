@@ -46,9 +46,7 @@
     return theater;
 }
 
-+ (NSArray*) download:(NSString*) zipcode radius:(NSInteger) searchRadius {
-    NSString* radius = [NSString stringWithFormat:@"%d", searchRadius];
-    
++ (NSArray*) download:(NSString*) zipcode {
     NSString* post =
     [XmlSerializer serializeDocument: 
      [XmlDocument documentWithRoot:
@@ -78,7 +76,7 @@
                                            elementWithName:@"radius"
                                            attributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                         @"xsd:int", @"xsi:type", nil]
-                                           text:radius], nil]]]]]]]];
+                                           text:@"50"], nil]]]]]]]];
     
     NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
     

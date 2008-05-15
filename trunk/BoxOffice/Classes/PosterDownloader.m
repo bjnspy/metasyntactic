@@ -31,8 +31,6 @@
 }
 
 - (NSData*) go {
-    return nil; 
-    
     NSData* data = [ImdbPosterDownloader download:self.movie];
     if (data != nil) {
         return data;

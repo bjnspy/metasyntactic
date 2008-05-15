@@ -182,12 +182,15 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context) {
     
     NSInteger row = [indexPath row];
     
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+    static NSString* reuseIdentifier = @"TicketsViewCellIdentifier";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     
-    cell.textAlignment = UITextAlignmentCenter;
-    cell.font = [UIFont boldSystemFontOfSize:14];
-    //cell.text = [showtimes objectAtIndex:row]; 
-
+        cell.textAlignment = UITextAlignmentCenter;
+        cell.font = [UIFont boldSystemFontOfSize:14];
+    }
+    
     NSString* showtime = [showtimes objectAtIndex:row];
     if ([Utilities isNilOrEmpty:[self.ticketUrls objectAtIndex:[indexPath row]]]) {
         cell.text = [NSString stringWithFormat:@"%@ (No Online Ticketing)", showtime];

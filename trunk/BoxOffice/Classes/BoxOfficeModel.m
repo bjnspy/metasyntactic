@@ -132,16 +132,6 @@
     return result;
 }
 
-- (void) setZipcode:(NSString*) zipcode {
-    if ([zipcode isEqual:[self zipcode]]) {
-        return;
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:zipcode forKey:@"zipCode"];
-    
-    [self updateZipcodeAddressLocation];
-}
-
 - (int) searchRadius {
     return MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:@"searchRadius"]);
 }
@@ -174,8 +164,17 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"movies"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastMoviesUpdateTime"];
     
     [self updatePosterCache];
+}
+
+- (NSDate*) lastMoviesUpdateTime {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"lastMoviesUpdateTime"];
+}
+
+- (void) clearLastMoviesUpdateTime {
+    return [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastMoviesUpdateTime"];
 }
 
 - (NSArray*) theaters {
@@ -201,8 +200,17 @@
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"theaters"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastTheatersUpdateTime"];
     
     [self updateAddressLocationCache];
+}
+
+- (NSDate*) lastTheatersUpdateTime {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"lastTheatersUpdateTime"];
+}
+
+- (void) clearLastTheatersUpdateTime {
+    return [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastTheatersUpdateTime"];
 }
 
 - (XmlElement*) tickets {
@@ -216,6 +224,15 @@
 
 - (void) setTickets:(XmlElement*) tickets {
     [[NSUserDefaults standardUserDefaults] setObject:[tickets dictionary] forKey:@"tickets"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastTicketsUpdateTime"];
+}
+
+- (NSDate*) lastTicketsUpdateTime {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:@"lastTicketsUpdateTime"];
+}
+
+- (void) clearLastTicketsUpdateTime {
+    return [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastTicketsUpdateTime"];
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie {
@@ -361,6 +378,18 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     }
     
     return compareTheatersByName(t1, t2, nil);
+}
+
+- (void) setZipcode:(NSString*) zipcode {
+    if ([zipcode isEqual:[self zipcode]]) {
+        return;
+    }
+    
+    [self clearLastTheatersUpdateTime];
+    [self clearLastTicketsUpdateTime];
+    [[NSUserDefaults standardUserDefaults] setObject:zipcode forKey:@"zipCode"];
+    
+    [self updateZipcodeAddressLocation];
 }
 
 @end

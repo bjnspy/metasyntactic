@@ -52,12 +52,15 @@
 
 - (NSArray*) movies;
 - (void) setMovies:(NSArray*) movies;
+- (NSDate*) lastMoviesUpdateTime;
 
 - (NSArray*) theaters;
 - (void) setTheaters:(NSArray*) theaters;
+- (NSDate*) lastTheatersUpdateTime;
 
 - (XmlElement*) tickets;
 - (void) setTickets:(XmlElement*) tickets;
+- (NSDate*) lastTicketsUpdateTime;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (Location*) locationForAddress:(NSString*) address;

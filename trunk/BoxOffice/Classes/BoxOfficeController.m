@@ -40,7 +40,34 @@
     [[self model] addBackgroundTask:description];
 }
 
+- (BOOL) tooSoon:(NSDate*) lastDate {
+    if (lastDate == nil) {
+        return NO;
+    }
+    
+    NSDate* now = [NSDate date];
+    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSHourCalendarUnit fromDate:lastDate];
+    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSHourCalendarUnit fromDate:now];
+    
+    if ([lastDateComponents day] != [nowDateComponents day]) {
+        // different days.  we definitely need to refresh
+        return NO;
+    }
+    
+    // same day, check if they're at least 4 hours apart.
+    if ([nowDateComponents hour] >= ([lastDateComponents hour] + 4)) {
+        return NO;
+    }
+    
+    // it's been less than 4 hours.  it's too soon to refresh
+    return YES;
+}
+
 - (void) spawnMovieLookupThread {
+    if ([self tooSoon:[self.model lastMoviesUpdateTime]]) {
+        return;
+    }
+    
     [self onBackgroundTaskStarted:@"Downloading Movie List"];
     [self performSelectorInBackground:@selector(lookupMoviesBackgroundThreadEntryPoint:) withObject:nil];
 }
@@ -50,12 +77,20 @@
         return;
     }
     
+    if ([self tooSoon:[self.model lastTheatersUpdateTime]]) {
+        return;
+    }
+    
     [self onBackgroundTaskStarted:@"Downloading Theater List"];
     [self performSelectorInBackground:@selector(lookupTheatersBackgroundThreadEntryPoint:) withObject:nil];
 }
 
 - (void) spawnTicketLookupThread {
     if ([Utilities isNilOrEmpty:self.model.zipcode]) {
+        return;
+    }
+    
+    if ([self tooSoon:[self.model lastTicketsUpdateTime]]) {
         return;
     }
     
@@ -183,12 +218,12 @@
     
     NSArray* theaters;
     
-    theaters = [FandangoTheaterDownloader download:self.model.zipcode radius:self.model.searchRadius];
+    theaters = [FandangoTheaterDownloader download:self.model.zipcode];
     if (theaters != nil) {
         return theaters;
     }
     
-    theaters = [IgnyteTheaterDownloader download:self.model.zipcode radius:self.model.searchRadius];
+    theaters = [IgnyteTheaterDownloader download:self.model.zipcode];
     if (theaters != nil) {
         return theaters;
     }
@@ -273,7 +308,6 @@
 
 - (void) setSearchRadius:(NSInteger) radius {
     [self.model setSearchRadius:radius];
-    [self spawnBackgroundThreads];
     [appDelegate.tabBarController refresh];
 }
 
