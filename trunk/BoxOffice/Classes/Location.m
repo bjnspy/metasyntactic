@@ -67,4 +67,22 @@
     return distance;
 }
 
+- (BOOL) isEqual:(id) anObject {
+    Location* other = anObject;
+    
+    return
+        self.latitude == other.latitude &&
+        self.longitude == other.longitude;
+}
+
+- (NSUInteger) hash {
+    double hash = self.latitude + self.longitude;
+    
+    return *(NSUInteger*)&hash;
+}
+
+- (NSString*) description {
+    return [NSString stringWithFormat:@"(%d,%d)", self.latitude, self.longitude];
+}
+
 @end

@@ -16,12 +16,15 @@
     Movie* movie;
     NSArray* theatersArray;
     NSMutableArray* showtimesArray;
+    
+    NSInteger hiddenTheaterCount;
 }
 
 @property (assign) MoviesNavigationController* navigationController;
 @property (retain) Movie* movie;
 @property (retain) NSArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
+@property NSInteger hiddenTheaterCount;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController
                               movie:(Movie*) movie;

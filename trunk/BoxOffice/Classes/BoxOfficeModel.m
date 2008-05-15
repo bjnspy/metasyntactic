@@ -20,6 +20,7 @@
 @synthesize activityView;
 @synthesize activityIndicatorView;
 @synthesize ticketsElement;
+@synthesize cachedTheaterDistanceMap;
 
 - (void) dealloc {
     self.notificationCenter = nil;
@@ -34,6 +35,8 @@
     self.activityView = nil;
     
     self.ticketsElement = nil;
+    
+    self.cachedTheaterDistanceMap = nil;
     
     [super dealloc];
 }
@@ -70,6 +73,8 @@
         [self.activityView addSubview:self.activityIndicatorView];
         
         backgroundTaskCount = 0;
+        
+        self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
         
         [self updatePosterCache];
         [self updateAddressLocationCache];
@@ -206,6 +211,8 @@
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"theaters"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastTheatersUpdateTime"];
     
+    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
+    
     [self updateAddressLocationCache];
 }
 
@@ -320,25 +327,30 @@
 
 - (NSDictionary*) theaterDistanceMap {
     Location* userLocation = [self locationForZipcode:[self zipcode]];
+    NSString* locationDescription = [userLocation description];
     
-    NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
-    for (Theater* theater in self.theaters) {
-        double d;
-        if (userLocation != nil) {
-            d = [userLocation distanceTo:[self locationForAddress:theater.address]];
-        } else {
-            d = UNKNOWN_DISTANCE;
+    NSMutableDictionary* theaterDistanceMap = [self.cachedTheaterDistanceMap objectForKey:locationDescription];
+    if (theaterDistanceMap == nil) {
+        theaterDistanceMap = [NSMutableDictionary dictionary];
+        
+        for (Theater* theater in self.theaters) {
+            double d;
+            if (userLocation != nil) {
+                d = [userLocation distanceTo:[self locationForAddress:theater.address]];
+            } else {
+                d = UNKNOWN_DISTANCE;
+            }
+            
+            NSNumber* value = [NSNumber numberWithDouble:d];
+            NSString* key = theater.address;
+            [theaterDistanceMap setObject:value forKey:key];
         }
         
-        NSNumber* value = [NSNumber numberWithDouble:d];
-        NSString* key = theater.address;
-        [theaterDistanceMap setObject:value forKey:key];
-    }    
+        [self.cachedTheaterDistanceMap setObject:theaterDistanceMap forKey:locationDescription];
+    }
     
     return theaterDistanceMap;
 }
-
-
 
 - (BOOL) tooFarAway:(double) distance {
     if (distance != UNKNOWN_DISTANCE && self.searchRadius < 50 && distance > self.searchRadius) {
@@ -393,6 +405,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         return;
     }
     
+    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
     [self clearLastTheatersUpdateTime];
     [self clearLastTicketsUpdateTime];
     [[NSUserDefaults standardUserDefaults] setObject:zipcode forKey:@"zipCode"];
