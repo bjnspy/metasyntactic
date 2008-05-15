@@ -19,6 +19,7 @@
 @synthesize backgroundTaskCount;
 @synthesize activityView;
 @synthesize activityIndicatorView;
+@synthesize ticketsElement;
 
 - (void) dealloc {
     self.notificationCenter = nil;
@@ -31,6 +32,9 @@
     
     self.activityIndicatorView = nil;
     self.activityView = nil;
+    
+    self.ticketsElement = nil;
+    
     [super dealloc];
 }
 
@@ -214,15 +218,19 @@
 }
 
 - (XmlElement*) tickets {
-    NSDictionary* dictionary = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"tickets"];
-    if (dictionary == nil) {
-        return nil;
+    if (self.ticketsElement == nil) {
+        NSDictionary* dictionary = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"tickets"];
+
+        if (dictionary != nil) {
+            self.ticketsElement = [XmlElement elementFromDictionary:dictionary];
+        }
     }
     
-    return [XmlElement elementFromDictionary:dictionary];
+    return self.ticketsElement;
 }
 
 - (void) setTickets:(XmlElement*) tickets {
+    self.ticketsElement = tickets;
     [[NSUserDefaults standardUserDefaults] setObject:[tickets dictionary] forKey:@"tickets"];
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastTicketsUpdateTime"];
 }
@@ -358,7 +366,7 @@
 NSInteger compareTheatersByName(id t1, id t2, void *context) {
     Theater* theater1 = t1;
     Theater* theater2 = t2;
-    
+
     return [theater1.name compare:theater2.name options:NSCaseInsensitiveSearch];
 }
 

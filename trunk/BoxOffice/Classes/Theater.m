@@ -135,4 +135,14 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
         [self.movieToShowtimesMap hash];
 }
 
++ (NSString*) processShowtime:(NSString*) showtime {
+    if ([showtime hasSuffix:@" PM"]) {
+        return [NSString stringWithFormat:@"%@pm", [showtime substringToIndex:[showtime length] - 3]];
+    } else if ([showtime hasSuffix:@" AM"]) {
+        return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:[showtime length] - 3]];        
+    }
+    
+    return showtime;
+}
+
 @end

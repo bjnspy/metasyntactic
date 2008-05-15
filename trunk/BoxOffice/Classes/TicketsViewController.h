@@ -17,14 +17,20 @@
     Theater* theater;
     NSArray* showtimes;
     
-    NSMutableArray* ticketUrls;
+    NSMutableArray* showIds;
+    NSMutableArray* movieIds;
+    NSMutableArray* theaterIds;
+    //NSMutableArray* ticketUrls;
 }
 
 @property (retain) AbstractNavigationController* controller;
 @property (retain) Movie* movie;
 @property (retain) Theater* theater;
 @property (retain) NSArray* showtimes;
-@property (retain) NSMutableArray* ticketUrls;
+@property (retain) NSMutableArray* showIds;
+@property (retain) NSMutableArray* movieIds;
+@property (retain) NSMutableArray* theaterIds;
+//@property (retain) NSMutableArray* ticketUrls;
 
 - (id) initWithController:(AbstractNavigationController*) controller
                   theater:(Theater*) theater

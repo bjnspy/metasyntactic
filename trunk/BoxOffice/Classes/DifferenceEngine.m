@@ -79,22 +79,34 @@
     return YES;
 }
 
-- (NSInteger) minX:(NSInteger) x
-                 Y:(NSInteger) y {
+//#define DE_min(x,y) (((x) < (y)) ? (x) : (y))
+
+NSInteger DE_min(NSInteger x, NSInteger y) {
     return x < y ? x : y;
 }
+
+//- (NSInteger) minX:(NSInteger) x
+//                 Y:(NSInteger) y {
+//    return x < y ? x : y;
+//}
 
 - (NSInteger) editDistanceFrom:(NSString*) from
                             to:(NSString*) to {
     return [self editDistanceFrom:from to:to withThreshold:-1];
 }
 
-- (NSInteger) editDistanceFrom:(NSString*) S
-                            to:(NSString*) T
+- (NSInteger) editDistanceFrom:(NSString*) from
+                            to:(NSString*) to
                  withThreshold:(NSInteger) threshold {
-    if ([self initializeFrom:S to:T withThreshold:threshold] == NO) {
+    if ([self initializeFrom:from to:to withThreshold:threshold] == NO) {
         return NSIntegerMax;
     }
+    
+    unichar S[MaxLength];
+    unichar T[MaxLength];
+    
+    [from getCharacters:S];
+    [to getCharacters:T];
     
     for (NSInteger i = 1; i < cached_S_length; i++) {
         BOOL rowIsUnderThreshold = (costThreshold < 0);
@@ -102,19 +114,19 @@
         for (NSInteger j = 1; j < cached_T_length; j++) {
             const NSInteger adds = 1;
             const NSInteger deletes = 1;
-            NSInteger switches = ([S characterAtIndex:(i - 1)] == [T characterAtIndex:(j - 1)]) ? 0 : 1;
+            NSInteger switches = (S[(i - 1)] == T[(j - 1)]) ? 0 : 1;
             
             NSInteger totalDeleteCost = costTable[i - 1][j] + (deletes * deleteCost);
             NSInteger totalAddCost = costTable[i][j - 1] + (adds * addCost);
             NSInteger totalSwitchCost = costTable[i - 1][j - 1] + (switches * switchCost);
-            NSInteger cost = [self minX:totalDeleteCost Y:[self minX:totalAddCost Y:totalSwitchCost]];
+            NSInteger cost = DE_min(totalDeleteCost, DE_min(totalAddCost, totalSwitchCost));
             
             if (i >= 2 && j >= 2) {
-                NSInteger transposes = 1 + (([S characterAtIndex:(i - 1)] == [T characterAtIndex:j]) ? 0 : 1) + 
-                (([S characterAtIndex:i] == [T characterAtIndex:(j - 1)]) ? 0 : 1);
+                NSInteger transposes = 1 + ((S[(i - 1)] == T[j]) ? 0 : 1) + 
+                ((S[i] == T[(j - 1)]) ? 0 : 1);
                 NSInteger tCost = costTable[i - 2][j - 2] + (transposes * transposeCost);
                 
-                costTable[i][j] = [self minX:cost Y:tCost];
+                costTable[i][j] = DE_min(cost, tCost);
             } else {
                 costTable[i][j] = cost;
             }

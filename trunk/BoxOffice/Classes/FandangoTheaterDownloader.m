@@ -29,16 +29,6 @@
     return result;
 }
 
-+ (NSString*) processShowtime:(NSString*) showtime {
-    if ([showtime hasSuffix:@" PM"]) {
-        return [NSString stringWithFormat:@"%@pm", [showtime substringToIndex:[showtime length] - 3]];
-    } else if ([showtime hasSuffix:@" AM"]) {
-        return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:[showtime length] - 3]];        
-    }
-    
-    return showtime;
-}
-
 + (NSArray*) processTheatersElement:(XmlElement*) theatersElement
                             withMap:movieIdToTitleMap {
     NSMutableArray* array = [NSMutableArray array];
@@ -62,7 +52,7 @@
             XmlElement* performancesElement = [movieElement element:@"performances"];
             for (XmlElement* performanceElement in performancesElement.children) {
                 NSString* showtime = [performanceElement attributeValue:@"showtime"];
-                showtime = [self processShowtime:showtime];
+                showtime = [Theater processShowtime:showtime];
                 [showtimes addObject:showtime];
             }
             

@@ -31,4 +31,7 @@
 
 - (NSDictionary*) dictionary;
 
++ (NSString*) processShowtime:(NSString*) showtime;
+    
+
 @end

@@ -16,4 +16,9 @@
                     usingFunction:(NSInteger(*)(id, id, void *)) comparator
                           context:(void*) context;
 
++ (id) findSmallestElementInArray:(NSArray*) array 
+                    usingFunction:(NSInteger(*)(id, id, void*, void*)) comparator
+                          context1:(void*) context1
+                          context2:(void*) context2;
+
 @end

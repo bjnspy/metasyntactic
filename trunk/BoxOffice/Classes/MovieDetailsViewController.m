@@ -144,6 +144,8 @@
         [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
         [cell.contentView addSubview:webView]; 
         
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
         return cell;
     } else {
         //static NSString* @"MovieDetailsCell";

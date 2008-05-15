@@ -21,6 +21,8 @@
     NSInteger backgroundTaskCount;
     UIActivityIndicatorView* activityIndicatorView;
     UIView* activityView;
+    
+    XmlElement* ticketsElement;
 }
 
 @property (retain) NotificationCenter* notificationCenter;
@@ -29,6 +31,7 @@
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
 @property (retain) UIView* activityView;
 @property (readonly) NSInteger backgroundTaskCount;
+@property (retain) XmlElement* ticketsElement;
 
 + (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter;
 
