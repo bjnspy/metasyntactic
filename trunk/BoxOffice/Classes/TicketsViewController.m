@@ -74,7 +74,6 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
           theaterElement:(XmlElement*) theaterElement {
     NSString* movieId = [movieElement.attributes valueForKey:@"id"];
     NSString* date1 = [Theater processShowtime:showtime];
-    //NSDate* date = [NSDate dateWithNaturalLanguageString:showtime];
     
     for (XmlElement* movieElement in [theaterElement element:@"movies"].children) {
         if ([movieId isEqual:[movieElement attributeValue:@"id"]]) {

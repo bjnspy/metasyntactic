@@ -7,11 +7,15 @@
 //
 
 @interface MovieShowtimesCell : UITableViewCell {
-    NSArray* showtimes;
+    UILabel* label;
+    //NSArray* showtimes;
 }
 
-@property (retain) NSArray* showtimes;
+@property (retain) UILabel* label;
 
-+ (MovieShowtimesCell*) cellWithShowtimes:(NSArray*) showtimes;
+- (void) setShowtimes:(NSArray*) showtimes;
+
+//@property (retain) NSArray* showtimes;
+//+ (MovieShowtimesCell*) cellWithShowtimes:(NSArray*) showtimes;
 
 @end

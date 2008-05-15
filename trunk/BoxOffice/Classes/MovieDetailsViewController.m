@@ -148,8 +148,17 @@
         
         return cell;
     } else {
-        //static NSString* @"MovieDetailsCell";
-        return [MovieShowtimesCell cellWithShowtimes:[self.showtimesArray objectAtIndex:(section - 1)]];
+        static NSString* reuseIdentifier = @"MovieDetailsCellIdentifier";
+        id i = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        MovieShowtimesCell* cell = i;
+        if (cell == nil) {
+            cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        }
+        
+        [cell setShowtimes:[self.showtimesArray objectAtIndex:(section - 1)]];
+  
+        return cell;
+//        return [MovieShowtimesCell cellWithShowtimes:[self.showtimesArray objectAtIndex:(section - 1)]];
     }
 }
 

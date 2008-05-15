@@ -10,47 +10,49 @@
 
 @implementation MovieShowtimesCell
 
-@synthesize showtimes;
+@synthesize label;
 
 - (void) dealloc {
-    self.showtimes = nil;
+    self.label = nil;
     [super dealloc];
 }
 
-- (id) initWithShowtimes: (NSArray*) showtimes_ {
-    if (self = [super initWithFrame:CGRectZero reuseIdentifier:nil]) {
-        self.showtimes = showtimes_;
+- (id)    initWithFrame:(CGRect) frame
+        reuseIdentifier:(NSString*) reuseIdentifier  {
+    if (self = [super initWithFrame:frame
+                    reuseIdentifier:reuseIdentifier]) {      
         self.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];  
+        
+        label.numberOfLines = 0;
+        label.font = [UIFont boldSystemFontOfSize:11];
+        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.opaque = NO;
+        
+        [self addSubview:label];
     }
     
     return self;
 }
 
-+ (MovieShowtimesCell*) cellWithShowtimes:(NSArray*) showtimes {
-    return [[[MovieShowtimesCell alloc] initWithShowtimes:showtimes] autorelease];
-}
-
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
-    NSString* text = [self.showtimes objectAtIndex:0];
-    for (int i = 1; i < [self.showtimes count]; i++) {
-        text = [text stringByAppendingString:@", "];
-        text = [text stringByAppendingString:[self.showtimes objectAtIndex:i]];
-    }
     
     CGRect bounds = self.contentView.frame;
     CGRect labelBounds = CGRectMake(bounds.origin.x + 9, bounds.origin.y + 9, bounds.size.width - 10, bounds.size.height - 18);
     
-    UILabel* label = [[[UILabel alloc] initWithFrame:labelBounds] autorelease];
-    //label.backgroundColor = [UIColor clearColor];
-    label.text = text;
-    label.numberOfLines = 0;
-    label.font = [UIFont boldSystemFontOfSize:11];
-    label.lineBreakMode = UILineBreakModeWordWrap;
-    label.opaque = NO;
+    self.label.frame = labelBounds;
+}
+
+- (void) setShowtimes:(NSArray*) showtimes {
+    NSString* text = [showtimes objectAtIndex:0];
+    for (int i = 1; i < [showtimes count]; i++) {
+        text = [text stringByAppendingString:@", "];
+        text = [text stringByAppendingString:[showtimes objectAtIndex:i]];
+    }
     
-    [self addSubview:label];
+    label.text = text;
 }
 
 @end

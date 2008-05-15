@@ -106,7 +106,16 @@
         [cell.contentView addSubview:label];
         return cell;
     } else {
-        return [MovieShowtimesCell cellWithShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];
+        static NSString* reuseIdentifier = @"MovieDetailsCellIdentifier";
+        id i = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        MovieShowtimesCell* cell = i;
+        if (cell == nil) {
+            cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        }
+        
+        [cell setShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];
+        
+        return cell;
     }
 }
 
