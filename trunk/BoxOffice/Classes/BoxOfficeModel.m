@@ -329,6 +329,9 @@
 - (NSDictionary*) theaterDistanceMap {
     Location* userLocation = [self locationForZipcode:[self zipcode]];
     NSString* locationDescription = [userLocation description];
+    if (locationDescription == nil) {
+        locationDescription = @"";
+    }
     
     NSMutableDictionary* theaterDistanceMap = [self.cachedTheaterDistanceMap objectForKey:locationDescription];
     if (theaterDistanceMap == nil) {
@@ -347,7 +350,8 @@
             [theaterDistanceMap setObject:value forKey:key];
         }
         
-        [self.cachedTheaterDistanceMap setObject:theaterDistanceMap forKey:locationDescription];
+        [self.cachedTheaterDistanceMap setObject:theaterDistanceMap
+                                          forKey:locationDescription];
     }
     
     return theaterDistanceMap;
