@@ -25,12 +25,14 @@
 - (id) initWithMovie:(Movie*) movie_ {
     if (self = [super init]) {
         self.movie = movie_;
-    }
+    } 
     
     return self;
 }
 
 - (NSData*) go {
+    return nil; 
+    
     NSData* data = [ImdbPosterDownloader download:self.movie];
     if (data != nil) {
         return data;

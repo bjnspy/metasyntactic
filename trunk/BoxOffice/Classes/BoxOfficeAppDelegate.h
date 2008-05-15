@@ -6,9 +6,6 @@
 //  Copyright __MyCompanyName__ 2008. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-#import <sqlite3.h>
-
 #import "ApplicationTabBarController.h"
 #import "BoxOfficeController.h"
 #import "BoxOfficeModel.h"

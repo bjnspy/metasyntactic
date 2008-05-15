@@ -12,6 +12,7 @@
 #import "ApplicationTabBarController.h"
 #import "BoxOfficeAppDelegate.h"
 #import "PosterView.h"
+#import "MovieTitleCell.h"
 
 @implementation AllMoviesViewController
 
@@ -179,8 +180,23 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     } else {
         movie = [self.sortedMovies objectAtIndex:row];
     }
+
+    static NSString* reuseIdentifier = @"AllMoviesIdentifier";
+    id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    MovieTitleCell* movieCell = cell;
+    if (movieCell == nil) {    
+        movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
+    }
     
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:nil] autorelease];
+    [movieCell setMovie:movie];
+    
+    /*
+    static NSString* reuseIdentifier = @"AllMoviesIdentifier";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {    
+        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
+    //}
+    
     
     int ratingValue = [movie ratingValue];
     if (ratingValue >= 0 && ratingValue <= 100) {
@@ -213,8 +229,10 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     } else {
         cell.text = [NSString stringWithFormat:@"N/A  %@", movie.title];
     }
+}
+     */
     
-    return cell;
+    return movieCell;
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView

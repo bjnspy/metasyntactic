@@ -6,9 +6,6 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-
 @interface EditorViewController : UIViewController {
     UINavigationController* navigationController;
     id object;

@@ -6,7 +6,6 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
 #import "EditorViewController.h"
 
 @interface PickerEditorViewController : EditorViewController<UIPickerViewDelegate> {

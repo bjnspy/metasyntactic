@@ -61,7 +61,8 @@
     }
     
     for (NSString* filePath in set) {
-        [[NSFileManager defaultManager] removeFileAtPath:filePath handler:nil];
+        NSError* error;
+        [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
     }
 }
 

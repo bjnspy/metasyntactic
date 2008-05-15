@@ -69,6 +69,8 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
 }
 
 + (NSDictionary*) prepareShowtimesMap:(NSDictionary*) movieToShowtimesMap {
+    return movieToShowtimesMap;
+    
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     
     for (NSString* movie in movieToShowtimesMap) {

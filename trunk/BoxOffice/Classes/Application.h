@@ -17,5 +17,7 @@
 + (NSString*) documentsFolder;
 + (NSString*) formatDate:(NSDate*) date;
 + (UIColor*) lightBlueTextColor;
++ (UIImage*) freshImage;
++ (UIImage*) rottenImage;
 
 @end

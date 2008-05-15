@@ -17,6 +17,8 @@ static NSString* _postersFolder = nil;
 static NSString* _documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
 static UIColor* lightBlueTextColor = nil;
+static UIImage* freshImage = nil;
+static UIImage* rottenImage = nil;
 
 + (void) initialize {
     if (self == [Application class]) {
@@ -28,6 +30,11 @@ static UIColor* lightBlueTextColor = nil;
         
         lightBlueTextColor = [UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1];
         [lightBlueTextColor retain];
+        
+        freshImage = [UIImage imageNamed:@"Fresh.png"];
+        rottenImage = [UIImage imageNamed:@"Rotten.png"];
+        [freshImage retain];
+        [rottenImage retain];
     }
 }
 
@@ -76,7 +83,6 @@ static UIColor* lightBlueTextColor = nil;
     return _supportFolder;
 }
 
-
 + (NSString*) postersFolder {
     [gate lock];
     {
@@ -107,6 +113,14 @@ static UIColor* lightBlueTextColor = nil;
 
 + (UIColor*) lightBlueTextColor {
     return lightBlueTextColor;
+}
+
++ (UIImage*) freshImage {
+    return freshImage;
+}
+
++ (UIImage*) rottenImage {
+    return rottenImage;
 }
 
 @end

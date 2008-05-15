@@ -6,8 +6,6 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 @class AllMoviesViewController;
 
 @interface PosterView : UIView {

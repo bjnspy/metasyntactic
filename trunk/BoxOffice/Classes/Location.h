@@ -6,8 +6,6 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
 #define UNKNOWN_DISTANCE FLT_MAX
 
 @interface Location : NSObject {

@@ -6,9 +6,6 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-
-
 @interface ActivityIndicator : NSObject {
     UIBarButtonItem* startButtonItem; 
     UINavigationItem* navigationItem;
