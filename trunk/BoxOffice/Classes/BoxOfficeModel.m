@@ -24,11 +24,7 @@
 
 - (void) dealloc {
     self.notificationCenter = nil;
-    
-    self.posterCache.model = nil;
     self.posterCache = nil;
-    
-    self.addressLocationCache.model = nil;
     self.addressLocationCache = nil;
     
     self.activityIndicatorView = nil;
@@ -62,8 +58,8 @@
 - (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
     if (self = [super init]) {
         self.notificationCenter = notificationCenter_;
-        self.posterCache = [PosterCache cacheWithModel:self];
-        self.addressLocationCache = [AddressLocationCache cacheWithModel:self];
+        self.posterCache = [PosterCache cache];
+        self.addressLocationCache = [AddressLocationCache cache];
         
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleBlueSmall] autorelease];
         CGRect frame = self.activityIndicatorView.frame;

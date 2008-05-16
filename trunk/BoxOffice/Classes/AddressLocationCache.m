@@ -16,32 +16,28 @@
 
 @implementation AddressLocationCache
 
-@synthesize model;
 @synthesize gate;
 
 - (void) dealloc {
-    self.model = nil;
     self.gate = nil;
     [super dealloc];
 }
 
-- (id) initWithModel:(BoxOfficeModel*) model_ {
+- (id) init {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
-        self.model = model_;
     }
     
     return self;
 }
 
-+ (AddressLocationCache*) cacheWithModel:(BoxOfficeModel*) model {
-    return [[[AddressLocationCache alloc] initWithModel:model] autorelease];
++ (AddressLocationCache*) cache {
+    return [[[AddressLocationCache alloc] init] autorelease];
 }
 
 - (void) updateAddresses:(NSArray*) addresses {
     for (NSString* address in addresses) {
         if ([self locationForAddress:address] == nil) {    
-            [self.model addBackgroundTask:@"Finding Theater Locations"];
             [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                                    withObject:[NSArray arrayWithArray:addresses]];
             
@@ -229,10 +225,7 @@
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        [self downloadAddressLocations:addresses];
-        [self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:)
-                               withObject:@"Finished Finding Theater Locations"
-                            waitUntilDone:NO];
+        [self downloadAddressLocations:addresses];   
         
         [autoreleasePool release];
     }
@@ -290,9 +283,6 @@
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
     [self downloadZipcodeLocationFromWebService:zipcode];
-    [self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:)
-                           withObject:@"Finished Finding Zipcode Location"
-                        waitUntilDone:NO];
     
     [autoreleasePool release];    
 }
@@ -307,15 +297,8 @@
         return;
     }
     
-    [self.model addBackgroundTask:@"Finding User Location"];
     [self performSelectorInBackground:@selector(updateZipcodeBackgroundEntryPoint:)
                            withObject:zipcode];    
-}
-
-- (void) onBackgroundThreadFinished:(NSString*) description {
-    if (self.model != nil) {
-        [self.model removeBackgroundTask:description];
-    }
 }
 
 @end

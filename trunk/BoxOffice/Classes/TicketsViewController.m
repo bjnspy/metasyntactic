@@ -172,7 +172,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
 
 - (NSInteger)       tableView:(UITableView*) tableView
         numberOfRowsInSection:(NSInteger) section {
-    return [showtimes count];;
+    return [showtimes count];
 }
 
 - (UITableViewCell*)        tableView:(UITableView*) tableView
@@ -191,6 +191,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
     
     NSString* showtime = [showtimes objectAtIndex:row];
     if ([Utilities isNilOrEmpty:[self.showIds objectAtIndex:[indexPath row]]]) {
+        cell.textColor = [UIColor blackColor];
         cell.text = [NSString stringWithFormat:@"%@ (No Online Ticketing)", showtime];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {

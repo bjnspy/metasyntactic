@@ -15,29 +15,25 @@
 @implementation PosterCache
 
 @synthesize gate;
-@synthesize model;
 
 - (void) dealloc {
     self.gate = nil;
-    self.model = nil;
     [super dealloc];
 }
 
-- (id) initWithModel:(BoxOfficeModel*) model_ {
+- (id) init {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
-        self.model = model_;
     }
     
     return self;
 }
 
-+ (PosterCache*) cacheWithModel:(BoxOfficeModel*) model {
-    return [[[PosterCache alloc] initWithModel:model] autorelease];
++ (PosterCache*) cache {
+    return [[[PosterCache alloc] init] autorelease];
 }
 
 - (void) update:(NSArray*) movies {
-    [self.model addBackgroundTask:@"Downloading Posters"];
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:movies]];
 }
@@ -97,17 +93,10 @@
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         [self updateInBackground:movies];
-        [self performSelectorOnMainThread:@selector(onBackgroundThreadFinished:) withObject:nil waitUntilDone:NO];
         
         [autoreleasePool release];
     }
     [gate unlock];
-}
-
-- (void) onBackgroundThreadFinished:(id) object {
-    if (self.model != nil) {
-        [self.model removeBackgroundTask:@"Finished Downloading Posters"];
-    }
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie {

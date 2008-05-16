@@ -11,14 +11,12 @@
 @class BoxOfficeModel;
 
 @interface AddressLocationCache : NSObject {
-    BoxOfficeModel* model;
     NSLock* gate;
 }
 
-@property (assign) BoxOfficeModel* model;
 @property (retain) NSLock* gate;
 
-+ (AddressLocationCache*) cacheWithModel:(BoxOfficeModel*) model;
++ (AddressLocationCache*) cache;
 
 - (void) updateAddresses:(NSArray*) addresses;
 - (void) updateZipcode:(NSString*) zipcode;

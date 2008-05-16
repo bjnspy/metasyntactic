@@ -11,14 +11,12 @@
 @class BoxOfficeModel;
 
 @interface PosterCache : NSObject {
-    BoxOfficeModel* model;
     NSLock* gate;
 }
 
-@property (assign) BoxOfficeModel* model;
 @property (retain) NSLock* gate;
 
-+ (PosterCache*) cacheWithModel:(BoxOfficeModel*) model;
++ (PosterCache*) cache;
 
 - (void) update:(NSArray*) movies;
 
