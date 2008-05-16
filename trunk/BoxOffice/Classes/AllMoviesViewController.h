@@ -34,7 +34,6 @@
 @property (retain) PosterView* posterView;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController;
-- (void) dealloc;
 
 - (void) refresh;
 - (BoxOfficeModel*) model;

@@ -28,7 +28,6 @@
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController
                               movie:(Movie*) movie;
-- (void) dealloc;
 
 - (void) refresh;
 - (BoxOfficeModel*) model;

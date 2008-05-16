@@ -30,7 +30,6 @@
 @property (retain) NSArray* alphabeticSectionTitles;
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
-- (void) dealloc;
 
 - (void) refresh;
 - (BoxOfficeModel*) model;

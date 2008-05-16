@@ -370,7 +370,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DifferenceEngine.m</string>
+								<string>ActivityIndicator.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -378,11 +378,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DifferenceEngine.m</string>
+										<string>ActivityIndicator.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7448A0500DDD622000F565B1</string>
+										<string>7448A0740DDD62F700F565B1</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -488,7 +488,6 @@
 											<string>74D73C5B0DDC1C7900D8CCDF</string>
 											<string>74D73C6B0DDC1F1300D8CCDF</string>
 											<string>74D73CB80DDC23A700D8CCDF</string>
-											<string>74D73CBA0DDC23A700D8CCDF</string>
 											<string>74D73CE90DDC281700D8CCDF</string>
 											<string>74DD7A140DDC332D0083432B</string>
 											<string>74DD7A150DDC332D0083432B</string>
@@ -543,7 +542,8 @@
 											<string>7448A0120DDD5E6400F565B1</string>
 											<string>7448A04A0DDD61E200F565B1</string>
 											<string>7448A04B0DDD61E200F565B1</string>
-											<string>74D73CE40DDC281700D8CCDF</string>
+											<string>7448A0710DDD62F700F565B1</string>
+											<string>7448A0720DDD62F700F565B1</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -829,6 +829,7 @@
 											<string>7448A0190DDD5E6400F565B1</string>
 											<string>7448A04C0DDD61E200F565B1</string>
 											<string>7448A04D0DDD61E200F565B1</string>
+											<string>7448A0730DDD62F700F565B1</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1007,7 +1008,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>232612384.91974699</real>
+	<real>232612599.72631299</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1265,12 +1266,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MovieShowtimesCell.m</string>
+										<string>XmlDocument.h</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1291,8 +1294,6 @@
 							<string>403pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

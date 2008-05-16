@@ -25,7 +25,6 @@
 @property (retain) CLLocationManager* locationManager;
 
 - (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
-- (void) dealloc;
 
 - (void) refresh;
 - (BoxOfficeModel*) model;

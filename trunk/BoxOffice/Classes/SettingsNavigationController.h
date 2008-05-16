@@ -16,7 +16,6 @@
 @property (retain) SettingsViewController* viewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
-- (void) dealloc;
 
 - (void) refresh;
 

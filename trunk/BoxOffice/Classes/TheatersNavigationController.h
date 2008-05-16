@@ -20,7 +20,6 @@
 @property (retain) TheaterDetailsViewController* theaterDetailsViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
-- (void) dealloc;
 
 - (void) refresh;
 

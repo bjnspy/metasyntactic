@@ -25,6 +25,5 @@
 - (id) initWithRoot:(XmlElement*) root 
             version:(NSString*) version 
            encoding:(NSString*) encoding;
-- (void) dealloc;
 
 @end

@@ -18,7 +18,6 @@
 @property (assign) ApplicationTabBarController* tabBarController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
-- (void) dealloc;
 
 - (BoxOfficeModel*) model;
 - (BoxOfficeController*) controller;

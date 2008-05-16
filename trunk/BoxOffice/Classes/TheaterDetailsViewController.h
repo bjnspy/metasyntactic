@@ -25,7 +25,6 @@
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController
                             theater:(Theater*) theater;
-- (void) dealloc;
 
 - (void) refresh;
 

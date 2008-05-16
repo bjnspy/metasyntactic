@@ -16,7 +16,6 @@
 @property (retain) UINavigationItem* navigationItem;
 
 - (id) initWithNavigationItem:(UINavigationItem*) navigationItem;
-- (void) dealloc;
 
 - (void) start;
 - (void) stop;

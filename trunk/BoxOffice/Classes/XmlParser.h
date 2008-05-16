@@ -19,7 +19,6 @@
 @property (retain) NSMutableArray* attributesStack;
 
 - (id) initWithData:(NSData*) data;
-- (void) dealloc;
 
 + (XmlElement*) parse:(NSData*) data;
 

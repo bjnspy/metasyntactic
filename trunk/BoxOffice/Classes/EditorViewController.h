@@ -15,7 +15,6 @@
 @property (assign) UINavigationController* navigationController;
 @property (retain) id object;
 
-- (void) dealloc;
 - (id) initWithController:(UINavigationController*) navigationController
                withObject:(id) object
              withSelector:(SEL) selector;

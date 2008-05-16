@@ -20,7 +20,6 @@
 @property (retain) MovieDetailsViewController* movieDetailsViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
-- (void) dealloc;
 
 - (void) refresh;
 

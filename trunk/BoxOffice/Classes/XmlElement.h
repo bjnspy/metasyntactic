@@ -52,8 +52,6 @@
            children:(NSArray*) children
                text:(NSString*) text;
 
-- (void) dealloc;
-
 - (NSString*) description;
 
 - (NSDictionary*) dictionary;
