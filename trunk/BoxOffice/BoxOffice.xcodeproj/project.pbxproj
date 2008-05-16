@@ -52,6 +52,7 @@
 		74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */; };
 		74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */; };
 		744557260DD7E785008AF706 /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 744557250DD7E785008AF706 /* NotificationCenter.m */; };
+		74489CA80DDD0CEC00F565B1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74489CA70DDD0CEC00F565B1 /* Default.png */; };
 		7464FDBA0DD52F22000CE93F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7464FDB90DD52F22000CE93F /* PosterView.m */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
@@ -145,6 +146,7 @@
 		74447C670DC843D900CC146C /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
 		744557240DD7E785008AF706 /* NotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenter.h; sourceTree = "<group>"; };
 		744557250DD7E785008AF706 /* NotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenter.m; sourceTree = "<group>"; };
+		74489CA70DDD0CEC00F565B1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		7464FDB80DD52F22000CE93F /* PosterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
 		7464FDB90DD52F22000CE93F /* PosterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
 		746A01410DC819270079D89B /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
@@ -295,6 +297,7 @@
 				740078B50DCE7DFD00B3799F /* MostViewed.png */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
 				8D1107310486CEB800E47090 /* Info.plist */,
+				74489CA70DDD0CEC00F565B1 /* Default.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				740E7EB90DCFE6BF0066FCE5 /* Spinner9.png in Resources */,
 				740F28340DD1267000F66E51 /* ImageNotAvailable.png in Resources */,
 				74EC02DF0DD175BB006953A4 /* Icon.png in Resources */,
+				74489CA80DDD0CEC00F565B1 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
