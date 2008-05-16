@@ -17,15 +17,18 @@
 @implementation AddressLocationCache
 
 @synthesize gate;
+@synthesize cachedTheaterDistanceMap;
 
 - (void) dealloc {
     self.gate = nil;
+    self.cachedTheaterDistanceMap = nil;
     [super dealloc];
 }
 
 - (id) init {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
+        self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
     }
     
     return self;
@@ -36,14 +39,10 @@
 }
 
 - (void) updateAddresses:(NSArray*) addresses {
-    for (NSString* address in addresses) {
-        if ([self locationForAddress:address] == nil) {    
-            [self performSelectorInBackground:@selector(backgroundEntryPoint:)
-                                   withObject:[NSArray arrayWithArray:addresses]];
-            
-            break;
-        }
-    }
+    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
+    
+    [self performSelectorInBackground:@selector(backgroundEntryPoint:)
+                           withObject:[NSArray arrayWithArray:addresses]];
 }
 
 - (Location*) locationFromLatitudeElement:(XmlElement*) latElement 
@@ -199,6 +198,8 @@
     [map setValue:[location dictionary] forKey:address];
     
     [[NSUserDefaults standardUserDefaults] setValue:map forKey:@"addressLocationMap"];
+    
+    [self performSelectorOnMainThread:@selector(invalidateCachedData:) withObject:nil waitUntilDone:NO];
 }
 
 - (void) downloadAddressLocation:(NSString*) address {
@@ -225,7 +226,7 @@
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        [self downloadAddressLocations:addresses];   
+        [self downloadAddressLocations:addresses];
         
         [autoreleasePool release];
     }
@@ -289,6 +290,8 @@
 
 - (void) updateZipcode:(NSString*) zipcode
 {
+    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
+    
     if ([Utilities isNilOrEmpty:zipcode]) {
         return;
     }
@@ -299,6 +302,41 @@
     
     [self performSelectorInBackground:@selector(updateZipcodeBackgroundEntryPoint:)
                            withObject:zipcode];    
+}
+
+- (void) invalidateCachedData:(id) object {
+    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
+}
+
+- (NSDictionary*) theaterDistanceMap:(Location*) userLocation
+                            theaters:(NSArray*) theaters {
+    NSString* locationDescription = [userLocation description];
+    if (locationDescription == nil) {
+        locationDescription = @"";
+    }
+    
+    NSMutableDictionary* theaterDistanceMap = [self.cachedTheaterDistanceMap objectForKey:locationDescription];
+    if (theaterDistanceMap == nil) {
+        theaterDistanceMap = [NSMutableDictionary dictionary];
+        
+        for (Theater* theater in theaters) {
+            double d;
+            if (userLocation != nil) {
+                d = [userLocation distanceTo:[self locationForAddress:theater.address]];
+            } else {
+                d = UNKNOWN_DISTANCE;
+            }
+            
+            NSNumber* value = [NSNumber numberWithDouble:d];
+            NSString* key = theater.address;
+            [theaterDistanceMap setObject:value forKey:key];
+        }
+        
+        [self.cachedTheaterDistanceMap setObject:theaterDistanceMap
+         forKey:locationDescription];
+    }
+    
+    return theaterDistanceMap;    
 }
 
 @end

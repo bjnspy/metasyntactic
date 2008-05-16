@@ -12,9 +12,12 @@
 
 @interface AddressLocationCache : NSObject {
     NSLock* gate;
+    
+    NSMutableDictionary* cachedTheaterDistanceMap;
 }
 
 @property (retain) NSLock* gate;
+@property (retain) NSMutableDictionary* cachedTheaterDistanceMap;
 
 + (AddressLocationCache*) cache;
 
@@ -23,5 +26,8 @@
 
 - (Location*) locationForAddress:(NSString*) address;
 - (Location*) locationForZipcode:(NSString*) zipcode;
+
+- (NSDictionary*) theaterDistanceMap:(Location*) userLocation
+                            theaters:(NSArray*) theaters;
 
 @end

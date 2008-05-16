@@ -23,8 +23,6 @@
     UIView* activityView;
     
     XmlElement* ticketsElement;
-    
-    NSMutableDictionary* cachedTheaterDistanceMap;
 }
 
 @property (retain) NotificationCenter* notificationCenter;
@@ -34,7 +32,6 @@
 @property (retain) UIView* activityView;
 @property (readonly) NSInteger backgroundTaskCount;
 @property (retain) XmlElement* ticketsElement;
-@property (retain) NSMutableDictionary* cachedTheaterDistanceMap;
 
 + (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter;
 
