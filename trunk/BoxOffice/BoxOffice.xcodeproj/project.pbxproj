@@ -338,10 +338,10 @@
 		74447D550DC8474A00CC146C /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				74489CCC0DDD11B700F565B1 /* NavigationControllers */,
 				74489CCB0DDD11AB00F565B1 /* TabBarControllers */,
-				74489CCE0DDD11FC00F565B1 /* TableViewCells */,
+				74489CCC0DDD11B700F565B1 /* NavigationControllers */,
 				74489CCD0DDD11D600F565B1 /* ViewControllers */,
+				74489CCE0DDD11FC00F565B1 /* TableViewCells */,
 				740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */,
 				740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */,
 				7464FDB80DD52F22000CE93F /* PosterView.h */,
