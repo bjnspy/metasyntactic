@@ -72,7 +72,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     [UIView beginAnimations:nil context:NULL];
     {
         self.background.frame = emptyFrame;
-        self.currentlyDisplayedMessage.frame = emptyFrame;
+        self.currentlyDisplayedMessage.center = offScreenLeftPoint;
     }
     [UIView commitAnimations];    
 }
