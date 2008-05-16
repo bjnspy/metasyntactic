@@ -16,8 +16,11 @@
 + (NSString*) postersFolder;
 + (NSString*) documentsFolder;
 + (NSString*) formatDate:(NSDate*) date;
-+ (UIColor*) lightBlueTextColor;
++ (UIColor*) commandColor;
 + (UIImage*) freshImage;
 + (UIImage*) rottenImage;
+
++ (void) openMap:(NSString*) address;
++ (void) makeCall:(NSString*) phoneNumber;
 
 @end

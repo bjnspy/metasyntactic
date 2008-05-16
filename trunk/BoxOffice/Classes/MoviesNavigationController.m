@@ -60,6 +60,8 @@
 - (void) pushMovieDetails:(Movie*) movie
                  animated:(BOOL) animated
 {
+    [self popToRootViewControllerAnimated:NO];
+    
     self.movieDetailsViewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self movie:movie] autorelease];
     
     [self pushViewController:movieDetailsViewController animated:animated];
@@ -71,7 +73,8 @@
     
     return [self pushTicketsView:movie
                          theater:theater
-                           title:[NSString stringWithFormat:@"@ %@", theater.name]
+                           title:theater.name
+                   linkToTheater:YES
                         animated:animated];
 }
 

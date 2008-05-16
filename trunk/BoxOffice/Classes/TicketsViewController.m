@@ -11,6 +11,8 @@
 #import "DifferenceEngine.h"
 #import "Utilities.h"
 #import "Application.h"
+#import "AutoresizingCell.h"
+#import "ApplicationTabBarController.h"
 
 @implementation TicketsViewController
 
@@ -136,12 +138,14 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
 - (id) initWithController:(AbstractNavigationController*) controller_
                   theater:(Theater*) theater_
                     movie:(Movie*) movie_
-                    title:(NSString*) title_ {
+                    title:(NSString*) title_
+            linkToTheater:(BOOL) linkToTheater_  {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.controller = controller_;
         self.theater = theater_;
         self.movie = movie_;
         self.showtimes = [[self model] movieShowtimes:self.movie forTheater:self.theater];
+        linkToTheater = linkToTheater_;
 
         self.showIds = [NSMutableArray array];
         self.movieIds = [NSMutableArray array];
@@ -153,6 +157,21 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
                 [self.showIds addObject:@""];
             }
         }
+        
+        /*
+        UILabel* label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        label.text = title_;
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+        label.font = [UIFont boldSystemFontOfSize:20];
+        label.textColor = [UIColor whiteColor];
+        label.adjustsFontSizeToFitWidth = YES;
+        label.opaque = NO;
+        label.backgroundColor = [UIColor clearColor];
+        label.shadowColor = [UIColor darkGrayColor];
+        label.
+        
+        self.navigationItem.titleView = label;
+         */
         
         self.title = title_;
     }
@@ -167,35 +186,39 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+    return 2;
 }
 
 - (NSInteger)       tableView:(UITableView*) tableView
         numberOfRowsInSection:(NSInteger) section {
-    return [showtimes count];
+    if (section == 0) {
+        return 3;
+    } else if (section == 1) {
+        return [showtimes count];
+    }
+    
+    return 0;
 }
 
-- (UITableViewCell*)        tableView:(UITableView*) tableView
-                cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+- (UITableViewCell*) showtimeCellForRow:(NSInteger) row {
+    static NSString* reuseIdentifier = @"TicketsViewShowtimeCellIdentifier";
     
-    NSInteger row = [indexPath row];
-    
-    static NSString* reuseIdentifier = @"TicketsViewCellIdentifier";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
-    
+        
         cell.textAlignment = UITextAlignmentCenter;
         cell.font = [UIFont boldSystemFontOfSize:14];
     }
     
     NSString* showtime = [showtimes objectAtIndex:row];
-    if ([Utilities isNilOrEmpty:[self.showIds objectAtIndex:[indexPath row]]]) {
+    if ([Utilities isNilOrEmpty:[self.showIds objectAtIndex:row]]) {
         cell.textColor = [UIColor blackColor];
+        
         cell.text = [NSString stringWithFormat:@"%@ (No Online Ticketing)", showtime];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
-        cell.textColor = [Application lightBlueTextColor];
+        cell.textColor = [Application commandColor];
         
         NSDate* now = [NSDate date];
         NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:showtime];
@@ -210,13 +233,62 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
         cell.text = [NSString stringWithFormat:@"Order Tickets for %@ %@", showtime, day];
     }
     
+    return cell;    
+}
+
+- (UITableViewCell*) commandCellForRow:(NSInteger) row {
+    static NSString* reuseIdentifier = @"TicketsViewCommandCellIdentifier";
+    
+    AutoresizingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[AutoresizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell.label.textColor = [Application commandColor];
+    }
+    
+    if (row == 0) {
+        cell.label.text = self.theater.address;
+    } else if (row == 1) {
+        cell.label.text = self.theater.phoneNumber;
+    } else if (row == 2) {
+        if (linkToTheater) {
+            cell.label.text = @"Show All Movies at This Theater";
+        } else {
+            cell.label.text = @"Show All Theaters Playing This Movie";
+        }
+    }
+    
     return cell;
 }
 
-- (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
+- (UITableViewCell*)        tableView:(UITableView*) tableView
+                cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
+    if (section == 0) {
+        return [self commandCellForRow:row];
+    } else if (section == 1) {
+        return [self showtimeCellForRow:row];
+    }
+    
+    return nil;
+}
+
+- (void) didSelectCommandAtRow:(NSInteger) row {
+    if (row == 0) {
+        [Application openMap:theater.address];
+    } else if (row == 1) {
+        [Application makeCall:theater.phoneNumber];
+    } else if (row == 2) {
+        if (linkToTheater) {
+            [self.controller.tabBarController showTheaterDetails:theater];
+        } else {
+            [self.controller.tabBarController showMovieDetails:movie];
+        }
+    }
+}
+
+- (void) didSelectShowtimeAtRow:(NSInteger) row {
     NSString* showId = [self.showIds objectAtIndex:row];
     if ([Utilities isNilOrEmpty:showId]) {
         return;
@@ -256,7 +328,19 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
     
     NSURL* url = [NSURL URLWithString:urlString];
     
-    [[UIApplication sharedApplication] openURL:url];
+    [[UIApplication sharedApplication] openURL:url];    
+}
+
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+    
+    if (section == 0) {
+        [self didSelectCommandAtRow:row];
+    } else if (section == 1) {
+        [self didSelectShowtimeAtRow:row];
+    }
 }
 
 @end

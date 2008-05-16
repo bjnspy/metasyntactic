@@ -38,12 +38,14 @@
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater
                    title:(NSString*) title
+           linkToTheater:(BOOL) linkToTheater
                 animated:(BOOL) animated {
     TicketsViewController* controller = 
     [[[TicketsViewController alloc] initWithController:self
                                                theater:theater
                                                  movie:movie
-                                                 title:title] autorelease];
+                                                 title:title
+                                         linkToTheater:linkToTheater] autorelease];
     
     [self pushViewController:controller animated:animated];    
 }

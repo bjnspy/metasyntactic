@@ -37,10 +37,10 @@
         self.title = @"Settings";
         self.navigationController = controller;
         
-        currentLocationItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
-                                                                style:UIBarButtonItemStyleBordered
-                                                               target:self
-                                                               action:@selector(onCurrentLocationClicked:)] autorelease]; 
+        self.currentLocationItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
+                                                                     style:UIBarButtonItemStyleBordered
+                                                                    target:self
+                                                                    action:@selector(onCurrentLocationClicked:)] autorelease]; 
         
         self.navigationItem.leftBarButtonItem = currentLocationItem;
         
@@ -67,7 +67,6 @@
 
 - (void) stopActivityIndicator
 {
-    [locationManager stopUpdatingLocation];
     [self.activityIndicator stop];    
     self.activityIndicator = nil;
 }
@@ -76,7 +75,10 @@
      didUpdateToLocation:(CLLocation*) newLocation
             fromLocation:(CLLocation*) oldLocation
 {
-    [self performSelectorInBackground:@selector(findZipcodeBackgroundEntryPoint:) withObject:newLocation];
+    if (oldLocation != nil) {
+        [locationManager stopUpdatingLocation];
+        [self performSelectorInBackground:@selector(findZipcodeBackgroundEntryPoint:) withObject:newLocation];
+    }
 }
 
 - (void) findZipcodeBackgroundEntryPoint:(CLLocation*) location
@@ -131,6 +133,7 @@
 - (void)locationManager:(CLLocationManager*) manager
        didFailWithError:(NSError*) error
 {
+    [locationManager stopUpdatingLocation];
     [self stopActivityIndicator];
 }
 

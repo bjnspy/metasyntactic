@@ -81,4 +81,14 @@
     [self.settingsNavigationController refresh];
 }
 
+- (void) showTheaterDetails:(Theater*) theater {
+    self.selectedViewController = self.theatersNavigationController;
+    [self.theatersNavigationController pushTheaterDetails:theater animated:YES];
+}
+
+- (void) showMovieDetails:(Movie*) movie {
+    self.selectedViewController = self.moviesNavigationController;
+    [self.moviesNavigationController pushMovieDetails:movie animated:YES];    
+}
+
 @end

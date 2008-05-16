@@ -15,6 +15,7 @@
 #import "MovieShowtimesCell.h"
 #import "Application.h"
 #import "Utilities.h"
+#import "AutoresizingCell.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -89,23 +90,15 @@
     NSInteger row = [indexPath row];
     
     if (section == 0) {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
-        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)] autorelease];
-        
-        label.textAlignment = UITextAlignmentCenter;
-        label.textColor = [Application lightBlueTextColor];
-        label.opaque = NO;
-        label.backgroundColor = [UIColor clearColor];
-        label.font = [UIFont boldSystemFontOfSize:14];
-        label.adjustsFontSizeToFitWidth = YES;
+        AutoresizingCell* cell = [[[AutoresizingCell alloc] initWithFrame:CGRectZero] autorelease];
+        cell.label.textColor = [Application commandColor];
         
         if (row == 0) {
-            label.text = self.theater.address;
+            cell.label.text = self.theater.address;
         } else {
-            label.text = self.theater.phoneNumber;
+            cell.label.text = self.theater.phoneNumber;
         }
         
-        [cell.contentView addSubview:label];
         return cell;
     } else {
         static NSString* reuseIdentifier = @"MovieDetailsCellIdentifier";
@@ -162,16 +155,12 @@
             }
         }
         
-        NSString* urlString;
         if (row == 0) {
-            urlString = [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
-                         [theater.address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+            [Application openMap:theater.address];
         } else {
-            urlString = [NSString stringWithFormat:@"tel:%@", theater.phoneNumber];
+            [Application makeCall:theater.phoneNumber];
         }
-        
-        NSURL* url = [NSURL URLWithString:urlString];
-        [[UIApplication sharedApplication] openURL:url];
+
         return;
     }
     

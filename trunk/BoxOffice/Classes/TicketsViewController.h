@@ -20,7 +20,8 @@
     NSMutableArray* showIds;
     NSMutableArray* movieIds;
     NSMutableArray* theaterIds;
-    //NSMutableArray* ticketUrls;
+    
+    BOOL linkToTheater;
 }
 
 @property (retain) AbstractNavigationController* controller;
@@ -30,11 +31,11 @@
 @property (retain) NSMutableArray* showIds;
 @property (retain) NSMutableArray* movieIds;
 @property (retain) NSMutableArray* theaterIds;
-//@property (retain) NSMutableArray* ticketUrls;
 
 - (id) initWithController:(AbstractNavigationController*) controller
                   theater:(Theater*) theater
                     movie:(Movie*) movie
-                    title:(NSString*) title;
+                    title:(NSString*) title
+            linkToTheater:(BOOL) linkToTheater;
 
 @end

@@ -176,15 +176,14 @@
             cell.text = [NSString stringWithFormat:@"Show %d Theater%@ Outside Search Radius",
                          self.hiddenTheaterCount, self.hiddenTheaterCount == 1 ? @"" : @"s"];
             
-            cell.textColor = [Application lightBlueTextColor];
+            cell.textColor = [Application commandColor];
             cell.font = [UIFont boldSystemFontOfSize:14];
             
             return cell;
         }
     } else {
         static NSString* reuseIdentifier = @"MovieDetailsCellIdentifier";
-        id i = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        MovieShowtimesCell* cell = i;
+        MovieShowtimesCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];;
         if (cell == nil) {
             cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
         }

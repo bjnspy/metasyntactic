@@ -16,7 +16,7 @@ static NSString* _supportFolder = nil;
 static NSString* _postersFolder = nil;
 static NSString* _documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
-static UIColor* lightBlueTextColor = nil;
+static UIColor* commandColor = nil;
 static UIImage* freshImage = nil;
 static UIImage* rottenImage = nil;
 
@@ -28,8 +28,8 @@ static UIImage* rottenImage = nil;
         [dateFormatter setDateStyle:NSDateFormatterNoStyle];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         
-        lightBlueTextColor = [UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1];
-        [lightBlueTextColor retain];
+        commandColor = [UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1];
+        [commandColor retain];
         
         freshImage = [UIImage imageNamed:@"Fresh.png"];
         rottenImage = [UIImage imageNamed:@"Rotten.png"];
@@ -111,8 +111,8 @@ static UIImage* rottenImage = nil;
     return result;
 }
 
-+ (UIColor*) lightBlueTextColor {
-    return lightBlueTextColor;
++ (UIColor*) commandColor {
+    return commandColor;
 }
 
 + (UIImage*) freshImage {
@@ -121,6 +121,22 @@ static UIImage* rottenImage = nil;
 
 + (UIImage*) rottenImage {
     return rottenImage;
+}
+
++ (void) openMap:(NSString*) address {
+    NSString* urlString =
+     [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
+      [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+
+    NSURL* url = [NSURL URLWithString:urlString];
+    [[UIApplication sharedApplication] openURL:url];    
+}
+
++ (void) makeCall:(NSString*) phoneNumber {
+    NSString* urlString = [NSString stringWithFormat:@"tel:%@", phoneNumber];
+    
+    NSURL* url = [NSURL URLWithString:urlString];
+    [[UIApplication sharedApplication] openURL:url];    
 }
 
 @end
