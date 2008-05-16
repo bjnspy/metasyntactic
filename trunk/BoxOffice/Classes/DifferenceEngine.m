@@ -3,7 +3,7 @@
 //  BoxOffice
 //
 //  Created by Cyrus Najmabadi on 5/3/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  Copyright 2008 Metasyntactic. All rights reserved.
 //
 
 #import "DifferenceEngine.h"
@@ -79,16 +79,9 @@
     return YES;
 }
 
-//#define DE_min(x,y) (((x) < (y)) ? (x) : (y))
-
 NSInteger DE_min(NSInteger x, NSInteger y) {
     return x < y ? x : y;
 }
-
-//- (NSInteger) minX:(NSInteger) x
-//                 Y:(NSInteger) y {
-//    return x < y ? x : y;
-//}
 
 - (NSInteger) editDistanceFrom:(NSString*) from
                             to:(NSString*) to {

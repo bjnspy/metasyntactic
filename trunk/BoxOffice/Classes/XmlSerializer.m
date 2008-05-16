@@ -3,7 +3,7 @@
 //  BoxOffice
 //
 //  Created by Peter Schmitt on 5/3/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//  Copyright 2008 Metasyntactic. All rights reserved.
 //
 
 #import "XmlSerializer.h"

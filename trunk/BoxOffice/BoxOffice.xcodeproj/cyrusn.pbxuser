@@ -768,6 +768,7 @@
 			7448A04C0DDD61E200F565B1 /* PBXTextBookmark */ = 7448A04C0DDD61E200F565B1 /* PBXTextBookmark */;
 			7448A04D0DDD61E200F565B1 /* PBXTextBookmark */ = 7448A04D0DDD61E200F565B1 /* PBXTextBookmark */;
 			7448A04E0DDD61E200F565B1 /* PBXTextBookmark */ = 7448A04E0DDD61E200F565B1 /* PBXTextBookmark */;
+			7448A0500DDD622000F565B1 /* PBXTextBookmark */ = 7448A0500DDD622000F565B1 /* PBXTextBookmark */;
 			745091D00DDBD2C300E32442 = 745091D00DDBD2C300E32442 /* PBXTextBookmark */;
 			745091F00DDBD45600E32442 = 745091F00DDBD45600E32442 /* PBXTextBookmark */;
 			7450926B0DDBD9CB00E32442 = 7450926B0DDBD9CB00E32442 /* PBXTextBookmark */;
@@ -1056,7 +1057,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 15";
 		rLen = 0;
-		rLoc = 197;
+		rLoc = 193;
 		rType = 0;
 		vrLen = 351;
 		vrLoc = 0;
@@ -1066,7 +1067,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 15";
 		rLen = 0;
-		rLoc = 197;
+		rLoc = 193;
 		rType = 0;
 		vrLen = 351;
 		vrLoc = 0;
@@ -1910,7 +1911,7 @@
 		fRef = 748861E90DD6575F007E3E7D /* XmlParser.m */;
 		name = "XmlParser.m: 51";
 		rLen = 0;
-		rLoc = 1109;
+		rLoc = 1105;
 		rType = 0;
 		vrLen = 921;
 		vrLoc = 805;
@@ -1930,7 +1931,7 @@
 		fRef = 7414B8C40DDAB61E00ED9CE0 /* IgnyteTheaterDownloader.h */;
 		name = "IgnyteTheaterDownloader.h: 16";
 		rLen = 42;
-		rLoc = 208;
+		rLoc = 204;
 		rType = 0;
 		vrLen = 253;
 		vrLoc = 0;
@@ -1940,7 +1941,7 @@
 		fRef = 7414B8E60DDAB75200ED9CE0 /* FandangoTheaterDownloader.h */;
 		name = "FandangoTheaterDownloader.h: 17";
 		rLen = 0;
-		rLoc = 254;
+		rLoc = 250;
 		rType = 0;
 		vrLen = 257;
 		vrLoc = 0;
@@ -1950,7 +1951,7 @@
 		fRef = 7414B8960DDAB1F800ED9CE0 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 277";
 		rLen = 0;
-		rLoc = 6890;
+		rLoc = 6886;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 6429;
@@ -1960,7 +1961,7 @@
 		fRef = 7414B8C40DDAB61E00ED9CE0 /* IgnyteTheaterDownloader.h */;
 		name = "IgnyteTheaterDownloader.h: 16";
 		rLen = 0;
-		rLoc = 250;
+		rLoc = 246;
 		rType = 0;
 		vrLen = 253;
 		vrLoc = 0;
@@ -1970,7 +1971,7 @@
 		fRef = 7414B8E60DDAB75200ED9CE0 /* FandangoTheaterDownloader.h */;
 		name = "FandangoTheaterDownloader.h: 17";
 		rLen = 0;
-		rLoc = 254;
+		rLoc = 250;
 		rType = 0;
 		vrLen = 257;
 		vrLoc = 0;
@@ -2287,7 +2288,7 @@
 		fRef = 74EC02740DD17331006953A4 /* ActivityIndicator.m */;
 		name = "ActivityIndicator.m: 46";
 		rLen = 17;
-		rLoc = 976;
+		rLoc = 972;
 		rType = 0;
 		vrLen = 682;
 		vrLoc = 670;
@@ -2297,7 +2298,7 @@
 		fRef = 74EC08980DD3FAAD006953A4 /* MultiDictionary.m */;
 		name = "MultiDictionary.m: 61";
 		rLen = 0;
-		rLoc = 1298;
+		rLoc = 1294;
 		rType = 0;
 		vrLen = 482;
 		vrLoc = 816;
@@ -2307,7 +2308,7 @@
 		fRef = 74088E670DCD36AE00954696 /* XmlDocument.m */;
 		name = "XmlDocument.m: 22";
 		rLen = 0;
-		rLoc = 368;
+		rLoc = 364;
 		rType = 0;
 		vrLen = 457;
 		vrLoc = 194;
@@ -2317,7 +2318,7 @@
 		fRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */;
 		name = "XmlSerializer.m: 88";
 		rLen = 0;
-		rLoc = 2747;
+		rLoc = 2743;
 		rType = 0;
 		vrLen = 538;
 		vrLoc = 2203;
@@ -2556,7 +2557,7 @@
 		fRef = 74CA1F280DD02B840046D1CE /* PickerEditorViewController.m */;
 		name = "PickerEditorViewController.m: 67";
 		rLen = 4;
-		rLoc = 1671;
+		rLoc = 1667;
 		rType = 0;
 		vrLen = 527;
 		vrLoc = 1134;
@@ -2605,7 +2606,7 @@
 		fRef = 7445559D0DD7B9C3008AF706 /* PosterView.h */;
 		name = "PosterView.h: 19";
 		rLen = 0;
-		rLoc = 399;
+		rLoc = 395;
 		rType = 0;
 		vrLen = 340;
 		vrLoc = 138;
@@ -2632,7 +2633,7 @@
 		fRef = 744555E70DD7D0CB008AF706 /* PosterView.m */;
 		name = "PosterView.m: 110";
 		rLen = 0;
-		rLoc = 2964;
+		rLoc = 2960;
 		rType = 0;
 		vrLen = 834;
 		vrLoc = 2050;
@@ -2725,7 +2726,7 @@
 		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
 		name = "BoxOfficeAppDelegate.m: 49";
 		rLen = 0;
-		rLoc = 532;
+		rLoc = 528;
 		rType = 0;
 		vrLen = 967;
 		vrLoc = 375;
@@ -2755,7 +2756,7 @@
 		fRef = 7445573E0DD7F041008AF706 /* BoxOfficeAppDelegate.h */;
 		name = "BoxOfficeAppDelegate.h: 30";
 		rLen = 18;
-		rLoc = 807;
+		rLoc = 803;
 		rType = 0;
 		vrLen = 830;
 		vrLoc = 0;
@@ -2765,7 +2766,7 @@
 		fRef = 744557240DD7E785008AF706 /* NotificationCenter.h */;
 		name = "NotificationCenter.h: 27";
 		rLen = 0;
-		rLoc = 570;
+		rLoc = 566;
 		rType = 0;
 		vrLen = 620;
 		vrLoc = 0;
@@ -2775,7 +2776,7 @@
 		fRef = 74EC06340DD2CF56006953A4 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 24";
 		rLen = 0;
-		rLoc = 429;
+		rLoc = 425;
 		rType = 0;
 		vrLen = 681;
 		vrLoc = 199;
@@ -2785,7 +2786,7 @@
 		fRef = 74EC06340DD2CF56006953A4 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 16";
 		rLen = 0;
-		rLoc = 343;
+		rLoc = 339;
 		rType = 0;
 		vrLen = 681;
 		vrLoc = 199;
@@ -2795,7 +2796,7 @@
 		fRef = 74EC06340DD2CF56006953A4 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 19";
 		rLen = 0;
-		rLoc = 364;
+		rLoc = 360;
 		rType = 0;
 		vrLen = 682;
 		vrLoc = 199;
@@ -2805,7 +2806,7 @@
 		fRef = 74EC08910DD3FA7F006953A4 /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 206";
 		rLen = 11;
-		rLoc = 7867;
+		rLoc = 7863;
 		rType = 0;
 		vrLen = 1515;
 		vrLoc = 6991;
@@ -2825,7 +2826,7 @@
 		fRef = 74D73D270DDC2B0E00D8CCDF /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 33";
 		rLen = 35;
-		rLoc = 877;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 360;
@@ -2835,7 +2836,7 @@
 		fRef = 74D73A3E0DDBE81800D8CCDF /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 68";
 		rLen = 0;
-		rLoc = 2292;
+		rLoc = 2288;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 6425;
@@ -2845,7 +2846,7 @@
 		fRef = 74D73A870DDBEDAE00D8CCDF /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 225";
 		rLen = 0;
-		rLoc = 7520;
+		rLoc = 7516;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 2412;
@@ -2865,7 +2866,7 @@
 		fRef = 743E32870DD673A7004C5161 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 32";
 		rLen = 0;
-		rLoc = 832;
+		rLoc = 828;
 		rType = 0;
 		vrLen = 1003;
 		vrLoc = 0;
@@ -2885,7 +2886,7 @@
 		fRef = 740E7F5D0DCFF1BE0066FCE5 /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 99";
 		rLen = 0;
-		rLoc = 3349;
+		rLoc = 3345;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 6737;
@@ -2905,7 +2906,7 @@
 		fRef = 74088F6B0DCD4C7F00954696 /* MovieDetailsViewController.h */;
 		name = "MovieDetailsViewController.h: 27";
 		rLen = 0;
-		rLoc = 718;
+		rLoc = 714;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 0;
@@ -2915,7 +2916,7 @@
 		fRef = 74447C350DC83D0900CC146C /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 16";
 		rLen = 18;
-		rLoc = 380;
+		rLoc = 376;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 0;
@@ -2925,7 +2926,7 @@
 		fRef = 740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 31";
 		rLen = 34;
-		rLoc = 826;
+		rLoc = 822;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 0;
@@ -2935,7 +2936,7 @@
 		fRef = 74447C550DC8405200CC146C /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 22";
 		rLen = 0;
-		rLoc = 547;
+		rLoc = 543;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 156;
@@ -2955,7 +2956,7 @@
 		fRef = 74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 9";
 		rLen = 0;
-		rLoc = 164;
+		rLoc = 160;
 		rType = 0;
 		vrLen = 311;
 		vrLoc = 0;
@@ -2965,7 +2966,7 @@
 		fRef = 74EC06340DD2CF56006953A4 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 19";
 		rLen = 0;
-		rLoc = 364;
+		rLoc = 360;
 		rType = 0;
 		vrLen = 682;
 		vrLoc = 199;
@@ -2975,7 +2976,7 @@
 		fRef = 74EC08910DD3FA7F006953A4 /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 206";
 		rLen = 11;
-		rLoc = 7867;
+		rLoc = 7863;
 		rType = 0;
 		vrLen = 1515;
 		vrLoc = 6991;
@@ -2995,7 +2996,7 @@
 		fRef = 74D73D270DDC2B0E00D8CCDF /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 33";
 		rLen = 35;
-		rLoc = 877;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 1109;
 		vrLoc = 360;
@@ -3005,7 +3006,7 @@
 		fRef = 74D73A3E0DDBE81800D8CCDF /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 68";
 		rLen = 0;
-		rLoc = 2292;
+		rLoc = 2288;
 		rType = 0;
 		vrLen = 1084;
 		vrLoc = 6425;
@@ -3015,7 +3016,7 @@
 		fRef = 74D73A870DDBEDAE00D8CCDF /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 225";
 		rLen = 0;
-		rLoc = 7520;
+		rLoc = 7516;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 2412;
@@ -3035,7 +3036,7 @@
 		fRef = 743E32870DD673A7004C5161 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 32";
 		rLen = 0;
-		rLoc = 832;
+		rLoc = 828;
 		rType = 0;
 		vrLen = 1003;
 		vrLoc = 0;
@@ -3055,7 +3056,7 @@
 		fRef = 740E7F5D0DCFF1BE0066FCE5 /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 99";
 		rLen = 0;
-		rLoc = 3349;
+		rLoc = 3345;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 6737;
@@ -3075,7 +3076,7 @@
 		fRef = 74088F6B0DCD4C7F00954696 /* MovieDetailsViewController.h */;
 		name = "MovieDetailsViewController.h: 27";
 		rLen = 0;
-		rLoc = 718;
+		rLoc = 714;
 		rType = 0;
 		vrLen = 929;
 		vrLoc = 0;
@@ -3085,7 +3086,7 @@
 		fRef = 74447C350DC83D0900CC146C /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 16";
 		rLen = 18;
-		rLoc = 380;
+		rLoc = 376;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 0;
@@ -3095,7 +3096,7 @@
 		fRef = 740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 31";
 		rLen = 34;
-		rLoc = 826;
+		rLoc = 822;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 0;
@@ -3105,7 +3106,7 @@
 		fRef = 74447C550DC8405200CC146C /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 22";
 		rLen = 0;
-		rLoc = 547;
+		rLoc = 543;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 156;
@@ -3125,7 +3126,7 @@
 		fRef = 74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 9";
 		rLen = 0;
-		rLoc = 164;
+		rLoc = 160;
 		rType = 0;
 		vrLen = 311;
 		vrLoc = 0;
@@ -3135,7 +3136,7 @@
 		fRef = 743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */;
 		name = "MovieShowtimesCell.h: 16";
 		rLen = 0;
-		rLoc = 303;
+		rLoc = 299;
 		rType = 0;
 		vrLen = 444;
 		vrLoc = 0;
@@ -3162,7 +3163,7 @@
 		fRef = 743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */;
 		name = "MovieShowtimesCell.h: 10";
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 216;
 		rType = 0;
 		vrLen = 310;
 		vrLoc = 0;
@@ -3172,7 +3173,7 @@
 		fRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 175";
 		rLen = 0;
-		rLoc = 6750;
+		rLoc = 6746;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 5781;
@@ -3182,7 +3183,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 65";
 		rLen = 0;
-		rLoc = 1703;
+		rLoc = 1699;
 		rType = 0;
 		vrLen = 1012;
 		vrLoc = 1525;
@@ -3192,7 +3193,7 @@
 		fRef = 743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */;
 		name = "MovieShowtimesCell.h: 10";
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 216;
 		rType = 0;
 		vrLen = 310;
 		vrLoc = 0;
@@ -3202,7 +3203,7 @@
 		fRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 175";
 		rLen = 0;
-		rLoc = 6750;
+		rLoc = 6746;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 5781;
@@ -3212,7 +3213,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 65";
 		rLen = 0;
-		rLoc = 1703;
+		rLoc = 1699;
 		rType = 0;
 		vrLen = 1012;
 		vrLoc = 1525;
@@ -3222,7 +3223,7 @@
 		fRef = 74EC06340DD2CF56006953A4 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 34";
 		rLen = 0;
-		rLoc = 577;
+		rLoc = 573;
 		rType = 0;
 		vrLen = 691;
 		vrLoc = 199;
@@ -3232,7 +3233,7 @@
 		fRef = 74EC06340DD2CF56006953A4 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 34";
 		rLen = 0;
-		rLoc = 577;
+		rLoc = 573;
 		rType = 0;
 		vrLen = 691;
 		vrLoc = 199;
@@ -3242,7 +3243,7 @@
 		fRef = 74EC06340DD2CF56006953A4 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 34";
 		rLen = 0;
-		rLoc = 577;
+		rLoc = 573;
 		rType = 0;
 		vrLen = 691;
 		vrLoc = 199;
@@ -3259,7 +3260,7 @@
 		fRef = 74EC06340DD2CF56006953A4 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 34";
 		rLen = 0;
-		rLoc = 577;
+		rLoc = 573;
 		rType = 0;
 		vrLen = 691;
 		vrLoc = 199;
@@ -3269,7 +3270,7 @@
 		fRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 175";
 		rLen = 0;
-		rLoc = 6692;
+		rLoc = 6688;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 5781;
@@ -3297,7 +3298,7 @@
 		fRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 175";
 		rLen = 0;
-		rLoc = 6692;
+		rLoc = 6688;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 5781;
@@ -3314,7 +3315,7 @@
 		fRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 175";
 		rLen = 0;
-		rLoc = 6692;
+		rLoc = 6688;
 		rType = 0;
 		vrLen = 1291;
 		vrLoc = 5781;
@@ -3324,7 +3325,7 @@
 		fRef = 74489D100DDD160800F565B1 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 34";
 		rLen = 0;
-		rLoc = 577;
+		rLoc = 573;
 		rType = 0;
 		vrLen = 557;
 		vrLoc = 345;
@@ -3440,7 +3441,7 @@
 		fRef = 74489D100DDD160800F565B1 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 23";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 424;
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 85;
@@ -3450,7 +3451,7 @@
 		fRef = 745091E70DDBD42E00E32442 /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 40";
 		rLen = 0;
-		rLoc = 1280;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 960;
@@ -3460,7 +3461,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 41";
 		rLen = 17;
-		rLoc = 1077;
+		rLoc = 1073;
 		rType = 0;
 		vrLen = 1288;
 		vrLoc = 670;
@@ -3470,7 +3471,7 @@
 		fRef = 74088C770DCD18C100954696 /* PosterCache.h */;
 		name = "PosterCache.h: 19";
 		rLen = 0;
-		rLoc = 299;
+		rLoc = 295;
 		rType = 0;
 		vrLen = 388;
 		vrLoc = 0;
@@ -3480,7 +3481,7 @@
 		fRef = 74489D290DDD173D00F565B1 /* PosterCache.m */;
 		name = "PosterCache.m: 29";
 		rLen = 17;
-		rLoc = 491;
+		rLoc = 487;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 0;
@@ -3490,7 +3491,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 19";
 		rLen = 0;
-		rLoc = 451;
+		rLoc = 447;
 		rType = 0;
 		vrLen = 538;
 		vrLoc = 0;
@@ -3500,7 +3501,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 201";
 		rLen = 0;
-		rLoc = 9325;
+		rLoc = 9321;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 6292;
@@ -3510,7 +3511,7 @@
 		fRef = 74489D490DDD17A700F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 62";
 		rLen = 0;
-		rLoc = 1467;
+		rLoc = 1463;
 		rType = 0;
 		vrLen = 1230;
 		vrLoc = 1013;
@@ -3520,7 +3521,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 307";
 		rLen = 0;
-		rLoc = 12105;
+		rLoc = 12101;
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 9970;
@@ -3530,7 +3531,7 @@
 		fRef = 74489D100DDD160800F565B1 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 23";
 		rLen = 0;
-		rLoc = 428;
+		rLoc = 424;
 		rType = 0;
 		vrLen = 643;
 		vrLoc = 85;
@@ -3540,7 +3541,7 @@
 		fRef = 745091E70DDBD42E00E32442 /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 40";
 		rLen = 0;
-		rLoc = 1280;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 960;
@@ -3550,7 +3551,7 @@
 		fRef = 74D73B5E0DDC09B700D8CCDF /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 334";
 		rLen = 0;
-		rLoc = 9786;
+		rLoc = 9782;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 9676;
@@ -3560,7 +3561,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 41";
 		rLen = 17;
-		rLoc = 1077;
+		rLoc = 1073;
 		rType = 0;
 		vrLen = 1288;
 		vrLoc = 670;
@@ -3570,7 +3571,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 39";
 		rLen = 0;
-		rLoc = 627;
+		rLoc = 623;
 		rType = 0;
 		vrLen = 1216;
 		vrLoc = 395;
@@ -3580,7 +3581,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 41";
 		rLen = 17;
-		rLoc = 1077;
+		rLoc = 1073;
 		rType = 0;
 		vrLen = 1288;
 		vrLoc = 670;
@@ -3590,7 +3591,7 @@
 		fRef = 74088C770DCD18C100954696 /* PosterCache.h */;
 		name = "PosterCache.h: 19";
 		rLen = 0;
-		rLoc = 299;
+		rLoc = 295;
 		rType = 0;
 		vrLen = 388;
 		vrLoc = 0;
@@ -3600,7 +3601,7 @@
 		fRef = 74489D210DDD173100F565B1 /* PosterCache.m */;
 		name = "PosterCache.m: 22";
 		rLen = 2;
-		rLoc = 375;
+		rLoc = 371;
 		rType = 0;
 		vrLen = 556;
 		vrLoc = 143;
@@ -3610,7 +3611,7 @@
 		fRef = 74489D230DDD173300F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 26";
 		rLen = 0;
-		rLoc = 552;
+		rLoc = 548;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 0;
@@ -3620,7 +3621,7 @@
 		fRef = 74489D290DDD173D00F565B1 /* PosterCache.m */;
 		name = "PosterCache.m: 29";
 		rLen = 17;
-		rLoc = 491;
+		rLoc = 487;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 0;
@@ -3630,7 +3631,7 @@
 		fRef = 74489D2D0DDD174000F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 63";
 		rLen = 0;
-		rLoc = 1401;
+		rLoc = 1397;
 		rType = 0;
 		vrLen = 1319;
 		vrLoc = 962;
@@ -3640,7 +3641,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 19";
 		rLen = 0;
-		rLoc = 451;
+		rLoc = 447;
 		rType = 0;
 		vrLen = 538;
 		vrLoc = 0;
@@ -3650,7 +3651,7 @@
 		fRef = 74EC06770DD2D345006953A4 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 36";
 		rLen = 0;
-		rLoc = 817;
+		rLoc = 813;
 		rType = 0;
 		vrLen = 1107;
 		vrLoc = 602;
@@ -3660,7 +3661,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 201";
 		rLen = 0;
-		rLoc = 9325;
+		rLoc = 9321;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 6292;
@@ -3670,7 +3671,7 @@
 		fRef = 74489D3D0DDD179300F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 308";
 		rLen = 0;
-		rLoc = 12105;
+		rLoc = 12101;
 		rType = 0;
 		vrLen = 649;
 		vrLoc = 10262;
@@ -3680,7 +3681,7 @@
 		fRef = 74489D3F0DDD179400F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 27";
 		rLen = 0;
-		rLoc = 580;
+		rLoc = 576;
 		rType = 0;
 		vrLen = 764;
 		vrLoc = 0;
@@ -3690,7 +3691,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 307";
 		rLen = 0;
-		rLoc = 12105;
+		rLoc = 12101;
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 9970;
@@ -3700,7 +3701,7 @@
 		fRef = 74489D490DDD17A700F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 62";
 		rLen = 0;
-		rLoc = 1467;
+		rLoc = 1463;
 		rType = 0;
 		vrLen = 1230;
 		vrLoc = 1013;
@@ -3710,7 +3711,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 300";
 		rLen = 9;
-		rLoc = 10760;
+		rLoc = 10756;
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 9765;
@@ -3719,7 +3720,7 @@
 		isa = PBXTextBookmark;
 		fRef = 74088BD60DCD0AA800954696 /* PosterCache.m */;
 		rLen = 0;
-		rLoc = 627;
+		rLoc = 623;
 		rType = 0;
 	};
 	74489D700DDD18A200F565B1 /* PBXTextBookmark */ = {
@@ -3727,7 +3728,7 @@
 		fRef = 74489D290DDD173D00F565B1 /* PosterCache.m */;
 		name = "PosterCache.m: 36";
 		rLen = 0;
-		rLoc = 627;
+		rLoc = 623;
 		rType = 0;
 		vrLen = 611;
 		vrLoc = 2277;
@@ -3737,7 +3738,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 300";
 		rLen = 9;
-		rLoc = 10760;
+		rLoc = 10756;
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 9765;
@@ -3757,7 +3758,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 747;
 		vrLoc = 3954;
@@ -3787,7 +3788,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 157";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1176;
 		vrLoc = 4922;
@@ -3797,7 +3798,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 300";
 		rLen = 9;
-		rLoc = 10760;
+		rLoc = 10756;
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 9765;
@@ -3807,7 +3808,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 747;
 		vrLoc = 3954;
@@ -3837,7 +3838,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 159";
 		rLen = 0;
-		rLoc = 6137;
+		rLoc = 6133;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 4916;
@@ -3847,7 +3848,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 159";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 4916;
@@ -3867,7 +3868,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 160";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1302;
 		vrLoc = 4916;
@@ -3887,7 +3888,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 160";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1155;
 		vrLoc = 5541;
@@ -3897,7 +3898,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 160";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 5541;
@@ -3907,7 +3908,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 161";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 5541;
@@ -3917,7 +3918,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 160";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 5541;
@@ -3927,7 +3928,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 165";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 5541;
@@ -3937,7 +3938,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 165";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 5541;
@@ -3947,7 +3948,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 165";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1263;
 		vrLoc = 5541;
@@ -3997,7 +3998,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 157";
 		rLen = 0;
-		rLoc = 5954;
+		rLoc = 5950;
 		rType = 0;
 		vrLen = 1180;
 		vrLoc = 5532;
@@ -4027,7 +4028,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 171";
 		rLen = 0;
-		rLoc = 6137;
+		rLoc = 6133;
 		rType = 0;
 		vrLen = 1215;
 		vrLoc = 5532;
@@ -4037,7 +4038,7 @@
 		fRef = 74489D290DDD173D00F565B1 /* PosterCache.m */;
 		name = "PosterCache.m: 36";
 		rLen = 0;
-		rLoc = 627;
+		rLoc = 623;
 		rType = 0;
 		vrLen = 619;
 		vrLoc = 2269;
@@ -4115,7 +4116,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 32";
 		rLen = 0;
-		rLoc = 832;
+		rLoc = 828;
 		rType = 0;
 		vrLen = 1003;
 		vrLoc = 0;
@@ -4125,7 +4126,7 @@
 		fRef = 746A02140DC81A1A0079D89B /* Application.h */;
 		name = "Application.h: 10";
 		rLen = 0;
-		rLoc = 191;
+		rLoc = 187;
 		rType = 0;
 		vrLen = 431;
 		vrLoc = 0;
@@ -4135,7 +4136,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 225";
 		rLen = 0;
-		rLoc = 7520;
+		rLoc = 7516;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 2412;
@@ -4145,7 +4146,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 742;
 		vrLoc = 3959;
@@ -4175,7 +4176,7 @@
 		fRef = 74489DB80DDD29DE00F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 18";
 		rLen = 0;
-		rLoc = 464;
+		rLoc = 460;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 0;
@@ -4192,7 +4193,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 32";
 		rLen = 0;
-		rLoc = 832;
+		rLoc = 828;
 		rType = 0;
 		vrLen = 1003;
 		vrLoc = 0;
@@ -4202,7 +4203,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 250";
 		rLen = 0;
-		rLoc = 8912;
+		rLoc = 8908;
 		rType = 0;
 		vrLen = 833;
 		vrLoc = 8252;
@@ -4212,7 +4213,7 @@
 		fRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 93";
 		rLen = 0;
-		rLoc = 2865;
+		rLoc = 2861;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 2416;
@@ -4222,7 +4223,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 225";
 		rLen = 0;
-		rLoc = 7520;
+		rLoc = 7516;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 2412;
@@ -4232,7 +4233,7 @@
 		fRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 93";
 		rLen = 236;
-		rLoc = 2865;
+		rLoc = 2861;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 2411;
@@ -4242,7 +4243,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 225";
 		rLen = 0;
-		rLoc = 7520;
+		rLoc = 7516;
 		rType = 0;
 		vrLen = 922;
 		vrLoc = 2412;
@@ -4252,7 +4253,7 @@
 		fRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 93";
 		rLen = 236;
-		rLoc = 2865;
+		rLoc = 2861;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 2411;
@@ -4262,7 +4263,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 742;
 		vrLoc = 3959;
@@ -4272,7 +4273,7 @@
 		fRef = 74489D330DDD177700F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 258";
 		rLen = 0;
-		rLoc = 8634;
+		rLoc = 8630;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 7356;
@@ -4322,7 +4323,7 @@
 		fRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 93";
 		rLen = 236;
-		rLoc = 2865;
+		rLoc = 2861;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 2411;
@@ -4342,7 +4343,7 @@
 		fRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 93";
 		rLen = 236;
-		rLoc = 2865;
+		rLoc = 2861;
 		rType = 0;
 		vrLen = 1330;
 		vrLoc = 2411;
@@ -4362,7 +4363,7 @@
 		fRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 99";
 		rLen = 0;
-		rLoc = 3101;
+		rLoc = 3097;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 2411;
@@ -4382,7 +4383,7 @@
 		fRef = 74489DB80DDD29DE00F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 18";
 		rLen = 0;
-		rLoc = 464;
+		rLoc = 460;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 0;
@@ -4392,7 +4393,7 @@
 		fRef = 74489DCB0DDD2A2600F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 250";
 		rLen = 0;
-		rLoc = 8912;
+		rLoc = 8908;
 		rType = 0;
 		vrLen = 975;
 		vrLoc = 8201;
@@ -4414,7 +4415,7 @@
 		fRef = 74489D290DDD173D00F565B1 /* PosterCache.m */;
 		name = "PosterCache.m: 36";
 		rLen = 0;
-		rLoc = 627;
+		rLoc = 623;
 		rType = 0;
 		vrLen = 619;
 		vrLoc = 2269;
@@ -4423,7 +4424,7 @@
 		isa = PBXTextBookmark;
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		rLen = 0;
-		rLoc = 6295;
+		rLoc = 6291;
 		rType = 0;
 	};
 	74489DF60DDD2CDA00F565B1 /* PBXTextBookmark */ = {
@@ -4431,7 +4432,7 @@
 		fRef = 74489D290DDD173D00F565B1 /* PosterCache.m */;
 		name = "PosterCache.m: 36";
 		rLen = 0;
-		rLoc = 627;
+		rLoc = 623;
 		rType = 0;
 		vrLen = 619;
 		vrLoc = 2269;
@@ -4441,7 +4442,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 186";
 		rLen = 0;
-		rLoc = 6335;
+		rLoc = 6331;
 		rType = 0;
 		vrLen = 1216;
 		vrLoc = 5419;
@@ -4451,7 +4452,7 @@
 		fRef = 74489DF20DDD2CA300F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 238";
 		rLen = 0;
-		rLoc = 8265;
+		rLoc = 8261;
 		rType = 0;
 		vrLen = 1142;
 		vrLoc = 8076;
@@ -4461,7 +4462,7 @@
 		fRef = 74489DF20DDD2CA300F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 238";
 		rLen = 0;
-		rLoc = 8265;
+		rLoc = 8261;
 		rType = 0;
 		vrLen = 1142;
 		vrLoc = 8076;
@@ -4471,7 +4472,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 186";
 		rLen = 0;
-		rLoc = 6296;
+		rLoc = 6292;
 		rType = 0;
 		vrLen = 1347;
 		vrLoc = 5299;
@@ -4481,7 +4482,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 179";
 		rLen = 0;
-		rLoc = 6092;
+		rLoc = 6088;
 		rType = 0;
 		vrLen = 1417;
 		vrLoc = 5299;
@@ -4501,7 +4502,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 742;
 		vrLoc = 3959;
@@ -4511,7 +4512,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 179";
 		rLen = 0;
-		rLoc = 6092;
+		rLoc = 6088;
 		rType = 0;
 		vrLen = 1417;
 		vrLoc = 5299;
@@ -4531,7 +4532,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 742;
 		vrLoc = 3959;
@@ -4541,7 +4542,7 @@
 		fRef = 74489DF20DDD2CA300F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 281";
 		rLen = 0;
-		rLoc = 11730;
+		rLoc = 11726;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 9283;
@@ -4604,7 +4605,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 39";
 		rLen = 0;
-		rLoc = 1081;
+		rLoc = 1077;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 91;
@@ -4614,7 +4615,7 @@
 		fRef = 74489DF20DDD2CA300F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 257";
 		rLen = 0;
-		rLoc = 8912;
+		rLoc = 8908;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 8337;
@@ -4624,7 +4625,7 @@
 		fRef = 74489E0E0DDD315A00F565B1 /* AbstractNavigationController.m */;
 		name = "AbstractNavigationController.m: 48";
 		rLen = 27;
-		rLoc = 1318;
+		rLoc = 1314;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 583;
@@ -4634,7 +4635,7 @@
 		fRef = 740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 29";
 		rLen = 0;
-		rLoc = 769;
+		rLoc = 765;
 		rType = 0;
 		vrLen = 867;
 		vrLoc = 0;
@@ -4644,7 +4645,7 @@
 		fRef = 74489E150DDD318000F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 75";
 		rLen = 0;
-		rLoc = 2236;
+		rLoc = 2232;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 1363;
@@ -4661,7 +4662,7 @@
 		fRef = 74489DF20DDD2CA300F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 140";
 		rLen = 0;
-		rLoc = 5281;
+		rLoc = 5277;
 		rType = 0;
 		vrLen = 1456;
 		vrLoc = 4680;
@@ -4671,7 +4672,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 39";
 		rLen = 0;
-		rLoc = 1081;
+		rLoc = 1077;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 91;
@@ -4681,7 +4682,7 @@
 		fRef = 74489DF20DDD2CA300F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 257";
 		rLen = 0;
-		rLoc = 8912;
+		rLoc = 8908;
 		rType = 0;
 		vrLen = 1163;
 		vrLoc = 8337;
@@ -4691,7 +4692,7 @@
 		fRef = 74489E0E0DDD315A00F565B1 /* AbstractNavigationController.m */;
 		name = "AbstractNavigationController.m: 48";
 		rLen = 27;
-		rLoc = 1318;
+		rLoc = 1314;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 583;
@@ -4701,7 +4702,7 @@
 		fRef = 740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 29";
 		rLen = 0;
-		rLoc = 769;
+		rLoc = 765;
 		rType = 0;
 		vrLen = 867;
 		vrLoc = 0;
@@ -4711,7 +4712,7 @@
 		fRef = 74489E130DDD317B00F565B1 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 71";
 		rLen = 205;
-		rLoc = 2183;
+		rLoc = 2179;
 		rType = 0;
 		vrLen = 1130;
 		vrLoc = 1094;
@@ -4721,7 +4722,7 @@
 		fRef = 74489E150DDD318000F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 75";
 		rLen = 0;
-		rLoc = 2236;
+		rLoc = 2232;
 		rType = 0;
 		vrLen = 911;
 		vrLoc = 1363;
@@ -4731,7 +4732,7 @@
 		fRef = 74489E190DDD318E00F565B1 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 74";
 		rLen = 0;
-		rLoc = 2343;
+		rLoc = 2339;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 1237;
@@ -4741,7 +4742,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 186";
 		rLen = 0;
-		rLoc = 6335;
+		rLoc = 6331;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 5419;
@@ -4750,7 +4751,7 @@
 		isa = PBXTextBookmark;
 		fRef = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */;
 		rLen = 0;
-		rLoc = 2187;
+		rLoc = 2183;
 		rType = 0;
 	};
 	74489E2D0DDD31C000F565B1 /* PBXTextBookmark */ = {
@@ -4758,7 +4759,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 186";
 		rLen = 0;
-		rLoc = 6335;
+		rLoc = 6331;
 		rType = 0;
 		vrLen = 1172;
 		vrLoc = 5419;
@@ -4768,7 +4769,7 @@
 		fRef = 74489E150DDD318000F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 74";
 		rLen = 0;
-		rLoc = 2187;
+		rLoc = 2183;
 		rType = 0;
 		vrLen = 766;
 		vrLoc = 1472;
@@ -4796,7 +4797,7 @@
 		fRef = 74489E190DDD318E00F565B1 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 50";
 		rLen = 0;
-		rLoc = 1547;
+		rLoc = 1543;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 1237;
@@ -4813,7 +4814,7 @@
 		fRef = 74489E190DDD318E00F565B1 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 50";
 		rLen = 0;
-		rLoc = 1547;
+		rLoc = 1543;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 1237;
@@ -4823,7 +4824,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 74";
 		rLen = 0;
-		rLoc = 2199;
+		rLoc = 2195;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 1343;
@@ -4850,7 +4851,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 74";
 		rLen = 0;
-		rLoc = 2199;
+		rLoc = 2195;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 1343;
@@ -4860,7 +4861,7 @@
 		fRef = 74489DB80DDD29DE00F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 18";
 		rLen = 0;
-		rLoc = 464;
+		rLoc = 460;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 3788;
@@ -4870,7 +4871,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 742;
 		vrLoc = 3959;
@@ -4880,7 +4881,7 @@
 		fRef = 743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */;
 		name = "MovieShowtimesCell.h: 10";
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 216;
 		rType = 0;
 		vrLen = 310;
 		vrLoc = 0;
@@ -4917,7 +4918,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 74";
 		rLen = 0;
-		rLoc = 2199;
+		rLoc = 2195;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 1343;
@@ -4927,7 +4928,7 @@
 		fRef = 74489DF20DDD2CA300F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 283";
 		rLen = 0;
-		rLoc = 11730;
+		rLoc = 11726;
 		rType = 0;
 		vrLen = 1196;
 		vrLoc = 9500;
@@ -4937,7 +4938,7 @@
 		fRef = 74489DB80DDD29DE00F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 18";
 		rLen = 0;
-		rLoc = 464;
+		rLoc = 460;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 3788;
@@ -4947,7 +4948,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 742;
 		vrLoc = 3959;
@@ -4997,7 +4998,7 @@
 		fRef = 743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */;
 		name = "MovieShowtimesCell.h: 10";
 		rLen = 0;
-		rLoc = 220;
+		rLoc = 216;
 		rType = 0;
 		vrLen = 310;
 		vrLoc = 0;
@@ -5107,7 +5108,7 @@
 		fRef = 74489E410DDD33E500F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 241";
 		rLen = 101;
-		rLoc = 8232;
+		rLoc = 8228;
 		rType = 0;
 		vrLen = 724;
 		vrLoc = 31;
@@ -5144,7 +5145,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 74";
 		rLen = 0;
-		rLoc = 2187;
+		rLoc = 2183;
 		rType = 0;
 		vrLen = 766;
 		vrLoc = 1471;
@@ -5154,7 +5155,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 74";
 		rLen = 0;
-		rLoc = 2187;
+		rLoc = 2183;
 		rType = 0;
 		vrLen = 766;
 		vrLoc = 1471;
@@ -5200,7 +5201,7 @@
 		fRef = 74489E5E0DDD341E00F565B1 /* AutoresizingCell.h */;
 		name = "AutoresizingCell.h: 12";
 		rLen = 0;
-		rLoc = 207;
+		rLoc = 203;
 		rType = 0;
 		vrLen = 296;
 		vrLoc = 0;
@@ -5210,7 +5211,7 @@
 		fRef = 74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */;
 		name = "AutoresizingCell.m: 12";
 		rLen = 0;
-		rLoc = 244;
+		rLoc = 240;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 49;
@@ -5220,7 +5221,7 @@
 		fRef = 746A02140DC81A1A0079D89B /* Application.h */;
 		name = "Application.h: 24";
 		rLen = 0;
-		rLoc = 506;
+		rLoc = 502;
 		rType = 0;
 		vrLen = 513;
 		vrLoc = 0;
@@ -5230,7 +5231,7 @@
 		fRef = 747204B80DCDAE6A00C11362 /* Application.m */;
 		name = "Application.m: 136";
 		rLen = 0;
-		rLoc = 3825;
+		rLoc = 3821;
 		rType = 0;
 		vrLen = 833;
 		vrLoc = 3126;
@@ -5260,7 +5261,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 39";
 		rLen = 0;
-		rLoc = 1081;
+		rLoc = 1077;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 91;
@@ -5270,7 +5271,7 @@
 		fRef = 74447C390DC83E7400CC146C /* TheatersNavigationController.h */;
 		name = "TheatersNavigationController.h: 34";
 		rLen = 34;
-		rLoc = 992;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 1033;
 		vrLoc = 0;
@@ -5290,7 +5291,7 @@
 		fRef = 74447C320DC83C2000CC146C /* MoviesNavigationController.h */;
 		name = "MoviesNavigationController.h: 32";
 		rLen = 34;
-		rLoc = 940;
+		rLoc = 936;
 		rType = 0;
 		vrLen = 981;
 		vrLoc = 0;
@@ -5300,7 +5301,7 @@
 		fRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 86";
 		rLen = 0;
-		rLoc = 2773;
+		rLoc = 2769;
 		rType = 0;
 		vrLen = 1033;
 		vrLoc = 1939;
@@ -5310,7 +5311,7 @@
 		fRef = 74489E970DDD377600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 160";
 		rLen = 0;
-		rLoc = 4997;
+		rLoc = 4993;
 		rType = 0;
 		vrLen = 876;
 		vrLoc = 4048;
@@ -5320,7 +5321,7 @@
 		fRef = 740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 15";
 		rLen = 16;
-		rLoc = 357;
+		rLoc = 353;
 		rType = 0;
 		vrLen = 867;
 		vrLoc = 0;
@@ -5330,7 +5331,7 @@
 		fRef = 74447C350DC83D0900CC146C /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 35";
 		rLen = 89;
-		rLoc = 1128;
+		rLoc = 1124;
 		rType = 0;
 		vrLen = 1187;
 		vrLoc = 37;
@@ -5348,7 +5349,7 @@
 		fRef = 74489E5E0DDD341E00F565B1 /* AutoresizingCell.h */;
 		name = "AutoresizingCell.h: 12";
 		rLen = 0;
-		rLoc = 207;
+		rLoc = 203;
 		rType = 0;
 		vrLen = 296;
 		vrLoc = 0;
@@ -5358,7 +5359,7 @@
 		fRef = 74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */;
 		name = "AutoresizingCell.m: 12";
 		rLen = 0;
-		rLoc = 244;
+		rLoc = 240;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 49;
@@ -5368,7 +5369,7 @@
 		fRef = 74489E8F0DDD347600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 18";
 		rLen = 0;
-		rLoc = 425;
+		rLoc = 421;
 		rType = 0;
 		vrLen = 805;
 		vrLoc = 38;
@@ -5378,7 +5379,7 @@
 		fRef = 74489E8F0DDD347600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 160";
 		rLen = 0;
-		rLoc = 4925;
+		rLoc = 4921;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 4089;
@@ -5388,7 +5389,7 @@
 		fRef = 746A02140DC81A1A0079D89B /* Application.h */;
 		name = "Application.h: 23";
 		rLen = 0;
-		rLoc = 463;
+		rLoc = 459;
 		rType = 0;
 		vrLen = 470;
 		vrLoc = 0;
@@ -5398,7 +5399,7 @@
 		fRef = 747204B80DCDAE6A00C11362 /* Application.m */;
 		name = "Application.m: 131";
 		rLen = 0;
-		rLoc = 3713;
+		rLoc = 3709;
 		rType = 0;
 		vrLen = 680;
 		vrLoc = 2932;
@@ -5408,7 +5409,7 @@
 		fRef = 74489E8F0DDD347600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 164";
 		rLen = 0;
-		rLoc = 5008;
+		rLoc = 5004;
 		rType = 0;
 		vrLen = 1027;
 		vrLoc = 4073;
@@ -5418,7 +5419,7 @@
 		fRef = 747204B80DCDAE6A00C11362 /* Application.m */;
 		name = "Application.m: 132";
 		rLen = 0;
-		rLoc = 3709;
+		rLoc = 3705;
 		rType = 0;
 		vrLen = 718;
 		vrLoc = 3004;
@@ -5428,7 +5429,7 @@
 		fRef = 746A02140DC81A1A0079D89B /* Application.h */;
 		name = "Application.h: 24";
 		rLen = 0;
-		rLoc = 506;
+		rLoc = 502;
 		rType = 0;
 		vrLen = 513;
 		vrLoc = 0;
@@ -5438,7 +5439,7 @@
 		fRef = 747204B80DCDAE6A00C11362 /* Application.m */;
 		name = "Application.m: 136";
 		rLen = 0;
-		rLoc = 3950;
+		rLoc = 3946;
 		rType = 0;
 		vrLen = 735;
 		vrLoc = 3039;
@@ -5448,7 +5449,7 @@
 		fRef = 74489E8F0DDD347600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 157";
 		rLen = 0;
-		rLoc = 4858;
+		rLoc = 4854;
 		rType = 0;
 		vrLen = 994;
 		vrLoc = 3929;
@@ -5458,7 +5459,7 @@
 		fRef = 747204B80DCDAE6A00C11362 /* Application.m */;
 		name = "Application.m: 136";
 		rLen = 0;
-		rLoc = 3825;
+		rLoc = 3821;
 		rType = 0;
 		vrLen = 833;
 		vrLoc = 3126;
@@ -5468,7 +5469,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 39";
 		rLen = 0;
-		rLoc = 1081;
+		rLoc = 1077;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 91;
@@ -5478,7 +5479,7 @@
 		fRef = 74447C350DC83D0900CC146C /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 16";
 		rLen = 18;
-		rLoc = 380;
+		rLoc = 376;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 0;
@@ -5488,7 +5489,7 @@
 		fRef = 74447C350DC83D0900CC146C /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 16";
 		rLen = 18;
-		rLoc = 380;
+		rLoc = 376;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 0;
@@ -5528,7 +5529,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 39";
 		rLen = 0;
-		rLoc = 1081;
+		rLoc = 1077;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 91;
@@ -5538,7 +5539,7 @@
 		fRef = 740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 29";
 		rLen = 0;
-		rLoc = 769;
+		rLoc = 765;
 		rType = 0;
 		vrLen = 867;
 		vrLoc = 0;
@@ -5548,7 +5549,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 39";
 		rLen = 0;
-		rLoc = 1081;
+		rLoc = 1077;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 91;
@@ -5558,7 +5559,7 @@
 		fRef = 74489E740DDD344A00F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 286";
 		rLen = 0;
-		rLoc = 9743;
+		rLoc = 9739;
 		rType = 0;
 		vrLen = 1258;
 		vrLoc = 9578;
@@ -5568,7 +5569,7 @@
 		fRef = 74447C350DC83D0900CC146C /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 35";
 		rLen = 89;
-		rLoc = 1128;
+		rLoc = 1124;
 		rType = 0;
 		vrLen = 1173;
 		vrLoc = 51;
@@ -5578,7 +5579,7 @@
 		fRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 86";
 		rLen = 0;
-		rLoc = 2773;
+		rLoc = 2769;
 		rType = 0;
 		vrLen = 1033;
 		vrLoc = 1939;
@@ -5588,7 +5589,7 @@
 		fRef = 74489E970DDD377600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 160";
 		rLen = 0;
-		rLoc = 4997;
+		rLoc = 4993;
 		rType = 0;
 		vrLen = 876;
 		vrLoc = 4048;
@@ -5598,7 +5599,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 285";
 		rLen = 71;
-		rLoc = 9672;
+		rLoc = 9668;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 9578;
@@ -5608,7 +5609,7 @@
 		fRef = 74447C350DC83D0900CC146C /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 35";
 		rLen = 89;
-		rLoc = 1128;
+		rLoc = 1124;
 		rType = 0;
 		vrLen = 1187;
 		vrLoc = 37;
@@ -5618,7 +5619,7 @@
 		fRef = 740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 15";
 		rLen = 16;
-		rLoc = 357;
+		rLoc = 353;
 		rType = 0;
 		vrLen = 867;
 		vrLoc = 0;
@@ -5628,7 +5629,7 @@
 		fRef = 74447C350DC83D0900CC146C /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 35";
 		rLen = 89;
-		rLoc = 1128;
+		rLoc = 1124;
 		rType = 0;
 		vrLen = 1187;
 		vrLoc = 37;
@@ -5638,7 +5639,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 15";
 		rLen = 0;
-		rLoc = 408;
+		rLoc = 404;
 		rType = 0;
 		vrLen = 783;
 		vrLoc = 0;
@@ -5648,7 +5649,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 39";
 		rLen = 0;
-		rLoc = 1081;
+		rLoc = 1077;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 150;
@@ -5658,7 +5659,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 284";
 		rLen = 18;
-		rLoc = 9626;
+		rLoc = 9622;
 		rType = 0;
 		vrLen = 1061;
 		vrLoc = 9357;
@@ -5675,7 +5676,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 15";
 		rLen = 0;
-		rLoc = 408;
+		rLoc = 404;
 		rType = 0;
 		vrLen = 783;
 		vrLoc = 0;
@@ -5685,7 +5686,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 39";
 		rLen = 0;
-		rLoc = 1081;
+		rLoc = 1077;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 150;
@@ -5695,7 +5696,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 284";
 		rLen = 18;
-		rLoc = 9626;
+		rLoc = 9622;
 		rType = 0;
 		vrLen = 1061;
 		vrLoc = 9357;
@@ -5705,7 +5706,7 @@
 		fRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 91";
 		rLen = 0;
-		rLoc = 2959;
+		rLoc = 2955;
 		rType = 0;
 		vrLen = 939;
 		vrLoc = 2035;
@@ -5715,7 +5716,7 @@
 		fRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 91";
 		rLen = 0;
-		rLoc = 2959;
+		rLoc = 2955;
 		rType = 0;
 		vrLen = 939;
 		vrLoc = 2035;
@@ -5725,7 +5726,7 @@
 		fRef = 74489E970DDD377600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 160";
 		rLen = 0;
-		rLoc = 4997;
+		rLoc = 4993;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 3986;
@@ -5735,7 +5736,7 @@
 		fRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 91";
 		rLen = 0;
-		rLoc = 2959;
+		rLoc = 2955;
 		rType = 0;
 		vrLen = 939;
 		vrLoc = 2035;
@@ -5745,7 +5746,7 @@
 		fRef = 74489E970DDD377600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 94";
 		rLen = 0;
-		rLoc = 2924;
+		rLoc = 2920;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 2274;
@@ -5755,7 +5756,7 @@
 		fRef = 74489E970DDD377600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 94";
 		rLen = 0;
-		rLoc = 2924;
+		rLoc = 2920;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 2274;
@@ -5765,7 +5766,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 5660;
@@ -5775,7 +5776,7 @@
 		fRef = 74489E970DDD377600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 94";
 		rLen = 0;
-		rLoc = 2924;
+		rLoc = 2920;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 2274;
@@ -5785,7 +5786,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 5660;
@@ -5795,7 +5796,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 285";
 		rLen = 0;
-		rLoc = 9550;
+		rLoc = 9546;
 		rType = 0;
 		vrLen = 1113;
 		vrLoc = 9357;
@@ -5805,7 +5806,7 @@
 		fRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 86";
 		rLen = 18;
-		rLoc = 2732;
+		rLoc = 2728;
 		rType = 0;
 		vrLen = 937;
 		vrLoc = 2037;
@@ -5815,7 +5816,7 @@
 		fRef = 74489E190DDD318E00F565B1 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 63";
 		rLen = 46;
-		rLoc = 1758;
+		rLoc = 1754;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 1237;
@@ -5825,7 +5826,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 63";
 		rLen = 2;
-		rLoc = 1712;
+		rLoc = 1708;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 1343;
@@ -5835,7 +5836,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 287";
 		rLen = 18;
-		rLoc = 9626;
+		rLoc = 9622;
 		rType = 0;
 		vrLen = 1056;
 		vrLoc = 9420;
@@ -5845,7 +5846,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 287";
 		rLen = 18;
-		rLoc = 9626;
+		rLoc = 9622;
 		rType = 0;
 		vrLen = 1056;
 		vrLoc = 9420;
@@ -5855,7 +5856,7 @@
 		fRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 86";
 		rLen = 18;
-		rLoc = 2732;
+		rLoc = 2728;
 		rType = 0;
 		vrLen = 937;
 		vrLoc = 2037;
@@ -5865,7 +5866,7 @@
 		fRef = 74489E190DDD318E00F565B1 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 63";
 		rLen = 46;
-		rLoc = 1758;
+		rLoc = 1754;
 		rType = 0;
 		vrLen = 1153;
 		vrLoc = 1237;
@@ -5875,7 +5876,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 63";
 		rLen = 2;
-		rLoc = 1712;
+		rLoc = 1708;
 		rType = 0;
 		vrLen = 940;
 		vrLoc = 1343;
@@ -5885,7 +5886,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 282";
 		rLen = 0;
-		rLoc = 9550;
+		rLoc = 9546;
 		rType = 0;
 		vrLen = 1057;
 		vrLoc = 9420;
@@ -5895,7 +5896,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 282";
 		rLen = 0;
-		rLoc = 9550;
+		rLoc = 9546;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 9420;
@@ -5905,7 +5906,7 @@
 		fRef = 745091E70DDBD42E00E32442 /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 40";
 		rLen = 0;
-		rLoc = 1280;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1002;
 		vrLoc = 942;
@@ -5915,7 +5916,7 @@
 		fRef = 74489D100DDD160800F565B1 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 33";
 		rLen = 0;
-		rLoc = 577;
+		rLoc = 573;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 43;
@@ -5925,7 +5926,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 300";
 		rLen = 9;
-		rLoc = 10760;
+		rLoc = 10756;
 		rType = 0;
 		vrLen = 912;
 		vrLoc = 9721;
@@ -5935,7 +5936,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 282";
 		rLen = 0;
-		rLoc = 9550;
+		rLoc = 9546;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 9420;
@@ -5945,7 +5946,7 @@
 		fRef = 745091E70DDBD42E00E32442 /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 40";
 		rLen = 0;
-		rLoc = 1280;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1002;
 		vrLoc = 942;
@@ -5955,7 +5956,7 @@
 		fRef = 74489D100DDD160800F565B1 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 33";
 		rLen = 0;
-		rLoc = 577;
+		rLoc = 573;
 		rType = 0;
 		vrLen = 672;
 		vrLoc = 43;
@@ -5965,7 +5966,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 300";
 		rLen = 9;
-		rLoc = 10760;
+		rLoc = 10756;
 		rType = 0;
 		vrLen = 1284;
 		vrLoc = 5422;
@@ -6004,7 +6005,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 300";
 		rLen = 9;
-		rLoc = 10760;
+		rLoc = 10756;
 		rType = 0;
 		vrLen = 787;
 		vrLoc = 47;
@@ -6014,7 +6015,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 300";
 		rLen = 9;
-		rLoc = 10760;
+		rLoc = 10756;
 		rType = 0;
 		vrLen = 787;
 		vrLoc = 47;
@@ -6024,7 +6025,7 @@
 		fRef = 74489EF50DDD3A9E00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 62";
 		rLen = 0;
-		rLoc = 1467;
+		rLoc = 1463;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 661;
@@ -6052,7 +6053,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 200";
 		rLen = 0;
-		rLoc = 6750;
+		rLoc = 6746;
 		rType = 0;
 		vrLen = 1035;
 		vrLoc = 6519;
@@ -6062,7 +6063,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 14";
 		rLen = 0;
-		rLoc = 242;
+		rLoc = 238;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 0;
@@ -6072,7 +6073,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 312";
 		rLen = 0;
-		rLoc = 10985;
+		rLoc = 10981;
 		rType = 0;
 		vrLen = 957;
 		vrLoc = 10142;
@@ -6082,7 +6083,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 41";
 		rLen = 17;
-		rLoc = 1077;
+		rLoc = 1073;
 		rType = 0;
 		vrLen = 1288;
 		vrLoc = 670;
@@ -6099,7 +6100,7 @@
 		fRef = 74489EF50DDD3A9E00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 62";
 		rLen = 0;
-		rLoc = 1467;
+		rLoc = 1463;
 		rType = 0;
 		vrLen = 1126;
 		vrLoc = 764;
@@ -6109,7 +6110,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 200";
 		rLen = 0;
-		rLoc = 6750;
+		rLoc = 6746;
 		rType = 0;
 		vrLen = 1035;
 		vrLoc = 6519;
@@ -6119,7 +6120,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 300";
 		rLen = 9;
-		rLoc = 10760;
+		rLoc = 10756;
 		rType = 0;
 		vrLen = 745;
 		vrLoc = 89;
@@ -6129,7 +6130,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 14";
 		rLen = 0;
-		rLoc = 242;
+		rLoc = 238;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 0;
@@ -6139,7 +6140,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 312";
 		rLen = 0;
-		rLoc = 10985;
+		rLoc = 10981;
 		rType = 0;
 		vrLen = 957;
 		vrLoc = 10142;
@@ -6149,7 +6150,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 41";
 		rLen = 17;
-		rLoc = 1077;
+		rLoc = 1073;
 		rType = 0;
 		vrLen = 1288;
 		vrLoc = 670;
@@ -6159,7 +6160,7 @@
 		fRef = 74489F000DDD3C7800F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 29";
 		rLen = 0;
-		rLoc = 580;
+		rLoc = 576;
 		rType = 0;
 		vrLen = 823;
 		vrLoc = 284;
@@ -6271,7 +6272,7 @@
 		fRef = 74489E9B0DDD377900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 284";
 		rLen = 75;
-		rLoc = 9580;
+		rLoc = 9576;
 		rType = 0;
 		vrLen = 415;
 		vrLoc = 9943;
@@ -6281,7 +6282,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 76";
 		rLen = 0;
-		rLoc = 2187;
+		rLoc = 2183;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 1471;
@@ -6291,7 +6292,7 @@
 		fRef = 74489D100DDD160800F565B1 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 33";
 		rLen = 0;
-		rLoc = 577;
+		rLoc = 573;
 		rType = 0;
 		vrLen = 669;
 		vrLoc = 43;
@@ -6311,7 +6312,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 34";
 		rLen = 0;
-		rLoc = 987;
+		rLoc = 983;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 613;
@@ -6321,7 +6322,7 @@
 		fRef = 7414B8960DDAB1F800ED9CE0 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 310";
 		rLen = 0;
-		rLoc = 9420;
+		rLoc = 9416;
 		rType = 0;
 		vrLen = 1000;
 		vrLoc = 7927;
@@ -6331,7 +6332,7 @@
 		fRef = 74489F4C0DDD3F2B00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 321";
 		rLen = 8;
-		rLoc = 9624;
+		rLoc = 9620;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 9416;
@@ -6341,7 +6342,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 30";
 		rLen = 0;
-		rLoc = 701;
+		rLoc = 697;
 		rType = 0;
 		vrLen = 781;
 		vrLoc = 0;
@@ -6358,7 +6359,7 @@
 		fRef = 74489F000DDD3C7800F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 29";
 		rLen = 0;
-		rLoc = 580;
+		rLoc = 576;
 		rType = 0;
 		vrLen = 823;
 		vrLoc = 284;
@@ -6368,7 +6369,7 @@
 		fRef = 74489D470DDD17A500F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 311";
 		rLen = 0;
-		rLoc = 10985;
+		rLoc = 10981;
 		rType = 0;
 		vrLen = 969;
 		vrLoc = 10142;
@@ -6378,7 +6379,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 41";
 		rLen = 17;
-		rLoc = 1077;
+		rLoc = 1073;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 154;
@@ -6388,7 +6389,7 @@
 		fRef = 74489F000DDD3C7800F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 29";
 		rLen = 0;
-		rLoc = 580;
+		rLoc = 576;
 		rType = 0;
 		vrLen = 1206;
 		vrLoc = 9844;
@@ -6398,7 +6399,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 25";
 		rLen = 0;
-		rLoc = 610;
+		rLoc = 606;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 154;
@@ -6408,7 +6409,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 20";
 		rLen = 0;
-		rLoc = 417;
+		rLoc = 413;
 		rType = 0;
 		vrLen = 660;
 		vrLoc = 0;
@@ -6418,7 +6419,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 25";
 		rLen = 0;
-		rLoc = 610;
+		rLoc = 606;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 154;
@@ -6428,7 +6429,7 @@
 		fRef = 74489F000DDD3C7800F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 62";
 		rLen = 0;
-		rLoc = 1467;
+		rLoc = 1463;
 		rType = 0;
 		vrLen = 1277;
 		vrLoc = 1379;
@@ -6438,7 +6439,7 @@
 		fRef = 74489D100DDD160800F565B1 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 33";
 		rLen = 0;
-		rLoc = 577;
+		rLoc = 573;
 		rType = 0;
 		vrLen = 669;
 		vrLoc = 43;
@@ -6448,7 +6449,7 @@
 		fRef = 74489F1F0DDD3DA400F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 308";
 		rLen = 2;
-		rLoc = 10986;
+		rLoc = 10982;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 10017;
@@ -6458,7 +6459,7 @@
 		fRef = 74489F230DDD3DA600F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 22";
 		rLen = 0;
-		rLoc = 497;
+		rLoc = 493;
 		rType = 0;
 		vrLen = 777;
 		vrLoc = 0;
@@ -6468,7 +6469,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 20";
 		rLen = 0;
-		rLoc = 417;
+		rLoc = 413;
 		rType = 0;
 		vrLen = 660;
 		vrLoc = 0;
@@ -6478,7 +6479,7 @@
 		fRef = 74489F1F0DDD3DA400F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 308";
 		rLen = 2;
-		rLoc = 10986;
+		rLoc = 10982;
 		rType = 0;
 		vrLen = 894;
 		vrLoc = 10017;
@@ -6488,7 +6489,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 34";
 		rLen = 0;
-		rLoc = 987;
+		rLoc = 983;
 		rType = 0;
 		vrLen = 1071;
 		vrLoc = 154;
@@ -6498,7 +6499,7 @@
 		fRef = 74489F2E0DDD3DBF00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 34";
 		rLen = 0;
-		rLoc = 731;
+		rLoc = 727;
 		rType = 0;
 		vrLen = 732;
 		vrLoc = 0;
@@ -6508,7 +6509,7 @@
 		fRef = 74489F1F0DDD3DA400F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 20";
 		rLen = 0;
-		rLoc = 423;
+		rLoc = 419;
 		rType = 0;
 		vrLen = 663;
 		vrLoc = 0;
@@ -6518,7 +6519,7 @@
 		fRef = 74489F330DDD3DD600F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 70";
 		rLen = 0;
-		rLoc = 1920;
+		rLoc = 1916;
 		rType = 0;
 		vrLen = 1229;
 		vrLoc = 1101;
@@ -6528,7 +6529,7 @@
 		fRef = 74489F1F0DDD3DA400F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 31";
 		rLen = 0;
-		rLoc = 640;
+		rLoc = 636;
 		rType = 0;
 		vrLen = 969;
 		vrLoc = 368;
@@ -6538,7 +6539,7 @@
 		fRef = 74489F3E0DDD3E5F00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 54";
 		rLen = 13;
-		rLoc = 1172;
+		rLoc = 1168;
 		rType = 0;
 		vrLen = 1184;
 		vrLoc = 737;
@@ -6548,7 +6549,7 @@
 		fRef = 74489F1F0DDD3DA400F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 308";
 		rLen = 0;
-		rLoc = 10985;
+		rLoc = 10981;
 		rType = 0;
 		vrLen = 951;
 		vrLoc = 10165;
@@ -6558,7 +6559,7 @@
 		fRef = 74489F4C0DDD3F2B00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 323";
 		rLen = 0;
-		rLoc = 9786;
+		rLoc = 9782;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 9214;
@@ -6568,7 +6569,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 31";
 		rLen = 0;
-		rLoc = 745;
+		rLoc = 741;
 		rType = 0;
 		vrLen = 783;
 		vrLoc = 0;
@@ -6578,7 +6579,7 @@
 		fRef = 74489F1F0DDD3DA400F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 311";
 		rLen = 0;
-		rLoc = 11007;
+		rLoc = 11003;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 10222;
@@ -6588,7 +6589,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 31";
 		rLen = 0;
-		rLoc = 745;
+		rLoc = 741;
 		rType = 0;
 		vrLen = 783;
 		vrLoc = 0;
@@ -6598,7 +6599,7 @@
 		fRef = 74489F520DDD3FC900F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 23";
 		rLen = 21;
-		rLoc = 444;
+		rLoc = 440;
 		rType = 0;
 		vrLen = 486;
 		vrLoc = 89;
@@ -6618,7 +6619,7 @@
 		fRef = 74489F4C0DDD3F2B00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 323";
 		rLen = 0;
-		rLoc = 9786;
+		rLoc = 9782;
 		rType = 0;
 		vrLen = 726;
 		vrLoc = 0;
@@ -6628,7 +6629,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 34";
 		rLen = 0;
-		rLoc = 987;
+		rLoc = 983;
 		rType = 0;
 		vrLen = 1223;
 		vrLoc = 613;
@@ -6638,7 +6639,7 @@
 		fRef = 74489F4C0DDD3F2B00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 321";
 		rLen = 8;
-		rLoc = 9624;
+		rLoc = 9620;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 9416;
@@ -6648,7 +6649,7 @@
 		fRef = 7414B8960DDAB1F800ED9CE0 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 310";
 		rLen = 0;
-		rLoc = 9420;
+		rLoc = 9416;
 		rType = 0;
 		vrLen = 1000;
 		vrLoc = 7927;
@@ -6658,7 +6659,7 @@
 		fRef = 74489F4C0DDD3F2B00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 321";
 		rLen = 8;
-		rLoc = 9624;
+		rLoc = 9620;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 9416;
@@ -6668,7 +6669,7 @@
 		fRef = 74489F520DDD3FC900F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 23";
 		rLen = 21;
-		rLoc = 444;
+		rLoc = 440;
 		rType = 0;
 		vrLen = 455;
 		vrLoc = 89;
@@ -6678,7 +6679,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 30";
 		rLen = 0;
-		rLoc = 701;
+		rLoc = 697;
 		rType = 0;
 		vrLen = 781;
 		vrLoc = 0;
@@ -6688,7 +6689,7 @@
 		fRef = 74489F590DDD400700F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 333";
 		rLen = 10;
-		rLoc = 11927;
+		rLoc = 11923;
 		rType = 0;
 		vrLen = 1331;
 		vrLoc = 10850;
@@ -6698,7 +6699,7 @@
 		fRef = 74489F590DDD400700F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 310";
 		rLen = 0;
-		rLoc = 10988;
+		rLoc = 10984;
 		rType = 0;
 		vrLen = 1331;
 		vrLoc = 10850;
@@ -6708,7 +6709,7 @@
 		fRef = 74489F4C0DDD3F2B00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 50";
 		rLen = 0;
-		rLoc = 1039;
+		rLoc = 1035;
 		rType = 0;
 		vrLen = 1086;
 		vrLoc = 726;
@@ -6718,7 +6719,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 30";
 		rLen = 0;
-		rLoc = 701;
+		rLoc = 697;
 		rType = 0;
 		vrLen = 781;
 		vrLoc = 0;
@@ -6728,7 +6729,7 @@
 		fRef = 74489D290DDD173D00F565B1 /* PosterCache.m */;
 		name = "PosterCache.m: 29";
 		rLen = 17;
-		rLoc = 491;
+		rLoc = 487;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 0;
@@ -6738,7 +6739,7 @@
 		fRef = 74489F590DDD400700F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 310";
 		rLen = 0;
-		rLoc = 10988;
+		rLoc = 10984;
 		rType = 0;
 		vrLen = 1331;
 		vrLoc = 10850;
@@ -6748,7 +6749,7 @@
 		fRef = 74489F590DDD400700F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 310";
 		rLen = 0;
-		rLoc = 10988;
+		rLoc = 10984;
 		rType = 0;
 		vrLen = 1331;
 		vrLoc = 10850;
@@ -6758,7 +6759,7 @@
 		fRef = 74489F4C0DDD3F2B00F565B1 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 50";
 		rLen = 0;
-		rLoc = 1039;
+		rLoc = 1035;
 		rType = 0;
 		vrLen = 1086;
 		vrLoc = 726;
@@ -6768,7 +6769,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 30";
 		rLen = 0;
-		rLoc = 701;
+		rLoc = 697;
 		rType = 0;
 		vrLen = 781;
 		vrLoc = 0;
@@ -6778,7 +6779,7 @@
 		fRef = 74489D290DDD173D00F565B1 /* PosterCache.m */;
 		name = "PosterCache.m: 29";
 		rLen = 17;
-		rLoc = 491;
+		rLoc = 487;
 		rType = 0;
 		vrLen = 592;
 		vrLoc = 0;
@@ -6788,7 +6789,7 @@
 		fRef = 74489F590DDD400700F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 228";
 		rLen = 0;
-		rLoc = 8270;
+		rLoc = 8266;
 		rType = 0;
 		vrLen = 1241;
 		vrLoc = 7657;
@@ -6808,7 +6809,7 @@
 		fRef = 74489F590DDD400700F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 224";
 		rLen = 0;
-		rLoc = 8131;
+		rLoc = 8127;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 7657;
@@ -6818,7 +6819,7 @@
 		fRef = 74489F590DDD400700F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 224";
 		rLen = 0;
-		rLoc = 8131;
+		rLoc = 8127;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 7657;
@@ -6838,7 +6839,7 @@
 		fRef = 74489F590DDD400700F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 230";
 		rLen = 0;
-		rLoc = 8270;
+		rLoc = 8266;
 		rType = 0;
 		vrLen = 1383;
 		vrLoc = 7995;
@@ -6860,7 +6861,7 @@
 		fRef = 74489FA70DDD416E00F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 230";
 		rLen = 0;
-		rLoc = 8270;
+		rLoc = 8266;
 		rType = 0;
 		vrLen = 1571;
 		vrLoc = 8219;
@@ -6870,7 +6871,7 @@
 		fRef = 74489FA70DDD416E00F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 249";
 		rLen = 0;
-		rLoc = 8942;
+		rLoc = 8938;
 		rType = 0;
 		vrLen = 1582;
 		vrLoc = 8219;
@@ -6880,7 +6881,7 @@
 		fRef = 74489FA70DDD416E00F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 249";
 		rLen = 0;
-		rLoc = 8942;
+		rLoc = 8938;
 		rType = 0;
 		vrLen = 1004;
 		vrLoc = 280;
@@ -6910,7 +6911,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 64";
 		rLen = 0;
-		rLoc = 2002;
+		rLoc = 1998;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 1298;
@@ -6920,7 +6921,7 @@
 		fRef = 74489FA70DDD416E00F565B1 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 249";
 		rLen = 0;
-		rLoc = 8942;
+		rLoc = 8938;
 		rType = 0;
 		vrLen = 1004;
 		vrLoc = 280;
@@ -6930,7 +6931,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 64";
 		rLen = 0;
-		rLoc = 2002;
+		rLoc = 1998;
 		rType = 0;
 		vrLen = 1087;
 		vrLoc = 1298;
@@ -6950,7 +6951,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 53";
 		rLen = 0;
-		rLoc = 1643;
+		rLoc = 1639;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 1298;
@@ -6960,7 +6961,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 72";
 		rLen = 0;
-		rLoc = 2052;
+		rLoc = 2048;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 1298;
@@ -7020,7 +7021,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 273";
 		rLen = 75;
-		rLoc = 9580;
+		rLoc = 9576;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 9729;
@@ -7030,7 +7031,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 76";
 		rLen = 0;
-		rLoc = 2187;
+		rLoc = 2183;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 1471;
@@ -7039,7 +7040,7 @@
 		isa = PBXTextBookmark;
 		fRef = 74447C3C0DC83E8800CC146C /* SettingsViewController.h */;
 		rLen = 0;
-		rLoc = 153;
+		rLoc = 149;
 		rType = 0;
 	};
 	74489FDC0DDD5B3D00F565B1 /* PBXTextBookmark */ = {
@@ -7047,7 +7048,7 @@
 		fRef = 74489E330DDD31CC00F565B1 /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 76";
 		rLen = 0;
-		rLoc = 2187;
+		rLoc = 2183;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 1471;
@@ -7057,7 +7058,7 @@
 		fRef = 74447C3C0DC83E8800CC146C /* SettingsViewController.h */;
 		name = "SettingsViewController.h: 7";
 		rLen = 0;
-		rLoc = 153;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 0;
@@ -7067,7 +7068,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 273";
 		rLen = 75;
-		rLoc = 9580;
+		rLoc = 9576;
 		rType = 0;
 		vrLen = 584;
 		vrLoc = 9729;
@@ -7077,7 +7078,7 @@
 		fRef = 74447C3C0DC83E8800CC146C /* SettingsViewController.h */;
 		name = "SettingsViewController.h: 7";
 		rLen = 0;
-		rLoc = 153;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 0;
@@ -7087,7 +7088,7 @@
 		fRef = 74447C550DC8405200CC146C /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 22";
 		rLen = 0;
-		rLoc = 547;
+		rLoc = 543;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 156;
@@ -7097,7 +7098,7 @@
 		fRef = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 68";
 		rLen = 0;
-		rLoc = 2292;
+		rLoc = 2288;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 720;
@@ -7107,7 +7108,7 @@
 		fRef = 74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */;
 		name = "ViewControllerUtilities.h: 16";
 		rLen = 38;
-		rLoc = 234;
+		rLoc = 230;
 		rType = 0;
 		vrLen = 279;
 		vrLoc = 0;
@@ -7117,7 +7118,7 @@
 		fRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 25";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 728;
 		rType = 0;
 		vrLen = 741;
 		vrLoc = 0;
@@ -7127,7 +7128,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 15";
 		rLen = 36;
-		rLoc = 372;
+		rLoc = 368;
 		rType = 0;
 		vrLen = 819;
 		vrLoc = 0;
@@ -7137,7 +7138,7 @@
 		fRef = 74489FD40DDD5AF400F565B1 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 16";
 		rLen = 0;
-		rLoc = 411;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 36;
@@ -7147,7 +7148,7 @@
 		fRef = 74489FD80DDD5AF800F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 19";
 		rLen = 0;
-		rLoc = 464;
+		rLoc = 460;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 803;
@@ -7157,7 +7158,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 1131;
 		vrLoc = 151;
@@ -7167,7 +7168,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 72";
 		rLen = 0;
-		rLoc = 2052;
+		rLoc = 2048;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 1298;
@@ -7177,7 +7178,7 @@
 		fRef = 74447C550DC8405200CC146C /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 22";
 		rLen = 0;
-		rLoc = 547;
+		rLoc = 543;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 156;
@@ -7187,7 +7188,7 @@
 		fRef = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 68";
 		rLen = 0;
-		rLoc = 2292;
+		rLoc = 2288;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 720;
@@ -7197,7 +7198,7 @@
 		fRef = 74447C550DC8405200CC146C /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 22";
 		rLen = 0;
-		rLoc = 547;
+		rLoc = 543;
 		rType = 0;
 		vrLen = 1024;
 		vrLoc = 156;
@@ -7207,7 +7208,7 @@
 		fRef = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 68";
 		rLen = 0;
-		rLoc = 2292;
+		rLoc = 2288;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 720;
@@ -7217,7 +7218,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 64";
 		rLen = 76;
-		rLoc = 1976;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 1298;
@@ -7227,7 +7228,7 @@
 		fRef = 74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */;
 		name = "ViewControllerUtilities.h: 16";
 		rLen = 0;
-		rLoc = 272;
+		rLoc = 268;
 		rType = 0;
 		vrLen = 279;
 		vrLoc = 0;
@@ -7247,7 +7248,7 @@
 		fRef = 74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */;
 		name = "ViewControllerUtilities.h: 16";
 		rLen = 38;
-		rLoc = 234;
+		rLoc = 230;
 		rType = 0;
 		vrLen = 279;
 		vrLoc = 0;
@@ -7257,7 +7258,7 @@
 		fRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 15";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 728;
 		rType = 0;
 		vrLen = 288;
 		vrLoc = 0;
@@ -7267,7 +7268,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 64";
 		rLen = 76;
-		rLoc = 1976;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 1298;
@@ -7277,7 +7278,7 @@
 		fRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 25";
 		rLen = 0;
-		rLoc = 732;
+		rLoc = 728;
 		rType = 0;
 		vrLen = 741;
 		vrLoc = 0;
@@ -7287,7 +7288,7 @@
 		fRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 64";
 		rLen = 211;
-		rLoc = 1976;
+		rLoc = 1972;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 1298;
@@ -7297,7 +7298,7 @@
 		fRef = 74489E970DDD377600F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 56";
 		rLen = 213;
-		rLoc = 1557;
+		rLoc = 1553;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 767;
@@ -7307,7 +7308,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 15";
 		rLen = 36;
-		rLoc = 372;
+		rLoc = 368;
 		rType = 0;
 		vrLen = 819;
 		vrLoc = 0;
@@ -7317,7 +7318,7 @@
 		fRef = 74489FD40DDD5AF400F565B1 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 16";
 		rLen = 0;
-		rLoc = 411;
+		rLoc = 407;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 36;
@@ -7327,7 +7328,7 @@
 		fRef = 74489FD80DDD5AF800F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 19";
 		rLen = 0;
-		rLoc = 464;
+		rLoc = 460;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 803;
@@ -7337,7 +7338,7 @@
 		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 136";
 		rLen = 0;
-		rLoc = 4403;
+		rLoc = 4399;
 		rType = 0;
 		vrLen = 1131;
 		vrLoc = 151;
@@ -7367,7 +7368,7 @@
 		fRef = 74489FD40DDD5AF400F565B1 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 71";
 		rLen = 0;
-		rLoc = 2187;
+		rLoc = 2183;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 1483;
@@ -7377,7 +7378,7 @@
 		fRef = 74489FD80DDD5AF800F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 63";
 		rLen = 0;
-		rLoc = 1770;
+		rLoc = 1766;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 803;
@@ -7387,7 +7388,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 15";
 		rLen = 36;
-		rLoc = 372;
+		rLoc = 368;
 		rType = 0;
 		vrLen = 819;
 		vrLoc = 0;
@@ -7407,7 +7408,7 @@
 		fRef = 74489FD40DDD5AF400F565B1 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 71";
 		rLen = 0;
-		rLoc = 2187;
+		rLoc = 2183;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 1483;
@@ -7417,7 +7418,7 @@
 		fRef = 74489FD80DDD5AF800F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 63";
 		rLen = 0;
-		rLoc = 1770;
+		rLoc = 1766;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 803;
@@ -7427,7 +7428,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 168";
 		rLen = 0;
-		rLoc = 6137;
+		rLoc = 6133;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 5100;
@@ -7437,7 +7438,7 @@
 		fRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 16";
 		rLen = 25;
-		rLoc = 379;
+		rLoc = 375;
 		rType = 0;
 		vrLen = 741;
 		vrLoc = 0;
@@ -7457,7 +7458,7 @@
 		fRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 206";
 		rLen = 11;
-		rLoc = 7867;
+		rLoc = 7863;
 		rType = 0;
 		vrLen = 1514;
 		vrLoc = 6991;
@@ -7467,7 +7468,7 @@
 		fRef = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 68";
 		rLen = 0;
-		rLoc = 2292;
+		rLoc = 2288;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 720;
@@ -7477,7 +7478,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 165";
 		rLen = 0;
-		rLoc = 6070;
+		rLoc = 6066;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 5100;
@@ -7487,7 +7488,7 @@
 		fRef = 74489FD40DDD5AF400F565B1 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 68";
 		rLen = 0;
-		rLoc = 2110;
+		rLoc = 2106;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 1483;
@@ -7497,7 +7498,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 165";
 		rLen = 0;
-		rLoc = 6070;
+		rLoc = 6066;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 5100;
@@ -7517,7 +7518,7 @@
 		fRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 206";
 		rLen = 11;
-		rLoc = 7867;
+		rLoc = 7863;
 		rType = 0;
 		vrLen = 1514;
 		vrLoc = 6991;
@@ -7527,7 +7528,7 @@
 		fRef = 74447C560DC8405200CC146C /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 68";
 		rLen = 0;
-		rLoc = 2292;
+		rLoc = 2288;
 		rType = 0;
 		vrLen = 1549;
 		vrLoc = 720;
@@ -7537,7 +7538,7 @@
 		fRef = 74489FD40DDD5AF400F565B1 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 68";
 		rLen = 0;
-		rLoc = 2110;
+		rLoc = 2106;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 1483;
@@ -7547,7 +7548,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 165";
 		rLen = 0;
-		rLoc = 6070;
+		rLoc = 6066;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 5100;
@@ -7557,7 +7558,7 @@
 		fRef = 74489FD40DDD5AF400F565B1 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 68";
 		rLen = 0;
-		rLoc = 2110;
+		rLoc = 2106;
 		rType = 0;
 		vrLen = 1092;
 		vrLoc = 1483;
@@ -7567,7 +7568,7 @@
 		fRef = 74489FD80DDD5AF800F565B1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 60";
 		rLen = 0;
-		rLoc = 1692;
+		rLoc = 1688;
 		rType = 0;
 		vrLen = 1262;
 		vrLoc = 803;
@@ -7577,7 +7578,7 @@
 		fRef = 74489FD00DDD5AE900F565B1 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 274";
 		rLen = 75;
-		rLoc = 9580;
+		rLoc = 9576;
 		rType = 0;
 		vrLen = 470;
 		vrLoc = 9743;
@@ -7587,7 +7588,7 @@
 		fRef = 74447C3C0DC83E8800CC146C /* SettingsViewController.h */;
 		name = "SettingsViewController.h: 7";
 		rLen = 0;
-		rLoc = 153;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 793;
 		vrLoc = 0;
@@ -7597,7 +7598,7 @@
 		fRef = 7454441F0DD53CB400FB6970 /* PosterView.m */;
 		name = "PosterView.m: 70";
 		rLen = 10;
-		rLoc = 1813;
+		rLoc = 1809;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 1046;
@@ -7607,7 +7608,7 @@
 		fRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 15";
 		rLen = 10;
-		rLoc = 328;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 733;
 		vrLoc = 0;
@@ -7617,7 +7618,7 @@
 		fRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */;
 		name = "TextFieldEditorViewController.m: 34";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 946;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 320;
@@ -7627,7 +7628,7 @@
 		fRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */;
 		name = "PickerEditorViewController.m: 63";
 		rLen = 10;
-		rLoc = 1537;
+		rLoc = 1533;
 		rType = 0;
 		vrLen = 724;
 		vrLoc = 1195;
@@ -7637,7 +7638,7 @@
 		fRef = 74489FD40DDD5AF400F565B1 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 151";
 		rLen = 10;
-		rLoc = 4674;
+		rLoc = 4670;
 		rType = 0;
 		vrLen = 1078;
 		vrLoc = 4067;
@@ -7647,7 +7648,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 52";
 		rLen = 10;
-		rLoc = 1386;
+		rLoc = 1382;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 921;
@@ -7656,7 +7657,7 @@
 		isa = PBXTextBookmark;
 		fRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */;
 		rLen = 10;
-		rLoc = 1032;
+		rLoc = 1028;
 		rType = 0;
 	};
 	7448A0260DDD615200F565B1 /* PBXTextBookmark */ = {
@@ -7664,7 +7665,7 @@
 		fRef = 74447C3C0DC83E8800CC146C /* SettingsViewController.h */;
 		name = "SettingsViewController.h: 7";
 		rLen = 0;
-		rLoc = 153;
+		rLoc = 149;
 		rType = 0;
 		vrLen = 793;
 		vrLoc = 0;
@@ -7674,7 +7675,7 @@
 		fRef = 7454441F0DD53CB400FB6970 /* PosterView.m */;
 		name = "PosterView.m: 70";
 		rLen = 10;
-		rLoc = 1813;
+		rLoc = 1809;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 1046;
@@ -7684,7 +7685,7 @@
 		fRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 15";
 		rLen = 10;
-		rLoc = 328;
+		rLoc = 324;
 		rType = 0;
 		vrLen = 733;
 		vrLoc = 0;
@@ -7694,7 +7695,7 @@
 		fRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */;
 		name = "TextFieldEditorViewController.m: 34";
 		rLen = 0;
-		rLoc = 950;
+		rLoc = 946;
 		rType = 0;
 		vrLen = 985;
 		vrLoc = 320;
@@ -7704,7 +7705,7 @@
 		fRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */;
 		name = "PickerEditorViewController.m: 63";
 		rLen = 10;
-		rLoc = 1537;
+		rLoc = 1533;
 		rType = 0;
 		vrLen = 724;
 		vrLoc = 1195;
@@ -7714,7 +7715,7 @@
 		fRef = 74489FD40DDD5AF400F565B1 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 151";
 		rLen = 10;
-		rLoc = 4674;
+		rLoc = 4670;
 		rType = 0;
 		vrLen = 1078;
 		vrLoc = 4067;
@@ -7724,7 +7725,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 52";
 		rLen = 10;
-		rLoc = 1386;
+		rLoc = 1382;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 921;
@@ -7734,7 +7735,7 @@
 		fRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */;
 		name = "MovieShowtimesCell.m: 43";
 		rLen = 10;
-		rLoc = 1032;
+		rLoc = 1028;
 		rType = 0;
 		vrLen = 620;
 		vrLoc = 873;
@@ -7804,10 +7805,20 @@
 		fRef = 74D73B880DDC0CF700D8CCDF /* DifferenceEngine.m */;
 		name = "DifferenceEngine.m: 152";
 		rLen = 0;
-		rLoc = 4261;
+		rLoc = 4107;
 		rType = 0;
 		vrLen = 861;
 		vrLoc = 173;
+	};
+	7448A0500DDD622000F565B1 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74D73B880DDC0CF700D8CCDF /* DifferenceEngine.m */;
+		name = "DifferenceEngine.m: 86";
+		rLen = 0;
+		rLoc = 1994;
+		rType = 0;
+		vrLen = 1023;
+		vrLoc = 1690;
 	};
 	744DDE5F0DC9992F005BFCF6 /* NSArray.h */ = {
 		isa = PBXFileReference;
@@ -8085,7 +8096,7 @@
 		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
 		name = "XmlElement.m: 161";
 		rLen = 0;
-		rLoc = 4342;
+		rLoc = 4338;
 		rType = 0;
 		vrLen = 978;
 		vrLoc = 3779;
@@ -8822,7 +8833,7 @@
 		fRef = 743E8EAE0DD6B3D700A93DD1 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 81";
 		rLen = 0;
-		rLoc = 2741;
+		rLoc = 2737;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 1714;
@@ -8859,7 +8870,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 13";
 		rLen = 0;
-		rLoc = 196;
+		rLoc = 192;
 		rType = 0;
 		vrLen = 640;
 		vrLoc = 0;
@@ -8869,7 +8880,7 @@
 		fRef = 74088C770DCD18C100954696 /* PosterCache.h */;
 		name = "PosterCache.h: 18";
 		rLen = 0;
-		rLoc = 243;
+		rLoc = 239;
 		rType = 0;
 		vrLen = 490;
 		vrLoc = 0;
@@ -8879,7 +8890,7 @@
 		fRef = 74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 321";
 		rLen = 0;
-		rLoc = 12105;
+		rLoc = 12101;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 10420;
@@ -8923,7 +8934,7 @@
 		fRef = 74C3A73E0DDAD62A00707976 /* MovieShowtimesCell.m */;
 		name = "MovieShowtimesCell.m: 42";
 		rLen = 5;
-		rLoc = 1000;
+		rLoc = 996;
 		rType = 0;
 		vrLen = 1182;
 		vrLoc = 311;
@@ -8933,7 +8944,7 @@
 		fRef = 74C3A7820DDADBC800707976 /* Theater.m */;
 		name = "Theater.m: 55";
 		rLen = 0;
-		rLoc = 1622;
+		rLoc = 1618;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 1314;
@@ -8950,7 +8961,7 @@
 		fRef = 74C3A7B60DDADD6700707976 /* IgnyteTheaterDownloader.m */;
 		name = "IgnyteTheaterDownloader.m: 30";
 		rLen = 0;
-		rLoc = 865;
+		rLoc = 861;
 		rType = 0;
 		vrLen = 1585;
 		vrLoc = 559;
@@ -8960,7 +8971,7 @@
 		fRef = 74C3A7B60DDADD6700707976 /* IgnyteTheaterDownloader.m */;
 		name = "IgnyteTheaterDownloader.m: 30";
 		rLen = 0;
-		rLoc = 865;
+		rLoc = 861;
 		rType = 0;
 		vrLen = 1585;
 		vrLoc = 559;
@@ -9316,7 +9327,7 @@
 		fRef = 747204B80DCDAE6A00C11362 /* Application.m */;
 		name = "Application.m: 107";
 		rLen = 0;
-		rLoc = 426;
+		rLoc = 422;
 		rType = 0;
 		vrLen = 700;
 		vrLoc = 2694;
@@ -9326,7 +9337,7 @@
 		fRef = 746A02140DC81A1A0079D89B /* Application.h */;
 		name = "Application.h: 21";
 		rLen = 0;
-		rLoc = 418;
+		rLoc = 414;
 		rType = 0;
 		vrLen = 437;
 		vrLoc = 0;
@@ -9336,7 +9347,7 @@
 		fRef = 74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 9";
 		rLen = 0;
-		rLoc = 164;
+		rLoc = 160;
 		rType = 0;
 		vrLen = 311;
 		vrLoc = 0;
@@ -9366,7 +9377,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 13";
 		rLen = 0;
-		rLoc = 229;
+		rLoc = 225;
 		rType = 0;
 		vrLen = 1204;
 		vrLoc = 41;
@@ -9446,7 +9457,7 @@
 		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
 		name = "BoxOfficeAppDelegate.m: 28";
 		rLen = 0;
-		rLoc = 590;
+		rLoc = 586;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 243;
@@ -9456,7 +9467,7 @@
 		fRef = 74D73A260DDBE7A300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 43";
 		rLen = 0;
-		rLoc = 968;
+		rLoc = 964;
 		rType = 0;
 		vrLen = 1314;
 		vrLoc = 316;
@@ -9563,7 +9574,7 @@
 		fRef = 7414B8E70DDAB75200ED9CE0 /* FandangoTheaterDownloader.m */;
 		name = "FandangoTheaterDownloader.m: 39";
 		rLen = 0;
-		rLoc = 791;
+		rLoc = 787;
 		rType = 0;
 		vrLen = 1594;
 		vrLoc = 263;
@@ -9583,7 +9594,7 @@
 		fRef = 74D73AF30DDBFC8800D8CCDF /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 310";
 		rLen = 0;
-		rLoc = 9420;
+		rLoc = 9416;
 		rType = 0;
 		vrLen = 1009;
 		vrLoc = 7927;
@@ -9593,7 +9604,7 @@
 		fRef = 74EC06340DD2CF56006953A4 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 16";
 		rLen = 0;
-		rLoc = 343;
+		rLoc = 339;
 		rType = 0;
 		vrLen = 664;
 		vrLoc = 222;
@@ -9603,7 +9614,7 @@
 		fRef = 74EC069E0DD2D69B006953A4 /* Utilities.h */;
 		name = "Utilities.h: 22";
 		rLen = 0;
-		rLoc = 618;
+		rLoc = 614;
 		rType = 0;
 		vrLen = 647;
 		vrLoc = 0;
@@ -9613,7 +9624,7 @@
 		fRef = 74D73AA40DDBF14500D8CCDF /* Utilities.m */;
 		name = "Utilities.m: 59";
 		rLen = 0;
-		rLoc = 1523;
+		rLoc = 1519;
 		rType = 0;
 		vrLen = 1018;
 		vrLoc = 140;
@@ -9623,7 +9634,7 @@
 		fRef = 745092180DDBD62400E32442 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 105";
 		rLen = 0;
-		rLoc = 4131;
+		rLoc = 4127;
 		rType = 0;
 		vrLen = 1781;
 		vrLoc = 2673;
@@ -9659,9 +9670,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/DifferenceEngine.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {528, 1582}}";
-			sepNavSelRange = "{4261, 0}";
-			sepNavVisRange = "{173, 861}";
+			sepNavIntBoundsRect = "{{0, 0}, {552, 1918}}";
+			sepNavSelRange = "{1994, 0}";
+			sepNavVisRange = "{1690, 1023}";
 		};
 	};
 	74D73B8D0DDC0D1700D8CCDF /* PBXTextBookmark */ = {
@@ -9669,7 +9680,7 @@
 		fRef = 74EC04DA0DD2A81C006953A4 /* DifferenceEngine.h */;
 		name = "DifferenceEngine.h: 26";
 		rLen = 0;
-		rLoc = 524;
+		rLoc = 520;
 		rType = 0;
 		vrLen = 825;
 		vrLoc = 26;
@@ -9689,7 +9700,7 @@
 		fRef = 743E32870DD673A7004C5161 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 32";
 		rLen = 0;
-		rLoc = 832;
+		rLoc = 828;
 		rType = 0;
 		vrLen = 1003;
 		vrLoc = 0;
@@ -9699,7 +9710,7 @@
 		fRef = 74D73B880DDC0CF700D8CCDF /* DifferenceEngine.m */;
 		name = "DifferenceEngine.m: 86";
 		rLen = 0;
-		rLoc = 2045;
+		rLoc = 1992;
 		rType = 0;
 		vrLen = 794;
 		vrLoc = 3790;
@@ -9709,7 +9720,7 @@
 		fRef = 746A02030DC819430079D89B /* Theater.h */;
 		name = "Theater.h: 10";
 		rLen = 0;
-		rLoc = 177;
+		rLoc = 173;
 		rType = 0;
 		vrLen = 930;
 		vrLoc = 0;
@@ -9719,7 +9730,7 @@
 		fRef = 7414B8E70DDAB75200ED9CE0 /* FandangoTheaterDownloader.m */;
 		name = "FandangoTheaterDownloader.m: 55";
 		rLen = 0;
-		rLoc = 2286;
+		rLoc = 2282;
 		rType = 0;
 		vrLen = 1889;
 		vrLoc = 859;
@@ -9743,7 +9754,7 @@
 		fRef = 743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */;
 		name = "MovieShowtimesCell.h: 16";
 		rLen = 0;
-		rLoc = 303;
+		rLoc = 299;
 		rType = 0;
 		vrLen = 444;
 		vrLoc = 0;
@@ -9753,7 +9764,7 @@
 		fRef = 74D73C040DDC15EA00D8CCDF /* MovieShowtimesCell.m */;
 		name = "MovieShowtimesCell.m: 52";
 		rLen = 0;
-		rLoc = 1423;
+		rLoc = 1419;
 		rType = 0;
 		vrLen = 926;
 		vrLoc = 567;
@@ -9763,7 +9774,7 @@
 		fRef = 743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */;
 		name = "MovieShowtimesCell.h: 16";
 		rLen = 0;
-		rLoc = 303;
+		rLoc = 299;
 		rType = 0;
 		vrLen = 444;
 		vrLoc = 0;
@@ -9780,7 +9791,7 @@
 		fRef = 74D73C400DDC190C00D8CCDF /* Theater.m */;
 		name = "Theater.m: 33";
 		rLen = 0;
-		rLoc = 824;
+		rLoc = 820;
 		rType = 0;
 		vrLen = 1100;
 		vrLoc = 336;
@@ -9790,7 +9801,7 @@
 		fRef = 7464FB800DD50452000CE93F /* Movie.m */;
 		name = "Movie.m: 68";
 		rLen = 377;
-		rLoc = 2159;
+		rLoc = 2155;
 		rType = 0;
 		vrLen = 639;
 		vrLoc = 2058;
@@ -9820,7 +9831,7 @@
 		fRef = 74EC07B30DD3E4AA006953A4 /* Location.m */;
 		name = "Location.m: 82";
 		rLen = 0;
-		rLoc = 2112;
+		rLoc = 2108;
 		rType = 0;
 		vrLen = 812;
 		vrLoc = 1300;
@@ -9830,7 +9841,7 @@
 		fRef = 74EC07B30DD3E4AA006953A4 /* Location.m */;
 		name = "Location.m: 57";
 		rLen = 0;
-		rLoc = 1568;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 766;
 		vrLoc = 1463;
@@ -9881,7 +9892,7 @@
 		fRef = 740E7F5D0DCFF1BE0066FCE5 /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 99";
 		rLen = 0;
-		rLoc = 3349;
+		rLoc = 3345;
 		rType = 0;
 		vrLen = 1228;
 		vrLoc = 6764;
@@ -9901,7 +9912,7 @@
 		fRef = 74D73C910DDC205800D8CCDF /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 210";
 		rLen = 0;
-		rLoc = 7149;
+		rLoc = 7145;
 		rType = 0;
 		vrLen = 978;
 		vrLoc = 6380;
@@ -9911,7 +9922,7 @@
 		fRef = 74D73B880DDC0CF700D8CCDF /* DifferenceEngine.m */;
 		name = "DifferenceEngine.m: 152";
 		rLen = 0;
-		rLoc = 4265;
+		rLoc = 4107;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 177;
@@ -9931,7 +9942,7 @@
 		fRef = 74D73B5E0DDC09B700D8CCDF /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 296";
 		rLen = 0;
-		rLoc = 8749;
+		rLoc = 8745;
 		rType = 0;
 		vrLen = 908;
 		vrLoc = 285;
@@ -9974,7 +9985,7 @@
 		fRef = 74D73D0E0DDC2A5E00D8CCDF /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 100";
 		rLen = 0;
-		rLoc = 3194;
+		rLoc = 3190;
 		rType = 0;
 		vrLen = 1670;
 		vrLoc = 2673;
@@ -9984,7 +9995,7 @@
 		fRef = 74D73B620DDC09BC00D8CCDF /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 44";
 		rLen = 33;
-		rLoc = 1190;
+		rLoc = 1186;
 		rType = 0;
 		vrLen = 1309;
 		vrLoc = 670;
@@ -9994,7 +10005,7 @@
 		fRef = 74D73A3E0DDBE81800D8CCDF /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 223";
 		rLen = 0;
-		rLoc = 7249;
+		rLoc = 7245;
 		rType = 0;
 		vrLen = 1242;
 		vrLoc = 6127;
@@ -10004,7 +10015,7 @@
 		fRef = 74D73D270DDC2B0E00D8CCDF /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 54";
 		rLen = 5;
-		rLoc = 2284;
+		rLoc = 2280;
 		rType = 0;
 		vrLen = 771;
 		vrLoc = 655;
@@ -10014,7 +10025,7 @@
 		fRef = 74088F6B0DCD4C7F00954696 /* MovieDetailsViewController.h */;
 		name = "MovieDetailsViewController.h: 27";
 		rLen = 0;
-		rLoc = 718;
+		rLoc = 714;
 		rType = 0;
 		vrLen = 926;
 		vrLoc = 3;
@@ -10024,7 +10035,7 @@
 		fRef = 74D73D320DDC2CEA00D8CCDF /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 237";
 		rLen = 0;
-		rLoc = 7520;
+		rLoc = 7516;
 		rType = 0;
 		vrLen = 436;
 		vrLoc = 6922;
@@ -10041,7 +10052,7 @@
 		fRef = 74DD79AD0DDC303F0083432B /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 67";
 		rLen = 126;
-		rLoc = 2056;
+		rLoc = 2052;
 		rType = 0;
 		vrLen = 766;
 		vrLoc = 1482;
@@ -10051,7 +10062,7 @@
 		fRef = 740DE19E0DCC3FC400B4E69A /* TheatersNavigationController.h */;
 		name = "TheatersNavigationController.h: 32";
 		rLen = 0;
-		rLoc = 990;
+		rLoc = 986;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 0;
@@ -10061,7 +10072,7 @@
 		fRef = 74EC08910DD3FA7F006953A4 /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 193";
 		rLen = 4;
-		rLoc = 7357;
+		rLoc = 7353;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 6207;
@@ -10071,7 +10082,7 @@
 		fRef = 740DE19E0DCC3FC400B4E69A /* TheatersNavigationController.h */;
 		name = "TheatersNavigationController.h: 32";
 		rLen = 0;
-		rLoc = 990;
+		rLoc = 986;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 0;
@@ -10098,7 +10109,7 @@
 		fRef = 74DD79AD0DDC303F0083432B /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 50";
 		rLen = 0;
-		rLoc = 1093;
+		rLoc = 1089;
 		rType = 0;
 		vrLen = 1061;
 		vrLoc = 1187;
@@ -10132,7 +10143,7 @@
 		fRef = 74D739B70DDBE28700D8CCDF /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 58";
 		rLen = 0;
-		rLoc = 1966;
+		rLoc = 1962;
 		rType = 0;
 		vrLen = 1311;
 		vrLoc = 1992;
@@ -10142,7 +10153,7 @@
 		fRef = 74D73D000DDC296A00D8CCDF /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 437";
 		rLen = 0;
-		rLoc = 12121;
+		rLoc = 12117;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 12882;
@@ -10187,7 +10198,7 @@
 		fRef = 74EF36E00DCEB380004D7E3B /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 22";
 		rLen = 0;
-		rLoc = 547;
+		rLoc = 543;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 183;
@@ -10197,7 +10208,7 @@
 		fRef = 74D73C110DDC163B00D8CCDF /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 38";
 		rLen = 0;
-		rLoc = 878;
+		rLoc = 874;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 580;
@@ -10207,7 +10218,7 @@
 		fRef = 740DE19E0DCC3FC400B4E69A /* TheatersNavigationController.h */;
 		name = "TheatersNavigationController.h: 34";
 		rLen = 34;
-		rLoc = 992;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 38;
@@ -10217,7 +10228,7 @@
 		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 16";
 		rLen = 18;
-		rLoc = 380;
+		rLoc = 376;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 0;
@@ -10227,7 +10238,7 @@
 		fRef = 740DE1970DCC3FB100B4E69A /* SettingsNavigationController.h */;
 		name = "SettingsNavigationController.h: 23";
 		rLen = 34;
-		rLoc = 536;
+		rLoc = 532;
 		rType = 0;
 		vrLen = 573;
 		vrLoc = 0;
@@ -10237,7 +10248,7 @@
 		fRef = 74DD7A010DDC32BC0083432B /* SettingsNavigationController.m */;
 		name = "SettingsNavigationController.m: 45";
 		rLen = 0;
-		rLoc = 1013;
+		rLoc = 1009;
 		rType = 0;
 		vrLen = 696;
 		vrLoc = 320;
@@ -10247,7 +10258,7 @@
 		fRef = 74DD7A0C0DDC32D90083432B /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 48";
 		rLen = 0;
-		rLoc = 1734;
+		rLoc = 1730;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 713;
@@ -10257,7 +10268,7 @@
 		fRef = 74DD79FD0DDC32A30083432B /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 33";
 		rLen = 35;
-		rLoc = 877;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 390;
@@ -10267,7 +10278,7 @@
 		fRef = 74447C320DC83C2000CC146C /* MoviesNavigationController.h */;
 		name = "MoviesNavigationController.h: 32";
 		rLen = 34;
-		rLoc = 940;
+		rLoc = 936;
 		rType = 0;
 		vrLen = 981;
 		vrLoc = 0;
@@ -10277,7 +10288,7 @@
 		fRef = 7464F9340DD4D268000CE93F /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 31";
 		rLen = 34;
-		rLoc = 826;
+		rLoc = 822;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 0;
@@ -10287,7 +10298,7 @@
 		fRef = 74DD79E90DDC31C50083432B /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 37";
 		rLen = 0;
-		rLoc = 1066;
+		rLoc = 1062;
 		rType = 0;
 		vrLen = 1106;
 		vrLoc = 541;
@@ -10297,7 +10308,7 @@
 		fRef = 7464FB690DD4FEF4000CE93F /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 46";
 		rLen = 0;
-		rLoc = 1709;
+		rLoc = 1705;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 603;
@@ -10307,7 +10318,7 @@
 		fRef = 74EF36E00DCEB380004D7E3B /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 22";
 		rLen = 0;
-		rLoc = 547;
+		rLoc = 543;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 183;
@@ -10317,7 +10328,7 @@
 		fRef = 74D73D270DDC2B0E00D8CCDF /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 42";
 		rLen = 0;
-		rLoc = 850;
+		rLoc = 846;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 360;
@@ -10327,7 +10338,7 @@
 		fRef = 74D73C110DDC163B00D8CCDF /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 38";
 		rLen = 0;
-		rLoc = 878;
+		rLoc = 874;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 580;
@@ -10337,7 +10348,7 @@
 		fRef = 74DD79E90DDC31C50083432B /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 37";
 		rLen = 0;
-		rLoc = 1066;
+		rLoc = 1062;
 		rType = 0;
 		vrLen = 1069;
 		vrLoc = 541;
@@ -10347,7 +10358,7 @@
 		fRef = 74D73D270DDC2B0E00D8CCDF /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 29";
 		rLen = 0;
-		rLoc = 850;
+		rLoc = 846;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 360;
@@ -10357,7 +10368,7 @@
 		fRef = 74DD79E90DDC31C50083432B /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 48";
 		rLen = 0;
-		rLoc = 1066;
+		rLoc = 1062;
 		rType = 0;
 		vrLen = 1179;
 		vrLoc = 541;
@@ -10367,7 +10378,7 @@
 		fRef = 740DE19E0DCC3FC400B4E69A /* TheatersNavigationController.h */;
 		name = "TheatersNavigationController.h: 34";
 		rLen = 34;
-		rLoc = 992;
+		rLoc = 988;
 		rType = 0;
 		vrLen = 995;
 		vrLoc = 38;
@@ -10377,7 +10388,7 @@
 		fRef = 74447C320DC83C2000CC146C /* MoviesNavigationController.h */;
 		name = "MoviesNavigationController.h: 32";
 		rLen = 0;
-		rLoc = 974;
+		rLoc = 970;
 		rType = 0;
 		vrLen = 981;
 		vrLoc = 0;
@@ -10387,7 +10398,7 @@
 		fRef = 7464FB690DD4FEF4000CE93F /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 46";
 		rLen = 0;
-		rLoc = 1709;
+		rLoc = 1705;
 		rType = 0;
 		vrLen = 1317;
 		vrLoc = 603;
@@ -10397,7 +10408,7 @@
 		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 16";
 		rLen = 18;
-		rLoc = 380;
+		rLoc = 376;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 0;
@@ -10407,7 +10418,7 @@
 		fRef = 7464F9340DD4D268000CE93F /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 29";
 		rLen = 0;
-		rLoc = 824;
+		rLoc = 820;
 		rType = 0;
 		vrLen = 785;
 		vrLoc = 0;
@@ -10417,7 +10428,7 @@
 		fRef = 7464FB690DD4FEF4000CE93F /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 47";
 		rLen = 24;
-		rLoc = 1735;
+		rLoc = 1731;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 603;
@@ -10427,7 +10438,7 @@
 		fRef = 740DE1970DCC3FB100B4E69A /* SettingsNavigationController.h */;
 		name = "SettingsNavigationController.h: 23";
 		rLen = 34;
-		rLoc = 536;
+		rLoc = 532;
 		rType = 0;
 		vrLen = 573;
 		vrLoc = 0;
@@ -10437,7 +10448,7 @@
 		fRef = 7464F9340DD4D268000CE93F /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 29";
 		rLen = 0;
-		rLoc = 824;
+		rLoc = 820;
 		rType = 0;
 		vrLen = 785;
 		vrLoc = 0;
@@ -10447,7 +10458,7 @@
 		fRef = 74DD79FB0DDC32A20083432B /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 47";
 		rLen = 51;
-		rLoc = 1711;
+		rLoc = 1707;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 713;
@@ -10457,7 +10468,7 @@
 		fRef = 74DD79FD0DDC32A30083432B /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 33";
 		rLen = 35;
-		rLoc = 877;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 390;
@@ -10467,7 +10478,7 @@
 		fRef = 74DD7A010DDC32BC0083432B /* SettingsNavigationController.m */;
 		name = "SettingsNavigationController.m: 45";
 		rLen = 0;
-		rLoc = 1013;
+		rLoc = 1009;
 		rType = 0;
 		vrLen = 696;
 		vrLoc = 320;
@@ -10477,7 +10488,7 @@
 		fRef = 74DD7A050DDC32C00083432B /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 36";
 		rLen = 0;
-		rLoc = 1066;
+		rLoc = 1062;
 		rType = 0;
 		vrLen = 1066;
 		vrLoc = 0;
@@ -10487,7 +10498,7 @@
 		fRef = 74DD7A0C0DDC32D90083432B /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 48";
 		rLen = 0;
-		rLoc = 1734;
+		rLoc = 1730;
 		rType = 0;
 		vrLen = 1325;
 		vrLoc = 713;
@@ -10497,7 +10508,7 @@
 		fRef = 7464F9340DD4D268000CE93F /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 29";
 		rLen = 0;
-		rLoc = 824;
+		rLoc = 820;
 		rType = 0;
 		vrLen = 785;
 		vrLoc = 0;
@@ -10507,7 +10518,7 @@
 		fRef = 74DD79FD0DDC32A30083432B /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 33";
 		rLen = 35;
-		rLoc = 877;
+		rLoc = 873;
 		rType = 0;
 		vrLen = 1079;
 		vrLoc = 390;
@@ -10517,7 +10528,7 @@
 		fRef = 74447C320DC83C2000CC146C /* MoviesNavigationController.h */;
 		name = "MoviesNavigationController.h: 32";
 		rLen = 34;
-		rLoc = 940;
+		rLoc = 936;
 		rType = 0;
 		vrLen = 981;
 		vrLoc = 0;
@@ -10527,7 +10538,7 @@
 		fRef = 7464F9340DD4D268000CE93F /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 31";
 		rLen = 34;
-		rLoc = 826;
+		rLoc = 822;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 0;
@@ -10537,7 +10548,7 @@
 		fRef = 74DD7A050DDC32C00083432B /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 39";
 		rLen = 0;
-		rLoc = 1094;
+		rLoc = 1090;
 		rType = 0;
 		vrLen = 1045;
 		vrLoc = 541;
@@ -10547,7 +10558,7 @@
 		fRef = 74EC08910DD3FA7F006953A4 /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 94";
 		rLen = 0;
-		rLoc = 3020;
+		rLoc = 3016;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 2405;
@@ -10557,7 +10568,7 @@
 		fRef = 740DE1920DCC3FA300B4E69A /* AbstractNavigationController.m */;
 		name = "AbstractNavigationController.m: 43";
 		rLen = 0;
-		rLoc = 1078;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 372;
@@ -10577,7 +10588,7 @@
 		fRef = 740DE1920DCC3FA300B4E69A /* AbstractNavigationController.m */;
 		name = "AbstractNavigationController.m: 52";
 		rLen = 0;
-		rLoc = 1470;
+		rLoc = 1466;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 372;
@@ -10587,7 +10598,7 @@
 		fRef = 74DD7A050DDC32C00083432B /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 39";
 		rLen = 0;
-		rLoc = 1094;
+		rLoc = 1090;
 		rType = 0;
 		vrLen = 1045;
 		vrLoc = 541;
@@ -10597,7 +10608,7 @@
 		fRef = 74EC08910DD3FA7F006953A4 /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 94";
 		rLen = 0;
-		rLoc = 3020;
+		rLoc = 3016;
 		rType = 0;
 		vrLen = 1390;
 		vrLoc = 2405;
@@ -10607,7 +10618,7 @@
 		fRef = 74D73D000DDC296A00D8CCDF /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 366";
 		rLen = 0;
-		rLoc = 10031;
+		rLoc = 10027;
 		rType = 0;
 		vrLen = 955;
 		vrLoc = 10781;
@@ -10617,7 +10628,7 @@
 		fRef = 740DE1920DCC3FA300B4E69A /* AbstractNavigationController.m */;
 		name = "AbstractNavigationController.m: 43";
 		rLen = 0;
-		rLoc = 1078;
+		rLoc = 1074;
 		rType = 0;
 		vrLen = 984;
 		vrLoc = 372;
@@ -10637,7 +10648,7 @@
 		fRef = 74D73D000DDC296A00D8CCDF /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 334";
 		rLen = 0;
-		rLoc = 9786;
+		rLoc = 9782;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 9676;
@@ -10647,7 +10658,7 @@
 		fRef = 74D739B70DDBE28700D8CCDF /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 68";
 		rLen = 0;
-		rLoc = 2292;
+		rLoc = 2288;
 		rType = 0;
 		vrLen = 1402;
 		vrLoc = 1790;
@@ -10657,7 +10668,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 65";
 		rLen = 0;
-		rLoc = 1703;
+		rLoc = 1699;
 		rType = 0;
 		vrLen = 845;
 		vrLoc = 139;
@@ -10667,7 +10678,7 @@
 		fRef = 7464FBEE0DD508B8000CE93F /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 40";
 		rLen = 0;
-		rLoc = 1280;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 575;
@@ -10677,7 +10688,7 @@
 		fRef = 74D73D000DDC296A00D8CCDF /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 334";
 		rLen = 0;
-		rLoc = 9786;
+		rLoc = 9782;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 9676;
@@ -10687,7 +10698,7 @@
 		fRef = 74D739B70DDBE28700D8CCDF /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 68";
 		rLen = 0;
-		rLoc = 2292;
+		rLoc = 2288;
 		rType = 0;
 		vrLen = 1402;
 		vrLoc = 1790;
@@ -10697,7 +10708,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 65";
 		rLen = 0;
-		rLoc = 1703;
+		rLoc = 1699;
 		rType = 0;
 		vrLen = 845;
 		vrLoc = 139;
@@ -10707,7 +10718,7 @@
 		fRef = 7464FBEE0DD508B8000CE93F /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 40";
 		rLen = 0;
-		rLoc = 1280;
+		rLoc = 1276;
 		rType = 0;
 		vrLen = 1138;
 		vrLoc = 575;
@@ -10717,7 +10728,7 @@
 		fRef = 74088C6B0DCD17D100954696 /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 24";
 		rLen = 0;
-		rLoc = 429;
+		rLoc = 425;
 		rType = 0;
 		vrLen = 687;
 		vrLoc = 199;
@@ -10741,7 +10752,7 @@
 		fRef = 74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */;
 		name = "DifferenceEngine.h: 19";
 		rLen = 0;
-		rLoc = 466;
+		rLoc = 462;
 		rType = 0;
 		vrLen = 526;
 		vrLoc = 0;

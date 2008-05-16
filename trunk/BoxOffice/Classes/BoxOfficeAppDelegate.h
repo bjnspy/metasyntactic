@@ -3,7 +3,7 @@
 //  BoxOffice
 //
 //  Created by Cyrus Najmabadi on 4/29/08.
-//  Copyright __MyCompanyName__ 2008. All rights reserved.
+//  Copyright Metasyntactic 2008. All rights reserved.
 //
 
 #import "ApplicationTabBarController.h"
