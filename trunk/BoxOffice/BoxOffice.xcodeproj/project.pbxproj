@@ -54,6 +54,7 @@
 		744557260DD7E785008AF706 /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 744557250DD7E785008AF706 /* NotificationCenter.m */; };
 		74489CA80DDD0CEC00F565B1 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74489CA70DDD0CEC00F565B1 /* Default.png */; };
 		74489E600DDD341E00F565B1 /* AutoresizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */; };
+		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
 		7464FDBA0DD52F22000CE93F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7464FDB90DD52F22000CE93F /* PosterView.m */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
@@ -150,6 +151,8 @@
 		74489CA70DDD0CEC00F565B1 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		74489E5E0DDD341E00F565B1 /* AutoresizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoresizingCell.h; sourceTree = "<group>"; };
 		74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoresizingCell.m; sourceTree = "<group>"; };
+		74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
+		74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
 		7464FDB80DD52F22000CE93F /* PosterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
 		7464FDB90DD52F22000CE93F /* PosterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
 		746A01410DC819270079D89B /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
@@ -394,6 +397,8 @@
 				74447C670DC843D900CC146C /* TheaterDetailsViewController.m */,
 				742CA71E0DD6616600A69B79 /* TicketsViewController.h */,
 				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
+				74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */,
+				74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -540,6 +545,7 @@
 				7414B8E80DDAB75200ED9CE0 /* FandangoTheaterDownloader.m in Sources */,
 				74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */,
 				74489E600DDD341E00F565B1 /* AutoresizingCell.m in Sources */,
+				74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

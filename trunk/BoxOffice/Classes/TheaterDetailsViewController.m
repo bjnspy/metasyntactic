@@ -16,6 +16,7 @@
 #import "Application.h"
 #import "Utilities.h"
 #import "AutoresizingCell.h"
+#import "ViewControllerUtilities.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -53,7 +54,11 @@
             [self.movieShowtimes addObject:showtimes];
         }
         
+        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+        label.text = self.theater.name;
+         
         self.title = self.theater.name;
+        self.navigationItem.titleView = label;
     }
     
     return self;

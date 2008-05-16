@@ -13,6 +13,7 @@
 #import "TicketsViewController.h"
 #import "MovieShowtimesCell.h"
 #import "Application.h"
+#import "ViewControllerUtilities.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -59,9 +60,13 @@
         self.navigationController = controller;
         self.movie = movie_;    
         
-        self.title = self.movie.title;
-        
         [self initializeData:YES];
+        
+        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
+        label.text = self.movie.title;
+         
+        self.title = self.movie.title;
+        self.navigationItem.titleView = label;
     }
     
     return self;

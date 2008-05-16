@@ -6,8 +6,6 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import <CoreLocation/CoreLocation.h>
-
 #import "BoxOfficeController.h"
 #import "BoxOfficeModel.h"
 #import "ActivityIndicator.h"

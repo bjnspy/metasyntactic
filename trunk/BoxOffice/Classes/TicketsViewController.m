@@ -13,6 +13,7 @@
 #import "Application.h"
 #import "AutoresizingCell.h"
 #import "ApplicationTabBarController.h"
+#import "ViewControllerUtilities.h"
 
 @implementation TicketsViewController
 
@@ -158,22 +159,11 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
             }
         }
         
-        /*
-        UILabel* label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = title_;
-        label.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-        label.font = [UIFont boldSystemFontOfSize:20];
-        label.textColor = [UIColor whiteColor];
-        label.adjustsFontSizeToFitWidth = YES;
-        label.opaque = NO;
-        label.backgroundColor = [UIColor clearColor];
-        label.shadowColor = [UIColor darkGrayColor];
-        label.
-        
-        self.navigationItem.titleView = label;
-         */
-        
+         
         self.title = title_;
+        self.navigationItem.titleView = label;
     }
     
     return self;
