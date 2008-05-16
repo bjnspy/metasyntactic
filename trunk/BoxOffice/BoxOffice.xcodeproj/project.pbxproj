@@ -332,8 +332,32 @@
 		74447D550DC8474A00CC146C /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				74489CCC0DDD11B700F565B1 /* NavigationControllers */,
+				74489CCB0DDD11AB00F565B1 /* TabBarControllers */,
+				74489CCE0DDD11FC00F565B1 /* TableViewCells */,
+				74489CCD0DDD11D600F565B1 /* ViewControllers */,
+				740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */,
+				740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */,
+				7464FDB80DD52F22000CE93F /* PosterView.h */,
+				7464FDB90DD52F22000CE93F /* PosterView.m */,
+				744557240DD7E785008AF706 /* NotificationCenter.h */,
+				744557250DD7E785008AF706 /* NotificationCenter.m */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		74489CCB0DDD11AB00F565B1 /* TabBarControllers */ = {
+			isa = PBXGroup;
+			children = (
 				74447C350DC83D0900CC146C /* ApplicationTabBarController.h */,
 				74447C360DC83D0900CC146C /* ApplicationTabBarController.m */,
+			);
+			name = TabBarControllers;
+			sourceTree = "<group>";
+		};
+		74489CCC0DDD11B700F565B1 /* NavigationControllers */ = {
+			isa = PBXGroup;
+			children = (
 				740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */,
 				740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */,
 				74447C320DC83C2000CC146C /* MoviesNavigationController.h */,
@@ -342,36 +366,44 @@
 				74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */,
 				7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */,
 				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
+			);
+			name = NavigationControllers;
+			sourceTree = "<group>";
+		};
+		74489CCD0DDD11D600F565B1 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
 				74447C550DC8405200CC146C /* AllMoviesViewController.h */,
 				74447C560DC8405200CC146C /* AllMoviesViewController.m */,
-				74447C580DC840D100CC146C /* MovieDetailsViewController.h */,
-				74447C590DC840D100CC146C /* MovieDetailsViewController.m */,
 				74447C630DC843B200CC146C /* AllTheatersViewController.h */,
 				74447C640DC843B200CC146C /* AllTheatersViewController.m */,
-				74447C660DC843D900CC146C /* TheaterDetailsViewController.h */,
-				74447C670DC843D900CC146C /* TheaterDetailsViewController.m */,
-				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
-				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
-				740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */,
-				740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */,
 				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
 				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
-				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
-				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
+				74447C580DC840D100CC146C /* MovieDetailsViewController.h */,
+				74447C590DC840D100CC146C /* MovieDetailsViewController.m */,
 				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
 				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
-				7464FDB80DD52F22000CE93F /* PosterView.h */,
-				7464FDB90DD52F22000CE93F /* PosterView.m */,
+				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
+				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
+				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
+				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
+				74447C660DC843D900CC146C /* TheaterDetailsViewController.h */,
+				74447C670DC843D900CC146C /* TheaterDetailsViewController.m */,
 				742CA71E0DD6616600A69B79 /* TicketsViewController.h */,
 				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		74489CCE0DDD11FC00F565B1 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
 				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
 				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
-				744557240DD7E785008AF706 /* NotificationCenter.h */,
-				744557250DD7E785008AF706 /* NotificationCenter.m */,
 				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
 				74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */,
 			);
-			name = UI;
+			name = TableViewCells;
 			sourceTree = "<group>";
 		};
 		74D6F2B40DCC14420097A984 /* Xml */ = {
