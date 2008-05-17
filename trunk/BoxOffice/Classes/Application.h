@@ -6,6 +6,7 @@
 //  Copyright 2008 Metasyntactic. All rights reserved.
 //
 
+#import "DifferenceEngine.h"
 
 @interface Application : NSObject {
 }
@@ -22,5 +23,7 @@
 
 + (void) openMap:(NSString*) address;
 + (void) makeCall:(NSString*) phoneNumber;
+
++ (DifferenceEngine*) differenceEngine;
 
 @end

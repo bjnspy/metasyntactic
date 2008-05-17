@@ -14,6 +14,7 @@
 #import "PosterView.h"
 #import "MovieTitleCell.h"
 #import "DifferenceEngine.h"
+#import "Application.h"
 
 @implementation AllMoviesViewController
 
@@ -92,10 +93,9 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (BOOL)            set:(NSSet*) set
-        containsSimilar:(DifferenceEngine*) engine
-                 string:(NSString*) value {
+        containsSimilar:(NSString*) value {
     for (NSString* string in set) {
-        if ([engine similar:string other:value]) {
+        if ([[Application differenceEngine] similar:string other:value]) {
             return YES;
         }
     }    
@@ -110,12 +110,10 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         [set addObjectsFromArray:[theater.movieToShowtimesMap allKeys]];
     }
     
-    DifferenceEngine* engine = [DifferenceEngine engine];
-    
     NSMutableArray* result = [NSMutableArray array];
     
     for (Movie* movie in movies) {
-        if ([self set:set containsSimilar:engine string:movie.title]) {
+        if ([self set:set containsSimilar:movie.title]) {
             [result addObject:movie];
         } else {
             NSLog(@"No theater found playing %@", movie.title);

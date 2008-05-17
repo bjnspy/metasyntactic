@@ -36,14 +36,16 @@
     [super dealloc];
 }
 
-NSComparisonResult compareTheaterElements(id t1, id t2, void* context1, void* context2) {
+NSComparisonResult compareTheaterElements(id t1, id t2, void* context1) {
     XmlElement* theaterElement1 = t1;
     XmlElement* theaterElement2 = t2;
     NSString* theaterName = context1;
-    DifferenceEngine* engine = context2;
     
-    int distance1 = [engine editDistanceFrom:[theaterElement1 element:@"name"].text to:theaterName];
-    int distance2 = [engine editDistanceFrom:[theaterElement2 element:@"name"].text to:theaterName];
+    int distance1 = [[Application differenceEngine] editDistanceFrom:[theaterElement1 element:@"name"].text
+                                                                  to:theaterName];
+    
+    int distance2 = [[Application differenceEngine] editDistanceFrom:[theaterElement2 element:@"name"].text
+                                                                  to:theaterName];
     
     if (distance1 < distance2) {
         return NSOrderedAscending;
@@ -54,14 +56,16 @@ NSComparisonResult compareTheaterElements(id t1, id t2, void* context1, void* co
     }    
 }
 
-NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* context2) {
+NSComparisonResult compareMovieElements(id t1, id t2, void* context1) {
     XmlElement* movieElement1 = t1;
     XmlElement* movieElement2 = t2;
     NSString* movieName = context1;
-    DifferenceEngine* engine = context2;
     
-    int distance1 = [engine editDistanceFrom:[movieElement1 element:@"title"].text to:movieName];
-    int distance2 = [engine editDistanceFrom:[movieElement2 element:@"title"].text to:movieName];
+    int distance1 = [[Application differenceEngine] editDistanceFrom:[movieElement1 element:@"title"].text
+                                                                  to:movieName];
+    
+    int distance2 = [[Application differenceEngine] editDistanceFrom:[movieElement2 element:@"title"].text
+                                                                  to:movieName];
     
     if (distance1 < distance2) {
         return NSOrderedAscending;
@@ -97,9 +101,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
     return [self.controller model];
 }
 
-- (void) findShowIds {
-    DifferenceEngine* engine = [DifferenceEngine engine];
-    
+- (void) findShowIds {    
     XmlElement* ticketElement = [[self model] tickets];
     XmlElement* dataElement = [ticketElement element:@"data"];
     XmlElement* moviesElement = [dataElement element:@"movies"];
@@ -107,17 +109,15 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1, void* cont
     
     XmlElement* bestMovieElement = [Utilities findSmallestElementInArray:moviesElement.children
                                                            usingFunction:compareMovieElements
-                                                                context1:self.movie.title
-                                                                context2:engine];
+                                                                context:self.movie.title];
     
     XmlElement* bestTheaterElement = [Utilities findSmallestElementInArray:theatersElement.children
                                                              usingFunction:compareTheaterElements
-                                                                  context1:self.theater.name
-                                                                  context2:engine]; 
+                                                                  context:self.theater.name]; 
     
     
-    if ([DifferenceEngine areSimilar:[bestMovieElement element:@"title"].text other:self.movie.title] &&
-        [DifferenceEngine areSimilar:[bestTheaterElement element:@"name"].text other:self.theater.name] &&
+    if ([[Application differenceEngine] similar:[bestMovieElement element:@"title"].text other:self.movie.title] &&
+        [[Application differenceEngine] similar:[bestTheaterElement element:@"name"].text other:self.theater.name] &&
         [@"True" isEqual:[bestTheaterElement attributeValue:@"iswired"]]) {
         
         for (NSString* showtime in self.showtimes) {

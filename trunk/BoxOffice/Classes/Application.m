@@ -19,6 +19,7 @@ static NSDateFormatter* dateFormatter = nil;
 static UIColor* commandColor = nil;
 static UIImage* freshImage = nil;
 static UIImage* rottenImage = nil;
+static DifferenceEngine* differenceEngine = nil;
 
 + (void) initialize {
     if (self == [Application class]) {
@@ -35,6 +36,9 @@ static UIImage* rottenImage = nil;
         rottenImage = [UIImage imageNamed:@"Rotten.png"];
         [freshImage retain];
         [rottenImage retain];
+        
+        differenceEngine = [DifferenceEngine engine];
+        [differenceEngine retain];
     }
 }
 
@@ -137,6 +141,11 @@ static UIImage* rottenImage = nil;
     
     NSURL* url = [NSURL URLWithString:urlString];
     [[UIApplication sharedApplication] openURL:url];    
+}
+
++ (DifferenceEngine*) differenceEngine {
+    NSAssert([NSThread isMainThread], @"Cannot access difference engine from main thread.");
+    return differenceEngine;
 }
 
 @end

@@ -10,6 +10,7 @@
 #import "Movie.h"
 #import "Theater.h"
 #import "DifferenceEngine.h"
+#import "Application.h"
 
 @implementation BoxOfficeModel
 
@@ -256,15 +257,13 @@
 - (NSArray*) theatersShowingMovie:(Movie*) movie {
     NSMutableArray* array = [NSMutableArray array];
     
-    DifferenceEngine* engine = [DifferenceEngine engine];
-    
     for (Theater* theater in self.theaters) {
         for (NSString* movieName in theater.movieToShowtimesMap) {
             if ([[theater.movieToShowtimesMap objectForKey:movieName] count] == 0) {
                 continue;
             }
             
-            if ([engine similar:movie.title other:movieName]) {
+            if ([[Application differenceEngine] similar:movie.title other:movieName]) {
                 [array addObject:theater];
                 break;
             }
@@ -275,7 +274,6 @@
 }
 
 - (NSArray*) moviesAtTheater:(Theater*) theater {
-    DifferenceEngine* engine = [DifferenceEngine engine];
     NSMutableArray* array = [NSMutableArray array];
     
     for (Movie* movie in self.movies) {
@@ -284,7 +282,7 @@
                 continue;
             }
             
-            if ([engine similar:movie.title other:movieName]) {
+            if ([[Application differenceEngine] similar:movie.title other:movieName]) {
                 [array addObject:movie];
                 break;
             }
@@ -296,21 +294,18 @@
 
 - (NSArray*) movieShowtimes:(Movie*) movie
                  forTheater:(Theater*) theater {
-    
-    DifferenceEngine* engine = [DifferenceEngine engine];
-    
     NSString* bestName = nil;
     NSInteger bestDistance = NSIntegerMax;
     
     for (NSString* name in [theater.movieToShowtimesMap allKeys]) {
-        NSInteger distance = [engine editDistanceFrom:name to:movie.title];
+        NSInteger distance = [[Application differenceEngine] editDistanceFrom:name to:movie.title];
         if (distance < bestDistance) {
             bestDistance = distance;
             bestName = name;
         }
     }
     
-    if ([engine similar:bestName other:movie.title]) {
+    if ([[Application differenceEngine] similar:bestName other:movie.title]) {
         return [theater.movieToShowtimesMap objectForKey:bestName];
     }
     

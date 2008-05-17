@@ -9,7 +9,6 @@
 #import "PosterDownloader.h"
 #import "XmlParser.h"
 #import "XmlElement.h"
-#import "DifferenceEngine.h"
 #import "XmlSerializer.h"
 #import "ImdbPosterDownloader.h"
 
