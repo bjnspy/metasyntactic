@@ -30,36 +30,6 @@
     [super dealloc];
 }
 
-- (id) initWithNavigationController:(TheatersNavigationController*) controller {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = controller;
-        self.sortedTheaters = [NSArray array];
-        
-        segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                             [NSArray arrayWithObjects:@"Name", @"Distance", nil]] autorelease];
-        
-        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
-        segmentedControl.selectedSegmentIndex = [[self model] allTheatersSelectedSegmentIndex];
-        [segmentedControl addTarget:self
-                             action:@selector(onSortOrderChanged:)
-                   forControlEvents:UIControlEventValueChanged];
-        CGRect rect = segmentedControl.frame;
-        rect.size.width = 200;
-        segmentedControl.frame = rect;
-        
-        self.navigationItem.titleView = segmentedControl;
-        
-        {
-            self.alphabeticSectionTitles =
-            [NSArray arrayWithObjects:@"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
-             @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
-             @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
-        }
-    }
-    
-    return self;
-}
-
 - (BOOL) sortingByName {
     return segmentedControl.selectedSegmentIndex == 0;
 }
@@ -111,16 +81,16 @@
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
                                                                 context:theaterDistanceMap];
     
-    NSString* reallyCloseBy = @"Realllllly close by";
-    NSString* oneHalfToOneMile = @"< 1 mile away";
-    NSString* oneToTwoMiles = @"< 2 miles away";
-    NSString* twoToFileMiles = @"< 5 miles away";
-    NSString* fiveToTenMiles = @"< 10 miles away";
-    NSString* tenToFifteenMiles = @"< 15 miles away";
-    NSString* fifteenToTwentyFiveMiles = @"< 25 miles away";
-    NSString* twentyFiveToFiftyMiles = @"< 50 miles away";
-    NSString* wayFarAway = @"Waaaaaay too far away";
-    NSString* unknownDistance = @"Unknown Distance";
+    static NSString* reallyCloseBy             = @"Realllllly close by";
+    static NSString* oneHalfToOneMile          = @"< 1 mile away";
+    static NSString* oneToTwoMiles             = @"< 2 miles away";
+    static NSString* twoToFileMiles            = @"< 5 miles away";
+    static NSString* fiveToTenMiles            = @"< 10 miles away";
+    static NSString* tenToFifteenMiles         = @"< 15 miles away";
+    static NSString* fifteenToTwentyFiveMiles  = @"< 25 miles away";
+    static NSString* twentyFiveToFiftyMiles    = @"< 50 miles away";
+    static NSString* wayFarAway                = @"Waaaaaay too far away";
+    static NSString* unknownDistance           = @"Unknown Distance";
     
     self.sectionTitles = [NSMutableArray arrayWithObjects:reallyCloseBy, oneHalfToOneMile, oneToTwoMiles, twoToFileMiles,
                           fiveToTenMiles, tenToFifteenMiles, fifteenToTwentyFiveMiles,
@@ -156,7 +126,6 @@
 }
 
 - (void) sortTheaters {
-    self.sectionTitles = [NSMutableArray array];
     self.sectionTitleToContentsMap = [MultiDictionary dictionary];
     
     if ([self sortingByName]) {
@@ -168,6 +137,39 @@
     if ([self.sectionTitles count] == 0) {
         self.sectionTitles = [NSArray arrayWithObject:@"No Information Found"]; 
     }
+}
+
+- (id) initWithNavigationController:(TheatersNavigationController*) controller {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.navigationController = controller;
+        self.sortedTheaters = [NSArray array];
+        
+        segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+                             [NSArray arrayWithObjects:@"Name", @"Distance", nil]] autorelease];
+        
+        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+        segmentedControl.selectedSegmentIndex = [[self model] allTheatersSelectedSegmentIndex];
+        [segmentedControl addTarget:self
+                             action:@selector(onSortOrderChanged:)
+                   forControlEvents:UIControlEventValueChanged];
+        
+        CGRect rect = segmentedControl.frame;
+        rect.size.width = 200;
+        segmentedControl.frame = rect;
+        
+        self.navigationItem.titleView = segmentedControl;
+        
+        {
+            self.alphabeticSectionTitles =
+            [NSArray arrayWithObjects:@"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
+             @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
+             @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+        }
+        
+        [self sortTheaters];
+    }
+    
+    return self;
 }
 
 - (void) refresh {

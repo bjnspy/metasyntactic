@@ -13,6 +13,7 @@
 #import "BoxOfficeAppDelegate.h"
 #import "PosterView.h"
 #import "MovieTitleCell.h"
+#import "DifferenceEngine.h"
 
 @implementation AllMoviesViewController
 
@@ -25,7 +26,6 @@
 @synthesize posterView;
 
 - (void) dealloc {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
     
     self.navigationController = nil;
     self.sortedMovies = nil;
@@ -34,51 +34,14 @@
     self.sectionTitleToContentsMap = nil;
     self.alphabeticSectionTitles = nil;
     self.posterView = nil;
-    [super dealloc];
-}
-
-- (id) initWithNavigationController:(MoviesNavigationController*) controller {
-    if (self = [super initWithStyle:UITableViewStylePlain]) {
-        self.navigationController = controller;
-        self.sortedMovies = [NSArray array];
-        
-        self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                                  [NSArray arrayWithObjects:@"Title", @"Rating", nil]] autorelease];
-        
-        
-        self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
-        self.segmentedControl.selectedSegmentIndex = [[self model] allMoviesSelectedSegmentIndex];
-        [self.segmentedControl addTarget:self
-                                  action:@selector(onSortOrderChanged:)
-                        forControlEvents:UIControlEventValueChanged];
-        CGRect rect = self.segmentedControl.frame;
-        rect.size.width = 200;
-        self.segmentedControl.frame = rect;
-        
-        self.navigationItem.titleView = segmentedControl;
-        
-        self.alphabeticSectionTitles =
-        [NSArray arrayWithObjects:
-         @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
-         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
-         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
-    }
     
-    return self;
+    [super dealloc];
 }
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(onDeviceOrientationDidChange:)
-                                                 name:UIDeviceOrientationDidChangeNotification
-                                               object:nil];
     
     [self.model setCurrentlySelectedMovie:nil theater:nil];
-}
-
-- (void) viewWillDisappear:(BOOL) animated {
-    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 - (void) onSortOrderChanged:(id) sender {
@@ -128,8 +91,43 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     }    
 }
 
+- (BOOL)            set:(NSSet*) set
+        containsSimilar:(DifferenceEngine*) engine
+                 string:(NSString*) value {
+    for (NSString* string in set) {
+        if ([engine similar:string other:value]) {
+            return YES;
+        }
+    }    
+    
+    return NO;
+}
+
+- (NSArray*) filterMovies:(NSArray*) movies {
+    NSMutableSet* set = [NSMutableSet set];
+    
+    for (Theater* theater in self.model.theaters) {
+        [set addObjectsFromArray:[theater.movieToShowtimesMap allKeys]];
+    }
+    
+    DifferenceEngine* engine = [DifferenceEngine engine];
+    
+    NSMutableArray* result = [NSMutableArray array];
+    
+    for (Movie* movie in movies) {
+        if ([self set:set containsSimilar:engine string:movie.title]) {
+            [result addObject:movie];
+        } else {
+            NSLog(@"No theater found playing %@", movie.title);
+        }
+    }
+    
+    return result;
+}
+
 - (void) sortMoviesByTitle {
-    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:sortByTitle context:nil];
+    NSArray* movies = [self filterMovies:self.model.movies];
+    self.sortedMovies = [movies sortedArrayUsingFunction:sortByTitle context:nil];
     
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
     
@@ -149,7 +147,8 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (void) sortMoviesByRating {
-    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:sortByRating context:nil];
+    NSArray* movies = [self filterMovies:self.model.movies];
+    self.sortedMovies = [movies sortedArrayUsingFunction:sortByRating context:nil];
 }
 
 - (void) sortMovies { 
@@ -165,6 +164,39 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     if ([self.sectionTitles count] == 0) {
         self.sectionTitles = [NSArray arrayWithObject:@"No Information Found"];
     }
+}
+
+- (id) initWithNavigationController:(MoviesNavigationController*) controller {
+    if (self = [super initWithStyle:UITableViewStylePlain]) {
+        self.navigationController = controller;
+        self.sortedMovies = [NSArray array];
+        
+        self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+                                  [NSArray arrayWithObjects:@"Title", @"Rating", nil]] autorelease];
+        
+        
+        self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
+        self.segmentedControl.selectedSegmentIndex = [[self model] allMoviesSelectedSegmentIndex];
+        [self.segmentedControl addTarget:self
+         action:@selector(onSortOrderChanged:)
+         forControlEvents:UIControlEventValueChanged];
+        
+        CGRect rect = self.segmentedControl.frame;
+        rect.size.width = 200;
+        self.segmentedControl.frame = rect;
+        
+        self.navigationItem.titleView = segmentedControl;
+        
+        self.alphabeticSectionTitles =
+        [NSArray arrayWithObjects:
+         @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
+         @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
+         @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
+        
+        [self sortMovies];
+    }
+    
+    return self;
 }
 
 - (BoxOfficeModel*) model {

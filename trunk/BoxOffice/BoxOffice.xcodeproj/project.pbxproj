@@ -102,7 +102,7 @@
 		74088E660DCD36AE00954696 /* XmlDocument.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlDocument.h; sourceTree = "<group>"; };
 		74088E670DCD36AE00954696 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDocument.m; sourceTree = "<group>"; };
 		74088E680DCD36AE00954696 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
-		74088E690DCD36AE00954696 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; };
+		74088E690DCD36AE00954696 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; wrapsLines = 0; };
 		740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
 		740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNavigationController.m; sourceTree = "<group>"; };
 		740E7EA60DCFE6BF0066FCE5 /* Spinner0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spinner0.png; sourceTree = "<group>"; };
