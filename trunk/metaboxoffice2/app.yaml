@@ -1,0 +1,26 @@
+application: metaboxoffice2
+version: 1
+runtime: python
+api_version: 1
+
+handlers:
+- url: /UploadMovie
+  script: main.py
+
+- url: /UploadCastMember
+  script: main.py
+
+- url: /UploadDirector
+  script: main.py
+
+- url: /UploadWriter
+  script: main.py
+
+- url: /DeleteAllMovies
+  script: main.py
+
+- url: /DeleteAllUsers
+  script: main.py
+
+- url: .*
+  script: main.py
