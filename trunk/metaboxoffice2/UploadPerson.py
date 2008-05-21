@@ -13,11 +13,10 @@ from xml.dom.minidom import Node
 from google.appengine.ext import db
 
 class UploadPersonHandler(webapp.RequestHandler):
+  def makeKey(self, line):
+    return '_' + unicode(line, "utf-8")
+
   def decodePost(self):
-    global personQuery
-    personQuery = Person.gql("WHERE firstName = :1 AND lastName = :2", "", "")
-    global movieQuery
-    movieQuery = Movie.gql("WHERE name = :1 AND year = :2", "", 2000)
     firstLine = True
 
     person = None
@@ -25,26 +24,18 @@ class UploadPersonHandler(webapp.RequestHandler):
 
     for line in self.request.body_file:
       line = line.rstrip('\n')
+      logging.info(line)
       if line:
         if firstLine:
           firstLine = False
-          (personFirstName, sep, personLastName) = line.partition("|#|")
+          (personFirstName, sep, personLastName) = line.partition("\t")
           personFirstName = unicode(personFirstName, "utf-8")
           personLastName = unicode(personLastName, "utf-8")
-          personQuery.bind(personFirstName, personLastName)
-          person = personQuery.get()
-          if person is None:
-            person = Person(firstName = personFirstName, lastName = personLastName)
-            person.put()
+          person = Person.get_or_insert(self.makeKey(line), firstName = personFirstName, lastName = personLastName)
         else:
-          (movieName, sep, movieYear) = line.partition("|#|")
+          (movieName, sep, movieYear) = line.partition("\t")
           movieName = unicode(movieName, "utf-8")
-          movieQuery.bind(movieName, int(movieYear))
-          movie = movieQuery.get()
-          if movie is None:
-            movie = Movie(name = movieName, year = int(movieYear))
-            movie.put()
-
+          movie = Movie.get_or_insert(self.makeKey(line), name = movieName, year = int(movieYear))
           movies.append(movie)
 
     return (person, movies)

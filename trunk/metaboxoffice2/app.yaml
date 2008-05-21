@@ -22,5 +22,14 @@ handlers:
 - url: /DeleteAllUsers
   script: main.py
 
-- url: .*
+- url: /Search
   script: main.py
+
+- url: /LookupMovie
+  script: main.py
+
+- url: /LookupPerson
+  script: main.py
+
+#- url: .*
+#  script: main.py

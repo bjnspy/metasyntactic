@@ -7,6 +7,9 @@ import UploadDirector
 import UploadWriter
 import DeleteAllMovies
 import DeleteAllUsers
+import Search
+import LookupPerson
+import LookupMovie
 
 from google.appengine.ext import webapp
 
@@ -21,7 +24,10 @@ def main():
                                         ('/DeleteAllUsers', DeleteAllUsers.DeleteAllUsersHandler),
                                         ('/UploadCastMember', UploadCastMember.UploadCastMemberHandler),
                                         ('/UploadDirector', UploadDirector.UploadDirectorHandler),
-                                        ('/UploadWriter', UploadWriter.UploadWriterHandler)],
+                                        ('/UploadWriter', UploadWriter.UploadWriterHandler),
+                                        ('/Search', Search.SearchHandler),
+                                        ('/LookupMovie', LookupMovie.LookupMovieHandler),
+                                        ('/LookupPerson', LookupPerson.LookupPersonHandler)],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
 
