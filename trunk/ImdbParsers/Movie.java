@@ -18,7 +18,7 @@ public class Movie {
     private final int year;
 
     public Movie(String name, int year) {
-        this.name = name;
+        this.name = StringUtilities.massage(name);
         this.year = year;
     }
 

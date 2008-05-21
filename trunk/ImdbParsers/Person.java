@@ -21,20 +21,9 @@ public class Person {
     private final Set<Movie> movies;
 
     public Person(String firstName, String lastName, Collection<Movie> movies) {
-        this.firstName = trim(firstName);
-        this.lastName = trim(lastName);
+        this.firstName = StringUtilities.massage(firstName);
+        this.lastName = StringUtilities.massage(lastName);
         this.movies = new HashSet<Movie>(movies);
-    }
-
-    private String trim(String name) {
-        name = name.trim();
-
-        while ((name.startsWith("'") && name.endsWith("'")) ||
-               (name.startsWith("\"") && name.endsWith("\""))) {
-            name = name.substring(1, name.length() - 1);
-        }
-
-        return name;
     }
 
     public String getFirstName() {

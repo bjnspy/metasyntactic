@@ -2,11 +2,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.TransformerException;
 import java.io.*;
 import java.net.HttpURLConnection;
-import java.net.URISyntaxException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by IntelliJ IDEA.
@@ -16,12 +13,12 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 public class Main {
-    //public static final String HOST = "localhost:8080";
+    //public static final String HOST = "localhost:8081";
     //public static final String HOST = "metaboxoffice.appspot.com";
     public static final String HOST = "metaboxoffice2.appspot.com";
 
     public static void main(String... args) throws IOException, ParserConfigurationException, TransformerException, InterruptedException {
-        if (false) {
+        if (true) {
             while (true) {
                 try {
                     URL url = new URL("http://" + HOST + "/DeleteAllUsers");
@@ -78,14 +75,14 @@ public class Main {
 
     private static void parseLists() throws IOException, InterruptedException {
         MoviesListParser movieParser = new MoviesListParser(new File("movies.list"));
-        try {
-            while (movieParser.run()) {
-            }
-        } catch (URISyntaxException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        } catch (InterruptedException e) {
-            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-        }
+//        try {
+//            while (movieParser.run()) {
+//            }
+//        } catch (URISyntaxException e) {
+//            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+//        }
 
         ActorsListParser actorParser = new ActorsListParser(new File("actors.list"));
         ActressesListParser actressesParser = new ActressesListParser(new File("actresses.list"));
@@ -100,53 +97,7 @@ public class Main {
                 directorsParser
         };
 
-
-        List<Thread> threads = new ArrayList<Thread>();
-
-        for (final AbstractListParser parser : parsers) {
-            Thread thread = new Thread() {
-                public void run() {
-                    int sleepSeconds = 0;
-
-                    while (true) {
-                        try {
-                            if (!parser.run()) {
-                                return;
-                            }
-                        } catch (Exception e) {
-                            e.printStackTrace();
-
-                            if (sleepSeconds == 0) {
-                                sleepSeconds = 3;
-                            } else {
-                                sleepSeconds *= 2;
-                                sleepSeconds = Math.min(120, sleepSeconds);
-                            }
-                        }
-
-                        if (sleepSeconds > 0) {
-                            System.out.println("Sleeping for: " + sleepSeconds);
-                            try {
-                                Thread.sleep(sleepSeconds * 1000);
-                            } catch (InterruptedException e) {
-                                throw new RuntimeException(e);
-                            }
-
-                            System.out.println("Reducing sleep length");
-                            sleepSeconds--;
-                        }
-                    }
-                }
-            };
-
-            thread.start();
-        }
-
-        for (Thread thread : threads) {
-            thread.join();
-        }
-
-/*
+        int sleepSeconds = 0;
         boolean again;
         do {
             again = false;
@@ -155,13 +106,14 @@ public class Main {
                 try {
                     again |= parser.run();
                 } catch (Exception e) {
+                    again = true;
                     e.printStackTrace();
 
                     if (sleepSeconds == 0) {
-                        sleepSeconds = 5;
+                        sleepSeconds = 3;
                     } else {
                         sleepSeconds *= 2;
-                        sleepSeconds = Math.max(120, sleepSeconds);
+                        sleepSeconds = Math.min(120, sleepSeconds);
                     }
                 }
 
@@ -173,7 +125,7 @@ public class Main {
                     sleepSeconds--;
                 }
             }
+
         } while (again);
-*/
     }
 }

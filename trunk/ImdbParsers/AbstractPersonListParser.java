@@ -12,7 +12,7 @@ import java.util.*;
 public abstract class AbstractPersonListParser extends AbstractListParser {
     protected HashSet<Person> savedPeople = new HashSet<Person>();
     protected PrintWriter writer;
-    private final static String SEPARATOR = "|#|";
+    private final static String SEPARATOR = "\t";
 
     protected AbstractPersonListParser(File file, String sentinel) throws IOException {
         super(file);
@@ -36,7 +36,7 @@ public abstract class AbstractPersonListParser extends AbstractListParser {
             int index = line.indexOf(SEPARATOR);
             if (index > 0) {
                 String firstName = line.substring(0, index);
-                String lastName = line.substring(index + 3);
+                String lastName = line.substring(index + SEPARATOR.length());
 
                 savedPeople.add(new Person(firstName, lastName, Collections.EMPTY_LIST));
             }
@@ -53,9 +53,10 @@ public abstract class AbstractPersonListParser extends AbstractListParser {
         Person person;
         if ((person = readPerson(in)) != null) {
             total++;
-            person.getMovies().retainAll(MoviesListParser.getMovies());
+            //person.getMovies().retainAll(MoviesListParser.getMovies());
 
-            if (!person.getMovies().isEmpty() && !savedPeople.contains(person)) {
+            if (!person.getMovies().isEmpty() &&
+                !savedPeople.contains(person)) {
                 System.out.println(getName() + " - " + count + "/" + total + " : " + person);
                 count++;
                 uploadPerson(person);
@@ -85,10 +86,10 @@ public abstract class AbstractPersonListParser extends AbstractListParser {
 
             PrintWriter out = new PrintWriter(new OutputStreamWriter(connection.getOutputStream(), "UTF-8"));
 
-            out.println(person.getFirstName() + "|#|" + person.getLastName());
+            out.println(person.getFirstName() + SEPARATOR + person.getLastName());
 
             for (Movie movie : movies.subList(i, Math.min(i + BATCH_SIZE, movies.size()))) {
-                out.println(movie.getName() + "|#|" + movie.getYear());
+                out.println(movie.getName() + SEPARATOR + movie.getYear());
             }
 
             out.flush();
