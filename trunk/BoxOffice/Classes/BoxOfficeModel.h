@@ -22,6 +22,7 @@
     UIActivityIndicatorView* activityIndicatorView;
     UIView* activityView;
     
+    NSInteger searchRadius;
     XmlElement* ticketsElement;
 }
 

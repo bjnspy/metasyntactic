@@ -14,6 +14,7 @@
 
 @synthesize moviesNavigationController;
 @synthesize theatersNavigationController;
+@synthesize searchNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
 
@@ -21,6 +22,7 @@
 {
     self.moviesNavigationController = nil;
     self.theatersNavigationController = nil;
+    self.searchNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
     [super dealloc];
@@ -33,11 +35,14 @@
         self.appDelegate = appDel;
         self.moviesNavigationController = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.searchNavigationController = [[[SearchNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
         
         self.viewControllers =
-        [NSArray arrayWithObjects:moviesNavigationController,
+        [NSArray arrayWithObjects:
+         moviesNavigationController,
          theatersNavigationController,
+         searchNavigationController,
          settingsNavigationController, nil];
         
         if ([Utilities isNilOrEmpty:[[self model] zipcode]]) {

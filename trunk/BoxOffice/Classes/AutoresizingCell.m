@@ -13,18 +13,19 @@
 
 @synthesize label;
 
-- (void)dealloc {
+- (void) dealloc {
     self.label = nil;
     [super dealloc];
 }
-
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
+ 
+- (id) initWithFrame:(CGRect)frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         // Initialization code
 
-        self.label = [[[UILabel alloc] initWithFrame:CGRectMake(0, 0, 300, 40)] autorelease];
+        self.label = [[[UILabel alloc] initWithFrame:CGRectMake(3, 0, 295, 40)] autorelease];
         
-        label.textAlignment = UITextAlignmentCenter;        label.opaque = NO;
+        label.textAlignment = UITextAlignmentCenter;
+        label.opaque = NO;
         label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont boldSystemFontOfSize:14];
         label.adjustsFontSizeToFitWidth = YES;

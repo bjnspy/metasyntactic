@@ -8,6 +8,7 @@
 
 #import "MoviesNavigationController.h"
 #import "TheatersNavigationController.h"
+#import "SearchNavigationController.h"
 #import "SettingsNavigationController.h"
 #import "BoxOfficeModel.h"
 
@@ -17,12 +18,14 @@
     BoxOfficeAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
+    SearchNavigationController* searchNavigationController;
     SettingsNavigationController* settingsNavigationController;
 }
 
 @property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
+@property (retain) SearchNavigationController* searchNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
 
 + (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;

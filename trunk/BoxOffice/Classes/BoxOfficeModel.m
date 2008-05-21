@@ -32,8 +32,6 @@
     
     self.ticketsElement = nil;
     
-
-    
     [super dealloc];
 }
 
@@ -69,6 +67,7 @@
         [self.activityView addSubview:self.activityIndicatorView];
         
         backgroundTaskCount = 0;
+        searchRadius = -1;
         
         [self updatePosterCache];
         [self updateAddressLocationCache];
@@ -136,10 +135,15 @@
 }
 
 - (int) searchRadius {
-    return MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:@"searchRadius"]);
+    if (searchRadius == -1) {
+        searchRadius = MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:@"searchRadius"]);
+    }
+ 
+    return searchRadius;
 }
 
-- (void) setSearchRadius:(NSInteger) searchRadius {
+- (void) setSearchRadius:(NSInteger) radius {
+    searchRadius = radius;
     [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:@"searchRadius"];
 }
 

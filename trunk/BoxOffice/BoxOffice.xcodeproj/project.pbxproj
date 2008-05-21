@@ -66,6 +66,9 @@
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
+		74CC7D770DE39BDB001C0559 /* SearchNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CC7D760DE39BDB001C0559 /* SearchNavigationController.m */; };
+		74CC7D790DE39CDB001C0559 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 74CC7D780DE39CDB001C0559 /* Search.png */; };
+		74CC7DB20DE39E6D001C0559 /* SearchStartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CC7DB10DE39E6D001C0559 /* SearchStartPageViewController.m */; };
 		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
 		74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */; };
@@ -172,6 +175,11 @@
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
 		74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerEditorViewController.m; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		74CC7D750DE39BDB001C0559 /* SearchNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNavigationController.h; sourceTree = "<group>"; };
+		74CC7D760DE39BDB001C0559 /* SearchNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNavigationController.m; sourceTree = "<group>"; };
+		74CC7D780DE39CDB001C0559 /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Search.png; sourceTree = "<group>"; };
+		74CC7DB00DE39E6D001C0559 /* SearchStartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStartPageViewController.h; sourceTree = "<group>"; };
+		74CC7DB10DE39E6D001C0559 /* SearchStartPageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchStartPageViewController.m; sourceTree = "<group>"; };
 		74D6F2B50DCC144D0097A984 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
 		74D6F2B60DCC144D0097A984 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		74D6F2BC0DCC176D0097A984 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlElement.h; sourceTree = "<group>"; };
@@ -280,6 +288,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74CC7D780DE39CDB001C0559 /* Search.png */,
 				74EC02DE0DD175BB006953A4 /* Icon.png */,
 				740F28330DD1267000F66E51 /* ImageNotAvailable.png */,
 				740E7EA60DCFE6BF0066FCE5 /* Spinner0.png */,
@@ -367,6 +376,8 @@
 				74447C330DC83C2000CC146C /* MoviesNavigationController.m */,
 				74447C390DC83E7400CC146C /* TheatersNavigationController.h */,
 				74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */,
+				74CC7D750DE39BDB001C0559 /* SearchNavigationController.h */,
+				74CC7D760DE39BDB001C0559 /* SearchNavigationController.m */,
 				7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */,
 				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
 			);
@@ -388,6 +399,8 @@
 				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
 				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
 				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
+				74CC7DB00DE39E6D001C0559 /* SearchStartPageViewController.h */,
+				74CC7DB10DE39E6D001C0559 /* SearchStartPageViewController.m */,
 				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
 				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 				74447C660DC843D900CC146C /* TheaterDetailsViewController.h */,
@@ -490,6 +503,7 @@
 				740F28340DD1267000F66E51 /* ImageNotAvailable.png in Resources */,
 				74EC02DF0DD175BB006953A4 /* Icon.png in Resources */,
 				74489CA80DDD0CEC00F565B1 /* Default.png in Resources */,
+				74CC7D790DE39CDB001C0559 /* Search.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -542,6 +556,8 @@
 				74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */,
 				74489E600DDD341E00F565B1 /* AutoresizingCell.m in Sources */,
 				74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */,
+				74CC7D770DE39BDB001C0559 /* SearchNavigationController.m in Sources */,
+				74CC7DB20DE39E6D001C0559 /* SearchStartPageViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

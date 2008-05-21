@@ -15,6 +15,13 @@
 @synthesize movieDetailsViewController;
 @synthesize tabBarController;
 
+- (void) dealloc
+{
+    self.allMoviesViewController = nil;
+    self.movieDetailsViewController = nil;
+    [super dealloc];
+}
+
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller
 {
     if (self = [super initWithTabBarController:controller])
@@ -42,13 +49,6 @@
                          animated:NO];
         }
     }    
-}
-
-- (void) dealloc
-{
-    self.allMoviesViewController = nil;
-    self.movieDetailsViewController = nil;
-    [super dealloc];
 }
 
 - (void) refresh
