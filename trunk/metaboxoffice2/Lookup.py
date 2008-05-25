@@ -15,7 +15,7 @@ class LookupHandler(webapp.RequestHandler):
     personElement = document.createElement("person")
     personElement.setAttribute("firstName", person.firstName)
     personElement.setAttribute("lastName", person.lastName)
-    personElement.setAttribute("key", str(person.key()))
+    personElement.setAttribute("id", str(person.key()))
 
     return personElement
 
