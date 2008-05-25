@@ -178,8 +178,11 @@
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.textAlignment = UITextAlignmentCenter;
             
-            cell.text = [NSString stringWithFormat:@"Show %d Theater%@ Outside Search Radius",
-                         self.hiddenTheaterCount, self.hiddenTheaterCount == 1 ? @"" : @"s"];
+            if (self.hiddenTheaterCount == 1) {
+                cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d theater outside search radius", nil), self.hiddenTheaterCount];
+            } else {
+                cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d theaters outside search radius", nil), self.hiddenTheaterCount];
+            }
             
             cell.textColor = [Application commandColor];
             cell.font = [UIFont boldSystemFontOfSize:14];

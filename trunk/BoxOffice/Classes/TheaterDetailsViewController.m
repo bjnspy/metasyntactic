@@ -106,7 +106,7 @@
         
         return cell;
     } else {
-        static NSString* reuseIdentifier = @"MovieDetailsCellIdentifier";
+        static NSString* reuseIdentifier = @"TheaterDetailsCellIdentifier";
         id i = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         MovieShowtimesCell* cell = i;
         if (cell == nil) {

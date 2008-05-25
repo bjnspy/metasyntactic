@@ -23,6 +23,9 @@
 		74088C6C0DCD17D100954696 /* PosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088C6B0DCD17D100954696 /* PosterDownloader.m */; };
 		74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E670DCD36AE00954696 /* XmlDocument.m */; };
 		74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */; };
+		74088FC70DE452DB003BCBBD /* SearchDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088FC60DE452DB003BCBBD /* SearchDetailsViewController.m */; };
+		74088FCD0DE453F8003BCBBD /* SearchMovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088FCC0DE453F8003BCBBD /* SearchMovieDetailsViewController.m */; };
+		74088FD00DE454C4003BCBBD /* SearchPersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088FCF0DE454C4003BCBBD /* SearchPersonDetailsViewController.m */; };
 		740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */; };
 		740E7EB00DCFE6BF0066FCE5 /* Spinner0.png in Resources */ = {isa = PBXBuildFile; fileRef = 740E7EA60DCFE6BF0066FCE5 /* Spinner0.png */; };
 		740E7EB10DCFE6BF0066FCE5 /* Spinner1.png in Resources */ = {isa = PBXBuildFile; fileRef = 740E7EA70DCFE6BF0066FCE5 /* Spinner1.png */; };
@@ -78,6 +81,7 @@
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
 		74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC069F0DD2D69B006953A4 /* Utilities.m */; };
 		74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC08720DD3EEBB006953A4 /* MultiDictionary.m */; };
+		74F6579B0DE9BB5100B99D45 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74F6579A0DE9BB5100B99D45 /* Localizable.strings */; };
 		74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
 /* End PBXBuildFile section */
 
@@ -106,6 +110,12 @@
 		74088E670DCD36AE00954696 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDocument.m; sourceTree = "<group>"; };
 		74088E680DCD36AE00954696 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
 		74088E690DCD36AE00954696 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; wrapsLines = 0; };
+		74088FC50DE452DB003BCBBD /* SearchDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDetailsViewController.h; sourceTree = "<group>"; };
+		74088FC60DE452DB003BCBBD /* SearchDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDetailsViewController.m; sourceTree = "<group>"; };
+		74088FCB0DE453F8003BCBBD /* SearchMovieDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchMovieDetailsViewController.h; sourceTree = "<group>"; };
+		74088FCC0DE453F8003BCBBD /* SearchMovieDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchMovieDetailsViewController.m; sourceTree = "<group>"; };
+		74088FCE0DE454C4003BCBBD /* SearchPersonDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPersonDetailsViewController.h; sourceTree = "<group>"; };
+		74088FCF0DE454C4003BCBBD /* SearchPersonDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPersonDetailsViewController.m; sourceTree = "<group>"; };
 		740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
 		740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNavigationController.m; sourceTree = "<group>"; };
 		740E7EA60DCFE6BF0066FCE5 /* Spinner0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Spinner0.png; sourceTree = "<group>"; };
@@ -197,6 +207,7 @@
 		74EC069F0DD2D69B006953A4 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		74EC08710DD3EEBB006953A4 /* MultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiDictionary.h; sourceTree = "<group>"; };
 		74EC08720DD3EEBB006953A4 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDictionary.m; sourceTree = "<group>"; };
+		74F6579A0DE9BB5100B99D45 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
 		74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -288,6 +299,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74F6579A0DE9BB5100B99D45 /* Localizable.strings */,
 				74CC7D780DE39CDB001C0559 /* Search.png */,
 				74EC02DE0DD175BB006953A4 /* Icon.png */,
 				740F28330DD1267000F66E51 /* ImageNotAvailable.png */,
@@ -401,6 +413,12 @@
 				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
 				74CC7DB00DE39E6D001C0559 /* SearchStartPageViewController.h */,
 				74CC7DB10DE39E6D001C0559 /* SearchStartPageViewController.m */,
+				74088FC50DE452DB003BCBBD /* SearchDetailsViewController.h */,
+				74088FC60DE452DB003BCBBD /* SearchDetailsViewController.m */,
+				74088FCB0DE453F8003BCBBD /* SearchMovieDetailsViewController.h */,
+				74088FCC0DE453F8003BCBBD /* SearchMovieDetailsViewController.m */,
+				74088FCE0DE454C4003BCBBD /* SearchPersonDetailsViewController.h */,
+				74088FCF0DE454C4003BCBBD /* SearchPersonDetailsViewController.m */,
 				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
 				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
 				74447C660DC843D900CC146C /* TheaterDetailsViewController.h */,
@@ -504,6 +522,7 @@
 				74EC02DF0DD175BB006953A4 /* Icon.png in Resources */,
 				74489CA80DDD0CEC00F565B1 /* Default.png in Resources */,
 				74CC7D790DE39CDB001C0559 /* Search.png in Resources */,
+				74F6579B0DE9BB5100B99D45 /* Localizable.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -558,6 +577,9 @@
 				74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */,
 				74CC7D770DE39BDB001C0559 /* SearchNavigationController.m in Sources */,
 				74CC7DB20DE39E6D001C0559 /* SearchStartPageViewController.m in Sources */,
+				74088FC70DE452DB003BCBBD /* SearchDetailsViewController.m in Sources */,
+				74088FCD0DE453F8003BCBBD /* SearchMovieDetailsViewController.m in Sources */,
+				74088FD00DE454C4003BCBBD /* SearchPersonDetailsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

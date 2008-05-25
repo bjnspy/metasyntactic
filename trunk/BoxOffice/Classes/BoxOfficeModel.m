@@ -14,6 +14,15 @@
 
 @implementation BoxOfficeModel
 
+static NSString* SEARCH_DATES_STRING = @"searchDates";
+static NSString* SEARCH_RESULTS_STRING = @"searchResults";
+static NSString* SEARCH_RADIUS_STRING = @"searchRadius";
+static NSString* MOVIES_STRING = @"movies";
+static NSString* THEATERS_STRING = @"theaters";
+static NSString* ZIPCODE_STRING = @"zipcode";
+static NSString* CURRENTLY_SELECTED_MOVIE_STRING = @"currentlySelectedMovie";
+static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater";
+
 @synthesize notificationCenter;
 @synthesize posterCache;
 @synthesize addressLocationCache;
@@ -53,6 +62,24 @@
     [self.addressLocationCache updateZipcode:self.zipcode];
 }
 
+- (void) clearOldSearchResults {
+    NSMutableDictionary* searchDates = [self getSearchDates];    
+    NSMutableDictionary* searchResults = [self getSearchResults];
+    
+    for (NSString* key in [searchDates allKeys]) {
+        NSDate* searchDate = [searchDates objectForKey:key];
+        
+        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:searchDate];
+        if (time > (24 * 60 * 60)) {
+            [searchDates removeObjectForKey:key];
+            [searchResults removeObjectForKey:key];
+        }
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:searchDates forKey:SEARCH_DATES_STRING];
+    [[NSUserDefaults standardUserDefaults] setObject:searchResults forKey:SEARCH_RESULTS_STRING];
+}
+
 - (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
     if (self = [super init]) {
         self.notificationCenter = notificationCenter_;
@@ -72,6 +99,7 @@
         [self updatePosterCache];
         [self updateAddressLocationCache];
         [self updateZipcodeAddressLocation];
+        [self clearOldSearchResults];
     }
     
     return self;
@@ -126,7 +154,7 @@
 }
 
 - (NSString*) zipcode {
-    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:@"zipCode"];
+    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:ZIPCODE_STRING];
     if (result == nil) {
         result =  @"";
     }
@@ -136,7 +164,7 @@
 
 - (int) searchRadius {
     if (searchRadius == -1) {
-        searchRadius = MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:@"searchRadius"]);
+        searchRadius = MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:SEARCH_RADIUS_STRING]);
     }
  
     return searchRadius;
@@ -144,11 +172,11 @@
 
 - (void) setSearchRadius:(NSInteger) radius {
     searchRadius = radius;
-    [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:@"searchRadius"];
+    [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:SEARCH_RADIUS_STRING];
 }
 
 - (NSArray*) movies {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:@"movies"];
+    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:MOVIES_STRING];
     if (array == nil) {
         return [NSArray array];
     }
@@ -170,7 +198,7 @@
         [array addObject:[[movies objectAtIndex:i] dictionary]];
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"movies"];
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:MOVIES_STRING];
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastMoviesUpdateTime"];
     
     [self updatePosterCache];
@@ -185,7 +213,7 @@
 }
 
 - (NSArray*) theaters {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:@"theaters"];
+    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:THEATERS_STRING];
     if (array == nil) {
         return [NSArray array];
     }
@@ -206,7 +234,7 @@
         [array addObject:[[theaters objectAtIndex:i] dictionary]];
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:array forKey:@"theaters"];
+    [[NSUserDefaults standardUserDefaults] setObject:array forKey:THEATERS_STRING];
     [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastTheatersUpdateTime"];
         
     [self updateAddressLocationCache];
@@ -376,13 +404,13 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     
     [self clearLastTheatersUpdateTime];
     [self clearLastTicketsUpdateTime];
-    [[NSUserDefaults standardUserDefaults] setObject:zipcode forKey:@"zipCode"];
+    [[NSUserDefaults standardUserDefaults] setObject:zipcode forKey:ZIPCODE_STRING];
     
     [self updateZipcodeAddressLocation];
 }
 
 - (Movie*) currentlySelectedMovie {
-    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentlySelectedMovie"];
+    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENTLY_SELECTED_MOVIE_STRING];
     if (dict == nil) {
         return nil;
     }
@@ -391,7 +419,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 - (Theater*) currentlySelectedTheater {
-    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:@"currentlySelectedTheater"];
+    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:CURRENTLY_SELECTED_THEATER_STRING];
     if (dict == nil) {
         return nil;
     }
@@ -402,18 +430,82 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 - (void) setCurrentlySelectedMovie:(Movie*) movie 
                            theater:(Theater*) theater {
     if (movie == nil) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"currentlySelectedMovie"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:CURRENTLY_SELECTED_MOVIE_STRING];
     } else {
         [[NSUserDefaults standardUserDefaults] setObject:[movie dictionary]
-                                                  forKey:@"currentlySelectedMovie"];
+                                                  forKey:CURRENTLY_SELECTED_MOVIE_STRING];
     }
     
     if (theater == nil) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"currentlySelectedTheater"];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:CURRENTLY_SELECTED_THEATER_STRING];
     } else {
         [[NSUserDefaults standardUserDefaults] setObject:[theater dictionary]
-                                                  forKey:@"currentlySelectedTheater"];
+                                                  forKey:CURRENTLY_SELECTED_THEATER_STRING];
     }
+}
+
+- (void) setSearchDate:(NSDate*) date forIdentifier:(NSString*) identifier {
+    NSMutableDictionary* searchDates = [self getSearchDates];    
+    [searchDates setObject:date forKey:identifier];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:searchDates forKey:SEARCH_DATES_STRING];
+}
+
+- (NSMutableDictionary*) getSearchResults {
+    NSDictionary* result = [[NSUserDefaults standardUserDefaults] dictionaryForKey:SEARCH_RESULTS_STRING];
+    if (result == nil) {
+        return [NSMutableDictionary dictionary];
+    }
+    
+    return [NSMutableDictionary dictionaryWithDictionary:result];
+}
+
+- (NSMutableDictionary*) getSearchDates {
+    NSDictionary* result = [[NSUserDefaults standardUserDefaults] dictionaryForKey:SEARCH_DATES_STRING];
+    if (result == nil) {
+        return [NSMutableDictionary dictionary];
+    }
+    
+    return [NSMutableDictionary dictionaryWithDictionary:result];
+}
+
+- (XmlElement*) getDetails:(NSString*) identifier {
+    NSDictionary* searchResults = [self getSearchResults];
+    NSDictionary* details = [searchResults objectForKey:identifier];
+    
+    if (details == nil) {
+        return nil;
+    }
+    
+    return [XmlElement elementFromDictionary:details];
+}
+
+- (XmlElement*) getPersonDetails:(NSString*) identifier {
+    return [self getDetails:[NSString stringWithFormat:@"person-%@", identifier]];
+}
+
+- (XmlElement*) getMovieDetails:(NSString*) identifier {
+    return [self getDetails:[NSString stringWithFormat:@"movie-%@", identifier]];
+}
+
+- (void) setDetails:(NSString*) identifier element:(XmlElement*) element {
+    if (element == nil) {
+        return;
+    }
+    
+    NSMutableDictionary* searchResults = [self getSearchResults];
+    [searchResults setObject:[element dictionary] forKey:identifier];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:searchResults forKey:SEARCH_RESULTS_STRING];
+    [self setSearchDate:[NSDate date] forIdentifier:identifier];
+}
+
+- (void) setPersonDetails:(NSString*) identifier element:(XmlElement*) element {
+    [self setDetails:[NSString stringWithFormat:@"person-%@", identifier] element:element];
+}
+
+- (void) setMovieDetails:(NSString*) identifier element:(XmlElement*) element {
+    [self setDetails:[NSString stringWithFormat:@"movie-%@", identifier] element:element];
 }
 
 @end

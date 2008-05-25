@@ -81,16 +81,16 @@
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
                                                                 context:theaterDistanceMap];
     
-    static NSString* reallyCloseBy             = @"Realllllly close by";
-    static NSString* oneHalfToOneMile          = @"< 1 mile away";
-    static NSString* oneToTwoMiles             = @"< 2 miles away";
-    static NSString* twoToFileMiles            = @"< 5 miles away";
-    static NSString* fiveToTenMiles            = @"< 10 miles away";
-    static NSString* tenToFifteenMiles         = @"< 15 miles away";
-    static NSString* fifteenToTwentyFiveMiles  = @"< 25 miles away";
-    static NSString* twentyFiveToFiftyMiles    = @"< 50 miles away";
-    static NSString* wayFarAway                = @"Waaaaaay too far away";
-    static NSString* unknownDistance           = @"Unknown Distance";
+    NSString* reallyCloseBy             = NSLocalizedString(@"Realllllly close by", nil);
+    NSString* oneHalfToOneMile          = NSLocalizedString(@"< 1 mile away", nil);
+    NSString* oneToTwoMiles             = NSLocalizedString(@"< 2 miles away", nil);
+    NSString* twoToFileMiles            = NSLocalizedString(@"< 5 miles away", nil);
+    NSString* fiveToTenMiles            = NSLocalizedString(@"< 10 miles away", nil);
+    NSString* tenToFifteenMiles         = NSLocalizedString(@"< 15 miles away", nil);
+    NSString* fifteenToTwentyFiveMiles  = NSLocalizedString(@"< 25 miles away", nil);
+    NSString* twentyFiveToFiftyMiles    = NSLocalizedString(@"< 50 miles away", nil);
+    NSString* wayFarAway                = NSLocalizedString(@"Waaaaaay too far away", nil);
+    NSString* unknownDistance           = NSLocalizedString(@"Unknown Distance", nil);
     
     self.sectionTitles = [NSMutableArray arrayWithObjects:reallyCloseBy, oneHalfToOneMile, oneToTwoMiles, twoToFileMiles,
                           fiveToTenMiles, tenToFifteenMiles, fifteenToTwentyFiveMiles,
@@ -135,7 +135,7 @@
     }
     
     if ([self.sectionTitles count] == 0) {
-        self.sectionTitles = [NSArray arrayWithObject:@"No Information Found"]; 
+        self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"No information found", nil)]; 
     }
 }
 
@@ -145,7 +145,7 @@
         self.sortedTheaters = [NSArray array];
         
         segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                             [NSArray arrayWithObjects:@"Name", @"Distance", nil]] autorelease];
+                             [NSArray arrayWithObjects:NSLocalizedString(@"Name", nil), NSLocalizedString(@"Distance", nil), nil]] autorelease];
         
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
         segmentedControl.selectedSegmentIndex = [[self model] allTheatersSelectedSegmentIndex];
@@ -210,7 +210,7 @@
     NSInteger row = [indexPath row];
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
     
-    NSString* reuseIdentifier = @"AllTheatersTableViewCell";
+    static NSString* reuseIdentifier = @"AllTheatersCellIdentifiers";
     
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {

@@ -29,7 +29,7 @@
         
         [self pushViewController:viewController animated:NO];
         
-        self.title = @"Settings";
+        self.title = NSLocalizedString(@"Settings", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"More.png"];
     }
     

@@ -205,7 +205,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1) {
     if ([Utilities isNilOrEmpty:[self.showIds objectAtIndex:row]]) {
         cell.textColor = [UIColor blackColor];
         
-        cell.text = [NSString stringWithFormat:@"%@ (No Online Ticketing)", showtime];
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), showtime];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textColor = [Application commandColor];
@@ -213,14 +213,11 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1) {
         NSDate* now = [NSDate date];
         NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:showtime];
         
-        NSString* day;
         if ([now compare:showtimeDate] == NSOrderedAscending) {
-            day = @"Today";
+            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ today", nil), showtime];
         } else {
-            day = @"Tomorrow";
+            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ tomorrow", nil), showtime];
         }
-        
-        cell.text = [NSString stringWithFormat:@"Order Tickets for %@ %@", showtime, day];
     }
     
     return cell;    
@@ -241,9 +238,9 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1) {
         cell.label.text = self.theater.phoneNumber;
     } else if (row == 2) {
         if (linkToTheater) {
-            cell.label.text = @"Show All Movies at This Theater";
+            cell.label.text = NSLocalizedString(@"Show all movies at this theater", nil);
         } else {
-            cell.label.text = @"Show All Theaters Playing This Movie";
+            cell.label.text = NSLocalizedString(@"Show all theaters playing this movie", nil);
         }
     }
     

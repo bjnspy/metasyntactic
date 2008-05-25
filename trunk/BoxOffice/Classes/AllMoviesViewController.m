@@ -115,8 +115,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     for (Movie* movie in movies) {
         if ([self set:set containsSimilar:movie.title]) {
             [result addObject:movie];
-        } else {
-            NSLog(@"No theater found playing %@", movie.title);
         }
     }
     
@@ -160,7 +158,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     }
 
     if ([self.sectionTitles count] == 0) {
-        self.sectionTitles = [NSArray arrayWithObject:@"No Information Found"];
+        self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"No information found", nil)];
     }
 }
 
@@ -170,7 +168,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         self.sortedMovies = [NSArray array];
         
         self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                                  [NSArray arrayWithObjects:@"Title", @"Rating", nil]] autorelease];
+                                  [NSArray arrayWithObjects:NSLocalizedString(@"Title", nil), NSLocalizedString(@"Rating", nil), nil]] autorelease];
         
         
         self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
@@ -213,7 +211,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         movie = [self.sortedMovies objectAtIndex:row];
     }
 
-    static NSString* reuseIdentifier = @"AllMoviesIdentifier";
+    static NSString* reuseIdentifier = @"AllMoviesCellIdentifier";
     id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     MovieTitleCell* movieCell = cell;
     if (movieCell == nil) {    
@@ -307,13 +305,15 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return NO;
-    return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+    //return NO;
+    return YES;
+    //return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
-- (void) onDeviceOrientationDidChange:(id) argument {
-    return;
-    NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+//- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    //return;
+//    NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
     
     [UIView beginAnimations:nil context:NULL];
     {

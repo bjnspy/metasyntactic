@@ -6,6 +6,8 @@
 //  Copyright 2008 Metasyntactic. All rights reserved.
 //
 
+#import "XmlElement.h"
+
 @interface Utilities : NSObject {
     
 }
@@ -20,5 +22,8 @@
                     usingFunction:(NSInteger(*)(id, id, void*, void*)) comparator
                           context1:(void*) context1
                           context2:(void*) context2;
+
++ (NSString*) titleForMovie:(XmlElement*) element;
++ (NSString*) titleForPerson:(XmlElement*) element;
 
 @end

@@ -7,7 +7,8 @@
 //
 
 #import "SearchNavigationController.h"
-
+#import "SearchMovieDetailsViewController.h"
+#import "SearchPersonDetailsViewController.h"
 
 @implementation SearchNavigationController
 
@@ -27,11 +28,29 @@
         
         [self pushViewController:startPageViewController animated:NO];
         
-        self.title = @"Search";
+        self.title = NSLocalizedString(@"Search", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Search.png"];
     }
     
     return self;
+}
+
+- (void) pushMovieDetails:(XmlElement*) movieElement
+                 animated:(BOOL) animated {
+    SearchMovieDetailsViewController* controller =
+    [[[SearchMovieDetailsViewController alloc] initWithNavigationController:self
+                                                               movieDetails:movieElement] autorelease];
+    
+    [self pushViewController:controller animated:YES];
+}
+
+- (void) pushPersonDetails:(XmlElement*) personElement
+                  animated:(BOOL) animated {
+    SearchPersonDetailsViewController* controller =
+    [[[SearchPersonDetailsViewController alloc] initWithNavigationController:self
+                                                               personDetails:personElement] autorelease];
+    
+    [self pushViewController:controller animated:YES];
 }
 
 @end

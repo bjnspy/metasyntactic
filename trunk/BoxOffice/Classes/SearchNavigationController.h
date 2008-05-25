@@ -18,4 +18,10 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
+- (void) pushMovieDetails:(XmlElement*) movieElement
+                 animated:(BOOL) animated;
+
+- (void) pushPersonDetails:(XmlElement*) personElement
+                  animated:(BOOL) animated;
+
 @end

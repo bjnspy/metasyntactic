@@ -30,7 +30,7 @@
         
         [self pushViewController:allMoviesViewController animated:NO];
         
-        self.title = @"Movies";
+        self.title = NSLocalizedString(@"Movies", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Featured.png"];
     }
     

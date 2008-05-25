@@ -58,4 +58,12 @@
     return value;    
 }
 
++ (NSString*) titleForMovie:(XmlElement*) element {
+    return [NSString stringWithFormat:@"%@ (%@)", [element attributeValue:@"name"], [element attributeValue:@"year"]];    
+}
+
++ (NSString*) titleForPerson:(XmlElement*) element {
+    return [NSString stringWithFormat:@"%@ %@", [element attributeValue:@"firstName"], [element attributeValue:@"lastName"]];
+}
+
 @end

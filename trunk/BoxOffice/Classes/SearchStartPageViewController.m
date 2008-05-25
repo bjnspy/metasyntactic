@@ -10,52 +10,48 @@
 #import "SearchNavigationController.h"
 #import "XmlParser.h"
 #import "XmlSerializer.h"
+#import "Utilities.h"
+
+#define MOVIES_SECTION 0
+#define PEOPLE_SECTION 1
+#define RECENTLY_VIEWED_SECTION 2
 
 @implementation SearchStartPageViewController
 
 @synthesize navigationController;
 @synthesize searchBar;
 @synthesize activityIndicator;
+@synthesize searchResult;
+@synthesize recentResults;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.searchBar = nil;
+    
     [self.activityIndicator stop];
     self.activityIndicator = nil;
+    
+    self.searchResult = nil;
+    self.recentResults = nil;
+    
     [super dealloc];
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-//    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
-//    CGFloat width = [UIScreen mainScreen].applicationFrame.size.width;
-  //  CGFloat height = self.navigationItem.titleView.frame.size.height;
-    
-    //searchBar.bounds = CGRectMake(0, 0, width, height);
-    
     [self.model setCurrentlySelectedMovie:nil theater:nil];
+    [self refresh];
 }
-
-- (void) removeUnusedSectionTitles {
-    /*
-    for (NSInteger i = [self.sectionTitles count] - 1; i >= 0; --i) {
-        NSString* title = [self.sectionTitles objectAtIndex:i];
-        
-        if ([[self.sectionTitleToContentsMap objectsForKey:title] count] == 0) {
-            [self.sectionTitles removeObjectAtIndex:i];
-        }
-    }
-     */
-}
-
 
 - (id) initWithNavigationController:(SearchNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
     
         self.searchBar = [[[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)] autorelease];
-        searchBar.autocapitalizationType = UITextAutocapitalizationTypeWords;
-        searchBar.delegate = self;
+        self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeWords;
+        self.searchBar.delegate = self;
+        self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        
+        searchId = 0;
         
         self.navigationItem.titleView = searchBar;
     }
@@ -67,29 +63,52 @@
     return [self.navigationController model];
 }
 
+- (XmlElement*) moviesElement { 
+    return [searchResult element:@"movies"];
+}
+
+- (XmlElement*) peopleElement { 
+    return [searchResult element:@"people"];
+}
+
+- (NSArray*) movies {
+    return [self.moviesElement children];
+}
+
+- (NSArray*) people { 
+    return [self.peopleElement children];
+}
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-   // NSInteger section = [indexPath section];
-    //NSInteger row = [indexPath row];
-    /*
-    Movie* movie;
-    if ([self sortingByTitle]) {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
-    } else {
-        movie = [self.sortedMovies objectAtIndex:row];
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+    
+    static NSString* reuseIdentifier = @"SearchStartPageCellIdentifier";
+    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
     }
     
-    static NSString* reuseIdentifier = @"AllMoviesIdentifier";
-    id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    MovieTitleCell* movieCell = cell;
-    if (movieCell == nil) {    
-        movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
+    XmlElement* movieElement = nil;
+    XmlElement* personElement = nil;
+    if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
+        XmlElement* result = [XmlElement elementFromDictionary:[[[self model] getSearchResults] objectForKey:[recentResults objectAtIndex:row]]];
+        movieElement = [result element:@"movie"];
+        personElement = [result element:@"person"];
+    } else if (section == MOVIES_SECTION) {
+        movieElement = [self.movies objectAtIndex:row];
+    } else if (section == PEOPLE_SECTION) {
+        personElement = [self.people objectAtIndex:row];
     }
     
-    [movieCell setMovie:movie];    
-    return movieCell;
-     */
-    return nil;
+    if (movieElement != nil) {
+        cell.text = [Utilities titleForMovie:movieElement];
+    } else if (personElement != nil) {
+        cell.text = [Utilities titleForPerson:personElement];
+    }
+    
+    return cell;
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
@@ -98,70 +117,108 @@
 }
 
 - (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
-    /*
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
+
+    XmlElement* movieElement = nil;
+    XmlElement* personElement = nil;
+    if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
+        XmlElement* result = [XmlElement elementFromDictionary:[[[self model] getSearchResults] objectForKey:[recentResults objectAtIndex:row]]];
+        movieElement = [result element:@"movie"];
+        personElement = [result element:@"person"];        
+    } else if (section == MOVIES_SECTION) {
+        movieElement = [self.movies objectAtIndex:row];
+    } else if (section == PEOPLE_SECTION) {
+        personElement = [self.people objectAtIndex:row];
+    }    
     
-    Movie* movie;
-    if ([self sortingByTitle]) {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
-    } else {
-        movie = [self.sortedMovies objectAtIndex:row];
+    if (movieElement != nil) {
+        [self.navigationController pushMovieDetails:movieElement animated:YES];
+    } else if (personElement != nil) {
+        [self.navigationController pushPersonDetails:personElement animated:YES];
     }
-    
-    [self.navigationController pushMovieDetails:movie animated:YES];
-     */
 }
 
 - (void) refresh {
+    self.recentResults = [[[self model] getSearchResults] allKeys];
     [self.tableView reloadData];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 3;
+    if (searchResult == nil) {
+        return 1;
+    } else {
+        return 3;
+    }
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
+    if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
+        return [self.recentResults count];
+    } else if (section == MOVIES_SECTION) {
+        return [self.movies count];
+    } else if (section == PEOPLE_SECTION) {
+        return [self.people count];
+    }
+    
     return 0;
 }
 
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
-    if (section == 0) {
-        return @"Movies";
-    } else if (section == 1) {
-        return @"People";
+    if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
+        return NSLocalizedString(@"Recently viewed:", nil);
+    } else if (section == MOVIES_SECTION) {
+        if ([self.movies count] == 0) {
+            return NSLocalizedString(@"No movies found", nil);
+        } else {
+            return NSLocalizedString(@"Movies:", nil);
+        }
+    } else if (section == PEOPLE_SECTION) {
+        if ([self.people count] == 0) {
+            return NSLocalizedString(@"No people found", nil);
+        } else {
+            return NSLocalizedString(@"People:", nil);
+        }
     } else {
-        return @"Recent Searches";
+        return @"";
     }
 }
 
 - (void) searchBarSearchButtonClicked:(UISearchBar*) bar {
-    NSString* text = bar.text;
+    [bar resignFirstResponder];
     
+    NSString* text = bar.text;
+    searchId++;
     [self performSelectorInBackground:@selector(search:) withObject:text];
 }
 
 - (void) search:(NSString*) text {
+    NSInteger id = searchId;
     NSString* urlString = [NSString stringWithFormat:@"http://localhost:8081/Search?q=%@", [text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
     NSURL* url = [NSURL URLWithString:urlString];
     
     NSError* httpError = nil;
     NSURLResponse* response;
-    NSData* ticketData = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
+    NSData* data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
                                                returningResponse:&response
                                                            error:&httpError];
     
-    if (httpError == nil && ticketData != nil) {
-        XmlElement* resultElement = [XmlParser parse:ticketData];
-        if (resultElement != nil) {
-            NSString* result = [XmlSerializer serializeElement:resultElement];
-            
-            NSLog(@"%@", result);
-        }
-    }    
+    XmlElement* resultElement = nil;
+    if (httpError == nil && data != nil) {
+        resultElement = [XmlParser parse:data];
+    }
+    
+    if (id == searchId) {
+        [self performSelectorOnMainThread:@selector(reportSearchResult:) withObject:resultElement waitUntilDone:NO];
+    }
+}
+
+- (void) reportSearchResult:(XmlElement*) element {
+    self.searchResult = element;
+    [self.tableView reloadData];
 }
 
 @end

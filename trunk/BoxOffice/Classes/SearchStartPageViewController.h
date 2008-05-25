@@ -17,11 +17,22 @@
     UISearchBar* searchBar;
     
     ActivityIndicator* activityIndicator;
+    NSInteger searchId;
+    XmlElement* searchResult;
+    
+    NSArray* recentResults;
 }
 
 @property (assign) SearchNavigationController* navigationController;
 @property (retain) UISearchBar* searchBar;
 @property (retain) ActivityIndicator* activityIndicator;
+@property (retain) XmlElement* searchResult;
+@property (retain) NSArray* recentResults;
+
+@property (readonly) XmlElement* peopleElement;
+@property (readonly) XmlElement* moviesElement;
+@property (readonly) NSArray* people;
+@property (readonly) NSArray* movies;
 
 - (id) initWithNavigationController:(SearchNavigationController*) navigationController;
 

@@ -31,7 +31,7 @@
         
         [self pushViewController:allTheatersViewController animated:NO];
         
-        self.title = @"Theaters";
+        self.title = NSLocalizedString(@"Theaters", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"MostViewed.png"];
     }
     

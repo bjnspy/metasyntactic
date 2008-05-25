@@ -68,7 +68,7 @@
         return;
     }
     
-    [self onBackgroundTaskStarted:@"Downloading Movie List"];
+    [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading movie list", nil)];
     [self performSelectorInBackground:@selector(lookupMoviesBackgroundThreadEntryPoint:) withObject:nil];
 }
 
@@ -81,7 +81,7 @@
         return;
     }
     
-    [self onBackgroundTaskStarted:@"Downloading Theater List"];
+    [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading theater list", nil)];
     [self performSelectorInBackground:@selector(lookupTheatersBackgroundThreadEntryPoint:) withObject:nil];
 }
 
@@ -94,7 +94,7 @@
         return;
     }
     
-    [self onBackgroundTaskStarted:@"Downloading Ticketing Data"];
+    [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading ticketing data", nil)];
     [self performSelectorInBackground:@selector(lookupTicketsBackgroundThreadEntryPoint:) withObject:nil];
 }
 
@@ -186,7 +186,7 @@
         }
     }
     
-    [self onBackgroundTaskEnded:@"Finished Downloading Movie List"];
+    [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie list", nil)];
 }
 
 - (BOOL) areEqual:(NSArray*) theaters1
@@ -208,7 +208,7 @@
         }
     }
     
-    [self onBackgroundTaskEnded:@"Finished Downloading Theater List"];
+    [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading theater list", nil)];
 }
 
 - (NSArray*) lookupTheaters {
@@ -284,7 +284,7 @@
         }
     }
     
-    [self onBackgroundTaskEnded:@"Finished Downloading Ticketing Data"];
+    [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading ticketing data", nil)];
 }
 
 - (void) lookupTicketsBackgroundThreadEntryPoint:(id) anObject {    

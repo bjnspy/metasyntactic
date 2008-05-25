@@ -182,7 +182,7 @@
     }
     else if (section == 1)
     {
-        cell.text = [NSString stringWithFormat:@"%d miles", [[self model] searchRadius]];
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
     }
     
     return cell;
@@ -193,11 +193,11 @@
 {
     if (section == 0)
     {
-        return @"Zipcode";
+        return NSLocalizedString(@"Zipcode", nil);
     }
     else if (section == 1)
     {
-        return @"Search radius";
+        return NSLocalizedString(@"Search radius", nil);
     }
     
     return nil; 
@@ -212,11 +212,11 @@
     {
         TextFieldEditorViewController* controller = 
         [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
-                                                         withTitle:@"Zipcode"
+                                                         withTitle:NSLocalizedString(@"Zipcode", nil)
                                                         withObject:self
                                                       withSelector:@selector(onZipcodeChanged:)
                                                           withText:[self.model zipcode]
-                                                          withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
+                                                          withType:UIKeyboardTypeNumberPad] autorelease];
         
         [self.navigationController pushViewController:controller animated:YES];
     }
@@ -228,7 +228,7 @@
         
         PickerEditorViewController* controller = 
         [[[PickerEditorViewController alloc] initWithController:self.navigationController
-                                                      withTitle:@"Search Radius"
+                                                      withTitle:NSLocalizedString(@"Search radius", nil)
                                                      withObject:self
                                                    withSelector:@selector(onSearchRadiusChanged:)
                                                      withValues:values
@@ -236,10 +236,8 @@
         
         [self.navigationController pushViewController:controller animated:YES];
     }
-    else
-    {
-        return;
-    }
+    
+    return;
 }
 
 - (void) onZipcodeChanged:(NSString*) zipcode
