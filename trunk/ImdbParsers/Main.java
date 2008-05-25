@@ -13,12 +13,12 @@ import java.util.Arrays;
  * To change this template use File | Settings | File Templates.
  */
 public class Main {
-    //public static final String HOST = "localhost:8081";
+    public static final String HOST = "localhost:8081";
     //public static final String HOST = "metaboxoffice.appspot.com";
-    public static final String HOST = "metaboxoffice2.appspot.com";
+    //public static final String HOST = "metaboxoffice2.appspot.com";
 
     public static void main(String... args) throws IOException, ParserConfigurationException, TransformerException, InterruptedException {
-        if (true) {
+        if (false) {
             while (true) {
                 try {
                     URL url = new URL("http://" + HOST + "/DeleteAllUsers");
@@ -97,6 +97,7 @@ public class Main {
                 directorsParser
         };
 
+        int count = 0;
         int sleepSeconds = 0;
         boolean again;
         do {
@@ -126,6 +127,11 @@ public class Main {
                 }
             }
 
+            count++;
+
+            if (count > 25) {
+                return;
+            }
         } while (again);
     }
 }
