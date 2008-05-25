@@ -13,8 +13,7 @@
 
 @synthesize textField;
 
-- (void)dealloc
-{
+- (void) dealloc {
     self.textField = nil;
     [super dealloc];
 }
@@ -24,10 +23,8 @@
                withObject:(id) object_
              withSelector:(SEL) selector_
                  withText:(NSString*) text
-                 withType:(UIKeyboardType) type
-{
-    if (self = [super initWithController:controller withObject:object_ withSelector:selector_])
-    {
+                 withType:(UIKeyboardType) type {
+    if (self = [super initWithController:controller withObject:object_ withSelector:selector_]) {
         CGRect rect = CGRectMake(20, 72, 280, 30);
         self.textField = [[[UITextField alloc] initWithFrame:rect] autorelease];
         self.textField.text = text;
@@ -43,8 +40,7 @@
     return self;
 }
 
-- (void)loadView
-{
+- (void)loadView {
     [super loadView];
     
     [self.view addSubview:self.textField];
@@ -52,8 +48,7 @@
     [self.textField becomeFirstResponder];
 }
 
-- (void) save:(id) sender
-{
+- (void) save:(id) sender {
     NSString* trimmedZipcode = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self.object performSelector:selector withObject:trimmedZipcode];
     [super save:sender];

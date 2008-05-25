@@ -30,6 +30,7 @@
     self.movie = nil;
     self.theatersArray = nil;
     self.showtimesArray = nil;
+    self.hiddenTheaterCount = 0;
     [super dealloc];
 }
 

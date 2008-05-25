@@ -28,10 +28,10 @@
 @synthesize movieShowtimes;
 
 - (void) dealloc {
-    self.movies = nil;
-    self.movieShowtimes = nil;
     self.navigationController = nil;
     self.theater = nil;
+    self.movies = nil;
+    self.movieShowtimes = nil;
     [super dealloc];
 }
 

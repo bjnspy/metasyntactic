@@ -19,6 +19,7 @@
 {
     self.allMoviesViewController = nil;
     self.movieDetailsViewController = nil;
+    self.tabBarController = nil;
     [super dealloc];
 }
 

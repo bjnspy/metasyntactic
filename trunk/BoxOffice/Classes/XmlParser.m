@@ -14,10 +14,15 @@
 @synthesize stringBufferStack;
 @synthesize attributesStack;
 
-- (id) initWithData:(NSData*) data
-{
-    if (self = [super init])
-    {
+- (void) dealloc {
+    self.elementsStack = nil;
+    self.stringBufferStack = nil;
+    self.attributesStack = nil;
+    [super dealloc];
+}
+
+- (id) initWithData:(NSData*) data {
+    if (self = [super init]) {
         NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
         parser.delegate = self;
         
@@ -27,8 +32,7 @@
         
         [self.elementsStack addObject:[NSMutableArray array]];
         
-        if ([parser parse] == NO)
-        {
+        if ([parser parse] == NO) {
             self.elementsStack = nil;
         }
     }
@@ -36,20 +40,10 @@
     return self;
 }
 
-- (void) dealloc
-{
-    self.elementsStack = nil;
-    self.stringBufferStack = nil;
-    self.attributesStack = nil;
-    [super dealloc];
-}
-
-+ (XmlElement*) parse:(NSData*) data
-{
++ (XmlElement*) parse:(NSData*) data {
     XmlParser* xmlParser = [[[XmlParser alloc] initWithData:data] autorelease];
     
-    if (xmlParser.elementsStack == nil)
-    {
+    if (xmlParser.elementsStack == nil) {
         return nil;
     }
     
@@ -60,8 +54,7 @@
            didStartElement:(NSString*) elementName
               namespaceURI:(NSString*) namespaceURI
              qualifiedName:(NSString*) qName
-                attributes:(NSDictionary*) attributeDict
-{
+                attributes:(NSDictionary*) attributeDict {
     [self.elementsStack addObject:[NSMutableArray array]];
     [self.stringBufferStack addObject:[NSMutableString string]];
     [self.attributesStack addObject:[NSDictionary dictionaryWithDictionary:attributeDict]];
@@ -70,8 +63,7 @@
 - (void)            parser:(NSXMLParser*) parser
              didEndElement:(NSString*) elementName
               namespaceURI:(NSString*) namespaceURI
-             qualifiedName:(NSString*) qName
-{
+             qualifiedName:(NSString*) qName {
     NSArray* children = [self.elementsStack lastObject];
     NSString* text = [self.stringBufferStack lastObject];
     NSDictionary* attributes = [self.attributesStack lastObject];
@@ -89,8 +81,7 @@
 }
 
 - (void)            parser:(NSXMLParser*) parser
-           foundCharacters:(NSString*) string
-{
+           foundCharacters:(NSString*) string {
     [[self.stringBufferStack lastObject] appendString:string];
 }
 

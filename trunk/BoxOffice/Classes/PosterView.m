@@ -15,8 +15,8 @@
 @synthesize moviesWithPosters;
 
 - (void) dealloc {
-    controller = nil;
-    moviesWithPosters = nil;
+    self.controller = nil;
+    self.moviesWithPosters = nil;
     [super dealloc];
 }
 

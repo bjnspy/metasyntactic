@@ -19,10 +19,10 @@
 @synthesize notificationCenter;
  
 - (void) dealloc {
-    self.controller = nil;
     self.window = nil;
-    self.tabBarController = nil;
+    self.controller = nil;
     self.model = nil;
+    self.tabBarController = nil;
     self.notificationCenter = nil;
     [super dealloc];
 } 

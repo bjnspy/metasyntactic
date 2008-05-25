@@ -35,10 +35,8 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     self.notificationCenter = nil;
     self.posterCache = nil;
     self.addressLocationCache = nil;
-    
-    self.activityIndicatorView = nil;
     self.activityView = nil;
-    
+    self.activityIndicatorView = nil;
     self.ticketsElement = nil;
     
     [super dealloc];
