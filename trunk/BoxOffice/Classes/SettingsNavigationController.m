@@ -15,16 +15,14 @@
 @synthesize tabBarController;
 @synthesize viewController;
 
-- (void) dealloc
-{
+- (void) dealloc {
+    self.tabBarController = nil;
     self.viewController = nil;
     [super dealloc];
 }
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller
-{
-    if (self = [super initWithTabBarController:controller])
-    {
+- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
+    if (self = [super initWithTabBarController:controller]) {
         self.viewController = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
         
         [self pushViewController:viewController animated:NO];
@@ -36,8 +34,7 @@
     return self;
 }
 
-- (void) refresh
-{
+- (void) refresh {
     [self.viewController refresh];
 }
 

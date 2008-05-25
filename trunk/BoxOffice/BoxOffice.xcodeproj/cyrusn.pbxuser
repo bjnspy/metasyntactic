@@ -449,6 +449,7 @@
 			7414B93F0DDABF4300ED9CE0 = 7414B93F0DDABF4300ED9CE0 /* PBXTextBookmark */;
 			7414B94A0DDABF4300ED9CE0 = 7414B94A0DDABF4300ED9CE0 /* PBXTextBookmark */;
 			7416505D0DEA0126006C43B7 /* PBXTextBookmark */ = 7416505D0DEA0126006C43B7 /* PBXTextBookmark */;
+			741650610DEA020E006C43B7 /* PBXTextBookmark */ = 741650610DEA020E006C43B7 /* PBXTextBookmark */;
 			743CDE9C0DD7999300E41792 = 743CDE9C0DD7999300E41792 /* PBXTextBookmark */;
 			743E32460DD66CEA004C5161 = 743E32460DD66CEA004C5161 /* PBXTextBookmark */;
 			743E34470DD6A3ED004C5161 = 743E34470DD6A3ED004C5161 /* PBXTextBookmark */;
@@ -1201,9 +1202,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/SettingsNavigationController.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {678, 672}}";
-			sepNavSelRange = "{840, 0}";
-			sepNavVisRange = "{197, 843}";
+			sepNavIntBoundsRect = "{{0, 0}, {678, 630}}";
+			sepNavSelRange = "{1004, 0}";
+			sepNavVisRange = "{155, 914}";
 		};
 	};
 	7405F7EA0DCAF425002E2D06 /* PBXTextBookmark */ = {
@@ -3771,10 +3772,20 @@
 		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
 		name = "SettingsNavigationController.m: 32";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 869;
 		rType = 0;
 		vrLen = 843;
 		vrLoc = 197;
+	};
+	741650610DEA020E006C43B7 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
+		name = "SettingsNavigationController.m: 38";
+		rLen = 0;
+		rLoc = 1004;
+		rType = 0;
+		vrLen = 914;
+		vrLoc = 155;
 	};
 	742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {
 		uiCtxt = {
@@ -7586,7 +7597,7 @@
 		fRef = 74DD7A010DDC32BC0083432B /* SettingsNavigationController.m */;
 		name = "SettingsNavigationController.m: 45";
 		rLen = 0;
-		rLoc = 1033;
+		rLoc = 1062;
 		rType = 0;
 		vrLen = 696;
 		vrLoc = 320;
@@ -10948,7 +10959,7 @@
 		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
 		name = "SettingsNavigationController.m: 32";
 		rLen = 0;
-		rLoc = 840;
+		rLoc = 869;
 		rType = 0;
 		vrLen = 803;
 		vrLoc = 237;
