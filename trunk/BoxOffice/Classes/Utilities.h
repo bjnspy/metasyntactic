@@ -26,4 +26,7 @@
 + (NSString*) titleForMovie:(XmlElement*) element;
 + (NSString*) titleForPerson:(XmlElement*) element;
 
++ (NSData*) downloadData:(NSString*) urlString;
++ (XmlElement*) downloadXml:(NSString*) urlString;
+
 @end

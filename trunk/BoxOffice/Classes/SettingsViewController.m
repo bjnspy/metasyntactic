@@ -95,20 +95,12 @@
     CLLocationCoordinate2D coordinates = [location coordinate];
     
     NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", coordinates.latitude, coordinates.longitude];
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-    NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] initWithURL:url] autorelease];
-    
-    NSError* httpError = nil;
-    NSURLResponse* response = nil;
-    NSData* data = [NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&response
-                                                     error:&httpError];
+
+    XmlElement* geonamesElement = [Utilities downloadXml:urlString];
     
     NSString* zipcode = nil;
-    if (httpError == nil && data != nil)
+    if (geonamesElement != nil)
     {
-        XmlElement* geonamesElement = [XmlParser parse:data];
         XmlElement* codeElement = [geonamesElement element:@"code"];
         XmlElement* postalElement = [codeElement element:@"postalcode"];
         zipcode = [postalElement text];

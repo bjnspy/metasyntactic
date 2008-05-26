@@ -11,6 +11,7 @@
 #import "XmlElement.h"
 #import "Theater.h"
 #import "XmlParser.h"
+#import "Utilities.h"
 
 @implementation FandangoTheaterDownloader
 
@@ -77,17 +78,10 @@
 
 + (NSArray*) download:(NSString*) zipcode {
     NSString* urlString = [NSString stringWithFormat:@"http://www.fandango.com/frdi/?pid=A99D3D1A-774C-49149E&op=performancesbypostalcodesearch&verbosity=1&postalcode=%@", zipcode];
-    NSURL* url = [NSURL URLWithString:urlString];
+
+    XmlElement* performanceElement = [Utilities downloadXml:urlString];
     
-    NSError* httpError = nil;
-    NSURLResponse* response;
-    NSData* fandangoData = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
-                                                 returningResponse:&response
-                                                             error:&httpError];
-    
-    if (httpError == nil && fandangoData != nil) {
-        XmlElement* performanceElement = [XmlParser parse:fandangoData];
-        
+    if (performanceElement != nil) {
         XmlElement* dataElement = [performanceElement element:@"data"];
         XmlElement* theatersElement = [dataElement element:@"theaters"];
         XmlElement* moviesElement = [dataElement element:@"movies"];

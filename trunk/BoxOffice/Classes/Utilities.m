@@ -7,7 +7,7 @@
 //
 
 #import "Utilities.h"
-
+#import "XmlParser.h"
 
 @implementation Utilities
 
@@ -64,6 +64,34 @@
 
 + (NSString*) titleForPerson:(XmlElement*) element {
     return [NSString stringWithFormat:@"%@ %@", [element attributeValue:@"firstName"], [element attributeValue:@"lastName"]];
+}
+
++ (NSData*) downloadData:(NSString*) urlString {
+    NSURL* url = [NSURL URLWithString:urlString];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    request.timeoutInterval = 120;
+    
+    NSError* httpError = nil;
+    NSURLResponse* response;
+    NSData* data = [NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:&response
+                                                     error:&httpError];
+    
+    if (httpError == nil && data != nil) {
+        return data;
+    }
+    
+    return nil;
+}
+
++ (XmlElement*) downloadXml:(NSString*) urlString {
+    NSData* data = [self downloadData:urlString];
+    if (data == nil) {
+        return nil;
+    }
+    
+    return [XmlParser parse:data];
 }
 
 @end

@@ -250,19 +250,8 @@
     }
     
     NSString* urlString = [NSString stringWithFormat:@"http://www.fandango.com/frdi/?pid=A99D3D1A-774C-49149E&op=performancesbypostalcodesearch&verbosity=1&postalcode=%@", self.model.zipcode];
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-    NSError* httpError = nil;
-    NSURLResponse* response;
-    NSData* ticketData = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
-                                               returningResponse:&response
-                                                           error:&httpError];
-    
-    if (httpError == nil && ticketData != nil) {
-        return [XmlParser parse:ticketData];
-    }    
-    
-    return nil;
+
+    return [Utilities downloadXml:urlString];
 }
 
 - (BOOL) areEqual:(XmlElement*) tickets1

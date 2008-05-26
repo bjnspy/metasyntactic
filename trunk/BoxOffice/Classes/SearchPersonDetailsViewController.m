@@ -48,18 +48,8 @@
 
 - (void) lookupPersonDetails:(id) object {
     NSString* urlString = [NSString stringWithFormat:@"http://metaboxoffice2.appspot.com/LookupPerson?id=%@", [personElement attributeValue:@"id"]];
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-    NSError* httpError = nil;
-    NSURLResponse* response;
-    NSData* data = [NSURLConnection sendSynchronousRequest:[NSURLRequest requestWithURL:url]
-                                               returningResponse:&response
-                                                           error:&httpError];
-    
-    XmlElement* resultElement = nil;
-    if (httpError == nil && data != nil) {
-        resultElement = [XmlParser parse:data];
-    }
+
+    XmlElement* resultElement = [Utilities downloadXml:urlString];
     
     [self performSelectorOnMainThread:@selector(reportLookupResult:) withObject:resultElement waitUntilDone:NO];
 }
