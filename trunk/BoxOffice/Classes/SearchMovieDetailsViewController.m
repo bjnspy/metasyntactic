@@ -47,7 +47,7 @@
 }
 
 - (void) lookupMovieDetails:(id) object {
-    NSString* urlString = [NSString stringWithFormat:@"http://localhost:8081/LookupMovie?id=%@", [movieElement attributeValue:@"id"]];
+    NSString* urlString = [NSString stringWithFormat:@"http://metaboxoffice2.appspot.com/LookupMovie?id=%@", [movieElement attributeValue:@"id"]];
     NSURL* url = [NSURL URLWithString:urlString];
     
     NSError* httpError = nil;
@@ -166,11 +166,11 @@
         return NSLocalizedString(@"Looking up information", nil);
     }
     
-    if (section == DIRECTORS_SECTION) {
-        return NSLocalizedString(@"Directors:", nil);
-    } else if (section == WRITERS_SECTION) {
-        return NSLocalizedString(@"Writers:", nil);
-    } else if (section == CAST_SECTION) {
+    if (section == DIRECTORS_SECTION && [self.directors count] > 0) {
+        return NSLocalizedString(@"Directed by:", nil);
+    } else if (section == WRITERS_SECTION && [self.writers count] > 0) {
+        return NSLocalizedString(@"Written by:", nil);
+    } else if (section == CAST_SECTION && [self.cast count] > 0) {
         return NSLocalizedString(@"Cast:", nil);
     }
     

@@ -170,21 +170,13 @@
               titleForHeaderInSection:(NSInteger) section {
     if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
         return NSLocalizedString(@"Recently viewed:", nil);
-    } else if (section == MOVIES_SECTION) {
-        if ([self.movies count] == 0) {
-            return NSLocalizedString(@"No movies found", nil);
-        } else {
-            return NSLocalizedString(@"Movies:", nil);
-        }
-    } else if (section == PEOPLE_SECTION) {
-        if ([self.people count] == 0) {
-            return NSLocalizedString(@"No people found", nil);
-        } else {
-            return NSLocalizedString(@"People:", nil);
-        }
-    } else {
-        return @"";
+    } else if (section == MOVIES_SECTION && [self.movies count] > 0) {
+        return NSLocalizedString(@"Movies:", nil);
+    } else if (section == PEOPLE_SECTION && [self.people count] > 0) {
+        return NSLocalizedString(@"People:", nil);
     }
+    
+    return nil;
 }
 
 - (void) searchBarSearchButtonClicked:(UISearchBar*) bar {
@@ -197,7 +189,7 @@
 
 - (void) search:(NSString*) text {
     NSInteger id = searchId;
-    NSString* urlString = [NSString stringWithFormat:@"http://localhost:8081/Search?q=%@", [text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+    NSString* urlString = [NSString stringWithFormat:@"http://metaboxoffice2.appspot.com/Search?q=%@", [text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
     NSURL* url = [NSURL URLWithString:urlString];
     
     NSError* httpError = nil;
