@@ -23,7 +23,6 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         label.backgroundColor = [UIColor clearColor];
-        label.opaque = NO;
         label.textAlignment = UITextAlignmentCenter;
         
         [self addSubview:label];
@@ -46,7 +45,6 @@
             if (self.image != [Application freshImage]) {
                 self.image = [Application freshImage];
                 
-                label.adjustsFontSizeToFitWidth = YES;
                 label.font = [UIFont boldSystemFontOfSize:15];
                 label.textColor = [UIColor whiteColor];
                 label.frame = CGRectMake(10, 8, 32, 32);
@@ -55,7 +53,6 @@
             if (self.image != [Application rottenImage]) {
                 self.image = [Application rottenImage];
                 
-                label.adjustsFontSizeToFitWidth = NO;
                 label.font = [UIFont boldSystemFontOfSize:16];
                 label.textColor = [UIColor blackColor];
                 label.frame = CGRectMake(8, 7, 30, 32);
