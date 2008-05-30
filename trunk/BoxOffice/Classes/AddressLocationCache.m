@@ -154,13 +154,13 @@
     return nil;
 }
 
-- (NSMutableDictionary*) addressLocationMap {
+- (NSDictionary*) addressLocationMap {
     NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"addressLocationMap"];
     if (dict == nil) {
-        dict = [NSDictionary dictionary];
+        return [NSDictionary dictionary];
     }
     
-    return [NSMutableDictionary dictionaryWithDictionary:dict];
+    return dict;
 }
 
 - (Location*) locationForAddress:(NSString*) address {
@@ -178,7 +178,7 @@
         return;
     }
     
-    NSMutableDictionary* map = [self addressLocationMap];
+    NSMutableDictionary* map = [NSMutableDictionary dictionaryWithDictionary:[self addressLocationMap]];
     [map setValue:[location dictionary] forKey:address];
     
     [[NSUserDefaults standardUserDefaults] setValue:map forKey:@"addressLocationMap"];

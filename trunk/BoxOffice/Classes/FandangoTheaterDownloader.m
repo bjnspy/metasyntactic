@@ -21,12 +21,12 @@
     for (XmlElement* movieElement in moviesElement.children) {
         NSString* movieId = [movieElement attributeValue:@"id"];
         NSString* title = [[movieElement element:@"title"] text];
-        
+
         if (movieId != nil && title != nil) {
             [result setObject:title forKey:movieId];
         }
     }
-    
+
     return result;
 }
 

@@ -209,7 +209,7 @@
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
-    
+
     static NSString* reuseIdentifier = @"AllTheatersCellIdentifiers";
     
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
@@ -244,7 +244,7 @@
     
     for (unichar c = [title characterAtIndex:0]; c >= 'A'; c--) {
         NSString* s = [NSString stringWithFormat:@"%c", c];
-        
+
         NSInteger result = [self.sectionTitles indexOfObject:s];
         if (result != NSNotFound) {
             return result;

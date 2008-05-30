@@ -46,10 +46,11 @@
 }
 
 - (void) setShowtimes:(NSArray*) showtimes {
-    NSString* text = [showtimes objectAtIndex:0];
+    NSMutableString* text = [NSMutableString stringWithString:[showtimes objectAtIndex:0]];
+    
     for (int i = 1; i < [showtimes count]; i++) {
-        text = [text stringByAppendingString:@", "];
-        text = [text stringByAppendingString:[showtimes objectAtIndex:i]];
+        [text appendString:@", "];
+        [text appendString:[showtimes objectAtIndex:i]];
     }
     
     label.text = text;

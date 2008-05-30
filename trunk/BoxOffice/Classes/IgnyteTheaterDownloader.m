@@ -28,7 +28,7 @@
         [dictionary setValue:[showtimesElement.text componentsSeparatedByString:@" | "]
                       forKey:nameElement.text];
     }
-    
+
     return dictionary;
 }
 
