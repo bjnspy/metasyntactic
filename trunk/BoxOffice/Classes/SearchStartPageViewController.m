@@ -11,25 +11,104 @@
 #import "XmlParser.h"
 #import "XmlSerializer.h"
 #import "Utilities.h"
+#import "Application.h"
 
 #define MOVIES_SECTION 0
 #define PEOPLE_SECTION 1
 #define RECENTLY_VIEWED_SECTION 2
+
+
+@interface SearchRequest : NSObject {
+    NSString* text;
+    NSInteger searchId;
+}
+
+@property (copy) NSString* text;
+@property NSInteger searchId;
+
++ (SearchRequest*) requestWithText:(NSString*) text searchId:(NSInteger) searchId;
+
+@end
+
+@implementation SearchRequest
+
+@synthesize text;
+@synthesize searchId;
+
+- (void) dealloc {
+    self.text = nil;
+    return [super dealloc];
+}
+
+- (id) initWithText:(NSString*) text_ searchId:(NSInteger) searchId_ {
+    if (self = [super init]) {
+        self.text = text_;
+        self.searchId = searchId_;
+    }
+    
+    return self;
+}
+
++ (SearchRequest*) requestWithText:(NSString*) text searchId:(NSInteger) searchId {
+    return [[[SearchRequest alloc] initWithText:text searchId:searchId] autorelease];
+}
+
+
+@end
+
+
+@interface SearchResult : NSObject {
+    XmlElement* element;
+    NSInteger searchId;
+}
+
+@property (retain) XmlElement* element;
+@property NSInteger searchId;
+
++ (SearchResult*) resultWithElement:(XmlElement*) element searchId:(NSInteger) searchId;
+
+@end
+
+@implementation SearchResult
+
+@synthesize element;
+@synthesize searchId;
+
+- (void) dealloc {
+    self.element = nil;
+    return [super dealloc];
+}
+
+- (id) initWithElement:(XmlElement*) element_ searchId:(NSInteger) searchId_ {
+    if (self = [super init]) {
+        self.element = element_;
+        self.searchId = searchId_;
+    }
+    
+    return self;
+}
+
++ (SearchResult*) resultWithElement:(XmlElement*) element searchId:(NSInteger) searchId {
+    return [[[SearchResult alloc] initWithElement:element searchId:searchId] autorelease];
+}
+
+@end
+
 
 @implementation SearchStartPageViewController
 
 @synthesize navigationController;
 @synthesize searchBar;
 @synthesize activityIndicator;
+@synthesize activityView;
 @synthesize searchResult;
 @synthesize recentResults;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.searchBar = nil;
-    
-    [self.activityIndicator stop];
     self.activityIndicator = nil;
+    self.activityView = nil;
     
     self.searchResult = nil;
     self.recentResults = nil;
@@ -46,14 +125,22 @@
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
     
-        self.searchBar = [[[UISearchBar alloc] initWithFrame:CGRectMake(0, 0, 320, 44)] autorelease];
+        self.searchBar = [[[UISearchBar alloc] initWithFrame:CGRectMake(20, 0, 270, 44)] autorelease];
         self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeWords;
         self.searchBar.delegate = self;
         self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         
         searchId = 0;
+        searchCount = 0;
         
         self.navigationItem.titleView = searchBar;
+        
+        self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
+        CGRect frame = self.activityIndicator.frame;
+        frame.size.width += 10;
+        
+        self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
+        [activityView addSubview:self.activityIndicator];
     }
     
     return self;
@@ -102,12 +189,16 @@
         personElement = [self.people objectAtIndex:row];
     }
     
+    NSString* text;
     if (movieElement != nil) {
-        cell.text = [Utilities titleForMovie:movieElement];
+        text = [Utilities titleForMovie:movieElement];
     } else if (personElement != nil) {
-        cell.text = [Utilities titleForPerson:personElement];
+        text = [Utilities titleForPerson:personElement];
     }
     
+    //[text siz
+    
+    cell.text = text;
     return cell;
 }
 
@@ -182,25 +273,60 @@
 - (void) searchBarSearchButtonClicked:(UISearchBar*) bar {
     [bar resignFirstResponder];
     
-    NSString* text = bar.text;
-    searchId++;
-    [self performSelectorInBackground:@selector(search:) withObject:text];
-}
+    {
+        ++searchId;
+        SearchRequest* request = [SearchRequest requestWithText:bar.text searchId:searchId];
+        
+        [self performSelectorInBackground:@selector(search:) withObject:request];
+    }
 
-- (void) search:(NSString*) text {
-    NSInteger id = searchId;
-    NSString* urlString = [NSString stringWithFormat:@"http://metaboxoffice2.appspot.com/Search?q=%@", [text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
-    
-    XmlElement* resultElement = [Utilities downloadXml:urlString];
-    
-    if (id == searchId) {
-        [self performSelectorOnMainThread:@selector(reportSearchResult:) withObject:resultElement waitUntilDone:NO];
+    {
+        ++searchCount;
+        if (searchCount == 1) {
+            [UIView beginAnimations:nil context:nil];
+            {
+                [self.activityIndicator startAnimating];
+                
+                //self.searchBar.frame = CGRectMake(0, 0, 290, 44);
+                UIBarButtonItem* item =  [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
+                [self.navigationItem setRightBarButtonItem:item animated:YES];
+            }
+            [UIView commitAnimations];
+        }
     }
 }
 
-- (void) reportSearchResult:(XmlElement*) element {
-    self.searchResult = element;
-    [self.tableView reloadData];
+- (void) search:(SearchRequest*) request {
+    NSString* urlString =
+     [NSString stringWithFormat:@"%@/Search?q=%@",
+      [Application searchHost],
+      [request.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+    
+    XmlElement* element = [Utilities downloadXml:urlString];
+    
+    SearchResult* result = [SearchResult resultWithElement:element searchId:request.searchId];
+    [self performSelectorOnMainThread:@selector(reportSearchResult:) withObject:result waitUntilDone:NO];
+}
+
+- (void) reportSearchResult:(SearchResult*) result {
+    if (result.searchId == searchId) {
+        self.searchResult = result.element;
+        [self.tableView reloadData];
+    }
+    
+    {
+        --searchCount;
+        if (searchCount == 0) {
+            [UIView beginAnimations:nil context:nil];
+            {
+                [self.activityIndicator stopAnimating];
+                
+                //self.searchBar.frame = CGRectMake(0, 0, 310, 44);
+                [self.navigationItem setRightBarButtonItem:nil animated:YES];
+            }
+            [UIView commitAnimations];
+        }
+    }
 }
 
 @end

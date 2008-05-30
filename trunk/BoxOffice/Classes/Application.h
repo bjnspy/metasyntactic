@@ -26,4 +26,6 @@
 
 + (DifferenceEngine*) differenceEngine;
 
++ (NSString*) searchHost;
+
 @end

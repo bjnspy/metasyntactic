@@ -41,6 +41,10 @@
 }
 
 + (XmlElement*) parse:(NSData*) data {
+    if (data == nil) {
+        return nil;
+    }
+    
     XmlParser* xmlParser = [[[XmlParser alloc] initWithData:data] autorelease];
     
     if (xmlParser.elementsStack == nil) {

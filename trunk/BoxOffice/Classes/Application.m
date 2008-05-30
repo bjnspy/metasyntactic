@@ -148,4 +148,9 @@ static DifferenceEngine* differenceEngine = nil;
     return differenceEngine;
 }
 
++ (NSString*) searchHost {
+    return @"http://metaboxoffice3.appspot.com";
+    //return @"http://localhost:8082";
+}
+
 @end

@@ -7,6 +7,7 @@
 //
 
 #import "XmlElement.h"
+#import "XmlDocument.h"
 
 @interface Utilities : NSObject {
     
@@ -28,5 +29,9 @@
 
 + (NSData*) downloadData:(NSString*) urlString;
 + (XmlElement*) downloadXml:(NSString*) urlString;
++ (XmlElement*) makeSoapRequest:(XmlElement*) element
+                          atUrl:(NSString*) urlString
+                         atHost:(NSString*) host
+                     withAction:(NSString*) soapAction;
 
 @end

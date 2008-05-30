@@ -10,6 +10,7 @@
 #import "XmlParser.h"
 #import "SearchNavigationController.h"
 #import "Utilities.h"
+#import "Application.h"
 
 @implementation SearchPersonDetailsViewController
 
@@ -47,7 +48,9 @@
 }
 
 - (void) lookupPersonDetails:(id) object {
-    NSString* urlString = [NSString stringWithFormat:@"http://metaboxoffice2.appspot.com/LookupPerson?id=%@", [personElement attributeValue:@"id"]];
+    NSString* urlString =
+    [NSString stringWithFormat:@"%@/LookupPerson?id=%@",
+     [Application searchHost], [personElement attributeValue:@"id"]];
 
     XmlElement* resultElement = [Utilities downloadXml:urlString];
     

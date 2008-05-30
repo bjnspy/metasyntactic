@@ -16,7 +16,10 @@
     SearchNavigationController* navigationController;
     UISearchBar* searchBar;
     
-    ActivityIndicator* activityIndicator;
+    UIActivityIndicatorView* activityIndicator;
+    UIView* activityView;
+    NSInteger searchCount;
+    
     NSInteger searchId;
     XmlElement* searchResult;
     
@@ -25,7 +28,8 @@
 
 @property (assign) SearchNavigationController* navigationController;
 @property (retain) UISearchBar* searchBar;
-@property (retain) ActivityIndicator* activityIndicator;
+@property (retain) UIActivityIndicatorView* activityIndicator;
+@property (retain) UIView* activityView;
 @property (retain) XmlElement* searchResult;
 @property (retain) NSArray* recentResults;
 

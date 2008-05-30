@@ -8,6 +8,7 @@
 
 #import "Utilities.h"
 #import "XmlParser.h"
+#import "XmlSerializer.h"
 
 @implementation Utilities
 
@@ -78,11 +79,11 @@
                                          returningResponse:&response
                                                      error:&httpError];
     
-    if (httpError == nil && data != nil) {
-        return data;
+    if (httpError != nil) {
+        return nil;
     }
     
-    return nil;
+    return data;
 }
 
 + (XmlElement*) downloadXml:(NSString*) urlString {
@@ -92,6 +93,37 @@
     }
     
     return [XmlParser parse:data];
+}
+
++ (XmlElement*) makeSoapRequest:(XmlElement*) element
+                          atUrl:(NSString*) urlString
+                         atHost:(NSString*) host
+                     withAction:(NSString*) soapAction {
+    
+    XmlDocument* document = [XmlDocument documentWithRoot:element];
+    NSString* post = [XmlSerializer serializeDocument:document];    
+    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
+    [request setHTTPMethod:@"POST"];
+    
+    [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
+    [request setValue:soapAction forHTTPHeaderField:@"Soapaction"];
+    [request setValue:host forHTTPHeaderField:@"Host"];
+    
+    [request setHTTPBody:postData];    
+    
+    NSURLResponse* response = nil;
+    NSError* error = nil;
+    NSData* result =
+    [NSURLConnection sendSynchronousRequest:request
+                          returningResponse:&response
+                                      error:&error];
+    if (error != nil) {
+        return nil;
+    }
+    
+    return [XmlParser parse:result];    
 }
 
 @end

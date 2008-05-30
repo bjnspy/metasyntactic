@@ -59,10 +59,8 @@
 }
 
 - (Location*) downloadAddressLocationFromGeocoderWebService:(NSString*) address {
-    NSString* post =
-    [XmlSerializer serializeDocument: 
-     [XmlDocument documentWithRoot:
-      [XmlElement
+    XmlElement* element =
+     [XmlElement
        elementWithName:@"SOAP-ENV:Envelope" 
        attributes: [NSDictionary dictionaryWithObjectsAndKeys:
                     @"http://www.w3.org/2001/XMLSchema", @"xmlns:xsd",
@@ -83,28 +81,14 @@
                                            elementWithName:@"location"
                                            attributes: [NSDictionary dictionaryWithObjectsAndKeys:
                                                         @"xsd:string", @"xsi:type", nil]
-                                           text:address], nil]]]]]]]];
+                                           text:address], nil]]]]]];
+
+    XmlElement* envelopeElement = [Utilities makeSoapRequest:element
+                                                       atUrl:@"http://rpc.geocoder.us/service/soap/"
+                                                      atHost:@"rpc.geocoder.us"
+                                                  withAction:@"http://rpc.geocoder.us/Geo/Coder/US#geocode"];
     
-    NSData *postData = [post dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES];
-    
-    NSMutableURLRequest* request = [[[NSMutableURLRequest alloc] init] autorelease];
-    [request setURL:[NSURL URLWithString:@"http://rpc.geocoder.us/service/soap/"]];
-    [request setHTTPMethod:@"POST"];
-    
-    [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
-    [request setValue:@"http://rpc.geocoder.us/Geo/Coder/US#geocode" forHTTPHeaderField:@"Soapaction"];
-    [request setValue:@"rpc.geocoder.us" forHTTPHeaderField:@"Host"];
-    
-    [request setHTTPBody:postData];    
-    
-    NSURLResponse* response = nil;
-    NSError* error = nil;
-    NSData* result =
-    [NSURLConnection sendSynchronousRequest:request
-                          returningResponse:&response
-                                      error:&error];
-    if (error == nil && result != nil) {
-        XmlElement* envelopeElement = [XmlParser parse:result];
+    if (envelopeElement != nil) {
         XmlElement* bodyElement = [envelopeElement elementAtIndex:0];
         XmlElement* responseElement = [bodyElement elementAtIndex:0];
         XmlElement* gensymElement = [responseElement elementAtIndex:0];

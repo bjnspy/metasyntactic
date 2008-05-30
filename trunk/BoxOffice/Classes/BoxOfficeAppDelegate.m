@@ -28,8 +28,6 @@
 } 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
-    NSLog(@"BoxOfficeAppDelegate.applicationDidFinishLaunching");
-    
     self.notificationCenter = [NotificationCenter centerWithWindow:window];
     self.model = [BoxOfficeModel modelWithCenter:notificationCenter];
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];   

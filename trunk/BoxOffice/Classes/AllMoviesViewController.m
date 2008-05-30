@@ -329,7 +329,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         
         if (orientation == UIInterfaceOrientationPortrait) {
             self.navigationController.tabBarController.view.alpha = 1;
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleGray animated:YES];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
             
             if (self.posterView != nil) {
                 [self.posterView removeFromSuperview];
@@ -337,7 +337,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
             }
         } else {
             self.navigationController.tabBarController.view.alpha = 0;
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleTransparentBlack animated:YES];
+            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
             
             if (self.posterView == nil) {
                 self.posterView = [PosterView viewWithController:self];

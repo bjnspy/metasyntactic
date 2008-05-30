@@ -84,7 +84,7 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
         self.posterCache = [PosterCache cache];
         self.addressLocationCache = [AddressLocationCache cache];
         
-        self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleBlueSmall] autorelease];
+        self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicatorView.frame;
         frame.size.width += 15;
         

@@ -10,12 +10,15 @@
 #import "XmlParser.h"
 #import "SearchNavigationController.h"
 #import "Utilities.h"
+#import "Application.h"
+#import "AutoresizingCell.h"
 
 @implementation SearchMovieDetailsViewController
 
-#define DIRECTORS_SECTION 0
-#define WRITERS_SECTION 1
-#define CAST_SECTION 2
+#define TAGLINES_SECTION 0
+#define DIRECTORS_SECTION 1
+#define WRITERS_SECTION 2
+#define CAST_SECTION 3
 
 @synthesize movieElement;
 @synthesize movieDetailsElement;
@@ -47,11 +50,17 @@
 }
 
 - (void) lookupMovieDetails:(id) object {
-    NSString* urlString = [NSString stringWithFormat:@"http://metaboxoffice2.appspot.com/LookupMovie?id=%@", [movieElement attributeValue:@"id"]];
+    NSString* urlString =
+    [NSString stringWithFormat:@"%@/LookupMovie?id=%@",
+     [Application searchHost], [movieElement attributeValue:@"id"]];
 
     XmlElement* resultElement = [Utilities downloadXml:urlString];
     
     [self performSelectorOnMainThread:@selector(reportLookupResult:) withObject:resultElement waitUntilDone:NO];
+}
+
+- (NSArray*) taglines {
+    return [[self.movieDetailsElement element:@"taglines"] children];
 }
 
 - (NSArray*) directors {
@@ -74,36 +83,70 @@
     [self.tableView reloadData];
 }
 
+- (CGSize) getStringSize:(NSString*) text {
+    CGFloat width = [UIScreen mainScreen].bounds.size.width;
+    CGSize size = [text sizeWithFont:[UIFont boldSystemFontOfSize:14]
+                   constrainedToSize:CGSizeMake(width - 10, 5000)
+                       lineBreakMode:UILineBreakModeCharacterWrap];
+    
+    return size;
+}
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
-    static NSString* reuseIdentifier = @"SearchMovieDetailsCellIdentifier";
-    UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
+    if (section == TAGLINES_SECTION) {
+        NSString* text = [self.taglines objectAtIndex:row];
+        
+        CGSize size = [self getStringSize:text];
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(5, 4, size.width, size.height)] autorelease];
+        label.font = [UIFont boldSystemFontOfSize:14];
+        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.backgroundColor = [UIColor clearColor];
+        label.opaque = NO;
+        label.numberOfLines = 0;
+        label.text = text;
+        
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        [cell.contentView addSubview:label];
+        
+        return cell;
+    } else {
+        static NSString* reuseIdentifier = @"SearchMovieDetailsCellIdentifier";
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
+        }
+        
+        XmlElement* personElement = nil;
+        
+        if (section == DIRECTORS_SECTION) {
+            personElement = [self.directors objectAtIndex:row];
+        } else if (section == WRITERS_SECTION) {
+            personElement = [self.writers objectAtIndex:row];
+        } else if (section == CAST_SECTION) {
+            personElement = [self.cast objectAtIndex:row];
+        }
+        
+        if (personElement != nil) {
+            cell.text = [Utilities titleForPerson:personElement];
+        }
+        
+        return cell;
     }
-    
-    XmlElement* personElement = nil;
-    if (section == DIRECTORS_SECTION) {
-        personElement = [self.directors objectAtIndex:row];
-    } else if (section == WRITERS_SECTION) {
-        personElement = [self.writers objectAtIndex:row];
-    } else if (section == CAST_SECTION) {
-        personElement = [self.cast objectAtIndex:row];
-    }
-
-    if (personElement != nil) {
-        cell.text = [Utilities titleForPerson:personElement];
-    }
-    
-    return cell;
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    return UITableViewCellAccessoryDisclosureIndicator;
+    NSInteger section = [indexPath section];
+    
+    if (section == TAGLINES_SECTION) {
+        return UITableViewCellAccessoryNone;
+    } else {
+        return UITableViewCellAccessoryDisclosureIndicator;
+    }
 }
 
 - (void)            tableView:(UITableView*) tableView
@@ -131,14 +174,16 @@
     if (movieDetailsElement == nil) {
         return 1;
     } else {
-        return 3;
+        return 4;
     }
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
     if (movieDetailsElement != nil) {
-        if (section == DIRECTORS_SECTION) {
+        if (section == TAGLINES_SECTION) {
+            return [self.taglines count];
+        } else if (section == DIRECTORS_SECTION) {
             return [self.directors count];
         } else if (section == WRITERS_SECTION) {
             return [self.writers count];
@@ -156,7 +201,9 @@
         return NSLocalizedString(@"Looking up information", nil);
     }
     
-    if (section == DIRECTORS_SECTION && [self.directors count] > 0) {
+    if (section == TAGLINES_SECTION && [self.taglines count] > 0) {
+        return NSLocalizedString(@"Taglines:", nil);
+    } else if (section == DIRECTORS_SECTION && [self.directors count] > 0) {
         return NSLocalizedString(@"Directed by:", nil);
     } else if (section == WRITERS_SECTION && [self.writers count] > 0) {
         return NSLocalizedString(@"Written by:", nil);
@@ -165,6 +212,21 @@
     }
     
     return nil;
+}
+
+- (CGFloat)         tableView:(UITableView*) tableView
+      heightForRowAtIndexPath:(NSIndexPath*) indexPath {
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+    
+    if (section == 0) {
+        NSString* text = [self.taglines objectAtIndex:row];
+        CGSize size = [self getStringSize:text];
+        
+        return size.height + 9;
+    } else {
+        return [tableView rowHeight];
+    }
 }
 
 @end
