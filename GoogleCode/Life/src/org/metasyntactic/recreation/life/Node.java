@@ -178,21 +178,12 @@ public class Node extends AbstractNode {
 
     public int hashCode() {
         if (hashCode == 0) {
-            //*
             int result = depth();
             result = 31 * result + System.identityHashCode(northWest);
             result = 31 * result + System.identityHashCode(northEast);
             result = 31 * result + System.identityHashCode(southWest);
             result = 31 * result + System.identityHashCode(southEast);
             hashCode = result;
-            /*/
-            int result = depth();
-            result = 31 * result + northWest.hashCode();
-            result = 31 * result + northEast.hashCode();
-            result = 31 * result + southWest.hashCode();
-            result = 31 * result + southEast.hashCode();
-            hashCode = result;
-            //*/
         }
 
         return hashCode;
