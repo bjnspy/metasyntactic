@@ -165,7 +165,9 @@ public class Node extends AbstractNode {
 
         Node node = (Node) o;
 
-        if (depth() != node.depth()) { return false; }
+        if (depth() != node.depth()) {
+            return false;
+        }
         if (northEast != node.northEast) return false;
         if (northWest != node.northWest) return false;
         if (southEast != node.southEast) return false;
@@ -192,11 +194,11 @@ public class Node extends AbstractNode {
     public static Node newNode(AbstractNode northWest, AbstractNode northEast,
                                AbstractNode southWest, AbstractNode southEast) {
         if (northWest.isEmpty() && northEast.isEmpty() && southEast.isEmpty() && southWest.isEmpty()) {
-            return (Node)Universe.emptyNode(northEast.depth() + 1);
+            return (Node) Universe.emptyNode(northEast.depth() + 1);
         }
 
         Node node = new Node(northWest, northEast, southWest, southEast);
-        return (Node)Universe.lookupNode(node);
+        return (Node) Universe.lookupNode(node);
     }
 
     public int depth() {
@@ -249,7 +251,7 @@ public class Node extends AbstractNode {
             throw new IllegalArgumentException();
         }
         if (x.compareTo(widthHeight) >= 0) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException(x + " >= " + widthHeight);
         }
         if (y.compareTo(BigInteger.ZERO) < 0) {
             throw new IllegalArgumentException();

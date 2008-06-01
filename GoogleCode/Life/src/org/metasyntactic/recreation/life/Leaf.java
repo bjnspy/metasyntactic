@@ -6,7 +6,7 @@ import java.math.BigInteger;
 
 public class Leaf extends AbstractNode {
     char northWest, northEast, southWest, southEast;
-    char oneGenerationLater, twoGenerationLater;
+    char oneGenerationLater, twoGenerationsLater;
 
     private Leaf(int northWest, int northEast, int southWest, int southEast) {
         this((char) northWest, (char) northEast, (char) southWest, (char) southEast);
@@ -34,7 +34,7 @@ public class Leaf extends AbstractNode {
                         ((t10 << 7) & 0x880) | (t11 << 5) | ((t12 << 3) & 0x110) |
                         ((t20 >>> 1) & 0x8) | (t21 >>> 3) | (t22 >>> 5));
 
-        twoGenerationLater =
+        twoGenerationsLater =
                 (char) ((liferules[(t00 << 10) | (t01 << 8) | (t10 << 2) | t11] << 10) |
                         (liferules[(t01 << 10) | (t02 << 8) | (t11 << 2) | t12] << 8) |
                         (liferules[(t10 << 10) | (t11 << 8) | (t20 << 2) | t21] << 2) |
