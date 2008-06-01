@@ -37,18 +37,18 @@ public class Node extends AbstractNode {
         Leaf nw = (Leaf) northWest, ne = (Leaf) northEast,
                 sw = (Leaf) southWest, se = (Leaf) southEast;
 
-        return nw.southWest != 0 ||
-                nw.northWest != 0 ||
-                nw.northEast != 0 ||
-                ne.northWest != 0 ||
-                ne.northEast != 0 ||
-                ne.southEast != 0 ||
-                se.northEast != 0 ||
-                se.southEast != 0 ||
-                se.southWest != 0 ||
-                sw.southEast != 0 ||
-                sw.southWest != 0 ||
-                sw.northWest != 0;
+        return nw.getSouthWest() != 0 ||
+                nw.getNorthWest() != 0 ||
+                nw.getNorthEast() != 0 ||
+                ne.getNorthWest() != 0 ||
+                ne.getNorthEast() != 0 ||
+                ne.getSouthEast() != 0 ||
+                se.getNorthEast() != 0 ||
+                se.getSouthEast() != 0 ||
+                se.getSouthWest() != 0 ||
+                sw.getSouthEast() != 0 ||
+                sw.getSouthWest() != 0 ||
+                sw.getNorthWest() != 0;
     }
 
     private boolean nodeExpandsBeyondCenter() {
@@ -107,15 +107,15 @@ public class Node extends AbstractNode {
         Leaf nw = (Leaf) northWest, ne = (Leaf) northEast,
                 sw = (Leaf) southWest, se = (Leaf) southEast;
 
-        char t00 = nw.oneGenerationLater;
-        char t01 = Leaf.newLeaf(nw.northEast, ne.northWest, nw.southEast, ne.southWest).oneGenerationLater;
-        char t02 = ne.oneGenerationLater;
-        char t10 = Leaf.newLeaf(nw.southWest, nw.southEast, sw.northWest, sw.northEast).oneGenerationLater;
-        char t11 = Leaf.newLeaf(nw.southEast, ne.southWest, sw.northEast, se.northWest).oneGenerationLater;
-        char t12 = Leaf.newLeaf(ne.southWest, ne.southEast, se.northWest, se.northEast).oneGenerationLater;
-        char t20 = sw.oneGenerationLater;
-        char t21 = Leaf.newLeaf(sw.northEast, se.northWest, sw.southEast, se.southWest).oneGenerationLater;
-        char t22 = se.oneGenerationLater;
+        char t00 = nw.getOneGenerationLater();
+        char t01 = Leaf.newLeaf(nw.getNorthEast(), ne.getNorthWest(), nw.getSouthEast(), ne.getSouthWest()).getOneGenerationLater();
+        char t02 = ne.getOneGenerationLater();
+        char t10 = Leaf.newLeaf(nw.getSouthWest(), nw.getSouthEast(), sw.getNorthWest(), sw.getNorthEast()).getOneGenerationLater();
+        char t11 = Leaf.newLeaf(nw.getSouthEast(), ne.getSouthWest(), sw.getNorthEast(), se.getNorthWest()).getOneGenerationLater();
+        char t12 = Leaf.newLeaf(ne.getSouthWest(), ne.getSouthEast(), se.getNorthWest(), se.getNorthEast()).getOneGenerationLater();
+        char t20 = sw.getOneGenerationLater();
+        char t21 = Leaf.newLeaf(sw.getNorthEast(), se.getNorthWest(), sw.getSouthEast(), se.getSouthWest()).getOneGenerationLater();
+        char t22 = se.getOneGenerationLater();
 
         return Leaf.newLeaf(
                 combine4(t00, t01, t10, t11),
@@ -152,10 +152,10 @@ public class Node extends AbstractNode {
                     Node.newNode(((Node) t11).southEast, ((Node) t12).southWest, ((Node) t21).northEast, ((Node) t22).northWest));
         } else {
             return Node.newNode(
-                    Leaf.newLeaf(((Leaf) t00).southEast, ((Leaf) t01).southWest, ((Leaf) t10).northEast, ((Leaf) t11).northWest),
-                    Leaf.newLeaf(((Leaf) t01).southEast, ((Leaf) t02).southWest, ((Leaf) t11).northEast, ((Leaf) t12).northWest),
-                    Leaf.newLeaf(((Leaf) t10).southEast, ((Leaf) t11).southWest, ((Leaf) t20).northEast, ((Leaf) t21).northWest),
-                    Leaf.newLeaf(((Leaf) t11).southEast, ((Leaf) t12).southWest, ((Leaf) t21).northEast, ((Leaf) t22).northWest));
+                    Leaf.newLeaf(((Leaf) t00).getSouthEast(), ((Leaf) t01).getSouthWest(), ((Leaf) t10).getNorthEast(), ((Leaf) t11).getNorthWest()),
+                    Leaf.newLeaf(((Leaf) t01).getSouthEast(), ((Leaf) t02).getSouthWest(), ((Leaf) t11).getNorthEast(), ((Leaf) t12).getNorthWest()),
+                    Leaf.newLeaf(((Leaf) t10).getSouthEast(), ((Leaf) t11).getSouthWest(), ((Leaf) t20).getNorthEast(), ((Leaf) t21).getNorthWest()),
+                    Leaf.newLeaf(((Leaf) t11).getSouthEast(), ((Leaf) t12).getSouthWest(), ((Leaf) t21).getNorthEast(), ((Leaf) t22).getNorthWest()));
         }
     }
 
