@@ -5,10 +5,7 @@ import org.apache.commons.collections.map.MultiValueMap;
 import java.math.BigInteger;
 
 public class Leaf extends AbstractNode {
-    private final char northWest;
-    private final char northEast;
-    private final char southWest;
-    private final char southEast;
+    private final long quadrants;
     private final char oneGenerationLater;
 
     private Leaf(int northWest, int northEast, int southWest, int southEast) {
@@ -16,10 +13,7 @@ public class Leaf extends AbstractNode {
     }
 
     private Leaf(char northWest, char northEast, char southWest, char southEast) {
-        this.northWest = northWest;
-        this.northEast = northEast;
-        this.southWest = southWest;
-        this.southEast = southEast;
+        quadrants = ((long) northWest << 48) | ((long) northEast << 32) | ((long) southWest << 16) | southEast;
 
         short t00 = liferules[northWest],
                 t01 = liferules[((northWest << 2) & 0xcccc) | ((northEast >> 2) & 0x3333)],
@@ -40,12 +34,7 @@ public class Leaf extends AbstractNode {
 
 
     public boolean isEmpty() {
-        if (this == empty) {
-            return true;
-        }
-
-        return getNorthWest() == 0 && getNorthEast() == 0 &&
-                getSouthWest() == 0 && getSouthEast() == 0;
+        return quadrants == 0;
     }
 
     public static Leaf newLeaf(int northWest, int northEast, int southWest, int southEast) {
@@ -64,21 +53,11 @@ public class Leaf extends AbstractNode {
 
         Leaf leaf = (Leaf) o;
 
-        if (getNorthEast() != leaf.getNorthEast()) return false;
-        if (getNorthWest() != leaf.getNorthWest()) return false;
-        if (getSouthEast() != leaf.getSouthEast()) return false;
-        if (getSouthWest() != leaf.getSouthWest()) return false;
-
-        return true;
+        return quadrants == leaf.quadrants;
     }
 
     public int hashCode() {
-        int result;
-        result = (int) getNorthWest();
-        result = 31 * result + (int) getNorthEast();
-        result = 31 * result + (int) getSouthWest();
-        result = 31 * result + (int) getSouthEast();
-        return result;
+        return (int) (quadrants | (quadrants >> 32));
     }
 
     public int depth() {
@@ -245,19 +224,19 @@ public class Leaf extends AbstractNode {
     }
 
     public final char getNorthWest() {
-        return northWest;
+        return (char) (quadrants >>> 48);
     }
 
     public final char getNorthEast() {
-        return northEast;
+        return (char) (quadrants >>> 32);
     }
 
     public final char getSouthWest() {
-        return southWest;
+        return (char) (quadrants >>> 16);
     }
 
     public final char getSouthEast() {
-        return southEast;
+        return (char) quadrants;
     }
 
     public final char getOneGenerationLater() {
