@@ -2,9 +2,12 @@ package org.metasyntactic.recreation.life;
 
 import org.apache.commons.collections.map.MultiValueMap;
 
+import java.io.*;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
+import java.util.TreeSet;
 
 public class Universe {
     private final static Map<AbstractNode, AbstractNode> internMap =
@@ -54,6 +57,10 @@ public class Universe {
         this(Node.newNode(defaultEmptyNode, defaultEmptyNode, defaultEmptyNode, defaultEmptyNode));
     }
 
+    public Universe(AbstractNode node) {
+        this(node instanceof Leaf ? node.push() : (Node) node);
+    }
+
     private Universe(Node root) {
         universeAge++;
         if (universeAge % 5000 == 0) {
@@ -62,6 +69,10 @@ public class Universe {
         } else {
             this.root = root;
         }
+    }
+
+    public Node getRoot() {
+        return root;
     }
 
     private void flushUniverse() {
@@ -75,18 +86,32 @@ public class Universe {
     public String toString() {
         StringBuilder builder = new StringBuilder();
 
-        int widthHeight = TWO.pow(root.depth() + 1).intValue();
 
         MultiValueMap liveLocations = root.getLiveLocations();
+        int minX = Integer.MAX_VALUE;
+        int maxX = 0;
+        int minY = Integer.MAX_VALUE;
+        int maxY = 0;
 
-        printDashes(builder, widthHeight);
+        for (int x : (Set<Integer>) liveLocations.keySet()) {
+            minX = Math.min(x, minX);
+            maxX = Math.max(x, maxX);
+
+            TreeSet<Integer> ys = (TreeSet<Integer>) liveLocations.getCollection(x);
+            minY = Math.min(ys.first(), minY);
+            maxY = Math.max(ys.last(), maxY);
+        }
+
+        int width = maxX - minX;
+        int height = maxY - minY;
+        printDashes(builder, width);
         builder.append('\n');
 
-        for (int y = 0; y < widthHeight; y++) {
+        for (int y = 0; y < height; y++) {
             builder.append('|');
 
-            for (int x = 0; x < widthHeight; x++) {
-                boolean b = liveLocations.containsValue(x, y);
+            for (int x = 0; x < width; x++) {
+                boolean b = liveLocations.containsValue(minX + x, minY + y);
 
                 builder.append(b ? '*' : ' ');
             }
@@ -95,7 +120,7 @@ public class Universe {
             builder.append('\n');
         }
 
-        printDashes(builder, widthHeight);
+        printDashes(builder, width);
 
         return builder.toString();
     }
@@ -123,50 +148,67 @@ public class Universe {
             nextGeneration = nextGeneration.push();
         }
 
-        return new Universe((Node) nextGeneration);
+        return new Universe(nextGeneration);
     }
 
-    public static void main(String... args) {
-        Universe u = new Universe();
-        System.out.println(u);
+    public static AbstractNode read(File file) throws IOException, ClassNotFoundException {
+        if (file.getName().toLowerCase().endsWith(".lifematrix")) {
+            return readLifeMatrix(file);
+        } else if (file.getName().toLowerCase().endsWith(".lifetree")) {
+            return readLifeTree(file);
+        } else {
+            throw new IllegalArgumentException();
+        }
+    }
 
-        //*
-        u = u.setValue(10, 10, true);
-        u = u.setValue(10, 11, true);
-        u = u.setValue(10, 12, true);
-        u = u.setValue(11, 12, true);
-        u = u.setValue(12, 11, true);
-/*/
-        u = u.setValue(10, 10, true);
-        u = u.setValue(11, 10, true);
-        u = u.setValue(12, 10, true);
-        u = u.setValue(9, 9, true);
-        u = u.setValue(10, 9, true);
-        u = u.setValue(11, 9, true);
-//*/
-        //for (int i = 0; i < 20; i++) {
-        int i = 0;
-        long start = System.currentTimeMillis();
-        while (true) {
-            //System.out.println(u);
-            u = u.step();
-            i++;
+    private static AbstractNode readLifeTree(File file) throws IOException, ClassNotFoundException {
+        ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
 
-            if (i % 1000 == 0) {
-                long now = System.currentTimeMillis();
-                long diff = (now - start);
-                double time = (double) diff / (double) i;
-                System.out.println(i + " - " + time + "ms per step");
+        AbstractNode node = (AbstractNode) in.readObject();
+
+        return node;
+    }
+
+    private static AbstractNode readLifeMatrix(File file) throws IOException {
+        LineNumberReader in = new LineNumberReader(new FileReader(file));
+        String line;
+
+        int maxY = 0;
+        int maxX = 0;
+
+        for (int y = 0; (line = in.readLine()) != null; y++) {
+            if (line.trim().equals("#")) {
+                break;
+            }
+
+            if (y > maxY) {
+                maxY = y;
+            }
+
+            maxX = Math.max(maxX, line.length());
+        }
+
+        AbstractNode node = Leaf.emptyLeaf();
+        while (node.depth() < Math.log(Math.max(maxX, maxY)) + 1) {
+            node = node.push();
+        }
+
+        in.close();
+        in = new LineNumberReader(new FileReader(file));
+        for (int y = 0; (line = in.readLine()) != null; y++) {
+            if (line.trim().equals("#")) {
+                break;
+            }
+
+            BigInteger bigY = new BigInteger(String.valueOf(y));
+
+            for (int x = 0; x < line.length(); x++) {
+                if (line.charAt(x) != ' ') {
+                    node = node.setValue(new BigInteger(String.valueOf(x)), bigY, true);
+                }
             }
         }
 
-        /*
-        for (println();= 8; x < 24; x++) {
-            for (int y = 8; y < 24; y++) {
-                u = u.setValue(x, y, true);
-                System.out.println(u);
-            }
-        }
-        */
+        return node;
     }
 }

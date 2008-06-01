@@ -3,8 +3,8 @@ package org.metasyntactic.recreation.life;
 import org.apache.commons.collections.map.MultiValueMap;
 
 import java.math.BigInteger;
-import java.util.HashMap;
-import java.util.HashSet;
+import java.util.TreeMap;
+import java.util.TreeSet;
 
 public abstract class AbstractNode {
     protected static byte[] shortpop = new byte[65536];
@@ -55,6 +55,7 @@ public abstract class AbstractNode {
     public abstract AbstractNode setValue(BigInteger x, BigInteger y, boolean value);
 
     Double coverage;
+
     public double coverage() {
         if (coverage == null) {
             coverage = coverageWorker();
@@ -71,7 +72,7 @@ public abstract class AbstractNode {
 
     public MultiValueMap getLiveLocations() {
         int xStart = 0, yStart = 0;
-        MultiValueMap map = MultiValueMap.decorate(new HashMap(), HashSet.class);
+        MultiValueMap map = MultiValueMap.decorate(new TreeMap(), TreeSet.class);
 
         getLiveLocations(xStart, yStart, map);
 
