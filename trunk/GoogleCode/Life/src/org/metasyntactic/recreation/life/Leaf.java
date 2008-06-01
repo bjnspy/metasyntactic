@@ -5,8 +5,11 @@ import org.apache.commons.collections.map.MultiValueMap;
 import java.math.BigInteger;
 
 public class Leaf extends AbstractNode {
-    char northWest, northEast, southWest, southEast;
-    char oneGenerationLater, twoGenerationsLater;
+    private final char northWest;
+    private final char northEast;
+    private final char southWest;
+    private final char southEast;
+    private final char oneGenerationLater;
 
     private Leaf(int northWest, int northEast, int southWest, int southEast) {
         this((char) northWest, (char) northEast, (char) southWest, (char) southEast);
@@ -33,21 +36,16 @@ public class Leaf extends AbstractNode {
                 (char) ((t00 << 15) | (t01 << 13) | ((t02 << 11) & 0x1000) |
                         ((t10 << 7) & 0x880) | (t11 << 5) | ((t12 << 3) & 0x110) |
                         ((t20 >>> 1) & 0x8) | (t21 >>> 3) | (t22 >>> 5));
-
-        twoGenerationsLater =
-                (char) ((liferules[(t00 << 10) | (t01 << 8) | (t10 << 2) | t11] << 10) |
-                        (liferules[(t01 << 10) | (t02 << 8) | (t11 << 2) | t12] << 8) |
-                        (liferules[(t10 << 10) | (t11 << 8) | (t20 << 2) | t21] << 2) |
-                        (liferules[(t11 << 10) | (t12 << 8) | (t21 << 2) | t22]));
     }
+
 
     public boolean isEmpty() {
         if (this == empty) {
             return true;
         }
 
-        return northWest == 0 && northEast == 0 &&
-                southWest == 0 && southEast == 0;
+        return getNorthWest() == 0 && getNorthEast() == 0 &&
+                getSouthWest() == 0 && getSouthEast() == 0;
     }
 
     public static Leaf newLeaf(int northWest, int northEast, int southWest, int southEast) {
@@ -66,20 +64,20 @@ public class Leaf extends AbstractNode {
 
         Leaf leaf = (Leaf) o;
 
-        if (northEast != leaf.northEast) return false;
-        if (northWest != leaf.northWest) return false;
-        if (southEast != leaf.southEast) return false;
-        if (southWest != leaf.southWest) return false;
+        if (getNorthEast() != leaf.getNorthEast()) return false;
+        if (getNorthWest() != leaf.getNorthWest()) return false;
+        if (getSouthEast() != leaf.getSouthEast()) return false;
+        if (getSouthWest() != leaf.getSouthWest()) return false;
 
         return true;
     }
 
     public int hashCode() {
         int result;
-        result = (int) northWest;
-        result = 31 * result + (int) northEast;
-        result = 31 * result + (int) southWest;
-        result = 31 * result + (int) southEast;
+        result = (int) getNorthWest();
+        result = 31 * result + (int) getNorthEast();
+        result = 31 * result + (int) getSouthWest();
+        result = 31 * result + (int) getSouthEast();
         return result;
     }
 
@@ -99,10 +97,10 @@ public class Leaf extends AbstractNode {
 
     public Node push() {
         return Node.newNode(
-                Leaf.newLeaf(0, 0, 0, northWest),
-                Leaf.newLeaf(0, 0, northEast, 0),
-                Leaf.newLeaf(0, southWest, 0, 0),
-                Leaf.newLeaf(southEast, 0, 0, 0));
+                Leaf.newLeaf(0, 0, 0, getNorthWest()),
+                Leaf.newLeaf(0, 0, getNorthEast(), 0),
+                Leaf.newLeaf(0, getSouthWest(), 0, 0),
+                Leaf.newLeaf(getSouthEast(), 0, 0, 0));
     }
 
     private final static BigInteger EIGHT = new BigInteger("8");
@@ -137,15 +135,15 @@ public class Leaf extends AbstractNode {
 
         if (x < 4) {
             if (y < 4) {
-                quadrant = northWest;
+                quadrant = getNorthWest();
             } else {
-                quadrant = southWest;
+                quadrant = getSouthWest();
             }
         } else {
             if (y < 4) {
-                quadrant = northEast;
+                quadrant = getNorthEast();
             } else {
-                quadrant = southEast;
+                quadrant = getSouthEast();
             }
         }
 
@@ -180,8 +178,8 @@ public class Leaf extends AbstractNode {
         offsetX = 3 - offsetX;
         offsetY = 3 - offsetY;
 
-        char newNW = northWest, newNE = northEast,
-                newSW = southWest, newSE = southEast;
+        char newNW = getNorthWest(), newNE = getNorthEast(),
+                newSW = getSouthWest(), newSE = getSouthEast();
 
         int bit = offsetY * 4 + offsetX;
         int mask = 1 << bit;
@@ -191,15 +189,15 @@ public class Leaf extends AbstractNode {
 
         if (x < 4) {
             if (y < 4) {
-                newNW = setBit(value, mask, northWest);
+                newNW = setBit(value, mask, getNorthWest());
             } else {
-                newSW = setBit(value, mask, southWest);
+                newSW = setBit(value, mask, getSouthWest());
             }
         } else {
             if (y < 4) {
-                newNE = setBit(value, mask, northEast);
+                newNE = setBit(value, mask, getNorthEast());
             } else {
-                newSE = setBit(value, mask, southEast);
+                newSE = setBit(value, mask, getSouthEast());
             }
         }
 
@@ -211,8 +209,8 @@ public class Leaf extends AbstractNode {
     }
 
     public double coverageWorker() {
-        return (coverage(northWest) + coverage(northEast) +
-                coverage(southWest) + coverage(southEast)) / 4.0;
+        return (coverage(getNorthWest()) + coverage(getNorthEast()) +
+                coverage(getSouthWest()) + coverage(getSouthEast())) / 4.0;
     }
 
     private double coverage(char quadrant) {
@@ -226,7 +224,7 @@ public class Leaf extends AbstractNode {
     }
 
     public Leaf canonicalize() {
-        return newLeaf(northWest, northEast, southWest, southEast);
+        return newLeaf(getNorthWest(), getNorthEast(), getSouthWest(), getSouthEast());
     }
 
     protected int getLiveLocations(int xStart, int yStart, MultiValueMap map) {
@@ -244,5 +242,25 @@ public class Leaf extends AbstractNode {
         }
 
         return heightWidth;
+    }
+
+    public final char getNorthWest() {
+        return northWest;
+    }
+
+    public final char getNorthEast() {
+        return northEast;
+    }
+
+    public final char getSouthWest() {
+        return southWest;
+    }
+
+    public final char getSouthEast() {
+        return southEast;
+    }
+
+    public final char getOneGenerationLater() {
+        return oneGenerationLater;
     }
 }
