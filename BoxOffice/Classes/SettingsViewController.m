@@ -179,7 +179,7 @@
     }
     else if (section == 2)
     {
-        cell.text = NSLocalizedString(@"Credits", nil);
+        cell.text = NSLocalizedString(@"About", nil);
     }
     
     return cell;

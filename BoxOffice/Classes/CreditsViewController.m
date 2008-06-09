@@ -33,18 +33,20 @@
         self.rottenTomatoesImage = [UIImage imageNamed:@"RottenTomatoesLogo.png"];
         self.tryntImage = [UIImage imageNamed:@"TryntLogo.png"];
         self.yahooImage = [UIImage imageNamed:@"YahooLogo.png"];
+        
+        self.title = NSLocalizedString(@"About", nil);
     }
     
     return self;
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 5;
+    return 6;
 }
 
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
-    if (section == 4) {
+    if (section == 5) {
         return 2;
     }
     
@@ -55,15 +57,15 @@
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
-    if (section == 0) {
+    if (section == 1) {
         return rottenTomatoesImage;
-    } else if (section == 1) {
-        return ignyteImage;
     } else if (section == 2) {
-        return fandangoImage;
+        return ignyteImage;
     } else if (section == 3) {
-        return tryntImage;
+        return fandangoImage;
     } else if (section == 4) {
+        return tryntImage;
+    } else if (section == 5) {
         if (row == 0) {
             return yahooImage;
         }
@@ -89,6 +91,8 @@
 
 - (UITableViewCell*)    tableView:(UITableView*) tableView
             cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    NSInteger section = [indexPath section];
+    
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
@@ -105,6 +109,8 @@
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
 
         [cell.contentView addSubview:imageView];
+    } else if (section == 0) {
+        cell.text = @"Cyrus Najmabadi";
     } else {
         cell.text = @"GeoNames";
         cell.textColor = [UIColor colorWithRed:33.0/256.0 green:66.0/256.0 blue:33.0/256.0 alpha:1.0];
@@ -116,14 +122,16 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
-        return NSLocalizedString(@"Movie ratings provided by:", nil);
+        return NSLocalizedString(@"Written by:", nil);
     } else if (section == 1) {
-        return NSLocalizedString(@"Theater listings provided by:", nil);
+        return NSLocalizedString(@"Movie ratings provided by:", nil);
     } else if (section == 2) {
-        return NSLocalizedString(@"Ticket sales provided by:", nil);
+        return NSLocalizedString(@"Theater listings provided by:", nil);
     } else if (section == 3) {
-        return NSLocalizedString(@"Movie details provided by:", nil);
+        return NSLocalizedString(@"Ticket sales provided by:", nil);
     } else if (section == 4) {
+        return NSLocalizedString(@"Movie details provided by:", nil);
+    } else if (section == 5) {
         return NSLocalizedString(@"Geolocation services provided by:", nil);
     }
     
@@ -142,14 +150,16 @@
     
     NSString* urlString;
     if (section == 0) {
-        urlString = @"http://www.rottentomatoes.com";
+        urlString = @"mailto:cyrusn@stwing.upenn.edu";
     } else if (section == 1) {
-        urlString = @"http://www.ignyte.com";
+        urlString = @"http://www.rottentomatoes.com";
     } else if (section == 2) {
-        urlString = @"http://www.fandango.com";
+        urlString = @"http://www.ignyte.com";
     } else if (section == 3) {
-        urlString = @"http://www.trynt.com";
+        urlString = @"http://www.fandango.com";
     } else if (section == 4) {
+        urlString = @"http://www.trynt.com";
+    } else if (section == 5) {
         if (row == 0) {
             urlString = @"http://www.yahoo.com";
         } else {
