@@ -16,7 +16,7 @@
 @synthesize currentlyDisplayedMessage;
 @synthesize background;
 
-- (void)dealloc {
+- (void) dealloc {
     self.window = nil;
     self.messages = nil;
     self.currentlyDisplayedMessage = nil;
@@ -53,6 +53,8 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
 }
 
 - (void) addStatusMessage:(NSString*) message {    
+    return;
+    
     [self.messages addObject:message];
     
     if ([self.messages count] == 1) {

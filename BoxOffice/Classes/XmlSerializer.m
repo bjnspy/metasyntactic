@@ -18,50 +18,55 @@
     return sanitized;
 }
 
-+ (NSString*) serializeAttribute:(NSString*) key 
-                           value:(NSString*) value {
-    NSMutableString* serialized = [NSMutableString string];
-    [serialized appendString:@" "];
-    [serialized appendString:key];
-    [serialized appendString:@"=\""];
-    [serialized appendString:[value stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"]];
-    [serialized appendString:@"\""];
-    return serialized;
++ (void) serializeAttribute:(NSString*) key 
+                      value:(NSString*) value
+                 withBuffer:(NSMutableString*) buffer {
+    [buffer appendString:@" "];
+    [buffer appendString:key];
+    [buffer appendString:@"=\""];
+    [buffer appendString:[value stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"]];
+    [buffer appendString:@"\""];
 }
 
-+ (NSString*) serializeElement:(XmlElement*) node  {
++ (void) serializeElement:(XmlElement*) node
+                    withBuffer:(NSMutableString*) buffer {
     if (node == nil) {
-        return @"";
+        return;
     }
     
-    NSMutableString* serialized = [NSMutableString string];
-    [serialized appendString:@"<"];
-    [serialized appendString:node.name];
+    [buffer appendString:@"<"];
+    [buffer appendString:node.name];
     if ([node.attributes count] > 0) {        
         for (NSString* key in node.attributes) {
-            [serialized appendString:
-             [XmlSerializer serializeAttribute:key value:[node.attributes valueForKey:key]]];
+            [XmlSerializer serializeAttribute:key
+                                        value:[node.attributes valueForKey:key]
+                                   withBuffer:buffer];
         }
     }
     
     if ([node.children count] == 0 && node.text == nil) {
-        [serialized appendString:@"/>"];
-        return serialized;
+        [buffer appendString:@"/>"];
+        return;
     }
     
-    [serialized appendString:@">"];
+    [buffer appendString:@">"];
     if (node.text != nil)  {
-        [serialized appendString:[XmlSerializer sanitizeNonQuotedString:node.text]];
+        [buffer appendString:[XmlSerializer sanitizeNonQuotedString:node.text]];
     }
     
     for (XmlElement* child in node.children) {
-        [serialized appendString:[self serializeElement:child]];
+        [XmlSerializer serializeElement:child withBuffer:buffer];
     }
     
-    [serialized appendString:@"</"];
-    [serialized appendString:node.name];
-    [serialized appendString:@">"];
-    return serialized;
+    [buffer appendString:@"</"];
+    [buffer appendString:node.name];
+    [buffer appendString:@">"];
+}
+
++ (NSString*) serializeElement:(XmlElement*) node  {
+    NSMutableString* buffer = [NSMutableString string];
+    [self serializeElement:node withBuffer:buffer];
+    return buffer;
 }
 
 + (NSString*) serializeDocument:(XmlDocument*) document {
@@ -69,17 +74,17 @@
     [serialized appendString:@"<?xml"];
     
     if (document.version != nil) {
-        [serialized appendString:[XmlSerializer serializeAttribute:@"version" value:document.version]];
+        [XmlSerializer serializeAttribute:@"version" value:document.version withBuffer:serialized];
     }
     
     if (document.encoding != nil) {
-        [serialized appendString:[XmlSerializer serializeAttribute:@"encoding" value:document.encoding]];
+        [XmlSerializer serializeAttribute:@"encoding" value:document.encoding withBuffer:serialized];
     }
     
     [serialized appendString:@"?>"];
     
     if (document.root != nil) {
-        [serialized appendString:[XmlSerializer serializeElement:document.root]];
+        [XmlSerializer serializeElement:document.root withBuffer:serialized];
     }
     
     return serialized;

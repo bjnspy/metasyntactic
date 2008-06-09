@@ -213,7 +213,7 @@
 }
 
 - (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     

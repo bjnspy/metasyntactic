@@ -40,6 +40,12 @@
 		740E7F070DCFEC440066FCE5 /* ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */; };
 		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
 		740F28340DD1267000F66E51 /* ImageNotAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 740F28330DD1267000F66E51 /* ImageNotAvailable.png */; };
+		741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
+		7411116A0DFCFA3D00B94FB5 /* FandangoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 741111670DFCFA3D00B94FB5 /* FandangoLogo.png */; };
+		741111AB0DFD002B00B94FB5 /* TryntLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 741111A90DFD002B00B94FB5 /* TryntLogo.png */; };
+		741111D30DFD028500B94FB5 /* IgnyteLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 741111D00DFD028500B94FB5 /* IgnyteLogo.png */; };
+		741111D40DFD028500B94FB5 /* RottenTomatoesLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 741111D10DFD028500B94FB5 /* RottenTomatoesLogo.png */; };
+		741111D50DFD028500B94FB5 /* YahooLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 741111D20DFD028500B94FB5 /* YahooLogo.png */; };
 		7411734D0DCEC63D00080CA2 /* CurrentPosition.png in Resources */ = {isa = PBXBuildFile; fileRef = 7411734C0DCEC63D00080CA2 /* CurrentPosition.png */; };
 		7414B8C60DDAB61E00ED9CE0 /* IgnyteTheaterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7414B8C50DDAB61E00ED9CE0 /* IgnyteTheaterDownloader.m */; };
 		7414B8E80DDAB75200ED9CE0 /* FandangoTheaterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7414B8E70DDAB75200ED9CE0 /* FandangoTheaterDownloader.m */; };
@@ -132,6 +138,13 @@
 		740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityIndicator.m; sourceTree = "<group>"; };
 		740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		740F28330DD1267000F66E51 /* ImageNotAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ImageNotAvailable.png; sourceTree = "<group>"; };
+		741111520DFCF61900B94FB5 /* CreditsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CreditsViewController.h; sourceTree = "<group>"; };
+		741111530DFCF61900B94FB5 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
+		741111670DFCFA3D00B94FB5 /* FandangoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FandangoLogo.png; sourceTree = "<group>"; };
+		741111A90DFD002B00B94FB5 /* TryntLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = TryntLogo.png; sourceTree = "<group>"; };
+		741111D00DFD028500B94FB5 /* IgnyteLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = IgnyteLogo.png; sourceTree = "<group>"; };
+		741111D10DFD028500B94FB5 /* RottenTomatoesLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = RottenTomatoesLogo.png; sourceTree = "<group>"; };
+		741111D20DFD028500B94FB5 /* YahooLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = YahooLogo.png; sourceTree = "<group>"; };
 		7411734C0DCEC63D00080CA2 /* CurrentPosition.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = CurrentPosition.png; sourceTree = "<group>"; };
 		7414B8C40DDAB61E00ED9CE0 /* IgnyteTheaterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IgnyteTheaterDownloader.h; sourceTree = "<group>"; };
 		7414B8C50DDAB61E00ED9CE0 /* IgnyteTheaterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IgnyteTheaterDownloader.m; sourceTree = "<group>"; };
@@ -299,6 +312,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				741111D00DFD028500B94FB5 /* IgnyteLogo.png */,
+				741111D10DFD028500B94FB5 /* RottenTomatoesLogo.png */,
+				741111D20DFD028500B94FB5 /* YahooLogo.png */,
+				741111A90DFD002B00B94FB5 /* TryntLogo.png */,
+				741111670DFCFA3D00B94FB5 /* FandangoLogo.png */,
 				74F6579A0DE9BB5100B99D45 /* Localizable.strings */,
 				74CC7D780DE39CDB001C0559 /* Search.png */,
 				74EC02DE0DD175BB006953A4 /* Icon.png */,
@@ -427,6 +445,8 @@
 				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
 				74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */,
 				74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */,
+				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
+				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -523,6 +543,11 @@
 				74CC7D790DE39CDB001C0559 /* Search.png in Resources */,
 				74F6579B0DE9BB5100B99D45 /* Localizable.strings in Resources */,
 				742471F40DEFCD2F009F0BF8 /* Default.png in Resources */,
+				7411116A0DFCFA3D00B94FB5 /* FandangoLogo.png in Resources */,
+				741111AB0DFD002B00B94FB5 /* TryntLogo.png in Resources */,
+				741111D30DFD028500B94FB5 /* IgnyteLogo.png in Resources */,
+				741111D40DFD028500B94FB5 /* RottenTomatoesLogo.png in Resources */,
+				741111D50DFD028500B94FB5 /* YahooLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,6 +605,7 @@
 				74088FC70DE452DB003BCBBD /* SearchDetailsViewController.m in Sources */,
 				74088FCD0DE453F8003BCBBD /* SearchMovieDetailsViewController.m in Sources */,
 				74088FD00DE454C4003BCBBD /* SearchPersonDetailsViewController.m in Sources */,
+				741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,7 +644,15 @@
 				CODE_SIGN_IDENTITY = "Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PREBINDING = NO;
@@ -634,7 +668,15 @@
 				CODE_SIGN_IDENTITY = "Cyrus Najmabadi";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = NO;
+				GCC_WARN_ABOUT_POINTER_SIGNEDNESS = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_INITIALIZER_NOT_FULLY_BRACKETED = NO;
+				GCC_WARN_MISSING_PARENTHESES = NO;
+				GCC_WARN_NON_VIRTUAL_DESTRUCTOR = YES;
+				GCC_WARN_PEDANTIC = NO;
+				GCC_WARN_PROTOTYPE_CONVERSION = NO;
+				GCC_WARN_SHADOW = NO;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				PREBINDING = NO;
 				SDKROOT = iphoneos2.0;

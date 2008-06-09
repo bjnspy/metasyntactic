@@ -319,7 +319,7 @@ NSComparisonResult compareMovieElements(id t1, id t2, void* context1) {
 }
 
 - (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     

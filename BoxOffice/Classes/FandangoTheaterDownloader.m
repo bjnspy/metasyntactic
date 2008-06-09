@@ -33,7 +33,7 @@
 + (NSArray*) processTheatersElement:(XmlElement*) theatersElement
                             withMap:movieIdToTitleMap {
     NSMutableArray* array = [NSMutableArray array];
-    
+
     for (XmlElement* theaterElement in theatersElement.children) {
         NSString* name = [[theaterElement element:@"name"] text];
         NSString* address = [NSString stringWithFormat:@"%@, %@, %@ %@",

@@ -37,7 +37,7 @@
 
 - (void) dealloc {
     self.text = nil;
-    return [super dealloc];
+    [super dealloc];
 }
 
 - (id) initWithText:(NSString*) text_ searchId:(NSInteger) searchId_ {
@@ -76,7 +76,7 @@
 
 - (void) dealloc {
     self.element = nil;
-    return [super dealloc];
+    [super dealloc];
 }
 
 - (id) initWithElement:(XmlElement*) element_ searchId:(NSInteger) searchId_ {

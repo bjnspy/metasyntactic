@@ -39,12 +39,6 @@
     [super dealloc];
 }
 
-- (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
-    [self.model setCurrentlySelectedMovie:nil theater:nil];
-}
-
 - (void) onSortOrderChanged:(id) sender {
     [[self model] setAllMoviesSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self refresh];
@@ -164,6 +158,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 
 - (id) initWithNavigationController:(MoviesNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
+        shouldRefresh = YES;
         self.navigationController = controller;
         self.sortedMovies = [NSArray array];
         
@@ -188,11 +183,27 @@ NSInteger sortByRating(id t1, id t2, void *context) {
          @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
          @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
-        
-        [self sortMovies];
     }
     
     return self;
+}
+
+- (void) refreshIfVisible {
+    if (shouldRefresh == YES &&
+        self.navigationController.tabBarController.selectedViewController == self.navigationController) {
+        shouldRefresh = NO;
+        
+        [self sortMovies];
+        [self.tableView reloadData];
+    }
+}
+
+- (void) viewWillAppear:(BOOL) animated {
+    [self refreshIfVisible];
+    
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    
+    [self.model setCurrentlySelectedMovie:nil theater:nil];
 }
 
 - (BoxOfficeModel*) model {
@@ -232,7 +243,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
@@ -247,8 +258,8 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (void) refresh {
-    [self sortMovies];
-    [self.tableView reloadData];
+    shouldRefresh = YES;
+    [self refreshIfVisible];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
