@@ -70,7 +70,7 @@
 - (void) pushTicketsView:(Theater*) theater
                    movie:(Movie*) movie
                 animated:(BOOL) animated {
-    return [self pushTicketsView:movie
+    [self pushTicketsView:movie
                          theater:theater
                            title:movie.title
                    linkToTheater:NO

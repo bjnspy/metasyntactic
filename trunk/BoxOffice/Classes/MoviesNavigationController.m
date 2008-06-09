@@ -72,7 +72,8 @@
                  theater:(Theater*) theater
                 animated:(BOOL) animated {
     
-    return [self pushTicketsView:movie
+    
+    [self pushTicketsView:movie
                          theater:theater
                            title:theater.name
                    linkToTheater:YES

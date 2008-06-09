@@ -49,8 +49,8 @@
 }
 
 - (void) save:(id) sender {
-    NSString* trimmedZipcode = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [self.object performSelector:selector withObject:trimmedZipcode];
+    NSString* trimmedValue = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    [self.object performSelector:selector withObject:trimmedValue];
     [super save:sender];
 }
 

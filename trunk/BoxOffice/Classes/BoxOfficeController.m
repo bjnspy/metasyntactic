@@ -254,23 +254,24 @@
     return [Utilities downloadXml:urlString];
 }
 
+/*
 - (BOOL) areEqual:(XmlElement*) tickets1
           tickets:(XmlElement*) tickets2 {
     if (tickets1 == nil || tickets2 == nil) {
         return NO;
     }
     
+    //return [tickets1 isEqual:tickets2];
     NSString* s1 = [XmlSerializer serializeElement:tickets1];
     NSString* s2 = [XmlSerializer serializeElement:tickets2];
     
     return [s1 isEqual:s2];
 }
+ */
 
 - (void) setTickets:(XmlElement*) tickets {
     if (tickets != nil) {
-        if (![self areEqual:tickets tickets:[self.model tickets]]) {
-            [self.model setTickets:tickets];
-        }
+        [self.model setTickets:tickets];
     }
     
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading ticketing data", nil)];

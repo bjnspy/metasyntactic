@@ -13,6 +13,7 @@
 #import "TextFieldEditorViewController.h"
 #import "PickerEditorViewController.h"
 #import "Utilities.h"
+#import "CreditsViewController.h"
 
 @implementation SettingsViewController
 
@@ -34,7 +35,7 @@
 {
     if (self = [super initWithStyle:UITableViewStyleGrouped])
     {
-        self.title = @"Settings";
+        self.title = NSLocalizedString(@"Settings", nil);
         self.navigationController = controller;
         
         self.currentLocationItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
@@ -152,7 +153,7 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
 {
-    return 2;
+    return 3;
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
@@ -176,6 +177,10 @@
     {
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
     }
+    else if (section == 2)
+    {
+        cell.text = NSLocalizedString(@"Credits", nil);
+    }
     
     return cell;
 }
@@ -196,7 +201,7 @@
 }
 
 - (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath;
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath
 {
     NSInteger section = [indexPath section];
     
@@ -226,6 +231,11 @@
                                                      withValues:values
                                                    defaultValue:defaultValue] autorelease];
         
+        [self.navigationController pushViewController:controller animated:YES];
+    }
+    else if (section == 2)
+    {
+        CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     }
     

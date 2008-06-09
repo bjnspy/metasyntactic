@@ -10,6 +10,7 @@
 #import "TheatersNavigationController.h"
 #import "Theater.h"
 #import "Location.h"
+#import "ApplicationTabBarController.h"
 
 @implementation AllTheatersViewController
 
@@ -141,6 +142,7 @@
 
 - (id) initWithNavigationController:(TheatersNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
+        shouldRefresh = YES;
         self.navigationController = controller;
         self.sortedTheaters = [NSArray array];
         
@@ -165,16 +167,23 @@
              @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
              @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
         }
-        
-        [self sortTheaters];
     }
     
     return self;
 }
 
+- (void) refreshIfVisible {
+    if (shouldRefresh == YES &&
+        self.navigationController.tabBarController.selectedViewController == self.navigationController) {
+        shouldRefresh = NO;
+        [self sortTheaters];
+        [self.tableView reloadData];
+    }
+}
+
 - (void) refresh {
-    [self sortTheaters];
-    [self.tableView reloadData];
+    shouldRefresh = YES;
+    [self refreshIfVisible];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
@@ -187,7 +196,7 @@
 }
 
 - (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
@@ -255,6 +264,7 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
+    [self refreshIfVisible];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
     [self.model setCurrentlySelectedMovie:nil theater:nil];

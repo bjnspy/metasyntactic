@@ -97,7 +97,6 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
         [self updatePosterCache];
         [self updateAddressLocationCache];
         [self updateZipcodeAddressLocation];
-        [self clearOldSearchResults];
     }
     
     return self;
@@ -207,7 +206,7 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
 }
 
 - (void) clearLastMoviesUpdateTime {
-    return [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastMoviesUpdateTime"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastMoviesUpdateTime"];
 }
 
 - (NSArray*) theaters {
@@ -243,7 +242,7 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
 }
 
 - (void) clearLastTheatersUpdateTime {
-    return [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastTheatersUpdateTime"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastTheatersUpdateTime"];
 }
 
 - (XmlElement*) tickets {
@@ -269,7 +268,7 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
 }
 
 - (void) clearLastTicketsUpdateTime {
-    return [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastTicketsUpdateTime"];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastTicketsUpdateTime"];
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie {
@@ -468,6 +467,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 - (XmlElement*) getDetails:(NSString*) identifier {
+    static BOOL firstTime = YES;
+    if (firstTime == YES) {
+        firstTime = NO;
+        [self clearOldSearchResults];
+    }
+    
     NSDictionary* searchResults = [self getSearchResults];
     NSDictionary* details = [searchResults objectForKey:identifier];
     
