@@ -15,18 +15,15 @@
 @synthesize movieDetailsViewController;
 @synthesize tabBarController;
 
-- (void) dealloc
-{
+- (void) dealloc {
     self.allMoviesViewController = nil;
     self.movieDetailsViewController = nil;
     self.tabBarController = nil;
     [super dealloc];
 }
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller
-{
-    if (self = [super initWithTabBarController:controller])
-    {
+- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
+    if (self = [super initWithTabBarController:controller]) {
         self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
         
         [self pushViewController:allMoviesViewController animated:NO];
@@ -52,15 +49,13 @@
     }    
 }
 
-- (void) refresh
-{
+- (void) refresh {
     [self.allMoviesViewController refresh];
     [self.movieDetailsViewController refresh];
 }
 
 - (void) pushMovieDetails:(Movie*) movie
-                 animated:(BOOL) animated
-{
+                 animated:(BOOL) animated {
     [self popToRootViewControllerAnimated:NO];
     
     self.movieDetailsViewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self movie:movie] autorelease];
@@ -71,8 +66,6 @@
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater
                 animated:(BOOL) animated {
-    
-    
     [self pushTicketsView:movie
                          theater:theater
                            title:theater.name

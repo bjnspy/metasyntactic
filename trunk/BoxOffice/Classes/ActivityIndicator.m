@@ -13,17 +13,14 @@
 @synthesize navigationItem;
 @synthesize startButtonItem;
 
-- (void) dealloc
-{
+- (void) dealloc {
     self.navigationItem = nil;
     self.startButtonItem = nil;
     [super dealloc];
 }
 
-- (id) initWithNavigationItem:(UINavigationItem*) item
-{
-    if (self = [super init])
-    {
+- (id) initWithNavigationItem:(UINavigationItem*) item {
+    if (self = [super init]) {
         self.navigationItem = item;
         self.startButtonItem = self.navigationItem.leftBarButtonItem;
         running = NO;
@@ -32,10 +29,8 @@
     return self;
 }
 
-- (void) updateImage:(NSNumber*) number
-{
-    if (running == NO)
-    {
+- (void) updateImage:(NSNumber*) number {
+    if (running == NO) {
         return;
     }
     
@@ -52,20 +47,17 @@
     [self performSelector:@selector(updateImage:) withObject:[NSNumber numberWithInt:((i + 1) % 10)] afterDelay:0.1];
 }
 
-- (void) start
-{
+- (void) start {
     running = YES;
     [self updateImage:[NSNumber numberWithInt:1]];
 }
 
-- (void) stop:(id) sender
-{
+- (void) stop:(id) sender {
     running = NO;
     self.navigationItem.leftBarButtonItem = self.startButtonItem;
 }
 
-- (void) stop
-{
+- (void) stop {
     [self stop:nil];
 }
 

@@ -18,8 +18,7 @@
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
 
-- (void) dealloc
-{
+- (void) dealloc {
     self.moviesNavigationController = nil;
     self.theatersNavigationController = nil;
     self.searchNavigationController = nil;
@@ -28,10 +27,8 @@
     [super dealloc];
 }
 
-- (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel
-{
-    if (self = [super init])
-    {
+- (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel {
+    if (self = [super init]) {
         self.appDelegate = appDel;
         self.moviesNavigationController = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
@@ -59,8 +56,7 @@
     return self;
 }
 
-+ (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate
-{
++ (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate {
     return [[[ApplicationTabBarController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
@@ -69,18 +65,15 @@
     [[self model] setSelectedTabBarViewControllerIndex:self.selectedIndex];
 }
 
-- (BoxOfficeModel*) model
-{
+- (BoxOfficeModel*) model {
     return [self.appDelegate model];
 }
 
-- (BoxOfficeController*) controller
-{
+- (BoxOfficeController*) controller {
     return [self.appDelegate controller];
 }
 
-- (void) refresh
-{
+- (void) refresh {
     [self.moviesNavigationController refresh];
     [self.theatersNavigationController refresh];
     [self.settingsNavigationController refresh];

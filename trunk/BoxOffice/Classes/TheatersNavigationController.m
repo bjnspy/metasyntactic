@@ -23,10 +23,8 @@
     [super dealloc];
 }
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller
-{
-    if (self = [super initWithTabBarController:controller])
-    {   
+- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
+    if (self = [super initWithTabBarController:controller]) {   
         self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
         
         [self pushViewController:allTheatersViewController animated:NO];
@@ -52,14 +50,12 @@
     }
 }
 
-- (void) refresh
-{
+- (void) refresh {
     [self.allTheatersViewController refresh];
     [self.theaterDetailsViewController refresh];
 }
 
-- (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated
-{
+- (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
     [self popToRootViewControllerAnimated:NO];
     
     self.theaterDetailsViewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self theater:theater] autorelease];

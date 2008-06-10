@@ -14,16 +14,13 @@
 
 @synthesize startPageViewController;
 
-- (void) dealloc
-{
+- (void) dealloc {
     self.startPageViewController = nil;
     [super dealloc];
 }
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller
-{
-    if (self = [super initWithTabBarController:controller])
-    {        
+- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
+    if (self = [super initWithTabBarController:controller]) {        
         self.startPageViewController = [[[SearchStartPageViewController alloc] initWithNavigationController:self] autorelease];
         
         [self pushViewController:startPageViewController animated:NO];

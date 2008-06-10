@@ -231,7 +231,6 @@
     [self.navigationController pushTicketsView:self.movie
                                        theater:theater
                                       animated:YES];
-    
 }
 
 @end
