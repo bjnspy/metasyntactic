@@ -22,8 +22,7 @@
 @synthesize activityIndicator;
 @synthesize locationManager;
 
-- (void) dealloc
-{
+- (void) dealloc {
     self.navigationController = nil;
     self.currentLocationItem = nil;
     self.activityIndicator = nil;
@@ -31,10 +30,8 @@
     [super dealloc];
 }
 
-- (id) initWithNavigationController:(SettingsNavigationController*) controller
-{
-    if (self = [super initWithStyle:UITableViewStyleGrouped])
-    {
+- (id) initWithNavigationController:(SettingsNavigationController*) controller {
+    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.title = NSLocalizedString(@"Settings", nil);
         self.navigationController = controller;
         
@@ -58,32 +55,28 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 }
 
-- (void) onCurrentLocationClicked:(id) sender
-{
+- (void) onCurrentLocationClicked:(id) sender {
     self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
     [self.activityIndicator start];
     
     [self.locationManager startUpdatingLocation];
 }
 
-- (void) stopActivityIndicator
-{
+- (void) stopActivityIndicator {
     [self.activityIndicator stop];    
     self.activityIndicator = nil;
 }
 
 - (void) locationManager:(CLLocationManager*) manager
      didUpdateToLocation:(CLLocation*) newLocation
-            fromLocation:(CLLocation*) oldLocation
-{
+            fromLocation:(CLLocation*) oldLocation {
     if (oldLocation != nil) {
         [locationManager stopUpdatingLocation];
         [self performSelectorInBackground:@selector(findZipcodeBackgroundEntryPoint:) withObject:newLocation];
     }
 }
 
-- (void) findZipcodeBackgroundEntryPoint:(CLLocation*) location
-{
+- (void) findZipcodeBackgroundEntryPoint:(CLLocation*) location {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
     [self findZipcode:location];
@@ -91,8 +84,7 @@
     [autoreleasePool release];
 }
 
-- (void) findZipcode:(CLLocation*) location
-{
+- (void) findZipcode:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = [location coordinate];
     
     NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", coordinates.latitude, coordinates.longitude];
@@ -110,12 +102,10 @@
     [self performSelectorOnMainThread:@selector(reportFoundZipcode:) withObject:zipcode waitUntilDone:NO];
 }
 
-- (void) reportFoundZipcode:(NSString*) zipcode
-{
+- (void) reportFoundZipcode:(NSString*) zipcode {
     [self stopActivityIndicator];
     
-    if ([Utilities isNilOrEmpty:zipcode])
-    {
+    if ([Utilities isNilOrEmpty:zipcode]) {
         return;
     }
     
@@ -124,61 +114,48 @@
 }
 
 - (void)locationManager:(CLLocationManager*) manager
-       didFailWithError:(NSError*) error
-{
+       didFailWithError:(NSError*) error {
     [locationManager stopUpdatingLocation];
     [self stopActivityIndicator];
 }
 
-- (BoxOfficeModel*) model
-{
+- (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
 
-- (BoxOfficeController*) controller
-{
+- (BoxOfficeController*) controller {
     return [self.navigationController controller];
 }
 
-- (void) refresh
-{
+- (void) refresh {
     [self.tableView reloadData];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
-          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath
-{
+          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     return UITableViewCellAccessoryDisclosureIndicator;
 }
 
-- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView
-{
+- (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 3;
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
-                numberOfRowsInSection:(NSInteger) section
-{
+                numberOfRowsInSection:(NSInteger) section {
     return 1;
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
-                        cellForRowAtIndexPath:(NSIndexPath*) indexPath
-{
+                        cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     
     NSInteger section = [indexPath section];
     
-    if (section == 0)
-    {
+    if (section == 0) {
         cell.text = [[self model] zipcode];
-    }
-    else if (section == 1)
-    {
+    } else if (section == 1) {
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
-    }
-    else if (section == 2)
-    {
+    } else if (section == 2) {
         cell.text = NSLocalizedString(@"About", nil);
     }
     
@@ -186,14 +163,10 @@
 }
 
 - (NSString*)               tableView:(UITableView*) tableView
-              titleForHeaderInSection:(NSInteger) section
-{
-    if (section == 0)
-    {
+              titleForHeaderInSection:(NSInteger) section {
+    if (section == 0) {
         return NSLocalizedString(@"Zipcode", nil);
-    }
-    else if (section == 1)
-    {
+    } else if (section == 1) {
         return NSLocalizedString(@"Search radius", nil);
     }
     
@@ -201,12 +174,10 @@
 }
 
 - (void)            tableView:(UITableView*) tableView
-      didSelectRowAtIndexPath:(NSIndexPath*) indexPath
-{
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     
-    if (section == 0)
-    {
+    if (section == 0) {
         TextFieldEditorViewController* controller = 
         [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
                                                          withTitle:NSLocalizedString(@"Zipcode", nil)
@@ -216,9 +187,7 @@
                                                           withType:UIKeyboardTypeNumberPad] autorelease];
         
         [self.navigationController pushViewController:controller animated:YES];
-    }
-    else if (section == 1)
-    {
+    } else if (section == 1) {
         NSArray* values = [NSArray arrayWithObjects: @"5", @"10", @"15", @"20", @"25", 
                            @"30", @"35", @"40", @"45", @"50", nil];
         NSString* defaultValue = [NSString stringWithFormat:@"%d", [self.model searchRadius]];
@@ -232,9 +201,7 @@
                                                    defaultValue:defaultValue] autorelease];
         
         [self.navigationController pushViewController:controller animated:YES];
-    }
-    else if (section == 2)
-    {
+    } else if (section == 2) {
         CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
     }
@@ -242,14 +209,12 @@
     return;
 }
 
-- (void) onZipcodeChanged:(NSString*) zipcode
-{
+- (void) onZipcodeChanged:(NSString*) zipcode {
     [self.controller setZipcode:zipcode];
     [self.tableView reloadData];
 }
 
-- (void) onSearchRadiusChanged:(NSString*) radius
-{
+- (void) onSearchRadiusChanged:(NSString*) radius {
     [self.controller setSearchRadius:[radius intValue]];
     [self.tableView reloadData];
 }

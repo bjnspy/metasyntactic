@@ -27,7 +27,6 @@
 @synthesize posterView;
 
 - (void) dealloc {
-    
     self.navigationController = nil;
     self.sortedMovies = nil;
     self.segmentedControl = nil;
@@ -50,7 +49,6 @@ NSInteger sortByTitle(id t1, id t2, void *context) {
     
     return [movie1.title compare:movie2.title options:NSCaseInsensitiveSearch];
 }
-
 
 NSInteger sortByRating(id t1, id t2, void *context) {
     Movie* movie1 = t1;
@@ -321,7 +319,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     //return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
 }
 
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
+- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
 //- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     //return;
 //    NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];

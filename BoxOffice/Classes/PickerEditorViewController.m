@@ -14,7 +14,7 @@
 @synthesize picker;
 @synthesize values;
 
-- (void)dealloc {
+- (void) dealloc {
     self.picker = nil;
     self.values = nil;
     [super dealloc];
