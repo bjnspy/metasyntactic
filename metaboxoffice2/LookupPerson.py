@@ -17,6 +17,7 @@ class LookupPersonHandler(LookupHandler):
     person = Person.get(id)
     if person is None:
       self.response.out.write("")
+      return
 
     document = getDOMImplementation().createDocument(None, "result", None)
     resultElement = document.documentElement
@@ -33,13 +34,13 @@ class LookupPersonHandler(LookupHandler):
     castElement = document.createElement("cast")
     resultElement.appendChild(castElement)
 
-    for movie in Movie.gql("WHERE directors = :1", person.key()):
+    for movie in Movie.gql("WHERE directors = :1", person.key()).order('-year').order('name'):
       directorElement.appendChild(self.encodeMovie(movie, document))
 
-    for movie in Movie.gql("WHERE writers = :1", person.key()):
+    for movie in Movie.gql("WHERE writers = :1", person.key()).order('-year').order('name'):
       writerElement.appendChild(self.encodeMovie(movie, document))
 
-    for movie in Movie.gql("WHERE cast = :1", person.key()):
+    for movie in Movie.gql("WHERE cast = :1", person.key()).order('-year').order('name'):
       castElement.appendChild(self.encodeMovie(movie, document))
 
     self.response.out.write(document.toxml())

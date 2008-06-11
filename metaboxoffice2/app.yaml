@@ -31,5 +31,8 @@ handlers:
 - url: /LookupPerson
   script: main.py
 
+- url: /LookupLocation
+  script: main.py
+
 #- url: .*
 #  script: main.py

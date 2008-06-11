@@ -22,10 +22,10 @@ class SearchHandler(LookupHandler):
     resultElement.appendChild(moviesElement)
     resultElement.appendChild(peopleElement)
     
-    for person in Person.all().search(q):
+    for person in Person.all().search(q).order('lastName').order('firstName'):
       peopleElement.appendChild(LookupHandler.encodePerson(person, document))
 
-    for movie in Movie.all().search(q):
+    for movie in Movie.all().search(q).order('-year').order('name'):
       moviesElement.appendChild(LookupHandler.encodeMovie(movie, document))
 
     self.response.out.write(document.toxml())

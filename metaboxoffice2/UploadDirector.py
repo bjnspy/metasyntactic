@@ -9,7 +9,7 @@ from google.appengine.ext import db
 
 class UploadDirectorHandler(UploadPersonHandler):
   def post(self):
-    (person, movies) = UploadPersonHandler.decodePost(self)
+    (person, movies, roles) = UploadPersonHandler.decodePost(self)
     
     for movie in movies:
       if not person.key() in movie.cast:

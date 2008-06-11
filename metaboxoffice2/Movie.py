@@ -6,7 +6,9 @@ class Movie(search.SearchableModel):
     year = db.IntegerProperty()
     directors = db.ListProperty(db.Key)
     writers = db.ListProperty(db.Key)
+
     cast = db.ListProperty(db.Key)
+    characters = db.StringListProperty()
 
     def __eq__(self, other):
         return self.name == other.name and self.year == other.year
@@ -17,11 +19,11 @@ class Movie(search.SearchableModel):
 
     
     def __cmp__(self, other):
-        val = cmp(self.name, other.name)
+        val = cmp(self.year, other.year)
         if val != 0:
-            return val
+            return -val
 
-        return cmp(self.year, other.year)
+        return cmp(self.name, other.name)
 
     
     def __repr__(self):

@@ -3,7 +3,6 @@ from google.appengine.ext import search
 
 class Person(search.SearchableModel):
     firstName = db.StringProperty()
-    middleNames = db.StringListProperty()
     lastName = db.StringProperty()
 
     def __eq__(self, other):
@@ -13,11 +12,11 @@ class Person(search.SearchableModel):
         return self.firstName.hash() | self.lastName.hash()
 
     def __cmp__(self, other):
-        val = cmp(self.firstName, other.firstName)
+        val = cmp(self.lastName, other.lastName)
         if val != 0:
             return val;
 
-        return cmp(self.lastName, other.lastName)
+        return cmp(self.firstName, other.firstName)
 
     def __repr__(self):
         return "<Person firstName=\"" + self.firstName + "\" lastName=\"" + self.lastName + "\"/>"
