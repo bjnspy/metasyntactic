@@ -9,11 +9,14 @@ from google.appengine.ext import db
 
 class UploadCastMemberHandler(UploadPersonHandler):
   def post(self):
-    (person, movies) = UploadPersonHandler.decodePost(self)
+    (person, movies, roles) = UploadPersonHandler.decodePost(self)
     
-    for movie in movies:
+    for i in range(len(movies)):
+      movie = movies[i]
+      role = roles[i]
       if not person.key() in movie.cast:
         movie.cast.append(person.key())
+        movie.characters.append(role)
         movie.put()
 
     self.response.out.write('')

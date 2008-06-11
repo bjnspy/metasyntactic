@@ -10,6 +10,7 @@ import DeleteAllUsers
 import Search
 import LookupPerson
 import LookupMovie
+import LookupLocation
 
 from google.appengine.ext import webapp
 
@@ -27,7 +28,8 @@ def main():
                                         ('/UploadWriter', UploadWriter.UploadWriterHandler),
                                         ('/Search', Search.SearchHandler),
                                         ('/LookupMovie', LookupMovie.LookupMovieHandler),
-                                        ('/LookupPerson', LookupPerson.LookupPersonHandler)],
+                                        ('/LookupPerson', LookupPerson.LookupPersonHandler),
+                                        ('/LookupLocation', LookupLocation.LookupLocationHandler)],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
 

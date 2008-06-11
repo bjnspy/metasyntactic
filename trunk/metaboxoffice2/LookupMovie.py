@@ -34,19 +34,31 @@ class LookupMovieHandler(LookupHandler):
     castElement = document.createElement("cast")
     resultElement.appendChild(castElement)
 
+    people = []
     for key in movie.directors:
       person = Person.get(key)
       if not person is None:
-        directorsElement.appendChild(self.encodePerson(person, document))
+        people.append(person)
 
+    for person in people.sort():
+      directorsElement.appendChild(self.encodePerson(person, document))
+
+    people = []
     for key in movie.writers:
       person = Person.get(key)
       if not person is None:
-        writersElement.appendChild(self.encodePerson(person, document))
+        people.append(person)
 
+    for person in people.sort():
+      writersElement.appendChild(self.encodePerson(person, document))
+
+    people = []
     for key in movie.cast:
       person = Person.get(key)
       if not person is None:
-        castElement.appendChild(self.encodePerson(person, document))
+        people.append(person)
+
+    for person in people.sort():
+      castElement.appendChild(self.encodePerson(person, document))
 
     self.response.out.write(document.toxml())
