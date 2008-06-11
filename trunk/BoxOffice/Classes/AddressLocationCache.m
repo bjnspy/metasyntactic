@@ -45,95 +45,19 @@
                            withObject:[NSArray arrayWithArray:addresses]];
 }
 
-- (Location*) locationFromLatitudeElement:(XmlElement*) latElement 
-                       longitutudeElement:(XmlElement*) lngElement {
-    NSString* lat = [latElement text];
-    NSString* lng = [lngElement text];
-    
-    if ([Utilities isNilOrEmpty:lat] ||
-        [Utilities isNilOrEmpty:lng]) {
-        return nil;
-    }
-    
-    return [Location locationWithLatitude:[lat doubleValue] longitude:[lng doubleValue]];    
-}
-
-- (Location*) downloadAddressLocationFromGeocoderWebService:(NSString*) address {
-    XmlElement* element =
-     [XmlElement
-       elementWithName:@"SOAP-ENV:Envelope" 
-       attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                    @"http://www.w3.org/2001/XMLSchema", @"xmlns:xsd",
-                    @"http://www.w3.org/2001/XMLSchema-instance", @"xmlns:xsi",
-                    @"http://schemas.xmlsoap.org/soap/encoding/", @"xmlns:SOAP-ENC",
-                    @"http://schemas.xmlsoap.org/soap/encoding/", @"SOAP-ENV:encodingStyle",
-                    @"http://schemas.xmlsoap.org/soap/envelope/", @"xmlns:SOAP-ENV", nil]
-       children: [NSArray arrayWithObject:
-                  [XmlElement
-                   elementWithName:@"SOAP-ENV:Body" 
-                   children: [NSArray arrayWithObject:
-                              [XmlElement
-                               elementWithName:@"m:geocode"
-                               attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                            @"http://rpc.geocoder.us/Geo/Coder/US/", @"xmlns:m", nil]
-                               children: [NSArray arrayWithObjects:
-                                          [XmlElement
-                                           elementWithName:@"location"
-                                           attributes: [NSDictionary dictionaryWithObjectsAndKeys:
-                                                        @"xsd:string", @"xsi:type", nil]
-                                           text:address], nil]]]]]];
-
-    XmlElement* envelopeElement = [Utilities makeSoapRequest:element
-                                                       atUrl:@"http://rpc.geocoder.us/service/soap/"
-                                                      atHost:@"rpc.geocoder.us"
-                                                  withAction:@"http://rpc.geocoder.us/Geo/Coder/US#geocode"];
-    
-    if (envelopeElement != nil) {
-        XmlElement* bodyElement = [envelopeElement elementAtIndex:0];
-        XmlElement* responseElement = [bodyElement elementAtIndex:0];
-        XmlElement* gensymElement = [responseElement elementAtIndex:0];
-        
-        for (XmlElement* child in gensymElement.children) {
-            XmlElement* latElement = [child element:@"lat"];
-            XmlElement* lngElement = [child element:@"long"];
-            
-            Location* location = [self locationFromLatitudeElement:latElement longitutudeElement:lngElement];
-            if (location != nil) {
-                return location;
-            }
-        }
-    }
-    
-    return nil;
-}
-
-- (Location*) processYahooResult:(NSData*) addressData {
+- (Location*) processResult:(NSData*) addressData {
     if (addressData != nil) {
-        XmlElement* resultSetElement = [XmlParser parse:addressData];
+        XmlElement* resultElement = [XmlParser parse:addressData];
         
-        for (XmlElement* child in resultSetElement.children) {
-            XmlElement* latElement = [child element:@"Latitude"];
-            XmlElement* lngElement = [child element:@"Longitude"];
-            
-            Location* location = [self locationFromLatitudeElement:latElement longitutudeElement:lngElement];
-            if (location != nil) {
-                return location;
-            }   
+        NSString* latitude = [resultElement attributeValue:@"latitude"];
+        NSString* longitude = [resultElement attributeValue:@"longitude"];
+        
+        if (![Utilities isNilOrEmpty:latitude] && ![Utilities isNilOrEmpty:longitude]) {
+            return [Location locationWithLatitude:[latitude doubleValue] longitude:[longitude doubleValue]];
         }
     }
     
     return nil;    
-}
-
-- (Location*) downloadAddressLocationFromYahooWebService:(NSString*) address {
-    NSString* escapedAddress = [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSString* yahooId = @"TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_";
-    
-    NSString* urlString = [NSString stringWithFormat:@"http://local.yahooapis.com/MapsService/V1/geocode?appid=%@&location=%@", yahooId, escapedAddress];
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-    NSData* addressData = [NSData dataWithContentsOfURL:url];
-    return [self processYahooResult:addressData];
 }
 
 - (Location*) downloadAddressLocationFromWebService:(NSString*) address {
@@ -141,17 +65,14 @@
         return nil;
     }
     
-    Location* location = [self downloadAddressLocationFromYahooWebService:address];
-    if (location != nil) {
-        return location;
-    }
+    NSString* escapedAddress = [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
-    location = [self downloadAddressLocationFromGeocoderWebService:address];
-    if (location != nil) {
-        return location;
-    }
+    NSString* urlString = [NSString stringWithFormat:@"http://metaboxoffice2.appspot.com/LookupLocation?q=%@", escapedAddress];
+    NSURL* url = [NSURL URLWithString:urlString];
     
-    return nil;
+    NSData* addressData = [NSData dataWithContentsOfURL:url];
+    
+    return [self processResult:addressData];
 }
 
 - (NSDictionary*) addressLocationMap {
@@ -192,6 +113,7 @@
     }
     
     Location* location = [self downloadAddressLocationFromWebService:address];
+    
     [self setLocation:location forAddress:address];
 }
 
@@ -221,53 +143,11 @@
     return [self locationForAddress:zipcode];
 }
 
-- (Location*) downloadZipcodeLocationFromYahooWebService:(NSString*) zipcode {
-    NSString* yahooId = @"TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_";
-    
-    NSString* urlString = [NSString stringWithFormat:@"http://local.yahooapis.com/MapsService/V1/geocode?appid=%@&zip=%@", yahooId, zipcode];
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-    NSData* addressData = [NSData dataWithContentsOfURL:url];
-    return [self processYahooResult:addressData];
-}
-
-- (Location*) downloadZipcodeLocationFromGeonamesWebService:(NSString*) zipcode {
-    NSString* escapedZipcode = [zipcode stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/postalCodeSearch?postalcode=%@&maxRows=1", escapedZipcode];
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-    NSData* zipcodeData = [NSData dataWithContentsOfURL:url];
-    if (zipcodeData != nil) {
-        XmlElement* geonamesElement = [XmlParser parse:zipcodeData];
-        XmlElement* codeElement = [geonamesElement element:@"code"];
-        
-        XmlElement* latElement = [codeElement element:@"lat"];
-        XmlElement* lngElement = [codeElement element:@"lng"];
-        
-        return [self locationFromLatitudeElement:latElement longitutudeElement:lngElement];
-    }
-    
-    return nil;
-}
-
-- (void) downloadZipcodeLocationFromWebService:(NSString*) zipcode {
-    if ([Utilities isNilOrEmpty:zipcode]) {
-        return;
-    }
-    
-    Location* location = [self downloadZipcodeLocationFromYahooWebService:zipcode];
-    if (location == nil) {
-        location = [self downloadZipcodeLocationFromGeonamesWebService:zipcode];
-    }
-    
-    [self setLocation:location forAddress:zipcode];
-}
-
 - (void) updateZipcodeBackgroundEntryPoint:(NSString*) zipcode
 {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
-    [self downloadZipcodeLocationFromWebService:zipcode];
+    [self downloadAddressLocation:zipcode];
     
     [autoreleasePool release];    
 }
