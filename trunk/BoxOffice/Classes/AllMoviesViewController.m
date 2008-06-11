@@ -314,16 +314,10 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    //return NO;
-    return YES;
-    //return interfaceOrientation != UIInterfaceOrientationPortraitUpsideDown;
+    return NO;
 }
 
-- (void) willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-//- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    //return;
-//    NSTimeInterval duration = [[UIApplication sharedApplication] statusBarOrientationAnimationDuration];
-    
+- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {    
     [UIView beginAnimations:nil context:NULL];
     {
         [UIView setAnimationDuration:duration];
@@ -331,7 +325,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
         
         [[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:YES];
-        
+
         UIWindow* window = self.navigationController.tabBarController.appDelegate.window;
 
         [[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:YES];
@@ -339,7 +333,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         if (orientation == UIInterfaceOrientationPortrait) {
             self.navigationController.tabBarController.view.alpha = 1;
             [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-            
+
             if (self.posterView != nil) {
                 [self.posterView removeFromSuperview];
                 self.posterView = nil;
