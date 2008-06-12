@@ -34,5 +34,8 @@ handlers:
 - url: /LookupLocation
   script: main.py
 
+- url: /LookupMovieListings
+  script: main.py
+
 #- url: .*
 #  script: main.py
