@@ -45,7 +45,7 @@ class LookupLocationHandler(webapp.RequestHandler):
 
     if location is None:
       location = self.get_location_from_datastore(q)
-      memcache.add(q, location)
+      memcache.set(q, location)
 
     return location
     
@@ -69,8 +69,6 @@ class LookupLocationHandler(webapp.RequestHandler):
     key = "TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_"
     url = "http://local.yahooapis.com/MapsService/V1/geocode?appid=" + key + "&location=" + q
     content = urlfetch.fetch(url).content
-
-    logging.info(content)
 
     document = parseString(content)
     root = document.documentElement
