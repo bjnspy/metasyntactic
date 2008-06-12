@@ -122,7 +122,7 @@
 }
 
 - (NSArray*) lookupMovies {
-    NSURL* url = [NSURL URLWithString:@"http://i.rottentomatoes.com/syndication/tab/in_theaters.txt"];
+    NSURL* url = [NSURL URLWithString:@"http://metaboxoffice2.appspot.com/LookupMovieListings"];
     NSError* httpError = nil;
     NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&httpError];
     
@@ -162,18 +162,6 @@
     [self.movieLookupLock unlock];
 }
 
-- (BOOL) areEqual:(NSArray*) movies1
-           movies:(NSArray*) movies2 {
-    if (movies1 == nil || movies2 == nil) {
-        return NO;
-    }
-    
-    NSSet* set1 = [NSSet setWithArray:movies1];
-    NSSet* set2 = [NSSet setWithArray:movies2];
-    
-    return [set1 isEqualToSet:set2];
-}
-
 - (void) onBackgroundTaskEnded:(NSString*) description {
     [self.model removeBackgroundTask:description];
     [appDelegate.tabBarController refresh];    
@@ -181,31 +169,15 @@
 
 - (void) setMovies:(NSArray*) movies {
     if ([movies count] > 0) {
-        if (![self areEqual:movies movies:[self.model movies]]) {
-            [self.model setMovies:movies];
-        }
+        [self.model setMovies:movies];
     }
     
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie list", nil)];
 }
 
-- (BOOL) areEqual:(NSArray*) theaters1
-         theaters:(NSArray*) theaters2 {
-    if (theaters1 == nil || theaters2 == nil) {
-        return NO;
-    }
-    
-    NSSet* set1 = [NSSet setWithArray:theaters1];
-    NSSet* set2 = [NSSet setWithArray:theaters2];
-    
-    return [set1 isEqualToSet:set2];
-}
-
 - (void) setTheaters:(NSArray*) theaters {
     if ([theaters count] > 0) {
-        if (![self areEqual:theaters theaters:[self.model theaters]]) {
-            [self.model setTheaters:theaters];
-        }
+        [self.model setTheaters:theaters];
     }
     
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading theater list", nil)];
