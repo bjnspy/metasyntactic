@@ -37,5 +37,8 @@ handlers:
 - url: /LookupMovieListings
   script: main.py
 
+- url: /LookupTheaterListings
+  script: main.py
+
 #- url: .*
 #  script: main.py
