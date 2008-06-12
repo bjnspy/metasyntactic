@@ -12,6 +12,7 @@ import LookupPerson
 import LookupMovie
 import LookupLocation
 import LookupMovieListings
+import LookupTheaterListings
 
 from google.appengine.ext import webapp
 
@@ -31,7 +32,8 @@ def main():
                                         ('/LookupMovie', LookupMovie.LookupMovieHandler),
                                         ('/LookupPerson', LookupPerson.LookupPersonHandler),
                                         ('/LookupLocation', LookupLocation.LookupLocationHandler),
-                                        ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler)],
+                                        ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
+                                        ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler)],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
 
