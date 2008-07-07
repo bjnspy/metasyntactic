@@ -128,7 +128,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 
 - (id) initWithNavigationController:(MoviesNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        shouldRefresh = YES;
         self.navigationController = controller;
         self.sortedMovies = [NSArray array];
         
@@ -158,18 +157,13 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     return self;
 }
 
-- (void) refreshIfVisible {
-    if (shouldRefresh == YES &&
-        self.navigationController.tabBarController.selectedViewController == self.navigationController) {
-        shouldRefresh = NO;
-        
-        [self sortMovies];
-        [self.tableView reloadData];
-    }
+- (void) refresh {        
+    [self sortMovies];
+    [self.tableView reloadData];
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self refreshIfVisible];
+    [self refresh];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
     
@@ -225,11 +219,6 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     }
     
     [self.navigationController pushMovieDetails:movie animated:YES];
-}
-
-- (void) refresh {
-    shouldRefresh = YES;
-    [self refreshIfVisible];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {

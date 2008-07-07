@@ -22,10 +22,7 @@
     
     NSArray* alphabeticSectionTitles;
     
-    PosterView* posterView;
-    
-    bool shouldRefresh;
-}
+    PosterView* posterView;}
 
 @property (assign) MoviesNavigationController* navigationController;
 @property (retain) NSArray* sortedMovies;

@@ -137,8 +137,8 @@
     return (rows * 14) + 18;
 }
 
-- (UITableViewCell*)                tableView:(UITableView*) tableView
-                        cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
@@ -201,7 +201,8 @@
             cell.textAlignment = UITextAlignmentCenter;
             cell.text = text;
             cell.font = [UIFont boldSystemFontOfSize:14];
-            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
             return cell;
         } else {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
