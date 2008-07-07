@@ -28,6 +28,7 @@
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.alphabeticSectionTitles = nil;
+    
     [super dealloc];
 }
 
@@ -142,7 +143,6 @@
 
 - (id) initWithNavigationController:(TheatersNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
-        shouldRefresh = YES;
         self.navigationController = controller;
         self.sortedTheaters = [NSArray array];
         
@@ -172,18 +172,9 @@
     return self;
 }
 
-- (void) refreshIfVisible {
-    if (shouldRefresh == YES &&
-        self.navigationController.tabBarController.selectedViewController == self.navigationController) {
-        shouldRefresh = NO;
-        [self sortTheaters];
-        [self.tableView reloadData];
-    }
-}
-
 - (void) refresh {
-    shouldRefresh = YES;
-    [self refreshIfVisible];
+    [self sortTheaters];
+    [self.tableView reloadData];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
@@ -264,14 +255,10 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self refreshIfVisible];
+    [self refresh];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
     [self.model setCurrentlySelectedMovie:nil theater:nil];
-    
-    if ([self sortingByDistance]) {
-        [self refresh];
-    }
 }
 
 @end

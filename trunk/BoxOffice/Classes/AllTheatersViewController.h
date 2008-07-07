@@ -20,8 +20,6 @@
     MultiDictionary* sectionTitleToContentsMap;
     
     NSArray* alphabeticSectionTitles;
-
-    bool shouldRefresh;
 }
 
 @property (assign) TheatersNavigationController* navigationController;
