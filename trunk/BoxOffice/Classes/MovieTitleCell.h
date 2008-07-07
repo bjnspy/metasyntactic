@@ -7,12 +7,19 @@
 //
 
 #import "Movie.h"
+#import "BoxOfficeModel.h"
 
 @interface MovieTitleCell : UITableViewCell {
+    BoxOfficeModel* model;
     UILabel* label;
 }
 
+@property (retain) BoxOfficeModel* model;
 @property (retain) UILabel* label;
+
+- (id)      initWithFrame:(CGRect) frame
+          reuseIdentifier:(NSString*) reuseIdentifier 
+                    model:(BoxOfficeModel*) model;
 
 - (void) setMovie:(Movie*) movie;
 

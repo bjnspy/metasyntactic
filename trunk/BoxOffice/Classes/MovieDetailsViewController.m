@@ -14,6 +14,7 @@
 #import "MovieShowtimesCell.h"
 #import "Application.h"
 #import "ViewControllerUtilities.h"
+#import "Utilities.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -94,11 +95,15 @@
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
-    if (section == 0 && hiddenTheaterCount > 0) {
-        return 2;
+    if (section == 0) {
+        if (hiddenTheaterCount > 0) {
+            return 3;
+        } else {
+            return 2;
+        }
+    } else {
+        return 1;
     }
-    
-    return 1;
 }
 
 - (UIImage*) posterImage {
@@ -137,7 +142,6 @@
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
-    
     if (section == 0) {
         if (row == 0) {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
@@ -168,11 +172,35 @@
              "   </style>"
              "  </head>"
              "  <body>%@</body>"
-             " </html>", movie.synopsis];
+             " </html>", [self.model synopsisForMovie:movie]];
             [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
             [cell.contentView addSubview:webView]; 
             
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
+            return cell;
+        } else if (row == 1) {
+            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+            
+            NSInteger length = [self.movie.length intValue];
+            NSInteger hours = length / 60;
+            NSInteger minutes = length % 60;
+            
+            NSString* rating = self.movie.rating;
+            if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
+                rating = NSLocalizedString(@"Not rated", nil);
+            } else {
+                rating = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
+            }
+            
+            NSString* text = rating;
+            if (length != 0) {
+                text = [NSString stringWithFormat:NSLocalizedString(@"%@ - Running time: %d:%02d", nil), rating, hours, minutes];
+            } 
+                
+            cell.textAlignment = UITextAlignmentCenter;
+            cell.text = text;
+            cell.font = [UIFont boldSystemFontOfSize:14];
             
             return cell;
         } else {
@@ -218,7 +246,7 @@
     NSInteger row = [indexPath row];
     
     if (section == 0) {
-        if (row == 1) {
+        if (row == 2) {
             [self initializeData:NO];
             [self.tableView reloadData];
         }

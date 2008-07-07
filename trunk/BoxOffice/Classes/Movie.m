@@ -11,53 +11,64 @@
 
 @implementation Movie
 
+@synthesize identifier;
 @synthesize title;
-@synthesize synopsis;
-@synthesize link;
 @synthesize rating;
+@synthesize length;
+@synthesize poster;
 
 - (void) dealloc {
+    self.identifier = nil;
     self.title = nil;
-    self.synopsis = nil;
-    self.link = nil;
     self.rating = nil;
+    self.length = nil;
+    self.poster = nil;
     [super dealloc];
 }
 
-- (id) initWithTitle:(NSString*) aTitle
-                link:(NSString*) aLink
-            synopsis:(NSString*) aSynopsis
-              rating:(NSString*) aRating {
+- (id) initWithIdentifier:(NSString*) anIdentifier
+                    title:(NSString*) aTitle
+                   rating:(NSString*) aRating
+                   length:(NSString*) aLength 
+                   poster:(NSString*) aPoster {
     if (self = [self init]) {
+        self.identifier = anIdentifier;
         self.title    = [aTitle    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.link     = [aLink     stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.synopsis = [aSynopsis stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.rating   = [aRating   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.length = aLength;
+        self.poster = aPoster;
     }
     
     return self;
 }
 
-+ (Movie*) movieWithTitle:(NSString*) aTitle
-                     link:(NSString*) aLink
-                 synopsis:(NSString*) aSynopsis
-                   rating:(NSString*) aRating {
-    return [[[Movie alloc] initWithTitle:aTitle link:aLink synopsis:aSynopsis rating:aRating] autorelease];
++ (Movie*) movieWithIdentifier:(NSString*) anIdentifier
+                         title:(NSString*) aTitle
+                        rating:(NSString*) aRating
+                        length:(NSString*) aLength
+                        poster:(NSString*) aPoster {
+    return [[[Movie alloc] initWithIdentifier:anIdentifier
+                                        title:aTitle
+                                       rating:aRating
+                                       length:aLength
+                                       poster:aPoster] autorelease];
 }
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
-    return [Movie movieWithTitle:[dictionary objectForKey:@"title"]
-                            link:[dictionary objectForKey:@"link"]
-                        synopsis:[dictionary objectForKey:@"synopsis"]
-                          rating:[dictionary objectForKey:@"rating"]];
+    return [Movie movieWithIdentifier:[dictionary objectForKey:@"identifier"]
+                                title:[dictionary objectForKey:@"title"]
+                               rating:[dictionary objectForKey:@"rating"]
+                               length:[dictionary objectForKey:@"length"]
+                               poster:[dictionary objectForKey:@"poster"]];
 }
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    [dictionary setValue:self.identifier    forKey:@"identifier"];
     [dictionary setValue:self.title         forKey:@"title"];
-    [dictionary setValue:self.link          forKey:@"link"];
-    [dictionary setValue:self.synopsis      forKey:@"synopsis"];
     [dictionary setValue:self.rating        forKey:@"rating"];
+    [dictionary setValue:self.length        forKey:@"length"];
+    [dictionary setValue:self.poster        forKey:@"poster"];
     return dictionary;
 }
 
@@ -69,27 +80,20 @@
     Movie* other = anObject;
     
     return
+    [self.identifier isEqual:other.identifier] &&
     [self.title isEqual:other.title] &&
-    [self.link isEqual:other.link] &&
-    [self.synopsis isEqual:other.synopsis] &&
-    [self.rating isEqual:other.rating];
+    [self.rating isEqual:other.rating] &&
+    [self.length isEqual:other.length] &&
+    [self.poster isEqual:other.poster];
 }
 
 - (NSUInteger) hash {
     return
+    [self.identifier hash];
     [self.title hash] +
-    [self.link hash] +
-    [self.synopsis hash] +
-    [self.rating hash];
-}
-
-- (NSInteger) ratingValue {
-    int value = [self.rating intValue]; 
-    if (value >= 0 && value <= 100) {
-        return value;
-    }
-    
-    return -1;
+    [self.rating hash] +
+    [self.length hash] +
+    [self.poster hash];
 }
 
 @end

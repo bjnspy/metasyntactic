@@ -15,11 +15,8 @@
     AbstractNavigationController* controller;
     Movie* movie;
     Theater* theater;
-    NSArray* showtimes;
     
-    NSMutableArray* showIds;
-    NSMutableArray* movieIds;
-    NSMutableArray* theaterIds;
+    NSArray* performances;
     
     BOOL linkToTheater;
 }
@@ -27,10 +24,7 @@
 @property (retain) AbstractNavigationController* controller;
 @property (retain) Movie* movie;
 @property (retain) Theater* theater;
-@property (retain) NSArray* showtimes;
-@property (retain) NSMutableArray* showIds;
-@property (retain) NSMutableArray* movieIds;
-@property (retain) NSMutableArray* theaterIds;
+@property (retain) NSArray* performances;
 
 - (id) initWithController:(AbstractNavigationController*) controller
                   theater:(Theater*) theater

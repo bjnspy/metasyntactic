@@ -68,6 +68,10 @@
 }
 
 + (NSData*) downloadData:(NSString*) urlString {
+    if (urlString == nil) {
+        return nil;
+    }
+    
     NSURL* url = [NSURL URLWithString:urlString];
     
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];

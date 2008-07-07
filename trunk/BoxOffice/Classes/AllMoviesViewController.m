@@ -53,9 +53,10 @@ NSInteger sortByTitle(id t1, id t2, void *context) {
 NSInteger sortByRating(id t1, id t2, void *context) {
     Movie* movie1 = t1;
     Movie* movie2 = t2;
+    BoxOfficeModel* model = context;
     
-    int movieRating1 = [movie1 ratingValue];
-    int movieRating2 = [movie2 ratingValue];
+    int movieRating1 = [model rankingForMovie:movie1];
+    int movieRating2 = [model rankingForMovie:movie2];
     
     if (movieRating1 < movieRating2) {
         return NSOrderedDescending;
@@ -84,37 +85,8 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     }    
 }
 
-- (BOOL)            set:(NSSet*) set
-        containsSimilar:(NSString*) value {
-    for (NSString* string in set) {
-        if ([[Application differenceEngine] similar:string other:value]) {
-            return YES;
-        }
-    }    
-    
-    return NO;
-}
-
-- (NSArray*) filterMovies:(NSArray*) movies {
-    NSMutableSet* set = [NSMutableSet set];
-    
-    for (Theater* theater in self.model.theaters) {
-        [set addObjectsFromArray:[theater.movieToShowtimesMap allKeys]];
-    }
-    
-    NSMutableArray* result = [NSMutableArray array];
-    
-    for (Movie* movie in movies) {
-        if ([self set:set containsSimilar:movie.title]) {
-            [result addObject:movie];
-        }
-    }
-    
-    return result;
-}
-
 - (void) sortMoviesByTitle {
-    NSArray* movies = [self filterMovies:self.model.movies];
+    NSArray* movies = self.model.movies;
     self.sortedMovies = [movies sortedArrayUsingFunction:sortByTitle context:nil];
     
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
@@ -135,8 +107,8 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (void) sortMoviesByRating {
-    NSArray* movies = [self filterMovies:self.model.movies];
-    self.sortedMovies = [movies sortedArrayUsingFunction:sortByRating context:nil];
+    NSArray* movies = self.model.movies;
+    self.sortedMovies = [movies sortedArrayUsingFunction:sortByRating context:self.model];
 }
 
 - (void) sortMovies { 
@@ -224,7 +196,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     MovieTitleCell* movieCell = cell;
     if (movieCell == nil) {    
-        movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
+        movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier model:self.model] autorelease];
     }
     
     [movieCell setMovie:movie];    

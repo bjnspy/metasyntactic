@@ -7,6 +7,7 @@
 //
 
 #import "MovieShowtimesCell.h"
+#import "Performance.h"
 
 @implementation MovieShowtimesCell
 
@@ -46,11 +47,12 @@
 }
 
 - (void) setShowtimes:(NSArray*) showtimes {
-    NSMutableString* text = [NSMutableString stringWithString:[showtimes objectAtIndex:0]];
+    NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
     
     for (int i = 1; i < [showtimes count]; i++) {
         [text appendString:@", "];
-        [text appendString:[showtimes objectAtIndex:i]];
+        Performance* performance = [showtimes objectAtIndex:i];
+        [text appendString:performance.time];
     }
     
     label.text = text;

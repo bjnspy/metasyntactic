@@ -23,7 +23,11 @@
     UIView* activityView;
     
     NSInteger searchRadius;
-    XmlElement* ticketsElement;
+    
+    NSArray* moviesData;
+    NSArray* theatersData;
+    NSDictionary* supplementaryInformationData;
+    NSDictionary* movieMap;
 }
 
 @property (retain) NotificationCenter* notificationCenter;
@@ -32,7 +36,11 @@
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
 @property (retain) UIView* activityView;
 @property (readonly) NSInteger backgroundTaskCount;
-@property (retain) XmlElement* ticketsElement;
+
+@property (retain) NSArray* moviesData;
+@property (retain) NSArray* theatersData;
+@property (retain) NSDictionary* supplementaryInformationData;
+@property (retain) NSDictionary* movieMap;
 
 + (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter;
 
@@ -60,17 +68,17 @@
 - (NSInteger) searchRadius;
 - (void) setSearchRadius:(NSInteger) searchRadius;
 
+- (NSDate*) lastQuickUpdateTime;
+- (NSDate*) lastFullUpdateTime;
+
+- (NSDictionary*) supplementaryInformation;
+- (void) setSupplementaryInformation:(NSDictionary*) dictionary;
+
 - (NSArray*) movies;
 - (void) setMovies:(NSArray*) movies;
-- (NSDate*) lastMoviesUpdateTime;
 
 - (NSArray*) theaters;
 - (void) setTheaters:(NSArray*) theaters;
-- (NSDate*) lastTheatersUpdateTime;
-
-- (XmlElement*) tickets;
-- (void) setTickets:(XmlElement*) tickets;
-- (NSDate*) lastTicketsUpdateTime;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (Location*) locationForAddress:(NSString*) address;
@@ -95,5 +103,8 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
 - (NSMutableDictionary*) getSearchDates;
 - (NSMutableDictionary*) getSearchResults;
+
+- (NSString*) synopsisForMovie:(Movie*) movie;
+- (NSInteger) rankingForMovie:(Movie*) movie;
 
 @end

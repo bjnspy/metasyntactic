@@ -14,15 +14,13 @@
 
 @interface BoxOfficeController : NSObject {
     BoxOfficeAppDelegate* appDelegate;
-    NSLock* movieLookupLock;
-    NSLock* theaterLookupLock;
-    NSLock* ticketLookupLock;
+    NSLock* quickLookupLock;
+    NSLock* fullLookupLock;
 }
 
 //@property (assign) BoxOfficeAppDelegate* appDelegate;
-@property (retain) NSLock* movieLookupLock;
-@property (retain) NSLock* theaterLookupLock;
-@property (retain) NSLock* ticketLookupLock;
+@property (retain) NSLock* quickLookupLock;
+@property (retain) NSLock* fullLookupLock;
 
 - (void) setZipcode:(NSString*) zipcode;
 - (void) setSearchRadius:(NSInteger) radius;
