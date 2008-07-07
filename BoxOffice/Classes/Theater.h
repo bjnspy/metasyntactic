@@ -10,28 +10,31 @@
 
 
 @interface Theater : NSObject {
+    NSString* identifier;
     NSString* name;
     NSString* address;
     NSString* phoneNumber;
     NSDictionary* movieToShowtimesMap;
+    NSString* sellsTickets;
 }
 
+@property (copy) NSString* identifier;
 @property (copy) NSString* name;
 @property (copy) NSString* address;
 @property (copy) NSString* phoneNumber;
+@property (copy) NSString* sellsTickets;
 @property (retain) NSDictionary* movieToShowtimesMap;
 
-+ (Theater*) theaterWithName:(NSString*) name
-                     address:(NSString*) address
-                 phoneNumber:(NSString*) phoneNumber
-         movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap;
++ (Theater*) theaterWithIdentifier:(NSString*) identifier
+                              name:(NSString*) name
+                           address:(NSString*) address
+                       phoneNumber:(NSString*) phoneNumber
+                      sellsTickets:(NSString*) sellsTickets
+               movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap;
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
-
-+ (NSDictionary*) prepareShowtimesMap:(NSDictionary*) movieToShowtimesMap;
 
 - (NSDictionary*) dictionary;
 
 + (NSString*) processShowtime:(NSString*) showtime;
-    
 
 @end

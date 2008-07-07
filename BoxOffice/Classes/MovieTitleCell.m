@@ -12,15 +12,19 @@
 @implementation MovieTitleCell
 
 @synthesize label;
+@synthesize model;
 
 - (void) dealloc {
     self.label = nil;
+    self.model = nil;
     [super dealloc];
 }
 
 - (id)      initWithFrame:(CGRect) frame
-          reuseIdentifier:(NSString*) reuseIdentifier {
+          reuseIdentifier:(NSString*) reuseIdentifier 
+                    model:(BoxOfficeModel*) aModel {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+        self.model = aModel;
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         label.backgroundColor = [UIColor clearColor];
         label.textAlignment = UITextAlignmentCenter;
@@ -38,7 +42,7 @@
 }
 
 - (void) setMovie:(Movie*) movie {
-    int ratingValue = [movie ratingValue];
+    int ratingValue = [self.model rankingForMovie:movie];
     
     if (ratingValue >= 0 && ratingValue <= 100) {
         if (ratingValue >= 60) {

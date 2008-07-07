@@ -11,6 +11,7 @@
 #import "XmlElement.h"
 #import "XmlSerializer.h"
 #import "ImdbPosterDownloader.h"
+#import "Utilities.h"
 
 @implementation PosterDownloader
 
@@ -30,7 +31,12 @@
 }
 
 - (NSData*) go {
-    NSData* data = [ImdbPosterDownloader download:self.movie];
+    NSData* data = [Utilities downloadData:self.movie.poster];
+    if (data != nil) {
+        return data;
+    }
+    
+    data = [ImdbPosterDownloader download:self.movie];
     if (data != nil) {
         return data;
     }

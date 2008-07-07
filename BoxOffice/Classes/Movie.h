@@ -8,25 +8,26 @@
 
 
 @interface Movie : NSObject {
+    NSString* identifier;
     NSString* title;
-    NSString* link;
-    NSString* synopsis;
     NSString* rating;
+    NSString* length; // minutes;
+    NSString* poster;
 }
 
+@property (copy) NSString* identifier;
 @property (copy) NSString* title;
-@property (copy) NSString* link;
-@property (copy) NSString* synopsis;
 @property (copy) NSString* rating;
+@property (copy) NSString* length;
+@property (copy) NSString* poster;
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
-+ (Movie*) movieWithTitle:(NSString*) title
-                     link:(NSString*) link
-                 synopsis:(NSString*) synopsis
-                   rating:(NSString*) rating;
++ (Movie*) movieWithIdentifier:(NSString*) identifier
+                         title:(NSString*) title
+                        rating:(NSString*) rating
+                        length:(NSString*) length
+                        poster:(NSString*) poster;
 
 - (NSDictionary*) dictionary;
-
-- (NSInteger) ratingValue;
 
 @end

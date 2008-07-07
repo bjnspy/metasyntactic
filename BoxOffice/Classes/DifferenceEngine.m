@@ -134,7 +134,16 @@ NSInteger DE_min(NSInteger x, NSInteger y) {
         }
     }
     
-    return costTable[cached_S_length - 1][cached_T_length - 1];    
+    NSInteger cost = costTable[cached_S_length - 1][cached_T_length - 1];    
+    
+    if (cost > 1) {
+        if ([from rangeOfString:to options:NSCaseInsensitiveSearch].location != NSNotFound ||
+            [to rangeOfString:from options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            return 1;
+        }
+    }
+    
+    return cost;
 }
 
 + (BOOL) areSimilar:(NSString*) s1
@@ -146,6 +155,11 @@ NSInteger DE_min(NSInteger x, NSInteger y) {
            other:(NSString*) s2 {
     if (s1 == nil || s2 == nil) {
         return NO;
+    }
+    
+    if ([s1 rangeOfString:s2 options:NSCaseInsensitiveSearch].location != NSNotFound ||
+        [s2 rangeOfString:s1 options:NSCaseInsensitiveSearch].location != NSNotFound) {
+        return YES;
     }
     
     NSInteger threshold = [s1 length] / 4;

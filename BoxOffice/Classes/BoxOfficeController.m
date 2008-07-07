@@ -16,19 +16,17 @@
 #import "XmlSerializer.h"
 #import "Application.h"
 #import "Utilities.h"
-#import "IgnyteTheaterDownloader.h"
-#import "FandangoTheaterDownloader.h"
+#import "ExtraMovieInformation.h"
+#import "Performance.h"
 
 @implementation BoxOfficeController
 
-@synthesize movieLookupLock;
-@synthesize theaterLookupLock;
-@synthesize ticketLookupLock;
+@synthesize quickLookupLock;
+@synthesize fullLookupLock;
 
 - (void) dealloc {
-    self.movieLookupLock = nil;
-    self.theaterLookupLock = nil;
-    self.ticketLookupLock = nil;
+    self.quickLookupLock = nil;
+    self.fullLookupLock = nil;
     [super dealloc];
 }
 
@@ -54,8 +52,8 @@
         return NO;
     }
     
-    // same day, check if they're at least 4 hours apart.
-    if ([nowDateComponents hour] >= ([lastDateComponents hour] + 4)) {
+    // same day, check if they're at least 8 hours apart.
+    if ([nowDateComponents hour] >= ([lastDateComponents hour] + 8)) {
         return NO;
     }
     
@@ -63,53 +61,39 @@
     return YES;
 }
 
-- (void) spawnMovieLookupThread {
-    if ([self tooSoon:[self.model lastMoviesUpdateTime]]) {
+
+- (void) spawnQuickLookupThread {
+    if ([self tooSoon:[self.model lastQuickUpdateTime]]) {
         return;
     }
     
     [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading movie list", nil)];
-    [self performSelectorInBackground:@selector(lookupMoviesBackgroundThreadEntryPoint:) withObject:nil];
+    [self performSelectorInBackground:@selector(quickLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
 
-- (void) spawnTheaterLookupThread {
+- (void) spawnFullLookupThread {
     if ([Utilities isNilOrEmpty:self.model.zipcode]) {
         return;
     }
     
-    if ([self tooSoon:[self.model lastTheatersUpdateTime]]) {
-        return;
-    }
-    
-    [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading theater list", nil)];
-    [self performSelectorInBackground:@selector(lookupTheatersBackgroundThreadEntryPoint:) withObject:nil];
-}
-
-- (void) spawnTicketLookupThread {
-    if ([Utilities isNilOrEmpty:self.model.zipcode]) {
-        return;
-    }
-    
-    if ([self tooSoon:[self.model lastTicketsUpdateTime]]) {
+    if ([self tooSoon:[self.model lastFullUpdateTime]]) {
         return;
     }
     
     [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading ticketing data", nil)];
-    [self performSelectorInBackground:@selector(lookupTicketsBackgroundThreadEntryPoint:) withObject:nil];
+    [self performSelectorInBackground:@selector(fullLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
 
 - (void) spawnBackgroundThreads {
-    [self spawnMovieLookupThread];
-    [self spawnTheaterLookupThread];
-    [self spawnTicketLookupThread];
+    [self spawnQuickLookupThread];
+    [self spawnFullLookupThread];
 }
 
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         appDelegate = appDelegate_;
-        self.movieLookupLock = [[[NSLock alloc] init] autorelease];
-        self.theaterLookupLock = [[[NSLock alloc] init] autorelease];
-        self.ticketLookupLock = [[[NSLock alloc] init] autorelease];
+        self.quickLookupLock = [[[NSLock alloc] init] autorelease];
+        self.fullLookupLock = [[[NSLock alloc] init] autorelease];
         
         [self spawnBackgroundThreads];
     }
@@ -121,45 +105,48 @@
     return [[[BoxOfficeController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
-- (NSArray*) lookupMovies {
+- (NSDictionary*) quickLookup {
     NSURL* url = [NSURL URLWithString:@"http://metaboxoffice2.appspot.com/LookupMovieListings"];
     NSError* httpError = nil;
     NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&httpError];
     
     if (httpError == nil && inTheaters != nil) {    
+        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+        
         NSArray* rows = [inTheaters componentsSeparatedByString:@"\n"];
-        NSMutableArray* movies = [NSMutableArray array];
         
         // first row are the column headers.  last row is empty.  skip both.
         for (NSInteger i = 1; i < [rows count] - 1; i++) {   
             NSArray* columns = [[rows objectAtIndex:i] componentsSeparatedByString:@"\t"];
             
             if ([columns count] >= 9) {
-                Movie* movie = [Movie movieWithTitle:[columns objectAtIndex:1]
-                                                link:[columns objectAtIndex:2]
-                                            synopsis:[columns objectAtIndex:8]
-                                              rating:[columns objectAtIndex:3]];
-                [movies addObject:movie];
+                ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithLink:[columns objectAtIndex:2]
+                                                                              synopsis:[columns objectAtIndex:8]
+                                                                               ranking:[columns objectAtIndex:3]];
+                
+                NSString* title = [columns objectAtIndex:1];
+                
+                [dictionary setObject:extraInfo forKey:title];
             }
         }
         
-        return movies;
+        return dictionary;
     }
-
+    
     return nil;
 }
 
-- (void) lookupMoviesBackgroundThreadEntryPoint:(id) anObject {
-    [self.movieLookupLock lock];
+- (void) quickLookupBackgroundThreadEntryPoint:(id) anObject {
+    [self.quickLookupLock lock];
     {    
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        NSArray* movies = [self lookupMovies];
-        [self performSelectorOnMainThread:@selector(setMovies:) withObject:movies waitUntilDone:NO];
+        NSDictionary* extraInformation = [self quickLookup];
+        [self performSelectorOnMainThread:@selector(setSupplementaryData:) withObject:extraInformation waitUntilDone:NO];
         
         [autoreleasePool release];
     }
-    [self.movieLookupLock unlock];
+    [self.quickLookupLock unlock];
 }
 
 - (void) onBackgroundTaskEnded:(NSString*) description {
@@ -167,99 +154,152 @@
     [appDelegate.tabBarController refresh];    
 }
 
-- (void) setMovies:(NSArray*) movies {
-    if ([movies count] > 0) {
-        [self.model setMovies:movies];
+- (void) setSupplementaryData:(NSDictionary*) extraInfo {
+    if ([extraInfo count] > 0) {
+        [self.model setSupplementaryInformation:extraInfo];
     }
     
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie list", nil)];
 }
 
-- (void) setTheaters:(NSArray*) theaters {
-    if ([theaters count] > 0) {
-        [self.model setTheaters:theaters];
+- (NSDictionary*) processShowtimes:(XmlElement*) moviesElement {
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    
+    for (XmlElement* movieElement in [moviesElement children]) {
+        NSString* movieId = [movieElement attributeValue:@"id"];
+        
+        XmlElement* performancesElement = [movieElement element:@"performances"];
+        
+        NSMutableArray* performances = [NSMutableArray array];
+        
+        for (XmlElement* performanceElement in [performancesElement children]) {
+            NSString* showId = [performanceElement attributeValue:@"showid"];
+            NSString* time = [performanceElement attributeValue:@"showtime"];
+            time = [Theater processShowtime:time];
+            
+            Performance* performance = [Performance performanceWithIdentifier:showId
+                                                                         time:time];
+            
+            [performances addObject:performance];
+        }
+        
+        [dictionary setObject:performances forKey:movieId];
     }
     
-    [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading theater list", nil)];
+    return dictionary;
 }
 
-- (NSArray*) lookupTheaters {
-    if ([Utilities isNilOrEmpty:self.model.zipcode]) {
+- (Theater*) processTheaterElement:(XmlElement*) theaterElement {
+    NSString* identifier = [theaterElement attributeValue:@"id"];
+    NSString* name = [[theaterElement element:@"name"] text];
+    NSString* address = [[theaterElement element:@"address1"] text];
+    NSString* city = [[theaterElement element:@"city"] text];
+    NSString* state = [[theaterElement element:@"state"] text];
+    NSString* zipcode = [[theaterElement element:@"postalcode"] text];
+    NSString* phone = [[theaterElement element:@"phonenumber"] text];
+    NSString* sellsTickets = [theaterElement attributeValue:@"iswired"];
+    
+    NSString* fullAddress;
+    if ([address hasSuffix:@"."]) {
+        fullAddress = [NSString stringWithFormat:@"%@ %@, %@ %@", address, city, state, zipcode];
+    } else {
+        fullAddress = [NSString stringWithFormat:@"%@. %@, %@ %@", address, city, state, zipcode];
+    }
+    
+    XmlElement* moviesElement = [theaterElement element:@"movies"];
+    NSDictionary* movieToShowtimesMap = [self processShowtimes:moviesElement];
+    
+    if ([movieToShowtimesMap count] == 0) {
         return nil;
     }
     
-    NSArray* theaters;
-    
-    theaters = [FandangoTheaterDownloader download:self.model.zipcode];
-    if (theaters != nil) {
-        return theaters;
-    }
-    
-    theaters = [IgnyteTheaterDownloader download:self.model.zipcode];
-    if (theaters != nil) {
-        return theaters;
-    }
-    
-    return nil;
+    return [Theater theaterWithIdentifier:identifier
+                                     name:name
+                                  address:fullAddress
+                              phoneNumber:phone
+                             sellsTickets:sellsTickets
+                      movieToShowtimesMap:movieToShowtimesMap];
 }
 
-- (void) lookupTheatersBackgroundThreadEntryPoint:(id) anObject {    
-    [self.theaterLookupLock lock];
-    {
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+- (NSArray*) processTheatersElement:(XmlElement*) theatersElement {
+    NSMutableArray* array = [NSMutableArray array];
+    
+    for (XmlElement* theaterElement in [theatersElement children]) {
+        Theater* theater = [self processTheaterElement:theaterElement];
         
-        NSArray* theaters = [self lookupTheaters];
-        [self performSelectorOnMainThread:@selector(setTheaters:) withObject:theaters waitUntilDone:NO];
-
-        [autoreleasePool release];
+        if (theater != nil) {
+            [array addObject:theater];
+        }
     }
-    [self.theaterLookupLock unlock];
+    
+    return array;
 }
 
-- (XmlElement*) lookupTickets {
+- (NSArray*) processMoviesElement:(XmlElement*) moviesElement {
+    NSMutableArray* array = [NSMutableArray array];
+    
+    for (XmlElement* movieElement in [moviesElement children]) {
+        NSString* identifier = [movieElement attributeValue:@"id"];
+        NSString* poster = [movieElement attributeValue:@"posterhref"];
+        NSString* title = [[movieElement element:@"title"] text];
+        NSString* rating = [[movieElement element:@"rating"] text];
+        NSString* length = [[movieElement element:@"runtime"] text];
+    
+        Movie* movie = [Movie movieWithIdentifier:identifier
+                                            title:title
+                                           rating:rating
+                                           length:length
+                                           poster:poster];
+        
+        [array addObject:movie];
+    }
+    
+    return array;
+}
+
+- (NSArray*) processElement:(XmlElement*) element {
+    XmlElement* dataElement = [element element:@"data"];
+    XmlElement* moviesElement = [dataElement element:@"movies"];
+    XmlElement* theatersElement = [dataElement element:@"theaters"];
+    
+    NSArray* theaters = [self processTheatersElement:theatersElement];
+    NSArray* movies = [self processMoviesElement:moviesElement];
+    
+    return [NSArray arrayWithObjects:movies, theaters, nil];
+}
+
+- (NSArray*) fullLookup {
     if ([Utilities isNilOrEmpty:self.model.zipcode]) {
         return nil;
     }
     
     NSString* urlString = [NSString stringWithFormat:@"http://www.fandango.com/frdi/?pid=A99D3D1A-774C-49149E&op=performancesbypostalcodesearch&verbosity=1&postalcode=%@", self.model.zipcode];
-
-    return [Utilities downloadXml:urlString];
+    
+    XmlElement* element = [Utilities downloadXml:urlString];
+    
+    NSArray* moviesAndTheaters = [self processElement:element];
+    
+    return moviesAndTheaters;
 }
 
-/*
-- (BOOL) areEqual:(XmlElement*) tickets1
-          tickets:(XmlElement*) tickets2 {
-    if (tickets1 == nil || tickets2 == nil) {
-        return NO;
-    }
+- (void) setMoviesAndTheaters:(NSArray*) moviesAndTheaters {
+    [self.model setMovies:[moviesAndTheaters objectAtIndex:0]];
+    [self.model setTheaters:[moviesAndTheaters objectAtIndex:1]];
     
-    //return [tickets1 isEqual:tickets2];
-    NSString* s1 = [XmlSerializer serializeElement:tickets1];
-    NSString* s2 = [XmlSerializer serializeElement:tickets2];
-    
-    return [s1 isEqual:s2];
-}
- */
-
-- (void) setTickets:(XmlElement*) tickets {
-    if (tickets != nil) {
-        [self.model setTickets:tickets];
-    }
-    
-    [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading ticketing data", nil)];
+    [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie and theater data", nil)];
 }
 
-- (void) lookupTicketsBackgroundThreadEntryPoint:(id) anObject {    
-    [self.theaterLookupLock lock];
+- (void) fullLookupBackgroundThreadEntryPoint:(id) anObject {    
+    [self.fullLookupLock lock];
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        XmlElement* element = [self lookupTickets];
-        [self performSelectorOnMainThread:@selector(setTickets:) withObject:element waitUntilDone:NO];
-
+        NSArray* moviesAndTheaters = [self fullLookup];
+        [self performSelectorOnMainThread:@selector(setMoviesAndTheaters:) withObject:moviesAndTheaters waitUntilDone:NO];
+        
         [autoreleasePool release];
     }
-    [self.theaterLookupLock unlock];
+    [self.fullLookupLock unlock];
 }
 
 - (void) setZipcode:(NSString*) zipcode {

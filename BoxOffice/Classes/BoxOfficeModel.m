@@ -11,15 +11,19 @@
 #import "Theater.h"
 #import "DifferenceEngine.h"
 #import "Application.h"
+#import "ExtraMovieInformation.h"
 
 @implementation BoxOfficeModel
 
+static NSString* LAST_QUICK_UPDATE_TIME = @"lastQuickUpdateTime";
+static NSString* LAST_FULL_UPDATE_TIME = @"lastFullUpdateTime";
 static NSString* SEARCH_DATES_STRING = @"searchDates";
 static NSString* SEARCH_RESULTS_STRING = @"searchResults";
 static NSString* SEARCH_RADIUS_STRING = @"searchRadius";
 static NSString* MOVIES_STRING = @"movies";
 static NSString* THEATERS_STRING = @"theaters";
 static NSString* ZIPCODE_STRING = @"zipcode";
+static NSString* SUPPLEMENTARY_DATA = @"supplementaryData";
 static NSString* CURRENTLY_SELECTED_MOVIE_STRING = @"currentlySelectedMovie";
 static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater";
 
@@ -29,7 +33,11 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
 @synthesize backgroundTaskCount;
 @synthesize activityView;
 @synthesize activityIndicatorView;
-@synthesize ticketsElement;
+
+@synthesize moviesData;
+@synthesize theatersData;
+@synthesize supplementaryInformationData;
+@synthesize movieMap;
 
 - (void) dealloc {
     self.notificationCenter = nil;
@@ -37,7 +45,11 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     self.addressLocationCache = nil;
     self.activityView = nil;
     self.activityIndicatorView = nil;
-    self.ticketsElement = nil;
+    
+    self.moviesData = nil;
+    self.theatersData = nil;
+    self.supplementaryInformationData = nil;
+    self.movieMap = nil;
     
     [super dealloc];
 }
@@ -172,7 +184,7 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:SEARCH_RADIUS_STRING];
 }
 
-- (NSArray*) movies {
+- (NSArray*) loadMovies {
     NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:MOVIES_STRING];
     if (array == nil) {
         return [NSArray array];
@@ -188,7 +200,15 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     return decodedMovies;
 }
 
-- (void) setMovies:(NSArray*) movies {    
+- (NSArray*) movies {
+    if (self.moviesData == nil) {
+        self.moviesData = [self loadMovies];
+    }
+    
+    return self.moviesData;
+}
+
+- (void) saveMovies:(NSArray*) movies {
     NSMutableArray* array = [NSMutableArray array];
     
     for (int i = 0; i < [movies count]; i++) {
@@ -196,20 +216,74 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:MOVIES_STRING];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastMoviesUpdateTime"];
     
-    [self updatePosterCache];
+    [self updatePosterCache];    
 }
 
-- (NSDate*) lastMoviesUpdateTime {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"lastMoviesUpdateTime"];
+- (void) setMovies:(NSArray*) movies {    
+    self.moviesData = movies;
+    [self saveMovies:movies];
+    
+    self.movieMap = nil;
 }
 
-- (void) clearLastMoviesUpdateTime {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastMoviesUpdateTime"];
+- (NSDictionary*) loadSupplementaryInformation {
+    NSDictionary* dictionary = [[NSUserDefaults standardUserDefaults] dictionaryForKey:SUPPLEMENTARY_DATA];
+    if (dictionary == nil) {
+        return [NSDictionary dictionary];
+    }
+    
+    NSMutableDictionary* decodedData = [NSMutableDictionary dictionary];
+    for (NSString* key in dictionary) {
+        [decodedData setObject:[ExtraMovieInformation infoWithDictionary:[dictionary objectForKey:key]] forKey:key];
+    }
+    
+    return decodedData;
 }
 
-- (NSArray*) theaters {
+- (NSDictionary*) supplementaryInformation {
+    if (self.supplementaryInformationData == nil) {
+        self.supplementaryInformationData = [self loadSupplementaryInformation];
+    }
+    
+    return self.supplementaryInformationData;
+}
+
+- (void) saveSupplementaryInformation:(NSDictionary*) dictionary {
+    NSMutableDictionary* encodedDictionary = [NSMutableDictionary dictionary];
+    
+    for (NSString* key in dictionary) {
+        [encodedDictionary setObject:[[dictionary objectForKey:key] dictionary] forKey:key];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:encodedDictionary forKey:SUPPLEMENTARY_DATA];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_QUICK_UPDATE_TIME];
+}
+
+- (void) setSupplementaryInformation:(NSDictionary*) dictionary {
+    self.supplementaryInformationData = dictionary;
+    [self saveSupplementaryInformation:dictionary];
+    
+    self.movieMap = nil;
+}
+
+- (NSDate*) lastQuickUpdateTime {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_QUICK_UPDATE_TIME];
+}
+
+- (void) clearLastQuickUpdateTime {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_QUICK_UPDATE_TIME];
+}
+
+- (NSDate*) lastFullUpdateTime {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_FULL_UPDATE_TIME];
+}
+
+- (void) clearLastFullUpdateTime {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_FULL_UPDATE_TIME];
+}
+
+- (NSArray*) loadTheaters {
     NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:THEATERS_STRING];
     if (array == nil) {
         return [NSArray array];
@@ -224,7 +298,15 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     return decodedTheaters;
 }
 
-- (void) setTheaters:(NSArray*) theaters {
+- (NSArray*) theaters {
+    if (self.theatersData == nil) {
+        self.theatersData = [self loadTheaters];
+    }
+    
+    return self.theatersData;
+}
+
+- (void) saveTheaters:(NSArray*) theaters {
     NSMutableArray* array = [NSMutableArray array];
     
     for (int i = 0; i < [theaters count]; i++) {
@@ -232,43 +314,14 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     }
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:THEATERS_STRING];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastTheatersUpdateTime"];
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_FULL_UPDATE_TIME];
         
     [self updateAddressLocationCache];
 }
 
-- (NSDate*) lastTheatersUpdateTime {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"lastTheatersUpdateTime"];
-}
-
-- (void) clearLastTheatersUpdateTime {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastTheatersUpdateTime"];
-}
-
-- (XmlElement*) tickets {
-    if (self.ticketsElement == nil) {
-        NSDictionary* dictionary = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"tickets"];
-
-        if (dictionary != nil) {
-            self.ticketsElement = [XmlElement elementFromDictionary:dictionary];
-        }
-    }
-    
-    return self.ticketsElement;
-}
-
-- (void) setTickets:(XmlElement*) tickets {
-    self.ticketsElement = tickets;
-    [[NSUserDefaults standardUserDefaults] setObject:[tickets dictionary] forKey:@"tickets"];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:@"lastTicketsUpdateTime"];
-}
-
-- (NSDate*) lastTicketsUpdateTime {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:@"lastTicketsUpdateTime"];
-}
-
-- (void) clearLastTicketsUpdateTime {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"lastTicketsUpdateTime"];
+- (void) setTheaters:(NSArray*) theaters {
+    self.theatersData = theaters;
+    [self saveTheaters:theaters];
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie {
@@ -287,17 +340,13 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     NSMutableArray* array = [NSMutableArray array];
     
     for (Theater* theater in self.theaters) {
-        for (NSString* movieName in theater.movieToShowtimesMap) {
-            if ([[theater.movieToShowtimesMap objectForKey:movieName] count] == 0) {
-                continue;
-            }
-            
-            if ([[Application differenceEngine] similar:movie.title other:movieName]) {
+        for (NSString* movieId in theater.movieToShowtimesMap) {
+            if ([[movie identifier] isEqual:movieId]) {
                 [array addObject:theater];
                 break;
             }
         }
-    }    
+    }
     
     return array;
 }
@@ -306,15 +355,8 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     NSMutableArray* array = [NSMutableArray array];
     
     for (Movie* movie in self.movies) {
-        for (NSString* movieName in theater.movieToShowtimesMap) {
-            if ([[theater.movieToShowtimesMap objectForKey:movieName] count] == 0) {
-                continue;
-            }
-            
-            if ([[Application differenceEngine] similar:movie.title other:movieName]) {
-                [array addObject:movie];
-                break;
-            }
+        if ([theater.movieToShowtimesMap objectForKey:movie.identifier]) {
+            [array addObject:movie];
         }
     }
     
@@ -323,22 +365,12 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
 
 - (NSArray*) movieShowtimes:(Movie*) movie
                  forTheater:(Theater*) theater {
-    NSString* bestName = nil;
-    NSInteger bestDistance = NSIntegerMax;
-    
-    for (NSString* name in [theater.movieToShowtimesMap allKeys]) {
-        NSInteger distance = [[Application differenceEngine] editDistanceFrom:name to:movie.title];
-        if (distance < bestDistance) {
-            bestDistance = distance;
-            bestName = name;
-        }
+    NSArray* result = [theater.movieToShowtimesMap objectForKey:movie.identifier];
+    if (result == nil) {
+        return [NSArray array];
     }
     
-    if ([[Application differenceEngine] similar:bestName other:movie.title]) {
-        return [theater.movieToShowtimesMap objectForKey:bestName];
-    }
-    
-    return [NSArray array];
+    return result;
 }
 
 - (NSDictionary*) theaterDistanceMap {
@@ -399,8 +431,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         return;
     }
     
-    [self clearLastTheatersUpdateTime];
-    [self clearLastTicketsUpdateTime];
+    [self clearLastFullUpdateTime];
     [[NSUserDefaults standardUserDefaults] setObject:zipcode forKey:ZIPCODE_STRING];
     
     [self updateZipcodeAddressLocation];
@@ -509,6 +540,63 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (void) setMovieDetails:(NSString*) identifier element:(XmlElement*) element {
     [self setDetails:[NSString stringWithFormat:@"movie-%@", identifier] element:element];
+}
+
+- (void) createMovieMap {
+    if (self.movieMap == nil) {
+        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+        
+        for (Movie* movie in self.movies) {
+            NSString* title = movie.title;
+            NSString* lowercaseTitle = [title lowercaseString];
+            
+            NSInteger bestDistance = INT_MAX;
+            NSString* bestKey = nil;
+            
+            for (NSString* key in [self supplementaryInformation]) {
+                int distance = [[Application differenceEngine] editDistanceFrom:lowercaseTitle
+                                                                             to:[key lowercaseString]];
+                
+                if (distance < bestDistance) {
+                    bestKey = key;
+                    bestDistance = distance;
+                }
+            }
+            
+            if (bestKey != nil &&
+                [DifferenceEngine areSimilar:bestKey other:title]) {
+                
+                [dictionary setObject:[[self supplementaryInformation] objectForKey:bestKey]
+                               forKey:movie.identifier];
+            }
+        }
+        
+        self.movieMap = dictionary;
+    }
+}
+
+- (ExtraMovieInformation*) extraInformationForMovie:(Movie*) movie {
+    [self createMovieMap];
+    
+    return [self.movieMap objectForKey:movie.identifier];
+}
+
+- (NSInteger) rankingForMovie:(Movie*) movie {
+    ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
+    if (extraInfo == nil) {
+        return -1;
+    }
+    
+    return [extraInfo rankingValue];
+}
+
+- (NSString*) synopsisForMovie:(Movie*) movie {
+    ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
+    if (extraInfo == nil) {
+        return NSLocalizedString(@"No synopsis available.", nil);
+    }
+    
+    return extraInfo.synopsis;
 }
 
 @end
