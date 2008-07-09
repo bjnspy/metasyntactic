@@ -13,6 +13,7 @@
     NSString* rating;
     NSString* length; // minutes;
     NSString* poster;
+    NSString* backupSynopsis;
 }
 
 @property (copy) NSString* identifier;
@@ -20,13 +21,15 @@
 @property (copy) NSString* rating;
 @property (copy) NSString* length;
 @property (copy) NSString* poster;
+@property (copy) NSString* backupSynopsis;
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
 + (Movie*) movieWithIdentifier:(NSString*) identifier
                          title:(NSString*) title
                         rating:(NSString*) rating
                         length:(NSString*) length
-                        poster:(NSString*) poster;
+                        poster:(NSString*) poster
+                backupSynopsis:(NSString*) backupSynopsis;
 
 - (NSDictionary*) dictionary;
 

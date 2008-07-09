@@ -184,7 +184,7 @@
                                                         withObject:self
                                                       withSelector:@selector(onZipcodeChanged:)
                                                           withText:[self.model zipcode]
-                                                          withType:UIKeyboardTypeNumberPad] autorelease];
+                                                          withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
         
         [self.navigationController pushViewController:controller animated:YES];
     } else if (section == 1) {

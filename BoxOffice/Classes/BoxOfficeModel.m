@@ -592,11 +592,15 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
     ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
-    if (extraInfo == nil) {
-        return NSLocalizedString(@"No synopsis available.", nil);
+    if (extraInfo != nil && extraInfo.synopsis != nil) {
+        return extraInfo.synopsis;
     }
     
-    return extraInfo.synopsis;
+    if (movie.backupSynopsis != nil) {
+        return movie.backupSynopsis;
+    }
+    
+    return NSLocalizedString(@"No synopsis available.", nil);
 }
 
 @end

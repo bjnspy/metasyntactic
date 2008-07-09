@@ -244,12 +244,14 @@
         NSString* title = [[movieElement element:@"title"] text];
         NSString* rating = [[movieElement element:@"rating"] text];
         NSString* length = [[movieElement element:@"runtime"] text];
+        NSString* synopsis = [[movieElement element:@"synopsis"] text];
     
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
                                            rating:rating
                                            length:length
-                                           poster:poster];
+                                           poster:poster
+                                   backupSynopsis:synopsis];
         
         [array addObject:movie];
     }

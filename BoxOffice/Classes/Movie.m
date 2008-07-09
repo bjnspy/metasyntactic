@@ -16,6 +16,7 @@
 @synthesize rating;
 @synthesize length;
 @synthesize poster;
+@synthesize backupSynopsis;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -23,6 +24,8 @@
     self.rating = nil;
     self.length = nil;
     self.poster = nil;
+    self.backupSynopsis = nil;
+    
     [super dealloc];
 }
 
@@ -30,13 +33,15 @@
                     title:(NSString*) aTitle
                    rating:(NSString*) aRating
                    length:(NSString*) aLength 
-                   poster:(NSString*) aPoster {
+                   poster:(NSString*) aPoster
+           backupSynopsis:(NSString*) aBackupSynopsis {
     if (self = [self init]) {
         self.identifier = anIdentifier;
         self.title    = [aTitle    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.rating   = [aRating   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.length = aLength;
         self.poster = aPoster;
+        self.backupSynopsis = aBackupSynopsis;
     }
     
     return self;
@@ -46,12 +51,14 @@
                          title:(NSString*) aTitle
                         rating:(NSString*) aRating
                         length:(NSString*) aLength
-                        poster:(NSString*) aPoster {
+                        poster:(NSString*) aPoster
+                backupSynopsis:(NSString*) aBackupSynopsis  {
     return [[[Movie alloc] initWithIdentifier:anIdentifier
                                         title:aTitle
                                        rating:aRating
                                        length:aLength
-                                       poster:aPoster] autorelease];
+                                       poster:aPoster
+                               backupSynopsis:aBackupSynopsis] autorelease];
 }
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
@@ -59,16 +66,18 @@
                                 title:[dictionary objectForKey:@"title"]
                                rating:[dictionary objectForKey:@"rating"]
                                length:[dictionary objectForKey:@"length"]
-                               poster:[dictionary objectForKey:@"poster"]];
+                               poster:[dictionary objectForKey:@"poster"]
+                       backupSynopsis:[dictionary objectForKey:@"backupSynopsis"]];
 }
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:self.identifier    forKey:@"identifier"];
-    [dictionary setValue:self.title         forKey:@"title"];
-    [dictionary setValue:self.rating        forKey:@"rating"];
-    [dictionary setValue:self.length        forKey:@"length"];
-    [dictionary setValue:self.poster        forKey:@"poster"];
+    [dictionary setValue:self.identifier     forKey:@"identifier"];
+    [dictionary setValue:self.title          forKey:@"title"];
+    [dictionary setValue:self.rating         forKey:@"rating"];
+    [dictionary setValue:self.length         forKey:@"length"];
+    [dictionary setValue:self.poster         forKey:@"poster"];
+    [dictionary setValue:self.backupSynopsis forKey:@"backupSynopsis"];
     return dictionary;
 }
 
@@ -84,7 +93,8 @@
     [self.title isEqual:other.title] &&
     [self.rating isEqual:other.rating] &&
     [self.length isEqual:other.length] &&
-    [self.poster isEqual:other.poster];
+    [self.poster isEqual:other.poster] &&
+    [self.backupSynopsis isEqual:other.backupSynopsis];
 }
 
 - (NSUInteger) hash {
@@ -93,7 +103,8 @@
     [self.title hash] +
     [self.rating hash] +
     [self.length hash] +
-    [self.poster hash];
+    [self.poster hash] +
+    [self.backupSynopsis hash];
 }
 
 @end
