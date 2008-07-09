@@ -130,4 +130,12 @@
     return [XmlParser parse:result];    
 }
 
++ (id) removeRandomElement:(NSMutableArray*) array {
+    NSInteger index = rand() % [array count];
+    id value = [array objectAtIndex:index];
+    [array removeObjectAtIndex:index];
+    
+    return value;
+}
+
 @end
