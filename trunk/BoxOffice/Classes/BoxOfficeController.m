@@ -106,31 +106,37 @@
 }
 
 - (NSDictionary*) quickLookup {
-    NSURL* url = [NSURL URLWithString:@"http://metaboxoffice2.appspot.com/LookupMovieListings"];
-    NSError* httpError = nil;
-    NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&httpError];
+    NSMutableArray* hosts = [Application hosts];
     
-    if (httpError == nil && inTheaters != nil) {    
-        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    while ([hosts count]) {
+        NSString* host = [Utilities removeRandomElement:hosts];
         
-        NSArray* rows = [inTheaters componentsSeparatedByString:@"\n"];
+        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings", host]];
+        NSError* httpError = nil;
+        NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&httpError];
         
-        // first row are the column headers.  last row is empty.  skip both.
-        for (NSInteger i = 1; i < [rows count] - 1; i++) {   
-            NSArray* columns = [[rows objectAtIndex:i] componentsSeparatedByString:@"\t"];
+        if (httpError == nil && inTheaters != nil) {    
+            NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
             
-            if ([columns count] >= 9) {
-                ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithLink:[columns objectAtIndex:2]
-                                                                              synopsis:[columns objectAtIndex:8]
-                                                                               ranking:[columns objectAtIndex:3]];
+            NSArray* rows = [inTheaters componentsSeparatedByString:@"\n"];
+            
+            // first row are the column headers.  last row is empty.  skip both.
+            for (NSInteger i = 1; i < [rows count] - 1; i++) {   
+                NSArray* columns = [[rows objectAtIndex:i] componentsSeparatedByString:@"\t"];
                 
-                NSString* title = [columns objectAtIndex:1];
-                
-                [dictionary setObject:extraInfo forKey:title];
+                if ([columns count] >= 9) {
+                    ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithLink:[columns objectAtIndex:2]
+                                                                                  synopsis:[columns objectAtIndex:8]
+                                                                                   ranking:[columns objectAtIndex:3]];
+                    
+                    NSString* title = [columns objectAtIndex:1];
+                    
+                    [dictionary setObject:extraInfo forKey:title];
+                }
             }
+            
+            return dictionary;
         }
-        
-        return dictionary;
     }
     
     return nil;
@@ -245,7 +251,7 @@
         NSString* rating = [[movieElement element:@"rating"] text];
         NSString* length = [[movieElement element:@"runtime"] text];
         NSString* synopsis = [[movieElement element:@"synopsis"] text];
-    
+        
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
                                            rating:rating
@@ -271,17 +277,30 @@
 }
 
 - (NSArray*) fullLookup {
-    if ([Utilities isNilOrEmpty:self.model.zipcode]) {
-        return nil;
+    if (![Utilities isNilOrEmpty:self.model.zipcode]) {    
+        NSMutableArray* keys = [NSMutableArray arrayWithObjects:
+                                @"DE7E251E-7758-40A4-98E0-87557E9F31F0",
+                                @"A99D3D1A-774C-49149E", nil];
+        
+        while ([keys count]) {
+            NSString* key = [Utilities removeRandomElement:keys];
+            
+            NSString* urlString =[NSString stringWithFormat:
+                                  @"http://www.fandango.com/frdi/?pid=%@&op=performancesbypostalcodesearch&verbosity=1&postalcode=%@",
+                                  key,
+                                  self.model.zipcode];
+            
+            XmlElement* element = [Utilities downloadXml:urlString];
+            
+            if (element != nil) {
+                NSArray* moviesAndTheaters = [self processElement:element];
+                
+                return moviesAndTheaters;
+            }
+        }
     }
     
-    NSString* urlString = [NSString stringWithFormat:@"http://www.fandango.com/frdi/?pid=A99D3D1A-774C-49149E&op=performancesbypostalcodesearch&verbosity=1&postalcode=%@", self.model.zipcode];
-    
-    XmlElement* element = [Utilities downloadXml:urlString];
-    
-    NSArray* moviesAndTheaters = [self processElement:element];
-    
-    return moviesAndTheaters;
+    return nil;
 }
 
 - (void) setMoviesAndTheaters:(NSArray*) moviesAndTheaters {

@@ -13,6 +13,7 @@
 #import "XmlParser.h"
 #import "Utilities.h"
 #import "BoxOfficeModel.h"
+#import "Application.h"
 
 @implementation AddressLocationCache
 
@@ -45,10 +46,8 @@
                            withObject:[NSArray arrayWithArray:addresses]];
 }
 
-- (Location*) processResult:(NSData*) addressData {
-    if (addressData != nil) {
-        XmlElement* resultElement = [XmlParser parse:addressData];
-        
+- (Location*) processResult:(XmlElement*) resultElement {
+    if (resultElement != nil) {
         NSString* latitude = [resultElement attributeValue:@"latitude"];
         NSString* longitude = [resultElement attributeValue:@"longitude"];
         
@@ -67,12 +66,22 @@
     
     NSString* escapedAddress = [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
-    NSString* urlString = [NSString stringWithFormat:@"http://metaboxoffice2.appspot.com/LookupLocation?q=%@", escapedAddress];
-    NSURL* url = [NSURL URLWithString:urlString];
+    NSMutableArray* hosts = [Application hosts];
     
-    NSData* addressData = [NSData dataWithContentsOfURL:url];
+    while ([hosts count]) {
+        NSString* host = [Utilities removeRandomElement:hosts];
+        
+        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", host, escapedAddress];
+       
+        XmlElement* element = [Utilities downloadXml:url];
+        Location* location = [self processResult:element];
+        
+        if (location != nil) {
+            return location;
+        }
+    }
     
-    return [self processResult:addressData];
+    return nil;
 }
 
 - (NSDictionary*) addressLocationMap {

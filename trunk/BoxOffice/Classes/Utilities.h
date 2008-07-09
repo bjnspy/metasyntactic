@@ -34,4 +34,6 @@
                          atHost:(NSString*) host
                      withAction:(NSString*) soapAction;
 
++ (id) removeRandomElement:(NSMutableArray*) array;
+
 @end

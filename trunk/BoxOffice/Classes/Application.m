@@ -129,9 +129,9 @@ static DifferenceEngine* differenceEngine = nil;
 
 + (void) openMap:(NSString*) address {
     NSString* urlString =
-     [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
-      [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
-
+    [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
+     [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+    
     NSURL* url = [NSURL URLWithString:urlString];
     [[UIApplication sharedApplication] openURL:url];    
 }
@@ -151,6 +151,14 @@ static DifferenceEngine* differenceEngine = nil;
 + (NSString*) searchHost {
     return @"http://metaboxoffice4.appspot.com";
     //return @"http://localhost:8082";
+}
+
++ (NSMutableArray*) hosts {
+    return [NSMutableArray arrayWithObjects:
+            @"metaboxoffice",
+            @"metaboxoffice2",
+            @"metaboxoffice3",
+            @"metaboxoffice4", nil]; 
 }
 
 @end

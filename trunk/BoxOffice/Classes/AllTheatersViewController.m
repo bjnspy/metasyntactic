@@ -83,7 +83,7 @@
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
                                                                 context:theaterDistanceMap];
     
-    NSString* reallyCloseBy             = NSLocalizedString(@"Realllllly close by", nil);
+    NSString* reallyCloseBy             = NSLocalizedString(@"Really close by", nil);
     NSString* oneHalfToOneMile          = NSLocalizedString(@"< 1 mile away", nil);
     NSString* oneToTwoMiles             = NSLocalizedString(@"< 2 miles away", nil);
     NSString* twoToFileMiles            = NSLocalizedString(@"< 5 miles away", nil);
