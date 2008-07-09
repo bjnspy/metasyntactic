@@ -13,17 +13,19 @@
 @implementation ImdbPosterDownloader
 
 - (NSString*) imdbId {
-    NSString* escapedTitle = [self.movie.title stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
-    NSString* urlString = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-    NSData* imdbData = [NSData dataWithContentsOfURL:url];
-    if (imdbData != nil) {
-        XmlElement* tryntElement = [XmlParser parse:imdbData];
-        XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
-        XmlElement* matchedIdElement = [movieImdbElement element:@"matched-id"];
+    NSString* escapedTitle = [self.movie.title stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+    if (escapedTitle != nil) {
+        NSString* urlString = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
+        NSURL* url = [NSURL URLWithString:urlString];
         
-        return [matchedIdElement text];
+        NSData* imdbData = [NSData dataWithContentsOfURL:url];
+        if (imdbData != nil) {
+            XmlElement* tryntElement = [XmlParser parse:imdbData];
+            XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
+            XmlElement* matchedIdElement = [movieImdbElement element:@"matched-id"];
+            
+            return [matchedIdElement text];
+        }
     }
     
     return nil;
