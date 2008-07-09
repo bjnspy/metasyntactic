@@ -210,7 +210,15 @@
 }
 
 - (void) onZipcodeChanged:(NSString*) zipcode {
-    [self.controller setZipcode:zipcode];
+    NSMutableString* trimmed = [NSMutableString string];
+    for (NSInteger i = 0; i < [zipcode length]; i++) {
+        unichar c = [zipcode characterAtIndex:i];
+        if (isalnum(c)) {
+            [trimmed appendString:[NSString stringWithCharacters:&c length:1]];
+        }
+    }
+    
+    [self.controller setZipcode:trimmed];
     [self.tableView reloadData];
 }
 
