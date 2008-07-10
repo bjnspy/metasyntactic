@@ -1,5 +1,5 @@
 #!/usr/bin/env python
- 
+
 import wsgiref.handlers
 import logging
 import urllib
