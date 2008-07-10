@@ -1,8 +1,0 @@
-/Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m: In function '-[BoxOfficeController quickLookup]':
-/Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m:109: warning: 'Application' may not respond to '+hosts'
-/Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m:109: warning: (Messages without a matching method signature
-/Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m:109: warning: will be assumed to return 'id' and accept
-/Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m:109: warning: '...' as arguments.)
-/Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m:112: warning: 'Utilities' may not respond to '+removeRandomElement:'
-/Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m: In function '-[BoxOfficeController fullLookup]':
-/Projects/GoogleCode/BoxOffice/Classes/BoxOfficeController.m:286: warning: 'Utilities' may not respond to '+removeRandomElement:'
