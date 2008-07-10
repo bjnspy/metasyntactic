@@ -64,16 +64,19 @@
         return nil;
     } 
     
-    NSString* escapedAddress = [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
+    NSString* escapedAddress = [address stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+    if (escapedAddress != nil) {    
+        NSMutableArray* hosts = [Application hosts];
+        NSInteger index = abs([escapedAddress hash]) % [hosts count];
+        NSString* host = [hosts objectAtIndex:index];
+        
+        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", host, escapedAddress];
+        
+        XmlElement* element = [Utilities downloadXml:url];
+        return [self processResult:element];
+    }
     
-    NSMutableArray* hosts = [Application hosts];
-    NSInteger index = abs([escapedAddress hash]) % [hosts count];
-    NSString* host = [hosts objectAtIndex:index];
-
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", host, escapedAddress];
-       
-    XmlElement* element = [Utilities downloadXml:url];
-    return [self processResult:element];
+    return nil;
 }
 
 - (NSDictionary*) addressLocationMap {

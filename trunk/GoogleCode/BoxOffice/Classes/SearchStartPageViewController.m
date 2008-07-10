@@ -300,7 +300,7 @@
     NSString* urlString =
      [NSString stringWithFormat:@"%@/Search?q=%@",
       [Application searchHost],
-      [request.text stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+      [request.text stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding]];
     
     XmlElement* element = [Utilities downloadXml:urlString];
     

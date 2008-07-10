@@ -113,7 +113,7 @@
         
         NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings", host]];
         NSError* httpError = nil;
-        NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSASCIIStringEncoding error:&httpError];
+        NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSISOLatin1StringEncoding error:&httpError];
         
         if (httpError == nil && inTheaters != nil) {    
             NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -277,26 +277,22 @@
 }
 
 - (NSArray*) fullLookup {
-    if (![Utilities isNilOrEmpty:self.model.zipcode]) {    
-        NSMutableArray* keys = [NSMutableArray arrayWithObjects:
-                                @"DE7E251E-7758-40A4-98E0-87557E9F31F0",
-                                @"A99D3D1A-774C-49149E", nil];
+    if (![Utilities isNilOrEmpty:self.model.zipcode]) {
+        NSMutableArray* hosts = [Application hosts];
+        NSInteger index = abs([self.model.zipcode hash]) % [hosts count];
+        NSString* host = [hosts objectAtIndex:index];
         
-        while ([keys count]) {
-            NSString* key = [Utilities removeRandomElement:keys];
+        NSString* urlString =[NSString stringWithFormat:
+                              @"http://%@.appspot.com/LookupTheaterListings?q=%@",
+                              host,
+                              self.model.zipcode];
+        
+        XmlElement* element = [Utilities downloadXml:urlString];
+        
+        if (element != nil) {
+            NSArray* moviesAndTheaters = [self processElement:element];
             
-            NSString* urlString =[NSString stringWithFormat:
-                                  @"http://www.fandango.com/frdi/?pid=%@&op=performancesbypostalcodesearch&verbosity=1&postalcode=%@",
-                                  key,
-                                  self.model.zipcode];
-            
-            XmlElement* element = [Utilities downloadXml:urlString];
-            
-            if (element != nil) {
-                NSArray* moviesAndTheaters = [self processElement:element];
-                
-                return moviesAndTheaters;
-            }
+            return moviesAndTheaters;
         }
     }
     
