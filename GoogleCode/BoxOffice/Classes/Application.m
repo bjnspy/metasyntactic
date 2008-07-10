@@ -130,7 +130,7 @@ static DifferenceEngine* differenceEngine = nil;
 + (void) openMap:(NSString*) address {
     NSString* urlString =
     [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
-     [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding]];
+     [address stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding]];
     
     NSURL* url = [NSURL URLWithString:urlString];
     [[UIApplication sharedApplication] openURL:url];    
