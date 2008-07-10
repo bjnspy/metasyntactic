@@ -173,7 +173,11 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
 
 - (int) searchRadius {
     if (searchRadius == -1) {
-        searchRadius = MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:SEARCH_RADIUS_STRING]);
+        if ([[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_RADIUS_STRING]) {
+            searchRadius = 5;
+        } else {
+            searchRadius = MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:SEARCH_RADIUS_STRING]);
+        }
     }
  
     return searchRadius;
