@@ -3,5 +3,5 @@ from google.appengine.ext import search
 
 class TheaterListings(db.Model):
     data = db.BlobProperty()
-    saveDate = db.DateTimeProperty(auto_now=True)
+    saveDate = db.DateTimeProperty()
 
