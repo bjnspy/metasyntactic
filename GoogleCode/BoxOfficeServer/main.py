@@ -18,10 +18,11 @@ from google.appengine.ext import webapp
 
 class MainHandler(webapp.RequestHandler):
   def get(self):
-    self.response.out.write('Hello world!?!')
+    self.response.out.write('Hello world')
 
 def main():
-  application = webapp.WSGIApplication([('/', MainHandler),
+  application = webapp.WSGIApplication([
+#                                        ('/', MainHandler),
 #                                        ('/UploadMovie', UploadMovie.UploadMovieHandler),
 #                                        ('/DeleteAllMovies', DeleteAllMovies.DeleteAllMoviesHandler),
 #                                        ('/DeleteAllUsers', DeleteAllUsers.DeleteAllUsersHandler),
@@ -32,8 +33,8 @@ def main():
 #                                        ('/LookupMovie', LookupMovie.LookupMovieHandler),
 #                                        ('/LookupPerson', LookupPerson.LookupPersonHandler),
                                         ('/LookupLocation', LookupLocation.LookupLocationHandler),
-                                        ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
-                                        ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler)
+                                        ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler)
+#                                        ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler)
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
