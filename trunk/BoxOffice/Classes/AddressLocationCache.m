@@ -67,21 +67,13 @@
     NSString* escapedAddress = [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
     NSMutableArray* hosts = [Application hosts];
-    
-    while ([hosts count]) {
-        NSString* host = [Utilities removeRandomElement:hosts];
-        
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", host, escapedAddress];
+    NSInteger index = abs([escapedAddress hash]) % [hosts count];
+    NSString* host = [hosts objectAtIndex:index];
+
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", host, escapedAddress];
        
-        XmlElement* element = [Utilities downloadXml:url];
-        Location* location = [self processResult:element];
-        
-        if (location != nil) {
-            return location;
-        }
-    }
-    
-    return nil;
+    XmlElement* element = [Utilities downloadXml:url];
+    return [self processResult:element];
 }
 
 - (NSDictionary*) addressLocationMap {
