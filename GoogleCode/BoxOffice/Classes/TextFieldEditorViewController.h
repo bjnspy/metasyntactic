@@ -1,0 +1,24 @@
+//
+//  TextFieldEditorViewController.h
+//  BoxOffice
+//
+//  Created by Cyrus Najmabadi on 5/6/08.
+//  Copyright 2008 Metasyntactic. All rights reserved.
+//
+
+#import "EditorViewController.h"
+
+@interface TextFieldEditorViewController : EditorViewController {
+    UITextField* textField;
+}
+
+@property (retain) UITextField* textField;
+
+- (id) initWithController:(UINavigationController*) navigationController
+                withTitle:(NSString*) title
+               withObject:(id) object
+             withSelector:(SEL) selector
+                 withText:(NSString*) text
+                 withType:(UIKeyboardType) type;
+
+@end
