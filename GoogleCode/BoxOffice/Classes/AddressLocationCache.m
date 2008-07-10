@@ -62,7 +62,7 @@
 - (Location*) downloadAddressLocationFromWebService:(NSString*) address {
     if ([Utilities isNilOrEmpty:address]) {
         return nil;
-    }
+    } 
     
     NSString* escapedAddress = [address stringByAddingPercentEscapesUsingEncoding:NSASCIIStringEncoding];
     
