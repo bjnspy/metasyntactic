@@ -5,6 +5,7 @@ import logging
 import urllib
 import datetime
 import zlib
+import random
 
 from xml.dom.minidom import getDOMImplementation, parseString
 
@@ -21,7 +22,7 @@ from google.appengine.api import urlfetch
 
 class LookupTheaterListingsHandler(webapp.RequestHandler):
   def get(self):
-    memcache.flush_all()
+    #memcache.flush_all()
     q = self.request.get("q")
     listings = self.get_listings_from_cache(q)
     if listings is None:
@@ -35,15 +36,15 @@ class LookupTheaterListingsHandler(webapp.RequestHandler):
     now = datetime.datetime.now()
     delta = now - listings.saveDate
 
-    return delta.seconds >= (3600 * 4)
+    return delta.seconds >= (3600 * 8)
     
 
   def get_listings_from_cache(self, q):
     listings = memcache.get("TheaterListings_" + q)
 
     if listings is None or self.too_old(listings):
-      listings = self.get_listings_from_datastore(q)
-      memcache.set("TheaterListings_" + q, listings)
+      listings = self.get_listings_from_webservice(q)
+      memcache.Client().set("TheaterListings_" + q, listings)
 
     return listings
     
@@ -58,14 +59,16 @@ class LookupTheaterListingsHandler(webapp.RequestHandler):
 
 
   def get_listings_from_webservice(self, q):
-    key = "A99D3D1A-774C-49149E"
+    keys = [ "A99D3D1A-774C-49149E", "DE7E251E-7758-40A4-98E0-87557E9F31F0"]
+    index = random.randint(0, len(keys) - 1)
+    key = keys[index]
+
     url = "http://www.fandango.com/frdi/?pid=" + key + "&op=performancesbypostalcodesearch&verbosity=1&postalcode=" + q
     logging.info("Url: " + url)
     content = urlfetch.fetch(url).content
-#    encoded = unicode(content, "utf-8")
 
-    listings = TheaterListings.get_or_insert("_" + q)
+    listings = TheaterListings()
     listings.data = zlib.compress(content)
-    listings.put()
+    listings.saveDate = datetime.datetime.now()
 
     return listings

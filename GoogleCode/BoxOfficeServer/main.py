@@ -33,8 +33,8 @@ def main():
 #                                        ('/LookupMovie', LookupMovie.LookupMovieHandler),
 #                                        ('/LookupPerson', LookupPerson.LookupPersonHandler),
                                         ('/LookupLocation', LookupLocation.LookupLocationHandler),
-                                        ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler)
-#                                        ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler)
+                                        ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
+                                        ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler)
                                         ],
                                        debug=True)
   wsgiref.handlers.CGIHandler().run(application)
