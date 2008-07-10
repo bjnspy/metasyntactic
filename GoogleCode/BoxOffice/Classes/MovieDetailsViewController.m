@@ -195,7 +195,10 @@
             
             NSString* text = rating;
             if (length != 0) {
-                text = [NSString stringWithFormat:NSLocalizedString(@"%@ - Running time: %d:%02d", nil), rating, hours, minutes];
+                text = [NSString stringWithFormat:@"%@ - %@: %d:%02d",
+                        rating,
+                        NSLocalizedString(@"Running time", nil),
+                        hours, minutes];
             } 
                 
             cell.textAlignment = UITextAlignmentCenter;
