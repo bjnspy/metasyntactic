@@ -188,8 +188,10 @@
         
         [self.navigationController pushViewController:controller animated:YES];
     } else if (section == 1) {
-        NSArray* values = [NSArray arrayWithObjects: @"5", @"10", @"15", @"20", @"25", 
-                           @"30", @"35", @"40", @"45", @"50", nil];
+        NSArray* values = [NSArray arrayWithObjects:
+                           @"1", @"2", @"3", @"4", @"5", 
+                           @"10", @"15", @"20", @"25", @"30",
+                           @"35", @"40", @"45", @"50", nil];
         NSString* defaultValue = [NSString stringWithFormat:@"%d", [self.model searchRadius]];
         
         PickerEditorViewController* controller = 
