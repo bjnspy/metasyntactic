@@ -279,7 +279,7 @@
 - (NSArray*) fullLookup {
     if (![Utilities isNilOrEmpty:self.model.zipcode]) {
         NSMutableArray* hosts = [Application hosts];
-        NSInteger index = abs([self.model.zipcode hash]) % [hosts count];
+        NSInteger index = abs([Utilities hashString:self.model.zipcode]) % [hosts count];
         NSString* host = [hosts objectAtIndex:index];
         
         NSString* urlString =[NSString stringWithFormat:

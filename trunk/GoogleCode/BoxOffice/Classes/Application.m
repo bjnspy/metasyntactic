@@ -158,7 +158,9 @@ static DifferenceEngine* differenceEngine = nil;
             @"metaboxoffice",
             @"metaboxoffice2",
             @"metaboxoffice3",
-            @"metaboxoffice4", nil]; 
+            @"metaboxoffice4",
+            @"metaboxoffice5",
+            @"metaboxoffice6", nil]; 
 }
 
 @end

@@ -36,4 +36,6 @@
 
 + (id) removeRandomElement:(NSMutableArray*) array;
 
++ (NSInteger) hashString:(NSString*) string;
+
 @end
