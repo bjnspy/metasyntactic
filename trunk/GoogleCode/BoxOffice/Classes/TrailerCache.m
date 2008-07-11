@@ -122,6 +122,20 @@
     }
 }
 
+- (NSString*) massage:(NSString*) value {
+    while (true) {
+        NSRange range = [value rangeOfString:@"\\u"];
+        if (range.length <= 0) {
+            break;
+        }
+        
+        range.length += 4;
+        value = [value stringByReplacingCharactersInRange:range withString:@""];
+    }
+    
+    return value;
+}
+
 - (void) processJsonRow:(NSString*) row
            moviesTitles:(NSArray*) movieTitles
                  engine:(DifferenceEngine*) engine {
@@ -133,6 +147,9 @@
     if (titleValue == nil || locationValue == nil) {
         return;
     }
+    
+    titleValue = [self massage:titleValue];
+    locationValue = [self massage:locationValue];
     
     NSString* movieTitle = [engine findClosestMatch:titleValue inArray:movieTitles];
     if (movieTitle == nil) {
