@@ -303,23 +303,14 @@
     return cell;
 }
 
-- (NSString*) titleForHeaderInTrailersSection {
-    if (trailersArray.count) {
-        return NSLocalizedString(@"Trailers", nil);
-    } else {
-        return nil;
-    }
-}
-
-
-- (NSString*)               tableView:(UITableView*) tableView
-              titleForHeaderInSection:(NSInteger) section {
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
         return nil;
     }
     
     if (section == 1 && trailersArray.count) {
-        return [self titleForHeaderInTrailersSection];
+        return nil;
     }
     
     return [[self.theatersArray objectAtIndex:[self getTheaterIndex:section]] name];
@@ -347,7 +338,7 @@
 // When the movie is done, release the controller.
 - (void) movieFinishedCallback:(NSNotification*) aNotification {
     MPMoviePlayerController* moviePlayer = [aNotification object];
-    
+
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:MPMoviePlayerPlaybackDidFinishNotification
                                                   object:moviePlayer];
