@@ -7,6 +7,7 @@
 //
 
 #import "DifferenceEngine.h"
+#import "Application.h"
 
 #define MaxLength 128
 
@@ -157,9 +158,11 @@ NSInteger DE_min(NSInteger x, NSInteger y) {
         return NO;
     }
     
-    if ([s1 rangeOfString:s2 options:NSCaseInsensitiveSearch].location != NSNotFound ||
-        [s2 rangeOfString:s1 options:NSCaseInsensitiveSearch].location != NSNotFound) {
-        return YES;
+    if ([s1 count] > 4 && [s2 count] > 4) {
+        if ([s1 rangeOfString:s2 options:NSCaseInsensitiveSearch].location != NSNotFound ||
+            [s2 rangeOfString:s1 options:NSCaseInsensitiveSearch].location != NSNotFound) {
+            return YES;
+        }
     }
     
     NSInteger threshold = [s1 length] / 4;
@@ -171,4 +174,28 @@ NSInteger DE_min(NSInteger x, NSInteger y) {
     return (diff <= threshold);
 }
 
+- (NSString*) findClosestMatch:(NSString*) string
+                       inArray:(NSArray*) array {
+    NSString* lowercaseString = [string lowercaseString];
+    
+    NSInteger bestDistance = INT_MAX;
+    NSString* bestMatch = nil;
+    
+    for (NSString* value in array) {
+            int distance = [self editDistanceFrom:lowercaseString
+                                               to:[value lowercaseString]];
+            
+        if (distance < bestDistance) {
+            bestMatch = value;
+            bestDistance = distance;
+        }
+    }
+        
+    if (bestMatch != nil &&
+        [DifferenceEngine areSimilar:bestMatch other:string]) {
+        return bestMatch;
+    }
+        
+    return nil;
+}
 @end

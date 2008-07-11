@@ -7,6 +7,7 @@
 //
 
 #import "PosterCache.h"
+#import "TrailerCache.h"
 #import "AddressLocationCache.h"
 #import "XmlElement.h"
 #import "Theater.h"
@@ -16,6 +17,7 @@
     NotificationCenter* notificationCenter;
     
     PosterCache* posterCache;
+    TrailerCache* trailerCache;
     AddressLocationCache* addressLocationCache;
     
     NSInteger backgroundTaskCount;
@@ -32,6 +34,7 @@
 
 @property (retain) NotificationCenter* notificationCenter;
 @property (retain) PosterCache* posterCache;
+@property (retain) TrailerCache* trailerCache;
 @property (retain) AddressLocationCache* addressLocationCache;
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
 @property (retain) UIView* activityView;
@@ -106,5 +109,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSInteger) rankingForMovie:(Movie*) movie;
+
+- (NSArray*) trailersForMovie:(Movie*) movie;
 
 @end
