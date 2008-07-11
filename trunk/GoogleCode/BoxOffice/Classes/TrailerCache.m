@@ -43,7 +43,25 @@
     return [[[TrailerCache alloc] init] autorelease];
 }
 
+- (void) deleteObsoleteTrailers:(NSArray*) movies {
+    NSMutableSet* movieTitles = [NSMutableSet set];
+    for (Movie* movie in movies) {
+        [movieTitles addObject:movie.title];
+    }
+    
+    NSMutableDictionary* trimmedDictionary = [NSMutableDictionary dictionary];
+    
+    for (NSString* key in self.movieToTrailersMap) {
+        if ([movieTitles containsObject:key]) {
+            [trimmedDictionary setObject:[self.movieToTrailersMap objectForKey:key] forKey:key];
+        }
+    }
+    
+    self.movieToTrailersMap = trimmedDictionary;
+}
+
 - (void) update:(NSArray*) movies {
+    [self deleteObsoleteTrailers:movies];
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:movies]];
 }
