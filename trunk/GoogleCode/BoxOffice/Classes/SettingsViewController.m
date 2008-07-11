@@ -102,17 +102,6 @@
     [self performSelectorOnMainThread:@selector(reportFoundZipcode:) withObject:zipcode waitUntilDone:NO];
 }
 
-- (void) reportFoundZipcode:(NSString*) zipcode {
-    [self stopActivityIndicator];
-    
-    if ([Utilities isNilOrEmpty:zipcode]) {
-        return;
-    }
-    
-    self.model.zipcode = zipcode;
-    [self.tableView reloadData];
-}
-
 - (void)locationManager:(CLLocationManager*) manager
        didFailWithError:(NSError*) error {
     [locationManager stopUpdatingLocation];
@@ -222,6 +211,16 @@
     
     [self.controller setZipcode:trimmed];
     [self.tableView reloadData];
+}
+
+- (void) reportFoundZipcode:(NSString*) zipcode {
+    [self stopActivityIndicator];
+    
+    if ([Utilities isNilOrEmpty:zipcode]) {
+        return;
+    }
+    
+    [self onZipcodeChanged:zipcode];
 }
 
 - (void) onSearchRadiusChanged:(NSString*) radius {
