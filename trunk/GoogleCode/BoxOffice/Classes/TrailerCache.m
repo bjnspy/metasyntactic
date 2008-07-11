@@ -27,9 +27,12 @@
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
         
-        self.movieToTrailersMap = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"movieTrailers"];
-        if (self.movieToTrailersMap == nil) {
-            self.movieToTrailersMap = [NSDictionary dictionary];
+        NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"movieTrailers"];
+        
+        if (dict == nil) {
+            self.movieToTrailersMap = [NSMutableDictionary dictionary];
+        } else {
+            self.movieToTrailersMap = [NSMutableDictionary dictionaryWithDictionary:dict];
         }
     }
     
@@ -68,29 +71,41 @@
     [array addObject:value];
 }
 
+- (void) processResult:(NSArray*) data {
+    NSString* text = [data objectAtIndex:0];
+    NSArray* urls = [data objectAtIndex:1];
+    
+    [self.movieToTrailersMap setObject:urls forKey:text];
+}
+
 - (void) findTrailers:(NSString*) movieTitle
-             indexUrl:(NSString*) indexUrl
-               result:(NSMutableDictionary*) result {
+             indexUrl:(NSString*) indexUrl {
     XmlElement* documentElement = [Utilities downloadXml:indexUrl];
     XmlElement* trackListElement = [documentElement element:@"TrackList"];
     XmlElement* plistElement = [trackListElement element:@"plist"];
     XmlElement* outerDict = [plistElement element:@"dict"];
     XmlElement* arrayElement = [outerDict element:@"array"];
     
+    NSMutableArray* urls = [NSMutableArray array];
+    
     for (XmlElement* innerDictElement in [arrayElement elements:@"dict"]) {
         for (XmlElement* child in innerDictElement.children) {
             NSString* text = child.text;
             
             if ([text hasSuffix:@".m4v"]) {
-                [self addKey:movieTitle value:text dictionary:result]; 
+                [urls addObject:text];
             }
         }
+    }
+    
+    if (urls.count) {
+        NSArray* result = [NSArray arrayWithObjects:movieTitle, urls, nil];
+        [self performSelectorOnMainThread:@selector(processResult:) withObject:result waitUntilDone:NO];
     }
 }
 
 - (void) processJsonRow:(NSString*) row
            moviesTitles:(NSArray*) movieTitles
-                 result:(NSMutableDictionary*) result
                  engine:(DifferenceEngine*) engine {
     
     NSArray* values = [row componentsSeparatedByString:@"\""];
@@ -111,10 +126,10 @@
                           [locations objectAtIndex:2],
                           [locations objectAtIndex:3]]; 
     
-    [self findTrailers:movieTitle indexUrl:indexUrl result:result];
+    [self findTrailers:movieTitle indexUrl:indexUrl];
 }
 
-- (NSDictionary*) downloadTrailers:(NSArray*) movies {
+- (void) downloadTrailers:(NSArray*) movies {
     NSURL* url = [NSURL URLWithString:@"http://www.apple.com/trailers/home/feeds/studios.json"];
     NSError* httpError = nil;
     NSString* jsonFeed = [NSString stringWithContentsOfURL:url encoding:NSISOLatin1StringEncoding error:&httpError];
@@ -125,19 +140,16 @@
         [movieTitles addObject:movie.title];
     }
     
-    NSMutableDictionary* result = [NSMutableDictionary dictionary];
     DifferenceEngine* engine = [DifferenceEngine engine];
     
     NSArray* rows = [jsonFeed componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        [self processJsonRow:row moviesTitles:movieTitles result:result engine:engine];
+        [self processJsonRow:row moviesTitles:movieTitles engine:engine];
         
         [autoreleasePool release];
     }
-    
-    return result;
 }
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
@@ -145,17 +157,15 @@
     {        
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        NSDictionary* result = [self downloadTrailers:movies];
-        [self performSelectorOnMainThread:@selector(processResult:) withObject:result waitUntilDone:NO];
+        [self downloadTrailers:movies];
+        [self performSelectorOnMainThread:@selector(onComplete:) withObject:nil waitUntilDone:NO];
         
         [autoreleasePool release];
     }
     [gate unlock];
 }
 
-- (void) processResult:(NSDictionary*) result {
-    self.movieToTrailersMap = result;
-    
+- (void) onComplete:(id) nothing {
     [[NSUserDefaults standardUserDefaults] setObject:self.movieToTrailersMap forKey:@"movieTrailers"];
 }
 
@@ -166,6 +176,10 @@
     }
     
     return result;
+}
+
+- (void) applicationWillTerminate {
+    [[NSUserDefaults standardUserDefaults] setObject:self.movieToTrailersMap forKey:@"movieTrailers"];
 }
 
 

@@ -41,6 +41,7 @@
 }
 
 - (void) applicationWillTerminate:(UIApplication*) application {
+    [self.model applicationWillTerminate];
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
 

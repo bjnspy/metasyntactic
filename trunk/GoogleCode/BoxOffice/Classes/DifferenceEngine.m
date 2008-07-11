@@ -158,7 +158,7 @@ NSInteger DE_min(NSInteger x, NSInteger y) {
         return NO;
     }
     
-    if ([s1 count] > 4 && [s2 count] > 4) {
+    if ([s1 length] > 4 && [s2 length] > 4) {
         if ([s1 rangeOfString:s2 options:NSCaseInsensitiveSearch].location != NSNotFound ||
             [s2 rangeOfString:s1 options:NSCaseInsensitiveSearch].location != NSNotFound) {
             return YES;
@@ -198,4 +198,5 @@ NSInteger DE_min(NSInteger x, NSInteger y) {
         
     return nil;
 }
+
 @end

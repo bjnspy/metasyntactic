@@ -611,5 +611,9 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     return [trailerCache trailersForMovie:movie];
 }
 
+- (void) applicationWillTerminate {
+    [trailerCache applicationWillTerminate];
+}
+
 @end
     

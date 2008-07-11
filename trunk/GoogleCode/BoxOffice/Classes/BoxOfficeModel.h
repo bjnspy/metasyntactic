@@ -112,4 +112,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
 - (NSArray*) trailersForMovie:(Movie*) movie;
 
+- (void) applicationWillTerminate;
+
 @end

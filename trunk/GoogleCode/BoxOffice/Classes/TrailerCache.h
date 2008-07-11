@@ -10,16 +10,18 @@
 
 @interface TrailerCache : NSObject {
     NSLock* gate;
-    NSDictionary* movieToTrailersMap;
+    NSMutableDictionary* movieToTrailersMap;
 }
 
 @property (retain) NSLock* gate;
-@property (retain) NSDictionary* movieToTrailersMap;
+@property (retain) NSMutableDictionary* movieToTrailersMap;
 
 + (TrailerCache*) cache;
 
 - (void) update:(NSArray*) movies;
 
 - (NSArray*) trailersForMovie:(Movie*) movie;
+
+- (void) applicationWillTerminate;
 
 @end
