@@ -13,9 +13,11 @@
 
 @interface MovieDetailsViewController : UITableViewController {
     MoviesNavigationController* navigationController;
+    
     Movie* movie;
     NSArray* theatersArray;
     NSMutableArray* showtimesArray;
+    NSArray* trailersArray;
     
     NSInteger hiddenTheaterCount;
 }
@@ -24,6 +26,7 @@
 @property (retain) Movie* movie;
 @property (retain) NSArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
+@property (retain) NSArray* trailersArray;
 @property NSInteger hiddenTheaterCount;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController

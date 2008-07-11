@@ -87,6 +87,8 @@
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
 		74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC069F0DD2D69B006953A4 /* Utilities.m */; };
 		74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC08720DD3EEBB006953A4 /* MultiDictionary.m */; };
+		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
+		74F189A80E273A1C00AB5E1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
 		74F6579B0DE9BB5100B99D45 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74F6579A0DE9BB5100B99D45 /* Localizable.strings */; };
 		74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
 /* End PBXBuildFile section */
@@ -220,6 +222,9 @@
 		74EC069F0DD2D69B006953A4 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		74EC08710DD3EEBB006953A4 /* MultiDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MultiDictionary.h; sourceTree = "<group>"; };
 		74EC08720DD3EEBB006953A4 /* MultiDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MultiDictionary.m; sourceTree = "<group>"; };
+		74F187200E2710A400AB5E1E /* TrailerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrailerCache.h; sourceTree = "<group>"; };
+		74F187210E2710A400AB5E1E /* TrailerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrailerCache.m; sourceTree = "<group>"; };
+		74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		74F6579A0DE9BB5100B99D45 /* Localizable.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
 		74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
 		74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
@@ -238,6 +243,7 @@
 				749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */,
 				740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */,
 				74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */,
+				74F189A80E273A1C00AB5E1E /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -276,6 +282,8 @@
 				74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */,
 				748217D50E2163760054759E /* ExtraMovieInformation.h */,
 				748217D60E2163760054759E /* ExtraMovieInformation.m */,
+				74F187200E2710A400AB5E1E /* TrailerCache.h */,
+				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -347,6 +355,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */,
 				74CA20B60DD0F93D0046D1CE /* AddressBook.framework */,
 				740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */,
 				749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */,
@@ -606,6 +615,7 @@
 				741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */,
 				748217D70E2163760054759E /* ExtraMovieInformation.m in Sources */,
 				7457FE920E21A41A00929D3E /* Performance.m in Sources */,
+				74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

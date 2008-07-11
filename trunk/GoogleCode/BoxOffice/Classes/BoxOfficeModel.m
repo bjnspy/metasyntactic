@@ -29,6 +29,7 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
 
 @synthesize notificationCenter;
 @synthesize posterCache;
+@synthesize trailerCache;
 @synthesize addressLocationCache;
 @synthesize backgroundTaskCount;
 @synthesize activityView;
@@ -41,6 +42,7 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
 
 - (void) dealloc {
     self.notificationCenter = nil;
+    self.trailerCache = nil;
     self.posterCache = nil;
     self.addressLocationCache = nil;
     self.activityView = nil;
@@ -56,6 +58,10 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
 
 - (void) updatePosterCache {
     [self.posterCache update:self.movies];
+}
+
+- (void) updateTrailerCache {
+    [self.trailerCache update:self.movies];
 }
 
 - (void) updateAddressLocationCache {
@@ -94,6 +100,7 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     if (self = [super init]) {
         self.notificationCenter = notificationCenter_;
         self.posterCache = [PosterCache cache];
+        self.trailerCache = [TrailerCache cache];
         self.addressLocationCache = [AddressLocationCache cache];
         
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
@@ -109,6 +116,7 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
         [self updatePosterCache];
         [self updateAddressLocationCache];
         [self updateZipcodeAddressLocation];
+        [self updateTrailerCache];
     }
     
     return self;
@@ -221,7 +229,8 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     
     [[NSUserDefaults standardUserDefaults] setObject:array forKey:MOVIES_STRING];
     
-    [self updatePosterCache];    
+    [self updatePosterCache];
+    [self updateTrailerCache];
 }
 
 - (void) setMovies:(NSArray*) movies {    
@@ -548,31 +557,21 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (void) createMovieMap {
     if (self.movieMap == nil) {
-        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+        NSMutableArray* movieTitles = [NSMutableArray array];
         
         for (Movie* movie in self.movies) {
-            NSString* title = movie.title;
-            NSString* lowercaseTitle = [title lowercaseString];
+            [movieTitles addObject:movie.title];
+        }
+        
+        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+        
+        for (NSString* key in [self supplementaryInformation]) {
+            NSString* movieTitle = [[Application differenceEngine] findClosestMatch:key inArray:movieTitles];
             
-            NSInteger bestDistance = INT_MAX;
-            NSString* bestKey = nil;
-            
-            for (NSString* key in [self supplementaryInformation]) {
-                int distance = [[Application differenceEngine] editDistanceFrom:lowercaseTitle
-                                                                             to:[key lowercaseString]];
-                
-                if (distance < bestDistance) {
-                    bestKey = key;
-                    bestDistance = distance;
-                }
-            }
-            
-            if (bestKey != nil &&
-                [DifferenceEngine areSimilar:bestKey other:title]) {
-                
-                [dictionary setObject:[[self supplementaryInformation] objectForKey:bestKey]
-                               forKey:movie.identifier];
-            }
+            if (movieTitle != nil) {
+                [dictionary setObject:[[self supplementaryInformation] objectForKey:key]
+                               forKey:movieTitle];
+            }    
         }
         
         self.movieMap = dictionary;
@@ -582,11 +581,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 - (ExtraMovieInformation*) extraInformationForMovie:(Movie*) movie {
     [self createMovieMap];
     
-    return [self.movieMap objectForKey:movie.identifier];
+    return [self.movieMap objectForKey:movie.title];
 }
 
 - (NSInteger) rankingForMovie:(Movie*) movie {
     ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
+    
     if (extraInfo == nil) {
         return -1;
     }
@@ -605,6 +605,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     }
     
     return NSLocalizedString(@"No synopsis available.", nil);
+}
+
+- (NSArray*) trailersForMovie:(Movie*) movie {
+    return [trailerCache trailersForMovie:movie];
 }
 
 @end

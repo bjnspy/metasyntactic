@@ -24,6 +24,7 @@
 @synthesize movie;
 @synthesize theatersArray;
 @synthesize showtimesArray;
+@synthesize trailersArray;
 @synthesize hiddenTheaterCount;
 
 - (void) dealloc {
@@ -31,7 +32,9 @@
     self.movie = nil;
     self.theatersArray = nil;
     self.showtimesArray = nil;
+    self.trailersArray = nil;
     self.hiddenTheaterCount = 0;
+    
     [super dealloc];
 }
 
@@ -69,6 +72,7 @@
          
         self.title = self.movie.title;
         self.navigationItem.titleView = label;
+        self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:self.movie]];
     }
     
     return self;
@@ -90,20 +94,40 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1 + [self.theatersArray count];
+    NSInteger sections = 1;
+    
+    if ([trailersArray count]) {
+        sections += 1;
+    }
+    
+    sections += [self.theatersArray count];
+    
+    return sections;
 }
 
-- (NSInteger)               tableView:(UITableView*) tableView
-                numberOfRowsInSection:(NSInteger) section {
-    if (section == 0) {
-        if (hiddenTheaterCount > 0) {
-            return 3;
-        } else {
-            return 2;
-        }
+- (NSInteger) numberOfRowsInHeaderSection {
+    if (hiddenTheaterCount > 0) {
+        return 3;
     } else {
-        return 1;
+        return 2;
     }
+}
+
+- (NSInteger) numberOfRowsInTrailersSection {
+    return [trailersArray count];
+}
+
+- (NSInteger) tableView:(UITableView*) tableView
+  numberOfRowsInSection:(NSInteger) section {
+    if (section == 0) {
+        return [self numberOfRowsInHeaderSection];
+    }
+    
+    if (section == 1 && trailersArray.count) {
+        return [self numberOfRowsInTrailersSection];
+    }
+        
+    return 1;
 }
 
 - (UIImage*) posterImage {
@@ -114,20 +138,36 @@
     return image;
 }
 
+- (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
+    if (row == 0) {
+        return [self posterImage].size.height + 10;
+    } else {
+        return [self.tableView rowHeight];
+    } 
+}
+
+- (NSInteger) getTheaterIndex:(NSInteger) section {
+    if (trailersArray.count) {
+        return section - 2;
+    } else {
+        return section - 1;
+    }
+}
+
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
     if (section == 0) {
-        if (row == 0) {
-            return [self posterImage].size.height + 10;
-        } else {
-            return [tableView rowHeight];
-        }
+        return [self heightForRowInHeaderSection:row];
     }
     
-    NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:(section - 1)] count];
+    if (section == 1 && self.trailersArray.count) {
+        return [tableView rowHeight];
+    }
+        
+    NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]] count];
     NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
     NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
     if (remainder > 0) {
@@ -137,103 +177,140 @@
     return (rows * 14) + 18;
 }
 
+- (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
+    if (row == 0) {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        
+        UIImage* image = [self posterImage];
+        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        imageView.frame = CGRectMake(5, 5, image.size.width, image.size.height);
+        [cell.contentView addSubview:imageView];
+        
+        int webX = 5 + image.size.width + 5;
+        int webWidth = 295 - webX;
+        CGRect webRect = CGRectMake(webX, 5, webWidth, image.size.height);
+        UIWebView* webView = [[[UIWebView alloc] initWithFrame:webRect] autorelease];
+        
+        NSString* content =
+        [NSString stringWithFormat:
+         @"<html>"
+         "  <head>"
+         "   <style>"
+         "    body {"
+         "     margin-top: -2;"
+         "     margin-bottom: 0;"
+         "     margin-right: 3;"
+         "     margin-left: 3;"
+         "     font-family: \"helvetica\";"
+         "     font-size: 14;"
+         "    }"
+         "   </style>"
+         "  </head>"
+         "  <body>%@</body>"
+         " </html>", [self.model synopsisForMovie:movie]];
+        [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
+        [cell.contentView addSubview:webView]; 
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    } else if (row == 1) {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        
+        NSInteger length = [self.movie.length intValue];
+        NSInteger hours = length / 60;
+        NSInteger minutes = length % 60;
+        
+        NSString* rating = self.movie.rating;
+        if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
+            rating = NSLocalizedString(@"Not rated", nil);
+        } else {
+            rating = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
+        }
+        
+        NSString* text = rating;
+        if (length != 0) {
+            text = [NSString stringWithFormat:@"%@ - %@: %d:%02d",
+                    rating,
+                    NSLocalizedString(@"Running time", nil),
+                    hours, minutes];
+        } 
+        
+        cell.textAlignment = UITextAlignmentCenter;
+        cell.text = text;
+        cell.font = [UIFont boldSystemFontOfSize:14];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        
+        return cell;
+    } else {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        cell.textAlignment = UITextAlignmentCenter;
+        
+        if (self.hiddenTheaterCount == 1) {
+            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d theater outside search radius", nil), self.hiddenTheaterCount];
+        } else {
+            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d theaters outside search radius", nil), self.hiddenTheaterCount];
+        }
+        
+        cell.textColor = [Application commandColor];
+        cell.font = [UIFont boldSystemFontOfSize:14];
+        
+        return cell;
+    }    
+}
+
+- (UITableViewCell*) cellForTrailersRow:(NSInteger) row {
+    static NSString* reuseIdentifier = @"MovieTrailersCellIdentifier";
+    UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        
+        cell.textColor = [Application commandColor];
+        cell.font = [UIFont boldSystemFontOfSize:14];
+        cell.textAlignment = UITextAlignmentCenter;
+    }
+    
+    if (trailersArray.count == 1) {   
+        cell.text = NSLocalizedString(@"Play trailer", nil);
+    } else {
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Play trailer %d", nil), (row + 1)];
+    }
+    
+    return cell;
+}
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
     if (section == 0) {
-        if (row == 0) {
-            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            
-            UIImage* image = [self posterImage];
-            UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-            imageView.frame = CGRectMake(5, 5, image.size.width, image.size.height);
-            [cell.contentView addSubview:imageView];
-            
-            int webX = 5 + image.size.width + 5;
-            int webWidth = 295 - webX;
-            CGRect webRect = CGRectMake(webX, 5, webWidth, image.size.height);
-            UIWebView* webView = [[[UIWebView alloc] initWithFrame:webRect] autorelease];
-            
-            NSString* content =
-            [NSString stringWithFormat:
-             @"<html>"
-             "  <head>"
-             "   <style>"
-             "    body {"
-             "     margin-top: -2;"
-             "     margin-bottom: 0;"
-             "     margin-right: 3;"
-             "     margin-left: 3;"
-             "     font-family: \"helvetica\";"
-             "     font-size: 14;"
-             "    }"
-             "   </style>"
-             "  </head>"
-             "  <body>%@</body>"
-             " </html>", [self.model synopsisForMovie:movie]];
-            [webView loadHTMLString:content baseURL:[NSURL URLWithString:@""]];
-            [cell.contentView addSubview:webView]; 
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
-            return cell;
-        } else if (row == 1) {
-            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            
-            NSInteger length = [self.movie.length intValue];
-            NSInteger hours = length / 60;
-            NSInteger minutes = length % 60;
-            
-            NSString* rating = self.movie.rating;
-            if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
-                rating = NSLocalizedString(@"Not rated", nil);
-            } else {
-                rating = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
-            }
-            
-            NSString* text = rating;
-            if (length != 0) {
-                text = [NSString stringWithFormat:@"%@ - %@: %d:%02d",
-                        rating,
-                        NSLocalizedString(@"Running time", nil),
-                        hours, minutes];
-            } 
-                
-            cell.textAlignment = UITextAlignmentCenter;
-            cell.text = text;
-            cell.font = [UIFont boldSystemFontOfSize:14];
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        return [self cellForHeaderRow:row];
+    } 
+    
+    if (section == 1 && trailersArray.count) {
+        return [self cellForTrailersRow:row];
+    }
+    
+    static NSString* reuseIdentifier = @"MovieDetailsCellIdentifier";
+    MovieShowtimesCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+    }
+    
+    [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]];
+    
+    return cell;
+}
 
-            return cell;
-        } else {
-            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            cell.textAlignment = UITextAlignmentCenter;
-            
-            if (self.hiddenTheaterCount == 1) {
-                cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d theater outside search radius", nil), self.hiddenTheaterCount];
-            } else {
-                cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d theaters outside search radius", nil), self.hiddenTheaterCount];
-            }
-            
-            cell.textColor = [Application commandColor];
-            cell.font = [UIFont boldSystemFontOfSize:14];
-            
-            return cell;
-        }
+- (NSString*) titleForHeaderInTrailersSection {
+    if (trailersArray.count) {
+        return NSLocalizedString(@"Trailers", nil);
     } else {
-        static NSString* reuseIdentifier = @"MovieDetailsCellIdentifier";
-        MovieShowtimesCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];;
-        if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
-        }
-        
-        [cell setShowtimes:[self.showtimesArray objectAtIndex:(section - 1)]];
-  
-        return cell;
+        return nil;
     }
 }
+
 
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
@@ -241,7 +318,46 @@
         return nil;
     }
     
-    return [[self.theatersArray objectAtIndex:(section - 1)] name];
+    if (section == 1 && trailersArray.count) {
+        return [self titleForHeaderInTrailersSection];
+    }
+    
+    return [[self.theatersArray objectAtIndex:[self getTheaterIndex:section]] name];
+}
+
+- (void) didSelectHeaderRow:(NSInteger) row {
+    if (row == 2) {
+        [self initializeData:NO];
+        [self.tableView reloadData];
+    }    
+}
+
+- (void) playMovie:(NSString*) urlString {
+    NSURL* url = [NSURL URLWithString:urlString];
+    MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                             selector:@selector(movieFinishedCallback:)
+                                                 name:MPMoviePlayerPlaybackDidFinishNotification
+                                               object:moviePlayer];
+    
+    [moviePlayer play];
+}
+
+// When the movie is done, release the controller.
+- (void) movieFinishedCallback:(NSNotification*) aNotification {
+    MPMoviePlayerController* moviePlayer = [aNotification object];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                    name:MPMoviePlayerPlaybackDidFinishNotification
+                                                  object:moviePlayer];
+    
+    // Release the movie instance created in playMovieAtURL:
+    [moviePlayer autorelease];
+}
+
+- (void) didSelectTrailersRow:(NSInteger) row {
+    [self playMovie:[trailersArray objectAtIndex:row]];
 }
 
 - (void)            tableView:(UITableView*) tableView
@@ -250,16 +366,15 @@
     NSInteger row = [indexPath row];
     
     if (section == 0) {
-        if (row == 2) {
-            [self initializeData:NO];
-            [self.tableView reloadData];
-        }
-        return;
+        return [self didSelectHeaderRow:row];
     }
     
-    Theater* theater = [self.theatersArray objectAtIndex:(section - 1)];
+    if (section == 1 && trailersArray.count) {
+        return [self didSelectTrailersRow:row];
+    }
     
-
+    Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
+    
     [self.navigationController pushTicketsView:self.movie
                                        theater:theater
                                       animated:YES];
