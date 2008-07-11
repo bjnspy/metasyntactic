@@ -57,7 +57,7 @@
         return NO;
     }
     
-    // it's been less than 4 hours.  it's too soon to refresh
+    // it's been less than 8 hours.  it's too soon to refresh
     return YES;
 }
 
