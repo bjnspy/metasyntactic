@@ -57,9 +57,9 @@
             if (self.image != [Application rottenImage]) {
                 self.image = [Application rottenImage];
                 
-                label.font = [UIFont boldSystemFontOfSize:16];
+                label.font = [UIFont boldSystemFontOfSize:17];
                 label.textColor = [UIColor blackColor];
-                label.frame = CGRectMake(8, 7, 30, 32);
+                label.frame = CGRectMake(9, 6, 30, 32);
             }
         }
         
@@ -68,7 +68,7 @@
     } else {
         label.text = nil;
         self.image = nil;
-        self.text = [NSString stringWithFormat:@"N/A  %@", movie.title];
+        self.text = [NSString stringWithFormat:@"n/a  %@", movie.title];
     }
 }
 

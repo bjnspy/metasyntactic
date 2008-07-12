@@ -88,9 +88,8 @@
     return 1;
 }
 
-- (UITableViewCell*)                tableView:(UITableView*) tableView
-                        cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
@@ -119,13 +118,23 @@
     }
 }
 
-- (NSString*)               tableView:(UITableView*) tableView
-              titleForHeaderInSection:(NSInteger) section {
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
         return nil;
     }
     
     Movie* movie = [self.movies objectAtIndex:(section - 1)];
+    NSInteger ranking = [self.model rankingForMovie:movie];
+    
+    /*
+    if (ranking >= 0) {
+        return [NSString stringWithFormat:@"%@ - %d%% (%@)", movie.title, ranking, movie.rating];
+    } else {
+        return [NSString stringWithFormat:@"%@ (%@)", movie.title, movie.rating];
+    }
+     */
+    
     return movie.title;
 }
 
