@@ -338,7 +338,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1280}, {311, 777}}</string>
+							<string>{{0, 1246}, {311, 777}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -359,7 +359,7 @@
 							<real>289</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>53 41 1081 836 0 0 1440 878 </string>
+						<string>237 42 1081 836 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -377,7 +377,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MovieTitleCell.m</string>
+								<string>CreditsViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -385,11 +385,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MovieTitleCell.m</string>
+										<string>CreditsViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74B15A8F0E2836D000454C12</string>
+										<string>749016760E2895150013FAC9</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -501,7 +501,6 @@
 											<string>74002E160DFE3A530025593C</string>
 											<string>74002E170DFE3A530025593C</string>
 											<string>74002E1A0DFE3A530025593C</string>
-											<string>74002E1B0DFE3A530025593C</string>
 											<string>74002E1C0DFE3A530025593C</string>
 											<string>74002E1F0DFE3A530025593C</string>
 											<string>74002E210DFE3A530025593C</string>
@@ -599,11 +598,8 @@
 											<string>74B15A5D0E28344F00454C12</string>
 											<string>74B15A5E0E28344F00454C12</string>
 											<string>74B15A5F0E28344F00454C12</string>
-											<string>74B15A840E28368A00454C12</string>
-										</array>
-										<key>nextStack</key>
-										<array>
-											<string>74B15A650E28344F00454C12</string>
+											<string>749016740E2895150013FAC9</string>
+											<string>7490166F0E2895050013FAC9</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -766,12 +762,8 @@
 											<string>74FFC0B00E27468E0034A8B9</string>
 											<string>74369BE20E281A2B0030E845</string>
 											<string>749E94CD0E281EA200D53C01</string>
-											<string>74B15A3E0E282B9900454C12</string>
-											<string>74B15A3F0E282B9900454C12</string>
 											<string>74B15A610E28344F00454C12</string>
-											<string>74B15A620E28344F00454C12</string>
-											<string>74B15A630E28344F00454C12</string>
-											<string>74B15A640E28344F00454C12</string>
+											<string>749016750E2895150013FAC9</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -785,7 +777,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {748, 549}}</string>
 								<key>RubberWindowFrame</key>
-								<string>53 41 1081 836 0 0 1440 878 </string>
+								<string>237 42 1081 836 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -805,7 +797,7 @@
 								<key>Frame</key>
 								<string>{{0, 554}, {748, 241}}</string>
 								<key>RubberWindowFrame</key>
-								<string>53 41 1081 836 0 0 1440 878 </string>
+								<string>237 42 1081 836 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -829,9 +821,9 @@
 			</array>
 			<key>TableOfContents</key>
 			<array>
-				<string>74B15A280E28297100454C12</string>
+				<string>7490166C0E2894EF0013FAC9</string>
 				<string>1CE0B1FE06471DED0097A5F4</string>
-				<string>74B15A290E28297100454C12</string>
+				<string>7490166D0E2894EF0013FAC9</string>
 				<string>1CE0B20306471E060097A5F4</string>
 				<string>1CE0B20506471E060097A5F4</string>
 			</array>
@@ -950,7 +942,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>237516496.944249</real>
+	<real>237540629.90847</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -965,18 +957,12 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>74B15A900E2836D000454C12</string>
-		<string>74B15A350E28297100454C12</string>
-		<string>74B15A360E28297100454C12</string>
-		<string>1CD10A99069EF8BA00B06720</string>
-		<string>1C78EAAD065D492600B07095</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>746A021D0DC8202B0079D89B</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>74B15A910E2836D000454C12</string>
 	</array>
 	<key>WindowString</key>
-	<string>53 41 1081 836 0 0 1440 878 </string>
+	<string>237 42 1081 836 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -1014,8 +1000,6 @@
 							<string>245pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1055,7 +1039,7 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>746A021D0DC8202B0079D89B</string>
-				<string>74B15A2A0E28297100454C12</string>
+				<string>749016770E2895150013FAC9</string>
 				<string>1CD0528F0623707200166675</string>
 				<string>XCMainBuildResultsModuleGUID</string>
 			</array>
@@ -1066,7 +1050,7 @@
 			<key>WindowToolGUID</key>
 			<string>746A021D0DC8202B0079D89B</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
@@ -1215,7 +1199,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MovieTitleCell.m</string>
+										<string>CreditsViewController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1271,8 +1255,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>74B15A860E28368A00454C12</string>
-				<string>74B15A870E28368A00454C12</string>
+				<string>749016710E2895050013FAC9</string>
+				<string>749016720E2895050013FAC9</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>
@@ -1281,7 +1265,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
