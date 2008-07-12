@@ -125,9 +125,9 @@
     }
     
     Movie* movie = [self.movies objectAtIndex:(section - 1)];
-    NSInteger ranking = [self.model rankingForMovie:movie];
     
     /*
+     NSInteger ranking = [self.model rankingForMovie:movie];
     if (ranking >= 0) {
         return [NSString stringWithFormat:@"%@ - %d%% (%@)", movie.title, ranking, movie.rating];
     } else {

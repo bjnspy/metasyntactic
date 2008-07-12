@@ -21,6 +21,7 @@
 + (UIImage*) freshImage;
 + (UIImage*) rottenImage;
 
++ (void) openBrowser:(NSString*) address;
 + (void) openMap:(NSString*) address;
 + (void) makeCall:(NSString*) phoneNumber;
 

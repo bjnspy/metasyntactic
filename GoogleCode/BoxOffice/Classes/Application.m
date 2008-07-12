@@ -127,20 +127,27 @@ static DifferenceEngine* differenceEngine = nil;
     return rottenImage;
 }
 
++ (void) openBrowser:(NSString*) address {
+    if (address == nil) {
+        return;
+    }
+    
+    NSURL* url = [NSURL URLWithString:address];
+    [[UIApplication sharedApplication] openURL:url];
+}
+
 + (void) openMap:(NSString*) address {
     NSString* urlString =
     [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
      [address stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding]];
     
-    NSURL* url = [NSURL URLWithString:urlString];
-    [[UIApplication sharedApplication] openURL:url];    
+    [self openBrowser:urlString];
 }
 
 + (void) makeCall:(NSString*) phoneNumber {
     NSString* urlString = [NSString stringWithFormat:@"tel:%@", phoneNumber];
     
-    NSURL* url = [NSURL URLWithString:urlString];
-    [[UIApplication sharedApplication] openURL:url];    
+    [self openBrowser:urlString];   
 }
 
 + (DifferenceEngine*) differenceEngine {
