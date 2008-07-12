@@ -150,7 +150,7 @@
     
     NSString* urlString;
     if (section == 0) {
-        urlString = @"mailto:cyrusn@stwing.upenn.edu";
+        urlString = @"mailto:cyrus.najmabadi@gmail.com";
     } else if (section == 1) {
         urlString = @"http://www.rottentomatoes.com";
     } else if (section == 2) {
