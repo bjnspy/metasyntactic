@@ -78,8 +78,8 @@
     return [self.movies count] + 1;
 }
 
-- (NSInteger)               tableView:(UITableView*) tableView
-                numberOfRowsInSection:(NSInteger) section {
+- (NSInteger)     tableView:(UITableView*) tableView
+      numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         // theater address and possibly phone number
         return [Utilities isNilOrEmpty:theater.phoneNumber] ? 1 : 2;
