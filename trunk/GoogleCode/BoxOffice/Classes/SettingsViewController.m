@@ -38,10 +38,10 @@
         self.navigationController = controller;
         
         self.currentLocationItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
-                                                                     style:UIBarButtonItemStyleBordered
+                                                                     style:UIBarButtonItemStylePlain
                                                                     target:self
-                                                                    action:@selector(onCurrentLocationClicked:)] autorelease]; 
-        
+                                                                    action:@selector(onCurrentLocationClicked:)] autorelease];
+
         self.navigationItem.leftBarButtonItem = currentLocationItem;
         
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];

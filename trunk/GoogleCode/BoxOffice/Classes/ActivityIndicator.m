@@ -11,18 +11,26 @@
 @implementation ActivityIndicator
 
 @synthesize navigationItem;
-@synthesize startButtonItem;
+@synthesize originalTarget;
 
 - (void) dealloc {
     self.navigationItem = nil;
-    self.startButtonItem = nil;
+    self.originalTarget = nil;
+    
     [super dealloc];
 }
 
 - (id) initWithNavigationItem:(UINavigationItem*) item {
     if (self = [super init]) {
         self.navigationItem = item;
-        self.startButtonItem = self.navigationItem.leftBarButtonItem;
+        UIBarButtonItem* button = self.navigationItem.leftBarButtonItem;
+        
+        self.originalTarget = button.target;
+        originalSelector = button.action;
+        
+        button.target = self;
+        button.action = @selector(onButtonClicked:);
+        
         running = NO;
     }
     
@@ -33,16 +41,10 @@
     if (running == NO) {
         return;
     }
-    
+
     NSInteger i = [number intValue];
-    NSString* imageName = [NSString stringWithFormat:@"Spinner%d.png", i];
-    UIBarButtonItem* currentLocationItem =
-    [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:imageName]
-                                      style:UIBarButtonItemStylePlain
-                                     target:nil
-                                     action:nil] autorelease];
-    
-    self.navigationItem.leftBarButtonItem = currentLocationItem;
+    self.navigationItem.leftBarButtonItem.image = 
+        [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
     
     [self performSelector:@selector(updateImage:) withObject:[NSNumber numberWithInt:((i + 1) % 10)] afterDelay:0.1];
 }
@@ -54,11 +56,20 @@
 
 - (void) stop:(id) sender {
     running = NO;
-    self.navigationItem.leftBarButtonItem = self.startButtonItem;
+    
+    UIBarButtonItem* button = self.navigationItem.leftBarButtonItem;
+
+    button.image = [UIImage imageNamed:@"CurrentPosition.png"];
+    button.target = originalTarget;
+    button.action = originalSelector;
 }
 
 - (void) stop {
     [self stop:nil];
+}
+
+- (void) onButtonClicked:(id) sender {
+    [self stop];
 }
 
 @end
