@@ -194,7 +194,7 @@
      (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
      fromDate:date];
     
-    NSString* urlString =
+    NSString* url =
     [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
      movieId,
      theaterId,
@@ -204,9 +204,7 @@
      [components hour],
      [components minute]];
     
-    NSURL* url = [NSURL URLWithString:urlString];
-    
-    [[UIApplication sharedApplication] openURL:url];    
+    [Application openBrowser:url];  
 }
 
 - (void)            tableView:(UITableView*) tableView

@@ -7,7 +7,7 @@
 //
 
 #import "CreditsViewController.h"
-
+#import "Application.h"
 
 @implementation CreditsViewController
 
@@ -148,27 +148,26 @@
     NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
-    NSString* urlString;
+    NSString* url = nil;
     if (section == 0) {
-        urlString = @"mailto:cyrus.najmabadi@gmail.com";
+        url = @"mailto:cyrus.najmabadi@gmail.com";
     } else if (section == 1) {
-        urlString = @"http://www.rottentomatoes.com";
+        url = @"http://www.rottentomatoes.com";
     } else if (section == 2) {
-        urlString = @"http://www.ignyte.com";
+        url = @"http://www.ignyte.com";
     } else if (section == 3) {
-        urlString = @"http://www.fandango.com";
+        url = @"http://www.fandango.com";
     } else if (section == 4) {
-        urlString = @"http://www.trynt.com";
+        url = @"http://www.trynt.com";
     } else if (section == 5) {
         if (row == 0) {
-            urlString = @"http://www.yahoo.com";
+            url = @"http://www.yahoo.com";
         } else {
-            urlString = @"http://www.geonames.org";
+            url = @"http://www.geonames.org";
         }
     }
     
-    NSURL* url = [NSURL URLWithString:urlString];
-    [[UIApplication sharedApplication] openURL:url];
+    [Application openBrowser:url];
 }
 
 

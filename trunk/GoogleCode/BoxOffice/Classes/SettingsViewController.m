@@ -14,6 +14,7 @@
 #import "PickerEditorViewController.h"
 #import "Utilities.h"
 #import "CreditsViewController.h"
+#import "Application.h"
 
 @implementation SettingsViewController
 
@@ -27,6 +28,7 @@
     self.currentLocationItem = nil;
     self.activityIndicator = nil;
     self.locationManager = nil;
+    
     [super dealloc];
 }
 
@@ -122,11 +124,17 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    return UITableViewCellAccessoryDisclosureIndicator;
+    NSInteger section = [indexPath section];
+    
+    if (section == 3) {
+        return UITableViewCellAccessoryNone;
+    } else {
+        return UITableViewCellAccessoryDisclosureIndicator;
+    }
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 3;
+    return 4;
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
@@ -146,6 +154,10 @@
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
     } else if (section == 2) {
         cell.text = NSLocalizedString(@"About", nil);
+    } else {
+        cell.text = NSLocalizedString(@"Donate", nil);
+        cell.textColor = [Application commandColor];
+        cell.textAlignment = UITextAlignmentCenter;
     }
     
     return cell;
@@ -195,9 +207,9 @@
     } else if (section == 2) {
         CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
+    } else if (section == 3) {
+        [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     }
-    
-    return;
 }
 
 - (void) onZipcodeChanged:(NSString*) zipcode {
