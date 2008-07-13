@@ -19,6 +19,8 @@ static NSDateFormatter* dateFormatter = nil;
 static UIColor* commandColor = nil;
 static UIImage* freshImage = nil;
 static UIImage* rottenImage = nil;
+static UIImage* emptyStarImage = nil;
+static UIImage* filledStarImage = nil;
 static DifferenceEngine* differenceEngine = nil;
 static NSString* starString = nil;
 
@@ -35,8 +37,13 @@ static NSString* starString = nil;
         
         freshImage = [UIImage imageNamed:@"Fresh.png"];
         rottenImage = [UIImage imageNamed:@"Rotten.png"];
+        emptyStarImage = [UIImage imageNamed:@"Empty Star.png"];
+        filledStarImage = [UIImage imageNamed:@"Filled Star.png"];
+        
         [freshImage retain];
         [rottenImage retain];
+        [emptyStarImage retain];
+        [filledStarImage retain];
         
         differenceEngine = [DifferenceEngine engine];
         [differenceEngine retain];
@@ -126,6 +133,14 @@ static NSString* starString = nil;
 
 + (UIImage*) rottenImage {
     return rottenImage;
+}
+
++ (UIImage*) emptyStarImage {
+    return emptyStarImage;
+}
+
++ (UIImage*) filledStarImage {
+    return filledStarImage;
 }
 
 + (void) openBrowser:(NSString*) address {

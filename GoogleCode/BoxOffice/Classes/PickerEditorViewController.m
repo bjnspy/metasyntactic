@@ -33,8 +33,8 @@
         self.picker.delegate = self;
         self.picker.showsSelectionIndicator = YES;
         [self.picker selectRow:[values indexOfObject:defaultValue]
-         inComponent:0
-         animated:NO];
+                   inComponent:0
+                      animated:NO];
         
         self.title = title;
     }

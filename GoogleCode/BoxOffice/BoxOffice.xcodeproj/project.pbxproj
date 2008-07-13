@@ -72,6 +72,8 @@
 		749DF1710DC9737700A551D9 /* BoxOfficeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
+		74A22CD30E2A8CF8006E525F /* Empty Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A22CD10E2A8CF8006E525F /* Empty Star.png */; };
+		74A22CD40E2A8CF8006E525F /* Filled Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A22CD20E2A8CF8006E525F /* Filled Star.png */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
@@ -195,6 +197,8 @@
 		749DF1700DC9737700A551D9 /* BoxOfficeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeController.m; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		74A22CD10E2A8CF8006E525F /* Empty Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Empty Star.png"; sourceTree = "<group>"; };
+		74A22CD20E2A8CF8006E525F /* Filled Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Filled Star.png"; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
@@ -320,6 +324,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74A22CD10E2A8CF8006E525F /* Empty Star.png */,
+				74A22CD20E2A8CF8006E525F /* Filled Star.png */,
 				741111D00DFD028500B94FB5 /* IgnyteLogo.png */,
 				741111D10DFD028500B94FB5 /* RottenTomatoesLogo.png */,
 				741111D20DFD028500B94FB5 /* YahooLogo.png */,
@@ -557,6 +563,8 @@
 				741111D40DFD028500B94FB5 /* RottenTomatoesLogo.png in Resources */,
 				741111D50DFD028500B94FB5 /* YahooLogo.png in Resources */,
 				744258210E21C3E6006B1AA5 /* Default.png in Resources */,
+				74A22CD30E2A8CF8006E525F /* Empty Star.png in Resources */,
+				74A22CD40E2A8CF8006E525F /* Filled Star.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
