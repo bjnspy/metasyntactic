@@ -22,7 +22,7 @@
 @property (retain) NSLock* quickLookupLock;
 @property (retain) NSLock* fullLookupLock;
 
-- (void) setZipcode:(NSString*) zipcode;
+- (void) setPostalCode:(NSString*) postalCode;
 - (void) setSearchRadius:(NSInteger) radius;
 
 + (BoxOfficeController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;

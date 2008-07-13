@@ -22,10 +22,10 @@
 + (AddressLocationCache*) cache;
 
 - (void) updateAddresses:(NSArray*) addresses;
-- (void) updateZipcode:(NSString*) zipcode;
+- (void) updatePostalCode:(NSString*) postalCode;
 
 - (Location*) locationForAddress:(NSString*) address;
-- (Location*) locationForZipcode:(NSString*) zipcode;
+- (Location*) locationForPostalCode:(NSString*) postalCode;
 
 - (NSDictionary*) theaterDistanceMap:(Location*) userLocation
                             theaters:(NSArray*) theaters;

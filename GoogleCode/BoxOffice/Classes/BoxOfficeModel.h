@@ -68,8 +68,8 @@
 - (void) setCurrentlySelectedMovie:(Movie*) movie 
                            theater:(Theater*) theater;
 
-- (NSString*) zipcode;
-- (void) setZipcode:(NSString*) zipcode;
+- (NSString*) postalCode;
+- (void) setPostalCode:(NSString*) postalCode;
 
 - (NSInteger) searchRadius;
 - (void) setSearchRadius:(NSInteger) searchRadius;
@@ -88,7 +88,7 @@
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (Location*) locationForAddress:(NSString*) address;
-- (Location*) locationForZipcode:(NSString*) zipcode;
+- (Location*) locationForPostalCode:(NSString*) postalCode;
 
 - (NSArray*) theatersShowingMovie:(Movie*) movie;
 - (NSArray*) moviesAtTheater:(Theater*) theater;

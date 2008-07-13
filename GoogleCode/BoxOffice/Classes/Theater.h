@@ -16,7 +16,7 @@
     NSString* phoneNumber;
     NSDictionary* movieToShowtimesMap;
     NSString* sellsTickets;
-    NSString* sourceZipCode;
+    NSString* sourcePostalCode;
 }
 
 @property (copy) NSString* identifier;
@@ -24,7 +24,7 @@
 @property (copy) NSString* address;
 @property (copy) NSString* phoneNumber;
 @property (copy) NSString* sellsTickets;
-@property (copy) NSString* sourceZipCode;
+@property (copy) NSString* sourcePostalCode;
 @property (retain) NSDictionary* movieToShowtimesMap;
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
@@ -33,7 +33,7 @@
                        phoneNumber:(NSString*) phoneNumber
                       sellsTickets:(NSString*) sellsTickets
                movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap
-                     sourceZipCode:(NSString*) sourceZipCode;
+                     sourcePostalCode:(NSString*) sourcePostalCode;
 
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
 

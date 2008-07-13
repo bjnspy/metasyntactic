@@ -37,6 +37,6 @@
 - (void)locationManager:(CLLocationManager*) manager
        didFailWithError:(NSError*) error;
 
-- (void) findZipcode:(CLLocation*) location;
+- (void) findPostalCode:(CLLocation*) location;
 
 @end

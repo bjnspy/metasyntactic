@@ -15,7 +15,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.7";
+static NSString* currentVersion = @"1.2.8";
 
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
@@ -25,7 +25,7 @@ static NSString* SEARCH_RESULTS                         = @"searchResults";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* MOVIES                                 = @"movies";
 static NSString* THEATERS                               = @"theaters";
-static NSString* ZIPCODE                                = @"zipcode";
+static NSString* ZIPCODE                                = @"postalCode";
 static NSString* SUPPLEMENTARY_DATA                     = @"supplementaryData";
 static NSString* CURRENTLY_SELECTED_MOVIE               = @"currentlySelectedMovie";
 static NSString* CURRENTLY_SELECTED_THEATER             = @"currentlySelectedTheater";
@@ -107,8 +107,8 @@ static NSArray* KEYS;
     [self.addressLocationCache updateAddresses:addresses];
 }
 
-- (void) updateZipcodeAddressLocation {
-    [self.addressLocationCache updateZipcode:self.zipcode];
+- (void) updatePostalCodeAddressLocation {
+    [self.addressLocationCache updatePostalCode:self.postalCode];
 }
 
 - (void) clearOldSearchResults {
@@ -163,7 +163,7 @@ static NSArray* KEYS;
         
         [self updatePosterCache];
         [self updateAddressLocationCache];
-        [self updateZipcodeAddressLocation];
+        [self updatePostalCodeAddressLocation];
         [self updateTrailerCache];
     }
     
@@ -218,7 +218,7 @@ static NSArray* KEYS;
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_THEATERS_SELECTED_SEGMENT_INDEX];
 }
 
-- (NSString*) zipcode {
+- (NSString*) postalCode {
     NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:ZIPCODE];
     if (result == nil) {
         result =  @"";
@@ -453,8 +453,8 @@ static NSArray* KEYS;
     return [self.addressLocationCache locationForAddress:address];
 }
 
-- (Location*) locationForZipcode:(NSString*) zipcode {
-    return [self.addressLocationCache locationForZipcode:zipcode];
+- (Location*) locationForPostalCode:(NSString*) postalCode {
+    return [self.addressLocationCache locationForPostalCode:postalCode];
 }
 
 - (NSArray*) theatersShowingMovie:(Movie*) movie {
@@ -495,7 +495,7 @@ static NSArray* KEYS;
 }
 
 - (NSDictionary*) theaterDistanceMap {
-    Location* userLocation = [self locationForZipcode:[self zipcode]];
+    Location* userLocation = [self locationForPostalCode:[self postalCode]];
     return [self.addressLocationCache theaterDistanceMap:userLocation theaters:self.theaters];
 }
 
@@ -547,15 +547,15 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     return compareTheatersByName(t1, t2, nil);
 }
 
-- (void) setZipcode:(NSString*) zipcode {
-    if ([zipcode isEqual:[self zipcode]]) {
+- (void) setPostalCode:(NSString*) postalCode {
+    if ([postalCode isEqual:[self postalCode]]) {
         return;
     }
     
     [self clearLastFullUpdateTime];
-    [[NSUserDefaults standardUserDefaults] setObject:zipcode forKey:ZIPCODE];
+    [[NSUserDefaults standardUserDefaults] setObject:postalCode forKey:ZIPCODE];
     
-    [self updateZipcodeAddressLocation];
+    [self updatePostalCodeAddressLocation];
 }
 
 - (Movie*) currentlySelectedMovie {

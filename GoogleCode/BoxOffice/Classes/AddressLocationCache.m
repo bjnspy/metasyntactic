@@ -143,33 +143,33 @@
     [gate unlock];
 }
 
-- (Location*) locationForZipcode:(NSString*) zipcode {
-    return [self locationForAddress:zipcode];
+- (Location*) locationForPostalCode:(NSString*) postalCode {
+    return [self locationForAddress:postalCode  ];
 }
 
-- (void) updateZipcodeBackgroundEntryPoint:(NSString*) zipcode
+- (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode
 {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
-    [self downloadAddressLocation:zipcode];
+    [self downloadAddressLocation:postalCode];
     
     [autoreleasePool release];    
 }
 
-- (void) updateZipcode:(NSString*) zipcode
+- (void) updatePostalCode:(NSString*) postalCode
 {
     self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
     
-    if ([Utilities isNilOrEmpty:zipcode]) {
+    if ([Utilities isNilOrEmpty:postalCode]) {
         return;
     }
     
-    if ([self locationForZipcode:zipcode] != nil) {
+    if ([self locationForPostalCode:postalCode] != nil) {
         return;
     }
     
-    [self performSelectorInBackground:@selector(updateZipcodeBackgroundEntryPoint:)
-                           withObject:zipcode];    
+    [self performSelectorInBackground:@selector(updatePostalCodeBackgroundEntryPoint:)
+                           withObject:postalCode];    
 }
 
 - (void) invalidateCachedData:(id) object {

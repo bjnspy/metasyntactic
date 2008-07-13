@@ -74,34 +74,34 @@
             fromLocation:(CLLocation*) oldLocation {
     if (oldLocation != nil) {
         [locationManager stopUpdatingLocation];
-        [self performSelectorInBackground:@selector(findZipcodeBackgroundEntryPoint:) withObject:newLocation];
+        [self performSelectorInBackground:@selector(findPostalCodeBackgroundEntryPoint:) withObject:newLocation];
     }
 }
 
-- (void) findZipcodeBackgroundEntryPoint:(CLLocation*) location {
+- (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
-    [self findZipcode:location];
+    [self findPostalCode:location];
     
     [autoreleasePool release];
 }
 
-- (void) findZipcode:(CLLocation*) location {
+- (void) findPostalCode:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = [location coordinate];
     
     NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", coordinates.latitude, coordinates.longitude];
 
     XmlElement* geonamesElement = [Utilities downloadXml:urlString];
     
-    NSString* zipcode = nil;
+    NSString* postalCode = nil;
     if (geonamesElement != nil)
     {
         XmlElement* codeElement = [geonamesElement element:@"code"];
         XmlElement* postalElement = [codeElement element:@"postalcode"];
-        zipcode = [postalElement text];
+        postalCode = [postalElement text];
     }
     
-    [self performSelectorOnMainThread:@selector(reportFoundZipcode:) withObject:zipcode waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(reportFoundPostalCode:) withObject:postalCode waitUntilDone:NO];
 }
 
 - (void)locationManager:(CLLocationManager*) manager
@@ -149,7 +149,7 @@
     NSInteger section = [indexPath section];
     
     if (section == 0) {
-        cell.text = [[self model] zipcode];
+        cell.text = [[self model] postalCode];
     } else if (section == 1) {
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
     } else if (section == 2) {
@@ -166,7 +166,7 @@
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
-        return NSLocalizedString(@"Zipcode", nil);
+        return NSLocalizedString(@"Postal code", nil);
     } else if (section == 1) {
         return NSLocalizedString(@"Search radius", nil);
     }
@@ -181,10 +181,10 @@
     if (section == 0) {
         TextFieldEditorViewController* controller = 
         [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
-                                                         withTitle:NSLocalizedString(@"Zipcode", nil)
+                                                         withTitle:NSLocalizedString(@"PostalCode", nil)
                                                         withObject:self
-                                                      withSelector:@selector(onZipcodeChanged:)
-                                                          withText:[self.model zipcode]
+                                                      withSelector:@selector(onPostalCodeChanged:)
+                                                          withText:[self.model postalCode]
                                                           withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
         
         [self.navigationController pushViewController:controller animated:YES];
@@ -212,27 +212,27 @@
     }
 }
 
-- (void) onZipcodeChanged:(NSString*) zipcode {
+- (void) onPostalCodeChanged:(NSString*) postalCode {
     NSMutableString* trimmed = [NSMutableString string];
-    for (NSInteger i = 0; i < [zipcode length]; i++) {
-        unichar c = [zipcode characterAtIndex:i];
+    for (NSInteger i = 0; i < [postalCode length]; i++) {
+        unichar c = [postalCode characterAtIndex:i];
         if (isalnum(c)) {
             [trimmed appendString:[NSString stringWithCharacters:&c length:1]];
         }
     }
     
-    [self.controller setZipcode:trimmed];
+    [self.controller setPostalCode:trimmed];
     [self.tableView reloadData];
 }
 
-- (void) reportFoundZipcode:(NSString*) zipcode {
+- (void) reportFoundPostalCode:(NSString*) postalCode {
     [self stopActivityIndicator];
     
-    if ([Utilities isNilOrEmpty:zipcode]) {
+    if ([Utilities isNilOrEmpty:postalCode]) {
         return;
     }
     
-    [self onZipcodeChanged:zipcode];
+    [self onPostalCodeChanged:postalCode];
 }
 
 - (void) onSearchRadiusChanged:(NSString*) radius {
