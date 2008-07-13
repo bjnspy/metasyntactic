@@ -15,6 +15,9 @@
 
 @implementation BoxOfficeModel
 
+static NSString* currentVersion = @"1.2";
+
+static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME = @"lastFullUpdateTime";
 static NSString* SEARCH_DATES_STRING = @"searchDates";
@@ -26,6 +29,26 @@ static NSString* ZIPCODE_STRING = @"zipcode";
 static NSString* SUPPLEMENTARY_DATA = @"supplementaryData";
 static NSString* CURRENTLY_SELECTED_MOVIE_STRING = @"currentlySelectedMovie";
 static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater";
+static NSArray* KEYS;
+
++ (void) initialize {
+    if (self == [BoxOfficeModel class]) {
+        KEYS = [[NSArray arrayWithObjects:
+                VERSION,
+                LAST_QUICK_UPDATE_TIME,
+                LAST_FULL_UPDATE_TIME,
+                SEARCH_DATES_STRING, 
+                SEARCH_RESULTS_STRING,
+                SEARCH_RADIUS_STRING,
+                MOVIES_STRING,
+                THEATERS_STRING,
+                ZIPCODE_STRING,
+                SUPPLEMENTARY_DATA,
+                CURRENTLY_SELECTED_MOVIE_STRING,
+                CURRENTLY_SELECTED_THEATER_STRING,
+                nil] retain];
+    }
+}
 
 @synthesize notificationCenter;
 @synthesize posterCache;
@@ -96,8 +119,23 @@ static NSString* CURRENTLY_SELECTED_THEATER_STRING = @"currentlySelectedTheater"
     [[NSUserDefaults standardUserDefaults] setObject:searchResults forKey:SEARCH_RESULTS_STRING];
 }
 
+- (void) checkUserDefaults {
+    NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
+    if (![currentVersion isEqual:version]) {
+        for (NSString* key in KEYS) {
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
+        }
+        
+        [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
+    }
+    
+}
+
+
 - (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
     if (self = [super init]) {
+        [self checkUserDefaults];
+        
         self.notificationCenter = notificationCenter_;
         self.posterCache = [PosterCache cache];
         self.trailerCache = [TrailerCache cache];
