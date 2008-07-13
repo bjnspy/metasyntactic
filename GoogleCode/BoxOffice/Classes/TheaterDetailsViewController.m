@@ -26,12 +26,14 @@
 @synthesize theater;
 @synthesize movies;
 @synthesize movieShowtimes;
+@synthesize segmentedControl;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.theater = nil;
     self.movies = nil;
     self.movieShowtimes = nil;
+    self.segmentedControl = nil;
     
     [super dealloc];
 }
@@ -77,7 +79,7 @@
          
         self.title = self.theater.name;
         self.navigationItem.titleView = label;
-        
+   
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[Application emptyStarImage]
                                                                                    style:UIBarButtonItemStylePlain
                                                                                   target:self

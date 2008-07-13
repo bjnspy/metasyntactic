@@ -417,11 +417,31 @@ static NSArray* KEYS;
 }
 
 - (BOOL) isFavoriteTheater:(Theater*) theater {
-    return [[self favoriteTheaters] containsObject:[theater dictionary]];
+    NSMutableArray* array = [self favoriteTheaters];
+    
+    for (int i = 0; i < [array count]; i++) {
+        Theater* currentTheater = [Theater theaterWithDictionary:[array objectAtIndex:i]];
+        
+        if ([currentTheater.identifier isEqual:theater.identifier]) {
+            return YES;
+        }
+    }
+    
+    return false;
 }
 
 - (void) removeFavoriteTheater:(Theater*) theater {
-    [[self favoriteTheaters] removeObject:[theater dictionary]];
+    NSMutableArray* array = [self favoriteTheaters];
+    
+    for (int i = 0; i < [array count]; i++) {
+        Theater* currentTheater = [Theater theaterWithDictionary:[array objectAtIndex:i]];
+        
+        if ([currentTheater.identifier isEqual:theater.identifier]) {
+            [array removeObjectAtIndex:i];
+            break;
+        }
+    }
+    
     [self saveFavoriteTheaters];
 }
 
