@@ -145,6 +145,11 @@ static DifferenceEngine* differenceEngine = nil;
 }
 
 + (void) makeCall:(NSString*) phoneNumber {
+    if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
+        // can't make a phonecall if you're not an iPhone.
+        return;
+    }
+    
     NSString* urlString = [NSString stringWithFormat:@"tel:%@", phoneNumber];
     
     [self openBrowser:urlString];   

@@ -102,28 +102,32 @@
                           unknownDistance, nil];
     
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
-        double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
-        
-        if (distance <= 0.5) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
-        } else if (distance <= 1) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:oneHalfToOneMile];
-        } else if (distance <= 2) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:oneToTwoMiles];
-        } else if (distance <= 5) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:twoToFileMiles];
-        } else if (distance <= 10) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:fiveToTenMiles];
-        } else if (distance <= 15) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:tenToFifteenMiles];
-        } else if (distance <= 25) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:fifteenToTwentyFiveMiles];
-        } else if (distance <= 50) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:twentyFiveToFiftyMiles];
-        } else if (distance < UNKNOWN_DISTANCE) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
+        if ([self.model isFavoriteTheater:theater]) {
+            [self.sectionTitleToContentsMap addObject:theater forKey:favorites];
         } else {
-            [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
+            double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
+            
+            if (distance <= 0.5) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
+            } else if (distance <= 1) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:oneHalfToOneMile];
+            } else if (distance <= 2) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:oneToTwoMiles];
+            } else if (distance <= 5) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:twoToFileMiles];
+            } else if (distance <= 10) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:fiveToTenMiles];
+            } else if (distance <= 15) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:tenToFifteenMiles];
+            } else if (distance <= 25) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:fifteenToTwentyFiveMiles];
+            } else if (distance <= 50) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:twentyFiveToFiftyMiles];
+            } else if (distance < UNKNOWN_DISTANCE) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
+            } else {
+                [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
+            }
         }
     }
     
