@@ -30,4 +30,7 @@
 + (NSString*) searchHost;
 + (NSMutableArray*) hosts;
 
++ (unichar) starCharacter;
++ (NSString*) starString;
+
 @end

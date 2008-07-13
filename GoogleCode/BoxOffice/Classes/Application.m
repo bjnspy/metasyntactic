@@ -20,6 +20,7 @@ static UIColor* commandColor = nil;
 static UIImage* freshImage = nil;
 static UIImage* rottenImage = nil;
 static DifferenceEngine* differenceEngine = nil;
+static NSString* starString = nil;
 
 + (void) initialize {
     if (self == [Application class]) {
@@ -173,6 +174,19 @@ static DifferenceEngine* differenceEngine = nil;
             @"metaboxoffice4",
             @"metaboxoffice5",
             @"metaboxoffice6", nil]; 
+}
+
++ (unichar) starCharacter {
+    return (unichar)0x2605;
+}
+
++ (NSString*) starString {
+    if (starString == nil) {
+        unichar c = [Application starCharacter];
+        starString = [NSString stringWithCharacters:&c length:1];
+    }
+    
+    return starString;
 }
 
 @end
