@@ -17,7 +17,7 @@
 @synthesize phoneNumber;
 @synthesize sellsTickets;
 @synthesize movieToShowtimesMap;
-@synthesize sourceZipCode;
+@synthesize sourcePostalCode;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -26,7 +26,7 @@
     self.phoneNumber = nil;
     self.sellsTickets = nil;
     self.movieToShowtimesMap = nil;
-    self.sourceZipCode = nil;
+    self.sourcePostalCode = nil;
     
     [super dealloc];
 }
@@ -72,7 +72,7 @@
                               phoneNumber:[dictionary objectForKey:@"phoneNumber"]
                              sellsTickets:[dictionary objectForKey:@"sellsTickets"]
                       movieToShowtimesMap:[Theater decodeShowtimeMap:[dictionary objectForKey:@"movieToShowtimeMap"]]
-                            sourceZipCode:[dictionary objectForKey:@"sourceZipCode"]];
+                            sourcePostalCode:[dictionary objectForKey:@"sourcePostalCode"]];
 }
 
 NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
@@ -91,7 +91,7 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
                       phoneNumber:(NSString*) aPhoneNumber
                      sellsTickets:(NSString*) aSellsTickets
               movieToShowtimesMap:(NSDictionary*) aDictionary
-                    sourceZipCode:(NSString*) aSourceZipcode {
+                    sourcePostalCode:(NSString*) aSourcePostalCode {
     if (self = [self init]) {
         self.identifier = anIdentifier;
         self.name = [aName stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -99,7 +99,7 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
         self.phoneNumber = aPhoneNumber != nil ? aPhoneNumber : @"";
         self.sellsTickets = aSellsTickets;
         self.movieToShowtimesMap = aDictionary;
-        self.sourceZipCode = aSourceZipcode;
+        self.sourcePostalCode = aSourcePostalCode;
     }
     
     return self;
@@ -111,14 +111,14 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
                        phoneNumber:(NSString*) phoneNumber
                       sellsTickets:(NSString*) sellsTickets
                movieToShowtimesMap:(NSDictionary*) map
-                     sourceZipCode:(NSString*) sourceZipCode {
+                     sourcePostalCode:(NSString*) sourcePostalCode {
     return [[[Theater alloc] initWithIdentifier:identifier
                                            name:name
                                         address:address
                                     phoneNumber:phoneNumber
                                    sellsTickets:sellsTickets
                             movieToShowtimesMap:map
-                                  sourceZipCode:sourceZipCode] autorelease];
+                                  sourcePostalCode:sourcePostalCode] autorelease];
 }
 
 - (NSDictionary*) dictionary {
@@ -129,7 +129,7 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
     [dictionary setObject:self.phoneNumber forKey:@"phoneNumber"];
     [dictionary setObject:self.sellsTickets forKey:@"sellsTickets"];
     [dictionary setObject:[Theater encodeShowtimeMap:self.movieToShowtimesMap] forKey:@"movieToShowtimeMap"];
-    [dictionary setObject:self.sourceZipCode forKey:@"sourceZipCode"];
+    [dictionary setObject:self.sourcePostalCode forKey:@"sourcePostalCode"];
     return dictionary;
 }
 

@@ -72,7 +72,7 @@
 }
 
 - (void) spawnFullLookupThread {
-    if ([Utilities isNilOrEmpty:self.model.zipcode]) {
+    if ([Utilities isNilOrEmpty:self.model.postalCode]) {
         return;
     }
     
@@ -201,15 +201,15 @@
     NSString* address = [[theaterElement element:@"address1"] text];
     NSString* city = [[theaterElement element:@"city"] text];
     NSString* state = [[theaterElement element:@"state"] text];
-    NSString* zipcode = [[theaterElement element:@"postalcode"] text];
+    NSString* postalCode = [[theaterElement element:@"postalcode"] text];
     NSString* phone = [[theaterElement element:@"phonenumber"] text];
     NSString* sellsTickets = [theaterElement attributeValue:@"iswired"];
     
     NSString* fullAddress;
     if ([address hasSuffix:@"."]) {
-        fullAddress = [NSString stringWithFormat:@"%@ %@, %@ %@", address, city, state, zipcode];
+        fullAddress = [NSString stringWithFormat:@"%@ %@, %@ %@", address, city, state, postalCode];
     } else {
-        fullAddress = [NSString stringWithFormat:@"%@. %@, %@ %@", address, city, state, zipcode];
+        fullAddress = [NSString stringWithFormat:@"%@. %@, %@ %@", address, city, state, postalCode];
     }
     
     XmlElement* moviesElement = [theaterElement element:@"movies"];
@@ -225,7 +225,7 @@
                               phoneNumber:phone
                              sellsTickets:sellsTickets
                       movieToShowtimesMap:movieToShowtimesMap
-                            sourceZipCode:self.model.zipcode];
+                            sourcePostalCode:self.model.postalCode];
 }
 
 - (NSArray*) processTheatersElement:(XmlElement*) theatersElement {
@@ -278,15 +278,15 @@
 }
 
 - (NSArray*) fullLookup {
-    if (![Utilities isNilOrEmpty:self.model.zipcode]) {
+    if (![Utilities isNilOrEmpty:self.model.postalCode]) {
         NSMutableArray* hosts = [Application hosts];
-        NSInteger index = abs([Utilities hashString:self.model.zipcode]) % [hosts count];
+        NSInteger index = abs([Utilities hashString:self.model.postalCode]) % [hosts count];
         NSString* host = [hosts objectAtIndex:index];
         
         NSString* urlString =[NSString stringWithFormat:
                               @"http://%@.appspot.com/LookupTheaterListings?q=%@",
                               host,
-                              self.model.zipcode];
+                              self.model.postalCode];
         
         XmlElement* element = [Utilities downloadXml:urlString];
         
@@ -320,8 +320,8 @@
     [self.fullLookupLock unlock];
 }
 
-- (void) setZipcode:(NSString*) zipcode {
-    [self.model setZipcode:zipcode];
+- (void) setPostalCode:(NSString*) postalCode {
+    [self.model setPostalCode:postalCode];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController refresh];
 }
