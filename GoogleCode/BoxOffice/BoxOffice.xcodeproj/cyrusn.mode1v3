@@ -334,11 +334,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>122</integer>
+									<integer>63</integer>
+									<integer>33</integer>
+									<integer>20</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1407}, {311, 786}}</string>
+							<string>{{0, 324}, {311, 786}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -377,7 +381,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SettingsViewController.m</string>
+								<string>CreditsViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -385,11 +389,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SettingsViewController.m</string>
+										<string>CreditsViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>746827330E2A4C6A00013DC6</string>
+										<string>746827460E2A4DE200013DC6</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -585,7 +589,6 @@
 											<string>7490168F0E28BF6E0013FAC9</string>
 											<string>749016BE0E28C0BE0013FAC9</string>
 											<string>749016C00E28C0BE0013FAC9</string>
-											<string>749016C10E28C0BE0013FAC9</string>
 											<string>745E737E0E28D4E800B819BE</string>
 											<string>745E73800E28D4E800B819BE</string>
 											<string>745E73900E28D56000B819BE</string>
@@ -599,7 +602,8 @@
 											<string>745E741F0E28DD6A00B819BE</string>
 											<string>745E74300E28E09900B819BE</string>
 											<string>7468272F0E2A4C6A00013DC6</string>
-											<string>746827300E2A4C6A00013DC6</string>
+											<string>746827370E2A4D7200013DC6</string>
+											<string>749016C10E28C0BE0013FAC9</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -766,6 +770,7 @@
 											<string>745E74310E28E09900B819BE</string>
 											<string>746827310E2A4C6A00013DC6</string>
 											<string>746827320E2A4C6A00013DC6</string>
+											<string>746827380E2A4D7200013DC6</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -944,7 +949,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>237653098.698991</real>
+	<real>237653474.89980501</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -959,6 +964,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>746827440E2A4DD900013DC6</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>746827340E2A4C6A00013DC6</string>
 		<string>7468271C0E2A4BE400013DC6</string>
@@ -966,6 +972,7 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
+		<string>746827450E2A4DD900013DC6</string>
 	</array>
 	<key>WindowString</key>
 	<string>80 31 1121 845 0 0 1440 878 </string>

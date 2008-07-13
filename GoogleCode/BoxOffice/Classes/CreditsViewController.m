@@ -46,6 +46,10 @@
 
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
+    if (section == 0) {
+        return 2;
+    }
+    
     if (section == 5) {
         return 2;
     }
@@ -92,6 +96,7 @@
 - (UITableViewCell*)    tableView:(UITableView*) tableView
             cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
     
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -110,7 +115,11 @@
 
         [cell.contentView addSubview:imageView];
     } else if (section == 0) {
-        cell.text = @"Cyrus Najmabadi";
+        if (row == 0) {
+            cell.text = @"Cyrus Najmabadi";
+        } else {
+            cell.text = NSLocalizedString(@"Project website", nil);
+        }
     } else {
         cell.text = @"GeoNames";
         cell.textColor = [UIColor colorWithRed:33.0/256.0 green:66.0/256.0 blue:33.0/256.0 alpha:1.0];
@@ -150,7 +159,11 @@
     
     NSString* url = nil;
     if (section == 0) {
-        url = @"mailto:cyrus.najmabadi@gmail.com";
+        if (row == 0) {
+            url = @"mailto:cyrus.najmabadi@gmail.com";
+        } else {
+            url = @"http://metasyntactic.googlecode.com";
+        }
     } else if (section == 1) {
         url = @"http://www.rottentomatoes.com";
     } else if (section == 2) {
