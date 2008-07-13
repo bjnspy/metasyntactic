@@ -116,7 +116,7 @@
         [cell.contentView addSubview:imageView];
     } else if (section == 0) {
         if (row == 0) {
-            cell.text = NSLocalizedString(@"E-Mail", nil);
+            cell.text = NSLocalizedString(@"E-mail", nil);
         } else {
             cell.text = NSLocalizedString(@"Project website", nil);
         }
