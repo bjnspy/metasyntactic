@@ -11,6 +11,7 @@
 #import "Theater.h"
 #import "Location.h"
 #import "ApplicationTabBarController.h"
+#import "Application.h"
 
 @implementation AllTheatersViewController
 
@@ -64,6 +65,10 @@
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
     
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
+        if ([self.model isFavoriteTheater:theater]) {
+            [self.sectionTitleToContentsMap addObject:theater forKey:[Application starString]];
+        }
+        
         unichar firstChar = [theater.name characterAtIndex:0];
         firstChar = toupper(firstChar);
         
@@ -170,7 +175,9 @@
         
         {
             self.alphabeticSectionTitles =
-            [NSArray arrayWithObjects:@"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
+            [NSArray arrayWithObjects:
+             [Application starString],
+             @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H", 
              @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q", 
              @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
         }
@@ -231,7 +238,12 @@
 
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
-    return [self.sectionTitles objectAtIndex:section]; 
+    NSString* indexTitle = [sectionTitles objectAtIndex:section];
+    if (indexTitle == [Application starString]) {
+        return NSLocalizedString(@"Favorites", nil);
+    }
+    
+    return [sectionTitles objectAtIndex:section]; 
 }
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
@@ -242,23 +254,35 @@
     return nil;
 }
 
-- (NSInteger)               tableView:(UITableView*) tableView 
-          sectionForSectionIndexTitle:(NSString*) title
-                              atIndex:(NSInteger) index {
-    if (index == 0) {
-        return index;
-    }
-    
-    for (unichar c = [title characterAtIndex:0]; c >= 'A'; c--) {
-        NSString* s = [NSString stringWithFormat:@"%c", c];
+- (NSInteger) sectionForSectionIndexTitle:(NSString*) title {
+    unichar firstChar = [title characterAtIndex:0];
+    if (firstChar == '#') {
+        return [self.sectionTitles indexOfObject:@"#"];
+    } else if (firstChar == [Application starCharacter]) {
+        return [self.sectionTitles indexOfObject:[Application starString]];
+    } else {
+        for (unichar c = firstChar; c >= 'A'; c--) {
+            NSString* s = [NSString stringWithFormat:@"%c", c];
+            
+            NSInteger result = [self.sectionTitles indexOfObject:s];
+            if (result != NSNotFound) {
+                return result;
+            }  
+        }
+        
+        return NSNotFound;
+    }   
+}
 
-        NSInteger result = [self.sectionTitles indexOfObject:s];
-        if (result != NSNotFound) {
-            return result;
-        }  
+- (NSInteger)           tableView:(UITableView*) tableView 
+      sectionForSectionIndexTitle:(NSString*) title
+                          atIndex:(NSInteger) index {
+    NSInteger result = [self sectionForSectionIndexTitle:title];
+    if (result == NSNotFound) {
+        return 0;
     }
     
-    return 0;
+    return result;
 }
 
 - (void) viewWillAppear:(BOOL) animated {

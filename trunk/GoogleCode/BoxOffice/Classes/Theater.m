@@ -140,24 +140,22 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
 - (BOOL) isEqual:(id) anObject {
     Theater* other = anObject;
     return
-    [self.identifier isEqual:other.identifier] &&
-    [self.name isEqual:other.name] &&
-    [self.address isEqual:other.address] &&
-    [self.phoneNumber isEqual:other.phoneNumber] &&
-    [self.sellsTickets isEqual:other.sellsTickets] &&
-    [self.sourceZipCode isEqual:other.sourceZipCode] &&
-    [self.movieToShowtimesMap isEqual:other.movieToShowtimesMap];
+        [self.identifier isEqual:other.identifier] &&
+        [self.name isEqual:other.name] &&
+        [self.address isEqual:other.address] &&
+        [self.phoneNumber isEqual:other.phoneNumber] &&
+        [self.sellsTickets isEqual:other.sellsTickets] &&
+        [self.movieToShowtimesMap isEqual:other.movieToShowtimesMap];
 }
 
 - (NSUInteger) hash {
     return
-    [self.identifier hash] +
-    [self.name hash] +
-    [self.address hash] +
-    [self.phoneNumber hash] + 
-    [self.sellsTickets hash] +
-    [self.sourceZipCode hash];
-    [self.movieToShowtimesMap hash];
+        [self.identifier hash] +
+        [self.name hash] +
+        [self.address hash] +
+        [self.phoneNumber hash] + 
+        [self.sellsTickets hash] +
+        [self.movieToShowtimesMap hash];
 }
 
 + (NSString*) processShowtime:(NSString*) showtime {

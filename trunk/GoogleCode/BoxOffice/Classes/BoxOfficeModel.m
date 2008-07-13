@@ -15,7 +15,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.6";
+static NSString* currentVersion = @"1.2.7";
 
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
@@ -395,8 +395,10 @@ static NSArray* KEYS;
 }
 
 - (void) addFavoriteTheater:(Theater*) theater {
-    if (![self.favoriteTheaters containsObject:theater.identifier]) {
-        [self.favoriteTheaters addObject:theater.identifier];
+    NSDictionary* dictionary = [theater dictionary];
+    
+    if (![self.favoriteTheaters containsObject:dictionary]) {
+        [self.favoriteTheaters addObject:dictionary];
     }
     
     [self saveFavoriteTheaters];
@@ -411,11 +413,11 @@ static NSArray* KEYS;
 }
 
 - (BOOL) isFavoriteTheater:(Theater*) theater {
-    return [[self favoriteTheaters] containsObject:theater.identifier];
+    return [[self favoriteTheaters] containsObject:[theater dictionary]];
 }
 
 - (void) removeFavoriteTheater:(Theater*) theater {
-    [[self favoriteTheaters] removeObject:theater.identifier];
+    [[self favoriteTheaters] removeObject:[theater dictionary]];
     [self saveFavoriteTheaters];
 }
 
