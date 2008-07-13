@@ -83,6 +83,7 @@
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
                                                                 context:theaterDistanceMap];
     
+    NSString* favorites                 = NSLocalizedString(@"Favorites", nil);
     NSString* reallyCloseBy             = NSLocalizedString(@"Really close by", nil);
     NSString* oneHalfToOneMile          = NSLocalizedString(@"< 1 mile away", nil);
     NSString* oneToTwoMiles             = NSLocalizedString(@"< 2 miles away", nil);
@@ -94,9 +95,11 @@
     NSString* reallyFarAway             = NSLocalizedString(@"Really far away", nil);
     NSString* unknownDistance           = NSLocalizedString(@"Unknown Distance", nil);
     
-    self.sectionTitles = [NSMutableArray arrayWithObjects:reallyCloseBy, oneHalfToOneMile, oneToTwoMiles, twoToFileMiles,
-                          fiveToTenMiles, tenToFifteenMiles, fifteenToTwentyFiveMiles,
-                          twentyFiveToFiftyMiles, reallyFarAway, unknownDistance, nil];
+    self.sectionTitles = [NSMutableArray arrayWithObjects:
+                          favorites, reallyCloseBy, oneHalfToOneMile, oneToTwoMiles,
+                          twoToFileMiles, fiveToTenMiles, tenToFifteenMiles,
+                          fifteenToTwentyFiveMiles, twentyFiveToFiftyMiles, reallyFarAway,
+                          unknownDistance, nil];
     
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
