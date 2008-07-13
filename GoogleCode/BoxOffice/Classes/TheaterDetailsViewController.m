@@ -81,8 +81,8 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        // theater address and possibly phone number
-        return [Utilities isNilOrEmpty:theater.phoneNumber] ? 1 : 2;
+        // favorites, theater address and possibly phone number
+        return 1 + 1 + ([Utilities isNilOrEmpty:theater.phoneNumber] ? 0 : 1);
     }
     
     return 1;
@@ -98,6 +98,14 @@
         cell.label.textColor = [Application commandColor];
         
         if (row == 0) {
+            if ([self.model isFavoriteTheater:self.theater]) {
+                cell.label.text = NSLocalizedString(@"Remove from favorites", nil);
+            } else {
+                cell.label.text = NSLocalizedString(@"Add to favorites", nil);
+            }
+            
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        } else if (row == 1) {
             cell.label.text = self.theater.address;
         } else {
             cell.label.text = self.theater.phoneNumber;
@@ -162,24 +170,23 @@
     NSInteger row = [indexPath row];
     
     if (section == 0) {
-        if (row == 1) {
-            if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
-                // can't make a phonecall if you're not an iPhone.
-                return;
-            }
-        }
-        
         if (row == 0) {
+            if ([self.model isFavoriteTheater:self.theater]) {
+                [self.model removeFavoriteTheater:self.theater];
+            } else {
+                [self.model addFavoriteTheater:self.theater];
+            }
+            
+            [self refresh];
+        } else if (row == 1) {
             [Application openMap:theater.address];
         } else {
             [Application makeCall:theater.phoneNumber];
         }
-
-        return;
+    } else {    
+        Movie* movie = [self.movies objectAtIndex:(section - 1)];    
+        [self.navigationController  pushTicketsView:self.theater movie:movie animated:YES];
     }
-    
-    Movie* movie = [self.movies objectAtIndex:(section - 1)];    
-    [self.navigationController  pushTicketsView:self.theater movie:movie animated:YES];
 }
 
 @end

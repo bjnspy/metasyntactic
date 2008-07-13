@@ -224,7 +224,8 @@
                                   address:fullAddress
                               phoneNumber:phone
                              sellsTickets:sellsTickets
-                      movieToShowtimesMap:movieToShowtimesMap];
+                      movieToShowtimesMap:movieToShowtimesMap
+                            sourceZipCode:self.model.zipcode];
 }
 
 - (NSArray*) processTheatersElement:(XmlElement*) theatersElement {

@@ -30,6 +30,8 @@
     NSArray* theatersData;
     NSDictionary* supplementaryInformationData;
     NSDictionary* movieMap;
+    
+    NSMutableArray* favoriteTheatersData;
 }
 
 @property (retain) NotificationCenter* notificationCenter;
@@ -44,6 +46,7 @@
 @property (retain) NSArray* theatersData;
 @property (retain) NSDictionary* supplementaryInformationData;
 @property (retain) NSDictionary* movieMap;
+@property (retain) NSMutableArray* favoriteTheatersData;
 
 + (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter;
 
@@ -113,5 +116,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 - (NSArray*) trailersForMovie:(Movie*) movie;
 
 - (void) applicationWillTerminate;
+
+- (NSMutableArray*) favoriteTheaters;
+- (BOOL) isFavoriteTheater:(Theater*) theater;
+- (void) addFavoriteTheater:(Theater*) theater;
+- (void) removeFavoriteTheater:(Theater*) theater;
 
 @end
