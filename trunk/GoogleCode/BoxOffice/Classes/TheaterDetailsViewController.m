@@ -32,11 +32,29 @@
     self.theater = nil;
     self.movies = nil;
     self.movieShowtimes = nil;
+    
     [super dealloc];
 }
 
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
+}
+
+- (void) setFavoriteImage {
+    UIImage* image = [self.model isFavoriteTheater:theater] ? [Application filledStarImage]
+                                                            : [Application emptyStarImage];
+    
+    self.navigationItem.rightBarButtonItem.image = image;
+}
+
+- (void) switchFavorite:(id) sender {
+    if ([self.model isFavoriteTheater:theater]) {
+        [self.model removeFavoriteTheater:theater];
+    } else {
+        [self.model addFavoriteTheater:theater];
+    }
+    
+    [self setFavoriteImage];
 }
 
 - (id) initWithNavigationController:(TheatersNavigationController*) controller
@@ -59,14 +77,18 @@
          
         self.title = self.theater.name;
         self.navigationItem.titleView = label;
+        
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[Application emptyStarImage]
+                                                                                   style:UIBarButtonItemStylePlain
+                                                                                  target:self
+                                                                                  action:@selector(switchFavorite:)] autorelease];
+        [self setFavoriteImage];
     }
     
     return self;
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-
     [self.model setCurrentlySelectedMovie:nil theater:self.theater];
 }
 
@@ -81,8 +103,8 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        // favorites, theater address and possibly phone number
-        return 1 + 1 + ([Utilities isNilOrEmpty:theater.phoneNumber] ? 0 : 1);
+        // theater address and possibly phone number
+        return 1 + ([Utilities isNilOrEmpty:theater.phoneNumber] ? 0 : 1);
     }
     
     return 1;
@@ -98,14 +120,6 @@
         cell.label.textColor = [Application commandColor];
         
         if (row == 0) {
-            if ([self.model isFavoriteTheater:self.theater]) {
-                cell.label.text = NSLocalizedString(@"Remove from favorites", nil);
-            } else {
-                cell.label.text = NSLocalizedString(@"Add to favorites", nil);
-            }
-            
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        } else if (row == 1) {
             cell.label.text = self.theater.address;
         } else {
             cell.label.text = self.theater.phoneNumber;
@@ -171,14 +185,6 @@
     
     if (section == 0) {
         if (row == 0) {
-            if ([self.model isFavoriteTheater:self.theater]) {
-                [self.model removeFavoriteTheater:self.theater];
-            } else {
-                [self.model addFavoriteTheater:self.theater];
-            }
-            
-            [self refresh];
-        } else if (row == 1) {
             [Application openMap:theater.address];
         } else {
             [Application makeCall:theater.phoneNumber];

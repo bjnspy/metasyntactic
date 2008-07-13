@@ -20,6 +20,8 @@
 + (UIColor*) commandColor;
 + (UIImage*) freshImage;
 + (UIImage*) rottenImage;
++ (UIImage*) emptyStarImage;
++ (UIImage*) filledStarImage;
 
 + (void) openBrowser:(NSString*) address;
 + (void) openMap:(NSString*) address;
