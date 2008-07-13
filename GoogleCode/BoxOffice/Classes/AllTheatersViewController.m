@@ -91,12 +91,12 @@
     NSString* tenToFifteenMiles         = NSLocalizedString(@"< 15 miles away", nil);
     NSString* fifteenToTwentyFiveMiles  = NSLocalizedString(@"< 25 miles away", nil);
     NSString* twentyFiveToFiftyMiles    = NSLocalizedString(@"< 50 miles away", nil);
-    NSString* wayFarAway                = NSLocalizedString(@"Waaaaaay too far away", nil);
+    NSString* reallyFarAway             = NSLocalizedString(@"Really far away", nil);
     NSString* unknownDistance           = NSLocalizedString(@"Unknown Distance", nil);
     
     self.sectionTitles = [NSMutableArray arrayWithObjects:reallyCloseBy, oneHalfToOneMile, oneToTwoMiles, twoToFileMiles,
                           fiveToTenMiles, tenToFifteenMiles, fifteenToTwentyFiveMiles,
-                          twentyFiveToFiftyMiles, wayFarAway, unknownDistance, nil];
+                          twentyFiveToFiftyMiles, reallyFarAway, unknownDistance, nil];
     
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
@@ -118,7 +118,7 @@
         } else if (distance <= 50) {
             [self.sectionTitleToContentsMap addObject:theater forKey:twentyFiveToFiftyMiles];
         } else if (distance < UNKNOWN_DISTANCE) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:wayFarAway];
+            [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
         } else {
             [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
         }
