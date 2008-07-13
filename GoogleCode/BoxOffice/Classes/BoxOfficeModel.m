@@ -30,27 +30,31 @@ static NSString* SUPPLEMENTARY_DATA                     = @"supplementaryData";
 static NSString* CURRENTLY_SELECTED_MOVIE               = @"currentlySelectedMovie";
 static NSString* CURRENTLY_SELECTED_THEATER             = @"currentlySelectedTheater";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
+static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSegmentIndex";
+static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSArray* KEYS;
 
 + (void) initialize {
     if (self == [BoxOfficeModel class]) {
         KEYS = [[NSArray arrayWithObjects:
-                VERSION,
-                LAST_QUICK_UPDATE_TIME,
-                LAST_FULL_UPDATE_TIME,
-                SEARCH_DATES, 
-                SEARCH_RESULTS,
-                SEARCH_RADIUS,
-                MOVIES,
-                THEATERS,
-                ZIPCODE,
-                SUPPLEMENTARY_DATA,
-                CURRENTLY_SELECTED_MOVIE,
-                CURRENTLY_SELECTED_THEATER,
-                SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
-                FAVORITE_THEATERS,
-                nil] retain];
+                 VERSION,
+                 LAST_QUICK_UPDATE_TIME,
+                 LAST_FULL_UPDATE_TIME,
+                 SEARCH_DATES, 
+                 SEARCH_RESULTS,
+                 SEARCH_RADIUS,
+                 MOVIES,
+                 THEATERS,
+                 ZIPCODE,
+                 SUPPLEMENTARY_DATA,
+                 CURRENTLY_SELECTED_MOVIE,
+                 CURRENTLY_SELECTED_THEATER,
+                 SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
+                 ALL_MOVIES_SELECTED_SEGMENT_INDEX,
+                 ALL_THEATERS_SELECTED_SEGMENT_INDEX,
+                 FAVORITE_THEATERS,
+                 nil] retain];
     }
 }
 
@@ -127,7 +131,7 @@ static NSArray* KEYS;
 
 - (void) checkUserDefaults {
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
-    if (![currentVersion isEqual:version]) {
+    if (version == nil || ![currentVersion isEqual:version]) {
         for (NSString* key in KEYS) {
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
         }
@@ -199,19 +203,19 @@ static NSArray* KEYS;
 }
 
 - (NSInteger) allMoviesSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:@"allMoviesSelectedSegmentIndex"];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
 }
 
 - (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"allMoviesSelectedSegmentIndex"];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
 }
 
 - (NSInteger) allTheatersSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:@"allTheatersSelectedSegmentIndex"];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:ALL_THEATERS_SELECTED_SEGMENT_INDEX];
 }
 
 - (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:@"allTheatersSelectedSegmentIndex"];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_THEATERS_SELECTED_SEGMENT_INDEX];
 }
 
 - (NSString*) zipcode {
