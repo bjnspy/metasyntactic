@@ -116,7 +116,7 @@
         [cell.contentView addSubview:imageView];
     } else if (section == 0) {
         if (row == 0) {
-            cell.text = @"Cyrus Najmabadi";
+            cell.text = NSLocalizedString(@"E-Mail", nil);
         } else {
             cell.text = NSLocalizedString(@"Project website", nil);
         }
@@ -131,7 +131,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
-        return NSLocalizedString(@"Written by:", nil);
+        return NSLocalizedString(@"Written by Cyrus Najmabadi", nil);
     } else if (section == 1) {
         return NSLocalizedString(@"Movie ratings provided by:", nil);
     } else if (section == 2) {
@@ -160,7 +160,7 @@
     NSString* url = nil;
     if (section == 0) {
         if (row == 0) {
-            url = @"mailto:cyrus.najmabadi@gmail.com";
+            url = @"mailto:cyrus.najmabadi@gmail.com?subject=BoxOffice";
         } else {
             url = @"http://metasyntactic.googlecode.com";
         }
