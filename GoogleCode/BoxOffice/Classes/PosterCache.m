@@ -89,7 +89,9 @@
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
     [gate lock];
-    {        
+    {
+        [NSThread setThreadPriority:0.0];
+        
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         [self updateInBackground:movies];
