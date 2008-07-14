@@ -138,7 +138,6 @@ static NSArray* KEYS;
         
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
     }
-    
 }
 
 - (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
@@ -152,7 +151,7 @@ static NSArray* KEYS;
         
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicatorView.frame;
-        frame.size.width += 10;
+        frame.size.width += 4;
         
         self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
         [self.activityView addSubview:self.activityIndicatorView];
