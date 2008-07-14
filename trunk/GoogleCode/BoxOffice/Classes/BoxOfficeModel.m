@@ -15,7 +15,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.8";
+static NSString* currentVersion = @"1.2.9";
 
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
@@ -153,7 +153,7 @@ static NSArray* KEYS;
         
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicatorView.frame;
-        frame.size.width += 15;
+        frame.size.width += 10;
         
         self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
         [self.activityView addSubview:self.activityIndicatorView];

@@ -58,4 +58,13 @@
     return array;
 }
 
+- (NSMutableArray*) mutableObjectsForKey:(id) key {
+    return [self.dictionary objectForKey:key];
+}
+
+- (NSArray*) allKeys {
+    return [self.dictionary allKeys];
+}
+    
+
 @end
