@@ -141,7 +141,6 @@ static NSArray* KEYS;
     
 }
 
-
 - (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
     if (self = [super init]) {
         [self checkUserDefaults];
