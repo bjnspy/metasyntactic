@@ -32,21 +32,14 @@ static NSString* starString = nil;
         [dateFormatter setDateStyle:NSDateFormatterNoStyle];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         
-        commandColor = [UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1];
-        [commandColor retain];
+        commandColor = [[UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1] retain];
         
-        freshImage = [UIImage imageNamed:@"Fresh.png"];
-        rottenImage = [UIImage imageNamed:@"Rotten.png"];
-        emptyStarImage = [UIImage imageNamed:@"Empty Star.png"];
-        filledStarImage = [UIImage imageNamed:@"Filled Star.png"];
-        
-        [freshImage retain];
-        [rottenImage retain];
-        [emptyStarImage retain];
-        [filledStarImage retain];
-        
-        differenceEngine = [DifferenceEngine engine];
-        [differenceEngine retain];
+        freshImage      = [[UIImage imageNamed:@"Fresh.png"] retain];
+        rottenImage     = [[UIImage imageNamed:@"Rotten.png"] retain];
+        emptyStarImage  = [[UIImage imageNamed:@"Empty Star.png"] retain];
+        filledStarImage = [[UIImage imageNamed:@"Filled Star.png"] retain];
+                
+        differenceEngine = [[DifferenceEngine engine] retain];
     }
 }
 

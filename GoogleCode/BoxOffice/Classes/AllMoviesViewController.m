@@ -15,6 +15,7 @@
 #import "MovieTitleCell.h"
 #import "DifferenceEngine.h"
 #import "Application.h"
+#import "DateUtilities.h"
 
 @implementation AllMoviesViewController
 
@@ -137,36 +138,13 @@ NSInteger sortByReleaseDate(id t1, id t2, void *context) {
     self.sortedMovies = [self.model.movies sortedArrayUsingFunction:sortByReleaseDate context:self.model];
     
     NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
-    
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDate* now = [NSDate date];
+    [formatter setDateStyle:kCFDateFormatterMediumStyle];
+    [formatter setTimeStyle:kCFDateFormatterNoStyle];
     
     for (Movie* movie in self.sortedMovies) {
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
         if (movie.releaseDate != nil) {
-            NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit)
-                                                       fromDate:movie.releaseDate
-                                                         toDate:now
-                                                        options:0];
-            
-            if ([components year] == 1) {
-                title = NSLocalizedString(@"1 year ago", nil);
-            } else if ([components year] > 1) {
-                title = [NSString stringWithFormat:NSLocalizedString(@"%d years ago", nil), [components year]];
-            } else if ([components month] == 1) { 
-                title = NSLocalizedString(@"1 month ago", nil);
-            } else if ([components month] > 1) {
-                title = [NSString stringWithFormat:NSLocalizedString(@"%d months ago", nil), [components month]];
-            } else if ([components week] == 1) {
-                title = NSLocalizedString(@"1 week ago", nil);
-            } else if ([components week] > 1) {
-                title = [NSString stringWithFormat:NSLocalizedString(@"%d weeks ago", nil), [components week]];
-            } else {
-                NSDateComponents* components2 = [calendar components:NSWeekdayCalendarUnit fromDate:movie.releaseDate];
-                
-                NSInteger weekday = [components2 weekday];
-                title = [[formatter weekdaySymbols] objectAtIndex:(weekday - 1)];
-            }
+            title = [DateUtilities timeSinceNow:movie.releaseDate];
         }
         
         [self.sectionTitleToContentsMap addObject:movie forKey:title];
