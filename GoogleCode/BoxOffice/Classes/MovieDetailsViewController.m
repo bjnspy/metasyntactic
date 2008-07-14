@@ -141,6 +141,8 @@
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
         return [self posterImage].size.height + 10;
+    } else if (row == 1) {
+        return [self.tableView rowHeight] - 10;
     } else {
         return [self.tableView rowHeight];
     } 
