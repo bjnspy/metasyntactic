@@ -134,6 +134,8 @@
 - (void) backgroundEntryPoint:(NSArray*) addresses {
     [gate lock];
     {
+        [NSThread setThreadPriority:0.0];
+        
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         [self downloadAddressLocations:addresses];
@@ -149,6 +151,8 @@
 
 - (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode
 {
+    [NSThread setThreadPriority:0.0];
+    
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     
     [self downloadAddressLocation:postalCode];
