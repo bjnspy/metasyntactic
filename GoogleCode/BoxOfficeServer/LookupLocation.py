@@ -3,6 +3,7 @@
 import wsgiref.handlers
 import logging
 import urllib
+import random
 
 from xml.dom.minidom import getDOMImplementation, parseString
 
@@ -66,7 +67,10 @@ class LookupLocationHandler(webapp.RequestHandler):
     return ""
 
   def get_location_from_webservice(self, q):
-    key = "TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_"
+    keys = [ "TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_", "JTVP_y3V34H93_TVoJpPPS.yd37hCbVj2kbRW5BdY4pu0ueVrk6.r6BWhOfaP1SHjrF8hWk-" ] 
+    index = random.randint(0, len(keys) - 1)
+    key = keys[index]
+
     url = "http://local.yahooapis.com/MapsService/V1/geocode?appid=" + key + "&location=" + q
     content = urlfetch.fetch(url).content
 

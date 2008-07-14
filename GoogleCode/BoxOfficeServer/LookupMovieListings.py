@@ -32,7 +32,7 @@ class LookupMovieListingsHandler(webapp.RequestHandler):
     now = datetime.datetime.now()
     delta = now - listings.saveDate
 
-    return delta.seconds >= (3600 * 4)
+    return delta.seconds >= (3600 * 8)
     
 
   def get_listings_from_cache(self):
@@ -55,7 +55,7 @@ class LookupMovieListingsHandler(webapp.RequestHandler):
 
 
   def get_listings_from_webservice(self):
-    url = "http://i.rottentomatoes.com/syndication/tab/in_theaters.txt"
+    url = "http://i.rottentomatoes.com/syndication/tab/complete_movies.txt"
     content = urlfetch.fetch(url).content
     encoded = unicode(content, "iso-8859-1")
 
