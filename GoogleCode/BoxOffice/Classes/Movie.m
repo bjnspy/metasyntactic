@@ -15,6 +15,7 @@
 @synthesize title;
 @synthesize rating;
 @synthesize length;
+@synthesize releaseDate;
 @synthesize poster;
 @synthesize backupSynopsis;
 
@@ -23,6 +24,7 @@
     self.title = nil;
     self.rating = nil;
     self.length = nil;
+    self.releaseDate = nil;
     self.poster = nil;
     self.backupSynopsis = nil;
     
@@ -32,7 +34,8 @@
 - (id) initWithIdentifier:(NSString*) anIdentifier
                     title:(NSString*) aTitle
                    rating:(NSString*) aRating
-                   length:(NSString*) aLength 
+                   length:(NSString*) aLength
+              releaseDate:(NSDate*) aReleaseDate
                    poster:(NSString*) aPoster
            backupSynopsis:(NSString*) aBackupSynopsis {
     if (self = [self init]) {
@@ -40,6 +43,7 @@
         self.title    = [aTitle    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.rating   = [aRating   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.length = aLength;
+        self.releaseDate = aReleaseDate;
         self.poster = aPoster;
         self.backupSynopsis = aBackupSynopsis;
     }
@@ -51,12 +55,14 @@
                          title:(NSString*) aTitle
                         rating:(NSString*) aRating
                         length:(NSString*) aLength
+                   releaseDate:(NSDate*) releaseDate
                         poster:(NSString*) aPoster
                 backupSynopsis:(NSString*) aBackupSynopsis  {
     return [[[Movie alloc] initWithIdentifier:anIdentifier
                                         title:aTitle
                                        rating:aRating
                                        length:aLength
+                                  releaseDate:releaseDate
                                        poster:aPoster
                                backupSynopsis:aBackupSynopsis] autorelease];
 }
@@ -66,6 +72,7 @@
                                 title:[dictionary objectForKey:@"title"]
                                rating:[dictionary objectForKey:@"rating"]
                                length:[dictionary objectForKey:@"length"]
+                          releaseDate:[dictionary objectForKey:@"releaseDate"]
                                poster:[dictionary objectForKey:@"poster"]
                        backupSynopsis:[dictionary objectForKey:@"backupSynopsis"]];
 }
@@ -76,6 +83,7 @@
     [dictionary setValue:self.title          forKey:@"title"];
     [dictionary setValue:self.rating         forKey:@"rating"];
     [dictionary setValue:self.length         forKey:@"length"];
+    [dictionary setValue:self.releaseDate    forKey:@"releaseDate"];
     [dictionary setValue:self.poster         forKey:@"poster"];
     [dictionary setValue:self.backupSynopsis forKey:@"backupSynopsis"];
     return dictionary;
@@ -90,21 +98,13 @@
     
     return
     [self.identifier isEqual:other.identifier] &&
-    [self.title isEqual:other.title] &&
-    [self.rating isEqual:other.rating] &&
-    [self.length isEqual:other.length] &&
-    [self.poster isEqual:other.poster] &&
-    [self.backupSynopsis isEqual:other.backupSynopsis];
+    [self.title isEqual:other.title];
 }
 
 - (NSUInteger) hash {
     return
     [self.identifier hash];
-    [self.title hash] +
-    [self.rating hash] +
-    [self.length hash] +
-    [self.poster hash] +
-    [self.backupSynopsis hash];
+    [self.title hash];
 }
 
 @end

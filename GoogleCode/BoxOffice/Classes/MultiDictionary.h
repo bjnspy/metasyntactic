@@ -21,5 +21,8 @@
              forKey:(id) key;
 
 - (NSArray*) objectsForKey:(id) key;
+- (NSMutableArray*) mutableObjectsForKey:(id) key;
+
+- (NSArray*) allKeys;
 
 @end

@@ -12,6 +12,7 @@
     NSString* title;
     NSString* rating;
     NSString* length; // minutes;
+    NSDate* releaseDate;
     NSString* poster;
     NSString* backupSynopsis;
 }
@@ -20,6 +21,7 @@
 @property (copy) NSString* title;
 @property (copy) NSString* rating;
 @property (copy) NSString* length;
+@property (copy) NSDate* releaseDate;
 @property (copy) NSString* poster;
 @property (copy) NSString* backupSynopsis;
 
@@ -28,6 +30,7 @@
                          title:(NSString*) title
                         rating:(NSString*) rating
                         length:(NSString*) length
+                   releaseDate:(NSDate*) releaseDate
                         poster:(NSString*) poster
                 backupSynopsis:(NSString*) backupSynopsis;
 

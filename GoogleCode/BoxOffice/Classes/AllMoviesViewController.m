@@ -67,12 +67,36 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     return sortByTitle(t1, t2, context);
 }
 
+NSInteger sortByReleaseDate(id t1, id t2, void *context) {
+    Movie* movie1 = t1;
+    Movie* movie2 = t2;
+    
+    NSDate* releaseDate1 = movie1.releaseDate;
+    NSDate* releaseDate2 = movie2.releaseDate;
+    
+    if (releaseDate1 == nil) {
+        if (releaseDate2 == nil) {
+            return sortByTitle(movie1, movie2, context);
+        } else {
+            return NSOrderedDescending;
+        }
+    } else if (releaseDate2 == nil) {
+        return NSOrderedAscending;
+    }
+    
+    return -[releaseDate1 compare:releaseDate2];
+}
+
 - (BOOL) sortingByTitle {
     return segmentedControl.selectedSegmentIndex == 0;
 }
 
 - (BOOL) sortingByRating {
-    return ![self sortingByTitle];
+    return segmentedControl.selectedSegmentIndex == 1;
+}
+
+- (BOOL) sortingByReleaseDate {
+    return segmentedControl.selectedSegmentIndex == 2;
 }
 
 - (void) removeUnusedSectionTitles {
@@ -86,8 +110,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (void) sortMoviesByTitle {
-    NSArray* movies = self.model.movies;
-    self.sortedMovies = [movies sortedArrayUsingFunction:sortByTitle context:nil];
+    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:sortByTitle context:nil];
     
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
     
@@ -107,8 +130,56 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (void) sortMoviesByRating {
-    NSArray* movies = self.model.movies;
-    self.sortedMovies = [movies sortedArrayUsingFunction:sortByRating context:self.model];
+    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:sortByRating context:self.model];
+}
+
+- (void) sortMoviesByReleaseDate {
+    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:sortByReleaseDate context:self.model];
+    
+    NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
+    
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDate* now = [NSDate date];
+    
+    for (Movie* movie in self.sortedMovies) {
+        NSString* title = NSLocalizedString(@"Unknown release date", nil);
+        if (movie.releaseDate != nil) {
+            NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit)
+                                                       fromDate:movie.releaseDate
+                                                         toDate:now
+                                                        options:0];
+            
+            if ([components year] == 1) {
+                title = NSLocalizedString(@"1 year ago", nil);
+            } else if ([components year] > 1) {
+                title = [NSString stringWithFormat:NSLocalizedString(@"%d years ago", nil), [components year]];
+            } else if ([components month] == 1) { 
+                title = NSLocalizedString(@"1 month ago", nil);
+            } else if ([components month] > 1) {
+                title = [NSString stringWithFormat:NSLocalizedString(@"%d months ago", nil), [components month]];
+            } else if ([components week] == 1) {
+                title = NSLocalizedString(@"1 week ago", nil);
+            } else if ([components week] > 1) {
+                title = [NSString stringWithFormat:NSLocalizedString(@"%d weeks ago", nil), [components week]];
+            } else {
+                NSDateComponents* components2 = [calendar components:NSWeekdayCalendarUnit fromDate:movie.releaseDate];
+                
+                NSInteger weekday = [components2 weekday];
+                title = [[formatter weekdaySymbols] objectAtIndex:(weekday - 1)];
+            }
+        }
+        
+        [self.sectionTitleToContentsMap addObject:movie forKey:title];
+        
+        if (![self.sectionTitles containsObject:title]) {
+            [self.sectionTitles addObject:title];
+        }
+    }
+    
+    for (NSString* key in [self.sectionTitleToContentsMap allKeys]) {
+        NSMutableArray* values = [self.sectionTitleToContentsMap mutableObjectsForKey:key];
+        [values sortUsingFunction:sortByRating context:self.model];
+    }
 }
 
 - (void) sortMovies { 
@@ -117,8 +188,10 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     
     if ([self sortingByTitle]) {
         [self sortMoviesByTitle];
-    } else {
+    } else if ([self sortingByRating]) {
         [self sortMoviesByRating];
+    } else {
+        [self sortMoviesByReleaseDate];
     }
 
     if ([self.sectionTitles count] == 0) {
@@ -132,17 +205,20 @@ NSInteger sortByRating(id t1, id t2, void *context) {
         self.sortedMovies = [NSArray array];
         
         self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                                  [NSArray arrayWithObjects:NSLocalizedString(@"Title", nil), NSLocalizedString(@"Rating", nil), nil]] autorelease];
+                                  [NSArray arrayWithObjects:
+                                   NSLocalizedString(@"Title", nil),
+                                   NSLocalizedString(@"Rating", nil), 
+                                   NSLocalizedString(@"Release", nil), nil]] autorelease];
         
         
         self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
         self.segmentedControl.selectedSegmentIndex = [[self model] allMoviesSelectedSegmentIndex];
         [self.segmentedControl addTarget:self
-         action:@selector(onSortOrderChanged:)
-         forControlEvents:UIControlEventValueChanged];
+                                  action:@selector(onSortOrderChanged:)
+                        forControlEvents:UIControlEventValueChanged];
         
         CGRect rect = self.segmentedControl.frame;
-        rect.size.width = 200;
+        rect.size.width = 240;
         self.segmentedControl.frame = rect;
         
         self.navigationItem.titleView = segmentedControl;
@@ -181,9 +257,11 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     
     Movie* movie;
     if ([self sortingByTitle]) {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
-    } else {
+        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];        
+    } else if ([self sortingByRating]) {
         movie = [self.sortedMovies objectAtIndex:row];
+    } else {
+        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
     }
 
     static NSString* reuseIdentifier = @"AllMoviesCellIdentifier";
@@ -201,6 +279,8 @@ NSInteger sortByRating(id t1, id t2, void *context) {
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if ([self sortingByTitle]) {
         return UITableViewCellAccessoryNone;
+    } else if ([self sortingByRating]) {
+        return UITableViewCellAccessoryDisclosureIndicator;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -214,8 +294,10 @@ NSInteger sortByRating(id t1, id t2, void *context) {
     Movie* movie;
     if ([self sortingByTitle]) {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
-    } else {
+    } else if ([self sortingByRating]) {
         movie = [self.sortedMovies objectAtIndex:row];
+    } else {
+        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
     }
     
     [self.navigationController pushMovieDetails:movie animated:YES];
@@ -224,8 +306,10 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     if ([self sortingByTitle]) {
         return [self.sectionTitles count];
-    } else {
+    } else if ([self sortingByRating]) {
         return 1;
+    } else {
+        return [self.sectionTitles count];
     }
 }
 
@@ -233,8 +317,10 @@ NSInteger sortByRating(id t1, id t2, void *context) {
                 numberOfRowsInSection:(NSInteger) section {
     if ([self sortingByTitle]) {
         return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
-    } else {
+    } else if ([self sortingByRating]) {
         return [self.sortedMovies count];
+    } else {
+        return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];        
     }
 }
 
@@ -242,9 +328,11 @@ NSInteger sortByRating(id t1, id t2, void *context) {
               titleForHeaderInSection:(NSInteger) section {
     if ([self sortingByTitle]) {
         return [self.sectionTitles objectAtIndex:section]; 
+    } else if ([self sortingByRating]) {
+        return nil;
+    } else {
+        return [self.sectionTitles objectAtIndex:section]; 
     }
-    
-    return nil;
 }
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
@@ -279,6 +367,7 @@ NSInteger sortByRating(id t1, id t2, void *context) {
 }
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {    
+    return;
     [UIView beginAnimations:nil context:NULL];
     {
         [UIView setAnimationDuration:duration];

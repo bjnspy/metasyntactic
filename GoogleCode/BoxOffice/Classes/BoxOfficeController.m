@@ -253,10 +253,17 @@
         NSString* length = [[movieElement element:@"runtime"] text];
         NSString* synopsis = [[movieElement element:@"synopsis"] text];
         
+        NSString* releaseDateText = [[movieElement element:@"releasedate"] text];
+        NSDate* releaseDate = nil;
+        if (releaseDateText != nil) {
+            releaseDate = [NSDate dateWithNaturalLanguageString:releaseDateText];
+        }
+        
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
                                            rating:rating
                                            length:length
+                                      releaseDate:releaseDate
                                            poster:poster
                                    backupSynopsis:synopsis];
         

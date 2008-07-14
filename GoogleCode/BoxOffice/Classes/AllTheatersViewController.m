@@ -168,7 +168,7 @@
                    forControlEvents:UIControlEventValueChanged];
         
         CGRect rect = segmentedControl.frame;
-        rect.size.width = 200;
+        rect.size.width = 240;
         segmentedControl.frame = rect;
         
         self.navigationItem.titleView = segmentedControl;
