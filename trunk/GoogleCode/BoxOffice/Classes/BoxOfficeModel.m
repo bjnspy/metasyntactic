@@ -15,7 +15,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.9";
+static NSString* currentVersion = @"1.2.11";
 
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
@@ -23,8 +23,6 @@ static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
 static NSString* SEARCH_DATES                           = @"searchDates";
 static NSString* SEARCH_RESULTS                         = @"searchResults";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
-static NSString* MOVIES                                 = @"movies";
-static NSString* THEATERS                               = @"theaters";
 static NSString* ZIPCODE                                = @"postalCode";
 static NSString* SUPPLEMENTARY_DATA                     = @"supplementaryData";
 static NSString* CURRENTLY_SELECTED_MOVIE               = @"currentlySelectedMovie";
@@ -44,8 +42,6 @@ static NSArray* KEYS;
                  SEARCH_DATES, 
                  SEARCH_RESULTS,
                  SEARCH_RADIUS,
-                 MOVIES,
-                 THEATERS,
                  ZIPCODE,
                  SUPPLEMENTARY_DATA,
                  CURRENTLY_SELECTED_MOVIE,
@@ -137,6 +133,9 @@ static NSArray* KEYS;
         }
         
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
+        
+        [[NSFileManager defaultManager] removeFileAtPath:[Application moviesFile] handler:nil];
+        [[NSFileManager defaultManager] removeFileAtPath:[Application theatersFile] handler:nil];
     }
 }
 
@@ -255,7 +254,7 @@ static NSArray* KEYS;
 }
 
 - (NSArray*) loadMovies {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:MOVIES];
+    NSArray* array = [NSArray arrayWithContentsOfFile:[Application moviesFile]];
     if (array == nil) {
         return [NSArray array];
     }
@@ -278,22 +277,11 @@ static NSArray* KEYS;
     return self.moviesData;
 }
 
-- (void) saveMovies:(NSArray*) movies {
-    NSMutableArray* array = [NSMutableArray array];
-    
-    for (int i = 0; i < [movies count]; i++) {
-        [array addObject:[[movies objectAtIndex:i] dictionary]];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:array forKey:MOVIES];
+- (void) setMovies:(NSArray*) movies {    
+    self.moviesData = movies;
     
     [self updatePosterCache];
     [self updateTrailerCache];
-}
-
-- (void) setMovies:(NSArray*) movies {    
-    self.moviesData = movies;
-    [self saveMovies:movies];
     
     self.movieMap = nil;
 }
@@ -355,7 +343,7 @@ static NSArray* KEYS;
 }
 
 - (NSArray*) loadTheaters {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:THEATERS];
+    NSArray* array = [NSArray arrayWithContentsOfFile:[Application theatersFile]];
     if (array == nil) {
         return [NSArray array];
     }
@@ -377,22 +365,11 @@ static NSArray* KEYS;
     return self.theatersData;
 }
 
-- (void) saveTheaters:(NSArray*) theaters {
-    NSMutableArray* array = [NSMutableArray array];
-    
-    for (int i = 0; i < [theaters count]; i++) {
-        [array addObject:[[theaters objectAtIndex:i] dictionary]];
-    }
-    
-    [[NSUserDefaults standardUserDefaults] setObject:array forKey:THEATERS];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_FULL_UPDATE_TIME];
-        
-    [self updateAddressLocationCache];
-}
-
 - (void) setTheaters:(NSArray*) theaters {
     self.theatersData = theaters;
-    [self saveTheaters:theaters];
+    
+    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_FULL_UPDATE_TIME];
+    [self updateAddressLocationCache];
 }
 
 - (NSArray*) loadFavoriteTheaters {

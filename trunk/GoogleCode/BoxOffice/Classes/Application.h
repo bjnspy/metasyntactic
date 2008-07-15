@@ -15,6 +15,9 @@
 
 + (NSString*) supportFolder;
 + (NSString*) postersFolder;
++ (NSString*) dataFolder;
++ (NSString*) moviesFile;
++ (NSString*) theatersFile;
 + (NSString*) documentsFolder;
 + (NSString*) formatDate:(NSDate*) date;
 + (UIColor*) commandColor;
