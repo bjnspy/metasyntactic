@@ -117,7 +117,7 @@
     }
 
     if (sectionTitles.count == 0) {
-        self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"No information found", nil)];
+        self.sectionTitles = [NSArray arrayWithObject:[self.model noLocationInformationFound]];
     }
 }
 
@@ -250,12 +250,8 @@
               titleForHeaderInSection:(NSInteger) section {
     if ([self.model sortingMoviesByTitle]) {
         return [self.sectionTitles objectAtIndex:section]; 
-    } else if ([self.model sortingMoviesByRating]) {
-        if (sortedMovies.count == 0) {
-            return NSLocalizedString(@"No information found", nil);
-        } else {
-            return nil;
-        }
+    } else if ([self.model sortingMoviesByRating] && self.sortedMovies.count > 0) {
+        return nil;
     } else {
         return [self.sectionTitles objectAtIndex:section]; 
     }

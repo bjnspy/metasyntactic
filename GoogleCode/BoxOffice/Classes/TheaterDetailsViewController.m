@@ -17,6 +17,7 @@
 #import "Utilities.h"
 #import "AutoresizingCell.h"
 #import "ViewControllerUtilities.h"
+#import "AttributeCell.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -123,13 +124,19 @@
     NSInteger row = [indexPath row];
     
     if (section == 0) {
-        AutoresizingCell* cell = [[[AutoresizingCell alloc] initWithFrame:CGRectZero] autorelease];
-        cell.label.textColor = [Application commandColor];
+        AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
         
         if (row == 0) {
-            cell.label.text = self.theater.address;
+            Location* location = [self.model locationForAddress:theater.address];
+            if (location.address != nil && location.city != nil) {
+                [cell setKey:NSLocalizedString(@"map", nil)
+                       value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]
+                hasIndicator:NO];
+            } else {
+                [cell setKey:NSLocalizedString(@"map", nil) value:theater.address hasIndicator:NO];
+            }
         } else {
-            cell.label.text = self.theater.phoneNumber;
+            [cell setKey:NSLocalizedString(@"call", nil) value:theater.phoneNumber hasIndicator:NO];
         }
         
         return cell;

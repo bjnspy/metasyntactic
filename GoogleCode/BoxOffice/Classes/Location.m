@@ -14,31 +14,37 @@
 @synthesize latitude;
 @synthesize longitude;
 @synthesize address;
+@synthesize city;
 
-- (id) initWithLatitude:(double) lat
-              longitude:(double) lng
-                address:(NSString*) addr{
+- (id) initWithLatitude:(double) latitude_
+              longitude:(double) longitude_
+                address:(NSString*) address_
+                   city:(NSString*) city_ {
     if (self = [super init]) {
-        latitude = lat;
-        longitude = lng;
-        address = addr;
+        latitude = latitude_;
+        longitude = longitude_;
+        self.address = address_;
+        self.city = city_;
     }
     
     return self;
 }
 
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary {
-    return [self locationWithLatitude:[[dictionary valueForKey:@"latitude"] doubleValue]
-                            longitude:[[dictionary valueForKey:@"longitude"] doubleValue]
-                              address:[dictionary valueForKey:@"address"]];
+    return [self locationWithLatitude:[[dictionary objectForKey:@"latitude"] doubleValue]
+                            longitude:[[dictionary objectForKey:@"longitude"] doubleValue]
+                              address:[dictionary objectForKey:@"address"]
+                                 city:[dictionary objectForKey:@"city"]];
 }
 
 + (Location*) locationWithLatitude:(double) latitude
                          longitude:(double) longitude
-                           address:(NSString*) address {
+                           address:(NSString*) address
+                              city:(NSString*) city {
     return [[[Location alloc] initWithLatitude:latitude
                                      longitude:longitude
-                                       address:address] autorelease];
+                                       address:address
+                                          city:city] autorelease];
 }
 
 - (NSDictionary*) dictionary {
@@ -46,6 +52,7 @@
     [dict setObject:[NSNumber numberWithDouble:latitude] forKey:@"latitude"];
     [dict setObject:[NSNumber numberWithDouble:longitude] forKey:@"longitude"];
     [dict setObject:address forKey:@"address"];
+    [dict setObject:city forKey:@"city"];
     return dict;
 }
 

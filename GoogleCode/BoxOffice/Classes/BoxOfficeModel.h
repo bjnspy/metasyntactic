@@ -129,4 +129,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 - (void) addFavoriteTheater:(Theater*) theater;
 - (void) removeFavoriteTheater:(Theater*) theater;
 
+- (NSString*) noLocationInformationFound;
+
 @end

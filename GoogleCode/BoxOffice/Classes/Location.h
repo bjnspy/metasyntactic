@@ -12,16 +12,19 @@
     double latitude;
     double longitude;
     NSString* address;
+    NSString* city;
 }
 
 @property (readonly) double latitude;
 @property (readonly) double longitude;
 @property (copy) NSString* address;
+@property (copy) NSString* city;
 
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary;
 + (Location*) locationWithLatitude:(double) latitude
                          longitude:(double) longitude
-                           address:(NSString*) address;
+                           address:(NSString*) address
+                              city:(NSString*) city;
 
 - (NSDictionary*) dictionary;
 

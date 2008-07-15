@@ -21,15 +21,12 @@
 - (id)    initWithFrame:(CGRect) frame
         reuseIdentifier:(NSString*) reuseIdentifier  {
     if (self = [super initWithFrame:frame
-                    reuseIdentifier:reuseIdentifier]) {      
-        self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+                    reuseIdentifier:reuseIdentifier]) {
         self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];  
         
         label.numberOfLines = 0;
         label.font = [UIFont boldSystemFontOfSize:11];
         label.lineBreakMode = UILineBreakModeWordWrap;
-        label.opaque = NO;
         
         [self addSubview:label];
     }
@@ -56,6 +53,16 @@
     }
     
     label.text = text;
+}
+
+- (void) setSelected:(BOOL) selected
+            animated:(BOOL) animated {
+    [super setSelected:selected animated:animated];
+    if (selected) {
+        label.textColor = [UIColor whiteColor];
+    } else {
+        label.textColor = [UIColor blackColor];
+    }
 }
 
 @end
