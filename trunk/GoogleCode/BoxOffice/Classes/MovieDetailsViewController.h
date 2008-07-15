@@ -15,7 +15,7 @@
     MoviesNavigationController* navigationController;
     
     Movie* movie;
-    NSArray* theatersArray;
+    NSMutableArray* theatersArray;
     NSMutableArray* showtimesArray;
     NSArray* trailersArray;
     
@@ -24,7 +24,7 @@
 
 @property (assign) MoviesNavigationController* navigationController;
 @property (retain) Movie* movie;
-@property (retain) NSArray* theatersArray;
+@property (retain) NSMutableArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
 @property (retain) NSArray* trailersArray;
 @property NSInteger hiddenTheaterCount;

@@ -38,20 +38,41 @@
     [super dealloc];
 }
 
+- (void) orderTheaters {
+    [self.theatersArray sortUsingFunction:compareTheatersByDistance
+                                  context:[self.model theaterDistanceMap]];    
+    
+    NSMutableArray* favorites = [NSMutableArray array];
+    NSMutableArray* nonFavorites = [NSMutableArray array];
+    
+    for (Theater* theater in self.theatersArray) {
+        if ([self.model isFavoriteTheater:theater]) {
+            [favorites addObject:theater];
+        } else {
+            [nonFavorites addObject:theater];
+        }
+    }
+
+    NSMutableArray* result = [NSMutableArray array];
+    [result addObjectsFromArray:favorites];
+    [result addObjectsFromArray:nonFavorites];
+    
+    self.theatersArray = result;
+}
+
 - (void) initializeData:(BOOL) filter {
     NSArray* theatersShowingMovie = [self.model theatersShowingMovie:self.movie];
     
     if (filter) {
         self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:theatersShowingMovie]];
-        self.theatersArray = [self.theatersArray sortedArrayUsingFunction:compareTheatersByDistance
-                              context:[self.model theaterDistanceMap]];
-        
         self.hiddenTheaterCount = [theatersShowingMovie count] - [self.theatersArray count];
     } else {
-        self.theatersArray = theatersShowingMovie;
+        self.theatersArray = [NSMutableArray arrayWithArray:theatersShowingMovie];
         self.hiddenTheaterCount = 0;
     }
     
+    [self orderTheaters];
+            
     self.showtimesArray = [NSMutableArray array];
     
     for (Theater* theater in self.theatersArray) {
@@ -315,7 +336,14 @@
         return nil;
     }
     
-    return [[self.theatersArray objectAtIndex:[self getTheaterIndex:section]] name];
+    Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
+    if ([self.model isFavoriteTheater:theater]) {
+        NSString* result = [NSString stringWithFormat:@"%@ %@", [Application starString], [theater name]];
+        NSLog(result);
+        return result;
+    } else {
+        return [theater name];
+    }
 }
 
 - (void) didSelectHeaderRow:(NSInteger) row {
