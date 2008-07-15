@@ -20,7 +20,9 @@
 + (NSString*) theatersFile;
 + (NSString*) documentsFolder;
 + (NSString*) formatDate:(NSDate*) date;
+
 + (UIColor*) commandColor;
+
 + (UIImage*) freshImage;
 + (UIImage*) rottenImage;
 + (UIImage*) emptyStarImage;

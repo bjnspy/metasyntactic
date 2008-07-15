@@ -35,6 +35,9 @@
 + (BOOL) areSimilar:(NSString*) s1
               other:(NSString*) s2;
 
+
+- (NSInteger) findClosestMatchIndex:(NSString*) string
+                            inArray:(NSArray*) array;
 - (NSString*) findClosestMatch:(NSString*) string
                        inArray:(NSArray*) array;
 
