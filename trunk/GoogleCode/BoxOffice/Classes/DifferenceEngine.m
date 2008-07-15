@@ -152,6 +152,14 @@ NSInteger DE_min(NSInteger x, NSInteger y) {
     return [[DifferenceEngine engine] similar:s1 other:s2];
 }
 
+- (NSInteger) threshold:(NSString*) string {
+    NSInteger threshold = [string length] / 4;
+    if (threshold == 0) {
+        threshold = 1;
+    }
+    return threshold;
+}
+
 - (BOOL) similar:(NSString*) s1
            other:(NSString*) s2 {
     if (s1 == nil || s2 == nil) {
@@ -165,38 +173,44 @@ NSInteger DE_min(NSInteger x, NSInteger y) {
         }
     }
     
-    NSInteger threshold = [s1 length] / 4;
-    if (threshold == 0) {
-        threshold = 1;
-    }  
-    
+    NSInteger threshold = [self threshold:s1];
     NSInteger diff = [self editDistanceFrom:s1 to:s2 withThreshold:threshold];
     return (diff <= threshold);
 }
 
-- (NSString*) findClosestMatch:(NSString*) string
-                       inArray:(NSArray*) array {
-    NSString* lowercaseString = [string lowercaseString];
-    
+- (NSInteger) findClosestMatchIndex:(NSString*) string
+                            inArray:(NSArray*) array {
     NSInteger bestDistance = INT_MAX;
-    NSString* bestMatch = nil;
+    NSInteger bestIndex = -1;
     
-    for (NSString* value in array) {
-            int distance = [self editDistanceFrom:lowercaseString
-                                               to:[value lowercaseString]];
-            
+    for (int i = 0; i < array.count; i++) {
+        NSString* value = [array objectAtIndex:i];
+        
+        int distance = [self editDistanceFrom:string
+                                           to:value];
+        
         if (distance < bestDistance) {
-            bestMatch = value;
+            bestIndex = i;
             bestDistance = distance;
         }
     }
-        
-    if (bestMatch != nil &&
-        [DifferenceEngine areSimilar:bestMatch other:string]) {
-        return bestMatch;
+    
+    if (bestIndex != -1 &&
+        [self similar:[array objectAtIndex:bestIndex] other:string]) {
+        return bestIndex;
     }
-        
-    return nil;
+    
+    return NSNotFound;
+}
+
+- (NSString*) findClosestMatch:(NSString*) string
+                       inArray:(NSArray*) array {
+    NSInteger index = [self findClosestMatchIndex:string inArray:array];
+    if (index == NSNotFound) {
+        return nil;
+    }
+    
+    return [array objectAtIndex:index];
 }
 
 @end

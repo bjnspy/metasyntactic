@@ -146,7 +146,7 @@
 }
 
 - (Location*) locationForPostalCode:(NSString*) postalCode {
-    return [self locationForAddress:postalCode  ];
+    return [self locationForAddress:postalCode];
 }
 
 - (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode

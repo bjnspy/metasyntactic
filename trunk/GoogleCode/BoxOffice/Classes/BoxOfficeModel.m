@@ -696,12 +696,36 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (void) createMovieMap {
     if (self.movieMap == nil) {
+        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+        
+        NSArray* keys = [[self supplementaryInformation] allKeys];
+        NSMutableArray* lowercaseKeys = [NSMutableArray array];
+        for (NSString* key in keys) {
+            [lowercaseKeys addObject:[key lowercaseString]];
+        }
+        
+        for (Movie* movie in self.movies) {
+            NSString* lowercaseTitle = [movie.title lowercaseString];
+            NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
+            if (index == NSNotFound) {
+                index = [[Application differenceEngine] findClosestMatchIndex:[movie.title lowercaseString] inArray:lowercaseKeys];
+            }
+            
+            if (index != NSNotFound) {
+                NSString* key = [keys objectAtIndex:index];
+                [dictionary setObject:[[self supplementaryInformation] objectForKey:key] forKey:movie.title];
+            }
+        }
+        
+        self.movieMap = dictionary;
+        
+        /*
         NSMutableArray* movieTitles = [NSMutableArray array];
         
         for (Movie* movie in self.movies) {
             [movieTitles addObject:movie.title];
         }
-        
+         
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
         
         for (NSString* key in [self supplementaryInformation]) {
@@ -714,6 +738,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         }
         
         self.movieMap = dictionary;
+         */
     }
 }
 
