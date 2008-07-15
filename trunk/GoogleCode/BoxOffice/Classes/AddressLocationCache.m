@@ -17,6 +17,8 @@
 
 @implementation AddressLocationCache
 
+static NSString* ADDRESS_LOCATION_MAP = @"addressLocationMap";
+
 @synthesize gate;
 @synthesize cachedTheaterDistanceMap;
 
@@ -51,11 +53,13 @@
         NSString* latitude = [resultElement attributeValue:@"latitude"];
         NSString* longitude = [resultElement attributeValue:@"longitude"];
         NSString* address = [resultElement attributeValue:@"address"];
+        NSString* city = [resultElement attributeValue:@"city"];
         
         if (![Utilities isNilOrEmpty:latitude] && ![Utilities isNilOrEmpty:longitude]) {
             return [Location locationWithLatitude:[latitude doubleValue]
                                         longitude:[longitude doubleValue]
-                                          address:address];
+                                          address:address
+                                              city:city];
         }
     }
     
@@ -83,7 +87,7 @@
 }
 
 - (NSDictionary*) addressLocationMap {
-    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"addressLocationMap"];
+    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:ADDRESS_LOCATION_MAP];
     if (dict == nil) {
         return [NSDictionary dictionary];
     }
@@ -109,7 +113,7 @@
     NSMutableDictionary* map = [NSMutableDictionary dictionaryWithDictionary:[self addressLocationMap]];
     [map setValue:[location dictionary] forKey:address];
     
-    [[NSUserDefaults standardUserDefaults] setValue:map forKey:@"addressLocationMap"];
+    [[NSUserDefaults standardUserDefaults] setValue:map forKey:ADDRESS_LOCATION_MAP];
     
     [self performSelectorOnMainThread:@selector(invalidateCachedData:) withObject:nil waitUntilDone:NO];
 }

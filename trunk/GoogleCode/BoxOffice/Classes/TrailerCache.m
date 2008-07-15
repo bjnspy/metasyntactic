@@ -13,6 +13,8 @@
 
 @implementation TrailerCache
 
+static NSString* MOVIE_TRAILERS = @"movieTrailers";
+
 @synthesize gate;
 @synthesize movieToTrailersMap;
 
@@ -27,7 +29,7 @@
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
         
-        NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:@"movieTrailers"];
+        NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:MOVIE_TRAILERS];
         
         if (dict == nil) {
             self.movieToTrailersMap = [NSMutableDictionary dictionary];
@@ -203,7 +205,7 @@
 }
 
 - (void) onComplete:(id) nothing {
-    [[NSUserDefaults standardUserDefaults] setObject:self.movieToTrailersMap forKey:@"movieTrailers"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.movieToTrailersMap forKey:MOVIE_TRAILERS];
 }
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
@@ -216,7 +218,7 @@
 }
 
 - (void) applicationWillTerminate {
-    [[NSUserDefaults standardUserDefaults] setObject:self.movieToTrailersMap forKey:@"movieTrailers"];
+    [[NSUserDefaults standardUserDefaults] setObject:self.movieToTrailersMap forKey:MOVIE_TRAILERS];
 }
 
 

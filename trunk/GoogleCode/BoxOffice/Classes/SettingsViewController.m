@@ -15,6 +15,7 @@
 #import "Utilities.h"
 #import "CreditsViewController.h"
 #import "Application.h"
+#import "AttributeCell.h"
 
 @implementation SettingsViewController
 
@@ -146,7 +147,7 @@
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
     
-    if (section == 3) {
+    if (section == 2) {
         return UITableViewCellAccessoryNone;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
@@ -154,41 +155,67 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 4;
+    return 3;
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
+    if (section == 0) {
+        return 2;
+    }
+    
     return 1;
 }
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
                         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-    
-    NSInteger section = [indexPath section];
+        NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
     
     if (section == 0) {
-        cell.text = [[self model] postalCode];
+        AttributeCell* attributeCell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+
+        if (row == 0) {
+            [attributeCell setKey:NSLocalizedString(@"postal code", nil)
+                            value:[[self model] postalCode]
+                     hasIndicator:YES 
+                         keyWidth:90];
+        } else {
+            NSString* value;
+            if ([self.model searchRadius] == 1) {
+                value = NSLocalizedString(@"1 mile", nil);
+            } else {
+                value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
+            }
+            
+            [attributeCell setKey:NSLocalizedString(@"distance", nil) 
+                            value:value
+                     hasIndicator:YES
+                         keyWidth:90];
+        }
+        
+        return attributeCell;
     } else if (section == 1) {
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
-    } else if (section == 2) {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+
         cell.text = NSLocalizedString(@"About", nil);
+        
+        return cell;
     } else {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+
         cell.text = NSLocalizedString(@"Donate", nil);
         cell.textColor = [Application commandColor];
         cell.textAlignment = UITextAlignmentCenter;
+
+        return cell;
     }
-    
-    return cell;
 }
 
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
-        return NSLocalizedString(@"Postal code", nil);
-    } else if (section == 1) {
-        return NSLocalizedString(@"Search radius", nil);
+        return NSLocalizedString(@"Location", nil);
     }
     
     return nil; 
@@ -197,37 +224,40 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
     
     if (section == 0) {
-        TextFieldEditorViewController* controller = 
-        [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
-                                                         withTitle:NSLocalizedString(@"Postal code", nil)
-                                                        withObject:self
-                                                      withSelector:@selector(onPostalCodeChanged:)
-                                                          withText:[self.model postalCode]
-                                                          withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
-        
-        [self.navigationController pushViewController:controller animated:YES];
+        if (row == 0) {
+            TextFieldEditorViewController* controller = 
+            [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
+                                                             withTitle:NSLocalizedString(@"Postal code", nil)
+                                                            withObject:self
+                                                          withSelector:@selector(onPostalCodeChanged:)
+                                                              withText:[self.model postalCode]
+                                                              withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
+            
+            [self.navigationController pushViewController:controller animated:YES];
+        } else {
+            NSArray* values = [NSArray arrayWithObjects:
+                               @"1", @"2", @"3", @"4", @"5", 
+                               @"10", @"15", @"20", @"25", @"30",
+                               @"35", @"40", @"45", @"50", nil];
+            NSString* defaultValue = [NSString stringWithFormat:@"%d", [self.model searchRadius]];
+            
+            PickerEditorViewController* controller = 
+            [[[PickerEditorViewController alloc] initWithController:self.navigationController
+                                                          withTitle:NSLocalizedString(@"Search radius", nil)
+                                                         withObject:self
+                                                       withSelector:@selector(onSearchRadiusChanged:)
+                                                         withValues:values
+                                                       defaultValue:defaultValue] autorelease];
+            
+            [self.navigationController pushViewController:controller animated:YES];
+        }
     } else if (section == 1) {
-        NSArray* values = [NSArray arrayWithObjects:
-                           @"1", @"2", @"3", @"4", @"5", 
-                           @"10", @"15", @"20", @"25", @"30",
-                           @"35", @"40", @"45", @"50", nil];
-        NSString* defaultValue = [NSString stringWithFormat:@"%d", [self.model searchRadius]];
-        
-        PickerEditorViewController* controller = 
-        [[[PickerEditorViewController alloc] initWithController:self.navigationController
-                                                      withTitle:NSLocalizedString(@"Search radius", nil)
-                                                     withObject:self
-                                                   withSelector:@selector(onSearchRadiusChanged:)
-                                                     withValues:values
-                                                   defaultValue:defaultValue] autorelease];
-        
-        [self.navigationController pushViewController:controller animated:YES];
-    } else if (section == 2) {
         CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];
-    } else if (section == 3) {
+    } else if (section == 2) {
         [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     }
 }

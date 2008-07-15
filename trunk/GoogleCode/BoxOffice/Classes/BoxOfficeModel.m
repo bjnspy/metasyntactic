@@ -12,11 +12,11 @@
 #import "DifferenceEngine.h"
 #import "Application.h"
 #import "ExtraMovieInformation.h"
+#import "Utilities.h"
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.12";
-
+static NSString* currentVersion = @"1.2.14";
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
@@ -31,6 +31,9 @@ static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewCo
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSegmentIndex";
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
+static NSString* MOVIE_TRAILERS                         = @"movieTrailers";
+static NSString* ADDRESS_LOCATION_MAP                   = @"addressLocationMap";
+
 static NSArray* KEYS;
 
 + (void) initialize {
@@ -50,6 +53,8 @@ static NSArray* KEYS;
                  ALL_MOVIES_SELECTED_SEGMENT_INDEX,
                  ALL_THEATERS_SELECTED_SEGMENT_INDEX,
                  FAVORITE_THEATERS,
+                 MOVIE_TRAILERS,
+                 ADDRESS_LOCATION_MAP,
                  nil] retain];
     }
 }
@@ -756,6 +761,14 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (void) applicationWillTerminate {
     [trailerCache applicationWillTerminate];
+}
+
+- (NSString*) noLocationInformationFound {
+    if ([Utilities isNilOrEmpty:[self postalCode]]) {
+        return NSLocalizedString(@"Please enter a postal code", nil);
+    } else {
+        return NSLocalizedString(@"No information found", nil);
+    }
 }
 
 @end
