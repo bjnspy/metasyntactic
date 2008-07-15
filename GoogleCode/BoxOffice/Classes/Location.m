@@ -13,12 +13,15 @@
 
 @synthesize latitude;
 @synthesize longitude;
+@synthesize address;
 
 - (id) initWithLatitude:(double) lat
-              longitude:(double) lng {
+              longitude:(double) lng
+                address:(NSString*) addr{
     if (self = [super init]) {
         latitude = lat;
         longitude = lng;
+        address = addr;
     }
     
     return self;
@@ -26,18 +29,23 @@
 
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary {
     return [self locationWithLatitude:[[dictionary valueForKey:@"latitude"] doubleValue]
-                            longitude:[[dictionary valueForKey:@"longitude"] doubleValue]];
+                            longitude:[[dictionary valueForKey:@"longitude"] doubleValue]
+                              address:[dictionary valueForKey:@"address"]];
 }
 
 + (Location*) locationWithLatitude:(double) latitude
-                         longitude:(double) longitude {
-    return [[[Location alloc] initWithLatitude:latitude longitude:longitude] autorelease];
+                         longitude:(double) longitude
+                           address:(NSString*) address {
+    return [[[Location alloc] initWithLatitude:latitude
+                                     longitude:longitude
+                                       address:address] autorelease];
 }
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithDouble:self.latitude] forKey:@"latitude"];
-    [dict setObject:[NSNumber numberWithDouble:self.longitude] forKey:@"longitude"];
+    [dict setObject:[NSNumber numberWithDouble:latitude] forKey:@"latitude"];
+    [dict setObject:[NSNumber numberWithDouble:longitude] forKey:@"longitude"];
+    [dict setObject:address forKey:@"address"];
     return dict;
 }
 
@@ -82,7 +90,7 @@
 }
 
 - (NSString*) description {
-    return [NSString stringWithFormat:@"(%d,%d)", self.latitude, self.longitude];
+    return [NSString stringWithFormat:@"(%d,%d)", latitude, longitude];
 }
 
 @end

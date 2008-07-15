@@ -86,21 +86,39 @@
     [autoreleasePool release];
 }
 
-- (void) findPostalCode:(CLLocation*) location {
+- (NSString*) findUSPostalCode:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = [location coordinate];
     
     NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", coordinates.latitude, coordinates.longitude];
-
-    XmlElement* geonamesElement = [Utilities downloadXml:urlString];
     
-    NSString* postalCode = nil;
-    if (geonamesElement != nil)
-    {
-        XmlElement* codeElement = [geonamesElement element:@"code"];
-        XmlElement* postalElement = [codeElement element:@"postalcode"];
-        postalCode = [postalElement text];
+    XmlElement* geonamesElement = [Utilities downloadXml:urlString];
+    XmlElement* codeElement = [geonamesElement element:@"code"];
+    XmlElement* postalElement = [codeElement element:@"postalcode"];
+    XmlElement* countryElement = [codeElement element:@"countryCode"];
+    
+    if ([@"CA" isEqual:countryElement.text]) {
+        return nil;
     }
     
+    return [postalElement text];
+}
+    
+- (NSString*) findCAPostalCode:(CLLocation*) location {
+    CLLocationCoordinate2D coordinates = [location coordinate];
+    
+    NSString* urlString = [NSString stringWithFormat:@"http://geocoder.ca/?latt=%f&longt=%f&geoit=xml&reverse=Reverse+GeoCode+it", coordinates.latitude, coordinates.longitude];
+    
+    XmlElement* geodataElement = [Utilities downloadXml:urlString];
+    XmlElement* postalElement = [geodataElement element:@"postal"];
+    return [postalElement text];
+}
+
+- (void) findPostalCode:(CLLocation*) location {
+    NSString* postalCode = [self findUSPostalCode:location];
+    if (postalCode == nil) {
+        postalCode = [self findCAPostalCode:location];
+    }
+        
     [self performSelectorOnMainThread:@selector(reportFoundPostalCode:) withObject:postalCode waitUntilDone:NO];
 }
 
