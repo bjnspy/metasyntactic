@@ -104,7 +104,7 @@
         }
     }
     
-    for (int i = 0; i < 10 && i < [moviesWithPosters count]; i++) {
+    for (int i = 0; i < 10 && i < moviesWithPosters.count; i++) {
         [self showPoster:[NSNumber numberWithInt:i]];
     }
 }

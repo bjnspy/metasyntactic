@@ -71,7 +71,7 @@
 
 - (NSInteger)           pickerView:(UIPickerView*) pickerView
            numberOfRowsInComponent:(NSInteger) component {
-    return [self.values count];
+    return values.count;
 }
 
 - (NSString*)     pickerView:(UIPickerView*) pickerView

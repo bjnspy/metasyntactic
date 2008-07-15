@@ -49,7 +49,7 @@
 - (void) setShowtimes:(NSArray*) showtimes {
     NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
     
-    for (int i = 1; i < [showtimes count]; i++) {
+    for (int i = 1; i < showtimes.count; i++) {
         [text appendString:@", "];
         Performance* performance = [showtimes objectAtIndex:i];
         [text appendString:performance.time];

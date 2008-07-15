@@ -65,7 +65,7 @@
     
     if (filter) {
         self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:theatersShowingMovie]];
-        self.hiddenTheaterCount = [theatersShowingMovie count] - [self.theatersArray count];
+        self.hiddenTheaterCount = theatersShowingMovie.count - theatersArray.count;
     } else {
         self.theatersArray = [NSMutableArray arrayWithArray:theatersShowingMovie];
         self.hiddenTheaterCount = 0;
@@ -117,11 +117,11 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     NSInteger sections = 1;
     
-    if ([trailersArray count]) {
+    if (trailersArray.count) {
         sections += 1;
     }
     
-    sections += [self.theatersArray count];
+    sections += theatersArray.count;
     
     return sections;
 }
@@ -135,7 +135,7 @@
 }
 
 - (NSInteger) numberOfRowsInTrailersSection {
-    return [trailersArray count];
+    return trailersArray.count;
 }
 
 - (NSInteger) tableView:(UITableView*) tableView

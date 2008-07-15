@@ -51,10 +51,10 @@
 }
 
 - (void) removeUnusedSectionTitles {
-    for (NSInteger i = [self.sectionTitles count] - 1; i >= 0; --i) {
-        NSString* title = [self.sectionTitles objectAtIndex:i];
-        if ([[self.sectionTitleToContentsMap objectsForKey:title] count] == 0) {
-            [self.sectionTitles removeObjectAtIndex:i];
+    for (NSInteger i = sectionTitles.count - 1; i >= 0; --i) {
+        NSString* title = [sectionTitles objectAtIndex:i];
+        if ([[sectionTitleToContentsMap objectsForKey:title] count] == 0) {
+            [sectionTitles removeObjectAtIndex:i];
         }
     }    
 }
@@ -148,7 +148,7 @@
         [self sortTheatersByDistance];
     }
     
-    if ([self.sectionTitles count] == 0) {
+    if (sectionTitles.count == 0) {
         self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"No information found", nil)]; 
     }
 }
@@ -210,7 +210,7 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return [self.sectionTitles count];
+    return sectionTitles.count;
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView

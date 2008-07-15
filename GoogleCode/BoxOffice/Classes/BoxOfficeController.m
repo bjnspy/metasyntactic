@@ -108,7 +108,7 @@
 - (NSDictionary*) quickLookup {
     NSMutableArray* hosts = [Application hosts];
     
-    while ([hosts count]) {
+    while (hosts.count) {
         NSString* host = [Utilities removeRandomElement:hosts];
         
         NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings", host]];
@@ -121,10 +121,10 @@
             NSArray* rows = [inTheaters componentsSeparatedByString:@"\n"];
             
             // first row are the column headers.  last row is empty.  skip both.
-            for (NSInteger i = 1; i < [rows count] - 1; i++) {   
+            for (NSInteger i = 1; i < rows.count - 1; i++) {   
                 NSArray* columns = [[rows objectAtIndex:i] componentsSeparatedByString:@"\t"];
                 
-                if ([columns count] >= 9) {
+                if (columns.count >= 9) {
                     ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithLink:[columns objectAtIndex:2]
                                                                                   synopsis:[columns objectAtIndex:8]
                                                                                    ranking:[columns objectAtIndex:3]];
@@ -161,7 +161,7 @@
 }
 
 - (void) setSupplementaryData:(NSDictionary*) extraInfo {
-    if ([extraInfo count] > 0) {
+    if (extraInfo.count > 0) {
         [self.model setSupplementaryInformation:extraInfo];
     }
     
@@ -215,7 +215,7 @@
     XmlElement* moviesElement = [theaterElement element:@"movies"];
     NSDictionary* movieToShowtimesMap = [self processShowtimes:moviesElement];
     
-    if ([movieToShowtimesMap count] == 0) {
+    if (movieToShowtimesMap.count == 0) {
         return nil;
     }
     
@@ -287,7 +287,7 @@
 - (NSArray*) fullLookup {
     if (![Utilities isNilOrEmpty:self.model.postalCode]) {
         NSMutableArray* hosts = [Application hosts];
-        NSInteger index = abs([Utilities hashString:self.model.postalCode]) % [hosts count];
+        NSInteger index = abs([Utilities hashString:self.model.postalCode]) % hosts.count;
         NSString* host = [hosts objectAtIndex:index];
         
         NSString* urlString =[NSString stringWithFormat:

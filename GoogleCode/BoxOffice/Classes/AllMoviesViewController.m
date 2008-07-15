@@ -45,11 +45,11 @@
 }
 
 - (void) removeUnusedSectionTitles {
-    for (NSInteger i = [self.sectionTitles count] - 1; i >= 0; --i) {
-        NSString* title = [self.sectionTitles objectAtIndex:i];
+    for (NSInteger i = sectionTitles.count - 1; i >= 0; --i) {
+        NSString* title = [sectionTitles objectAtIndex:i];
         
-        if ([[self.sectionTitleToContentsMap objectsForKey:title] count] == 0) {
-            [self.sectionTitles removeObjectAtIndex:i];
+        if ([[sectionTitleToContentsMap objectsForKey:title] count] == 0) {
+            [sectionTitles removeObjectAtIndex:i];
         }
     }    
 }
@@ -116,7 +116,7 @@
         [self sortMoviesByReleaseDate];
     }
 
-    if ([self.sectionTitles count] == 0) {
+    if (sectionTitles.count == 0) {
         self.sectionTitles = [NSArray arrayWithObject:NSLocalizedString(@"No information found", nil)];
     }
 }
@@ -227,11 +227,11 @@
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     if ([self.model sortingMoviesByTitle]) {
-        return [self.sectionTitles count];
+        return sectionTitles.count;
     } else if ([self.model sortingMoviesByRating]) {
         return 1;
     } else {
-        return [self.sectionTitles count];
+        return sectionTitles.count;
     }
 }
 
@@ -240,7 +240,7 @@
     if ([self.model sortingMoviesByTitle]) {
         return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
     } else if ([self.model sortingMoviesByRating]) {
-        return [self.sortedMovies count];
+        return sortedMovies.count;
     } else {
         return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];        
     }
@@ -251,14 +251,18 @@
     if ([self.model sortingMoviesByTitle]) {
         return [self.sectionTitles objectAtIndex:section]; 
     } else if ([self.model sortingMoviesByRating]) {
-        return nil;
+        if (sortedMovies.count == 0) {
+            return NSLocalizedString(@"No information found", nil);
+        } else {
+            return nil;
+        }
     } else {
         return [self.sectionTitles objectAtIndex:section]; 
     }
 }
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
-    if ([self.model sortingMoviesByTitle]) {
+    if ([self.model sortingMoviesByTitle] && self.sortedMovies.count > 0) {
         return self.alphabeticSectionTitles;
     }
     

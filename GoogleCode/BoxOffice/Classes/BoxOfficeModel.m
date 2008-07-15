@@ -132,10 +132,10 @@ static NSArray* KEYS;
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:key];
         }
         
-        [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
-        
         [[NSFileManager defaultManager] removeItemAtPath:[Application moviesFile] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application theatersFile] error:NULL];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
     }
 }
 
@@ -261,7 +261,7 @@ static NSArray* KEYS;
     
     NSMutableArray* decodedMovies = [NSMutableArray array];
     
-    for (int i = 0; i < [array count]; i++) {
+    for (int i = 0; i < array.count; i++) {
         Movie* movie = [Movie movieWithDictionary:[array objectAtIndex:i]];
         [decodedMovies addObject:movie];
     }
@@ -350,7 +350,7 @@ static NSArray* KEYS;
     
     NSMutableArray* decodedTheaters = [NSMutableArray array];
     
-    for (int i = 0; i < [array count]; i++) {
+    for (int i = 0; i < array.count; i++) {
         [decodedTheaters addObject:[Theater theaterWithDictionary:[array objectAtIndex:i]]];
     }
     
@@ -406,7 +406,7 @@ static NSArray* KEYS;
 - (BOOL) isFavoriteTheater:(Theater*) theater {
     NSMutableArray* array = [self favoriteTheaters];
     
-    for (int i = 0; i < [array count]; i++) {
+    for (int i = 0; i < array.count; i++) {
         Theater* currentTheater = [Theater theaterWithDictionary:[array objectAtIndex:i]];
         
         if ([currentTheater.identifier isEqual:theater.identifier]) {
@@ -420,7 +420,7 @@ static NSArray* KEYS;
 - (void) removeFavoriteTheater:(Theater*) theater {
     NSMutableArray* array = [self favoriteTheaters];
     
-    for (int i = 0; i < [array count]; i++) {
+    for (int i = 0; i < array.count; i++) {
         Theater* currentTheater = [Theater theaterWithDictionary:[array objectAtIndex:i]];
         
         if ([currentTheater.identifier isEqual:theater.identifier]) {
