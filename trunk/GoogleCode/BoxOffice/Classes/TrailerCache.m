@@ -67,7 +67,7 @@
 }
 
 - (NSString*) getValue:(NSString*) key fromArray:(NSArray*) array {
-    for (int i = 0; i < [array count] - 2; i++) {
+    for (int i = 0; i < array.count - 2; i++) {
         if ([[array objectAtIndex:i] isEqual:key]) {
             return [array objectAtIndex:(i + 2)];
         }

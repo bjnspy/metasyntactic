@@ -142,11 +142,11 @@
                 numberOfRowsInSection:(NSInteger) section {
     if (personDetailsElement != nil) {
         if (section == DIRECTOR_SECTION) {
-            return [self.directedMovies count];
+            return self.directedMovies.count;
         } else if (section == WRITER_SECTION) {
-            return [self.wroteMovies count];
+            return self.wroteMovies.count;
         } else if (section == CAST_SECTION) {
-            return [self.castMovies count];
+            return self.castMovies.count;
         }
     }
     
@@ -159,11 +159,11 @@
         return NSLocalizedString(@"Looking up information", nil);
     }
     
-    if (section == DIRECTOR_SECTION && [self.directedMovies count] > 0) {
+    if (section == DIRECTOR_SECTION && self.directedMovies.count > 0) {
         return NSLocalizedString(@"Director:", nil);
-    } else if (section == WRITER_SECTION && [self.wroteMovies count] > 0) {
+    } else if (section == WRITER_SECTION && self.wroteMovies.count > 0) {
         return NSLocalizedString(@"Writer:", nil);
-    } else if (section == CAST_SECTION && [self.castMovies count] > 0) {
+    } else if (section == CAST_SECTION && self.castMovies.count > 0) {
         return NSLocalizedString(@"Cast member:", nil);
     }
     

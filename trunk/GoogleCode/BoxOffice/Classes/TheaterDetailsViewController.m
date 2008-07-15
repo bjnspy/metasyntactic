@@ -104,7 +104,7 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return [self.movies count] + 1;
+    return self.movies.count + 1;
 }
 
 - (NSInteger)     tableView:(UITableView*) tableView

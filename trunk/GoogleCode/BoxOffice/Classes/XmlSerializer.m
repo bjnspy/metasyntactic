@@ -36,7 +36,7 @@
     
     [buffer appendString:@"<"];
     [buffer appendString:node.name];
-    if ([node.attributes count] > 0) {        
+    if (node.attributes.count > 0) {        
         for (NSString* key in node.attributes) {
             [XmlSerializer serializeAttribute:key
                                         value:[node.attributes valueForKey:key]
@@ -44,7 +44,7 @@
         }
     }
     
-    if ([node.children count] == 0 && node.text == nil) {
+    if (node.children.count == 0 && node.text == nil) {
         [buffer appendString:@"/>"];
         return;
     }

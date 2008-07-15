@@ -75,7 +75,7 @@
     if (section == 0) {
         return 3;
     } else if (section == 1) {
-        return [performances count];
+        return performances.count;
     }
     
     return 0;

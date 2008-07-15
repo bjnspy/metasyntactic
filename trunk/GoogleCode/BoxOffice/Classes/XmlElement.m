@@ -100,11 +100,11 @@
         [dictionary setValue:self.text forKey:@"text"];
     }
     
-    if ([self.attributes count] > 0) {
+    if (attributes.count > 0) {
         [dictionary setValue:self.attributes forKey:@"attributes"];
     }
     
-    if ([array count] > 0) {
+    if (array.count > 0) {
         [dictionary setValue:array forKey:@"children"];
     }
     

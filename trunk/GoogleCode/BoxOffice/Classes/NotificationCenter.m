@@ -57,7 +57,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     
     [self.messages addObject:message];
     
-    if ([self.messages count] == 1) {
+    if (self.messages.count == 1) {
         self.background.frame = emptyFrame;
         
         [UIView beginAnimations:nil context:NULL];
@@ -109,7 +109,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
 }
 
 - (void) update:(id) object {
-    if ([self.messages count] == 0) {
+    if (self.messages.count == 0) {
         [self clearStatus];
     } else {
         [self displayNextMessage];
