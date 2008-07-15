@@ -201,7 +201,7 @@
     if (section == 0) {
         TextFieldEditorViewController* controller = 
         [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
-                                                         withTitle:NSLocalizedString(@"PostalCode", nil)
+                                                         withTitle:NSLocalizedString(@"Postal code", nil)
                                                         withObject:self
                                                       withSelector:@selector(onPostalCodeChanged:)
                                                           withText:[self.model postalCode]
