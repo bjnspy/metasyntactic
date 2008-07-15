@@ -247,7 +247,7 @@
 }
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
-    if ([self sortingByName]) {
+    if ([self sortingByName] && sortedTheaters.count > 0) {
         return self.alphabeticSectionTitles;
     }
     
