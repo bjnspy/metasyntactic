@@ -88,8 +88,9 @@
 
 - (NSString*) findUSPostalCode:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = [location coordinate];
-    
-    NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", coordinates.latitude, coordinates.longitude];
+    double latitude = coordinates.latitude;
+    double longitude = coordinates.longitude;
+    NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", latitude, longitude];
     
     XmlElement* geonamesElement = [Utilities downloadXml:urlString];
     XmlElement* codeElement = [geonamesElement element:@"code"];
@@ -105,8 +106,9 @@
     
 - (NSString*) findCAPostalCode:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = [location coordinate];
-    
-    NSString* urlString = [NSString stringWithFormat:@"http://geocoder.ca/?latt=%f&longt=%f&geoit=xml&reverse=Reverse+GeoCode+it", coordinates.latitude, coordinates.longitude];
+    double latitude = coordinates.latitude;
+    double longitude = coordinates.longitude;    
+    NSString* urlString = [NSString stringWithFormat:@"http://geocoder.ca/?latt=%f&longt=%f&geoit=xml&reverse=Reverse+GeoCode+it", latitude, longitude];
     
     XmlElement* geodataElement = [Utilities downloadXml:urlString];
     XmlElement* postalElement = [geodataElement element:@"postal"];

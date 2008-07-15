@@ -337,7 +337,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1216}, {311, 773}}</string>
+							<string>{{0, 1201}, {311, 788}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -349,7 +349,7 @@
 					<key>GeometryConfiguration</key>
 					<dict>
 						<key>Frame</key>
-						<string>{{0, 0}, {328, 791}}</string>
+						<string>{{0, 0}, {328, 806}}</string>
 						<key>GroupTreeTableConfiguration</key>
 						<array>
 							<string>SCMStatusColumn</string>
@@ -358,7 +358,7 @@
 							<real>289</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>57 43 1244 832 0 0 1440 878 </string>
+						<string>44 31 1396 847 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -388,7 +388,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>742445800E2C8B3000C98F84</string>
+										<string>7424458F0E2C8CDD00C98F84</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -806,14 +806,14 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 0}, {911, 545}}</string>
+								<string>{{0, 0}, {1063, 560}}</string>
 								<key>RubberWindowFrame</key>
-								<string>57 43 1244 832 0 0 1440 878 </string>
+								<string>44 31 1396 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
 							<key>Proportion</key>
-							<string>545pt</string>
+							<string>560pt</string>
 						</dict>
 						<dict>
 							<key>ContentConfiguration</key>
@@ -826,9 +826,9 @@
 							<key>GeometryConfiguration</key>
 							<dict>
 								<key>Frame</key>
-								<string>{{0, 550}, {911, 241}}</string>
+								<string>{{0, 565}, {1063, 241}}</string>
 								<key>RubberWindowFrame</key>
-								<string>57 43 1244 832 0 0 1440 878 </string>
+								<string>44 31 1396 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -837,7 +837,7 @@
 						</dict>
 					</array>
 					<key>Proportion</key>
-					<string>911pt</string>
+					<string>1063pt</string>
 				</dict>
 			</array>
 			<key>Name</key>
@@ -973,7 +973,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>237800240.24083099</real>
+	<real>237800669.797324</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -988,8 +988,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>742445810E2C8B3000C98F84</string>
-		<string>7424457D0E2C8A9100C98F84</string>
 		<string>742445170E2C7F5F00C98F84</string>
 		<string>742445180E2C7F5F00C98F84</string>
 		<string>1C78EAAD065D492600B07095</string>
@@ -997,10 +995,9 @@
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>7424457E0E2C8A9100C98F84</string>
 	</array>
 	<key>WindowString</key>
-	<string>57 43 1244 832 0 0 1440 878 </string>
+	<string>44 31 1396 847 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
