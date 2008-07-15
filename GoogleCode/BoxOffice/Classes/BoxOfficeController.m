@@ -298,9 +298,7 @@
         XmlElement* element = [Utilities downloadXml:urlString];
         
         if (element != nil) {
-            NSArray* moviesAndTheaters = [self processElement:element];
-            
-            return moviesAndTheaters;
+            return [self processElement:element];
         }
     }
     
@@ -314,12 +312,26 @@
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie and theater data", nil)];
 }
 
+- (void) saveArray:(NSArray*) array to:(NSString*) file {
+    NSMutableArray* encoded = [NSMutableArray array];
+    
+    for (id object in array) {
+        [encoded addObject:[object dictionary]];
+    }
+    
+    [encoded writeToFile:file atomically:YES];
+}
+
 - (void) fullLookupBackgroundThreadEntryPoint:(id) anObject {    
     [self.fullLookupLock lock];
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         NSArray* moviesAndTheaters = [self fullLookup];
+        
+        [self saveArray:[moviesAndTheaters objectAtIndex:0] to:[Application moviesFile]];
+        [self saveArray:[moviesAndTheaters objectAtIndex:1] to:[Application theatersFile]];
+        
         [self performSelectorOnMainThread:@selector(setMoviesAndTheaters:) withObject:moviesAndTheaters waitUntilDone:NO];
         
         [autoreleasePool release];

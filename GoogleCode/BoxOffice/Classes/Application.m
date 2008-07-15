@@ -13,6 +13,7 @@
 
 static NSRecursiveLock* gate = nil;
 static NSString* _supportFolder = nil;
+static NSString* _dataFolder = nil;
 static NSString* _postersFolder = nil;
 static NSString* _documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
@@ -59,8 +60,7 @@ static NSString* starString = nil;
             
             [Application createDirectory:folder];
             
-            _documentsFolder = folder;
-            [_documentsFolder retain];
+            _documentsFolder = [folder retain];
         }
     }
     [gate unlock];
@@ -79,13 +79,37 @@ static NSString* starString = nil;
             
             [Application createDirectory:folder];
             
-            _supportFolder = folder;
-            [_supportFolder retain];
+            _supportFolder = [folder retain];
         }
     }
     [gate unlock];
     
     return _supportFolder;
+}
+
++ (NSString*) dataFolder {
+    [gate lock];
+    {
+        if (_dataFolder == nil) {
+            NSString* parent = [Application supportFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Data"];
+            
+            [Application createDirectory:folder];
+            
+            _dataFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return _dataFolder;
+}
+
++ (NSString*) moviesFile {
+    return [[Application dataFolder] stringByAppendingPathComponent:@"Movies.plist"];
+}
+
++ (NSString*) theatersFile {
+    return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
 }
 
 + (NSString*) postersFolder {
@@ -97,8 +121,7 @@ static NSString* starString = nil;
             
             [Application createDirectory:folder];
             
-            _postersFolder = folder;
-            [_postersFolder retain];
+            _postersFolder = [folder retain];
         }
     }
     [gate unlock];
