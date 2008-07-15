@@ -44,50 +44,6 @@
     [self refresh];
 }
 
-NSInteger sortByTitle(id t1, id t2, void *context) {
-    Movie* movie1 = t1;
-    Movie* movie2 = t2;
-    
-    return [movie1.title compare:movie2.title options:NSCaseInsensitiveSearch];
-}
-
-NSInteger sortByRating(id t1, id t2, void *context) {
-    Movie* movie1 = t1;
-    Movie* movie2 = t2;
-    BoxOfficeModel* model = context;
-    
-    int movieRating1 = [model rankingForMovie:movie1];
-    int movieRating2 = [model rankingForMovie:movie2];
-    
-    if (movieRating1 < movieRating2) {
-        return NSOrderedDescending;
-    } else if (movieRating1 > movieRating2) {
-        return NSOrderedAscending;
-    }
-    
-    return sortByTitle(t1, t2, context);
-}
-
-NSInteger sortByReleaseDate(id t1, id t2, void *context) {
-    Movie* movie1 = t1;
-    Movie* movie2 = t2;
-    
-    NSDate* releaseDate1 = movie1.releaseDate;
-    NSDate* releaseDate2 = movie2.releaseDate;
-    
-    if (releaseDate1 == nil) {
-        if (releaseDate2 == nil) {
-            return sortByTitle(movie1, movie2, context);
-        } else {
-            return NSOrderedDescending;
-        }
-    } else if (releaseDate2 == nil) {
-        return NSOrderedAscending;
-    }
-    
-    return -[releaseDate1 compare:releaseDate2];
-}
-
 - (BOOL) sortingByTitle {
     return segmentedControl.selectedSegmentIndex == 0;
 }
@@ -111,7 +67,7 @@ NSInteger sortByReleaseDate(id t1, id t2, void *context) {
 }
 
 - (void) sortMoviesByTitle {
-    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:sortByTitle context:nil];
+    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
     
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
     
@@ -131,11 +87,11 @@ NSInteger sortByReleaseDate(id t1, id t2, void *context) {
 }
 
 - (void) sortMoviesByRating {
-    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:sortByRating context:self.model];
+    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:compareMoviesByRating context:self.model];
 }
 
 - (void) sortMoviesByReleaseDate {
-    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:sortByReleaseDate context:self.model];
+    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:compareMoviesByReleaseDate context:self.model];
     
     NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateStyle:kCFDateFormatterMediumStyle];
@@ -156,7 +112,7 @@ NSInteger sortByReleaseDate(id t1, id t2, void *context) {
     
     for (NSString* key in [self.sectionTitleToContentsMap allKeys]) {
         NSMutableArray* values = [self.sectionTitleToContentsMap mutableObjectsForKey:key];
-        [values sortUsingFunction:sortByRating context:self.model];
+        [values sortUsingFunction:compareMoviesByRating context:self.model];
     }
 }
 

@@ -455,7 +455,7 @@ static NSArray* KEYS;
     return [self.addressLocationCache locationForPostalCode:postalCode];
 }
 
-- (NSArray*) theatersShowingMovie:(Movie*) movie {
+- (NSMutableArray*) theatersShowingMovie:(Movie*) movie {
     NSMutableArray* array = [NSMutableArray array];
     
     for (Theater* theater in self.theaters) {
@@ -470,7 +470,7 @@ static NSArray* KEYS;
     return array;
 }
 
-- (NSArray*) moviesAtTheater:(Theater*) theater {
+- (NSMutableArray*) moviesAtTheater:(Theater*) theater {
     NSMutableArray* array = [NSMutableArray array];
     
     for (Movie* movie in self.movies) {
@@ -518,6 +518,50 @@ static NSArray* KEYS;
     }
     
     return result;
+}
+
+NSInteger compareMoviesByRating(id t1, id t2, void *context) {
+    Movie* movie1 = t1;
+    Movie* movie2 = t2;
+    BoxOfficeModel* model = context;
+    
+    int movieRating1 = [model rankingForMovie:movie1];
+    int movieRating2 = [model rankingForMovie:movie2];
+    
+    if (movieRating1 < movieRating2) {
+        return NSOrderedDescending;
+    } else if (movieRating1 > movieRating2) {
+        return NSOrderedAscending;
+    }
+    
+    return compareMoviesByTitle(t1, t2, context);
+}
+
+NSInteger compareMoviesByReleaseDate(id t1, id t2, void *context) {
+    Movie* movie1 = t1;
+    Movie* movie2 = t2;
+    
+    NSDate* releaseDate1 = movie1.releaseDate;
+    NSDate* releaseDate2 = movie2.releaseDate;
+    
+    if (releaseDate1 == nil) {
+        if (releaseDate2 == nil) {
+            return compareMoviesByTitle(movie1, movie2, context);
+        } else {
+            return NSOrderedDescending;
+        }
+    } else if (releaseDate2 == nil) {
+        return NSOrderedAscending;
+    }
+    
+    return -[releaseDate1 compare:releaseDate2];
+}
+
+NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
+    Movie* movie1 = t1;
+    Movie* movie2 = t2;
+    
+    return [movie1.title compare:movie2.title options:NSCaseInsensitiveSearch];
 }
 
 NSInteger compareTheatersByName(id t1, id t2, void *context) {

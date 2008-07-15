@@ -64,13 +64,14 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.theater = theater_;
         self.navigationController = controller;
-        self.movies = [NSMutableArray array];
-        self.movieShowtimes = [NSMutableArray array];
         
-        for (Movie* movie in [self.model moviesAtTheater:theater]) {
+        self.movies = [self.model moviesAtTheater:theater];
+        [self.movies sortUsingFunction:compareMoviesByTitle context:nil];    
+        
+        self.movieShowtimes = [NSMutableArray array];
+        for (Movie* movie in self.movies) {
             NSArray* showtimes = [self.model movieShowtimes:movie forTheater:theater];
             
-            [self.movies addObject:movie];
             [self.movieShowtimes addObject:showtimes];
         }
         
