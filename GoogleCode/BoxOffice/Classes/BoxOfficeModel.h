@@ -59,6 +59,10 @@
 - (NSInteger) allMoviesSelectedSegmentIndex;
 - (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index;
 
+- (BOOL) sortingMoviesByTitle;
+- (BOOL) sortingMoviesByRating;
+- (BOOL) sortingMoviesByReleaseDate;
+
 - (NSInteger) allTheatersSelectedSegmentIndex;
 - (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index;
 

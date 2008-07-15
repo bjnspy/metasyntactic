@@ -66,7 +66,11 @@
         self.navigationController = controller;
         
         self.movies = [self.model moviesAtTheater:theater];
-        [self.movies sortUsingFunction:compareMoviesByTitle context:nil];    
+        NSInteger (*sortFunction)(id, id, void *) =
+            [self.model sortingMoviesByTitle] ? compareMoviesByTitle :
+                                                ([self.model sortingMoviesByRating] ? compareMoviesByRating
+                                                                                    : compareMoviesByReleaseDate);
+        [self.movies sortUsingFunction:sortFunction context:self.model];    
         
         self.movieShowtimes = [NSMutableArray array];
         for (Movie* movie in self.movies) {
