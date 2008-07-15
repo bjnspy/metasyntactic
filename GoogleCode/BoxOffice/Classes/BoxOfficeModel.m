@@ -134,8 +134,8 @@ static NSArray* KEYS;
         
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
         
-        [[NSFileManager defaultManager] removeFileAtPath:[Application moviesFile] handler:nil];
-        [[NSFileManager defaultManager] removeFileAtPath:[Application theatersFile] handler:nil];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application moviesFile] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application theatersFile] error:NULL];
     }
 }
 
