@@ -90,14 +90,17 @@
 - (Location*) locationForAddress:(NSString*) address;
 - (Location*) locationForPostalCode:(NSString*) postalCode;
 
-- (NSArray*) theatersShowingMovie:(Movie*) movie;
-- (NSArray*) moviesAtTheater:(Theater*) theater;
+- (NSMutableArray*) theatersShowingMovie:(Movie*) movie;
+- (NSMutableArray*) moviesAtTheater:(Theater*) theater;
 - (NSArray*) movieShowtimes:(Movie*) movie
                  forTheater:(Theater*) theater;
 
 - (NSDictionary*) theaterDistanceMap;
 - (NSArray*) theatersInRange:(NSArray*) theaters;
 
+NSInteger compareMoviesByRating(id t1, id t2, void *context);
+NSInteger compareMoviesByReleaseDate(id t1, id t2, void *context);
+NSInteger compareMoviesByTitle(id t1, id t2, void *context);
 NSInteger compareTheatersByName(id t1, id t2, void *context);
 NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
