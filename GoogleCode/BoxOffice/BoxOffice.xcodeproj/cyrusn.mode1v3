@@ -332,11 +332,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>108</integer>
+									<integer>27</integer>
+									<integer>23</integer>
+									<integer>20</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1182}, {311, 773}}</string>
+							<string>{{0, 328}, {311, 773}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -375,7 +379,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>SearchPersonDetailsViewController.m</string>
+								<string>AllTheatersViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -383,11 +387,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>SearchPersonDetailsViewController.m</string>
+										<string>AllTheatersViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74FAB1220E2C48DA00923F3C</string>
+										<string>74FAB1300E2C494700923F3C</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -571,7 +575,6 @@
 											<string>74F661390E2AD6E0000B275F</string>
 											<string>74F6617E0E2ADEE1000B275F</string>
 											<string>74F661830E2ADEE1000B275F</string>
-											<string>74F661A50E2AE26B000B275F</string>
 											<string>74F661A70E2AE26B000B275F</string>
 											<string>74F661A90E2AE26B000B275F</string>
 											<string>74F661D80E2AE4D3000B275F</string>
@@ -593,7 +596,6 @@
 											<string>747DC0240E2BB807004B5B67</string>
 											<string>747DC05D0E2C21A7004B5B67</string>
 											<string>747DC0730E2C2DC3004B5B67</string>
-											<string>747DC1110E2C338F004B5B67</string>
 											<string>747DC1120E2C338F004B5B67</string>
 											<string>747DC1170E2C338F004B5B67</string>
 											<string>747DC1180E2C338F004B5B67</string>
@@ -608,7 +610,9 @@
 											<string>74FAB1160E2C48C500923F3C</string>
 											<string>74FAB1170E2C48C500923F3C</string>
 											<string>74FAB1180E2C48C500923F3C</string>
-											<string>74FAB1190E2C48C500923F3C</string>
+											<string>74FAB12A0E2C494700923F3C</string>
+											<string>74FAB12B0E2C494700923F3C</string>
+											<string>74FAB12C0E2C494700923F3C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -780,6 +784,9 @@
 											<string>74FAB11B0E2C48C500923F3C</string>
 											<string>74FAB11C0E2C48C500923F3C</string>
 											<string>74FAB11D0E2C48C500923F3C</string>
+											<string>74FAB12D0E2C494700923F3C</string>
+											<string>74FAB12E0E2C494700923F3C</string>
+											<string>74FAB12F0E2C494700923F3C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -958,7 +965,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>237783258.47556701</real>
+	<real>237783367.14434201</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -973,7 +980,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>74FAB1230E2C48DA00923F3C</string>
+		<string>74FAB1310E2C494700923F3C</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>74FAB0CD0E2C446200923F3C</string>
 		<string>74FAB0CE0E2C446200923F3C</string>
@@ -981,7 +988,7 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>74FAB1240E2C48DA00923F3C</string>
+		<string>74FAB1320E2C494700923F3C</string>
 	</array>
 	<key>WindowString</key>
 	<string>57 43 1244 832 0 0 1440 878 </string>
