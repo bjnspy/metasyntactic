@@ -15,7 +15,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.11";
+static NSString* currentVersion = @"1.2.12";
 
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";

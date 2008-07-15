@@ -11,14 +11,17 @@
 @interface Location : NSObject {
     double latitude;
     double longitude;
+    NSString* address;
 }
 
 @property (readonly) double latitude;
 @property (readonly) double longitude;
+@property (copy) NSString* address;
 
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary;
 + (Location*) locationWithLatitude:(double) latitude
-                         longitude:(double) longitude;
+                         longitude:(double) longitude
+                           address:(NSString*) address;
 
 - (NSDictionary*) dictionary;
 

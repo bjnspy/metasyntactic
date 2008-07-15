@@ -50,9 +50,12 @@
     if (resultElement != nil) {
         NSString* latitude = [resultElement attributeValue:@"latitude"];
         NSString* longitude = [resultElement attributeValue:@"longitude"];
+        NSString* address = [resultElement attributeValue:@"address"];
         
         if (![Utilities isNilOrEmpty:latitude] && ![Utilities isNilOrEmpty:longitude]) {
-            return [Location locationWithLatitude:[latitude doubleValue] longitude:[longitude doubleValue]];
+            return [Location locationWithLatitude:[latitude doubleValue]
+                                        longitude:[longitude doubleValue]
+                                          address:address];
         }
     }
     
