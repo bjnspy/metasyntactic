@@ -718,27 +718,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         }
         
         self.movieMap = dictionary;
-        
-        /*
-        NSMutableArray* movieTitles = [NSMutableArray array];
-        
-        for (Movie* movie in self.movies) {
-            [movieTitles addObject:movie.title];
-        }
-         
-        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-        
-        for (NSString* key in [self supplementaryInformation]) {
-            NSString* movieTitle = [[Application differenceEngine] findClosestMatch:key inArray:movieTitles];
-            
-            if (movieTitle != nil) {
-                [dictionary setObject:[[self supplementaryInformation] objectForKey:key]
-                               forKey:movieTitle];
-            }    
-        }
-        
-        self.movieMap = dictionary;
-         */
     }
 }
 
