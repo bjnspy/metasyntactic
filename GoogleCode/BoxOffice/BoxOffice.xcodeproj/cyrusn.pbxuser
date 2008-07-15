@@ -320,6 +320,7 @@
 			742445850E2C8C1100C98F84 /* PBXTextBookmark */ = 742445850E2C8C1100C98F84 /* PBXTextBookmark */;
 			7424458A0E2C8C4C00C98F84 /* PBXTextBookmark */ = 7424458A0E2C8C4C00C98F84 /* PBXTextBookmark */;
 			7424458F0E2C8CDD00C98F84 /* PBXTextBookmark */ = 7424458F0E2C8CDD00C98F84 /* PBXTextBookmark */;
+			742445920E2C8D8D00C98F84 /* PBXTextBookmark */ = 742445920E2C8D8D00C98F84 /* PBXTextBookmark */;
 			7424717E0DEF8295009F0BF8 = 7424717E0DEF8295009F0BF8 /* PBXTextBookmark */;
 			742471840DEF8295009F0BF8 = 742471840DEF8295009F0BF8 /* PBXTextBookmark */;
 			7424720C0DEFD984009F0BF8 = 7424720C0DEFD984009F0BF8 /* PBXTextBookmark */;
@@ -2388,6 +2389,16 @@
 		vrLen = 1637;
 		vrLoc = 2760;
 	};
+	742445920E2C8D8D00C98F84 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74447C3D0DC83E8800CC146C /* SettingsViewController.m */;
+		name = "SettingsViewController.m: 193";
+		rLen = 0;
+		rLoc = 6704;
+		rType = 0;
+		vrLen = 1628;
+		vrLoc = 6373;
+	};
 	7424717E0DEF8295009F0BF8 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 7424717F0DEF8295009F0BF8 /* UILabel.h */;
@@ -2810,8 +2821,8 @@
 	74447C3D0DC83E8800CC146C /* SettingsViewController.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {1542, 3696}}";
-			sepNavSelRange = "{3169, 0}";
-			sepNavVisRange = "{2760, 1637}";
+			sepNavSelRange = "{6704, 0}";
+			sepNavVisRange = "{6373, 1628}";
 			sepNavWindowFrame = "{{63, -5}, {851, 878}}";
 		};
 	};
