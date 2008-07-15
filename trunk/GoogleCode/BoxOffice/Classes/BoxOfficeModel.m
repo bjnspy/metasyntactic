@@ -208,6 +208,18 @@ static NSArray* KEYS;
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
 }
 
+- (BOOL) sortingMoviesByTitle {
+    return [self allMoviesSelectedSegmentIndex] == 0;
+}
+
+- (BOOL) sortingMoviesByRating {
+    return [self allMoviesSelectedSegmentIndex] == 1;
+}
+
+- (BOOL) sortingMoviesByReleaseDate {
+    return [self allMoviesSelectedSegmentIndex] == 2;
+}
+
 - (NSInteger) allTheatersSelectedSegmentIndex {
     return [[NSUserDefaults standardUserDefaults] integerForKey:ALL_THEATERS_SELECTED_SEGMENT_INDEX];
 }

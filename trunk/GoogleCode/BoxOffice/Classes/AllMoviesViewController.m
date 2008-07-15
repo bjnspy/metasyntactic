@@ -44,18 +44,6 @@
     [self refresh];
 }
 
-- (BOOL) sortingByTitle {
-    return segmentedControl.selectedSegmentIndex == 0;
-}
-
-- (BOOL) sortingByRating {
-    return segmentedControl.selectedSegmentIndex == 1;
-}
-
-- (BOOL) sortingByReleaseDate {
-    return segmentedControl.selectedSegmentIndex == 2;
-}
-
 - (void) removeUnusedSectionTitles {
     for (NSInteger i = [self.sectionTitles count] - 1; i >= 0; --i) {
         NSString* title = [self.sectionTitles objectAtIndex:i];
@@ -120,9 +108,9 @@
     self.sectionTitles = [NSMutableArray array];
     self.sectionTitleToContentsMap = [MultiDictionary dictionary];
     
-    if ([self sortingByTitle]) {
+    if ([self.model sortingMoviesByTitle]) {
         [self sortMoviesByTitle];
-    } else if ([self sortingByRating]) {
+    } else if ([self.model sortingMoviesByRating]) {
         [self sortMoviesByRating];
     } else {
         [self sortMoviesByReleaseDate];
@@ -190,9 +178,9 @@
     NSInteger row = [indexPath row];
     
     Movie* movie;
-    if ([self sortingByTitle]) {
+    if ([self.model sortingMoviesByTitle]) {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];        
-    } else if ([self sortingByRating]) {
+    } else if ([self.model sortingMoviesByRating]) {
         movie = [self.sortedMovies objectAtIndex:row];
     } else {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
@@ -211,9 +199,9 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if ([self sortingByTitle]) {
+    if ([self.model sortingMoviesByTitle]) {
         return UITableViewCellAccessoryNone;
-    } else if ([self sortingByRating]) {
+    } else if ([self.model sortingMoviesByRating]) {
         return UITableViewCellAccessoryDisclosureIndicator;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
@@ -226,9 +214,9 @@
     NSInteger row = [indexPath row];
     
     Movie* movie;
-    if ([self sortingByTitle]) {
+    if ([self.model sortingMoviesByTitle]) {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
-    } else if ([self sortingByRating]) {
+    } else if ([self.model sortingMoviesByRating]) {
         movie = [self.sortedMovies objectAtIndex:row];
     } else {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
@@ -238,9 +226,9 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    if ([self sortingByTitle]) {
+    if ([self.model sortingMoviesByTitle]) {
         return [self.sectionTitles count];
-    } else if ([self sortingByRating]) {
+    } else if ([self.model sortingMoviesByRating]) {
         return 1;
     } else {
         return [self.sectionTitles count];
@@ -249,9 +237,9 @@
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
-    if ([self sortingByTitle]) {
+    if ([self.model sortingMoviesByTitle]) {
         return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
-    } else if ([self sortingByRating]) {
+    } else if ([self.model sortingMoviesByRating]) {
         return [self.sortedMovies count];
     } else {
         return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];        
@@ -260,9 +248,9 @@
 
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
-    if ([self sortingByTitle]) {
+    if ([self.model sortingMoviesByTitle]) {
         return [self.sectionTitles objectAtIndex:section]; 
-    } else if ([self sortingByRating]) {
+    } else if ([self.model sortingMoviesByRating]) {
         return nil;
     } else {
         return [self.sectionTitles objectAtIndex:section]; 
@@ -270,7 +258,7 @@
 }
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
-    if ([self sortingByTitle]) {
+    if ([self.model sortingMoviesByTitle]) {
         return self.alphabeticSectionTitles;
     }
     
