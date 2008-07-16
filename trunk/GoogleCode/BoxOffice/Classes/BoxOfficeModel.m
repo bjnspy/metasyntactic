@@ -33,6 +33,7 @@ static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedS
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* MOVIE_TRAILERS                         = @"movieTrailers";
 static NSString* ADDRESS_LOCATION_MAP                   = @"addressLocationMap";
+static NSString* CURRENTLY_SHOWING_REVIEWS              = @"currentlyShowingReviews";
 
 static NSArray* KEYS;
 
@@ -55,6 +56,7 @@ static NSArray* KEYS;
                  FAVORITE_THEATERS,
                  MOVIE_TRAILERS,
                  ADDRESS_LOCATION_MAP,
+                 CURRENTLY_SHOWING_REVIEWS,
                  nil] retain];
     }
 }
@@ -622,6 +624,15 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     return [Theater theaterWithDictionary:dict];
 }
 
+- (BOOL) currentlyShowingReviews {
+    return [[NSUserDefaults standardUserDefaults] objectForKey:CURRENTLY_SHOWING_REVIEWS] != nil;
+}
+
+- (void) setCurrentlyShowingReviews {
+    [[NSUserDefaults standardUserDefaults] setObject:@""
+                                              forKey:CURRENTLY_SHOWING_REVIEWS];
+}
+
 - (void) setCurrentlySelectedMovie:(Movie*) movie 
                            theater:(Theater*) theater {
     if (movie == nil) {
@@ -637,6 +648,8 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         [[NSUserDefaults standardUserDefaults] setObject:[theater dictionary]
                                                   forKey:CURRENTLY_SELECTED_THEATER];
     }
+    
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:CURRENTLY_SHOWING_REVIEWS];
 }
 
 - (void) setSearchDate:(NSDate*) date forIdentifier:(NSString*) identifier {

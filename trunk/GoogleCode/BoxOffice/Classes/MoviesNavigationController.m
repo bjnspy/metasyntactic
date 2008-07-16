@@ -8,6 +8,7 @@
 
 #import "MoviesNavigationController.h"
 #import "ApplicationTabBarController.h"
+#import "ReviewsViewController.h"
 
 @implementation MoviesNavigationController
 
@@ -46,6 +47,11 @@
                           theater:currentTheater
                          animated:NO];
         }
+        
+        if ([[self model] currentlyShowingReviews]) {
+            [self pushReviewsView:[[self model] reviewsForMovie:currentMovie]
+                         animated:NO];
+        }
     }    
 }
 
@@ -71,6 +77,12 @@
                            title:theater.name
                    linkToTheater:YES
                         animated:animated];
+}
+
+- (void) pushReviewsView:(NSArray*) reviews animated:(BOOL) animated {
+    ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithNavigationController:self
+                                                                                             reviews:reviews] autorelease];
+    [self pushViewController:controller animated:animated];    
 }
 
 @end

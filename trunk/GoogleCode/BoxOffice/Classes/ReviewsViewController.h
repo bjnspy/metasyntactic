@@ -7,14 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-
+@class MoviesNavigationController;
 
 @interface ReviewsViewController :  UITableViewController {
+    MoviesNavigationController* navigationController;
+    
     NSArray* reviews;
 }
 
+@property (assign) MoviesNavigationController* navigationController;
 @property (retain) NSArray* reviews;
 
-- (id) initWithReviews:(NSArray*) reviews;
+- (id) initWithNavigationController:(MoviesNavigationController*) controller
+                            reviews:(NSArray*) reviews;
 
 @end
