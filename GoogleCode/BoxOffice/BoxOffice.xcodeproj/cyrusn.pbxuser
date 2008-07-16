@@ -512,6 +512,13 @@
 			74B3BC830E2D94A600DCE835 /* PBXTextBookmark */ = 74B3BC830E2D94A600DCE835 /* PBXTextBookmark */;
 			74B3BC840E2D94A600DCE835 /* PBXTextBookmark */ = 74B3BC840E2D94A600DCE835 /* PBXTextBookmark */;
 			74B3BC850E2D94A600DCE835 /* PBXTextBookmark */ = 74B3BC850E2D94A600DCE835 /* PBXTextBookmark */;
+			74B3BC880E2D954000DCE835 /* PBXTextBookmark */ = 74B3BC880E2D954000DCE835 /* PBXTextBookmark */;
+			74B3BC890E2D954000DCE835 /* PBXTextBookmark */ = 74B3BC890E2D954000DCE835 /* PBXTextBookmark */;
+			74B3BC8A0E2D954000DCE835 /* PBXTextBookmark */ = 74B3BC8A0E2D954000DCE835 /* PBXTextBookmark */;
+			74B3BC8B0E2D954000DCE835 /* PBXTextBookmark */ = 74B3BC8B0E2D954000DCE835 /* PBXTextBookmark */;
+			74B3BC8C0E2D954000DCE835 /* PBXTextBookmark */ = 74B3BC8C0E2D954000DCE835 /* PBXTextBookmark */;
+			74B3BC8D0E2D954000DCE835 /* PBXTextBookmark */ = 74B3BC8D0E2D954000DCE835 /* PBXTextBookmark */;
+			74B3BC8E0E2D954000DCE835 /* PBXTextBookmark */ = 74B3BC8E0E2D954000DCE835 /* PBXTextBookmark */;
 			74BB41520DDE70C3006CFF0E = 74BB41520DDE70C3006CFF0E /* PBXTextBookmark */;
 			74C8958D0E2C3D180023EF7A = 74C8958D0E2C3D180023EF7A /* PBXTextBookmark */;
 			74C895940E2C3D180023EF7A = 74C895940E2C3D180023EF7A /* PBXTextBookmark */;
@@ -858,6 +865,11 @@
 		name = TheaterDetailsViewController.h;
 		path = /Projects/GoogleCode/BoxOffice/Classes/TheaterDetailsViewController.h;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {812, 531}}";
+			sepNavSelRange = "{601, 0}";
+			sepNavVisRange = "{0, 904}";
+		};
 	};
 	7400F5060DCC34E7004D712D /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -955,7 +967,7 @@
 		fRef = 74050EB00E2AFFCB009A53E4 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 187";
 		rLen = 68;
-		rLoc = 6511;
+		rLoc = 6620;
 		rType = 0;
 		vrLen = 1344;
 		vrLoc = 5450;
@@ -5568,9 +5580,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/TicketsViewController.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 3262}}";
-			sepNavSelRange = "{4622, 0}";
-			sepNavVisRange = "{4093, 1356}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 3290}}";
+			sepNavSelRange = "{1861, 0}";
+			sepNavVisRange = "{1057, 1208}";
 		};
 	};
 	74B3BC800E2D94A600DCE835 /* PBXTextBookmark */ = {
@@ -5597,7 +5609,7 @@
 		isa = PBXTextBookmark;
 		fRef = 74B3BC7B0E2D949B00DCE835 /* TicketsViewController.m */;
 		rLen = 1;
-		rLoc = 141;
+		rLoc = 143;
 		rType = 1;
 	};
 	74B3BC830E2D94A600DCE835 /* PBXTextBookmark */ = {
@@ -5625,10 +5637,80 @@
 		fRef = 74B3BC7D0E2D949B00DCE835 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 141";
 		rLen = 0;
-		rLoc = 4622;
+		rLoc = 4731;
 		rType = 0;
 		vrLen = 1356;
 		vrLoc = 4093;
+	};
+	74B3BC880E2D954000DCE835 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7400F4E30DCC2C81004D712D /* TheaterDetailsViewController.h */;
+		name = "TheaterDetailsViewController.h: 23";
+		rLen = 0;
+		rLoc = 601;
+		rType = 0;
+		vrLen = 904;
+		vrLoc = 0;
+	};
+	74B3BC890E2D954000DCE835 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
+		name = "TheaterDetailsViewController.m: 102";
+		rLen = 103;
+		rLoc = 3404;
+		rType = 0;
+		vrLen = 1482;
+		vrLoc = 2190;
+	};
+	74B3BC8A0E2D954000DCE835 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74B3BC7D0E2D949B00DCE835 /* TicketsViewController.m */;
+		name = "TicketsViewController.m: 141";
+		rLen = 0;
+		rLoc = 4731;
+		rType = 0;
+		vrLen = 1451;
+		vrLoc = 3673;
+	};
+	74B3BC8B0E2D954000DCE835 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74B3BC7D0E2D949B00DCE835 /* TicketsViewController.m */;
+		name = "TicketsViewController.m: 141";
+		rLen = 0;
+		rLoc = 4731;
+		rType = 0;
+		vrLen = 1461;
+		vrLoc = 3663;
+	};
+	74B3BC8C0E2D954000DCE835 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7400F4E30DCC2C81004D712D /* TheaterDetailsViewController.h */;
+		name = "TheaterDetailsViewController.h: 23";
+		rLen = 0;
+		rLoc = 601;
+		rType = 0;
+		vrLen = 904;
+		vrLoc = 0;
+	};
+	74B3BC8D0E2D954000DCE835 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
+		name = "TheaterDetailsViewController.m: 102";
+		rLen = 103;
+		rLoc = 3404;
+		rType = 0;
+		vrLen = 1482;
+		vrLoc = 2190;
+	};
+	74B3BC8E0E2D954000DCE835 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74B3BC7D0E2D949B00DCE835 /* TicketsViewController.m */;
+		name = "TicketsViewController.m: 69";
+		rLen = 0;
+		rLoc = 1861;
+		rType = 0;
+		vrLen = 1208;
+		vrLoc = 1057;
 	};
 	74BB41520DDE70C3006CFF0E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -6687,9 +6769,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/TheaterDetailsViewController.m;
 		sourceTree = "<group>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {812, 2800}}";
-			sepNavSelRange = "{4180, 782}";
-			sepNavVisRange = "{3852, 1570}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 2856}}";
+			sepNavSelRange = "{3404, 103}";
+			sepNavVisRange = "{2190, 1482}";
 		};
 	};
 	74F6604E0E2AB302000B275F /* PBXTextBookmark */ = {

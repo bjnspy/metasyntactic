@@ -65,6 +65,8 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[self model].activityView] autorelease];
     
     [self.model setCurrentlySelectedMovie:self.movie theater:self.theater];
+    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
