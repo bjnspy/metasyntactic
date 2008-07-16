@@ -125,11 +125,12 @@
                 NSArray* columns = [[rows objectAtIndex:i] componentsSeparatedByString:@"\t"];
                 
                 if (columns.count >= 9) {
-                    ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithLink:[columns objectAtIndex:2]
+                    NSString* title = [columns objectAtIndex:1];
+                    ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
+                                                                                       link:[columns objectAtIndex:2]
                                                                                   synopsis:[columns objectAtIndex:8]
                                                                                    ranking:[columns objectAtIndex:3]];
                     
-                    NSString* title = [columns objectAtIndex:1];
                     
                     [dictionary setObject:extraInfo forKey:title];
                 }

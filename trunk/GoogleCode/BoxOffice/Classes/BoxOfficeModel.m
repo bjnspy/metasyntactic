@@ -16,7 +16,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.14";
+static NSString* currentVersion = @"1.2.15";
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
@@ -32,6 +32,7 @@ static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSeg
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* MOVIE_TRAILERS                         = @"movieTrailers";
+static NSString* MOVIE_REVIEWS                          = @"movieReviews";
 static NSString* ADDRESS_LOCATION_MAP                   = @"addressLocationMap";
 
 static NSArray* KEYS;
@@ -54,6 +55,7 @@ static NSArray* KEYS;
                  ALL_THEATERS_SELECTED_SEGMENT_INDEX,
                  FAVORITE_THEATERS,
                  MOVIE_TRAILERS,
+                 MOVIE_REVIEWS,
                  ADDRESS_LOCATION_MAP,
                  nil] retain];
     }
@@ -63,6 +65,7 @@ static NSArray* KEYS;
 @synthesize posterCache;
 @synthesize trailerCache;
 @synthesize addressLocationCache;
+@synthesize reviewCache;
 @synthesize backgroundTaskCount;
 @synthesize activityView;
 @synthesize activityIndicatorView;
@@ -78,6 +81,7 @@ static NSArray* KEYS;
     self.trailerCache = nil;
     self.posterCache = nil;
     self.addressLocationCache = nil;
+    self.reviewCache = nil;
     self.activityView = nil;
     self.activityIndicatorView = nil;
     
@@ -96,6 +100,10 @@ static NSArray* KEYS;
 
 - (void) updateTrailerCache {
     [self.trailerCache update:self.movies];
+}
+
+- (void) updateReviewCache {
+    [self.reviewCache update:self.supplementaryInformation];
 }
 
 - (void) updateAddressLocationCache {
@@ -152,6 +160,7 @@ static NSArray* KEYS;
         self.posterCache = [PosterCache cache];
         self.trailerCache = [TrailerCache cache];
         self.addressLocationCache = [AddressLocationCache cache];
+        self.reviewCache = [ReviewCache cache];
         
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicatorView.frame;
@@ -167,6 +176,7 @@ static NSArray* KEYS;
         [self updateAddressLocationCache];
         [self updatePostalCodeAddressLocation];
         [self updateTrailerCache];
+        [self updateReviewCache];
     }
     
     return self;
@@ -329,6 +339,7 @@ static NSArray* KEYS;
     [self saveSupplementaryInformation:dictionary];
     
     self.movieMap = nil;
+    [self updateReviewCache];
 }
 
 - (NSDate*) lastQuickUpdateTime {
@@ -759,8 +770,18 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     return [trailerCache trailersForMovie:movie];
 }
 
+- (NSArray*) reviewsForMovie:(Movie*) movie {
+    ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
+    if (extraInfo == nil) {
+        return [NSArray array];
+    }
+    
+    return [reviewCache reviewsForMovie:extraInfo.title];
+}
+
 - (void) applicationWillTerminate {
     [trailerCache applicationWillTerminate];
+    [reviewCache applicationWillTerminate];
 }
 
 - (NSString*) noLocationInformationFound {

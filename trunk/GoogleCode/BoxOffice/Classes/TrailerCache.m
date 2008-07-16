@@ -218,7 +218,7 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
 }
 
 - (void) applicationWillTerminate {
-    [[NSUserDefaults standardUserDefaults] setObject:self.movieToTrailersMap forKey:MOVIE_TRAILERS];
+    [self onComplete:nil];
 }
 
 

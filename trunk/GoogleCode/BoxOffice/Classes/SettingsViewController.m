@@ -16,6 +16,7 @@
 #import "CreditsViewController.h"
 #import "Application.h"
 #import "AttributeCell.h"
+#import "SettingCell.h"
 
 @implementation SettingsViewController
 
@@ -56,6 +57,8 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
 - (void) onCurrentLocationClicked:(id) sender {
@@ -167,12 +170,33 @@
     return 1;
 }
 
-- (UITableViewCell*)                tableView:(UITableView*) tableView
-                        cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-        NSInteger section = [indexPath section];
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
     
     if (section == 0) {
+        SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        
+        NSString* key;
+        NSString* value;
+        if (row == 0) {
+            key = NSLocalizedString(@"Postal Code", nil);
+            value = [[self model] postalCode];
+        } else {
+            key = NSLocalizedString(@"Distance", nil);
+            
+            if ([self.model searchRadius] == 1) {
+                value = NSLocalizedString(@"1 mile", nil);
+            } else {
+                value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
+            }
+        }
+        
+        [cell setKey:key value:value];
+        
+        return cell;
+        /*
         AttributeCell* attributeCell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
         if (row == 0) {
@@ -195,6 +219,7 @@
         }
         
         return attributeCell;
+         */
     } else if (section == 1) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
@@ -214,10 +239,6 @@
 
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
-    if (section == 0) {
-        return NSLocalizedString(@"Location", nil);
-    }
-    
     return nil; 
 }
 
