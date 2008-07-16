@@ -102,12 +102,12 @@
 
 - (NSString*) extractText:(NSString*) section {
     NSRange startRange = [section rangeOfString:@"<p>"];
-    if (startRange.length <= 0) {
+    if (startRange.length == 0) {
         return nil;
     }
     
     NSRange endRange = [section rangeOfString:@"</p>"];
-    if (startRange.length <= 0) {
+    if (startRange.length == 0) {
         return nil;
     }
     
@@ -118,6 +118,10 @@
     
     result = [result stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
     result = [result stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
+    
+    if ([result rangeOfString:@"to read the article"].length == 0) {
+        return nil;
+    }
     
     return result;
 }
