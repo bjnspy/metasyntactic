@@ -25,7 +25,8 @@
 + (UIColor*) commandColor;
 
 + (UIImage*) freshImage;
-+ (UIImage*) rottenImage;
++ (UIImage*) rottenFadedImage;
++ (UIImage*) rottenFullImage;
 + (UIImage*) emptyStarImage;
 + (UIImage*) filledStarImage;
 
@@ -40,5 +41,7 @@
 
 + (unichar) starCharacter;
 + (NSString*) starString;
+
++ (UIFont*) helvetica14;
 
 @end

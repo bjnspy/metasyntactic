@@ -33,4 +33,6 @@
 
 - (NSDictionary*) dictionary;
 
+- (CGFloat) heightWithFont:(UIFont*) font;
+
 @end

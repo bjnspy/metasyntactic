@@ -119,7 +119,7 @@
     result = [result stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
     result = [result stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
     
-    if ([result rangeOfString:@"to read the article"].length == 0) {
+    if ([result rangeOfString:@"to read the article"].length != 0) {
         return nil;
     }
     

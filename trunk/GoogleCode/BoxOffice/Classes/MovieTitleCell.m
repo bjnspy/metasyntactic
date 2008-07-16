@@ -54,8 +54,8 @@
                 label.frame = CGRectMake(10, 8, 32, 32);
             }
         } else {
-            if (self.image != [Application rottenImage]) {
-                self.image = [Application rottenImage];
+            if (self.image != [Application rottenFadedImage]) {
+                self.image = [Application rottenFadedImage];
                 
                 label.font = [UIFont boldSystemFontOfSize:17];
                 label.textColor = [UIColor blackColor];
