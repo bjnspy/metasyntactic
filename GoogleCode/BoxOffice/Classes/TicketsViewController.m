@@ -15,6 +15,7 @@
 #import "ApplicationTabBarController.h"
 #import "ViewControllerUtilities.h"
 #import "Performance.h"
+#import "AttributeCell.h"
 
 @implementation TicketsViewController
 
@@ -119,27 +120,35 @@
 }
 
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
-    static NSString* reuseIdentifier = @"TicketsViewCommandCellIdentifier";
-    
-    AutoresizingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[AutoresizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+    if (row == 0 || row == 1) {
+        AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+        
+        if (row == 0) {
+            Location* location = [self.model locationForAddress:theater.address];
+            if (location.address != nil && location.city != nil) {
+                [cell setKey:NSLocalizedString(@"map", nil)
+                       value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]
+                hasIndicator:NO];
+            } else {
+                [cell setKey:NSLocalizedString(@"map", nil) value:theater.address hasIndicator:NO];
+            }
+        } else {
+            [cell setKey:NSLocalizedString(@"call", nil) value:theater.phoneNumber hasIndicator:NO];
+        }
+        
+        return cell;
+    } else {
+        AutoresizingCell* cell = [[[AutoresizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
         cell.label.textColor = [Application commandColor];
-    }
-    
-    if (row == 0) {
-        cell.label.text = self.theater.address;
-    } else if (row == 1) {
-        cell.label.text = self.theater.phoneNumber;
-    } else if (row == 2) {
+        
         if (linkToTheater) {
             cell.label.text = NSLocalizedString(@"Show all movies at this theater", nil);
         } else {
             cell.label.text = NSLocalizedString(@"Show all theaters playing this movie", nil);
         }
+        
+        return cell;
     }
-    
-    return cell;
 }
 
 - (UITableViewCell*)        tableView:(UITableView*) tableView
