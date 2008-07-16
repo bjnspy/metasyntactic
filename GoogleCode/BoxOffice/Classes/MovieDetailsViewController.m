@@ -398,8 +398,7 @@
     if (row < trailersArray.count) {
         [self playMovie:[trailersArray objectAtIndex:row]];
     } else {
-        ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithReviews:reviewsArray] autorelease];
-        [self.navigationController pushViewController:controller animated:YES];
+        [self.navigationController pushReviewsView:reviewsArray animated:YES];
     }
 }
 

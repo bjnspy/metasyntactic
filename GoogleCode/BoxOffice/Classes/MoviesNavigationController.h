@@ -27,6 +27,7 @@
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater
                 animated:(BOOL) animated;
+- (void) pushReviewsView:(NSArray*) reviews animated:(BOOL) animated;
 
 - (void) navigateToLastViewedPage;
 

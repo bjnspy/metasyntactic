@@ -11,25 +11,37 @@
 #import "Review.h"
 #import "ReviewTitleCell.h"
 #import "ReviewBodyCell.h"
+#import "MoviesNavigationController.h"
 
 @implementation ReviewsViewController
 
+@synthesize navigationController;
 @synthesize reviews;
 
 - (void) dealloc {
+    self.navigationController = nil;
     self.reviews = nil;
     
     [super dealloc];
 }
 
-- (id) initWithReviews:(NSArray*) reviews_ {
+- (id) initWithNavigationController:(MoviesNavigationController*) controller
+                            reviews:(NSArray*) reviews_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
+        self.navigationController = controller;
         self.title = NSLocalizedString(@"Reviews", nil);
         self.reviews = reviews_;
     }
     
     return self;
 }
+
+- (void) viewWillAppear:(BOOL) animated {
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[navigationController model].activityView] autorelease];
+    
+    [[navigationController model] setCurrentlyShowingReviews];
+}
+    
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {

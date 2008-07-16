@@ -71,7 +71,9 @@
 
 - (Movie*) currentlySelectedMovie;
 - (Theater*) currentlySelectedTheater;
+- (BOOL) currentlyShowingReviews;
 
+- (void) setCurrentlyShowingReviews;
 - (void) setCurrentlySelectedMovie:(Movie*) movie 
                            theater:(Theater*) theater;
 
