@@ -68,31 +68,29 @@
                            withObject:[NSArray arrayWithObjects:infoWithoutReviews, infoWithReviews, nil]];
 }
 
-- (NSArray*) extractReviewSections:(NSString*) reviewPage {
-    NSArray* rows = [reviewPage componentsSeparatedByString:@"\n"];
-    
-    int lineNumber;
-    for (lineNumber = 0; lineNumber < rows.count; lineNumber++) {
-        NSString* line = [rows objectAtIndex:lineNumber];
-        
-        if ([line rangeOfString:@"<div id=\"Content_Reviews\""].length > 0) {
-            break;
-        }
-    }
-    
-    NSMutableString* buffer = [NSMutableString string];
-    for (;lineNumber < rows.count; lineNumber++) {
-        NSString* line = [rows objectAtIndex:lineNumber];
-        if ([line rangeOfString:@"<div class=\"main_reviews_column_nav\""].length > 0) {
-            break;
-        }
-        
-        [buffer appendString:line];
-        [buffer appendString:@"\n"];
-    }
+NSRange rangeBetween(NSRange startRange, NSRange endRange) {
+    NSRange result;
+    result.location = startRange.location + startRange.length;
+    result.length = endRange.location - result.location;
+    return result;
+}
 
-    NSString* trimmedString = [buffer stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    NSArray* sections = [trimmedString componentsSeparatedByString:@"quoteBubble"];
+- (NSArray*) extractReviewSections:(NSString*) reviewPage {
+    NSRange startRange = [reviewPage rangeOfString:@"<div id=\"Content_Reviews\""];
+    if (startRange.length == 0) {
+        return nil;
+    }
+    
+    NSRange searchRange;
+    searchRange.location = startRange.location + startRange.length;
+    searchRange.length = reviewPage.length - searchRange.location;
+    NSRange endRange = [reviewPage rangeOfString:@"<div class=\"main_reviews_column_nav\"" options:0 range:searchRange];
+    if (endRange.length == 0) {
+        return nil;
+    }
+    
+    NSString* quotes = [reviewPage substringWithRange:rangeBetween(startRange, endRange)];
+    NSArray* sections = [quotes componentsSeparatedByString:@"quoteBubble"];
     
     NSMutableArray* result = [NSMutableArray arrayWithArray:sections];
     [result removeObjectAtIndex:0];
@@ -111,10 +109,7 @@
         return nil;
     }
     
-    NSRange extractRange;
-    extractRange.location = startRange.location + startRange.length;
-    extractRange.length = endRange.location - extractRange.location;
-    NSString* result = [[section substringWithRange:extractRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* result = [[section substringWithRange:rangeBetween(startRange, endRange)] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
     result = [result stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
     result = [result stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
@@ -141,19 +136,12 @@
         return nil;
     }
     
-    NSRange startRange;
-    startRange.location = hrefRange.location + hrefRange.length;
-    startRange.length = fullReviewRange.location - startRange.location;
-    
-    NSRange quoteRange = [section rangeOfString:@"\"" options:0 range:startRange];
+    NSRange quoteRange = [section rangeOfString:@"\"" options:0 range:rangeBetween(hrefRange, fullReviewRange)];
     if (quoteRange.length == 0) {
         return nil;
     }
     
-    NSRange extractRange;
-    extractRange.location = startRange.location;
-    extractRange.length = quoteRange.location - extractRange.location;
-    NSString* address = [section substringWithRange:extractRange];
+    NSString* address = [section substringWithRange:rangeBetween(hrefRange, quoteRange)];
     
     return [NSString stringWithFormat:@"http://www.rottentomatoes.com%@", address];
 }
@@ -180,10 +168,7 @@
         return nil;
     }
     
-    NSRange extractRange;
-    extractRange.location = startRange.location + startRange.length;
-    extractRange.length = endRange.location - extractRange.location;
-    NSString* result = [section substringWithRange:extractRange];
+    NSString* result = [section substringWithRange:rangeBetween(startRange, endRange)];
     
     result = [result stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
     return result;
