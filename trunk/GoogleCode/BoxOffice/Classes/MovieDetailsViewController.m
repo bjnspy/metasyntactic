@@ -390,6 +390,8 @@
     
     // Release the movie instance created in playMovieAtURL:
     [moviePlayer autorelease];
+    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
 - (void) didSelectInfoRow:(NSInteger) row {
