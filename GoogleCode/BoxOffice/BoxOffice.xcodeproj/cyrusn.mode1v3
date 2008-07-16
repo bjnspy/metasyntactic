@@ -265,7 +265,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>740B151A0E2DD1DF00493FC3</string>
+						<string>740B152A0E2DD3DE00493FC3</string>
 						<key>history</key>
 						<array>
 							<string>740B14560E2DC78C00493FC3</string>
@@ -369,19 +369,20 @@
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FAAC04509CD000000102</string>
+								<string>1C08E77C0454961000C914BD</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>60</integer>
-									<integer>48</integer>
+									<integer>23</integer>
+									<integer>15</integer>
 									<integer>12</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 526}, {311, 788}}</string>
+							<string>{{0, 147}, {311, 788}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -402,7 +403,7 @@
 							<real>289</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>122 28 1206 847 0 0 1440 878 </string>
+						<string>43 31 1206 847 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -420,7 +421,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ReviewTitleCell.m</string>
+								<string>MovieDetailsViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -428,11 +429,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ReviewTitleCell.m</string>
+										<string>MovieDetailsViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>740B15190E2DD1DF00493FC3</string>
+										<string>740B15290E2DD3DE00493FC3</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -648,7 +649,6 @@
 											<string>74B3BE110E2DB11800DCE835</string>
 											<string>74B3BE120E2DB11800DCE835</string>
 											<string>74B3BE140E2DB11800DCE835</string>
-											<string>74F686910E2DBA350013466D</string>
 											<string>74F686C20E2DBD470013466D</string>
 											<string>74F686C30E2DBD470013466D</string>
 											<string>74F686C40E2DBD470013466D</string>
@@ -667,7 +667,8 @@
 											<string>740B15080E2DD14900493FC3</string>
 											<string>740B15140E2DD1DF00493FC3</string>
 											<string>740B15150E2DD1DF00493FC3</string>
-											<string>740B15160E2DD1DF00493FC3</string>
+											<string>740B15270E2DD3DE00493FC3</string>
+											<string>74F686910E2DBA350013466D</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -868,6 +869,7 @@
 											<string>740B150A0E2DD14900493FC3</string>
 											<string>740B15170E2DD1DF00493FC3</string>
 											<string>740B15180E2DD1DF00493FC3</string>
+											<string>740B15280E2DD3DE00493FC3</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -881,7 +883,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {873, 563}}</string>
 								<key>RubberWindowFrame</key>
-								<string>122 28 1206 847 0 0 1440 878 </string>
+								<string>43 31 1206 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -901,7 +903,7 @@
 								<key>Frame</key>
 								<string>{{0, 568}, {873, 238}}</string>
 								<key>RubberWindowFrame</key>
-								<string>122 28 1206 847 0 0 1440 878 </string>
+								<string>43 31 1206 847 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -1046,7 +1048,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>237883871.71358299</real>
+	<real>237884382.71762401</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1061,16 +1063,17 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>740B152B0E2DD3DE00493FC3</string>
+		<string>740B152C0E2DD3DE00493FC3</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>740B145D0E2DC7A500493FC3</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>740B151B0E2DD1DF00493FC3</string>
 	</array>
 	<key>WindowString</key>
-	<string>122 28 1206 847 0 0 1440 878 </string>
+	<string>43 31 1206 847 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
