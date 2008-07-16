@@ -113,6 +113,10 @@ static NSString* starString = nil;
     return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
 }
 
++ (NSString*) reviewsFile {
+    return [[Application dataFolder] stringByAppendingPathComponent:@"Reviews.plist"];
+}
+
 + (NSString*) postersFolder {
     [gate lock];
     {

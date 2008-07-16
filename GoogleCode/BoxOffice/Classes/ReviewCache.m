@@ -11,10 +11,9 @@
 #import "ExtraMovieInformation.h"
 #import "XmlElement.h"
 #import "XmlParser.h"
+#import "Application.h"
 
 @implementation ReviewCache
-
-static NSString* MOVIE_REVIEWS = @"movieReviews";
 
 @synthesize gate;
 @synthesize movieToReviewMap;
@@ -31,10 +30,16 @@ static NSString* MOVIE_REVIEWS = @"movieReviews";
         self.gate = [[[NSLock alloc] init] autorelease];
         self.movieToReviewMap = [NSMutableDictionary dictionary];
         
-        NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:MOVIE_REVIEWS];
-        if (dict == nil) {
+        NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[Application reviewsFile]];
+        if (dict != nil) {
             for (NSString* movieId in dict) {
-                [self.movieToReviewMap setObject:[Review reviewWithDictionary:[dict objectForKey:movieId]]
+                NSMutableArray* reviews = [NSMutableArray array];
+                
+                for (NSDictionary* child in [dict objectForKey:movieId]) {
+                    [reviews addObject:[Review reviewWithDictionary:child]];
+                }
+                
+                [self.movieToReviewMap setObject:reviews
                                           forKey:movieId];
             }
         }
@@ -48,7 +53,19 @@ static NSString* MOVIE_REVIEWS = @"movieReviews";
 }
 
 - (void) update:(NSDictionary*) supplementaryInformation {
-    [self performSelectorInBackground:@selector(updateInBackground:) withObject:supplementaryInformation];
+    NSMutableDictionary* infoWithReviews = [NSMutableDictionary dictionary];
+    NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
+    
+    for (NSString* title in supplementaryInformation) {
+        if ([self.movieToReviewMap objectForKey:title] == nil) {
+            [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
+        } else {
+            [infoWithReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
+        }
+    }
+    
+    [self performSelectorInBackground:@selector(updateInBackground:)
+                           withObject:[NSArray arrayWithObjects:infoWithoutReviews, infoWithReviews, nil]];
 }
 
 - (NSArray*) extractReviewSections:(NSString*) reviewPage {
@@ -97,18 +114,60 @@ static NSString* MOVIE_REVIEWS = @"movieReviews";
     NSRange extractRange;
     extractRange.location = startRange.location + startRange.length;
     extractRange.length = endRange.location - extractRange.location;
-    return [[section substringWithRange:extractRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    NSString* result = [[section substringWithRange:extractRange] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
+    result = [result stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
+    result = [result stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
+    
+    return result;
+}
+
+- (NSString*) extractLink:section {
+    NSRange fullReviewRange = [section rangeOfString:@"Full Review"];
+    if (fullReviewRange.length == 0) {
+        return nil;
+    }
+    
+    NSRange searchRange;
+    searchRange.location = 0;
+    searchRange.length = fullReviewRange.location;
+    
+    NSRange hrefRange = [section rangeOfString:@"href=\"" options:NSBackwardsSearch range:searchRange];
+    if (hrefRange.length == 0) {
+        return nil;
+    }
+    
+    NSRange startRange;
+    startRange.location = hrefRange.location + hrefRange.length;
+    startRange.length = fullReviewRange.location - startRange.location;
+    
+    NSRange quoteRange = [section rangeOfString:@"\"" options:0 range:startRange];
+    if (quoteRange.length == 0) {
+        return nil;
+    }
+    
+    NSRange extractRange;
+    extractRange.location = startRange.location;
+    extractRange.length = quoteRange.location - extractRange.location;
+    NSString* address = [section substringWithRange:extractRange];
+    
+    return [NSString stringWithFormat:@"http://www.rottentomatoes.com%@", address];
 }
 
 - (Review*) extractReview:(NSString*) section {
-    BOOL positive = [section rangeOfString:@"fresh.gif"].length > 0;
     NSString* text = [self extractText:section];
+    if (text == nil) {
+        return nil;
+    }
+    
+    BOOL positive = [section rangeOfString:@"fresh.gif"].length > 0;
+    NSString* link = [self extractLink:section];
     
     return [Review reviewWithText:text
                          positive:positive
-                             link:@""
-                           author:@""
-                           source:@""];
+                             link:link
+                           author:nil
+                           source:nil];
 }
 
 - (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
@@ -165,15 +224,17 @@ static NSString* MOVIE_REVIEWS = @"movieReviews";
     }
 }
 
-- (void) updateInBackground:(NSDictionary*) supplementaryInformation {
+- (void) updateInBackground:(NSArray*) array {
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
         
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        [self downloadReviews:supplementaryInformation];
-        [self performSelectorOnMainThread:@selector(onComplete:) withObject:nil waitUntilDone:NO];
+        for (NSDictionary* dictionary in array) {
+            [self downloadReviews:dictionary];
+            [self performSelectorOnMainThread:@selector(onComplete:) withObject:nil waitUntilDone:NO];
+        }
         
         [autoreleasePool release];
     }
@@ -200,7 +261,7 @@ static NSString* MOVIE_REVIEWS = @"movieReviews";
         [dict setObject:encodedReviews forKey:movieId];
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:dict forKey:MOVIE_REVIEWS];
+    [dict writeToFile:[Application reviewsFile] atomically:YES];
 }
 
 - (void) applicationWillTerminate {
