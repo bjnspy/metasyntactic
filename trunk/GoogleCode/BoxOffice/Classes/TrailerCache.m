@@ -62,10 +62,31 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
     self.movieToTrailersMap = trimmedDictionary;
 }
 
+- (NSArray*) getOrderedMovies:(NSArray*) movies {
+    NSMutableArray* moviesWithoutTrailers = [NSMutableArray array];
+    NSMutableArray* moviesWithTrailers = [NSMutableArray array];
+    for (Movie* movie in movies) {
+        if ([self.movieToTrailersMap objectForKey:movie.title] == nil) {
+            [moviesWithoutTrailers addObject:movie];
+        } else {
+            [moviesWithTrailers addObject:movie];
+        }
+    }
+    
+    NSMutableArray* orderedMovies = [NSMutableArray array];
+    [orderedMovies addObjectsFromArray:moviesWithoutTrailers];
+    [orderedMovies addObjectsFromArray:moviesWithTrailers];
+    
+    return orderedMovies;
+}
+
 - (void) update:(NSArray*) movies {
     [self deleteObsoleteTrailers:movies];
+    
+    NSArray* orderedMovies = [self getOrderedMovies:movies];
+    
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
-                           withObject:[NSArray arrayWithArray:movies]];
+                           withObject:[NSArray arrayWithArray:orderedMovies]];
 }
 
 - (NSString*) getValue:(NSString*) key fromArray:(NSArray*) array {

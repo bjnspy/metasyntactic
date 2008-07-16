@@ -16,7 +16,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.15";
+static NSString* currentVersion = @"1.2.17";
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
@@ -32,7 +32,6 @@ static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSeg
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* MOVIE_TRAILERS                         = @"movieTrailers";
-static NSString* MOVIE_REVIEWS                          = @"movieReviews";
 static NSString* ADDRESS_LOCATION_MAP                   = @"addressLocationMap";
 
 static NSArray* KEYS;
@@ -55,7 +54,6 @@ static NSArray* KEYS;
                  ALL_THEATERS_SELECTED_SEGMENT_INDEX,
                  FAVORITE_THEATERS,
                  MOVIE_TRAILERS,
-                 MOVIE_REVIEWS,
                  ADDRESS_LOCATION_MAP,
                  nil] retain];
     }
@@ -147,6 +145,7 @@ static NSArray* KEYS;
         
         [[NSFileManager defaultManager] removeItemAtPath:[Application moviesFile] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application theatersFile] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application reviewsFile] error:NULL];
         
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
     }

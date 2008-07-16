@@ -18,6 +18,7 @@
 + (NSString*) dataFolder;
 + (NSString*) moviesFile;
 + (NSString*) theatersFile;
++ (NSString*) reviewsFile;
 + (NSString*) documentsFolder;
 + (NSString*) formatDate:(NSDate*) date;
 

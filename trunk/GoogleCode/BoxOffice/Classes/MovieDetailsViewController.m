@@ -15,6 +15,7 @@
 #import "Application.h"
 #import "ViewControllerUtilities.h"
 #import "Utilities.h"
+#import "ReviewsViewController.h"
 
 #define SHOWTIMES_PER_ROW 6
 
@@ -25,6 +26,7 @@
 @synthesize theatersArray;
 @synthesize showtimesArray;
 @synthesize trailersArray;
+@synthesize reviewsArray;
 @synthesize hiddenTheaterCount;
 
 - (void) dealloc {
@@ -33,6 +35,7 @@
     self.theatersArray = nil;
     self.showtimesArray = nil;
     self.trailersArray = nil;
+    self.reviewsArray = nil;
     self.hiddenTheaterCount = 0;
     
     [super dealloc];
@@ -94,6 +97,7 @@
         self.title = self.movie.title;
         self.navigationItem.titleView = label;
         self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:self.movie]];
+        self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:self.movie]];
     }
     
     return self;
@@ -116,10 +120,14 @@
     return [self.navigationController model];
 }
 
+- (BOOL) hasInfoSection {
+    return trailersArray.count || reviewsArray.count;
+}
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     NSInteger sections = 1;
     
-    if (trailersArray.count) {
+    if ([self hasInfoSection]) {
         sections += 1;
     }
     
@@ -136,8 +144,8 @@
     }
 }
 
-- (NSInteger) numberOfRowsInTrailersSection {
-    return trailersArray.count;
+- (NSInteger) numberOfRowsInInfoSection {
+    return trailersArray.count + (reviewsArray.count ? 1 : 0);
 }
 
 - (NSInteger) tableView:(UITableView*) tableView
@@ -146,8 +154,8 @@
         return [self numberOfRowsInHeaderSection];
     }
     
-    if (section == 1 && trailersArray.count) {
-        return [self numberOfRowsInTrailersSection];
+    if (section == 1 && [self hasInfoSection]) {
+        return [self numberOfRowsInInfoSection];
     }
     
     return 1;
@@ -172,7 +180,7 @@
 }
 
 - (NSInteger) getTheaterIndex:(NSInteger) section {
-    if (trailersArray.count) {
+    if ([self hasInfoSection]) {
         return section - 2;
     } else {
         return section - 1;
@@ -188,7 +196,7 @@
         return [self heightForRowInHeaderSection:row];
     }
     
-    if (section == 1 && self.trailersArray.count) {
+    if (section == 1 && [self hasInfoSection]) {
         return [tableView rowHeight];
     }
     
@@ -284,8 +292,9 @@
     }    
 }
 
-- (UITableViewCell*) cellForTrailersRow:(NSInteger) row {
+- (UITableViewCell*) cellForInfoRow:(NSInteger) row {
     static NSString* reuseIdentifier = @"MovieTrailersCellIdentifier";
+    
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
@@ -295,10 +304,14 @@
         cell.textAlignment = UITextAlignmentCenter;
     }
     
-    if (trailersArray.count == 1) {   
-        cell.text = NSLocalizedString(@"Play trailer", nil);
+    if (row < trailersArray.count) {
+        if (trailersArray.count == 1) {   
+            cell.text = NSLocalizedString(@"Play trailer", nil);
+        } else {
+            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Play trailer %d", nil), (row + 1)];
+        }
     } else {
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Play trailer %d", nil), (row + 1)];
+        cell.text = NSLocalizedString(@"Read reviews", nil);
     }
     
     return cell;
@@ -313,8 +326,8 @@
         return [self cellForHeaderRow:row];
     } 
     
-    if (section == 1 && trailersArray.count) {
-        return [self cellForTrailersRow:row];
+    if (section == 1 && [self hasInfoSection]) {
+        return [self cellForInfoRow:row];
     }
     
     static NSString* reuseIdentifier = @"MovieDetailsCellIdentifier";
@@ -334,7 +347,7 @@
         return nil;
     }
     
-    if (section == 1 && trailersArray.count) {
+    if (section == 1 && [self hasInfoSection]) {
         return nil;
     }
     
@@ -379,8 +392,13 @@
     [moviePlayer autorelease];
 }
 
-- (void) didSelectTrailersRow:(NSInteger) row {
-    [self playMovie:[trailersArray objectAtIndex:row]];
+- (void) didSelectInfoRow:(NSInteger) row {
+    if (row < trailersArray.count) {
+        [self playMovie:[trailersArray objectAtIndex:row]];
+    } else {
+        ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithReviews:reviewsArray] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
+    }
 }
 
 - (void)            tableView:(UITableView*) tableView
@@ -392,15 +410,13 @@
         return [self didSelectHeaderRow:row];
     }
     
-    if (section == 1 && trailersArray.count) {
-        return [self didSelectTrailersRow:row];
+    if (section == 1 && [self hasInfoSection]) {
+        return [self didSelectInfoRow:row];
     }
     
     Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
     
-    [self.navigationController pushTicketsView:self.movie
-     theater:theater
-     animated:YES];
+    [self.navigationController pushTicketsView:self.movie theater:theater animated:YES];
 }
 
 @end
