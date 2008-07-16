@@ -30,33 +30,33 @@
 			1D6058900D05DD3D006BFB54 /* BoxOffice */,
 		);
 		breakpoints = (
-			7495697F0E2D6BED007BFF21 /* ReviewCache.m:222 */,
-			749569AB0E2D6C7F007BFF21 /* ReviewCache.m:226 */,
-			749569DF0E2D703F007BFF21 /* ReviewCache.m:238 */,
+			7495697F0E2D6BED007BFF21 /* ReviewCache.m:226 */,
+			749569AB0E2D6C7F007BFF21 /* ReviewCache.m:230 */,
+			749569DF0E2D703F007BFF21 /* ReviewCache.m:242 */,
 			74956A070E2D71A5007BFF21 /* -[ReviewCache downloadReview:] */,
-			74956A0A0E2D71B0007BFF21 /* ReviewCache.m:238 */,
+			74956A0A0E2D71B0007BFF21 /* ReviewCache.m:242 */,
 			74737B1A0E2D728D00C37E4B /* ReviewCache.m:94 */,
-			74737B2D0E2D764A00C37E4B /* ReviewCache.m:231 */,
-			74737B330E2D765C00C37E4B /* ReviewCache.m:230 */,
-			74737B530E2D7BF000C37E4B /* ReviewCache.m:204 */,
-			74737B800E2D7D8E00C37E4B /* ReviewCache.m:237 */,
-			74737B860E2D7DE200C37E4B /* ReviewCache.m:205 */,
-			74737B880E2D7DF300C37E4B /* ReviewCache.m:258 */,
-			74737B8A0E2D7E0700C37E4B /* ReviewCache.m:247 */,
-			74737B9B0E2D7ED200C37E4B /* ReviewCache.m:302 */,
-			74737B9F0E2D7F1200C37E4B /* ReviewCache.m:274 */,
+			74737B2D0E2D764A00C37E4B /* ReviewCache.m:235 */,
+			74737B330E2D765C00C37E4B /* ReviewCache.m:234 */,
+			74737B530E2D7BF000C37E4B /* ReviewCache.m:208 */,
+			74737B800E2D7D8E00C37E4B /* ReviewCache.m:241 */,
+			74737B860E2D7DE200C37E4B /* ReviewCache.m:209 */,
+			74737B880E2D7DF300C37E4B /* ReviewCache.m:262 */,
+			74737B8A0E2D7E0700C37E4B /* ReviewCache.m:251 */,
+			74737B9B0E2D7ED200C37E4B /* ReviewCache.m:306 */,
+			74737B9F0E2D7F1200C37E4B /* ReviewCache.m:278 */,
 			74B3BC930E2D980E00DCE835 /* MovieDetailsViewController.m:148 */,
 			74B3BCA10E2D983300DCE835 /* MovieDetailsViewController.m:307 */,
 			74B3BD060E2D9CA100DCE835 /* ReviewsViewController.m:94 */,
 			74B3BD090E2D9CAE00DCE835 /* ReviewsViewController.m:125 */,
-			74B3BDB90E2DAB2300DCE835 /* ReviewCache.m:154 */,
-			74B3BDD20E2DABAF00DCE835 /* ReviewCache.m:127 */,
-			74B3BDE00E2DACB800DCE835 /* ReviewCache.m:291 */,
-			74B3BDE30E2DACDA00DCE835 /* ReviewCache.m:283 */,
+			74B3BDB90E2DAB2300DCE835 /* ReviewCache.m:158 */,
+			74B3BDD20E2DABAF00DCE835 /* ReviewCache.m:131 */,
+			74B3BDE00E2DACB800DCE835 /* ReviewCache.m:295 */,
+			74B3BDE30E2DACDA00DCE835 /* ReviewCache.m:287 */,
 			74B3BE2E0E2DB27C00DCE835 /* ReviewCache.m:56 */,
 			74B3BE360E2DB2D600DCE835 /* ReviewCache.m:67 */,
-			74B3BE4B0E2DB38800DCE835 /* ReviewCache.m:273 */,
-			74F686D90E2DBDFA0013466D /* ReviewCache.m:201 */,
+			74B3BE4B0E2DB38800DCE835 /* ReviewCache.m:277 */,
+			74F686D90E2DBDFA0013466D /* ReviewCache.m:205 */,
 		);
 		codeSenseManager = 746A013F0DC818C80079D89B /* Code sense */;
 		executables = (
@@ -255,6 +255,14 @@
 			740B14560E2DC78C00493FC3 /* PBXBookmark */ = 740B14560E2DC78C00493FC3 /* PBXBookmark */;
 			740B145A0E2DC7A500493FC3 /* PBXTextBookmark */ = 740B145A0E2DC7A500493FC3 /* PBXTextBookmark */;
 			740B145F0E2DC7A500493FC3 /* PBXTextBookmark */ = 740B145F0E2DC7A500493FC3 /* PBXTextBookmark */;
+			740B14680E2DC9C800493FC3 /* PBXTextBookmark */ = 740B14680E2DC9C800493FC3 /* PBXTextBookmark */;
+			740B14690E2DC9C800493FC3 /* PBXTextBookmark */ = 740B14690E2DC9C800493FC3 /* PBXTextBookmark */;
+			740B146A0E2DC9C800493FC3 /* PBXTextBookmark */ = 740B146A0E2DC9C800493FC3 /* PBXTextBookmark */;
+			740B146B0E2DC9C800493FC3 /* PBXTextBookmark */ = 740B146B0E2DC9C800493FC3 /* PBXTextBookmark */;
+			740B146C0E2DC9C800493FC3 /* PBXTextBookmark */ = 740B146C0E2DC9C800493FC3 /* PBXTextBookmark */;
+			740B146D0E2DC9C800493FC3 /* PBXTextBookmark */ = 740B146D0E2DC9C800493FC3 /* PBXTextBookmark */;
+			740B146E0E2DC9C800493FC3 /* PBXTextBookmark */ = 740B146E0E2DC9C800493FC3 /* PBXTextBookmark */;
+			740B146F0E2DC9C800493FC3 /* PBXTextBookmark */ = 740B146F0E2DC9C800493FC3 /* PBXTextBookmark */;
 			740E7FEC0DCFFFD70066FCE5 = 740E7FEC0DCFFFD70066FCE5 /* PBXTextBookmark */;
 			740E7FF00DCFFFD70066FCE5 = 740E7FF00DCFFFD70066FCE5 /* PBXTextBookmark */;
 			740E7FF20DCFFFD70066FCE5 = 740E7FF20DCFFFD70066FCE5 /* PBXTextBookmark */;
@@ -635,9 +643,9 @@
 	};
 	29B97316FDCFA39411CA2CEA /* main.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {810, 385}}";
-			sepNavSelRange = "{146, 5}";
-			sepNavVisRange = "{0, 366}";
+			sepNavIntBoundsRect = "{{0, 0}, {812, 531}}";
+			sepNavSelRange = "{193, 0}";
+			sepNavVisRange = "{0, 362}";
 		};
 	};
 	32CA4F630368D1EE00C91783 /* BoxOffice_Prefix.pch */ = {
@@ -1333,6 +1341,86 @@
 		vrLoc = 1623;
 	};
 	740B145F0E2DC7A500493FC3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* BoxOffice_Prefix.pch */;
+		name = "BoxOffice_Prefix.pch: 10";
+		rLen = 0;
+		rLoc = 264;
+		rType = 0;
+		vrLen = 264;
+		vrLoc = 0;
+	};
+	740B14680E2DC9C800493FC3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74B3BCFB0E2D9C9600DCE835 /* ReviewsViewController.m */;
+		name = "ReviewsViewController.m: 65";
+		rLen = 0;
+		rLoc = 1814;
+		rType = 0;
+		vrLen = 1388;
+		vrLoc = 1623;
+	};
+	740B14690E2DC9C800493FC3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 12";
+		rLen = 0;
+		rLoc = 193;
+		rType = 0;
+		vrLen = 362;
+		vrLoc = 0;
+	};
+	740B146A0E2DC9C800493FC3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* BoxOffice_Prefix.pch */;
+		name = "BoxOffice_Prefix.pch: 10";
+		rLen = 0;
+		rLoc = 264;
+		rType = 0;
+		vrLen = 264;
+		vrLoc = 0;
+	};
+	740B146B0E2DC9C800493FC3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74B3BCFB0E2D9C9600DCE835 /* ReviewsViewController.m */;
+		name = "ReviewsViewController.m: 65";
+		rLen = 0;
+		rLoc = 1814;
+		rType = 0;
+		vrLen = 1388;
+		vrLoc = 1623;
+	};
+	740B146C0E2DC9C800493FC3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
+		name = "main.m: 12";
+		rLen = 0;
+		rLoc = 193;
+		rType = 0;
+		vrLen = 362;
+		vrLoc = 0;
+	};
+	740B146D0E2DC9C800493FC3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 32CA4F630368D1EE00C91783 /* BoxOffice_Prefix.pch */;
+		name = "BoxOffice_Prefix.pch: 10";
+		rLen = 0;
+		rLoc = 264;
+		rType = 0;
+		vrLen = 264;
+		vrLoc = 0;
+	};
+	740B146E0E2DC9C800493FC3 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74B3BE2C0E2DB27C00DCE835 /* ReviewCache.m */;
+		name = "ReviewCache.m: 110";
+		rLen = 0;
+		rLoc = 3481;
+		rType = 0;
+		vrLen = 1212;
+		vrLoc = 3093;
+	};
+	740B146F0E2DC9C800493FC3 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 32CA4F630368D1EE00C91783 /* BoxOffice_Prefix.pch */;
 		name = "BoxOffice_Prefix.pch: 10";
@@ -3240,7 +3328,7 @@
 		vrLen = 1118;
 		vrLoc = 3330;
 	};
-	74737B2D0E2D764A00C37E4B /* ReviewCache.m:231 */ = {
+	74737B2D0E2D764A00C37E4B /* ReviewCache.m:235 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3252,12 +3340,12 @@
 		functionName = "-downloadReview:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 231;
+		lineNumber = 235;
 		location = BoxOffice;
 		modificationTime = 237880702.49795;
 		state = 2;
 	};
-	74737B330E2D765C00C37E4B /* ReviewCache.m:230 */ = {
+	74737B330E2D765C00C37E4B /* ReviewCache.m:234 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3269,7 +3357,7 @@
 		functionName = "-downloadReview:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 230;
+		lineNumber = 234;
 		location = BoxOffice;
 		modificationTime = 237880702.497955;
 		state = 2;
@@ -3284,7 +3372,7 @@
 		vrLen = 779;
 		vrLoc = 0;
 	};
-	74737B530E2D7BF000C37E4B /* ReviewCache.m:204 */ = {
+	74737B530E2D7BF000C37E4B /* ReviewCache.m:208 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3296,7 +3384,7 @@
 		functionName = "-extractReview:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 204;
+		lineNumber = 208;
 		location = BoxOffice;
 		modificationTime = 237880702.49796;
 		state = 2;
@@ -3308,7 +3396,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	74737B800E2D7D8E00C37E4B /* ReviewCache.m:237 */ = {
+	74737B800E2D7D8E00C37E4B /* ReviewCache.m:241 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3320,12 +3408,12 @@
 		functionName = "-downloadInfoReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 237;
+		lineNumber = 241;
 		location = BoxOffice;
 		modificationTime = 237880702.497965;
 		state = 2;
 	};
-	74737B860E2D7DE200C37E4B /* ReviewCache.m:205 */ = {
+	74737B860E2D7DE200C37E4B /* ReviewCache.m:209 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3337,12 +3425,12 @@
 		functionName = "-extractReview:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 205;
+		lineNumber = 209;
 		location = BoxOffice;
 		modificationTime = 237880702.49797;
 		state = 2;
 	};
-	74737B880E2D7DF300C37E4B /* ReviewCache.m:258 */ = {
+	74737B880E2D7DF300C37E4B /* ReviewCache.m:262 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3354,12 +3442,12 @@
 		functionName = "-downloadReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 258;
+		lineNumber = 262;
 		location = BoxOffice;
 		modificationTime = 237880702.497975;
 		state = 2;
 	};
-	74737B8A0E2D7E0700C37E4B /* ReviewCache.m:247 */ = {
+	74737B8A0E2D7E0700C37E4B /* ReviewCache.m:251 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3371,12 +3459,12 @@
 		functionName = "-reportReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 247;
+		lineNumber = 251;
 		location = BoxOffice;
 		modificationTime = 237880702.49798;
 		state = 2;
 	};
-	74737B9B0E2D7ED200C37E4B /* ReviewCache.m:302 */ = {
+	74737B9B0E2D7ED200C37E4B /* ReviewCache.m:306 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3388,12 +3476,12 @@
 		functionName = "-onComplete:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 302;
+		lineNumber = 306;
 		location = BoxOffice;
 		modificationTime = 237880702.498001;
 		state = 2;
 	};
-	74737B9F0E2D7F1200C37E4B /* ReviewCache.m:274 */ = {
+	74737B9F0E2D7F1200C37E4B /* ReviewCache.m:278 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -3405,7 +3493,7 @@
 		functionName = "-updateInBackground:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 274;
+		lineNumber = 278;
 		location = BoxOffice;
 		modificationTime = 237880702.498008;
 		state = 2;
@@ -4565,7 +4653,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	7495697F0E2D6BED007BFF21 /* ReviewCache.m:222 */ = {
+	7495697F0E2D6BED007BFF21 /* ReviewCache.m:226 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -4577,7 +4665,7 @@
 		functionName = "-downloadReview:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 222;
+		lineNumber = 226;
 		location = BoxOffice;
 		modificationTime = 237880702.497911;
 		state = 2;
@@ -4622,7 +4710,7 @@
 		vrLen = 1141;
 		vrLoc = 936;
 	};
-	749569AB0E2D6C7F007BFF21 /* ReviewCache.m:226 */ = {
+	749569AB0E2D6C7F007BFF21 /* ReviewCache.m:230 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -4634,7 +4722,7 @@
 		functionName = "-downloadReview:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 226;
+		lineNumber = 230;
 		location = BoxOffice;
 		modificationTime = 237880702.4979281;
 		state = 2;
@@ -4646,7 +4734,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	749569DF0E2D703F007BFF21 /* ReviewCache.m:238 */ = {
+	749569DF0E2D703F007BFF21 /* ReviewCache.m:242 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -4658,7 +4746,7 @@
 		functionName = "-downloadReview:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 238;
+		lineNumber = 242;
 		location = BoxOffice;
 		modificationTime = 237880702.497934;
 		state = 2;
@@ -4695,7 +4783,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	74956A0A0E2D71B0007BFF21 /* ReviewCache.m:238 */ = {
+	74956A0A0E2D71B0007BFF21 /* ReviewCache.m:242 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -4707,7 +4795,7 @@
 		functionName = "-downloadReview:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 238;
+		lineNumber = 242;
 		location = BoxOffice;
 		modificationTime = 237880702.497939;
 		state = 2;
@@ -5156,7 +5244,7 @@
 		vrLen = 1280;
 		vrLoc = 854;
 	};
-	74B3BDB90E2DAB2300DCE835 /* ReviewCache.m:154 */ = {
+	74B3BDB90E2DAB2300DCE835 /* ReviewCache.m:158 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5168,7 +5256,7 @@
 		functionName = "-extractLink:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 154;
+		lineNumber = 158;
 		location = BoxOffice;
 		modificationTime = 237880702.49819;
 		state = 2;
@@ -5210,7 +5298,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	74B3BDD20E2DABAF00DCE835 /* ReviewCache.m:127 */ = {
+	74B3BDD20E2DABAF00DCE835 /* ReviewCache.m:131 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5222,12 +5310,12 @@
 		functionName = "-extractLink:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 127;
+		lineNumber = 131;
 		location = BoxOffice;
 		modificationTime = 237880702.4981969;
 		state = 2;
 	};
-	74B3BDE00E2DACB800DCE835 /* ReviewCache.m:291 */ = {
+	74B3BDE00E2DACB800DCE835 /* ReviewCache.m:295 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5239,12 +5327,12 @@
 		functionName = "-onComplete:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 291;
+		lineNumber = 295;
 		location = BoxOffice;
 		modificationTime = 237880702.498202;
 		state = 2;
 	};
-	74B3BDE30E2DACDA00DCE835 /* ReviewCache.m:283 */ = {
+	74B3BDE30E2DACDA00DCE835 /* ReviewCache.m:287 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5256,7 +5344,7 @@
 		functionName = "-reviewsForMovie:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 283;
+		lineNumber = 287;
 		location = BoxOffice;
 		modificationTime = 237880702.498208;
 		state = 2;
@@ -5354,6 +5442,11 @@
 		name = ReviewCache.m;
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {906, 4438}}";
+			sepNavSelRange = "{3481, 0}";
+			sepNavVisRange = "{3093, 1212}";
+		};
 	};
 	74B3BE2E0E2DB27C00DCE835 /* ReviewCache.m:56 */ = {
 		isa = PBXFileBreakpoint;
@@ -5389,7 +5482,7 @@
 		modificationTime = 237880702.498217;
 		state = 2;
 	};
-	74B3BE4B0E2DB38800DCE835 /* ReviewCache.m:273 */ = {
+	74B3BE4B0E2DB38800DCE835 /* ReviewCache.m:277 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5401,7 +5494,7 @@
 		functionName = "-updateInBackground:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 273;
+		lineNumber = 277;
 		location = BoxOffice;
 		modificationTime = 237880702.498222;
 		state = 2;
@@ -6721,7 +6814,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	74F686D90E2DBDFA0013466D /* ReviewCache.m:201 */ = {
+	74F686D90E2DBDFA0013466D /* ReviewCache.m:205 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -6733,7 +6826,7 @@
 		functionName = "-extractReview:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 201;
+		lineNumber = 205;
 		location = BoxOffice;
 		modificationTime = 237880702.498227;
 		state = 2;
@@ -6743,7 +6836,7 @@
 		fRef = 74F686D70E2DBDFA0013466D /* ReviewCache.m */;
 		name = "ReviewCache.m: 179";
 		rLen = 0;
-		rLoc = 6273;
+		rLoc = 6373;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 4767;
@@ -6763,7 +6856,7 @@
 		fRef = 74F686D70E2DBDFA0013466D /* ReviewCache.m */;
 		name = "ReviewCache.m: 208";
 		rLen = 0;
-		rLoc = 6997;
+		rLoc = 7097;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 5855;
@@ -6783,7 +6876,7 @@
 		fRef = 74F686D70E2DBDFA0013466D /* ReviewCache.m */;
 		name = "ReviewCache.m: 208";
 		rLen = 0;
-		rLoc = 6997;
+		rLoc = 7097;
 		rType = 0;
 		vrLen = 1213;
 		vrLoc = 5855;
