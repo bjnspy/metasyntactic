@@ -98,6 +98,8 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [self.model setCurrentlySelectedMovie:nil theater:self.theater];
+    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
 - (void) refresh {

@@ -40,7 +40,7 @@
 
 - (void) orderTheaters {
     [self.theatersArray sortUsingFunction:compareTheatersByDistance
-                                  context:[self.model theaterDistanceMap]];    
+     context:[self.model theaterDistanceMap]];    
     
     NSMutableArray* favorites = [NSMutableArray array];
     NSMutableArray* nonFavorites = [NSMutableArray array];
@@ -52,7 +52,7 @@
             [nonFavorites addObject:theater];
         }
     }
-
+    
     NSMutableArray* result = [NSMutableArray array];
     [result addObjectsFromArray:favorites];
     [result addObjectsFromArray:nonFavorites];
@@ -72,7 +72,7 @@
     }
     
     [self orderTheaters];
-            
+    
     self.showtimesArray = [NSMutableArray array];
     
     for (Theater* theater in self.theatersArray) {
@@ -90,7 +90,7 @@
         
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = self.movie.title;
-         
+        
         self.title = self.movie.title;
         self.navigationItem.titleView = label;
         self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:self.movie]];
@@ -101,8 +101,10 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-
+    
     [self.model setCurrentlySelectedMovie:self.movie theater:nil];
+    
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
 - (void) refresh {
@@ -147,7 +149,7 @@
     if (section == 1 && trailersArray.count) {
         return [self numberOfRowsInTrailersSection];
     }
-        
+    
     return 1;
 }
 
@@ -189,7 +191,7 @@
     if (section == 1 && self.trailersArray.count) {
         return [tableView rowHeight];
     }
-        
+    
     NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]] count];
     NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
     NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
@@ -368,7 +370,7 @@
 // When the movie is done, release the controller.
 - (void) movieFinishedCallback:(NSNotification*) aNotification {
     MPMoviePlayerController* moviePlayer = [aNotification object];
-
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:MPMoviePlayerPlaybackDidFinishNotification
                                                   object:moviePlayer];
@@ -397,8 +399,8 @@
     Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
     
     [self.navigationController pushTicketsView:self.movie
-                                       theater:theater
-                                      animated:YES];
+     theater:theater
+     animated:YES];
 }
 
 @end

@@ -7,19 +7,22 @@
 //
 
 @interface ExtraMovieInformation : NSObject {
+    NSString* title;
     NSString* synopsis;
     NSString* link;
     NSString* ranking; 
 }
 
+@property (copy) NSString* title;
 @property (copy) NSString* synopsis;
 @property (copy) NSString* link;
 @property (copy) NSString* ranking;
 
 + (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary;
-+ (ExtraMovieInformation*) infoWithLink:(NSString*) link
-                               synopsis:(NSString*) synopsis
-                                ranking:(NSString*) ranking;
++ (ExtraMovieInformation*) infoWithTitle:(NSString*) title
+                                    link:(NSString*) link
+                                synopsis:(NSString*) synopsis
+                                 ranking:(NSString*) ranking;
 
 - (NSDictionary*) dictionary;
 

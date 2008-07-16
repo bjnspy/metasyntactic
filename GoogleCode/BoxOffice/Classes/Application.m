@@ -33,7 +33,8 @@ static NSString* starString = nil;
         [dateFormatter setDateStyle:NSDateFormatterNoStyle];
         [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         
-        commandColor = [[UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1] retain];
+        commandColor = //[[UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1] retain];
+            [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
         
         freshImage      = [[UIImage imageNamed:@"Fresh.png"] retain];
         rottenImage     = [[UIImage imageNamed:@"Rotten.png"] retain];
