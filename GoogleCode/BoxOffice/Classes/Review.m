@@ -84,4 +84,14 @@
     return dict;
 }
 
+- (CGFloat) heightWithFont:(UIFont*) font {
+    CGFloat width = self.link ? 255 : 285;
+    CGSize size = CGSizeMake(width, 1000);
+    size = [self.text sizeWithFont:font
+            constrainedToSize:size
+                lineBreakMode:UILineBreakModeWordWrap];
+    
+    return size.height + 10;
+}
+
 @end
