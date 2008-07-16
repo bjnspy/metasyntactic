@@ -35,7 +35,7 @@ double max_d(double a, double b) {
 
 - (CGFloat) heightForReview:(Review*) review {
     NSString* text = review.text;
-    CGFloat width = review.link ? 215 : 245;
+    CGFloat width = review.link ? 255 : 285;
     CGSize size = CGSizeMake(width, 1000);
     size = [text sizeWithFont:[UIFont fontWithName:@"helvetica" size:14]
             constrainedToSize:size
@@ -46,34 +46,67 @@ double max_d(double a, double b) {
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    //NSInteger section = [indexPath section];
+    NSInteger section = [indexPath section];
     NSInteger row = [indexPath row];
+    Review* review = [reviews objectAtIndex:section];
     
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
-    Review* review = [reviews objectAtIndex:row];
-    if (review.positive) {
-        cell.image = [Application freshImage];
+    if (row == 0) {
+        if (review.positive) {
+            cell.image = [Application freshImage];
+        } else {
+            cell.image = [Application rottenImage];
+        }
+        
+        //cell.text = [NSString stringWithFormat:@"%@, %@", review.author, review.source];
+
+        UILabel* authorLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        UILabel* sourceLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+
+        authorLabel.text = review.author;
+        sourceLabel.text = review.source;
+        authorLabel.font = [UIFont boldSystemFontOfSize:14];
+        sourceLabel.font = [UIFont boldSystemFontOfSize:12];
+        
+        [authorLabel sizeToFit];
+        [sourceLabel sizeToFit];
+        
+        CGRect frame;
+        
+        frame = authorLabel.frame;
+        frame.origin.y = 5;
+        frame.origin.x = 50;
+        authorLabel.frame = frame;
+        
+        frame = sourceLabel.frame;
+        frame.origin.y = 23;
+        frame.origin.x = 50;
+        sourceLabel.frame = frame;
+        
+        [cell.contentView addSubview:authorLabel];
+        [cell.contentView addSubview:sourceLabel];
+        
+        return cell;
+         
     } else {
-        cell.image = [Application rottenImage];
+        CGRect rect = CGRectMake(10, 5, review.link ? 255 : 285, [self heightForReview:review] - 10);
+        UILabel* label = [[[UILabel alloc] initWithFrame:rect] autorelease];
+        label.font = [UIFont fontWithName:@"helvetica" size:14];
+        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.numberOfLines = 0;
+        label.text = review.text;
+        
+        [cell.contentView addSubview:label]; 
     }
-    
-    CGRect rect = CGRectMake(50, 5, review.link ? 215 : 245, [self heightForReview:review] - 10);
-    UILabel* label = [[[UILabel alloc] initWithFrame:rect] autorelease];
-    label.font = [UIFont fontWithName:@"helvetica" size:14];
-    label.lineBreakMode = UILineBreakModeWordWrap;
-    label.numberOfLines = 0;
-    label.text = review.text;
-    
-    [cell.contentView addSubview:label]; 
     
     return cell;
 }
 
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
-    Review* review = [reviews objectAtIndex:[indexPath row]];
+    Review* review = [reviews objectAtIndex:[indexPath section]];
     if (review.link) {
         [Application openBrowser:review.link];
     }    
@@ -85,29 +118,41 @@ double max_d(double a, double b) {
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 1;
+    return reviews.count;
 }
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
-    return reviews.count;
+    return 2;
 }
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    Review* review = [reviews objectAtIndex:[indexPath row]];
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
     
-    return [self heightForReview:review];
+    if (row == 0) {
+        return [tableView rowHeight];
+    } else {
+        Review* review = [reviews objectAtIndex:section];
+    
+        return [self heightForReview:review];
+    }
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    Review* review = [reviews objectAtIndex:[indexPath row]];
-    if (review.link == nil) {
-        return UITableViewCellAccessoryNone;
-    } else {
-        return UITableViewCellAccessoryDetailDisclosureButton;
+    NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
+    
+    if (row == 1) {
+        Review* review = [reviews objectAtIndex:section];
+        if (review.link != nil) {
+            return UITableViewCellAccessoryDetailDisclosureButton;
+        }
     }
+    
+    return UITableViewCellAccessoryNone;
 }
 
 @end

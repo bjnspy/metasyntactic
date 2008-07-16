@@ -154,6 +154,42 @@
     return [NSString stringWithFormat:@"http://www.rottentomatoes.com%@", address];
 }
 
+- (NSString*) extractCriticInformation:(NSString*) section
+                                anchor:(NSString*) anchor {
+    NSRange authorRange = [section rangeOfString:anchor];
+    if (authorRange.length == 0) {
+        return nil;
+    }
+    
+    NSRange searchRange;
+    searchRange.location = authorRange.location + authorRange.length;
+    searchRange.length = [section length] - searchRange.location;
+    NSRange startRange = [section rangeOfString:@"\">" options:0 range:searchRange];
+    if (startRange.length == 0) {
+        return nil;
+    }
+    
+    searchRange.location = startRange.location;
+    searchRange.length = [section length] - searchRange.location;
+    NSRange endRange = [section rangeOfString:@"</a>" options:0 range:searchRange];
+    if (endRange.length == 0) {
+        return nil;
+    }
+    
+    NSRange extractRange;
+    extractRange.location = startRange.location + startRange.length;
+    extractRange.length = endRange.location - extractRange.location;
+    return [section substringWithRange:extractRange];
+}
+
+- (NSString*) extractAuthor:(NSString*) section {
+    return [self extractCriticInformation:section anchor:@"<div class=\"author\">"];
+}
+
+- (NSString*) extractSource:(NSString*) section {
+    return [self extractCriticInformation:section anchor:@"<div class=\"source\">"];
+}
+
 - (Review*) extractReview:(NSString*) section {
     NSString* text = [self extractText:section];
     if (text == nil) {
@@ -162,12 +198,14 @@
     
     BOOL positive = [section rangeOfString:@"fresh.gif"].length > 0;
     NSString* link = [self extractLink:section];
+    NSString* author = [self extractAuthor:section];
+    NSString* source = [self extractSource:section];
     
     return [Review reviewWithText:text
                          positive:positive
                              link:link
-                           author:nil
-                           source:nil];
+                           author:author
+                           source:source];
 }
 
 - (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
