@@ -183,7 +183,10 @@
     NSRange extractRange;
     extractRange.location = startRange.location + startRange.length;
     extractRange.length = endRange.location - extractRange.location;
-    return [section substringWithRange:extractRange];
+    NSString* result = [section substringWithRange:extractRange];
+    
+    result = [result stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
+    return result;
 }
 
 - (NSString*) extractAuthor:(NSString*) section {
