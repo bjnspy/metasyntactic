@@ -60,11 +60,11 @@
 }
 
 + (NSString*) titleForMovie:(XmlElement*) element {
-    return [NSString stringWithFormat:@"%@ (%@)", [element attributeValue:@"name"], [element attributeValue:@"year"]];    
-}
-
-+ (NSString*) titleForPerson:(XmlElement*) element {
-    return [NSString stringWithFormat:@"%@ %@", [element attributeValue:@"firstName"], [element attributeValue:@"lastName"]];
+    if ([element attributeValue:@"year"] == nil) {
+        return [element attributeValue:@"name"];
+    } else {
+        return [NSString stringWithFormat:@"%@ (%@)", [element attributeValue:@"name"], [element attributeValue:@"year"]];    
+    }
 }
 
 + (NSData*) downloadData:(NSString*) urlString {
@@ -149,6 +149,36 @@
     }
 
     return result;    
+}
+
++ (NSArray*) nonNilArray:(NSArray*) array {
+    if (array == nil) {
+        return [NSArray array];
+    }
+    
+    return array;
+}
+
++ (NSString*) nonNilString:(NSString*) string {
+    if (string == nil) {
+        return @"";
+    }
+    
+    return string;
+}
+
++ (BOOL) isSameDay:(NSDate*) d1
+              date:(NSDate*) d2 {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components1 = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                fromDate:d1];
+    NSDateComponents* components2 = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                fromDate:d2];
+    
+    return
+        [components1 year] == [components2 year] &&
+        [components1 month] == [components2 month] &&
+        [components1 day] == [components2 day];
 }
 
 @end

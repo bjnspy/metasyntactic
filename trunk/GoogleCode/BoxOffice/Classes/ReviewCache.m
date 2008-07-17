@@ -111,6 +111,7 @@ NSRange rangeBetween(NSRange startRange, NSRange endRange) {
     
     NSString* result = [[section substringWithRange:rangeBetween(startRange, endRange)] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     
+    result = [result stringByReplacingOccurrencesOfString:@"<I>" withString:@""];
     result = [result stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
     result = [result stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
     

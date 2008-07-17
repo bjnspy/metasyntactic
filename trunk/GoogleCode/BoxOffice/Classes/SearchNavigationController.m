@@ -25,7 +25,7 @@
         
         [self pushViewController:startPageViewController animated:NO];
         
-        self.title = NSLocalizedString(@"Search", nil);
+        self.title = @"IMDb";
         self.tabBarItem.image = [UIImage imageNamed:@"Search.png"];
     }
     

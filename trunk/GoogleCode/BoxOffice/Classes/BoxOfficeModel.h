@@ -13,6 +13,7 @@
 #import "XmlElement.h"
 #import "Theater.h"
 #import "NotificationCenter.h"
+#import "SearchCache.h"
 
 @interface BoxOfficeModel : NSObject {
     NotificationCenter* notificationCenter;
@@ -21,6 +22,7 @@
     TrailerCache* trailerCache;
     AddressLocationCache* addressLocationCache;
     ReviewCache* reviewCache;
+    SearchCache* SearchCache;
     
     NSInteger backgroundTaskCount;
     UIActivityIndicatorView* activityIndicatorView;
@@ -82,6 +84,9 @@
 
 - (NSInteger) searchRadius;
 - (void) setSearchRadius:(NSInteger) searchRadius;
+
+- (NSDate*) searchDate;
+- (void) setSearchDate:(NSDate*) date;
 
 - (NSDate*) lastQuickUpdateTime;
 - (NSDate*) lastFullUpdateTime;

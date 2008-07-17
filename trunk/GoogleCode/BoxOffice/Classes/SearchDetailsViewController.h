@@ -13,12 +13,20 @@
 
 @interface SearchDetailsViewController : UITableViewController {
     SearchNavigationController* navigationController;
+    
+    UIActivityIndicatorView* activityIndicator;
+    UIView* activityView;
 }
 
 @property (assign) SearchNavigationController* navigationController;
+@property (retain) UIActivityIndicatorView* activityIndicator;
+@property (retain) UIView* activityView;
 
 - (id) initWithNavigationController:(SearchNavigationController*) navigationController;
 
 - (BoxOfficeModel*) model;
+
+- (void) startActivityIndicator;
+- (void) stopActivityIndicator;
 
 @end

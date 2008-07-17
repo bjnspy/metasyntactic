@@ -12,10 +12,11 @@
 @implementation Application
 
 static NSRecursiveLock* gate = nil;
-static NSString* _supportFolder = nil;
-static NSString* _dataFolder = nil;
-static NSString* _postersFolder = nil;
-static NSString* _documentsFolder = nil;
+static NSString* supportFolder = nil;
+static NSString* dataFolder = nil;
+static NSString* searchFolder = nil;
+static NSString* postersFolder = nil;
+static NSString* documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
 static UIColor* commandColor = nil;
 static UIImage* freshImage = nil;
@@ -32,8 +33,6 @@ static UIFont* helvetica14 = nil;
         gate = [[NSRecursiveLock alloc] init];
         
         dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateStyle:NSDateFormatterNoStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
         
         commandColor = //[[UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1] retain];
             [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
@@ -60,24 +59,24 @@ static UIFont* helvetica14 = nil;
 + (NSString*) documentsFolder {
     [gate lock];
     {
-        if (_documentsFolder == nil) {
+        if (documentsFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, /*expandTilde:*/YES);
             NSString* folder = [paths objectAtIndex:0];
             
             [Application createDirectory:folder];
             
-            _documentsFolder = [folder retain];
+            documentsFolder = [folder retain];
         }
     }
     [gate unlock];
     
-    return _documentsFolder;
+    return documentsFolder;
 }
 
 + (NSString*) supportFolder {
     [gate lock];
     {
-        if (_supportFolder == nil) {
+        if (supportFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
             
             NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
@@ -85,29 +84,46 @@ static UIFont* helvetica14 = nil;
             
             [Application createDirectory:folder];
             
-            _supportFolder = [folder retain];
+            supportFolder = [folder retain];
         }
     }
     [gate unlock];
     
-    return _supportFolder;
+    return supportFolder;
 }
 
 + (NSString*) dataFolder {
     [gate lock];
     {
-        if (_dataFolder == nil) {
+        if (dataFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Data"];
             
             [Application createDirectory:folder];
             
-            _dataFolder = [folder retain];
+            dataFolder = [folder retain];
         }
     }
     [gate unlock];
     
-    return _dataFolder;
+    return dataFolder;
+}
+
++ (NSString*) searchFolder {
+    [gate lock];
+    {
+        if (searchFolder == nil) {
+            NSString* parent = [Application supportFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Search"];
+            
+            [Application createDirectory:folder];
+            
+            searchFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return searchFolder;
 }
 
 + (NSString*) moviesFile {
@@ -125,24 +141,62 @@ static UIFont* helvetica14 = nil;
 + (NSString*) postersFolder {
     [gate lock];
     {
-        if (_postersFolder == nil) {
+        if (postersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
             
             [Application createDirectory:folder];
             
-            _postersFolder = [folder retain];
+            postersFolder = [folder retain];
         }
     }
     [gate unlock];
     
-    return _postersFolder;
+    return postersFolder;
 }
 
-+ (NSString*) formatDate:(NSDate*) date {
++ (NSString*) formatShortTime:(NSDate*) date {
     NSString* result;
     [gate lock];
     {
+        [dateFormatter setDateStyle:NSDateFormatterNoStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        result = [dateFormatter stringFromDate:date];
+    }
+    [gate unlock];
+    return result;
+}
+
++ (NSString*) formatShortDate:(NSDate*) date {
+    NSString* result;
+    [gate lock];
+    {
+        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        result = [dateFormatter stringFromDate:date];
+    }
+    [gate unlock];
+    return result;
+}
+
++ (NSString*) formatLongDate:(NSDate*) date {
+    NSString* result;
+    [gate lock];
+    {
+        [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        result = [dateFormatter stringFromDate:date];
+    }
+    [gate unlock];
+    return result;
+}
+
++ (NSString*) formatFullDate:(NSDate*) date {
+    NSString* result;
+    [gate lock];
+    {
+        [dateFormatter setDateStyle:NSDateFormatterFullStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
         result = [dateFormatter stringFromDate:date];
     }
     [gate unlock];
@@ -207,7 +261,7 @@ static UIFont* helvetica14 = nil;
 }
 
 + (NSString*) searchHost {
-    return @"http://metaboxoffice4.appspot.com";
+    return @"http://metaboxoffice6.appspot.com";
     //return @"http://localhost:8082";
 }
 

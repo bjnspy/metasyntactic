@@ -22,6 +22,7 @@
 @property (retain) NSLock* quickLookupLock;
 @property (retain) NSLock* fullLookupLock;
 
+- (void) setSearchDate:(NSDate*) searchDate;
 - (void) setPostalCode:(NSString*) postalCode;
 - (void) setSearchRadius:(NSInteger) radius;
 

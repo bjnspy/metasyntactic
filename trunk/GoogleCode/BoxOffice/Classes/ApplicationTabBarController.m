@@ -89,4 +89,9 @@
     [self.moviesNavigationController pushMovieDetails:movie animated:YES];    
 }
 
+- (void) popNavigationControllers {
+    [self.moviesNavigationController popToRootViewControllerAnimated:NO];
+    [self.theatersNavigationController popToRootViewControllerAnimated:NO];
+}
+
 @end

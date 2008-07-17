@@ -16,11 +16,15 @@
 + (NSString*) supportFolder;
 + (NSString*) postersFolder;
 + (NSString*) dataFolder;
++ (NSString*) searchFolder;
 + (NSString*) moviesFile;
 + (NSString*) theatersFile;
 + (NSString*) reviewsFile;
 + (NSString*) documentsFolder;
-+ (NSString*) formatDate:(NSDate*) date;
++ (NSString*) formatShortTime:(NSDate*) date;
++ (NSString*) formatShortDate:(NSDate*) date;
++ (NSString*) formatLongDate:(NSDate*) date;
++ (NSString*) formatFullDate:(NSDate*) date;
 
 + (UIColor*) commandColor;
 

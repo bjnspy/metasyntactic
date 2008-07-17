@@ -32,7 +32,8 @@
 - (void) getMovieDetails {
     self.movieDetailsElement = [[self model] getMovieDetails:[movieElement attributeValue:@"id"]];
     if (self.movieDetailsElement == nil) {
-        [self performSelectorInBackground:@selector(lookupMovieDetails:) withObject:nil];
+        [self startActivityIndicator];
+        [self performSelectorInBackground:@selector(lookupMovieDetails:) withObject:movieElement];
     }
 }
 
@@ -49,10 +50,10 @@
     return self;
 }
 
-- (void) lookupMovieDetails:(id) object {
+- (void) lookupMovieDetails:(id) element {
     NSString* urlString =
     [NSString stringWithFormat:@"%@/LookupMovie?id=%@",
-     [Application searchHost], [movieElement attributeValue:@"id"]];
+     [Application searchHost], [element attributeValue:@"id"]];
 
     XmlElement* resultElement = [Utilities downloadXml:urlString];
     
@@ -76,6 +77,7 @@
 }
 
 - (void) reportLookupResult:(XmlElement*) element {
+    [self stopActivityIndicator];
     self.movieDetailsElement = element;
     [[self model] setMovieDetails:[movieElement attributeValue:@"id"]
                            element:element];
@@ -131,7 +133,7 @@
         }
         
         if (personElement != nil) {
-            cell.text = [Utilities titleForPerson:personElement];
+            cell.text = [personElement attributeValue:@"name"];
         }
         
         return cell;
