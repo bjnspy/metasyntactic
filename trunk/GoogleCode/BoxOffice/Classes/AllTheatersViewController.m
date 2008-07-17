@@ -90,13 +90,13 @@
     
     NSString* favorites                 = NSLocalizedString(@"Favorites", nil);
     NSString* reallyCloseBy             = NSLocalizedString(@"Really close by", nil);
-    NSString* oneHalfToOneMile          = NSLocalizedString(@"< 1 mile away", nil);
-    NSString* oneToTwoMiles             = NSLocalizedString(@"< 2 miles away", nil);
-    NSString* twoToFileMiles            = NSLocalizedString(@"< 5 miles away", nil);
-    NSString* fiveToTenMiles            = NSLocalizedString(@"< 10 miles away", nil);
-    NSString* tenToFifteenMiles         = NSLocalizedString(@"< 15 miles away", nil);
-    NSString* fifteenToTwentyFiveMiles  = NSLocalizedString(@"< 25 miles away", nil);
-    NSString* twentyFiveToFiftyMiles    = NSLocalizedString(@"< 50 miles away", nil);
+    NSString* oneHalfToOneMile          = NSLocalizedString(@"Less than 1 mile away", nil);
+    NSString* oneToTwoMiles             = NSLocalizedString(@"Less than 2 miles away", nil);
+    NSString* twoToFileMiles            = NSLocalizedString(@"Less than 5 miles away", nil);
+    NSString* fiveToTenMiles            = NSLocalizedString(@"Less than 10 miles away", nil);
+    NSString* tenToFifteenMiles         = NSLocalizedString(@"Less than 15 miles away", nil);
+    NSString* fifteenToTwentyFiveMiles  = NSLocalizedString(@"Less than 25 miles away", nil);
+    NSString* twentyFiveToFiftyMiles    = NSLocalizedString(@"Less than 50 miles away", nil);
     NSString* reallyFarAway             = NSLocalizedString(@"Really far away", nil);
     NSString* unknownDistance           = NSLocalizedString(@"Unknown Distance", nil);
     

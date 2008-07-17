@@ -21,13 +21,11 @@
 @implementation SettingsViewController
 
 @synthesize navigationController;
-@synthesize currentLocationItem;
 @synthesize activityIndicator;
 @synthesize locationManager;
 
 - (void) dealloc {
     self.navigationController = nil;
-    self.currentLocationItem = nil;
     self.activityIndicator = nil;
     self.locationManager = nil;
     
@@ -39,12 +37,12 @@
         self.title = NSLocalizedString(@"Settings", nil);
         self.navigationController = controller;
         
-        self.currentLocationItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
-                                                                     style:UIBarButtonItemStylePlain
-                                                                    target:self
-                                                                    action:@selector(onCurrentLocationClicked:)] autorelease];
+        UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
+                                                                  style:UIBarButtonItemStylePlain
+                                                                 target:self
+                                                                 action:@selector(onCurrentLocationClicked:)] autorelease];
 
-        self.navigationItem.leftBarButtonItem = currentLocationItem;
+        self.navigationItem.leftBarButtonItem = item;
         
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         self.locationManager.delegate = self;

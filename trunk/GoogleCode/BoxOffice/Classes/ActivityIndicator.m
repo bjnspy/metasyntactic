@@ -11,11 +11,11 @@
 @implementation ActivityIndicator
 
 @synthesize navigationItem;
-@synthesize originalTarget;
+@synthesize originalButton;
 
 - (void) dealloc {
     self.navigationItem = nil;
-    self.originalTarget = nil;
+    self.originalButton = nil;
     
     [super dealloc];
 }
@@ -23,13 +23,13 @@
 - (id) initWithNavigationItem:(UINavigationItem*) item {
     if (self = [super init]) {
         self.navigationItem = item;
-        UIBarButtonItem* button = self.navigationItem.leftBarButtonItem;
+        self.originalButton = self.navigationItem.leftBarButtonItem;
         
-        self.originalTarget = button.target;
-        originalSelector = button.action;
-        
-        button.target = self;
-        button.action = @selector(onButtonClicked:);
+    
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
+                                                                                  style:UIBarButtonItemStyleDone
+                                                                                 target:self
+                                                                                 action:@selector(onButtonClicked:)] autorelease];
         
         running = NO;
     }
@@ -57,11 +57,7 @@
 - (void) stop:(id) sender {
     running = NO;
     
-    UIBarButtonItem* button = self.navigationItem.leftBarButtonItem;
-
-    button.image = [UIImage imageNamed:@"CurrentPosition.png"];
-    button.target = originalTarget;
-    button.action = originalSelector;
+    self.navigationItem.leftBarButtonItem = self.originalButton;
 }
 
 - (void) stop {
