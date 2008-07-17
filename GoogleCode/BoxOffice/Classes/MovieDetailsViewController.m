@@ -169,9 +169,26 @@
     return image;
 }
 
+- (CGRect) synopsisFrame {
+    UIImage* image = [self posterImage];
+    
+    int synopsisX = 5 + image.size.width + 5;
+    int width = 295 - synopsisX;
+    
+    CGSize size = [[self.model synopsisForMovie:movie] sizeWithFont:[Application helvetica14]
+                                                  constrainedToSize:CGSizeMake(width, 500)
+                                                      lineBreakMode:UILineBreakModeWordWrap];
+    
+    return CGRectMake(synopsisX, 5, width, size.height);
+}
+
+double max_d1(double a, double b) {
+    return a > b ? a : b;
+}
+
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
-        return [self posterImage].size.height + 10;
+        return max_d1([self posterImage].size.height, [self synopsisFrame].size.height) + 10;
     } else if (row == 1) {
         return [self.tableView rowHeight] - 10;
     } else {
@@ -219,20 +236,13 @@
         imageView.frame = CGRectMake(5, 5, image.size.width, image.size.height);
         [cell.contentView addSubview:imageView];
         
-        int synopsisX = 5 + image.size.width + 5;
-        int width = 295 - synopsisX;
-        
-        NSString* synopsis = [self.model synopsisForMovie:movie];
-        CGSize size = [synopsis sizeWithFont:[Application helvetica14]
-                           constrainedToSize:CGSizeMake(width, image.size.height)
-                              lineBreakMode:UILineBreakModeWordWrap];
-        CGRect synopsisFrame = CGRectMake(synopsisX, 5, width, size.height);
+        CGRect synopsisFrame = [self synopsisFrame];
                 
         UILabel* synopsisLabel = [[[UILabel alloc] initWithFrame:synopsisFrame] autorelease];
         synopsisLabel.font = [Application helvetica14];
         synopsisLabel.lineBreakMode = UILineBreakModeWordWrap;
         synopsisLabel.numberOfLines = 0;
-        synopsisLabel.text = synopsis;
+        synopsisLabel.text = [self.model synopsisForMovie:movie];
         
         [cell.contentView addSubview:synopsisLabel]; 
         
