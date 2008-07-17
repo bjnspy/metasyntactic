@@ -164,7 +164,7 @@
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 2;
+        return 3;
     }
     
     return 1;
@@ -181,9 +181,9 @@
         NSString* key;
         NSString* value;
         if (row == 0) {
-            key = NSLocalizedString(@"Postal Code", nil);
+            key = NSLocalizedString(@"Postal code", nil);
             value = [[self model] postalCode];
-        } else {
+        } else if (row == 1) {
             key = NSLocalizedString(@"Distance", nil);
             
             if ([self.model searchRadius] == 1) {
@@ -191,35 +191,20 @@
             } else {
                 value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
             }
+        } else {
+            key = NSLocalizedString(@"Search date", nil);
+            
+            NSDate* date = [[self model] searchDate];
+            if ([Utilities isSameDay:date date:[NSDate date]]) {
+                value = NSLocalizedString(@"Today", nil);
+            } else {
+                value = [Application formatLongDate:date];
+            }
         }
         
         [cell setKey:key value:value];
         
         return cell;
-        /*
-        AttributeCell* attributeCell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
-        if (row == 0) {
-            [attributeCell setKey:NSLocalizedString(@"postal code", nil)
-                            value:[[self model] postalCode]
-                     hasIndicator:YES 
-                         keyWidth:90];
-        } else {
-            NSString* value;
-            if ([self.model searchRadius] == 1) {
-                value = NSLocalizedString(@"1 mile", nil);
-            } else {
-                value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
-            }
-            
-            [attributeCell setKey:NSLocalizedString(@"distance", nil) 
-                            value:value
-                     hasIndicator:YES
-                         keyWidth:90];
-        }
-        
-        return attributeCell;
-         */
     } else if (section == 1) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
@@ -258,7 +243,7 @@
                                                               withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
             
             [self.navigationController pushViewController:controller animated:YES];
-        } else {
+        } else if (row == 1) {
             NSArray* values = [NSArray arrayWithObjects:
                                @"1", @"2", @"3", @"4", @"5", 
                                @"10", @"15", @"20", @"25", @"30",
@@ -267,9 +252,31 @@
             
             PickerEditorViewController* controller = 
             [[[PickerEditorViewController alloc] initWithController:self.navigationController
-                                                          withTitle:NSLocalizedString(@"Search radius", nil)
+                                                          withTitle:NSLocalizedString(@"Distance", nil)
                                                          withObject:self
                                                        withSelector:@selector(onSearchRadiusChanged:)
+                                                         withValues:values
+                                                       defaultValue:defaultValue] autorelease];
+            
+            [self.navigationController pushViewController:controller animated:YES];
+        } else {
+            NSMutableArray* values = [NSMutableArray array];
+            NSDate* today = [NSDate date];
+            NSCalendar* calendar = [NSCalendar currentCalendar];
+            for (int i = 0; i < 7; i++) {
+                NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
+                [components setDay:i];
+                NSDate* date = [calendar dateByAddingComponents:components toDate:today options:0];
+                
+                [values addObject:[Application formatFullDate:date]];
+            }
+            NSString* defaultValue = [Application formatFullDate:[self.model searchDate]];
+            
+            PickerEditorViewController* controller = 
+            [[[PickerEditorViewController alloc] initWithController:self.navigationController
+                                                          withTitle:NSLocalizedString(@"Search date", nil)
+                                                         withObject:self
+                                                       withSelector:@selector(onSearchDateChanged:)
                                                          withValues:values
                                                        defaultValue:defaultValue] autorelease];
             
@@ -281,6 +288,11 @@
     } else if (section == 2) {
         [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     }
+}
+
+- (void) onSearchDateChanged:(NSString*) dateString {
+    [self.controller setSearchDate:[NSDate dateWithNaturalLanguageString:dateString]];
+    [self.tableView reloadData];
 }
 
 - (void) onPostalCodeChanged:(NSString*) postalCode {

@@ -109,12 +109,19 @@
         cell.textColor = [Application commandColor];
         
         NSDate* now = [NSDate date];
-        NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:showtime];
         
-        if ([now compare:showtimeDate] == NSOrderedAscending) {
-            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ today", nil), showtime];
+        if ([Utilities isSameDay:now date:[self.model searchDate]]) {
+            NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:showtime];
+            
+            if ([now compare:showtimeDate] == NSOrderedAscending) {
+                cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ today", nil), showtime];
+            } else {
+                cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ tomorrow", nil), showtime];
+            }
         } else {
-            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ tomorrow", nil), showtime];
+            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ %@", nil),
+                            showtime,
+                            [Application formatShortDate:[self.model searchDate]]];
         }
     }
     
@@ -195,27 +202,48 @@
     //https://mobile.fandango.com/tickets.jsp?mk=98591&tk=557&showtime=2008:5:11:16:00
     //https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=1601099982&mid=98591&tid=AAJNK
     
-    NSDate* date = [NSDate dateWithNaturalLanguageString:showtime];
     NSDate* now = [NSDate date];
-    BOOL alreadyAfter = [now compare:date] == NSOrderedDescending;
-    
-    NSDateComponents* components = 
-    [[NSCalendar currentCalendar]
-     components:
-     (NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
-     fromDate:date];
-    
-    NSString* url =
-    [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
-     movieId,
-     theaterId,
-     [components year],
-     [components month],
-     (alreadyAfter ? [components day] + 1 : [components day]),
-     [components hour],
-     [components minute]];
-    
-    [Application openBrowser:url];  
+    if ([Utilities isSameDay:now date:[self.model searchDate]]) {
+        NSDate* date = [NSDate dateWithNaturalLanguageString:showtime];
+        BOOL alreadyAfter = [now compare:date] == NSOrderedDescending;
+        
+        NSDateComponents* components = 
+        [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
+                                        fromDate:date];
+         
+        
+        NSString* url =
+        [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
+         movieId,
+         theaterId,
+         [components year],
+         [components month],
+         (alreadyAfter ? [components day] + 1 : [components day]),
+         [components hour],
+         [components minute]];
+        
+        [Application openBrowser:url];  
+    } else {
+        NSDateComponents* dateComponents = 
+        [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                        fromDate:[self.model searchDate]];
+        NSDateComponents* timeComponents = 
+        [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
+                                        fromDate:[NSDate dateWithNaturalLanguageString:showtime]];
+        
+        
+        NSString* url =
+        [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
+         movieId,
+         theaterId,
+         [dateComponents year],
+         [dateComponents month],
+         [dateComponents day],
+         [timeComponents hour],
+         [timeComponents minute]];
+        
+        [Application openBrowser:url];
+    }
 }
 
 - (void)            tableView:(UITableView*) tableView

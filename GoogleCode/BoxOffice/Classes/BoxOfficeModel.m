@@ -34,6 +34,7 @@ static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* MOVIE_TRAILERS                         = @"movieTrailers";
 static NSString* ADDRESS_LOCATION_MAP                   = @"addressLocationMap";
 static NSString* CURRENTLY_SHOWING_REVIEWS              = @"currentlyShowingReviews";
+static NSString* SEARCH_DATE                            = @"searchDate";
 
 static NSArray* KEYS;
 
@@ -43,6 +44,7 @@ static NSArray* KEYS;
                  VERSION,
                  LAST_QUICK_UPDATE_TIME,
                  LAST_FULL_UPDATE_TIME,
+                 SEARCH_DATE,
                  SEARCH_DATES, 
                  SEARCH_RESULTS,
                  SEARCH_RADIUS,
@@ -264,9 +266,26 @@ static NSArray* KEYS;
     return searchRadius;
 }
 
+- (void) clearLastFullUpdateTime {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_FULL_UPDATE_TIME];
+}
+
 - (void) setSearchRadius:(NSInteger) radius {
     searchRadius = radius;
     [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:SEARCH_RADIUS];
+}
+
+- (NSDate*) searchDate {
+    NSDate* date = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_DATE];
+    if (date == nil || [date compare:[NSDate date]] == NSOrderedAscending) {
+        return [NSDate date];
+    }
+    return date;
+}
+
+- (void) setSearchDate:(NSDate*) date {
+    [[NSUserDefaults standardUserDefaults] setObject:date forKey:SEARCH_DATE];
+    [self clearLastFullUpdateTime];
 }
 
 - (NSArray*) loadMovies {
@@ -353,10 +372,6 @@ static NSArray* KEYS;
 
 - (NSDate*) lastFullUpdateTime {
     return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_FULL_UPDATE_TIME];
-}
-
-- (void) clearLastFullUpdateTime {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_FULL_UPDATE_TIME];
 }
 
 - (NSArray*) loadTheaters {
@@ -657,6 +672,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     [searchDates setObject:date forKey:identifier];
     
     [[NSUserDefaults standardUserDefaults] setObject:searchDates forKey:SEARCH_DATES];
+    
 }
 
 - (NSMutableDictionary*) getSearchResults {
@@ -703,6 +719,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 - (void) setDetails:(NSString*) identifier element:(XmlElement*) element {
+    return;
     if (element == nil) {
         return;
     }

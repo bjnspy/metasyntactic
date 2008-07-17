@@ -25,7 +25,6 @@
                           context2:(void*) context2;
 
 + (NSString*) titleForMovie:(XmlElement*) element;
-+ (NSString*) titleForPerson:(XmlElement*) element;
 
 + (NSData*) downloadData:(NSString*) urlString;
 + (XmlElement*) downloadXml:(NSString*) urlString;
@@ -37,5 +36,11 @@
 + (id) removeRandomElement:(NSMutableArray*) array;
 
 + (NSInteger) hashString:(NSString*) string;
+
++ (NSArray*) nonNilArray:(NSArray*) array;
++ (NSString*) nonNilString:(NSString*) string;
+
++ (BOOL) isSameDay:(NSDate*) d1
+              date:(NSDate*) d2;
 
 @end

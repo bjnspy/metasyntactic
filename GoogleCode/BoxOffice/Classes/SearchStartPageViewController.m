@@ -193,7 +193,7 @@
     if (movieElement != nil) {
         text = [Utilities titleForMovie:movieElement];
     } else if (personElement != nil) {
-        text = [Utilities titleForPerson:personElement];
+        text = [personElement attributeValue:@"name"];
     }
     
     //[text siz
@@ -287,7 +287,6 @@
             {
                 [self.activityIndicator startAnimating];
                 
-                //self.searchBar.frame = CGRectMake(0, 0, 290, 44);
                 UIBarButtonItem* item =  [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
                 [self.navigationItem setRightBarButtonItem:item animated:YES];
             }
@@ -320,8 +319,6 @@
             [UIView beginAnimations:nil context:nil];
             {
                 [self.activityIndicator stopAnimating];
-                
-                //self.searchBar.frame = CGRectMake(0, 0, 310, 44);
                 [self.navigationItem setRightBarButtonItem:nil animated:YES];
             }
             [UIView commitAnimations];

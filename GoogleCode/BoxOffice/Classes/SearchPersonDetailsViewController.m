@@ -30,6 +30,7 @@
 - (void) getPersonDetails {
     self.personDetailsElement = [[self model] getPersonDetails:[personElement attributeValue:@"id"]];
     if (self.personDetailsElement == nil) {
+        [self startActivityIndicator];
         [self performSelectorInBackground:@selector(lookupPersonDetails:) withObject:nil];
     }
 }
@@ -39,7 +40,7 @@
     if (self = [super initWithNavigationController:navigationController_]) {
         self.personElement = personElement_;
         
-        self.title = [Utilities titleForPerson:personElement];
+        self.title = [personElement attributeValue:@"name"];
         
         [self getPersonDetails];
     }
@@ -70,6 +71,7 @@
 }
 
 - (void) reportLookupResult:(XmlElement*) element {
+    [self stopActivityIndicator];
     self.personDetailsElement = element;
     [[self model] setPersonDetails:[personElement attributeValue:@"id"]
                            element:element];

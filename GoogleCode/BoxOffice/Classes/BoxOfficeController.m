@@ -291,10 +291,16 @@
         NSInteger index = abs([Utilities hashString:self.model.postalCode]) % hosts.count;
         NSString* host = [hosts objectAtIndex:index];
         
+        NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                                       fromDate:[self.model searchDate]];
+        
         NSString* urlString =[NSString stringWithFormat:
-                              @"http://%@.appspot.com/LookupTheaterListings?q=%@",
-                              host,
-                              self.model.postalCode];
+                              @"http://metaboxoffice6.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d",
+                              //host,
+                              self.model.postalCode,
+                              [components year],
+                              [components month],
+                              [components day]];
         
         XmlElement* element = [Utilities downloadXml:urlString];
         
@@ -340,9 +346,17 @@
     [self.fullLookupLock unlock];
 }
 
+- (void) setSearchDate:(NSDate*) searchDate {
+    [self.model setSearchDate:searchDate];
+    [self spawnBackgroundThreads];
+    [appDelegate.tabBarController popNavigationControllers];
+    [appDelegate.tabBarController refresh];
+}
+
 - (void) setPostalCode:(NSString*) postalCode {
     [self.model setPostalCode:postalCode];
     [self spawnBackgroundThreads];
+    [appDelegate.tabBarController popNavigationControllers];
     [appDelegate.tabBarController refresh];
 }
 

@@ -38,4 +38,6 @@
 - (void) showTheaterDetails:(Theater*) theater;
 - (void) showMovieDetails:(Movie*) movie;
 
+- (void) popNavigationControllers;
+
 @end
