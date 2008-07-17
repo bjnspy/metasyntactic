@@ -88,7 +88,11 @@
     for (Movie* movie in self.sortedMovies) {
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
         if (movie.releaseDate != nil) {
-            title = [DateUtilities timeSinceNow:movie.releaseDate];
+            if ([movie.releaseDate compare:[NSDate date]] == NSOrderedDescending) {
+                title = [Application formatFullDate:movie.releaseDate];
+            } else {
+                title = [DateUtilities timeSinceNow:movie.releaseDate];
+            }
         }
         
         [self.sectionTitleToContentsMap addObject:movie forKey:title];
