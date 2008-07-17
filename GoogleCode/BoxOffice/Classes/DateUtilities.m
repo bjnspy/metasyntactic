@@ -48,7 +48,8 @@ static NSDateFormatter* dateFormatter;
         NSDateComponents* components2 = [calendar components:NSWeekdayCalendarUnit fromDate:date];
         
         NSInteger weekday = [components2 weekday];
-        return [[dateFormatter weekdaySymbols] objectAtIndex:(weekday - 1)];
+        return [NSString stringWithFormat:NSLocalizedString(@"Last %@", nil), 
+                                           [[dateFormatter weekdaySymbols] objectAtIndex:(weekday - 1)]];
     }
 }
 
