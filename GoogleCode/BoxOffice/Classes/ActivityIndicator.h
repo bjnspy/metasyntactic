@@ -8,16 +8,13 @@
 
 @interface ActivityIndicator : NSObject {
     UINavigationItem* navigationItem;
-    
-    id originalTarget;
-    SEL originalSelector;
+    UIBarButtonItem* originalButton;
     
     BOOL running;
 }
 
 @property (retain) UINavigationItem* navigationItem;
-@property (retain) id originalTarget;
-
+@property (retain) UIBarButtonItem* originalButton;
 
 - (id) initWithNavigationItem:(UINavigationItem*) navigationItem;
 

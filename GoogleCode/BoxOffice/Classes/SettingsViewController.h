@@ -14,13 +14,11 @@
 
 @interface SettingsViewController : UITableViewController<CLLocationManagerDelegate> {
     SettingsNavigationController* navigationController;
-    UIBarButtonItem* currentLocationItem;
     ActivityIndicator* activityIndicator;
     CLLocationManager* locationManager;
 }
 
 @property (assign) SettingsNavigationController* navigationController;
-@property (retain) UIBarButtonItem* currentLocationItem;
 @property (retain) ActivityIndicator* activityIndicator;
 @property (retain) CLLocationManager* locationManager;
 
