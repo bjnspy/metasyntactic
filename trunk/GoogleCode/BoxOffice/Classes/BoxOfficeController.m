@@ -126,10 +126,13 @@
                 
                 if (columns.count >= 9) {
                     NSString* title = [columns objectAtIndex:1];
+                    NSString* synopsis = [columns objectAtIndex:8];
+                    synopsis = [synopsis stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
+                    synopsis = [synopsis stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
                     ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
                                                                                        link:[columns objectAtIndex:2]
-                                                                                  synopsis:[columns objectAtIndex:8]
-                                                                                   ranking:[columns objectAtIndex:3]];
+                                                                                   synopsis:synopsis
+                                                                                    ranking:[columns objectAtIndex:3]];
                     
                     
                     [dictionary setObject:extraInfo forKey:title];
@@ -284,7 +287,7 @@
     
     return [NSArray arrayWithObjects:movies, theaters, nil];
 }
-
+ 
 - (NSArray*) fullLookup {
     if (![Utilities isNilOrEmpty:self.model.postalCode]) {
         NSMutableArray* hosts = [Application hosts];
@@ -295,8 +298,8 @@
                                                                        fromDate:[self.model searchDate]];
         
         NSString* urlString =[NSString stringWithFormat:
-                              @"http://metaboxoffice6.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d",
-                              //host,
+                              @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d",
+                              host,
                               self.model.postalCode,
                               [components year],
                               [components month],
