@@ -31,7 +31,7 @@ static NSDateFormatter* dateFormatter;
                                                fromDate:date
                                                  toDate:today
                                                 options:0];
-    
+
     if ([components year] == 1) {
         return NSLocalizedString(@"1 year ago", nil);
     } else if ([components year] > 1) {
