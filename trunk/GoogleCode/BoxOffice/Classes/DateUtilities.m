@@ -27,7 +27,7 @@ static NSDateFormatter* dateFormatter;
 
 + (NSString*) timeSinceNowWorker:(NSDate*) date {
     NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit)
+    NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSDayCalendarUnit)
                                                fromDate:date
                                                  toDate:today
                                                 options:0];
@@ -44,6 +44,10 @@ static NSDateFormatter* dateFormatter;
         return NSLocalizedString(@"1 week ago", nil);
     } else if ([components week] > 1) {
         return [NSString stringWithFormat:NSLocalizedString(@"%d weeks ago", nil), [components week]];
+    } else if ([components day] == 0) {
+        return NSLocalizedString(@"Today", nil);
+    } else if ([components day] == 1) {
+        return NSLocalizedString(@"Yesterday", nil);
     } else {
         NSDateComponents* components2 = [calendar components:NSWeekdayCalendarUnit fromDate:date];
         

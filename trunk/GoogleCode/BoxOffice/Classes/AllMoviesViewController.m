@@ -85,10 +85,16 @@
     [formatter setDateStyle:kCFDateFormatterMediumStyle];
     [formatter setTimeStyle:kCFDateFormatterNoStyle];
     
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                               fromDate:[NSDate date]];
+    [components setHour:12];
+    NSDate* today = [calendar dateFromComponents:components];
+    
     for (Movie* movie in self.sortedMovies) {
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
         if (movie.releaseDate != nil) {
-            if ([movie.releaseDate compare:[NSDate date]] == NSOrderedDescending) {
+            if ([movie.releaseDate compare:today] == NSOrderedDescending) {
                 title = [Application formatFullDate:movie.releaseDate];
             } else {
                 title = [DateUtilities timeSinceNow:movie.releaseDate];
