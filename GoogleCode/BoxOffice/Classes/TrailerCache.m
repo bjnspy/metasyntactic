@@ -121,6 +121,35 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
 
 - (void) findTrailers:(NSString*) movieTitle
              indexUrl:(NSString*) indexUrl {
+    NSString* contents = [NSString stringWithContentsOfURL:[NSURL URLWithString:indexUrl]];
+    
+    NSMutableArray* urls = [NSMutableArray array];
+    while (contents != nil) {
+        NSRange endRange = [contents rangeOfString:@".m4v</string>"];
+        if (endRange.length == 0) {
+            break;
+        }
+        
+        NSRange startRange = [contents rangeOfString:@"<string>" options:NSBackwardsSearch range:NSMakeRange(0, endRange.location)];
+        if (startRange.length == 0) {
+            break;
+        }
+        
+        NSRange extractRange;
+        extractRange.location = NSMaxRange(startRange);
+        extractRange.length = endRange.location - extractRange.location;
+        extractRange.length += 4;  // ".m4v"
+        
+        [urls addObject:[contents substringWithRange:extractRange]];
+        contents = [contents substringFromIndex:NSMaxRange(endRange)]; 
+    }
+    
+    if (urls.count) {
+        NSArray* result = [NSArray arrayWithObjects:movieTitle, urls, nil];
+        [self performSelectorOnMainThread:@selector(processResult:) withObject:result waitUntilDone:NO];
+    }
+    
+/*
     XmlElement* documentElement = [Utilities downloadXml:indexUrl];
     XmlElement* trackListElement = [documentElement element:@"TrackList"];
     XmlElement* plistElement = [trackListElement element:@"plist"];
@@ -138,11 +167,7 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
             }
         }
     }
-    
-    if (urls.count) {
-        NSArray* result = [NSArray arrayWithObjects:movieTitle, urls, nil];
-        [self performSelectorOnMainThread:@selector(processResult:) withObject:result waitUntilDone:NO];
-    }
+ */
 }
 
 - (NSString*) massage:(NSString*) value {
