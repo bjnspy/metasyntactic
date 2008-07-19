@@ -27,9 +27,11 @@
 
 - (id)      initWithFrame:(CGRect) frame
           reuseIdentifier:(NSString*) reuseIdentifier 
-                    model:(BoxOfficeModel*) model_ {
+                    model:(BoxOfficeModel*) model_ 
+                    style:(UITableViewStyle) style_ {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
+        style = style_;
         
         self.scoreLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         scoreLabel.backgroundColor = [UIColor clearColor];
@@ -45,9 +47,24 @@
         ratingLabel.font = [UIFont systemFontOfSize:12];
         ratingLabel.textColor = [UIColor grayColor];
         
+        {
+            CGRect frame = CGRectMake(50, 25, 250, 12);
+            
+            if (style == UITableViewStyleGrouped) {
+                frame.origin.x += 10;
+                frame.size.width -= 20;
+            }
+            
+            self.ratingLabel.frame = frame;
+            
+            frame.origin.y = 5;
+            frame.size.height = 20;
+            self.titleLabel.frame = frame;
+        }
+        
+        [self addSubview:titleLabel];
         [self addSubview:scoreLabel];
         [self addSubview:ratingLabel];
-        [self addSubview:titleLabel];
     }
     
     return self;
@@ -59,7 +76,7 @@
     }
 }
 
-- (void) setMovie:(Movie*) movie style:(UITableViewStyle) style {
+- (void) setMovie:(Movie*) movie {
     
     int score = [self.model scoreForMovie:movie];
     
@@ -100,35 +117,8 @@
         self.image = [Application unknownImage];
     }
     
-    {
-        self.titleLabel.text = movie.title;
-        [self.titleLabel sizeToFit];
-        CGRect frame = self.titleLabel.frame;
-        frame.origin.x = 50;
-        frame.origin.y = 4;
-        frame.size.width = 250;
-        if (style == UITableViewStyleGrouped) {
-            frame.origin.x += 10;
-            frame.size.width -= 20;
-        }
-        
-        self.titleLabel.frame = frame;
-    }
-    
-    {
-        self.ratingLabel.text = [movie ratingAndRuntimeString];
-        [self.ratingLabel sizeToFit];
-        CGRect frame = self.ratingLabel.frame;
-        frame.origin.x = 50;
-        frame.origin.y = 24;
-        frame.size.width = 250;
-        if (style == UITableViewStyleGrouped) {
-            frame.origin.x += 10;
-            frame.size.width -= 20;
-        }
-        
-        self.ratingLabel.frame = frame;
-    }
+    self.ratingLabel.text = [movie ratingAndRuntimeString];
+    self.titleLabel.text = movie.title;
 }
 
 - (void) setSelected:(BOOL) selected

@@ -11,6 +11,7 @@
 
 @interface MovieTitleCell : UITableViewCell {
     BoxOfficeModel* model;
+    UITableViewStyle style;
     UILabel* scoreLabel;
     UILabel* titleLabel;
     UILabel* ratingLabel;
@@ -23,9 +24,10 @@
 
 - (id)      initWithFrame:(CGRect) frame
           reuseIdentifier:(NSString*) reuseIdentifier 
-                    model:(BoxOfficeModel*) model;
+                    model:(BoxOfficeModel*) model 
+                    style:(UITableViewStyle) style;
 
-- (void) setMovie:(Movie*) movie style:(UITableViewStyle) style;
+- (void) setMovie:(Movie*) movie;
 
     
 @end
