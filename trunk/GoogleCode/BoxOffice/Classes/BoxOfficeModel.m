@@ -16,7 +16,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.19";
+static NSString* currentVersion = @"1.2.20";
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
@@ -229,7 +229,7 @@ static NSArray* KEYS;
     return [self allMoviesSelectedSegmentIndex] == 0;
 }
 
-- (BOOL) sortingMoviesByRating {
+- (BOOL) sortingMoviesByScore {
     return [self allMoviesSelectedSegmentIndex] == 1;
 }
 
@@ -541,13 +541,13 @@ static NSArray* KEYS;
     return result;
 }
 
-NSInteger compareMoviesByRating(id t1, id t2, void *context) {
+NSInteger compareMoviesByScore(id t1, id t2, void *context) {
     Movie* movie1 = t1;
     Movie* movie2 = t2;
     BoxOfficeModel* model = context;
     
-    int movieRating1 = [model rankingForMovie:movie1];
-    int movieRating2 = [model rankingForMovie:movie2];
+    int movieRating1 = [model scoreForMovie:movie1];
+    int movieRating2 = [model scoreForMovie:movie2];
     
     if (movieRating1 < movieRating2) {
         return NSOrderedDescending;
@@ -772,14 +772,14 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     return [self.movieMap objectForKey:movie.title];
 }
 
-- (NSInteger) rankingForMovie:(Movie*) movie {
+- (NSInteger) scoreForMovie:(Movie*) movie {
     ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
     
     if (extraInfo == nil) {
         return -1;
     }
     
-    return [extraInfo rankingValue];
+    return [extraInfo scoreValue];
 }
 
 - (NSString*) synopsisForMovie:(Movie*) movie {

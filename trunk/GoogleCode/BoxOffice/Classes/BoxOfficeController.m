@@ -132,7 +132,7 @@
                     ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
                                                                                        link:[columns objectAtIndex:2]
                                                                                    synopsis:synopsis
-                                                                                    ranking:[columns objectAtIndex:3]];
+                                                                                      score:[columns objectAtIndex:3]];
                     
                     
                     [dictionary setObject:extraInfo forKey:title];
@@ -316,8 +316,13 @@
 }
 
 - (void) setMoviesAndTheaters:(NSArray*) moviesAndTheaters {
-    [self.model setMovies:[moviesAndTheaters objectAtIndex:0]];
-    [self.model setTheaters:[moviesAndTheaters objectAtIndex:1]];
+    NSArray* movies = [moviesAndTheaters objectAtIndex:0];
+    NSArray* theaters = [moviesAndTheaters objectAtIndex:1];
+
+    if (movies.count || theaters.count) {
+        [self.model setMovies:movies];
+        [self.model setTheaters:theaters];
+    }
     
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie and theater data", nil)];
 }

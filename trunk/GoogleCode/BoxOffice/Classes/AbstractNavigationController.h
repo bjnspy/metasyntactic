@@ -25,7 +25,6 @@
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater
                    title:(NSString*) title
-           linkToTheater:(BOOL) linkToTheater
                 animated:(BOOL) animated;
 
 - (void) navigateToLastViewedPage;

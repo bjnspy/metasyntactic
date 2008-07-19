@@ -30,9 +30,9 @@
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel {
     if (self = [super init]) {
         self.appDelegate = appDel;
-        self.moviesNavigationController = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.moviesNavigationController   = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
-        //self.searchNavigationController = [[[SearchNavigationController alloc] initWithTabBarController:self] autorelease];
+        //self.searchNavigationController   = [[[SearchNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
         
         self.viewControllers =

@@ -16,8 +16,7 @@
 #import "ViewControllerUtilities.h"
 #import "Utilities.h"
 #import "ReviewsViewController.h"
-
-#define SHOWTIMES_PER_ROW 6
+#import "ApplicationTabBarController.h"
 
 @implementation MovieDetailsViewController
 
@@ -158,7 +157,8 @@
         return [self numberOfRowsInInfoSection];
     }
     
-    return 1;
+    // theater section
+    return 2;
 }
 
 - (UIImage*) posterImage {
@@ -217,14 +217,12 @@ double max_d1(double a, double b) {
         return [tableView rowHeight];
     }
     
-    NSInteger showtimesCount = [[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]] count];
-    NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
-    NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
-    if (remainder > 0) {
-        rows++;
+    // theater section
+    if (row == 0) {
+        return [tableView rowHeight];
+    } else {
+        return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]] + 18;
     }
-    
-    return (rows * 14) + 18;
 }
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
@@ -252,27 +250,8 @@ double max_d1(double a, double b) {
     } else if (row == 1) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         
-        NSInteger length = [self.movie.length intValue];
-        NSInteger hours = length / 60;
-        NSInteger minutes = length % 60;
-        
-        NSString* rating = self.movie.rating;
-        if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
-            rating = NSLocalizedString(@"Not rated", nil);
-        } else {
-            rating = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
-        }
-        
-        NSString* text = rating;
-        if (length != 0) {
-            text = [NSString stringWithFormat:@"%@ - %@: %d:%02d",
-                    rating,
-                    NSLocalizedString(@"Running time", nil),
-                    hours, minutes];
-        } 
-        
         cell.textAlignment = UITextAlignmentCenter;
-        cell.text = text;
+        cell.text = [self.movie ratingAndRuntimeString];
         cell.font = [UIFont boldSystemFontOfSize:14];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
@@ -282,9 +261,9 @@ double max_d1(double a, double b) {
         cell.textAlignment = UITextAlignmentCenter;
         
         if (self.hiddenTheaterCount == 1) {
-            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d theater outside search radius", nil), self.hiddenTheaterCount];
+            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theater", nil), self.hiddenTheaterCount];
         } else {
-            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d theaters outside search radius", nil), self.hiddenTheaterCount];
+            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", nil), self.hiddenTheaterCount];
         }
         
         cell.textColor = [Application commandColor];
@@ -332,34 +311,32 @@ double max_d1(double a, double b) {
         return [self cellForInfoRow:row];
     }
     
-    static NSString* reuseIdentifier = @"MovieDetailsCellIdentifier";
-    MovieShowtimesCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
-    }
-    
-    [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]];
-    
-    return cell;
-}
-
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForHeaderInSection:(NSInteger) section {
-    if (section == 0) {
-        return nil;
-    }
-    
-    if (section == 1 && [self hasInfoSection]) {
-        return nil;
-    }
-    
-    Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
-    if ([self.model isFavoriteTheater:theater]) {
-        NSString* result = [NSString stringWithFormat:@"%@ %@", [Application starString], [theater name]];
-        NSLog(result);
-        return result;
+    // theater section
+    if (row == 0) {
+        static NSString* reuseIdentifier = @"MovieDetailsTheaterCellIdentifier";
+        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        }
+        
+        Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
+        if ([self.model isFavoriteTheater:theater]) {
+            cell.text = [NSString stringWithFormat:@"%@ %@", [Application starString], [theater name]];
+        } else {
+            cell.text = [theater name];
+        }
+        
+        return cell;
     } else {
-        return [theater name];
+        static NSString* reuseIdentifier = @"MovieDetailsShowtimesCellIdentifier";
+        MovieShowtimesCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        }
+        
+        [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]];
+        
+        return cell;
     }
 }
 
@@ -417,9 +394,30 @@ double max_d1(double a, double b) {
         return [self didSelectInfoRow:row];
     }
     
+    // theater section
     Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
     
-    [self.navigationController pushTicketsView:self.movie theater:theater animated:YES];
+    if (row == 0) {
+        [self.navigationController.tabBarController showTheaterDetails:theater];
+    } else {
+        [self.navigationController pushTicketsView:self.movie theater:theater animated:YES];
+    }
+}
+
+- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
+          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
+    NSInteger section = [indexPath section];
+    
+    if (section == 0) {
+        return UITableViewCellAccessoryNone;
+    }
+    
+    if (section == 1 && [self hasInfoSection]) {
+        return UITableViewCellAccessoryNone;
+    }
+    
+    // theater section
+    return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 @end

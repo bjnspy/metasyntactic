@@ -74,8 +74,8 @@
     [self removeUnusedSectionTitles];
 }
 
-- (void) sortMoviesByRating {
-    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:compareMoviesByRating context:self.model];
+- (void) sortMoviesByScore {
+    self.sortedMovies = [self.model.movies sortedArrayUsingFunction:compareMoviesByScore context:self.model];
 }
 
 - (void) sortMoviesByReleaseDate {
@@ -110,7 +110,7 @@
     
     for (NSString* key in [self.sectionTitleToContentsMap allKeys]) {
         NSMutableArray* values = [self.sectionTitleToContentsMap mutableObjectsForKey:key];
-        [values sortUsingFunction:compareMoviesByRating context:self.model];
+        [values sortUsingFunction:compareMoviesByScore context:self.model];
     }
 }
 
@@ -120,8 +120,8 @@
     
     if ([self.model sortingMoviesByTitle]) {
         [self sortMoviesByTitle];
-    } else if ([self.model sortingMoviesByRating]) {
-        [self sortMoviesByRating];
+    } else if ([self.model sortingMoviesByScore]) {
+        [self sortMoviesByScore];
     } else {
         [self sortMoviesByReleaseDate];
     }
@@ -139,7 +139,7 @@
         self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                                   [NSArray arrayWithObjects:
                                    NSLocalizedString(@"Title", nil),
-                                   NSLocalizedString(@"Rating", nil), 
+                                   NSLocalizedString(@"Score", nil), 
                                    NSLocalizedString(@"Release", nil), nil]] autorelease];
         
         
@@ -171,13 +171,13 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+
     [self refresh];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
     
     [self.model setCurrentlySelectedMovie:nil theater:nil];
-    
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
 - (BoxOfficeModel*) model {
@@ -192,7 +192,7 @@
     Movie* movie;
     if ([self.model sortingMoviesByTitle]) {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];        
-    } else if ([self.model sortingMoviesByRating]) {
+    } else if ([self.model sortingMoviesByScore]) {
         movie = [self.sortedMovies objectAtIndex:row];
     } else {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
@@ -205,7 +205,7 @@
         movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier model:self.model] autorelease];
     }
     
-    [movieCell setMovie:movie];    
+    [movieCell setMovie:movie style:UITableViewStylePlain];    
     return movieCell;
 }
 
@@ -213,7 +213,7 @@
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if ([self.model sortingMoviesByTitle]) {
         return UITableViewCellAccessoryNone;
-    } else if ([self.model sortingMoviesByRating]) {
+    } else if ([self.model sortingMoviesByScore]) {
         return UITableViewCellAccessoryDisclosureIndicator;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
@@ -228,7 +228,7 @@
     Movie* movie;
     if ([self.model sortingMoviesByTitle]) {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
-    } else if ([self.model sortingMoviesByRating]) {
+    } else if ([self.model sortingMoviesByScore]) {
         movie = [self.sortedMovies objectAtIndex:row];
     } else {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
@@ -240,7 +240,7 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     if ([self.model sortingMoviesByTitle]) {
         return sectionTitles.count;
-    } else if ([self.model sortingMoviesByRating]) {
+    } else if ([self.model sortingMoviesByScore]) {
         return 1;
     } else {
         return sectionTitles.count;
@@ -251,7 +251,7 @@
                 numberOfRowsInSection:(NSInteger) section {
     if ([self.model sortingMoviesByTitle]) {
         return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
-    } else if ([self.model sortingMoviesByRating]) {
+    } else if ([self.model sortingMoviesByScore]) {
         return sortedMovies.count;
     } else {
         return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];        
@@ -262,7 +262,7 @@
               titleForHeaderInSection:(NSInteger) section {
     if ([self.model sortingMoviesByTitle]) {
         return [self.sectionTitles objectAtIndex:section]; 
-    } else if ([self.model sortingMoviesByRating] && self.sortedMovies.count > 0) {
+    } else if ([self.model sortingMoviesByScore] && self.sortedMovies.count > 0) {
         return nil;
     } else {
         return [self.sectionTitles objectAtIndex:section]; 

@@ -10,22 +10,22 @@
     NSString* title;
     NSString* synopsis;
     NSString* link;
-    NSString* ranking; 
+    NSString* score; 
 }
 
 @property (copy) NSString* title;
 @property (copy) NSString* synopsis;
 @property (copy) NSString* link;
-@property (copy) NSString* ranking;
+@property (copy) NSString* score;
 
 + (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary;
 + (ExtraMovieInformation*) infoWithTitle:(NSString*) title
                                     link:(NSString*) link
                                 synopsis:(NSString*) synopsis
-                                 ranking:(NSString*) ranking;
+                                   score:(NSString*) score;
 
 - (NSDictionary*) dictionary;
 
-- (NSInteger) rankingValue;
+- (NSInteger) scoreValue;
 
 @end

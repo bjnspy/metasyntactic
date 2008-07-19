@@ -18,8 +18,8 @@
 #import "AutoresizingCell.h"
 #import "ViewControllerUtilities.h"
 #import "AttributeCell.h"
-
-#define SHOWTIMES_PER_ROW 6
+#import "MovieTitleCell.h"
+#import "ApplicationTabBarController.h"
 
 @implementation TheaterDetailsViewController
 
@@ -67,10 +67,12 @@
         self.navigationController = controller;
         
         self.movies = [self.model moviesAtTheater:theater];
-        NSInteger (*sortFunction)(id, id, void *) =
+        NSInteger (*sortFunction)(id, id, void *) = compareMoviesByTitle;
+        /*
             [self.model sortingMoviesByTitle] ? compareMoviesByTitle :
-                                                ([self.model sortingMoviesByRating] ? compareMoviesByRating
+                                                ([self.model sortingMoviesByScore] ? compareMoviesByScore
                                                                                     : compareMoviesByReleaseDate);
+         */
         [self.movies sortUsingFunction:sortFunction context:self.model];    
         
         self.movieShowtimes = [NSMutableArray array];
@@ -117,7 +119,7 @@
         return 1 + ([Utilities isNilOrEmpty:theater.phoneNumber] ? 0 : 1);
     }
     
-    return 1;
+    return 2;
 }
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
@@ -131,28 +133,41 @@
         if (row == 0) {
             Location* location = [self.model locationForAddress:theater.address];
             if (location.address != nil && location.city != nil) {
-                [cell setKey:NSLocalizedString(@"map", nil)
+                [cell setKey:NSLocalizedString(@"Map", nil)
                        value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]
                 hasIndicator:NO];
             } else {
-                [cell setKey:NSLocalizedString(@"map", nil) value:theater.address hasIndicator:NO];
+                [cell setKey:NSLocalizedString(@"Map", nil) value:theater.address hasIndicator:NO];
             }
         } else {
-            [cell setKey:NSLocalizedString(@"call", nil) value:theater.phoneNumber hasIndicator:NO];
+            [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber hasIndicator:NO];
         }
         
         return cell;
     } else {
-        static NSString* reuseIdentifier = @"TheaterDetailsCellIdentifier";
-        id i = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        MovieShowtimesCell* cell = i;
-        if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        if (row == 0) {
+            static NSString* reuseIdentifier = @"TheaterDetailsMovieCellIdentifier";
+            MovieTitleCell* movieCell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+            if (movieCell == nil) {    
+                movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier model:self.model] autorelease];
+            }
+            
+            [movieCell setMovie:[self.movies objectAtIndex:(section - 1)] 
+                          style:UITableViewStyleGrouped];
+            
+            return movieCell;
+        } else {
+            static NSString* reuseIdentifier = @"TheaterDetailsShowtimesCellIdentifier";
+            id i = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+            MovieShowtimesCell* cell = i;
+            if (cell == nil) {
+                cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+            }
+            
+            [cell setShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];
+            
+            return cell;
         }
-        
-        [cell setShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];
-        
-        return cell;
     }
 }
 
@@ -162,9 +177,15 @@
         return nil;
     }
     
+    return nil;
+    
     Movie* movie = [self.movies objectAtIndex:(section - 1)];
-
-    //return [NSString stringWithFormat:@"%@ (%@)", movie.title, movie.rating];
+    NSInteger score = [self.model scoreForMovie:movie];
+    if (score >= 0 && score <= 100) {
+        return [NSString stringWithFormat:@"%@ (%@) - %d%%", movie.title, movie.rating, score];
+    } else {
+        return [NSString stringWithFormat:@"%@ (%@)", movie.title, movie.rating];
+    }
     
     return movie.title;
 }
@@ -172,11 +193,18 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = [indexPath section];
+    NSInteger row = [indexPath row];
     
     if (section == 0) {
         return [tableView rowHeight];
     }
     
+    if (row == 0) {
+        return [tableView rowHeight];
+    }
+    
+    return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]] + 18;
+    /*
     NSInteger showtimesCount = [[self.movieShowtimes objectAtIndex:(section - 1)] count];
     NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
     NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
@@ -185,6 +213,18 @@
     }
     
     return (rows * 14) + 18;
+     */
+}
+
+- (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
+          accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
+    NSInteger section = [indexPath section];
+    
+    if (section == 0) {
+        return UITableViewCellAccessoryNone;
+    }
+    
+    return UITableViewCellAccessoryDisclosureIndicator;
 }
 
 - (void)            tableView:(UITableView*) tableView
@@ -198,9 +238,13 @@
         } else {
             [Application makeCall:theater.phoneNumber];
         }
-    } else {    
+    } else {  
         Movie* movie = [self.movies objectAtIndex:(section - 1)];    
-        [self.navigationController  pushTicketsView:self.theater movie:movie animated:YES];
+        if (row == 0) {
+            [self.navigationController.tabBarController showMovieDetails:movie];
+        } else {
+            [self.navigationController  pushTicketsView:self.theater movie:movie animated:YES];
+        }
     }
 }
 

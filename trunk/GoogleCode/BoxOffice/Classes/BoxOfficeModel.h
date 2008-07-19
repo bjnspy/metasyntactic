@@ -65,7 +65,7 @@
 - (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index;
 
 - (BOOL) sortingMoviesByTitle;
-- (BOOL) sortingMoviesByRating;
+- (BOOL) sortingMoviesByScore;
 - (BOOL) sortingMoviesByReleaseDate;
 
 - (NSInteger) allTheatersSelectedSegmentIndex;
@@ -112,7 +112,7 @@
 - (NSDictionary*) theaterDistanceMap;
 - (NSArray*) theatersInRange:(NSArray*) theaters;
 
-NSInteger compareMoviesByRating(id t1, id t2, void *context);
+NSInteger compareMoviesByScore(id t1, id t2, void *context);
 NSInteger compareMoviesByReleaseDate(id t1, id t2, void *context);
 NSInteger compareMoviesByTitle(id t1, id t2, void *context);
 NSInteger compareTheatersByName(id t1, id t2, void *context);
@@ -128,7 +128,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 - (NSMutableDictionary*) getSearchResults;
 
 - (NSString*) synopsisForMovie:(Movie*) movie;
-- (NSInteger) rankingForMovie:(Movie*) movie;
+- (NSInteger) scoreForMovie:(Movie*) movie;
 
 - (NSArray*) trailersForMovie:(Movie*) movie;
 - (NSArray*) reviewsForMovie:(Movie*) movie;

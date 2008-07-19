@@ -25,11 +25,12 @@
         self.navigationItem = item;
         self.originalButton = self.navigationItem.leftBarButtonItem;
         
-    
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
-                                                                                  style:UIBarButtonItemStyleDone
-                                                                                 target:self
-                                                                                 action:@selector(onButtonClicked:)] autorelease];
+        [self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
+                                                                                    style:UIBarButtonItemStyleDone
+                                                                                   target:self
+                                                                                   action:@selector(onButtonClicked:)] autorelease]
+         animated:YES];
+        
         
         running = NO;
     }
@@ -41,10 +42,10 @@
     if (running == NO) {
         return;
     }
-
+    
     NSInteger i = [number intValue];
     self.navigationItem.leftBarButtonItem.image = 
-        [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
+    [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
     
     [self performSelector:@selector(updateImage:) withObject:[NSNumber numberWithInt:((i + 1) % 10)] afterDelay:0.1];
 }
@@ -57,7 +58,7 @@
 - (void) stop:(id) sender {
     running = NO;
     
-    self.navigationItem.leftBarButtonItem = self.originalButton;
+    [self.navigationItem setLeftBarButtonItem:self.originalButton animated:YES];
 }
 
 - (void) stop {
