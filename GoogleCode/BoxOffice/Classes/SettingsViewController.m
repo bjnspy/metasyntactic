@@ -41,8 +41,14 @@
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(onCurrentLocationClicked:)] autorelease];
-
+/*        
+        UIImage* image = [UIImage imageNamed:@"CurrentLocation.png"];
+        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
+        imageView.frame = CGRectMake(10, 10, image.size.width, image.size.height);
+        [self.view addSubview:imageView];
+*/
         self.navigationItem.leftBarButtonItem = item;
+        item.width = -2;
         
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         self.locationManager.delegate = self;
@@ -182,7 +188,7 @@
             key = NSLocalizedString(@"Postal code", nil);
             value = [[self model] postalCode];
         } else if (row == 1) {
-            key = NSLocalizedString(@"Distance", nil);
+            key = NSLocalizedString(@"Hide theaters beyond", nil);
             
             if ([self.model searchRadius] == 1) {
                 value = NSLocalizedString(@"1 mile", nil);

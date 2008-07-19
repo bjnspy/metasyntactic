@@ -137,7 +137,7 @@
     if (section == 0) {
         return NSLocalizedString(@"Written by Cyrus Najmabadi", nil);
     } else if (section == 1) {
-        return NSLocalizedString(@"Movie ratings provided by:", nil);
+        return NSLocalizedString(@"Movie scores provided by:", nil);
     } else if (section == 2) {
         return NSLocalizedString(@"Theater listings provided by:", nil);
     } else if (section == 3) {

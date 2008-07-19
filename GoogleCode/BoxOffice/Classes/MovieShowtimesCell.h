@@ -14,4 +14,7 @@
 
 - (void) setShowtimes:(NSArray*) showtimes;
 
++ (NSString*) showtimesString:(NSArray*) showtimes;
++ (CGFloat) heightForShowtimes:(NSArray*) showtimes;
+
 @end

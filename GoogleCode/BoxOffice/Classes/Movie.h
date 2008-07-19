@@ -35,5 +35,6 @@
                 backupSynopsis:(NSString*) backupSynopsis;
 
 - (NSDictionary*) dictionary;
+- (NSString*) ratingAndRuntimeString;
 
 @end

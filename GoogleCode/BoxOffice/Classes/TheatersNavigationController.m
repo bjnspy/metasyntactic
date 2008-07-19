@@ -62,15 +62,14 @@
     
     [self pushViewController:theaterDetailsViewController animated:animated];
 }
-                
+
 - (void) pushTicketsView:(Theater*) theater
                    movie:(Movie*) movie
                 animated:(BOOL) animated {
     [self pushTicketsView:movie
-                         theater:theater
-                           title:movie.title
-                   linkToTheater:NO
-                        animated:animated];
+                  theater:theater
+                    title:movie.title
+                 animated:animated];
 }
-                
+
 @end

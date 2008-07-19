@@ -8,6 +8,7 @@
 
 #import "MovieShowtimesCell.h"
 #import "Performance.h"
+#import "Application.h"
 
 @implementation MovieShowtimesCell
 
@@ -18,6 +19,26 @@
     [super dealloc];
 }
 
++ (NSString*) showtimesString:(NSArray*) showtimes {
+    NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
+    
+    for (int i = 1; i < showtimes.count; i++) {
+        [text appendString:@", "];
+        Performance* performance = [showtimes objectAtIndex:i];
+        [text appendString:performance.time];
+    }
+    
+    return text;
+}
+
++ (CGFloat) heightForShowtimes:(NSArray*) showtimes {
+    NSString* string = [MovieShowtimesCell showtimesString:showtimes];
+    
+    return [string sizeWithFont:[Application boldSystem11]
+              constrainedToSize:CGSizeMake(272, 1000)
+                  lineBreakMode:UILineBreakModeWordWrap].height;
+}
+
 - (id)    initWithFrame:(CGRect) frame
         reuseIdentifier:(NSString*) reuseIdentifier  {
     if (self = [super initWithFrame:frame
@@ -25,7 +46,7 @@
         self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];  
         
         label.numberOfLines = 0;
-        label.font = [UIFont boldSystemFontOfSize:11];
+        label.font = [Application boldSystem11];
         label.lineBreakMode = UILineBreakModeWordWrap;
         
         [self addSubview:label];
@@ -38,21 +59,13 @@
     [super layoutSubviews];
     
     CGRect bounds = self.contentView.frame;
-    CGRect labelBounds = CGRectMake(bounds.origin.x + 9, bounds.origin.y + 9, bounds.size.width - 10, bounds.size.height - 18);
+    CGRect labelBounds = CGRectMake(bounds.origin.x + 9, bounds.origin.y + 9, 272, bounds.size.height - 18);
     
     self.label.frame = labelBounds;
 }
 
 - (void) setShowtimes:(NSArray*) showtimes {
-    NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
-    
-    for (int i = 1; i < showtimes.count; i++) {
-        [text appendString:@", "];
-        Performance* performance = [showtimes objectAtIndex:i];
-        [text appendString:performance.time];
-    }
-    
-    label.text = text;
+    label.text = [MovieShowtimesCell showtimesString:showtimes];
 }
 
 - (void) setSelected:(BOOL) selected

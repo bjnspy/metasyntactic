@@ -19,13 +19,13 @@
 
 @implementation TicketsViewController
 
-@synthesize controller;
+@synthesize navigationController;
 @synthesize theater;
 @synthesize movie;
 @synthesize performances;
 
 - (void) dealloc {
-    self.controller = nil;
+    self.navigationController = nil;
     self.theater = nil;
     self.movie = nil;
     self.performances = nil;
@@ -34,20 +34,17 @@
 }
 
 - (BoxOfficeModel*) model {
-    return [self.controller model];
+    return [self.navigationController model];
 }
 
-- (id) initWithController:(AbstractNavigationController*) controller_
+- (id) initWithController:(AbstractNavigationController*) navigationController_
                   theater:(Theater*) theater_
                     movie:(Movie*) movie_
-                    title:(NSString*) title_
-            linkToTheater:(BOOL) linkToTheater_  {
+                    title:(NSString*) title_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.controller = controller_;
+        self.navigationController = navigationController_;
         self.theater = theater_;
         self.movie = movie_;
-        
-        linkToTheater = linkToTheater_;
 
         self.performances = [self.theater.movieToShowtimesMap objectForKey:movie.identifier];
         
@@ -76,7 +73,7 @@
 - (NSInteger)       tableView:(UITableView*) tableView
         numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 3;
+        return 2;
     } else if (section == 1) {
         return performances.count;
     }
@@ -129,35 +126,22 @@
 }
 
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
-    if (row == 0 || row == 1) {
-        AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
-        
-        if (row == 0) {
-            Location* location = [self.model locationForAddress:theater.address];
-            if (location.address != nil && location.city != nil) {
-                [cell setKey:NSLocalizedString(@"map", nil)
-                       value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]
-                hasIndicator:NO];
-            } else {
-                [cell setKey:NSLocalizedString(@"map", nil) value:theater.address hasIndicator:NO];
-            }
+    AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+    
+    if (row == 0) {
+        Location* location = [self.model locationForAddress:theater.address];
+        if (location.address != nil && location.city != nil) {
+            [cell setKey:NSLocalizedString(@"map", nil)
+                   value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]
+            hasIndicator:NO];
         } else {
-            [cell setKey:NSLocalizedString(@"call", nil) value:theater.phoneNumber hasIndicator:NO];
+            [cell setKey:NSLocalizedString(@"map", nil) value:theater.address hasIndicator:NO];
         }
-        
-        return cell;
     } else {
-        AutoresizingCell* cell = [[[AutoresizingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
-        cell.label.textColor = [Application commandColor];
-        
-        if (linkToTheater) {
-            cell.label.text = NSLocalizedString(@"Show all movies at this theater", nil);
-        } else {
-            cell.label.text = NSLocalizedString(@"Show all theaters playing this movie", nil);
-        }
-        
-        return cell;
+        [cell setKey:NSLocalizedString(@"call", nil) value:theater.phoneNumber hasIndicator:NO];
     }
+    
+    return cell;
 }
 
 - (UITableViewCell*)        tableView:(UITableView*) tableView
@@ -179,12 +163,6 @@
         [Application openMap:theater.address];
     } else if (row == 1) {
         [Application makeCall:theater.phoneNumber];
-    } else if (row == 2) {
-        if (linkToTheater) {
-            [self.controller.tabBarController showTheaterDetails:theater];
-        } else {
-            [self.controller.tabBarController showMovieDetails:movie];
-        }
     }
 }
 

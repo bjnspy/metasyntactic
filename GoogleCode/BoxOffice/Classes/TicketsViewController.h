@@ -12,24 +12,21 @@
 @class AbstractNavigationController;
 
 @interface TicketsViewController : UITableViewController {
-    AbstractNavigationController* controller;
+    AbstractNavigationController* navigationController;
     Movie* movie;
     Theater* theater;
     
     NSArray* performances;
-    
-    BOOL linkToTheater;
 }
 
-@property (retain) AbstractNavigationController* controller;
+@property (retain) AbstractNavigationController* navigationController;
 @property (retain) Movie* movie;
 @property (retain) Theater* theater;
 @property (retain) NSArray* performances;
 
-- (id) initWithController:(AbstractNavigationController*) controller
+- (id) initWithController:(AbstractNavigationController*) navigationController
                   theater:(Theater*) theater
                     movie:(Movie*) movie
-                    title:(NSString*) title
-            linkToTheater:(BOOL) linkToTheater;
+                    title:(NSString*) title;
 
 @end

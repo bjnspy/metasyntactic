@@ -12,87 +12,12 @@
 #import "XmlSerializer.h"
 #import "Utilities.h"
 #import "Application.h"
+#import "SearchRequest.h"
+#import "SearchResult.h"
 
 #define MOVIES_SECTION 0
 #define PEOPLE_SECTION 1
 #define RECENTLY_VIEWED_SECTION 2
-
-
-@interface SearchRequest : NSObject {
-    NSString* text;
-    NSInteger searchId;
-}
-
-@property (copy) NSString* text;
-@property NSInteger searchId;
-
-+ (SearchRequest*) requestWithText:(NSString*) text searchId:(NSInteger) searchId;
-
-@end
-
-@implementation SearchRequest
-
-@synthesize text;
-@synthesize searchId;
-
-- (void) dealloc {
-    self.text = nil;
-    [super dealloc];
-}
-
-- (id) initWithText:(NSString*) text_ searchId:(NSInteger) searchId_ {
-    if (self = [super init]) {
-        self.text = text_;
-        self.searchId = searchId_;
-    }
-    
-    return self;
-}
-
-+ (SearchRequest*) requestWithText:(NSString*) text searchId:(NSInteger) searchId {
-    return [[[SearchRequest alloc] initWithText:text searchId:searchId] autorelease];
-}
-
-
-@end
-
-
-@interface SearchResult : NSObject {
-    XmlElement* element;
-    NSInteger searchId;
-}
-
-@property (retain) XmlElement* element;
-@property NSInteger searchId;
-
-+ (SearchResult*) resultWithElement:(XmlElement*) element searchId:(NSInteger) searchId;
-
-@end
-
-@implementation SearchResult
-
-@synthesize element;
-@synthesize searchId;
-
-- (void) dealloc {
-    self.element = nil;
-    [super dealloc];
-}
-
-- (id) initWithElement:(XmlElement*) element_ searchId:(NSInteger) searchId_ {
-    if (self = [super init]) {
-        self.element = element_;
-        self.searchId = searchId_;
-    }
-    
-    return self;
-}
-
-+ (SearchResult*) resultWithElement:(XmlElement*) element searchId:(NSInteger) searchId {
-    return [[[SearchResult alloc] initWithElement:element searchId:searchId] autorelease];
-}
-
-@end
 
 
 @implementation SearchStartPageViewController
@@ -295,16 +220,24 @@
     }
 }
 
-- (void) search:(SearchRequest*) request {
+- (void) searchWorker:(SearchRequest*) request {
     NSString* urlString =
-     [NSString stringWithFormat:@"%@/Search?q=%@",
-      [Application searchHost],
-      [request.text stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding]];
+    [NSString stringWithFormat:@"%@/Search?q=%@",
+     [Application searchHost],
+     [request.text stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding]];
     
     XmlElement* element = [Utilities downloadXml:urlString];
     
     SearchResult* result = [SearchResult resultWithElement:element searchId:request.searchId];
-    [self performSelectorOnMainThread:@selector(reportSearchResult:) withObject:result waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(reportSearchResult:) withObject:result waitUntilDone:NO];    
+}
+
+- (void) search:(SearchRequest*) request {
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    {
+        [self searchWorker:request];
+    }
+    [autoreleasePool release];
 }
 
 - (void) reportSearchResult:(SearchResult*) result {

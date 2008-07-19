@@ -22,11 +22,13 @@ static UIColor* commandColor = nil;
 static UIImage* freshImage = nil;
 static UIImage* rottenFadedImage = nil;
 static UIImage* rottenFullImage = nil;
+static UIImage* unknownImage = nil;
 static UIImage* emptyStarImage = nil;
 static UIImage* filledStarImage = nil;
 static DifferenceEngine* differenceEngine = nil;
 static NSString* starString = nil;
 static UIFont* helvetica14 = nil;
+static UIFont* boldSystem11 = nil;
 
 + (void) initialize {
     if (self == [Application class]) {
@@ -39,13 +41,15 @@ static UIFont* helvetica14 = nil;
         
         freshImage       = [[UIImage imageNamed:@"Fresh.png"] retain];
         rottenFadedImage = [[UIImage imageNamed:@"Rotten-Faded.png"] retain];
-        rottenFullImage = [[UIImage imageNamed:@"Rotten-Full.png"] retain];
+        rottenFullImage  = [[UIImage imageNamed:@"Rotten-Full.png"] retain];
+        unknownImage     = [[UIImage imageNamed:@"Unknown.png"] retain];
         emptyStarImage   = [[UIImage imageNamed:@"Empty Star.png"] retain];
         filledStarImage  = [[UIImage imageNamed:@"Filled Star.png"] retain];
                 
         differenceEngine = [[DifferenceEngine engine] retain];
         
         helvetica14 = [[UIFont fontWithName:@"helvetica" size:14] retain];
+        boldSystem11 = [[UIFont boldSystemFontOfSize:11] retain];
     }
 }
 
@@ -219,6 +223,10 @@ static UIFont* helvetica14 = nil;
     return rottenFullImage;
 }
 
++ (UIImage*) unknownImage {
+    return unknownImage;
+}
+
 + (UIImage*) emptyStarImage {
     return emptyStarImage;
 }
@@ -261,8 +269,8 @@ static UIFont* helvetica14 = nil;
 }
 
 + (NSString*) searchHost {
-    return @"http://metaboxoffice6.appspot.com";
-    //return @"http://localhost:8082";
+    //return @"http://metaboxoffice6.appspot.com";
+    return @"http://localhost:8086";
 }
 
 + (NSMutableArray*) hosts {
@@ -290,6 +298,10 @@ static UIFont* helvetica14 = nil;
 
 + (UIFont*) helvetica14 {
     return helvetica14;
+}
+
++ (UIFont*) boldSystem11 {
+    return boldSystem11;
 }
 
 @end

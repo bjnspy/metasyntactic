@@ -75,7 +75,6 @@
     [self pushTicketsView:movie
                          theater:theater
                            title:theater.name
-                   linkToTheater:YES
                         animated:animated];
 }
 

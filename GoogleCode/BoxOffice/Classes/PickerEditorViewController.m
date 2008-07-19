@@ -20,13 +20,13 @@
     [super dealloc];
 }
 
-- (id) initWithController:(UINavigationController*) controller
-                withTitle:(NSString*) title
+- (id) initWithController:(UINavigationController*) controller_
+                withTitle:(NSString*) title_
                withObject:(id) object_
              withSelector:(SEL) selector_
                withValues:(NSArray*) values_
              defaultValue:(NSString*) defaultValue {
-    if (self = [super initWithController:controller withObject:object_ withSelector:selector_]) {
+    if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
         self.values = values_;
         
         self.picker = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];
@@ -36,7 +36,7 @@
                    inComponent:0
                       animated:NO];
         
-        self.title = title;
+        self.title = title_;
     }
     
     return self;

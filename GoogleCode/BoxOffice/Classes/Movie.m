@@ -7,7 +7,7 @@
 //
 
 #import "Movie.h"
-
+#import "Utilities.h"
 
 @implementation Movie
 
@@ -31,40 +31,43 @@
     [super dealloc];
 }
 
-- (id) initWithIdentifier:(NSString*) anIdentifier
-                    title:(NSString*) aTitle
-                   rating:(NSString*) aRating
-                   length:(NSString*) aLength
-              releaseDate:(NSDate*) aReleaseDate
-                   poster:(NSString*) aPoster
-           backupSynopsis:(NSString*) aBackupSynopsis {
+- (id) initWithIdentifier:(NSString*) identifier_
+                    title:(NSString*) title_
+                   rating:(NSString*) rating_
+                   length:(NSString*) length_
+              releaseDate:(NSDate*) releaseDate_
+                   poster:(NSString*) poster_
+           backupSynopsis:(NSString*) backupSynopsis_ {
     if (self = [self init]) {
-        self.identifier = anIdentifier;
-        self.title    = [aTitle    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.rating   = [aRating   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.length = aLength;
-        self.releaseDate = aReleaseDate;
-        self.poster = aPoster;
-        self.backupSynopsis = aBackupSynopsis;
+        self.identifier = identifier_;
+        self.title    = [title_    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.rating   = [rating_   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        if (self.rating == nil) {
+            self.rating = @"NR";
+        }
+        self.length = length_;
+        self.releaseDate = releaseDate_;
+        self.poster = poster_;
+        self.backupSynopsis = backupSynopsis_;
     }
     
     return self;
 }
 
-+ (Movie*) movieWithIdentifier:(NSString*) anIdentifier
-                         title:(NSString*) aTitle
-                        rating:(NSString*) aRating
-                        length:(NSString*) aLength
++ (Movie*) movieWithIdentifier:(NSString*) identifier
+                         title:(NSString*) title
+                        rating:(NSString*) rating
+                        length:(NSString*) length
                    releaseDate:(NSDate*) releaseDate
-                        poster:(NSString*) aPoster
-                backupSynopsis:(NSString*) aBackupSynopsis  {
-    return [[[Movie alloc] initWithIdentifier:anIdentifier
-                                        title:aTitle
-                                       rating:aRating
-                                       length:aLength
+                        poster:(NSString*) poster
+                backupSynopsis:(NSString*) backupSynopsis  {
+    return [[[Movie alloc] initWithIdentifier:identifier
+                                        title:title
+                                       rating:rating
+                                       length:length
                                   releaseDate:releaseDate
-                                       poster:aPoster
-                               backupSynopsis:aBackupSynopsis] autorelease];
+                                       poster:poster
+                               backupSynopsis:backupSynopsis] autorelease];
 }
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
@@ -105,6 +108,37 @@
     return
     [self.identifier hash];
     [self.title hash];
+}
+
+- (NSString*) ratingAndRuntimeString {
+    NSInteger movieLength = [self.length intValue];
+    NSInteger hours = movieLength / 60;
+    NSInteger minutes = movieLength % 60;
+    
+    NSString* ratingString;
+    if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
+        ratingString = NSLocalizedString(@"Unrated", nil);
+    }  else {
+        ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), self.rating];
+    }
+    
+    NSMutableString* text = [NSMutableString stringWithString:ratingString];
+    if (movieLength != 0) {
+        [text appendString:@" -"];
+        if (hours == 1) {
+            [text appendString:@" 1 hour"];
+        } else if (hours > 1) {
+            [text appendFormat:@" %d hours", hours];
+        }
+        
+        if (minutes == 1) {
+            [text appendString:@"1 minute"];
+        } else if (minutes > 1) {
+            [text appendFormat:@" %02d minutes", minutes];
+        }
+    }    
+    
+    return text;
 }
 
 @end
