@@ -22,9 +22,9 @@
 		);
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeExecutable = 746A01350DC818A90079D89B /* BoxOffice */;
-		activeSDKPreference = iphonesimulator2.0;
+		activeSDKPreference = iphoneos2.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* BoxOffice */;
 		addToTargets = (
 			1D6058900D05DD3D006BFB54 /* BoxOffice */,
@@ -1189,6 +1189,50 @@
 			741775FA0E32215A00551817 /* PBXTextBookmark */ = 741775FA0E32215A00551817 /* PBXTextBookmark */;
 			741775FB0E32215A00551817 /* PBXTextBookmark */ = 741775FB0E32215A00551817 /* PBXTextBookmark */;
 			741775FC0E32215A00551817 /* PBXTextBookmark */ = 741775FC0E32215A00551817 /* PBXTextBookmark */;
+			741776020E32228500551817 /* PBXTextBookmark */ = 741776020E32228500551817 /* PBXTextBookmark */;
+			741776030E32228500551817 /* PBXTextBookmark */ = 741776030E32228500551817 /* PBXTextBookmark */;
+			741776080E3229DC00551817 /* PBXTextBookmark */ = 741776080E3229DC00551817 /* PBXTextBookmark */;
+			741776090E3229DC00551817 /* PBXTextBookmark */ = 741776090E3229DC00551817 /* PBXTextBookmark */;
+			7417760A0E3229DC00551817 /* PBXTextBookmark */ = 7417760A0E3229DC00551817 /* PBXTextBookmark */;
+			7417760B0E3229DC00551817 /* PBXTextBookmark */ = 7417760B0E3229DC00551817 /* PBXTextBookmark */;
+			7417760C0E3229DC00551817 /* PBXTextBookmark */ = 7417760C0E3229DC00551817 /* PBXTextBookmark */;
+			7417760D0E3229DC00551817 /* PBXTextBookmark */ = 7417760D0E3229DC00551817 /* PBXTextBookmark */;
+			7417760E0E3229DC00551817 /* PBXTextBookmark */ = 7417760E0E3229DC00551817 /* PBXTextBookmark */;
+			7417760F0E3229DC00551817 /* PBXTextBookmark */ = 7417760F0E3229DC00551817 /* PBXTextBookmark */;
+			741776210E322A0E00551817 /* PBXTextBookmark */ = 741776210E322A0E00551817 /* PBXTextBookmark */;
+			741776220E322A0E00551817 /* PBXTextBookmark */ = 741776220E322A0E00551817 /* PBXTextBookmark */;
+			741776230E322A0E00551817 /* PBXTextBookmark */ = 741776230E322A0E00551817 /* PBXTextBookmark */;
+			741776240E322A0E00551817 /* PBXTextBookmark */ = 741776240E322A0E00551817 /* PBXTextBookmark */;
+			741776250E322A0E00551817 /* PBXTextBookmark */ = 741776250E322A0E00551817 /* PBXTextBookmark */;
+			741776260E322A0E00551817 /* PBXTextBookmark */ = 741776260E322A0E00551817 /* PBXTextBookmark */;
+			741776270E322A0E00551817 /* PBXTextBookmark */ = 741776270E322A0E00551817 /* PBXTextBookmark */;
+			7417762B0E322A3300551817 /* PBXTextBookmark */ = 7417762B0E322A3300551817 /* PBXTextBookmark */;
+			7417762C0E322A3300551817 /* PBXTextBookmark */ = 7417762C0E322A3300551817 /* PBXTextBookmark */;
+			7417762D0E322A3300551817 /* PBXTextBookmark */ = 7417762D0E322A3300551817 /* PBXTextBookmark */;
+			7417762E0E322A3300551817 /* PBXTextBookmark */ = 7417762E0E322A3300551817 /* PBXTextBookmark */;
+			7417762F0E322A3300551817 /* PBXTextBookmark */ = 7417762F0E322A3300551817 /* PBXTextBookmark */;
+			741776300E322A3300551817 /* PBXTextBookmark */ = 741776300E322A3300551817 /* PBXTextBookmark */;
+			741776310E322A3300551817 /* PBXTextBookmark */ = 741776310E322A3300551817 /* PBXTextBookmark */;
+			741776350E322A4F00551817 /* PBXTextBookmark */ = 741776350E322A4F00551817 /* PBXTextBookmark */;
+			741776360E322A4F00551817 /* PBXTextBookmark */ = 741776360E322A4F00551817 /* PBXTextBookmark */;
+			7417763A0E322A8500551817 /* PBXTextBookmark */ = 7417763A0E322A8500551817 /* PBXTextBookmark */;
+			7417763B0E322A8500551817 /* PBXTextBookmark */ = 7417763B0E322A8500551817 /* PBXTextBookmark */;
+			7417763F0E322B1100551817 /* PBXTextBookmark */ = 7417763F0E322B1100551817 /* PBXTextBookmark */;
+			741776400E322B1100551817 /* PBXTextBookmark */ = 741776400E322B1100551817 /* PBXTextBookmark */;
+			741776440E322B3D00551817 /* PBXTextBookmark */ = 741776440E322B3D00551817 /* PBXTextBookmark */;
+			741776450E322B3D00551817 /* PBXTextBookmark */ = 741776450E322B3D00551817 /* PBXTextBookmark */;
+			741776490E322B5D00551817 /* PBXTextBookmark */ = 741776490E322B5D00551817 /* PBXTextBookmark */;
+			7417764A0E322B5D00551817 /* PBXTextBookmark */ = 7417764A0E322B5D00551817 /* PBXTextBookmark */;
+			7417764E0E322B6E00551817 /* PBXTextBookmark */ = 7417764E0E322B6E00551817 /* PBXTextBookmark */;
+			7417764F0E322B6E00551817 /* PBXTextBookmark */ = 7417764F0E322B6E00551817 /* PBXTextBookmark */;
+			741776530E322B7B00551817 /* PBXTextBookmark */ = 741776530E322B7B00551817 /* PBXTextBookmark */;
+			741776540E322B7B00551817 /* PBXTextBookmark */ = 741776540E322B7B00551817 /* PBXTextBookmark */;
+			741776580E322B9800551817 /* PBXTextBookmark */ = 741776580E322B9800551817 /* PBXTextBookmark */;
+			741776590E322B9800551817 /* PBXTextBookmark */ = 741776590E322B9800551817 /* PBXTextBookmark */;
+			7417765F0E322BE200551817 /* PBXTextBookmark */ = 7417765F0E322BE200551817 /* PBXTextBookmark */;
+			741776600E322BE200551817 /* PBXTextBookmark */ = 741776600E322BE200551817 /* PBXTextBookmark */;
+			741776660E322D6800551817 /* PBXTextBookmark */ = 741776660E322D6800551817 /* PBXTextBookmark */;
+			741776670E322D6800551817 /* PBXTextBookmark */ = 741776670E322D6800551817 /* PBXTextBookmark */;
 			742445070E2C7F5F00C98F84 = 742445070E2C7F5F00C98F84 /* PBXTextBookmark */;
 			742445B50E2D30BC00C98F84 = 742445B50E2D30BC00C98F84 /* PBXTextBookmark */;
 			742445CD0E2D336000C98F84 = 742445CD0E2D336000C98F84 /* PBXTextBookmark */;
@@ -3407,7 +3451,7 @@
 		ignoreCount = 0;
 		lineNumber = 42;
 		location = BoxOffice;
-		modificationTime = 238166364.880117;
+		modificationTime = 238169193.359791;
 		state = 2;
 	};
 	7411F14F0E2EACFB00F0725C /* SearchMovieDetailsViewController.m:54 */ = {
@@ -3424,7 +3468,7 @@
 		ignoreCount = 0;
 		lineNumber = 54;
 		location = BoxOffice;
-		modificationTime = 238166364.883453;
+		modificationTime = 238169193.362786;
 		state = 2;
 	};
 	7411F17A0E2EAFBD00F0725C /* LookupMovieListings.py */ = {
@@ -3509,7 +3553,7 @@
 		ignoreCount = 0;
 		lineNumber = 60;
 		location = BoxOffice;
-		modificationTime = 238166364.886473;
+		modificationTime = 238169193.367107;
 		state = 2;
 	};
 	7411F1C10E2EB8B300F0725C /* PBXTextBookmark */ = {
@@ -3689,7 +3733,7 @@
 		ignoreCount = 0;
 		lineNumber = 56;
 		location = BoxOffice;
-		modificationTime = 238166366.166118;
+		modificationTime = 238169196.223739;
 		state = 1;
 	};
 	7411F2CC0E2ECA1200F0725C /* PBXTextBookmark */ = {
@@ -4483,7 +4527,7 @@
 		ignoreCount = 0;
 		lineNumber = 298;
 		location = BoxOffice;
-		modificationTime = 238166364.89698;
+		modificationTime = 238169193.389657;
 		state = 2;
 	};
 	7411F55D0E2EF98200F0725C /* PBXTextBookmark */ = {
@@ -4510,7 +4554,7 @@
 		ignoreCount = 0;
 		lineNumber = 358;
 		location = BoxOffice;
-		modificationTime = 238166364.900497;
+		modificationTime = 238169193.392795;
 		state = 2;
 	};
 	7411F5650E2EF9A400F0725C /* PBXTextBookmark */ = {
@@ -4557,7 +4601,7 @@
 		ignoreCount = 0;
 		lineNumber = 308;
 		location = BoxOffice;
-		modificationTime = 238166364.903643;
+		modificationTime = 238169193.395647;
 		state = 2;
 	};
 	7411F5930E2EFC5E00F0725C /* BoxOfficeController.m:310 */ = {
@@ -4574,7 +4618,7 @@
 		ignoreCount = 0;
 		lineNumber = 310;
 		location = BoxOffice;
-		modificationTime = 238166364.906797;
+		modificationTime = 238169193.413331;
 		state = 2;
 	};
 	7411F5AD0E2EFE7100F0725C /* PBXTextBookmark */ = {
@@ -4759,7 +4803,7 @@
 		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 162";
 		rLen = 0;
-		rLoc = 6378;
+		rLoc = 6524;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 5422;
@@ -4779,7 +4823,7 @@
 		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 166";
 		rLen = 0;
-		rLoc = 6528;
+		rLoc = 6674;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 5422;
@@ -4799,7 +4843,7 @@
 		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 166";
 		rLen = 0;
-		rLoc = 6528;
+		rLoc = 6674;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 5422;
@@ -4829,7 +4873,7 @@
 		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 176";
 		rLen = 0;
-		rLoc = 6850;
+		rLoc = 6996;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 5422;
@@ -4849,7 +4893,7 @@
 		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 176";
 		rLen = 0;
-		rLoc = 6850;
+		rLoc = 6996;
 		rType = 0;
 		vrLen = 1112;
 		vrLoc = 5422;
@@ -5335,7 +5379,7 @@
 		ignoreCount = 0;
 		lineNumber = 48;
 		location = BoxOffice;
-		modificationTime = 238166364.95652;
+		modificationTime = 238169193.444971;
 		state = 2;
 	};
 	741771030E3150B100551817 /* PBXTextBookmark */ = {
@@ -6341,7 +6385,7 @@
 		ignoreCount = 0;
 		lineNumber = 229;
 		location = BoxOffice;
-		modificationTime = 238166364.9596;
+		modificationTime = 238169193.44987;
 		state = 2;
 	};
 	741771BC0E315D1D00551817 /* PBXTextBookmark */ = {
@@ -6631,7 +6675,7 @@
 		ignoreCount = 0;
 		lineNumber = 58;
 		location = BoxOffice;
-		modificationTime = 238166364.962683;
+		modificationTime = 238169193.453062;
 		state = 2;
 	};
 	741771DD0E315E8700551817 /* PBXTextBookmark */ = {
@@ -7125,7 +7169,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = "";
-		modificationTime = 238166365.562018;
+		modificationTime = 238169194.13841;
 		state = 0;
 		symbolName = "NSInvalidArgumentException:init";
 	};
@@ -7160,7 +7204,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = CoreFoundation;
-		modificationTime = 238166364.973262;
+		modificationTime = 238169193.47278;
 		state = 1;
 		symbolName = "-[NSException raise]";
 	};
@@ -7195,7 +7239,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = "";
-		modificationTime = 238166365.862958;
+		modificationTime = 238169194.265318;
 		state = 0;
 		symbolName = "-[NSInvalidArgumentException raise]";
 	};
@@ -7210,7 +7254,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = "";
-		modificationTime = 238166365.941217;
+		modificationTime = 238169194.360172;
 		state = 0;
 		symbolName = "-[NSInvalidArgumentException init]";
 	};
@@ -7245,7 +7289,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libobjc.A.dylib;
-		modificationTime = 238166364.983159;
+		modificationTime = 238169193.482627;
 		state = 1;
 		symbolName = objc_exception_throw;
 	};
@@ -7378,7 +7422,7 @@
 		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 176";
 		rLen = 0;
-		rLoc = 6850;
+		rLoc = 6996;
 		rType = 0;
 		vrLen = 1083;
 		vrLoc = 5422;
@@ -7428,7 +7472,7 @@
 		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 159";
 		rLen = 0;
-		rLoc = 6208;
+		rLoc = 6354;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 4348;
@@ -7438,7 +7482,7 @@
 		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 159";
 		rLen = 0;
-		rLoc = 6208;
+		rLoc = 6354;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 4348;
@@ -7458,7 +7502,7 @@
 		fRef = 74F6602B0E2AB225000B275F /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 171";
 		rLen = 0;
-		rLoc = 6405;
+		rLoc = 6551;
 		rType = 0;
 		vrLen = 1224;
 		vrLoc = 5021;
@@ -7540,7 +7584,7 @@
 		isa = PBXTextBookmark;
 		fRef = 747DC1080E2C3081004B5B67 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 201";
-		rLen = 440;
+		rLen = 589;
 		rLoc = 7158;
 		rType = 0;
 		vrLen = 1453;
@@ -7557,7 +7601,7 @@
 		isa = PBXTextBookmark;
 		fRef = 747DC1080E2C3081004B5B67 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 201";
-		rLen = 440;
+		rLen = 589;
 		rLoc = 7158;
 		rType = 0;
 		vrLen = 1453;
@@ -7638,7 +7682,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 24";
 		rLen = 0;
-		rLoc = 687;
+		rLoc = 765;
 		rType = 0;
 		vrLen = 582;
 		vrLoc = 0;
@@ -7648,7 +7692,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 72";
 		rLen = 0;
-		rLoc = 2956;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 1048;
@@ -7658,7 +7702,7 @@
 		fRef = 7417727C0E31FBED00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 157";
 		rLen = 0;
-		rLoc = 5601;
+		rLoc = 5776;
 		rType = 0;
 		vrLen = 1456;
 		vrLoc = 4894;
@@ -7667,7 +7711,7 @@
 		isa = PBXTextBookmark;
 		fRef = 7417727E0E31FBFD00551817 /* AllMoviesViewController.m */;
 		rLen = 1;
-		rLoc = 207;
+		rLoc = 210;
 		rType = 1;
 	};
 	741772890E31FC1100551817 /* PBXTextBookmark */ = {
@@ -7685,7 +7729,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 24";
 		rLen = 0;
-		rLoc = 691;
+		rLoc = 765;
 		rType = 0;
 		vrLen = 586;
 		vrLoc = 0;
@@ -7695,7 +7739,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 72";
 		rLen = 0;
-		rLoc = 2956;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 1048;
@@ -7705,7 +7749,7 @@
 		fRef = 7417727C0E31FBED00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 157";
 		rLen = 0;
-		rLoc = 5601;
+		rLoc = 5776;
 		rType = 0;
 		vrLen = 1456;
 		vrLoc = 4894;
@@ -7715,7 +7759,7 @@
 		fRef = 741772800E31FBFD00551817 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 208";
 		rLen = 0;
-		rLoc = 7592;
+		rLoc = 7741;
 		rType = 0;
 		vrLen = 1586;
 		vrLoc = 6919;
@@ -7755,7 +7799,7 @@
 		fRef = 7417727C0E31FBED00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 197";
 		rLen = 0;
-		rLoc = 6987;
+		rLoc = 7133;
 		rType = 0;
 		vrLen = 1033;
 		vrLoc = 6397;
@@ -7775,7 +7819,7 @@
 		fRef = 7417727C0E31FBED00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 202";
 		rLen = 0;
-		rLoc = 7067;
+		rLoc = 7213;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 3638;
@@ -7785,7 +7829,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 72";
 		rLen = 0;
-		rLoc = 2956;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 1106;
@@ -7795,7 +7839,7 @@
 		fRef = 7417727C0E31FBED00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 202";
 		rLen = 0;
-		rLoc = 7067;
+		rLoc = 7213;
 		rType = 0;
 		vrLen = 1397;
 		vrLoc = 3638;
@@ -7805,7 +7849,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 72";
 		rLen = 0;
-		rLoc = 2956;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 1106;
@@ -7825,7 +7869,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 59";
 		rLen = 0;
-		rLoc = 2404;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 1106;
@@ -7845,7 +7889,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 72";
 		rLen = 0;
-		rLoc = 2956;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1326;
 		vrLoc = 1161;
@@ -7885,7 +7929,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 76";
 		rLen = 0;
-		rLoc = 2968;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 905;
 		vrLoc = 0;
@@ -7895,7 +7939,7 @@
 		fRef = 741772800E31FBFD00551817 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 210";
 		rLen = 422;
-		rLoc = 7622;
+		rLoc = 7771;
 		rType = 0;
 		vrLen = 1601;
 		vrLoc = 6972;
@@ -7905,7 +7949,7 @@
 		fRef = 7417727C0E31FBED00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 202";
 		rLen = 0;
-		rLoc = 7067;
+		rLoc = 7213;
 		rType = 0;
 		vrLen = 1054;
 		vrLoc = 6079;
@@ -7915,7 +7959,7 @@
 		fRef = 741772800E31FBFD00551817 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 210";
 		rLen = 422;
-		rLoc = 7622;
+		rLoc = 7771;
 		rType = 0;
 		vrLen = 1601;
 		vrLoc = 6972;
@@ -7925,7 +7969,7 @@
 		fRef = 7417727C0E31FBED00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 230";
 		rLen = 0;
-		rLoc = 7875;
+		rLoc = 8021;
 		rType = 0;
 		vrLen = 1059;
 		vrLoc = 7394;
@@ -7995,7 +8039,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 24";
 		rLen = 0;
-		rLoc = 691;
+		rLoc = 765;
 		rType = 0;
 		vrLen = 582;
 		vrLoc = 0;
@@ -8072,7 +8116,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 24";
 		rLen = 0;
-		rLoc = 691;
+		rLoc = 765;
 		rType = 0;
 		vrLen = 582;
 		vrLoc = 0;
@@ -8782,7 +8826,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 230";
 		rLen = 0;
-		rLoc = 7874;
+		rLoc = 8020;
 		rType = 0;
 		vrLen = 1070;
 		vrLoc = 7167;
@@ -8802,7 +8846,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 227";
 		rLen = 0;
-		rLoc = 7875;
+		rLoc = 8021;
 		rType = 0;
 		vrLen = 1065;
 		vrLoc = 7167;
@@ -8832,7 +8876,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 216";
 		rLen = 327;
-		rLoc = 7550;
+		rLoc = 7696;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 7325;
@@ -8852,7 +8896,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 227";
 		rLen = 0;
-		rLoc = 7875;
+		rLoc = 8021;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 7325;
@@ -8872,7 +8916,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 216";
 		rLen = 327;
-		rLoc = 7550;
+		rLoc = 7696;
 		rType = 0;
 		vrLen = 1099;
 		vrLoc = 7325;
@@ -9259,7 +9303,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 216";
 		rLen = 327;
-		rLoc = 7550;
+		rLoc = 7696;
 		rType = 0;
 		vrLen = 1001;
 		vrLoc = 7325;
@@ -9279,7 +9323,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 220";
 		rLen = 0;
-		rLoc = 7734;
+		rLoc = 7880;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 7325;
@@ -9381,7 +9425,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 76";
 		rLen = 0;
-		rLoc = 2968;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 353;
@@ -9391,7 +9435,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 24";
 		rLen = 0;
-		rLoc = 717;
+		rLoc = 766;
 		rType = 0;
 		vrLen = 587;
 		vrLoc = 0;
@@ -9421,7 +9465,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 208";
 		rLen = 0;
-		rLoc = 7243;
+		rLoc = 7389;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 6717;
@@ -9448,7 +9492,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 223";
 		rLen = 0;
-		rLoc = 7808;
+		rLoc = 7954;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 7325;
@@ -9498,7 +9542,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 27";
 		rLen = 0;
-		rLoc = 718;
+		rLoc = 767;
 		rType = 0;
 		vrLen = 641;
 		vrLoc = 0;
@@ -9508,7 +9552,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 76";
 		rLen = 0;
-		rLoc = 2968;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1261;
 		vrLoc = 353;
@@ -9518,7 +9562,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 24";
 		rLen = 0;
-		rLoc = 717;
+		rLoc = 766;
 		rType = 0;
 		vrLen = 587;
 		vrLoc = 0;
@@ -9558,7 +9602,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 208";
 		rLen = 0;
-		rLoc = 7243;
+		rLoc = 7389;
 		rType = 0;
 		vrLen = 1088;
 		vrLoc = 6717;
@@ -10403,7 +10447,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 29";
 		rLen = 0;
-		rLoc = 820;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 226;
@@ -10453,7 +10497,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 29";
 		rLen = 0;
-		rLoc = 820;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 947;
 		vrLoc = 226;
@@ -10473,7 +10517,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 30";
 		rLen = 0;
-		rLoc = 820;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 226;
@@ -10493,7 +10537,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 24";
 		rLen = 0;
-		rLoc = 524;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 226;
@@ -10513,7 +10557,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 30";
 		rLen = 0;
-		rLoc = 820;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 226;
@@ -10533,7 +10577,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 30";
 		rLen = 0;
-		rLoc = 820;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 996;
 		vrLoc = 226;
@@ -10553,7 +10597,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 86";
 		rLen = 0;
-		rLoc = 3155;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 1423;
@@ -10573,7 +10617,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 70";
 		rLen = 0;
-		rLoc = 2693;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 1423;
@@ -10593,7 +10637,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 70";
 		rLen = 0;
-		rLoc = 2693;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 1423;
@@ -10643,7 +10687,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 70";
 		rLen = 0;
-		rLoc = 2693;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1011;
 		vrLoc = 41;
@@ -10663,7 +10707,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 84";
 		rLen = 0;
-		rLoc = 3155;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1064;
 		vrLoc = 1443;
@@ -10693,7 +10737,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 84";
 		rLen = 0;
-		rLoc = 3155;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1381;
 		vrLoc = 1111;
@@ -10713,7 +10757,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 83";
 		rLen = 0;
-		rLoc = 3155;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1207;
 		vrLoc = 1324;
@@ -10733,7 +10777,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 79";
 		rLen = 0;
-		rLoc = 3044;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1207;
 		vrLoc = 1324;
@@ -10753,7 +10797,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 87";
 		rLen = 0;
-		rLoc = 4388;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 1324;
@@ -10773,7 +10817,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 87";
 		rLen = 0;
-		rLoc = 4388;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 1324;
@@ -10823,7 +10867,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 22";
 		rLen = 0;
-		rLoc = 502;
+		rLoc = 530;
 		rType = 0;
 		vrLen = 733;
 		vrLoc = 0;
@@ -10832,7 +10876,7 @@
 		isa = PBXTextBookmark;
 		fRef = 7417749F0E32162A00551817 /* MovieTitleCell.m */;
 		rLen = 1;
-		rLoc = 38;
+		rLoc = 0;
 		rType = 1;
 	};
 	741774A50E32163100551817 /* PBXTextBookmark */ = {
@@ -10840,7 +10884,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 65";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 1307;
@@ -10850,7 +10894,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 18";
 		rLen = 0;
-		rLoc = 421;
+		rLoc = 449;
 		rType = 0;
 		vrLen = 599;
 		vrLoc = 0;
@@ -10860,7 +10904,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 65";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 867;
@@ -10870,7 +10914,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 14";
 		rLen = 10;
-		rLoc = 275;
+		rLoc = 303;
 		rType = 0;
 		vrLen = 600;
 		vrLoc = 0;
@@ -10880,7 +10924,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 65";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 867;
@@ -10890,7 +10934,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 18";
 		rLen = 0;
-		rLoc = 421;
+		rLoc = 449;
 		rType = 0;
 		vrLen = 601;
 		vrLoc = 0;
@@ -10900,7 +10944,7 @@
 		fRef = 741774970E32150300551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 28";
 		rLen = 0;
-		rLoc = 726;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 912;
 		vrLoc = 0;
@@ -10910,7 +10954,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 21";
 		rLen = 0;
-		rLoc = 462;
+		rLoc = 490;
 		rType = 0;
 		vrLen = 692;
 		vrLoc = 0;
@@ -10920,7 +10964,7 @@
 		fRef = 741774970E32150300551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 16";
 		rLen = 0;
-		rLoc = 299;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 939;
 		vrLoc = 0;
@@ -10930,7 +10974,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 22";
 		rLen = 0;
-		rLoc = 502;
+		rLoc = 530;
 		rType = 0;
 		vrLen = 733;
 		vrLoc = 0;
@@ -10940,7 +10984,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 37";
 		rLen = 0;
-		rLoc = 1039;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1006;
 		vrLoc = 322;
@@ -10960,7 +11004,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 93";
 		rLen = 0;
-		rLoc = 3171;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1031;
 		vrLoc = 1951;
@@ -10980,7 +11024,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 86";
 		rLen = 0;
-		rLoc = 2979;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1123;
 		vrLoc = 1854;
@@ -11000,7 +11044,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 26";
 		rLen = 0;
-		rLoc = 512;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1158;
 		vrLoc = 1247;
@@ -11020,7 +11064,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 91";
 		rLen = 0;
-		rLoc = 3105;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1314;
 		vrLoc = 1544;
@@ -11040,7 +11084,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 43";
 		rLen = 0;
-		rLoc = 1564;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 833;
@@ -11060,7 +11104,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 101";
 		rLen = 0;
-		rLoc = 3171;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1117;
 		vrLoc = 2042;
@@ -11088,9 +11132,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/Movie.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1078, 1960}}";
+			sepNavIntBoundsRect = "{{0, 0}, {1078, 1946}}";
 			sepNavSelRange = "{4025, 0}";
-			sepNavVisRange = "{3679, 1050}";
+			sepNavVisRange = "{3679, 1072}";
 		};
 	};
 	741774DD0E32188100551817 /* PBXTextBookmark */ = {
@@ -11118,7 +11162,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 112";
 		rLen = 0;
-		rLoc = 3610;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 2686;
@@ -11135,7 +11179,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 112";
 		rLen = 0;
-		rLoc = 3610;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 2686;
@@ -11175,7 +11219,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 22";
 		rLen = 0;
-		rLoc = 502;
+		rLoc = 530;
 		rType = 0;
 		vrLen = 733;
 		vrLoc = 0;
@@ -11195,7 +11239,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 112";
 		rLen = 0;
-		rLoc = 3610;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 1733;
@@ -11215,7 +11259,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 43";
 		rLen = 0;
-		rLoc = 1385;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 322;
@@ -11245,7 +11289,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 43";
 		rLen = 0;
-		rLoc = 1385;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1299;
 		vrLoc = 322;
@@ -11265,7 +11309,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 48";
 		rLen = 0;
-		rLoc = 1564;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 418;
@@ -11285,7 +11329,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 116";
 		rLen = 0;
-		rLoc = 3730;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 2686;
@@ -11305,7 +11349,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 106";
 		rLen = 0;
-		rLoc = 3252;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 2686;
@@ -11325,7 +11369,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 106";
 		rLen = 0;
-		rLoc = 3252;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 2686;
@@ -11345,7 +11389,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 116";
 		rLen = 0;
-		rLoc = 3730;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 2686;
@@ -11365,7 +11409,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 94";
 		rLen = 0;
-		rLoc = 2988;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 2686;
@@ -11385,7 +11429,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 94";
 		rLen = 0;
-		rLoc = 2988;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 993;
 		vrLoc = 2686;
@@ -11503,7 +11547,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 95";
 		rLen = 0;
-		rLoc = 3007;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 609;
 		vrLoc = 3052;
@@ -11513,7 +11557,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 20";
 		rLen = 0;
-		rLoc = 421;
+		rLoc = 449;
 		rType = 0;
 		vrLen = 652;
 		vrLoc = 0;
@@ -11543,7 +11587,7 @@
 		fRef = 741772800E31FBFD00551817 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 265";
 		rLen = 0;
-		rLoc = 9831;
+		rLoc = 9980;
 		rType = 0;
 		vrLen = 1066;
 		vrLoc = 8843;
@@ -11572,7 +11616,7 @@
 		isa = PBXTextBookmark;
 		fRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */;
 		rLen = 6;
-		rLoc = 6647;
+		rLoc = 6793;
 		rType = 0;
 	};
 	7417751F0E321CB200551817 /* PBXTextBookmark */ = {
@@ -11639,8 +11683,8 @@
 		isa = PBXTextBookmark;
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 42";
-		rLen = 6;
-		rLoc = 1259;
+		rLen = 0;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 895;
 		vrLoc = 833;
@@ -11710,7 +11754,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 95";
 		rLen = 0;
-		rLoc = 3007;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 609;
 		vrLoc = 3052;
@@ -11720,7 +11764,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 20";
 		rLen = 0;
-		rLoc = 421;
+		rLoc = 449;
 		rType = 0;
 		vrLen = 652;
 		vrLoc = 0;
@@ -11740,7 +11784,7 @@
 		fRef = 741772800E31FBFD00551817 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 231";
 		rLen = 20;
-		rLoc = 8462;
+		rLoc = 8611;
 		rType = 0;
 		vrLen = 1023;
 		vrLoc = 7973;
@@ -11760,7 +11804,7 @@
 		fRef = 741772800E31FBFD00551817 /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 265";
 		rLen = 0;
-		rLoc = 9831;
+		rLoc = 9980;
 		rType = 0;
 		vrLen = 1066;
 		vrLoc = 8843;
@@ -11790,7 +11834,7 @@
 		fRef = 741772C00E31FE5D00551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 185";
 		rLen = 6;
-		rLoc = 6647;
+		rLoc = 6793;
 		rType = 0;
 		vrLen = 786;
 		vrLoc = 6219;
@@ -11961,8 +12005,8 @@
 		isa = PBXTextBookmark;
 		fRef = 741775500E321D3800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 20";
-		rLen = 27;
-		rLoc = 339;
+		rLen = 0;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 728;
 		vrLoc = 0;
@@ -12002,7 +12046,7 @@
 		fRef = 741775670E321D6700551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 185";
 		rLen = 0;
-		rLoc = 6660;
+		rLoc = 6806;
 		rType = 0;
 		vrLen = 1082;
 		vrLoc = 5937;
@@ -12029,7 +12073,7 @@
 		fRef = 741774A10E32162A00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 94";
 		rLen = 0;
-		rLoc = 2988;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 1820;
@@ -12053,7 +12097,7 @@
 		fRef = 7417753A0E321CCD00551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 97";
 		rLen = 0;
-		rLoc = 3088;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 2236;
@@ -12073,7 +12117,7 @@
 		fRef = 741775430E321D0100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 46";
 		rLen = 0;
-		rLoc = 1480;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 903;
 		vrLoc = 1390;
@@ -12093,7 +12137,7 @@
 		fRef = 741775480E321D1800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 22";
 		rLen = 0;
-		rLoc = 420;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 728;
 		vrLoc = 0;
@@ -12112,8 +12156,8 @@
 		isa = PBXTextBookmark;
 		fRef = 741775500E321D3800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 20";
-		rLen = 27;
-		rLoc = 339;
+		rLen = 0;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 728;
 		vrLoc = 0;
@@ -12123,7 +12167,7 @@
 		fRef = 741775520E321D3900551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 184";
 		rLen = 0;
-		rLoc = 6556;
+		rLoc = 6702;
 		rType = 0;
 		vrLen = 1121;
 		vrLoc = 5676;
@@ -12163,7 +12207,7 @@
 		fRef = 741775670E321D6700551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 185";
 		rLen = 0;
-		rLoc = 6660;
+		rLoc = 6806;
 		rType = 0;
 		vrLen = 1082;
 		vrLoc = 5937;
@@ -12202,8 +12246,8 @@
 		isa = PBXTextBookmark;
 		fRef = 741775500E321D3800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 20";
-		rLen = 27;
-		rLoc = 339;
+		rLen = 0;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 0;
@@ -12223,7 +12267,7 @@
 		fRef = 741775500E321D3800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 45";
 		rLen = 0;
-		rLoc = 1385;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1256;
 		vrLoc = 448;
@@ -12243,7 +12287,7 @@
 		fRef = 741775500E321D3800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 103";
 		rLen = 0;
-		rLoc = 3171;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 988;
 		vrLoc = 2721;
@@ -12263,7 +12307,7 @@
 		fRef = 741775500E321D3800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 79";
 		rLen = 0;
-		rLoc = 2403;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 941;
 		vrLoc = 2970;
@@ -12283,7 +12327,7 @@
 		fRef = 741775500E321D3800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 101";
 		rLen = 0;
-		rLoc = 3160;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 2707;
@@ -12303,7 +12347,7 @@
 		fRef = 741775500E321D3800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 101";
 		rLen = 0;
-		rLoc = 3160;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1102;
 		vrLoc = 2707;
@@ -12373,7 +12417,7 @@
 		fRef = 741775500E321D3800551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 112";
 		rLen = 0;
-		rLoc = 3505;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 964;
 		vrLoc = 2989;
@@ -12401,16 +12445,16 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/MovieTitleCell.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {966, 2044}}";
-			sepNavSelRange = "{3154, 0}";
-			sepNavVisRange = "{1441, 1059}";
+			sepNavIntBoundsRect = "{{0, 0}, {966, 1932}}";
+			sepNavSelRange = "{1219, 0}";
+			sepNavVisRange = "{752, 1341}";
 		};
 	};
 	741775C00E321F8B00551817 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 741775BC0E321F8100551817 /* MovieTitleCell.m */;
 		rLen = 1;
-		rLoc = 129;
+		rLoc = 0;
 		rType = 1;
 	};
 	741775C10E321F8B00551817 /* PBXTextBookmark */ = {
@@ -12418,7 +12462,7 @@
 		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 119";
 		rLen = 0;
-		rLoc = 3729;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 945;
 		vrLoc = 2970;
@@ -12438,7 +12482,7 @@
 		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 127";
 		rLen = 0;
-		rLoc = 3937;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1032;
 		vrLoc = 2980;
@@ -12478,7 +12522,7 @@
 		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 101";
 		rLen = 0;
-		rLoc = 3160;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 857;
 		vrLoc = 3164;
@@ -12488,7 +12532,7 @@
 		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 101";
 		rLen = 0;
-		rLoc = 3160;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 857;
 		vrLoc = 3164;
@@ -12528,7 +12572,7 @@
 		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 141";
 		rLen = 0;
-		rLoc = 4292;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 959;
 		vrLoc = 3445;
@@ -12548,7 +12592,7 @@
 		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 125";
 		rLen = 0;
-		rLoc = 3867;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 959;
 		vrLoc = 3445;
@@ -12568,7 +12612,7 @@
 		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 125";
 		rLen = 0;
-		rLoc = 3867;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 959;
 		vrLoc = 3445;
@@ -12638,7 +12682,7 @@
 		fRef = 741775670E321D6700551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 185";
 		rLen = 6;
-		rLoc = 6647;
+		rLoc = 6793;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 6219;
@@ -12655,7 +12699,7 @@
 		fRef = 741775670E321D6700551817 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 185";
 		rLen = 6;
-		rLoc = 6647;
+		rLoc = 6793;
 		rType = 0;
 		vrLen = 776;
 		vrLoc = 6219;
@@ -12795,7 +12839,7 @@
 		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 125";
 		rLen = 0;
-		rLoc = 3867;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 954;
 		vrLoc = 3445;
@@ -12835,7 +12879,7 @@
 		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 100";
 		rLen = 0;
-		rLoc = 3154;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 1059;
 		vrLoc = 1441;
@@ -12848,6 +12892,473 @@
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	741776020E32228500551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 61";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1384;
+		vrLoc = 1771;
+	};
+	741776030E32228500551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1156;
+		vrLoc = 6040;
+	};
+	741776080E3229DC00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740B14710E2DCA7B00493FC3 /* ReviewTitleCell.h */;
+		name = "ReviewTitleCell.h: 18";
+		rLen = 0;
+		rLoc = 354;
+		rType = 0;
+		vrLen = 420;
+		vrLoc = 0;
+	};
+	741776090E3229DC00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
+		name = "MovieTitleCell.h: 30";
+		rLen = 0;
+		rLoc = 765;
+		rType = 0;
+		vrLen = 778;
+		vrLoc = 0;
+	};
+	7417760A0E3229DC00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 31";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1327;
+		vrLoc = 251;
+	};
+	7417760B0E3229DC00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 31";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1327;
+		vrLoc = 251;
+	};
+	7417760C0E3229DC00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740B14710E2DCA7B00493FC3 /* ReviewTitleCell.h */;
+		name = "ReviewTitleCell.h: 18";
+		rLen = 0;
+		rLoc = 354;
+		rType = 0;
+		vrLen = 420;
+		vrLoc = 0;
+	};
+	7417760D0E3229DC00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
+		name = "MovieTitleCell.h: 30";
+		rLen = 0;
+		rLoc = 765;
+		rType = 0;
+		vrLen = 778;
+		vrLoc = 0;
+	};
+	7417760E0E3229DC00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 132";
+		rLen = 0;
+		rLoc = 3734;
+		rType = 0;
+		vrLen = 1097;
+		vrLoc = 3370;
+	};
+	7417760F0E3229DC00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	7417761A0E3229EB00551817 /* TheaterDetailsViewController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = TheaterDetailsViewController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/TheaterDetailsViewController.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1037, 3570}}";
+			sepNavSelRange = "{6793, 6}";
+			sepNavVisRange = "{6207, 735}";
+		};
+	};
+	7417761C0E3229FA00551817 /* AllMoviesViewController.m */ = {
+		isa = PBXFileReference;
+		name = AllMoviesViewController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/AllMoviesViewController.m;
+		sourceTree = "<absolute>";
+	};
+	7417761E0E3229FA00551817 /* AllMoviesViewController.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = AllMoviesViewController.m;
+		path = /Projects/GoogleCode/BoxOffice/Classes/AllMoviesViewController.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {966, 4914}}";
+			sepNavSelRange = "{7604, 0}";
+			sepNavVisRange = "{6619, 1576}";
+		};
+	};
+	741776210E322A0E00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 132";
+		rLen = 0;
+		rLoc = 3734;
+		rType = 0;
+		vrLen = 1097;
+		vrLoc = 3370;
+	};
+	741776220E322A0E00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7417761A0E3229EB00551817 /* TheaterDetailsViewController.m */;
+		name = "TheaterDetailsViewController.m: 155";
+		rLen = 0;
+		rLoc = 5660;
+		rType = 0;
+		vrLen = 1526;
+		vrLoc = 4903;
+	};
+	741776230E322A0E00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7417761C0E3229FA00551817 /* AllMoviesViewController.m */;
+		rLen = 1;
+		rLoc = 210;
+		rType = 1;
+	};
+	741776240E322A0E00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 132";
+		rLen = 0;
+		rLoc = 3734;
+		rType = 0;
+		vrLen = 1097;
+		vrLoc = 3370;
+	};
+	741776250E322A0E00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7417761A0E3229EB00551817 /* TheaterDetailsViewController.m */;
+		name = "TheaterDetailsViewController.m: 155";
+		rLen = 0;
+		rLoc = 5660;
+		rType = 0;
+		vrLen = 1526;
+		vrLoc = 4903;
+	};
+	741776260E322A0E00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7417761E0E3229FA00551817 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 208";
+		rLen = 0;
+		rLoc = 7658;
+		rType = 0;
+		vrLen = 1508;
+		vrLoc = 6904;
+	};
+	741776270E322A0E00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	7417762B0E322A3300551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7417761E0E3229FA00551817 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 207";
+		rLen = 0;
+		rLoc = 7604;
+		rType = 0;
+		vrLen = 1576;
+		vrLoc = 6619;
+	};
+	7417762C0E322A3300551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7417761A0E3229EB00551817 /* TheaterDetailsViewController.m */;
+		name = "TheaterDetailsViewController.m: 155";
+		rLen = 0;
+		rLoc = 5660;
+		rType = 0;
+		vrLen = 1595;
+		vrLoc = 4886;
+	};
+	7417762D0E322A3300551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 132";
+		rLen = 0;
+		rLoc = 3734;
+		rType = 0;
+		vrLen = 1080;
+		vrLoc = 3387;
+	};
+	7417762E0E322A3300551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7417761E0E3229FA00551817 /* AllMoviesViewController.m */;
+		name = "AllMoviesViewController.m: 207";
+		rLen = 0;
+		rLoc = 7604;
+		rType = 0;
+		vrLen = 1576;
+		vrLoc = 6619;
+	};
+	7417762F0E322A3300551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7417761A0E3229EB00551817 /* TheaterDetailsViewController.m */;
+		name = "TheaterDetailsViewController.m: 155";
+		rLen = 0;
+		rLoc = 5660;
+		rType = 0;
+		vrLen = 1595;
+		vrLoc = 4886;
+	};
+	741776300E322A3300551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 72";
+		rLen = 0;
+		rLoc = 2065;
+		rType = 0;
+		vrLen = 966;
+		vrLoc = 1642;
+	};
+	741776310E322A3300551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	741776350E322A4F00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 72";
+		rLen = 0;
+		rLoc = 2065;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 1261;
+	};
+	741776360E322A4F00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	7417763A0E322A8500551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 71";
+		rLen = 0;
+		rLoc = 2065;
+		rType = 0;
+		vrLen = 1206;
+		vrLoc = 1261;
+	};
+	7417763B0E322A8500551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	7417763F0E322B1100551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 64";
+		rLen = 0;
+		rLoc = 2064;
+		rType = 0;
+		vrLen = 931;
+		vrLoc = 1323;
+	};
+	741776400E322B1100551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	741776440E322B3D00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 64";
+		rLen = 0;
+		rLoc = 2064;
+		rType = 0;
+		vrLen = 931;
+		vrLoc = 1323;
+	};
+	741776450E322B3D00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	741776490E322B5D00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 62";
+		rLen = 0;
+		rLoc = 1930;
+		rType = 0;
+		vrLen = 1281;
+		vrLoc = 814;
+	};
+	7417764A0E322B5D00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	7417764E0E322B6E00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 46";
+		rLen = 0;
+		rLoc = 1389;
+		rType = 0;
+		vrLen = 1012;
+		vrLoc = 3115;
+	};
+	7417764F0E322B6E00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	741776530E322B7B00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 121";
+		rLen = 0;
+		rLoc = 3734;
+		rType = 0;
+		vrLen = 1097;
+		vrLoc = 3030;
+	};
+	741776540E322B7B00551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	741776580E322B9800551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 61";
+		rLen = 0;
+		rLoc = 1886;
+		rType = 0;
+		vrLen = 1288;
+		vrLoc = 805;
+	};
+	741776590E322B9800551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	7417765F0E322BE200551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 43";
+		rLen = 0;
+		rLoc = 1260;
+		rType = 0;
+		vrLen = 1288;
+		vrLoc = 805;
+	};
+	741776600E322BE200551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1076;
+		vrLoc = 6040;
+	};
+	741776660E322D6800551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741775BE0E321F8100551817 /* MovieTitleCell.m */;
+		name = "MovieTitleCell.m: 42";
+		rLen = 0;
+		rLoc = 1219;
+		rType = 0;
+		vrLen = 1341;
+		vrLoc = 752;
+	};
+	741776670E322D6800551817 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745D6FA40E30306900F3B788 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1156;
 		vrLoc = 6040;
 	};
 	742445070E2C7F5F00C98F84 /* PBXTextBookmark */ = {
@@ -12890,7 +13401,7 @@
 		fRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 50";
 		rLen = 0;
-		rLoc = 1985;
+		rLoc = 0;
 		rType = 0;
 		vrLen = 935;
 		vrLoc = 41;
@@ -13803,7 +14314,7 @@
 		ignoreCount = 0;
 		lineNumber = 153;
 		location = BoxOffice;
-		modificationTime = 238166364.910256;
+		modificationTime = 238169193.418076;
 		state = 2;
 	};
 	745D6F340E30179100F3B788 /* PBXTextBookmark */ = {
@@ -13837,7 +14348,7 @@
 		ignoreCount = 0;
 		lineNumber = 124;
 		location = BoxOffice;
-		modificationTime = 238166364.914763;
+		modificationTime = 238169193.421942;
 		state = 2;
 	};
 	745D6F590E301B0300F3B788 /* PBXTextBookmark */ = {
@@ -13894,7 +14405,7 @@
 		ignoreCount = 0;
 		lineNumber = 59;
 		location = BoxOffice;
-		modificationTime = 238166364.926019;
+		modificationTime = 238169193.425311;
 		state = 2;
 	};
 	745D6F890E301D4400F3B788 /* PBXTextBookmark */ = {
@@ -13921,7 +14432,7 @@
 		ignoreCount = 0;
 		lineNumber = 265;
 		location = BoxOffice;
-		modificationTime = 238166364.929242;
+		modificationTime = 238169193.428639;
 		state = 2;
 	};
 	745D6F9F0E301E0800F3B788 /* ReviewCache.m:245 */ = {
@@ -13938,7 +14449,7 @@
 		ignoreCount = 0;
 		lineNumber = 245;
 		location = BoxOffice;
-		modificationTime = 238166364.932254;
+		modificationTime = 238169193.432896;
 		state = 2;
 	};
 	745D6FA30E30306900F3B788 /* PBXTextBookmark */ = {
@@ -13960,7 +14471,7 @@
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {909, 2646}}";
 			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{6040, 1076}";
+			sepNavVisRange = "{6040, 1156}";
 		};
 	};
 	745E73900E28D56000B819BE /* PBXTextBookmark */ = {
@@ -14326,7 +14837,7 @@
 		ignoreCount = 0;
 		lineNumber = 92;
 		location = BoxOffice;
-		modificationTime = 238166364.757627;
+		modificationTime = 238169193.255043;
 		state = 2;
 	};
 	74737B220E2D749200C37E4B /* PBXTextBookmark */ = {
@@ -14363,7 +14874,7 @@
 		ignoreCount = 0;
 		lineNumber = 224;
 		location = BoxOffice;
-		modificationTime = 238166364.760712;
+		modificationTime = 238169193.260098;
 		state = 2;
 	};
 	74737B330E2D765C00C37E4B /* ReviewCache.m:223 */ = {
@@ -14380,7 +14891,7 @@
 		ignoreCount = 0;
 		lineNumber = 223;
 		location = BoxOffice;
-		modificationTime = 238166364.764172;
+		modificationTime = 238169193.264569;
 		state = 2;
 	};
 	74737B530E2D7BF000C37E4B /* ReviewCache.m:197 */ = {
@@ -14397,7 +14908,7 @@
 		ignoreCount = 0;
 		lineNumber = 197;
 		location = BoxOffice;
-		modificationTime = 238166364.767487;
+		modificationTime = 238169193.268424;
 		state = 2;
 	};
 	74737B7E0E2D7D8E00C37E4B /* ReviewCache.m */ = {
@@ -14421,7 +14932,7 @@
 		ignoreCount = 0;
 		lineNumber = 230;
 		location = BoxOffice;
-		modificationTime = 238166364.770958;
+		modificationTime = 238169193.272673;
 		state = 2;
 	};
 	74737B860E2D7DE200C37E4B /* ReviewCache.m:198 */ = {
@@ -14438,7 +14949,7 @@
 		ignoreCount = 0;
 		lineNumber = 198;
 		location = BoxOffice;
-		modificationTime = 238166364.796518;
+		modificationTime = 238169193.276444;
 		state = 2;
 	};
 	74737B880E2D7DF300C37E4B /* ReviewCache.m:251 */ = {
@@ -14455,7 +14966,7 @@
 		ignoreCount = 0;
 		lineNumber = 251;
 		location = BoxOffice;
-		modificationTime = 238166364.799661;
+		modificationTime = 238169193.280136;
 		state = 2;
 	};
 	74737B8A0E2D7E0700C37E4B /* ReviewCache.m:240 */ = {
@@ -14472,7 +14983,7 @@
 		ignoreCount = 0;
 		lineNumber = 240;
 		location = BoxOffice;
-		modificationTime = 238166364.80372;
+		modificationTime = 238169193.284016;
 		state = 2;
 	};
 	74737B9B0E2D7ED200C37E4B /* ReviewCache.m:295 */ = {
@@ -14489,7 +15000,7 @@
 		ignoreCount = 0;
 		lineNumber = 295;
 		location = BoxOffice;
-		modificationTime = 238166364.806845;
+		modificationTime = 238169193.287478;
 		state = 2;
 	};
 	74737B9F0E2D7F1200C37E4B /* ReviewCache.m:267 */ = {
@@ -14506,7 +15017,7 @@
 		ignoreCount = 0;
 		lineNumber = 267;
 		location = BoxOffice;
-		modificationTime = 238166364.810017;
+		modificationTime = 238169193.291067;
 		state = 2;
 	};
 	74737BC40E2D825A00C37E4B /* ExtraMovieInformation.m */ = {
@@ -15018,9 +15529,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/MovieTitleCell.h;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1037, 448}}";
-			sepNavSelRange = "{421, 0}";
-			sepNavVisRange = "{0, 652}";
+			sepNavIntBoundsRect = "{{0, 0}, {966, 496}}";
+			sepNavSelRange = "{765, 0}";
+			sepNavVisRange = "{0, 778}";
 		};
 	};
 	748218E50E216BD50054759E /* Movie.m */ = {
@@ -15493,7 +16004,7 @@
 		ignoreCount = 0;
 		lineNumber = 215;
 		location = BoxOffice;
-		modificationTime = 238166364.73889;
+		modificationTime = 238169193.234616;
 		state = 2;
 	};
 	749569860E2D6BF7007BFF21 /* PBXTextBookmark */ = {
@@ -15530,7 +16041,7 @@
 		ignoreCount = 0;
 		lineNumber = 219;
 		location = BoxOffice;
-		modificationTime = 238166364.743796;
+		modificationTime = 238169193.241237;
 		state = 2;
 	};
 	749569DD0E2D703F007BFF21 /* ReviewCache.m */ = {
@@ -15559,7 +16070,7 @@
 		ignoreCount = 0;
 		lineNumber = 231;
 		location = BoxOffice;
-		modificationTime = 238166364.748452;
+		modificationTime = 238169193.246362;
 		state = 2;
 	};
 	749569FE0E2D7195007BFF21 /* PBXTextBookmark */ = {
@@ -15583,7 +16094,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = BoxOffice;
-		modificationTime = 238166365.41901;
+		modificationTime = 238169194.010008;
 		state = 0;
 		symbolName = "-[ReviewCache downloadReview:]";
 	};
@@ -15608,7 +16119,7 @@
 		ignoreCount = 0;
 		lineNumber = 231;
 		location = BoxOffice;
-		modificationTime = 238166364.75426;
+		modificationTime = 238169193.250942;
 		state = 2;
 	};
 	749618980DFF9B150081851F /* PBXBookmark */ = {
@@ -15751,7 +16262,7 @@
 		ignoreCount = 0;
 		lineNumber = 98;
 		location = BoxOffice;
-		modificationTime = 238166366.317098;
+		modificationTime = 238169196.287078;
 		state = 1;
 	};
 	74A5C8B00E30809900324BBF /* PBXTextBookmark */ = {
@@ -15838,7 +16349,7 @@
 		ignoreCount = 0;
 		lineNumber = 54;
 		location = BoxOffice;
-		modificationTime = 238166364.943156;
+		modificationTime = 238169193.439058;
 		state = 2;
 	};
 	74A5C8E10E30834300324BBF /* PBXTextBookmark */ = {
@@ -15971,7 +16482,7 @@
 		ignoreCount = 0;
 		lineNumber = 147;
 		location = BoxOffice;
-		modificationTime = 238166364.814859;
+		modificationTime = 238169193.294741;
 		state = 2;
 	};
 	74B3BCA10E2D983300DCE835 /* MovieDetailsViewController.m:288 */ = {
@@ -15988,7 +16499,7 @@
 		ignoreCount = 0;
 		lineNumber = 288;
 		location = BoxOffice;
-		modificationTime = 238166364.817939;
+		modificationTime = 238169193.298249;
 		state = 2;
 	};
 	74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */ = {
@@ -16046,7 +16557,7 @@
 		ignoreCount = 0;
 		lineNumber = 73;
 		location = BoxOffice;
-		modificationTime = 238166364.821111;
+		modificationTime = 238169193.301489;
 		state = 2;
 	};
 	74B3BD090E2D9CAE00DCE835 /* ReviewsViewController.m:95 */ = {
@@ -16063,7 +16574,7 @@
 		ignoreCount = 0;
 		lineNumber = 95;
 		location = BoxOffice;
-		modificationTime = 238166364.824097;
+		modificationTime = 238169193.305268;
 		state = 2;
 	};
 	74B3BD190E2D9D3B00DCE835 /* PBXTextBookmark */ = {
@@ -16120,7 +16631,7 @@
 		ignoreCount = 0;
 		lineNumber = 147;
 		location = BoxOffice;
-		modificationTime = 238166364.827337;
+		modificationTime = 238169193.309072;
 		state = 2;
 	};
 	74B3BDC50E2DABA000DCE835 /* PBXTextBookmark */ = {
@@ -16164,7 +16675,7 @@
 		ignoreCount = 0;
 		lineNumber = 127;
 		location = BoxOffice;
-		modificationTime = 238166364.830377;
+		modificationTime = 238169193.312452;
 		state = 2;
 	};
 	74B3BDE00E2DACB800DCE835 /* ReviewCache.m:284 */ = {
@@ -16181,7 +16692,7 @@
 		ignoreCount = 0;
 		lineNumber = 284;
 		location = BoxOffice;
-		modificationTime = 238166364.83355;
+		modificationTime = 238169193.316154;
 		state = 2;
 	};
 	74B3BDE30E2DACDA00DCE835 /* ReviewCache.m:276 */ = {
@@ -16198,7 +16709,7 @@
 		ignoreCount = 0;
 		lineNumber = 276;
 		location = BoxOffice;
-		modificationTime = 238166364.836717;
+		modificationTime = 238169193.319796;
 		state = 2;
 	};
 	74B3BE0F0E2DB11800DCE835 /* PBXTextBookmark */ = {
@@ -16252,7 +16763,7 @@
 		ignoreCount = 0;
 		lineNumber = 56;
 		location = BoxOffice;
-		modificationTime = 238166364.839798;
+		modificationTime = 238169193.323137;
 		state = 2;
 	};
 	74B3BE360E2DB2D600DCE835 /* ReviewCache.m:67 */ = {
@@ -16269,7 +16780,7 @@
 		ignoreCount = 0;
 		lineNumber = 67;
 		location = BoxOffice;
-		modificationTime = 238166364.842835;
+		modificationTime = 238169193.328192;
 		state = 2;
 	};
 	74B3BE4B0E2DB38800DCE835 /* ReviewCache.m:266 */ = {
@@ -16286,7 +16797,7 @@
 		ignoreCount = 0;
 		lineNumber = 266;
 		location = BoxOffice;
-		modificationTime = 238166364.846061;
+		modificationTime = 238169193.332255;
 		state = 2;
 	};
 	74BB41520DDE70C3006CFF0E /* PBXTextBookmark */ = {
@@ -16359,7 +16870,7 @@
 		ignoreCount = 0;
 		lineNumber = 106;
 		location = BoxOffice;
-		modificationTime = 238166364.852318;
+		modificationTime = 238169193.339012;
 		state = 2;
 	};
 	74C927210E2DD84000F5EF7D /* PBXTextBookmark */ = {
@@ -17562,7 +18073,7 @@
 		ignoreCount = 0;
 		lineNumber = 194;
 		location = BoxOffice;
-		modificationTime = 238166364.84917;
+		modificationTime = 238169193.335835;
 		state = 2;
 	};
 	74F946590DEC31BA0074AE42 /* unistd.h */ = {

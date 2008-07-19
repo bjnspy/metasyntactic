@@ -202,10 +202,13 @@
     id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     MovieTitleCell* movieCell = cell;
     if (movieCell == nil) {    
-        movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier model:self.model] autorelease];
+        movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                           reuseIdentifier:reuseIdentifier
+                                                     model:self.model
+                                                     style:UITableViewStylePlain] autorelease];
     }
     
-    [movieCell setMovie:movie style:UITableViewStylePlain];    
+    [movieCell setMovie:movie];    
     return movieCell;
 }
 

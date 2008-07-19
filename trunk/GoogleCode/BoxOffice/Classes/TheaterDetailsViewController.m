@@ -149,11 +149,13 @@
             static NSString* reuseIdentifier = @"TheaterDetailsMovieCellIdentifier";
             MovieTitleCell* movieCell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
             if (movieCell == nil) {    
-                movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier model:self.model] autorelease];
+                movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                                   reuseIdentifier:reuseIdentifier
+                                                             model:self.model
+                                                             style:UITableViewStyleGrouped] autorelease];
             }
             
-            [movieCell setMovie:[self.movies objectAtIndex:(section - 1)] 
-                          style:UITableViewStyleGrouped];
+            [movieCell setMovie:[self.movies objectAtIndex:(section - 1)]];
             
             return movieCell;
         } else {
