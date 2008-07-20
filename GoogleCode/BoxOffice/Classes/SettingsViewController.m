@@ -48,7 +48,6 @@
         [self.view addSubview:imageView];
 */
         self.navigationItem.leftBarButtonItem = item;
-        item.width = -2;
         
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         self.locationManager.delegate = self;

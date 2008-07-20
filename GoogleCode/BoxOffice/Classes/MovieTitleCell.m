@@ -33,17 +33,17 @@
         self.model = model_;
         style = style_;
         
-        self.scoreLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        self.scoreLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.textAlignment = UITextAlignmentCenter;
         
-        self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        self.titleLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
         titleLabel.minimumFontSize = 16;
         titleLabel.textColor = [UIColor blackColor];
         
-        self.ratingLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        self.ratingLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         ratingLabel.font = [UIFont systemFontOfSize:12];
         ratingLabel.textColor = [UIColor grayColor];
         
