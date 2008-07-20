@@ -128,7 +128,8 @@
     NSInteger row = [indexPath row];
     
     if (section == 0) {
-        AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+        AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                                    reuseIdentifier:nil] autorelease];
         
         if (row == 0) {
             Location* location = [self.model locationForAddress:theater.address];
@@ -163,7 +164,8 @@
             id i = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
             MovieShowtimesCell* cell = i;
             if (cell == nil) {
-                cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+                cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                                  reuseIdentifier:reuseIdentifier] autorelease];
             }
             
             [cell setShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];

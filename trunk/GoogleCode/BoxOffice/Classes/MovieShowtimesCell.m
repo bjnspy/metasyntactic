@@ -12,10 +12,11 @@
 
 @implementation MovieShowtimesCell
 
-@synthesize label;
+@synthesize showtimesLabel;
 
 - (void) dealloc {
-    self.label = nil;
+    self.showtimesLabel = nil;
+    
     [super dealloc];
 }
 
@@ -43,38 +44,42 @@
         reuseIdentifier:(NSString*) reuseIdentifier  {
     if (self = [super initWithFrame:frame
                     reuseIdentifier:reuseIdentifier]) {
-        self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];  
         
-        label.numberOfLines = 0;
-        label.font = [Application boldSystem11];
-        label.lineBreakMode = UILineBreakModeWordWrap;
+        self.showtimesLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];  
         
-        [self addSubview:label];
+        self.showtimesLabel.numberOfLines = 0;
+        self.showtimesLabel.font = [Application boldSystem11];
+        self.showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
+//        self.showtimesLabel.backgroundColor = [UIColor redColor];
+        
+        [self addSubview:showtimesLabel];
+
+        {
+            CGRect frame = showtimesLabel.frame;
+            frame.origin.x = 19;
+            frame.origin.y = 9;
+            frame.size.width = 272;
+            self.showtimesLabel.frame = frame;
+        }
     }
     
     return self;
 }
 
-- (void) layoutSubviews {
-    [super layoutSubviews];
-    
-    CGRect bounds = self.contentView.frame;
-    CGRect labelBounds = CGRectMake(bounds.origin.x + 9, bounds.origin.y + 9, 272, bounds.size.height - 18);
-    
-    self.label.frame = labelBounds;
-}
-
 - (void) setShowtimes:(NSArray*) showtimes {
-    label.text = [MovieShowtimesCell showtimesString:showtimes];
+    showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimes];
+    CGRect frame = showtimesLabel.frame;
+    frame.size.height = [MovieShowtimesCell heightForShowtimes:showtimes];
+    showtimesLabel.frame = frame;
 }
 
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        label.textColor = [UIColor whiteColor];
+        showtimesLabel.textColor = [UIColor whiteColor];
     } else {
-        label.textColor = [UIColor blackColor];
+        showtimesLabel.textColor = [UIColor blackColor];
     }
 }
 

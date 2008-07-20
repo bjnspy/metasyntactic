@@ -29,7 +29,7 @@
     if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
         self.values = values_;
         
-        self.picker = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];
+        self.picker = [[[UIPickerView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         self.picker.delegate = self;
         self.picker.showsSelectionIndicator = YES;
         [self.picker selectRow:[values indexOfObject:defaultValue]

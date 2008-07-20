@@ -29,7 +29,7 @@
         self.sourceLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         
         self.authorLabel.font = [UIFont boldSystemFontOfSize:14];
-        self.sourceLabel.font = [UIFont boldSystemFontOfSize:12];
+        self.sourceLabel.font = [UIFont systemFontOfSize:12];
         
         [self.contentView addSubview:authorLabel];
         [self.contentView addSubview:sourceLabel];

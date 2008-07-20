@@ -12,6 +12,7 @@
 #import "ReviewTitleCell.h"
 #import "ReviewBodyCell.h"
 #import "MoviesNavigationController.h"
+#import "Utilities.h"
 
 @implementation ReviewsViewController
 
@@ -94,12 +95,6 @@
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
     return 2;
-}
-
-
-
-double max_d(double a, double b) {
-    return a > b ? a : b;
 }
 
 - (CGFloat)         tableView:(UITableView*) tableView

@@ -90,7 +90,8 @@
     
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                       reuseIdentifier:reuseIdentifier] autorelease];
         
         cell.textAlignment = UITextAlignmentCenter;
         cell.font = [UIFont boldSystemFontOfSize:14];
@@ -126,7 +127,8 @@
 }
 
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
-    AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+    AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                                reuseIdentifier:nil] autorelease];
     
     if (row == 0) {
         Location* location = [self.model locationForAddress:theater.address];

@@ -182,13 +182,9 @@
     return CGRectMake(synopsisX, 5, width, size.height);
 }
 
-double max_d1(double a, double b) {
-    return a > b ? a : b;
-}
-
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
-        return max_d1([self posterImage].size.height, [self synopsisFrame].size.height) + 10;
+        return max_d([self posterImage].size.height, [self synopsisFrame].size.height) + 10;
     } else if (row == 1) {
         return [self.tableView rowHeight] - 10;
     } else {
@@ -221,7 +217,9 @@ double max_d1(double a, double b) {
     if (row == 0) {
         return [tableView rowHeight];
     } else {
-        return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]] + 18;
+        double h1 = [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]] + 18;
+        double h2 = [tableView rowHeight];
+        return max_d(h1, h2);
     }
 }
 
@@ -278,7 +276,8 @@ double max_d1(double a, double b) {
     
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                       reuseIdentifier:reuseIdentifier] autorelease];
         
         cell.textColor = [Application commandColor];
         cell.font = [UIFont boldSystemFontOfSize:14];
@@ -316,7 +315,8 @@ double max_d1(double a, double b) {
         static NSString* reuseIdentifier = @"MovieDetailsTheaterCellIdentifier";
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                           reuseIdentifier:reuseIdentifier] autorelease];
         }
         
         Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
@@ -331,7 +331,8 @@ double max_d1(double a, double b) {
         static NSString* reuseIdentifier = @"MovieDetailsShowtimesCellIdentifier";
         MovieShowtimesCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                              reuseIdentifier:reuseIdentifier] autorelease];
         }
         
         [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]];

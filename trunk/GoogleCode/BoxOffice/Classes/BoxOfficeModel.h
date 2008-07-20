@@ -24,7 +24,7 @@
     ReviewCache* reviewCache;
     SearchCache* SearchCache;
     
-    NSInteger backgroundTaskCount;
+    NSInteger backgroundTaskCount; 
     UIActivityIndicatorView* activityIndicatorView;
     UIView* activityView;
     

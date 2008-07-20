@@ -20,7 +20,7 @@
  
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         
         label.textAlignment = UITextAlignmentCenter;
         label.opaque = NO;
