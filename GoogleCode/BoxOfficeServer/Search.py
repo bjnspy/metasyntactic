@@ -16,7 +16,25 @@ from google.appengine.api import memcache
 import imdb
 
 class SearchHandler(LookupHandler):
+  def get_test(self):
+    document = getDOMImplementation().createDocument(None, "result", None)
+    resultElement = document.documentElement
+
+    moviesElement = document.createElement("movies")
+    resultElement.appendChild(moviesElement)
+
+    movieElement = document.createElement("movie")
+    movieElement.setAttribute("name", "Dark Kight, The")
+    movieElement.setAttribute("year", "2008")
+    movieElement.setAttribute("id", "0468569")
+    moviesElement.appendChild(movieElement);
+
+    self.response.out.write(document.toxml())
+
   def get(self):
+    self.get_test()
+    return
+
     q = self.request.get("q")
     listings = self.get_listings_from_cache(q)
     if listings is None:
@@ -31,7 +49,7 @@ class SearchHandler(LookupHandler):
 
     if listings is None:
       listings = self.get_listings_from_webservice(q)
-      memcache.Client().set("Search_" + q, listings, time=3*24*60*60)
+      memcache.Client().set("Search_" + q, listings, time=24*60*60)
 
     return listings
     

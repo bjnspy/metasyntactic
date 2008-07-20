@@ -8,10 +8,12 @@ import UploadWriter
 import DeleteAllMovies
 import DeleteAllUsers
 import Search
+import LookupCharacter
 import LookupPerson
 import LookupMovie
 import LookupLocation
 import LookupMovieListings
+import LookupMovieReviews
 import LookupTheaterListings
 import LookupTrailerListings
 import CacheStatistics
@@ -33,9 +35,11 @@ def main():
 #                                        ('/UploadWriter', UploadWriter.UploadWriterHandler),
                                         ('/Search', Search.SearchHandler),
                                         ('/LookupMovie', LookupMovie.LookupMovieHandler),
+                                        ('/LookupCharacter', LookupCharacter.LookupCharacterHandler),
                                         ('/LookupPerson', LookupPerson.LookupPersonHandler),
                                         ('/LookupLocation', LookupLocation.LookupLocationHandler),
                                         ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
+                                        ('/LookupMovieReviews', LookupMovieReviews.LookupMovieReviewsHandler),
                                         ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler),
                                         ('/LookupTrailerListings', LookupTrailerListings.LookupTrailerListingsHandler),
                                         ('/CacheStatistics', CacheStatistics.CacheStatisticsHandler)
