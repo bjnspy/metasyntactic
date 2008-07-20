@@ -12,6 +12,7 @@
 #import "XmlElement.h"
 #import "XmlParser.h"
 #import "Application.h"
+#import "Utilities.h"
 
 @implementation ReviewCache
 
@@ -67,139 +68,27 @@
     [self performSelectorInBackground:@selector(updateInBackground:)
                            withObject:[NSArray arrayWithObjects:infoWithoutReviews, infoWithReviews, nil]];
 }
-
-NSRange rangeBetween(NSRange startRange, NSRange endRange) {
-    NSRange result;
-    result.location = startRange.location + startRange.length;
-    result.length = endRange.location - result.location;
-    return result;
-}
-
 - (NSArray*) extractReviewSections:(NSString*) reviewPage {
-    NSRange startRange = [reviewPage rangeOfString:@"<div id=\"Content_Reviews\""];
-    if (startRange.length == 0) {
-        return nil;
-    }
+    NSMutableArray* result = [NSMutableArray array];
     
-    NSRange searchRange;
-    searchRange.location = startRange.location + startRange.length;
-    searchRange.length = reviewPage.length - searchRange.location;
-    NSRange endRange = [reviewPage rangeOfString:@"<div class=\"main_reviews_column_nav\"" options:0 range:searchRange];
-    if (endRange.length == 0) {
-        return nil;
-    }
-    
-    NSString* quotes = [reviewPage substringWithRange:rangeBetween(startRange, endRange)];
-    NSArray* sections = [quotes componentsSeparatedByString:@"quoteBubble"];
-    
-    NSMutableArray* result = [NSMutableArray arrayWithArray:sections];
-    [result removeObjectAtIndex:0];
-    
-    return result;
-}
-
-- (NSString*) extractText:(NSString*) section {
-    NSRange startRange = [section rangeOfString:@"<p>"];
-    if (startRange.length == 0) {
-        return nil;
-    }
-    
-    NSRange endRange = [section rangeOfString:@"</p>"];
-    if (startRange.length == 0) {
-        return nil;
-    }
-    
-    NSString* result = [[section substringWithRange:rangeBetween(startRange, endRange)] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
-    result = [result stringByReplacingOccurrencesOfString:@"<I>" withString:@""];
-    result = [result stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
-    result = [result stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
-    
-    if ([result rangeOfString:@"to read the article"].length != 0) {
-        return nil;
+    NSArray* rows = [reviewPage componentsSeparatedByString:@"\n"];
+    for (NSString* row in rows) {
+        NSArray* columns = [row componentsSeparatedByString:@"\t"];
+        
+        if (columns.count < 5) {
+            continue;
+        }
+        
+        [result addObject:[Review reviewWithText:[columns objectAtIndex:0]
+                                        positive:[[columns objectAtIndex:1] isEqual:@"True"]
+                                            link:[columns objectAtIndex:2]
+                                          author:[columns objectAtIndex:3]
+                                          source:[columns objectAtIndex:4]]];
     }
     
     return result;
 }
 
-- (NSString*) extractLink:section {
-    NSRange fullReviewRange = [section rangeOfString:@"Full Review"];
-    if (fullReviewRange.length == 0) {
-        return nil;
-    }
-    
-    NSRange searchRange;
-    searchRange.location = 0;
-    searchRange.length = fullReviewRange.location;
-    
-    NSRange hrefRange = [section rangeOfString:@"href=\"" options:NSBackwardsSearch range:searchRange];
-    if (hrefRange.length == 0) {
-        return nil;
-    }
-    
-    NSRange quoteRange = [section rangeOfString:@"\"" options:0 range:rangeBetween(hrefRange, fullReviewRange)];
-    if (quoteRange.length == 0) {
-        return nil;
-    }
-    
-    NSString* address = [section substringWithRange:rangeBetween(hrefRange, quoteRange)];
-    
-    return [NSString stringWithFormat:@"http://www.rottentomatoes.com%@", address];
-}
-
-- (NSString*) extractCriticInformation:(NSString*) section
-                                anchor:(NSString*) anchor {
-    NSRange authorRange = [section rangeOfString:anchor];
-    if (authorRange.length == 0) {
-        return nil;
-    }
-    
-    NSRange searchRange;
-    searchRange.location = authorRange.location + authorRange.length;
-    searchRange.length = [section length] - searchRange.location;
-    NSRange startRange = [section rangeOfString:@"\">" options:0 range:searchRange];
-    if (startRange.length == 0) {
-        return nil;
-    }
-    
-    searchRange.location = startRange.location;
-    searchRange.length = [section length] - searchRange.location;
-    NSRange endRange = [section rangeOfString:@"</a>" options:0 range:searchRange];
-    if (endRange.length == 0) {
-        return nil;
-    }
-    
-    NSString* result = [section substringWithRange:rangeBetween(startRange, endRange)];
-    
-    result = [result stringByReplacingOccurrencesOfString:@"&amp;" withString:@"&"];
-    return result;
-}
-
-- (NSString*) extractAuthor:(NSString*) section {
-    return [self extractCriticInformation:section anchor:@"<div class=\"author\">"];
-}
-
-- (NSString*) extractSource:(NSString*) section {
-    return [self extractCriticInformation:section anchor:@"<div class=\"source\">"];
-}
-
-- (Review*) extractReview:(NSString*) section {
-    NSString* text = [self extractText:section];
-    if (text == nil) {
-        return nil;
-    }
-    
-    BOOL positive = [section rangeOfString:@"fresh.gif"].length > 0;
-    NSString* link = [self extractLink:section];
-    NSString* author = [self extractAuthor:section];
-    NSString* source = [self extractSource:section];
-    
-    return [Review reviewWithText:text
-                         positive:positive
-                             link:link
-                           author:author
-                           source:source];
-}
 
 - (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
     if (info.link.length == 0) {
@@ -207,27 +96,25 @@ NSRange rangeBetween(NSRange startRange, NSRange endRange) {
     }
     
     NSMutableString* link = [NSMutableString stringWithString:info.link];
+    [NSMutableString stringWithString:info.link];
     if ([link characterAtIndex:(link.length - 1)] != '/') {
         [link appendString:@"/"];
     }
     [link appendString:@"?critic=creamcrop"];
     
-    NSURL* url = [NSURL URLWithString:link];
+    NSMutableArray* hosts = [Application hosts];
+    NSInteger index = abs([Utilities hashString:info.link]) % hosts.count;
+    NSString* host = [hosts objectAtIndex:index];
+    
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", host, link];
+    
     NSError* httpError = nil;
-    NSString* reviewPage = [NSString stringWithContentsOfURL:url encoding:NSISOLatin1StringEncoding error:&httpError];
+    NSString* reviewPage = [NSString stringWithContentsOfURL:[NSURL URLWithString:url]
+                                                    encoding:NSISOLatin1StringEncoding
+                                                       error:&httpError];
     
     if (httpError == nil && reviewPage != nil) {
-        NSArray* reviewSections = [self extractReviewSections:reviewPage];
-        NSMutableArray* reviews = [NSMutableArray array];
-        
-        for (NSString* section in reviewSections) {
-            Review* review = [self extractReview:section];
-            if (review != nil) {
-                [reviews addObject:review];
-            }
-        }
-        
-        return reviews;
+        return [self extractReviewSections:reviewPage];
     }
     
     return nil;

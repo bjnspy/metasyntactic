@@ -20,8 +20,12 @@ static NSDateFormatter* dateFormatter;
     if (self == [DateUtilities class]) {
         timeDifferenceMap = [[NSMutableDictionary dictionary] retain];
         calendar = [[NSCalendar currentCalendar] retain];
-        today = [[NSDate date] retain];
         dateFormatter = [[NSDateFormatter alloc] init];
+        
+        NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                        fromDate:[NSDate date]];
+        [todayComponents setHour:12];
+        today = [[calendar dateFromComponents:todayComponents] retain];
     }
 }
 
