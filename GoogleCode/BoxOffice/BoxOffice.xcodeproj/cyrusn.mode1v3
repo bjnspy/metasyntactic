@@ -265,7 +265,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>74A7A4820E32F2FC00748DD0</string>
+						<string>74A7A4A20E32F9D400748DD0</string>
 						<key>history</key>
 						<array>
 							<string>741776670E322D6800551817</string>
@@ -404,7 +404,7 @@
 							<real>289</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>67 40 1360 835 0 0 1440 878 </string>
+						<string>154 43 1360 835 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -434,7 +434,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74A7A4810E32F2FC00748DD0</string>
+										<string>74A7A4A10E32F9D400748DD0</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -963,7 +963,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1027, 551}}</string>
 								<key>RubberWindowFrame</key>
-								<string>67 40 1360 835 0 0 1440 878 </string>
+								<string>154 43 1360 835 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -983,7 +983,7 @@
 								<key>Frame</key>
 								<string>{{0, 556}, {1027, 238}}</string>
 								<key>RubberWindowFrame</key>
-								<string>67 40 1360 835 0 0 1440 878 </string>
+								<string>154 43 1360 835 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -1128,7 +1128,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>238220028.72938201</real>
+	<real>238221780.88735899</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1154,7 +1154,7 @@
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>67 40 1360 835 0 0 1440 878 </string>
+	<string>154 43 1360 835 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
