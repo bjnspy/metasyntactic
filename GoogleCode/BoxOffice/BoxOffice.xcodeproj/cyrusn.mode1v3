@@ -265,7 +265,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>74EFE2490E33ED8C00B6E103</string>
+						<string>74EFE2540E33F2BB00B6E103</string>
 						<key>history</key>
 						<array>
 							<string>74987B8C0E339CA300EAE191</string>
@@ -407,7 +407,7 @@
 							<real>289</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>61 43 1360 835 0 0 1440 878 </string>
+						<string>61 42 1360 835 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -425,7 +425,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>Movie.m</string>
+								<string>DateUtilities.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -433,11 +433,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Movie.m</string>
+										<string>DateUtilities.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74EFE2480E33ED8C00B6E103</string>
+										<string>74EFE2530E33F2BB00B6E103</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -707,7 +707,6 @@
 											<string>746933340E332D26002282B6</string>
 											<string>746933350E332D26002282B6</string>
 											<string>746933370E332D26002282B6</string>
-											<string>74DB764A0E33373800D50418</string>
 											<string>74DB76740E33866C00D50418</string>
 											<string>74987B700E33925800EAE191</string>
 											<string>74EFE1AB0E33D54800B6E103</string>
@@ -725,7 +724,8 @@
 											<string>74EFE22D0E33EC6900B6E103</string>
 											<string>74EFE23A0E33EC8E00B6E103</string>
 											<string>74EFE23B0E33EC8E00B6E103</string>
-											<string>74EFE23C0E33EC8E00B6E103</string>
+											<string>74EFE24D0E33F25300B6E103</string>
+											<string>74EFE24E0E33F25300B6E103</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -956,6 +956,7 @@
 											<string>74EFE2360E33EC6900B6E103</string>
 											<string>74EFE23D0E33EC8E00B6E103</string>
 											<string>74EFE23E0E33EC8E00B6E103</string>
+											<string>74EFE24F0E33F25300B6E103</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -969,7 +970,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {1027, 551}}</string>
 								<key>RubberWindowFrame</key>
-								<string>61 43 1360 835 0 0 1440 878 </string>
+								<string>61 42 1360 835 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -989,7 +990,7 @@
 								<key>Frame</key>
 								<string>{{0, 556}, {1027, 238}}</string>
 								<key>RubberWindowFrame</key>
-								<string>61 43 1360 835 0 0 1440 878 </string>
+								<string>61 42 1360 835 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -1134,7 +1135,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>238284172.34151101</real>
+	<real>238285499.31661999</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1154,14 +1155,14 @@
 		<string>74EFE1C70E33D59100B6E103</string>
 		<string>74EFE1C10E33D54800B6E103</string>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>7411F0BE0E2E9D7600F0725C</string>
 		<string>746A021D0DC8202B0079D89B</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
 	</array>
 	<key>WindowString</key>
-	<string>61 43 1360 835 0 0 1440 878 </string>
+	<string>61 42 1360 835 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
@@ -1393,12 +1394,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MovieDetailsViewController.m</string>
+										<string>DateUtilities.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1419,8 +1422,6 @@
 							<string>417pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1466,7 +1467,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>

@@ -72,7 +72,6 @@
 			745D6F950E301DA700F3B788 /* ReviewCache.m:152 */,
 			745D6F9F0E301E0800F3B788 /* ReviewCache.m:132 */,
 			74A5C89E0E307F4600324BBF /* AllMoviesViewController.m:98 */,
-			74A5C8C90E30810800324BBF /* DateUtilities.m:58 */,
 			741771010E3150AC00551817 /* SettingsViewController.m:61 */,
 			741771BB0E315D1B00551817 /* SearchStartPageViewController.m:229 */,
 			741771DC0E315E8300551817 /* SearchPersonDetailsViewController.m:58 */,
@@ -792,6 +791,15 @@
 			74EFE2450E33ECA300B6E103 /* PBXTextBookmark */ = 74EFE2450E33ECA300B6E103 /* PBXTextBookmark */;
 			74EFE2480E33ED8C00B6E103 /* PBXTextBookmark */ = 74EFE2480E33ED8C00B6E103 /* PBXTextBookmark */;
 			74EFE2490E33ED8C00B6E103 /* PBXTextBookmark */ = 74EFE2490E33ED8C00B6E103 /* PBXTextBookmark */;
+			74EFE24A0E33EDE000B6E103 /* PBXTextBookmark */ = 74EFE24A0E33EDE000B6E103 /* PBXTextBookmark */;
+			74EFE24B0E33EDE000B6E103 /* PBXTextBookmark */ = 74EFE24B0E33EDE000B6E103 /* PBXTextBookmark */;
+			74EFE24D0E33F25300B6E103 /* PBXTextBookmark */ = 74EFE24D0E33F25300B6E103 /* PBXTextBookmark */;
+			74EFE24E0E33F25300B6E103 /* PBXTextBookmark */ = 74EFE24E0E33F25300B6E103 /* PBXTextBookmark */;
+			74EFE24F0E33F25300B6E103 /* PBXTextBookmark */ = 74EFE24F0E33F25300B6E103 /* PBXTextBookmark */;
+			74EFE2500E33F25300B6E103 /* PBXTextBookmark */ = 74EFE2500E33F25300B6E103 /* PBXTextBookmark */;
+			74EFE2510E33F25300B6E103 /* PBXTextBookmark */ = 74EFE2510E33F25300B6E103 /* PBXTextBookmark */;
+			74EFE2530E33F2BB00B6E103 /* PBXTextBookmark */ = 74EFE2530E33F2BB00B6E103 /* PBXTextBookmark */;
+			74EFE2540E33F2BB00B6E103 /* PBXTextBookmark */ = 74EFE2540E33F2BB00B6E103 /* PBXTextBookmark */;
 			74F0970F0E21E23000CFBEA4 = 74F0970F0E21E23000CFBEA4 /* PBXTextBookmark */;
 			74F186C30E26E47900AB5E1E = 74F186C30E26E47900AB5E1E /* PBXTextBookmark */;
 			74F1878D0E27155D00AB5E1E = 74F1878D0E27155D00AB5E1E /* PBXTextBookmark */;
@@ -4401,9 +4409,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/Movie.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {966, 2030}}";
-			sepNavSelRange = "{4609, 0}";
-			sepNavVisRange = "{3704, 1058}";
+			sepNavIntBoundsRect = "{{0, 0}, {966, 2016}}";
+			sepNavSelRange = "{3992, 0}";
+			sepNavVisRange = "{3704, 1021}";
 		};
 	};
 	741774DD0E32188100551817 /* PBXTextBookmark */ = {
@@ -6502,8 +6510,8 @@
 	747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {966, 1036}}";
-			sepNavSelRange = "{925, 0}";
-			sepNavVisRange = "{0, 1357}";
+			sepNavSelRange = "{2551, 0}";
+			sepNavVisRange = "{1356, 1533}";
 		};
 	};
 	747A9FB90E2AFD8B000AE1D9 /* DateUtilies.h */ = {
@@ -6548,7 +6556,7 @@
 		fRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */;
 		name = "DateUtilies.m: 53";
 		rLen = 0;
-		rLoc = 2438;
+		rLoc = 2414;
 		rType = 0;
 		vrLen = 1663;
 		vrLoc = 629;
@@ -7378,23 +7386,6 @@
 		rType = 0;
 		vrLen = 1038;
 		vrLoc = 312;
-	};
-	74A5C8C90E30810800324BBF /* DateUtilities.m:58 */ = {
-		isa = PBXFileBreakpoint;
-		actions = (
-		);
-		breakpointStyle = 0;
-		continueAfterActions = 0;
-		countType = 0;
-		delayBeforeContinue = 0;
-		fileReference = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */;
-		functionName = "+timeSinceNowWorker:";
-		hitCount = 0;
-		ignoreCount = 0;
-		lineNumber = 58;
-		location = BoxOffice;
-		modificationTime = 238283941.288233;
-		state = 2;
 	};
 	74A7A34E0E322F0E00748DD0 /* BoxOfficeModel.m */ = {
 		isa = PBXFileReference;
@@ -9864,9 +9855,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/SettingsViewController.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {924, 5292}}";
-			sepNavSelRange = "{1078, 0}";
-			sepNavVisRange = "{750, 557}";
+			sepNavIntBoundsRect = "{{0, 0}, {1078, 5194}}";
+			sepNavSelRange = "{1121, 45}";
+			sepNavVisRange = "{468, 987}";
 		};
 	};
 	74EFE2270E33DC0200B6E103 /* PBXTextBookmark */ = {
@@ -10088,7 +10079,7 @@
 		fRef = 741774DA0E32186300551817 /* Movie.m */;
 		name = "Movie.m: 127";
 		rLen = 0;
-		rLoc = 4346;
+		rLoc = 4335;
 		rType = 0;
 		vrLen = 1133;
 		vrLoc = 3580;
@@ -10108,7 +10099,7 @@
 		fRef = 741774DA0E32186300551817 /* Movie.m */;
 		name = "Movie.m: 137";
 		rLen = 0;
-		rLoc = 4691;
+		rLoc = 4654;
 		rType = 0;
 		vrLen = 1057;
 		vrLoc = 3704;
@@ -10128,12 +10119,99 @@
 		fRef = 741774DA0E32186300551817 /* Movie.m */;
 		name = "Movie.m: 135";
 		rLen = 0;
-		rLoc = 4609;
+		rLoc = 4572;
 		rType = 0;
 		vrLen = 1058;
 		vrLoc = 3704;
 	};
 	74EFE2490E33ED8C00B6E103 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74DB768E0E3391DB00D50418 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1108;
+		vrLoc = 5968;
+	};
+	74EFE24A0E33EDE000B6E103 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741774DA0E32186300551817 /* Movie.m */;
+		name = "Movie.m: 126";
+		rLen = 0;
+		rLoc = 4335;
+		rType = 0;
+		vrLen = 1021;
+		vrLoc = 3704;
+	};
+	74EFE24B0E33EDE000B6E103 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74DB768E0E3391DB00D50418 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1108;
+		vrLoc = 5968;
+	};
+	74EFE24D0E33F25300B6E103 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741774DA0E32186300551817 /* Movie.m */;
+		name = "Movie.m: 119";
+		rLen = 0;
+		rLoc = 3992;
+		rType = 0;
+		vrLen = 1021;
+		vrLoc = 3704;
+	};
+	74EFE24E0E33F25300B6E103 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */;
+		rLen = 17;
+		rLoc = 1404;
+		rType = 0;
+	};
+	74EFE24F0E33F25300B6E103 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741774DA0E32186300551817 /* Movie.m */;
+		name = "Movie.m: 119";
+		rLen = 0;
+		rLoc = 3992;
+		rType = 0;
+		vrLen = 1021;
+		vrLoc = 3704;
+	};
+	74EFE2500E33F25300B6E103 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */;
+		name = "DateUtilities.m: 49";
+		rLen = 0;
+		rLoc = 1943;
+		rType = 0;
+		vrLen = 1937;
+		vrLoc = 475;
+	};
+	74EFE2510E33F25300B6E103 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74DB768E0E3391DB00D50418 /* Character.py */;
+		name = "Character.py: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1108;
+		vrLoc = 5968;
+	};
+	74EFE2530E33F2BB00B6E103 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */;
+		name = "DateUtilities.m: 60";
+		rLen = 0;
+		rLoc = 2551;
+		rType = 0;
+		vrLen = 1533;
+		vrLoc = 1356;
+	};
+	74EFE2540E33F2BB00B6E103 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 74DB768E0E3391DB00D50418 /* Character.py */;
 		name = "Character.py: 1";

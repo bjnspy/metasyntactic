@@ -36,28 +36,28 @@ static NSDateFormatter* dateFormatter;
                                                  toDate:today
                                                 options:0];
 
-    if ([components year] == 1) {
+    if (components.year == 1) {
         return NSLocalizedString(@"1 year ago", nil);
-    } else if ([components year] > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"%d years ago", nil), [components year]];
-    } else if ([components month] == 1) { 
+    } else if (components.year > 1) {
+        return [NSString stringWithFormat:NSLocalizedString(@"%d years ago", nil), components.year];
+    } else if (components.month == 1) { 
         return NSLocalizedString(@"1 month ago", nil);
-    } else if ([components month] > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"%d months ago", nil), [components month]];
-    } else if ([components week] == 1) {
+    } else if (components.month > 1) {
+        return [NSString stringWithFormat:NSLocalizedString(@"%d months ago", nil), components.month];
+    } else if (components.week == 1) {
         return NSLocalizedString(@"1 week ago", nil);
-    } else if ([components week] > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"%d weeks ago", nil), [components week]];
-    } else if ([components day] == 0) {
+    } else if (components.week > 1) {
+        return [NSString stringWithFormat:NSLocalizedString(@"%d weeks ago", nil), components.week];
+    } else if (components.day == 0) {
         return NSLocalizedString(@"Today", nil);
-    } else if ([components day] == 1) {
+    } else if (components.day == 1) {
         return NSLocalizedString(@"Yesterday", nil);
     } else {
         NSDateComponents* components2 = [calendar components:NSWeekdayCalendarUnit fromDate:date];
         
-        NSInteger weekday = [components2 weekday];
+        NSInteger weekday = components2.weekday;
         return [NSString stringWithFormat:NSLocalizedString(@"Last %@", nil), 
-                                           [[dateFormatter weekdaySymbols] objectAtIndex:(weekday - 1)]];
+                                           [dateFormatter.weekdaySymbols objectAtIndex:(weekday - 1)]];
     }
 }
 

@@ -124,7 +124,6 @@
     
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {
-        //[text appendString:@" -"];
         if (hours == 1) {
             [text appendString:@" 1 hour"];
         } else if (hours > 1) {
