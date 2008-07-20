@@ -124,8 +124,8 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     if (section == 0) {
         AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
@@ -196,8 +196,8 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     if (section == 0) {
         return [tableView rowHeight];
@@ -212,7 +212,7 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
+    NSInteger section = indexPath.section;
     
     if (section == 0) {
         return UITableViewCellAccessoryNone;
@@ -223,8 +223,8 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     if (section == 0) {
         if (row == 0) {

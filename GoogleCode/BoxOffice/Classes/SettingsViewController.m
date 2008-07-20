@@ -32,6 +32,23 @@
     [super dealloc];
 }
 
+- (void) onCurrentLocationClicked:(id) sender {
+    self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
+    [self.activityIndicator start];
+    
+    [self.locationManager startUpdatingLocation];
+}
+
+- (void) autoUpdateLocation:(id) sender {
+    if ([self.model autoUpdateLocation]) {
+        [self onCurrentLocationClicked:nil];
+    }    
+}
+
+- (void) enqueueUpdateRequest {
+    [self performSelector:@selector(autoUpdateLocation:) withObject:nil afterDelay:5 * 60];    
+}
+
 - (id) initWithNavigationController:(SettingsNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.title = NSLocalizedString(@"Settings", nil);
@@ -41,18 +58,15 @@
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(onCurrentLocationClicked:)] autorelease];
-/*        
-        UIImage* image = [UIImage imageNamed:@"CurrentLocation.png"];
-        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-        imageView.frame = CGRectMake(10, 10, image.size.width, image.size.height);
-        [self.view addSubview:imageView];
-*/
+
         self.navigationItem.leftBarButtonItem = item;
         
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        
+        [self autoUpdateLocation:nil];
     }
     
     return self;
@@ -64,13 +78,6 @@
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
-- (void) onCurrentLocationClicked:(id) sender {
-    self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
-    [self.activityIndicator start];
-    
-    [self.locationManager startUpdatingLocation];
-}
-
 - (void) stopActivityIndicator {
     [self.activityIndicator stop];    
     self.activityIndicator = nil;
@@ -78,7 +85,7 @@
 
 - (void) locationManager:(CLLocationManager*) manager
      didUpdateToLocation:(CLLocation*) newLocation
-            fromLocation:(CLLocation*) oldLocation {
+            fromLocation:(CLLocation*) oldLocation {    
     if (oldLocation != nil) {
         [locationManager stopUpdatingLocation];
         [self performSelectorInBackground:@selector(findPostalCodeBackgroundEntryPoint:) withObject:newLocation];
@@ -135,6 +142,7 @@
        didFailWithError:(NSError*) error {
     [locationManager stopUpdatingLocation];
     [self stopActivityIndicator];
+    [self enqueueUpdateRequest];
 }
 
 - (BoxOfficeModel*) model {
@@ -151,12 +159,16 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    
-    if (section == 2) {
-        return UITableViewCellAccessoryNone;
-    } else {
+    if (indexPath.section == 0) {
+        if (indexPath.row >= 0 && indexPath.row <= 2) {
+            return UITableViewCellAccessoryDisclosureIndicator;
+        } else {
+            return UITableViewCellAccessoryNone;
+        }
+    } else if (indexPath.section == 1) {
         return UITableViewCellAccessoryDisclosureIndicator;
+    } else {
+        return UITableViewCellAccessoryNone;
     }
 }
 
@@ -164,10 +176,10 @@
     return 3;
 }
 
-- (NSInteger)               tableView:(UITableView*) tableView
-                numberOfRowsInSection:(NSInteger) section {
+- (NSInteger)     tableView:(UITableView*) tableView
+      numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 3;
+        return 4;
     }
     
     return 1;
@@ -175,40 +187,47 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
-    if (section == 0) {
-        SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        
-        NSString* key;
-        NSString* value;
-        if (row == 0) {
-            key = NSLocalizedString(@"Postal code", nil);
-            value = [[self model] postalCode];
-        } else if (row == 1) {
-            key = NSLocalizedString(@"Hide theaters beyond", nil);
+    if (indexPath.section == 0) {
+        if (indexPath.row >= 0 && indexPath.row <= 2) {
+            SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             
-            if ([self.model searchRadius] == 1) {
-                value = NSLocalizedString(@"1 mile", nil);
-            } else {
-                value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
+            NSString* key;
+            NSString* value;
+            if (indexPath.row == 0) {
+                key = NSLocalizedString(@"Postal code", nil);
+                value = [[self model] postalCode];
+            } else if (indexPath.row == 1) {
+                key = NSLocalizedString(@"Hide theaters beyond", nil);
+                
+                if ([self.model searchRadius] == 1) {
+                    value = NSLocalizedString(@"1 mile", nil);
+                } else {
+                    value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
+                }
+            } else if (indexPath.row == 2) {
+                key = NSLocalizedString(@"Search date", nil);
+                
+                NSDate* date = [[self model] searchDate];
+                if ([Utilities isSameDay:date date:[NSDate date]]) {
+                    value = NSLocalizedString(@"Today", nil);
+                } else {
+                    value = [Application formatLongDate:date];
+                }
             }
+            
+            [cell setKey:key value:value];
+            
+            return cell;
         } else {
-            key = NSLocalizedString(@"Search date", nil);
-            
-            NSDate* date = [[self model] searchDate];
-            if ([Utilities isSameDay:date date:[NSDate date]]) {
-                value = NSLocalizedString(@"Today", nil);
-            } else {
-                value = [Application formatLongDate:date];
-            }
+            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+            cell.text = NSLocalizedString(@"Auto-update location", nil);
+            UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+            picker.on = [self.model autoUpdateLocation];
+            [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = picker;
+            return cell;
         }
-        
-        [cell setKey:key value:value];
-        
-        return cell;
-    } else if (section == 1) {
+    } else if (indexPath.section == 1) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
         cell.text = NSLocalizedString(@"About", nil);
@@ -225,6 +244,13 @@
     }
 }
 
+- (void) onAutoUpdateChanged:(id) sender {
+    BOOL autoUpdate = ![self.model autoUpdateLocation];
+    [self.model setAutoUpdateLocation:autoUpdate];
+    [self autoUpdateLocation:nil];
+    
+}
+
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
     return nil; 
@@ -232,8 +258,8 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     if (section == 0) {
         if (row == 0) {
@@ -312,6 +338,7 @@
 }
 
 - (void) reportFoundPostalCode:(NSString*) postalCode {
+    [self enqueueUpdateRequest];
     [self stopActivityIndicator];
     
     if ([Utilities isNilOrEmpty:postalCode]) {

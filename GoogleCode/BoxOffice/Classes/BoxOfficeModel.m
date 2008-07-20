@@ -16,7 +16,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.21";
+static NSString* currentVersion = @"1.2.22";
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
@@ -35,6 +35,7 @@ static NSString* MOVIE_TRAILERS                         = @"movieTrailers";
 static NSString* ADDRESS_LOCATION_MAP                   = @"addressLocationMap";
 static NSString* CURRENTLY_SHOWING_REVIEWS              = @"currentlyShowingReviews";
 static NSString* SEARCH_DATE                            = @"searchDate";
+static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
 
 static NSArray* KEYS;
 
@@ -59,6 +60,7 @@ static NSArray* KEYS;
                  MOVIE_TRAILERS,
                  ADDRESS_LOCATION_MAP,
                  CURRENTLY_SHOWING_REVIEWS,
+                 AUTO_UPDATE_LOCATION,
                  nil] retain];
     }
 }
@@ -243,6 +245,14 @@ static NSArray* KEYS;
 
 - (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_THEATERS_SELECTED_SEGMENT_INDEX];
+}
+
+- (BOOL) autoUpdateLocation {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:AUTO_UPDATE_LOCATION];
+}
+
+- (void) setAutoUpdateLocation:(BOOL) value {
+    [[NSUserDefaults standardUserDefaults] setBool:value forKey:AUTO_UPDATE_LOCATION];
 }
 
 - (NSString*) postalCode {

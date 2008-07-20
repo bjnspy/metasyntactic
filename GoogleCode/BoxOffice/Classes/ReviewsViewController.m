@@ -46,9 +46,8 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    Review* review = [reviews objectAtIndex:section];
+    NSInteger row = indexPath.row;
+    Review* review = [reviews objectAtIndex:indexPath.section];
         
     if (row == 0) {
         static NSString* reuseIdentifier = @"ReviewTitleCellIdentifier";
@@ -77,7 +76,7 @@
 
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
-    Review* review = [reviews objectAtIndex:[indexPath section]];
+    Review* review = [reviews objectAtIndex:indexPath.section];
     if (review.link) {
         [Application openBrowser:review.link];
     }    
@@ -99,13 +98,10 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
-    if (row == 0) {
+    if (indexPath.row == 0) {
         return [tableView rowHeight];
     } else {
-        Review* review = [reviews objectAtIndex:section];
+        Review* review = [reviews objectAtIndex:indexPath.section];
     
         return max_d([review heightWithFont:[Application helvetica14]], [self.tableView rowHeight]);
     }
@@ -113,11 +109,8 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
-    if (row == 1) {
-        Review* review = [reviews objectAtIndex:section];
+    if (indexPath.row == 1) {
+        Review* review = [reviews objectAtIndex:indexPath.section];
         if (review.link != nil) {
             return UITableViewCellAccessoryDetailDisclosureButton;
         }

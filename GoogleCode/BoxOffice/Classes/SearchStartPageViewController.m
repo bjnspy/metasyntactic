@@ -93,8 +93,8 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     static NSString* reuseIdentifier = @"SearchStartPageCellIdentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
@@ -134,8 +134,8 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
 
     XmlElement* movieElement = nil;
     XmlElement* personElement = nil;

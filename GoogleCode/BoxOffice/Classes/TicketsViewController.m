@@ -148,13 +148,10 @@
 
 - (UITableViewCell*)        tableView:(UITableView*) tableView
                 cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
-    if (section == 0) {
-        return [self commandCellForRow:row];
-    } else if (section == 1) {
-        return [self showtimeCellForRow:row];
+    if (indexPath.section == 0) {
+        return [self commandCellForRow:indexPath.row];
+    } else if (indexPath.section == 1) {
+        return [self showtimeCellForRow:indexPath.row];
     }
     
     return nil;
@@ -228,13 +225,10 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
-    if (section == 0) {
-        [self didSelectCommandAtRow:row];
-    } else if (section == 1) {
-        [self didSelectShowtimeAtRow:row];
+    if (indexPath.section == 0) {
+        [self didSelectCommandAtRow:indexPath.row];
+    } else if (indexPath.section == 1) {
+        [self didSelectShowtimeAtRow:indexPath.row];
     }
 }
 

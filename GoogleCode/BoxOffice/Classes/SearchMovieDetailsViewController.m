@@ -96,8 +96,8 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     if (section == TAGLINES_SECTION) {
         NSString* text = [self.taglines objectAtIndex:row];
@@ -142,7 +142,7 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
+    NSInteger section = indexPath.section;
     
     if (section == TAGLINES_SECTION) {
         return UITableViewCellAccessoryNone;
@@ -153,8 +153,8 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     if (section == DIRECTORS_SECTION) {
         XmlElement* personElement = [self.directors objectAtIndex:row]; 
@@ -218,8 +218,8 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     if (section == 0) {
         NSString* text = [self.taglines objectAtIndex:row];

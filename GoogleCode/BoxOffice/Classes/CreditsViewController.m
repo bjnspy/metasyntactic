@@ -58,8 +58,8 @@
 }
 
 - (UIImage*) getImage:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     if (section == 1) {
         return rottenTomatoesImage;
@@ -95,8 +95,8 @@
 
 - (UITableViewCell*)    tableView:(UITableView*) tableView
             cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -158,8 +158,8 @@
 
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     NSString* url = nil;
     if (section == 0) {

@@ -81,9 +81,6 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
     static NSString* reuseIdentifier = @"SearchPersonDetailsCellIdentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
@@ -91,12 +88,12 @@
     }
     
     XmlElement* movieElement = nil;
-    if (section == DIRECTOR_SECTION) {
-        movieElement = [self.directedMovies objectAtIndex:row];
-    } else if (section == WRITER_SECTION) {
-        movieElement = [self.wroteMovies objectAtIndex:row];
-    } else if (section == CAST_SECTION) {
-        movieElement = [self.castMovies objectAtIndex:row];
+    if (indexPath.section == DIRECTOR_SECTION) {
+        movieElement = [self.directedMovies objectAtIndex:indexPath.row];
+    } else if (indexPath.section == WRITER_SECTION) {
+        movieElement = [self.wroteMovies objectAtIndex:indexPath.row];
+    } else if (indexPath.section == CAST_SECTION) {
+        movieElement = [self.castMovies objectAtIndex:indexPath.row];
     }
     
     if (movieElement != nil) {
@@ -113,8 +110,8 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
+    NSInteger section = indexPath.section;
+    NSInteger row = indexPath.row;
     
     if (section == DIRECTOR_SECTION) {
         XmlElement* movieElement = [self.directedMovies objectAtIndex:row]; 
