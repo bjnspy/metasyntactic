@@ -113,8 +113,10 @@
         
         scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     } else {
-        self.scoreLabel.text = nil;
-        self.image = [Application unknownImage];
+        if (self.image != [Application unknownImage]) {
+            self.scoreLabel.text = nil;
+            self.image = [Application unknownImage];
+        }
     }
     
     self.ratingLabel.text = [movie ratingAndRuntimeString];

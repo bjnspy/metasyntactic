@@ -208,16 +208,6 @@
     }
     
     return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]] + 18;
-    /*
-    NSInteger showtimesCount = [[self.movieShowtimes objectAtIndex:(section - 1)] count];
-    NSInteger rows = showtimesCount / SHOWTIMES_PER_ROW;
-    NSInteger remainder = showtimesCount % SHOWTIMES_PER_ROW;
-    if (remainder > 0) {
-        rows++;
-    }
-    
-    return (rows * 14) + 18;
-     */
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView

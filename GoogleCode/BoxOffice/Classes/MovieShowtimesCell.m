@@ -12,9 +12,11 @@
 
 @implementation MovieShowtimesCell
 
+@synthesize headerLabel;
 @synthesize showtimesLabel;
 
 - (void) dealloc {
+    self.headerLabel = nil;
     self.showtimesLabel = nil;
     
     [super dealloc];
@@ -36,7 +38,7 @@
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
     
     return [string sizeWithFont:[Application boldSystem11]
-              constrainedToSize:CGSizeMake(272, 1000)
+              constrainedToSize:CGSizeMake(232, 1000)
                   lineBreakMode:UILineBreakModeWordWrap].height;
 }
 
@@ -50,17 +52,31 @@
         self.showtimesLabel.numberOfLines = 0;
         self.showtimesLabel.font = [Application boldSystem11];
         self.showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
-//        self.showtimesLabel.backgroundColor = [UIColor redColor];
-        
-        [self addSubview:showtimesLabel];
 
         {
             CGRect frame = showtimesLabel.frame;
-            frame.origin.x = 19;
+            frame.origin.x = 59;
             frame.origin.y = 9;
-            frame.size.width = 272;
+            frame.size.width = 232;
             self.showtimesLabel.frame = frame;
         }
+        
+        [self addSubview:showtimesLabel];
+        
+        self.headerLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
+        self.headerLabel.font = [Application boldSystem11];
+        self.headerLabel.textColor = [Application commandColor];
+        self.headerLabel.text = NSLocalizedString(@"Shows", nil);
+        [self.headerLabel sizeToFit];
+        
+        {
+            CGRect frame = headerLabel.frame;
+            frame.origin.x = 19;
+            frame.origin.y = 9;
+            self.headerLabel.frame = frame;
+        }
+        
+        [self addSubview:headerLabel];
     }
     
     return self;
@@ -77,8 +93,10 @@
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
+        headerLabel.textColor = [UIColor whiteColor];
         showtimesLabel.textColor = [UIColor whiteColor];
     } else {
+        headerLabel.textColor = [Application commandColor];
         showtimesLabel.textColor = [UIColor blackColor];
     }
 }

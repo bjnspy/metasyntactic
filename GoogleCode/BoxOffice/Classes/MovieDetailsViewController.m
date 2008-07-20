@@ -217,9 +217,7 @@
     if (row == 0) {
         return [tableView rowHeight];
     } else {
-        double h1 = [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]] + 18;
-        double h2 = [tableView rowHeight];
-        return max_d(h1, h2);
+        return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]] + 18;
     }
 }
 
