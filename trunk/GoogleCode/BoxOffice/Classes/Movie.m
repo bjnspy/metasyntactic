@@ -132,7 +132,7 @@
         }
         
         if (minutes == 1) {
-            [text appendString:@"1 minute"];
+            [text appendString:@" 1 minute"];
         } else if (minutes > 1) {
             [text appendFormat:@" %d minutes", minutes];
         }
