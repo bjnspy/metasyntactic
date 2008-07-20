@@ -24,7 +24,9 @@ class LookupTheaterListingsHandler(webapp.RequestHandler):
   def get(self):
     #memcache.flush_all()
     q = self.request.get("q")
-    listings = self.get_listings_from_cache(q)
+    date = self.request.get("date")
+
+    listings = self.get_listings_from_cache(q, date)
     if listings is None:
       self.response.out.write("")
       return
@@ -39,12 +41,13 @@ class LookupTheaterListingsHandler(webapp.RequestHandler):
     return delta.seconds >= (3600 * 8)
     
 
-  def get_listings_from_cache(self, q):
-    listings = memcache.get("TheaterListings_" + q)
+  def get_listings_from_cache(self, q, date):
+    key = "TheaterListings_" + q + "_" + date;
+    listings = memcache.get(key)
 
     if listings is None or self.too_old(listings):
-      listings = self.get_listings_from_webservice(q)
-      memcache.Client().set("TheaterListings_" + q, listings)
+      listings = self.get_listings_from_webservice(q, date)
+      memcache.Client().set(key, listings)
 
     return listings
     
@@ -58,12 +61,15 @@ class LookupTheaterListingsHandler(webapp.RequestHandler):
     return listings
 
 
-  def get_listings_from_webservice(self, q):
+  def get_listings_from_webservice(self, q, date):
     keys = [ "A99D3D1A-774C-49149E", "DE7E251E-7758-40A4-98E0-87557E9F31F0"]
     index = random.randint(0, len(keys) - 1)
     key = keys[index]
 
     url = "http://www.fandango.com/frdi/?pid=" + key + "&op=performancesbypostalcodesearch&verbosity=1&postalcode=" + q
+    if not date is None and date != "":
+      url = url + "&date=" + date
+
     logging.info("Url: " + url)
     content = urlfetch.fetch(url).content
 
