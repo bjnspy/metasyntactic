@@ -362,6 +362,10 @@
 }
 
 - (void) setPostalCode:(NSString*) postalCode {
+    if ([postalCode isEqual:[self.model postalCode]]) {
+        return;
+    }
+
     [self.model setPostalCode:postalCode];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController popNavigationControllers];

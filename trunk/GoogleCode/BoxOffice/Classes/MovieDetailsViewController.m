@@ -202,22 +202,19 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
-    if (section == 0) {
-        return [self heightForRowInHeaderSection:row];
+    if (indexPath.section == 0) {
+        return [self heightForRowInHeaderSection:indexPath.row];
     }
     
-    if (section == 1 && [self hasInfoSection]) {
+    if (indexPath.section == 1 && [self hasInfoSection]) {
         return [tableView rowHeight];
     }
     
     // theater section
-    if (row == 0) {
+    if (indexPath.row == 0) {
         return [tableView rowHeight];
     } else {
-        return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]] + 18;
+        return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]] + 18;
     }
 }
 
@@ -297,19 +294,16 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
-    if (section == 0) {
-        return [self cellForHeaderRow:row];
+    if (indexPath.section == 0) {
+        return [self cellForHeaderRow:indexPath.row];
     } 
     
-    if (section == 1 && [self hasInfoSection]) {
-        return [self cellForInfoRow:row];
+    if (indexPath.section == 1 && [self hasInfoSection]) {
+        return [self cellForInfoRow:indexPath.row];
     }
     
     // theater section
-    if (row == 0) {
+    if (indexPath.row == 0) {
         static NSString* reuseIdentifier = @"MovieDetailsTheaterCellIdentifier";
         UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
@@ -317,7 +311,7 @@
                                            reuseIdentifier:reuseIdentifier] autorelease];
         }
         
-        Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
+        Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
         if ([self.model isFavoriteTheater:theater]) {
             cell.text = [NSString stringWithFormat:@"%@ %@", [Application starString], [theater name]];
         } else {
@@ -333,7 +327,7 @@
                                               reuseIdentifier:reuseIdentifier] autorelease];
         }
         
-        [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:section]]];
+        [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]];
         
         return cell;
     }
@@ -382,21 +376,18 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
-    if (section == 0) {
-        return [self didSelectHeaderRow:row];
+    if (indexPath.section == 0) {
+        return [self didSelectHeaderRow:indexPath.row];
     }
     
-    if (section == 1 && [self hasInfoSection]) {
-        return [self didSelectInfoRow:row];
+    if (indexPath.section == 1 && [self hasInfoSection]) {
+        return [self didSelectInfoRow:indexPath.row];
     }
     
     // theater section
-    Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:section]];
+    Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
     
-    if (row == 0) {
+    if (indexPath.row == 0) {
         [self.navigationController.tabBarController showTheaterDetails:theater];
     } else {
         [self.navigationController pushTicketsView:self.movie theater:theater animated:YES];
@@ -405,7 +396,7 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
+    NSInteger section = indexPath.section;
     
     if (section == 0) {
         return UITableViewCellAccessoryNone;

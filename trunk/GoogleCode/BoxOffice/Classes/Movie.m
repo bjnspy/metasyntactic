@@ -117,14 +117,14 @@
     
     NSString* ratingString;
     if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
-        ratingString = NSLocalizedString(@"Unrated", nil);
+        ratingString = NSLocalizedString(@"Unrated.", nil);
     }  else {
-        ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), self.rating];
+        ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@.", nil), self.rating];
     }
     
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {
-        [text appendString:@" -"];
+        //[text appendString:@" -"];
         if (hours == 1) {
             [text appendString:@" 1 hour"];
         } else if (hours > 1) {
@@ -134,7 +134,7 @@
         if (minutes == 1) {
             [text appendString:@"1 minute"];
         } else if (minutes > 1) {
-            [text appendFormat:@" %02d minutes", minutes];
+            [text appendFormat:@" %d minutes", minutes];
         }
     }    
     

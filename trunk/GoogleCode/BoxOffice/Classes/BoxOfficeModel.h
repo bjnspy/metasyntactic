@@ -79,6 +79,9 @@
 - (void) setCurrentlySelectedMovie:(Movie*) movie 
                            theater:(Theater*) theater;
 
+- (BOOL) autoUpdateLocation;
+- (void) setAutoUpdateLocation:(BOOL) value;
+
 - (NSString*) postalCode;
 - (void) setPostalCode:(NSString*) postalCode;
 

@@ -188,16 +188,13 @@
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
     Movie* movie;
     if ([self.model sortingMoviesByTitle]) {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];        
+        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];        
     } else if ([self.model sortingMoviesByScore]) {
-        movie = [self.sortedMovies objectAtIndex:row];
+        movie = [self.sortedMovies objectAtIndex:indexPath.row];
     } else {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
+        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     }
 
     static NSString* reuseIdentifier = @"AllMoviesCellIdentifier";
@@ -227,16 +224,13 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    NSInteger section = [indexPath section];
-    NSInteger row = [indexPath row];
-    
     Movie* movie;
     if ([self.model sortingMoviesByTitle]) {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
+        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     } else if ([self.model sortingMoviesByScore]) {
-        movie = [self.sortedMovies objectAtIndex:row];
+        movie = [self.sortedMovies objectAtIndex:indexPath.row];
     } else {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] objectAtIndex:row];
+        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     }
     
     [self.navigationController pushMovieDetails:movie animated:YES];
