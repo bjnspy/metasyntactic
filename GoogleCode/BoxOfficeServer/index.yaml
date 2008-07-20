@@ -10,7 +10,7 @@ indexes:
 # automatically uploaded to the admin console when you next deploy
 # your application using appcfg.py.
 
-# Used once in query history.
+# Unused in query history -- copied from input.
 - kind: Movie
   properties:
   - name: __searchable_text_index
@@ -18,7 +18,7 @@ indexes:
     direction: desc
   - name: name
 
-# Used 2 times in query history.
+# Unused in query history -- copied from input.
 - kind: Person
   properties:
   - name: __searchable_text_index
