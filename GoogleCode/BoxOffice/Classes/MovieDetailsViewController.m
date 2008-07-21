@@ -349,7 +349,7 @@
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:moviePlayer];
     
-    //[moviePlayer play];
+    [moviePlayer play];
 }
 
 // When the movie is done, release the controller.

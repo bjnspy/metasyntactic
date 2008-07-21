@@ -69,7 +69,7 @@
         } else {
             NSDate* downloadDate = [dateAndReviews objectAtIndex:0];
             NSDate* now = [NSDate date];
-            
+                        
             NSDateComponents* downloadDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:downloadDate];
             NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:now];
             

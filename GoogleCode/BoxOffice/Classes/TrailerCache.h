@@ -10,6 +10,8 @@
 
 @interface TrailerCache : NSObject {
     NSLock* gate;
+    
+    // movieId -> { Date, [Trailers] }
     NSMutableDictionary* movieToTrailersMap;
 }
 
