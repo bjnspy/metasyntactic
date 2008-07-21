@@ -51,8 +51,10 @@
 
 - (id) initWithNavigationController:(SettingsNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.title = NSLocalizedString(@"Settings", nil);
         self.navigationController = controller;
+        
+        //self.title = NSLocalizedString(@"Settings", nil);
+        self.title = [NSString stringWithFormat:@"BoxOffice v%@", [BoxOfficeModel version]];
         
         UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                   style:UIBarButtonItemStylePlain

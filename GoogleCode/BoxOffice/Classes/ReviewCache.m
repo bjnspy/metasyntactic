@@ -34,13 +34,18 @@
         NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[Application reviewsFile]];
         if (dict != nil) {
             for (NSString* movieId in dict) {
-                NSMutableArray* reviews = [NSMutableArray array];
+                NSArray* dateAndEncodedReviews = [dict objectForKey:movieId];
                 
-                for (NSDictionary* child in [dict objectForKey:movieId]) {
+                NSDate* date = [dateAndEncodedReviews objectAtIndex:0];
+                NSArray* encodedReviews = [dateAndEncodedReviews objectAtIndex:1];
+                
+                NSMutableArray* reviews = [NSMutableArray array];
+                for (NSDictionary* child in encodedReviews) {
                     [reviews addObject:[Review reviewWithDictionary:child]];
                 }
                 
-                [self.movieToReviewMap setObject:reviews
+                NSArray* dateAndReviews = [NSArray arrayWithObjects:date, reviews, nil];
+                [self.movieToReviewMap setObject:dateAndReviews
                                           forKey:movieId];
             }
         }
@@ -58,17 +63,27 @@
     NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
     
     for (NSString* title in supplementaryInformation) {
-        if ([self.movieToReviewMap objectForKey:title] == nil) {
+        NSArray* dateAndReviews = [self.movieToReviewMap objectForKey:title];
+        if (dateAndReviews == nil) {
             [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
         } else {
-            [infoWithReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
+            NSDate* downloadDate = [dateAndReviews objectAtIndex:0];
+            NSDate* now = [NSDate date];
+            
+            NSDateComponents* downloadDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:downloadDate];
+            NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:now];
+            
+            if (downloadDateComponents.day != nowDateComponents.day) {
+                [infoWithReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
+            }
         }
     }
     
     [self performSelectorInBackground:@selector(updateInBackground:)
                            withObject:[NSArray arrayWithObjects:infoWithoutReviews, infoWithReviews, nil]];
 }
-- (NSArray*) extractReviewSections:(NSString*) reviewPage {
+
+- (NSArray*) extractReviews:(NSString*) reviewPage {
     NSMutableArray* result = [NSMutableArray array];
     
     NSArray* rows = [reviewPage componentsSeparatedByString:@"\n"];
@@ -114,7 +129,7 @@
                                                        error:&httpError];
     
     if (httpError == nil && reviewPage != nil) {
-        return [self extractReviewSections:reviewPage];
+        return [self extractReviews:reviewPage];
     }
     
     return nil;
@@ -124,7 +139,9 @@
     NSString* movieId = [movieIdAndReviews objectAtIndex:0];
     NSArray* reviews = [movieIdAndReviews objectAtIndex:1];
     
-    [self.movieToReviewMap setObject:reviews forKey:movieId];
+    NSArray* dateAndReviews = [NSArray arrayWithObjects:[NSDate date], reviews, nil];
+    
+    [self.movieToReviewMap setObject:dateAndReviews forKey:movieId];
 }
 
 - (void) downloadReviews:(NSDictionary*) supplementaryInformation {
@@ -160,7 +177,9 @@
 }
 
 - (NSArray*) reviewsForMovie:(NSString*) movieTitle {
-    NSArray* array = [self.movieToReviewMap objectForKey:movieTitle];
+    NSArray* dateAndReviews = [self.movieToReviewMap objectForKey:movieTitle];
+    
+    NSArray* array = [dateAndReviews objectAtIndex:1];
     if (array == nil) {
         return [NSArray array];
     }
@@ -170,13 +189,15 @@
 - (void) onComplete:(id) nothing {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     for (NSString* movieId in self.movieToReviewMap) {
-        NSMutableArray* encodedReviews = [NSMutableArray array];
+        NSArray* dateAndReviews = [self.movieToReviewMap objectForKey:movieId];
         
-        for (Review* review in [self.movieToReviewMap objectForKey:movieId]) {
+        NSMutableArray* encodedReviews = [NSMutableArray array];
+        for (Review* review in [dateAndReviews objectAtIndex:1]) {
             [encodedReviews addObject:[review dictionary]];
         }
         
-        [dict setObject:encodedReviews forKey:movieId];
+        NSArray* dateAndEncodedReviews = [NSArray arrayWithObjects:[dateAndReviews objectAtIndex:0], encodedReviews, nil];
+        [dict setObject:dateAndEncodedReviews forKey:movieId];
     }
     
     [dict writeToFile:[Application reviewsFile] atomically:YES];

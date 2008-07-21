@@ -55,6 +55,8 @@
 
 + (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter;
 
++ (NSString*) version;
+
 - (void) addBackgroundTask:(NSString*) description;
 - (void) removeBackgroundTask:(NSString*) description;
 
