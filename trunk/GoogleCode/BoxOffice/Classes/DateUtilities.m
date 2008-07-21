@@ -24,7 +24,7 @@ static NSDateFormatter* dateFormatter;
         
         NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                         fromDate:[NSDate date]];
-        [todayComponents setHour:12];
+        todayComponents.hour = 12;
         today = [[calendar dateFromComponents:todayComponents] retain];
     }
 }

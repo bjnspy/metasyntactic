@@ -11,6 +11,8 @@
 
 @interface ReviewCache : NSObject {
     NSLock* gate;
+    
+    // movieId -> { Date, [Reviews] }
     NSMutableDictionary* movieToReviewMap;
 }
 

@@ -16,7 +16,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.22";
+static NSString* currentVersion = @"1.2.23";
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
@@ -96,6 +96,10 @@ static NSArray* KEYS;
     self.favoriteTheatersData = nil;
     
     [super dealloc];
+}
+
++ (NSString*) version {
+    return currentVersion;
 }
 
 - (void) updatePosterCache {
