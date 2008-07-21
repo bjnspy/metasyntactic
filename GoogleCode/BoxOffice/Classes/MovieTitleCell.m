@@ -117,6 +117,23 @@
             self.scoreLabel.text = nil;
             self.image = [Application unknownImage];
         }
+        /*
+         self.scoreLabel.text = nil;
+         switch (rand() % 4) {
+         case 0:
+         self.image = [UIImage imageNamed:@"Rating-Red.png"];
+         break;
+         case 1:
+         self.image = [UIImage imageNamed:@"Rating-Yellow.png"];
+         break;
+         case 2:
+         self.image = [UIImage imageNamed:@"Rating-Green.png"];
+         break;
+         case 3:
+         self.image = [UIImage imageNamed:@"Rating-Blue.png"];
+         break;
+         }
+         */
     }
     
     self.ratingLabel.text = [movie ratingAndRuntimeString];
