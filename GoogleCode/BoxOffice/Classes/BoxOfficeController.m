@@ -319,7 +319,7 @@
     NSArray* movies = [moviesAndTheaters objectAtIndex:0];
     NSArray* theaters = [moviesAndTheaters objectAtIndex:1];
 
-    if (movies.count || theaters.count) {
+    if (movies.count > 0 || theaters.count > 0) {
         [self.model setMovies:movies];
         [self.model setTheaters:theaters];
     }
@@ -343,9 +343,13 @@
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         NSArray* moviesAndTheaters = [self fullLookup];
+        NSArray* movies = [moviesAndTheaters objectAtIndex:0];
+        NSArray* theaters = [moviesAndTheaters objectAtIndex:1];
         
-        [self saveArray:[moviesAndTheaters objectAtIndex:0] to:[Application moviesFile]];
-        [self saveArray:[moviesAndTheaters objectAtIndex:1] to:[Application theatersFile]];
+        if (movies.count > 0 || theaters.count > 0) {
+            [self saveArray:movies to:[Application moviesFile]];
+            [self saveArray:theaters to:[Application theatersFile]];
+        }
         
         [self performSelectorOnMainThread:@selector(setMoviesAndTheaters:) withObject:moviesAndTheaters waitUntilDone:NO];
         
