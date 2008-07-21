@@ -66,18 +66,23 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
     NSMutableArray* moviesWithoutTrailers = [NSMutableArray array];
     NSMutableArray* moviesWithTrailers = [NSMutableArray array];
     for (Movie* movie in movies) {
-        if ([self.movieToTrailersMap objectForKey:movie.title] == nil) {
+        NSArray* dateAndTrailers = [self.movieToTrailersMap objectForKey:movie.title];
+        if (dateAndTrailers == nil) {
             [moviesWithoutTrailers addObject:movie];
         } else {
-            [moviesWithTrailers addObject:movie];
+            NSDate* downloadDate = [dateAndTrailers objectAtIndex:0];
+            NSDate* now = [NSDate date];
+            
+            NSDateComponents* downloadDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:downloadDate];
+            NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:now];
+            
+            if (downloadDateComponents.day != nowDateComponents.day) {
+                [moviesWithTrailers addObject:movie];
+            }
         }
     }
     
-    NSMutableArray* orderedMovies = [NSMutableArray array];
-    [orderedMovies addObjectsFromArray:moviesWithoutTrailers];
-    [orderedMovies addObjectsFromArray:moviesWithTrailers];
-    
-    return orderedMovies;
+    return [NSArray arrayWithObjects:moviesWithoutTrailers, moviesWithTrailers, nil];
 }
 
 - (void) update:(NSArray*) movies {
@@ -86,7 +91,7 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
     NSArray* orderedMovies = [self getOrderedMovies:movies];
     
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
-                           withObject:[NSArray arrayWithArray:orderedMovies]];
+                           withObject:orderedMovies];
 }
 
 - (NSString*) getValue:(NSString*) key fromArray:(NSArray*) array {
@@ -99,24 +104,12 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
     return nil;
 }
 
-- (void) addKey:(NSString*) key
-          value:(NSString*) value
-     dictionary:(NSMutableDictionary*) dictionary {
-    NSMutableArray* array = [dictionary objectForKey:key];
-    
-    if (array == nil) {
-        array = [NSMutableArray array];
-        [dictionary setObject:array forKey:key];
-    }
-    
-    [array addObject:value];
-}
-
 - (void) processResult:(NSArray*) data {
     NSString* text = [data objectAtIndex:0];
     NSArray* urls = [data objectAtIndex:1];
+    NSArray* dateAndTrailers = [NSArray arrayWithObjects:[NSDate date], urls, nil];
     
-    [self.movieToTrailersMap setObject:urls forKey:text];
+    [self.movieToTrailersMap setObject:dateAndTrailers forKey:text];
 }
 
 - (void) findTrailers:(NSString*) movieTitle
@@ -148,26 +141,6 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
         NSArray* result = [NSArray arrayWithObjects:movieTitle, urls, nil];
         [self performSelectorOnMainThread:@selector(processResult:) withObject:result waitUntilDone:NO];
     }
-    
-/*
-    XmlElement* documentElement = [Utilities downloadXml:indexUrl];
-    XmlElement* trackListElement = [documentElement element:@"TrackList"];
-    XmlElement* plistElement = [trackListElement element:@"plist"];
-    XmlElement* outerDict = [plistElement element:@"dict"];
-    XmlElement* arrayElement = [outerDict element:@"array"];
-    
-    NSMutableArray* urls = [NSMutableArray array];
-    
-    for (XmlElement* innerDictElement in [arrayElement elements:@"dict"]) {
-        for (XmlElement* child in innerDictElement.children) {
-            NSString* text = child.text;
-            
-            if ([text hasSuffix:@".m4v"]) {
-                [urls addObject:text];
-            }
-        }
-    }
- */
 }
 
 - (NSString*) massage:(NSString*) value {
@@ -235,14 +208,17 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
     }
 }
 
-- (void) backgroundEntryPoint:(NSArray*) movies {
+- (void) backgroundEntryPoint:(NSArray*) array {
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
         
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        [self downloadTrailers:movies];
+        for (NSArray* movies in array) {
+            [self downloadTrailers:movies];
+        }
+        
         [self performSelectorOnMainThread:@selector(onComplete:) withObject:nil waitUntilDone:NO];
         
         [autoreleasePool release];
@@ -255,7 +231,8 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
 }
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* result = [movieToTrailersMap objectForKey:movie.title];
+    NSArray* dateAndTrailers = [movieToTrailersMap objectForKey:movie.title];
+    NSArray* result = [dateAndTrailers objectAtIndex:1];
     if (result == nil) {
         return [NSArray array];
     }
