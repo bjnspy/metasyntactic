@@ -20,6 +20,7 @@
 + (NSString*) moviesFile;
 + (NSString*) theatersFile;
 + (NSString*) reviewsFolder;
++ (NSString*) trailersFolder;
 + (NSString*) documentsFolder;
 + (NSString*) formatShortTime:(NSDate*) date;
 + (NSString*) formatShortDate:(NSDate*) date;
