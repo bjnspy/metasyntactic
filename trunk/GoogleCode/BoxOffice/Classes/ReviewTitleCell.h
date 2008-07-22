@@ -8,14 +8,21 @@
 
 #import <UIKit/UIKit.h>
 #import "Review.h"
+#import "BoxOfficeModel.h"
 
 @interface ReviewTitleCell : UITableViewCell {
+    BoxOfficeModel* model;
     UILabel* authorLabel;
     UILabel* sourceLabel;
 }
 
+@property (retain) BoxOfficeModel* model;
 @property (retain) UILabel* authorLabel;
 @property (retain) UILabel* sourceLabel;
+
+- (id) initWithModel:(BoxOfficeModel*) model
+               frame:(CGRect) frame
+     reuseIdentifier:(NSString*) reuseIdentifier;
 
 - (void) setReview:(Review*) review;
 

@@ -31,6 +31,18 @@
     [super dealloc];
 }
 
++ (NSString*) massageTitle:(NSString*) title {
+    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if ([title hasSuffix:@", The"]) {
+        title = [NSString stringWithFormat:@"The %@", [title substringToIndex:([title length] - 5)]];
+    } else if ([title hasSuffix:@", A"]) {
+        title = [NSString stringWithFormat:@"A %@", [title substringToIndex:([title length] - 3)]];
+    }
+    
+    return title;
+}
+
 - (id) initWithIdentifier:(NSString*) identifier_
                     title:(NSString*) title_
                    rating:(NSString*) rating_
@@ -40,7 +52,7 @@
            backupSynopsis:(NSString*) backupSynopsis_ {
     if (self = [self init]) {
         self.identifier = identifier_;
-        self.title    = [title_    stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.title    = [Movie massageTitle:title_];
         self.rating   = [rating_   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if (self.rating == nil) {
             self.rating = @"NR";

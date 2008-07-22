@@ -20,6 +20,7 @@
 #import "AttributeCell.h"
 #import "MovieTitleCell.h"
 #import "ApplicationTabBarController.h"
+#import "ImageCache.h"
 
 @implementation TheaterDetailsViewController
 
@@ -44,8 +45,8 @@
 }
 
 - (void) setFavoriteImage {
-    UIImage* image = [self.model isFavoriteTheater:theater] ? [Application filledStarImage]
-                                                            : [Application emptyStarImage];
+    UIImage* image = [self.model isFavoriteTheater:theater] ? [ImageCache filledStarImage]
+                                                            : [ImageCache emptyStarImage];
     
     self.navigationItem.rightBarButtonItem.image = image;
 }
@@ -88,7 +89,7 @@
         self.title = self.theater.name;
         self.navigationItem.titleView = label;
    
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[Application emptyStarImage]
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[ImageCache emptyStarImage]
                                                                                    style:UIBarButtonItemStylePlain
                                                                                   target:self
                                                                                   action:@selector(switchFavorite:)] autorelease];

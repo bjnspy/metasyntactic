@@ -19,16 +19,8 @@ static NSString* postersFolder = nil;
 static NSString* documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
 static UIColor* commandColor = nil;
-static UIImage* freshImage = nil;
-static UIImage* rottenFadedImage = nil;
-static UIImage* rottenFullImage = nil;
-static UIImage* unknownImage = nil;
-static UIImage* emptyStarImage = nil;
-static UIImage* filledStarImage = nil;
 static DifferenceEngine* differenceEngine = nil;
 static NSString* starString = nil;
-static UIFont* helvetica14 = nil;
-static UIFont* boldSystem11 = nil;
 
 + (void) initialize {
     if (self == [Application class]) {
@@ -38,18 +30,8 @@ static UIFont* boldSystem11 = nil;
         
         commandColor = //[[UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1] retain];
             [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
-        
-        freshImage       = [[UIImage imageNamed:@"Fresh.png"] retain];
-        rottenFadedImage = [[UIImage imageNamed:@"Rotten-Faded.png"] retain];
-        rottenFullImage  = [[UIImage imageNamed:@"Rotten-Full.png"] retain];
-        unknownImage     = [[UIImage imageNamed:@"Unknown.png"] retain];
-        emptyStarImage   = [[UIImage imageNamed:@"Empty Star.png"] retain];
-        filledStarImage  = [[UIImage imageNamed:@"Filled Star.png"] retain];
                 
         differenceEngine = [[DifferenceEngine engine] retain];
-        
-        helvetica14 = [[UIFont fontWithName:@"helvetica" size:14] retain];
-        boldSystem11 = [[UIFont boldSystemFontOfSize:11] retain];
     }
 }
 
@@ -211,30 +193,6 @@ static UIFont* boldSystem11 = nil;
     return commandColor;
 }
 
-+ (UIImage*) freshImage {
-    return freshImage;
-}
-
-+ (UIImage*) rottenFadedImage {
-    return rottenFadedImage;
-}
-
-+ (UIImage*) rottenFullImage {
-    return rottenFullImage;
-}
-
-+ (UIImage*) unknownImage {
-    return unknownImage;
-}
-
-+ (UIImage*) emptyStarImage {
-    return emptyStarImage;
-}
-
-+ (UIImage*) filledStarImage {
-    return filledStarImage;
-}
-
 + (void) openBrowser:(NSString*) address {
     if (address == nil) {
         return;
@@ -294,14 +252,6 @@ static UIFont* boldSystem11 = nil;
     }
     
     return starString;
-}
-
-+ (UIFont*) helvetica14 {
-    return helvetica14;
-}
-
-+ (UIFont*) boldSystem11 {
-    return boldSystem11;
 }
 
 @end

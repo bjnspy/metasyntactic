@@ -69,5 +69,13 @@ static NSDateFormatter* dateFormatter;
     }
     return result;
 }
+
++ (NSDate*) today {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                               fromDate:[NSDate date]];
+    [components setHour:12];
+    return [calendar dateFromComponents:components];
+}
                  
 @end

@@ -11,7 +11,7 @@
 
 @implementation Review
 
-@synthesize positive;
+@synthesize score;
 @synthesize link;
 @synthesize text;
 @synthesize author;
@@ -27,12 +27,12 @@
 }
 
 - (id) initWithText:(NSString*) text_
-         positive:(BOOL) positive_
-             link:(NSString*) link_
-           author:(NSString*) author_
-           source:(NSString*) source_ {
+              score:(NSInteger) score_
+               link:(NSString*) link_
+             author:(NSString*) author_
+             source:(NSString*) source_ {
     if (self = [super init]) {
-        self.positive = positive_;
+        self.score = score_;
         self.link = link_;
         self.text = text_;
         self.author = author_;
@@ -55,28 +55,28 @@
 }
 
 + (Review*) reviewWithText:(NSString*) text
-                positive:(BOOL) positive
-                    link:(NSString*) link
-                  author:(NSString*) author
-                  source:(NSString*) source {
+                     score:(NSInteger) score
+                      link:(NSString*) link
+                    author:(NSString*) author
+                    source:(NSString*) source {
     return [[[Review alloc] initWithText:text
-                              positive:positive
-                                  link:link
-                                author:author
-                                source:source] autorelease];
+                                   score:score
+                                    link:link
+                                  author:author
+                                  source:source] autorelease];
 }
 
 + (Review*) reviewWithDictionary:(NSDictionary*) dictionary {
     return [Review reviewWithText:[dictionary objectForKey:@"text"]
-                       positive:[[dictionary objectForKey:@"positive"] boolValue]
-                           link:[dictionary objectForKey:@"link"]
-                         author:[dictionary objectForKey:@"author"]
-                         source:[dictionary objectForKey:@"source"]];
+                            score:[[dictionary objectForKey:@"score"] intValue]
+                             link:[dictionary objectForKey:@"link"]
+                           author:[dictionary objectForKey:@"author"]
+                           source:[dictionary objectForKey:@"source"]];
 }
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithBool:positive] forKey:@"positive"];
+    [dict setObject:[NSNumber numberWithInt:score] forKey:@"score"];
     [dict setObject:link forKey:@"link"];
     [dict setObject:text forKey:@"text"];
     [dict setObject:author forKey:@"author"];
@@ -88,8 +88,8 @@
     CGFloat width = self.link ? 255 : 285;
     CGSize size = CGSizeMake(width, 1000);
     size = [self.text sizeWithFont:font
-            constrainedToSize:size
-                lineBreakMode:UILineBreakModeWordWrap];
+                 constrainedToSize:size
+                     lineBreakMode:UILineBreakModeWordWrap];
     
     return size.height + 10;
 }

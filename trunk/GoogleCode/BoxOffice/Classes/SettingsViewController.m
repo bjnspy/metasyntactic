@@ -17,6 +17,7 @@
 #import "Application.h"
 #import "AttributeCell.h"
 #import "SettingCell.h"
+#import "RatingsProviderViewController.h"
 
 @implementation SettingsViewController
 
@@ -78,6 +79,8 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
     
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    
+    [self.tableView reloadData];
 }
 
 - (void) stopActivityIndicator {
@@ -162,7 +165,7 @@
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row >= 0 && indexPath.row <= 2) {
+        if (indexPath.row >= 0 && indexPath.row <= 3) {
             return UITableViewCellAccessoryDisclosureIndicator;
         } else {
             return UITableViewCellAccessoryNone;
@@ -181,7 +184,7 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 4;
+        return 5;
     }
     
     return 1;
@@ -190,7 +193,7 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row >= 0 && indexPath.row <= 2) {
+        if (indexPath.row >= 0 && indexPath.row <= 3) {
             SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             
             NSString* key;
@@ -215,6 +218,9 @@
                 } else {
                     value = [Application formatLongDate:date];
                 }
+            } else if (indexPath.row == 3) {
+                key = NSLocalizedString(@"Ratings", nil);
+                value = [self.model currentRatingsProvider];
             }
             
             [cell setKey:key value:value];
@@ -290,7 +296,7 @@
                                                        defaultValue:defaultValue] autorelease];
             
             [self.navigationController pushViewController:controller animated:YES];
-        } else {
+        } else if (row == 2) {
             NSMutableArray* values = [NSMutableArray array];
             NSDate* today = [NSDate date];
             NSCalendar* calendar = [NSCalendar currentCalendar];
@@ -311,6 +317,11 @@
                                                          withValues:values
                                                        defaultValue:defaultValue] autorelease];
             
+            [self.navigationController pushViewController:controller animated:YES];
+        } else if (row == 3) {
+            RatingsProviderViewController* controller =
+                [[[RatingsProviderViewController alloc] initWithNavigationController:self.navigationController
+                                                                          controller:self.controller] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         }
     } else if (section == 1) {

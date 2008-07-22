@@ -60,6 +60,13 @@
 - (void) addBackgroundTask:(NSString*) description;
 - (void) removeBackgroundTask:(NSString*) description;
 
+- (NSInteger) ratingsProviderIndex;
+- (void) setRatingsProviderIndex:(NSInteger) index;
+- (BOOL) rottenTomatoesRatings;
+- (BOOL) metacriticRatings;
+- (NSString*) currentRatingsProvider;
+- (NSArray*) ratingsProviders;
+
 - (NSInteger) selectedTabBarViewControllerIndex;
 - (void) setSelectedTabBarViewControllerIndex:(NSInteger) index;
 

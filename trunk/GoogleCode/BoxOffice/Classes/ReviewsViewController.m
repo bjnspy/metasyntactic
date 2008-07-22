@@ -13,6 +13,7 @@
 #import "ReviewBodyCell.h"
 #import "MoviesNavigationController.h"
 #import "Utilities.h"
+#import "FontCache.h"
 
 @implementation ReviewsViewController
 
@@ -37,6 +38,10 @@
     return self;
 }
 
+- (BoxOfficeModel*) model {
+    return [self.navigationController model];
+}
+
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[navigationController model].activityView] autorelease];
     
@@ -54,7 +59,9 @@
         
         ReviewTitleCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[ReviewTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[ReviewTitleCell alloc] initWithModel:self.model 
+                                                     frame:[UIScreen mainScreen].bounds
+                                           reuseIdentifier:reuseIdentifier] autorelease];
         }
         
         [cell setReview:review];
@@ -103,7 +110,7 @@
     } else {
         Review* review = [reviews objectAtIndex:indexPath.section];
     
-        return max_d([review heightWithFont:[Application helvetica14]], [self.tableView rowHeight]);
+        return max_d([review heightWithFont:[FontCache helvetica14]], [self.tableView rowHeight]);
     }
 }
 

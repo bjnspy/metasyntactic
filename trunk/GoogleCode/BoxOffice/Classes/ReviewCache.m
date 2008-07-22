@@ -13,21 +13,25 @@
 #import "XmlParser.h"
 #import "Application.h"
 #import "Utilities.h"
+#import "BoxOfficeModel.h"
 
 @implementation ReviewCache
 
+@synthesize model;
 @synthesize gate;
 @synthesize movieToReviewMap;
 
 - (void) dealloc {
+    self.model = nil;
     self.gate = nil;
     self.movieToReviewMap = nil;
     
     [super dealloc];
 }
 
-- (id) init {
+- (id) initWithModel:(BoxOfficeModel*) model_ {
     if (self = [super init]) {
+        self.model = model_;
         self.gate = [[[NSLock alloc] init] autorelease];
         self.movieToReviewMap = [NSMutableDictionary dictionary];
         
@@ -54,11 +58,11 @@
     return self;
 }
 
-+ (ReviewCache*) cache {
-    return [[[ReviewCache alloc] init] autorelease];
++ (ReviewCache*) cacheWithModel:(BoxOfficeModel*) model {
+    return [[[ReviewCache alloc] initWithModel:model] autorelease];
 }
 
-- (void) update:(NSDictionary*) supplementaryInformation {
+- (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider {
     NSMutableDictionary* infoWithReviews = [NSMutableDictionary dictionary];
     NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
     
@@ -80,7 +84,7 @@
     }
     
     [self performSelectorInBackground:@selector(updateInBackground:)
-                           withObject:[NSArray arrayWithObjects:infoWithoutReviews, infoWithReviews, nil]];
+                           withObject:[NSArray arrayWithObjects:infoWithoutReviews, infoWithReviews, [NSNumber numberWithInt:ratingsProvider], nil]];
 }
 
 - (NSArray*) extractReviews:(NSString*) reviewPage {
@@ -94,8 +98,11 @@
             continue;
         }
         
+        NSString* score = [columns objectAtIndex:1];
+        NSInteger scoreValue = [score intValue];
+        
         [result addObject:[Review reviewWithText:[columns objectAtIndex:0]
-                                        positive:[[columns objectAtIndex:1] isEqual:@"True"]
+                                           score:scoreValue
                                             link:[columns objectAtIndex:2]
                                           author:[columns objectAtIndex:3]
                                           source:[columns objectAtIndex:4]]];
@@ -110,18 +117,11 @@
         return nil;
     }
     
-    NSMutableString* link = [NSMutableString stringWithString:info.link];
-    [NSMutableString stringWithString:info.link];
-    if ([link characterAtIndex:(link.length - 1)] != '/') {
-        [link appendString:@"/"];
-    }
-    [link appendString:@"?critic=creamcrop"];
-    
     NSMutableArray* hosts = [Application hosts];
     NSInteger index = abs([Utilities hashString:info.link]) % hosts.count;
     NSString* host = [hosts objectAtIndex:index];
     
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", host, link];
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", host, info.link];
     
     NSError* httpError = nil;
     NSString* reviewPage = [NSString stringWithContentsOfURL:[NSURL URLWithString:url]
@@ -135,39 +135,46 @@
     return nil;
 }
 
-- (void) reportReviews:(NSArray*) movieIdAndReviews {
-    NSString* movieId = [movieIdAndReviews objectAtIndex:0];
-    NSArray* reviews = [movieIdAndReviews objectAtIndex:1];
+- (void) reportReviews:(NSArray*) arguments {
+    NSString* movieId = [arguments objectAtIndex:0];
+    NSArray* reviews = [arguments objectAtIndex:1];
+    NSInteger ratingsProvider = [[arguments objectAtIndex:2] intValue];
+    
+    if (ratingsProvider != [self.model ratingsProviderIndex]) {
+        return;
+    }
     
     NSArray* dateAndReviews = [NSArray arrayWithObjects:[NSDate date], reviews, nil];
     
     [self.movieToReviewMap setObject:dateAndReviews forKey:movieId];
 }
 
-- (void) downloadReviews:(NSDictionary*) supplementaryInformation {
+- (void) downloadReviews:(NSDictionary*) supplementaryInformation
+         ratingsProvider:(NSInteger) ratingsProvider {
     for (NSString* movieId in supplementaryInformation) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
         NSArray* reviews = [self downloadInfoReviews:info];
         if (reviews.count > 0) {
-            NSArray* array = [NSArray arrayWithObjects:movieId, reviews, nil];
-            [self performSelectorOnMainThread:@selector(reportReviews:) withObject:array waitUntilDone:NO];
+            NSArray* arguments = [NSArray arrayWithObjects:movieId, reviews, [NSNumber numberWithInt:ratingsProvider], nil];
+            [self performSelectorOnMainThread:@selector(reportReviews:) withObject:arguments waitUntilDone:NO];
         }
         
         [autoreleasePool release];
     }
 }
 
-- (void) updateInBackground:(NSArray*) array {
+- (void) updateInBackground:(NSArray*) arguments {
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
         
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
-        for (NSDictionary* dictionary in array) {
-            [self downloadReviews:dictionary];
+        NSInteger ratingsProvider = [[arguments lastObject] intValue];
+        for (int i = 0; i < [arguments count] - 1; i++) {
+            [self downloadReviews:[arguments objectAtIndex:i] ratingsProvider:ratingsProvider];
             [self performSelectorOnMainThread:@selector(onComplete:) withObject:nil waitUntilDone:NO];
         }
         
@@ -201,6 +208,11 @@
     }
     
     [dict writeToFile:[Application reviewsFile] atomically:YES];
+}
+
+- (void) clear {
+    self.movieToReviewMap = [NSMutableDictionary dictionary];
+    [self onComplete:nil];
 }
 
 - (void) applicationWillTerminate {

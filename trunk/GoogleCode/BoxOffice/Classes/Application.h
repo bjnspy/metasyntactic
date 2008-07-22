@@ -28,13 +28,6 @@
 
 + (UIColor*) commandColor;
 
-+ (UIImage*) freshImage;
-+ (UIImage*) rottenFadedImage;
-+ (UIImage*) rottenFullImage;
-+ (UIImage*) unknownImage;
-+ (UIImage*) emptyStarImage;
-+ (UIImage*) filledStarImage;
-
 + (void) openBrowser:(NSString*) address;
 + (void) openMap:(NSString*) address;
 + (void) makeCall:(NSString*) phoneNumber;
@@ -46,8 +39,5 @@
 
 + (unichar) starCharacter;
 + (NSString*) starString;
-
-+ (UIFont*) helvetica14;
-+ (UIFont*) boldSystem11;
 
 @end

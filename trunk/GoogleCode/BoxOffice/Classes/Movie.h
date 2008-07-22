@@ -37,4 +37,6 @@
 - (NSDictionary*) dictionary;
 - (NSString*) ratingAndRuntimeString;
 
++ (NSString*) massageTitle:(NSString*) title;
+
 @end
