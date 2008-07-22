@@ -12,11 +12,13 @@
 
 @interface ReviewTitleCell : UITableViewCell {
     BoxOfficeModel* model;
+    UILabel* scoreLabel;
     UILabel* authorLabel;
     UILabel* sourceLabel;
 }
 
 @property (retain) BoxOfficeModel* model;
+@property (retain) UILabel* scoreLabel;
 @property (retain) UILabel* authorLabel;
 @property (retain) UILabel* sourceLabel;
 
