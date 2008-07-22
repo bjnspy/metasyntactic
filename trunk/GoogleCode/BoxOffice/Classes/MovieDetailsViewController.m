@@ -29,6 +29,7 @@
 @synthesize reviewsArray;
 @synthesize hiddenTheaterCount;
 @synthesize posterImage;
+@synthesize synopsis;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -39,6 +40,7 @@
     self.reviewsArray = nil;
     self.hiddenTheaterCount = 0;
     self.posterImage = nil;
+    self.synopsis = nil;
     
     [super dealloc];
 }
@@ -85,6 +87,64 @@
     }
 }
 
+NSInteger min_i(NSInteger i1, NSInteger i2) {
+    return i1 < i2 ? i1 : i2;
+}
+
+- (NSInteger) calculateSynopsisSplit {
+    CGFloat posterHeight = self.posterImage.size.height;
+    int synopsisX = 5 + self.posterImage.size.width + 5;
+    int width = 295 - synopsisX;
+    
+    CGFloat synopsisHeight = [synopsis sizeWithFont:[FontCache helvetica14]
+                                  constrainedToSize:CGSizeMake(width, 2000)
+                                      lineBreakMode:UILineBreakModeWordWrap].height;
+    if (synopsisHeight <= posterHeight) {
+        return synopsis.length;
+    }
+    
+    NSInteger guess = synopsis.length * posterHeight * 1.1 / synopsisHeight;
+    guess = min_i(guess, synopsis.length);
+    
+    while (true) {
+        NSRange whitespaceRange = [synopsis rangeOfString:@" " options:NSBackwardsSearch range:NSMakeRange(0, guess)];
+        NSInteger whitespace = whitespaceRange.location;
+        if (whitespace == 0) {
+            return synopsis.length;
+        }
+        
+        NSString* synopsisChunk = [synopsis substringToIndex:whitespace];
+        
+        CGFloat chunkHeight = [synopsisChunk sizeWithFont:[FontCache helvetica14]
+                                        constrainedToSize:CGSizeMake(width, 2000)
+                                            lineBreakMode:UILineBreakModeWordWrap].height;
+        
+        if (chunkHeight <= posterHeight) {
+            return whitespace;
+        }
+        
+        guess = whitespace;
+    }
+}
+
+- (NSInteger) calculateSynopsisMax {
+    if (synopsisSplit == synopsis.length) {
+        return synopsis.length;
+    }
+    
+    NSInteger guess = synopsisSplit * 2;
+    if (guess >= synopsis.length) {
+        return synopsis.length;
+    }
+    
+    NSRange dot = [synopsis rangeOfString:@"." options:0 range:NSMakeRange(guess, synopsis.length - guess)];
+    if (dot.length == 0) {
+        return synopsis.length;
+    }
+    
+    return dot.location + 1;
+}
+
 - (id) initWithNavigationController:(MoviesNavigationController*) controller
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -105,6 +165,10 @@
         if (self.posterImage == nil) {
             self.posterImage = [UIImage imageNamed:@"ImageNotAvailable.png"];
         }
+        
+        self.synopsis = [self.model synopsisForMovie:self.movie];
+        synopsisSplit = [self calculateSynopsisSplit];
+        synopsisMax = [self calculateSynopsisMax];
     }
     
     return self;
@@ -175,16 +239,28 @@
     int synopsisX = 5 + image.size.width + 5;
     int width = 295 - synopsisX;
     
-    CGSize size = [[self.model synopsisForMovie:movie] sizeWithFont:[FontCache helvetica14]
-                                                  constrainedToSize:CGSizeMake(width, 500)
-                                                      lineBreakMode:UILineBreakModeWordWrap];
-    
-    return CGRectMake(synopsisX, 5, width, size.height);
+    return CGRectMake(synopsisX, 5, width, image.size.height);
 }
 
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
-        return max_d([self posterImage].size.height, [self synopsisFrame].size.height) + 10;
+        double h1 = [self posterImage].size.height;
+        
+        if (synopsisSplit == synopsis.length) {
+            return h1 + 10;
+        }
+        
+        NSInteger start = synopsisSplit + 1;
+        NSInteger end = synopsisMax;
+        
+        NSString* remainder = [synopsis substringWithRange:NSMakeRange(start, end - start)];
+        //NSString* remainder = [synopsis substringFromIndex:(synopsisSplit + 1)];
+        
+        double h2 = [remainder sizeWithFont:[FontCache helvetica14]
+                               constrainedToSize:CGSizeMake(290, 2000)
+                                   lineBreakMode:UILineBreakModeWordWrap].height;
+        
+        return h1 + h2 + 10;
     } else if (row == 1) {
         return [self.tableView rowHeight] - 10;
     } else {
@@ -221,6 +297,7 @@
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         UIImage* image = [self posterImage];
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
@@ -228,16 +305,41 @@
         [cell.contentView addSubview:imageView];
         
         CGRect synopsisFrame = [self synopsisFrame];
-                
+        
         UILabel* synopsisLabel = [[[UILabel alloc] initWithFrame:synopsisFrame] autorelease];
         synopsisLabel.font = [FontCache helvetica14];
         synopsisLabel.lineBreakMode = UILineBreakModeWordWrap;
         synopsisLabel.numberOfLines = 0;
-        synopsisLabel.text = [self.model synopsisForMovie:movie];
+        synopsisLabel.text = [synopsis substringToIndex:synopsisSplit];
+        [synopsisLabel sizeToFit];
+        
+        if (synopsisSplit < synopsis.length) {
+            NSInteger start = synopsisSplit + 1;
+            NSInteger end = synopsisMax;
+            
+            NSString* remainder = [synopsis substringWithRange:NSMakeRange(start, end - start)];
+            
+            CGFloat height = [remainder sizeWithFont:[FontCache helvetica14]
+                                constrainedToSize:CGSizeMake(290, 2000)
+                                    lineBreakMode:UILineBreakModeWordWrap].height;
+            
+            CGRect remainderRect =  CGRectMake(5, posterImage.size.height + 5, 290, height);
+            
+            UILabel* remainderChunk = [[[UILabel alloc] initWithFrame:remainderRect] autorelease];
+            remainderChunk.font = [FontCache helvetica14];
+            remainderChunk.lineBreakMode = UILineBreakModeWordWrap;
+            remainderChunk.numberOfLines = 0;
+            remainderChunk.text = remainder;
+            
+            [cell.contentView addSubview:remainderChunk];
+            
+            synopsisFrame = synopsisLabel.frame;
+            synopsisFrame.origin.y = (self.posterImage.size.height + 5) - synopsisFrame.size.height;
+            synopsisLabel.frame = synopsisFrame;
+        }
+        
         
         [cell.contentView addSubview:synopsisLabel]; 
-        
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         return cell;
     } else if (row == 1) {
