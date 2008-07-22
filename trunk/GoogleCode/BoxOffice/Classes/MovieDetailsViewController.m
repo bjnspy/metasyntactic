@@ -28,6 +28,7 @@
 @synthesize trailersArray;
 @synthesize reviewsArray;
 @synthesize hiddenTheaterCount;
+@synthesize posterImage;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -37,6 +38,7 @@
     self.trailersArray = nil;
     self.reviewsArray = nil;
     self.hiddenTheaterCount = 0;
+    self.posterImage = nil;
     
     [super dealloc];
 }
@@ -98,6 +100,11 @@
         self.navigationItem.titleView = label;
         self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:self.movie]];
         self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:self.movie]];
+        
+        self.posterImage = [self.model posterForMovie:self.movie];
+        if (self.posterImage == nil) {
+            self.posterImage = [UIImage imageNamed:@"ImageNotAvailable.png"];
+        }
     }
     
     return self;
@@ -160,14 +167,6 @@
     
     // theater section
     return 2;
-}
-
-- (UIImage*) posterImage {
-    UIImage* image = [self.model posterForMovie:self.movie];
-    if (image == nil) {
-        image = [UIImage imageNamed:@"ImageNotAvailable.png"];
-    }
-    return image;
 }
 
 - (CGRect) synopsisFrame {
