@@ -60,7 +60,9 @@
         self.length = length_;
         self.releaseDate = releaseDate_;
         self.poster = poster_;
-        self.backupSynopsis = backupSynopsis_;
+        self.backupSynopsis = 
+            [[backupSynopsis_ stringByReplacingOccurrencesOfString:@"<em>" withString:@""]
+                stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
     }
     
     return self;
