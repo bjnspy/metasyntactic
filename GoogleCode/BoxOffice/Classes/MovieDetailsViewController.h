@@ -21,6 +21,8 @@
     NSArray* reviewsArray;
     
     NSInteger hiddenTheaterCount;
+    
+    UIImage* posterImage;
 }
 
 @property (assign) MoviesNavigationController* navigationController;
@@ -30,6 +32,7 @@
 @property (retain) NSArray* trailersArray;
 @property (retain) NSArray* reviewsArray;
 @property NSInteger hiddenTheaterCount;
+@property (retain) UIImage* posterImage;
 
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController
                               movie:(Movie*) movie;

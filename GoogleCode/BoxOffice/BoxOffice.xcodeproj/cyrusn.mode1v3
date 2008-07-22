@@ -280,6 +280,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -327,19 +329,16 @@
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FAAC04509CD000000102</string>
+								<string>1C08E77C0454961000C914BD</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>55</integer>
-									<integer>43</integer>
-									<integer>5</integer>
-									<integer>1</integer>
-									<integer>0</integer>
+									<integer>125</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 524}, {311, 787}}</string>
+							<string>{{0, 1474}, {311, 787}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -360,7 +359,7 @@
 							<real>289</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>47 31 1279 846 0 0 1440 878 </string>
+						<string>49 31 1279 846 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -371,14 +370,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ReviewTitleCell.m</string>
+								<string>MovieDetailsViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -386,11 +383,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ReviewTitleCell.m</string>
+										<string>MovieDetailsViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74EFEA030E35BEB600B6E103</string>
+										<string>74EFEA270E35C66100B6E103</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -602,7 +599,6 @@
 											<string>741773360E32050800551817</string>
 											<string>741773370E32050800551817</string>
 											<string>741773460E32058A00551817</string>
-											<string>741773B60E320A0A00551817</string>
 											<string>7417740B0E320CE300551817</string>
 											<string>741774310E320E3900551817</string>
 											<string>741774330E320E3900551817</string>
@@ -675,7 +671,6 @@
 											<string>74EFE89C0E35ACB100B6E103</string>
 											<string>74EFE89E0E35ACB100B6E103</string>
 											<string>74EFE8F00E35B08C00B6E103</string>
-											<string>74EFE8FD0E35B15900B6E103</string>
 											<string>74EFE9520E35B45B00B6E103</string>
 											<string>74EFE9530E35B45B00B6E103</string>
 											<string>74EFE9540E35B45B00B6E103</string>
@@ -691,7 +686,9 @@
 											<string>74EFE9BD0E35BBB800B6E103</string>
 											<string>74EFE9ED0E35BDC900B6E103</string>
 											<string>74EFE9FE0E35BEA700B6E103</string>
-											<string>74EFE9FF0E35BEA700B6E103</string>
+											<string>74EFEA210E35C66100B6E103</string>
+											<string>74EFEA220E35C66100B6E103</string>
+											<string>74EFEA230E35C66100B6E103</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -1054,6 +1051,9 @@
 											<string>74EFE9F10E35BDC900B6E103</string>
 											<string>74EFEA000E35BEA700B6E103</string>
 											<string>74EFEA010E35BEA700B6E103</string>
+											<string>74EFEA240E35C66100B6E103</string>
+											<string>74EFEA250E35C66100B6E103</string>
+											<string>74EFEA260E35C66100B6E103</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1067,7 +1067,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {946, 562}}</string>
 								<key>RubberWindowFrame</key>
-								<string>47 31 1279 846 0 0 1440 878 </string>
+								<string>49 31 1279 846 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -1087,7 +1087,7 @@
 								<key>Frame</key>
 								<string>{{0, 567}, {946, 238}}</string>
 								<key>RubberWindowFrame</key>
-								<string>47 31 1279 846 0 0 1440 878 </string>
+								<string>49 31 1279 846 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -1232,7 +1232,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>238403254.443793</real>
+	<real>238405217.08484399</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1247,7 +1247,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>74EFEA040E35BEB600B6E103</string>
+		<string>74EFEA280E35C66100B6E103</string>
 		<string>74EFE2800E34137100B6E103</string>
 		<string>74EFE1C70E33D59100B6E103</string>
 		<string>74EFE1C10E33D54800B6E103</string>
@@ -1256,10 +1256,10 @@
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>74EFEA050E35BEB600B6E103</string>
+		<string>74EFEA290E35C66100B6E103</string>
 	</array>
 	<key>WindowString</key>
-	<string>47 31 1279 846 0 0 1440 878 </string>
+	<string>49 31 1279 846 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
