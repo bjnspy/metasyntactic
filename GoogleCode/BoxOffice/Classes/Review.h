@@ -10,24 +10,24 @@
 
 
 @interface Review : NSObject {
-    BOOL positive;
+    NSInteger score;
     NSString* link;
     NSString* text;
     NSString* author;
     NSString* source;
 }
 
-@property BOOL positive;
+@property NSInteger score;
 @property (copy) NSString* link;
 @property (copy) NSString* text;
 @property (copy) NSString* author;
 @property (copy) NSString* source;
 
 + (Review*) reviewWithText:(NSString*) text
-                positive:(BOOL) positive
-                    link:(NSString*) link
-                  author:(NSString*) author
-                  source:(NSString*) source;
+                     score:(NSInteger) score
+                      link:(NSString*) link
+                    author:(NSString*) author
+                    source:(NSString*) source;
 
 + (Review*) reviewWithDictionary:(NSDictionary*) dictionary;
 

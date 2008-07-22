@@ -18,6 +18,8 @@
 #import "Utilities.h"
 #import "ExtraMovieInformation.h"
 #import "Performance.h"
+#import "RottenTomatoesDownloader.h"
+#import "MetacriticDownloader.h"
 
 @implementation BoxOfficeController
 
@@ -106,41 +108,10 @@
 }
 
 - (NSDictionary*) quickLookup {
-    NSMutableArray* hosts = [Application hosts];
-    
-    while (hosts.count) {
-        NSString* host = [Utilities removeRandomElement:hosts];
-        
-        NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings", host]];
-        NSError* httpError = nil;
-        NSString* inTheaters = [NSString stringWithContentsOfURL:url encoding:NSISOLatin1StringEncoding error:&httpError];
-        
-        if (httpError == nil && inTheaters != nil) {    
-            NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-            
-            NSArray* rows = [inTheaters componentsSeparatedByString:@"\n"];
-            
-            // first row are the column headers.  last row is empty.  skip both.
-            for (NSInteger i = 1; i < rows.count - 1; i++) {   
-                NSArray* columns = [[rows objectAtIndex:i] componentsSeparatedByString:@"\t"];
-                
-                if (columns.count >= 9) {
-                    NSString* title = [columns objectAtIndex:1];
-                    NSString* synopsis = [columns objectAtIndex:8];
-                    synopsis = [synopsis stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
-                    synopsis = [synopsis stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
-                    ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
-                                                                                       link:[columns objectAtIndex:2]
-                                                                                   synopsis:synopsis
-                                                                                      score:[columns objectAtIndex:3]];
-                    
-                    
-                    [dictionary setObject:extraInfo forKey:title];
-                }
-            }
-            
-            return dictionary;
-        }
+    if ([self.model rottenTomatoesRatings]) {
+        return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings];
+    } else if ([self.model metacriticRatings]) {
+        return [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings];
     }
     
     return nil;
@@ -359,6 +330,10 @@
 }
 
 - (void) setSearchDate:(NSDate*) searchDate {
+    if ([searchDate isEqual:[self.model searchDate]]) {
+        return;
+    }
+    
     [self.model setSearchDate:searchDate];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController popNavigationControllers];
@@ -378,6 +353,16 @@
 
 - (void) setSearchRadius:(NSInteger) radius {
     [self.model setSearchRadius:radius];
+    [appDelegate.tabBarController refresh];
+}
+
+- (void) setRatingsProviderIndex:(NSInteger) index {
+    if (index == [self.model ratingsProviderIndex]) {
+        return;
+    }
+    
+    [self.model setRatingsProviderIndex:index];
+    [self spawnQuickLookupThread];
     [appDelegate.tabBarController refresh];
 }
 

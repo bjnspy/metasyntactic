@@ -17,6 +17,7 @@
 #import "Utilities.h"
 #import "ReviewsViewController.h"
 #import "ApplicationTabBarController.h"
+#import "FontCache.h"
 
 @implementation MovieDetailsViewController
 
@@ -175,7 +176,7 @@
     int synopsisX = 5 + image.size.width + 5;
     int width = 295 - synopsisX;
     
-    CGSize size = [[self.model synopsisForMovie:movie] sizeWithFont:[Application helvetica14]
+    CGSize size = [[self.model synopsisForMovie:movie] sizeWithFont:[FontCache helvetica14]
                                                   constrainedToSize:CGSizeMake(width, 500)
                                                       lineBreakMode:UILineBreakModeWordWrap];
     
@@ -230,7 +231,7 @@
         CGRect synopsisFrame = [self synopsisFrame];
                 
         UILabel* synopsisLabel = [[[UILabel alloc] initWithFrame:synopsisFrame] autorelease];
-        synopsisLabel.font = [Application helvetica14];
+        synopsisLabel.font = [FontCache helvetica14];
         synopsisLabel.lineBreakMode = UILineBreakModeWordWrap;
         synopsisLabel.numberOfLines = 0;
         synopsisLabel.text = [self.model synopsisForMovie:movie];

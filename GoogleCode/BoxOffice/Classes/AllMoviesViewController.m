@@ -85,11 +85,7 @@
     [formatter setDateStyle:kCFDateFormatterMediumStyle];
     [formatter setTimeStyle:kCFDateFormatterNoStyle];
     
-    NSCalendar* calendar = [NSCalendar currentCalendar];
-    NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                               fromDate:[NSDate date]];
-    [components setHour:12];
-    NSDate* today = [calendar dateFromComponents:components];
+    NSDate* today = [DateUtilities today];
     
     for (Movie* movie in self.sortedMovies) {
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
@@ -173,7 +169,7 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 
     [self refresh];
     

@@ -8,6 +8,7 @@
 
 #import "ReviewBodyCell.h"
 #import "Application.h"
+#import "FontCache.h"
 
 @implementation ReviewBodyCell
 
@@ -24,7 +25,7 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.label.font = [Application helvetica14];
+        self.label.font = [FontCache helvetica14];
         self.label.lineBreakMode = UILineBreakModeWordWrap;
         self.label.numberOfLines = 0;
         
@@ -34,7 +35,7 @@
 }
 
 - (void) setReview:(Review*) review {
-    CGRect rect = CGRectMake(10, 5, review.link ? 255 : 285, [review heightWithFont:[Application helvetica14]] - 10);
+    CGRect rect = CGRectMake(10, 5, review.link ? 255 : 285, [review heightWithFont:[FontCache helvetica14]] - 10);
     self.label.frame = rect;
     self.label.text = review.text;
 }

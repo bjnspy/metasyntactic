@@ -22,9 +22,12 @@
 @property (retain) NSLock* quickLookupLock;
 @property (retain) NSLock* fullLookupLock;
 
+- (BoxOfficeModel*) model;
+
 - (void) setSearchDate:(NSDate*) searchDate;
 - (void) setPostalCode:(NSString*) postalCode;
 - (void) setSearchRadius:(NSInteger) radius;
+- (void) setRatingsProviderIndex:(NSInteger) index;
 
 + (BoxOfficeController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;
 

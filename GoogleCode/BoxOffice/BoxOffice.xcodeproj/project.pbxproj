@@ -132,8 +132,13 @@
 		74EFE3640E353F3600B6E103 /* Spinner8.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE32E0E353F3600B6E103 /* Spinner8.png */; };
 		74EFE3650E353F3600B6E103 /* Spinner9.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE32F0E353F3600B6E103 /* Spinner9.png */; };
 		74EFE3660E353F3600B6E103 /* TryntLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3300E353F3600B6E103 /* TryntLogo.png */; };
-		74EFE3670E353F3600B6E103 /* Unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3310E353F3600B6E103 /* Unknown.png */; };
 		74EFE3680E353F3600B6E103 /* YahooLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3320E353F3600B6E103 /* YahooLogo.png */; };
+		74EFE3940E35433700B6E103 /* Rating-Unknown.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3930E35433700B6E103 /* Rating-Unknown.png */; };
+		74EFE3EC0E354E0900B6E103 /* RatingsProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE3EB0E354E0900B6E103 /* RatingsProviderViewController.m */; };
+		74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */; };
+		74EFE5360E35637200B6E103 /* FontCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5350E35637200B6E103 /* FontCache.m */; };
+		74EFE5CE0E356AA300B6E103 /* RottenTomatoesDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5CD0E356AA300B6E103 /* RottenTomatoesDownloader.m */; };
+		74EFE5D80E356BBA00B6E103 /* MetacriticDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EFE5D70E356BBA00B6E103 /* MetacriticDownloader.m */; };
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
 		74F189A80E273A1C00AB5E1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
 		74F6579B0DE9BB5100B99D45 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 74F6579A0DE9BB5100B99D45 /* Localizable.strings */; };
@@ -332,8 +337,18 @@
 		74EFE32E0E353F3600B6E103 /* Spinner8.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner8.png; path = Resources/Spinner8.png; sourceTree = "<group>"; };
 		74EFE32F0E353F3600B6E103 /* Spinner9.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner9.png; path = Resources/Spinner9.png; sourceTree = "<group>"; };
 		74EFE3300E353F3600B6E103 /* TryntLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TryntLogo.png; path = Resources/TryntLogo.png; sourceTree = "<group>"; };
-		74EFE3310E353F3600B6E103 /* Unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Unknown.png; path = Resources/Unknown.png; sourceTree = "<group>"; };
 		74EFE3320E353F3600B6E103 /* YahooLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = YahooLogo.png; path = Resources/YahooLogo.png; sourceTree = "<group>"; };
+		74EFE3930E35433700B6E103 /* Rating-Unknown.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rating-Unknown.png"; path = "Resources/Rating-Unknown.png"; sourceTree = "<group>"; };
+		74EFE3EA0E354E0900B6E103 /* RatingsProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsProviderViewController.h; sourceTree = "<group>"; };
+		74EFE3EB0E354E0900B6E103 /* RatingsProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RatingsProviderViewController.m; sourceTree = "<group>"; };
+		74EFE4AE0E355D7500B6E103 /* ImageCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImageCache.h; sourceTree = "<group>"; };
+		74EFE4AF0E355D7500B6E103 /* ImageCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImageCache.m; sourceTree = "<group>"; };
+		74EFE5340E35637200B6E103 /* FontCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FontCache.h; sourceTree = "<group>"; };
+		74EFE5350E35637200B6E103 /* FontCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FontCache.m; sourceTree = "<group>"; };
+		74EFE5CC0E356AA300B6E103 /* RottenTomatoesDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RottenTomatoesDownloader.h; sourceTree = "<group>"; };
+		74EFE5CD0E356AA300B6E103 /* RottenTomatoesDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RottenTomatoesDownloader.m; sourceTree = "<group>"; };
+		74EFE5D60E356BBA00B6E103 /* MetacriticDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MetacriticDownloader.h; sourceTree = "<group>"; };
+		74EFE5D70E356BBA00B6E103 /* MetacriticDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MetacriticDownloader.m; sourceTree = "<group>"; };
 		74F187200E2710A400AB5E1E /* TrailerCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TrailerCache.h; sourceTree = "<group>"; };
 		74F187210E2710A400AB5E1E /* TrailerCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TrailerCache.m; sourceTree = "<group>"; };
 		74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
@@ -403,6 +418,14 @@
 				7495695D0E2D6354007BFF21 /* ReviewCache.m */,
 				7411F2D80E2ECBAD00F0725C /* SearchCache.h */,
 				7411F2D90E2ECBAD00F0725C /* SearchCache.m */,
+				74EFE4AE0E355D7500B6E103 /* ImageCache.h */,
+				74EFE4AF0E355D7500B6E103 /* ImageCache.m */,
+				74EFE5340E35637200B6E103 /* FontCache.h */,
+				74EFE5350E35637200B6E103 /* FontCache.m */,
+				74EFE5CC0E356AA300B6E103 /* RottenTomatoesDownloader.h */,
+				74EFE5CD0E356AA300B6E103 /* RottenTomatoesDownloader.m */,
+				74EFE5D60E356BBA00B6E103 /* MetacriticDownloader.h */,
+				74EFE5D70E356BBA00B6E103 /* MetacriticDownloader.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -439,6 +462,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74EFE3930E35433700B6E103 /* Rating-Unknown.png */,
 				74EFE2FD0E353F3600B6E103 /* CurrentPosition.png */,
 				74EFE2FE0E353F3600B6E103 /* Default-3.png */,
 				74EFE2FF0E353F3600B6E103 /* Default-4.png */,
@@ -491,7 +515,6 @@
 				74EFE32E0E353F3600B6E103 /* Spinner8.png */,
 				74EFE32F0E353F3600B6E103 /* Spinner9.png */,
 				74EFE3300E353F3600B6E103 /* TryntLogo.png */,
-				74EFE3310E353F3600B6E103 /* Unknown.png */,
 				74EFE3320E353F3600B6E103 /* YahooLogo.png */,
 				74F6579A0DE9BB5100B99D45 /* Localizable.strings */,
 				28AD733E0D9D9553002E5188 /* MainWindow.xib */,
@@ -633,6 +656,8 @@
 				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
 				74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */,
 				74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */,
+				74EFE3EA0E354E0900B6E103 /* RatingsProviderViewController.h */,
+				74EFE3EB0E354E0900B6E103 /* RatingsProviderViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -769,8 +794,8 @@
 				74EFE3640E353F3600B6E103 /* Spinner8.png in Resources */,
 				74EFE3650E353F3600B6E103 /* Spinner9.png in Resources */,
 				74EFE3660E353F3600B6E103 /* TryntLogo.png in Resources */,
-				74EFE3670E353F3600B6E103 /* Unknown.png in Resources */,
 				74EFE3680E353F3600B6E103 /* YahooLogo.png in Resources */,
+				74EFE3940E35433700B6E103 /* Rating-Unknown.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -848,6 +873,11 @@
 				7411F3B30E2EDA7B00F0725C /* Key.m in Sources */,
 				741773220E32048700551817 /* SearchResult.m in Sources */,
 				741773250E3204B100551817 /* SearchRequest.m in Sources */,
+				74EFE3EC0E354E0900B6E103 /* RatingsProviderViewController.m in Sources */,
+				74EFE4B00E355D7500B6E103 /* ImageCache.m in Sources */,
+				74EFE5360E35637200B6E103 /* FontCache.m in Sources */,
+				74EFE5CE0E356AA300B6E103 /* RottenTomatoesDownloader.m in Sources */,
+				74EFE5D80E356BBA00B6E103 /* MetacriticDownloader.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

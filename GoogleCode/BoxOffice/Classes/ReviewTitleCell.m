@@ -8,21 +8,27 @@
 
 #import "ReviewTitleCell.h"
 #import "Application.h"
+#import "ImageCache.h"
 
 @implementation ReviewTitleCell
 
+@synthesize model;
 @synthesize authorLabel;
 @synthesize sourceLabel;
 
-- (void)dealloc {
+- (void) dealloc {
+    self.model = nil;
     self.authorLabel = nil;
     self.sourceLabel = nil;
     
     [super dealloc];
 }
 
-- (id)initWithFrame:(CGRect)frame reuseIdentifier:(NSString *)reuseIdentifier {
+- (id) initWithModel:(BoxOfficeModel*) model_
+               frame:(CGRect) frame
+     reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
+        self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.authorLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
@@ -37,11 +43,31 @@
     return self;
 }
 
+- (void) setImage:(UIImage*) image {
+    if (self.image != image) {
+        [super setImage:image];
+    }
+}
+
 - (void) setReview:(Review*) review {
-    if (review.positive && self.image != [Application freshImage]) {
-        self.image = [Application freshImage];
-    } else if (!review.positive && self.image != [Application rottenFullImage]) {
-        self.image = [Application rottenFullImage];
+    int score = review.score;
+    
+    if ([self.model rottenTomatoesRatings]) {
+        if (score >= 60) {
+            self.image = [ImageCache freshImage];
+        } else {
+            self.image = [ImageCache rottenFullImage];
+        }
+    } else {
+        if (score >= 0 && score <= 40) {
+            self.image = [ImageCache redRatingImage];
+        } else if (score > 40 && score <= 60) {
+            self.image = [ImageCache yellowRatingImage];
+        } else if (score > 60 && score <= 100) {
+            self.image = [ImageCache greenRatingImage];
+        } else {
+            self.image = [ImageCache unknownRatingImage];
+        }
     }
     
     authorLabel.text = review.author;

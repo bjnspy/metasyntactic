@@ -11,5 +11,6 @@
 }
 
 + (NSString*) timeSinceNow:(NSDate*) date;
++ (NSDate*) today;
 
 @end

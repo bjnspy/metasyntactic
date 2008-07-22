@@ -8,6 +8,8 @@
 
 #import "MovieTitleCell.h"
 #import "Application.h"
+#import "ImageCache.h"
+#import "FontCache.h"
 
 @implementation MovieTitleCell
 
@@ -25,10 +27,10 @@
     [super dealloc];
 }
 
-- (id)      initWithFrame:(CGRect) frame
-          reuseIdentifier:(NSString*) reuseIdentifier 
-                    model:(BoxOfficeModel*) model_ 
-                    style:(UITableViewStyle) style_ {
+- (id) initWithFrame:(CGRect) frame
+     reuseIdentifier:(NSString*) reuseIdentifier
+               model:(BoxOfficeModel*) model_ 
+               style:(UITableViewStyle) style_ {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
         style = style_;
@@ -76,14 +78,13 @@
     }
 }
 
-- (void) setMovie:(Movie*) movie {
-    
+- (void) setRottenTomatoesScore:(Movie*) movie {
     int score = [self.model scoreForMovie:movie];
     
     if (score >= 0 && score <= 100) {
         if (score >= 60) {
-            if (self.image != [Application freshImage]) {
-                self.image = [Application freshImage];
+            if (self.image != [ImageCache freshImage]) {
+                self.image = [ImageCache freshImage];
                 
                 scoreLabel.font = [UIFont boldSystemFontOfSize:15];
                 scoreLabel.textColor = [UIColor whiteColor];
@@ -96,8 +97,8 @@
                 scoreLabel.frame = frame;
             }
         } else {
-            if (self.image != [Application rottenFadedImage]) {
-                self.image = [Application rottenFadedImage];
+            if (self.image != [ImageCache rottenFadedImage]) {
+                self.image = [ImageCache rottenFadedImage];
                 
                 scoreLabel.font = [UIFont boldSystemFontOfSize:17];
                 scoreLabel.textColor = [UIColor blackColor];
@@ -113,29 +114,57 @@
         
         scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     } else {
-        if (self.image != [Application unknownImage]) {
+        if (self.image != [ImageCache unknownRatingImage]) {
             self.scoreLabel.text = nil;
-            self.image = [Application unknownImage];
+            self.image = [ImageCache unknownRatingImage];
         }
-        /*
-         self.scoreLabel.text = nil;
-         switch (rand() % 4) {
-         case 0:
-         self.image = [UIImage imageNamed:@"Rating-Red.png"];
-         break;
-         case 1:
-         self.image = [UIImage imageNamed:@"Rating-Yellow.png"];
-         break;
-         case 2:
-         self.image = [UIImage imageNamed:@"Rating-Green.png"];
-         break;
-         case 3:
-         self.image = [UIImage imageNamed:@"Rating-Blue.png"];
-         break;
-         }
-         */
+    }
+}
+
+- (void) setMetacriticScore:(Movie*) movie {
+    int score = [self.model scoreForMovie:movie];
+    
+    if (score >= 0 && score <= 100) {
+        CGRect frame;
+        if (score == 100) {
+            scoreLabel.font = [UIFont boldSystemFontOfSize:15];
+            frame = CGRectMake(10, 6, 30, 30);
+        } else {
+            scoreLabel.font = [FontCache boldSystem18];
+            frame = CGRectMake(10, 7, 30, 30);
+        }
+        
+        if (style == UITableViewStyleGrouped) {
+            frame.origin.x += 10;
+        }
+        
+        scoreLabel.textColor = [UIColor blackColor];
+        scoreLabel.frame = frame;
+        scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     }
     
+    if (score >= 0 && score <= 40) {
+        self.image = [ImageCache redRatingImage];
+    } else if (score > 40 && score <= 60) {
+        self.image = [ImageCache yellowRatingImage];
+    } else if (score > 60 && score <= 100) {
+        self.image = [ImageCache greenRatingImage];
+    } else {
+        self.scoreLabel.text = nil;
+        self.image = [ImageCache unknownRatingImage];
+    }
+}
+
+- (void) setScore:(Movie*) movie {
+    if ([self.model rottenTomatoesRatings]) {
+        [self setRottenTomatoesScore:movie];
+    } else {
+        [self setMetacriticScore:movie];
+    }
+}
+
+- (void) setMovie:(Movie*) movie {
+    [self setScore:movie];    
     self.ratingLabel.text = [movie ratingAndRuntimeString];
     self.titleLabel.text = movie.title;
 }

@@ -7,7 +7,7 @@
 //
 
 #import "ExtraMovieInformation.h"
-
+#import "Movie.h"
 
 @implementation ExtraMovieInformation
 
@@ -30,7 +30,7 @@
             synopsis:(NSString*) synopsis_
                score:(NSString*) score_ {
     if (self = [super init]) {
-        self.title = title_;
+        self.title = [Movie massageTitle:title_];
         self.link = link_;
         self.synopsis = synopsis_;
         self.score = score_;

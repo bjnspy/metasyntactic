@@ -13,10 +13,11 @@
 #import "Application.h"
 #import "ExtraMovieInformation.h"
 #import "Utilities.h"
+#import "DateUtilities.h"
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.24";
+static NSString* currentVersion = @"1.2.25";
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
@@ -36,6 +37,7 @@ static NSString* ADDRESS_LOCATION_MAP                   = @"addressLocationMap";
 static NSString* CURRENTLY_SHOWING_REVIEWS              = @"currentlyShowingReviews";
 static NSString* SEARCH_DATE                            = @"searchDate";
 static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
+static NSString* RATINGS_PROVIDER_INDEX                 = @"ratingsProviderIndex";
 
 static NSArray* KEYS;
 
@@ -61,6 +63,7 @@ static NSArray* KEYS;
                  ADDRESS_LOCATION_MAP,
                  CURRENTLY_SHOWING_REVIEWS,
                  AUTO_UPDATE_LOCATION,
+                 RATINGS_PROVIDER_INDEX,
                  nil] retain];
     }
 }
@@ -111,7 +114,7 @@ static NSArray* KEYS;
 }
 
 - (void) updateReviewCache {
-    [self.reviewCache update:self.supplementaryInformation];
+    [self.reviewCache update:self.supplementaryInformation ratingsProvider:[self ratingsProviderIndex]];
 }
 
 - (void) updateAddressLocationCache {
@@ -169,7 +172,7 @@ static NSArray* KEYS;
         self.posterCache = [PosterCache cache];
         self.trailerCache = [TrailerCache cache];
         self.addressLocationCache = [AddressLocationCache cache];
-        self.reviewCache = [ReviewCache cache];
+        self.reviewCache = [ReviewCache cacheWithModel:self];
         
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicatorView.frame;
@@ -213,6 +216,37 @@ static NSArray* KEYS;
     }
     
     [self.notificationCenter addStatusMessage:description];
+}
+
+- (NSInteger) ratingsProviderIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:RATINGS_PROVIDER_INDEX];
+}
+
+- (void) clearLastQuickUpdateTime {
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_QUICK_UPDATE_TIME];
+}
+
+- (void) setRatingsProviderIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:RATINGS_PROVIDER_INDEX];
+    [self.reviewCache clear];
+    [self setSupplementaryInformation:[NSDictionary dictionary]];
+    [self clearLastQuickUpdateTime];
+}
+
+- (BOOL) rottenTomatoesRatings {
+    return [self ratingsProviderIndex] == 0;
+}    
+
+- (BOOL) metacriticRatings {
+    return [self ratingsProviderIndex] == 1;
+}
+
+- (NSArray*) ratingsProviders {
+    return [NSArray arrayWithObjects:@"RottenTomatoes", @"Metacritic", nil];
+}
+
+- (NSString*) currentRatingsProvider {
+    return [[self ratingsProviders] objectAtIndex:[self ratingsProviderIndex]];
 }
 
 - (NSInteger) selectedTabBarViewControllerIndex {
@@ -292,7 +326,7 @@ static NSArray* KEYS;
 - (NSDate*) searchDate {
     NSDate* date = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_DATE];
     if (date == nil || [date compare:[NSDate date]] == NSOrderedAscending) {
-        return [NSDate date];
+        return [DateUtilities today];
     }
     return date;
 }
@@ -378,10 +412,6 @@ static NSArray* KEYS;
 
 - (NSDate*) lastQuickUpdateTime {
     return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_QUICK_UPDATE_TIME];
-}
-
-- (void) clearLastQuickUpdateTime {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_QUICK_UPDATE_TIME];
 }
 
 - (NSDate*) lastFullUpdateTime {
@@ -798,11 +828,11 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
     ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
-    if (extraInfo != nil && extraInfo.synopsis != nil) {
+    if (extraInfo != nil && ![Utilities isNilOrEmpty:extraInfo.synopsis]) {
         return extraInfo.synopsis;
     }
     
-    if (movie.backupSynopsis != nil) {
+    if (![Utilities isNilOrEmpty:movie.backupSynopsis]) {
         return movie.backupSynopsis;
     }
     

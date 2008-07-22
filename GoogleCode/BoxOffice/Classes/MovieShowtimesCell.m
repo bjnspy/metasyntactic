@@ -9,6 +9,7 @@
 #import "MovieShowtimesCell.h"
 #import "Performance.h"
 #import "Application.h"
+#import "FontCache.h"
 
 @implementation MovieShowtimesCell
 
@@ -37,7 +38,7 @@
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes {
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
     
-    return [string sizeWithFont:[Application boldSystem11]
+    return [string sizeWithFont:[FontCache boldSystem11]
               constrainedToSize:CGSizeMake(232, 1000)
                   lineBreakMode:UILineBreakModeWordWrap].height;
 }
@@ -50,7 +51,7 @@
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];  
         
         self.showtimesLabel.numberOfLines = 0;
-        self.showtimesLabel.font = [Application boldSystem11];
+        self.showtimesLabel.font = [FontCache boldSystem11];
         self.showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
 
         {
@@ -64,7 +65,7 @@
         [self addSubview:showtimesLabel];
         
         self.headerLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.headerLabel.font = [Application boldSystem11];
+        self.headerLabel.font = [FontCache boldSystem11];
         self.headerLabel.textColor = [Application commandColor];
         self.headerLabel.text = NSLocalizedString(@"Shows", nil);
         [self.headerLabel sizeToFit];
