@@ -13,14 +13,10 @@
 @interface ReviewCache : NSObject {
     BoxOfficeModel* model;
     NSLock* gate;
-    
-    // movieId -> { Date, [Reviews] }
-    NSMutableDictionary* movieToReviewMap;
 }
 
 @property (assign) BoxOfficeModel* model;
 @property (retain) NSLock* gate;
-@property (retain) NSMutableDictionary* movieToReviewMap;
 
 + (ReviewCache*) cacheWithModel:(BoxOfficeModel*) model;
 
@@ -28,7 +24,5 @@
 - (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider;
 
 - (NSArray*) reviewsForMovie:(NSString*) movieTitle;
-
-- (void) applicationWillTerminate;
 
 @end

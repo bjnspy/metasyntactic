@@ -16,6 +16,7 @@ static NSString* supportFolder = nil;
 static NSString* dataFolder = nil;
 static NSString* searchFolder = nil;
 static NSString* postersFolder = nil;
+static NSString* reviewsFolder = nil;
 static NSString* documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
 static UIColor* commandColor = nil;
@@ -120,8 +121,21 @@ static NSString* starString = nil;
     return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
 }
 
-+ (NSString*) reviewsFile {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"Reviews.plist"];
++ (NSString*) reviewsFolder {
+    [gate lock];
+    {
+        if (reviewsFolder == nil) {
+            NSString* parent = [Application supportFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Reviews"];
+            
+            [Application createDirectory:folder];
+            
+            reviewsFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return reviewsFolder;
 }
 
 + (NSString*) postersFolder {

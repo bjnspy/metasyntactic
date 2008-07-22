@@ -17,7 +17,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.25";
+static NSString* currentVersion = @"1.2.26";
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
@@ -158,7 +158,6 @@ static NSArray* KEYS;
         
         [[NSFileManager defaultManager] removeItemAtPath:[Application moviesFile] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application theatersFile] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application reviewsFile] error:NULL];
         
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
     }
@@ -854,7 +853,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (void) applicationWillTerminate {
     [trailerCache applicationWillTerminate];
-    [reviewCache applicationWillTerminate];
 }
 
 - (NSString*) noLocationInformationFound {
