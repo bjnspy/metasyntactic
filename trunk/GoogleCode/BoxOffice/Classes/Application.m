@@ -17,6 +17,7 @@ static NSString* dataFolder = nil;
 static NSString* searchFolder = nil;
 static NSString* postersFolder = nil;
 static NSString* reviewsFolder = nil;
+static NSString* trailersFolder = nil;
 static NSString* documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
 static UIColor* commandColor = nil;
@@ -136,6 +137,23 @@ static NSString* starString = nil;
     [gate unlock];
     
     return reviewsFolder;
+}
+
++ (NSString*) trailersFolder {
+    [gate lock];
+    {
+        if (trailersFolder == nil) {
+            NSString* parent = [Application supportFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
+            
+            [Application createDirectory:folder];
+            
+            trailersFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return trailersFolder;
 }
 
 + (NSString*) postersFolder {

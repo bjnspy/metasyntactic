@@ -32,7 +32,6 @@ static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewCo
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSegmentIndex";
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
-static NSString* MOVIE_TRAILERS                         = @"movieTrailers";
 static NSString* ADDRESS_LOCATION_MAP                   = @"addressLocationMap";
 static NSString* CURRENTLY_SHOWING_REVIEWS              = @"currentlyShowingReviews";
 static NSString* SEARCH_DATE                            = @"searchDate";
@@ -59,7 +58,6 @@ static NSArray* KEYS;
                  ALL_MOVIES_SELECTED_SEGMENT_INDEX,
                  ALL_THEATERS_SELECTED_SEGMENT_INDEX,
                  FAVORITE_THEATERS,
-                 MOVIE_TRAILERS,
                  ADDRESS_LOCATION_MAP,
                  CURRENTLY_SHOWING_REVIEWS,
                  AUTO_UPDATE_LOCATION,
@@ -852,7 +850,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 - (void) applicationWillTerminate {
-    [trailerCache applicationWillTerminate];
 }
 
 - (NSString*) noLocationInformationFound {

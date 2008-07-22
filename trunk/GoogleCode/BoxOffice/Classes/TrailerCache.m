@@ -10,17 +10,14 @@
 #import "Utilities.h"
 #import "XmlElement.h"
 #import "DifferenceEngine.h"
+#import "Application.h"
 
 @implementation TrailerCache
 
-static NSString* MOVIE_TRAILERS = @"movieTrailers";
-
 @synthesize gate;
-@synthesize movieToTrailersMap;
 
 - (void) dealloc {
     self.gate = nil;
-    self.movieToTrailersMap = nil;
     
     [super dealloc];
 }
@@ -28,14 +25,6 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
 - (id) init {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
-        
-        NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:MOVIE_TRAILERS];
-        
-        if (dict == nil) {
-            self.movieToTrailersMap = [NSMutableDictionary dictionary];
-        } else {
-            self.movieToTrailersMap = [NSMutableDictionary dictionaryWithDictionary:dict];
-        }
     }
     
     return self;
@@ -45,32 +34,42 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
     return [[[TrailerCache alloc] init] autorelease];
 }
 
+- (NSString*) trailerFilePath:(NSString*) title {
+    NSString* sanitizedTitle = [title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
+    return [[[Application trailersFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"plist"];
+}
+
 - (void) deleteObsoleteTrailers:(NSArray*) movies {
-    NSMutableSet* movieTitles = [NSMutableSet set];
+    NSMutableSet* set = [NSMutableSet set];
+    
+    NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application postersFolder]];
+    for (NSString* fileName in contents) {
+        NSString* filePath = [[Application trailersFolder] stringByAppendingPathComponent:fileName];
+        [set addObject:filePath];
+    }
+    
     for (Movie* movie in movies) {
-        [movieTitles addObject:movie.title];
+        [set removeObject:[self trailerFilePath:movie.title]];
     }
     
-    NSMutableDictionary* trimmedDictionary = [NSMutableDictionary dictionary];
-    
-    for (NSString* key in self.movieToTrailersMap) {
-        if ([movieTitles containsObject:key]) {
-            [trimmedDictionary setObject:[self.movieToTrailersMap objectForKey:key] forKey:key];
-        }
+    for (NSString* filePath in set) {
+        NSError* error;
+        [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
     }
-    
-    self.movieToTrailersMap = trimmedDictionary;
 }
 
 - (NSArray*) getOrderedMovies:(NSArray*) movies {
     NSMutableArray* moviesWithoutTrailers = [NSMutableArray array];
     NSMutableArray* moviesWithTrailers = [NSMutableArray array];
+    
     for (Movie* movie in movies) {
-        NSArray* dateAndTrailers = [self.movieToTrailersMap objectForKey:movie.title];
-        if (dateAndTrailers == nil) {
+        NSError* error = nil;
+        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self trailerFilePath:movie.title]
+                                                                                 error:&error] objectForKey:NSFileModificationDate];
+        
+        if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
         } else {
-            NSDate* downloadDate = [dateAndTrailers objectAtIndex:0];
             NSDate* now = [NSDate date];
             
             NSDateComponents* downloadDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:downloadDate];
@@ -104,14 +103,6 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
     return nil;
 }
 
-- (void) processResult:(NSArray*) data {
-    NSString* text = [data objectAtIndex:0];
-    NSArray* urls = [data objectAtIndex:1];
-    NSArray* dateAndTrailers = [NSArray arrayWithObjects:[NSDate date], urls, nil];
-    
-    [self.movieToTrailersMap setObject:dateAndTrailers forKey:text];
-}
-
 - (void) findTrailers:(NSString*) movieTitle
              indexUrl:(NSString*) indexUrl {
     NSString* contents = [NSString stringWithContentsOfURL:[NSURL URLWithString:indexUrl]];
@@ -138,8 +129,7 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
     }
     
     if (urls.count) {
-        NSArray* result = [NSArray arrayWithObjects:movieTitle, urls, nil];
-        [self performSelectorOnMainThread:@selector(processResult:) withObject:result waitUntilDone:NO];
+        [urls writeToFile:[self trailerFilePath:movieTitle] atomically:YES];
     }
 }
 
@@ -226,23 +216,13 @@ static NSString* MOVIE_TRAILERS = @"movieTrailers";
     [gate unlock];
 }
 
-- (void) onComplete:(id) nothing {
-    [[NSUserDefaults standardUserDefaults] setObject:self.movieToTrailersMap forKey:MOVIE_TRAILERS];
-}
-
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* dateAndTrailers = [movieToTrailersMap objectForKey:movie.title];
-    NSArray* result = [dateAndTrailers objectAtIndex:1];
-    if (result == nil) {
+    NSArray* trailers = [NSArray arrayWithContentsOfFile:[self trailerFilePath:movie.title]];
+    if (trailers == nil) {
         return [NSArray array];
     }
     
-    return result;
+    return trailers;
 }
-
-- (void) applicationWillTerminate {
-    [self onComplete:nil];
-}
-
 
 @end
