@@ -41,12 +41,12 @@
         self.authorLabel.font = [UIFont boldSystemFontOfSize:14];
         self.sourceLabel.font = [UIFont systemFontOfSize:12];
         
-        scoreLabel.textColor = [UIColor blackColor];
+        scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.textAlignment = UITextAlignmentCenter;
         
         [self.contentView addSubview:authorLabel];
         [self.contentView addSubview:sourceLabel];
-        [self.contentView addSubview:scoreLabel];
+        [self addSubview:scoreLabel];
     }
     return self;
 }
@@ -84,10 +84,10 @@
         CGRect frame;
         if (score == 100) {
             scoreLabel.font = [UIFont boldSystemFontOfSize:15];
-            frame = CGRectMake(10, 6, 30, 30);
+            frame = CGRectMake(20, 6, 30, 30);
         } else {
             scoreLabel.font = [FontCache boldSystem18];
-            frame = CGRectMake(10, 7, 30, 30);
+            frame = CGRectMake(20, 7, 30, 30);
         }
         
         scoreLabel.frame = frame;
