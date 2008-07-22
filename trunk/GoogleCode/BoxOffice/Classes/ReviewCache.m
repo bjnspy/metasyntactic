@@ -55,7 +55,6 @@
     return reviews;
 }
 
-
 - (void) saveMovie:(NSString*) title reviews:(NSArray*) reviews {
     NSMutableArray* encodedReviews = [NSMutableArray array];
     for (Review* review in reviews) {
@@ -197,7 +196,7 @@
     NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application reviewsFolder]];
     for (NSString* filePath in contents) {
         NSError* error = nil;
-        [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+        [[NSFileManager defaultManager] removeItemAtPath:[[Application reviewsFolder] stringByAppendingPathComponent:filePath] error:&error];
     }
 }
 
