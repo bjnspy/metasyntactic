@@ -61,7 +61,7 @@
         [encodedReviews addObject:[review dictionary]];
     }
     
-    [encodedReviews writeToFile:[self reviewFilePath:title] atomically:YES];
+    [Utilities writeObject:encodedReviews toFile:[self reviewFilePath:title]];
 }
 
 - (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider {

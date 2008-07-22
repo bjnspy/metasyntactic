@@ -45,4 +45,6 @@ double max_d(double a, double b);
 + (BOOL) isSameDay:(NSDate*) d1
               date:(NSDate*) d2;
 
++ (void) writeObject:(id) object toFile:(NSString*) file;
+
 @end

@@ -129,7 +129,7 @@
     }
     
     if (urls.count) {
-        [urls writeToFile:[self trailerFilePath:movieTitle] atomically:YES];
+        [Utilities writeObject:urls toFile:[self trailerFilePath:movieTitle]];
     }
 }
 
