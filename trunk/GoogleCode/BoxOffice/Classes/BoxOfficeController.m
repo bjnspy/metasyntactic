@@ -305,7 +305,7 @@
         [encoded addObject:[object dictionary]];
     }
     
-    [encoded writeToFile:file atomically:YES];
+    [Utilities writeObject:encoded toFile:file];
 }
 
 - (void) fullLookupBackgroundThreadEntryPoint:(id) anObject {    

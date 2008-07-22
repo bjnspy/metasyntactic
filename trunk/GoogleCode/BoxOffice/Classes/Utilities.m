@@ -185,4 +185,14 @@ double max_d(double a, double b) {
         [components1 day] == [components2 day];
 }
 
++ (void) writeObject:(id) object toFile:(NSString*) file {
+    NSString* error = nil;
+    NSData* plistData = [NSPropertyListSerialization dataFromPropertyList:object
+                                                                   format:NSPropertyListBinaryFormat_v1_0
+                                                         errorDescription:&error];
+    if(plistData) {
+        [plistData writeToFile:file atomically:YES];
+    }
+}
+
 @end

@@ -54,7 +54,7 @@
             if (columns.count >= 3) {
                 NSString* synopsis = @"";
                 NSString* score = [columns objectAtIndex:0];
-                NSString* link  = [NSString stringWithFormat:@"http://www.metacritic.com%@", [columns objectAtIndex:1]];
+                NSString* link  = [columns objectAtIndex:1];
                 NSString* title = [columns objectAtIndex:2];
                 if ([score isEqual:@"xx"]) {
                     score = @"-1";
