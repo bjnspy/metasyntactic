@@ -114,6 +114,10 @@ static NSString* starString = nil;
     return searchFolder;
 }
 
++ (NSString*) movieMapFile {
+    return [[Application dataFolder] stringByAppendingPathComponent:@"MovieMap.plist"];
+}
+
 + (NSString*) moviesFile {
     return [[Application dataFolder] stringByAppendingPathComponent:@"Movies.plist"];
 }

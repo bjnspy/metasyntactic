@@ -36,7 +36,6 @@
 - (NSDictionary*) lookupMovieListings {
     NSMutableArray* hosts = [Application hosts];
     NSString* host = [Utilities removeRandomElement:hosts];
-    host = @"metaboxoffice6";
     
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic", host]];
     NSError* httpError = nil;
@@ -47,7 +46,6 @@
                 
         NSArray* rows = [movieListings componentsSeparatedByString:@"\n"];
         
-        // first row are the column headers.  last row is empty.  skip both.
         for (NSString* row in rows) {   
             NSArray* columns = [row componentsSeparatedByString:@"\t"];
             

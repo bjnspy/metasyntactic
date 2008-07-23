@@ -181,6 +181,8 @@ static NSArray* KEYS;
         backgroundTaskCount = 0;
         searchRadius = -1;
         
+        self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
+                         
         [self updatePosterCache];
         [self updateAddressLocationCache];
         [self updatePostalCodeAddressLocation];
@@ -799,18 +801,24 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
             
             if (index != NSNotFound) {
                 NSString* key = [keys objectAtIndex:index];
-                [dictionary setObject:[[self supplementaryInformation] objectForKey:key] forKey:movie.title];
+                [dictionary setObject:key forKey:movie.title];
             }
         }
         
         self.movieMap = dictionary;
+        [Utilities writeObject:dictionary toFile:[Application movieMapFile]];
     }
 }
 
 - (ExtraMovieInformation*) extraInformationForMovie:(Movie*) movie {
     [self createMovieMap];
     
-    return [self.movieMap objectForKey:movie.title];
+    NSString* key = [self.movieMap objectForKey:movie.title];
+    if (key == nil) {
+        return nil;
+    }
+    
+    return [[self supplementaryInformation] objectForKey:key];
 }
 
 - (NSInteger) scoreForMovie:(Movie*) movie {
