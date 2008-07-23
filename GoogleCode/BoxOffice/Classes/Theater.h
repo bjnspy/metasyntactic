@@ -15,7 +15,6 @@
     NSString* phoneNumber;
     
     NSString* sellsTickets;
-    NSString* sourcePostalCode;
     
 @private
     // title -> [ { showtime, showid } ]
@@ -27,16 +26,14 @@
 @property (copy) NSString* address;
 @property (copy) NSString* phoneNumber;
 @property (copy) NSString* sellsTickets;
-@property (copy) NSString* sourcePostalCode;
-//@property (retain) NSDictionary* movieToShowtimesMap;
+@property (retain) NSDictionary* movieToShowtimesMap;
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
                            address:(NSString*) address
                        phoneNumber:(NSString*) phoneNumber
                       sellsTickets:(NSString*) sellsTickets
-               movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap
-                  sourcePostalCode:(NSString*) sourcePostalCode;
+               movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap;
 
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
 

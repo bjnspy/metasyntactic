@@ -69,11 +69,7 @@
         
         self.movies = [self.model moviesAtTheater:theater];
         NSInteger (*sortFunction)(id, id, void *) = compareMoviesByTitle;
-        /*
-            [self.model sortingMoviesByTitle] ? compareMoviesByTitle :
-                                                ([self.model sortingMoviesByScore] ? compareMoviesByScore
-                                                                                    : compareMoviesByReleaseDate);
-         */
+
         [self.movies sortUsingFunction:sortFunction context:self.model];    
         
         self.movieShowtimes = [NSMutableArray array];
