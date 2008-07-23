@@ -26,6 +26,8 @@
     NSString* synopsis;
     NSInteger synopsisSplit;
     NSInteger synopsisMax;
+    
+    BOOL filterTheatersByDistance;
 }
 
 @property (assign) MoviesNavigationController* navigationController;

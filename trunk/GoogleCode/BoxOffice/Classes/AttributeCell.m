@@ -23,20 +23,14 @@
 
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.autoresizesSubviews = YES;
-        
         self.keyLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         
         self.keyLabel.textColor = [Application commandColor];
         self.keyLabel.font = [UIFont boldSystemFontOfSize:12.0];
         self.keyLabel.textAlignment = UITextAlignmentRight;
-        self.keyLabel.autoresizingMask = UIViewAutoresizingFlexibleHeight |
-                                         UIViewAutoresizingFlexibleRightMargin;
         
         self.valueLabel.font = [UIFont boldSystemFontOfSize:14.0];
-        self.valueLabel.autoresizingMask = UIViewAutoresizingFlexibleWidth |
-                                           UIViewAutoresizingFlexibleHeight;
         self.valueLabel.adjustsFontSizeToFitWidth = YES;
         
         [self addSubview:keyLabel];

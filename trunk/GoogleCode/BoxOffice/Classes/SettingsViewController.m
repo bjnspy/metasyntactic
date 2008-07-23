@@ -71,7 +71,7 @@
         
         [self autoUpdateLocation:nil];
     }
-    
+
     return self;
 }
 
@@ -80,6 +80,10 @@
     
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
     
+    [self refresh];
+}
+
+- (void) refresh {
     [self.tableView reloadData];
 }
 
@@ -156,10 +160,6 @@
 
 - (BoxOfficeController*) controller {
     return [self.navigationController controller];
-}
-
-- (void) refresh {
-    [self.tableView reloadData];
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView

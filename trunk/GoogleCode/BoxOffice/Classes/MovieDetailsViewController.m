@@ -67,10 +67,10 @@
     self.theatersArray = result;
 }
 
-- (void) initializeData:(BOOL) filter {
+- (void) initializeData {
     NSArray* theatersShowingMovie = [self.model theatersShowingMovie:self.movie];
     
-    if (filter) {
+    if (filterTheatersByDistance) {
         self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:theatersShowingMovie]];
         self.hiddenTheaterCount = theatersShowingMovie.count - theatersArray.count;
     } else {
@@ -145,9 +145,10 @@
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
-        self.movie = movie_;    
+        self.movie = movie_;
+        filterTheatersByDistance = YES;
         
-        [self initializeData:YES];
+        [self initializeData];
         
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = self.movie.title;
@@ -176,10 +177,12 @@
     [self.model setCurrentlySelectedMovie:self.movie theater:nil];
     
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    
+    [self refresh];
 }
 
 - (void) refresh {
-    [self initializeData:YES];
+    [self initializeData];
     [self.tableView reloadData];
 }
 
@@ -433,7 +436,8 @@
 
 - (void) didSelectHeaderRow:(NSInteger) row {
     if (row == 2) {
-        [self initializeData:NO];
+        filterTheatersByDistance = NO;
+        [self initializeData];
         [self.tableView reloadData];
     }    
 }

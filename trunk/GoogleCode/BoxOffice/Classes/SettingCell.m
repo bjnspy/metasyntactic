@@ -21,8 +21,6 @@
 
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
-        self.autoresizesSubviews = YES;
-        
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.valueLabel.textColor = [Application commandColor];
         
