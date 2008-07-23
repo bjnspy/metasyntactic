@@ -110,7 +110,7 @@
     } else {
         Review* review = [reviews objectAtIndex:indexPath.section];
     
-        return max_d([review heightWithFont:[FontCache helvetica14]], [self.tableView rowHeight]);
+        return MAX([review heightWithFont:[FontCache helvetica14]], [self.tableView rowHeight]);
     }
 }
 

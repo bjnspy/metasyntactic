@@ -34,27 +34,29 @@
     return [[[TrailerCache alloc] init] autorelease];
 }
 
-- (NSString*) trailerFilePath:(NSString*) title {
-    NSString* sanitizedTitle = [title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
-    return [[[Application trailersFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"plist"];
+- (NSString*) shortTrailerFilePath:(NSString*) title {
+    return [[title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"] stringByAppendingPathExtension:@"plist"];
 }
 
+- (NSString*) trailerFilePath:(NSString*) title {
+    return [[Application trailersFolder] stringByAppendingPathComponent:[self shortTrailerFilePath:title]];
+}
+ 
 - (void) deleteObsoleteTrailers:(NSArray*) movies {
-    NSMutableSet* set = [NSMutableSet set];
     
-    NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application postersFolder]];
-    for (NSString* fileName in contents) {
-        NSString* filePath = [[Application trailersFolder] stringByAppendingPathComponent:fileName];
-        [set addObject:filePath];
-    }
+    NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application trailersFolder]];
+    NSMutableSet* set = [NSMutableSet setWithArray:contents];
     
     for (Movie* movie in movies) {
-        [set removeObject:[self trailerFilePath:movie.title]];
+        NSString* filePath = [self shortTrailerFilePath:movie.title];
+        [set removeObject:filePath];
     }
     
     for (NSString* filePath in set) {
+        NSString* fullPath = [[Application trailersFolder] stringByAppendingPathComponent:filePath];
+        
         NSError* error;
-        [[NSFileManager defaultManager] removeItemAtPath:filePath error:&error];
+        [[NSFileManager defaultManager] removeItemAtPath:fullPath error:&error];
     }
 }
 
@@ -70,12 +72,8 @@
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
         } else {
-            NSDate* now = [NSDate date];
-            
-            NSDateComponents* downloadDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:downloadDate];
-            NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:now];
-            
-            if (downloadDateComponents.day != nowDateComponents.day) {
+            NSTimeInterval span = [downloadDate timeIntervalSinceNow];
+            if (ABS(span) > (24 * 60 * 60)) {
                 [moviesWithTrailers addObject:movie];
             }
         }

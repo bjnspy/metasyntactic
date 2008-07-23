@@ -80,10 +80,6 @@
     return YES;
 }
 
-NSInteger DE_min(NSInteger x, NSInteger y) {
-    return x < y ? x : y;
-}
-
 - (NSInteger) editDistanceFrom:(NSString*) from
                             to:(NSString*) to {
     return [self editDistanceFrom:from to:to withThreshold:-1];
@@ -113,14 +109,14 @@ NSInteger DE_min(NSInteger x, NSInteger y) {
             NSInteger totalDeleteCost = costTable[i - 1][j] + (deletes * deleteCost);
             NSInteger totalAddCost = costTable[i][j - 1] + (adds * addCost);
             NSInteger totalSwitchCost = costTable[i - 1][j - 1] + (switches * switchCost);
-            NSInteger cost = DE_min(totalDeleteCost, DE_min(totalAddCost, totalSwitchCost));
+            NSInteger cost = MIN(totalDeleteCost, MIN(totalAddCost, totalSwitchCost));
             
             if (i >= 2 && j >= 2) {
                 NSInteger transposes = 1 + ((S[(i - 1)] == T[j]) ? 0 : 1) + 
                 ((S[i] == T[(j - 1)]) ? 0 : 1);
                 NSInteger tCost = costTable[i - 2][j - 2] + (transposes * transposeCost);
                 
-                costTable[i][j] = DE_min(cost, tCost);
+                costTable[i][j] = MIN(cost, tCost);
             } else {
                 costTable[i][j] = cost;
             }

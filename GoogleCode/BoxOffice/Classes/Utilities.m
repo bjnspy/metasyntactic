@@ -10,10 +10,6 @@
 #import "XmlParser.h"
 #import "XmlSerializer.h"
 
-double max_d(double a, double b) {
-    return a > b ? a : b;
-}
-
 @implementation Utilities
 
 + (BOOL) isNilOrEmpty:(NSString*) string {
