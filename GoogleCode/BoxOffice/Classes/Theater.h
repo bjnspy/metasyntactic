@@ -6,17 +6,20 @@
 //  Copyright 2008 Metasyntactic. All rights reserved.
 //
 
-//#import <Cocoa/Cocoa.h>
-
+#import "Movie.h"
 
 @interface Theater : NSObject {
     NSString* identifier;
     NSString* name;
     NSString* address;
     NSString* phoneNumber;
-    NSDictionary* movieToShowtimesMap;
+    
     NSString* sellsTickets;
     NSString* sourcePostalCode;
+    
+@private
+    // title -> [ { showtime, showid } ]
+    NSDictionary* movieToShowtimesMap;
 }
 
 @property (copy) NSString* identifier;
@@ -25,7 +28,7 @@
 @property (copy) NSString* phoneNumber;
 @property (copy) NSString* sellsTickets;
 @property (copy) NSString* sourcePostalCode;
-@property (retain) NSDictionary* movieToShowtimesMap;
+//@property (retain) NSDictionary* movieToShowtimesMap;
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
@@ -33,12 +36,15 @@
                        phoneNumber:(NSString*) phoneNumber
                       sellsTickets:(NSString*) sellsTickets
                movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap
-                     sourcePostalCode:(NSString*) sourcePostalCode;
+                  sourcePostalCode:(NSString*) sourcePostalCode;
 
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
 
 - (NSDictionary*) dictionary;
 
 + (NSString*) processShowtime:(NSString*) showtime;
+
+- (NSArray*) movieTitles;
+- (NSArray*) performances:(Movie*) movie;
 
 @end

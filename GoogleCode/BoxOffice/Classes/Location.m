@@ -79,6 +79,10 @@
     acos(sin(lat2) * sin(lat1) +
          cos(lat2) * cos(lat1) * cos(diff));
     
+    if (distance > 200) {
+        return UNKNOWN_DISTANCE;
+    }
+    
     return distance;
 }
 

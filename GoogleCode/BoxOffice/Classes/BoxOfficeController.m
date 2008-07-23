@@ -161,7 +161,7 @@
             Performance* performance = [Performance performanceWithIdentifier:showId
                                                                          time:time];
             
-            [performances addObject:performance];
+            [performances addObject:[performance dictionary]];
         }
         
         [dictionary setObject:performances forKey:movieId];
@@ -200,7 +200,7 @@
                               phoneNumber:phone
                              sellsTickets:sellsTickets
                       movieToShowtimesMap:movieToShowtimesMap
-                            sourcePostalCode:self.model.postalCode];
+                         sourcePostalCode:self.model.postalCode];
 }
 
 - (NSArray*) processTheatersElement:(XmlElement*) theatersElement {

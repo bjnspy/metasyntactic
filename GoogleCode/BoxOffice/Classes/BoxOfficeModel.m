@@ -14,10 +14,11 @@
 #import "ExtraMovieInformation.h"
 #import "Utilities.h"
 #import "DateUtilities.h"
+#import "Performance.h"
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.26";
+static NSString* currentVersion = @"1.2.27";
 static NSString* VERSION = @"version";
 static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
@@ -156,6 +157,7 @@ static NSArray* KEYS;
         
         [[NSFileManager defaultManager] removeItemAtPath:[Application moviesFile] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application theatersFile] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application movieMapFile] error:NULL];
         
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
     }
@@ -523,11 +525,8 @@ static NSArray* KEYS;
     NSMutableArray* array = [NSMutableArray array];
     
     for (Theater* theater in self.theaters) {
-        for (NSString* movieId in theater.movieToShowtimesMap) {
-            if ([[movie identifier] isEqual:movieId]) {
-                [array addObject:theater];
-                break;
-            }
+        if ([[theater movieTitles] containsObject:movie.identifier]) {
+            [array addObject:theater];
         }
     }
     
@@ -538,7 +537,7 @@ static NSArray* KEYS;
     NSMutableArray* array = [NSMutableArray array];
     
     for (Movie* movie in self.movies) {
-        if ([theater.movieToShowtimesMap objectForKey:movie.identifier]) {
+        if ([[theater movieTitles] containsObject:movie.identifier]) {
             [array addObject:movie];
         }
     }
@@ -546,14 +545,9 @@ static NSArray* KEYS;
     return array;
 }
 
-- (NSArray*) movieShowtimes:(Movie*) movie
-                 forTheater:(Theater*) theater {
-    NSArray* result = [theater.movieToShowtimesMap objectForKey:movie.identifier];
-    if (result == nil) {
-        return [NSArray array];
-    }
-    
-    return result;
+- (NSArray*) moviePerformances:(Movie*) movie
+                    forTheater:(Theater*) theater {
+    return [theater performances:movie];
 }
 
 - (NSDictionary*) theaterDistanceMap {

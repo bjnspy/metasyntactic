@@ -139,17 +139,15 @@ static NSString* ADDRESS_LOCATION_MAP = @"addressLocationMap";
 }
 
 - (void) backgroundEntryPoint:(NSArray*) addresses {
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
         
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        
         [self downloadAddressLocations:addresses];
-        
-        [autoreleasePool release];
     }
     [gate unlock];
+    [autoreleasePool release];
 }
 
 - (Location*) locationForPostalCode:(NSString*) postalCode {

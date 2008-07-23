@@ -64,27 +64,9 @@
     [Utilities writeObject:encodedReviews toFile:[self reviewFilePath:title]];
 }
 
-- (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider {
-    NSMutableDictionary* infoWithReviews = [NSMutableDictionary dictionary];
-    NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
-    
-    for (NSString* title in supplementaryInformation) {
-        NSError* error = nil;
-        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title]
-                                                                                 error:&error] objectForKey:NSFileModificationDate];
-        
-        if (downloadDate == nil) {
-            [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
-        } else {
-            NSTimeInterval span = [downloadDate timeIntervalSinceNow];
-            if (ABS(span) > (24 * 60 * 60)) {
-                [infoWithReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
-            }
-        }
-    }
-    
+- (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider {    
     [self performSelectorInBackground:@selector(updateInBackground:)
-                           withObject:[NSArray arrayWithObjects:infoWithoutReviews, infoWithReviews, [NSNumber numberWithInt:ratingsProvider], nil]];
+                           withObject:[NSArray arrayWithObjects:supplementaryInformation, [NSNumber numberWithInt:ratingsProvider], nil]];
 }
 
 - (NSArray*) extractReviews:(NSString*) reviewPage {
@@ -164,20 +146,37 @@
 }
 
 - (void) updateInBackground:(NSArray*) arguments {
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
         
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+        NSDictionary* supplementaryInformation = [arguments objectAtIndex:0];
+        NSInteger ratingsProvider = [[arguments objectAtIndex:1] intValue];
         
-        NSInteger ratingsProvider = [[arguments lastObject] intValue];
-        for (int i = 0; i < [arguments count] - 1; i++) {
-            [self downloadReviews:[arguments objectAtIndex:i] ratingsProvider:ratingsProvider];
+        NSMutableDictionary* infoWithReviews = [NSMutableDictionary dictionary];
+        NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
+        
+        for (NSString* title in supplementaryInformation) {
+            NSError* error = nil;
+            NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title]
+                                                                                     error:&error] objectForKey:NSFileModificationDate];
+            
+            if (downloadDate == nil) {
+                [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
+            } else {
+                NSTimeInterval span = [downloadDate timeIntervalSinceNow];
+                if (ABS(span) > (24 * 60 * 60)) {
+                    [infoWithReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
+                }
+            }
         }
         
-        [autoreleasePool release];
+        [self downloadReviews:infoWithoutReviews ratingsProvider:ratingsProvider];
+        [self downloadReviews:infoWithReviews    ratingsProvider:ratingsProvider];
     }
     [gate unlock];
+    [autoreleasePool release];
 }
 
 - (NSArray*) reviewsForMovie:(NSString*) movieTitle {

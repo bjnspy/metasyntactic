@@ -88,17 +88,15 @@
 }
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
         
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        
         [self updateInBackground:movies];
-        
-        [autoreleasePool release];
     }
     [gate unlock];
+    [autoreleasePool release];
 }
 
 - (UIImage*) posterForMovie:(Movie*) movie {
