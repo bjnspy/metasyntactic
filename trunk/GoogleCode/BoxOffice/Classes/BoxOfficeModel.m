@@ -20,13 +20,11 @@
 
 static NSString* currentVersion = @"1.2.27";
 static NSString* VERSION = @"version";
-static NSString* LAST_QUICK_UPDATE_TIME                 = @"lastQuickUpdateTime";
 static NSString* LAST_FULL_UPDATE_TIME                  = @"lastFullUpdateTime";
 static NSString* SEARCH_DATES                           = @"searchDates";
 static NSString* SEARCH_RESULTS                         = @"searchResults";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* ZIPCODE                                = @"postalCode";
-static NSString* SUPPLEMENTARY_DATA                     = @"supplementaryData";
 static NSString* CURRENTLY_SELECTED_MOVIE               = @"currentlySelectedMovie";
 static NSString* CURRENTLY_SELECTED_THEATER             = @"currentlySelectedTheater";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
@@ -45,14 +43,12 @@ static NSArray* KEYS;
     if (self == [BoxOfficeModel class]) {
         KEYS = [[NSArray arrayWithObjects:
                  VERSION,
-                 LAST_QUICK_UPDATE_TIME,
                  LAST_FULL_UPDATE_TIME,
                  SEARCH_DATE,
                  SEARCH_DATES, 
                  SEARCH_RESULTS,
                  SEARCH_RADIUS,
                  ZIPCODE,
-                 SUPPLEMENTARY_DATA,
                  CURRENTLY_SELECTED_MOVIE,
                  CURRENTLY_SELECTED_THEATER,
                  SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
@@ -158,6 +154,7 @@ static NSArray* KEYS;
         [[NSFileManager defaultManager] removeItemAtPath:[Application moviesFile] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application theatersFile] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application movieMapFile] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFile] error:NULL];
         
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:VERSION];
     }
@@ -223,15 +220,11 @@ static NSArray* KEYS;
     return [[NSUserDefaults standardUserDefaults] integerForKey:RATINGS_PROVIDER_INDEX];
 }
 
-- (void) clearLastQuickUpdateTime {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:LAST_QUICK_UPDATE_TIME];
-}
-
 - (void) setRatingsProviderIndex:(NSInteger) index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:RATINGS_PROVIDER_INDEX];
     [self.reviewCache clear];
-    [self setSupplementaryInformation:[NSDictionary dictionary]];
-    [self clearLastQuickUpdateTime];
+    self.supplementaryInformationData = nil;
+    [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFile] error:NULL];
 }
 
 - (BOOL) rottenTomatoesRatings {
@@ -371,7 +364,7 @@ static NSArray* KEYS;
 }
 
 - (NSDictionary*) loadSupplementaryInformation {
-    NSDictionary* dictionary = [[NSUserDefaults standardUserDefaults] dictionaryForKey:SUPPLEMENTARY_DATA];
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[Application ratingsFile]];
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
@@ -399,8 +392,7 @@ static NSArray* KEYS;
         [encodedDictionary setObject:[[dictionary objectForKey:key] dictionary] forKey:key];
     }
     
-    [[NSUserDefaults standardUserDefaults] setObject:encodedDictionary forKey:SUPPLEMENTARY_DATA];
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:LAST_QUICK_UPDATE_TIME];
+    [Utilities writeObject:encodedDictionary toFile:[Application ratingsFile]];
 }
 
 - (void) setSupplementaryInformation:(NSDictionary*) dictionary {
@@ -409,10 +401,6 @@ static NSArray* KEYS;
     
     self.movieMap = nil;
     [self updateReviewCache];
-}
-
-- (NSDate*) lastQuickUpdateTime {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:LAST_QUICK_UPDATE_TIME];
 }
 
 - (NSDate*) lastFullUpdateTime {

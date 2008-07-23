@@ -23,11 +23,11 @@
 
 @implementation BoxOfficeController
 
-@synthesize quickLookupLock;
+@synthesize ratingsLookupLock;
 @synthesize fullLookupLock;
 
 - (void) dealloc {
-    self.quickLookupLock = nil;
+    self.ratingsLookupLock = nil;
     self.fullLookupLock = nil;
     [super dealloc];
 }
@@ -64,13 +64,15 @@
 }
 
 
-- (void) spawnQuickLookupThread {
-    if ([self tooSoon:[self.model lastQuickUpdateTime]]) {
+- (void) spawnRatingsLookupThread {
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application ratingsFile]
+                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    if ([self tooSoon:lastLookupDate]) {
         return;
     }
     
     [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading movie list", nil)];
-    [self performSelectorInBackground:@selector(quickLookupBackgroundThreadEntryPoint:) withObject:nil];
+    [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
 
 - (void) spawnFullLookupThread {
@@ -87,14 +89,14 @@
 }
 
 - (void) spawnBackgroundThreads {
-    [self spawnQuickLookupThread];
+    [self spawnRatingsLookupThread];
     [self spawnFullLookupThread];
 }
 
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         appDelegate = appDelegate_;
-        self.quickLookupLock = [[[NSLock alloc] init] autorelease];
+        self.ratingsLookupLock = [[[NSLock alloc] init] autorelease];
         self.fullLookupLock = [[[NSLock alloc] init] autorelease];
         
         [self spawnBackgroundThreads];
@@ -107,7 +109,7 @@
     return [[[BoxOfficeController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
-- (NSDictionary*) quickLookup {
+- (NSDictionary*) ratingsLookup {
     if ([self.model rottenTomatoesRatings]) {
         return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings];
     } else if ([self.model metacriticRatings]) {
@@ -117,17 +119,15 @@
     return nil;
 }
 
-- (void) quickLookupBackgroundThreadEntryPoint:(id) anObject {
-    [self.quickLookupLock lock];
+- (void) ratingsLookupBackgroundThreadEntryPoint:(id) anObject {
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    [self.ratingsLookupLock lock];
     {    
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        
-        NSDictionary* extraInformation = [self quickLookup];
+        NSDictionary* extraInformation = [self ratingsLookup];
         [self performSelectorOnMainThread:@selector(setSupplementaryData:) withObject:extraInformation waitUntilDone:NO];
-        
-        [autoreleasePool release];
     }
-    [self.quickLookupLock unlock];
+    [self.ratingsLookupLock unlock];
+    [autoreleasePool release];
 }
 
 - (void) onBackgroundTaskEnded:(NSString*) description {
@@ -361,7 +361,7 @@
     }
     
     [self.model setRatingsProviderIndex:index];
-    [self spawnQuickLookupThread];
+    [self spawnRatingsLookupThread];
     [appDelegate.tabBarController refresh];
 }
 

@@ -122,6 +122,10 @@ static NSString* starString = nil;
     return [[Application dataFolder] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
++ (NSString*) ratingsFile {
+    return [[Application dataFolder] stringByAppendingPathComponent:@"Ratings.plist"];
+}
+
 + (NSString*) theatersFile {
     return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
 }
