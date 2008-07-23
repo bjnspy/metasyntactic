@@ -100,7 +100,6 @@
 - (NSDate*) searchDate;
 - (void) setSearchDate:(NSDate*) date;
 
-- (NSDate*) lastQuickUpdateTime;
 - (NSDate*) lastFullUpdateTime;
 
 - (NSDictionary*) supplementaryInformation;

@@ -158,9 +158,8 @@
         NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
         
         for (NSString* title in supplementaryInformation) {
-            NSError* error = nil;
             NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title]
-                                                                                     error:&error] objectForKey:NSFileModificationDate];
+                                                                                     error:NULL] objectForKey:NSFileModificationDate];
             
             if (downloadDate == nil) {
                 [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];

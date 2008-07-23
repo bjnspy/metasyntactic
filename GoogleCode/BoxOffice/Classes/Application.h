@@ -23,6 +23,7 @@
 
 + (NSString*) movieMapFile;
 + (NSString*) moviesFile;
++ (NSString*) ratingsFile;
 + (NSString*) theatersFile;
 
 + (NSString*) formatShortTime:(NSDate*) date;
