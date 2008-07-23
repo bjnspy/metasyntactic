@@ -87,10 +87,6 @@
     }
 }
 
-NSInteger min_i(NSInteger i1, NSInteger i2) {
-    return i1 < i2 ? i1 : i2;
-}
-
 - (NSInteger) calculateSynopsisSplit {
     CGFloat posterHeight = self.posterImage.size.height;
     int synopsisX = 5 + self.posterImage.size.width + 5;
@@ -104,7 +100,7 @@ NSInteger min_i(NSInteger i1, NSInteger i2) {
     }
     
     NSInteger guess = synopsis.length * posterHeight * 1.1 / synopsisHeight;
-    guess = min_i(guess, synopsis.length);
+    guess = MIN(guess, synopsis.length);
     
     while (true) {
         NSRange whitespaceRange = [synopsis rangeOfString:@" " options:NSBackwardsSearch range:NSMakeRange(0, guess)];

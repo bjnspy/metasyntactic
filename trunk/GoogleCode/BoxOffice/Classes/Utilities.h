@@ -9,8 +9,6 @@
 #import "XmlElement.h"
 #import "XmlDocument.h"
 
-double max_d(double a, double b);
-
 @interface Utilities : NSObject {
     
 }

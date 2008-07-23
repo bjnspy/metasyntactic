@@ -76,12 +76,8 @@
         if (downloadDate == nil) {
             [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
         } else {
-            NSDate* now = [NSDate date];
-                        
-            NSDateComponents* downloadDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:downloadDate];
-            NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit fromDate:now];
-            
-            if (downloadDateComponents.day != nowDateComponents.day) {
+            NSTimeInterval span = [downloadDate timeIntervalSinceNow];
+            if (ABS(span) > (24 * 60 * 60)) {
                 [infoWithReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
             }
         }
