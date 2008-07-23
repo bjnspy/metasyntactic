@@ -199,8 +199,7 @@
                                   address:fullAddress
                               phoneNumber:phone
                              sellsTickets:sellsTickets
-                      movieToShowtimesMap:movieToShowtimesMap
-                         sourcePostalCode:self.model.postalCode];
+                      movieToShowtimesMap:movieToShowtimesMap];
 }
 
 - (NSArray*) processTheatersElement:(XmlElement*) theatersElement {
