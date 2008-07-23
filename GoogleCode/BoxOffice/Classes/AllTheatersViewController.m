@@ -12,6 +12,7 @@
 #import "Location.h"
 #import "ApplicationTabBarController.h"
 #import "Application.h"
+#import "Utilities.h"
 
 @implementation AllTheatersViewController
 
@@ -188,11 +189,6 @@
     return self;
 }
 
-- (void) refresh {
-    [self sortTheaters];
-    [self.tableView reloadData];
-}
-
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if ([self sortingByName]) {
@@ -286,10 +282,16 @@
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
     
-    [self refresh];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
     [self.model setCurrentlySelectedMovie:nil theater:nil];
+    
+    [self refresh];
+}
+
+- (void) refresh {
+    [self sortTheaters];
+    [self.tableView reloadData];
 }
 
 @end

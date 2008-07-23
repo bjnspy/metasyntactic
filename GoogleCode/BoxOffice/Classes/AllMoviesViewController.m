@@ -16,6 +16,7 @@
 #import "DifferenceEngine.h"
 #import "Application.h"
 #import "DateUtilities.h"
+#import "Utilities.h"
 
 @implementation AllMoviesViewController
 
@@ -163,19 +164,19 @@
     return self;
 }
 
-- (void) refresh {        
-    [self sortMovies];
-    [self.tableView reloadData];
-}
-
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
-
-    [self refresh];
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
     
     [self.model setCurrentlySelectedMovie:nil theater:nil];
+    
+    [self refresh];
+}
+
+- (void) refresh {
+    [self sortMovies];
+    [self.tableView reloadData];
 }
 
 - (BoxOfficeModel*) model {
