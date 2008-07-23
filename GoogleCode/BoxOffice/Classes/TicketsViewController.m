@@ -132,7 +132,7 @@
     
     if (row == 0) {
         Location* location = [self.model locationForAddress:theater.address];
-        if (location.address != nil && location.city != nil) {
+        if (![Utilities isNilOrEmpty:location.address] && ![Utilities isNilOrEmpty:location.city]) {
             [cell setKey:NSLocalizedString(@"Map", nil)
                    value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]
             hasIndicator:NO];

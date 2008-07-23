@@ -265,7 +265,7 @@
 						<key>_historyCapacity</key>
 						<integer>0</integer>
 						<key>bookmark</key>
-						<string>74F05CCC0E370EDB0031A8E5</string>
+						<string>74F05D040E3714180031A8E5</string>
 						<key>history</key>
 						<array>
 							<string>74F059E60E36E8220031A8E5</string>
@@ -375,13 +375,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>115</integer>
+									<integer>52</integer>
+									<integer>28</integer>
+									<integer>13</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1725}, {311, 787}}</string>
+							<string>{{0, 335}, {311, 787}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -420,7 +422,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>BoxOfficeController.m</string>
+								<string>TheaterDetailsViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -428,11 +430,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BoxOfficeController.m</string>
+										<string>TheaterDetailsViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74F05CCB0E370EDB0031A8E5</string>
+										<string>74F05D030E3714180031A8E5</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -600,7 +602,6 @@
 											<string>7417723E0E31F91A00551817</string>
 											<string>741772830E31FC1100551817</string>
 											<string>741772CE0E31FEB100551817</string>
-											<string>741772CF0E31FEB100551817</string>
 											<string>741772E40E31FF2E00551817</string>
 											<string>741772F80E3203CB00551817</string>
 											<string>741772F90E3203CB00551817</string>
@@ -664,7 +665,6 @@
 											<string>74EFE9520E35B45B00B6E103</string>
 											<string>74EFE9530E35B45B00B6E103</string>
 											<string>74EFE95A0E35B45B00B6E103</string>
-											<string>74EFE95B0E35B45B00B6E103</string>
 											<string>74EFE9BD0E35BBB800B6E103</string>
 											<string>74EFE9ED0E35BDC900B6E103</string>
 											<string>74EFE9FE0E35BEA700B6E103</string>
@@ -706,20 +706,18 @@
 											<string>74F05C370E3707A20031A8E5</string>
 											<string>74F05CAE0E370EDB0031A8E5</string>
 											<string>74F05CAF0E370EDB0031A8E5</string>
-											<string>74F05CB00E370EDB0031A8E5</string>
-											<string>74F05CB10E370EDB0031A8E5</string>
-											<string>74F05CB20E370EDB0031A8E5</string>
 											<string>74F05CB30E370EDB0031A8E5</string>
-											<string>74F05CB40E370EDB0031A8E5</string>
-											<string>74F05CB50E370EDB0031A8E5</string>
 											<string>74F05CB60E370EDB0031A8E5</string>
 											<string>74F05CB70E370EDB0031A8E5</string>
 											<string>74F05CB80E370EDB0031A8E5</string>
-											<string>74F05CB90E370EDB0031A8E5</string>
-										</array>
-										<key>nextStack</key>
-										<array>
-											<string>74F05CCA0E370EDB0031A8E5</string>
+											<string>74F05CDE0E37109E0031A8E5</string>
+											<string>74F05CDF0E37109E0031A8E5</string>
+											<string>74F05CE00E37109E0031A8E5</string>
+											<string>74F05CF90E3714180031A8E5</string>
+											<string>74F05CFA0E3714180031A8E5</string>
+											<string>74F05CFB0E3714180031A8E5</string>
+											<string>74F05CFC0E3714180031A8E5</string>
+											<string>74F05CFD0E3714180031A8E5</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -993,6 +991,16 @@
 											<string>74F05CC70E370EDB0031A8E5</string>
 											<string>74F05CC80E370EDB0031A8E5</string>
 											<string>74F05CC90E370EDB0031A8E5</string>
+											<string>74F05CE20E37109E0031A8E5</string>
+											<string>74F05CE30E37109E0031A8E5</string>
+											<string>74F05CE40E37109E0031A8E5</string>
+											<string>74F05CE50E37109E0031A8E5</string>
+											<string>74F05CE60E37109E0031A8E5</string>
+											<string>74F05CFE0E3714180031A8E5</string>
+											<string>74F05CFF0E3714180031A8E5</string>
+											<string>74F05D000E3714180031A8E5</string>
+											<string>74F05D010E3714180031A8E5</string>
+											<string>74F05D020E3714180031A8E5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1171,7 +1179,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>238489307.75753099</real>
+	<real>238490648.16135001</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1186,6 +1194,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>74F05CEA0E37109E0031A8E5</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>74F058970E36D2D70031A8E5</string>
 		<string>74F058980E36D2D70031A8E5</string>
@@ -1194,7 +1203,6 @@
 		<string>1C78EAAD065D492600B07095</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>74F05CCE0E370EDB0031A8E5</string>
 	</array>
 	<key>WindowString</key>
 	<string>53 31 1279 846 0 0 1440 878 </string>
@@ -1429,12 +1437,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BoxOfficeController.m</string>
+										<string>TicketsViewController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1455,8 +1465,6 @@
 							<string>468pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
