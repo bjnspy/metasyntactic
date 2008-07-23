@@ -118,8 +118,6 @@
 
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie;
 - (NSMutableArray*) moviesAtTheater:(Theater*) theater;
-- (NSArray*) movieShowtimes:(Movie*) movie
-                 forTheater:(Theater*) theater;
 
 - (NSDictionary*) theaterDistanceMap;
 - (NSArray*) theatersInRange:(NSArray*) theaters;

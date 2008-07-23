@@ -197,19 +197,17 @@
 }
 
 - (void) backgroundEntryPoint:(NSArray*) arguments {
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
         
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        
         for (NSArray* movies in arguments) {
             [self downloadTrailers:movies];
         }
-        
-        [autoreleasePool release];
     }
     [gate unlock];
+    [autoreleasePool release];
 }
 
 - (NSArray*) trailersForMovie:(Movie*) movie {

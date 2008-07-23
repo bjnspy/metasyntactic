@@ -83,7 +83,7 @@
     self.showtimesArray = [NSMutableArray array];
     
     for (Theater* theater in self.theatersArray) {
-        [self.showtimesArray addObject:[self.model movieShowtimes:self.movie forTheater:theater]];
+        [self.showtimesArray addObject:[theater performances:self.movie]];
     }
 }
 

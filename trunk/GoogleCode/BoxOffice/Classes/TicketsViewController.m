@@ -46,7 +46,7 @@
         self.theater = theater_;
         self.movie = movie_;
 
-        self.performances = [self.theater.movieToShowtimesMap objectForKey:movie.identifier];
+        self.performances = [self.theater performances:movie];
         
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = title_;
@@ -82,7 +82,7 @@
 }
 
 - (Performance*) performanceAtIndex:(NSInteger) index {
-    return [self.performances objectAtIndex:index];
+    return [Performance performanceWithDictionary:[self.performances objectAtIndex:index]];
 }
 
 - (UITableViewCell*) showtimeCellForRow:(NSInteger) row {
