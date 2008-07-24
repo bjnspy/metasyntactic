@@ -20,7 +20,6 @@
 
 + (ReviewCache*) cacheWithModel:(BoxOfficeModel*) model;
 
-- (void) clear;
 - (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider;
 
 - (NSArray*) reviewsForMovie:(NSString*) movieTitle;

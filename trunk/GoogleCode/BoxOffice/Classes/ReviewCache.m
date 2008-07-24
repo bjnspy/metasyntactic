@@ -40,28 +40,20 @@
     return [[[ReviewCache alloc] initWithModel:model] autorelease];
 }
 
-- (NSString*) reviewFilePath:(NSString*) title {
+- (NSString*) reviewFilePath:(NSString*) title ratingsProvider:(NSInteger) ratingsProvider {
     NSString* sanitizedTitle = [title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
-    return [[[Application reviewsFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"plist"];
+    NSString* reviewsFolder = [Application reviewsFolder:[[self.model ratingsProviders] objectAtIndex:ratingsProvider]];
+    return [[reviewsFolder stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"plist"];
 }
 
-- (NSArray*) loadReviewFile:(NSString*) title {
-    NSArray* encodedReviews = [NSArray arrayWithContentsOfFile:[self reviewFilePath:title]];
+- (NSArray*) loadReviewFile:(NSString*) title ratingsProvider:(NSInteger) ratingsProvider {
+    NSArray* encodedReviews = [NSArray arrayWithContentsOfFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
     
     NSMutableArray* reviews = [NSMutableArray array];
     for (NSDictionary* dict in encodedReviews) {
         [reviews addObject:[Review reviewWithDictionary:dict]];
     }
     return reviews;
-}
-
-- (void) saveMovie:(NSString*) title reviews:(NSArray*) reviews {
-    NSMutableArray* encodedReviews = [NSMutableArray array];
-    for (Review* review in reviews) {
-        [encodedReviews addObject:[review dictionary]];
-    }
-    
-    [Utilities writeObject:encodedReviews toFile:[self reviewFilePath:title]];
 }
 
 - (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider {    
@@ -117,6 +109,7 @@
     return nil;
 }
 
+/*
 - (void) reportReviews:(NSArray*) arguments {
     NSString* movieId = [arguments objectAtIndex:0];
     NSArray* reviews = [arguments objectAtIndex:1];
@@ -128,19 +121,30 @@
     
     [self saveMovie:movieId reviews:reviews];
 }
+ */
+
+- (void) saveMovie:(NSString*) title reviews:(NSArray*) reviews ratingsProvider:(NSInteger) ratingsProvider {
+    NSMutableArray* encodedReviews = [NSMutableArray array];
+    for (Review* review in reviews) {
+        [encodedReviews addObject:[review dictionary]];
+    }
+    
+    [Utilities writeObject:encodedReviews toFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
+}
 
 - (void) downloadReviews:(NSDictionary*) supplementaryInformation
          ratingsProvider:(NSInteger) ratingsProvider {
     for (NSString* movieId in supplementaryInformation) {
-        //if ([[NSUserDefaults standardUserDefaults] 
+        if ([self.model ratingsProviderIndex] != ratingsProvider) {
+            break;
+        }
         
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
         NSArray* reviews = [self downloadInfoReviews:info];
         if (reviews.count > 0) {
-            NSArray* arguments = [NSArray arrayWithObjects:movieId, reviews, [NSNumber numberWithInt:ratingsProvider], nil];
-            [self performSelectorOnMainThread:@selector(reportReviews:) withObject:arguments waitUntilDone:NO];
+            [self saveMovie:movieId reviews:reviews ratingsProvider:ratingsProvider];
         }
         
         [autoreleasePool release];
@@ -160,7 +164,7 @@
         NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
         
         for (NSString* title in supplementaryInformation) {
-            NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title]
+            NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title ratingsProvider:ratingsProvider]
                                                                                      error:NULL] objectForKey:NSFileModificationDate];
             
             if (downloadDate == nil) {
@@ -181,19 +185,11 @@
 }
 
 - (NSArray*) reviewsForMovie:(NSString*) movieTitle {
-    NSArray* array = [self loadReviewFile:movieTitle];
+    NSArray* array = [self loadReviewFile:movieTitle ratingsProvider:[self.model ratingsProviderIndex]];
     if (array == nil) {
         return [NSArray array];
     }
     return array;
-}
-
-- (void) clear {
-    NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application reviewsFolder]];
-    for (NSString* filePath in contents) {
-        NSError* error = nil;
-        [[NSFileManager defaultManager] removeItemAtPath:[[Application reviewsFolder] stringByAppendingPathComponent:filePath] error:&error];
-    }
 }
 
 @end

@@ -144,7 +144,10 @@ static NSString* currentVersion = @"1.2.27";
         [[NSFileManager defaultManager] removeItemAtPath:[Application moviesFile] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application theatersFile] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application movieMapFile] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFile] error:NULL];
+        
+        for (NSString* provider in [self ratingsProviders]) {
+            [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFile:provider] error:NULL];
+        }
         
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:[BoxOfficeModel VERSION]];
     }
@@ -212,9 +215,8 @@ static NSString* currentVersion = @"1.2.27";
 
 - (void) setRatingsProviderIndex:(NSInteger) index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel RATINGS_PROVIDER_INDEX]];
-    [self.reviewCache clear];
     self.supplementaryInformationData = nil;
-    [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFile] error:NULL];
+    [self updateReviewCache];
 }
 
 - (BOOL) rottenTomatoesRatings {
@@ -354,7 +356,7 @@ static NSString* currentVersion = @"1.2.27";
 }
 
 - (NSDictionary*) loadSupplementaryInformation {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[Application ratingsFile]];
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[Application ratingsFile:[self currentRatingsProvider]]];
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
@@ -382,7 +384,7 @@ static NSString* currentVersion = @"1.2.27";
         [encodedDictionary setObject:[[dictionary objectForKey:key] dictionary] forKey:key];
     }
     
-    [Utilities writeObject:encodedDictionary toFile:[Application ratingsFile]];
+    [Utilities writeObject:encodedDictionary toFile:[Application ratingsFile:[self currentRatingsProvider]]];
 }
 
 - (void) setSupplementaryInformation:(NSDictionary*) dictionary {

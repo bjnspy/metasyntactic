@@ -16,7 +16,6 @@ static NSString* supportFolder = nil;
 static NSString* dataFolder = nil;
 static NSString* searchFolder = nil;
 static NSString* postersFolder = nil;
-static NSString* reviewsFolder = nil;
 static NSString* trailersFolder = nil;
 static NSString* documentsFolder = nil;
 static NSDateFormatter* dateFormatter = nil;
@@ -122,29 +121,22 @@ static NSString* starString = nil;
     return [[Application dataFolder] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
-+ (NSString*) ratingsFile {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"Ratings.plist"];
++ (NSString*) ratingsFile:(NSString*) provider {
+    return [[Application dataFolder] stringByAppendingPathComponent:[[@"Ratings" stringByAppendingString:[NSString stringWithFormat:@"-%@", provider]] stringByAppendingPathExtension:@"plist"]];
 }
 
 + (NSString*) theatersFile {
     return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
 }
 
-+ (NSString*) reviewsFolder {
-    [gate lock];
-    {
-        if (reviewsFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Reviews"];
-            
-            [Application createDirectory:folder];
-            
-            reviewsFolder = [folder retain];
-        }
-    }
-    [gate unlock];
++ (NSString*) reviewsFolder:(NSString*) ratingsProvider {
+    NSString* grandParent = [Application supportFolder];
+    NSString* parent = [grandParent stringByAppendingPathComponent:@"Reviews"];
+    NSString* folder = [parent stringByAppendingPathComponent:ratingsProvider];
     
-    return reviewsFolder;
+    [Application createDirectory:folder];
+    
+    return folder;
 }
 
 + (NSString*) trailersFolder {

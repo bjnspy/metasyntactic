@@ -15,16 +15,16 @@
 
 + (NSString*) supportFolder;
 + (NSString*) postersFolder;
-+ (NSString*) reviewsFolder;
 + (NSString*) trailersFolder;
 + (NSString*) documentsFolder;
 + (NSString*) dataFolder;
 + (NSString*) searchFolder;
++ (NSString*) reviewsFolder:(NSString*) provider;
 
 + (NSString*) movieMapFile;
 + (NSString*) moviesFile;
-+ (NSString*) ratingsFile;
 + (NSString*) theatersFile;
++ (NSString*) ratingsFile:(NSString*) ratingsProvider;
 
 + (NSString*) formatShortTime:(NSDate*) date;
 + (NSString*) formatShortDate:(NSDate*) date;
