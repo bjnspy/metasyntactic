@@ -10,6 +10,7 @@
 #import "TheaterDetailsViewController.h"
 #import "Theater.h"
 #import "AbstractNavigationController.h"
+#import "TicketsViewController.h"
 
 @interface TheatersNavigationController : AbstractNavigationController {
     AllTheatersViewController* allTheatersViewController;
@@ -29,7 +30,7 @@
 - (void) pushTicketsView:(Theater*) theater
                    movie:(Movie*) movie
                 animated:(BOOL) animated;
-
+    
 - (void) navigateToLastViewedPage;
 
 @end

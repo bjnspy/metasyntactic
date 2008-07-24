@@ -9,6 +9,7 @@
 #import "AbstractNavigationController.h"
 #import "AllMoviesViewController.h"
 #import "MovieDetailsViewController.h"
+#import "TicketsViewController.h"
 #import "Movie.h"
 
 @interface MoviesNavigationController : AbstractNavigationController {

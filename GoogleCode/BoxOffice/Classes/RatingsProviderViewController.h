@@ -15,15 +15,17 @@
 
 @interface RatingsProviderViewController : UITableViewController {
     SettingsNavigationController* navigationController;
-    BoxOfficeController* controller;
-    BoxOfficeModel* model;
+//    BoxOfficeController* controller;
+//    BoxOfficeModel* model;
 }
 
 @property (assign) SettingsNavigationController* navigationController;
-@property (retain) BoxOfficeController* controller;
-@property (retain) BoxOfficeModel* model;
+//@property (retain) BoxOfficeController* controller;
+//@property (retain) BoxOfficeModel* model;
 
-- (id) initWithNavigationController:(SettingsNavigationController*) navigationController
-                         controller:(BoxOfficeController*) controller;
+- (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
+
+- (BoxOfficeController*) controller;
+- (BoxOfficeModel*) model;
 
 @end

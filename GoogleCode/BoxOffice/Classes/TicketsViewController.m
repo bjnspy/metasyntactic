@@ -17,6 +17,7 @@
 #import "Performance.h"
 #import "AttributeCell.h"
 #import "DateUtilities.h"
+#import "SearchDatePickerViewController.h"
 
 @implementation TicketsViewController
 
@@ -40,6 +41,26 @@
     return [self.navigationController model];
 }
 
+- (void) refresh {
+    NSArray* allPerformances = [self.theater performances:movie];
+    self.performances = [NSMutableArray array];
+    self.futurePerformances = [NSMutableArray array];
+    
+    NSDate* now = [NSDate date];
+    for (Performance* performance in allPerformances) {
+        if ([DateUtilities isToday:[self.model searchDate]]) {
+            NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:performance.time];
+            
+            if ([now compare:showtimeDate] == NSOrderedDescending) {
+                [self.futurePerformances addObject:performance];
+                continue;
+            }
+        }
+        
+        [self.performances addObject:performance];   
+    }    
+}
+
 - (id) initWithController:(AbstractNavigationController*) navigationController_
                   theater:(Theater*) theater_
                     movie:(Movie*) movie_
@@ -55,23 +76,7 @@
         self.title = title_;
         self.navigationItem.titleView = label;
         
-        NSArray* allPerformances = [self.theater performances:movie];
-        self.performances = [NSMutableArray array];
-        self.futurePerformances = [NSMutableArray array];
-        
-        NSDate* now = [NSDate date];
-        for (Performance* performance in allPerformances) {
-            if ([DateUtilities isToday:[self.model searchDate]]) {
-                NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:performance.time];
-                
-                if ([now compare:showtimeDate] == NSOrderedDescending) {
-                    [self.futurePerformances addObject:performance];
-                    continue;
-                }
-            }
-            
-            [self.performances addObject:performance];   
-        }
+        [self refresh];
     }
     
     return self;
@@ -86,7 +91,7 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    NSInteger sections = 2;
+    NSInteger sections = 3;
     if (futurePerformances.count > 0) {
         sections++;
     }
@@ -99,8 +104,10 @@
     if (section == 0) {
         return 2;
     } else if (section == 1) {
-        return performances.count;
+        return 1;
     } else if (section == 2) {
+        return performances.count;
+    } else if (section == 3) {
         return futurePerformances.count;
     }
     
@@ -111,7 +118,9 @@
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
         return nil;
-    } else if (section == 1 && performances.count) {
+    } else if (section == 1) {
+        return nil;
+    } else if (section == 2 && performances.count) {
         NSString* dateString = [DateUtilities formatFullDate:[self.model searchDate]];
         
         if ([DateUtilities isToday:[self.model searchDate]]) {
@@ -119,7 +128,7 @@
         } else {
             return dateString;
         }
-    } else if (section == 2 && futurePerformances.count) {
+    } else if (section == 3 && futurePerformances.count) {
         return [NSString stringWithFormat:NSLocalizedString(@"Tomorrow - %@", nil), 
                 [DateUtilities formatFullDate:[DateUtilities tomorrow]]];
     }
@@ -139,7 +148,7 @@
         cell.font = [UIFont boldSystemFontOfSize:14];
     }
     
-    NSArray* list = (section == 1 ? self.performances : self.futurePerformances);
+    NSArray* list = (section == 2 ? self.performances : self.futurePerformances);
     NSString* showtime = [[list objectAtIndex:row] time];
     if (![self.theater.sellsTickets isEqual:@"True"]) {
         cell.textColor = [UIColor blackColor];
@@ -174,11 +183,26 @@
     return cell;
 }
 
+- (UITableViewCell*) changeDateCell {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                                    reuseIdentifier:nil] autorelease];
+        
+    cell.textAlignment = UITextAlignmentCenter;
+    cell.font = [UIFont boldSystemFontOfSize:14];
+    cell.textColor = [Application commandColor];
+    
+    cell.text = NSLocalizedString(@"Change date", nil);
+    
+    return cell;    
+}
+
 - (UITableViewCell*)        tableView:(UITableView*) tableView
                 cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return [self commandCellForRow:indexPath.row];
-    } else if (indexPath.section == 1 || indexPath.section == 2) {
+    } else if (indexPath.section == 1) {
+        return [self changeDateCell];
+    } else if (indexPath.section == 2 || indexPath.section == 3) {
         return [self showtimeCellForSection:indexPath.section row:indexPath.row];
     }
     
@@ -211,12 +235,6 @@
     NSDateComponents* timeComponents = 
     [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
                                     fromDate:[NSDate dateWithNaturalLanguageString:performance.time]];
-    
-    
-//    NSDate* showDate =; 
-//    NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
-  //                                                                 fromDate:showDate];
-    
     
     NSString* url =
     [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
@@ -265,13 +283,21 @@
     [Application openBrowser:url]; 
 }
 
+- (void) didSelectChangeDate {
+    SearchDatePickerViewController* pickerController =
+    [SearchDatePickerViewController pickerWithNavigationController:self.navigationController controller:[self.navigationController controller]];
+    [self.navigationController pushViewController:pickerController animated:YES];
+}
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         [self didSelectCommandAtRow:indexPath.row];
     } else if (indexPath.section == 1) {
-        [self didSelectShowtimeAtRow:indexPath.row];
+        [self didSelectChangeDate];
     } else if (indexPath.section == 2) {
+        [self didSelectShowtimeAtRow:indexPath.row];
+    } else if (indexPath.section == 3) {
         [self didSelectFutureShowtimeAtRow:indexPath.row];
     }
 }

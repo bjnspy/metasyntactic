@@ -13,9 +13,12 @@
 @implementation AbstractNavigationController
 
 @synthesize tabBarController;
+@synthesize ticketsViewController;
 
 - (void) dealloc {
     self.tabBarController = nil;
+    self.ticketsViewController = nil;
+    
     [super dealloc];
 }
 
@@ -25,6 +28,10 @@
     }
     
     return self;
+}
+
+- (void) refresh {
+    [self.ticketsViewController refresh];
 }
 
 - (BoxOfficeModel*) model {
@@ -39,13 +46,13 @@
                  theater:(Theater*) theater
                    title:(NSString*) title
                 animated:(BOOL) animated {
-    TicketsViewController* controller = 
+    self.ticketsViewController = 
     [[[TicketsViewController alloc] initWithController:self
                                                theater:theater
                                                  movie:movie
                                                  title:title] autorelease];
     
-    [self pushViewController:controller animated:animated];    
+    [self pushViewController:ticketsViewController animated:animated];    
 }
 
 - (void) navigateToLastViewedPage {

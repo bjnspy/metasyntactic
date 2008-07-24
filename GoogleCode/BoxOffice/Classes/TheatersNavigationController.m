@@ -51,6 +51,7 @@
 }
 
 - (void) refresh {
+    [super refresh];
     [self.allTheatersViewController refresh];
     [self.theaterDetailsViewController refresh];
 }

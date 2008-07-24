@@ -22,7 +22,8 @@
     
     NSArray* alphabeticSectionTitles;
     
-    PosterView* posterView;}
+    PosterView* posterView;
+}
 
 @property (assign) MoviesNavigationController* navigationController;
 @property (retain) NSArray* sortedMovies;

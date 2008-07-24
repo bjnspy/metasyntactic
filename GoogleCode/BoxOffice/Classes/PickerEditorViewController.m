@@ -42,7 +42,7 @@
     return self;
 }
 
-- (void)loadView {
+- (void) loadView {
     [super loadView];
     
     [self.view addSubview:self.picker];
@@ -61,7 +61,7 @@
 
 - (void) save:(id) sender {
     [self.object performSelector:selector
-     withObject:[self.values objectAtIndex:[self.picker selectedRowInComponent:0]]];
+                      withObject:[self.values objectAtIndex:[self.picker selectedRowInComponent:0]]];
     [super save:sender];
 }
 
@@ -69,14 +69,14 @@
     return 1;
 }
 
-- (NSInteger)           pickerView:(UIPickerView*) pickerView
-           numberOfRowsInComponent:(NSInteger) component {
+- (NSInteger)      pickerView:(UIPickerView*) pickerView
+      numberOfRowsInComponent:(NSInteger) component {
     return values.count;
 }
 
-- (NSString*)     pickerView:(UIPickerView*) pickerView
-                 titleForRow:(NSInteger) row
-                forComponent:(NSInteger) component {
+- (NSString*) pickerView:(UIPickerView*) pickerView
+             titleForRow:(NSInteger) row
+            forComponent:(NSInteger) component {
     return [self.values objectAtIndex:row];
 }
 

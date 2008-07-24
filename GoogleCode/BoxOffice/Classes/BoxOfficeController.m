@@ -335,7 +335,7 @@
     
     [self.model setSearchDate:searchDate];
     [self spawnBackgroundThreads];
-    [appDelegate.tabBarController popNavigationControllers];
+    [appDelegate.tabBarController popNavigationControllersToRoot];
     [appDelegate.tabBarController refresh];
 }
 
@@ -346,7 +346,7 @@
 
     [self.model setPostalCode:postalCode];
     [self spawnBackgroundThreads];
-    [appDelegate.tabBarController popNavigationControllers];
+    [appDelegate.tabBarController popNavigationControllersToRoot];
     [appDelegate.tabBarController refresh];
 }
 
