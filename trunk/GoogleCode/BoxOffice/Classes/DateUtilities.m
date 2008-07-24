@@ -15,9 +15,12 @@ static NSMutableDictionary* timeDifferenceMap;
 static NSCalendar* calendar;
 static NSDate* today;
 static NSDateFormatter* dateFormatter;
+static NSRecursiveLock* gate = nil;
 
 + (void) initialize {
     if (self == [DateUtilities class]) {
+        gate = [[NSRecursiveLock alloc] init];
+        
         timeDifferenceMap = [[NSMutableDictionary dictionary] retain];
         calendar = [[NSCalendar currentCalendar] retain];
         dateFormatter = [[NSDateFormatter alloc] init];
@@ -77,5 +80,81 @@ static NSDateFormatter* dateFormatter;
     [components setHour:12];
     return [calendar dateFromComponents:components];
 }
-                 
+
++ (NSDate*) tomorrow {
+    NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
+    components.day = 1;
+    
+    return [[NSCalendar currentCalendar] dateByAddingComponents:components
+                                                         toDate:[DateUtilities today]
+                                                        options:0];
+}
+
++ (BOOL) isSameDay:(NSDate*) d1
+              date:(NSDate*) d2 {
+    NSCalendar* calendar = [NSCalendar currentCalendar];
+    NSDateComponents* components1 = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                fromDate:d1];
+    NSDateComponents* components2 = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                fromDate:d2];
+    
+    return
+    [components1 year] == [components2 year] &&
+    [components1 month] == [components2 month] &&
+    [components1 day] == [components2 day];
+}
+
++ (BOOL) isToday:(NSDate*) date {
+    return [DateUtilities isSameDay:[NSDate date] date:date];
+}
+
+
++ (NSString*) formatShortTime:(NSDate*) date {
+    NSString* result;
+    [gate lock];
+    {
+        [dateFormatter setDateStyle:NSDateFormatterNoStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
+        result = [dateFormatter stringFromDate:date];
+    }
+    [gate unlock];
+    return result;
+}
+
++ (NSString*) formatShortDate:(NSDate*) date {
+    NSString* result;
+    [gate lock];
+    {
+        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        result = [dateFormatter stringFromDate:date];
+    }
+    [gate unlock];
+    return result;
+}
+
++ (NSString*) formatLongDate:(NSDate*) date {
+    NSString* result;
+    [gate lock];
+    {
+        [dateFormatter setDateStyle:NSDateFormatterLongStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        result = [dateFormatter stringFromDate:date];
+    }
+    [gate unlock];
+    return result;
+}
+
++ (NSString*) formatFullDate:(NSDate*) date {
+    NSString* result;
+    [gate lock];
+    {
+        [dateFormatter setDateStyle:NSDateFormatterFullStyle];
+        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        result = [dateFormatter stringFromDate:date];
+    }
+    [gate unlock];
+    return result;
+}
+
 @end

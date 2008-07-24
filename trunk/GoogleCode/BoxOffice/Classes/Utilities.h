@@ -40,9 +40,6 @@
 + (NSArray*) nonNilArray:(NSArray*) array;
 + (NSString*) nonNilString:(NSString*) string;
 
-+ (BOOL) isSameDay:(NSDate*) d1
-              date:(NSDate*) d2;
-
 + (void) writeObject:(id) object toFile:(NSString*) file;
 
 @end

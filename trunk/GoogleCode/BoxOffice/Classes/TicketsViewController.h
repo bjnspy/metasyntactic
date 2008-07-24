@@ -16,13 +16,15 @@
     Movie* movie;
     Theater* theater;
     
-    NSArray* performances;
+    NSMutableArray* performances;
+    NSMutableArray* futurePerformances;
 }
 
 @property (retain) AbstractNavigationController* navigationController;
 @property (retain) Movie* movie;
 @property (retain) Theater* theater;
-@property (retain) NSArray* performances;
+@property (retain) NSMutableArray* performances;
+@property (retain) NSMutableArray* futurePerformances;
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
                   theater:(Theater*) theater

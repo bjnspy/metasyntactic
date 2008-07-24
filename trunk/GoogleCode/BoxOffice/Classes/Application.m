@@ -18,7 +18,6 @@ static NSString* searchFolder = nil;
 static NSString* postersFolder = nil;
 static NSString* trailersFolder = nil;
 static NSString* documentsFolder = nil;
-static NSDateFormatter* dateFormatter = nil;
 static UIColor* commandColor = nil;
 static DifferenceEngine* differenceEngine = nil;
 static NSString* starString = nil;
@@ -26,8 +25,6 @@ static NSString* starString = nil;
 + (void) initialize {
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
-        
-        dateFormatter = [[NSDateFormatter alloc] init];
         
         commandColor = //[[UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1] retain];
             [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
@@ -171,54 +168,6 @@ static NSString* starString = nil;
     [gate unlock];
     
     return postersFolder;
-}
-
-+ (NSString*) formatShortTime:(NSDate*) date {
-    NSString* result;
-    [gate lock];
-    {
-        [dateFormatter setDateStyle:NSDateFormatterNoStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterShortStyle];
-        result = [dateFormatter stringFromDate:date];
-    }
-    [gate unlock];
-    return result;
-}
-
-+ (NSString*) formatShortDate:(NSDate*) date {
-    NSString* result;
-    [gate lock];
-    {
-        [dateFormatter setDateStyle:NSDateFormatterShortStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-        result = [dateFormatter stringFromDate:date];
-    }
-    [gate unlock];
-    return result;
-}
-
-+ (NSString*) formatLongDate:(NSDate*) date {
-    NSString* result;
-    [gate lock];
-    {
-        [dateFormatter setDateStyle:NSDateFormatterLongStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-        result = [dateFormatter stringFromDate:date];
-    }
-    [gate unlock];
-    return result;
-}
-
-+ (NSString*) formatFullDate:(NSDate*) date {
-    NSString* result;
-    [gate lock];
-    {
-        [dateFormatter setDateStyle:NSDateFormatterFullStyle];
-        [dateFormatter setTimeStyle:NSDateFormatterNoStyle];
-        result = [dateFormatter stringFromDate:date];
-    }
-    [gate unlock];
-    return result;
 }
 
 + (UIColor*) commandColor {

@@ -18,6 +18,7 @@
 #import "AttributeCell.h"
 #import "SettingCell.h"
 #import "RatingsProviderViewController.h"
+#import "DateUtilities.h"
 
 @implementation SettingsViewController
 
@@ -213,10 +214,10 @@
                 key = NSLocalizedString(@"Search date", nil);
                 
                 NSDate* date = [[self model] searchDate];
-                if ([Utilities isSameDay:date date:[NSDate date]]) {
+                if ([DateUtilities isToday:date]) {
                     value = NSLocalizedString(@"Today", nil);
                 } else {
-                    value = [Application formatLongDate:date];
+                    value = [DateUtilities formatLongDate:date];
                 }
             } else if (indexPath.row == 3) {
                 key = NSLocalizedString(@"Ratings", nil);
@@ -305,9 +306,9 @@
                 [components setDay:i];
                 NSDate* date = [calendar dateByAddingComponents:components toDate:today options:0];
                 
-                [values addObject:[Application formatFullDate:date]];
+                [values addObject:[DateUtilities formatFullDate:date]];
             }
-            NSString* defaultValue = [Application formatFullDate:[self.model searchDate]];
+            NSString* defaultValue = [DateUtilities formatFullDate:[self.model searchDate]];
             
             PickerEditorViewController* controller = 
             [[[PickerEditorViewController alloc] initWithController:self.navigationController

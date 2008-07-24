@@ -16,6 +16,7 @@
 #import "ViewControllerUtilities.h"
 #import "Performance.h"
 #import "AttributeCell.h"
+#import "DateUtilities.h"
 
 @implementation TicketsViewController
 
@@ -23,12 +24,14 @@
 @synthesize theater;
 @synthesize movie;
 @synthesize performances;
+@synthesize futurePerformances;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.theater = nil;
     self.movie = nil;
     self.performances = nil;
+    self.futurePerformances = nil;
     
     [super dealloc];
 }
@@ -45,14 +48,30 @@
         self.navigationController = navigationController_;
         self.theater = theater_;
         self.movie = movie_;
-
-        self.performances = [self.theater performances:movie];
         
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = title_;
          
         self.title = title_;
         self.navigationItem.titleView = label;
+        
+        NSArray* allPerformances = [self.theater performances:movie];
+        self.performances = [NSMutableArray array];
+        self.futurePerformances = [NSMutableArray array];
+        
+        NSDate* now = [NSDate date];
+        for (Performance* performance in allPerformances) {
+            if ([DateUtilities isToday:[self.model searchDate]]) {
+                NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:performance.time];
+                
+                if ([now compare:showtimeDate] == NSOrderedDescending) {
+                    [self.futurePerformances addObject:performance];
+                    continue;
+                }
+            }
+            
+            [self.performances addObject:performance];   
+        }
     }
     
     return self;
@@ -67,7 +86,12 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 2;
+    NSInteger sections = 2;
+    if (futurePerformances.count > 0) {
+        sections++;
+    }
+    
+    return sections;
 }
 
 - (NSInteger)       tableView:(UITableView*) tableView
@@ -76,16 +100,34 @@
         return 2;
     } else if (section == 1) {
         return performances.count;
+    } else if (section == 2) {
+        return futurePerformances.count;
     }
     
     return 0;
 }
 
-- (Performance*) performanceAtIndex:(NSInteger) index {
-    return [Performance performanceWithDictionary:[self.performances objectAtIndex:index]];
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    if (section == 0) {
+        return nil;
+    } else if (section == 1 && performances.count) {
+        NSString* dateString = [DateUtilities formatFullDate:[self.model searchDate]];
+        
+        if ([DateUtilities isToday:[self.model searchDate]]) {
+            return [NSString stringWithFormat:NSLocalizedString(@"Today - %@", nil), dateString];
+        } else {
+            return dateString;
+        }
+    } else if (section == 2 && futurePerformances.count) {
+        return [NSString stringWithFormat:NSLocalizedString(@"Tomorrow - %@", nil), 
+                [DateUtilities formatFullDate:[DateUtilities tomorrow]]];
+    }
+    
+    return nil;
 }
 
-- (UITableViewCell*) showtimeCellForRow:(NSInteger) row {
+- (UITableViewCell*) showtimeCellForSection:(NSInteger) section row:(NSInteger) row {
     static NSString* reuseIdentifier = @"TicketsViewShowtimeCellIdentifier";
     
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
@@ -97,32 +139,18 @@
         cell.font = [UIFont boldSystemFontOfSize:14];
     }
     
-    NSString* showtime = [[self performanceAtIndex:row] time];
+    NSArray* list = (section == 1 ? self.performances : self.futurePerformances);
+    NSString* showtime = [[list objectAtIndex:row] time];
     if (![self.theater.sellsTickets isEqual:@"True"]) {
         cell.textColor = [UIColor blackColor];
-        
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), showtime];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textColor = [Application commandColor];
-        
-        NSDate* now = [NSDate date];
-        
-        if ([Utilities isSameDay:now date:[self.model searchDate]]) {
-            NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:showtime];
-            
-            if ([now compare:showtimeDate] == NSOrderedAscending) {
-                cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ today", nil), showtime];
-            } else {
-                cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ tomorrow", nil), showtime];
-            }
-        } else {
-            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@ %@", nil),
-                            showtime,
-                            [Application formatShortDate:[self.model searchDate]]];
-        }
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil), showtime];
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
-    
+
     return cell;    
 }
 
@@ -150,8 +178,8 @@
                 cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return [self commandCellForRow:indexPath.row];
-    } else if (indexPath.section == 1) {
-        return [self showtimeCellForRow:indexPath.row];
+    } else if (indexPath.section == 1 || indexPath.section == 2) {
+        return [self showtimeCellForSection:indexPath.section row:indexPath.row];
     }
     
     return nil;
@@ -166,61 +194,75 @@
 }
 
 - (void) didSelectShowtimeAtRow:(NSInteger) row {
-    NSString* showId = [[self performanceAtIndex:row] identifier];
+    Performance* performance = [self.performances objectAtIndex:row];
+    NSString* showId = performance.identifier;
+    
     if (![self.theater.sellsTickets isEqual:@"True"] ||
         [Utilities isNilOrEmpty:showId]) {
         return;
     }
     
-    NSString* showtime = [[self performanceAtIndex:row] time];
-    NSString* movieId = self.movie.identifier;
-    NSString* theaterId = self.theater.identifier;
+    //https://mobile.fandango.com/tickets.jsp?mk=98591&tk=557&showtime=2008:5:11:16:00
+    //https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=1601099982&mid=98591&tid=AAJNK
+    
+    NSDateComponents* dateComponents = 
+    [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                    fromDate:[self.model searchDate]];
+    NSDateComponents* timeComponents = 
+    [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
+                                    fromDate:[NSDate dateWithNaturalLanguageString:performance.time]];
+    
+    
+//    NSDate* showDate =; 
+//    NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
+  //                                                                 fromDate:showDate];
+    
+    
+    NSString* url =
+    [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
+     self.movie.identifier,
+     self.theater.identifier,
+     [dateComponents year],
+     [dateComponents month],
+     [dateComponents day],
+     [timeComponents hour],
+     [timeComponents minute]];
+    
+    [Application openBrowser:url]; 
+}
+
+- (void) didSelectFutureShowtimeAtRow:(NSInteger) row {
+    Performance* performance = [self.futurePerformances objectAtIndex:row];
+    NSString* showId = performance.identifier;
+    
+    if (![self.theater.sellsTickets isEqual:@"True"] ||
+        [Utilities isNilOrEmpty:showId]) {
+        return;
+    }
     
     //https://mobile.fandango.com/tickets.jsp?mk=98591&tk=557&showtime=2008:5:11:16:00
     //https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=1601099982&mid=98591&tid=AAJNK
     
-    NSDate* now = [NSDate date];
-    if ([Utilities isSameDay:now date:[self.model searchDate]]) {
-        NSDate* date = [NSDate dateWithNaturalLanguageString:showtime];
-        BOOL alreadyAfter = [now compare:date] == NSOrderedDescending;
-        
-        NSDateComponents* components = 
-        [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
-                                        fromDate:date];
-         
-        
-        NSString* url =
-        [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
-         movieId,
-         theaterId,
-         [components year],
-         [components month],
-         (alreadyAfter ? [components day] + 1 : [components day]),
-         [components hour],
-         [components minute]];
-        
-        [Application openBrowser:url];  
-    } else {
-        NSDateComponents* dateComponents = 
-        [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                        fromDate:[self.model searchDate]];
-        NSDateComponents* timeComponents = 
-        [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
-                                        fromDate:[NSDate dateWithNaturalLanguageString:showtime]];
-        
-        
-        NSString* url =
-        [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
-         movieId,
-         theaterId,
-         [dateComponents year],
-         [dateComponents month],
-         [dateComponents day],
-         [timeComponents hour],
-         [timeComponents minute]];
-        
-        [Application openBrowser:url];
-    }
+    NSDate* showDate = [NSDate dateWithNaturalLanguageString:performance.time];
+    NSDateComponents* oneDayComponents = [[[NSDateComponents alloc] init] autorelease];
+    oneDayComponents.day = 1;
+    
+    NSDate* tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:oneDayComponents toDate:showDate options:0];
+    NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
+                                                                   fromDate:tomorrow];
+    
+    
+    NSString* url =
+    [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
+     self.movie.identifier,
+     self.theater.identifier,
+     [components year],
+     [components month],
+     [components day],
+     [components hour],
+     [components minute]];
+    
+    [Application openBrowser:url]; 
 }
 
 - (void)            tableView:(UITableView*) tableView
@@ -229,6 +271,8 @@
         [self didSelectCommandAtRow:indexPath.row];
     } else if (indexPath.section == 1) {
         [self didSelectShowtimeAtRow:indexPath.row];
+    } else if (indexPath.section == 2) {
+        [self didSelectFutureShowtimeAtRow:indexPath.row];
     }
 }
 

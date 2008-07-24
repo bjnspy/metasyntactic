@@ -92,7 +92,7 @@
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
         if (movie.releaseDate != nil) {
             if ([movie.releaseDate compare:today] == NSOrderedDescending) {
-                title = [Application formatFullDate:movie.releaseDate];
+                title = [DateUtilities formatFullDate:movie.releaseDate];
             } else {
                 title = [DateUtilities timeSinceNow:movie.releaseDate];
             }

@@ -26,11 +26,6 @@
 + (NSString*) theatersFile;
 + (NSString*) ratingsFile:(NSString*) ratingsProvider;
 
-+ (NSString*) formatShortTime:(NSDate*) date;
-+ (NSString*) formatShortDate:(NSDate*) date;
-+ (NSString*) formatLongDate:(NSDate*) date;
-+ (NSString*) formatFullDate:(NSDate*) date;
-
 + (UIColor*) commandColor;
 
 + (void) openBrowser:(NSString*) address;
