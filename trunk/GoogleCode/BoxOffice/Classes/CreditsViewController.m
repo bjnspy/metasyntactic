@@ -123,7 +123,6 @@
     } else if (section == 5) {
         if (row == 1) {
             cell.text = @"GeoNames";
-            cell.textColor = [UIColor colorWithRed:33.0/256.0 green:66.0/256.0 blue:33.0/256.0 alpha:1.0];
         } else if (row == 2) {
             cell.text = @"GeoCoder.ca";
         }
