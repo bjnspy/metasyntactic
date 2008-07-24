@@ -19,6 +19,7 @@
 #import "SettingCell.h"
 #import "RatingsProviderViewController.h"
 #import "DateUtilities.h"
+#import "SearchDatePickerViewController.h"
 
 @implementation SettingsViewController
 
@@ -265,6 +266,14 @@
     return nil; 
 }
 
+- (void) pushSearchDatePicker {
+    SearchDatePickerViewController* pickerController =
+    [SearchDatePickerViewController pickerWithNavigationController:self.navigationController
+                                                        controller:self.controller];
+    
+    [self.navigationController pushViewController:pickerController animated:YES];
+}
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
@@ -298,31 +307,10 @@
             
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == 2) {
-            NSMutableArray* values = [NSMutableArray array];
-            NSDate* today = [NSDate date];
-            NSCalendar* calendar = [NSCalendar currentCalendar];
-            for (int i = 0; i < 7; i++) {
-                NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
-                [components setDay:i];
-                NSDate* date = [calendar dateByAddingComponents:components toDate:today options:0];
-                
-                [values addObject:[DateUtilities formatFullDate:date]];
-            }
-            NSString* defaultValue = [DateUtilities formatFullDate:[self.model searchDate]];
-            
-            PickerEditorViewController* controller = 
-            [[[PickerEditorViewController alloc] initWithController:self.navigationController
-                                                          withTitle:NSLocalizedString(@"Search date", nil)
-                                                         withObject:self
-                                                       withSelector:@selector(onSearchDateChanged:)
-                                                         withValues:values
-                                                       defaultValue:defaultValue] autorelease];
-            
-            [self.navigationController pushViewController:controller animated:YES];
+            [self pushSearchDatePicker];
         } else if (row == 3) {
             RatingsProviderViewController* controller =
-                [[[RatingsProviderViewController alloc] initWithNavigationController:self.navigationController
-                                                                          controller:self.controller] autorelease];
+                [[[RatingsProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         }
     } else if (section == 1) {
@@ -331,11 +319,6 @@
     } else if (section == 2) {
         [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     }
-}
-
-- (void) onSearchDateChanged:(NSString*) dateString {
-    [self.controller setSearchDate:[NSDate dateWithNaturalLanguageString:dateString]];
-    [self.tableView reloadData];
 }
 
 - (void) onPostalCodeChanged:(NSString*) postalCode {

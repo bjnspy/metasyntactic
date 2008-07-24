@@ -13,28 +13,28 @@
 @implementation RatingsProviderViewController
 
 @synthesize navigationController;
-@synthesize controller;
-@synthesize model;
 
 - (void) dealloc {
     self.navigationController = nil;
-    self.controller = nil;
-    self.model = nil;
     
     [super dealloc];
 }
 
-- (id) initWithNavigationController:(SettingsNavigationController*) navigationController_
-                         controller:(BoxOfficeController*) controller_ {
+- (id) initWithNavigationController:(SettingsNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
-        self.controller = controller_;
-        self.model = [self.controller model];
     }
     
     return self;
 }
 
+- (BoxOfficeModel*) model {
+    return [self.navigationController model];
+}
+
+- (BoxOfficeController*) controller {
+    return [self.navigationController controller];
+}
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 1;
@@ -83,7 +83,7 @@
      }
      
      [self.controller setRatingsProviderIndex:selectPath.row];
-     [self.navigationController.tabBarController popNavigationControllers];
+     [self.navigationController.tabBarController popNavigationControllersToRoot];
      [self.navigationController popViewControllerAnimated:YES];
  }
  

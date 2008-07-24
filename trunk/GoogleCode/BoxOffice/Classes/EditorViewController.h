@@ -13,7 +13,7 @@
 }
 
 @property (assign) UINavigationController* navigationController;
-@property (retain) id object;
+@property (assign) id object;
 
 - (id) initWithController:(UINavigationController*) navigationController
                withObject:(id) object

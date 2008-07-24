@@ -8,16 +8,21 @@
 
 #import "BoxOfficeController.h"
 #import "BoxOfficeModel.h"
+#import "TicketsViewController.h"
 
 @class ApplicationTabBarController;
 
 @interface AbstractNavigationController : UINavigationController {
     ApplicationTabBarController* tabBarController;
+    TicketsViewController* ticketsViewController;
 }
 
 @property (assign) ApplicationTabBarController* tabBarController;
+@property (retain) TicketsViewController* ticketsViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
+
+- (void) refresh;
 
 - (BoxOfficeModel*) model;
 - (BoxOfficeController*) controller;

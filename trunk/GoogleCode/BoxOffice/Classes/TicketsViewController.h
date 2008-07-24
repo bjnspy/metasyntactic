@@ -31,4 +31,6 @@
                     movie:(Movie*) movie
                     title:(NSString*) title;
 
+- (void) refresh;
+
 @end

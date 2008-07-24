@@ -20,6 +20,7 @@
     self.allMoviesViewController = nil;
     self.movieDetailsViewController = nil;
     self.tabBarController = nil;
+    
     [super dealloc];
 }
 
@@ -56,6 +57,7 @@
 }
 
 - (void) refresh {
+    [super refresh];
     [self.allMoviesViewController refresh];
     [self.movieDetailsViewController refresh];
 }

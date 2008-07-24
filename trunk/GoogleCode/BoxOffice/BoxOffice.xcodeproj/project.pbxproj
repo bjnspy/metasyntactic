@@ -75,6 +75,7 @@
 		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
 		74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */; };
+		74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */; };
 		74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */; };
 		74EC04F20DD2B44E006953A4 /* AddressLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */; };
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
@@ -254,6 +255,8 @@
 		74D6F2BD0DCC176D0097A984 /* XmlElement.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlElement.m; sourceTree = "<group>"; };
 		74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieTitleCell.h; sourceTree = "<group>"; };
 		74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTitleCell.m; sourceTree = "<group>"; };
+		74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDatePickerViewController.h; sourceTree = "<group>"; };
+		74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDatePickerViewController.m; sourceTree = "<group>"; };
 		74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
 		74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
 		74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressLocationCache.h; sourceTree = "<group>"; };
@@ -571,6 +574,8 @@
 				74447C590DC840D100CC146C /* MovieDetailsViewController.m */,
 				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
 				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
+				74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */,
+				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
 				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
 				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
 				74CC7DB00DE39E6D001C0559 /* SearchStartPageViewController.h */,
@@ -794,6 +799,7 @@
 				74EFE5360E35637200B6E103 /* FontCache.m in Sources */,
 				74EFE5CE0E356AA300B6E103 /* RottenTomatoesDownloader.m in Sources */,
 				74EFE5D80E356BBA00B6E103 /* MetacriticDownloader.m in Sources */,
+				74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
