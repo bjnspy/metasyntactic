@@ -12,5 +12,16 @@
 
 + (NSString*) timeSinceNow:(NSDate*) date;
 + (NSDate*) today;
++ (NSDate*) tomorrow;
+
++ (BOOL) isSameDay:(NSDate*) d1
+              date:(NSDate*) d2;
+
++ (BOOL) isToday:(NSDate*) date;
+
++ (NSString*) formatShortTime:(NSDate*) date;
++ (NSString*) formatShortDate:(NSDate*) date;
++ (NSString*) formatLongDate:(NSDate*) date;
++ (NSString*) formatFullDate:(NSDate*) date;
 
 @end
