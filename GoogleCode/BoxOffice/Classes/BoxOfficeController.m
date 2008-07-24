@@ -65,7 +65,7 @@
 
 
 - (void) spawnRatingsLookupThread {
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application ratingsFile]
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application ratingsFile:[self.model currentRatingsProvider]]
                                                                                error:NULL] objectForKey:NSFileModificationDate];
     if ([self tooSoon:lastLookupDate]) {
         return;
