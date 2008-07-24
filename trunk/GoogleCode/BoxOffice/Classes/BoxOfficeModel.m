@@ -18,7 +18,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.27";
+static NSString* currentVersion = @"1.2.28";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) LAST_FULL_UPDATE_TIME                     { return @"lastFullUpdateTime"; }
@@ -174,15 +174,19 @@ static NSString* currentVersion = @"1.2.27";
         searchRadius = -1;
         
         self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
-                         
-        [self updatePosterCache];
-        [self updateAddressLocationCache];
-        [self updatePostalCodeAddressLocation];
-        [self updateTrailerCache];
-        [self updateReviewCache];
+                      
+        [self performSelector:@selector(updateCaches:) withObject:nil afterDelay:2];
     }
     
     return self;
+}
+
+- (void) updateCaches:(id) arg {
+    [self updatePosterCache];
+    [self updateAddressLocationCache];
+    [self updatePostalCodeAddressLocation];
+    [self updateTrailerCache];
+    [self updateReviewCache];    
 }
 
 + (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter {
@@ -806,13 +810,13 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
+    if (![Utilities isNilOrEmpty:movie.synopsis]) {
+        return movie.synopsis;
+    }
+    
     ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
     if (extraInfo != nil && ![Utilities isNilOrEmpty:extraInfo.synopsis]) {
         return extraInfo.synopsis;
-    }
-    
-    if (![Utilities isNilOrEmpty:movie.backupSynopsis]) {
-        return movie.backupSynopsis;
     }
     
     return NSLocalizedString(@"No synopsis available.", nil);

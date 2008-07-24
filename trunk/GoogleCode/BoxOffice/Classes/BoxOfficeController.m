@@ -239,7 +239,7 @@
                                            length:length
                                       releaseDate:releaseDate
                                            poster:poster
-                                   backupSynopsis:synopsis];
+                                         synopsis:synopsis];
         
         [array addObject:movie];
     }
