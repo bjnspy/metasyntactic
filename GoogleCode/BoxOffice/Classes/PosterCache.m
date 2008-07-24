@@ -11,6 +11,7 @@
 #import "BoxOfficeModel.h"
 #import "Movie.h"
 #import "PosterDownloader.h"
+#import "Utilities.h"
 
 @implementation PosterCache
 
@@ -73,12 +74,27 @@
 }
 
 - (void) downloadPosters:(NSArray*) movies {
+    // movies with poster links download faster.  try them first.
+    NSMutableArray* moviesWithPosterLinks = [NSMutableArray array];
+    NSMutableArray* moviesWithoutPosterLinks = [NSMutableArray array];
+    
     for (Movie* movie in movies) {
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        
-        [self downloadPoster:movie];
-        
-        [autoreleasePool release];
+        if ([Utilities isNilOrEmpty:movie.poster]) {
+            [moviesWithoutPosterLinks addObject:movie];
+        } else {
+            [moviesWithPosterLinks addObject:movie];
+        }
+    }
+    
+    NSArray* arguments = [NSArray arrayWithObjects:moviesWithPosterLinks, moviesWithoutPosterLinks, nil];
+    for (NSArray* list in arguments) {
+        for (Movie* movie in list) {
+            NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+            
+            [self downloadPoster:movie];
+            
+            [autoreleasePool release];
+        }
     }
 }
 

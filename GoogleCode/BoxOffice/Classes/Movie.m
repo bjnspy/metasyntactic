@@ -17,7 +17,7 @@
 @synthesize length;
 @synthesize releaseDate;
 @synthesize poster;
-@synthesize backupSynopsis;
+@synthesize synopsis;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -26,7 +26,7 @@
     self.length = nil;
     self.releaseDate = nil;
     self.poster = nil;
-    self.backupSynopsis = nil;
+    self.synopsis = nil;
     
     [super dealloc];
 }
@@ -49,7 +49,7 @@
                    length:(NSString*) length_
               releaseDate:(NSDate*) releaseDate_
                    poster:(NSString*) poster_
-           backupSynopsis:(NSString*) backupSynopsis_ {
+                 synopsis:(NSString*) synopsis_ {
     if (self = [self init]) {
         self.identifier = identifier_;
         self.title    = [Movie massageTitle:title_];
@@ -60,8 +60,8 @@
         self.length = length_;
         self.releaseDate = releaseDate_;
         self.poster = poster_;
-        self.backupSynopsis = 
-            [[backupSynopsis_ stringByReplacingOccurrencesOfString:@"<em>" withString:@""]
+        self.synopsis = 
+            [[synopsis_ stringByReplacingOccurrencesOfString:@"<em>" withString:@""]
                 stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
     }
     
@@ -74,14 +74,14 @@
                         length:(NSString*) length
                    releaseDate:(NSDate*) releaseDate
                         poster:(NSString*) poster
-                backupSynopsis:(NSString*) backupSynopsis  {
+                      synopsis:(NSString*) synopsis  {
     return [[[Movie alloc] initWithIdentifier:identifier
                                         title:title
                                        rating:rating
                                        length:length
                                   releaseDate:releaseDate
                                        poster:poster
-                               backupSynopsis:backupSynopsis] autorelease];
+                                     synopsis:synopsis] autorelease];
 }
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
@@ -91,7 +91,7 @@
                                length:[dictionary objectForKey:@"length"]
                           releaseDate:[dictionary objectForKey:@"releaseDate"]
                                poster:[dictionary objectForKey:@"poster"]
-                       backupSynopsis:[dictionary objectForKey:@"backupSynopsis"]];
+                             synopsis:[dictionary objectForKey:@"synopsis"]];
 }
 
 - (NSDictionary*) dictionary {
@@ -102,7 +102,7 @@
     [dictionary setValue:self.length         forKey:@"length"];
     [dictionary setValue:self.releaseDate    forKey:@"releaseDate"];
     [dictionary setValue:self.poster         forKey:@"poster"];
-    [dictionary setValue:self.backupSynopsis forKey:@"backupSynopsis"];
+    [dictionary setValue:self.synopsis       forKey:@"synopsis"];
     return dictionary;
 }
 
