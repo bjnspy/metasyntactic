@@ -39,7 +39,7 @@ class LookupRottenTomatoesReviewsHandler:
         return None
     
     positive = section.find("fresh.gif") >= 0
-    score = "99" if positive else "50" 
+    score = "75" if positive else "50" 
     author = self.extract_author(section)
     source = self.extract_source(section)
     link = self.extract_link(section)

@@ -122,5 +122,5 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
 
     
   def extract_review_sections(self, content):
-    sections = content.split("<div class=\"criticreview\">")    
+    sections = content.split("<div class=\"scoreandreview\">")    
     return sections[1:]
