@@ -151,4 +151,23 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
 - (NSString*) noLocationInformationFound;
 
+
++ (NSString*) LAST_FULL_UPDATE_TIME;
++ (NSString*) SEARCH_DATES;
++ (NSString*) SEARCH_RESULTS;
++ (NSString*) SEARCH_RADIUS;
++ (NSString*) POSTAL_CODE;
++ (NSString*) CURRENTLY_SELECTED_MOVIE;
++ (NSString*) CURRENTLY_SELECTED_THEATER;
++ (NSString*) SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX;
++ (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX;
++ (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX;
++ (NSString*) FAVORITE_THEATERS;
++ (NSString*) ADDRESS_LOCATION_MAP;
++ (NSString*) CURRENTLY_SHOWING_REVIEWS;
++ (NSString*) SEARCH_DATE;
++ (NSString*) AUTO_UPDATE_LOCATION;
++ (NSString*) RATINGS_PROVIDER_INDEX;
+
+
 @end
