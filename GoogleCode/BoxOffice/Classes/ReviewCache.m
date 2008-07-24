@@ -132,6 +132,8 @@
 - (void) downloadReviews:(NSDictionary*) supplementaryInformation
          ratingsProvider:(NSInteger) ratingsProvider {
     for (NSString* movieId in supplementaryInformation) {
+        //if ([[NSUserDefaults standardUserDefaults] 
+        
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
