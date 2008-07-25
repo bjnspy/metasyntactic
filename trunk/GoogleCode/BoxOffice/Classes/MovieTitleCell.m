@@ -103,7 +103,7 @@
                 scoreLabel.font = [UIFont boldSystemFontOfSize:17];
                 scoreLabel.textColor = [UIColor blackColor];
                 
-                CGRect frame = CGRectMake(9, 6, 30, 32);
+                CGRect frame = CGRectMake(10, 6, 30, 32);
                 if (style == UITableViewStyleGrouped) {
                     frame.origin.x += 10;
                 }

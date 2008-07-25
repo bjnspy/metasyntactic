@@ -57,7 +57,7 @@
         self.navigationController = controller;
         
         //self.title = NSLocalizedString(@"Settings", nil);
-        self.title = [NSString stringWithFormat:@"Matinée v%@", [BoxOfficeModel version]];
+        self.title = [NSString stringWithFormat:@"Now Playing v%@", [BoxOfficeModel version]];
         
         UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                   style:UIBarButtonItemStylePlain
