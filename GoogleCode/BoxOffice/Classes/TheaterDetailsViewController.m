@@ -47,7 +47,7 @@
 - (void) setFavoriteImage {
     UIImage* image = [self.model isFavoriteTheater:theater] ? [ImageCache filledStarImage]
                                                             : [ImageCache emptyStarImage];
-    
+
     self.navigationItem.rightBarButtonItem.image = image;
 }
 
@@ -84,7 +84,24 @@
          
         self.title = self.theater.name;
         self.navigationItem.titleView = label;
-   
+ 
+        //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:starLabel] autorelease];
+
+        /*
+        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@""
+                                                                                   style:UIBarButtonItemStylePlain
+                                                                                  target:self
+                                                                                  action:@selector(switchFavorite:)] autorelease];
+        
+        UILabel* starLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        starLabel.text = [Application starString];
+        starLabel.font = [UIFont boldSystemFontOfSize:24];
+        starLabel.textColor = [UIColor grayColor];
+        starLabel.backgroundColor = [UIColor clearColor];
+        [starLabel sizeToFit];
+        
+        self.navigationItem.rightBarButtonItem.customView = starLabel;
+         */
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[ImageCache emptyStarImage]
                                                                                    style:UIBarButtonItemStylePlain
                                                                                   target:self
