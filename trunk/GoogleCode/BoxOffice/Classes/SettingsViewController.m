@@ -38,7 +38,7 @@
 - (void) onCurrentLocationClicked:(id) sender {
     self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
     [self.activityIndicator start];
-    
+
     [self.locationManager startUpdatingLocation];
 }
 
@@ -57,7 +57,7 @@
         self.navigationController = controller;
         
         //self.title = NSLocalizedString(@"Settings", nil);
-        self.title = [NSString stringWithFormat:@"Now Playing! v%@", [BoxOfficeModel version]];
+        self.title = [NSString stringWithFormat:@"Matinée v%@", [BoxOfficeModel version]];
         
         UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                   style:UIBarButtonItemStylePlain
@@ -65,7 +65,7 @@
                                                                  action:@selector(onCurrentLocationClicked:)] autorelease];
 
         self.navigationItem.leftBarButtonItem = item;
-        
+
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
@@ -259,11 +259,6 @@
     [self.model setAutoUpdateLocation:autoUpdate];
     [self autoUpdateLocation:nil];
     
-}
-
-- (NSString*)               tableView:(UITableView*) tableView
-              titleForHeaderInSection:(NSInteger) section {
-    return nil; 
 }
 
 - (void) pushSearchDatePicker {
