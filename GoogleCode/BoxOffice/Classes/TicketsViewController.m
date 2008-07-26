@@ -18,6 +18,7 @@
 #import "AttributeCell.h"
 #import "DateUtilities.h"
 #import "SearchDatePickerViewController.h"
+#import "ColorCache.h"
 
 @implementation TicketsViewController
 
@@ -155,7 +156,7 @@
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), showtime];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
-        cell.textColor = [Application commandColor];
+        cell.textColor = [ColorCache commandColor];
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil), showtime];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -189,7 +190,7 @@
         
     cell.textAlignment = UITextAlignmentCenter;
     cell.font = [UIFont boldSystemFontOfSize:14];
-    cell.textColor = [Application commandColor];
+    cell.textColor = [ColorCache commandColor];
     
     cell.text = NSLocalizedString(@"Change date", nil);
     

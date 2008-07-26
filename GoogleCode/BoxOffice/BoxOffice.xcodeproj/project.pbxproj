@@ -23,6 +23,7 @@
 		74088FD00DE454C4003BCBBD /* SearchPersonDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088FCF0DE454C4003BCBBD /* SearchPersonDetailsViewController.m */; };
 		740B14730E2DCA7B00493FC3 /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */; };
 		740B14BD0E2DCDDB00493FC3 /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */; };
+		740C9FE80E3A838E00D7A56B /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 740C9FE70E3A838E00D7A56B /* ColorCache.m */; };
 		740DE1360DCC3DA300B4E69A /* AbstractNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */; };
 		740E7F070DCFEC440066FCE5 /* ActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */; };
 		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
@@ -155,6 +156,8 @@
 		740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTitleCell.m; sourceTree = "<group>"; };
 		740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewBodyCell.h; sourceTree = "<group>"; };
 		740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewBodyCell.m; sourceTree = "<group>"; };
+		740C9FE60E3A838E00D7A56B /* ColorCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorCache.h; sourceTree = "<group>"; };
+		740C9FE70E3A838E00D7A56B /* ColorCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorCache.m; sourceTree = "<group>"; };
 		740DE1340DCC3DA300B4E69A /* AbstractNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractNavigationController.h; sourceTree = "<group>"; };
 		740DE1350DCC3DA300B4E69A /* AbstractNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractNavigationController.m; sourceTree = "<group>"; };
 		740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityIndicator.h; sourceTree = "<group>"; };
@@ -387,6 +390,8 @@
 				74EFE5CD0E356AA300B6E103 /* RottenTomatoesDownloader.m */,
 				74EFE5D60E356BBA00B6E103 /* MetacriticDownloader.h */,
 				74EFE5D70E356BBA00B6E103 /* MetacriticDownloader.m */,
+				740C9FE60E3A838E00D7A56B /* ColorCache.h */,
+				740C9FE70E3A838E00D7A56B /* ColorCache.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -800,6 +805,7 @@
 				74EFE5CE0E356AA300B6E103 /* RottenTomatoesDownloader.m in Sources */,
 				74EFE5D80E356BBA00B6E103 /* MetacriticDownloader.m in Sources */,
 				74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */,
+				740C9FE80E3A838E00D7A56B /* ColorCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

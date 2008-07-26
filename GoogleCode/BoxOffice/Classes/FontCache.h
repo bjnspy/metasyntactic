@@ -16,5 +16,6 @@
 + (UIFont*) helvetica14;
 + (UIFont*) boldSystem11;
 + (UIFont*) boldSystem18;
++ (UIFont*) boldSystem19;
 
 @end

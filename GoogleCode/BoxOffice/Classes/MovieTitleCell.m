@@ -10,6 +10,7 @@
 #import "Application.h"
 #import "ImageCache.h"
 #import "FontCache.h"
+#import "ColorCache.h"
 
 @implementation MovieTitleCell
 
@@ -125,20 +126,18 @@
     int score = [self.model scoreForMovie:movie];
     
     if (score >= 0 && score <= 100) {
-        CGRect frame;
+        CGRect frame = CGRectMake(10, 7, 30, 30);
         if (score == 100) {
             scoreLabel.font = [UIFont boldSystemFontOfSize:15];
-            frame = CGRectMake(10, 6, 30, 30);
         } else {
-            scoreLabel.font = [FontCache boldSystem18];
-            frame = CGRectMake(10, 7, 30, 30);
+            scoreLabel.font = [FontCache boldSystem19];
         }
         
         if (style == UITableViewStyleGrouped) {
             frame.origin.x += 10;
         }
         
-        scoreLabel.textColor = [UIColor blackColor];
+        scoreLabel.textColor = [ColorCache darkDarkGray];
         scoreLabel.frame = frame;
         scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     }
