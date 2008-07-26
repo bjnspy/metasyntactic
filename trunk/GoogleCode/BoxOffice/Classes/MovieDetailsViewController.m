@@ -18,6 +18,7 @@
 #import "ReviewsViewController.h"
 #import "ApplicationTabBarController.h"
 #import "FontCache.h"
+#import "ColorCache.h"
 
 @implementation MovieDetailsViewController
 
@@ -360,7 +361,7 @@
             cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", nil), self.hiddenTheaterCount];
         }
         
-        cell.textColor = [Application commandColor];
+        cell.textColor = [ColorCache commandColor];
         cell.font = [UIFont boldSystemFontOfSize:14];
         
         return cell;
@@ -375,7 +376,7 @@
         cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                        reuseIdentifier:reuseIdentifier] autorelease];
         
-        cell.textColor = [Application commandColor];
+        cell.textColor = [ColorCache commandColor];
         cell.font = [UIFont boldSystemFontOfSize:14];
         cell.textAlignment = UITextAlignmentCenter;
     }

@@ -10,6 +10,7 @@
 #import "Performance.h"
 #import "Application.h"
 #import "FontCache.h"
+#import "ColorCache.h"
 
 @implementation MovieShowtimesCell
 
@@ -66,7 +67,7 @@
         
         self.headerLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.headerLabel.font = [FontCache boldSystem11];
-        self.headerLabel.textColor = [Application commandColor];
+        self.headerLabel.textColor = [ColorCache commandColor];
         self.headerLabel.text = NSLocalizedString(@"Shows", nil);
         [self.headerLabel sizeToFit];
         
@@ -97,7 +98,7 @@
         headerLabel.textColor = [UIColor whiteColor];
         showtimesLabel.textColor = [UIColor whiteColor];
     } else {
-        headerLabel.textColor = [Application commandColor];
+        headerLabel.textColor = [ColorCache commandColor];
         showtimesLabel.textColor = [UIColor blackColor];
     }
 }

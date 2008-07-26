@@ -13,12 +13,14 @@
 static UIFont* helvetica14 = nil;
 static UIFont* boldSystem11 = nil;
 static UIFont* boldSystem18 = nil;
+static UIFont* boldSystem19 = nil;
 
 + (void) initialize {
     if (self == [FontCache class]) {
         helvetica14 = [[UIFont fontWithName:@"helvetica" size:14] retain];
         boldSystem11 = [[UIFont boldSystemFontOfSize:11] retain];
         boldSystem18 = [[UIFont boldSystemFontOfSize:18] retain];
+        boldSystem19 = [[UIFont boldSystemFontOfSize:20] retain];
     }
 }
 
@@ -32,6 +34,10 @@ static UIFont* boldSystem18 = nil;
 
 + (UIFont*) boldSystem18 {
     return boldSystem18;
+}
+
++ (UIFont*) boldSystem19 {
+    return boldSystem19;
 }
 
 @end

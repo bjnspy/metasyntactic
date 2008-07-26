@@ -8,6 +8,7 @@
 
 #import "SettingCell.h"
 #import "Application.h"
+#import "ColorCache.h"
 
 @implementation SettingCell
 
@@ -22,7 +23,7 @@
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.valueLabel.textColor = [Application commandColor];
+        self.valueLabel.textColor = [ColorCache commandColor];
         
         [self addSubview:valueLabel];
     }
@@ -47,7 +48,7 @@
     if (selected) {
         self.valueLabel.textColor = [UIColor whiteColor];
     } else {
-        self.valueLabel.textColor = [Application commandColor];
+        self.valueLabel.textColor = [ColorCache commandColor];
     }
 }
 

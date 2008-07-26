@@ -20,6 +20,7 @@
 #import "RatingsProviderViewController.h"
 #import "DateUtilities.h"
 #import "SearchDatePickerViewController.h"
+#import "ColorCache.h"
 
 @implementation SettingsViewController
 
@@ -38,18 +39,20 @@
 - (void) onCurrentLocationClicked:(id) sender {
     self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
     [self.activityIndicator start];
-
     [self.locationManager startUpdatingLocation];
 }
 
 - (void) autoUpdateLocation:(id) sender {
-    if ([self.model autoUpdateLocation]) {
+    // only actually auto-update if:
+    //   a) the user wants it
+    //   b) we're not currently searching
+    if ([self.model autoUpdateLocation] && self.activityIndicator == nil) {
         [self onCurrentLocationClicked:nil];
     }    
 }
 
-- (void) enqueueUpdateRequest {
-    [self performSelector:@selector(autoUpdateLocation:) withObject:nil afterDelay:5 * 60];    
+- (void) enqueueUpdateRequest:(NSInteger) delay {
+    [self performSelector:@selector(autoUpdateLocation:) withObject:nil afterDelay:delay];    
 }
 
 - (id) initWithNavigationController:(SettingsNavigationController*) controller {
@@ -58,7 +61,7 @@
         
         //self.title = NSLocalizedString(@"Settings", nil);
         self.title = [NSString stringWithFormat:@"Now Playing v%@", [BoxOfficeModel version]];
-        
+
         UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
@@ -70,7 +73,7 @@
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
-        
+
         [self autoUpdateLocation:nil];
     }
 
@@ -97,9 +100,11 @@
 - (void) locationManager:(CLLocationManager*) manager
      didUpdateToLocation:(CLLocation*) newLocation
             fromLocation:(CLLocation*) oldLocation {    
-    if (oldLocation != nil) {
-        [locationManager stopUpdatingLocation];
-        [self performSelectorInBackground:@selector(findPostalCodeBackgroundEntryPoint:) withObject:newLocation];
+    if (newLocation != nil) {
+        if (ABS([newLocation.timestamp timeIntervalSinceNow]) < 10) {
+            [locationManager stopUpdatingLocation];
+            [self performSelectorInBackground:@selector(findPostalCodeBackgroundEntryPoint:) withObject:newLocation];
+        }
     }
 }
 
@@ -145,7 +150,7 @@
     if (postalCode == nil) {
         postalCode = [self findCAPostalCode:location];
     }
-        
+
     [self performSelectorOnMainThread:@selector(reportFoundPostalCode:) withObject:postalCode waitUntilDone:NO];
 }
 
@@ -153,7 +158,9 @@
        didFailWithError:(NSError*) error {
     [locationManager stopUpdatingLocation];
     [self stopActivityIndicator];
-    [self enqueueUpdateRequest];
+    
+    // intermittent failures are not uncommon.  retry in a minute.
+    [self enqueueUpdateRequest:60];
 }
 
 - (BoxOfficeModel*) model {
@@ -247,7 +254,7 @@
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
         cell.text = NSLocalizedString(@"Donate", nil);
-        cell.textColor = [Application commandColor];
+        cell.textColor = [ColorCache commandColor];
         cell.textAlignment = UITextAlignmentCenter;
 
         return cell;
@@ -273,7 +280,7 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == 0) {
         if (row == 0) {
             TextFieldEditorViewController* controller = 
@@ -283,7 +290,7 @@
                                                           withSelector:@selector(onPostalCodeChanged:)
                                                               withText:[self.model postalCode]
                                                               withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
-            
+
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == 1) {
             NSArray* values = [NSArray arrayWithObjects:
@@ -299,7 +306,7 @@
                                                        withSelector:@selector(onSearchRadiusChanged:)
                                                          withValues:values
                                                        defaultValue:defaultValue] autorelease];
-            
+
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == 2) {
             [self pushSearchDatePicker];
@@ -324,19 +331,20 @@
             [trimmed appendString:[NSString stringWithCharacters:&c length:1]];
         }
     }
-    
+
     [self.controller setPostalCode:trimmed];
     [self.tableView reloadData];
 }
 
 - (void) reportFoundPostalCode:(NSString*) postalCode {
-    [self enqueueUpdateRequest];
     [self stopActivityIndicator];
     
     if ([Utilities isNilOrEmpty:postalCode]) {
-        return;
+        [self enqueueUpdateRequest:60];
+    } else {
+        [self enqueueUpdateRequest:5 * 60];
     }
-    
+
     [self onPostalCodeChanged:postalCode];
 }
 

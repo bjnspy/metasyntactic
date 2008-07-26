@@ -26,8 +26,6 @@
 + (NSString*) theatersFile;
 + (NSString*) ratingsFile:(NSString*) ratingsProvider;
 
-+ (UIColor*) commandColor;
-
 + (void) openBrowser:(NSString*) address;
 + (void) openMap:(NSString*) address;
 + (void) makeCall:(NSString*) phoneNumber;

@@ -8,6 +8,7 @@
 
 #import "AttributeCell.h"
 #import "Application.h"
+#import "ColorCache.h"
 
 @implementation AttributeCell
 
@@ -26,7 +27,7 @@
         self.keyLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         
-        self.keyLabel.textColor = [Application commandColor];
+        self.keyLabel.textColor = [ColorCache commandColor];
         self.keyLabel.font = [UIFont boldSystemFontOfSize:12.0];
         self.keyLabel.textAlignment = UITextAlignmentRight;
         
@@ -81,7 +82,7 @@
         self.keyLabel.textColor = [UIColor whiteColor];
         self.valueLabel.textColor = [UIColor whiteColor];
     } else {
-        self.keyLabel.textColor = [Application commandColor];
+        self.keyLabel.textColor = [ColorCache commandColor];
         self.valueLabel.textColor = [UIColor blackColor];
     }
 }

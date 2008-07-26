@@ -18,17 +18,13 @@ static NSString* searchFolder = nil;
 static NSString* postersFolder = nil;
 static NSString* trailersFolder = nil;
 static NSString* documentsFolder = nil;
-static UIColor* commandColor = nil;
 static DifferenceEngine* differenceEngine = nil;
 static NSString* starString = nil;
 
 + (void) initialize {
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
-        
-        commandColor = //[[UIColor colorWithRed:0.32 green:0.4 blue:0.55 alpha:1] retain];
-            [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
-                
+                        
         differenceEngine = [[DifferenceEngine engine] retain];
     }
 }
@@ -168,10 +164,6 @@ static NSString* starString = nil;
     [gate unlock];
     
     return postersFolder;
-}
-
-+ (UIColor*) commandColor {
-    return commandColor;
 }
 
 + (void) openBrowser:(NSString*) address {
