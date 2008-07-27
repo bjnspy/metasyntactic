@@ -220,7 +220,7 @@
         }
     } else if (section == 1) {
         if (row == 0) {
-            url = @"jeff@jeffnee.com";
+            url = @"mailto:jeff@jeffnee.com";
         } else {
             url = @"http://www.jeffnee.com";
         }
