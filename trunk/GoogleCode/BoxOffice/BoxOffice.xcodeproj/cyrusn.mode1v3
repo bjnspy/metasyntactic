@@ -331,11 +331,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>152</integer>
+									<integer>40</integer>
+									<integer>8</integer>
+									<integer>5</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 130}, {383, 788}}</string>
+							<string>{{0, 319}, {383, 788}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -386,7 +390,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7416DB510E3C5C8200686F79</string>
+										<string>7416DB5F0E3C5E5400686F79</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -706,14 +710,10 @@
 											<string>7416DAF10E3C4C8500686F79</string>
 											<string>7416DB040E3C506900686F79</string>
 											<string>7416DB050E3C506900686F79</string>
-											<string>7416DB230E3C590C00686F79</string>
 											<string>7416DB340E3C59D300686F79</string>
 											<string>7416DB4C0E3C5C5C00686F79</string>
-											<string>7416DB4D0E3C5C5C00686F79</string>
-										</array>
-										<key>nextStack</key>
-										<array>
-											<string>7416DB4E0E3C5C5C00686F79</string>
+											<string>7416DB5B0E3C5E5400686F79</string>
+											<string>7416DB5C0E3C5E5400686F79</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -954,6 +954,8 @@
 											<string>7416DB090E3C506900686F79</string>
 											<string>7416DB1A0E3C586C00686F79</string>
 											<string>7416DB260E3C590C00686F79</string>
+											<string>7416DB5D0E3C5E5400686F79</string>
+											<string>7416DB5E0E3C5E5400686F79</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1132,7 +1134,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>238836866.171368</real>
+	<real>238837332.58394101</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1147,15 +1149,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7416DB520E3C5C8200686F79</string>
+		<string>7416DB600E3C5E5400686F79</string>
 		<string>7416DAFE0E3C4C8600686F79</string>
 		<string>7416DAFF0E3C4C8600686F79</string>
 		<string>1C78EAAD065D492600B07095</string>
+		<string>746A021D0DC8202B0079D89B</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>7416DB530E3C5C8200686F79</string>
+		<string>7416DB610E3C5E5400686F79</string>
 	</array>
 	<key>WindowString</key>
 	<string>46 31 1154 847 0 0 1440 878 </string>
@@ -1248,7 +1250,7 @@
 			<key>WindowToolGUID</key>
 			<string>746A021D0DC8202B0079D89B</string>
 			<key>WindowToolIsVisible</key>
-			<true/>
+			<false/>
 		</dict>
 		<dict>
 			<key>FirstTimeWindowDisplayed</key>
