@@ -41,16 +41,24 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 6;
+    return 7;
 }
 
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return 2;
-    }
-    
-    if (section == 5) {
+    } else if (section == 1) {
+        return 2;
+    } else if (section == 2) {
+        return 1;
+    } else if (section == 3) {
+        return 1;
+    } else if (section == 4) {
+        return 1;
+    } else if (section == 5) {
+        return 1;
+    } else if (section == 6) {
         return 3;
     }
     
@@ -61,15 +69,15 @@
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
     
-    if (section == 1) {
+    if (section == 2) {
         return rottenTomatoesImage;
-    } else if (section == 2) {
-        return ignyteImage;
     } else if (section == 3) {
-        return fandangoImage;
+        return ignyteImage;
     } else if (section == 4) {
-        return tryntImage;
+        return fandangoImage;
     } else if (section == 5) {
+        return tryntImage;
+    } else if (section == 6) {
         if (row == 0) {
             return yahooImage;
         }
@@ -120,7 +128,13 @@
         } else {
             cell.text = NSLocalizedString(@"Project website", nil);
         }
-    } else if (section == 5) {
+    } else if (section == 1) {
+        if (row == 0) {
+            cell.text = NSLocalizedString(@"E-mail", nil);
+        } else {
+            cell.text = NSLocalizedString(@"Website", nil);
+        }
+    } else if (section == 6) {
         if (row == 1) {
             cell.text = @"GeoNames";
         } else if (row == 2) {
@@ -136,14 +150,16 @@
     if (section == 0) {
         return NSLocalizedString(@"Written by Cyrus Najmabadi", nil);
     } else if (section == 1) {
-        return NSLocalizedString(@"Movie scores provided by:", nil);
+        return NSLocalizedString(@"Graphics by Jeffrey Nee", nil);
     } else if (section == 2) {
-        return NSLocalizedString(@"Theater listings provided by:", nil);
+        return NSLocalizedString(@"Movie scores provided by:", nil);
     } else if (section == 3) {
-        return NSLocalizedString(@"Ticket sales provided by:", nil);
+        return NSLocalizedString(@"Theater listings provided by:", nil);
     } else if (section == 4) {
-        return NSLocalizedString(@"Movie details provided by:", nil);
+        return NSLocalizedString(@"Ticket sales provided by:", nil);
     } else if (section == 5) {
+        return NSLocalizedString(@"Movie details provided by:", nil);
+    } else if (section == 6) {
         return NSLocalizedString(@"Geolocation services provided by:", nil);
     }
     
@@ -168,14 +184,20 @@
             url = @"http://metasyntactic.googlecode.com";
         }
     } else if (section == 1) {
-        url = @"http://www.rottentomatoes.com";
+        if (row == 0) {
+            url = @"jeff@jeffnee.com";
+        } else {
+            url = @"http://www.jeffnee.com";
+        }
     } else if (section == 2) {
-        url = @"http://www.ignyte.com";
+        url = @"http://www.rottentomatoes.com";
     } else if (section == 3) {
-        url = @"http://www.fandango.com";
+        url = @"http://www.ignyte.com";
     } else if (section == 4) {
-        url = @"http://www.trynt.com";
+        url = @"http://www.fandango.com";
     } else if (section == 5) {
+        url = @"http://www.trynt.com";
+    } else if (section == 6) {
         if (row == 0) {
             url = @"http://www.yahoo.com";
         } else if (row == 1) {

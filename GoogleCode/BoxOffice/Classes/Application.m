@@ -210,8 +210,7 @@ static NSString* starString = nil;
             @"metaboxoffice2",
             @"metaboxoffice3",
             @"metaboxoffice4",
-            @"metaboxoffice5",
-            @"metaboxoffice6", nil]; 
+            @"metaboxoffice5", nil]; 
 }
 
 + (unichar) starCharacter {
