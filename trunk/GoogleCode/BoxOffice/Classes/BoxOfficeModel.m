@@ -288,17 +288,18 @@ static NSString* currentVersion = @"1.2.28";
     if (result == nil) {
         result =  @"";
     }
-    
+
     return result;
 }
 
 - (int) searchRadius {
     if (searchRadius == -1) {
-        if ([[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel SEARCH_RADIUS]]) {
+        searchRadius = [[NSUserDefaults standardUserDefaults] integerForKey:[BoxOfficeModel SEARCH_RADIUS]];
+        if (searchRadius == 0) {
             searchRadius = 5;
-        } else {
-            searchRadius = MAX(5, [[NSUserDefaults standardUserDefaults] integerForKey:[BoxOfficeModel SEARCH_RADIUS]]);
         }
+        
+        searchRadius = MAX(MIN(searchRadius, 50), 1);
     }
  
     return searchRadius;
