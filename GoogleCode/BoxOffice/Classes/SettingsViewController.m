@@ -197,7 +197,7 @@
     } else if (section == 1) {
         return 1;
     } else {
-        return 2;
+        return 1;
     }
 }
 
@@ -256,11 +256,7 @@
         return cell;
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        if (indexPath.row == 0) {
-            cell.text = NSLocalizedString(@"About", nil);
-        } else {
-            cell.text = NSLocalizedString(@"License", nil);
-        }
+        cell.text = NSLocalizedString(@"About", nil);
         return cell;
     }
 }
@@ -322,21 +318,8 @@
     } else if (section == 1) {
         [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     } else if (section == 2) {
-        if (row == 0) {
-            CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
-        } else if (row == 1) {
-            UIViewController* controller = [[[UIViewController alloc] init] autorelease];
-            controller.title = NSLocalizedString(@"License", nil);
-            UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-            textView.editable = NO;
-            NSString* licensePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"License.txt"];
-            textView.text = [NSString stringWithContentsOfFile:licensePath];
-            [textView sizeToFit];
-            
-            [controller.view addSubview:textView];
-            [self.navigationController pushViewController:controller animated:YES];
-        }
+        CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
+        [self.navigationController pushViewController:controller animated:YES];
     }
 }
 

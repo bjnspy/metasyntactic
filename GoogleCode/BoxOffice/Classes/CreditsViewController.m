@@ -40,8 +40,12 @@
     return self;
 }
 
+- (void) viewWillAppear:(BOOL) animated {        
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+}
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 7;
+    return 8;
 }
 
 - (NSInteger)       tableView:(UITableView*) table
@@ -60,6 +64,8 @@
         return 1;
     } else if (section == 6) {
         return 3;
+    } else if (section == 7) {
+        return 1;
     }
     
     return 1;
@@ -140,6 +146,9 @@
         } else if (row == 2) {
             cell.text = @"GeoCoder.ca";
         }
+    } else if (section == 7) {
+        cell.text = NSLocalizedString(@"License", nil); 
+        cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
     
     return cell;
@@ -168,7 +177,33 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    return UITableViewCellAccessoryDetailDisclosureButton;
+    if (indexPath.section >= 0 && indexPath.section <= 6) {
+        return UITableViewCellAccessoryDetailDisclosureButton;
+    } else {
+        return UITableViewCellAccessoryDisclosureIndicator;
+    }
+}
+
+- (void) licenseCellTapped {
+    UIViewController* controller = [[[UIViewController alloc] init] autorelease];
+    controller.title = NSLocalizedString(@"License", nil);
+    UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+    textView.editable = NO;
+    NSString* licensePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"License.txt"];
+    textView.text = [NSString stringWithContentsOfFile:licensePath];
+    textView.font = [UIFont boldSystemFontOfSize:12];
+    textView.textColor = [UIColor grayColor];
+    [textView sizeToFit];
+    
+    [controller.view addSubview:textView];
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+    if (indexPath.section == 7) {
+        [self licenseCellTapped];
+    }
 }
 
 - (void)                            tableView:(UITableView*) tableView
@@ -205,6 +240,8 @@
         } else {
             url = @"http://geocoder.ca";
         }
+    } else if (section == 7) {
+        return;
     }
     
     [Application openBrowser:url];
