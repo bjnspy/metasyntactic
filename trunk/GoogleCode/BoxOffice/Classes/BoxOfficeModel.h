@@ -162,7 +162,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 + (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX;
 + (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX;
 + (NSString*) FAVORITE_THEATERS;
-+ (NSString*) ADDRESS_LOCATION_MAP;
 + (NSString*) CURRENTLY_SHOWING_REVIEWS;
 + (NSString*) SEARCH_DATE;
 + (NSString*) AUTO_UPDATE_LOCATION;

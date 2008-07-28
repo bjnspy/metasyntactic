@@ -40,7 +40,7 @@
 }
 
 - (NSString*) posterFilePath:(Movie*) movie {
-    NSString* sanitizedTitle = [movie.title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
+    NSString* sanitizedTitle = [Application sanitizeFileName:movie.title];
     return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 

@@ -41,7 +41,7 @@
 }
 
 - (NSString*) reviewFilePath:(NSString*) title ratingsProvider:(NSInteger) ratingsProvider {
-    NSString* sanitizedTitle = [title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"];
+    NSString* sanitizedTitle = [Application sanitizeFileName:title];
     NSString* reviewsFolder = [Application reviewsFolder:[[self.model ratingsProviders] objectAtIndex:ratingsProvider]];
     return [[reviewsFolder stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"plist"];
 }

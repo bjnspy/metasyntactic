@@ -17,8 +17,6 @@
 
 @implementation AddressLocationCache
 
-static NSString* ADDRESS_LOCATION_MAP = @"addressLocationMap";
-
 @synthesize gate;
 @synthesize cachedTheaterDistanceMap;
 
@@ -86,17 +84,13 @@ static NSString* ADDRESS_LOCATION_MAP = @"addressLocationMap";
     return nil;
 }
 
-- (NSDictionary*) addressLocationMap {
-    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] dictionaryForKey:ADDRESS_LOCATION_MAP];
-    if (dict == nil) {
-        return [NSDictionary dictionary];
-    }
-
-    return dict;
+- (NSString*) locationFile:(NSString*) address {
+    return [[[Application locationsFolder] stringByAppendingPathComponent:[Application sanitizeFileName:address]]
+                                           stringByAppendingPathExtension:@"plist"];
 }
 
 - (Location*) locationForAddress:(NSString*) address {
-    NSDictionary* dict = [[self addressLocationMap] valueForKey:address];
+    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self locationFile:address]];
     if (dict == nil) {
         return nil;
     }
@@ -110,11 +104,7 @@ static NSString* ADDRESS_LOCATION_MAP = @"addressLocationMap";
         return;
     }
 
-    NSMutableDictionary* map = [NSMutableDictionary dictionaryWithDictionary:[self addressLocationMap]];
-    [map setValue:[location dictionary] forKey:address];
-
-    [[NSUserDefaults standardUserDefaults] setValue:map forKey:ADDRESS_LOCATION_MAP];
-
+    [Utilities writeObject:[location dictionary] toFile:[self locationFile:address]];
     [self performSelectorOnMainThread:@selector(invalidateCachedData:) withObject:nil waitUntilDone:NO];
 }
 
@@ -154,8 +144,7 @@ static NSString* ADDRESS_LOCATION_MAP = @"addressLocationMap";
     return [self locationForAddress:postalCode];
 }
 
-- (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode
-{
+- (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode {
     [NSThread setThreadPriority:0.0];
 
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -165,8 +154,7 @@ static NSString* ADDRESS_LOCATION_MAP = @"addressLocationMap";
     [autoreleasePool release];
 }
 
-- (void) updatePostalCode:(NSString*) postalCode
-{
+- (void) updatePostalCode:(NSString*) postalCode {
     self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
 
     if ([Utilities isNilOrEmpty:postalCode]) {
@@ -210,7 +198,7 @@ static NSString* ADDRESS_LOCATION_MAP = @"addressLocationMap";
         }
 
         [self.cachedTheaterDistanceMap setObject:theaterDistanceMap
-         forKey:locationDescription];
+                                          forKey:locationDescription];
     }
 
     return theaterDistanceMap;
