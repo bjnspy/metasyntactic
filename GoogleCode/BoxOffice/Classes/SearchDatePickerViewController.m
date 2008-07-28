@@ -8,6 +8,7 @@
 
 #import "SearchDatePickerViewController.h"
 #import "DateUtilities.h"
+#import "Application.h"
 
 @implementation SearchDatePickerViewController
 
@@ -56,7 +57,7 @@
 }
 
 - (void) onSearchDateChanged:(NSString*) dateString {
-    [self.controller setSearchDate:[NSDate dateWithNaturalLanguageString:dateString]];
+    [self.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
 }
 
 @end

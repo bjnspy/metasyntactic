@@ -14,6 +14,7 @@
 #import "Theater.h"
 #import "NotificationCenter.h"
 #import "SearchCache.h"
+#import "DataProvider.h"
 
 @interface BoxOfficeModel : NSObject {
     NotificationCenter* notificationCenter;
@@ -30,12 +31,12 @@
     
     NSInteger searchRadius;
     
-    NSArray* moviesData;
-    NSArray* theatersData;
     NSDictionary* supplementaryInformationData;
     NSDictionary* movieMap;
     
     NSMutableArray* favoriteTheatersData;
+    
+    NSArray* dataProviders;
 }
 
 @property (retain) NotificationCenter* notificationCenter;
@@ -47,11 +48,10 @@
 @property (retain) UIView* activityView;
 @property (readonly) NSInteger backgroundTaskCount;
 
-@property (retain) NSArray* moviesData;
-@property (retain) NSArray* theatersData;
 @property (retain) NSDictionary* supplementaryInformationData;
 @property (retain) NSDictionary* movieMap;
 @property (retain) NSMutableArray* favoriteTheatersData;
+@property (retain) NSArray* dataProviders;
 
 + (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter;
 
@@ -59,6 +59,12 @@
 
 - (void) addBackgroundTask:(NSString*) description;
 - (void) removeBackgroundTask:(NSString*) description;
+
+- (id<DataProvider>) currentDataProvider;
+- (NSInteger) dataProviderIndex;
+- (void) setDataProviderIndex:(NSInteger) index;
+- (BOOL) northAmericaDataProvider;
+- (BOOL) unitedKingdomDataProvider;
 
 - (NSInteger) ratingsProviderIndex;
 - (void) setRatingsProviderIndex:(NSInteger) index;
@@ -100,23 +106,20 @@
 - (NSDate*) searchDate;
 - (void) setSearchDate:(NSDate*) date;
 
-- (NSDate*) lastFullUpdateTime;
-
 - (NSDictionary*) supplementaryInformation;
 - (void) setSupplementaryInformation:(NSDictionary*) dictionary;
 
 - (NSArray*) movies;
-- (void) setMovies:(NSArray*) movies;
-
 - (NSArray*) theaters;
-- (void) setTheaters:(NSArray*) theaters;
+- (void) onProviderUpdated;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (Location*) locationForAddress:(NSString*) address;
 - (Location*) locationForPostalCode:(NSString*) postalCode;
 
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie;
-- (NSMutableArray*) moviesAtTheater:(Theater*) theater;
+- (NSArray*) moviesAtTheater:(Theater*) theater;
+- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
 
 - (NSDictionary*) theaterDistanceMap;
 - (NSArray*) theatersInRange:(NSArray*) theaters;
@@ -142,8 +145,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 - (NSArray*) trailersForMovie:(Movie*) movie;
 - (NSArray*) reviewsForMovie:(Movie*) movie;
 
-- (void) applicationWillTerminate;
-
 - (NSMutableArray*) favoriteTheaters;
 - (BOOL) isFavoriteTheater:(Theater*) theater;
 - (void) addFavoriteTheater:(Theater*) theater;
@@ -151,8 +152,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
 - (NSString*) noLocationInformationFound;
 
-
-+ (NSString*) LAST_FULL_UPDATE_TIME;
 + (NSString*) SEARCH_DATES;
 + (NSString*) SEARCH_RESULTS;
 + (NSString*) SEARCH_RADIUS;
@@ -167,6 +166,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 + (NSString*) CURRENTLY_SHOWING_REVIEWS;
 + (NSString*) SEARCH_DATE;
 + (NSString*) AUTO_UPDATE_LOCATION;
++ (NSString*) DATA_PROVIDER_INDEX;
 + (NSString*) RATINGS_PROVIDER_INDEX;
 
 

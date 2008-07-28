@@ -7,7 +7,7 @@
 //
 
 #import "DateUtilities.h"
-
+#import "Application.h"
 
 @implementation DateUtilities
 
@@ -155,6 +155,10 @@ static NSRecursiveLock* gate = nil;
     }
     [gate unlock];
     return result;
+}
+
++ (NSDate*) dateWithNaturalLanguageString:(NSString*) string {
+    return [NSDate dateWithNaturalLanguageString:string];
 }
 
 @end

@@ -28,7 +28,7 @@
 }
 
 - (void) getPersonDetails {
-    self.personDetailsElement = [[self model] getPersonDetails:[personElement attributeValue:@"id"]];
+    self.personDetailsElement = [self.model getPersonDetails:[personElement attributeValue:@"id"]];
     if (self.personDetailsElement == nil) {
         [self startActivityIndicator];
         [self performSelectorInBackground:@selector(lookupPersonDetails:) withObject:nil];
@@ -73,7 +73,7 @@
 - (void) reportLookupResult:(XmlElement*) element {
     [self stopActivityIndicator];
     self.personDetailsElement = element;
-    [[self model] setPersonDetails:[personElement attributeValue:@"id"]
+    [self.model setPersonDetails:[personElement attributeValue:@"id"]
                            element:element];
     
     [self.tableView reloadData];

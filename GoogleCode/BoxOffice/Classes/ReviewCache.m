@@ -109,20 +109,6 @@
     return nil;
 }
 
-/*
-- (void) reportReviews:(NSArray*) arguments {
-    NSString* movieId = [arguments objectAtIndex:0];
-    NSArray* reviews = [arguments objectAtIndex:1];
-    NSInteger ratingsProvider = [[arguments objectAtIndex:2] intValue];
-    
-    if (ratingsProvider != [self.model ratingsProviderIndex]) {
-        return;
-    }
-    
-    [self saveMovie:movieId reviews:reviews];
-}
- */
-
 - (void) saveMovie:(NSString*) title reviews:(NSArray*) reviews ratingsProvider:(NSInteger) ratingsProvider {
     NSMutableArray* encodedReviews = [NSMutableArray array];
     for (Review* review in reviews) {

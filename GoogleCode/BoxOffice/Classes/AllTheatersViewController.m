@@ -43,7 +43,7 @@
 }
 
 - (void) onSortOrderChanged:(id) sender {
-    [[self model] setAllTheatersSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
+    [self.model setAllTheatersSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self refresh];
 }
 
@@ -163,7 +163,7 @@
                              [NSArray arrayWithObjects:NSLocalizedString(@"Name", nil), NSLocalizedString(@"Distance", nil), nil]] autorelease];
         
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
-        segmentedControl.selectedSegmentIndex = [[self model] allTheatersSelectedSegmentIndex];
+        segmentedControl.selectedSegmentIndex = [self.model allTheatersSelectedSegmentIndex];
         [segmentedControl addTarget:self
                              action:@selector(onSortOrderChanged:)
                    forControlEvents:UIControlEventValueChanged];

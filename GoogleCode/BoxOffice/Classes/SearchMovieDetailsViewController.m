@@ -30,7 +30,7 @@
 }
 
 - (void) getMovieDetails {
-    self.movieDetailsElement = [[self model] getMovieDetails:[movieElement attributeValue:@"id"]];
+    self.movieDetailsElement = [self.model getMovieDetails:[movieElement attributeValue:@"id"]];
     if (self.movieDetailsElement == nil) {
         [self startActivityIndicator];
         [self performSelectorInBackground:@selector(lookupMovieDetails:) withObject:movieElement];
@@ -79,7 +79,7 @@
 - (void) reportLookupResult:(XmlElement*) element {
     [self stopActivityIndicator];
     self.movieDetailsElement = element;
-    [[self model] setMovieDetails:[movieElement attributeValue:@"id"]
+    [self.model setMovieDetails:[movieElement attributeValue:@"id"]
                            element:element];
     
     [self.tableView reloadData];

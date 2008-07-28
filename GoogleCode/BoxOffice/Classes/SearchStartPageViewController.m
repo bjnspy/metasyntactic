@@ -105,7 +105,7 @@
     XmlElement* movieElement = nil;
     XmlElement* personElement = nil;
     if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
-        XmlElement* result = [XmlElement elementFromDictionary:[[[self model] getSearchResults] objectForKey:[recentResults objectAtIndex:row]]];
+        XmlElement* result = [XmlElement elementFromDictionary:[[self.model getSearchResults] objectForKey:[recentResults objectAtIndex:row]]];
         movieElement = [result element:@"movie"];
         personElement = [result element:@"person"];
     } else if (section == MOVIES_SECTION) {
@@ -140,7 +140,7 @@
     XmlElement* movieElement = nil;
     XmlElement* personElement = nil;
     if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
-        XmlElement* result = [XmlElement elementFromDictionary:[[[self model] getSearchResults] objectForKey:[recentResults objectAtIndex:row]]];
+        XmlElement* result = [XmlElement elementFromDictionary:[[self.model getSearchResults] objectForKey:[recentResults objectAtIndex:row]]];
         movieElement = [result element:@"movie"];
         personElement = [result element:@"person"];        
     } else if (section == MOVIES_SECTION) {
@@ -157,7 +157,7 @@
 }
 
 - (void) refresh {
-    self.recentResults = [[[self model] getSearchResults] allKeys];
+    self.recentResults = [[self.model getSearchResults] allKeys];
     [self.tableView reloadData];
 }
 

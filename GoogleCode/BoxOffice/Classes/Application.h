@@ -11,20 +11,19 @@
 @interface Application : NSObject {
 }
 
-+ (void) initialize;
-
-+ (NSString*) supportFolder;
-+ (NSString*) postersFolder;
-+ (NSString*) trailersFolder;
-+ (NSString*) documentsFolder;
 + (NSString*) dataFolder;
++ (NSString*) documentsFolder;
++ (NSString*) postersFolder;
 + (NSString*) searchFolder;
++ (NSString*) supportFolder;
++ (NSString*) tempFolder;
++ (NSString*) trailersFolder;
 + (NSString*) reviewsFolder:(NSString*) provider;
 
 + (NSString*) movieMapFile;
-+ (NSString*) moviesFile;
-+ (NSString*) theatersFile;
 + (NSString*) ratingsFile:(NSString*) ratingsProvider;
+
++ (NSString*) uniqueTemporaryFolder;
 
 + (void) openBrowser:(NSString*) address;
 + (void) openMap:(NSString*) address;
@@ -37,5 +36,7 @@
 
 + (unichar) starCharacter;
 + (NSString*) starString;
+
++ (void) createDirectory:(NSString*) path;
 
 @end

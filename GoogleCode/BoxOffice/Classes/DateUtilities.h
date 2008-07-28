@@ -11,8 +11,11 @@
 }
 
 + (NSString*) timeSinceNow:(NSDate*) date;
+
 + (NSDate*) today;
 + (NSDate*) tomorrow;
+
++ (NSDate*) dateWithNaturalLanguageString:(NSString*) string;
 
 + (BOOL) isSameDay:(NSDate*) d1
               date:(NSDate*) d2;

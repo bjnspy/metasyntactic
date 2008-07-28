@@ -9,18 +9,20 @@
 #import "BoxOfficeModel.h"
 #import "XmlElement.h"
 #import "Theater.h"
+#import "DataProvider.h"
 
 @class BoxOfficeAppDelegate;
 
 @interface BoxOfficeController : NSObject {
     BoxOfficeAppDelegate* appDelegate;
+    
     NSLock* ratingsLookupLock;
-    NSLock* fullLookupLock;
+    NSLock* dataProviderLock;
 }
 
 //@property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) NSLock* ratingsLookupLock;
-@property (retain) NSLock* fullLookupLock;
+@property (retain) NSLock* dataProviderLock;
 
 - (BoxOfficeModel*) model;
 

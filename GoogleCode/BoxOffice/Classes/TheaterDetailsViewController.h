@@ -15,14 +15,14 @@
     UISegmentedControl* segmentedControl;
     Theater* theater;
     
-    NSMutableArray* movies;
+    NSArray* movies;
     NSMutableArray* movieShowtimes;
 }
 
 @property (assign) TheatersNavigationController* navigationController;
 @property (retain) UISegmentedControl* segmentedControl;
 @property (retain) Theater* theater;
-@property (retain) NSMutableArray* movies;
+@property (retain) NSArray* movies;
 @property (retain) NSMutableArray* movieShowtimes;
 
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController

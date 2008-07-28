@@ -38,19 +38,19 @@
 }
 
 - (void) navigateToLastViewedPage {
-    Movie* currentMovie = [[self model] currentlySelectedMovie];
+    Movie* currentMovie = [self.model currentlySelectedMovie];
     if (currentMovie != nil) {
         [self pushMovieDetails:currentMovie animated:NO];
         
-        Theater* currentTheater = [[self model] currentlySelectedTheater];
+        Theater* currentTheater = [self.model currentlySelectedTheater];
         if (currentTheater != nil) {
             [self pushTicketsView:currentMovie
                           theater:currentTheater
                          animated:NO];
         }
         
-        if ([[self model] currentlyShowingReviews]) {
-            [self pushReviewsView:[[self model] reviewsForMovie:currentMovie]
+        if ([self.model currentlyShowingReviews]) {
+            [self pushReviewsView:[self.model reviewsForMovie:currentMovie]
                          animated:NO];
         }
     }    

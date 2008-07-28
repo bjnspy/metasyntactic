@@ -37,11 +37,11 @@
 }
 
 - (void) navigateToLastViewedPage {
-    Theater* currentTheater = [[self model] currentlySelectedTheater];
+    Theater* currentTheater = [self.model currentlySelectedTheater];
     if (currentTheater != nil) {
         [self pushTheaterDetails:currentTheater animated:NO];
         
-        Movie* currentMovie = [[self model] currentlySelectedMovie];
+        Movie* currentMovie = [self.model currentlySelectedMovie];
         if (currentMovie != nil) {
             [self pushTicketsView:currentTheater
                             movie:currentMovie
