@@ -11,7 +11,7 @@
 
 @interface ReviewsViewController :  UITableViewController {
     MoviesNavigationController* navigationController;
-    
+
     NSArray* reviews;
 }
 

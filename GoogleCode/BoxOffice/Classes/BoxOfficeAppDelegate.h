@@ -15,7 +15,7 @@
     IBOutlet UIWindow* window;
     IBOutlet ApplicationTabBarController* tabBarController;
     NotificationCenter* notificationCenter;
-    
+
     BoxOfficeModel* model;
     BoxOfficeController* controller;
 }

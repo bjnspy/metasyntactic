@@ -15,7 +15,7 @@
 
 @interface BoxOfficeController : NSObject {
     BoxOfficeAppDelegate* appDelegate;
-    
+
     NSLock* ratingsLookupLock;
     NSLock* dataProviderLock;
 }

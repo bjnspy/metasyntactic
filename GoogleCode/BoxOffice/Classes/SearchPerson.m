@@ -51,7 +51,7 @@
         self.birthDate = [Utilities nonNilString:birthDate_];
         self.deathDate = [Utilities nonNilString:deathDate_];
     }
-    
+
     return self;
 }
 

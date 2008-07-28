@@ -18,24 +18,24 @@
 
 @interface BoxOfficeModel : NSObject {
     NotificationCenter* notificationCenter;
-    
+
     PosterCache* posterCache;
     TrailerCache* trailerCache;
     AddressLocationCache* addressLocationCache;
     ReviewCache* reviewCache;
     SearchCache* SearchCache;
-    
-    NSInteger backgroundTaskCount; 
+
+    NSInteger backgroundTaskCount;
     UIActivityIndicatorView* activityIndicatorView;
     UIView* activityView;
-    
+
     NSInteger searchRadius;
-    
+
     NSDictionary* supplementaryInformationData;
     NSDictionary* movieMap;
-    
+
     NSMutableArray* favoriteTheatersData;
-    
+
     NSArray* dataProviders;
 }
 
@@ -91,7 +91,7 @@
 - (BOOL) currentlyShowingReviews;
 
 - (void) setCurrentlyShowingReviews;
-- (void) setCurrentlySelectedMovie:(Movie*) movie 
+- (void) setCurrentlySelectedMovie:(Movie*) movie
                            theater:(Theater*) theater;
 
 - (BOOL) autoUpdateLocation;

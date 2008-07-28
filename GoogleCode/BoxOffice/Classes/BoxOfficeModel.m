@@ -62,12 +62,12 @@ static NSString* currentVersion = @"1.2.30";
     self.reviewCache = nil;
     self.activityView = nil;
     self.activityIndicatorView = nil;
-    
+
     self.supplementaryInformationData = nil;
     self.movieMap = nil;
     self.favoriteTheatersData = nil;
     self.dataProviders = nil;
-    
+
     [super dealloc];
 }
 
@@ -89,11 +89,11 @@ static NSString* currentVersion = @"1.2.30";
 
 - (void) updateAddressLocationCache {
     NSMutableArray* addresses = [NSMutableArray array];
-    
+
     for (Theater* theater in self.theaters) {
         [addresses addObject:theater.address];
     }
-    
+
     [self.addressLocationCache updateAddresses:addresses];
 }
 
@@ -102,19 +102,19 @@ static NSString* currentVersion = @"1.2.30";
 }
 
 - (void) clearOldSearchResults {
-    NSMutableDictionary* searchDates = [self getSearchDates];    
+    NSMutableDictionary* searchDates = [self getSearchDates];
     NSMutableDictionary* searchResults = [self getSearchResults];
-    
+
     for (NSString* key in [searchDates allKeys]) {
         NSDate* searchDate = [searchDates objectForKey:key];
-        
+
         NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:searchDate];
         if (time > (24 * 60 * 60)) {
             [searchDates removeObjectForKey:key];
             [searchResults removeObjectForKey:key];
         }
     }
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:searchDates forKey:[BoxOfficeModel SEARCH_DATES]];
     [[NSUserDefaults standardUserDefaults] setObject:searchResults forKey:[BoxOfficeModel SEARCH_RESULTS]];
 }
@@ -122,7 +122,7 @@ static NSString* currentVersion = @"1.2.30";
 - (void) loadData {
     self.dataProviders = [NSArray arrayWithObjects:[NorthAmericaDataProvider providerWithModel:self], nil];
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
-    
+
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel VERSION]];
     if (version == nil || ![currentVersion isEqual:version]) {
         self.movieMap = nil;
@@ -143,44 +143,44 @@ static NSString* currentVersion = @"1.2.30";
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel AUTO_UPDATE_LOCATION]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel RATINGS_PROVIDER_INDEX]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];
-                
+
         [[NSFileManager defaultManager] removeItemAtPath:[Application movieMapFile] error:NULL];
-        
+
         for (NSString* provider in [self ratingsProviders]) {
             [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFile:provider] error:NULL];
         }
-        
+
         for (id<DataProvider> provider in self.dataProviders) {
             [provider invalidateDiskCache];
         }
-        
+
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:[BoxOfficeModel VERSION]];
     }
 }
 
 - (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
-    if (self = [super init]) {        
+    if (self = [super init]) {
         [self loadData];
-        
+
         self.notificationCenter = notificationCenter_;
         self.posterCache = [PosterCache cache];
         self.trailerCache = [TrailerCache cache];
         self.addressLocationCache = [AddressLocationCache cache];
         self.reviewCache = [ReviewCache cacheWithModel:self];
-        
+
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicatorView.frame;
         frame.size.width += 4;
-        
+
         self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
         [self.activityView addSubview:self.activityIndicatorView];
-        
+
         backgroundTaskCount = 0;
         searchRadius = -1;
-        
+
         [self performSelector:@selector(updateCaches:) withObject:nil afterDelay:2];
     }
-    
+
     return self;
 }
 
@@ -189,7 +189,7 @@ static NSString* currentVersion = @"1.2.30";
     [self updateAddressLocationCache];
     [self updatePostalCodeAddressLocation];
     [self updateTrailerCache];
-    [self updateReviewCache];    
+    [self updateReviewCache];
 }
 
 + (BoxOfficeModel*) modelWithCenter:(NotificationCenter*) notificationCenter {
@@ -198,30 +198,30 @@ static NSString* currentVersion = @"1.2.30";
 
 - (void) addBackgroundTask:(NSString*) description {
     backgroundTaskCount++;
-    
+
     if (backgroundTaskCount == 1) {
         [self.activityIndicatorView startAnimating];
     }
-    
+
     [self.notificationCenter addStatusMessage:description];
 }
 
 - (void) removeBackgroundTask:(NSString*) description {
     backgroundTaskCount--;
-    
+
     if (backgroundTaskCount == 0) {
         [self.activityIndicatorView stopAnimating];
     }
-    
+
     [self.notificationCenter addStatusMessage:description];
 }
 
 - (NSInteger) dataProviderIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];    
+    return [[NSUserDefaults standardUserDefaults] integerForKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];
 }
 
 - (void) setDataProviderIndex:(NSInteger) index {
-    return [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];    
+    return [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];
 }
 
 - (id<DataProvider>) currentDataProvider {
@@ -248,7 +248,7 @@ static NSString* currentVersion = @"1.2.30";
 
 - (BOOL) rottenTomatoesRatings {
     return [self ratingsProviderIndex] == 0;
-}    
+}
 
 - (BOOL) metacriticRatings {
     return [self ratingsProviderIndex] == 1;
@@ -321,10 +321,10 @@ static NSString* currentVersion = @"1.2.30";
         if (searchRadius == 0) {
             searchRadius = 5;
         }
-        
+
         searchRadius = MAX(MIN(searchRadius, 50), 1);
     }
- 
+
     return searchRadius;
 }
 
@@ -344,7 +344,7 @@ static NSString* currentVersion = @"1.2.30";
 - (void) markDataProvidersOutOfDate {
     for (id<DataProvider> provider in self.dataProviders) {
         [provider setStale];
-    }    
+    }
 }
 
 - (void) setSearchDate:(NSDate*) date {
@@ -365,12 +365,12 @@ static NSString* currentVersion = @"1.2.30";
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     NSMutableDictionary* decodedData = [NSMutableDictionary dictionary];
     for (NSString* key in dictionary) {
         [decodedData setObject:[ExtraMovieInformation infoWithDictionary:[dictionary objectForKey:key]] forKey:key];
     }
-    
+
     return decodedData;
 }
 
@@ -378,24 +378,24 @@ static NSString* currentVersion = @"1.2.30";
     if (self.supplementaryInformationData == nil) {
         self.supplementaryInformationData = [self loadSupplementaryInformation];
     }
-    
+
     return self.supplementaryInformationData;
 }
 
 - (void) saveSupplementaryInformation:(NSDictionary*) dictionary {
     NSMutableDictionary* encodedDictionary = [NSMutableDictionary dictionary];
-    
+
     for (NSString* key in dictionary) {
         [encodedDictionary setObject:[[dictionary objectForKey:key] dictionary] forKey:key];
     }
-    
+
     [Utilities writeObject:encodedDictionary toFile:[Application ratingsFile:[self currentRatingsProvider]]];
 }
 
 - (void) setSupplementaryInformation:(NSDictionary*) dictionary {
     self.supplementaryInformationData = dictionary;
     [self saveSupplementaryInformation:dictionary];
-    
+
     self.movieMap = nil;
     [self updateReviewCache];
 }
@@ -412,7 +412,7 @@ static NSString* currentVersion = @"1.2.30";
     if (result == nil) {
         return [NSArray array];
     }
-    
+
     return result;
 }
 
@@ -422,11 +422,11 @@ static NSString* currentVersion = @"1.2.30";
 
 - (void) addFavoriteTheater:(Theater*) theater {
     NSDictionary* dictionary = [theater dictionary];
-    
+
     if (![self.favoriteTheaters containsObject:dictionary]) {
         [self.favoriteTheaters addObject:dictionary];
     }
-    
+
     [self saveFavoriteTheaters];
 }
 
@@ -434,36 +434,36 @@ static NSString* currentVersion = @"1.2.30";
     if (self.favoriteTheatersData == nil) {
         self.favoriteTheatersData = [NSMutableArray arrayWithArray:[self loadFavoriteTheaters]];
     }
-    
+
     return self.favoriteTheatersData;
 }
 
 - (BOOL) isFavoriteTheater:(Theater*) theater {
     NSMutableArray* array = [self favoriteTheaters];
-    
+
     for (int i = 0; i < array.count; i++) {
         Theater* currentTheater = [Theater theaterWithDictionary:[array objectAtIndex:i]];
-        
+
         if ([currentTheater.identifier isEqual:theater.identifier]) {
             return YES;
         }
     }
-    
+
     return false;
 }
 
 - (void) removeFavoriteTheater:(Theater*) theater {
     NSMutableArray* array = [self favoriteTheaters];
-    
+
     for (int i = 0; i < array.count; i++) {
         Theater* currentTheater = [Theater theaterWithDictionary:[array objectAtIndex:i]];
-        
+
         if ([currentTheater.identifier isEqual:theater.identifier]) {
             [array removeObjectAtIndex:i];
             break;
         }
     }
-    
+
     [self saveFavoriteTheaters];
 }
 
@@ -481,25 +481,25 @@ static NSString* currentVersion = @"1.2.30";
 
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie {
     NSMutableArray* array = [NSMutableArray array];
-    
+
     for (Theater* theater in self.theaters) {
         if ([theater.movieIdentifiers containsObject:movie.identifier]) {
             [array addObject:theater];
         }
     }
-    
+
     return array;
 }
 
 - (NSArray*) moviesAtTheater:(Theater*) theater {
     NSMutableArray* array = [NSMutableArray array];
-    
+
     for (Movie* movie in self.movies) {
         if ([theater.movieIdentifiers containsObject:movie.identifier]) {
             [array addObject:movie];
         }
     }
-    
+
     return array;
 }
 
@@ -516,22 +516,22 @@ static NSString* currentVersion = @"1.2.30";
     if (distance != UNKNOWN_DISTANCE && self.searchRadius < 50 && distance > self.searchRadius) {
         return true;
     }
-    
+
     return false;
 }
 
 - (NSArray*) theatersInRange:(NSArray*) theaters {
     NSDictionary* theaterDistanceMap = [self theaterDistanceMap];
     NSMutableArray* result = [NSMutableArray array];
-    
+
     for (Theater* theater in theaters) {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
-        
+
         if (![self tooFarAway:distance]) {
             [result addObject:theater];
         }
     }
-    
+
     return result;
 }
 
@@ -539,26 +539,26 @@ NSInteger compareMoviesByScore(id t1, id t2, void *context) {
     Movie* movie1 = t1;
     Movie* movie2 = t2;
     BoxOfficeModel* model = context;
-    
+
     int movieRating1 = [model scoreForMovie:movie1];
     int movieRating2 = [model scoreForMovie:movie2];
-    
+
     if (movieRating1 < movieRating2) {
         return NSOrderedDescending;
     } else if (movieRating1 > movieRating2) {
         return NSOrderedAscending;
     }
-    
+
     return compareMoviesByTitle(t1, t2, context);
 }
 
 NSInteger compareMoviesByReleaseDate(id t1, id t2, void *context) {
     Movie* movie1 = t1;
     Movie* movie2 = t2;
-    
+
     NSDate* releaseDate1 = movie1.releaseDate;
     NSDate* releaseDate2 = movie2.releaseDate;
-    
+
     if (releaseDate1 == nil) {
         if (releaseDate2 == nil) {
             return compareMoviesByTitle(movie1, movie2, context);
@@ -568,14 +568,14 @@ NSInteger compareMoviesByReleaseDate(id t1, id t2, void *context) {
     } else if (releaseDate2 == nil) {
         return NSOrderedAscending;
     }
-    
+
     return -[releaseDate1 compare:releaseDate2];
 }
 
 NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
     Movie* movie1 = t1;
     Movie* movie2 = t2;
-    
+
     return [movie1.title compare:movie2.title options:NSCaseInsensitiveSearch];
 }
 
@@ -588,27 +588,27 @@ NSInteger compareTheatersByName(id t1, id t2, void *context) {
 
 NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     NSDictionary* theaterDistanceMap = context;
-    
+
     Theater* theater1 = t1;
     Theater* theater2 = t2;
-    
+
     double distance1 = [[theaterDistanceMap objectForKey:theater1.address] doubleValue];
     double distance2 = [[theaterDistanceMap objectForKey:theater2.address] doubleValue];
-    
+
     if (distance1 < distance2) {
         return NSOrderedAscending;
     } else if (distance1 > distance2) {
         return NSOrderedDescending;
     }
-    
+
     return compareTheatersByName(t1, t2, nil);
 }
 
-- (void) setPostalCode:(NSString*) postalCode {        
+- (void) setPostalCode:(NSString*) postalCode {
     [self markDataProvidersOutOfDate];
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:postalCode forKey:[BoxOfficeModel POSTAL_CODE]];
-    
+
     [self updatePostalCodeAddressLocation];
 }
 
@@ -617,7 +617,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (dict == nil) {
         return nil;
     }
-    
+
     return [Movie movieWithDictionary:dict];
 }
 
@@ -626,7 +626,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (dict == nil) {
         return nil;
     }
-    
+
     return [Theater theaterWithDictionary:dict];
 }
 
@@ -639,7 +639,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
                                               forKey:[BoxOfficeModel CURRENTLY_SHOWING_REVIEWS]];
 }
 
-- (void) setCurrentlySelectedMovie:(Movie*) movie 
+- (void) setCurrentlySelectedMovie:(Movie*) movie
                            theater:(Theater*) theater {
     if (movie == nil) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SELECTED_MOVIE]];
@@ -647,23 +647,23 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         [[NSUserDefaults standardUserDefaults] setObject:[movie dictionary]
                                                   forKey:[BoxOfficeModel CURRENTLY_SELECTED_MOVIE]];
     }
-    
+
     if (theater == nil) {
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SELECTED_THEATER]];
     } else {
         [[NSUserDefaults standardUserDefaults] setObject:[theater dictionary]
                                                   forKey:[BoxOfficeModel CURRENTLY_SELECTED_THEATER]];
     }
-    
+
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SHOWING_REVIEWS]];
 }
 
 - (void) setSearchDate:(NSDate*) date forIdentifier:(NSString*) identifier {
-    NSMutableDictionary* searchDates = [self getSearchDates];    
+    NSMutableDictionary* searchDates = [self getSearchDates];
     [searchDates setObject:date forKey:identifier];
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:searchDates forKey:[BoxOfficeModel SEARCH_DATES]];
-    
+
 }
 
 - (NSMutableDictionary*) getSearchResults {
@@ -671,7 +671,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (result == nil) {
         return [NSMutableDictionary dictionary];
     }
-    
+
     return [NSMutableDictionary dictionaryWithDictionary:result];
 }
 
@@ -680,7 +680,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (result == nil) {
         return [NSMutableDictionary dictionary];
     }
-    
+
     return [NSMutableDictionary dictionaryWithDictionary:result];
 }
 
@@ -690,14 +690,14 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         firstTime = NO;
         [self clearOldSearchResults];
     }
-    
+
     NSDictionary* searchResults = [self getSearchResults];
     NSDictionary* details = [searchResults objectForKey:identifier];
-    
+
     if (details == nil) {
         return nil;
     }
-    
+
     return [XmlElement elementFromDictionary:details];
 }
 
@@ -714,10 +714,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (element == nil) {
         return;
     }
-    
+
     NSMutableDictionary* searchResults = [self getSearchResults];
     [searchResults setObject:[element dictionary] forKey:identifier];
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:searchResults forKey:[BoxOfficeModel SEARCH_RESULTS]];
     [self setSearchDate:[NSDate date] forIdentifier:identifier];
 }
@@ -733,26 +733,26 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 - (void) createMovieMap {
     if (self.movieMap == nil) {
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-        
+
         NSArray* keys = [[self supplementaryInformation] allKeys];
         NSMutableArray* lowercaseKeys = [NSMutableArray array];
         for (NSString* key in keys) {
             [lowercaseKeys addObject:[key lowercaseString]];
         }
-        
+
         for (Movie* movie in self.movies) {
             NSString* lowercaseTitle = [movie.title lowercaseString];
             NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
             if (index == NSNotFound) {
                 index = [[Application differenceEngine] findClosestMatchIndex:[movie.title lowercaseString] inArray:lowercaseKeys];
             }
-            
+
             if (index != NSNotFound) {
                 NSString* key = [keys objectAtIndex:index];
                 [dictionary setObject:key forKey:movie.title];
             }
         }
-        
+
         self.movieMap = dictionary;
         [Utilities writeObject:dictionary toFile:[Application movieMapFile]];
     }
@@ -760,22 +760,22 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (ExtraMovieInformation*) extraInformationForMovie:(Movie*) movie {
     [self createMovieMap];
-    
+
     NSString* key = [self.movieMap objectForKey:movie.title];
     if (key == nil) {
         return nil;
     }
-    
+
     return [[self supplementaryInformation] objectForKey:key];
 }
 
 - (NSInteger) scoreForMovie:(Movie*) movie {
     ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
-    
+
     if (extraInfo == nil) {
         return -1;
     }
-    
+
     return [extraInfo scoreValue];
 }
 
@@ -783,12 +783,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (![Utilities isNilOrEmpty:movie.synopsis]) {
         return movie.synopsis;
     }
-    
+
     ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
     if (extraInfo != nil && ![Utilities isNilOrEmpty:extraInfo.synopsis]) {
         return extraInfo.synopsis;
     }
-    
+
     return NSLocalizedString(@"No synopsis available.", nil);
 }
 
@@ -801,7 +801,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (extraInfo == nil) {
         return [NSArray array];
     }
-    
+
     return [reviewCache reviewsForMovie:extraInfo.title];
 }
 
@@ -814,4 +814,3 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 @end
-    

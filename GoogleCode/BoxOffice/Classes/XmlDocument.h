@@ -22,8 +22,8 @@
 + (XmlDocument*) documentWithRoot:(XmlElement*) root;
 
 - (id) initWithRoot:(XmlElement*) root;
-- (id) initWithRoot:(XmlElement*) root 
-            version:(NSString*) version 
+- (id) initWithRoot:(XmlElement*) root
+            version:(NSString*) version
            encoding:(NSString*) encoding;
 
 @end

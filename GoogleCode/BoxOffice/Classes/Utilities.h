@@ -10,16 +10,16 @@
 #import "XmlDocument.h"
 
 @interface Utilities : NSObject {
-    
+
 }
 
 + (BOOL) isNilOrEmpty:(NSString*) string;
 
-+ (id) findSmallestElementInArray:(NSArray*) array 
++ (id) findSmallestElementInArray:(NSArray*) array
                     usingFunction:(NSInteger(*)(id, id, void *)) comparator
                           context:(void*) context;
 
-+ (id) findSmallestElementInArray:(NSArray*) array 
++ (id) findSmallestElementInArray:(NSArray*) array
                     usingFunction:(NSInteger(*)(id, id, void*, void*)) comparator
                           context1:(void*) context1
                           context2:(void*) context2;

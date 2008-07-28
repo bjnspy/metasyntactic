@@ -17,7 +17,7 @@
 - (void) dealloc {
     self.identifier = nil;
     self.time = nil;
-    
+
     [super dealloc];
 }
 
@@ -27,7 +27,7 @@
         self.identifier = anIdentifier;
         self.time = aTime;
     }
-    
+
     return self;
 }
 
@@ -40,13 +40,13 @@
     return [Performance performanceWithIdentifier:[dictionary valueForKey:@"identifier"]
                                              time:[dictionary valueForKey:@"time"]];
 }
-    
+
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    
+
     [dictionary setObject:self.identifier forKey:@"identifier"];
     [dictionary setObject:self.time forKey:@"time"];
-    
+
     return dictionary;
 }
 

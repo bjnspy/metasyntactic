@@ -23,7 +23,7 @@
 - (void) dealloc {
     self.navigationController = nil;
     self.reviews = nil;
-    
+
     [super dealloc];
 }
 
@@ -34,7 +34,7 @@
         self.title = NSLocalizedString(@"Reviews", nil);
         self.reviews = reviews_;
     }
-    
+
     return self;
 }
 
@@ -44,39 +44,39 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[navigationController model].activityView] autorelease];
-    
+
     [[navigationController model] setCurrentlyShowingReviews];
 }
-    
+
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger row = indexPath.row;
     Review* review = [reviews objectAtIndex:indexPath.section];
-        
+
     if (row == 0) {
         static NSString* reuseIdentifier = @"ReviewTitleCellIdentifier";
-        
+
         ReviewTitleCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[ReviewTitleCell alloc] initWithModel:self.model 
+            cell = [[[ReviewTitleCell alloc] initWithModel:self.model
                                                      frame:[UIScreen mainScreen].bounds
                                            reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         [cell setReview:review];
-        
+
         return cell;
     } else {
         static NSString* reuseIdentifier = @"ReviewBodyCellIdentifier";
-        
+
         ReviewBodyCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[ReviewBodyCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         [cell setReview:review];
-        
+
         return cell;
     }
 }
@@ -86,7 +86,7 @@
     Review* review = [reviews objectAtIndex:indexPath.section];
     if (review.link) {
         [Application openBrowser:review.link];
-    }    
+    }
 }
 
 - (void)            tableView:(UITableView*) tableView
@@ -109,7 +109,7 @@
         return [tableView rowHeight];
     } else {
         Review* review = [reviews objectAtIndex:indexPath.section];
-    
+
         return MAX([review heightWithFont:[FontCache helvetica14]], [self.tableView rowHeight]);
     }
 }
@@ -122,7 +122,7 @@
             return UITableViewCellAccessoryDetailDisclosureButton;
         }
     }
-    
+
     return UITableViewCellAccessoryNone;
 }
 

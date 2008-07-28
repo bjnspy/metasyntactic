@@ -25,8 +25,8 @@
 - (id) initWithMovie:(Movie*) movie_ {
     if (self = [super init]) {
         self.movie = movie_;
-    } 
-    
+    }
+
     return self;
 }
 
@@ -35,12 +35,12 @@
     if (data != nil) {
         return data;
     }
-    
+
     data = [ImdbPosterDownloader download:self.movie];
     if (data != nil) {
         return data;
     }
-    
+
     return nil;
 }
 

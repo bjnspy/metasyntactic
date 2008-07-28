@@ -34,14 +34,14 @@
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
         //self.searchNavigationController   = [[[SearchNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
-        
+
         self.viewControllers =
         [NSArray arrayWithObjects:
          moviesNavigationController,
          theatersNavigationController,
          //searchNavigationController,
          settingsNavigationController, nil];
-        
+
         if ([Utilities isNilOrEmpty:[self.model postalCode]]) {
             self.selectedViewController = self.settingsNavigationController;
         } else {
@@ -49,10 +49,10 @@
             self.selectedViewController = controller;
             [controller navigateToLastViewedPage];
         }
-        
+
         self.delegate = self;
     }
-    
+
     return self;
 }
 
@@ -86,7 +86,7 @@
 
 - (void) showMovieDetails:(Movie*) movie {
     self.selectedViewController = self.moviesNavigationController;
-    [self.moviesNavigationController pushMovieDetails:movie animated:YES];    
+    [self.moviesNavigationController pushMovieDetails:movie animated:YES];
 }
 
 - (void) popNavigationControllersToRoot {

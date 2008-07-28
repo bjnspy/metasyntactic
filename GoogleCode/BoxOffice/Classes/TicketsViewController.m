@@ -34,7 +34,7 @@
     self.movie = nil;
     self.performances = nil;
     self.futurePerformances = nil;
-    
+
     [super dealloc];
 }
 
@@ -50,20 +50,20 @@
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
     self.performances = [NSMutableArray array];
     self.futurePerformances = [NSMutableArray array];
-    
+
     NSDate* now = [NSDate date];
     for (Performance* performance in allPerformances) {
         if ([DateUtilities isToday:[self.model searchDate]]) {
             NSDate* showtimeDate = [DateUtilities dateWithNaturalLanguageString:performance.time];
-            
+
             if ([now compare:showtimeDate] == NSOrderedDescending) {
                 [self.futurePerformances addObject:performance];
                 continue;
             }
         }
-        
-        [self.performances addObject:performance];   
-    }    
+
+        [self.performances addObject:performance];
+    }
 }
 
 - (id) initWithController:(AbstractNavigationController*) navigationController_
@@ -74,24 +74,24 @@
         self.navigationController = navigationController_;
         self.theater = theater_;
         self.movie = movie_;
-        
+
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = title_;
-         
+
         self.title = title_;
         self.navigationItem.titleView = label;
-        
+
         [self refresh];
     }
-    
+
     return self;
 }
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
+
     [self.model setCurrentlySelectedMovie:self.movie theater:self.theater];
-    
+
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
@@ -100,7 +100,7 @@
     if (futurePerformances.count > 0) {
         sections++;
     }
-    
+
     return sections;
 }
 
@@ -115,7 +115,7 @@
     } else if (section == 3) {
         return futurePerformances.count;
     }
-    
+
     return 0;
 }
 
@@ -127,32 +127,32 @@
         return nil;
     } else if (section == 2 && performances.count) {
         NSString* dateString = [DateUtilities formatFullDate:[self.model searchDate]];
-        
+
         if ([DateUtilities isToday:[self.model searchDate]]) {
             return [NSString stringWithFormat:NSLocalizedString(@"Today - %@", nil), dateString];
         } else {
             return dateString;
         }
     } else if (section == 3 && futurePerformances.count) {
-        return [NSString stringWithFormat:NSLocalizedString(@"Tomorrow - %@", nil), 
+        return [NSString stringWithFormat:NSLocalizedString(@"Tomorrow - %@", nil),
                 [DateUtilities formatFullDate:[DateUtilities tomorrow]]];
     }
-    
+
     return nil;
 }
 
 - (UITableViewCell*) showtimeCellForSection:(NSInteger) section row:(NSInteger) row {
     static NSString* reuseIdentifier = @"TicketsViewShowtimeCellIdentifier";
-    
+
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                        reuseIdentifier:reuseIdentifier] autorelease];
-        
+
         cell.textAlignment = UITextAlignmentCenter;
         cell.font = [UIFont boldSystemFontOfSize:14];
     }
-    
+
     NSArray* list = (section == 2 ? self.performances : self.futurePerformances);
     NSString* showtime = [[list objectAtIndex:row] time];
     if (![self.theater.sellsTickets isEqual:@"True"]) {
@@ -165,13 +165,13 @@
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 
-    return cell;    
+    return cell;
 }
 
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
     AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                 reuseIdentifier:nil] autorelease];
-    
+
     if (row == 0) {
         Location* location = [self.model locationForAddress:theater.address];
         if (![Utilities isNilOrEmpty:location.address] && ![Utilities isNilOrEmpty:location.city]) {
@@ -184,21 +184,21 @@
     } else {
         [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber hasIndicator:NO];
     }
-    
+
     return cell;
 }
 
 - (UITableViewCell*) changeDateCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                     reuseIdentifier:nil] autorelease];
-        
+
     cell.textAlignment = UITextAlignmentCenter;
     cell.font = [UIFont boldSystemFontOfSize:14];
     cell.textColor = [ColorCache commandColor];
-    
+
     cell.text = NSLocalizedString(@"Change date", nil);
-    
-    return cell;    
+
+    return cell;
 }
 
 - (UITableViewCell*)        tableView:(UITableView*) tableView
@@ -210,7 +210,7 @@
     } else if (indexPath.section == 2 || indexPath.section == 3) {
         return [self showtimeCellForSection:indexPath.section row:indexPath.row];
     }
-    
+
     return nil;
 }
 
@@ -225,22 +225,22 @@
 - (void) didSelectShowtimeAtRow:(NSInteger) row {
     Performance* performance = [self.performances objectAtIndex:row];
     NSString* showId = performance.identifier;
-    
+
     if (![self.theater.sellsTickets isEqual:@"True"] ||
         [Utilities isNilOrEmpty:showId]) {
         return;
     }
-    
+
     //https://mobile.fandango.com/tickets.jsp?mk=98591&tk=557&showtime=2008:5:11:16:00
     //https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=1601099982&mid=98591&tid=AAJNK
-    
-    NSDateComponents* dateComponents = 
+
+    NSDateComponents* dateComponents =
     [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                     fromDate:[self.model searchDate]];
-    NSDateComponents* timeComponents = 
+    NSDateComponents* timeComponents =
     [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
                                     fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
-    
+
     NSString* url =
     [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
      self.movie.identifier,
@@ -250,31 +250,31 @@
      [dateComponents day],
      [timeComponents hour],
      [timeComponents minute]];
-    
-    [Application openBrowser:url]; 
+
+    [Application openBrowser:url];
 }
 
 - (void) didSelectFutureShowtimeAtRow:(NSInteger) row {
     Performance* performance = [self.futurePerformances objectAtIndex:row];
     NSString* showId = performance.identifier;
-    
+
     if (![self.theater.sellsTickets isEqual:@"True"] ||
         [Utilities isNilOrEmpty:showId]) {
         return;
     }
-    
+
     //https://mobile.fandango.com/tickets.jsp?mk=98591&tk=557&showtime=2008:5:11:16:00
     //https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=1601099982&mid=98591&tid=AAJNK
-    
+
     NSDate* showDate = [DateUtilities dateWithNaturalLanguageString:performance.time];
     NSDateComponents* oneDayComponents = [[[NSDateComponents alloc] init] autorelease];
     oneDayComponents.day = 1;
-    
+
     NSDate* tomorrow = [[NSCalendar currentCalendar] dateByAddingComponents:oneDayComponents toDate:showDate options:0];
     NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit | NSHourCalendarUnit | NSMinuteCalendarUnit)
                                                                    fromDate:tomorrow];
-    
-    
+
+
     NSString* url =
     [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
      self.movie.identifier,
@@ -284,8 +284,8 @@
      [components day],
      [components hour],
      [components minute]];
-    
-    [Application openBrowser:url]; 
+
+    [Application openBrowser:url];
 }
 
 - (void) didSelectChangeDate {

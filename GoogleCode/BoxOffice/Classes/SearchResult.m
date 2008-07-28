@@ -24,7 +24,7 @@
         self.element = element_;
         self.searchId = searchId_;
     }
-    
+
     return self;
 }
 

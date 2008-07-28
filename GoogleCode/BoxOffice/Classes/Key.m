@@ -20,7 +20,7 @@
         self.identifier = identifier_;
         self.name = name_;
     }
-    
+
     return self;
 }
 

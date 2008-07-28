@@ -13,20 +13,20 @@
 
 @interface MovieDetailsViewController : UITableViewController {
     MoviesNavigationController* navigationController;
-    
+
     Movie* movie;
     NSMutableArray* theatersArray;
     NSMutableArray* showtimesArray;
     NSArray* trailersArray;
     NSArray* reviewsArray;
-    
+
     NSInteger hiddenTheaterCount;
-    
+
     UIImage* posterImage;
     NSString* synopsis;
     NSInteger synopsisSplit;
     NSInteger synopsisMax;
-    
+
     BOOL filterTheatersByDistance;
 }
 

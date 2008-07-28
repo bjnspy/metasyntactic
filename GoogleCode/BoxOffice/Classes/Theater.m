@@ -27,7 +27,7 @@
     self.phoneNumber = nil;
     self.sellsTickets = nil;
     self.movieIdentifiers = nil;
-    
+
     [super dealloc];
 }
 
@@ -37,16 +37,16 @@
                                   address:[dictionary objectForKey:@"address"]
                               phoneNumber:[dictionary objectForKey:@"phoneNumber"]
                              sellsTickets:[dictionary objectForKey:@"sellsTickets"]
-                              movieIdentifiers:[dictionary objectForKey:@"movieIdentifiers"]];
+                         movieIdentifiers:[dictionary objectForKey:@"movieIdentifiers"]];
 }
 
 NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
     NSString* s1 = t1;
     NSString* s2 = t2;
-    
+
     NSDate* d1 = [DateUtilities dateWithNaturalLanguageString:s1];
     NSDate* d2 = [DateUtilities dateWithNaturalLanguageString:s2];
-    
+
     return [d1 compare:d2];
 }
 
@@ -55,7 +55,7 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
                           address:(NSString*) address_
                       phoneNumber:(NSString*) phoneNumber_
                      sellsTickets:(NSString*) sellsTickets_
-                      movieIdentifiers:(NSArray*) movieIdentifiers_ {
+                 movieIdentifiers:(NSArray*) movieIdentifiers_ {
     if (self = [self init]) {
         self.identifier = identifier_;
         self.name = [name_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -64,7 +64,7 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
         self.sellsTickets = sellsTickets_;
         self.movieIdentifiers = movieIdentifiers_;
     }
-    
+
     return self;
 }
 
@@ -114,9 +114,9 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
     if ([showtime hasSuffix:@" PM"]) {
         return [NSString stringWithFormat:@"%@pm", [showtime substringToIndex:[showtime length] - 3]];
     } else if ([showtime hasSuffix:@" AM"]) {
-        return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:[showtime length] - 3]];        
+        return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:[showtime length] - 3]];
     }
-    
+
     return showtime;
 }
 

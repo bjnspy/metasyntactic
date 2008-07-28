@@ -20,20 +20,20 @@
     self.allMoviesViewController = nil;
     self.movieDetailsViewController = nil;
     self.tabBarController = nil;
-    
+
     [super dealloc];
 }
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
-        
+
         [self pushViewController:allMoviesViewController animated:NO];
-        
+
         self.title = NSLocalizedString(@"Movies", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Featured.png"];
     }
-    
+
     return self;
 }
 
@@ -41,19 +41,19 @@
     Movie* currentMovie = [self.model currentlySelectedMovie];
     if (currentMovie != nil) {
         [self pushMovieDetails:currentMovie animated:NO];
-        
+
         Theater* currentTheater = [self.model currentlySelectedTheater];
         if (currentTheater != nil) {
             [self pushTicketsView:currentMovie
                           theater:currentTheater
                          animated:NO];
         }
-        
+
         if ([self.model currentlyShowingReviews]) {
             [self pushReviewsView:[self.model reviewsForMovie:currentMovie]
                          animated:NO];
         }
-    }    
+    }
 }
 
 - (void) refresh {
@@ -65,9 +65,9 @@
 - (void) pushMovieDetails:(Movie*) movie
                  animated:(BOOL) animated {
     [self popToRootViewControllerAnimated:NO];
-    
+
     self.movieDetailsViewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self movie:movie] autorelease];
-    
+
     [self pushViewController:movieDetailsViewController animated:animated];
 }
 
@@ -83,7 +83,7 @@
 - (void) pushReviewsView:(NSArray*) reviews animated:(BOOL) animated {
     ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithNavigationController:self
                                                                                              reviews:reviews] autorelease];
-    [self pushViewController:controller animated:animated];    
+    [self pushViewController:controller animated:animated];
 }
 
 @end

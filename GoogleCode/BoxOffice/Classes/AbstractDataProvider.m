@@ -21,7 +21,7 @@
     self.model;
     self.moviesData = nil;
     self.theatersData = nil;
-    
+
     [super dealloc];
 }
 
@@ -30,7 +30,7 @@
         self.model = model_;
         [Application createDirectory:[self providerFolder]];
     }
-    
+
     return self;
 }
 
@@ -53,7 +53,7 @@
 - (NSDate*) lastLookupDate {
     NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self lastLookupDateFile]
                                                                                error:NULL] objectForKey:NSFileModificationDate];
-    
+
     return lastLookupDate;
 }
 
@@ -70,14 +70,14 @@
     if (array == nil) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* decodedMovies = [NSMutableArray array];
-    
+
     for (int i = 0; i < array.count; i++) {
         Movie* movie = [Movie movieWithDictionary:[array objectAtIndex:i]];
         [decodedMovies addObject:movie];
     }
-    
+
     return decodedMovies;
 }
 
@@ -85,17 +85,17 @@
     if (self.moviesData == nil) {
         self.moviesData = [self loadMovies];
     }
-    
-    return self.moviesData;    
+
+    return self.moviesData;
 }
 
 - (void) saveArray:(NSArray*) array to:(NSString*) file {
     NSMutableArray* encoded = [NSMutableArray array];
-    
+
     for (id object in array) {
         [encoded addObject:[object dictionary]];
     }
-    
+
     [Utilities writeObject:encoded toFile:file];
 }
 
@@ -111,21 +111,21 @@
     NSArray* movies = result.movies;
     NSArray* theaters = result.theaters;
     NSDictionary* performances = result.performances;
-    
+
     if (movies.count > 0 || theaters.count > 0) {
         [self saveArray:movies to:[self moviesFile]];
         [self saveArray:theaters to:[self theatersFile]];
-        
+
         NSString* tempFolder = [Application uniqueTemporaryFolder];
         for (NSString* key in performances) {
             NSDictionary* value = [performances objectForKey:key];
-            
-            [Utilities writeObject:value toFile:[self performancesFile:key parentFolder:tempFolder]]; 
+
+            [Utilities writeObject:value toFile:[self performancesFile:key parentFolder:tempFolder]];
         }
-        
+
         [[NSFileManager defaultManager] removeItemAtPath:[self performancesFolder] error:NULL];
         [[NSFileManager defaultManager] moveItemAtPath:tempFolder toPath:[self performancesFolder] error:NULL];
-        
+
         [self setLastLookupDate];
     }
 }
@@ -136,12 +136,12 @@
     if (encodedArray == nil) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* decodedArray = [NSMutableArray array];
     for (NSDictionary* dict in encodedArray) {
         [decodedArray addObject:[Performance performanceWithDictionary:dict]];
     }
-    
+
     return decodedArray;
 }
 
@@ -150,13 +150,13 @@
     if (array == nil) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* decodedTheaters = [NSMutableArray array];
-    
+
     for (int i = 0; i < array.count; i++) {
         [decodedTheaters addObject:[Theater theaterWithDictionary:[array objectAtIndex:i]]];
     }
-    
+
     return decodedTheaters;
 }
 
@@ -164,7 +164,7 @@
     if (self.theatersData == nil) {
         self.theatersData = [self loadTheaters];
     }
-    
+
     return self.theatersData;
 }
 
@@ -175,7 +175,7 @@
 
 - (LookupResult*) lookupWorker {
     NSAssert(false, @"Someone improperly subclassed!");
-    return nil;    
+    return nil;
 }
 
 - (void) invalidateDiskCache {
@@ -185,9 +185,9 @@
 
 - (void) lookup {
     LookupResult* result = [self lookupWorker];
-    
+
     [self saveResult:result];
-    
+
     [self performSelectorOnMainThread:@selector(reportResult:)
                            withObject:result
                         waitUntilDone:NO];
@@ -196,7 +196,7 @@
 - (void) reportResult:(LookupResult*) result {
     NSArray* movies = result.movies;
     NSArray* theaters = result.theaters;
-    
+
     if (movies.count > 0 || theaters.count > 0) {
         self.moviesData = movies;
         self.theatersData = theaters;

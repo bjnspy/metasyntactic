@@ -31,20 +31,20 @@
         self.textField.borderStyle = UITextBorderStyleRoundedRect;
         self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.textField.font = [UIFont boldSystemFontOfSize:17];
-        self.textField.keyboardType = type;     
+        self.textField.keyboardType = type;
         self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-        
+
         self.title = title;
     }
-    
+
     return self;
 }
 
 - (void)loadView {
     [super loadView];
-    
+
     [self.view addSubview:self.textField];
-    
+
     [self.textField becomeFirstResponder];
 }
 

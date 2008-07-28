@@ -23,13 +23,13 @@ static UIImage* greenRatingImage = nil;
 static UIImage* unknownRatingImage = nil;
 
 + (void) initialize {
-    if (self == [ImageCache class]) {        
+    if (self == [ImageCache class]) {
         freshImage          = [[UIImage imageNamed:@"Fresh.png"] retain];
         rottenFadedImage    = [[UIImage imageNamed:@"Rotten-Faded.png"] retain];
         rottenFullImage     = [[UIImage imageNamed:@"Rotten-Full.png"] retain];
         emptyStarImage      = [[UIImage imageNamed:@"Empty Star.png"] retain];
         filledStarImage     = [[UIImage imageNamed:@"Filled Star.png"] retain];
-        
+
         redRatingImage      = [[UIImage imageNamed:@"Rating-Red.png"] retain];
         yellowRatingImage   = [[UIImage imageNamed:@"Rating-Yellow.png"] retain];
         greenRatingImage    = [[UIImage imageNamed:@"Rating-Green.png"] retain];

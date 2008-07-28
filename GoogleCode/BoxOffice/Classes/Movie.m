@@ -27,19 +27,19 @@
     self.releaseDate = nil;
     self.poster = nil;
     self.synopsis = nil;
-    
+
     [super dealloc];
 }
 
 + (NSString*) massageTitle:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
+
     if ([title hasSuffix:@", The"]) {
         title = [NSString stringWithFormat:@"The %@", [title substringToIndex:([title length] - 5)]];
     } else if ([title hasSuffix:@", A"]) {
         title = [NSString stringWithFormat:@"A %@", [title substringToIndex:([title length] - 3)]];
     }
-    
+
     return title;
 }
 
@@ -60,11 +60,11 @@
         self.length = length_;
         self.releaseDate = releaseDate_;
         self.poster = poster_;
-        self.synopsis = 
+        self.synopsis =
             [[synopsis_ stringByReplacingOccurrencesOfString:@"<em>" withString:@""]
                 stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
     }
-    
+
     return self;
 }
 
@@ -112,7 +112,7 @@
 
 - (BOOL) isEqual:(id) anObject {
     Movie* other = anObject;
-    
+
     return
     [self.identifier isEqual:other.identifier] &&
     [self.title isEqual:other.title];
@@ -128,14 +128,14 @@
     NSInteger movieLength = [self.length intValue];
     NSInteger hours = movieLength / 60;
     NSInteger minutes = movieLength % 60;
-    
+
     NSString* ratingString;
     if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
         ratingString = NSLocalizedString(@"Unrated.", nil);
     }  else {
         ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@.", nil), self.rating];
     }
-    
+
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {
         if (hours == 1) {
@@ -143,14 +143,14 @@
         } else if (hours > 1) {
             [text appendFormat:@" %d hours", hours];
         }
-        
+
         if (minutes == 1) {
             [text appendString:@" 1 minute"];
         } else if (minutes > 1) {
             [text appendFormat:@" %d minutes", minutes];
         }
-    }    
-    
+    }
+
     return text;
 }
 

@@ -15,7 +15,7 @@
     AbstractNavigationController* navigationController;
     Movie* movie;
     Theater* theater;
-    
+
     NSMutableArray* performances;
     NSMutableArray* futurePerformances;
 }

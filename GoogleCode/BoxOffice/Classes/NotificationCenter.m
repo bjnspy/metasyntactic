@@ -34,13 +34,13 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     if (self = [super init]) {
         self.window = window_;
         self.messages = [NSMutableArray array];
-        
+
         self.background = [[[UILabel alloc] initWithFrame:emptyFrame] autorelease];
         self.background.opaque = NO;
         self.background.alpha = 0.5;
         self.background.backgroundColor = [UIColor lightGrayColor];
     }
-    
+
     return self;
 }
 
@@ -52,22 +52,22 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     [self.window addSubview:self.background];
 }
 
-- (void) addStatusMessage:(NSString*) message {    
+- (void) addStatusMessage:(NSString*) message {
     return;
-    
+
     [self.messages addObject:message];
-    
+
     if (self.messages.count == 1) {
         self.background.frame = emptyFrame;
-        
+
         [UIView beginAnimations:nil context:NULL];
         {
             self.background.frame = frame;
         }
         [UIView commitAnimations];
-        
+
         [self performSelector:@selector(update:) withObject:nil afterDelay:0.1];
-    }    
+    }
 }
 
 - (void) clearStatus {
@@ -76,35 +76,35 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
         self.background.frame = emptyFrame;
         self.currentlyDisplayedMessage.center = offScreenLeftPoint;
     }
-    [UIView commitAnimations];    
+    [UIView commitAnimations];
 }
 
 - (void) displayNextMessage {
     UILabel* label = [[[UILabel alloc] initWithFrame:offScreenRightFrame] autorelease];
-    
+
     label.text = [self.messages objectAtIndex:0];
     [self.messages removeObjectAtIndex:0];
-    
+
     label.font = [UIFont systemFontOfSize:11];
     label.textColor = [UIColor blackColor];
     label.textAlignment = UITextAlignmentCenter;
     label.opaque = NO;
     label.backgroundColor = [UIColor clearColor];
-    
+
     [UIView beginAnimations:nil context:NULL];
-    {    
+    {
         self.currentlyDisplayedMessage.center = offScreenLeftPoint;
         [self performSelector:@selector(removeViewFromSuperview:)
                    withObject:self.currentlyDisplayedMessage
                    afterDelay:1];
-        
+
         self.currentlyDisplayedMessage = label;
         self.currentlyDisplayedMessage.frame = frame;
-        
+
         [self.window addSubview:self.currentlyDisplayedMessage];
     }
-    [UIView commitAnimations];    
-    
+    [UIView commitAnimations];
+
     [self performSelector:@selector(update:) withObject:nil afterDelay:1];
 }
 

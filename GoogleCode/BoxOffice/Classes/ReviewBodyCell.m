@@ -16,20 +16,20 @@
 
 - (void) dealloc {
     self.label = nil;
-    
+
     [super dealloc];
 }
 
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+
         self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.label.font = [FontCache helvetica14];
         self.label.lineBreakMode = UILineBreakModeWordWrap;
         self.label.numberOfLines = 0;
-        
-        [self.contentView addSubview:label]; 
+
+        [self.contentView addSubview:label];
     }
     return self;
 }

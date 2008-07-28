@@ -36,7 +36,7 @@
     self.movies = nil;
     self.movieShowtimes = nil;
     self.segmentedControl = nil;
-    
+
     [super dealloc];
 }
 
@@ -61,7 +61,7 @@
     } else {
         [self.model addFavoriteTheater:theater];
     }
-    
+
     [self setFavoriteImage];
 }
 
@@ -70,38 +70,38 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.theater = theater_;
         self.navigationController = controller;
-        
+
         NSInteger (*sortFunction)(id, id, void *) = compareMoviesByTitle;
         self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:sortFunction context:self.model];
 
         self.movieShowtimes = [NSMutableArray array];
         for (Movie* movie in self.movies) {
             NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
-            
+
             [self.movieShowtimes addObject:showtimes];
         }
-        
+
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = self.theater.name;
-         
+
         self.title = self.theater.name;
         self.navigationItem.titleView = label;
- 
+
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[ImageCache emptyStarImage]
                                                                                    style:UIBarButtonItemStylePlain
                                                                                   target:self
                                                                                   action:@selector(switchFavorite:)] autorelease];
         [self setFavoriteImage];
     }
-    
+
     return self;
 }
 
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
-    
+
     [self.model setCurrentlySelectedMovie:nil theater:self.theater];
-    
+
     [self refresh];
 }
 
@@ -119,7 +119,7 @@
         // theater address and possibly phone number
         return 1 + ([Utilities isNilOrEmpty:theater.phoneNumber] ? 0 : 1);
     }
-    
+
     return 2;
 }
 
@@ -131,7 +131,7 @@
     if (section == 0) {
         AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                     reuseIdentifier:nil] autorelease];
-        
+
         if (row == 0) {
             Location* location = [self.model locationForAddress:theater.address];
             if (![Utilities isNilOrEmpty:location.address] && ![Utilities isNilOrEmpty:location.city]) {
@@ -144,21 +144,21 @@
         } else {
             [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber hasIndicator:NO];
         }
-        
+
         return cell;
     } else {
         if (row == 0) {
             static NSString* reuseIdentifier = @"TheaterDetailsMovieCellIdentifier";
             MovieTitleCell* movieCell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-            if (movieCell == nil) {    
+            if (movieCell == nil) {
                 movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                    reuseIdentifier:reuseIdentifier
                                                              model:self.model
                                                              style:UITableViewStyleGrouped] autorelease];
             }
-            
+
             [movieCell setMovie:[self.movies objectAtIndex:(section - 1)]];
-            
+
             return movieCell;
         } else {
             static NSString* reuseIdentifier = @"TheaterDetailsShowtimesCellIdentifier";
@@ -168,9 +168,9 @@
                 cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                   reuseIdentifier:reuseIdentifier] autorelease];
             }
-            
+
             [cell setShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];
-            
+
             return cell;
         }
     }
@@ -181,9 +181,9 @@
     if (section == 0) {
         return nil;
     }
-    
+
     return nil;
-    
+
     Movie* movie = [self.movies objectAtIndex:(section - 1)];
     NSInteger score = [self.model scoreForMovie:movie];
     if (score >= 0 && score <= 100) {
@@ -191,7 +191,7 @@
     } else {
         return [NSString stringWithFormat:@"%@ (%@)", movie.title, movie.rating];
     }
-    
+
     return movie.title;
 }
 
@@ -199,26 +199,26 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == 0) {
         return [tableView rowHeight];
     }
-    
+
     if (row == 0) {
         return [tableView rowHeight];
     }
-    
+
     return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]] + 18;
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
-    
+
     if (section == 0) {
         return UITableViewCellAccessoryNone;
     }
-    
+
     return UITableViewCellAccessoryDisclosureIndicator;
 }
 
@@ -226,15 +226,15 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == 0) {
         if (row == 0) {
             [Application openMap:theater.address];
         } else {
             [Application makeCall:theater.phoneNumber];
         }
-    } else {  
-        Movie* movie = [self.movies objectAtIndex:(section - 1)];    
+    } else {
+        Movie* movie = [self.movies objectAtIndex:(section - 1)];
         if (row == 0) {
             [self.navigationController.tabBarController showMovieDetails:movie];
         } else {

@@ -10,7 +10,7 @@
     NSString* title;
     NSString* synopsis;
     NSString* link;
-    NSString* score; 
+    NSString* score;
 }
 
 @property (copy) NSString* title;

@@ -25,18 +25,18 @@
     if (self = [super init]) {
         NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
         parser.delegate = self;
-        
+
         self.elementsStack = [NSMutableArray array];
         self.stringBufferStack = [NSMutableArray array];
         self.attributesStack = [NSMutableArray array];
-        
+
         [self.elementsStack addObject:[NSMutableArray array]];
-        
+
         if ([parser parse] == NO) {
             self.elementsStack = nil;
         }
     }
-    
+
     return self;
 }
 
@@ -44,13 +44,13 @@
     if (data == nil) {
         return nil;
     }
-    
+
     XmlParser* xmlParser = [[[XmlParser alloc] initWithData:data] autorelease];
-    
+
     if (xmlParser.elementsStack == nil) {
         return nil;
     }
-    
+
     return [[xmlParser.elementsStack lastObject] lastObject];
 }
 
@@ -71,16 +71,16 @@
     NSArray* children = [self.elementsStack lastObject];
     NSString* text = [self.stringBufferStack lastObject];
     NSDictionary* attributes = [self.attributesStack lastObject];
-    
+
     [self.elementsStack removeLastObject];
     [self.stringBufferStack removeLastObject];
     [self.attributesStack removeLastObject];
-    
+
     XmlElement* element = [XmlElement elementWithName:elementName
                                            attributes:attributes
                                              children:children
                                                  text:text];
-    
+
     [[self.elementsStack lastObject] addObject:element];
 }
 

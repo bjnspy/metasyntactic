@@ -39,12 +39,12 @@
                       personDetails:(XmlElement*) personElement_ {
     if (self = [super initWithNavigationController:navigationController_]) {
         self.personElement = personElement_;
-        
+
         self.title = [personElement attributeValue:@"name"];
-        
+
         [self getPersonDetails];
     }
-    
+
     return self;
 }
 
@@ -54,7 +54,7 @@
      [Application searchHost], [personElement attributeValue:@"id"]];
 
     XmlElement* resultElement = [Utilities downloadXml:urlString];
-    
+
     [self performSelectorOnMainThread:@selector(reportLookupResult:) withObject:resultElement waitUntilDone:NO];
 }
 
@@ -75,7 +75,7 @@
     self.personDetailsElement = element;
     [self.model setPersonDetails:[personElement attributeValue:@"id"]
                            element:element];
-    
+
     [self.tableView reloadData];
 }
 
@@ -86,7 +86,7 @@
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     XmlElement* movieElement = nil;
     if (indexPath.section == DIRECTOR_SECTION) {
         movieElement = [self.directedMovies objectAtIndex:indexPath.row];
@@ -95,11 +95,11 @@
     } else if (indexPath.section == CAST_SECTION) {
         movieElement = [self.castMovies objectAtIndex:indexPath.row];
     }
-    
+
     if (movieElement != nil) {
         cell.text = [Utilities titleForMovie:movieElement];
     }
-    
+
     return cell;
 }
 
@@ -112,9 +112,9 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == DIRECTOR_SECTION) {
-        XmlElement* movieElement = [self.directedMovies objectAtIndex:row]; 
+        XmlElement* movieElement = [self.directedMovies objectAtIndex:row];
         [self.navigationController pushMovieDetails:movieElement animated:YES];
     } else if (section == WRITER_SECTION) {
         XmlElement* movieElement = [self.wroteMovies objectAtIndex:row];
@@ -148,7 +148,7 @@
             return self.castMovies.count;
         }
     }
-    
+
     return 0;
 }
 
@@ -157,7 +157,7 @@
     if (self.personDetailsElement == nil) {
         return NSLocalizedString(@"Looking up information", nil);
     }
-    
+
     if (section == DIRECTOR_SECTION && self.directedMovies.count > 0) {
         return NSLocalizedString(@"Director:", nil);
     } else if (section == WRITER_SECTION && self.wroteMovies.count > 0) {
@@ -165,7 +165,7 @@
     } else if (section == CAST_SECTION && self.castMovies.count > 0) {
         return NSLocalizedString(@"Cast member:", nil);
     }
-    
+
     return nil;
 }
 
