@@ -35,7 +35,7 @@
 }
 
 - (NSString*) shortTrailerFilePath:(NSString*) title {
-    return [[title stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"] stringByAppendingPathExtension:@"plist"];
+    return [[Application sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
 }
 
 - (NSString*) trailerFilePath:(NSString*) title {

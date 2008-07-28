@@ -13,10 +13,12 @@
 
 + (NSString*) dataFolder;
 + (NSString*) documentsFolder;
++ (NSString*) locationsFolder;
 + (NSString*) postersFolder;
 + (NSString*) searchFolder;
 + (NSString*) supportFolder;
 + (NSString*) tempFolder;
++ (NSString*) ratingsFolder;
 + (NSString*) trailersFolder;
 + (NSString*) reviewsFolder:(NSString*) provider;
 
@@ -38,5 +40,6 @@
 + (NSString*) starString;
 
 + (void) createDirectory:(NSString*) path;
++ (NSString*) sanitizeFileName:(NSString*) name;
 
 @end

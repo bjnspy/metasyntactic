@@ -19,20 +19,19 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.30";
+static NSString* currentVersion = @"1.2.33";
 
 + (NSString*) VERSION                                   { return @"version"; }
-+ (NSString*) SEARCH_DATES                              { return @"searchDates";; }
++ (NSString*) SEARCH_DATES                              { return @"searchDates"; }
 + (NSString*) SEARCH_RESULTS                            { return @"searchResults"; }
 + (NSString*) SEARCH_RADIUS                             { return @"searchRadius"; }
-+ (NSString*) POSTAL_CODE                               { return @"postalCode";; }
++ (NSString*) POSTAL_CODE                               { return @"postalCode"; }
 + (NSString*) CURRENTLY_SELECTED_MOVIE                  { return @"currentlySelectedMovie"; }
 + (NSString*) CURRENTLY_SELECTED_THEATER                { return @"currentlySelectedTheater"; }
 + (NSString*) SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX    { return @"selectedTabBarViewControllerIndex"; }
 + (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX         { return @"allMoviesSelectedSegmentIndex"; }
 + (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX       { return @"allTheatersSelectedSegmentIndex"; }
 + (NSString*) FAVORITE_THEATERS                         { return @"favoriteTheaters"; }
-+ (NSString*) ADDRESS_LOCATION_MAP                      { return @"addressLocationMap"; }
 + (NSString*) CURRENTLY_SHOWING_REVIEWS                 { return @"currentlyShowingReviews"; }
 + (NSString*) SEARCH_DATE                               { return @"searchDate"; }
 + (NSString*) AUTO_UPDATE_LOCATION                      { return @"autoUpdateLocation"; }
@@ -137,17 +136,21 @@ static NSString* currentVersion = @"1.2.30";
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel ALL_MOVIES_SELECTED_SEGMENT_INDEX]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel FAVORITE_THEATERS]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel ADDRESS_LOCATION_MAP]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SHOWING_REVIEWS]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SEARCH_DATE]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel AUTO_UPDATE_LOCATION]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel RATINGS_PROVIDER_INDEX]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];
 
+        [[NSFileManager defaultManager] removeItemAtPath:[Application dataFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application locationsFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application postersFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application trailersFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application movieMapFile] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFolder] error:NULL];
 
         for (NSString* provider in [self ratingsProviders]) {
-            [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFile:provider] error:NULL];
+            [[NSFileManager defaultManager] removeItemAtPath:[Application reviewsFolder:provider] error:NULL];
         }
 
         for (id<DataProvider> provider in self.dataProviders) {
