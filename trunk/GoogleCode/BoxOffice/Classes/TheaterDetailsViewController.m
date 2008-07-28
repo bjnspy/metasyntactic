@@ -40,6 +40,10 @@
     [super dealloc];
 }
 
+- (BoxOfficeController*) controller {
+    return [self.navigationController controller];
+}
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
@@ -67,14 +71,12 @@
         self.theater = theater_;
         self.navigationController = controller;
         
-        self.movies = [self.model moviesAtTheater:theater];
         NSInteger (*sortFunction)(id, id, void *) = compareMoviesByTitle;
+        self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:sortFunction context:self.model];
 
-        [self.movies sortUsingFunction:sortFunction context:self.model];    
-        
         self.movieShowtimes = [NSMutableArray array];
         for (Movie* movie in self.movies) {
-            NSArray* showtimes = [theater performances:movie];
+            NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
             
             [self.movieShowtimes addObject:showtimes];
         }
@@ -85,23 +87,6 @@
         self.title = self.theater.name;
         self.navigationItem.titleView = label;
  
-        //self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:starLabel] autorelease];
-
-        /*
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithTitle:@""
-                                                                                   style:UIBarButtonItemStylePlain
-                                                                                  target:self
-                                                                                  action:@selector(switchFavorite:)] autorelease];
-        
-        UILabel* starLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        starLabel.text = [Application starString];
-        starLabel.font = [UIFont boldSystemFontOfSize:24];
-        starLabel.textColor = [UIColor grayColor];
-        starLabel.backgroundColor = [UIColor clearColor];
-        [starLabel sizeToFit];
-        
-        self.navigationItem.rightBarButtonItem.customView = starLabel;
-         */
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[ImageCache emptyStarImage]
                                                                                    style:UIBarButtonItemStylePlain
                                                                                   target:self

@@ -20,15 +20,17 @@
 #import "Performance.h"
 #import "RottenTomatoesDownloader.h"
 #import "MetacriticDownloader.h"
+#import "NorthAmericaDataProvider.h"
 
 @implementation BoxOfficeController
 
 @synthesize ratingsLookupLock;
-@synthesize fullLookupLock;
+@synthesize dataProviderLock;
 
 - (void) dealloc {
     self.ratingsLookupLock = nil;
-    self.fullLookupLock = nil;
+    self.dataProviderLock = nil;
+    
     [super dealloc];
 }
 
@@ -37,7 +39,7 @@
 }
 
 - (void) onBackgroundTaskStarted:(NSString*) description {
-    [[self model] addBackgroundTask:description];
+    [self.model addBackgroundTask:description];
 }
 
 - (BOOL) tooSoon:(NSDate*) lastDate {
@@ -75,29 +77,29 @@
     [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
 
-- (void) spawnFullLookupThread {
+- (void) spawnDataProviderLookupThread {
     if ([Utilities isNilOrEmpty:self.model.postalCode]) {
         return;
     }
     
-    if ([self tooSoon:[self.model lastFullUpdateTime]]) {
+    if ([self tooSoon:[[self.model currentDataProvider] lastLookupDate]]) {
         return;
     }
     
     [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading ticketing data", nil)];
-    [self performSelectorInBackground:@selector(fullLookupBackgroundThreadEntryPoint:) withObject:nil];
+    [self performSelectorInBackground:@selector(dataProviderLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
 
 - (void) spawnBackgroundThreads {
     [self spawnRatingsLookupThread];
-    [self spawnFullLookupThread];
+    [self spawnDataProviderLookupThread];
 }
 
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         appDelegate = appDelegate_;
         self.ratingsLookupLock = [[[NSLock alloc] init] autorelease];
-        self.fullLookupLock = [[[NSLock alloc] init] autorelease];
+        self.dataProviderLock = [[[NSLock alloc] init] autorelease];
         
         [self spawnBackgroundThreads];
     }
@@ -143,189 +145,18 @@
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie list", nil)];
 }
 
-- (NSDictionary*) processShowtimes:(XmlElement*) moviesElement {
-    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    
-    for (XmlElement* movieElement in [moviesElement children]) {
-        NSString* movieId = [movieElement attributeValue:@"id"];
-        
-        XmlElement* performancesElement = [movieElement element:@"performances"];
-        
-        NSMutableArray* performances = [NSMutableArray array];
-        
-        for (XmlElement* performanceElement in [performancesElement children]) {
-            NSString* showId = [performanceElement attributeValue:@"showid"];
-            NSString* time = [performanceElement attributeValue:@"showtime"];
-            time = [Theater processShowtime:time];
-            
-            Performance* performance = [Performance performanceWithIdentifier:showId
-                                                                         time:time];
-            
-            [performances addObject:[performance dictionary]];
-        }
-        
-        [dictionary setObject:performances forKey:movieId];
-    }
-    
-    return dictionary;
-}
-
-- (Theater*) processTheaterElement:(XmlElement*) theaterElement {
-    NSString* identifier = [theaterElement attributeValue:@"id"];
-    NSString* name = [[theaterElement element:@"name"] text];
-    NSString* address = [[theaterElement element:@"address1"] text];
-    NSString* city = [[theaterElement element:@"city"] text];
-    NSString* state = [[theaterElement element:@"state"] text];
-    NSString* postalCode = [[theaterElement element:@"postalcode"] text];
-    NSString* phone = [[theaterElement element:@"phonenumber"] text];
-    NSString* sellsTickets = [theaterElement attributeValue:@"iswired"];
-    
-    NSString* fullAddress;
-    if ([address hasSuffix:@"."]) {
-        fullAddress = [NSString stringWithFormat:@"%@ %@, %@ %@", address, city, state, postalCode];
-    } else {
-        fullAddress = [NSString stringWithFormat:@"%@. %@, %@ %@", address, city, state, postalCode];
-    }
-    
-    XmlElement* moviesElement = [theaterElement element:@"movies"];
-    NSDictionary* movieToShowtimesMap = [self processShowtimes:moviesElement];
-    
-    if (movieToShowtimesMap.count == 0) {
-        return nil;
-    }
-    
-    return [Theater theaterWithIdentifier:identifier
-                                     name:name
-                                  address:fullAddress
-                              phoneNumber:phone
-                             sellsTickets:sellsTickets
-                      movieToShowtimesMap:movieToShowtimesMap];
-}
-
-- (NSArray*) processTheatersElement:(XmlElement*) theatersElement {
-    NSMutableArray* array = [NSMutableArray array];
-    
-    for (XmlElement* theaterElement in [theatersElement children]) {
-        Theater* theater = [self processTheaterElement:theaterElement];
-        
-        if (theater != nil) {
-            [array addObject:theater];
-        }
-    }
-    
-    return array;
-}
-
-- (NSArray*) processMoviesElement:(XmlElement*) moviesElement {
-    NSMutableArray* array = [NSMutableArray array];
-    
-    for (XmlElement* movieElement in [moviesElement children]) {
-        NSString* identifier = [movieElement attributeValue:@"id"];
-        NSString* poster = [movieElement attributeValue:@"posterhref"];
-        NSString* title = [[movieElement element:@"title"] text];
-        NSString* rating = [[movieElement element:@"rating"] text];
-        NSString* length = [[movieElement element:@"runtime"] text];
-        NSString* synopsis = [[movieElement element:@"synopsis"] text];
-        
-        NSString* releaseDateText = [[movieElement element:@"releasedate"] text];
-        NSDate* releaseDate = nil;
-        if (releaseDateText != nil) {
-            releaseDate = [NSDate dateWithNaturalLanguageString:releaseDateText];
-        }
-        
-        Movie* movie = [Movie movieWithIdentifier:identifier
-                                            title:title
-                                           rating:rating
-                                           length:length
-                                      releaseDate:releaseDate
-                                           poster:poster
-                                         synopsis:synopsis];
-        
-        [array addObject:movie];
-    }
-    
-    return array;
-}
-
-- (NSArray*) processElement:(XmlElement*) element {
-    XmlElement* dataElement = [element element:@"data"];
-    XmlElement* moviesElement = [dataElement element:@"movies"];
-    XmlElement* theatersElement = [dataElement element:@"theaters"];
-    
-    NSArray* theaters = [self processTheatersElement:theatersElement];
-    NSArray* movies = [self processMoviesElement:moviesElement];
-    
-    return [NSArray arrayWithObjects:movies, theaters, nil];
-}
- 
-- (NSArray*) fullLookup {
-    if (![Utilities isNilOrEmpty:self.model.postalCode]) {
-        NSMutableArray* hosts = [Application hosts];
-        NSInteger index = abs([Utilities hashString:self.model.postalCode]) % hosts.count;
-        NSString* host = [hosts objectAtIndex:index];
-        
-        NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                                                       fromDate:[self.model searchDate]];
-        
-        NSString* urlString =[NSString stringWithFormat:
-                              @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d",
-                              host,
-                              self.model.postalCode,
-                              [components year],
-                              [components month],
-                              [components day]];
-        
-        XmlElement* element = [Utilities downloadXml:urlString];
-        
-        if (element != nil) {
-            return [self processElement:element];
-        }
-    }
-    
-    return nil;
-}
-
-- (void) setMoviesAndTheaters:(NSArray*) moviesAndTheaters {
-    NSArray* movies = [moviesAndTheaters objectAtIndex:0];
-    NSArray* theaters = [moviesAndTheaters objectAtIndex:1];
-
-    if (movies.count > 0 || theaters.count > 0) {
-        [self.model setMovies:movies];
-        [self.model setTheaters:theaters];
-    }
-    
-    [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie and theater data", nil)];
-}
-
-- (void) saveArray:(NSArray*) array to:(NSString*) file {
-    NSMutableArray* encoded = [NSMutableArray array];
-    
-    for (id object in array) {
-        [encoded addObject:[object dictionary]];
-    }
-    
-    [Utilities writeObject:encoded toFile:file];
-}
-
-- (void) fullLookupBackgroundThreadEntryPoint:(id) anObject {    
-    [self.fullLookupLock lock];
+- (void) dataProviderLookupBackgroundThreadEntryPoint:(id) anObject {    
+    [self.dataProviderLock lock];
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        
-        NSArray* moviesAndTheaters = [self fullLookup];
-        NSArray* movies = [moviesAndTheaters objectAtIndex:0];
-        NSArray* theaters = [moviesAndTheaters objectAtIndex:1];
-        
-        if (movies.count > 0 || theaters.count > 0) {
-            [self saveArray:movies to:[Application moviesFile]];
-            [self saveArray:theaters to:[Application theatersFile]];
-        }
-        
-        [self performSelectorOnMainThread:@selector(setMoviesAndTheaters:) withObject:moviesAndTheaters waitUntilDone:NO];
+        [[self.model currentDataProvider] lookup];
+        [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded:)
+                               withObject:NSLocalizedString(@"Finished downloading movie and theater data", nil)
+                            waitUntilDone:NO];
         
         [autoreleasePool release];
     }
-    [self.fullLookupLock unlock];
+    [self.dataProviderLock unlock];
 }
 
 - (void) setSearchDate:(NSDate*) searchDate {

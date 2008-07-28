@@ -42,7 +42,7 @@
          //searchNavigationController,
          settingsNavigationController, nil];
         
-        if ([Utilities isNilOrEmpty:[[self model] postalCode]]) {
+        if ([Utilities isNilOrEmpty:[self.model postalCode]]) {
             self.selectedViewController = self.settingsNavigationController;
         } else {
             AbstractNavigationController* controller = [self.viewControllers objectAtIndex:[self.model selectedTabBarViewControllerIndex]];
@@ -62,7 +62,7 @@
 
 - (void)       tabBarController:(UITabBarController*) tabBarController
         didSelectViewController:(UIViewController*) viewController {
-    [[self model] setSelectedTabBarViewControllerIndex:self.selectedIndex];
+    [self.model setSelectedTabBarViewControllerIndex:self.selectedIndex];
 }
 
 - (BoxOfficeModel*) model {

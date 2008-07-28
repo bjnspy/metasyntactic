@@ -68,6 +68,14 @@
     self.theatersArray = result;
 }
 
+- (BoxOfficeController*) controller {
+    return [self.navigationController controller];
+}
+
+- (BoxOfficeModel*) model {
+    return [self.navigationController model];
+}
+
 - (void) initializeData {
     NSArray* theatersShowingMovie = [self.model theatersShowingMovie:self.movie];
     
@@ -84,7 +92,7 @@
     self.showtimesArray = [NSMutableArray array];
     
     for (Theater* theater in self.theatersArray) {
-        [self.showtimesArray addObject:[theater performances:self.movie]];
+        [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
     }
 }
 
@@ -185,10 +193,6 @@
 - (void) refresh {
     [self initializeData];
     [self.tableView reloadData];
-}
-
-- (BoxOfficeModel*) model {
-    return [self.navigationController model];
 }
 
 - (BOOL) hasInfoSection {

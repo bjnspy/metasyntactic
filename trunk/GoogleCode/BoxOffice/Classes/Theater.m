@@ -8,6 +8,8 @@
 
 #import "Theater.h"
 #import "Performance.h"
+#import "Application.h"
+#import "DateUtilities.h"
 
 @implementation Theater
 
@@ -16,7 +18,7 @@
 @synthesize address;
 @synthesize phoneNumber;
 @synthesize sellsTickets;
-@synthesize movieToShowtimesMap;
+@synthesize movieIdentifiers;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -24,7 +26,7 @@
     self.address = nil;
     self.phoneNumber = nil;
     self.sellsTickets = nil;
-    self.movieToShowtimesMap = nil;
+    self.movieIdentifiers = nil;
     
     [super dealloc];
 }
@@ -35,15 +37,15 @@
                                   address:[dictionary objectForKey:@"address"]
                               phoneNumber:[dictionary objectForKey:@"phoneNumber"]
                              sellsTickets:[dictionary objectForKey:@"sellsTickets"]
-                      movieToShowtimesMap:[dictionary objectForKey:@"movieToShowtimesMap"]];
+                              movieIdentifiers:[dictionary objectForKey:@"movieIdentifiers"]];
 }
 
 NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
     NSString* s1 = t1;
     NSString* s2 = t2;
     
-    NSDate* d1 = [NSDate dateWithNaturalLanguageString:s1];
-    NSDate* d2 = [NSDate dateWithNaturalLanguageString:s2];
+    NSDate* d1 = [DateUtilities dateWithNaturalLanguageString:s1];
+    NSDate* d2 = [DateUtilities dateWithNaturalLanguageString:s2];
     
     return [d1 compare:d2];
 }
@@ -53,14 +55,14 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
                           address:(NSString*) address_
                       phoneNumber:(NSString*) phoneNumber_
                      sellsTickets:(NSString*) sellsTickets_
-              movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap_ {
+                      movieIdentifiers:(NSArray*) movieIdentifiers_ {
     if (self = [self init]) {
         self.identifier = identifier_;
         self.name = [name_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.address = [address_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.phoneNumber = phoneNumber_ != nil ? phoneNumber_ : @"";
         self.sellsTickets = sellsTickets_;
-        self.movieToShowtimesMap = movieToShowtimesMap_;
+        self.movieIdentifiers = movieIdentifiers_;
     }
     
     return self;
@@ -71,13 +73,13 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
                            address:(NSString*) address
                        phoneNumber:(NSString*) phoneNumber
                       sellsTickets:(NSString*) sellsTickets
-               movieToShowtimesMap:(NSDictionary*) movieToShowtimesMap {
+                       movieIdentifiers:(NSArray*) movieIdentifiers {
     return [[[Theater alloc] initWithIdentifier:identifier
                                            name:name
                                         address:address
                                     phoneNumber:phoneNumber
                                    sellsTickets:sellsTickets
-                            movieToShowtimesMap:movieToShowtimesMap] autorelease];
+                                    movieIdentifiers:movieIdentifiers] autorelease];
 }
 
 - (NSDictionary*) dictionary {
@@ -87,7 +89,7 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
     [dictionary setObject:address forKey:@"address"];
     [dictionary setObject:phoneNumber forKey:@"phoneNumber"];
     [dictionary setObject:sellsTickets forKey:@"sellsTickets"];
-    [dictionary setObject:movieToShowtimesMap forKey:@"movieToShowtimesMap"];
+    [dictionary setObject:movieIdentifiers forKey:@"movieIdentifiers"];
     return dictionary;
 }
 
@@ -116,24 +118,6 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
     }
     
     return showtime;
-}
-
-- (NSArray*) movieTitles {
-    return [movieToShowtimesMap allKeys];
-}
-
-- (NSArray*) performances:(Movie*) movie {
-    NSArray* encodedArray = [movieToShowtimesMap objectForKey:movie.identifier];
-    if (encodedArray == nil) {
-        return [NSArray array];
-    }
-    
-    NSMutableArray* decodedArray = [NSMutableArray array];
-    for (NSDictionary* dict in encodedArray) {
-        [decodedArray addObject:[Performance performanceWithDictionary:dict]];
-    }
-    
-    return decodedArray;
 }
 
 @end

@@ -74,7 +74,7 @@
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
 
-        [self autoUpdateLocation:nil];
+        [self performSelector:@selector(autoUpdateLocation:) withObject:nil afterDelay:2];
     }
 
     return self;
@@ -211,19 +211,19 @@
             NSString* value;
             if (indexPath.row == 0) {
                 key = NSLocalizedString(@"Postal code", nil);
-                value = [[self model] postalCode];
+                value = [self.model postalCode];
             } else if (indexPath.row == 1) {
                 key = NSLocalizedString(@"Hide theaters beyond", nil);
                 
                 if ([self.model searchRadius] == 1) {
                     value = NSLocalizedString(@"1 mile", nil);
                 } else {
-                    value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [[self model] searchRadius]];
+                    value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [self.model searchRadius]];
                 }
             } else if (indexPath.row == 2) {
                 key = NSLocalizedString(@"Search date", nil);
                 
-                NSDate* date = [[self model] searchDate];
+                NSDate* date = [self.model searchDate];
                 if ([DateUtilities isToday:date]) {
                     value = NSLocalizedString(@"Today", nil);
                 } else {

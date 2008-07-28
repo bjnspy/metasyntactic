@@ -41,7 +41,7 @@
 }
 
 - (void) onSortOrderChanged:(id) sender {
-    [[self model] setAllMoviesSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
+    [self.model setAllMoviesSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self refresh];
 }
 
@@ -141,7 +141,7 @@
         
         
         self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar; 
-        self.segmentedControl.selectedSegmentIndex = [[self model] allMoviesSelectedSegmentIndex];
+        self.segmentedControl.selectedSegmentIndex = [self.model allMoviesSelectedSegmentIndex];
         [self.segmentedControl addTarget:self
                                   action:@selector(onSortOrderChanged:)
                         forControlEvents:UIControlEventValueChanged];
@@ -254,8 +254,8 @@
     }
 }
 
-- (NSString*)               tableView:(UITableView*) tableView
-              titleForHeaderInSection:(NSInteger) section {
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
     if ([self.model sortingMoviesByTitle]) {
         return [self.sectionTitles objectAtIndex:section]; 
     } else if ([self.model sortingMoviesByScore] && self.sortedMovies.count > 0) {
@@ -273,9 +273,9 @@
     return nil;
 }
 
-- (NSInteger)               tableView:(UITableView*) tableView 
-          sectionForSectionIndexTitle:(NSString*) title
-                              atIndex:(NSInteger) index {
+- (NSInteger)           tableView:(UITableView*) tableView 
+      sectionForSectionIndexTitle:(NSString*) title
+                          atIndex:(NSInteger) index {
     if (index == 0) {
         return index;
     }

@@ -46,7 +46,7 @@
     int column = index / 2;
     
     Movie* movie = [moviesWithPosters objectAtIndex:index];
-    UIImage* poster = [[self model] posterForMovie:movie];
+    UIImage* poster = [self.model posterForMovie:movie];
     
     UIImageView* imageView = [[[UIImageView alloc] initWithImage:poster] autorelease];
     
@@ -94,11 +94,11 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
     
-    NSArray* movies = [[self model] movies];
+    NSArray* movies = [self.model movies];
     moviesWithPosters = [NSMutableArray array];
     
     for (Movie* movie in movies) {
-        UIImage* image = [[self model] posterForMovie:movie];
+        UIImage* image = [self.model posterForMovie:movie];
         if (image != nil) {
             [moviesWithPosters addObject:movie];
         }

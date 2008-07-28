@@ -15,13 +15,13 @@
 #import "Utilities.h"
 #import "DateUtilities.h"
 #import "Performance.h"
+#import "NorthAmericaDataProvider.h"
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.28";
+static NSString* currentVersion = @"1.2.30";
 
 + (NSString*) VERSION                                   { return @"version"; }
-+ (NSString*) LAST_FULL_UPDATE_TIME                     { return @"lastFullUpdateTime"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates";; }
 + (NSString*) SEARCH_RESULTS                            { return @"searchResults"; }
 + (NSString*) SEARCH_RADIUS                             { return @"searchRadius"; }
@@ -36,7 +36,8 @@ static NSString* currentVersion = @"1.2.28";
 + (NSString*) CURRENTLY_SHOWING_REVIEWS                 { return @"currentlyShowingReviews"; }
 + (NSString*) SEARCH_DATE                               { return @"searchDate"; }
 + (NSString*) AUTO_UPDATE_LOCATION                      { return @"autoUpdateLocation"; }
-+ (NSString*) RATINGS_PROVIDER_INDEX                    { return @"ratingsProviderIndex";; }
++ (NSString*) RATINGS_PROVIDER_INDEX                    { return @"ratingsProviderIndex"; }
++ (NSString*) DATA_PROVIDER_INDEX                       { return @"dataProviderIndex"; }
 
 
 @synthesize notificationCenter;
@@ -48,11 +49,10 @@ static NSString* currentVersion = @"1.2.28";
 @synthesize activityView;
 @synthesize activityIndicatorView;
 
-@synthesize moviesData;
-@synthesize theatersData;
 @synthesize supplementaryInformationData;
 @synthesize movieMap;
 @synthesize favoriteTheatersData;
+@synthesize dataProviders;
 
 - (void) dealloc {
     self.notificationCenter = nil;
@@ -63,11 +63,10 @@ static NSString* currentVersion = @"1.2.28";
     self.activityView = nil;
     self.activityIndicatorView = nil;
     
-    self.moviesData = nil;
-    self.theatersData = nil;
     self.supplementaryInformationData = nil;
     self.movieMap = nil;
     self.favoriteTheatersData = nil;
+    self.dataProviders = nil;
     
     [super dealloc];
 }
@@ -120,11 +119,14 @@ static NSString* currentVersion = @"1.2.28";
     [[NSUserDefaults standardUserDefaults] setObject:searchResults forKey:[BoxOfficeModel SEARCH_RESULTS]];
 }
 
-- (void) checkUserDefaults {
+- (void) loadData {
+    self.dataProviders = [NSArray arrayWithObjects:[NorthAmericaDataProvider providerWithModel:self], nil];
+    self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
+    
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel VERSION]];
     if (version == nil || ![currentVersion isEqual:version]) {
+        self.movieMap = nil;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel VERSION]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel LAST_FULL_UPDATE_TIME]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SEARCH_DATES]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SEARCH_RESULTS]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SEARCH_RADIUS]];
@@ -140,13 +142,16 @@ static NSString* currentVersion = @"1.2.28";
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SEARCH_DATE]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel AUTO_UPDATE_LOCATION]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel RATINGS_PROVIDER_INDEX]];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];
                 
-        [[NSFileManager defaultManager] removeItemAtPath:[Application moviesFile] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application theatersFile] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application movieMapFile] error:NULL];
         
         for (NSString* provider in [self ratingsProviders]) {
             [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFile:provider] error:NULL];
+        }
+        
+        for (id<DataProvider> provider in self.dataProviders) {
+            [provider invalidateDiskCache];
         }
         
         [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:[BoxOfficeModel VERSION]];
@@ -154,8 +159,8 @@ static NSString* currentVersion = @"1.2.28";
 }
 
 - (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
-    if (self = [super init]) {
-        [self checkUserDefaults];
+    if (self = [super init]) {        
+        [self loadData];
         
         self.notificationCenter = notificationCenter_;
         self.posterCache = [PosterCache cache];
@@ -173,8 +178,6 @@ static NSString* currentVersion = @"1.2.28";
         backgroundTaskCount = 0;
         searchRadius = -1;
         
-        self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
-                      
         [self performSelector:@selector(updateCaches:) withObject:nil afterDelay:2];
     }
     
@@ -211,6 +214,26 @@ static NSString* currentVersion = @"1.2.28";
     }
     
     [self.notificationCenter addStatusMessage:description];
+}
+
+- (NSInteger) dataProviderIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];    
+}
+
+- (void) setDataProviderIndex:(NSInteger) index {
+    return [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];    
+}
+
+- (id<DataProvider>) currentDataProvider {
+    return [dataProviders objectAtIndex:[self dataProviderIndex]];
+}
+
+- (BOOL) northAmericaDataProvider {
+    return [self dataProviderIndex] == 0;
+}
+
+- (BOOL) unitedKingdomDataProvider {
+    return [self dataProviderIndex] == 1;
 }
 
 - (NSInteger) ratingsProviderIndex {
@@ -305,10 +328,6 @@ static NSString* currentVersion = @"1.2.28";
     return searchRadius;
 }
 
-- (void) clearLastFullUpdateTime {
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel LAST_FULL_UPDATE_TIME]];
-}
-
 - (void) setSearchRadius:(NSInteger) radius {
     searchRadius = radius;
     [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:[BoxOfficeModel SEARCH_RADIUS]];
@@ -322,42 +341,23 @@ static NSString* currentVersion = @"1.2.28";
     return date;
 }
 
-- (void) setSearchDate:(NSDate*) date {
-    [[NSUserDefaults standardUserDefaults] setObject:date forKey:[BoxOfficeModel SEARCH_DATE]];
-    [self clearLastFullUpdateTime];
+- (void) markDataProvidersOutOfDate {
+    for (id<DataProvider> provider in self.dataProviders) {
+        [provider setStale];
+    }    
 }
 
-- (NSArray*) loadMovies {
-    NSArray* array = [NSArray arrayWithContentsOfFile:[Application moviesFile]];
-    if (array == nil) {
-        return [NSArray array];
-    }
-    
-    NSMutableArray* decodedMovies = [NSMutableArray array];
-    
-    for (int i = 0; i < array.count; i++) {
-        Movie* movie = [Movie movieWithDictionary:[array objectAtIndex:i]];
-        [decodedMovies addObject:movie];
-    }
-    
-    return decodedMovies;
+- (void) setSearchDate:(NSDate*) date {
+    [self markDataProvidersOutOfDate];
+    [[NSUserDefaults standardUserDefaults] setObject:date forKey:[BoxOfficeModel SEARCH_DATE]];
 }
 
 - (NSArray*) movies {
-    if (self.moviesData == nil) {
-        self.moviesData = [self loadMovies];
-    }
-    
-    return self.moviesData;
+    return [[self currentDataProvider] movies];
 }
 
-- (void) setMovies:(NSArray*) movies {    
-    self.moviesData = movies;
-    
-    [self updatePosterCache];
-    [self updateTrailerCache];
-    
-    self.movieMap = nil;
+- (NSArray*) theaters {
+    return [[self currentDataProvider] theaters];
 }
 
 - (NSDictionary*) loadSupplementaryInformation {
@@ -400,38 +400,11 @@ static NSString* currentVersion = @"1.2.28";
     [self updateReviewCache];
 }
 
-- (NSDate*) lastFullUpdateTime {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel LAST_FULL_UPDATE_TIME]];
-}
-
-- (NSArray*) loadTheaters {
-    NSArray* array = [NSArray arrayWithContentsOfFile:[Application theatersFile]];
-    if (array == nil) {
-        return [NSArray array];
-    }
-    
-    NSMutableArray* decodedTheaters = [NSMutableArray array];
-    
-    for (int i = 0; i < array.count; i++) {
-        [decodedTheaters addObject:[Theater theaterWithDictionary:[array objectAtIndex:i]]];
-    }
-    
-    return decodedTheaters;
-}
-
-- (NSArray*) theaters {
-    if (self.theatersData == nil) {
-        self.theatersData = [self loadTheaters];
-    }
-    
-    return self.theatersData;
-}
-
-- (void) setTheaters:(NSArray*) theaters {
-    self.theatersData = theaters;
-    
-    [[NSUserDefaults standardUserDefaults] setObject:[NSDate date] forKey:[BoxOfficeModel LAST_FULL_UPDATE_TIME]];
+- (void) onProviderUpdated {
+    [self updatePosterCache];
+    [self updateTrailerCache];
     [self updateAddressLocationCache];
+    self.movieMap = nil;
 }
 
 - (NSArray*) loadFavoriteTheaters {
@@ -510,7 +483,7 @@ static NSString* currentVersion = @"1.2.28";
     NSMutableArray* array = [NSMutableArray array];
     
     for (Theater* theater in self.theaters) {
-        if ([[theater movieTitles] containsObject:movie.identifier]) {
+        if ([theater.movieIdentifiers containsObject:movie.identifier]) {
             [array addObject:theater];
         }
     }
@@ -518,11 +491,11 @@ static NSString* currentVersion = @"1.2.28";
     return array;
 }
 
-- (NSMutableArray*) moviesAtTheater:(Theater*) theater {
+- (NSArray*) moviesAtTheater:(Theater*) theater {
     NSMutableArray* array = [NSMutableArray array];
     
     for (Movie* movie in self.movies) {
-        if ([[theater movieTitles] containsObject:movie.identifier]) {
+        if ([theater.movieIdentifiers containsObject:movie.identifier]) {
             [array addObject:movie];
         }
     }
@@ -530,9 +503,8 @@ static NSString* currentVersion = @"1.2.28";
     return array;
 }
 
-- (NSArray*) moviePerformances:(Movie*) movie
-                    forTheater:(Theater*) theater {
-    return [theater performances:movie];
+- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
+    return [[self currentDataProvider] moviePerformances:movie forTheater:theater];
 }
 
 - (NSDictionary*) theaterDistanceMap {
@@ -632,12 +604,9 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     return compareTheatersByName(t1, t2, nil);
 }
 
-- (void) setPostalCode:(NSString*) postalCode {
-    if ([postalCode isEqual:[self postalCode]]) {
-        return;
-    }
+- (void) setPostalCode:(NSString*) postalCode {        
+    [self markDataProvidersOutOfDate];
     
-    [self clearLastFullUpdateTime];
     [[NSUserDefaults standardUserDefaults] setObject:postalCode forKey:[BoxOfficeModel POSTAL_CODE]];
     
     [self updatePostalCodeAddressLocation];
@@ -834,9 +803,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     }
     
     return [reviewCache reviewsForMovie:extraInfo.title];
-}
-
-- (void) applicationWillTerminate {
 }
 
 - (NSString*) noLocationInformationFound {

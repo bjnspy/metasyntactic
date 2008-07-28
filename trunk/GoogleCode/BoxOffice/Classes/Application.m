@@ -12,12 +12,15 @@
 @implementation Application
 
 static NSRecursiveLock* gate = nil;
-static NSString* supportFolder = nil;
+
 static NSString* dataFolder = nil;
-static NSString* searchFolder = nil;
-static NSString* postersFolder = nil;
-static NSString* trailersFolder = nil;
 static NSString* documentsFolder = nil;
+static NSString* tempFolder = nil;
+static NSString* trailersFolder = nil;
+static NSString* postersFolder = nil;
+static NSString* searchFolder = nil;
+static NSString* supportFolder = nil;
+
 static DifferenceEngine* differenceEngine = nil;
 static NSString* starString = nil;
 
@@ -31,8 +34,7 @@ static NSString* starString = nil;
 
 + (void) createDirectory:(NSString*) folder {
     if (![[NSFileManager defaultManager] fileExistsAtPath:folder]) {
-        NSError* error;
-        [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:&error];
+        [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:NULL];
     }    
 }
 
@@ -72,6 +74,18 @@ static NSString* starString = nil;
     return supportFolder;
 }
 
++ (NSString*) tempFolder {
+    [gate lock];
+    {
+        if (tempFolder == nil) {
+            tempFolder = [NSTemporaryDirectory() retain];
+        }
+    }
+    [gate unlock];
+    
+    return tempFolder;
+}
+
 + (NSString*) dataFolder {
     [gate lock];
     {
@@ -104,6 +118,34 @@ static NSString* starString = nil;
     [gate unlock];
     
     return searchFolder;
+}
+
++ (NSString*) randomString {
+    NSMutableString* string = [NSMutableString string];
+    for (int i = 0; i < 8; i++) {
+        [string appendFormat:@"%c", ((rand() % 26) + 'a')];
+    }
+    return string;
+}
+
++ (NSString*) uniqueTemporaryFolder {
+    NSString* finalDir;
+    
+    [gate lock];
+    {
+        NSFileManager* manager = [NSFileManager defaultManager];
+        
+        NSString* tempDir = [Application tempFolder];
+        do {
+            NSString* random = [Application randomString];
+            finalDir = [tempDir stringByAppendingPathComponent:random];
+        } while ([manager fileExistsAtPath:finalDir]);
+        
+        [Application createDirectory:finalDir];
+    }
+    [gate unlock];
+    
+    return finalDir; 
 }
 
 + (NSString*) movieMapFile {

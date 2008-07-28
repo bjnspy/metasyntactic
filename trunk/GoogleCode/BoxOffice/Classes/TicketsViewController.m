@@ -38,19 +38,23 @@
     [super dealloc];
 }
 
+- (BoxOfficeController*) controller {
+    return [self.navigationController controller];
+}
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
 
 - (void) refresh {
-    NSArray* allPerformances = [self.theater performances:movie];
+    NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
     self.performances = [NSMutableArray array];
     self.futurePerformances = [NSMutableArray array];
     
     NSDate* now = [NSDate date];
     for (Performance* performance in allPerformances) {
         if ([DateUtilities isToday:[self.model searchDate]]) {
-            NSDate* showtimeDate = [NSDate dateWithNaturalLanguageString:performance.time];
+            NSDate* showtimeDate = [DateUtilities dateWithNaturalLanguageString:performance.time];
             
             if ([now compare:showtimeDate] == NSOrderedDescending) {
                 [self.futurePerformances addObject:performance];
@@ -84,7 +88,7 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[self model].activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
     
     [self.model setCurrentlySelectedMovie:self.movie theater:self.theater];
     
@@ -235,7 +239,7 @@
                                     fromDate:[self.model searchDate]];
     NSDateComponents* timeComponents = 
     [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
-                                    fromDate:[NSDate dateWithNaturalLanguageString:performance.time]];
+                                    fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
     
     NSString* url =
     [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
@@ -262,7 +266,7 @@
     //https://mobile.fandango.com/tickets.jsp?mk=98591&tk=557&showtime=2008:5:11:16:00
     //https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=1601099982&mid=98591&tid=AAJNK
     
-    NSDate* showDate = [NSDate dateWithNaturalLanguageString:performance.time];
+    NSDate* showDate = [DateUtilities dateWithNaturalLanguageString:performance.time];
     NSDateComponents* oneDayComponents = [[[NSDateComponents alloc] init] autorelease];
     oneDayComponents.day = 1;
     
