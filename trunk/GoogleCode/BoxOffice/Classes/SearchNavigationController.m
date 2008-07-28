@@ -20,15 +20,15 @@
 }
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
-    if (self = [super initWithTabBarController:controller]) {        
+    if (self = [super initWithTabBarController:controller]) {
         self.startPageViewController = [[[SearchStartPageViewController alloc] initWithNavigationController:self] autorelease];
-        
+
         [self pushViewController:startPageViewController animated:NO];
-        
+
         self.title = @"IMDb";
         self.tabBarItem.image = [UIImage imageNamed:@"Search.png"];
     }
-    
+
     return self;
 }
 
@@ -37,7 +37,7 @@
     SearchMovieDetailsViewController* controller =
     [[[SearchMovieDetailsViewController alloc] initWithNavigationController:self
                                                                movieDetails:movieElement] autorelease];
-    
+
     [self pushViewController:controller animated:YES];
 }
 
@@ -46,7 +46,7 @@
     SearchPersonDetailsViewController* controller =
     [[[SearchPersonDetailsViewController alloc] initWithNavigationController:self
                                                                personDetails:personElement] autorelease];
-    
+
     [self pushViewController:controller animated:YES];
 }
 

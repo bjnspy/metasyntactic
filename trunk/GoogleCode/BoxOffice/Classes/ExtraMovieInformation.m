@@ -21,7 +21,7 @@
     self.link = nil;
     self.synopsis = nil;
     self.score = nil;
-    
+
     [super dealloc];
 }
 
@@ -35,7 +35,7 @@
         self.synopsis = synopsis_;
         self.score = score_;
     }
-    
+
     return self;
 }
 
@@ -45,7 +45,7 @@
                                    score:(NSString*) score {
     return [[[ExtraMovieInformation alloc] initWithTitle:title
                                                     link:link
-                                                synopsis:synopsis 
+                                                synopsis:synopsis
                                                    score:score] autorelease];
 }
 
@@ -66,11 +66,11 @@
 }
 
 - (NSInteger) scoreValue {
-    int value = [self.score intValue]; 
+    int value = [self.score intValue];
     if (value >= 0 && value <= 100) {
         return value;
     }
-    
+
     return -1;
 }
 

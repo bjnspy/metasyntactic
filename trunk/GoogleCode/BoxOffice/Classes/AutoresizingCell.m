@@ -17,20 +17,20 @@
     self.label = nil;
     [super dealloc];
 }
- 
+
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
-        
+
         label.textAlignment = UITextAlignmentCenter;
         label.opaque = NO;
         label.backgroundColor = [UIColor clearColor];
         label.font = [UIFont boldSystemFontOfSize:14];
         label.adjustsFontSizeToFitWidth = YES;
-        
-        [self.contentView addSubview:label];    
+
+        [self.contentView addSubview:label];
     }
-    
+
     return self;
 }
 

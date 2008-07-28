@@ -24,7 +24,7 @@
         self.text = text_;
         self.searchId = searchId_;
     }
-    
+
     return self;
 }
 

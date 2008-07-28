@@ -12,7 +12,7 @@
 @interface LookupResult : NSObject {
     NSArray* movies;
     NSArray* theaters;
-    
+
     // theaterId -> movieId -> [ { showtime, showid } ]
     NSDictionary* performances;
 }
@@ -21,8 +21,8 @@
 @property (retain) NSArray* theaters;
 @property (retain) NSDictionary* performances;
 
-+ (LookupResult*) resultWithMovies:(NSArray*) movies 
-                          theaters:(NSArray*) theaters 
++ (LookupResult*) resultWithMovies:(NSArray*) movies
+                          theaters:(NSArray*) theaters
                       performances:(NSDictionary*) performances;
 
 @end

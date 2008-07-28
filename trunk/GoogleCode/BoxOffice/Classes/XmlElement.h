@@ -21,25 +21,25 @@
 
 + (id) elementWithName:(NSString*) name;
 
-+ (id) elementWithName:(NSString*) name 
++ (id) elementWithName:(NSString*) name
             attributes:(NSDictionary*) attributes;
 
-+ (id) elementWithName:(NSString*) name 
++ (id) elementWithName:(NSString*) name
               children:(NSArray*) children;
 
-+ (id) elementWithName:(NSString*) name 
++ (id) elementWithName:(NSString*) name
                   text:(NSString*) text;
 
-+ (id) elementWithName:(NSString*) name 
-            attributes:(NSDictionary*) attributes 
++ (id) elementWithName:(NSString*) name
+            attributes:(NSDictionary*) attributes
               children:(NSArray*) children;
 
-+ (id) elementWithName:(NSString*) name 
-            attributes:(NSDictionary*) attributes 
++ (id) elementWithName:(NSString*) name
+            attributes:(NSDictionary*) attributes
                   text:(NSString*) text;
 
-+ (id) elementWithName:(NSString*) name 
-              children:(NSArray*) children 
++ (id) elementWithName:(NSString*) name
+              children:(NSArray*) children
                   text:(NSString*) text;
 
 + (id) elementWithName:(NSString*) name

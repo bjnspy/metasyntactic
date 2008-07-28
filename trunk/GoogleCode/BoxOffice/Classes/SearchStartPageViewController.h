@@ -15,14 +15,14 @@
 @interface SearchStartPageViewController : UITableViewController<UISearchBarDelegate> {
     SearchNavigationController* navigationController;
     UISearchBar* searchBar;
-    
+
     UIActivityIndicatorView* activityIndicator;
     UIView* activityView;
     NSInteger searchCount;
-    
+
     NSInteger searchId;
     XmlElement* searchResult;
-    
+
     NSArray* recentResults;
 }
 

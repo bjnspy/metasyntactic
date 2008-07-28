@@ -17,7 +17,7 @@
 @synthesize model;
 @synthesize tabBarController;
 @synthesize notificationCenter;
- 
+
 - (void) dealloc {
     self.window = nil;
     self.controller = nil;
@@ -25,17 +25,17 @@
     self.tabBarController = nil;
     self.notificationCenter = nil;
     [super dealloc];
-} 
+}
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     self.notificationCenter = [NotificationCenter centerWithWindow:window];
     self.model = [BoxOfficeModel modelWithCenter:notificationCenter];
-    self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];   
-    
+    self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
+
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
     [self.notificationCenter addToWindow];
-        
+
     self.controller = [BoxOfficeController controllerWithAppDelegate:self];
     [self.tabBarController refresh];
 }

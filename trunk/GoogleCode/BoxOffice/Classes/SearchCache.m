@@ -29,7 +29,7 @@
     if (dictionary == nil) {
         return nil;
     }
-    
+
     return [SearchMovie movieWithDictionary:dictionary];
 }
 
@@ -38,7 +38,7 @@
     if (dictionary == nil) {
         return nil;
     }
-    
+
     return [SearchPerson personWithDictionary:dictionary];
 }
 

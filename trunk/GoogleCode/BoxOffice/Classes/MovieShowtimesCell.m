@@ -20,25 +20,25 @@
 - (void) dealloc {
     self.headerLabel = nil;
     self.showtimesLabel = nil;
-    
+
     [super dealloc];
 }
 
 + (NSString*) showtimesString:(NSArray*) showtimes {
     NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
-    
+
     for (int i = 1; i < showtimes.count; i++) {
         [text appendString:@", "];
         Performance* performance = [showtimes objectAtIndex:i];
         [text appendString:performance.time];
     }
-    
+
     return text;
 }
 
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes {
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
-    
+
     return [string sizeWithFont:[FontCache boldSystem11]
               constrainedToSize:CGSizeMake(232, 1000)
                   lineBreakMode:UILineBreakModeWordWrap].height;
@@ -48,9 +48,9 @@
         reuseIdentifier:(NSString*) reuseIdentifier  {
     if (self = [super initWithFrame:frame
                     reuseIdentifier:reuseIdentifier]) {
-        
-        self.showtimesLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];  
-        
+
+        self.showtimesLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
+
         self.showtimesLabel.numberOfLines = 0;
         self.showtimesLabel.font = [FontCache boldSystem11];
         self.showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
@@ -62,25 +62,25 @@
             frame.size.width = 232;
             self.showtimesLabel.frame = frame;
         }
-        
+
         [self addSubview:showtimesLabel];
-        
+
         self.headerLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.headerLabel.font = [FontCache boldSystem11];
         self.headerLabel.textColor = [ColorCache commandColor];
         self.headerLabel.text = NSLocalizedString(@"Shows", nil);
         [self.headerLabel sizeToFit];
-        
+
         {
             CGRect frame = headerLabel.frame;
             frame.origin.x = 19;
             frame.origin.y = 9;
             self.headerLabel.frame = frame;
         }
-        
+
         [self addSubview:headerLabel];
     }
-    
+
     return self;
 }
 

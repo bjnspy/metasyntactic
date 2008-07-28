@@ -41,12 +41,12 @@
                        movieDetails:(XmlElement*) movieElement_ {
     if (self = [super initWithNavigationController:navigationController_]) {
         self.movieElement = movieElement_;
-        
+
         self.title = [Utilities titleForMovie:movieElement];
-        
+
         [self getMovieDetails];
     }
-    
+
     return self;
 }
 
@@ -56,7 +56,7 @@
      [Application searchHost], [element attributeValue:@"id"]];
 
     XmlElement* resultElement = [Utilities downloadXml:urlString];
-    
+
     [self performSelectorOnMainThread:@selector(reportLookupResult:) withObject:resultElement waitUntilDone:NO];
 }
 
@@ -81,7 +81,7 @@
     self.movieDetailsElement = element;
     [self.model setMovieDetails:[movieElement attributeValue:@"id"]
                            element:element];
-    
+
     [self.tableView reloadData];
 }
 
@@ -90,7 +90,7 @@
     CGSize size = [text sizeWithFont:[UIFont boldSystemFontOfSize:14]
                    constrainedToSize:CGSizeMake(width - 10, 5000)
                        lineBreakMode:UILineBreakModeCharacterWrap];
-    
+
     return size;
 }
 
@@ -98,10 +98,10 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == TAGLINES_SECTION) {
         NSString* text = [self.taglines objectAtIndex:row];
-        
+
         CGSize size = [self getStringSize:text];
         UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(5, 4, size.width, size.height)] autorelease];
         label.font = [UIFont boldSystemFontOfSize:14];
@@ -110,10 +110,10 @@
         label.opaque = NO;
         label.numberOfLines = 0;
         label.text = text;
-        
+
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         [cell.contentView addSubview:label];
-        
+
         return cell;
     } else {
         static NSString* reuseIdentifier = @"SearchMovieDetailsCellIdentifier";
@@ -121,9 +121,9 @@
         if (cell == nil) {
             cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         XmlElement* personElement = nil;
-        
+
         if (section == DIRECTORS_SECTION) {
             personElement = [self.directors objectAtIndex:row];
         } else if (section == WRITERS_SECTION) {
@@ -131,11 +131,11 @@
         } else if (section == CAST_SECTION) {
             personElement = [self.cast objectAtIndex:row];
         }
-        
+
         if (personElement != nil) {
             cell.text = [personElement attributeValue:@"name"];
         }
-        
+
         return cell;
     }
 }
@@ -143,7 +143,7 @@
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
-    
+
     if (section == TAGLINES_SECTION) {
         return UITableViewCellAccessoryNone;
     } else {
@@ -155,9 +155,9 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == DIRECTORS_SECTION) {
-        XmlElement* personElement = [self.directors objectAtIndex:row]; 
+        XmlElement* personElement = [self.directors objectAtIndex:row];
         [self.navigationController pushPersonDetails:personElement animated:YES];
     } else if (section == WRITERS_SECTION) {
         XmlElement* personElement = [self.writers objectAtIndex:row];
@@ -193,7 +193,7 @@
             return [self.cast count];
         }
     }
-    
+
     return 0;
 }
 
@@ -202,7 +202,7 @@
     if (self.movieDetailsElement == nil) {
         return NSLocalizedString(@"Looking up information", nil);
     }
-    
+
     if (section == TAGLINES_SECTION && [self.taglines count] > 0) {
         return NSLocalizedString(@"Taglines:", nil);
     } else if (section == DIRECTORS_SECTION && [self.directors count] > 0) {
@@ -212,7 +212,7 @@
     } else if (section == CAST_SECTION && [self.cast count] > 0) {
         return NSLocalizedString(@"Cast:", nil);
     }
-    
+
     return nil;
 }
 
@@ -220,11 +220,11 @@
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == 0) {
         NSString* text = [self.taglines objectAtIndex:row];
         CGSize size = [self getStringSize:text];
-        
+
         return size.height + 9;
     } else {
         return [tableView rowHeight];

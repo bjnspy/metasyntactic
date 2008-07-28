@@ -23,11 +23,11 @@
 @property (retain) UILabel* ratingLabel;
 
 - (id)      initWithFrame:(CGRect) frame
-          reuseIdentifier:(NSString*) reuseIdentifier 
-                    model:(BoxOfficeModel*) model 
+          reuseIdentifier:(NSString*) reuseIdentifier
+                    model:(BoxOfficeModel*) model
                     style:(UITableViewStyle) style;
 
 - (void) setMovie:(Movie*) movie;
 
-    
+
 @end

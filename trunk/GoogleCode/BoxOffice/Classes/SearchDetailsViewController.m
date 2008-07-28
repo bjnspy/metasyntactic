@@ -19,7 +19,7 @@
     self.navigationController = nil;
     self.activityIndicator = nil;
     self.activityView = nil;
-    
+
     [super dealloc];
 }
 
@@ -29,7 +29,7 @@
         self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSearch
                                                                                                 target:self
                                                                                                 action:@selector(onSearchButtonSelected:)] autorelease];
-    
+
         self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicator.frame;
         frame.size.width += 10;
@@ -37,7 +37,7 @@
         self.activityView = [[[UIView alloc] initWithFrame:activityIndicator.frame] autorelease];
         [activityView addSubview:self.activityIndicator];
     }
-    
+
     return self;
 }
 
@@ -51,7 +51,7 @@
 
 - (void) startActivityIndicator {
     [self.activityIndicator startAnimating];
-    
+
     UIBarButtonItem* item =  [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
     [self.navigationItem setRightBarButtonItem:item animated:YES];
 }

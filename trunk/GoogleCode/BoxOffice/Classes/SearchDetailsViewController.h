@@ -13,7 +13,7 @@
 
 @interface SearchDetailsViewController : UITableViewController {
     SearchNavigationController* navigationController;
-    
+
     UIActivityIndicatorView* activityIndicator;
     UIView* activityView;
 }

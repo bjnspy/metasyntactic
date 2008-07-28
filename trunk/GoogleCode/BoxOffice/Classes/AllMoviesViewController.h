@@ -15,13 +15,13 @@
 @interface AllMoviesViewController : UITableViewController {
     MoviesNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
-    
+
     NSArray* sortedMovies;
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;
-    
+
     NSArray* alphabeticSectionTitles;
-    
+
     PosterView* posterView;
 }
 

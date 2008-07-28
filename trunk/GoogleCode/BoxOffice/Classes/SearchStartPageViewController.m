@@ -34,10 +34,10 @@
     self.searchBar = nil;
     self.activityIndicator = nil;
     self.activityView = nil;
-    
+
     self.searchResult = nil;
     self.recentResults = nil;
-    
+
     [super dealloc];
 }
 
@@ -49,25 +49,25 @@
 - (id) initWithNavigationController:(SearchNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
-    
+
         self.searchBar = [[[UISearchBar alloc] initWithFrame:CGRectMake(20, 0, 270, 44)] autorelease];
         self.searchBar.autocapitalizationType = UITextAutocapitalizationTypeWords;
         self.searchBar.delegate = self;
         self.searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-        
+
         searchId = 0;
         searchCount = 0;
-        
+
         self.navigationItem.titleView = searchBar;
-        
+
         self.activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicator.frame;
         frame.size.width += 10;
-        
+
         self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
         [activityView addSubview:self.activityIndicator];
     }
-    
+
     return self;
 }
 
@@ -75,11 +75,11 @@
     return [self.navigationController model];
 }
 
-- (XmlElement*) moviesElement { 
+- (XmlElement*) moviesElement {
     return [searchResult element:@"movies"];
 }
 
-- (XmlElement*) peopleElement { 
+- (XmlElement*) peopleElement {
     return [searchResult element:@"people"];
 }
 
@@ -87,7 +87,7 @@
     return [self.moviesElement children];
 }
 
-- (NSArray*) people { 
+- (NSArray*) people {
     return [self.peopleElement children];
 }
 
@@ -95,13 +95,13 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     static NSString* reuseIdentifier = @"SearchStartPageCellIdentifier";
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
     }
-    
+
     XmlElement* movieElement = nil;
     XmlElement* personElement = nil;
     if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
@@ -113,16 +113,16 @@
     } else if (section == PEOPLE_SECTION) {
         personElement = [self.people objectAtIndex:row];
     }
-    
+
     NSString* text;
     if (movieElement != nil) {
         text = [Utilities titleForMovie:movieElement];
     } else if (personElement != nil) {
         text = [personElement attributeValue:@"name"];
     }
-    
+
     //[text siz
-    
+
     cell.text = text;
     return cell;
 }
@@ -142,13 +142,13 @@
     if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
         XmlElement* result = [XmlElement elementFromDictionary:[[self.model getSearchResults] objectForKey:[recentResults objectAtIndex:row]]];
         movieElement = [result element:@"movie"];
-        personElement = [result element:@"person"];        
+        personElement = [result element:@"person"];
     } else if (section == MOVIES_SECTION) {
         movieElement = [self.movies objectAtIndex:row];
     } else if (section == PEOPLE_SECTION) {
         personElement = [self.people objectAtIndex:row];
-    }    
-    
+    }
+
     if (movieElement != nil) {
         [self.navigationController pushMovieDetails:movieElement animated:YES];
     } else if (personElement != nil) {
@@ -178,7 +178,7 @@
     } else if (section == PEOPLE_SECTION) {
         return [self.people count];
     }
-    
+
     return 0;
 }
 
@@ -191,17 +191,17 @@
     } else if (section == PEOPLE_SECTION && [self.people count] > 0) {
         return NSLocalizedString(@"People:", nil);
     }
-    
+
     return nil;
 }
 
 - (void) searchBarSearchButtonClicked:(UISearchBar*) bar {
     [bar resignFirstResponder];
-    
+
     {
         ++searchId;
         SearchRequest* request = [SearchRequest requestWithText:bar.text searchId:searchId];
-        
+
         [self performSelectorInBackground:@selector(search:) withObject:request];
     }
 
@@ -211,7 +211,7 @@
             [UIView beginAnimations:nil context:nil];
             {
                 [self.activityIndicator startAnimating];
-                
+
                 UIBarButtonItem* item =  [[[UIBarButtonItem alloc] initWithCustomView:activityView] autorelease];
                 [self.navigationItem setRightBarButtonItem:item animated:YES];
             }
@@ -225,11 +225,11 @@
     [NSString stringWithFormat:@"%@/Search?q=%@",
      [Application searchHost],
      [request.text stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding]];
-    
+
     XmlElement* element = [Utilities downloadXml:urlString];
-    
+
     SearchResult* result = [SearchResult resultWithElement:element searchId:request.searchId];
-    [self performSelectorOnMainThread:@selector(reportSearchResult:) withObject:result waitUntilDone:NO];    
+    [self performSelectorOnMainThread:@selector(reportSearchResult:) withObject:result waitUntilDone:NO];
 }
 
 - (void) search:(SearchRequest*) request {
@@ -245,7 +245,7 @@
         self.searchResult = result.element;
         [self.tableView reloadData];
     }
-    
+
     {
         --searchCount;
         if (searchCount == 0) {

@@ -26,7 +26,7 @@
     if (self = [super init]) {
         self.dictionary = [NSMutableDictionary dictionary];
     }
-    
+
     return self;
 }
 
@@ -65,6 +65,6 @@
 - (NSArray*) allKeys {
     return [self.dictionary allKeys];
 }
-    
+
 
 @end

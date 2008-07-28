@@ -17,7 +17,7 @@
 }
 
 + (PersonKey*) keyWithDictionary:(NSDictionary*) dict {
-    return [PersonKey keyWithIdentifier:[dict objectForKey:@"identifier"] 
+    return [PersonKey keyWithIdentifier:[dict objectForKey:@"identifier"]
                                    name:[dict objectForKey:@"name"]];
 }
 

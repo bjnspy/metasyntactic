@@ -14,7 +14,7 @@
     TheatersNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
     Theater* theater;
-    
+
     NSArray* movies;
     NSMutableArray* movieShowtimes;
 }

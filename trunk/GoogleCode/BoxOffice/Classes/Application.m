@@ -27,7 +27,7 @@ static NSString* starString = nil;
 + (void) initialize {
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
-                        
+
         differenceEngine = [[DifferenceEngine engine] retain];
     }
 }
@@ -35,7 +35,7 @@ static NSString* starString = nil;
 + (void) createDirectory:(NSString*) folder {
     if (![[NSFileManager defaultManager] fileExistsAtPath:folder]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:NULL];
-    }    
+    }
 }
 
 + (NSString*) documentsFolder {
@@ -44,14 +44,14 @@ static NSString* starString = nil;
         if (documentsFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, /*expandTilde:*/YES);
             NSString* folder = [paths objectAtIndex:0];
-            
+
             [Application createDirectory:folder];
-            
+
             documentsFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return documentsFolder;
 }
 
@@ -60,17 +60,17 @@ static NSString* starString = nil;
     {
         if (supportFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-            
+
             NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
             NSString* folder = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-            
+
             [Application createDirectory:folder];
-            
+
             supportFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return supportFolder;
 }
 
@@ -82,7 +82,7 @@ static NSString* starString = nil;
         }
     }
     [gate unlock];
-    
+
     return tempFolder;
 }
 
@@ -92,14 +92,14 @@ static NSString* starString = nil;
         if (dataFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Data"];
-            
+
             [Application createDirectory:folder];
-            
+
             dataFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return dataFolder;
 }
 
@@ -109,14 +109,14 @@ static NSString* starString = nil;
         if (searchFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Search"];
-            
+
             [Application createDirectory:folder];
-            
+
             searchFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return searchFolder;
 }
 
@@ -130,22 +130,22 @@ static NSString* starString = nil;
 
 + (NSString*) uniqueTemporaryFolder {
     NSString* finalDir;
-    
+
     [gate lock];
     {
         NSFileManager* manager = [NSFileManager defaultManager];
-        
+
         NSString* tempDir = [Application tempFolder];
         do {
             NSString* random = [Application randomString];
             finalDir = [tempDir stringByAppendingPathComponent:random];
         } while ([manager fileExistsAtPath:finalDir]);
-        
+
         [Application createDirectory:finalDir];
     }
     [gate unlock];
-    
-    return finalDir; 
+
+    return finalDir;
 }
 
 + (NSString*) movieMapFile {
@@ -168,9 +168,9 @@ static NSString* starString = nil;
     NSString* grandParent = [Application supportFolder];
     NSString* parent = [grandParent stringByAppendingPathComponent:@"Reviews"];
     NSString* folder = [parent stringByAppendingPathComponent:ratingsProvider];
-    
+
     [Application createDirectory:folder];
-    
+
     return folder;
 }
 
@@ -180,14 +180,14 @@ static NSString* starString = nil;
         if (trailersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
-            
+
             [Application createDirectory:folder];
-            
+
             trailersFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return trailersFolder;
 }
 
@@ -197,14 +197,14 @@ static NSString* starString = nil;
         if (postersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
-            
+
             [Application createDirectory:folder];
-            
+
             postersFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return postersFolder;
 }
 
@@ -212,16 +212,16 @@ static NSString* starString = nil;
     if (address == nil) {
         return;
     }
-    
+
     NSURL* url = [NSURL URLWithString:address];
     [[UIApplication sharedApplication] openURL:url];
 }
 
 + (void) openMap:(NSString*) address {
     NSString* urlString =
-    [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@", 
+    [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",
      [address stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding]];
-    
+
     [self openBrowser:urlString];
 }
 
@@ -230,10 +230,10 @@ static NSString* starString = nil;
         // can't make a phonecall if you're not an iPhone.
         return;
     }
-    
+
     NSString* urlString = [NSString stringWithFormat:@"tel:%@", phoneNumber];
-    
-    [self openBrowser:urlString];   
+
+    [self openBrowser:urlString];
 }
 
 + (DifferenceEngine*) differenceEngine {
@@ -252,7 +252,7 @@ static NSString* starString = nil;
             @"metaboxoffice2",
             @"metaboxoffice3",
             @"metaboxoffice4",
-            @"metaboxoffice5", nil]; 
+            @"metaboxoffice5", nil];
 }
 
 + (unichar) starCharacter {
@@ -264,7 +264,7 @@ static NSString* starString = nil;
         unichar c = [Application starCharacter];
         starString = [NSString stringWithCharacters:&c length:1];
     }
-    
+
     return starString;
 }
 

@@ -54,7 +54,7 @@
         self.votes = [Utilities nonNilString:votes_];
         self.rating = [Utilities nonNilString:rating_];
     }
-    
+
     return self;
 }
 
@@ -99,22 +99,22 @@
     for (NSDictionary* dict in array) {
         [result addObject:[PersonKey keyWithDictionary:dict]];
     }
-    return result;    
+    return result;
 }
 
 + (SearchMovie*) movieWithDictionary:(NSDictionary*) dictionary {
     return [SearchMovie movieWithKey:[MovieKey keyWithDictionary:[dictionary objectForKey:@"key"]]
-                           producers:[SearchMovie decodeArray:[dictionary objectForKey:@"producers"]] 
-                             writers:[SearchMovie decodeArray:[dictionary objectForKey:@"writers"]] 
-                           directors:[SearchMovie decodeArray:[dictionary objectForKey:@"directors"]] 
-                               music:[SearchMovie decodeArray:[dictionary objectForKey:@"music"]] 
-                                cast:[SearchMovie decodeArray:[dictionary objectForKey:@"cast"]] 
-                            imageUrl:[dictionary objectForKey:@"imageUrl"] 
-                           imageData:[dictionary objectForKey:@"imageData"] 
-                              genres:[dictionary objectForKey:@"genres"] 
-                             outline:[dictionary objectForKey:@"outline"] 
-                                plot:[dictionary objectForKey:@"plot"] 
-                               votes:[dictionary objectForKey:@"votes"] 
+                           producers:[SearchMovie decodeArray:[dictionary objectForKey:@"producers"]]
+                             writers:[SearchMovie decodeArray:[dictionary objectForKey:@"writers"]]
+                           directors:[SearchMovie decodeArray:[dictionary objectForKey:@"directors"]]
+                               music:[SearchMovie decodeArray:[dictionary objectForKey:@"music"]]
+                                cast:[SearchMovie decodeArray:[dictionary objectForKey:@"cast"]]
+                            imageUrl:[dictionary objectForKey:@"imageUrl"]
+                           imageData:[dictionary objectForKey:@"imageData"]
+                              genres:[dictionary objectForKey:@"genres"]
+                             outline:[dictionary objectForKey:@"outline"]
+                                plot:[dictionary objectForKey:@"plot"]
+                               votes:[dictionary objectForKey:@"votes"]
                               rating:[dictionary objectForKey:@"rating"]];
 }
 

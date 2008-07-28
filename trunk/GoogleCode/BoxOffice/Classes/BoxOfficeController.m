@@ -30,7 +30,7 @@
 - (void) dealloc {
     self.ratingsLookupLock = nil;
     self.dataProviderLock = nil;
-    
+
     [super dealloc];
 }
 
@@ -46,21 +46,21 @@
     if (lastDate == nil) {
         return NO;
     }
-    
+
     NSDate* now = [NSDate date];
     NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSHourCalendarUnit fromDate:lastDate];
     NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSHourCalendarUnit fromDate:now];
-    
+
     if ([lastDateComponents day] != [nowDateComponents day]) {
         // different days.  we definitely need to refresh
         return NO;
     }
-    
+
     // same day, check if they're at least 8 hours apart.
     if ([nowDateComponents hour] >= ([lastDateComponents hour] + 8)) {
         return NO;
     }
-    
+
     // it's been less than 8 hours.  it's too soon to refresh
     return YES;
 }
@@ -72,7 +72,7 @@
     if ([self tooSoon:lastLookupDate]) {
         return;
     }
-    
+
     [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading movie list", nil)];
     [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
@@ -81,11 +81,11 @@
     if ([Utilities isNilOrEmpty:self.model.postalCode]) {
         return;
     }
-    
+
     if ([self tooSoon:[[self.model currentDataProvider] lastLookupDate]]) {
         return;
     }
-    
+
     [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading ticketing data", nil)];
     [self performSelectorInBackground:@selector(dataProviderLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
@@ -100,10 +100,10 @@
         appDelegate = appDelegate_;
         self.ratingsLookupLock = [[[NSLock alloc] init] autorelease];
         self.dataProviderLock = [[[NSLock alloc] init] autorelease];
-        
+
         [self spawnBackgroundThreads];
     }
-    
+
     return self;
 }
 
@@ -117,14 +117,14 @@
     } else if ([self.model metacriticRatings]) {
         return [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings];
     }
-    
+
     return nil;
 }
 
 - (void) ratingsLookupBackgroundThreadEntryPoint:(id) anObject {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [self.ratingsLookupLock lock];
-    {    
+    {
         NSDictionary* extraInformation = [self ratingsLookup];
         [self performSelectorOnMainThread:@selector(setSupplementaryData:) withObject:extraInformation waitUntilDone:NO];
     }
@@ -134,18 +134,18 @@
 
 - (void) onBackgroundTaskEnded:(NSString*) description {
     [self.model removeBackgroundTask:description];
-    [appDelegate.tabBarController refresh];    
+    [appDelegate.tabBarController refresh];
 }
 
 - (void) setSupplementaryData:(NSDictionary*) extraInfo {
     if (extraInfo.count > 0) {
         [self.model setSupplementaryInformation:extraInfo];
     }
-    
+
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie list", nil)];
 }
 
-- (void) dataProviderLookupBackgroundThreadEntryPoint:(id) anObject {    
+- (void) dataProviderLookupBackgroundThreadEntryPoint:(id) anObject {
     [self.dataProviderLock lock];
     {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -153,7 +153,7 @@
         [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded:)
                                withObject:NSLocalizedString(@"Finished downloading movie and theater data", nil)
                             waitUntilDone:NO];
-        
+
         [autoreleasePool release];
     }
     [self.dataProviderLock unlock];
@@ -163,7 +163,7 @@
     if ([searchDate isEqual:[self.model searchDate]]) {
         return;
     }
-    
+
     [self.model setSearchDate:searchDate];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController popNavigationControllersToRoot];
@@ -190,7 +190,7 @@
     if (index == [self.model ratingsProviderIndex]) {
         return;
     }
-    
+
     [self.model setRatingsProviderIndex:index];
     [self spawnRatingsLookupThread];
     [appDelegate.tabBarController refresh];

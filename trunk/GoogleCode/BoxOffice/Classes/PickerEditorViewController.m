@@ -28,25 +28,25 @@
              defaultValue:(NSString*) defaultValue {
     if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
         self.values = values_;
-        
+
         self.picker = [[[UIPickerView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         self.picker.delegate = self;
         self.picker.showsSelectionIndicator = YES;
         [self.picker selectRow:[values indexOfObject:defaultValue]
                    inComponent:0
                       animated:NO];
-        
+
         self.title = title_;
     }
-    
+
     return self;
 }
 
 - (void) loadView {
     [super loadView];
-    
+
     [self.view addSubview:self.picker];
-    
+
     [self.picker becomeFirstResponder];
 }
 
@@ -54,7 +54,7 @@
     CGRect screenRect = self.view.bounds;
     CGSize pickerSize = [self.picker sizeThatFits:CGSizeZero];
     CGFloat screenBottom = screenRect.origin.y + screenRect.size.height;
-    
+
     CGRect pickerRect = CGRectMake(0, screenBottom - pickerSize.height, pickerSize.width, pickerSize.height);
     self.picker.frame = pickerRect;
 }

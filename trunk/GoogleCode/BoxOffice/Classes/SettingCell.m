@@ -16,7 +16,7 @@
 
 - (void) dealloc {
     self.valueLabel = nil;
-    
+
     [super dealloc];
 }
 
@@ -24,7 +24,7 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.valueLabel.textColor = [ColorCache commandColor];
-        
+
         [self addSubview:valueLabel];
     }
     return self;

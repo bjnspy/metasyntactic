@@ -18,15 +18,15 @@
 - (void) dealloc {
     self.tabBarController = nil;
     self.ticketsViewController = nil;
-    
+
     [super dealloc];
 }
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
-    if (self = [super init]) {   
+    if (self = [super init]) {
         self.tabBarController = controller;
     }
-    
+
     return self;
 }
 
@@ -46,13 +46,13 @@
                  theater:(Theater*) theater
                    title:(NSString*) title
                 animated:(BOOL) animated {
-    self.ticketsViewController = 
+    self.ticketsViewController =
     [[[TicketsViewController alloc] initWithController:self
                                                theater:theater
                                                  movie:movie
                                                  title:title] autorelease];
-    
-    [self pushViewController:ticketsViewController animated:animated];    
+
+    [self pushViewController:ticketsViewController animated:animated];
 }
 
 - (void) navigateToLastViewedPage {

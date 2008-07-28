@@ -17,17 +17,17 @@
     if (escapedTitle != nil) {
         NSString* urlString = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
         NSURL* url = [NSURL URLWithString:urlString];
-        
+
         NSData* imdbData = [NSData dataWithContentsOfURL:url];
         if (imdbData != nil) {
             XmlElement* tryntElement = [XmlParser parse:imdbData];
             XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
             XmlElement* matchedIdElement = [movieImdbElement element:@"matched-id"];
-            
+
             return [matchedIdElement text];
         }
     }
-    
+
     return nil;
 }
 
@@ -35,19 +35,19 @@
     if (imdbId == nil) {
         return nil;
     }
-    
+
     NSString* urlString = [@"http://www.trynt.com/movie-imdb-api/v2/?i=" stringByAppendingString:imdbId];
     NSURL* url = [NSURL URLWithString:urlString];
-    
+
     NSData* imdbData = [NSData dataWithContentsOfURL:url];
     if (imdbData != nil) {
         XmlElement* tryntElement = [XmlParser parse:imdbData];
         XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
         XmlElement* pictureUrlElement = [movieImdbElement element:@"picture-url"];
-        
+
         return [pictureUrlElement text];
     }
-    
+
     return nil;
 }
 
@@ -55,7 +55,7 @@
     if (imageUrl == nil) {
         return nil;
     }
-    
+
     return [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
 }
 

@@ -9,7 +9,7 @@
 @interface ActivityIndicator : NSObject {
     UINavigationItem* navigationItem;
     UIBarButtonItem* originalButton;
-    
+
     BOOL running;
 }
 

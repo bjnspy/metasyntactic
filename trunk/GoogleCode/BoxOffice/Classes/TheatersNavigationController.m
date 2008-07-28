@@ -24,15 +24,15 @@
 }
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
-    if (self = [super initWithTabBarController:controller]) {   
+    if (self = [super initWithTabBarController:controller]) {
         self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
-        
+
         [self pushViewController:allTheatersViewController animated:NO];
-        
+
         self.title = NSLocalizedString(@"Theaters", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"MostViewed.png"];
     }
-    
+
     return self;
 }
 
@@ -40,12 +40,12 @@
     Theater* currentTheater = [self.model currentlySelectedTheater];
     if (currentTheater != nil) {
         [self pushTheaterDetails:currentTheater animated:NO];
-        
+
         Movie* currentMovie = [self.model currentlySelectedMovie];
         if (currentMovie != nil) {
             [self pushTicketsView:currentTheater
                             movie:currentMovie
-                         animated:NO]; 
+                         animated:NO];
         }
     }
 }
@@ -58,9 +58,9 @@
 
 - (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
     [self popToRootViewControllerAnimated:NO];
-    
+
     self.theaterDetailsViewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self theater:theater] autorelease];
-    
+
     [self pushViewController:theaterDetailsViewController animated:animated];
 }
 

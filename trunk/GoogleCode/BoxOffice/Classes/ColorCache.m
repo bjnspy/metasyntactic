@@ -16,10 +16,10 @@ static UIColor* darkDarkGray = nil;
 
 + (void) initialize {
     if (self == [ColorCache class]) {
-        
+
         commandColor = [[UIColor colorWithRed:0.196 green:0.309 blue:0.521 alpha:1] retain];
         darkDarkGray = [[UIColor colorWithWhite:0.1666666666666 alpha:1] retain];
-    }  
+    }
 }
 
 + (UIColor*) commandColor {

@@ -33,14 +33,14 @@
         self.rottenTomatoesImage = [UIImage imageNamed:@"RottenTomatoesLogo.png"];
         self.tryntImage = [UIImage imageNamed:@"TryntLogo.png"];
         self.yahooImage = [UIImage imageNamed:@"YahooLogo.png"];
-        
+
         self.title = NSLocalizedString(@"About", nil);
     }
-    
+
     return self;
 }
 
-- (void) viewWillAppear:(BOOL) animated {        
+- (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
@@ -67,14 +67,14 @@
     } else if (section == 7) {
         return 1;
     }
-    
+
     return 1;
 }
 
 - (UIImage*) getImage:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == 2) {
         return rottenTomatoesImage;
     } else if (section == 3) {
@@ -88,13 +88,13 @@
             return yahooImage;
         }
     }
-    
+
     return nil;
 }
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-    
+
     UIImage* image = [self getImage:indexPath];
     CGFloat height = [tableView rowHeight];;
     if (image != nil) {
@@ -103,7 +103,7 @@
             height = imageHeight;
         }
     }
-    
+
     return height;
 }
 
@@ -111,18 +111,18 @@
             cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     UIImage* image = [self getImage:indexPath];
-    
+
     if (image != nil) {
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-        
+
         NSInteger yMid = (NSInteger)([self tableView:tableView heightForRowAtIndexPath:indexPath] / 2);
         NSInteger xMid = 130;
-        
+
         NSInteger x = xMid - (image.size.width / 2);
         NSInteger y = yMid - (image.size.height / 2);
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
@@ -147,10 +147,10 @@
             cell.text = @"GeoCoder.ca";
         }
     } else if (section == 7) {
-        cell.text = NSLocalizedString(@"License", nil); 
+        cell.text = NSLocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
-    
+
     return cell;
 }
 
@@ -171,7 +171,7 @@
     } else if (section == 6) {
         return NSLocalizedString(@"Geolocation services provided by:", nil);
     }
-    
+
     return nil;
 }
 
@@ -194,7 +194,7 @@
     textView.font = [UIFont boldSystemFontOfSize:12];
     textView.textColor = [UIColor grayColor];
     [textView sizeToFit];
-    
+
     [controller.view addSubview:textView];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -210,7 +210,7 @@
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     NSString* url = nil;
     if (section == 0) {
         if (row == 0) {
@@ -243,7 +243,7 @@
     } else if (section == 7) {
         return;
     }
-    
+
     [Application openBrowser:url];
 }
 

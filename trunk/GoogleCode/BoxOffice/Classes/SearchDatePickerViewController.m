@@ -16,7 +16,7 @@
 
 - (void) dealloc {
     self.controller = nil;
-    
+
     [super dealloc];
 }
 
@@ -25,14 +25,14 @@
                          withValues:(NSArray*) values_
                        defaultValue:(NSString*) defaultValue_ {
     if (self = [super initWithController:navigationController_
-                               withTitle:NSLocalizedString(@"Search date", nil) 
-                              withObject:self 
-                            withSelector:@selector(onSearchDateChanged:) 
+                               withTitle:NSLocalizedString(@"Search date", nil)
+                              withObject:self
+                            withSelector:@selector(onSearchDateChanged:)
                               withValues:values_
                             defaultValue:defaultValue_]) {
         self.controller = controller_;
     }
-    
+
     return self;
 }
 
@@ -45,15 +45,15 @@
         NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
         [components setDay:i];
         NSDate* date = [calendar dateByAddingComponents:components toDate:today options:0];
-        
+
         [values addObject:[DateUtilities formatFullDate:date]];
     }
     NSString* defaultValue = [DateUtilities formatFullDate:[[controller model] searchDate]];
-    
+
     return [[[SearchDatePickerViewController alloc] initWithNavigationController:navigationController
                                                                       controller:controller
                                                                       withValues:values
-                                                                    defaultValue:defaultValue] autorelease];    
+                                                                    defaultValue:defaultValue] autorelease];
 }
 
 - (void) onSearchDateChanged:(NSString*) dateString {

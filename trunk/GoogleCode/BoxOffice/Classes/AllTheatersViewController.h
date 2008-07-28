@@ -14,11 +14,11 @@
 @interface AllTheatersViewController : UITableViewController {
     TheatersNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
-    
+
     NSArray* sortedTheaters;
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;
-    
+
     NSArray* alphabeticSectionTitles;
 }
 

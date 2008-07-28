@@ -17,7 +17,7 @@
 }
 
 + (MovieKey*) keyWithDictionary:(NSDictionary*) dict {
-    return [MovieKey keyWithIdentifier:[dict objectForKey:@"identifier"] 
+    return [MovieKey keyWithIdentifier:[dict objectForKey:@"identifier"]
                                    name:[dict objectForKey:@"name"]];
 }
 

@@ -78,7 +78,7 @@
         self.children = children_;
         self.text = text_;
     }
-    
+
     return self;
 }
 
@@ -88,26 +88,26 @@
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    
+
     NSMutableArray* array = [NSMutableArray array];
     for (XmlElement* element in self.children) {
         [array addObject:[element dictionary]];
     }
-    
+
     [dictionary setValue:self.name forKey:@"name"];
-    
+
     if (![self.text isEqual:@""]) {
         [dictionary setValue:self.text forKey:@"text"];
     }
-    
+
     if (attributes.count > 0) {
         [dictionary setValue:self.attributes forKey:@"attributes"];
     }
-    
+
     if (array.count > 0) {
         [dictionary setValue:array forKey:@"children"];
     }
-    
+
     return dictionary;
 }
 
@@ -116,27 +116,27 @@
     if (name == nil) {
         name = @"";
     }
-    
+
     NSString* text = [dictionary valueForKey:@"text"];
     if (text == nil) {
         text = @"";
     }
-    
+
     NSDictionary* attributes = [dictionary valueForKey:@"attributes"];
     if (attributes == nil) {
         attributes = [NSDictionary dictionary];
     }
-    
+
     NSArray* childDictionaries = [dictionary valueForKey:@"children"];
     if (childDictionaries == nil) {
         childDictionaries = [NSArray array];
     }
-    
+
     NSMutableArray* children = [NSMutableArray array];
     for (NSDictionary* childDict in childDictionaries) {
         [children addObject:[XmlElement elementFromDictionary:childDict]];
     }
-    
+
     return [XmlElement elementWithName:name attributes:attributes children:children text:text];
 }
 
@@ -146,7 +146,7 @@
             return child;
         }
     }
-    
+
     return nil;
 }
 
@@ -157,7 +157,7 @@
             [array addObject:child];
         }
     }
-    
+
     return array;
 }
 
@@ -165,7 +165,7 @@
     if (index >= 0 && index < [[self children] count]) {
         return [[self children] objectAtIndex:index];
     }
-    
+
     return nil;
 }
 
