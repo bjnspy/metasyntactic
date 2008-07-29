@@ -19,7 +19,7 @@ from google.appengine.api import urlfetch
 
 class LookupMovieListingsHandler(webapp.RequestHandler):
   def get(self):
-    memcache.flush_all()
+#    memcache.flush_all()
     q = self.request.get("q")
     if not (q == "RottenTomatoes" or q == "Metacritic"):
         q = "RottenTomatoes"
@@ -36,7 +36,7 @@ class LookupMovieListingsHandler(webapp.RequestHandler):
     now = datetime.datetime.now()
     delta = now - listings.saveDate
 
-    return delta.seconds >= (3600 * 8)
+    return delta.seconds >= (3600 * 4)
     
 
   def get_listings_from_cache(self, q):
@@ -62,10 +62,13 @@ class LookupMovieListingsHandler(webapp.RequestHandler):
     url = "http://i.rottentomatoes.com/syndication/tab/complete_movies.txt"
     content = urlfetch.fetch(url).content
     encoded = unicode(content, "iso-8859-1")
-
-    listings = MovieListings.get_or_insert("MovieListings_" + q)
-    listings.data = encoded
-    listings.put()
+    
+    if encoded.find("Rotten Tomatoes is temporarily unavailable") == -1:
+      listings = MovieListings.get_by_key_name("MovieListings_" + q)
+    else:
+      listings = MovieListings.get_or_insert("MovieListings_" + q)
+      listings.data = encoded
+      listings.put()
 
     return listings
 
