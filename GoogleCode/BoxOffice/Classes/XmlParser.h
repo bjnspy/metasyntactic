@@ -21,5 +21,6 @@
 - (id) initWithData:(NSData*) data;
 
 + (XmlElement*) parse:(NSData*) data;
++ (XmlElement*) parseUrl:(NSString*) url;
 
 @end

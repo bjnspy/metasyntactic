@@ -7,19 +7,27 @@
 //
 
 #import "SettingsViewController.h"
-#import "ApplicationTabBarController.h"
+
+#import "Application.h"
 #import "BoxOfficeAppDelegate.h"
-#import "XmlParser.h"
+
+#import "ApplicationTabBarController.h"
+
 #import "TextFieldEditorViewController.h"
 #import "PickerEditorViewController.h"
-#import "Utilities.h"
 #import "CreditsViewController.h"
-#import "Application.h"
+#import "SearchDatePickerViewController.h"
+#import "DataProviderViewController.h"
+#import "RatingsProviderViewController.h"
+
+#import "XmlParser.h"
+
+#import "Utilities.h"
+#import "DateUtilities.h"
+
 #import "AttributeCell.h"
 #import "SettingCell.h"
-#import "RatingsProviderViewController.h"
-#import "DateUtilities.h"
-#import "SearchDatePickerViewController.h"
+
 #import "ColorCache.h"
 
 @implementation SettingsViewController
@@ -59,9 +67,12 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
 
-        //self.title = NSLocalizedString(@"Settings", nil);
-        self.title = [NSString stringWithFormat:@"Now Playing v%@", [BoxOfficeModel version]];
-
+        NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:kCFBundleNameKey];
+        NSString* appVersion = [BoxOfficeModel version];
+        appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
+        
+        self.title = [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
+        
         UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
@@ -174,11 +185,7 @@
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        if (indexPath.row >= 0 && indexPath.row <= 3) {
-            return UITableViewCellAccessoryDisclosureIndicator;
-        } else {
-            return UITableViewCellAccessoryNone;
-        }
+        return UITableViewCellAccessoryDisclosureIndicator;
     } else if (indexPath.section == 1) {
         return UITableViewCellAccessoryNone;
     } else {
@@ -192,7 +199,7 @@
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (section == 0) {
+    if (section == 0) { 
         return 5;
     } else if (section == 1) {
         return 1;
@@ -209,7 +216,11 @@
 
             NSString* key;
             NSString* value;
-            if (indexPath.row == 0) {
+            /* if (indexPath.row == 0) {
+                key = NSLocalizedString(@"Region", nil);
+                value = [[self.model currentDataProvider] displayName];
+            } else 
+                */ if (indexPath.row == 0) {
                 key = NSLocalizedString(@"Postal code", nil);
                 value = [self.model postalCode];
             } else if (indexPath.row == 1) {
@@ -282,7 +293,11 @@
     NSInteger row = indexPath.row;
 
     if (section == 0) {
-        if (row == 0) {
+        /*if (row == 0) { 
+            DataProviderViewController* controller =
+                [[[DataProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
+            [self.navigationController pushViewController:controller animated:YES];
+        } else */if (row == 0) {
             TextFieldEditorViewController* controller =
             [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
                                                              withTitle:NSLocalizedString(@"Postal code", nil)

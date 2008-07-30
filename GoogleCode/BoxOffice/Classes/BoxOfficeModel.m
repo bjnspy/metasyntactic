@@ -16,6 +16,7 @@
 #import "DateUtilities.h"
 #import "Performance.h"
 #import "NorthAmericaDataProvider.h"
+#import "UnitedKingdomDataProvider.h"
 
 @implementation BoxOfficeModel
 
@@ -119,7 +120,10 @@ static NSString* currentVersion = @"1.2.33";
 }
 
 - (void) loadData {
-    self.dataProviders = [NSArray arrayWithObjects:[NorthAmericaDataProvider providerWithModel:self], nil];
+    self.dataProviders = [NSArray arrayWithObjects:
+                          [NorthAmericaDataProvider providerWithModel:self], 
+                          [UnitedKingdomDataProvider providerWithModel:self], nil];
+    
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
 
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel VERSION]];

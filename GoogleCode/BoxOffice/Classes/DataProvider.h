@@ -21,4 +21,6 @@
 - (NSArray*) movies;
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
+
+- (NSString*) displayName;
 @end

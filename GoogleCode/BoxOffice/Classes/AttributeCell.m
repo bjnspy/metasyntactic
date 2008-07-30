@@ -33,6 +33,7 @@
 
         self.valueLabel.font = [UIFont boldSystemFontOfSize:14.0];
         self.valueLabel.adjustsFontSizeToFitWidth = YES;
+        self.valueLabel.minimumFontSize = 8.0;
 
         [self addSubview:keyLabel];
         [self addSubview:valueLabel];

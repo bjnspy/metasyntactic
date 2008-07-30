@@ -29,6 +29,7 @@
 - (void) setSearchDate:(NSDate*) searchDate;
 - (void) setPostalCode:(NSString*) postalCode;
 - (void) setSearchRadius:(NSInteger) radius;
+- (void) setDataProviderIndex:(NSInteger) index;
 - (void) setRatingsProviderIndex:(NSInteger) index;
 
 + (BoxOfficeController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;

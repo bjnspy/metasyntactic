@@ -18,7 +18,6 @@
 
 - (void) dealloc {
     self.gate = nil;
-
     [super dealloc];
 }
 

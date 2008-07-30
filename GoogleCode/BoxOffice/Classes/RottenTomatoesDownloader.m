@@ -36,8 +36,7 @@
 - (NSDictionary*) lookupMovieListings {
     NSMutableArray* hosts = [Application hosts];
     NSString* host = [Utilities removeRandomElement:hosts];
-    host = @"metaboxoffice6";
-
+    
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes", host]];
     NSError* httpError = nil;
     NSString* movieListings = [NSString stringWithContentsOfURL:url encoding:NSISOLatin1StringEncoding error:&httpError];
