@@ -13,6 +13,7 @@
 
 @synthesize fandangoImage;
 @synthesize ignyteImage;
+@synthesize metacriticImage;
 @synthesize rottenTomatoesImage;
 @synthesize tryntImage;
 @synthesize yahooImage;
@@ -23,6 +24,7 @@
     self.rottenTomatoesImage = nil;
     self.tryntImage = nil;
     self.yahooImage = nil;
+    self.metacriticImage = nil;
     [super dealloc];
 }
 
@@ -30,6 +32,7 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.fandangoImage = [UIImage imageNamed:@"FandangoLogo.png"];
         self.ignyteImage = [UIImage imageNamed:@"IgnyteLogo.png"];
+        self.metacriticImage = [UIImage imageNamed:@"MetacriticLogo.png"];
         self.rottenTomatoesImage = [UIImage imageNamed:@"RottenTomatoesLogo.png"];
         self.tryntImage = [UIImage imageNamed:@"TryntLogo.png"];
         self.yahooImage = [UIImage imageNamed:@"YahooLogo.png"];
@@ -55,7 +58,7 @@
     } else if (section == 1) {
         return 2;
     } else if (section == 2) {
-        return 1;
+        return 2;
     } else if (section == 3) {
         return 1;
     } else if (section == 4) {
@@ -76,7 +79,11 @@
     NSInteger row = indexPath.row;
 
     if (section == 2) {
-        return rottenTomatoesImage;
+        if (row == 0) {
+            return rottenTomatoesImage;
+        } else if (row == 1) {
+            return metacriticImage;
+        }
     } else if (section == 3) {
         return ignyteImage;
     } else if (section == 4) {
@@ -139,6 +146,10 @@
             cell.text = NSLocalizedString(@"E-mail", nil);
         } else {
             cell.text = NSLocalizedString(@"Website", nil);
+        }
+    } else if (section == 2) {
+        if (row == 1) {
+            cell.text = NSLocalizedString(@"Metacritic", nil);
         }
     } else if (section == 6) {
         if (row == 1) {
@@ -225,7 +236,11 @@
             url = @"http://www.jeffnee.com";
         }
     } else if (section == 2) {
-        url = @"http://www.rottentomatoes.com";
+        if (row == 0) {
+            url = @"http://www.rottentomatoes.com";
+        } else {
+            url = @"http://www.metacritic.com";
+        }
     } else if (section == 3) {
         url = @"http://www.ignyte.com";
     } else if (section == 4) {

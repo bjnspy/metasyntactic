@@ -23,13 +23,6 @@
     [super dealloc];
 }
 
-- (id) initWithModel:(BoxOfficeModel*) model_ {
-    if (self = [super initWithModel:model_]) {
-    }
-
-    return self;
-}
-
 + (NorthAmericaDataProvider*) providerWithModel:(BoxOfficeModel*) model {
     return [[[NorthAmericaDataProvider alloc] initWithModel:model] autorelease];
 }
@@ -178,6 +171,10 @@
     }
 
     return nil;
+}
+
+- (NSString*) displayName {
+    return @"North America";
 }
 
 @end

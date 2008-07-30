@@ -60,6 +60,7 @@
 		746A02100DC819F00079D89B /* BoxOfficeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
 		74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
+		7479B5D40E402E21003B12C1 /* MetacriticLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7479B5D30E402E21003B12C1 /* MetacriticLogo.png */; };
 		747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */; };
 		748217D70E2163760054759E /* ExtraMovieInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 748217D60E2163760054759E /* ExtraMovieInformation.m */; };
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
@@ -72,6 +73,8 @@
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
+		74CBBFC80E3E803A00747156 /* UnitedKingdomDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CBBFC70E3E803A00747156 /* UnitedKingdomDataProvider.m */; };
+		74CBBFF80E3E8C6000747156 /* DataProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */; };
 		74CC7D770DE39BDB001C0559 /* SearchNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CC7D760DE39BDB001C0559 /* SearchNavigationController.m */; };
 		74CC7DB20DE39E6D001C0559 /* SearchStartPageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CC7DB10DE39E6D001C0559 /* SearchStartPageViewController.m */; };
 		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
@@ -233,6 +236,7 @@
 		746A02150DC81A1A0079D89B /* Application.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Application.m; sourceTree = "<group>"; };
 		74737BE50E2D8BA300C37E4B /* SettingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingCell.h; sourceTree = "<group>"; };
 		74737BE60E2D8BA300C37E4B /* SettingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingCell.m; sourceTree = "<group>"; };
+		7479B5D30E402E21003B12C1 /* MetacriticLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MetacriticLogo.png; path = Resources/MetacriticLogo.png; sourceTree = "<group>"; };
 		747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
 		747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
 		748217D50E2163760054759E /* ExtraMovieInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraMovieInformation.h; sourceTree = "<group>"; };
@@ -254,6 +258,10 @@
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
 		74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerEditorViewController.m; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		74CBBFC60E3E803A00747156 /* UnitedKingdomDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedKingdomDataProvider.h; sourceTree = "<group>"; };
+		74CBBFC70E3E803A00747156 /* UnitedKingdomDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedKingdomDataProvider.m; sourceTree = "<group>"; };
+		74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProviderViewController.h; sourceTree = "<group>"; };
+		74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProviderViewController.m; sourceTree = "<group>"; };
 		74CC7D750DE39BDB001C0559 /* SearchNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchNavigationController.h; sourceTree = "<group>"; };
 		74CC7D760DE39BDB001C0559 /* SearchNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchNavigationController.m; sourceTree = "<group>"; };
 		74CC7DB00DE39E6D001C0559 /* SearchStartPageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchStartPageViewController.h; sourceTree = "<group>"; };
@@ -443,6 +451,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7479B5D30E402E21003B12C1 /* MetacriticLogo.png */,
 				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 				74EFE3930E35433700B6E103 /* Rating-Unknown.png */,
 				74EFE2FD0E353F3600B6E103 /* CurrentPosition.png */,
@@ -621,6 +630,8 @@
 				74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */,
 				74EFE3EA0E354E0900B6E103 /* RatingsProviderViewController.h */,
 				74EFE3EB0E354E0900B6E103 /* RatingsProviderViewController.m */,
+				74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */,
+				74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -672,6 +683,8 @@
 				74F3B2590E3CE80300DD25DA /* NorthAmericaDataProvider.m */,
 				74F3B2E50E3CF02400DD25DA /* LookupResult.h */,
 				74F3B2E60E3CF02400DD25DA /* LookupResult.m */,
+				74CBBFC60E3E803A00747156 /* UnitedKingdomDataProvider.h */,
+				74CBBFC70E3E803A00747156 /* UnitedKingdomDataProvider.m */,
 			);
 			name = DataProviders;
 			sourceTree = "<group>";
@@ -754,6 +767,7 @@
 				74EFE3680E353F3600B6E103 /* YahooLogo.png in Resources */,
 				74EFE3940E35433700B6E103 /* Rating-Unknown.png in Resources */,
 				743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */,
+				7479B5D40E402E21003B12C1 /* MetacriticLogo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -842,6 +856,8 @@
 				74F3B25A0E3CE80300DD25DA /* NorthAmericaDataProvider.m in Sources */,
 				74F3B2DA0E3CEF6000DD25DA /* AbstractDataProvider.m in Sources */,
 				74F3B2E70E3CF02400DD25DA /* LookupResult.m in Sources */,
+				74CBBFC80E3E803A00747156 /* UnitedKingdomDataProvider.m in Sources */,
+				74CBBFF80E3E8C6000747156 /* DataProviderViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

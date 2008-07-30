@@ -21,23 +21,45 @@
     [super dealloc];
 }
 
+- (void) run:(NSXMLParser*) parser {
+    parser.delegate = self;
+    
+    self.elementsStack = [NSMutableArray array];
+    self.stringBufferStack = [NSMutableArray array];
+    self.attributesStack = [NSMutableArray array];
+    
+    [self.elementsStack addObject:[NSMutableArray array]];
+    
+    if ([parser parse] == NO) {
+        self.elementsStack = nil;
+        NSLog(@"%@", [parser parserError]);
+    }
+}
+
 - (id) initWithData:(NSData*) data {
     if (self = [super init]) {
         NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
-        parser.delegate = self;
-
-        self.elementsStack = [NSMutableArray array];
-        self.stringBufferStack = [NSMutableArray array];
-        self.attributesStack = [NSMutableArray array];
-
-        [self.elementsStack addObject:[NSMutableArray array]];
-
-        if ([parser parse] == NO) {
-            self.elementsStack = nil;
-        }
+        [self run:parser];
     }
 
     return self;
+}
+
+- (id) initWithUrl:(NSString*) url {
+    if (self = [super init]) {
+        NSXMLParser* parser = [[[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:url]] autorelease];
+        [self run:parser];
+    }
+    
+    return self;
+}
+
++ (XmlElement*) collect:(XmlParser*) parser {
+    if (parser.elementsStack == nil) {
+        return nil;
+    }
+    
+    return [[parser.elementsStack lastObject] lastObject];  
 }
 
 + (XmlElement*) parse:(NSData*) data {
@@ -46,12 +68,16 @@
     }
 
     XmlParser* xmlParser = [[[XmlParser alloc] initWithData:data] autorelease];
+    return [XmlParser collect:xmlParser];
+}
 
-    if (xmlParser.elementsStack == nil) {
++ (XmlElement*) parseUrl:(NSString*) url {
+    if (url == nil) {
         return nil;
     }
-
-    return [[xmlParser.elementsStack lastObject] lastObject];
+    
+    XmlParser* xmlParser = [[[XmlParser alloc] initWithUrl:url] autorelease];
+    return [XmlParser collect:xmlParser];
 }
 
 - (void)            parser:(NSXMLParser*) parser
@@ -86,6 +112,10 @@
 
 - (void)            parser:(NSXMLParser*) parser
            foundCharacters:(NSString*) string {
+    if (string == nil) {
+        return;
+    }
+    
     [[self.stringBufferStack lastObject] appendString:string];
 }
 

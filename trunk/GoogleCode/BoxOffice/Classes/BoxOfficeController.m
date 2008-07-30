@@ -196,4 +196,14 @@
     [appDelegate.tabBarController refresh];
 }
 
+- (void) setDataProviderIndex:(NSInteger) index {
+    if (index == [self.model dataProviderIndex]) {
+        return;
+    }
+    
+    [self.model setDataProviderIndex:index];
+    [self spawnDataProviderLookupThread];
+    [appDelegate.tabBarController refresh];
+}
+
 @end
