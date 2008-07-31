@@ -165,8 +165,11 @@
         self.title = self.movie.title;
         self.navigationItem.titleView = label;
         self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:self.movie]];
-        self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:self.movie]];
-
+        
+        if (![self.model noRatings]) {
+            self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:self.movie]];
+        }
+        
         self.posterImage = [self.model posterForMovie:self.movie];
         if (self.posterImage == nil) {
             self.posterImage = [UIImage imageNamed:@"ImageNotAvailable.png"];

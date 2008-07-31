@@ -128,29 +128,32 @@
     }
 }
 
+- (void) setupSegmentedControl {
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+                              [NSArray arrayWithObjects:
+                               NSLocalizedString(@"Title", nil),
+                               NSLocalizedString(@"Score", nil),
+                               NSLocalizedString(@"Release", nil), nil]] autorelease];
+    
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    self.segmentedControl.selectedSegmentIndex = [self.model allMoviesSelectedSegmentIndex];
+    [self.segmentedControl addTarget:self
+     action:@selector(onSortOrderChanged:)
+     forControlEvents:UIControlEventValueChanged];
+    
+    CGRect rect = self.segmentedControl.frame;
+    rect.size.width = 240;
+    self.segmentedControl.frame = rect;
+    
+    self.navigationItem.titleView = segmentedControl;
+}
+
 - (id) initWithNavigationController:(MoviesNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
         self.sortedMovies = [NSArray array];
 
-        self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                                  [NSArray arrayWithObjects:
-                                   NSLocalizedString(@"Title", nil),
-                                   NSLocalizedString(@"Score", nil),
-                                   NSLocalizedString(@"Release", nil), nil]] autorelease];
-
-
-        self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-        self.segmentedControl.selectedSegmentIndex = [self.model allMoviesSelectedSegmentIndex];
-        [self.segmentedControl addTarget:self
-                                  action:@selector(onSortOrderChanged:)
-                        forControlEvents:UIControlEventValueChanged];
-
-        CGRect rect = self.segmentedControl.frame;
-        rect.size.width = 240;
-        self.segmentedControl.frame = rect;
-
-        self.navigationItem.titleView = segmentedControl;
+        [self setupSegmentedControl];
 
         self.alphabeticSectionTitles =
         [NSArray arrayWithObjects:

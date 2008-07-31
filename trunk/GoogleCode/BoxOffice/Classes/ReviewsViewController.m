@@ -48,7 +48,6 @@
     [[navigationController model] setCurrentlyShowingReviews];
 }
 
-
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger row = indexPath.row;
