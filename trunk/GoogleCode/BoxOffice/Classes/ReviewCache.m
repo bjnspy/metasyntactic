@@ -93,15 +93,8 @@
     return result;
 }
 
-- (NSString*) host:(ExtraMovieInformation*) info {
-    NSMutableArray* hosts = [Application hosts];
-    NSInteger index = abs([Utilities hashString:info.link]) % hosts.count;
-    return [hosts objectAtIndex:index]; 
-}
-
-
 - (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", [self host:info], info.link];
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", [Application host], info.link];
 
     NSError* httpError = nil;
     NSString* reviewPage = [NSString stringWithContentsOfURL:[NSURL URLWithString:url]
@@ -149,12 +142,11 @@
             break;
         }
         
-        
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
 
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
         if (info.link.length > 0) {
-            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&hash=true", [self host:info], info.link];
+            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&hash=true", [Application host], info.link];
             NSString* serverHash = [NSString stringWithContentsOfURL:[NSURL URLWithString:url]];
             NSString* localHash = [self reviewsHashForMovie:movieId];
             

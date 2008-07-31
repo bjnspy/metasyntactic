@@ -34,7 +34,7 @@
 + (DifferenceEngine*) differenceEngine;
 
 + (NSString*) searchHost;
-+ (NSMutableArray*) hosts;
++ (NSString*) host;
 
 + (unichar) starCharacter;
 + (NSString*) starString;
