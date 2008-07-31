@@ -25,7 +25,7 @@
                          withValues:(NSArray*) values_
                        defaultValue:(NSString*) defaultValue_ {
     if (self = [super initWithController:navigationController_
-                               withTitle:NSLocalizedString(@"Search date", nil)
+                               withTitle:NSLocalizedString(@"Search Date", nil)
                               withObject:self
                             withSelector:@selector(onSearchDateChanged:)
                               withValues:values_

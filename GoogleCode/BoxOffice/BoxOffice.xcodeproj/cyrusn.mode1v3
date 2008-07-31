@@ -280,6 +280,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -328,19 +330,16 @@
 								<string>19C28FACFE9D520D11CA2CBB</string>
 								<string>1C37FBAC04509CD000000102</string>
 								<string>1C37FAAC04509CD000000102</string>
+								<string>1C08E77C0454961000C914BD</string>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>62</integer>
-									<integer>58</integer>
-									<integer>16</integer>
-									<integer>1</integer>
-									<integer>0</integer>
+									<integer>144</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 627}, {383, 788}}</string>
+							<string>{{0, 1779}, {383, 788}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -372,14 +371,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>MovieShowtimesCell.m</string>
+								<string>SettingsViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -387,11 +384,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MovieShowtimesCell.m</string>
+										<string>SettingsViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74085E4A0E4265F90069F0F5</string>
+										<string>74085E5C0E426A7C0069F0F5</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -718,7 +715,6 @@
 											<string>74085D440E4256040069F0F5</string>
 											<string>74085D520E4257380069F0F5</string>
 											<string>74085D550E4257380069F0F5</string>
-											<string>74085D560E4257380069F0F5</string>
 											<string>74085D570E4257380069F0F5</string>
 											<string>74085D630E42580F0069F0F5</string>
 											<string>74085D640E42580F0069F0F5</string>
@@ -732,8 +728,9 @@
 											<string>74085E1D0E42625A0069F0F5</string>
 											<string>74085E1E0E42625A0069F0F5</string>
 											<string>74085E2F0E4262CC0069F0F5</string>
-											<string>74085E360E4264320069F0F5</string>
-											<string>74085E370E4264320069F0F5</string>
+											<string>74085E560E426A7C0069F0F5</string>
+											<string>74085E570E426A7C0069F0F5</string>
+											<string>74085E580E426A7C0069F0F5</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -1132,6 +1129,9 @@
 											<string>74085E250E42625A0069F0F5</string>
 											<string>74085E310E4262CC0069F0F5</string>
 											<string>74085E380E4264320069F0F5</string>
+											<string>74085E590E426A7C0069F0F5</string>
+											<string>74085E5A0E426A7C0069F0F5</string>
+											<string>74085E5B0E426A7C0069F0F5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1310,7 +1310,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>239232505.950818</real>
+	<real>239233660.40264601</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1330,8 +1330,8 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1C78EAAD065D492600B07095</string>
-		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
+		<string>746A021D0DC8202B0079D89B</string>
 	</array>
 	<key>WindowString</key>
 	<string>64 31 1154 847 0 0 1440 878 </string>
@@ -1573,7 +1573,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>MovieShowtimesCell.m</string>
+										<string>SearchDatePickerViewController.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>

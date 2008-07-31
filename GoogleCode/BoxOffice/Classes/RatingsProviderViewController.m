@@ -23,6 +23,7 @@
 - (id) initWithNavigationController:(SettingsNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
+        self.title = NSLocalizedString(@"Reviews", nil);
     }
 
     return self;
