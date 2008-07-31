@@ -38,6 +38,7 @@ static NSString* currentVersion = @"1.2.2.1";
 + (NSString*) AUTO_UPDATE_LOCATION                      { return @"autoUpdateLocation"; }
 + (NSString*) RATINGS_PROVIDER_INDEX                    { return @"ratingsProviderIndex"; }
 + (NSString*) DATA_PROVIDER_INDEX                       { return @"dataProviderIndex"; }
++ (NSString*) USE_NORMAL_FONTS                          { return @"useNormalFonts"; }
 
 
 @synthesize notificationCenter;
@@ -153,6 +154,7 @@ static NSString* currentVersion = @"1.2.2.1";
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel AUTO_UPDATE_LOCATION]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel RATINGS_PROVIDER_INDEX]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel USE_NORMAL_FONTS]];
 
         [[NSFileManager defaultManager] removeItemAtPath:[Application dataFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application locationsFolder] error:NULL];
@@ -799,6 +801,14 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     } else {
         return NSLocalizedString(@"No information found", nil);
     }
+}
+
+- (BOOL) useSmallFonts {
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:[BoxOfficeModel USE_NORMAL_FONTS]];
+}
+
+- (void) setUseSmallFonts:(BOOL) useSmallFonts {
+    [[NSUserDefaults standardUserDefaults] setBool:!useSmallFonts forKey:[BoxOfficeModel USE_NORMAL_FONTS]];
 }
 
 @end

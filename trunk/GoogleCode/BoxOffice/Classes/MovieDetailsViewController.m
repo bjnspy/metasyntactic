@@ -297,7 +297,8 @@
     if (indexPath.row == 0) {
         return [tableView rowHeight];
     } else {
-        return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]] + 18;
+        return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
+                                        useSmallFonts:[self.model useSmallFonts]] + 18;
     }
 }
 
@@ -436,7 +437,8 @@
                                               reuseIdentifier:reuseIdentifier] autorelease];
         }
 
-        [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]];
+        [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
+             useSmallFonts:[self.model useSmallFonts]];
 
         return cell;
     }

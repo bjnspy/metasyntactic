@@ -13,10 +13,10 @@
 
 @property (retain) UILabel* headerLabel;
 @property (retain) UILabel* showtimesLabel;
-
-- (void) setShowtimes:(NSArray*) showtimes;
+    
+- (void) setShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts;
 
 + (NSString*) showtimesString:(NSArray*) showtimes;
-+ (CGFloat) heightForShowtimes:(NSArray*) showtimes;
++ (CGFloat) heightForShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts;
 
 @end

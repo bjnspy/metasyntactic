@@ -155,6 +155,9 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
 - (NSString*) noLocationInformationFound;
 
+- (BOOL) useSmallFonts;
+- (void) setUseSmallFonts:(BOOL) useSmallFonts;
+
 + (NSString*) SEARCH_DATES;
 + (NSString*) SEARCH_RESULTS;
 + (NSString*) SEARCH_RADIUS;
@@ -170,5 +173,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 + (NSString*) AUTO_UPDATE_LOCATION;
 + (NSString*) DATA_PROVIDER_INDEX;
 + (NSString*) RATINGS_PROVIDER_INDEX;
++ (NSString*) USE_NORMAL_FONTS;
 
 @end
