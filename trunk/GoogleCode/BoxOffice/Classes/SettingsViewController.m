@@ -259,17 +259,23 @@
         } else if (indexPath.row == 4) {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.text = NSLocalizedString(@"Auto-Update Location", nil);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             picker.on = [self.model autoUpdateLocation];
             [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
+            
             cell.accessoryView = picker;
             return cell;
         } else {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.text = NSLocalizedString(@"Use Small Fonts", nil);
+            cell.selectionStyle = UITableViewCellSelectionStyleNone;
+            
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             picker.on = [self.model useSmallFonts];
             [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
+
             cell.accessoryView = picker;
             return cell;
         }
