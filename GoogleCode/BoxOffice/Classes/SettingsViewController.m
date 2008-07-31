@@ -185,9 +185,9 @@
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        return UITableViewCellAccessoryDisclosureIndicator;
-    } else if (indexPath.section == 1) {
         return UITableViewCellAccessoryNone;
+    } else if (indexPath.section == 1) {
+        return UITableViewCellAccessoryDisclosureIndicator;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -199,10 +199,10 @@
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (section == 0) { 
-        return 5;
-    } else if (section == 1) {
+    if (section == 0) {
         return 1;
+    } else if (section == 1) {
+        return 6;
     } else {
         return 1;
     }
@@ -211,6 +211,14 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        
+        cell.text = NSLocalizedString(@"Donate", nil);
+        cell.textColor = [ColorCache commandColor];
+        cell.textAlignment = UITextAlignmentCenter;
+        
+        return cell;
+    } else if (indexPath.section == 1) {
         if (indexPath.row >= 0 && indexPath.row <= 3) {
             SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
@@ -248,7 +256,7 @@
             [cell setKey:key value:value];
 
             return cell;
-        } else {
+        } else if (indexPath.row == 4) {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.text = NSLocalizedString(@"Auto-Update Location", nil);
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
@@ -256,15 +264,15 @@
             [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
             cell.accessoryView = picker;
             return cell;
+        } else {
+            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+            cell.text = NSLocalizedString(@"Use Small Fonts", nil);
+            UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+            picker.on = [self.model useSmallFonts];
+            [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
+            cell.accessoryView = picker;
+            return cell;
         }
-    } else if (indexPath.section == 1) {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
-        cell.text = NSLocalizedString(@"Donate", nil);
-        cell.textColor = [ColorCache commandColor];
-        cell.textAlignment = UITextAlignmentCenter;
-
-        return cell;
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         cell.text = NSLocalizedString(@"About", nil);
@@ -277,6 +285,13 @@
     [self.model setAutoUpdateLocation:autoUpdate];
     [self autoUpdateLocation:nil];
 
+}
+
+- (void) onUseSmallFontsChanged:(id) sender {
+    BOOL useSmallFonts = ![self.model useSmallFonts];
+    [self.model setUseSmallFonts:useSmallFonts];
+    [self.navigationController.tabBarController refresh];
+    
 }
 
 - (void) pushSearchDatePicker {
@@ -293,6 +308,8 @@
     NSInteger row = indexPath.row;
 
     if (section == 0) {
+        [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
+    } else if (section == 1) {
         /*if (row == 0) { 
             DataProviderViewController* controller =
                 [[[DataProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
@@ -330,8 +347,6 @@
                 [[[RatingsProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         }
-    } else if (section == 1) {
-        [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     } else if (section == 2) {
         CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
         [self.navigationController pushViewController:controller animated:YES];

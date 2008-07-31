@@ -36,59 +36,70 @@
     return text;
 }
 
-+ (CGFloat) heightForShowtimes:(NSArray*) showtimes {
++ (UIFont*) showtimesFont:(BOOL) useSmallFonts {
+    if (useSmallFonts) {
+        return [FontCache boldSystem11];
+    } else {
+        return [UIFont boldSystemFontOfSize:16];
+    }
+}
+
++ (CGFloat) heightForShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts {
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
 
-    return [string sizeWithFont:[FontCache boldSystem11]
+    return [string sizeWithFont:[MovieShowtimesCell showtimesFont:useSmallFonts]
               constrainedToSize:CGSizeMake(232, 1000)
                   lineBreakMode:UILineBreakModeWordWrap].height;
 }
 
 - (id)    initWithFrame:(CGRect) frame
-        reuseIdentifier:(NSString*) reuseIdentifier  {
+        reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame
                     reuseIdentifier:reuseIdentifier]) {
-
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-
         self.showtimesLabel.numberOfLines = 0;
-        self.showtimesLabel.font = [FontCache boldSystem11];
         self.showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
 
-        {
-            CGRect frame = showtimesLabel.frame;
-            frame.origin.x = 59;
-            frame.origin.y = 9;
-            frame.size.width = 232;
-            self.showtimesLabel.frame = frame;
-        }
-
-        [self addSubview:showtimesLabel];
-
         self.headerLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.headerLabel.font = [FontCache boldSystem11];
         self.headerLabel.textColor = [ColorCache commandColor];
         self.headerLabel.text = NSLocalizedString(@"Shows", nil);
-        [self.headerLabel sizeToFit];
-
-        {
-            CGRect frame = headerLabel.frame;
-            frame.origin.x = 19;
-            frame.origin.y = 9;
-            self.headerLabel.frame = frame;
-        }
-
+        
+        [self addSubview:showtimesLabel];
         [self addSubview:headerLabel];
     }
 
     return self;
 }
 
-- (void) setShowtimes:(NSArray*) showtimes {
+- (void) setShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts {
+    self.showtimesLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
+    self.headerLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
+    [self.headerLabel sizeToFit];
+
+    {
+        CGRect frame = headerLabel.frame;
+        frame.origin.x = 19;
+        frame.origin.y = 9;
+        self.headerLabel.frame = frame;
+    }
+    
+    {
+        CGRect frame;
+        frame.origin.y = 9;
+        frame.size.height = [MovieShowtimesCell heightForShowtimes:showtimes useSmallFonts:useSmallFonts];
+        
+        if (useSmallFonts) {
+            frame.origin.x = 59;
+            frame.size.width = 232;
+        } else {
+            frame.origin.x = 79;
+            frame.size.width = 212;
+        }
+        
+        self.showtimesLabel.frame = frame;
+    }
+    
     showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimes];
-    CGRect frame = showtimesLabel.frame;
-    frame.size.height = [MovieShowtimesCell heightForShowtimes:showtimes];
-    showtimesLabel.frame = frame;
 }
 
 - (void) setSelected:(BOOL) selected

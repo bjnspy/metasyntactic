@@ -169,7 +169,8 @@
                                                   reuseIdentifier:reuseIdentifier] autorelease];
             }
 
-            [cell setShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]];
+            [cell setShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]
+                 useSmallFonts:[self.model useSmallFonts]];
 
             return cell;
         }
@@ -208,7 +209,8 @@
         return [tableView rowHeight];
     }
 
-    return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]] + 18;
+    return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]
+                                    useSmallFonts:[self.model useSmallFonts]] + 18;
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
