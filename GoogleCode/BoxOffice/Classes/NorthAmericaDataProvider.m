@@ -148,16 +148,12 @@
 
 - (LookupResult*) lookupWorker {
     if (![Utilities isNilOrEmpty:self.model.postalCode]) {
-        NSMutableArray* hosts = [Application hosts];
-        NSInteger index = abs([Utilities hashString:self.model.postalCode]) % hosts.count;
-        NSString* host = [hosts objectAtIndex:index];
-
         NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                        fromDate:[self.model searchDate]];
 
         NSString* urlString =[NSString stringWithFormat:
                               @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d",
-                              host,
+                              [Application host],
                               self.model.postalCode,
                               [components year],
                               [components month],

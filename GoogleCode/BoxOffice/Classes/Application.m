@@ -286,16 +286,11 @@ static NSString* starString = nil;
     return @"http://localhost:8086";
 }
 
-+ (NSMutableArray*) hosts {
++ (NSString*) host {
     /*
-    return [NSMutableArray arrayWithObjects:@"metaboxoffice6", nil];
-    /*/
-    return [NSMutableArray arrayWithObjects:
-            @"metaboxoffice",
-            @"metaboxoffice2",
-            @"metaboxoffice3",
-            @"metaboxoffice4",
-            @"metaboxoffice5", nil];
+     return @"metaboxoffice6";
+     /*/
+    return @"metaboxoffice2";
      //*/
 }
 
