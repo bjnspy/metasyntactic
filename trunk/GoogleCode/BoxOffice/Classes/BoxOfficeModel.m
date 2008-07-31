@@ -20,7 +20,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.1.3";
+static NSString* currentVersion = @"1.2.2.1";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -41,29 +41,33 @@ static NSString* currentVersion = @"1.2.1.3";
 
 
 @synthesize notificationCenter;
+
 @synthesize posterCache;
 @synthesize trailerCache;
 @synthesize addressLocationCache;
 @synthesize reviewCache;
+@synthesize ratingsCache;
+
 @synthesize backgroundTaskCount;
 @synthesize activityView;
 @synthesize activityIndicatorView;
 
-@synthesize supplementaryInformationData;
 @synthesize movieMap;
 @synthesize favoriteTheatersData;
 @synthesize dataProviders;
 
 - (void) dealloc {
     self.notificationCenter = nil;
+    
     self.trailerCache = nil;
     self.posterCache = nil;
     self.addressLocationCache = nil;
     self.reviewCache = nil;
+    self.ratingsCache = nil;
+    
     self.activityView = nil;
     self.activityIndicatorView = nil;
 
-    self.supplementaryInformationData = nil;
     self.movieMap = nil;
     self.favoriteTheatersData = nil;
     self.dataProviders = nil;
@@ -83,8 +87,12 @@ static NSString* currentVersion = @"1.2.1.3";
     [self.trailerCache update:self.movies];
 }
 
+- (NSDictionary*) ratings {
+    return [self.ratingsCache ratings];
+}
+
 - (void) updateReviewCache {
-    [self.reviewCache update:self.supplementaryInformation ratingsProvider:[self ratingsProviderIndex]];
+    [self.reviewCache update:self.ratings ratingsProvider:[self ratingsProviderIndex]];
 }
 
 - (void) updateAddressLocationCache {
@@ -170,10 +178,12 @@ static NSString* currentVersion = @"1.2.1.3";
         [self loadData];
 
         self.notificationCenter = notificationCenter_;
+        
         self.posterCache = [PosterCache cache];
         self.trailerCache = [TrailerCache cache];
         self.addressLocationCache = [AddressLocationCache cache];
         self.reviewCache = [ReviewCache cacheWithModel:self];
+        self.ratingsCache = [RatingsCache cacheWithModel:self];
 
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicatorView.frame;
@@ -228,7 +238,8 @@ static NSString* currentVersion = @"1.2.1.3";
 }
 
 - (void) setDataProviderIndex:(NSInteger) index {
-    return [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];
+    self.movieMap = nil;
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];
 }
 
 - (id<DataProvider>) currentDataProvider {
@@ -248,8 +259,9 @@ static NSString* currentVersion = @"1.2.1.3";
 }
 
 - (void) setRatingsProviderIndex:(NSInteger) index {
+    self.movieMap = nil;
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel RATINGS_PROVIDER_INDEX]];
-    self.supplementaryInformationData = nil;
+    [self.ratingsCache onRatingsProviderChanged];
     [self updateReviewCache];
 }
 
@@ -367,51 +379,16 @@ static NSString* currentVersion = @"1.2.1.3";
     return [[self currentDataProvider] theaters];
 }
 
-- (NSDictionary*) loadSupplementaryInformation {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[Application ratingsFile:[self currentRatingsProvider]]];
-    if (dictionary == nil) {
-        return [NSDictionary dictionary];
-    }
-
-    NSMutableDictionary* decodedData = [NSMutableDictionary dictionary];
-    for (NSString* key in dictionary) {
-        [decodedData setObject:[ExtraMovieInformation infoWithDictionary:[dictionary objectForKey:key]] forKey:key];
-    }
-
-    return decodedData;
-}
-
-- (NSDictionary*) supplementaryInformation {
-    if (self.supplementaryInformationData == nil) {
-        self.supplementaryInformationData = [self loadSupplementaryInformation];
-    }
-
-    return self.supplementaryInformationData;
-}
-
-- (void) saveSupplementaryInformation:(NSDictionary*) dictionary {
-    NSMutableDictionary* encodedDictionary = [NSMutableDictionary dictionary];
-
-    for (NSString* key in dictionary) {
-        [encodedDictionary setObject:[[dictionary objectForKey:key] dictionary] forKey:key];
-    }
-
-    [Utilities writeObject:encodedDictionary toFile:[Application ratingsFile:[self currentRatingsProvider]]];
-}
-
-- (void) setSupplementaryInformation:(NSDictionary*) dictionary {
-    self.supplementaryInformationData = dictionary;
-    [self saveSupplementaryInformation:dictionary];
-
+- (void) onRatingsUpdated {
     self.movieMap = nil;
     [self updateReviewCache];
 }
 
 - (void) onProviderUpdated {
+    self.movieMap = nil;
     [self updatePosterCache];
     [self updateTrailerCache];
     [self updateAddressLocationCache];
-    self.movieMap = nil;
 }
 
 - (NSArray*) loadFavoriteTheaters {
@@ -741,7 +718,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (self.movieMap == nil) {
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
-        NSArray* keys = [[self supplementaryInformation] allKeys];
+        NSArray* keys = [[self ratings] allKeys];
         NSMutableArray* lowercaseKeys = [NSMutableArray array];
         for (NSString* key in keys) {
             [lowercaseKeys addObject:[key lowercaseString]];
@@ -773,7 +750,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         return nil;
     }
 
-    return [[self supplementaryInformation] objectForKey:key];
+    return [[self ratings] objectForKey:key];
 }
 
 - (NSInteger) scoreForMovie:(Movie*) movie {

@@ -148,6 +148,10 @@
         if (info.link.length > 0) {
             NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&hash=true", [Application host], info.link];
             NSString* serverHash = [NSString stringWithContentsOfURL:[NSURL URLWithString:url]];
+            if (serverHash == nil) {
+                serverHash = @"0";
+            }
+            
             NSString* localHash = [self reviewsHashForMovie:movieId];
             
             if (localHash != nil &&

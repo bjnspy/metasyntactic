@@ -15,6 +15,7 @@
 #import "NotificationCenter.h"
 #import "SearchCache.h"
 #import "DataProvider.h"
+#import "RatingsCache.h"
 
 @interface BoxOfficeModel : NSObject {
     NotificationCenter* notificationCenter;
@@ -24,6 +25,7 @@
     AddressLocationCache* addressLocationCache;
     ReviewCache* reviewCache;
     SearchCache* SearchCache;
+    RatingsCache* ratingsCache;
 
     NSInteger backgroundTaskCount;
     UIActivityIndicatorView* activityIndicatorView;
@@ -31,7 +33,6 @@
 
     NSInteger searchRadius;
 
-    NSDictionary* supplementaryInformationData;
     NSDictionary* movieMap;
 
     NSMutableArray* favoriteTheatersData;
@@ -40,15 +41,17 @@
 }
 
 @property (retain) NotificationCenter* notificationCenter;
+
 @property (retain) PosterCache* posterCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) ReviewCache* reviewCache;
 @property (retain) AddressLocationCache* addressLocationCache;
+@property (retain) RatingsCache* ratingsCache;
+
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
 @property (retain) UIView* activityView;
 @property (readonly) NSInteger backgroundTaskCount;
 
-@property (retain) NSDictionary* supplementaryInformationData;
 @property (retain) NSDictionary* movieMap;
 @property (retain) NSMutableArray* favoriteTheatersData;
 @property (retain) NSArray* dataProviders;
@@ -106,12 +109,11 @@
 - (NSDate*) searchDate;
 - (void) setSearchDate:(NSDate*) date;
 
-- (NSDictionary*) supplementaryInformation;
-- (void) setSupplementaryInformation:(NSDictionary*) dictionary;
-
 - (NSArray*) movies;
 - (NSArray*) theaters;
+
 - (void) onProviderUpdated;
+- (void) onRatingsUpdated;
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (Location*) locationForAddress:(NSString*) address;
@@ -167,6 +169,5 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 + (NSString*) AUTO_UPDATE_LOCATION;
 + (NSString*) DATA_PROVIDER_INDEX;
 + (NSString*) RATINGS_PROVIDER_INDEX;
-
 
 @end
