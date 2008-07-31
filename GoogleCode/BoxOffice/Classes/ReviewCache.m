@@ -46,14 +46,22 @@
     return [[reviewsFolder stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"plist"];
 }
 
-- (NSArray*) loadReviewFile:(NSString*) title ratingsProvider:(NSInteger) ratingsProvider {
-    NSArray* encodedReviews = [NSArray arrayWithContentsOfFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
-
+- (NSDictionary*) loadReviewFile:(NSString*) title ratingsProvider:(NSInteger) ratingsProvider {
+    NSDictionary* encodedDictionary = [NSDictionary dictionaryWithContentsOfFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
+    if (encodedDictionary == nil) {
+        return [NSDictionary dictionary];
+    }
+    
     NSMutableArray* reviews = [NSMutableArray array];
-    for (NSDictionary* dict in encodedReviews) {
+    for (NSDictionary* dict in [encodedDictionary objectForKey:@"Reviews"]) {
         [reviews addObject:[Review reviewWithDictionary:dict]];
     }
-    return reviews;
+    
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    [result setObject:reviews forKey:@"Reviews"];
+    [result setObject:[encodedDictionary objectForKey:@"Hash"] forKey:@"Hash"];
+    
+    return result;
 }
 
 - (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider {
@@ -85,17 +93,15 @@
     return result;
 }
 
-
-- (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
-    if (info.link.length == 0) {
-        return nil;
-    }
-
+- (NSString*) host:(ExtraMovieInformation*) info {
     NSMutableArray* hosts = [Application hosts];
     NSInteger index = abs([Utilities hashString:info.link]) % hosts.count;
-    NSString* host = [hosts objectAtIndex:index];
+    return [hosts objectAtIndex:index]; 
+}
 
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", host, info.link];
+
+- (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", [self host:info], info.link];
 
     NSError* httpError = nil;
     NSString* reviewPage = [NSString stringWithContentsOfURL:[NSURL URLWithString:url]
@@ -109,13 +115,31 @@
     return nil;
 }
 
-- (void) saveMovie:(NSString*) title reviews:(NSArray*) reviews ratingsProvider:(NSInteger) ratingsProvider {
+- (void) saveMovie:(NSString*) title reviews:(NSArray*) reviews hash:(NSString*) hash ratingsProvider:(NSInteger) ratingsProvider {
     NSMutableArray* encodedReviews = [NSMutableArray array];
     for (Review* review in reviews) {
         [encodedReviews addObject:[review dictionary]];
     }
+    
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    [dictionary setObject:encodedReviews forKey:@"Reviews"];
+    [dictionary setObject:hash forKey:@"Hash"];
 
-    [Utilities writeObject:encodedReviews toFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
+    [Utilities writeObject:dictionary toFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
+}
+
+- (NSArray*) reviewsForMovie:(NSString*) movieTitle {
+    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:[self.model ratingsProviderIndex]];
+    if (dictionary == nil) {
+        return [NSArray array];
+    }
+    
+    return [dictionary objectForKey:@"Reviews"];
+}
+
+- (NSString*) reviewsHashForMovie:(NSString*) movieTitle {
+    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:[self.model ratingsProviderIndex]];
+    return [dictionary objectForKey:@"Hash"];
 }
 
 - (void) downloadReviews:(NSDictionary*) supplementaryInformation
@@ -124,13 +148,25 @@
         if ([self.model ratingsProviderIndex] != ratingsProvider) {
             break;
         }
-
+        
+        
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
 
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
-        NSArray* reviews = [self downloadInfoReviews:info];
-        if (reviews.count > 0) {
-            [self saveMovie:movieId reviews:reviews ratingsProvider:ratingsProvider];
+        if (info.link.length > 0) {
+            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&hash=true", [self host:info], info.link];
+            NSString* serverHash = [NSString stringWithContentsOfURL:[NSURL URLWithString:url]];
+            NSString* localHash = [self reviewsHashForMovie:movieId];
+            
+            if (localHash != nil &&
+                [localHash isEqual:serverHash]) {
+                continue;
+            }
+            
+            NSArray* reviews = [self downloadInfoReviews:info];
+            if (reviews.count > 0) {
+                [self saveMovie:movieId reviews:reviews hash:serverHash ratingsProvider:ratingsProvider];
+            }
         }
 
         [autoreleasePool release];
@@ -168,14 +204,6 @@
     }
     [gate unlock];
     [autoreleasePool release];
-}
-
-- (NSArray*) reviewsForMovie:(NSString*) movieTitle {
-    NSArray* array = [self loadReviewFile:movieTitle ratingsProvider:[self.model ratingsProviderIndex]];
-    if (array == nil) {
-        return [NSArray array];
-    }
-    return array;
 }
 
 @end

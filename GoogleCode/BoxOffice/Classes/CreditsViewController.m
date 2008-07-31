@@ -172,7 +172,7 @@
     } else if (section == 1) {
         return NSLocalizedString(@"Graphics by Jeffrey Nee", nil);
     } else if (section == 2) {
-        return NSLocalizedString(@"Movie scores provided by:", nil);
+        return NSLocalizedString(@"Movie reviews provided by:", nil);
     } else if (section == 3) {
         return NSLocalizedString(@"Theater listings provided by:", nil);
     } else if (section == 4) {

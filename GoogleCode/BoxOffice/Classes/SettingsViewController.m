@@ -221,10 +221,10 @@
                 value = [[self.model currentDataProvider] displayName];
             } else 
                 */ if (indexPath.row == 0) {
-                key = NSLocalizedString(@"Postal code", nil);
+                key = NSLocalizedString(@"Postal Code", nil);
                 value = [self.model postalCode];
             } else if (indexPath.row == 1) {
-                key = NSLocalizedString(@"Hide theaters beyond", nil);
+                key = NSLocalizedString(@"Hide Theaters Beyond", nil);
 
                 if ([self.model searchRadius] == 1) {
                     value = NSLocalizedString(@"1 mile", nil);
@@ -232,7 +232,7 @@
                     value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [self.model searchRadius]];
                 }
             } else if (indexPath.row == 2) {
-                key = NSLocalizedString(@"Search date", nil);
+                key = NSLocalizedString(@"Search Date", nil);
 
                 NSDate* date = [self.model searchDate];
                 if ([DateUtilities isToday:date]) {
@@ -241,7 +241,7 @@
                     value = [DateUtilities formatLongDate:date];
                 }
             } else if (indexPath.row == 3) {
-                key = NSLocalizedString(@"Ratings", nil);
+                key = NSLocalizedString(@"Reviews", nil);
                 value = [self.model currentRatingsProvider];
             }
 
@@ -250,7 +250,7 @@
             return cell;
         } else {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            cell.text = NSLocalizedString(@"Auto-update location", nil);
+            cell.text = NSLocalizedString(@"Auto-Update Location", nil);
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             picker.on = [self.model autoUpdateLocation];
             [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];

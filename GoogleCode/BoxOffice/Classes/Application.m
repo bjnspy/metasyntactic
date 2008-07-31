@@ -287,12 +287,16 @@ static NSString* starString = nil;
 }
 
 + (NSMutableArray*) hosts {
+    /*
+    return [NSMutableArray arrayWithObjects:@"metaboxoffice6", nil];
+    /*/
     return [NSMutableArray arrayWithObjects:
             @"metaboxoffice",
             @"metaboxoffice2",
             @"metaboxoffice3",
             @"metaboxoffice4",
             @"metaboxoffice5", nil];
+     //*/
 }
 
 + (unichar) starCharacter {
