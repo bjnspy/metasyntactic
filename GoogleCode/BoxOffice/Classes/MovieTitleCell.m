@@ -50,21 +50,6 @@
         ratingLabel.font = [UIFont systemFontOfSize:12];
         ratingLabel.textColor = [UIColor grayColor];
 
-        {
-            CGRect frame = CGRectMake(50, 25, 250, 12);
-
-            if (style == UITableViewStyleGrouped) {
-                frame.origin.x += 10;
-                frame.size.width -= 20;
-            }
-
-            self.ratingLabel.frame = frame;
-
-            frame.origin.y = 5;
-            frame.size.height = 20;
-            self.titleLabel.frame = frame;
-        }
-
         [self addSubview:titleLabel];
         [self addSubview:scoreLabel];
         [self addSubview:ratingLabel];
@@ -155,10 +140,33 @@
 }
 
 - (void) setScore:(Movie*) movie {
+    {
+        CGRect frame;
+        if ([self.model noRatings]) {
+            frame = CGRectMake(10, 25, 285, 12);
+        } else {
+            frame = CGRectMake(50, 25, 245, 12);
+        }
+        
+        if (style == UITableViewStyleGrouped) {
+            frame.origin.x += 10;
+            frame.size.width -= 20;
+        }
+        
+        self.ratingLabel.frame = frame;
+        
+        frame.origin.y = 5;
+        frame.size.height = 20;
+        self.titleLabel.frame = frame;
+    }
+    
     if ([self.model rottenTomatoesRatings]) {
         [self setRottenTomatoesScore:movie];
-    } else {
+    } else if ([self.model metacriticRatings]) {
         [self setMetacriticScore:movie];
+    } else if ([self.model noRatings]) {
+        self.image = nil;
+        self.scoreLabel.text = nil;
     }
 }
 

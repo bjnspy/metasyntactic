@@ -73,6 +73,7 @@
 - (void) setRatingsProviderIndex:(NSInteger) index;
 - (BOOL) rottenTomatoesRatings;
 - (BOOL) metacriticRatings;
+- (BOOL) noRatings;
 - (NSString*) currentRatingsProvider;
 - (NSArray*) ratingsProviders;
 

@@ -273,8 +273,12 @@ static NSString* currentVersion = @"1.2.2.1";
     return [self ratingsProviderIndex] == 1;
 }
 
+- (BOOL) noRatings {
+    return [self ratingsProviderIndex] == 2;
+}
+
 - (NSArray*) ratingsProviders {
-    return [NSArray arrayWithObjects:@"RottenTomatoes", @"Metacritic", nil];
+    return [NSArray arrayWithObjects:@"RottenTomatoes", @"Metacritic", @"None", nil];
 }
 
 - (NSString*) currentRatingsProvider {

@@ -58,6 +58,7 @@
 - (id) initWithModel:(BoxOfficeModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
+        [self onRatingsProviderChanged];
     }
     
     return self;
