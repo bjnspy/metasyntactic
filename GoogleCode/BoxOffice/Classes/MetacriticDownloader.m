@@ -17,7 +17,6 @@
 
 - (void) dealloc {
     self.model = nil;
-
     [super dealloc];
 }
 
@@ -33,13 +32,26 @@
     return [[[MetacriticDownloader alloc] initWithModel:model] autorelease];
 }
 
-- (NSDictionary*) lookupMovieListings {
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic", [Application host]]];
+- (NSDictionary*) lookupMovieListings:(NSString*) localHash {
+    NSString* host = [Application host];
+    
+    NSString* serverHash = [NSString stringWithContentsOfURL:
+                            [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&hash=true", host]]];
+    if (serverHash == nil) {
+        serverHash = @"0";
+    }
+    
+    if (localHash != nil &&
+        [localHash isEqual:serverHash]) {
+        return [NSDictionary dictionary];
+    }
+    
+    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic", host]];
     NSError* httpError = nil;
     NSString* movieListings = [NSString stringWithContentsOfURL:url encoding:NSISOLatin1StringEncoding error:&httpError];
 
     if (httpError == nil && movieListings != nil) {
-        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+        NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
 
         NSArray* rows = [movieListings componentsSeparatedByString:@"\n"];
 
@@ -61,14 +73,22 @@
                                                                                   score:score];
 
 
-                [dictionary setObject:extraInfo forKey:[extraInfo title]];
+                [ratings setObject:extraInfo forKey:[extraInfo title]];
             }
         }
 
-        return dictionary;
+        NSMutableDictionary* result = [NSMutableDictionary dictionary];
+        [result setObject:ratings forKey:@"Ratings"];
+        [result setObject:serverHash forKey:@"Hash"];
+        
+        return result;
     }
 
     return nil;
+}
+
+- (NSString*) ratingsFile {
+    return [Application ratingsFile:[[self.model ratingsProviders] objectAtIndex:1]];
 }
 
 @end

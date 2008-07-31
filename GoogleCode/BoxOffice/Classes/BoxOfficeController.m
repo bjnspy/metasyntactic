@@ -18,8 +18,6 @@
 #import "Utilities.h"
 #import "ExtraMovieInformation.h"
 #import "Performance.h"
-#import "RottenTomatoesDownloader.h"
-#import "MetacriticDownloader.h"
 #import "NorthAmericaDataProvider.h"
 
 @implementation BoxOfficeController
@@ -112,21 +110,15 @@
 }
 
 - (NSDictionary*) ratingsLookup {
-    if ([self.model rottenTomatoesRatings]) {
-        return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings];
-    } else if ([self.model metacriticRatings]) {
-        return [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings];
-    }
-
-    return nil;
+    return [self.model.ratingsCache update];
 }
 
 - (void) ratingsLookupBackgroundThreadEntryPoint:(id) anObject {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [self.ratingsLookupLock lock];
     {
-        NSDictionary* extraInformation = [self ratingsLookup];
-        [self performSelectorOnMainThread:@selector(setSupplementaryData:) withObject:extraInformation waitUntilDone:NO];
+        NSDictionary* ratings = [self ratingsLookup];
+        [self performSelectorOnMainThread:@selector(setRatings:) withObject:ratings waitUntilDone:NO];
     }
     [self.ratingsLookupLock unlock];
     [autoreleasePool release];
@@ -137,9 +129,9 @@
     [appDelegate.tabBarController refresh];
 }
 
-- (void) setSupplementaryData:(NSDictionary*) extraInfo {
-    if (extraInfo.count > 0) {
-        [self.model setSupplementaryInformation:extraInfo];
+- (void) setRatings:(NSDictionary*) ratings {
+    if (ratings.count > 0) {
+        [self.model onRatingsUpdated];
     }
 
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie list", nil)];

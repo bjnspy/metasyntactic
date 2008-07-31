@@ -18,6 +18,6 @@
 
 + (MetacriticDownloader*) downloaderWithModel:(BoxOfficeModel*) model;
 
-- (NSDictionary*) lookupMovieListings;
+- (NSDictionary*) lookupMovieListings:(NSString*) hash;
 
 @end
