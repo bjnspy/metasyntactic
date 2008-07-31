@@ -45,6 +45,10 @@ class LookupMovieReviewsHandler(webapp.RequestHandler):
     hash = memcache.get(key)
 
     if hash is None:
+      self.get_listings_from_cache(q)
+      hash = memcache.get(key)
+
+    if hash is None:
       self.response.out.write("0")
     else:
       self.response.out.write(hash)
@@ -59,10 +63,10 @@ class LookupMovieReviewsHandler(webapp.RequestHandler):
     if listings is None:
       listings = self.get_listings_from_webservice(q)
       memcache.Client().set(key, listings, 24 * 60 * 60)
-      memcache.Client().set(hashKey, hash(listings))
+      memcache.Client().set(hashKey, hash(listings), 8 * 60 * 60)
 
     if memcache.get(hashKey) is None:
-      memcache.Client().set(hashKey, hash(listings))
+      memcache.Client().set(hashKey, hash(listings), 8 * 60 * 60)
 
     return listings
 
