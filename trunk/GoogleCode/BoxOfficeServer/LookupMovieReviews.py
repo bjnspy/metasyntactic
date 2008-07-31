@@ -26,6 +26,11 @@ class LookupMovieReviewsHandler(webapp.RequestHandler):
   def get(self):
 #    memcache.flush_all()
     q = self.request.get("q")
+    hash = self.request.get("hash")
+
+    if hash == "true":
+      self.get_hash(q)
+      return
 
     listings = self.get_listings_from_cache(q)
     if listings is None:
@@ -33,15 +38,31 @@ class LookupMovieReviewsHandler(webapp.RequestHandler):
       return
 
     self.response.out.write(zlib.decompress(listings))
-    
+
+
+  def get_hash(self, q):
+    key = "MovieReviews_" + q + "_Hash";
+    hash = memcache.get(key)
+
+    if hash is None:
+      self.response.out.write("0")
+    else:
+      self.response.out.write(hash)
+
 
   def get_listings_from_cache(self, q):
     key = "MovieReviews_" + q
+    hashKey = key + "_Hash";
+
     listings = memcache.get(key)
 
     if listings is None:
       listings = self.get_listings_from_webservice(q)
       memcache.Client().set(key, listings, 24 * 60 * 60)
+      memcache.Client().set(hashKey, hash(listings))
+
+    if memcache.get(hashKey) is None:
+      memcache.Client().set(hashKey, hash(listings))
 
     return listings
 
