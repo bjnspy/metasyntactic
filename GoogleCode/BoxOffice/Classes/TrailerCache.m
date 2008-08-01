@@ -54,8 +54,7 @@
     for (NSString* filePath in set) {
         NSString* fullPath = [[Application trailersFolder] stringByAppendingPathComponent:filePath];
 
-        NSError* error;
-        [[NSFileManager defaultManager] removeItemAtPath:fullPath error:&error];
+        [[NSFileManager defaultManager] removeItemAtPath:fullPath error:NULL];
     }
 }
 

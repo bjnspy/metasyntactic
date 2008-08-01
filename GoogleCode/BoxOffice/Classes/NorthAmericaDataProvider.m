@@ -31,7 +31,7 @@
     return [[Application dataFolder] stringByAppendingPathComponent:@"NorthAmerica"];
 }
 
-- (NSDictionary*) processShowtimes:(XmlElement*) moviesElement {
++ (NSDictionary*) processShowtimes:(XmlElement*) moviesElement {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
     for (XmlElement* movieElement in [moviesElement children]) {
@@ -58,7 +58,7 @@
     return dictionary;
 }
 
-- (void) processTheaterElement:(XmlElement*) theaterElement theaters:(NSMutableArray*) theaters performances:(NSMutableDictionary*) performances {
++ (void) processTheaterElement:(XmlElement*) theaterElement theaters:(NSMutableArray*) theaters performances:(NSMutableDictionary*) performances {
     NSString* identifier = [theaterElement attributeValue:@"id"];
     NSString* name = [[theaterElement element:@"name"] text];
     NSString* address = [[theaterElement element:@"address1"] text];
@@ -91,7 +91,7 @@
                                       movieIdentifiers:[movieToShowtimesMap allKeys]]];
 }
 
-- (NSArray*) processTheaters:(XmlElement*) theatersElement {
++ (NSArray*) processTheaters:(XmlElement*) theatersElement {
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
 
@@ -102,7 +102,7 @@
     return [NSArray arrayWithObjects:theaters, performances, nil];
 }
 
-- (NSArray*) processMovies:(XmlElement*) moviesElement {
++ (NSArray*) processMovies:(XmlElement*) moviesElement {
     NSMutableArray* array = [NSMutableArray array];
 
     for (XmlElement* movieElement in [moviesElement children]) {
@@ -133,7 +133,7 @@
     return array;
 }
 
-- (LookupResult*) processElement:(XmlElement*) element {
++ (LookupResult*) processElement:(XmlElement*) element {
     XmlElement* dataElement = [element element:@"data"];
     XmlElement* moviesElement = [dataElement element:@"movies"];
     XmlElement* theatersElement = [dataElement element:@"theaters"];
@@ -162,7 +162,7 @@
         XmlElement* element = [Utilities downloadXml:urlString];
 
         if (element != nil) {
-            return [self processElement:element];
+            return [NorthAmericaDataProvider processElement:element];
         }
     }
 

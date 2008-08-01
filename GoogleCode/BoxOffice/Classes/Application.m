@@ -18,10 +18,12 @@ static NSString* documentsFolder = nil;
 static NSString* tempFolder = nil;
 static NSString* locationsFolder = nil;
 static NSString* ratingsFolder = nil;
+static NSString* reviewsFolder = nil;
 static NSString* trailersFolder = nil;
 static NSString* postersFolder = nil;
 static NSString* searchFolder = nil;
 static NSString* supportFolder = nil;
+static NSMutableDictionary* providerReviewsFolder = nil;
 
 static DifferenceEngine* differenceEngine = nil;
 static NSString* starString = nil;
@@ -31,6 +33,8 @@ static NSString* starString = nil;
         gate = [[NSRecursiveLock alloc] init];
 
         differenceEngine = [[DifferenceEngine engine] retain];
+        
+        providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
     }
 }
 
@@ -40,14 +44,39 @@ static NSString* starString = nil;
     }
 }
 
-+ (BOOL) missing:(NSString*) folder {
-    return folder == NULL || ![[NSFileManager defaultManager] fileExistsAtPath:folder];
++ (void) deleteFolders {
+    [gate lock];
+    {
+        [[NSFileManager defaultManager] removeItemAtPath:[Application dataFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application locationsFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application postersFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application trailersFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application reviewsFolder] error:NULL];
+        
+        [dataFolder release];
+        [locationsFolder release];
+        [postersFolder release];
+        [trailersFolder release];
+        [ratingsFolder release];
+        [reviewsFolder release];
+        [providerReviewsFolder release];
+        
+        dataFolder = nil;
+        locationsFolder = nil;
+        postersFolder = nil;
+        trailersFolder = nil;
+        ratingsFolder = nil;
+        reviewsFolder = nil;
+        providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
+    }
+    [gate unlock];
 }
 
 + (NSString*) documentsFolder {
     [gate lock];
     {
-        if ([Application missing:documentsFolder]) {
+        if (documentsFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, /*expandTilde:*/YES);
             NSString* folder = [paths objectAtIndex:0];
 
@@ -64,7 +93,7 @@ static NSString* starString = nil;
 + (NSString*) supportFolder {
     [gate lock];
     {
-        if ([Application missing:supportFolder]) {
+        if (supportFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
 
             NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
@@ -95,7 +124,7 @@ static NSString* starString = nil;
 + (NSString*) dataFolder {
     [gate lock];
     {
-        if ([Application missing:dataFolder]) {
+        if (dataFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Data"];
 
@@ -109,10 +138,27 @@ static NSString* starString = nil;
     return dataFolder;
 }
 
++ (NSString*) reviewsFolder {
+    [gate lock];
+    {
+        if (reviewsFolder == nil) {
+            NSString* parent = [Application supportFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Reviews"];
+            
+            [Application createDirectory:folder];
+            
+            reviewsFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return reviewsFolder;
+}
+
 + (NSString*) ratingsFolder {
     [gate lock];
     {
-        if ([Application missing:ratingsFolder]) {
+        if (ratingsFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Ratings"];
             
@@ -129,7 +175,7 @@ static NSString* starString = nil;
 + (NSString*) searchFolder {
     [gate lock];
     {
-        if ([Application missing:searchFolder]) {
+        if (searchFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Search"];
 
@@ -146,7 +192,7 @@ static NSString* starString = nil;
 + (NSString*) trailersFolder {
     [gate lock];
     {
-        if ([Application missing:trailersFolder]) {
+        if (trailersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
             
@@ -163,7 +209,7 @@ static NSString* starString = nil;
 + (NSString*) locationsFolder {
     [gate lock];
     {
-        if ([Application missing:locationsFolder]) {
+        if (locationsFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Locations"];
             
@@ -180,7 +226,7 @@ static NSString* starString = nil;
 + (NSString*) postersFolder {
     [gate lock];
     {
-        if ([Application missing:postersFolder]) {
+        if (postersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
             
@@ -192,6 +238,25 @@ static NSString* starString = nil;
     [gate unlock];
     
     return postersFolder;
+}
+
++ (NSString*) providerReviewsFolder:(NSString*) ratingsProvider {
+    NSString* folder = nil;
+    
+    [gate lock];
+    {
+        folder = [providerReviewsFolder objectForKey:ratingsProvider];
+        if (folder == nil) {
+            folder = [[Application reviewsFolder] stringByAppendingPathComponent:ratingsProvider];
+    
+            [Application createDirectory:folder];
+            
+            [providerReviewsFolder setObject:folder forKey:ratingsProvider];
+        }
+    }
+    [gate unlock];
+    
+    return folder;
 }
 
 + (NSString*) randomString {
@@ -236,16 +301,6 @@ static NSString* starString = nil;
 
 + (NSString*) theatersFile {
     return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
-}
-
-+ (NSString*) reviewsFolder:(NSString*) ratingsProvider {
-    NSString* grandParent = [Application supportFolder];
-    NSString* parent = [grandParent stringByAppendingPathComponent:@"Reviews"];
-    NSString* folder = [parent stringByAppendingPathComponent:ratingsProvider];
-
-    [Application createDirectory:folder];
-
-    return folder;
 }
 
 + (void) openBrowser:(NSString*) address {
