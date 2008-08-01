@@ -157,8 +157,6 @@
         self.movie = movie_;
         filterTheatersByDistance = YES;
 
-        [self initializeData];
-
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = self.movie.title;
 

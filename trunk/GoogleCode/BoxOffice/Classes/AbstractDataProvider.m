@@ -16,12 +16,14 @@
 @synthesize model;
 @synthesize moviesData;
 @synthesize theatersData;
+@synthesize performances;
 
 - (void) dealloc {
-    self.model;
+    self.model = nil;
     self.moviesData = nil;
     self.theatersData = nil;
-
+    self.performances = nil;
+    
     [super dealloc];
 }
 
@@ -29,6 +31,7 @@
     if (self = [super init]) {
         self.model = model_;
         [Application createDirectory:[self providerFolder]];
+        self.performances = [NSMutableDictionary dictionary];
     }
 
     return self;
@@ -108,17 +111,13 @@
 }
 
 - (void) saveResult:(LookupResult*) result {
-    NSArray* movies = result.movies;
-    NSArray* theaters = result.theaters;
-    NSDictionary* performances = result.performances;
-
-    if (movies.count > 0 || theaters.count > 0) {
-        [self saveArray:movies to:[self moviesFile]];
-        [self saveArray:theaters to:[self theatersFile]];
+    if (result.movies.count > 0 || result.theaters.count > 0) {
+        [self saveArray:result.movies to:[self moviesFile]];
+        [self saveArray:result.theaters to:[self theatersFile]];
 
         NSString* tempFolder = [Application uniqueTemporaryFolder];
-        for (NSString* key in performances) {
-            NSDictionary* value = [performances objectForKey:key];
+        for (NSString* key in result.performances) {
+            NSDictionary* value = [result.performances objectForKey:key];
 
             [Utilities writeObject:value toFile:[self performancesFile:key parentFolder:tempFolder]];
         }
@@ -130,19 +129,29 @@
     }
 }
 
-- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
+- (NSArray*) moviePerformancesWorker:(Movie*) movie forTheater:(Theater*) theater {
     NSDictionary* theaterPerformances = [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.identifier]];
     NSArray* encodedArray = [theaterPerformances objectForKey:movie.identifier];
     if (encodedArray == nil) {
         return [NSArray array];
     }
-
+    
     NSMutableArray* decodedArray = [NSMutableArray array];
     for (NSDictionary* dict in encodedArray) {
         [decodedArray addObject:[Performance performanceWithDictionary:dict]];
     }
-
+    
     return decodedArray;
+}
+
+- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
+    NSArray* array = [self.performances objectForKey:theater.identifier];
+    if (array == nil) {
+        array = [self moviePerformancesWorker:movie forTheater:theater];
+        [self.performances setObject:array forKey:theater.identifier];
+    }
+    
+    return array;
 }
 
 - (NSArray*) loadTheaters {
@@ -194,12 +203,10 @@
 }
 
 - (void) reportResult:(LookupResult*) result {
-    NSArray* movies = result.movies;
-    NSArray* theaters = result.theaters;
-
-    if (movies.count > 0 || theaters.count > 0) {
-        self.moviesData = movies;
-        self.theatersData = theaters;
+    if (result.movies.count > 0 || result.theaters.count > 0) {
+        self.moviesData = result.movies;
+        self.theatersData = result.theaters;
+        self.performances = [NSMutableDictionary dictionary];
         [self.model onProviderUpdated];
     }
 }

@@ -70,13 +70,13 @@
     //XmlElement* venuesElement     = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films_venues.xml"];
     //XmlElement* screeningsElement = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films_screenings_today.xml"];
 
-    NSArray* movies            = [self processFilms:filmsElement];
-    NSArray* theaters          = [self processVenues:venuesElement];
-    NSDictionary* performances = [self processScreenings:screeningsElement];
-    
-    return [LookupResult resultWithMovies:movies
-                                 theaters:theaters
-                             performances:performances];
+    NSArray* movies_            = [self processFilms:filmsElement];
+    NSArray* theaters_          = [self processVenues:venuesElement];
+    NSDictionary* performances_ = [self processScreenings:screeningsElement];
+
+    return [LookupResult resultWithMovies:movies_
+                                 theaters:theaters_
+                             performances:performances_];
 }
 
 @end

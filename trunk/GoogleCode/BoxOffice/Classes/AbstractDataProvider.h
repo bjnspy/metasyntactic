@@ -16,11 +16,14 @@
     BoxOfficeModel* model;
     NSArray* moviesData;
     NSArray* theatersData;
+    
+    NSMutableDictionary* performances;
 }
 
+@property (retain) BoxOfficeModel* model;
 @property (retain) NSArray* moviesData;
 @property (retain) NSArray* theatersData;
-@property (retain) BoxOfficeModel* model;
+@property (retain) NSMutableDictionary* performances;
 
 - (id) initWithModel:(BoxOfficeModel*) model;
 

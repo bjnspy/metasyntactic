@@ -20,10 +20,13 @@
 + (NSString*) tempFolder;
 + (NSString*) ratingsFolder;
 + (NSString*) trailersFolder;
-+ (NSString*) reviewsFolder:(NSString*) provider;
++ (NSString*) reviewsFolder;
++ (NSString*) providerReviewsFolder:(NSString*) provider;
 
 + (NSString*) movieMapFile;
 + (NSString*) ratingsFile:(NSString*) ratingsProvider;
+
++ (void) deleteFolders;
 
 + (NSString*) uniqueTemporaryFolder;
 

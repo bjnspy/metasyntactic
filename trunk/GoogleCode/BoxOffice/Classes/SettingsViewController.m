@@ -271,7 +271,7 @@
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.text = NSLocalizedString(@"Use Small Fonts", nil);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             picker.on = [self.model useSmallFonts];
             [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];

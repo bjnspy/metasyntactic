@@ -42,7 +42,7 @@
 
 - (NSString*) reviewFilePath:(NSString*) title ratingsProvider:(NSInteger) ratingsProvider {
     NSString* sanitizedTitle = [Application sanitizeFileName:title];
-    NSString* reviewsFolder = [Application reviewsFolder:[[self.model ratingsProviders] objectAtIndex:ratingsProvider]];
+    NSString* reviewsFolder = [Application providerReviewsFolder:[[self.model ratingsProviders] objectAtIndex:ratingsProvider]];
     return [[reviewsFolder stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"plist"];
 }
 
@@ -51,7 +51,7 @@
     if (encodedDictionary == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     NSMutableArray* reviews = [NSMutableArray array];
     for (NSDictionary* dict in [encodedDictionary objectForKey:@"Reviews"]) {
         [reviews addObject:[Review reviewWithDictionary:dict]];

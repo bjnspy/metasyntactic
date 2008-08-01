@@ -20,7 +20,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.2.1";
+static NSString* currentVersion = @"1.2.2.2";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -156,16 +156,7 @@ static NSString* currentVersion = @"1.2.2.1";
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel DATA_PROVIDER_INDEX]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel USE_NORMAL_FONTS]];
 
-        [[NSFileManager defaultManager] removeItemAtPath:[Application dataFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application locationsFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application postersFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application trailersFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application movieMapFile] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFolder] error:NULL];
-
-        for (NSString* provider in [self ratingsProviders]) {
-            [[NSFileManager defaultManager] removeItemAtPath:[Application reviewsFolder:provider] error:NULL];
-        }
+        [Application deleteFolders];
 
         for (id<DataProvider> provider in self.dataProviders) {
             [provider invalidateDiskCache];
