@@ -1,10 +1,18 @@
+// Copyright (C) 2008 Cyrus Najmabadi
 //
-//  TicketsViewController.m
-//  BoxOffice
+// This program is free software; you can redistribute it and/or modify it 
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 2 of the License, or (at your option) any
+// later version.
 //
-//  Created by Cyrus Najmabadi on 5/10/08.
-//  Copyright 2008 Metasyntactic. All rights reserved.
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+// details.
 //
+// You should have received a copy of the GNU General Public License along with
+// this program; if not, write to the Free Software Foundation, Inc., 51 
+// Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "TicketsViewController.h"
 #import "AbstractNavigationController.h"
@@ -57,7 +65,7 @@
             NSDate* showtimeDate = [DateUtilities dateWithNaturalLanguageString:performance.time];
 
             if ([now compare:showtimeDate] == NSOrderedDescending) {
-                [self.futurePerformances addObject:performance];
+                //[self.futurePerformances addObject:performance];
                 continue;
             }
         }
@@ -154,14 +162,17 @@
     }
 
     NSArray* list = (section == 2 ? self.performances : self.futurePerformances);
-    NSString* showtime = [[list objectAtIndex:row] time];
-    if (![self.theater.sellsTickets isEqual:@"True"]) {
+    
+    Performance* performance = [list objectAtIndex:row];
+    
+    if (![self.theater.sellsTickets isEqual:@"True"] ||
+        [Utilities isNilOrEmpty:[performance identifier]]) {
         cell.textColor = [UIColor blackColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), showtime];
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), [performance time]];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textColor = [ColorCache commandColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil), showtime];
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil), [performance time]];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 
