@@ -19,7 +19,7 @@ from google.appengine.api import urlfetch
 
 class LookupMovieListingsHandler(webapp.RequestHandler):
   def get(self):
-    memcache.flush_all()
+#    memcache.flush_all()
     q = self.request.get("q")
     hash = self.request.get("hash")
 
