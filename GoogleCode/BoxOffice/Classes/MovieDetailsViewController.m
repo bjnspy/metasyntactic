@@ -166,9 +166,9 @@
         filterTheatersByDistance = YES;
 
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = self.movie.title;
+        label.text = self.movie.displayTitle;
 
-        self.title = self.movie.title;
+        self.title = self.movie.displayTitle;
         self.navigationItem.titleView = label;
         self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:self.movie]];
         

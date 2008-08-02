@@ -51,7 +51,7 @@
         self.titleLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
-        titleLabel.minimumFontSize = 16;
+        titleLabel.minimumFontSize = 14;
         titleLabel.textColor = [UIColor blackColor];
 
         self.ratingLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
@@ -181,7 +181,7 @@
 - (void) setMovie:(Movie*) movie {
     [self setScore:movie];
     self.ratingLabel.text = [movie ratingAndRuntimeString];
-    self.titleLabel.text = movie.title;
+    self.titleLabel.text = movie.displayTitle;
 }
 
 - (void) setSelected:(BOOL) selected

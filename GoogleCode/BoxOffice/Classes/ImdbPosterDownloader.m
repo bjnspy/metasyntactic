@@ -21,7 +21,7 @@
 @implementation ImdbPosterDownloader
 
 - (NSString*) imdbId {
-    NSString* escapedTitle = [self.movie.title stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+    NSString* escapedTitle = [self.movie.canonicalTitle stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
     if (escapedTitle != nil) {
         NSString* urlString = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
         NSURL* url = [NSURL URLWithString:urlString];

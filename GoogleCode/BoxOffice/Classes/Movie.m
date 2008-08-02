@@ -20,35 +20,53 @@
 @implementation Movie
 
 @synthesize identifier;
-@synthesize title;
+@synthesize canonicalTitle;
 @synthesize rating;
 @synthesize length;
 @synthesize releaseDate;
 @synthesize poster;
 @synthesize synopsis;
+@synthesize displayTitle;
 
 - (void) dealloc {
     self.identifier = nil;
-    self.title = nil;
+    self.canonicalTitle = nil;
     self.rating = nil;
     self.length = nil;
     self.releaseDate = nil;
     self.poster = nil;
     self.synopsis = nil;
-
+    self.displayTitle = nil;
+    
     [super dealloc];
 }
 
-+ (NSString*) massageTitle:(NSString*) title {
++ (NSString*) makeCanonical:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
+    
     if ([title hasSuffix:@", The"]) {
-        title = [NSString stringWithFormat:@"The %@", [title substringToIndex:([title length] - 5)]];
+        return [NSString stringWithFormat:@"The %@", [title substringToIndex:([title length] - 5)]];
+    } else if ([title hasSuffix:@", An"]) {
+        return [NSString stringWithFormat:@"An %@", [title substringToIndex:([title length] - 4)]];
     } else if ([title hasSuffix:@", A"]) {
-        title = [NSString stringWithFormat:@"A %@", [title substringToIndex:([title length] - 3)]];
+        return [NSString stringWithFormat:@"A %@", [title substringToIndex:([title length] - 3)]];
     }
-
+    
     return title;
+}
+
++ (NSString*) makeDisplay:(NSString*) title {
+    title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    
+    if ([title hasPrefix:@"The "]) {
+        return [NSString stringWithFormat:@"%@, The", [title substringFromIndex:4]];
+    } else if ([title hasPrefix:@"An "]) {
+        return [NSString stringWithFormat:@"%@, An", [title substringFromIndex:3]];
+    } else if ([title hasPrefix:@"A "]) {
+        return [NSString stringWithFormat:@"%@, A", [title substringFromIndex:2]];
+    } else {
+        return title;
+    }
 }
 
 - (id) initWithIdentifier:(NSString*) identifier_
@@ -60,7 +78,9 @@
                  synopsis:(NSString*) synopsis_ {
     if (self = [self init]) {
         self.identifier = identifier_;
-        self.title    = [Movie massageTitle:title_];
+        self.canonicalTitle = [Movie makeCanonical:title_];
+        self.displayTitle   = [Movie makeDisplay:title_];
+        
         self.rating   = [rating_   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if (self.rating == nil) {
             self.rating = @"NR";
@@ -69,10 +89,10 @@
         self.releaseDate = releaseDate_;
         self.poster = poster_;
         self.synopsis =
-            [[synopsis_ stringByReplacingOccurrencesOfString:@"<em>" withString:@""]
-                stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
+        [[synopsis_ stringByReplacingOccurrencesOfString:@"<em>" withString:@""]
+         stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
     }
-
+    
     return self;
 }
 
@@ -94,7 +114,7 @@
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
     return [Movie movieWithIdentifier:[dictionary objectForKey:@"identifier"]
-                                title:[dictionary objectForKey:@"title"]
+                                title:[dictionary objectForKey:@"canonicalTitle"]
                                rating:[dictionary objectForKey:@"rating"]
                                length:[dictionary objectForKey:@"length"]
                           releaseDate:[dictionary objectForKey:@"releaseDate"]
@@ -105,7 +125,7 @@
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:self.identifier     forKey:@"identifier"];
-    [dictionary setValue:self.title          forKey:@"title"];
+    [dictionary setValue:self.canonicalTitle forKey:@"canonicalTitle"];
     [dictionary setValue:self.rating         forKey:@"rating"];
     [dictionary setValue:self.length         forKey:@"length"];
     [dictionary setValue:self.releaseDate    forKey:@"releaseDate"];
@@ -120,30 +140,30 @@
 
 - (BOOL) isEqual:(id) anObject {
     Movie* other = anObject;
-
+    
     return
     [self.identifier isEqual:other.identifier] &&
-    [self.title isEqual:other.title];
+    [self.canonicalTitle isEqual:other.canonicalTitle];
 }
 
 - (NSUInteger) hash {
     return
     [self.identifier hash];
-    [self.title hash];
+    [self.canonicalTitle hash];
 }
 
 - (NSString*) ratingAndRuntimeString {
     NSInteger movieLength = [self.length intValue];
     NSInteger hours = movieLength / 60;
     NSInteger minutes = movieLength % 60;
-
+    
     NSString* ratingString;
     if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
         ratingString = NSLocalizedString(@"Unrated.", nil);
     }  else {
         ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@.", nil), self.rating];
     }
-
+    
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {
         if (hours == 1) {
@@ -151,14 +171,14 @@
         } else if (hours > 1) {
             [text appendFormat:@" %d hours", hours];
         }
-
+        
         if (minutes == 1) {
             [text appendString:@" 1 minute"];
         } else if (minutes > 1) {
             [text appendFormat:@" %d minutes", minutes];
         }
     }
-
+    
     return text;
 }
 

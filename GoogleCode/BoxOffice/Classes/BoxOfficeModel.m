@@ -28,7 +28,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.2.2";
+static NSString* currentVersion = @"1.2.2.3";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -565,7 +565,7 @@ NSInteger compareMoviesByTitle(id t1, id t2, void *context) {
     Movie* movie1 = t1;
     Movie* movie2 = t2;
 
-    return [movie1.title compare:movie2.title options:NSCaseInsensitiveSearch];
+    return [movie1.displayTitle compare:movie2.displayTitle options:NSCaseInsensitiveSearch];
 }
 
 NSInteger compareTheatersByName(id t1, id t2, void *context) {
@@ -730,15 +730,15 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         }
 
         for (Movie* movie in self.movies) {
-            NSString* lowercaseTitle = [movie.title lowercaseString];
+            NSString* lowercaseTitle = [movie.canonicalTitle lowercaseString];
             NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
             if (index == NSNotFound) {
-                index = [[Application differenceEngine] findClosestMatchIndex:[movie.title lowercaseString] inArray:lowercaseKeys];
+                index = [[Application differenceEngine] findClosestMatchIndex:[movie.canonicalTitle lowercaseString] inArray:lowercaseKeys];
             }
 
             if (index != NSNotFound) {
                 NSString* key = [keys objectAtIndex:index];
-                [dictionary setObject:key forKey:movie.title];
+                [dictionary setObject:key forKey:movie.canonicalTitle];
             }
         }
 
@@ -750,7 +750,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 - (ExtraMovieInformation*) extraInformationForMovie:(Movie*) movie {
     [self createMovieMap];
 
-    NSString* key = [self.movieMap objectForKey:movie.title];
+    NSString* key = [self.movieMap objectForKey:movie.canonicalTitle];
     if (key == nil) {
         return nil;
     }
@@ -791,7 +791,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         return [NSArray array];
     }
 
-    return [reviewCache reviewsForMovie:extraInfo.title];
+    return [reviewCache reviewsForMovie:extraInfo.canonicalTitle];
 }
 
 - (NSString*) noLocationInformationFound {

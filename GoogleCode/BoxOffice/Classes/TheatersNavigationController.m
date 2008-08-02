@@ -77,7 +77,7 @@
                 animated:(BOOL) animated {
     [self pushTicketsView:movie
                   theater:theater
-                    title:movie.title
+                    title:movie.displayTitle
                  animated:animated];
 }
 
