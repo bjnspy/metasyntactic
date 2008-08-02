@@ -19,58 +19,66 @@ from google.appengine.api import urlfetch
 
 class LookupMovieListingsHandler(webapp.RequestHandler):
   def get(self):
-#    memcache.flush_all()
+    memcache.flush_all()
     q = self.request.get("q")
+    hash = self.request.get("hash")
+
     if not (q == "RottenTomatoes" or q == "Metacritic"):
         q = "RottenTomatoes"
+
+    if hash == "true":
+      self.get_hash(q)
+      return
     
     listings = self.get_listings_from_cache(q)
     if listings is None:
       self.response.out.write("")
       return
 
-    self.response.out.write(listings.data)
-    
+    self.response.out.write(listings)
 
-  def too_old(self, listings):
-    now = datetime.datetime.now()
-    delta = now - listings.saveDate
 
-    return delta.seconds >= (3600 * 4)
+  def get_hash(self, q):
+    hashKey = "MovieListings_" + q + "_Hash"
+    hash = memcache.get(hashKey)
+    if hash is None:
+      self.get_listings_from_cache(q)
+      hash = memcache.get(hashKey)
+
+
+    if hash is None:
+      self.response.out.write("0")
+    else:
+      self.response.out.write(hash)
     
 
   def get_listings_from_cache(self, q):
-    listings = memcache.get("MovieListings_" + q)
+    key = "MovieListings_" + q
+    hashKey = "MovieListings_" + q + "_Hash"
 
-    if listings is None or self.too_old(listings):
-      listings = self.get_listings_from_datastore(q)
-      memcache.Client().set("MovieListings_" + q, listings)
+    listings = memcache.get(key)
+
+    if listings is None:
+      listings = self.get_listings_from_webservice(q)
+      if not listings is None:
+        memcache.Client().set(key, listings, 4 * 60 * 60)
+        memcache.Client().set(hashKey, str(hash(listings)), 2 * 60 * 60)
+
+    if not listings is None and memcache.get(hashKey) is None:
+      memcache.Client().set(hashKey, str(hash(listings)), 2 * 60 * 60)
 
     return listings
     
-
-  def get_listings_from_datastore(self, q):
-    listings = MovieListings.get_by_key_name("MovieListings_" + q)
-
-    if listings is None or self.too_old(listings):
-        listings = self.get_listings_from_webservice(q)
-
-    return listings
-
 
   def get_listings_from_rotten_tomatoes_webservice(self, q):
     url = "http://i.rottentomatoes.com/syndication/tab/complete_movies.txt"
     content = urlfetch.fetch(url).content
     encoded = unicode(content, "iso-8859-1")
-    
-    if encoded.find("Rotten Tomatoes is temporarily unavailable") == -1:
-      listings = MovieListings.get_by_key_name("MovieListings_" + q)
-    else:
-      listings = MovieListings.get_or_insert("MovieListings_" + q)
-      listings.data = encoded
-      listings.put()
 
-    return listings
+    if encoded.find("Rotten Tomatoes is temporarily unavailable") > 0:
+      return None
+    else:
+      return encoded
 
 
   def get_listings_from_metacritic_webservice(self, q):
@@ -96,12 +104,8 @@ class LookupMovieListingsHandler(webapp.RequestHandler):
         
     reviews1 = self.extract_metacritic_reviews(content[section1Start:section1End])
     reviews2 = self.extract_metacritic_reviews(content[section2Start:section2End])
-  
-    listings = MovieListings.get_or_insert("MovieListings_" + q)
-    listings.data = reviews1 + reviews2
-    listings.put()
 
-    return listings
+    return reviews1 + reviews2
     
     
   def extract_metacritic_reviews(self, content):
