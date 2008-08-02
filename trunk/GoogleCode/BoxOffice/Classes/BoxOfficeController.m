@@ -1,10 +1,18 @@
+// Copyright (C) 2008 Cyrus Najmabadi
 //
-//  BoxOfficeController.m
-//  BoxOffice
+// This program is free software; you can redistribute it and/or modify it 
+// under the terms of the GNU General Public License as published by the Free
+// Software Foundation; either version 2 of the License, or (at your option) any
+// later version.
 //
-//  Created by Cyrus Najmabadi on 4/30/08.
-//  Copyright 2008 Metasyntactic. All rights reserved.
+// This program is distributed in the hope that it will be useful, but WITHOUT
+// ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+// FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+// details.
 //
+// You should have received a copy of the GNU General Public License along with
+// this program; if not, write to the Free Software Foundation, Inc., 51 
+// Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "BoxOfficeController.h"
 #import "Movie.h"
@@ -138,17 +146,16 @@
 }
 
 - (void) dataProviderLookupBackgroundThreadEntryPoint:(id) anObject {
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [self.dataProviderLock lock];
     {
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         [[self.model currentDataProvider] lookup];
         [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded:)
                                withObject:NSLocalizedString(@"Finished downloading movie and theater data", nil)
                             waitUntilDone:NO];
-
-        [autoreleasePool release];
     }
     [self.dataProviderLock unlock];
+    [autoreleasePool release];
 }
 
 - (void) setSearchDate:(NSDate*) searchDate {
