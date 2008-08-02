@@ -78,7 +78,7 @@
                                                                                   score:[columns objectAtIndex:3]];
 
 
-                [ratings setObject:extraInfo forKey:[extraInfo title]];
+                [ratings setObject:extraInfo forKey:[extraInfo canonicalTitle]];
             }
         }
 

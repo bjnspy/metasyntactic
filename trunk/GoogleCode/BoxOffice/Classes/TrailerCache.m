@@ -55,7 +55,7 @@
     NSMutableSet* set = [NSMutableSet setWithArray:contents];
 
     for (Movie* movie in movies) {
-        NSString* filePath = [self shortTrailerFilePath:movie.title];
+        NSString* filePath = [self shortTrailerFilePath:movie.canonicalTitle];
         [set removeObject:filePath];
     }
 
@@ -72,7 +72,7 @@
 
     for (Movie* movie in movies) {
         NSError* error = nil;
-        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self trailerFilePath:movie.title]
+        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self trailerFilePath:movie.canonicalTitle]
                                                                                  error:&error] objectForKey:NSFileModificationDate];
 
         if (downloadDate == nil) {
@@ -187,7 +187,7 @@
     NSMutableArray* movieTitles = [NSMutableArray array];
 
     for (Movie* movie in movies) {
-        [movieTitles addObject:movie.title];
+        [movieTitles addObject:movie.canonicalTitle];
     }
 
     DifferenceEngine* engine = [DifferenceEngine engine];
@@ -217,7 +217,7 @@
 }
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    NSArray* trailers = [NSArray arrayWithContentsOfFile:[self trailerFilePath:movie.title]];
+    NSArray* trailers = [NSArray arrayWithContentsOfFile:[self trailerFilePath:movie.canonicalTitle]];
     if (trailers == nil) {
         return [NSArray array];
     }

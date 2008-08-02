@@ -81,7 +81,7 @@
                                                                                   score:score];
 
 
-                [ratings setObject:extraInfo forKey:[extraInfo title]];
+                [ratings setObject:extraInfo forKey:[extraInfo canonicalTitle]];
             }
         }
 

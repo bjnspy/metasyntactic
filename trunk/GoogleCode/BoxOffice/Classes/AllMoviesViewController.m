@@ -69,7 +69,7 @@
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
 
     for (Movie* movie in self.sortedMovies) {
-        unichar firstChar = [movie.title characterAtIndex:0];
+        unichar firstChar = [movie.displayTitle characterAtIndex:0];
         firstChar = toupper(firstChar);
 
         if (firstChar >= 'A' && firstChar <= 'Z') {

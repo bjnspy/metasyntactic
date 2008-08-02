@@ -19,17 +19,17 @@
 
 @implementation ExtraMovieInformation
 
-@synthesize title;
+@synthesize canonicalTitle;
 @synthesize link;
 @synthesize synopsis;
 @synthesize score;
 
 - (void) dealloc {
-    self.title = nil;
+    self.canonicalTitle = nil;
     self.link = nil;
     self.synopsis = nil;
     self.score = nil;
-
+    
     [super dealloc];
 }
 
@@ -38,12 +38,12 @@
             synopsis:(NSString*) synopsis_
                score:(NSString*) score_ {
     if (self = [super init]) {
-        self.title = [Movie massageTitle:title_];
+        self.canonicalTitle = [Movie makeCanonical:title_];
         self.link = link_;
         self.synopsis = synopsis_;
         self.score = score_;
     }
-
+    
     return self;
 }
 
@@ -58,7 +58,7 @@
 }
 
 + (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary {
-    return [ExtraMovieInformation infoWithTitle:[dictionary objectForKey:@"title"]
+    return [ExtraMovieInformation infoWithTitle:[dictionary objectForKey:@"canonicalTitle"]
                                            link:[dictionary objectForKey:@"link"]
                                        synopsis:[dictionary objectForKey:@"synopsis"]
                                           score:[dictionary objectForKey:@"score"]];
@@ -66,7 +66,7 @@
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:title forKey:@"title"];
+    [dictionary setObject:canonicalTitle forKey:@"canonicalTitle"];
     [dictionary setObject:link forKey:@"link"];
     [dictionary setObject:synopsis forKey:@"synopsis"];
     [dictionary setObject:score forKey:@"score"];
@@ -78,7 +78,7 @@
     if (value >= 0 && value <= 100) {
         return value;
     }
-
+    
     return -1;
 }
 

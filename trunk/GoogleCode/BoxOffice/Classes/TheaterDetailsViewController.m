@@ -185,25 +185,6 @@
     }
 }
 
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForHeaderInSection:(NSInteger) section {
-    if (section == 0) {
-        return nil;
-    }
-
-    return nil;
-
-    Movie* movie = [self.movies objectAtIndex:(section - 1)];
-    NSInteger score = [self.model scoreForMovie:movie];
-    if (score >= 0 && score <= 100) {
-        return [NSString stringWithFormat:@"%@ (%@) - %d%%", movie.title, movie.rating, score];
-    } else {
-        return [NSString stringWithFormat:@"%@ (%@)", movie.title, movie.rating];
-    }
-
-    return movie.title;
-}
-
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;

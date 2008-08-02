@@ -16,21 +16,24 @@
 
 @interface Movie : NSObject {
     NSString* identifier;
-    NSString* title;
+    NSString* canonicalTitle;
     NSString* rating;
     NSString* length; // minutes;
     NSDate* releaseDate;
     NSString* poster;
     NSString* synopsis;
+    
+    NSString* displayTitle;
 }
 
 @property (copy) NSString* identifier;
-@property (copy) NSString* title;
+@property (copy) NSString* canonicalTitle;
 @property (copy) NSString* rating;
 @property (copy) NSString* length;
 @property (copy) NSDate* releaseDate;
 @property (copy) NSString* poster;
 @property (copy) NSString* synopsis;
+@property (copy) NSString* displayTitle;
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
 + (Movie*) movieWithIdentifier:(NSString*) identifier
@@ -44,6 +47,6 @@
 - (NSDictionary*) dictionary;
 - (NSString*) ratingAndRuntimeString;
 
-+ (NSString*) massageTitle:(NSString*) title;
++ (NSString*) makeCanonical:(NSString*) title;
 
 @end

@@ -15,13 +15,13 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ExtraMovieInformation : NSObject {
-    NSString* title;
+    NSString* canonicalTitle;
     NSString* synopsis;
     NSString* link;
     NSString* score;
 }
 
-@property (copy) NSString* title;
+@property (copy) NSString* canonicalTitle;
 @property (copy) NSString* synopsis;
 @property (copy) NSString* link;
 @property (copy) NSString* score;
