@@ -286,7 +286,7 @@
         [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
                                         fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
         
-        NSString* url = [NSString stringWithFormat:@"https://mobile.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
+        NSString* url = [NSString stringWithFormat:@"https://iphone.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
                          movie.identifier,
                          theater.identifier,
                          [dateComponents year],
