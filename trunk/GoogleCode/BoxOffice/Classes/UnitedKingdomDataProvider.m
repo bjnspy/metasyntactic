@@ -48,7 +48,7 @@
                              synopsis:synopsis];
 }
 
-- (NSArray*) processFilms:(XmlElement*) filmsElement {
+- (NSMutableArray*) processFilms:(XmlElement*) filmsElement {
     NSMutableArray* result = [NSMutableArray array];
     
     for (XmlElement* child in filmsElement.children) {
@@ -61,11 +61,11 @@
     return result;
 }
 
-- (NSArray*) processVenues:(XmlElement*) venuesElement {
+- (NSMutableArray*) processVenues:(XmlElement*) venuesElement {
     return nil;
 }
 
-- (NSDictionary*) processScreenings:(XmlElement*) screeningsElement {
+- (NSMutableDictionary*) processScreenings:(XmlElement*) screeningsElement {
     return nil;
 }
 
@@ -78,13 +78,20 @@
     //XmlElement* venuesElement     = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films_venues.xml"];
     //XmlElement* screeningsElement = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films_screenings_today.xml"];
 
-    NSArray* movies_            = [self processFilms:filmsElement];
-    NSArray* theaters_          = [self processVenues:venuesElement];
-    NSDictionary* performances_ = [self processScreenings:screeningsElement];
+    NSMutableArray* movies_            = [self processFilms:filmsElement];
+    NSMutableArray* theaters_          = [self processVenues:venuesElement];
+    NSMutableDictionary* performances_ = [self processScreenings:screeningsElement];
 
     return [LookupResult resultWithMovies:movies_
                                  theaters:theaters_
                              performances:performances_];
+}
+
+- (NSString*) ticketingUrlForTheater:(Theater*) theater
+                               movie:(Movie*) movie
+                         performance:(Performance*) performance
+                                date:(NSDate*) date {
+    return nil;
 }
 
 @end

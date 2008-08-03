@@ -28,11 +28,11 @@
     [super dealloc];
 }
 
-- (id) initWithIdentifier:(NSString*) anIdentifier
-                     time:(NSString*) aTime {
+- (id) initWithIdentifier:(NSString*) identifier_
+                     time:(NSString*) time_ {
     if (self = [super init]) {
-        self.identifier = anIdentifier;
-        self.time = aTime;
+        self.identifier = identifier_;
+        self.time = time_;
     }
 
     return self;

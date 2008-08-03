@@ -82,11 +82,13 @@
             }
         }
 
-        NSMutableDictionary* result = [NSMutableDictionary dictionary];
-        [result setObject:ratings forKey:@"Ratings"];
-        [result setObject:serverHash forKey:@"Hash"];
-        
-        return result;
+        if (ratings.count > 0) {
+            NSMutableDictionary* result = [NSMutableDictionary dictionary];
+            [result setObject:ratings forKey:@"Ratings"];
+            [result setObject:serverHash forKey:@"Hash"];
+            
+            return result;
+        }
     }
 
     return nil;

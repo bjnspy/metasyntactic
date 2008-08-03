@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "Application.h"
-
+#import "Utilities.h"
 
 @implementation Application
 
@@ -312,7 +312,7 @@ static NSString* starString = nil;
 }
 
 + (void) openBrowser:(NSString*) address {
-    if (address == nil) {
+    if ([Utilities isNilOrEmpty:address]) {
         return;
     }
 

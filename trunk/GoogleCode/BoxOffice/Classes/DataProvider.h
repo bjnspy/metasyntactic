@@ -17,6 +17,7 @@
 #import "LookupResult.h"
 #import "Movie.h"
 #import "Theater.h"
+#import "Performance.h"
 
 @protocol DataProvider
 - (void) invalidateDiskCache;
@@ -28,6 +29,11 @@
 - (NSArray*) movies;
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
+
+- (NSString*) ticketingUrlForTheater:(Theater*) theater
+                               movie:(Movie*) movie
+                         performance:(Performance*) performance
+                                date:(NSDate*) date;
 
 - (NSString*) displayName;
 @end

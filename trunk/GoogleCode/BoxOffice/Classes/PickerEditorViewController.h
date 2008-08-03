@@ -19,16 +19,19 @@
 @interface PickerEditorViewController : EditorViewController<UIPickerViewDelegate> {
     UIPickerView* picker;
     NSArray* values;
+    UILabel* label;
 }
 
 @property (retain) UIPickerView* picker;
 @property (retain) NSArray* values;
+@property (retain) UILabel* label;
 
 - (id) initWithController:(UINavigationController*) navigationController
-                withTitle:(NSString*) title
-               withObject:(id) object
-             withSelector:(SEL) selector
-               withValues:(NSArray*) values
+                    title:(NSString*) title
+                     text:(NSString*) text
+                   object:(id) object
+                 selector:(SEL) selector
+                   values:(NSArray*) values
              defaultValue:(NSString*) defaultValue;
 
 @end

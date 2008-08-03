@@ -348,10 +348,11 @@
 
             PickerEditorViewController* controller =
             [[[PickerEditorViewController alloc] initWithController:self.navigationController
-                                                          withTitle:NSLocalizedString(@"Distance", nil)
-                                                         withObject:self
-                                                       withSelector:@selector(onSearchRadiusChanged:)
-                                                         withValues:values
+                                                              title:NSLocalizedString(@"Distance", nil)
+                                                               text:@""
+                                                             object:self
+                                                           selector:@selector(onSearchRadiusChanged:)
+                                                             values:values
                                                        defaultValue:defaultValue] autorelease];
 
             [self.navigationController pushViewController:controller animated:YES];

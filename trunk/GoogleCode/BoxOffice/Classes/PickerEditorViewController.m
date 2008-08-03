@@ -21,18 +21,22 @@
 
 @synthesize picker;
 @synthesize values;
+@synthesize label;
 
 - (void) dealloc {
     self.picker = nil;
     self.values = nil;
+    self.label = nil;
+    
     [super dealloc];
 }
 
 - (id) initWithController:(UINavigationController*) controller_
-                withTitle:(NSString*) title_
-               withObject:(id) object_
-             withSelector:(SEL) selector_
-               withValues:(NSArray*) values_
+                    title:(NSString*) title_
+                     text:(NSString*) text_
+                   object:(id) object_
+                 selector:(SEL) selector_
+                   values:(NSArray*) values_
              defaultValue:(NSString*) defaultValue {
     if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
         self.values = values_;
@@ -45,6 +49,16 @@
                       animated:NO];
 
         self.title = title_;
+        
+        if (text_ != nil) {
+            self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+            self.label.text = text_;
+            self.label.font = [UIFont systemFontOfSize:15];
+            self.label.textAlignment = UITextAlignmentCenter;
+            self.label.textColor = [UIColor darkGrayColor];
+            self.label.backgroundColor = [UIColor clearColor];
+            self.label.numberOfLines = 0;
+        }
     }
 
     return self;
@@ -54,6 +68,7 @@
     [super loadView];
 
     [self.view addSubview:self.picker];
+    [self.view addSubview:self.label];
 
     [self.picker becomeFirstResponder];
 }
@@ -65,6 +80,13 @@
 
     CGRect pickerRect = CGRectMake(0, screenBottom - pickerSize.height, pickerSize.width, pickerSize.height);
     self.picker.frame = pickerRect;
+    
+    CGRect labelRect = CGRectMake(10, 10, screenRect.size.width - 20, screenRect.size.height - 20 - pickerSize.height);
+    self.label.frame = labelRect;
+    [self.label sizeToFit];
+    labelRect = self.label.frame;
+    labelRect.origin.x = floor((320 - labelRect.size.width) / 2);
+    self.label.frame = labelRect;
 }
 
 - (void) save:(id) sender {

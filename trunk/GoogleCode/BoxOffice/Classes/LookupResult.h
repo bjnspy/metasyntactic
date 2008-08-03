@@ -15,19 +15,19 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface LookupResult : NSObject {
-    NSArray* movies;
-    NSArray* theaters;
+    NSMutableArray* movies;
+    NSMutableArray* theaters;
 
     // theaterId -> movieId -> [ { showtime, showid } ]
-    NSDictionary* performances;
+    NSMutableDictionary* performances;
 }
 
-@property (retain) NSArray* movies;
-@property (retain) NSArray* theaters;
-@property (retain) NSDictionary* performances;
+@property (retain) NSMutableArray* movies;
+@property (retain) NSMutableArray* theaters;
+@property (retain) NSMutableDictionary* performances;
 
-+ (LookupResult*) resultWithMovies:(NSArray*) movies
-                          theaters:(NSArray*) theaters
-                      performances:(NSDictionary*) performances;
++ (LookupResult*) resultWithMovies:(NSMutableArray*) movies
+                          theaters:(NSMutableArray*) theaters
+                      performances:(NSMutableDictionary*) performances;
 
 @end
