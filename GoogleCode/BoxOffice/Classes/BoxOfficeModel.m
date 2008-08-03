@@ -28,7 +28,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.2.3";
+static NSString* currentVersion = @"1.2.2.8";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -396,56 +396,58 @@ static NSString* currentVersion = @"1.2.2.3";
     [self updateAddressLocationCache];
 }
 
-- (NSArray*) loadFavoriteTheaters {
-    NSArray* result = [[NSUserDefaults standardUserDefaults] arrayForKey:[BoxOfficeModel FAVORITE_THEATERS]];
-    if (result == nil) {
-        return [NSArray array];
+- (NSMutableArray*) loadFavoriteTheaters {
+    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:[BoxOfficeModel FAVORITE_THEATERS]];
+    if (array.count == 0) {
+        return [NSMutableArray array];
     }
 
+    NSMutableArray* result = [NSMutableArray array];
+    for (NSDictionary* dictionary in array) {
+        [result addObject:[Theater theaterWithDictionary:dictionary]];
+    }
+    
     return result;
-}
-
-- (void) saveFavoriteTheaters {
-    [[NSUserDefaults standardUserDefaults] setObject:self.favoriteTheatersData forKey:[BoxOfficeModel FAVORITE_THEATERS]];
-}
-
-- (void) addFavoriteTheater:(Theater*) theater {
-    NSDictionary* dictionary = [theater dictionary];
-
-    if (![self.favoriteTheaters containsObject:dictionary]) {
-        [self.favoriteTheaters addObject:dictionary];
-    }
-
-    [self saveFavoriteTheaters];
 }
 
 - (NSMutableArray*) favoriteTheaters {
     if (self.favoriteTheatersData == nil) {
-        self.favoriteTheatersData = [NSMutableArray arrayWithArray:[self loadFavoriteTheaters]];
+        self.favoriteTheatersData = [self loadFavoriteTheaters];
     }
-
+    
     return self.favoriteTheatersData;
 }
 
+- (void) saveFavoriteTheaters {
+    NSMutableArray* encodedTheaters = [NSMutableArray array];
+    for (Theater* theater in self.favoriteTheatersData) {
+        [encodedTheaters addObject:[theater dictionary]];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:encodedTheaters forKey:[BoxOfficeModel FAVORITE_THEATERS]];
+}
+
+- (void) addFavoriteTheater:(Theater*) theater {
+    [self.favoriteTheatersData addObject:theater];
+    [self saveFavoriteTheaters];
+}
+
 - (BOOL) isFavoriteTheater:(Theater*) theater {
-    NSMutableArray* array = [self favoriteTheaters];
-
-    for (int i = 0; i < array.count; i++) {
-        Theater* currentTheater = [Theater theaterWithDictionary:[array objectAtIndex:i]];
-
+    NSArray* array = [self favoriteTheaters];
+    for (Theater* currentTheater in array) {
         if ([currentTheater.identifier isEqual:theater.identifier]) {
             return YES;
         }
     }
 
-    return false;
+    return NO;
 }
 
 - (void) removeFavoriteTheater:(Theater*) theater {
     NSMutableArray* array = [self favoriteTheaters];
 
     for (int i = 0; i < array.count; i++) {
-        Theater* currentTheater = [Theater theaterWithDictionary:[array objectAtIndex:i]];
+        Theater* currentTheater = [array objectAtIndex:i];
 
         if ([currentTheater.identifier isEqual:theater.identifier]) {
             [array removeObjectAtIndex:i];
@@ -516,7 +518,7 @@ static NSString* currentVersion = @"1.2.2.3";
     for (Theater* theater in theaters) {
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
 
-        if (![self tooFarAway:distance]) {
+        if ([self isFavoriteTheater:theater] || ![self tooFarAway:distance]) {
             [result addObject:theater];
         }
     }

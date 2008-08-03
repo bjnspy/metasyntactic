@@ -23,9 +23,9 @@
 @synthesize theaters;
 @synthesize performances;
 
-- (id) initWithMovies:(NSArray*) movies_
-             theaters:(NSArray*) theaters_
-         performances:(NSDictionary*) performances_ {
+- (id) initWithMovies:(NSMutableArray*) movies_
+             theaters:(NSMutableArray*) theaters_
+         performances:(NSMutableDictionary*) performances_ {
     if (self = [super init]) {
         self.movies = movies_;
         self.theaters = theaters_;
@@ -35,9 +35,9 @@
     return self;
 }
 
-+ (LookupResult*) resultWithMovies:(NSArray*) movies
-                          theaters:(NSArray*) theaters
-                      performances:(NSDictionary*) performances {
++ (LookupResult*) resultWithMovies:(NSMutableArray*) movies
+                          theaters:(NSMutableArray*) theaters
+                      performances:(NSMutableDictionary*) performances {
     return [[[LookupResult alloc] initWithMovies:movies
                                         theaters:theaters
                                     performances:performances] autorelease];

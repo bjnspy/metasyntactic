@@ -33,10 +33,11 @@
                          withValues:(NSArray*) values_
                        defaultValue:(NSString*) defaultValue_ {
     if (self = [super initWithController:navigationController_
-                               withTitle:NSLocalizedString(@"Search Date", nil)
-                              withObject:self
-                            withSelector:@selector(onSearchDateChanged:)
-                              withValues:values_
+                                   title:NSLocalizedString(@"Search Date", nil)
+                                    text:NSLocalizedString(@"Data for future dates may be incomplete. Reset the search date to the current date to see full listings.", nil)
+                                  object:self
+                                selector:@selector(onSearchDateChanged:)
+                                  values:values_
                             defaultValue:defaultValue_]) {
         self.controller = controller_;
     }

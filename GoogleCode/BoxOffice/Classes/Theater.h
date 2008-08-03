@@ -24,6 +24,8 @@
 
     NSString* sellsTickets;
     NSArray* movieIdentifiers;
+    
+    NSString* originatingPostalCode;
 }
 
 @property (copy) NSString* identifier;
@@ -31,6 +33,7 @@
 @property (copy) NSString* address;
 @property (copy) NSString* phoneNumber;
 @property (copy) NSString* sellsTickets;
+@property (copy) NSString* originatingPostalCode;
 @property (retain) NSArray* movieIdentifiers;
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
@@ -38,7 +41,8 @@
                            address:(NSString*) address
                        phoneNumber:(NSString*) phoneNumber
                       sellsTickets:(NSString*) sellsTickets
-                  movieIdentifiers:(NSArray*) movieIdentifiers;
+                  movieIdentifiers:(NSArray*) movieIdentifiers
+             originatingPostalCode:(NSString*) originatingPostalCode;
 
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
 

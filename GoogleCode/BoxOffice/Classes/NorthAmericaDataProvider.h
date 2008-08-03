@@ -23,4 +23,14 @@
 
 + (NorthAmericaDataProvider*) providerWithModel:(BoxOfficeModel*) model;
 
+
+
+- (NSString*) ticketingUrlForTheater:(Theater*) theater
+                               movie:(Movie*) movie
+                         performance:(Performance*) performance
+                                date:(NSDate*) date;
+
+- (LookupResult*) lookupPostalCode:(NSString*) postalCode
+                        theaterIds:(NSArray*) theaterIds;
+
 @end

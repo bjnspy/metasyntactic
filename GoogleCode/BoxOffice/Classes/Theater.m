@@ -27,6 +27,7 @@
 @synthesize phoneNumber;
 @synthesize sellsTickets;
 @synthesize movieIdentifiers;
+@synthesize originatingPostalCode;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -35,6 +36,7 @@
     self.phoneNumber = nil;
     self.sellsTickets = nil;
     self.movieIdentifiers = nil;
+    self.originatingPostalCode = nil;
 
     [super dealloc];
 }
@@ -45,17 +47,8 @@
                                   address:[dictionary objectForKey:@"address"]
                               phoneNumber:[dictionary objectForKey:@"phoneNumber"]
                              sellsTickets:[dictionary objectForKey:@"sellsTickets"]
-                         movieIdentifiers:[dictionary objectForKey:@"movieIdentifiers"]];
-}
-
-NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
-    NSString* s1 = t1;
-    NSString* s2 = t2;
-
-    NSDate* d1 = [DateUtilities dateWithNaturalLanguageString:s1];
-    NSDate* d2 = [DateUtilities dateWithNaturalLanguageString:s2];
-
-    return [d1 compare:d2];
+                         movieIdentifiers:[dictionary objectForKey:@"movieIdentifiers"]
+                    originatingPostalCode:[dictionary objectForKey:@"originatingPostalCode"]];
 }
 
 - (id)         initWithIdentifier:(NSString*) identifier_
@@ -63,7 +56,8 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
                           address:(NSString*) address_
                       phoneNumber:(NSString*) phoneNumber_
                      sellsTickets:(NSString*) sellsTickets_
-                 movieIdentifiers:(NSArray*) movieIdentifiers_ {
+                 movieIdentifiers:(NSArray*) movieIdentifiers_
+            originatingPostalCode:(NSString*) originatingPostalCode_ {
     if (self = [self init]) {
         self.identifier = identifier_;
         self.name = [name_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -71,6 +65,7 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
         self.phoneNumber = phoneNumber_ != nil ? phoneNumber_ : @"";
         self.sellsTickets = sellsTickets_;
         self.movieIdentifiers = movieIdentifiers_;
+        self.originatingPostalCode = originatingPostalCode_;
     }
 
     return self;
@@ -81,23 +76,26 @@ NSComparisonResult compareDateStrings(id t1, id t2, void* context) {
                            address:(NSString*) address
                        phoneNumber:(NSString*) phoneNumber
                       sellsTickets:(NSString*) sellsTickets
-                       movieIdentifiers:(NSArray*) movieIdentifiers {
+                  movieIdentifiers:(NSArray*) movieIdentifiers
+             originatingPostalCode:(NSString*) originatingPostalCode{
     return [[[Theater alloc] initWithIdentifier:identifier
                                            name:name
                                         address:address
                                     phoneNumber:phoneNumber
                                    sellsTickets:sellsTickets
-                                    movieIdentifiers:movieIdentifiers] autorelease];
+                               movieIdentifiers:movieIdentifiers
+                          originatingPostalCode:originatingPostalCode] autorelease];
 }
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:identifier forKey:@"identifier"];
-    [dictionary setObject:name forKey:@"name"];
-    [dictionary setObject:address forKey:@"address"];
-    [dictionary setObject:phoneNumber forKey:@"phoneNumber"];
-    [dictionary setObject:sellsTickets forKey:@"sellsTickets"];
-    [dictionary setObject:movieIdentifiers forKey:@"movieIdentifiers"];
+    [dictionary setObject:identifier            forKey:@"identifier"];
+    [dictionary setObject:name                  forKey:@"name"];
+    [dictionary setObject:address               forKey:@"address"];
+    [dictionary setObject:phoneNumber           forKey:@"phoneNumber"];
+    [dictionary setObject:sellsTickets          forKey:@"sellsTickets"];
+    [dictionary setObject:movieIdentifiers      forKey:@"movieIdentifiers"];
+    [dictionary setObject:originatingPostalCode forKey:@"originatingPostalCode"];
     return dictionary;
 }
 
