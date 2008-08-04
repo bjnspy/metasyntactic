@@ -22,6 +22,13 @@
 @synthesize identifier;
 @synthesize name;
 
+- (void) dealloc {
+    self.identifier = nil;
+    self.name = nil;
+    
+    [super dealloc];
+}
+
 - (id) initWithIdentifier:(NSString*) identifier_
                      name:(NSString*) name_ {
     if (self = [super init]) {

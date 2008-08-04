@@ -29,10 +29,11 @@
 - (void) dealloc {
     self.fandangoImage = nil;
     self.ignyteImage = nil;
+    self.metacriticImage = nil;
     self.rottenTomatoesImage = nil;
     self.tryntImage = nil;
     self.yahooImage = nil;
-    self.metacriticImage = nil;
+    
     [super dealloc];
 }
 

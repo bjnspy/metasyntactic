@@ -238,6 +238,17 @@
     }
 }
 
+- (NSString*) trimPostalCode:(NSString*) postalCode {
+    NSMutableString* trimmed = [NSMutableString string];
+    for (NSInteger i = 0; i < [postalCode length]; i++) {
+        unichar c = [postalCode characterAtIndex:i];
+        if (isalnum(c)) {
+            [trimmed appendString:[NSString stringWithCharacters:&c length:1]];
+        }
+    }
+    return trimmed;
+}
+
 - (LookupResult*) lookupPostalCode:(NSString*) postalCode
                         theaterIds:(NSArray*) theaterIds {
     if (![Utilities isNilOrEmpty:postalCode]) {
@@ -247,7 +258,7 @@
         NSString* urlString = [NSString stringWithFormat:
                                @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                                [Application host],
-                               postalCode,
+                               [self trimPostalCode:postalCode],
                                [components year],
                                [components month],
                                [components day]];

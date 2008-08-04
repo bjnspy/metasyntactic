@@ -24,13 +24,13 @@
 
 @synthesize model;
 @synthesize authorLabel;
-@synthesize sourceLabel;
 @synthesize scoreLabel;
+@synthesize sourceLabel;
 
 - (void) dealloc {
     self.model = nil;
-    self.scoreLabel = nil;
     self.authorLabel = nil;
+    self.scoreLabel = nil;
     self.sourceLabel = nil;
 
     [super dealloc];

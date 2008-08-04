@@ -23,6 +23,14 @@
 @synthesize theaters;
 @synthesize performances;
 
+- (void) dealloc {
+    self.movies = nil;
+    self.theaters = nil;
+    self.performances = nil;
+    
+    [super dealloc];
+}
+
 - (id) initWithMovies:(NSMutableArray*) movies_
              theaters:(NSMutableArray*) theaters_
          performances:(NSMutableDictionary*) performances_ {

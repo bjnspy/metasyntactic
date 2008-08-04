@@ -121,7 +121,7 @@
     return [self.model.ratingsCache update];
 }
 
-- (void) ratingsLookupBackgroundThreadEntryPoint:(id) anObject {
+- (void) ratingsLookupBackgroundThreadEntryPoint:(id) arguments {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [self.ratingsLookupLock lock];
     {

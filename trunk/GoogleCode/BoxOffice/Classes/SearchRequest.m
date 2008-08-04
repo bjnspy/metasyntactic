@@ -24,6 +24,8 @@
 
 - (void) dealloc {
     self.text = nil;
+    self.searchId = 0;
+    
     [super dealloc];
 }
 

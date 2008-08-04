@@ -33,6 +33,23 @@
 @synthesize birthDate;
 @synthesize deathDate;
 
+- (void) dealloc {
+    self.key = nil;
+    self.producer = nil;
+    self.director = nil;
+    self.cast = nil;
+    self.writer = nil;
+    self.biography = nil;
+    self.quotes = nil;
+    self.trivia = nil;
+    self.imageUrl = nil;
+    self.imageData = nil;
+    self.birthDate = nil;
+    self.deathDate = nil;
+    
+    [super dealloc];
+}
+
 - (id) initWithKey:(PersonKey*) key_
           producer:(NSArray*) producer_
           director:(NSArray*) director_
