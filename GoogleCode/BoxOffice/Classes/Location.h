@@ -23,8 +23,8 @@
     NSString* city;
 }
 
-@property (readonly) double latitude;
-@property (readonly) double longitude;
+@property double latitude;
+@property double longitude;
 @property (copy) NSString* address;
 @property (copy) NSString* city;
 

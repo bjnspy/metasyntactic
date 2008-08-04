@@ -58,7 +58,7 @@
 
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
 @property (retain) UIView* activityView;
-@property (readonly) NSInteger backgroundTaskCount;
+@property NSInteger backgroundTaskCount;
 
 @property (retain) NSDictionary* movieMap;
 @property (retain) NSMutableArray* favoriteTheatersData;

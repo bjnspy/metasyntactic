@@ -25,8 +25,8 @@
 @synthesize city;
 
 - (void) dealloc {
-    self.latitude = nil;
-    self.longitude = nil;
+    self.latitude = 0;
+    self.longitude = 0;
     self.address = nil;
     self.city = nil;
     
