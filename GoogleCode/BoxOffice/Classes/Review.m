@@ -26,6 +26,7 @@
 @synthesize source;
 
 - (void) dealloc {
+    self.score = 0;
     self.link = nil;
     self.text = nil;
     self.author = nil;

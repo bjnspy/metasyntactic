@@ -24,6 +24,15 @@
 @synthesize address;
 @synthesize city;
 
+- (void) dealloc {
+    self.latitude = nil;
+    self.longitude = nil;
+    self.address = nil;
+    self.city = nil;
+    
+    [super dealloc];
+}
+
 - (id) initWithLatitude:(double) latitude_
               longitude:(double) longitude_
                 address:(NSString*) address_

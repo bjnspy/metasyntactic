@@ -28,7 +28,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.2.8";
+static NSString* currentVersion = @"1.2.2.9";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -51,35 +51,36 @@ static NSString* currentVersion = @"1.2.2.8";
 
 @synthesize notificationCenter;
 
+@synthesize dataProviders;
+@synthesize movieMap;
+@synthesize favoriteTheatersData;
+
+@synthesize addressLocationCache;
 @synthesize posterCache;
 @synthesize trailerCache;
-@synthesize addressLocationCache;
-@synthesize reviewCache;
 @synthesize ratingsCache;
+@synthesize reviewCache;
 
 @synthesize backgroundTaskCount;
 @synthesize activityView;
 @synthesize activityIndicatorView;
 
-@synthesize movieMap;
-@synthesize favoriteTheatersData;
-@synthesize dataProviders;
-
 - (void) dealloc {
     self.notificationCenter = nil;
-    
-    self.trailerCache = nil;
-    self.posterCache = nil;
-    self.addressLocationCache = nil;
-    self.reviewCache = nil;
-    self.ratingsCache = nil;
-    
-    self.activityView = nil;
-    self.activityIndicatorView = nil;
 
+    self.dataProviders = nil;
     self.movieMap = nil;
     self.favoriteTheatersData = nil;
-    self.dataProviders = nil;
+    
+    self.addressLocationCache = nil;
+    self.posterCache = nil;
+    self.trailerCache = nil;
+    self.ratingsCache = nil;
+    self.reviewCache = nil;
+    
+    self.backgroundTaskCount = 0;
+    self.activityView = nil;
+    self.activityIndicatorView = nil;
 
     [super dealloc];
 }

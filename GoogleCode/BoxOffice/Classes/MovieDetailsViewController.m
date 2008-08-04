@@ -471,8 +471,8 @@
 }
 
 // When the movie is done, release the controller.
-- (void) movieFinishedCallback:(NSNotification*) aNotification {
-    MPMoviePlayerController* moviePlayer = [aNotification object];
+- (void) movieFinishedCallback:(NSNotification*) notification {
+    MPMoviePlayerController* moviePlayer = [notification object];
 
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:MPMoviePlayerPlaybackDidFinishNotification

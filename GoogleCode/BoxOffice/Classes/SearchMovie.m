@@ -34,6 +34,24 @@
 @synthesize votes;
 @synthesize rating;
 
+- (void) dealloc {
+    self.key = nil;
+    self.producers = nil;
+    self.writers = nil;
+    self.directors = nil;
+    self.music = nil;
+    self.cast = nil;
+    self.imageUrl = nil;
+    self.imageData = nil;
+    self.genres = nil;
+    self.outline = nil;
+    self.plot = nil;
+    self.votes = nil;
+    self.rating = nil;
+    
+    [super dealloc];
+}
+
 - (id) initWithKey:(MovieKey*) key_
          producers:(NSArray*) producers_
            writers:(NSArray*) writers_

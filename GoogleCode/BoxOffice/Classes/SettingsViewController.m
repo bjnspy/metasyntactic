@@ -370,10 +370,12 @@
 }
 
 - (void) onPostalCodeChanged:(NSString*) postalCode {
+    postalCode = [postalCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    
     NSMutableString* trimmed = [NSMutableString string];
     for (NSInteger i = 0; i < [postalCode length]; i++) {
         unichar c = [postalCode characterAtIndex:i];
-        if (isalnum(c)) {
+        if (isalnum(c) || c == ' ') {
             [trimmed appendString:[NSString stringWithCharacters:&c length:1]];
         }
     }
