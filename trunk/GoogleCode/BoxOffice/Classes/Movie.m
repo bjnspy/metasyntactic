@@ -41,15 +41,24 @@
     [super dealloc];
 }
 
+static NSString* articles[] = {
+    @"Der", @"Das", @"Ein", @"Eine", @"The",
+    @"A", @"An", @"La", @"Las", @"Le",
+    @"Les", @"Los", @"El", @"Un", @"Une",
+    @"Una", @"Il", @"O", @"Het", @"De",
+    @"Os", @"Az", @"Den", @"Al", @"En",
+    @"L'"
+};
+
 + (NSString*) makeCanonical:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    if ([title hasSuffix:@", The"]) {
-        return [NSString stringWithFormat:@"The %@", [title substringToIndex:([title length] - 5)]];
-    } else if ([title hasSuffix:@", An"]) {
-        return [NSString stringWithFormat:@"An %@", [title substringToIndex:([title length] - 4)]];
-    } else if ([title hasSuffix:@", A"]) {
-        return [NSString stringWithFormat:@"A %@", [title substringToIndex:([title length] - 3)]];
+    int count = sizeof(articles) / sizeof(NSString*);
+    for (int i = 0; i < count; i++) {
+        NSString* article = articles[i];
+        if ([title hasSuffix:[NSString stringWithFormat:@", %@", article]]) {
+            return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
+        }
     }
     
     return title;
@@ -58,15 +67,15 @@
 + (NSString*) makeDisplay:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
     
-    if ([title hasPrefix:@"The "]) {
-        return [NSString stringWithFormat:@"%@, The", [title substringFromIndex:4]];
-    } else if ([title hasPrefix:@"An "]) {
-        return [NSString stringWithFormat:@"%@, An", [title substringFromIndex:3]];
-    } else if ([title hasPrefix:@"A "]) {
-        return [NSString stringWithFormat:@"%@, A", [title substringFromIndex:2]];
-    } else {
-        return title;
+    int count = sizeof(articles) / sizeof(NSString*);
+    for (int i = 0; i < count; i++) {
+        NSString* article = articles[i];
+        if ([title hasPrefix:[NSString stringWithFormat:@"%@ ", article]]) {
+            return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
+        }
     }
+    
+    return title;
 }
 
 - (id) initWithIdentifier:(NSString*) identifier_
