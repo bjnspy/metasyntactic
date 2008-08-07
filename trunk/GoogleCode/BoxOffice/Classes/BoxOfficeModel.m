@@ -28,7 +28,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.2.10";
+static NSString* currentVersion = @"1.3.0";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
