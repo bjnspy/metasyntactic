@@ -131,6 +131,7 @@
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie;
 - (NSArray*) moviesAtTheater:(Theater*) theater;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
+- (NSString*) simpleAddressForTheater:(Theater*) theater;
 
 - (NSDictionary*) theaterDistanceMap;
 - (NSArray*) theatersInRange:(NSArray*) theaters;

@@ -27,6 +27,7 @@
 #import "ApplicationTabBarController.h"
 #import "FontCache.h"
 #import "ColorCache.h"
+#import "DateUtilities.h"
 
 @implementation MovieDetailsViewController
 
@@ -204,17 +205,14 @@
     [self.tableView reloadData];
 }
 
-- (BOOL) hasInfoSection {
-    return trailersArray.count || reviewsArray.count;
-}
-
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
+    // Header
     NSInteger sections = 1;
 
-    if ([self hasInfoSection]) {
-        sections += 1;
-    }
+    // info/commnds
+    sections += 1;
 
+    // theaters
     sections += theatersArray.count;
 
     return sections;
@@ -229,7 +227,16 @@
 }
 
 - (NSInteger) numberOfRowsInInfoSection {
-    return trailersArray.count + (reviewsArray.count ? 1 : 0);
+    // trailers
+    NSInteger rows = trailersArray.count;
+    
+    // reviews
+    rows += (reviewsArray.count ? 1 : 0);
+    
+    // email listings
+    rows++;
+    
+    return rows;
 }
 
 - (NSInteger) tableView:(UITableView*) tableView
@@ -238,7 +245,7 @@
         return [self numberOfRowsInHeaderSection];
     }
 
-    if (section == 1 && [self hasInfoSection]) {
+    if (section == 1) {
         return [self numberOfRowsInInfoSection];
     }
 
@@ -282,11 +289,7 @@
 }
 
 - (NSInteger) getTheaterIndex:(NSInteger) section {
-    if ([self hasInfoSection]) {
-        return section - 2;
-    } else {
-        return section - 1;
-    }
+    return section - 2;
 }
 
 - (CGFloat)         tableView:(UITableView*) tableView
@@ -295,7 +298,7 @@
         return [self heightForRowInHeaderSection:indexPath.row];
     }
 
-    if (indexPath.section == 1 && [self hasInfoSection]) {
+    if (indexPath.section == 1) {
         return [tableView rowHeight];
     }
 
@@ -401,8 +404,10 @@
         } else {
             cell.text = [NSString stringWithFormat:NSLocalizedString(@"Play trailer %d", nil), (row + 1)];
         }
-    } else {
+    } else if (row == trailersArray.count && self.reviewsArray.count > 0) {
         cell.text = NSLocalizedString(@"Read reviews", nil);
+    } else {
+        cell.text = NSLocalizedString(@"E-mail listings", nil);
     }
 
     return cell;
@@ -414,7 +419,7 @@
         return [self cellForHeaderRow:indexPath.row];
     }
 
-    if (indexPath.section == 1 && [self hasInfoSection]) {
+    if (indexPath.section == 1) {
         return [self cellForInfoRow:indexPath.row];
     }
 
@@ -487,8 +492,42 @@
 - (void) didSelectInfoRow:(NSInteger) row {
     if (row < trailersArray.count) {
         [self playMovie:[trailersArray objectAtIndex:row]];
-    } else {
+    } else if (row == trailersArray.count && self.reviewsArray.count > 0) {
         [self.navigationController pushReviewsView:reviewsArray animated:YES];
+    } else {
+        NSString* movieAndDate = [NSString stringWithFormat:@"%@ - %@",
+                                  self.movie.canonicalTitle,
+                                  [DateUtilities formatFullDate:self.model.searchDate]];
+        NSMutableString* body = [NSMutableString string];
+        
+        for (int i = 0; i < theatersArray.count; i++) {
+            if (i != 0) {
+                [body appendString:@"\n\n"];
+            }
+            
+            Theater* theater = [theatersArray objectAtIndex:i];
+            NSArray* performances = [showtimesArray objectAtIndex:i];
+            
+            [body appendString:theater.name];
+            [body appendString:@"\n"];
+            [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
+            [body appendString:theater.address];
+            [body appendString:@"\">"];
+            [body appendString:[self.model simpleAddressForTheater:theater]];
+            [body appendString:@"</a>"];
+            
+            [body appendString:@"\n"];
+            [body appendString:[Utilities generateShowtimeLinks:self.model
+                                                          movie:movie
+                                                        theater:theater
+                                                   performances:performances]];
+        }
+        
+        NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
+                         [movieAndDate stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding],
+                         [Utilities stringByAddingPercentEscapesUsingEncoding:body]];
+        
+        [Application openBrowser:url];
     }
 }
 
@@ -498,7 +537,7 @@
         return [self didSelectHeaderRow:indexPath.row];
     }
 
-    if (indexPath.section == 1 && [self hasInfoSection]) {
+    if (indexPath.section == 1) {
         return [self didSelectInfoRow:indexPath.row];
     }
 
@@ -520,7 +559,7 @@
         return UITableViewCellAccessoryNone;
     }
 
-    if (section == 1 && [self hasInfoSection]) {
+    if (section == 1) {
         return UITableViewCellAccessoryNone;
     }
 

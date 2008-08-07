@@ -185,4 +185,45 @@
     }
 }
 
++ (NSString*) stringByAddingPercentEscapesUsingEncoding:(NSString*) string {
+    string = [string stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+    string = [string stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
+    string = [string stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
+    
+    return string;
+}
+
++ (NSString*) generateShowtimeLinks:(BoxOfficeModel*) model
+                              movie:(Movie*) movie
+                            theater:(Theater*) theater
+                       performances:(NSArray*) performances {
+    NSMutableString* body = [NSMutableString string];
+    
+    for (int i = 0; i < performances.count; i++) {
+        if (i != 0) {
+            [body appendString:@", "];
+        }
+        
+        Performance* performance = [performances objectAtIndex:i];
+        
+        if (![theater.sellsTickets isEqual:@"True"] ||
+            [Utilities isNilOrEmpty:performance.identifier]) {
+            [body appendString:performance.time];
+        } else {
+            NSString* url = [[model currentDataProvider] ticketingUrlForTheater:theater
+                                                                          movie:movie
+                                                                    performance:performance
+                                                                           date:[model searchDate]];
+            
+            [body appendString:@"<a href=\""];
+            [body appendString:url];
+            [body appendString:@"\">"];
+            [body appendString:performance.time];
+            [body appendString:@"</a>"];            
+        }
+    }
+    
+    return body;
+}
+
 @end
