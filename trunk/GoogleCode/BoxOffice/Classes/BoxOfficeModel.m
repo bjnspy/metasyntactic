@@ -28,7 +28,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.2.2.9";
+static NSString* currentVersion = @"1.2.2.10";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -497,6 +497,15 @@ static NSString* currentVersion = @"1.2.2.9";
 
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
     return [[self currentDataProvider] moviePerformances:movie forTheater:theater];
+}
+
+- (NSString*) simpleAddressForTheater:(Theater*) theater {
+    Location* location = [self locationForAddress:theater.address];
+    if (![Utilities isNilOrEmpty:location.address] && ![Utilities isNilOrEmpty:location.city]) {
+        return [NSString stringWithFormat:@"%@, %@", location.address, location.city];
+    } else {
+        return theater.address;
+    }
 }
 
 - (NSDictionary*) theaterDistanceMap {

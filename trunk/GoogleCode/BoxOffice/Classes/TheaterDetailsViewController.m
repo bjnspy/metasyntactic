@@ -29,6 +29,8 @@
 #import "MovieTitleCell.h"
 #import "ApplicationTabBarController.h"
 #import "ImageCache.h"
+#import "ColorCache.h"
+#import "DateUtilities.h"
 
 @implementation TheaterDetailsViewController
 
@@ -118,7 +120,16 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return self.movies.count + 1;
+    // header
+    NSInteger sections = 1;
+    
+    // e-mail listings
+    sections++;
+    
+    // movies
+    sections += self.movies.count;
+    
+    return sections;
 }
 
 - (NSInteger)     tableView:(UITableView*) tableView
@@ -126,9 +137,67 @@
     if (section == 0) {
         // theater address and possibly phone number
         return 1 + ([Utilities isNilOrEmpty:theater.phoneNumber] ? 0 : 1);
+    } else if (section == 1) {
+        return 1;
+    } else {
+        return 2;
     }
+}
 
-    return 2;
+- (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
+    AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                                reuseIdentifier:nil] autorelease];
+    
+    if (row == 0) {
+        [cell setKey:NSLocalizedString(@"Map", nil) value:[self.model simpleAddressForTheater:theater]  hasIndicator:NO];
+    } else {
+        [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber hasIndicator:NO];
+    }
+    
+    return cell;
+}
+
+- (UITableViewCell*) cellForEmailListings {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                                    reuseIdentifier:nil] autorelease];
+    
+    cell.textColor = [ColorCache commandColor];
+    cell.font = [UIFont boldSystemFontOfSize:14];
+    cell.textAlignment = UITextAlignmentCenter;
+    
+    cell.text = NSLocalizedString(@"E-mail listings", nil);
+    
+    return cell;
+}
+
+- (UITableViewCell*) cellForTheaterIndex:(NSInteger) index row:(NSInteger) row {
+    if (row == 0) {
+        static NSString* reuseIdentifier = @"TheaterDetailsMovieCellIdentifier";
+        MovieTitleCell* movieCell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (movieCell == nil) {
+            movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                               reuseIdentifier:reuseIdentifier
+                                                         model:self.model
+                                                         style:UITableViewStyleGrouped] autorelease];
+        }
+        
+        [movieCell setMovie:[self.movies objectAtIndex:index]];
+        
+        return movieCell;
+    } else {
+        static NSString* reuseIdentifier = @"TheaterDetailsShowtimesCellIdentifier";
+        id i = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        MovieShowtimesCell* cell = i;
+        if (cell == nil) {
+            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                              reuseIdentifier:reuseIdentifier] autorelease];
+        }
+        
+        [cell setShowtimes:[self.movieShowtimes objectAtIndex:index]
+             useSmallFonts:[self.model useSmallFonts]];
+        
+        return cell;
+    }
 }
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
@@ -137,51 +206,11 @@
     NSInteger row = indexPath.row;
 
     if (section == 0) {
-        AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
-                                                    reuseIdentifier:nil] autorelease];
-
-        if (row == 0) {
-            Location* location = [self.model locationForAddress:theater.address];
-            if (![Utilities isNilOrEmpty:location.address] && ![Utilities isNilOrEmpty:location.city]) {
-                [cell setKey:NSLocalizedString(@"Map", nil)
-                       value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]
-                hasIndicator:NO];
-            } else {
-                [cell setKey:NSLocalizedString(@"Map", nil) value:theater.address hasIndicator:NO];
-            }
-        } else {
-            [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber hasIndicator:NO];
-        }
-
-        return cell;
+        return [self cellForHeaderRow:row];
+    } else if (section == 1) {
+        return [self cellForEmailListings];
     } else {
-        if (row == 0) {
-            static NSString* reuseIdentifier = @"TheaterDetailsMovieCellIdentifier";
-            MovieTitleCell* movieCell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-            if (movieCell == nil) {
-                movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds
-                                                   reuseIdentifier:reuseIdentifier
-                                                             model:self.model
-                                                             style:UITableViewStyleGrouped] autorelease];
-            }
-
-            [movieCell setMovie:[self.movies objectAtIndex:(section - 1)]];
-
-            return movieCell;
-        } else {
-            static NSString* reuseIdentifier = @"TheaterDetailsShowtimesCellIdentifier";
-            id i = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-            MovieShowtimesCell* cell = i;
-            if (cell == nil) {
-                cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].bounds
-                                                  reuseIdentifier:reuseIdentifier] autorelease];
-            }
-
-            [cell setShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]
-                 useSmallFonts:[self.model useSmallFonts]];
-
-            return cell;
-        }
+        return [self cellForTheaterIndex:(section - 2) row:row];
     }
 }
 
@@ -190,16 +219,18 @@
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
-    if (section == 0) {
+    if (section == 0 || section == 1) {
         return [tableView rowHeight];
+    } else {
+        section -= 2;
+        
+        if (row == 0) {
+            return [tableView rowHeight];
+        } else {
+            return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:section]
+                                            useSmallFonts:[self.model useSmallFonts]] + 18;
+        }
     }
-
-    if (row == 0) {
-        return [tableView rowHeight];
-    }
-
-    return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:(section - 1)]
-                                    useSmallFonts:[self.model useSmallFonts]] + 18;
 }
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
@@ -208,9 +239,44 @@
 
     if (section == 0) {
         return UITableViewCellAccessoryNone;
+    } else if (section == 1) {
+        return UITableViewCellAccessoryNone;
     }
 
     return UITableViewCellAccessoryDisclosureIndicator;
+}
+
+- (void) didSelectEmailListings {
+    NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
+                                self.theater.name,
+                                [DateUtilities formatFullDate:self.model.searchDate]];
+    NSMutableString* body = [NSMutableString string];
+    
+    [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
+    [body appendString:theater.address];
+    [body appendString:@"\">"];
+    [body appendString:[self.model simpleAddressForTheater:theater]];
+    [body appendString:@"</a>"];
+    
+    for (int i = 0; i < movies.count; i++) {
+        [body appendString:@"\n\n"];
+        
+        Movie* movie = [movies objectAtIndex:i];
+        NSArray* performances = [movieShowtimes objectAtIndex:i];
+        
+        [body appendString:movie.displayTitle];
+        [body appendString:@"\n"];
+        [body appendString:[Utilities generateShowtimeLinks:self.model
+                                                      movie:movie
+                                                    theater:theater
+                                               performances:performances]];
+    }
+    
+    NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
+                     [theaterAndDate stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding],
+                     [Utilities stringByAddingPercentEscapesUsingEncoding:body]];
+    
+    [Application openBrowser:url];
 }
 
 - (void)            tableView:(UITableView*) tableView
@@ -224,8 +290,12 @@
         } else {
             [Application makeCall:theater.phoneNumber];
         }
+    } else if (section == 1) {
+        [self didSelectEmailListings];
     } else {
-        Movie* movie = [self.movies objectAtIndex:(section - 1)];
+        section -= 2;
+        
+        Movie* movie = [self.movies objectAtIndex:section];
         if (row == 0) {
             [self.navigationController.tabBarController showMovieDetails:movie];
         } else {

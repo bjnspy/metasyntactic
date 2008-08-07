@@ -109,7 +109,7 @@
     if (section == 0) {
         return 2;
     } else if (section == 1) {
-        return 1;
+        return 2;
     } else if (section == 2) {
         return performances.count;
     }
@@ -184,7 +184,7 @@
     return cell;
 }
 
-- (UITableViewCell*) changeDateCell {
+- (UITableViewCell*) infoCellForRow:(NSInteger) row {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                     reuseIdentifier:nil] autorelease];
 
@@ -192,17 +192,21 @@
     cell.font = [UIFont boldSystemFontOfSize:14];
     cell.textColor = [ColorCache commandColor];
 
-    cell.text = NSLocalizedString(@"Change date", nil);
-
+    if (row == 0) {
+        cell.text = NSLocalizedString(@"Change date", nil);
+    } else {
+        cell.text = NSLocalizedString(@"E-mail listings", nil);
+    }
+    
     return cell;
 }
 
-- (UITableViewCell*)        tableView:(UITableView*) tableView
-                cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return [self commandCellForRow:indexPath.row];
     } else if (indexPath.section == 1) {
-        return [self changeDateCell];
+        return [self infoCellForRow:indexPath.row];
     } else if (indexPath.section == 2 || indexPath.section == 3) {
         return [self showtimeCellForSection:indexPath.section row:indexPath.row];
     }
@@ -220,10 +224,9 @@
 
 - (void) didSelectShowtimeAtRow:(NSInteger) row {
     Performance* performance = [self.performances objectAtIndex:row];
-    NSString* showId = performance.identifier;
 
     if (![self.theater.sellsTickets isEqual:@"True"] ||
-        [Utilities isNilOrEmpty:showId]) {
+        [Utilities isNilOrEmpty:performance.identifier]) {
         return;
     }
 
@@ -238,10 +241,44 @@
     [Application openBrowser:url];
 }
 
-- (void) didSelectChangeDate {
-    SearchDatePickerViewController* pickerController =
-    [SearchDatePickerViewController pickerWithNavigationController:self.navigationController controller:[self.navigationController controller]];
-    [self.navigationController pushViewController:pickerController animated:YES];
+- (void) didSelectEmailListings {
+    NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
+                                self.movie.canonicalTitle,
+                                [DateUtilities formatFullDate:self.model.searchDate]];
+    NSMutableString* body = [NSMutableString string];
+    
+    [body appendString:theater.name];
+    [body appendString:@"\n"];
+    [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
+    [body appendString:theater.address];
+    [body appendString:@"\">"];
+    [body appendString:[self.model simpleAddressForTheater:theater]];
+    [body appendString:@"</a>"];
+    
+    [body appendString:@"\n\n"];
+    [body appendString:self.movie.canonicalTitle];
+    [body appendString:@"\n"];
+    
+    [body appendString:[Utilities generateShowtimeLinks:self.model
+                                                  movie:movie
+                                                theater:theater
+                                           performances:performances]];
+    
+    NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
+                     [theaterAndDate stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding],
+                     [Utilities stringByAddingPercentEscapesUsingEncoding:body]];
+    
+    [Application openBrowser:url];
+}
+
+- (void) didSelectInfoCellAtRow:(NSInteger) row {
+    if (row == 0) {
+        SearchDatePickerViewController* pickerController =
+        [SearchDatePickerViewController pickerWithNavigationController:self.navigationController controller:[self.navigationController controller]];
+        [self.navigationController pushViewController:pickerController animated:YES];
+    } else {
+        [self didSelectEmailListings];
+    }
 }
 
 - (void)            tableView:(UITableView*) tableView
@@ -249,7 +286,7 @@
     if (indexPath.section == 0) {
         [self didSelectCommandAtRow:indexPath.row];
     } else if (indexPath.section == 1) {
-        [self didSelectChangeDate];
+        [self didSelectInfoCellAtRow:indexPath.row];
     } else if (indexPath.section == 2) {
         [self didSelectShowtimeAtRow:indexPath.row];
     }

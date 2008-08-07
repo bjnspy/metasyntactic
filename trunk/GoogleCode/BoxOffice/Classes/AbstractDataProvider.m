@@ -137,29 +137,30 @@
     }
 }
 
-- (NSArray*) moviePerformancesWorker:(Movie*) movie forTheater:(Theater*) theater {
-    NSDictionary* theaterPerformances = [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.identifier]];
-    NSArray* encodedArray = [theaterPerformances objectForKey:movie.identifier];
-    if (encodedArray == nil) {
+- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
+    NSMutableDictionary* theaterPerformances = [self.performances objectForKey:theater.identifier];
+    if (theaterPerformances == nil) {
+        theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
+                                 [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.identifier]]];
+        [self.performances setObject:theaterPerformances forKey:theater.identifier];
+    }
+    
+    NSArray* unsureArray = [theaterPerformances objectForKey:movie.identifier];
+    if (unsureArray.count == 0) {
         return [NSArray array];
     }
     
+    if ([[unsureArray objectAtIndex:0] isKindOfClass:[Performance class]]) {
+        return unsureArray;
+    }
+    
     NSMutableArray* decodedArray = [NSMutableArray array];
-    for (NSDictionary* dict in encodedArray) {
-        [decodedArray addObject:[Performance performanceWithDictionary:dict]];
+    for (NSDictionary* encodedPerformance in unsureArray) {
+        [decodedArray addObject:[Performance performanceWithDictionary:encodedPerformance]];
     }
     
+    [theaterPerformances setObject:decodedArray forKey:movie.identifier];
     return decodedArray;
-}
-
-- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
-    NSArray* array = [self.performances objectForKey:theater.identifier];
-    if (array == nil) {
-        array = [self moviePerformancesWorker:movie forTheater:theater];
-        [self.performances setObject:array forKey:theater.identifier];
-    }
-    
-    return array;
 }
 
 - (NSArray*) loadTheaters {
@@ -218,6 +219,5 @@
         [self.model onProviderUpdated];
     }
 }
-
 
 @end

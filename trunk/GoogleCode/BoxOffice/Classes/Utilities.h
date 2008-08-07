@@ -16,6 +16,7 @@
 
 #import "XmlElement.h"
 #import "XmlDocument.h"
+#import "BoxOfficeModel.h"
 
 @interface Utilities : NSObject {
 
@@ -49,5 +50,12 @@
 + (NSString*) nonNilString:(NSString*) string;
 
 + (void) writeObject:(id) object toFile:(NSString*) file;
+
++ (NSString*) stringByAddingPercentEscapesUsingEncoding:(NSString*) string;
+
++ (NSString*) generateShowtimeLinks:(BoxOfficeModel*) model
+                              movie:(Movie*) movie
+                            theater:(Theater*) theater
+                       performances:(NSArray*) performances;
 
 @end
