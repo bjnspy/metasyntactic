@@ -137,14 +137,19 @@
     }
 }
 
-- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
+- (NSMutableDictionary*) lookupTheaterPerformances:(Theater*) theater {
     NSMutableDictionary* theaterPerformances = [self.performances objectForKey:theater.identifier];
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
-                                 [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.identifier]]];
+                               [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.identifier]]];
         [self.performances setObject:theaterPerformances forKey:theater.identifier];
     }
-    
+    return theaterPerformances;
+}
+
+- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
+    NSMutableDictionary* theaterPerformances = [self lookupTheaterPerformances:theater];
+
     NSArray* unsureArray = [theaterPerformances objectForKey:movie.identifier];
     if (unsureArray.count == 0) {
         return [NSArray array];
