@@ -17,6 +17,7 @@
 #import "ReviewBodyCell.h"
 #import "Application.h"
 #import "FontCache.h"
+#import "Review.h"
 
 @implementation ReviewBodyCell
 

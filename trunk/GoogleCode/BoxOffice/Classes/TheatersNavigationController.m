@@ -17,6 +17,12 @@
 #import "TheatersNavigationController.h"
 #import "ApplicationTabBarController.h"
 #import "TicketsViewController.h"
+#import "AllTheatersViewController.h"
+#import "TheaterDetailsViewController.h"
+#import "Theater.h"
+#import "TicketsViewController.h"
+#import "BoxOfficeModel.h"
+#import "Movie.h"
 
 @implementation TheatersNavigationController
 

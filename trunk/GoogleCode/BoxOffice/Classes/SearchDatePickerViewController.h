@@ -15,7 +15,6 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "PickerEditorViewController.h"
-#import "BoxOfficeController.h"
 
 @interface SearchDatePickerViewController : PickerEditorViewController {
     BoxOfficeController* controller;

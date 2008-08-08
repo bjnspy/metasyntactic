@@ -16,6 +16,7 @@
 
 #import "PosterView.h"
 #import "AllMoviesViewController.h"
+#import "BoxOfficeModel.h"
 
 @implementation PosterView
 

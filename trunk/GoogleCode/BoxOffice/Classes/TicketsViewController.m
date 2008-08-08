@@ -27,6 +27,11 @@
 #import "DateUtilities.h"
 #import "SearchDatePickerViewController.h"
 #import "ColorCache.h"
+#import "BoxOfficeModel.h"
+#import "Movie.h"
+#import "Theater.h"
+#import "Location.h"
+#import "DataProvider.h"
 
 @implementation TicketsViewController
 

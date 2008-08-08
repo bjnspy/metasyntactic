@@ -14,11 +14,6 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51 
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "ApplicationTabBarController.h"
-#import "BoxOfficeController.h"
-#import "BoxOfficeModel.h"
-#import "NotificationCenter.h"
-
 @interface BoxOfficeAppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow* window;
     IBOutlet ApplicationTabBarController* tabBarController;

@@ -19,4 +19,6 @@
 #import <UIKit/UIKit.h>
 #import <CoreLocation/CoreLocation.h>
 #import <MediaPlayer/MPMoviePlayerController.h>
+
+#import "ForwardDeclarations.h"
 #endif

@@ -18,6 +18,7 @@
 #import "Application.h"
 #import "ExtraMovieInformation.h"
 #import "Utilities.h"
+#import "BoxOfficeModel.h"
 
 @implementation MetacriticDownloader
 

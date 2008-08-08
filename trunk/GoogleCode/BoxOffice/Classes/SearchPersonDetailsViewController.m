@@ -19,6 +19,8 @@
 #import "SearchNavigationController.h"
 #import "Utilities.h"
 #import "Application.h"
+#import "XmlElement.h"
+#import "BoxOfficeModel.h"
 
 @implementation SearchPersonDetailsViewController
 

@@ -156,10 +156,6 @@
         } else {
             cell.text = NSLocalizedString(@"Website", nil);
         }
-    } else if (section == 2) {
-        if (row == 1) {
-            cell.text = NSLocalizedString(@"Metacritic", nil);
-        }
     } else if (section == 6) {
         if (row == 1) {
             cell.text = @"GeoNames";

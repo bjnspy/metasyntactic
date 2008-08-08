@@ -16,6 +16,7 @@
 
 #import "Application.h"
 #import "Utilities.h"
+#import "DifferenceEngine.h"
 
 @implementation Application
 

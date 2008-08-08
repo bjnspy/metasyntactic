@@ -20,6 +20,7 @@
 #import "Utilities.h"
 #import "Application.h"
 #import "AutoresizingCell.h"
+#import "BoxOfficeModel.h"
 
 @implementation SearchMovieDetailsViewController
 

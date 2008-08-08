@@ -17,6 +17,7 @@
 #import "RatingsProviderViewController.h"
 #import "SettingsNavigationController.h"
 #import "ApplicationTabBarController.h"
+#import "BoxOfficeModel.h"
 
 @implementation RatingsProviderViewController
 

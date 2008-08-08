@@ -28,6 +28,8 @@
 #import "FontCache.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
+#import "Movie.h"
+#import "BoxOfficeModel.h"
 
 @implementation MovieDetailsViewController
 

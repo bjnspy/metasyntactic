@@ -19,6 +19,8 @@
 #import "ImageCache.h"
 #import "FontCache.h"
 #import "ColorCache.h"
+#import "Review.h"
+#import "BoxOfficeModel.h"
 
 @implementation ReviewTitleCell
 

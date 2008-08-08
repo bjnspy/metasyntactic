@@ -17,6 +17,8 @@
 #import "ImdbPosterDownloader.h"
 #import "XmlParser.h"
 #import "XmlSerializer.h"
+#import "XmlElement.h"
+#import "Movie.h"
 
 @implementation ImdbPosterDownloader
 

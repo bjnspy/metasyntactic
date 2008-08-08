@@ -22,6 +22,7 @@
 #import "Performance.h"
 #import "DateUtilities.h"
 #import "MultiDictionary.h"
+#import "XmlElement.h"
 
 @implementation NorthAmericaDataProvider
 

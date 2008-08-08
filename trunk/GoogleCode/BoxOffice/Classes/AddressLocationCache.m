@@ -22,6 +22,8 @@
 #import "Utilities.h"
 #import "BoxOfficeModel.h"
 #import "Application.h"
+#import "Theater.h"
+#import "Location.h"
 
 @implementation AddressLocationCache
 

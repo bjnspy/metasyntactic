@@ -31,6 +31,7 @@
 #import "ImageCache.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
+#import "Theater.h"
 
 @implementation TheaterDetailsViewController
 

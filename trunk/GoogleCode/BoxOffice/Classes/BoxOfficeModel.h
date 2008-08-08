@@ -14,17 +14,6 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51 
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "PosterCache.h"
-#import "TrailerCache.h"
-#import "AddressLocationCache.h"
-#import "ReviewCache.h"
-#import "XmlElement.h"
-#import "Theater.h"
-#import "NotificationCenter.h"
-#import "SearchCache.h"
-#import "DataProvider.h"
-#import "RatingsCache.h"
-
 @interface BoxOfficeModel : NSObject {
     NotificationCenter* notificationCenter;
 

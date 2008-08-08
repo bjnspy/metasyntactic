@@ -17,6 +17,7 @@
 #import "SearchPerson.h"
 #import "MovieKey.h"
 #import "Utilities.h"
+#import "PersonKey.h"
 
 @implementation SearchPerson
 

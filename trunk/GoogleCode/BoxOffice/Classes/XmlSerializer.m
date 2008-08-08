@@ -15,6 +15,8 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "XmlSerializer.h"
+#import "XmlElement.h"
+#import "XmlDocument.h"
 
 @implementation XmlSerializer
 
