@@ -15,9 +15,9 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "RatingsProviderViewController.h"
-#import "SettingsNavigationController.h"
 #import "ApplicationTabBarController.h"
 #import "BoxOfficeModel.h"
+#import "SettingsNavigationController.h"
 
 @implementation RatingsProviderViewController
 

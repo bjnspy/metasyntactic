@@ -15,13 +15,13 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "ReviewCache.h"
-#import "Review.h"
+#import "Application.h"
+#import "BoxOfficeModel.h"
 #import "ExtraMovieInformation.h"
+#import "Review.h"
+#import "Utilities.h"
 #import "XmlElement.h"
 #import "XmlParser.h"
-#import "Application.h"
-#import "Utilities.h"
-#import "BoxOfficeModel.h"
 
 @implementation ReviewCache
 

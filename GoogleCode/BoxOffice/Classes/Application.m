@@ -15,8 +15,9 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "Application.h"
-#import "Utilities.h"
+
 #import "DifferenceEngine.h"
+#import "Utilities.h"
 
 @implementation Application
 

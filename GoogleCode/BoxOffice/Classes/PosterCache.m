@@ -20,7 +20,6 @@
 #import "Movie.h"
 #import "PosterDownloader.h"
 #import "Utilities.h"
-#import "Movie.h"
 
 @implementation PosterCache
 

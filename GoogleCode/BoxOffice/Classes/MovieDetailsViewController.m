@@ -15,21 +15,21 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "MovieDetailsViewController.h"
-#import "MoviesNavigationController.h"
-#import "Theater.h"
-#import "DifferenceEngine.h"
-#import "TicketsViewController.h"
-#import "MovieShowtimesCell.h"
 #import "Application.h"
-#import "ViewControllerUtilities.h"
-#import "Utilities.h"
-#import "ReviewsViewController.h"
 #import "ApplicationTabBarController.h"
-#import "FontCache.h"
+#import "BoxOfficeModel.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
+#import "DifferenceEngine.h"
+#import "FontCache.h"
 #import "Movie.h"
-#import "BoxOfficeModel.h"
+#import "MovieShowtimesCell.h"
+#import "MoviesNavigationController.h"
+#import "ReviewsViewController.h"
+#import "Theater.h"
+#import "TicketsViewController.h"
+#import "Utilities.h"
+#import "ViewControllerUtilities.h"
 
 @implementation MovieDetailsViewController
 

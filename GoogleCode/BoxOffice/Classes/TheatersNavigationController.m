@@ -15,14 +15,13 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "TheatersNavigationController.h"
-#import "ApplicationTabBarController.h"
-#import "TicketsViewController.h"
 #import "AllTheatersViewController.h"
-#import "TheaterDetailsViewController.h"
-#import "Theater.h"
-#import "TicketsViewController.h"
+#import "ApplicationTabBarController.h"
 #import "BoxOfficeModel.h"
 #import "Movie.h"
+#import "Theater.h"
+#import "TheaterDetailsViewController.h"
+#import "TicketsViewController.h"
 
 @implementation TheatersNavigationController
 

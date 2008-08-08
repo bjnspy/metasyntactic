@@ -15,10 +15,10 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "SearchDatePickerViewController.h"
-#import "DateUtilities.h"
 #import "Application.h"
 #import "BoxOfficeController.h"
 #import "BoxOfficeModel.h"
+#import "DateUtilities.h"
 
 @implementation SearchDatePickerViewController
 

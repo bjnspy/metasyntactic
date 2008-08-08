@@ -16,11 +16,11 @@
 
 #import "ReviewTitleCell.h"
 #import "Application.h"
-#import "ImageCache.h"
-#import "FontCache.h"
-#import "ColorCache.h"
-#import "Review.h"
 #import "BoxOfficeModel.h"
+#import "ColorCache.h"
+#import "FontCache.h"
+#import "ImageCache.h"
+#import "Review.h"
 
 @implementation ReviewTitleCell
 

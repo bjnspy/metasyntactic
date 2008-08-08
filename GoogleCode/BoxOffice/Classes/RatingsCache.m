@@ -15,12 +15,12 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "RatingsCache.h"
-#import "BoxOfficeModel.h"
-#import "Utilities.h"
 #import "Application.h"
+#import "BoxOfficeModel.h"
 #import "ExtraMovieInformation.h"
-#import "RottenTomatoesDownloader.h"
 #import "MetacriticDownloader.h"
+#import "RottenTomatoesDownloader.h"
+#import "Utilities.h"
 
 @implementation RatingsCache
 

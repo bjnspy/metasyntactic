@@ -15,9 +15,10 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "AbstractDataProvider.h"
+
 #import "Application.h"
-#import "Utilities.h"
 #import "Performance.h"
+#import "Utilities.h"
 
 @implementation AbstractDataProvider
 
