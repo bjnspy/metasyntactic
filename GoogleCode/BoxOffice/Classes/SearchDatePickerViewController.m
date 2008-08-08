@@ -17,6 +17,8 @@
 #import "SearchDatePickerViewController.h"
 #import "DateUtilities.h"
 #import "Application.h"
+#import "BoxOfficeController.h"
+#import "BoxOfficeModel.h"
 
 @implementation SearchDatePickerViewController
 

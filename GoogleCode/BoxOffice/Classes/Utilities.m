@@ -17,6 +17,12 @@
 #import "Utilities.h"
 #import "XmlParser.h"
 #import "XmlSerializer.h"
+#import "XmlElement.h"
+#import "XmlDocument.h"
+#import "BoxOfficeModel.h"
+#import "Performance.h"
+#import "Theater.h"
+#import "DataProvider.h"
 
 @implementation Utilities
 

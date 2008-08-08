@@ -14,12 +14,6 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51 
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "BoxOfficeModel.h"
-#import "MultiDictionary.h"
-#import "PosterView.h"
-
-@class MoviesNavigationController;
-
 @interface AllMoviesViewController : UITableViewController {
     MoviesNavigationController* navigationController;
     UISegmentedControl* segmentedControl;

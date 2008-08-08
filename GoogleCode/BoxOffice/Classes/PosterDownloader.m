@@ -20,6 +20,7 @@
 #import "XmlSerializer.h"
 #import "ImdbPosterDownloader.h"
 #import "Utilities.h"
+#import "Movie.h"
 
 @implementation PosterDownloader
 

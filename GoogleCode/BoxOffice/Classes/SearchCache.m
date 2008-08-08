@@ -16,7 +16,10 @@
 
 #import "SearchCache.h"
 #import "Application.h"
-
+#import "MovieKey.h"
+#import "PersonKey.h"
+#import "SearchMovie.h"
+#import "SearchPerson.h"
 
 @implementation SearchCache
 

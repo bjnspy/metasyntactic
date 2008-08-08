@@ -22,11 +22,13 @@
 #import "Application.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
+#import "BoxOfficeModel.h"
+#import "ActivityIndicator.h"
+#import "XmlElement.h"
 
 #define MOVIES_SECTION 0
 #define PEOPLE_SECTION 1
 #define RECENTLY_VIEWED_SECTION 2
-
 
 @implementation SearchStartPageViewController
 

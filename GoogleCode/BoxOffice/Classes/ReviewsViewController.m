@@ -22,6 +22,7 @@
 #import "MoviesNavigationController.h"
 #import "Utilities.h"
 #import "FontCache.h"
+#import "BoxOfficeModel.h"
 
 @implementation ReviewsViewController
 

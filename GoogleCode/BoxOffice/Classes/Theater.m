@@ -18,6 +18,7 @@
 #import "Performance.h"
 #import "Application.h"
 #import "DateUtilities.h"
+#import "Movie.h"
 
 @implementation Theater
 

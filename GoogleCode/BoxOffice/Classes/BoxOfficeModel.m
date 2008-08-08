@@ -25,6 +25,17 @@
 #import "Performance.h"
 #import "NorthAmericaDataProvider.h"
 #import "UnitedKingdomDataProvider.h"
+#import "PosterCache.h"
+#import "TrailerCache.h"
+#import "AddressLocationCache.h"
+#import "ReviewCache.h"
+#import "XmlElement.h"
+#import "Theater.h"
+#import "NotificationCenter.h"
+#import "SearchCache.h"
+#import "DataProvider.h"
+#import "RatingsCache.h"
+#import "Location.h"
 
 @implementation BoxOfficeModel
 

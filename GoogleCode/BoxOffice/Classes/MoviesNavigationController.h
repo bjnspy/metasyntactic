@@ -15,10 +15,6 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "AbstractNavigationController.h"
-#import "AllMoviesViewController.h"
-#import "MovieDetailsViewController.h"
-#import "TicketsViewController.h"
-#import "Movie.h"
 
 @interface MoviesNavigationController : AbstractNavigationController {
     AllMoviesViewController* allMoviesViewController;

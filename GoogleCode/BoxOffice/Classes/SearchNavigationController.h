@@ -15,7 +15,6 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "AbstractNavigationController.h"
-#import "SearchStartPageViewController.h"
 
 @interface SearchNavigationController : AbstractNavigationController {
     SearchStartPageViewController* startPageViewController;

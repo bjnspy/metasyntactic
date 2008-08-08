@@ -14,14 +14,6 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51 
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "MoviesNavigationController.h"
-#import "TheatersNavigationController.h"
-#import "SearchNavigationController.h"
-#import "SettingsNavigationController.h"
-#import "BoxOfficeModel.h"
-
-@class BoxOfficeAppDelegate;
-
 @interface ApplicationTabBarController : UITabBarController<UITabBarControllerDelegate> {
     BoxOfficeAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;

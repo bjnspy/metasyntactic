@@ -17,6 +17,10 @@
 #import "BoxOfficeAppDelegate.h"
 #import "BoxOfficeController.h"
 #import "Application.h"
+#import "ApplicationTabBarController.h"
+#import "BoxOfficeController.h"
+#import "BoxOfficeModel.h"
+#import "NotificationCenter.h"
 
 @implementation BoxOfficeAppDelegate
 

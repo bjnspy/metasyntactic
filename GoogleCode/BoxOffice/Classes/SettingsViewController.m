@@ -29,6 +29,7 @@
 #import "RatingsProviderViewController.h"
 
 #import "XmlParser.h"
+#import "XmlElement.h"
 
 #import "Utilities.h"
 #import "DateUtilities.h"
@@ -37,6 +38,15 @@
 #import "SettingCell.h"
 
 #import "ColorCache.h"
+#import "MoviesNavigationController.h"
+#import "TheatersNavigationController.h"
+#import "SearchNavigationController.h"
+#import "SettingsNavigationController.h"
+#import "BoxOfficeModel.h"
+
+#import "BoxOfficeController.h"
+#import "BoxOfficeModel.h"
+#import "ActivityIndicator.h"
 
 @implementation SettingsViewController
 

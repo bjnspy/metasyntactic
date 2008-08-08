@@ -27,6 +27,15 @@
 #import "ExtraMovieInformation.h"
 #import "Performance.h"
 #import "NorthAmericaDataProvider.h"
+#import "ApplicationTabBarController.h"
+#import "BoxOfficeController.h"
+#import "BoxOfficeModel.h"
+#import "NotificationCenter.h"
+#import "BoxOfficeModel.h"
+#import "XmlElement.h"
+#import "Theater.h"
+#import "DataProvider.h"
+#import "RatingsCache.h"
 
 @implementation BoxOfficeController
 

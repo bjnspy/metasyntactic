@@ -14,12 +14,6 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51 
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "BoxOfficeController.h"
-#import "BoxOfficeModel.h"
-#import "TicketsViewController.h"
-
-@class ApplicationTabBarController;
-
 @interface AbstractNavigationController : UINavigationController {
     ApplicationTabBarController* tabBarController;
     TicketsViewController* ticketsViewController;

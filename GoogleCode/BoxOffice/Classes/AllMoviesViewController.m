@@ -25,6 +25,9 @@
 #import "Application.h"
 #import "DateUtilities.h"
 #import "Utilities.h"
+#import "BoxOfficeModel.h"
+#import "MultiDictionary.h"
+#import "PosterView.h"
 
 @implementation AllMoviesViewController
 

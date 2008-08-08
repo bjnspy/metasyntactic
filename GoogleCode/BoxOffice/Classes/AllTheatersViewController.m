@@ -21,6 +21,8 @@
 #import "ApplicationTabBarController.h"
 #import "Application.h"
 #import "Utilities.h"
+#import "BoxOfficeModel.h"
+#import "MultiDictionary.h"
 
 @implementation AllTheatersViewController
 

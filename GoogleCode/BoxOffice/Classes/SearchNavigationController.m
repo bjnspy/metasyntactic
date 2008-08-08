@@ -17,6 +17,7 @@
 #import "SearchNavigationController.h"
 #import "SearchMovieDetailsViewController.h"
 #import "SearchPersonDetailsViewController.h"
+#import "SearchStartPageViewController.h"
 
 @implementation SearchNavigationController
 

@@ -17,6 +17,7 @@
 #import "SettingsNavigationController.h"
 #import "ApplicationTabBarController.h"
 #import "EditorViewController.h"
+#import "SettingsViewController.h"
 
 @implementation SettingsNavigationController
 

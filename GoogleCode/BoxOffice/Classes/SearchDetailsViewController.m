@@ -16,6 +16,7 @@
 
 #import "SearchDetailsViewController.h"
 #import "SearchNavigationController.h"
+#import "BoxOfficeModel.h"
 
 @implementation SearchDetailsViewController
 
