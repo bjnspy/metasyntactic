@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "ReviewCache.h"
@@ -63,11 +63,11 @@
     for (NSDictionary* dict in [encodedDictionary objectForKey:@"Reviews"]) {
         [reviews addObject:[Review reviewWithDictionary:dict]];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:reviews forKey:@"Reviews"];
     [result setObject:[encodedDictionary objectForKey:@"Hash"] forKey:@"Hash"];
-    
+
     return result;
 }
 
@@ -120,7 +120,7 @@
     for (Review* review in reviews) {
         [encodedReviews addObject:[review dictionary]];
     }
-    
+
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:encodedReviews forKey:@"Reviews"];
     [dictionary setObject:hash forKey:@"Hash"];
@@ -133,7 +133,7 @@
     if (dictionary == nil) {
         return [NSArray array];
     }
-    
+
     return [dictionary objectForKey:@"Reviews"];
 }
 
@@ -148,7 +148,7 @@
         if ([self.model ratingsProviderIndex] != ratingsProvider) {
             break;
         }
-        
+
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
 
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
@@ -158,14 +158,14 @@
             if (serverHash == nil) {
                 serverHash = @"0";
             }
-            
+
             NSString* localHash = [self reviewsHashForMovie:movieId];
-            
+
             if (localHash != nil &&
                 [localHash isEqual:serverHash]) {
                 continue;
             }
-            
+
             NSArray* reviews = [self downloadInfoReviews:info];
             if (reviews.count > 0) {
                 [self saveMovie:movieId reviews:reviews hash:serverHash ratingsProvider:ratingsProvider];

@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "Utilities.h"
@@ -196,7 +196,7 @@
     string = [string stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
     string = [string stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
     string = [string stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
-    
+
     return string;
 }
 
@@ -205,14 +205,14 @@
                             theater:(Theater*) theater
                        performances:(NSArray*) performances {
     NSMutableString* body = [NSMutableString string];
-    
+
     for (int i = 0; i < performances.count; i++) {
         if (i != 0) {
             [body appendString:@", "];
         }
-        
+
         Performance* performance = [performances objectAtIndex:i];
-        
+
         if (![theater.sellsTickets isEqual:@"True"] ||
             [Utilities isNilOrEmpty:performance.identifier]) {
             [body appendString:performance.time];
@@ -221,15 +221,15 @@
                                                                           movie:movie
                                                                     performance:performance
                                                                            date:[model searchDate]];
-            
+
             [body appendString:@"<a href=\""];
             [body appendString:url];
             [body appendString:@"\">"];
             [body appendString:performance.time];
-            [body appendString:@"</a>"];            
+            [body appendString:@"</a>"];
         }
     }
-    
+
     return body;
 }
 

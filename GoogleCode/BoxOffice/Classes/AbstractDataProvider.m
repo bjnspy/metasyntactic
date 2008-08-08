@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "AbstractDataProvider.h"
@@ -36,7 +36,7 @@
     self.moviesData = nil;
     self.theatersData = nil;
     self.performances = nil;
-    
+
     [super dealloc];
 }
 
@@ -159,16 +159,16 @@
     if (unsureArray.count == 0) {
         return [NSArray array];
     }
-    
+
     if ([[unsureArray objectAtIndex:0] isKindOfClass:[Performance class]]) {
         return unsureArray;
     }
-    
+
     NSMutableArray* decodedArray = [NSMutableArray array];
     for (NSDictionary* encodedPerformance in unsureArray) {
         [decodedArray addObject:[Performance performanceWithDictionary:encodedPerformance]];
     }
-    
+
     [theaterPerformances setObject:decodedArray forKey:movie.identifier];
     return decodedArray;
 }

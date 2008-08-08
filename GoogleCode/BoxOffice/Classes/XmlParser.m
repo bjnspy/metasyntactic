@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "XmlParser.h"
@@ -33,13 +33,13 @@
 
 - (void) run:(NSXMLParser*) parser {
     parser.delegate = self;
-    
+
     self.elementsStack = [NSMutableArray array];
     self.stringBufferStack = [NSMutableArray array];
     self.attributesStack = [NSMutableArray array];
-    
+
     [self.elementsStack addObject:[NSMutableArray array]];
-    
+
     if ([parser parse] == NO) {
         self.elementsStack = nil;
         NSLog(@"%@", [parser parserError]);
@@ -60,7 +60,7 @@
         NSXMLParser* parser = [[[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:url]] autorelease];
         [self run:parser];
     }
-    
+
     return self;
 }
 
@@ -68,8 +68,8 @@
     if (parser.elementsStack == nil) {
         return nil;
     }
-    
-    return [[parser.elementsStack lastObject] lastObject];  
+
+    return [[parser.elementsStack lastObject] lastObject];
 }
 
 + (XmlElement*) parse:(NSData*) data {
@@ -85,7 +85,7 @@
     if (url == nil) {
         return nil;
     }
-    
+
     XmlParser* xmlParser = [[[XmlParser alloc] initWithUrl:url] autorelease];
     return [XmlParser collect:xmlParser];
 }
@@ -125,7 +125,7 @@
     if (string == nil) {
         return;
     }
-    
+
     [[self.stringBufferStack lastObject] appendString:string];
 }
 

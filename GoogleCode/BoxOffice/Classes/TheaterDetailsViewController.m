@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "TheaterDetailsViewController.h"
@@ -121,13 +121,13 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     // header
     NSInteger sections = 1;
-    
+
     // e-mail listings
     sections++;
-    
+
     // movies
     sections += self.movies.count;
-    
+
     return sections;
 }
 
@@ -146,26 +146,26 @@
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                 reuseIdentifier:nil] autorelease];
-    
+
     if (row == 0) {
         [cell setKey:NSLocalizedString(@"Map", nil) value:[self.model simpleAddressForTheater:theater]  hasIndicator:NO];
     } else {
         [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber hasIndicator:NO];
     }
-    
+
     return cell;
 }
 
 - (UITableViewCell*) cellForEmailListings {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                     reuseIdentifier:nil] autorelease];
-    
+
     cell.textColor = [ColorCache commandColor];
     cell.font = [UIFont boldSystemFontOfSize:14];
     cell.textAlignment = UITextAlignmentCenter;
-    
+
     cell.text = NSLocalizedString(@"E-mail listings", nil);
-    
+
     return cell;
 }
 
@@ -179,9 +179,9 @@
                                                          model:self.model
                                                          style:UITableViewStyleGrouped] autorelease];
         }
-        
+
         [movieCell setMovie:[self.movies objectAtIndex:index]];
-        
+
         return movieCell;
     } else {
         static NSString* reuseIdentifier = @"TheaterDetailsShowtimesCellIdentifier";
@@ -191,10 +191,10 @@
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                               reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         [cell setShowtimes:[self.movieShowtimes objectAtIndex:index]
              useSmallFonts:[self.model useSmallFonts]];
-        
+
         return cell;
     }
 }
@@ -222,7 +222,7 @@
         return [tableView rowHeight];
     } else {
         section -= 2;
-        
+
         if (row == 0) {
             return [tableView rowHeight];
         } else {
@@ -250,19 +250,19 @@
                                 self.theater.name,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
-    
+
     [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
     [body appendString:theater.address];
     [body appendString:@"\">"];
     [body appendString:[self.model simpleAddressForTheater:theater]];
     [body appendString:@"</a>"];
-    
+
     for (int i = 0; i < movies.count; i++) {
         [body appendString:@"\n\n"];
-        
+
         Movie* movie = [movies objectAtIndex:i];
         NSArray* performances = [movieShowtimes objectAtIndex:i];
-        
+
         [body appendString:movie.displayTitle];
         [body appendString:@"\n"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
@@ -270,11 +270,11 @@
                                                     theater:theater
                                                performances:performances]];
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
                      [theaterAndDate stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding],
                      [Utilities stringByAddingPercentEscapesUsingEncoding:body]];
-    
+
     [Application openBrowser:url];
 }
 
@@ -293,7 +293,7 @@
         [self didSelectEmailListings];
     } else {
         section -= 2;
-        
+
         Movie* movie = [self.movies objectAtIndex:section];
         if (row == 0) {
             [self.navigationController.tabBarController showMovieDetails:movie];

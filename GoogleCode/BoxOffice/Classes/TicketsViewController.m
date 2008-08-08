@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "TicketsViewController.h"
@@ -116,7 +116,7 @@
     } else if (section == 2) {
         return performances.count;
     }
-    
+
     return 0;
 }
 
@@ -150,9 +150,9 @@
         cell.textAlignment = UITextAlignmentCenter;
         cell.font = [UIFont boldSystemFontOfSize:14];
     }
-    
+
     Performance* performance = [self.performances objectAtIndex:row];
-    
+
     if (![self.theater.sellsTickets isEqual:@"True"] ||
         [Utilities isNilOrEmpty:[performance identifier]]) {
         cell.textColor = [UIColor blackColor];
@@ -200,7 +200,7 @@
     } else {
         cell.text = NSLocalizedString(@"E-mail listings", nil);
     }
-    
+
     return cell;
 }
 
@@ -249,7 +249,7 @@
                                 self.movie.canonicalTitle,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
-    
+
     [body appendString:theater.name];
     [body appendString:@"\n"];
     [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
@@ -257,20 +257,20 @@
     [body appendString:@"\">"];
     [body appendString:[self.model simpleAddressForTheater:theater]];
     [body appendString:@"</a>"];
-    
+
     [body appendString:@"\n\n"];
     [body appendString:self.movie.canonicalTitle];
     [body appendString:@"\n"];
-    
+
     [body appendString:[Utilities generateShowtimeLinks:self.model
                                                   movie:movie
                                                 theater:theater
                                            performances:performances]];
-    
+
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
                      [theaterAndDate stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding],
                      [Utilities stringByAddingPercentEscapesUsingEncoding:body]];
-    
+
     [Application openBrowser:url];
 }
 

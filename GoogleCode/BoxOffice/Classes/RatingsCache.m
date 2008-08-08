@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "RatingsCache.h"
@@ -31,7 +31,7 @@
 - (void) dealloc {
     self.model = nil;
     self.ratingsAndHash = nil;
-    
+
     [super dealloc];
 }
 
@@ -44,19 +44,19 @@
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     NSDictionary* encodedRatings = [dictionary objectForKey:@"Ratings"];
     NSString* hash = [dictionary objectForKey:@"Hash"];
-    
+
     NSMutableDictionary* decodedRatings = [NSMutableDictionary dictionary];
     for (NSString* key in encodedRatings) {
         [decodedRatings setObject:[ExtraMovieInformation infoWithDictionary:[encodedRatings objectForKey:key]] forKey:key];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:decodedRatings forKey:@"Ratings"];
     [result setObject:hash forKey:@"Hash"];
-    
+
     return result;
 }
 
@@ -69,7 +69,7 @@
         self.model = model_;
         [self onRatingsProviderChanged];
     }
-    
+
     return self;
 }
 
@@ -81,42 +81,42 @@
     if (dictionary.count == 0) {
         return;
     }
-    
+
     self.ratingsAndHash = dictionary;
-    
+
     NSMutableDictionary* encodedRatings = [NSMutableDictionary dictionary];
     NSDictionary* ratings = [dictionary objectForKey:@"Ratings"];
     NSString* hash = [dictionary objectForKey:@"Hash"];
-    
+
     for (NSString* key in ratings) {
         [encodedRatings setObject:[[ratings objectForKey:key] dictionary] forKey:key];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:encodedRatings forKey:@"Ratings"];
     [result setObject:hash forKey:@"Hash"];
-    
+
         //[Application ratingsFile:[self currentRatingsProvider]]
     [Utilities writeObject:result toFile:[self ratingsFile]];
 }
 
 - (NSDictionary*) updateWorker {
     NSString* hash = [self.ratingsAndHash objectForKey:@"Hash"];
-    
+
     if ([self.model rottenTomatoesRatings]) {
         return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings:hash];
     } else if ([self.model metacriticRatings]) {
         return [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings:hash];
     }
-    
-    return nil;    
+
+    return nil;
 }
 
 - (NSDictionary*) update {
     NSDictionary* result = [self updateWorker];
-    
+
     [self saveRatings:result];
-    
+
     return [result objectForKey:@"Ratings"];
 }
 
@@ -125,7 +125,7 @@
     if (result == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     return result;
 }
 
