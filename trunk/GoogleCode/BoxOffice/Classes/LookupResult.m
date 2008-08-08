@@ -16,7 +16,6 @@
 
 #import "LookupResult.h"
 
-
 @implementation LookupResult
 
 @synthesize movies;

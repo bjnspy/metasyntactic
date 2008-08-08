@@ -15,8 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "SettingsNavigationController.h"
-#import "ApplicationTabBarController.h"
-#import "EditorViewController.h"
+
 #import "SettingsViewController.h"
 
 @implementation SettingsNavigationController

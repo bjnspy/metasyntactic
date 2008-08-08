@@ -19,7 +19,6 @@
 #import "Application.h"
 #import "ApplicationTabBarController.h"
 #import "AttributeCell.h"
-#import "AutoresizingCell.h"
 #import "BoxOfficeModel.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
@@ -29,7 +28,6 @@
 #import "MovieTitleCell.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
-#import "TicketsViewController.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 

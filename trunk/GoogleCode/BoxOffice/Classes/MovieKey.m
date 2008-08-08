@@ -15,7 +15,6 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "MovieKey.h"
-#import "Key.h"
 
 @implementation MovieKey
 

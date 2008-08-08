@@ -16,7 +16,6 @@
 
 #import "ColorCache.h"
 
-
 @implementation ColorCache
 
 static UIColor* commandColor = nil;

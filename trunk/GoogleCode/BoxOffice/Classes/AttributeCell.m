@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "AttributeCell.h"
-#import "Application.h"
+
 #import "ColorCache.h"
 
 @implementation AttributeCell

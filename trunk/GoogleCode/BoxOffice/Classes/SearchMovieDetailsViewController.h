@@ -15,7 +15,6 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "SearchDetailsViewController.h"
-#import "XmlElement.h"
 
 @interface SearchMovieDetailsViewController : SearchDetailsViewController {
     XmlElement* movieElement;

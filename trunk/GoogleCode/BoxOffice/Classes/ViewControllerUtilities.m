@@ -16,7 +16,6 @@
 
 #import "ViewControllerUtilities.h"
 
-
 @implementation ViewControllerUtilities
 
 + (UILabel*) viewControllerTitleLabel {

@@ -18,34 +18,17 @@
 
 #import "ActivityIndicator.h"
 #import "Application.h"
-#import "ApplicationTabBarController.h"
-#import "AttributeCell.h"
-#import "BoxOfficeAppDelegate.h"
-#import "BoxOfficeController.h"
 #import "BoxOfficeModel.h"
 #import "ColorCache.h"
 #import "CreditsViewController.h"
-#import "DataProviderViewController.h"
 #import "DateUtilities.h"
-#import "MoviesNavigationController.h"
-#import "PickerEditorViewController.h"
 #import "RatingsProviderViewController.h"
 #import "SearchDatePickerViewController.h"
-#import "SearchNavigationController.h"
 #import "SettingCell.h"
 #import "SettingsNavigationController.h"
 #import "TextFieldEditorViewController.h"
-#import "TheatersNavigationController.h"
 #import "Utilities.h"
 #import "XmlElement.h"
-#import "XmlParser.h"
-
-
-
-
-
-
-
 
 @implementation SettingsViewController
 

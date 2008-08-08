@@ -16,7 +16,6 @@
 
 #import "Key.h"
 
-
 @implementation Key
 
 @synthesize identifier;

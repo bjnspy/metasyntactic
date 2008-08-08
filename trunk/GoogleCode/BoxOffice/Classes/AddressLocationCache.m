@@ -17,14 +17,10 @@
 #import "AddressLocationCache.h"
 
 #import "Application.h"
-#import "BoxOfficeModel.h"
 #import "Location.h"
 #import "Theater.h"
 #import "Utilities.h"
-#import "XmlDocument.h"
 #import "XmlElement.h"
-#import "XmlParser.h"
-#import "XmlSerializer.h"
 
 @implementation AddressLocationCache
 

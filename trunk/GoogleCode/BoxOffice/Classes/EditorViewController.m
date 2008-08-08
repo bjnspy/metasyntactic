@@ -16,7 +16,6 @@
 
 #import "EditorViewController.h"
 
-
 @implementation EditorViewController
 
 @synthesize navigationController;

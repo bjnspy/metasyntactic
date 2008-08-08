@@ -16,7 +16,6 @@
 
 #import "CharacterKey.h"
 
-
 @implementation CharacterKey
 
 + (CharacterKey*) keyWithIdentifier:(NSString*) identifier

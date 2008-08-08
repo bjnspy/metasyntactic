@@ -17,13 +17,11 @@
 #import "AllTheatersViewController.h"
 
 #import "Application.h"
-#import "ApplicationTabBarController.h"
 #import "BoxOfficeModel.h"
 #import "Location.h"
 #import "MultiDictionary.h"
 #import "Theater.h"
 #import "TheatersNavigationController.h"
-#import "Utilities.h"
 
 @implementation AllTheatersViewController
 

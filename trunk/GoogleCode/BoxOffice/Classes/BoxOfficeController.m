@@ -19,21 +19,10 @@
 #import "Application.h"
 #import "ApplicationTabBarController.h"
 #import "BoxOfficeAppDelegate.h"
-#import "BoxOfficeController.h"
 #import "BoxOfficeModel.h"
-#import "DataProvider.h"
-#import "ExtraMovieInformation.h"
-#import "Movie.h"
 #import "NorthAmericaDataProvider.h"
-#import "NotificationCenter.h"
-#import "Performance.h"
 #import "RatingsCache.h"
-#import "Theater.h"
 #import "Utilities.h"
-#import "XmlDocument.h"
-#import "XmlElement.h"
-#import "XmlParser.h"
-#import "XmlSerializer.h"
 
 @implementation BoxOfficeController
 

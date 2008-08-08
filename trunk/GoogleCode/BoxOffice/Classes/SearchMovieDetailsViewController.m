@@ -15,12 +15,12 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "SearchMovieDetailsViewController.h"
+
 #import "Application.h"
-#import "AutoresizingCell.h"
 #import "BoxOfficeModel.h"
 #import "SearchNavigationController.h"
 #import "Utilities.h"
-#import "XmlParser.h"
+#import "XmlElement.h"
 
 @implementation SearchMovieDetailsViewController
 

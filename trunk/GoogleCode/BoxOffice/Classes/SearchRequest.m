@@ -16,7 +16,6 @@
 
 #import "SearchRequest.h"
 
-
 @implementation SearchRequest
 
 @synthesize text;

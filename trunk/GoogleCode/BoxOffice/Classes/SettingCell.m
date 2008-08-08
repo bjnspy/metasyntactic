@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "SettingCell.h"
-#import "Application.h"
+
 #import "ColorCache.h"
 
 @implementation SettingCell

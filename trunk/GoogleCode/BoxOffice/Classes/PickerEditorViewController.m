@@ -16,7 +16,6 @@
 
 #import "PickerEditorViewController.h"
 
-
 @implementation PickerEditorViewController
 
 @synthesize picker;

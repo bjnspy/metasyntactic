@@ -17,7 +17,11 @@
 #import "AbstractDataProvider.h"
 
 #import "Application.h"
+#import "BoxOfficeModel.h"
+#import "LookupResult.h"
+#import "Movie.h"
 #import "Performance.h"
+#import "Theater.h"
 #import "Utilities.h"
 
 @implementation AbstractDataProvider

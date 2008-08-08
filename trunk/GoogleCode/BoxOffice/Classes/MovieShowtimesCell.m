@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "MovieShowtimesCell.h"
-#import "Application.h"
+
 #import "ColorCache.h"
 #import "FontCache.h"
 #import "Performance.h"
