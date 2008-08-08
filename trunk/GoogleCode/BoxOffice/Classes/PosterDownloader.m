@@ -15,12 +15,12 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "PosterDownloader.h"
-#import "XmlParser.h"
-#import "XmlElement.h"
-#import "XmlSerializer.h"
 #import "ImdbPosterDownloader.h"
-#import "Utilities.h"
 #import "Movie.h"
+#import "Utilities.h"
+#import "XmlElement.h"
+#import "XmlParser.h"
+#import "XmlSerializer.h"
 
 @implementation PosterDownloader
 

@@ -16,9 +16,9 @@
 
 #import "RottenTomatoesDownloader.h"
 #import "Application.h"
+#import "BoxOfficeModel.h"
 #import "ExtraMovieInformation.h"
 #import "Utilities.h"
-#import "BoxOfficeModel.h"
 
 @implementation RottenTomatoesDownloader
 

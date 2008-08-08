@@ -16,11 +16,11 @@
 
 #import "MovieTitleCell.h"
 #import "Application.h"
-#import "ImageCache.h"
-#import "FontCache.h"
-#import "ColorCache.h"
-#import "Movie.h"
 #import "BoxOfficeModel.h"
+#import "ColorCache.h"
+#import "FontCache.h"
+#import "ImageCache.h"
+#import "Movie.h"
 
 @implementation MovieTitleCell
 

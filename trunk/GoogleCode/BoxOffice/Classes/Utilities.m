@@ -15,14 +15,15 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "Utilities.h"
-#import "XmlParser.h"
-#import "XmlSerializer.h"
-#import "XmlElement.h"
-#import "XmlDocument.h"
+
 #import "BoxOfficeModel.h"
+#import "DataProvider.h"
 #import "Performance.h"
 #import "Theater.h"
-#import "DataProvider.h"
+#import "XmlDocument.h"
+#import "XmlElement.h"
+#import "XmlParser.h"
+#import "XmlSerializer.h"
 
 @implementation Utilities
 

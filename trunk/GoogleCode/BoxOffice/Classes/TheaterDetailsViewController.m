@@ -16,22 +16,22 @@
 
 #import "TheaterDetailsViewController.h"
 
-#import "Movie.h"
-#import "BoxOfficeModel.h"
-#import "TheatersNavigationController.h"
-#import "TicketsViewController.h"
-#import "MovieShowtimesCell.h"
 #import "Application.h"
-#import "Utilities.h"
-#import "AutoresizingCell.h"
-#import "ViewControllerUtilities.h"
-#import "AttributeCell.h"
-#import "MovieTitleCell.h"
 #import "ApplicationTabBarController.h"
-#import "ImageCache.h"
+#import "AttributeCell.h"
+#import "AutoresizingCell.h"
+#import "BoxOfficeModel.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
+#import "ImageCache.h"
+#import "Movie.h"
+#import "MovieShowtimesCell.h"
+#import "MovieTitleCell.h"
 #import "Theater.h"
+#import "TheatersNavigationController.h"
+#import "TicketsViewController.h"
+#import "Utilities.h"
+#import "ViewControllerUtilities.h"
 
 @implementation TheaterDetailsViewController
 

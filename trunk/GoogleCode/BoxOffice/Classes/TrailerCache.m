@@ -15,11 +15,12 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "TrailerCache.h"
+
+#import "Application.h"
+#import "DifferenceEngine.h"
+#import "Movie.h"
 #import "Utilities.h"
 #import "XmlElement.h"
-#import "DifferenceEngine.h"
-#import "Application.h"
-#import "Movie.h"
 
 @implementation TrailerCache
 

@@ -15,13 +15,14 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "ApplicationTabBarController.h"
+
 #import "BoxOfficeAppDelegate.h"
-#import "Utilities.h"
+#import "BoxOfficeModel.h"
 #import "MoviesNavigationController.h"
-#import "TheatersNavigationController.h"
 #import "SearchNavigationController.h"
 #import "SettingsNavigationController.h"
-#import "BoxOfficeModel.h"
+#import "TheatersNavigationController.h"
+#import "Utilities.h"
 
 @implementation ApplicationTabBarController
 

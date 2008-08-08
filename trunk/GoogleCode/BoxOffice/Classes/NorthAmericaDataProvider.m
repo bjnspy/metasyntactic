@@ -16,12 +16,12 @@
 
 #import "NorthAmericaDataProvider.h"
 #import "Application.h"
-#import "Utilities.h"
-#import "Movie.h"
-#import "Theater.h"
-#import "Performance.h"
 #import "DateUtilities.h"
+#import "Movie.h"
 #import "MultiDictionary.h"
+#import "Performance.h"
+#import "Theater.h"
+#import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation NorthAmericaDataProvider

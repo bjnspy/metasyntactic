@@ -15,15 +15,16 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "AddressLocationCache.h"
-#import "XmlSerializer.h"
+
+#import "Application.h"
+#import "BoxOfficeModel.h"
+#import "Location.h"
+#import "Theater.h"
+#import "Utilities.h"
 #import "XmlDocument.h"
 #import "XmlElement.h"
 #import "XmlParser.h"
-#import "Utilities.h"
-#import "BoxOfficeModel.h"
-#import "Application.h"
-#import "Theater.h"
-#import "Location.h"
+#import "XmlSerializer.h"
 
 @implementation AddressLocationCache
 

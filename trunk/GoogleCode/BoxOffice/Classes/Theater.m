@@ -15,10 +15,10 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "Theater.h"
-#import "Performance.h"
 #import "Application.h"
 #import "DateUtilities.h"
 #import "Movie.h"
+#import "Performance.h"
 
 @implementation Theater
 
