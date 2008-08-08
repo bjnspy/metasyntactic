@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "MovieDetailsViewController.h"
@@ -172,11 +172,11 @@
         self.title = self.movie.displayTitle;
         self.navigationItem.titleView = label;
         self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:self.movie]];
-        
+
         if (![self.model noRatings]) {
             self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:self.movie]];
         }
-        
+
         self.posterImage = [self.model posterForMovie:self.movie];
         if (self.posterImage == nil) {
             self.posterImage = [UIImage imageNamed:@"ImageNotAvailable.png"];
@@ -229,13 +229,13 @@
 - (NSInteger) numberOfRowsInInfoSection {
     // trailers
     NSInteger rows = trailersArray.count;
-    
+
     // reviews
     rows += (reviewsArray.count ? 1 : 0);
-    
+
     // email listings
     rows++;
-    
+
     return rows;
 }
 
@@ -499,15 +499,15 @@
                                   self.movie.canonicalTitle,
                                   [DateUtilities formatFullDate:self.model.searchDate]];
         NSMutableString* body = [NSMutableString string];
-        
+
         for (int i = 0; i < theatersArray.count; i++) {
             if (i != 0) {
                 [body appendString:@"\n\n"];
             }
-            
+
             Theater* theater = [theatersArray objectAtIndex:i];
             NSArray* performances = [showtimesArray objectAtIndex:i];
-            
+
             [body appendString:theater.name];
             [body appendString:@"\n"];
             [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
@@ -515,18 +515,18 @@
             [body appendString:@"\">"];
             [body appendString:[self.model simpleAddressForTheater:theater]];
             [body appendString:@"</a>"];
-            
+
             [body appendString:@"\n"];
             [body appendString:[Utilities generateShowtimeLinks:self.model
                                                           movie:movie
                                                         theater:theater
                                                    performances:performances]];
         }
-        
+
         NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
                          [movieAndDate stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding],
                          [Utilities stringByAddingPercentEscapesUsingEncoding:body]];
-        
+
         [Application openBrowser:url];
     }
 }

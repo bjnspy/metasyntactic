@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "Movie.h"
@@ -38,7 +38,7 @@
     self.poster = nil;
     self.synopsis = nil;
     self.displayTitle = nil;
-    
+
     [super dealloc];
 }
 
@@ -53,7 +53,7 @@ static NSString* articles[] = {
 
 + (NSString*) makeCanonical:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
+
     int count = sizeof(articles) / sizeof(NSString*);
     for (int i = 0; i < count; i++) {
         NSString* article = articles[i];
@@ -61,13 +61,13 @@ static NSString* articles[] = {
             return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
         }
     }
-    
+
     return title;
 }
 
 + (NSString*) makeDisplay:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
+
     int count = sizeof(articles) / sizeof(NSString*);
     for (int i = 0; i < count; i++) {
         NSString* article = articles[i];
@@ -75,7 +75,7 @@ static NSString* articles[] = {
             return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
         }
     }
-    
+
     return title;
 }
 
@@ -90,7 +90,7 @@ static NSString* articles[] = {
         self.identifier = identifier_;
         self.canonicalTitle = [Movie makeCanonical:title_];
         self.displayTitle   = [Movie makeDisplay:title_];
-        
+
         self.rating   = [rating_   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if (self.rating == nil) {
             self.rating = @"NR";
@@ -102,7 +102,7 @@ static NSString* articles[] = {
         [[synopsis_ stringByReplacingOccurrencesOfString:@"<em>" withString:@""]
          stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
     }
-    
+
     return self;
 }
 
@@ -150,7 +150,7 @@ static NSString* articles[] = {
 
 - (BOOL) isEqual:(id) anObject {
     Movie* other = anObject;
-    
+
     return
     [self.identifier isEqual:other.identifier] &&
     [self.canonicalTitle isEqual:other.canonicalTitle];
@@ -166,14 +166,14 @@ static NSString* articles[] = {
     NSInteger movieLength = [self.length intValue];
     NSInteger hours = movieLength / 60;
     NSInteger minutes = movieLength % 60;
-    
+
     NSString* ratingString;
     if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
         ratingString = NSLocalizedString(@"Unrated.", nil);
     }  else {
         ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@.", nil), self.rating];
     }
-    
+
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {
         if (hours == 1) {
@@ -181,14 +181,14 @@ static NSString* articles[] = {
         } else if (hours > 1) {
             [text appendFormat:@" %d hours", hours];
         }
-        
+
         if (minutes == 1) {
             [text appendString:@" 1 minute"];
         } else if (minutes > 1) {
             [text appendFormat:@" %d minutes", minutes];
         }
     }
-    
+
     return text;
 }
 

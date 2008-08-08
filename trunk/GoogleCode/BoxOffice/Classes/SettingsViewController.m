@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "SettingsViewController.h"
@@ -70,9 +70,9 @@
         NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
         NSString* appVersion = [BoxOfficeModel version];
         appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
-        
+
         self.title = [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
-        
+
         UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
@@ -212,11 +212,11 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        
+
         cell.text = NSLocalizedString(@"Donate", nil);
         cell.textColor = [ColorCache commandColor];
         cell.textAlignment = UITextAlignmentCenter;
-        
+
         return cell;
     } else if (indexPath.section == 1) {
         if (indexPath.row >= 0 && indexPath.row <= 3) {
@@ -227,7 +227,7 @@
             /* if (indexPath.row == 0) {
                 key = NSLocalizedString(@"Region", nil);
                 value = [[self.model currentDataProvider] displayName];
-            } else 
+            } else
                 */ if (indexPath.row == 0) {
                 key = NSLocalizedString(@"Postal Code", nil);
                 value = [self.model postalCode];
@@ -261,11 +261,11 @@
             cell.text = NSLocalizedString(@"Auto-Update Location", nil);
             //cell.text = NSLocalizedString(@"Only Ticketable Theaters", nil);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-            
+
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             picker.on = [self.model autoUpdateLocation];
             [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
-            
+
             cell.accessoryView = picker;
             return cell;
         } else {
@@ -298,7 +298,7 @@
     BOOL useSmallFonts = ![self.model useSmallFonts];
     [self.model setUseSmallFonts:useSmallFonts];
     [self.navigationController.tabBarController refresh];
-    
+
 }
 
 - (void) pushSearchDatePicker {
@@ -317,7 +317,7 @@
     if (section == 0) {
         [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     } else if (section == 1) {
-        /*if (row == 0) { 
+        /*if (row == 0) {
             DataProviderViewController* controller =
                 [[[DataProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
@@ -363,7 +363,7 @@
 
 - (void) onPostalCodeChanged:(NSString*) postalCode {
     postalCode = [postalCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    
+
     NSMutableString* trimmed = [NSMutableString string];
     for (NSInteger i = 0; i < [postalCode length]; i++) {
         unichar c = [postalCode characterAtIndex:i];

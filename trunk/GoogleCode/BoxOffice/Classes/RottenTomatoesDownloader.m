@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "RottenTomatoesDownloader.h"
@@ -49,12 +49,12 @@
     if (serverHash == nil) {
         serverHash = @"0";
     }
-    
+
     if (localHash != nil &&
         [localHash isEqual:serverHash]) {
         return [NSDictionary dictionary];
     }
-    
+
     NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes", host]];
     NSError* httpError = nil;
     NSString* movieListings = [NSString stringWithContentsOfURL:url encoding:NSISOLatin1StringEncoding error:&httpError];
@@ -87,7 +87,7 @@
             NSMutableDictionary* result = [NSMutableDictionary dictionary];
             [result setObject:ratings forKey:@"Ratings"];
             [result setObject:serverHash forKey:@"Hash"];
-            
+
             return result;
         }
     }

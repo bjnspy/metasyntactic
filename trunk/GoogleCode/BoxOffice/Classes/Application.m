@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "Application.h"
@@ -43,7 +43,7 @@ static NSString* starString = nil;
         gate = [[NSRecursiveLock alloc] init];
 
         differenceEngine = [[DifferenceEngine engine] retain];
-        
+
         providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
     }
 }
@@ -63,7 +63,7 @@ static NSString* starString = nil;
         [[NSFileManager defaultManager] removeItemAtPath:[Application trailersFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application reviewsFolder] error:NULL];
-        
+
         [dataFolder release];
         [locationsFolder release];
         [postersFolder release];
@@ -71,7 +71,7 @@ static NSString* starString = nil;
         [ratingsFolder release];
         [reviewsFolder release];
         [providerReviewsFolder release];
-        
+
         dataFolder = nil;
         locationsFolder = nil;
         postersFolder = nil;
@@ -154,14 +154,14 @@ static NSString* starString = nil;
         if (reviewsFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Reviews"];
-            
+
             [Application createDirectory:folder];
-            
+
             reviewsFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return reviewsFolder;
 }
 
@@ -171,14 +171,14 @@ static NSString* starString = nil;
         if (ratingsFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Ratings"];
-            
+
             [Application createDirectory:folder];
-            
+
             ratingsFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return ratingsFolder;
 }
 
@@ -205,14 +205,14 @@ static NSString* starString = nil;
         if (trailersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
-            
+
             [Application createDirectory:folder];
-            
+
             trailersFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return trailersFolder;
 }
 
@@ -222,14 +222,14 @@ static NSString* starString = nil;
         if (locationsFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Locations"];
-            
+
             [Application createDirectory:folder];
-            
+
             locationsFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return locationsFolder;
 }
 
@@ -239,33 +239,33 @@ static NSString* starString = nil;
         if (postersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
-            
+
             [Application createDirectory:folder];
-            
+
             postersFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return postersFolder;
 }
 
 + (NSString*) providerReviewsFolder:(NSString*) ratingsProvider {
     NSString* folder = nil;
-    
+
     [gate lock];
     {
         folder = [providerReviewsFolder objectForKey:ratingsProvider];
         if (folder == nil) {
             folder = [[Application reviewsFolder] stringByAppendingPathComponent:ratingsProvider];
-    
+
             [Application createDirectory:folder];
-            
+
             [providerReviewsFolder setObject:folder forKey:ratingsProvider];
         }
     }
     [gate unlock];
-    
+
     return folder;
 }
 

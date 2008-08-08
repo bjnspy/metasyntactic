@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "BoxOfficeModel.h"
@@ -79,13 +79,13 @@ static NSString* currentVersion = @"1.3.0";
     self.dataProviders = nil;
     self.movieMap = nil;
     self.favoriteTheatersData = nil;
-    
+
     self.addressLocationCache = nil;
     self.posterCache = nil;
     self.trailerCache = nil;
     self.ratingsCache = nil;
     self.reviewCache = nil;
-    
+
     self.backgroundTaskCount = 0;
     self.activityView = nil;
     self.activityIndicatorView = nil;
@@ -147,9 +147,9 @@ static NSString* currentVersion = @"1.3.0";
 
 - (void) loadData {
     self.dataProviders = [NSArray arrayWithObjects:
-                          [NorthAmericaDataProvider providerWithModel:self], 
+                          [NorthAmericaDataProvider providerWithModel:self],
                           [UnitedKingdomDataProvider providerWithModel:self], nil];
-    
+
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
 
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel VERSION]];
@@ -188,7 +188,7 @@ static NSString* currentVersion = @"1.3.0";
         [self loadData];
 
         self.notificationCenter = notificationCenter_;
-        
+
         self.posterCache = [PosterCache cache];
         self.trailerCache = [TrailerCache cache];
         self.addressLocationCache = [AddressLocationCache cache];
@@ -415,7 +415,7 @@ static NSString* currentVersion = @"1.3.0";
     for (NSDictionary* dictionary in array) {
         [result addObject:[Theater theaterWithDictionary:dictionary]];
     }
-    
+
     return result;
 }
 
@@ -423,7 +423,7 @@ static NSString* currentVersion = @"1.3.0";
     if (self.favoriteTheatersData == nil) {
         self.favoriteTheatersData = [self loadFavoriteTheaters];
     }
-    
+
     return self.favoriteTheatersData;
 }
 
@@ -432,7 +432,7 @@ static NSString* currentVersion = @"1.3.0";
     for (Theater* theater in self.favoriteTheatersData) {
         [encodedTheaters addObject:[theater dictionary]];
     }
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:encodedTheaters forKey:[BoxOfficeModel FAVORITE_THEATERS]];
 }
 

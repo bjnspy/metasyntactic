@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "NorthAmericaDataProvider.h"
@@ -59,7 +59,7 @@
             if (![Utilities isNilOrEmpty:showId]) {
                 showId = [NSString stringWithFormat:@"F-%@", showId];
             }
-            
+
             NSString* time = [performanceElement attributeValue:@"showtime"];
             time = [Theater processShowtime:time];
 
@@ -84,12 +84,12 @@
     if (theaterIds != nil && ![theaterIds containsObject:identifier]) {
         return;
     }
-    
+
     NSString* sellsTickets = [theaterElement attributeValue:@"iswired"];
     //if (![@"True" isEqual:sellsTickets]) {
     //    return;
     //}
-    
+
     NSString* name = [[theaterElement element:@"name"] text];
     NSString* address = [[theaterElement element:@"address1"] text];
     NSString* city = [[theaterElement element:@"city"] text];
@@ -192,44 +192,44 @@
     if (lookupResult == nil) {
         return;
     }
-    
+
     NSArray* favoriteTheaters = [self.model favoriteTheaters];
     if (favoriteTheaters.count == 0) {
         return;
     }
-    
+
     MultiDictionary* postalCodeToMissingTheaters = [MultiDictionary dictionary];
-    
+
     for (Theater* theater in favoriteTheaters) {
         if (![lookupResult.theaters containsObject:theater]) {
             [postalCodeToMissingTheaters addObject:theater forKey:theater.originatingPostalCode];
         }
     }
-    
+
     NSMutableSet* movieIds = [NSMutableSet set];
     for (Movie* movie in lookupResult.movies) {
         [movieIds addObject:movie.identifier];
     }
-    
+
     for (NSString* postalCode in postalCodeToMissingTheaters.allKeys) {
         NSArray* missingTheaters = [postalCodeToMissingTheaters objectsForKey:postalCode];
         NSMutableArray* theaterIds = [NSMutableArray array];
         for (Theater* theater in missingTheaters) {
             [theaterIds addObject:theater.identifier];
         }
-        
+
         LookupResult* favoritesLookupResult = [self lookupPostalCode:postalCode
                                                           theaterIds:theaterIds];
-        
+
         [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
         [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
-        
+
         // the theater may refer to movies that we don't know about.
         for (NSString* theaterId in favoritesLookupResult.performances.allKeys) {
             for (NSString* movieId in [[favoritesLookupResult.performances objectForKey:theaterId] allKeys]) {
                 if (![movieIds containsObject:movieId]) {
                     [movieIds addObject:movieId];
-                    
+
                     for (Movie* movie in favoritesLookupResult.movies) {
                         if ([movie.identifier isEqual:movieId]) {
                             [lookupResult.movies addObject:movie];
@@ -258,7 +258,7 @@
     if (![Utilities isNilOrEmpty:postalCode]) {
         NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                        fromDate:[self.model searchDate]];
-        
+
         NSString* urlString = [NSString stringWithFormat:
                                @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                                [Application host],
@@ -266,16 +266,16 @@
                                [components year],
                                [components month],
                                [components day]];
-        
+
         XmlElement* element = [Utilities downloadXml:urlString];
-        
+
         if (element != nil) {
             return [NorthAmericaDataProvider processFandangoElement:element
                                                          postalCode:postalCode
                                                          theaterIds:theaterIds];
         }
     }
-    
+
     return nil;
 }
 
@@ -300,7 +300,7 @@
         NSDateComponents* timeComponents =
         [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
                                         fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
-        
+
         NSString* url = [NSString stringWithFormat:@"https://iphone.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
                          movie.identifier,
                          theater.identifier,
@@ -309,10 +309,10 @@
                          [dateComponents day],
                          [timeComponents hour],
                          [timeComponents minute]];
-        
+
         return url;
     }
-    
+
     return nil;
 }
 

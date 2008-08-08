@@ -1,6 +1,6 @@
 // Copyright (C) 2008 Cyrus Najmabadi
 //
-// This program is free software; you can redistribute it and/or modify it 
+// This program is free software; you can redistribute it and/or modify it
 // under the terms of the GNU General Public License as published by the Free
 // Software Foundation; either version 2 of the License, or (at your option) any
 // later version.
@@ -11,7 +11,7 @@
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
-// this program; if not, write to the Free Software Foundation, Inc., 51 
+// this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "PickerEditorViewController.h"
@@ -26,7 +26,7 @@
     self.picker = nil;
     self.values = nil;
     self.label = nil;
-    
+
     [super dealloc];
 }
 
@@ -48,7 +48,7 @@
                       animated:NO];
 
         self.title = title_;
-        
+
         if (text_ != nil) {
             self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
             self.label.text = text_;
@@ -79,7 +79,7 @@
 
     CGRect pickerRect = CGRectMake(0, screenBottom - pickerSize.height, pickerSize.width, pickerSize.height);
     self.picker.frame = pickerRect;
-    
+
     CGRect labelRect = CGRectMake(10, 10, screenRect.size.width - 20, screenRect.size.height - 20 - pickerSize.height);
     self.label.frame = labelRect;
     [self.label sizeToFit];
