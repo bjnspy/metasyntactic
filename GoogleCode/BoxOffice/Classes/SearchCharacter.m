@@ -16,7 +16,6 @@
 
 #import "SearchCharacter.h"
 
-
 @implementation SearchCharacter
 
 @end

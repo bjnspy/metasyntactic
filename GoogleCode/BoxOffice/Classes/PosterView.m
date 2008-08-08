@@ -15,6 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "PosterView.h"
+
 #import "AllMoviesViewController.h"
 #import "BoxOfficeModel.h"
 

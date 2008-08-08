@@ -15,6 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "ReviewsViewController.h"
+
 #import "Application.h"
 #import "BoxOfficeModel.h"
 #import "FontCache.h"
@@ -22,7 +23,6 @@
 #import "Review.h"
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"
-#import "Utilities.h"
 
 @implementation ReviewsViewController
 

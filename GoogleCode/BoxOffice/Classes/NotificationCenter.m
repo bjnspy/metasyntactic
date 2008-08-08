@@ -16,7 +16,6 @@
 
 #import "NotificationCenter.h"
 
-
 @implementation NotificationCenter
 
 @synthesize window;

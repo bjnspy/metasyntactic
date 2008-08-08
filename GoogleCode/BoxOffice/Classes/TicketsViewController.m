@@ -15,16 +15,14 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "TicketsViewController.h"
+
 #import "AbstractNavigationController.h"
 #import "Application.h"
-#import "ApplicationTabBarController.h"
 #import "AttributeCell.h"
-#import "AutoresizingCell.h"
 #import "BoxOfficeModel.h"
 #import "ColorCache.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
-#import "DifferenceEngine.h"
 #import "Location.h"
 #import "Movie.h"
 #import "Performance.h"

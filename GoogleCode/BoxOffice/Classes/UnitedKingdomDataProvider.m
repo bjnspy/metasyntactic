@@ -15,7 +15,10 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "UnitedKingdomDataProvider.h"
+
 #import "Application.h"
+#import "LookupResult.h"
+#import "Movie.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 #import "XmlParser.h"

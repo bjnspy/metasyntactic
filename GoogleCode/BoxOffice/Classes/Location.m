@@ -16,7 +16,6 @@
 
 #import "Location.h"
 
-
 @implementation Location
 
 @synthesize latitude;

@@ -15,6 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import "DataProviderViewController.h"
+
 #import "ApplicationTabBarController.h"
 #import "BoxOfficeModel.h"
 #import "DataProvider.h"

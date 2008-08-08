@@ -16,7 +16,6 @@
 
 #import "PersonKey.h"
 
-
 @implementation PersonKey
 
 + (PersonKey*) keyWithIdentifier:(NSString*) identifier

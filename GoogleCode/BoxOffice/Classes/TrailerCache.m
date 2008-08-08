@@ -20,7 +20,6 @@
 #import "DifferenceEngine.h"
 #import "Movie.h"
 #import "Utilities.h"
-#import "XmlElement.h"
 
 @implementation TrailerCache
 

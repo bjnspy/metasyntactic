@@ -19,7 +19,6 @@
 #import "BoxOfficeAppDelegate.h"
 #import "BoxOfficeModel.h"
 #import "MoviesNavigationController.h"
-#import "SearchNavigationController.h"
 #import "SettingsNavigationController.h"
 #import "TheatersNavigationController.h"
 #import "Utilities.h"

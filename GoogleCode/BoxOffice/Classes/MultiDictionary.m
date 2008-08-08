@@ -16,7 +16,6 @@
 
 #import "MultiDictionary.h"
 
-
 @implementation MultiDictionary
 
 @synthesize dictionary;
