@@ -111,7 +111,6 @@
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
-
     UIImage* image = [self getImage:indexPath];
     CGFloat height = [tableView rowHeight];;
     if (image != nil) {
@@ -189,6 +188,15 @@
         return NSLocalizedString(@"Geolocation services provided by:", nil);
     }
 
+    return nil;
+}
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+    if (section == 7) {
+        return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes.  Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
+    }
+    
     return nil;
 }
 

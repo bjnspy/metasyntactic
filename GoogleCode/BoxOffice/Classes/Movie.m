@@ -98,9 +98,11 @@ static NSString* articles[] = {
         self.length = length_;
         self.releaseDate = releaseDate_;
         self.poster = poster_;
-        self.synopsis =
-        [[synopsis_ stringByReplacingOccurrencesOfString:@"<em>" withString:@""]
-         stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
+        self.synopsis = synopsis_;
+        
+        self.synopsis = [synopsis stringByReplacingOccurrencesOfString:@"<em>" withString:@""];
+        self.synopsis = [synopsis stringByReplacingOccurrencesOfString:@"</em>" withString:@""];
+        self.synopsis = [synopsis stringByReplacingOccurrencesOfString:@"<p>" withString:@""];
     }
 
     return self;
