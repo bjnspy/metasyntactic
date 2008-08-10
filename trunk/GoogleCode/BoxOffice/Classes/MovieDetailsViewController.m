@@ -191,11 +191,11 @@
 }
 
 - (void) viewWillAppear:(BOOL) animated {
+    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
     [self.model setCurrentlySelectedMovie:self.movie theater:nil];
-
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 
     [self refresh];
 }
@@ -209,7 +209,7 @@
     // Header
     NSInteger sections = 1;
 
-    // info/commnds
+    // actions
     sections += 1;
 
     // theaters
@@ -226,7 +226,7 @@
     }
 }
 
-- (NSInteger) numberOfRowsInInfoSection {
+- (NSInteger) numberOfRowsInActionSection {
     // trailers
     NSInteger rows = trailersArray.count;
 
@@ -246,7 +246,7 @@
     }
 
     if (section == 1) {
-        return [self numberOfRowsInInfoSection];
+        return [self numberOfRowsInActionSection];
     }
 
     // theater section
@@ -385,8 +385,8 @@
     }
 }
 
-- (UITableViewCell*) cellForInfoRow:(NSInteger) row {
-    static NSString* reuseIdentifier = @"MovieTrailersCellIdentifier";
+- (UITableViewCell*) cellForActionRow:(NSInteger) row {
+    static NSString* reuseIdentifier = @"MovieDetaulsActionCellIdentifier";
 
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
@@ -420,7 +420,7 @@
     }
 
     if (indexPath.section == 1) {
-        return [self cellForInfoRow:indexPath.row];
+        return [self cellForActionRow:indexPath.row];
     }
 
     // theater section
@@ -489,7 +489,7 @@
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
 
-- (void) didSelectInfoRow:(NSInteger) row {
+- (void) didSelectActionRow:(NSInteger) row {
     if (row < trailersArray.count) {
         [self playMovie:[trailersArray objectAtIndex:row]];
     } else if (row == trailersArray.count && self.reviewsArray.count > 0) {
@@ -538,7 +538,7 @@
     }
 
     if (indexPath.section == 1) {
-        return [self didSelectInfoRow:indexPath.row];
+        return [self didSelectActionRow:indexPath.row];
     }
 
     // theater section

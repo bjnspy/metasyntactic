@@ -43,6 +43,9 @@
         self.link = link_;
         self.synopsis = synopsis_;
         self.score = score_;
+        
+        self.synopsis = [synopsis stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
+        self.synopsis = [synopsis stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
     }
 
     return self;

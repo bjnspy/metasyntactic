@@ -71,8 +71,7 @@
             if (columns.count >= 9) {
                 NSString* title = [columns objectAtIndex:1];
                 NSString* synopsis = [columns objectAtIndex:8];
-                synopsis = [synopsis stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
-                synopsis = [synopsis stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
+
                 ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
                                                                                    link:[columns objectAtIndex:2]
                                                                                synopsis:synopsis
