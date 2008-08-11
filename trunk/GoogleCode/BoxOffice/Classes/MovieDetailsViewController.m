@@ -373,7 +373,7 @@
         cell.textAlignment = UITextAlignmentCenter;
 
         if (self.hiddenTheaterCount == 1) {
-            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theater", nil), self.hiddenTheaterCount];
+            cell.text = NSLocalizedString(@"Show 1 hidden theater", nil);
         } else {
             cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", nil), self.hiddenTheaterCount];
         }

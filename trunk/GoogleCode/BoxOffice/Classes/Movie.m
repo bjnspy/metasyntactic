@@ -91,7 +91,7 @@ static NSString* articles[] = {
         self.canonicalTitle = [Movie makeCanonical:title_];
         self.displayTitle   = [Movie makeDisplay:title_];
 
-        self.rating   = [rating_   stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.rating = [rating_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if (self.rating == nil) {
             self.rating = @"NR";
         }
