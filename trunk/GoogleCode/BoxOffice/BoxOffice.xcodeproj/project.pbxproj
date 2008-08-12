@@ -95,7 +95,6 @@
 		74EFE33B0E353F3600B6E103 /* Filled Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3050E353F3600B6E103 /* Filled Star.png */; };
 		74EFE33D0E353F3600B6E103 /* Fresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3070E353F3600B6E103 /* Fresh.png */; };
 		74EFE33E0E353F3600B6E103 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3080E353F3600B6E103 /* Icon.png */; };
-		74EFE3450E353F3600B6E103 /* IgnyteLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE30F0E353F3600B6E103 /* IgnyteLogo.png */; };
 		74EFE3500E353F3600B6E103 /* ImageNotAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE31A0E353F3600B6E103 /* ImageNotAvailable.png */; };
 		74EFE3510E353F3600B6E103 /* More.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE31B0E353F3600B6E103 /* More.png */; };
 		74EFE3520E353F3600B6E103 /* MostViewed.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE31C0E353F3600B6E103 /* MostViewed.png */; };
@@ -296,7 +295,6 @@
 		74EFE3050E353F3600B6E103 /* Filled Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Filled Star.png"; path = "Resources/Filled Star.png"; sourceTree = "<group>"; };
 		74EFE3070E353F3600B6E103 /* Fresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fresh.png; path = Resources/Fresh.png; sourceTree = "<group>"; };
 		74EFE3080E353F3600B6E103 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
-		74EFE30F0E353F3600B6E103 /* IgnyteLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = IgnyteLogo.png; path = Resources/IgnyteLogo.png; sourceTree = "<group>"; };
 		74EFE31A0E353F3600B6E103 /* ImageNotAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageNotAvailable.png; path = Resources/ImageNotAvailable.png; sourceTree = "<group>"; };
 		74EFE31B0E353F3600B6E103 /* More.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = More.png; path = Resources/More.png; sourceTree = "<group>"; };
 		74EFE31C0E353F3600B6E103 /* MostViewed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MostViewed.png; path = Resources/MostViewed.png; sourceTree = "<group>"; };
@@ -469,7 +467,6 @@
 				74EFE3050E353F3600B6E103 /* Filled Star.png */,
 				74EFE3070E353F3600B6E103 /* Fresh.png */,
 				74EFE3080E353F3600B6E103 /* Icon.png */,
-				74EFE30F0E353F3600B6E103 /* IgnyteLogo.png */,
 				74EFE31A0E353F3600B6E103 /* ImageNotAvailable.png */,
 				74EFE31B0E353F3600B6E103 /* More.png */,
 				74EFE31C0E353F3600B6E103 /* MostViewed.png */,
@@ -748,7 +745,6 @@
 				74EFE33B0E353F3600B6E103 /* Filled Star.png in Resources */,
 				74EFE33D0E353F3600B6E103 /* Fresh.png in Resources */,
 				74EFE33E0E353F3600B6E103 /* Icon.png in Resources */,
-				74EFE3450E353F3600B6E103 /* IgnyteLogo.png in Resources */,
 				74EFE3500E353F3600B6E103 /* ImageNotAvailable.png in Resources */,
 				74EFE3510E353F3600B6E103 /* More.png in Resources */,
 				74EFE3520E353F3600B6E103 /* MostViewed.png in Resources */,

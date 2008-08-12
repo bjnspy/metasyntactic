@@ -195,8 +195,8 @@
     
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
-    [self.model setCurrentlySelectedMovie:self.movie theater:nil];
-
+    [self.model setCurrentlySelectedMovie:self.movie theater:nil]; 
+    
     [self refresh];
 }
 
@@ -386,9 +386,10 @@
 }
 
 - (UITableViewCell*) cellForActionRow:(NSInteger) row {
-    static NSString* reuseIdentifier = @"MovieDetaulsActionCellIdentifier";
+    static NSString* reuseIdentifier = @"MovieDetailsActionCellIdentifier";
 
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    //UITableViewCell* cell = nil;
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                        reuseIdentifier:reuseIdentifier] autorelease];

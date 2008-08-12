@@ -21,7 +21,6 @@
 @implementation CreditsViewController
 
 @synthesize fandangoImage;
-@synthesize ignyteImage;
 @synthesize metacriticImage;
 @synthesize rottenTomatoesImage;
 @synthesize tryntImage;
@@ -29,7 +28,6 @@
 
 - (void) dealloc {
     self.fandangoImage = nil;
-    self.ignyteImage = nil;
     self.metacriticImage = nil;
     self.rottenTomatoesImage = nil;
     self.tryntImage = nil;
@@ -41,7 +39,6 @@
 - (id) init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.fandangoImage = [UIImage imageNamed:@"FandangoLogo.png"];
-        self.ignyteImage = [UIImage imageNamed:@"IgnyteLogo.png"];
         self.metacriticImage = [UIImage imageNamed:@"MetacriticLogo.png"];
         self.rottenTomatoesImage = [UIImage imageNamed:@"RottenTomatoesLogo.png"];
         self.tryntImage = [UIImage imageNamed:@"TryntLogo.png"];
@@ -58,7 +55,7 @@
 }
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 8;
+    return 7;
 }
 
 - (NSInteger)       tableView:(UITableView*) table
@@ -74,10 +71,8 @@
     } else if (section == 4) {
         return 1;
     } else if (section == 5) {
-        return 1;
-    } else if (section == 6) {
         return 3;
-    } else if (section == 7) {
+    } else if (section == 6) {
         return 1;
     }
 
@@ -95,12 +90,10 @@
             return metacriticImage;
         }
     } else if (section == 3) {
-        return ignyteImage;
-    } else if (section == 4) {
         return fandangoImage;
-    } else if (section == 5) {
+    } else if (section == 4) {
         return tryntImage;
-    } else if (section == 6) {
+    } else if (section == 5) {
         if (row == 0) {
             return yahooImage;
         }
@@ -156,13 +149,13 @@
         } else {
             cell.text = NSLocalizedString(@"Website", nil);
         }
-    } else if (section == 6) {
+    } else if (section == 5) {
         if (row == 1) {
             cell.text = @"GeoNames";
         } else if (row == 2) {
             cell.text = @"GeoCoder.ca";
         }
-    } else if (section == 7) {
+    } else if (section == 6) {
         cell.text = NSLocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -179,12 +172,10 @@
     } else if (section == 2) {
         return NSLocalizedString(@"Movie reviews provided by:", nil);
     } else if (section == 3) {
-        return NSLocalizedString(@"Theater listings provided by:", nil);
-    } else if (section == 4) {
         return NSLocalizedString(@"Ticket sales provided by:", nil);
-    } else if (section == 5) {
+    } else if (section == 4) {
         return NSLocalizedString(@"Movie details provided by:", nil);
-    } else if (section == 6) {
+    } else if (section == 5) {
         return NSLocalizedString(@"Geolocation services provided by:", nil);
     }
 
@@ -193,7 +184,7 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    if (section == 7) {
+    if (section == 6) {
         return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes.  Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
     }
     
@@ -202,7 +193,7 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section >= 0 && indexPath.section <= 6) {
+    if (indexPath.section >= 0 && indexPath.section <= 5) {
         return UITableViewCellAccessoryDetailDisclosureButton;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
@@ -226,7 +217,7 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 7) {
+    if (indexPath.section == 6) {
         [self licenseCellTapped];
     }
 }
@@ -256,12 +247,10 @@
             url = @"http://www.metacritic.com";
         }
     } else if (section == 3) {
-        url = @"http://www.ignyte.com";
-    } else if (section == 4) {
         url = @"http://www.fandango.com";
-    } else if (section == 5) {
+    } else if (section == 4) {
         url = @"http://www.trynt.com";
-    } else if (section == 6) {
+    } else if (section == 5) {
         if (row == 0) {
             url = @"http://www.yahoo.com";
         } else if (row == 1) {
@@ -269,7 +258,7 @@
         } else {
             url = @"http://geocoder.ca";
         }
-    } else if (section == 7) {
+    } else if (section == 6) {
         return;
     }
 
