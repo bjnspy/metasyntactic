@@ -16,7 +16,6 @@
 
 @interface CreditsViewController : UITableViewController {
     UIImage* fandangoImage;
-    UIImage* ignyteImage;
     UIImage* metacriticImage;
     UIImage* rottenTomatoesImage;
     UIImage* tryntImage;
@@ -24,7 +23,6 @@
 }
 
 @property (retain) UIImage* fandangoImage;
-@property (retain) UIImage* ignyteImage;
 @property (retain) UIImage* metacriticImage;
 @property (retain) UIImage* rottenTomatoesImage;
 @property (retain) UIImage* tryntImage;
