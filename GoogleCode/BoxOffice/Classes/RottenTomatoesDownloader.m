@@ -19,6 +19,7 @@
 #import "Application.h"
 #import "BoxOfficeModel.h"
 #import "ExtraMovieInformation.h"
+#import "Utilities.h"
 
 @implementation RottenTomatoesDownloader
 
@@ -44,8 +45,7 @@
 - (NSDictionary*) lookupMovieListings:(NSString*) localHash {
     NSString* host = [Application host];
 
-    NSString* serverHash = [NSString stringWithContentsOfURL:
-                            [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&hash=true", host]]];
+    NSString* serverHash = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&hash=true", host]];
     if (serverHash == nil) {
         serverHash = @"0";
     }
@@ -55,11 +55,9 @@
         return [NSDictionary dictionary];
     }
 
-    NSURL* url = [NSURL URLWithString:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes", host]];
-    NSError* httpError = nil;
-    NSString* movieListings = [NSString stringWithContentsOfURL:url encoding:NSISOLatin1StringEncoding error:&httpError];
+    NSString* movieListings = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes", host]];
 
-    if (httpError == nil && movieListings != nil) {
+    if (movieListings != nil) {
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
 
         NSArray* rows = [movieListings componentsSeparatedByString:@"\n"];

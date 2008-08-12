@@ -38,7 +38,7 @@
 }
 
 - (NSData*) go {
-    NSData* data = [Utilities downloadData:self.movie.poster];
+    NSData* data = [Utilities dataWithContentsOfAddress:self.movie.poster];
     if (data != nil) {
         return data;
     }

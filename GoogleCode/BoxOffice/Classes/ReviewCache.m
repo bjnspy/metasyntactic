@@ -102,13 +102,9 @@
 
 - (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", [Application host], info.link];
+    NSString* reviewPage = [Utilities stringWithContentsOfAddress:url];
 
-    NSError* httpError = nil;
-    NSString* reviewPage = [NSString stringWithContentsOfURL:[NSURL URLWithString:url]
-                                                    encoding:NSISOLatin1StringEncoding
-                                                       error:&httpError];
-
-    if (httpError == nil && reviewPage != nil) {
+    if (reviewPage != nil) {
         return [self extractReviews:reviewPage];
     }
 
@@ -154,7 +150,7 @@
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
         if (info.link.length > 0) {
             NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&hash=true", [Application host], info.link];
-            NSString* serverHash = [NSString stringWithContentsOfURL:[NSURL URLWithString:url]];
+            NSString* serverHash = [Utilities stringWithContentsOfAddress:url];
             if (serverHash == nil) {
                 serverHash = @"0";
             }
