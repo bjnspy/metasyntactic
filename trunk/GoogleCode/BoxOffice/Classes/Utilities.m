@@ -82,31 +82,8 @@
     }
 }
 
-+ (NSData*) downloadData:(NSString*) urlString {
-    if (urlString == nil) {
-        return nil;
-    }
-
-    NSURL* url = [NSURL URLWithString:urlString];
-
-    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
-    request.timeoutInterval = 120;
-
-    NSError* httpError = nil;
-    NSURLResponse* response;
-    NSData* data = [NSURLConnection sendSynchronousRequest:request
-                                         returningResponse:&response
-                                                     error:&httpError];
-
-    if (httpError != nil) {
-        return nil;
-    }
-
-    return data;
-}
-
 + (XmlElement*) downloadXml:(NSString*) urlString {
-    NSData* data = [self downloadData:urlString];
+    NSData* data = [Utilities dataWithContentsOfAddress:urlString];
     if (data == nil) {
         return nil;
     }
@@ -231,6 +208,58 @@
     }
 
     return body;
+}
+
++ (NSString*) stringWithContentsOfAddress:(NSString*) address {
+    if (address == nil) {
+        return nil;
+    }
+    
+    return [Utilities stringWithContentsOfUrl:[NSURL URLWithString:address]];
+}
+
++ (NSString*) stringWithContentsOfUrl:(NSURL*) url {
+    if (url == nil) {
+        return nil;
+    }
+    
+    NSData* data = [Utilities dataWithContentsOfUrl:url];
+    if (data == nil) {
+        return nil;
+    }
+    
+    return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
+}
+
++ (NSData*) dataWithContentsOfAddress:(NSString*) address {
+    if (address == nil) {
+        return nil;
+    }
+    
+    return [Utilities dataWithContentsOfUrl:[NSURL URLWithString:address]];
+}
+
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url {
+    if (url == nil) {
+        return nil;
+    }
+    
+    NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
+    request.timeoutInterval = 120;
+    [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+    [request setValue:@"gzip" forHTTPHeaderField:@"User-Agent"];
+    
+    NSURLResponse* response = nil;
+    NSError* error;
+    NSData* data = [NSURLConnection sendSynchronousRequest:request
+                                         returningResponse:&response
+                                                     error:&error];
+    
+    if (error != nil) {
+        return nil;
+    }
+    
+    return data;
 }
 
 @end

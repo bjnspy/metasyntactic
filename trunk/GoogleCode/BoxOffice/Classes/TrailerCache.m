@@ -110,7 +110,7 @@
 
 - (void) findTrailers:(NSString*) movieTitle
              indexUrl:(NSString*) indexUrl {
-    NSString* contents = [NSString stringWithContentsOfURL:[NSURL URLWithString:indexUrl]];
+    NSString* contents = [Utilities stringWithContentsOfAddress:indexUrl];
 
     NSMutableArray* urls = [NSMutableArray array];
     while (contents != nil) {
@@ -181,10 +181,11 @@
 }
 
 - (void) downloadTrailers:(NSArray*) movies {
-    NSURL* url = [NSURL URLWithString:@"http://www.apple.com/trailers/home/feeds/studios.json"];
-    NSError* httpError = nil;
-    NSString* jsonFeed = [NSString stringWithContentsOfURL:url encoding:NSISOLatin1StringEncoding error:&httpError];
-
+    NSString* jsonFeed = [Utilities stringWithContentsOfAddress:@"http://www.apple.com/trailers/home/feeds/studios.json"];
+    if (jsonFeed == nil) {
+        return;
+    }
+    
     NSMutableArray* movieTitles = [NSMutableArray array];
 
     for (Movie* movie in movies) {

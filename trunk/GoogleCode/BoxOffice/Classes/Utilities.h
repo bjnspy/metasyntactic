@@ -31,7 +31,6 @@
 
 + (NSString*) titleForMovie:(XmlElement*) element;
 
-+ (NSData*) downloadData:(NSString*) urlString;
 + (XmlElement*) downloadXml:(NSString*) urlString;
 + (XmlElement*) makeSoapRequest:(XmlElement*) element
                           atUrl:(NSString*) urlString
@@ -53,5 +52,10 @@
                               movie:(Movie*) movie
                             theater:(Theater*) theater
                        performances:(NSArray*) performances;
+
++ (NSString*) stringWithContentsOfAddress:(NSString*) address;
++ (NSString*) stringWithContentsOfUrl:(NSURL*) url;
++ (NSData*) dataWithContentsOfAddress:(NSString*) address;
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url;
 
 @end
