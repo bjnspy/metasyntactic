@@ -13,7 +13,7 @@ handlers:
 - url: /LookupTrailerListings
   script: main.py
 
-- url: /Search
+- url: /LookupShowtimes
   script: main.py
 
 #- url: .*

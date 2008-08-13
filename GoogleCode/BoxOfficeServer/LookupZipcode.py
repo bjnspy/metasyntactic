@@ -5,8 +5,6 @@ import logging
 
 from xml.dom.minidom import getDOMImplementation
 
-from Movie import Movie
-from Person import Person 
 from Zipcode import Zipcode
 from Lookup import LookupHandler
 

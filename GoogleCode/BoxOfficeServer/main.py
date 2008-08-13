@@ -1,16 +1,6 @@
 #!/usr/bin/env python
 
 import wsgiref.handlers
-import UploadMovie
-import UploadCastMember
-import UploadDirector
-import UploadWriter
-import DeleteAllMovies
-import DeleteAllUsers
-import Search
-import LookupCharacter
-import LookupPerson
-import LookupMovie
 import LookupLocation
 import LookupMovieListings
 import LookupMovieReviews
@@ -27,16 +17,6 @@ class MainHandler(webapp.RequestHandler):
 def main():
   application = webapp.WSGIApplication([
 #                                        ('/', MainHandler),
-#                                        ('/UploadMovie', UploadMovie.UploadMovieHandler),
-#                                        ('/DeleteAllMovies', DeleteAllMovies.DeleteAllMoviesHandler),
-#                                        ('/DeleteAllUsers', DeleteAllUsers.DeleteAllUsersHandler),
-#                                        ('/UploadCastMember', UploadCastMember.UploadCastMemberHandler),
-#                                        ('/UploadDirector', UploadDirector.UploadDirectorHandler),
-#                                        ('/UploadWriter', UploadWriter.UploadWriterHandler),
-                                        ('/Search', Search.SearchHandler),
-                                        ('/LookupMovie', LookupMovie.LookupMovieHandler),
-                                        ('/LookupCharacter', LookupCharacter.LookupCharacterHandler),
-                                        ('/LookupPerson', LookupPerson.LookupPersonHandler),
                                         ('/LookupLocation', LookupLocation.LookupLocationHandler),
                                         ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
                                         ('/LookupMovieReviews', LookupMovieReviews.LookupMovieReviewsHandler),

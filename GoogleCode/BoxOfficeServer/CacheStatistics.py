@@ -5,8 +5,6 @@ import logging
 import urllib
 import random
 
-from Movie import Movie
-from Person import Person 
 from Location import Location
 
 from google.appengine.ext import webapp
