@@ -11,8 +11,6 @@ import LookupMetacriticReviews
 
 from xml.dom.minidom import getDOMImplementation, parseString
 
-from Movie import Movie
-from Person import Person 
 from Location import Location
 from MovieListings import MovieListings
 from TheaterListings import TheaterListings
@@ -62,11 +60,11 @@ class LookupMovieReviewsHandler(webapp.RequestHandler):
 
     if listings is None:
       listings = self.get_listings_from_webservice(q)
-      memcache.Client().set(key, listings, 24 * 60 * 60)
-      memcache.Client().set(hashKey, hash(listings), 8 * 60 * 60)
+      memcache.Client().set(key, listings, 8 * 60 * 60)
+      memcache.Client().set(hashKey, hash(listings), 2 * 60 * 60)
 
     if memcache.get(hashKey) is None:
-      memcache.Client().set(hashKey, hash(listings), 8 * 60 * 60)
+      memcache.Client().set(hashKey, hash(listings), 2 * 60 * 60)
 
     return listings
 

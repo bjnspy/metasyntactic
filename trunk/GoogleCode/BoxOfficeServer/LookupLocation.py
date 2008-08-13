@@ -7,8 +7,6 @@ import random
 
 from xml.dom.minidom import getDOMImplementation, parseString
 
-from Movie import Movie
-from Person import Person 
 from Location import Location
 
 from google.appengine.ext import webapp

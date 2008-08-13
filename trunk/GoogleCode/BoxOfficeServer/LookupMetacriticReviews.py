@@ -10,8 +10,6 @@ import LookupRottenTomatoesReviews
 
 from xml.dom.minidom import getDOMImplementation, parseString
 
-from Movie import Movie
-from Person import Person 
 from Location import Location
 from MovieListings import MovieListings
 from TheaterListings import TheaterListings

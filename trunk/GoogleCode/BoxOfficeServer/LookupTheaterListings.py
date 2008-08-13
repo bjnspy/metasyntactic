@@ -6,11 +6,10 @@ import urllib
 import datetime
 import zlib
 import random
+import LookupMovieTicketsTheaterListings
 
 from xml.dom.minidom import getDOMImplementation, parseString
 
-from Movie import Movie
-from Person import Person 
 from Location import Location
 from MovieListings import MovieListings
 from TheaterListings import TheaterListings
@@ -22,11 +21,15 @@ from google.appengine.api import urlfetch
 
 class LookupTheaterListingsHandler(webapp.RequestHandler):
   def get(self):
-    #memcache.flush_all()
+#    memcache.flush_all()
     q = self.request.get("q")
     date = self.request.get("date")
+    provider = self.request.get("provider")
 
-    listings = self.get_listings_from_cache(q, date)
+    if provider != "Fandango" and provider != "MovieTickets":
+      provider = "Fandango"
+
+    listings = self.get_listings_from_cache(q, date, provider)
     if listings is None:
       self.response.out.write("")
       return
@@ -41,12 +44,12 @@ class LookupTheaterListingsHandler(webapp.RequestHandler):
     return delta.seconds >= (3600 * 8)
     
 
-  def get_listings_from_cache(self, q, date):
-    key = "TheaterListings_" + q + "_" + date;
+  def get_listings_from_cache(self, q, date, provider):
+    key = "TheaterListings_" + q + "_" + date + "_" + provider;
     listings = memcache.get(key)
 
     if listings is None or self.too_old(listings):
-      listings = self.get_listings_from_webservice(q, date)
+      listings = self.get_listings_from_webservice(q, date, provider)
       memcache.Client().set(key, listings)
 
     return listings
@@ -61,7 +64,21 @@ class LookupTheaterListingsHandler(webapp.RequestHandler):
     return listings
 
 
-  def get_listings_from_webservice(self, q, date):
+  def get_listings_from_webservice(self, q, date, provider):
+    if provider == "Fandango":
+      return self.get_listings_from_fandango(q, date)
+
+    if provider == "MovieTickets":
+      return self.get_listings_from_movietickets(q, date)
+
+    return None
+
+
+  def get_listings_from_movietickets(self, q, date):
+    return LookupMovieTicketsTheaterListings.LookupMovieTicketsTheaterListingsHandler().get_listings(q, date)
+
+
+  def get_listings_from_fandango(self, q, date):
     keys = [ "A99D3D1A-774C-49149E", "DE7E251E-7758-40A4-98E0-87557E9F31F0"]
     index = random.randint(0, len(keys) - 1)
     key = keys[index]
