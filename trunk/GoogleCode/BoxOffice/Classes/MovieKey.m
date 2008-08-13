@@ -23,9 +23,11 @@
     return [[[MovieKey alloc] initWithIdentifier:identifier name:name] autorelease];
 }
 
+
 + (MovieKey*) keyWithDictionary:(NSDictionary*) dict {
     return [MovieKey keyWithIdentifier:[dict objectForKey:@"identifier"]
                                    name:[dict objectForKey:@"name"]];
 }
+
 
 @end

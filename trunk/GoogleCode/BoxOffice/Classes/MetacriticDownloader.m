@@ -30,6 +30,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithModel:(BoxOfficeModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
@@ -38,9 +39,11 @@
     return self;
 }
 
+
 + (MetacriticDownloader*) downloaderWithModel:(BoxOfficeModel*) model {
     return [[[MetacriticDownloader alloc] initWithModel:model] autorelease];
 }
+
 
 - (NSDictionary*) lookupMovieListings:(NSString*) localHash {
     NSString* host = [Application host];
@@ -96,8 +99,10 @@
     return nil;
 }
 
+
 - (NSString*) ratingsFile {
     return [Application ratingsFile:[[self.model ratingsProviders] objectAtIndex:1]];
 }
+
 
 @end

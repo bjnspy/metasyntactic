@@ -36,13 +36,16 @@
     [super dealloc];
 }
 
+
 - (BoxOfficeModel*) model {
     return appDelegate.model;
 }
 
+
 - (void) onBackgroundTaskStarted:(NSString*) description {
     [self.model addBackgroundTask:description];
 }
+
 
 - (BOOL) tooSoon:(NSDate*) lastDate {
     if (lastDate == nil) {
@@ -74,10 +77,10 @@
     if ([self tooSoon:lastLookupDate]) {
         return;
     }
-
     [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading movie list", nil)];
     [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
+
 
 - (void) spawnDataProviderLookupThread {
     if ([Utilities isNilOrEmpty:self.model.postalCode]) {
@@ -92,10 +95,12 @@
     [self performSelectorInBackground:@selector(dataProviderLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
 
+
 - (void) spawnBackgroundThreads {
     [self spawnRatingsLookupThread];
     [self spawnDataProviderLookupThread];
 }
+
 
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate_ {
     if (self = [super init]) {
@@ -109,13 +114,16 @@
     return self;
 }
 
+
 + (BoxOfficeController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate {
     return [[[BoxOfficeController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
+
 - (NSDictionary*) ratingsLookup {
     return [self.model.ratingsCache update];
 }
+
 
 - (void) ratingsLookupBackgroundThreadEntryPoint:(id) arguments {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -128,10 +136,12 @@
     [autoreleasePool release];
 }
 
+
 - (void) onBackgroundTaskEnded:(NSString*) description {
     [self.model removeBackgroundTask:description];
     [appDelegate.tabBarController refresh];
 }
+
 
 - (void) setRatings:(NSDictionary*) ratings {
     if (ratings.count > 0) {
@@ -140,6 +150,7 @@
 
     [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie list", nil)];
 }
+
 
 - (void) dataProviderLookupBackgroundThreadEntryPoint:(id) anObject {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -154,6 +165,7 @@
     [autoreleasePool release];
 }
 
+
 - (void) setSearchDate:(NSDate*) searchDate {
     if ([searchDate isEqual:[self.model searchDate]]) {
         return;
@@ -164,6 +176,7 @@
     [appDelegate.tabBarController popNavigationControllersToRoot];
     [appDelegate.tabBarController refresh];
 }
+
 
 - (void) setPostalCode:(NSString*) postalCode {
     if ([postalCode isEqual:[self.model postalCode]]) {
@@ -176,10 +189,12 @@
     [appDelegate.tabBarController refresh];
 }
 
+
 - (void) setSearchRadius:(NSInteger) radius {
     [self.model setSearchRadius:radius];
     [appDelegate.tabBarController refresh];
 }
+
 
 - (void) setRatingsProviderIndex:(NSInteger) index {
     if (index == [self.model ratingsProviderIndex]) {
@@ -191,6 +206,7 @@
     [appDelegate.tabBarController refresh];
 }
 
+
 - (void) setDataProviderIndex:(NSInteger) index {
     if (index == [self.model dataProviderIndex]) {
         return;
@@ -200,5 +216,6 @@
     [self spawnDataProviderLookupThread];
     [appDelegate.tabBarController refresh];
 }
+
 
 @end

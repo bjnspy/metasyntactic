@@ -27,6 +27,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithController:(UINavigationController*) controller
                withObject:(id) object_
              withSelector:(SEL) selector_ {
@@ -38,6 +39,7 @@
 
     return self;
 }
+
 
 - (void) loadView {
     [super loadView];
@@ -55,12 +57,15 @@
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 
+
 - (void) cancel:(id) sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+
 - (void) save:(id) sender {
     [self.navigationController popViewControllerAnimated:YES];
 }
+
 
 @end

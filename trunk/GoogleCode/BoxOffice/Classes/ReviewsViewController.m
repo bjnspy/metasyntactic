@@ -36,6 +36,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController_
                             reviews:(NSArray*) reviews_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -47,15 +48,18 @@
     return self;
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
+
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[navigationController model].activityView] autorelease];
 
     [[navigationController model] setCurrentlyShowingReviews];
 }
+
 
 - (UITableViewCell*) reviewCellForRow:(NSInteger) row
                               section:(NSInteger) section {
@@ -88,6 +92,7 @@
     }
 }
 
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section < reviews.count) {
@@ -104,6 +109,7 @@
     }
 }
 
+
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == reviews.count) {
@@ -112,6 +118,7 @@
     
     return nil;
 }
+
 
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
@@ -129,9 +136,11 @@
     }
 }
 
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return reviews.count + 1;
 }
+
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
@@ -141,6 +150,7 @@
         return 1;
     }
 }
+
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -154,6 +164,7 @@
     
     return [tableView rowHeight];
 }
+
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
@@ -170,5 +181,6 @@
         return UITableViewCellAccessoryDetailDisclosureButton;
     }
 }
+
 
 @end

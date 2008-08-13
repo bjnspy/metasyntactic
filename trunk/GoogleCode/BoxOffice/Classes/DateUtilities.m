@@ -39,6 +39,7 @@ static NSRecursiveLock* gate = nil;
     }
 }
 
+
 + (NSString*) timeSinceNowWorker:(NSDate*) date {
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSDayCalendarUnit)
@@ -71,6 +72,7 @@ static NSRecursiveLock* gate = nil;
     }
 }
 
+
 + (NSString*) timeSinceNow:(NSDate*) date {
     NSString* result = [timeDifferenceMap objectForKey:date];
     if (result == nil) {
@@ -80,6 +82,7 @@ static NSRecursiveLock* gate = nil;
     return result;
 }
 
+
 + (NSDate*) today {
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
@@ -87,6 +90,7 @@ static NSRecursiveLock* gate = nil;
     [components setHour:12];
     return [calendar dateFromComponents:components];
 }
+
 
 + (NSDate*) tomorrow {
     NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
@@ -96,6 +100,7 @@ static NSRecursiveLock* gate = nil;
                                                          toDate:[DateUtilities today]
                                                         options:0];
 }
+
 
 + (BOOL) isSameDay:(NSDate*) d1
               date:(NSDate*) d2 {
@@ -110,6 +115,7 @@ static NSRecursiveLock* gate = nil;
     [components1 month] == [components2 month] &&
     [components1 day] == [components2 day];
 }
+
 
 + (BOOL) isToday:(NSDate*) date {
     return [DateUtilities isSameDay:[NSDate date] date:date];
@@ -128,6 +134,7 @@ static NSRecursiveLock* gate = nil;
     return result;
 }
 
+
 + (NSString*) formatShortDate:(NSDate*) date {
     NSString* result;
     [gate lock];
@@ -139,6 +146,7 @@ static NSRecursiveLock* gate = nil;
     [gate unlock];
     return result;
 }
+
 
 + (NSString*) formatLongDate:(NSDate*) date {
     NSString* result;
@@ -152,6 +160,7 @@ static NSRecursiveLock* gate = nil;
     return result;
 }
 
+
 + (NSString*) formatFullDate:(NSDate*) date {
     NSString* result;
     [gate lock];
@@ -164,8 +173,10 @@ static NSRecursiveLock* gate = nil;
     return result;
 }
 
+
 + (NSDate*) dateWithNaturalLanguageString:(NSString*) string {
     return [NSDate dateWithNaturalLanguageString:string];
 }
+
 
 @end

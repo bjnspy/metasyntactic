@@ -25,6 +25,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithController:(UINavigationController*) controller
                 withTitle:(NSString*) title
                withObject:(id) object_
@@ -47,6 +48,7 @@
     return self;
 }
 
+
 - (void)loadView {
     [super loadView];
 
@@ -55,10 +57,12 @@
     [self.textField becomeFirstResponder];
 }
 
+
 - (void) save:(id) sender {
     NSString* trimmedValue = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [self.object performSelector:selector withObject:trimmedValue];
     [super save:sender];
 }
+
 
 @end

@@ -35,9 +35,11 @@
     [super dealloc];
 }
 
+
 - (NSString*) ratingsFile {
     return [Application ratingsFile:[self.model currentRatingsProvider]];
 }
+
 
 - (NSDictionary*) loadRatingsProvider {
     NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self ratingsFile]];
@@ -60,9 +62,11 @@
     return result;
 }
 
+
 - (void) onRatingsProviderChanged {
     self.ratingsAndHash = [self loadRatingsProvider];
 }
+
 
 - (id) initWithModel:(BoxOfficeModel*) model_ {
     if (self = [super init]) {
@@ -73,9 +77,11 @@
     return self;
 }
 
+
 + (RatingsCache*) cacheWithModel:(BoxOfficeModel*) model {
     return [[[RatingsCache alloc] initWithModel:model] autorelease];
 }
+
 
 - (void) saveRatings:(NSDictionary*) dictionary {
     if (dictionary.count == 0) {
@@ -100,6 +106,7 @@
     [Utilities writeObject:result toFile:[self ratingsFile]];
 }
 
+
 - (NSDictionary*) updateWorker {
     NSString* hash = [self.ratingsAndHash objectForKey:@"Hash"];
 
@@ -112,6 +119,7 @@
     return nil;
 }
 
+
 - (NSDictionary*) update {
     NSDictionary* result = [self updateWorker];
 
@@ -119,6 +127,7 @@
 
     return [result objectForKey:@"Ratings"];
 }
+
 
 - (NSDictionary*) ratings {
     NSDictionary* result = [self.ratingsAndHash objectForKey:@"Ratings"];
@@ -128,5 +137,6 @@
 
     return result;
 }
+
 
 @end

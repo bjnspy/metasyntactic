@@ -23,4 +23,5 @@
     return [[[CharacterKey alloc] initWithIdentifier:identifier name:name] autorelease];
 }
 
+
 @end

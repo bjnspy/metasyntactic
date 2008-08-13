@@ -29,13 +29,16 @@
     [super dealloc];
 }
 
+
 + (XmlDocument*) documentWithRoot:(XmlElement*) root {
     return [[[XmlDocument alloc] initWithRoot:root] autorelease];
 }
 
+
 - (id) initWithRoot:(XmlElement*) root_ {
     return [self initWithRoot:root_ version:@"1.0" encoding:@"UTF-8"];
 }
+
 
 - (id) initWithRoot:(XmlElement*) root_
             version:(NSString*) version_
@@ -47,5 +50,6 @@
     }
     return self;
 }
+
 
 @end

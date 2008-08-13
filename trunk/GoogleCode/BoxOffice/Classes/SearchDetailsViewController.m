@@ -32,6 +32,7 @@
     [super dealloc];
 }
 
+
 - (id)initWithNavigationController:(SearchNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = navigationController_;
@@ -50,13 +51,16 @@
     return self;
 }
 
+
 - (void) onSearchButtonSelected:(id) object {
     [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
+
 
 - (void) startActivityIndicator {
     [self.activityIndicator startAnimating];
@@ -65,9 +69,11 @@
     [self.navigationItem setRightBarButtonItem:item animated:YES];
 }
 
+
 - (void) stopActivityIndicator {
     [self.activityIndicator stopAnimating];
     [self.navigationItem setRightBarButtonItem:nil animated:YES];
 }
+
 
 @end

@@ -36,13 +36,16 @@
     [super dealloc];
 }
 
+
 + (NorthAmericaDataProvider*) providerWithModel:(BoxOfficeModel*) model {
     return [[[NorthAmericaDataProvider alloc] initWithModel:model] autorelease];
 }
 
+
 - (NSString*) providerFolder {
     return [[Application dataFolder] stringByAppendingPathComponent:@"NorthAmerica"];
 }
+
 
 + (NSDictionary*) processFandangoShowtimes:(XmlElement*) moviesElement {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -74,6 +77,7 @@
 
     return dictionary;
 }
+
 
 + (void) processFandangoTheaterElement:(XmlElement*) theaterElement
                               theaters:(NSMutableArray*) theaters
@@ -121,6 +125,7 @@
                                  originatingPostalCode:originatingPostalCode]];
 }
 
+
 + (NSArray*) processFandangoTheaters:(XmlElement*) theatersElement
                           postalCode:(NSString*) postalCode
                           theaterIds:(NSArray*) theaterIds {
@@ -137,6 +142,7 @@
 
     return [NSArray arrayWithObjects:theaters, performances, nil];
 }
+
 
 + (NSMutableArray*) processFandangoMovies:(XmlElement*) moviesElement {
     NSMutableArray* array = [NSMutableArray array];
@@ -169,6 +175,7 @@
     return array;
 }
 
+
 + (LookupResult*) processFandangoElement:(XmlElement*) element
                               postalCode:(NSString*) postalCode
                               theaterIds:(NSArray*) theaterIds {
@@ -187,6 +194,7 @@
                                  theaters:theaters
                              performances:performances];
 }
+
 
 - (void) lookupMissingFavorites:(LookupResult*) lookupResult {
     if (lookupResult == nil) {
@@ -242,6 +250,7 @@
     }
 }
 
+
 - (NSString*) trimPostalCode:(NSString*) postalCode {
     NSMutableString* trimmed = [NSMutableString string];
     for (NSInteger i = 0; i < [postalCode length]; i++) {
@@ -252,6 +261,7 @@
     }
     return trimmed;
 }
+
 
 - (LookupResult*) lookupPostalCode:(NSString*) postalCode
                         theaterIds:(NSArray*) theaterIds {
@@ -279,15 +289,18 @@
     return nil;
 }
 
+
 - (LookupResult*) lookupWorker {
     LookupResult* result = [self lookupPostalCode:self.model.postalCode theaterIds:nil];
     [self lookupMissingFavorites:result];
     return result;
 }
 
+
 - (NSString*) displayName {
     return @"North America";
 }
+
 
 - (NSString*) ticketingUrlForTheater:(Theater*) theater
                                movie:(Movie*) movie
@@ -315,5 +328,6 @@
 
     return nil;
 }
+
 
 @end

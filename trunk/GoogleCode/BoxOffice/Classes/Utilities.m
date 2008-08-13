@@ -31,6 +31,7 @@
     return string == nil || [@"" isEqual:string];
 }
 
+
 + (id) findSmallestElementInArray:(NSArray*) array
                     usingFunction:(NSInteger(*)(id, id, void *)) comparator
                           context:(void*) context {
@@ -51,6 +52,7 @@
 
     return value;
 }
+
 
 + (id) findSmallestElementInArray:(NSArray*) array
                     usingFunction:(NSInteger(*)(id, id, void*, void*)) comparator
@@ -74,6 +76,7 @@
     return value;
 }
 
+
 + (NSString*) titleForMovie:(XmlElement*) element {
     if ([element attributeValue:@"year"] == nil) {
         return [element attributeValue:@"name"];
@@ -81,6 +84,7 @@
         return [NSString stringWithFormat:@"%@ (%@)", [element attributeValue:@"name"], [element attributeValue:@"year"]];
     }
 }
+
 
 + (XmlElement*) downloadXml:(NSString*) urlString {
     NSData* data = [Utilities dataWithContentsOfAddress:urlString];
@@ -90,6 +94,7 @@
 
     return [XmlParser parse:data];
 }
+
 
 + (XmlElement*) makeSoapRequest:(XmlElement*) element
                           atUrl:(NSString*) urlString
@@ -122,6 +127,7 @@
     return [XmlParser parse:result];
 }
 
+
 + (id) removeRandomElement:(NSMutableArray*) array {
     NSInteger index = rand() % array.count;
     id value = [array objectAtIndex:index];
@@ -129,6 +135,7 @@
 
     return value;
 }
+
 
 + (NSInteger) hashString:(NSString*) string {
     if ([string length] == 0) {
@@ -143,6 +150,7 @@
     return result;
 }
 
+
 + (NSArray*) nonNilArray:(NSArray*) array {
     if (array == nil) {
         return [NSArray array];
@@ -151,6 +159,7 @@
     return array;
 }
 
+
 + (NSString*) nonNilString:(NSString*) string {
     if (string == nil) {
         return @"";
@@ -158,6 +167,7 @@
 
     return string;
 }
+
 
 + (void) writeObject:(id) object toFile:(NSString*) file {
     NSString* error = nil;
@@ -169,6 +179,7 @@
     }
 }
 
+
 + (NSString*) stringByAddingPercentEscapesUsingEncoding:(NSString*) string {
     string = [string stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
     string = [string stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
@@ -176,6 +187,7 @@
 
     return string;
 }
+
 
 + (NSString*) generateShowtimeLinks:(BoxOfficeModel*) model
                               movie:(Movie*) movie
@@ -210,6 +222,7 @@
     return body;
 }
 
+
 + (NSString*) stringWithContentsOfAddress:(NSString*) address {
     if (address == nil) {
         return nil;
@@ -217,6 +230,7 @@
     
     return [Utilities stringWithContentsOfUrl:[NSURL URLWithString:address]];
 }
+
 
 + (NSString*) stringWithContentsOfUrl:(NSURL*) url {
     if (url == nil) {
@@ -231,6 +245,7 @@
     return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
 }
 
+
 + (NSData*) dataWithContentsOfAddress:(NSString*) address {
     if (address == nil) {
         return nil;
@@ -238,6 +253,7 @@
     
     return [Utilities dataWithContentsOfUrl:[NSURL URLWithString:address]];
 }
+
 
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url {
     if (url == nil) {
@@ -261,5 +277,6 @@
     
     return data;
 }
+
 
 @end

@@ -41,6 +41,7 @@
     return nil;
 }
 
+
 - (NSString*) imageUrl:(NSString*) imdbId {
     if (imdbId == nil) {
         return nil;
@@ -61,6 +62,7 @@
     return nil;
 }
 
+
 - (NSData*) downloadImage:(NSString*) imageUrl {
     if (imageUrl == nil) {
         return nil;
@@ -69,15 +71,18 @@
     return [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
 }
 
+
 - (NSData*) go {
     NSString* imdbId = [self imdbId];
     NSString* imageUrl = [self imageUrl:imdbId];
     return [self downloadImage:imageUrl];
 }
 
+
 + (NSData*) download:(Movie*) movie {
     ImdbPosterDownloader* downloader = [[[ImdbPosterDownloader alloc] initWithMovie:movie] autorelease];
     return [downloader go];
 }
+
 
 @end

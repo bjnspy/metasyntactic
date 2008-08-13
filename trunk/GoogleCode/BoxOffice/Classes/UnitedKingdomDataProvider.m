@@ -29,13 +29,16 @@
     return [[[UnitedKingdomDataProvider alloc] initWithModel:model] autorelease];
 }
 
+
 - (NSString*) providerFolder {
     return [[Application dataFolder] stringByAppendingPathComponent:@"UnitedKingdom"];
 }
 
+
 - (NSString*) displayName {
     return @"United Kingdom";
 }
+
 
 - (Movie*) processFilm:(XmlElement*) filmElement {
     NSString* identifier = [filmElement element:@"film_uid"].text;
@@ -51,6 +54,7 @@
                              synopsis:synopsis];
 }
 
+
 - (NSMutableArray*) processFilms:(XmlElement*) filmsElement {
     NSMutableArray* result = [NSMutableArray array];
 
@@ -64,13 +68,16 @@
     return result;
 }
 
+
 - (NSMutableArray*) processVenues:(XmlElement*) venuesElement {
     return nil;
 }
 
+
 - (NSMutableDictionary*) processScreenings:(XmlElement*) screeningsElement {
     return nil;
 }
+
 
 - (LookupResult*) lookupWorker {
     XmlElement* filmsElement      = [XmlParser parseUrl:@"http://www.remotegoat.co.uk/f/11013/films.xml"];
@@ -90,11 +97,13 @@
                              performances:performances_];
 }
 
+
 - (NSString*) ticketingUrlForTheater:(Theater*) theater
                                movie:(Movie*) movie
                          performance:(Performance*) performance
                                 date:(NSDate*) date {
     return nil;
 }
+
 
 @end

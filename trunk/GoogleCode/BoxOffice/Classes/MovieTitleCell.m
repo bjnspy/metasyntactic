@@ -38,6 +38,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
                model:(BoxOfficeModel*) model_
@@ -68,11 +69,13 @@
     return self;
 }
 
+
 - (void) setImage:(UIImage*) image {
     if (self.image != image) {
         [super setImage:image];
     }
 }
+
 
 - (void) setRottenTomatoesScore:(Movie*) movie {
     int score = [self.model scoreForMovie:movie];
@@ -117,6 +120,7 @@
     }
 }
 
+
 - (void) setMetacriticScore:(Movie*) movie {
     int score = [self.model scoreForMovie:movie];
 
@@ -149,6 +153,7 @@
     }
 }
 
+
 - (void) setScore:(Movie*) movie {
     {
         CGRect frame;
@@ -180,11 +185,13 @@
     }
 }
 
+
 - (void) setMovie:(Movie*) movie {
     [self setScore:movie];
     self.ratingLabel.text = [movie ratingAndRuntimeString];
     self.titleLabel.text = movie.displayTitle;
 }
+
 
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {

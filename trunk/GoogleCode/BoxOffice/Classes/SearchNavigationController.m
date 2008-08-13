@@ -29,6 +29,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.startPageViewController = [[[SearchStartPageViewController alloc] initWithNavigationController:self] autorelease];
@@ -42,6 +43,7 @@
     return self;
 }
 
+
 - (void) pushMovieDetails:(XmlElement*) movieElement
                  animated:(BOOL) animated {
     SearchMovieDetailsViewController* controller =
@@ -51,6 +53,7 @@
     [self pushViewController:controller animated:YES];
 }
 
+
 - (void) pushPersonDetails:(XmlElement*) personElement
                   animated:(BOOL) animated {
     SearchPersonDetailsViewController* controller =
@@ -59,5 +62,6 @@
 
     [self pushViewController:controller animated:YES];
 }
+
 
 @end

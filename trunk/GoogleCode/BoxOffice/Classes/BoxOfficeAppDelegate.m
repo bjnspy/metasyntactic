@@ -38,6 +38,7 @@
     [super dealloc];
 }
 
+
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
     self.notificationCenter = [NotificationCenter centerWithWindow:window];
     self.model = [BoxOfficeModel modelWithCenter:notificationCenter];
@@ -51,8 +52,10 @@
     [self.tabBarController refresh];
 }
 
+
 - (void) applicationWillTerminate:(UIApplication*) application {
     [[NSUserDefaults standardUserDefaults] synchronize];
 }
+
 
 @end

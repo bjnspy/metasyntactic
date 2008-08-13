@@ -49,13 +49,16 @@
     [super dealloc];
 }
 
+
 - (BoxOfficeController*) controller {
     return [self.navigationController controller];
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
+
 
 - (void) setFavoriteImage {
     UIImage* image = [self.model isFavoriteTheater:theater] ? [ImageCache filledStarImage]
@@ -63,6 +66,7 @@
 
     self.navigationItem.rightBarButtonItem.image = image;
 }
+
 
 - (void) switchFavorite:(id) sender {
     if ([self.model isFavoriteTheater:theater]) {
@@ -73,6 +77,7 @@
 
     [self setFavoriteImage];
 }
+
 
 - (id) initWithNavigationController:(TheatersNavigationController*) controller
                             theater:(Theater*) theater_ {
@@ -106,6 +111,7 @@
     return self;
 }
 
+
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 
@@ -114,9 +120,11 @@
     [self refresh];
 }
 
+
 - (void) refresh {
     [self.tableView reloadData];
 }
+
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     // header
@@ -131,6 +139,7 @@
     return sections;
 }
 
+
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
@@ -142,6 +151,7 @@
         return 2;
     }
 }
+
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
@@ -156,6 +166,7 @@
     return cell;
 }
 
+
 - (UITableViewCell*) cellForEmailListings {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                     reuseIdentifier:nil] autorelease];
@@ -168,6 +179,7 @@
 
     return cell;
 }
+
 
 - (UITableViewCell*) cellForTheaterIndex:(NSInteger) index row:(NSInteger) row {
     if (row == 0) {
@@ -199,6 +211,7 @@
     }
 }
 
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
@@ -212,6 +225,7 @@
         return [self cellForTheaterIndex:(section - 2) row:row];
     }
 }
+
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -232,6 +246,7 @@
     }
 }
 
+
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
@@ -244,6 +259,7 @@
 
     return UITableViewCellAccessoryDisclosureIndicator;
 }
+
 
 - (void) didSelectEmailListings {
     NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
@@ -278,6 +294,7 @@
     [Application openBrowser:url];
 }
 
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = indexPath.section;
@@ -302,5 +319,6 @@
         }
     }
 }
+
 
 @end

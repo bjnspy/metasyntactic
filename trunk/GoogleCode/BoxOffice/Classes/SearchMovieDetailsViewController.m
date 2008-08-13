@@ -38,6 +38,7 @@
     [super dealloc];
 }
 
+
 - (void) getMovieDetails {
     self.movieDetailsElement = [self.model getMovieDetails:[movieElement attributeValue:@"id"]];
     if (self.movieDetailsElement == nil) {
@@ -45,6 +46,7 @@
         [self performSelectorInBackground:@selector(lookupMovieDetails:) withObject:movieElement];
     }
 }
+
 
 - (id) initWithNavigationController:(SearchNavigationController*) navigationController_
                        movieDetails:(XmlElement*) movieElement_ {
@@ -59,6 +61,7 @@
     return self;
 }
 
+
 - (void) lookupMovieDetails:(id) element {
     NSString* urlString =
     [NSString stringWithFormat:@"%@/LookupMovie?id=%@",
@@ -69,21 +72,26 @@
     [self performSelectorOnMainThread:@selector(reportLookupResult:) withObject:resultElement waitUntilDone:NO];
 }
 
+
 - (NSArray*) taglines {
     return [[self.movieDetailsElement element:@"taglines"] children];
 }
+
 
 - (NSArray*) directors {
     return [[self.movieDetailsElement element:@"directors"] children];
 }
 
+
 - (NSArray*) writers {
     return [[self.movieDetailsElement element:@"writers"] children];
 }
 
+
 - (NSArray*) cast {
     return [[self.movieDetailsElement element:@"cast"] children];
 }
+
 
 - (void) reportLookupResult:(XmlElement*) element {
     [self stopActivityIndicator];
@@ -94,6 +102,7 @@
     [self.tableView reloadData];
 }
 
+
 - (CGSize) getStringSize:(NSString*) text {
     CGFloat width = [UIScreen mainScreen].bounds.size.width;
     CGSize size = [text sizeWithFont:[UIFont boldSystemFontOfSize:14]
@@ -102,6 +111,7 @@
 
     return size;
 }
+
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -149,6 +159,7 @@
     }
 }
 
+
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
@@ -159,6 +170,7 @@
         return UITableViewCellAccessoryDisclosureIndicator;
     }
 }
+
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -177,9 +189,11 @@
     }
 }
 
+
 - (void) refresh {
     [self.tableView reloadData];
 }
+
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     if (movieDetailsElement == nil) {
@@ -188,6 +202,7 @@
         return 4;
     }
 }
+
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
@@ -205,6 +220,7 @@
 
     return 0;
 }
+
 
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
@@ -225,6 +241,7 @@
     return nil;
 }
 
+
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
@@ -239,5 +256,6 @@
         return [tableView rowHeight];
     }
 }
+
 
 @end

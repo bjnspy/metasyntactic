@@ -30,6 +30,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithController:(AllMoviesViewController*) controller_ {
     if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
         self.controller = controller_;
@@ -39,13 +40,16 @@
     return self;
 }
 
+
 + (PosterView*) viewWithController:(AllMoviesViewController*) controller {
     return [[[PosterView alloc] initWithController:controller] autorelease];
 }
 
+
 - (BoxOfficeModel*) model {
     return [controller model];
 }
+
 
 - (void) showPoster:(NSNumber*) number {
     const double pi = 3.14159265358979323846;
@@ -101,6 +105,7 @@
     [self addSubview:imageView];
 }
 
+
 - (void) layoutSubviews {
     [super layoutSubviews];
 
@@ -118,5 +123,6 @@
         [self showPoster:[NSNumber numberWithInt:i]];
     }
 }
+
 
 @end

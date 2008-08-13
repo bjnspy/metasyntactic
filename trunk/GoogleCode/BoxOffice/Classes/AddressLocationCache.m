@@ -33,6 +33,7 @@
     [super dealloc];
 }
 
+
 - (id) init {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
@@ -42,9 +43,11 @@
     return self;
 }
 
+
 + (AddressLocationCache*) cache {
     return [[[AddressLocationCache alloc] init] autorelease];
 }
+
 
 - (void) updateAddresses:(NSArray*) addresses {
     self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
@@ -52,6 +55,7 @@
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:addresses]];
 }
+
 
 - (Location*) processResult:(XmlElement*) resultElement {
     if (resultElement != nil) {
@@ -71,6 +75,7 @@
     return nil;
 }
 
+
 - (Location*) downloadAddressLocationFromWebService:(NSString*) address {
     if ([Utilities isNilOrEmpty:address]) {
         return nil;
@@ -87,10 +92,12 @@
     return nil;
 }
 
+
 - (NSString*) locationFile:(NSString*) address {
     return [[[Application locationsFolder] stringByAppendingPathComponent:[Application sanitizeFileName:address]]
                                            stringByAppendingPathExtension:@"plist"];
 }
+
 
 - (Location*) locationForAddress:(NSString*) address {
     NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self locationFile:address]];
@@ -100,6 +107,7 @@
 
     return [Location locationWithDictionary:dict];
 }
+
 
 - (void) setLocation:(Location*) location
           forAddress:(NSString*) address {
@@ -111,6 +119,7 @@
     [self performSelectorOnMainThread:@selector(invalidateCachedData:) withObject:nil waitUntilDone:NO];
 }
 
+
 - (void) downloadAddressLocation:(NSString*) address {
     if ([self locationForAddress:address] != nil) {
         return;
@@ -121,6 +130,7 @@
     [self setLocation:location forAddress:address];
 }
 
+
 - (void) downloadAddressLocations:(NSArray*) addresses {
     for (NSString* address in addresses) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -130,6 +140,7 @@
         [autoreleasePool release];
     }
 }
+
 
 - (void) backgroundEntryPoint:(NSArray*) addresses {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -143,9 +154,11 @@
     [autoreleasePool release];
 }
 
+
 - (Location*) locationForPostalCode:(NSString*) postalCode {
     return [self locationForAddress:postalCode];
 }
+
 
 - (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode {
     [NSThread setThreadPriority:0.0];
@@ -156,6 +169,7 @@
 
     [autoreleasePool release];
 }
+
 
 - (void) updatePostalCode:(NSString*) postalCode {
     self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
@@ -172,9 +186,11 @@
                            withObject:postalCode];
 }
 
+
 - (void) invalidateCachedData:(id) object {
     self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
 }
+
 
 - (NSDictionary*) theaterDistanceMap:(Location*) userLocation
                             theaters:(NSArray*) theaters {
@@ -206,5 +222,6 @@
 
     return theaterDistanceMap;
 }
+
 
 @end

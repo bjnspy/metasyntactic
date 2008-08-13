@@ -36,6 +36,7 @@
     [super dealloc];
 }
 
+
 - (id) init {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.fandangoImage = [UIImage imageNamed:@"FandangoLogo.png"];
@@ -50,13 +51,16 @@
     return self;
 }
 
+
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 7;
 }
+
 
 - (NSInteger)       tableView:(UITableView*) table
         numberOfRowsInSection:(NSInteger) section {
@@ -78,6 +82,7 @@
 
     return 1;
 }
+
 
 - (UIImage*) getImage:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
@@ -102,6 +107,7 @@
     return nil;
 }
 
+
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     UIImage* image = [self getImage:indexPath];
@@ -115,6 +121,7 @@
 
     return height;
 }
+
 
 - (UITableViewCell*)    tableView:(UITableView*) tableView
             cellForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -163,6 +170,7 @@
     return cell;
 }
 
+
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (section == 0) {
@@ -182,6 +190,7 @@
     return nil;
 }
 
+
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
     if (section == 6) {
@@ -191,6 +200,7 @@
     return nil;
 }
 
+
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section >= 0 && indexPath.section <= 5) {
@@ -199,6 +209,7 @@
         return UITableViewCellAccessoryDisclosureIndicator;
     }
 }
+
 
 - (void) licenseCellTapped {
     UIViewController* controller = [[[UIViewController alloc] init] autorelease];
@@ -215,12 +226,14 @@
     [self.navigationController pushViewController:controller animated:YES];
 }
 
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 6) {
         [self licenseCellTapped];
     }
 }
+
 
 - (void)                            tableView:(UITableView*) tableView
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {

@@ -48,10 +48,12 @@
     [super dealloc];
 }
 
+
 - (void) onSortOrderChanged:(id) sender {
     [self.model setAllMoviesSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self refresh];
 }
+
 
 - (void) removeUnusedSectionTitles {
     for (NSInteger i = sectionTitles.count - 1; i >= 0; --i) {
@@ -62,6 +64,7 @@
         }
     }
 }
+
 
 - (void) sortMoviesByTitle {
     self.sortedMovies = [self.model.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
@@ -83,9 +86,11 @@
     [self removeUnusedSectionTitles];
 }
 
+
 - (void) sortMoviesByScore {
     self.sortedMovies = [self.model.movies sortedArrayUsingFunction:compareMoviesByScore context:self.model];
 }
+
 
 - (void) sortMoviesByReleaseDate {
     self.sortedMovies = [self.model.movies sortedArrayUsingFunction:compareMoviesByReleaseDate context:self.model];
@@ -119,6 +124,7 @@
     }
 }
 
+
 - (void) sortMovies {
     self.sectionTitles = [NSMutableArray array];
     self.sectionTitleToContentsMap = [MultiDictionary dictionary];
@@ -135,6 +141,7 @@
         self.sectionTitles = [NSArray arrayWithObject:[self.model noLocationInformationFound]];
     }
 }
+
 
 - (void) setupSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
@@ -156,6 +163,7 @@
     self.navigationItem.titleView = segmentedControl;
 }
 
+
 - (id) initWithNavigationController:(MoviesNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
@@ -175,6 +183,7 @@
     return self;
 }
 
+
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 
@@ -185,14 +194,17 @@
     [self refresh];
 }
 
+
 - (void) refresh {
     [self sortMovies];
     [self.tableView reloadData];
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
+
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -219,6 +231,7 @@
     return movieCell;
 }
 
+
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if ([self.model sortingMoviesByTitle]) {
@@ -229,6 +242,7 @@
         return UITableViewCellAccessoryDisclosureIndicator;
     }
 }
+
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -244,6 +258,7 @@
     [self.navigationController pushMovieDetails:movie animated:YES];
 }
 
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     if ([self.model sortingMoviesByTitle]) {
         return sectionTitles.count;
@@ -253,6 +268,7 @@
         return sectionTitles.count;
     }
 }
+
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
@@ -265,6 +281,7 @@
     }
 }
 
+
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if ([self.model sortingMoviesByTitle]) {
@@ -276,6 +293,7 @@
     }
 }
 
+
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
     if ([self.model sortingMoviesByTitle] && self.sortedMovies.count > 0) {
         return self.alphabeticSectionTitles;
@@ -283,6 +301,7 @@
 
     return nil;
 }
+
 
 - (NSInteger)           tableView:(UITableView*) tableView
       sectionForSectionIndexTitle:(NSString*) title
@@ -303,9 +322,11 @@
     return 0;
 }
 
+
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return NO;
 }
+
 
 - (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
     return;
@@ -344,5 +365,6 @@
     }
     [UIView commitAnimations];
 }
+
 
 @end

@@ -47,13 +47,16 @@
     [super dealloc];
 }
 
+
 - (BoxOfficeController*) controller {
     return [self.navigationController controller];
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
+
 
 - (void) refresh {
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
@@ -73,6 +76,7 @@
         [self.performances addObject:performance];
     }
 }
+
 
 - (id) initWithController:(AbstractNavigationController*) navigationController_
                   theater:(Theater*) theater_
@@ -95,6 +99,7 @@
     return self;
 }
 
+
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
@@ -103,9 +108,11 @@
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 }
 
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 3;
 }
+
 
 - (NSInteger)       tableView:(UITableView*) tableView
         numberOfRowsInSection:(NSInteger) section {
@@ -119,6 +126,7 @@
 
     return 0;
 }
+
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
@@ -138,6 +146,7 @@
 
     return nil;
 }
+
 
 - (UITableViewCell*) showtimeCellForSection:(NSInteger) section row:(NSInteger) row {
     static NSString* reuseIdentifier = @"TicketsViewShowtimeCellIdentifier";
@@ -167,6 +176,7 @@
     return cell;
 }
 
+
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
     AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                 reuseIdentifier:nil] autorelease];
@@ -187,6 +197,7 @@
     return cell;
 }
 
+
 - (UITableViewCell*) infoCellForRow:(NSInteger) row {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                     reuseIdentifier:nil] autorelease];
@@ -204,6 +215,7 @@
     return cell;
 }
 
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
@@ -217,6 +229,7 @@
     return nil;
 }
 
+
 - (void) didSelectCommandAtRow:(NSInteger) row {
     if (row == 0) {
         [Application openMap:theater.address];
@@ -224,6 +237,7 @@
         [Application makeCall:theater.phoneNumber];
     }
 }
+
 
 - (void) didSelectShowtimeAtRow:(NSInteger) row {
     Performance* performance = [self.performances objectAtIndex:row];
@@ -243,6 +257,7 @@
 
     [Application openBrowser:url];
 }
+
 
 - (void) didSelectEmailListings {
     NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
@@ -274,6 +289,7 @@
     [Application openBrowser:url];
 }
 
+
 - (void) didSelectInfoCellAtRow:(NSInteger) row {
     if (row == 0) {
         SearchDatePickerViewController* pickerController =
@@ -283,6 +299,7 @@
         [self didSelectEmailListings];
     }
 }
+
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -294,6 +311,7 @@
         [self didSelectShowtimeAtRow:indexPath.row];
     }
 }
+
 
 @end
 

@@ -34,6 +34,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
@@ -46,6 +47,7 @@
 
     return self;
 }
+
 
 - (void) navigateToLastViewedPage {
     Theater* currentTheater = [self.model currentlySelectedTheater];
@@ -61,11 +63,13 @@
     }
 }
 
+
 - (void) refresh {
     [super refresh];
     [self.allTheatersViewController refresh];
     [self.theaterDetailsViewController refresh];
 }
+
 
 - (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
     [self popToRootViewControllerAnimated:NO];
@@ -75,6 +79,7 @@
     [self pushViewController:theaterDetailsViewController animated:animated];
 }
 
+
 - (void) pushTicketsView:(Theater*) theater
                    movie:(Movie*) movie
                 animated:(BOOL) animated {
@@ -83,5 +88,6 @@
                     title:movie.displayTitle
                  animated:animated];
 }
+
 
 @end

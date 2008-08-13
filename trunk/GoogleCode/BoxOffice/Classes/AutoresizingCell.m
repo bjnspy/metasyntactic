@@ -25,6 +25,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.label = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
@@ -41,9 +42,11 @@
     return self;
 }
 
+
 - (void) layoutSubviews {
     CGRect bounds = self.bounds;
     self.label.frame = CGRectMake(bounds.origin.x + 10, bounds.origin.y, bounds.size.width - 20, bounds.size.height);
 }
+
 
 @end

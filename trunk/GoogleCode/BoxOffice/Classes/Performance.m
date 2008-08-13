@@ -28,6 +28,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithIdentifier:(NSString*) identifier_
                      time:(NSString*) time_ {
     if (self = [super init]) {
@@ -38,15 +39,18 @@
     return self;
 }
 
+
 + (Performance*) performanceWithIdentifier:(NSString*) identifier
                                       time:(NSString*) time {
     return [[[Performance alloc] initWithIdentifier:identifier time:time] autorelease];
 }
 
+
 + (Performance*) performanceWithDictionary:(NSDictionary*) dictionary {
     return [Performance performanceWithIdentifier:[dictionary valueForKey:@"identifier"]
                                              time:[dictionary valueForKey:@"time"]];
 }
+
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -56,5 +60,6 @@
 
     return dictionary;
 }
+
 
 @end

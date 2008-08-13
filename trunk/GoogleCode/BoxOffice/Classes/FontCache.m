@@ -32,20 +32,25 @@ static UIFont* boldSystem19 = nil;
     }
 }
 
+
 + (UIFont*) helvetica14 {
     return helvetica14;
 }
+
 
 + (UIFont*) boldSystem11 {
     return boldSystem11;
 }
 
+
 + (UIFont*) boldSystem18 {
     return boldSystem18;
 }
 
+
 + (UIFont*) boldSystem19 {
     return boldSystem19;
 }
+
 
 @end

@@ -32,6 +32,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithLatitude:(double) latitude_
               longitude:(double) longitude_
                 address:(NSString*) address_
@@ -46,12 +47,14 @@
     return self;
 }
 
+
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary {
     return [self locationWithLatitude:[[dictionary objectForKey:@"latitude"] doubleValue]
                             longitude:[[dictionary objectForKey:@"longitude"] doubleValue]
                               address:[dictionary objectForKey:@"address"]
                                  city:[dictionary objectForKey:@"city"]];
 }
+
 
 + (Location*) locationWithLatitude:(double) latitude
                          longitude:(double) longitude
@@ -63,6 +66,7 @@
                                           city:city] autorelease];
 }
 
+
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     [dict setObject:[NSNumber numberWithDouble:latitude] forKey:@"latitude"];
@@ -71,6 +75,7 @@
     [dict setObject:city forKey:@"city"];
     return dict;
 }
+
 
 - (double) distanceTo:(Location*) to {
     const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
@@ -102,6 +107,7 @@
     return distance;
 }
 
+
 - (BOOL) isEqual:(id) anObject {
     Location* other = anObject;
 
@@ -110,14 +116,17 @@
         self.longitude == other.longitude;
 }
 
+
 - (NSUInteger) hash {
     double hash = self.latitude + self.longitude;
 
     return *(NSUInteger*)&hash;
 }
 
+
 - (NSString*) description {
     return [NSString stringWithFormat:@"(%d,%d)", latitude, longitude];
 }
+
 
 @end

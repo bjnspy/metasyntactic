@@ -28,6 +28,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
@@ -37,6 +38,7 @@
     }
     return self;
 }
+
 
 - (void) setKey:(NSString*) key
           value:(NSString*) value {
@@ -50,6 +52,7 @@
     valueLabel.frame = frame;
 }
 
+
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
@@ -59,5 +62,6 @@
         self.valueLabel.textColor = [ColorCache commandColor];
     }
 }
+
 
 @end

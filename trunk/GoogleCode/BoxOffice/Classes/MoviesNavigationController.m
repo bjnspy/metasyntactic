@@ -36,6 +36,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
@@ -48,6 +49,7 @@
 
     return self;
 }
+
 
 - (void) navigateToLastViewedPage {
     Movie* currentMovie = [self.model currentlySelectedMovie];
@@ -68,11 +70,13 @@
     }
 }
 
+
 - (void) refresh {
     [super refresh];
     [self.allMoviesViewController refresh];
     [self.movieDetailsViewController refresh];
 }
+
 
 - (void) pushMovieDetails:(Movie*) movie
                  animated:(BOOL) animated {
@@ -83,6 +87,7 @@
     [self pushViewController:movieDetailsViewController animated:animated];
 }
 
+
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater
                 animated:(BOOL) animated {
@@ -92,10 +97,12 @@
                         animated:animated];
 }
 
+
 - (void) pushReviewsView:(NSArray*) reviews animated:(BOOL) animated {
     ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithNavigationController:self
                                                                                              reviews:reviews] autorelease];
     [self pushViewController:controller animated:animated];
 }
+
 
 @end

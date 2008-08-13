@@ -32,6 +32,7 @@
     [super dealloc];
 }
 
+
 + (NSString*) showtimesString:(NSArray*) showtimes {
     NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
 
@@ -44,6 +45,7 @@
     return text;
 }
 
+
 + (UIFont*) showtimesFont:(BOOL) useSmallFonts {
     if (useSmallFonts) {
         return [FontCache boldSystem11];
@@ -52,6 +54,7 @@
     }
 }
 
+
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts {
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
 
@@ -59,6 +62,7 @@
               constrainedToSize:CGSizeMake(232, 1000)
                   lineBreakMode:UILineBreakModeWordWrap].height;
 }
+
 
 - (id)    initWithFrame:(CGRect) frame
         reuseIdentifier:(NSString*) reuseIdentifier {
@@ -78,6 +82,7 @@
 
     return self;
 }
+
 
 - (void) setShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts {
     self.showtimesLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
@@ -110,6 +115,7 @@
     showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimes];
 }
 
+
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
@@ -121,5 +127,6 @@
         showtimesLabel.textColor = [UIColor blackColor];
     }
 }
+
 
 @end

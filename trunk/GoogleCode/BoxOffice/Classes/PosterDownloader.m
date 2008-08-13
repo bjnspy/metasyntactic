@@ -29,6 +29,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithMovie:(Movie*) movie_ {
     if (self = [super init]) {
         self.movie = movie_;
@@ -36,6 +37,7 @@
 
     return self;
 }
+
 
 - (NSData*) go {
     NSData* data = [Utilities dataWithContentsOfAddress:self.movie.poster];
@@ -51,9 +53,11 @@
     return nil;
 }
 
+
 + (NSData*) download:(Movie*) movie {
     PosterDownloader* downloader = [[[PosterDownloader alloc] initWithMovie:movie] autorelease];
     return [downloader go];
 }
+
 
 @end
