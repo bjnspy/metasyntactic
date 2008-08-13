@@ -45,23 +45,22 @@
 }
 
 
-- (NSString*) shortTrailerFilePath:(NSString*) title {
+- (NSString*) trailerFileName:(NSString*) title {
     return [[Application sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) trailerFilePath:(NSString*) title {
-    return [[Application trailersFolder] stringByAppendingPathComponent:[self shortTrailerFilePath:title]];
+    return [[Application trailersFolder] stringByAppendingPathComponent:[self trailerFileName:title]];
 }
 
 
 - (void) deleteObsoleteTrailers:(NSArray*) movies {
-
     NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application trailersFolder]];
     NSMutableSet* set = [NSMutableSet setWithArray:contents];
 
     for (Movie* movie in movies) {
-        NSString* filePath = [self shortTrailerFilePath:movie.canonicalTitle];
+        NSString* filePath = [self trailerFileName:movie.canonicalTitle];
         [set removeObject:filePath];
     }
 
@@ -78,9 +77,8 @@
     NSMutableArray* moviesWithTrailers = [NSMutableArray array];
 
     for (Movie* movie in movies) {
-        NSError* error = nil;
         NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self trailerFilePath:movie.canonicalTitle]
-                                                                                 error:&error] objectForKey:NSFileModificationDate];
+                                                                                 error:NULL] objectForKey:NSFileModificationDate];
 
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];

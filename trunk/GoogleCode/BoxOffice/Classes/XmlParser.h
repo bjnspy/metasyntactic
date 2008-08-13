@@ -24,8 +24,6 @@
 @property (retain) NSMutableArray* stringBufferStack;
 @property (retain) NSMutableArray* attributesStack;
 
-- (id) initWithData:(NSData*) data;
-
 + (XmlElement*) parse:(NSData*) data;
 + (XmlElement*) parseUrl:(NSString*) url;
 

@@ -170,10 +170,9 @@
 
 
 + (void) writeObject:(id) object toFile:(NSString*) file {
-    NSString* error = nil;
     NSData* plistData = [NSPropertyListSerialization dataFromPropertyList:object
                                                                    format:NSPropertyListBinaryFormat_v1_0
-                                                         errorDescription:&error];
+                                                         errorDescription:NULL];
     if(plistData) {
         [plistData writeToFile:file atomically:YES];
     }
