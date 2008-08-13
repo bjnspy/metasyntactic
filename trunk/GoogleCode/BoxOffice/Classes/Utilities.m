@@ -241,6 +241,12 @@
         return nil;
     }
     
+    //return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
+    NSString* result = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
+    if (result != nil) {
+        return result;
+    }
+    
     return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
 }
 
