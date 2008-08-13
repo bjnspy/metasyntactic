@@ -104,111 +104,58 @@
 }
 
 
-- (NSString*) getValue:(NSString*) key fromArray:(NSArray*) array {
-    for (int i = 0; i < array.count - 2; i++) {
-        if ([[array objectAtIndex:i] isEqual:key]) {
-            return [array objectAtIndex:(i + 2)];
-        }
-    }
-
-    return nil;
-}
-
-
-- (void) findTrailers:(NSString*) movieTitle
-             indexUrl:(NSString*) indexUrl {
-    NSString* contents = [Utilities stringWithContentsOfAddress:indexUrl];
-
-    NSMutableArray* urls = [NSMutableArray array];
-    while (contents != nil) {
-        NSRange endRange = [contents rangeOfString:@".m4v</string>"];
-        if (endRange.length == 0) {
-            break;
-        }
-
-        NSRange startRange = [contents rangeOfString:@"<string>" options:NSBackwardsSearch range:NSMakeRange(0, endRange.location)];
-        if (startRange.length == 0) {
-            break;
-        }
-
-        NSRange extractRange;
-        extractRange.location = NSMaxRange(startRange);
-        extractRange.length = endRange.location - extractRange.location;
-        extractRange.length += 4;  // ".m4v"
-
-        [urls addObject:[contents substringWithRange:extractRange]];
-        contents = [contents substringFromIndex:NSMaxRange(endRange)];
-    }
-
-    if (urls.count) {
-        [Utilities writeObject:urls toFile:[self trailerFilePath:movieTitle]];
-    }
-}
-
-
-- (NSString*) massage:(NSString*) value {
-    while (true) {
-        NSRange range = [value rangeOfString:@"\\u"];
-        if (range.length <= 0) {
-            break;
-        }
-
-        range.length += 4;
-        value = [value stringByReplacingCharactersInRange:range withString:@""];
-    }
-
-    return value;
-}
-
-
-- (void) processJsonRow:(NSString*) row
-           moviesTitles:(NSArray*) movieTitles
-                 engine:(DifferenceEngine*) engine {
-
-    NSArray* values = [row componentsSeparatedByString:@"\""];
-    NSString* titleValue = [self getValue:@"title" fromArray:values];
-    NSString* locationValue = [self getValue:@"location" fromArray:values];
-
-    if (titleValue == nil || locationValue == nil) {
+- (void) processRow:(NSString*) row
+       moviesTitles:(NSArray*) movieTitles
+            engine:(DifferenceEngine*) engine {
+    NSArray* values = [row componentsSeparatedByString:@"\t"];
+    if (values.count != 3) {
         return;
     }
-
-    titleValue = [self massage:titleValue];
-    locationValue = [self massage:locationValue];
-
-    NSString* movieTitle = [engine findClosestMatch:titleValue inArray:movieTitles];
+    
+    NSString* fullTitle = [values objectAtIndex:0];
+    NSString* studio = [values objectAtIndex:1];
+    NSString* location = [values objectAtIndex:2];
+    
+    if ([fullTitle hasPrefix:@"WALL"]) {
+        NSLog(@"");
+    }
+    
+    NSString* movieTitle = [engine findClosestMatch:[fullTitle lowercaseString] inArray:movieTitles];
+    
     if (movieTitle == nil) {
         return;
     }
 
-    NSArray* locations = [locationValue componentsSeparatedByString:@"/"];
-    NSString* indexUrl = [NSString stringWithFormat:@"http://www.apple.com/moviesxml/s/%@/%@/index.xml",
-                          [locations objectAtIndex:2],
-                          [locations objectAtIndex:3]];
-
-    [self findTrailers:movieTitle indexUrl:indexUrl];
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
+    NSString* trailersString = [Utilities stringWithContentsOfAddress:url];
+    NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
+    
+    if (trailers.count) {
+        [Utilities writeObject:trailers toFile:[self trailerFilePath:movieTitle]];
+    }
 }
 
 
 - (void) downloadTrailers:(NSArray*) movies {
-    NSString* jsonFeed = [Utilities stringWithContentsOfAddress:@"http://www.apple.com/trailers/home/feeds/studios.json"];
-    if (jsonFeed == nil) {
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
+    NSString* index = [Utilities stringWithContentsOfAddress:url];
+    if (index == nil) {
         return;
     }
     
     NSMutableArray* movieTitles = [NSMutableArray array];
 
     for (Movie* movie in movies) {
-        [movieTitles addObject:movie.canonicalTitle];
+        [movieTitles addObject:[movie.canonicalTitle lowercaseString]];
     }
 
     DifferenceEngine* engine = [DifferenceEngine engine];
 
-    NSArray* rows = [jsonFeed componentsSeparatedByString:@"\n"];
+    NSArray* rows = [index componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
 
-        [self processJsonRow:row moviesTitles:movieTitles engine:engine];
+        [self processRow:row moviesTitles:movieTitles engine:engine];
 
         [autoreleasePool release];
     }
