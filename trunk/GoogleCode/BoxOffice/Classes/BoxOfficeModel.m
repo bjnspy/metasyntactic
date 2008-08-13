@@ -36,7 +36,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.3.0";
+static NSString* currentVersion = @"1.3.1";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -906,7 +906,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (NSString*) noLocationInformationFound {
     if ([Utilities isNilOrEmpty:[self postalCode]]) {
-        return NSLocalizedString(@"Please enter a postal code", nil);
+        return NSLocalizedString(@"Please enter your location", nil);
     } else {
         return NSLocalizedString(@"No information found", nil);
     }

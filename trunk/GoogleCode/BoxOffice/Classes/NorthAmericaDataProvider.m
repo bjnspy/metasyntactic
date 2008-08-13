@@ -16,6 +16,7 @@
 
 #import "NorthAmericaDataProvider.h"
 
+#import "AddressLocationCache.h"
 #import "Application.h"
 #import "BoxOfficeModel.h"
 #import "DateUtilities.h"
@@ -33,6 +34,7 @@
 
 - (void) dealloc {
     self.model = nil;
+
     [super dealloc];
 }
 
@@ -266,6 +268,8 @@
 - (LookupResult*) lookupPostalCode:(NSString*) postalCode
                         theaterIds:(NSArray*) theaterIds {
     if (![Utilities isNilOrEmpty:postalCode]) {
+        //Location* location = [[self.model addressLocationCache] downloadAddressLocation:postalCode];
+
         NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                        fromDate:[self.model searchDate]];
 

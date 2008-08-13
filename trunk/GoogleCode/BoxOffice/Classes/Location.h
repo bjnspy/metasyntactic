@@ -21,18 +21,21 @@
     double longitude;
     NSString* address;
     NSString* city;
+    NSString* country;
 }
 
 @property double latitude;
 @property double longitude;
 @property (copy) NSString* address;
 @property (copy) NSString* city;
+@property (copy) NSString* country;
 
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary;
 + (Location*) locationWithLatitude:(double) latitude
                          longitude:(double) longitude
                            address:(NSString*) address
-                              city:(NSString*) city;
+                              city:(NSString*) city
+                           country:(NSString*) country;
 
 - (NSDictionary*) dictionary;
 

@@ -35,11 +35,13 @@
 @synthesize navigationController;
 @synthesize activityIndicator;
 @synthesize locationManager;
+@synthesize gate;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.activityIndicator = nil;
     self.locationManager = nil;
+    self.gate = nil;
 
     [super dealloc];
 }
@@ -70,6 +72,7 @@
 - (id) initWithNavigationController:(SettingsNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
+        self.gate = [[[NSLock alloc] init] autorelease];
 
         NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
         NSString* appVersion = [BoxOfficeModel version];
@@ -128,15 +131,6 @@
 }
 
 
-- (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-
-    [self findPostalCode:location];
-
-    [autoreleasePool release];
-}
-
-
 - (NSString*) findUSPostalCode:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = [location coordinate];
     double latitude = coordinates.latitude;
@@ -175,6 +169,17 @@
     }
 
     [self performSelectorOnMainThread:@selector(reportFoundPostalCode:) withObject:postalCode waitUntilDone:NO];
+}
+
+
+- (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    [gate lock];
+    {
+        [self findPostalCode:location];
+    }
+    [gate unlock];
+    [autoreleasePool release];
 }
 
 
@@ -248,7 +253,7 @@
                 value = [[self.model currentDataProvider] displayName];
             } else
                 */ if (indexPath.row == 0) {
-                key = NSLocalizedString(@"Postal Code", nil);
+                key = NSLocalizedString(@"Location", nil);
                 value = [self.model postalCode];
             } else if (indexPath.row == 1) {
                 key = NSLocalizedString(@"Hide Theaters Beyond", nil);
@@ -347,12 +352,13 @@
         } else */if (row == 0) {
             TextFieldEditorViewController* controller =
             [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
-                                                             withTitle:NSLocalizedString(@"Postal code", nil)
-                                                            withObject:self
-                                                          withSelector:@selector(onPostalCodeChanged:)
-                                                              withText:[self.model postalCode]
-                                                              withType:UIKeyboardTypeNumbersAndPunctuation] autorelease];
-
+                                                                 title:NSLocalizedString(@"Location", nil)
+                                                                object:self
+                                                              selector:@selector(onPostalCodeChanged:)
+                                                                  text:[self.model postalCode]
+                                                           placeHolder:NSLocalizedString(@"Postal Code", nil)
+                                                                  type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
+            
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == 1) {
             NSArray* values = [NSArray arrayWithObjects:
@@ -388,15 +394,7 @@
 - (void) onPostalCodeChanged:(NSString*) postalCode {
     postalCode = [postalCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-    NSMutableString* trimmed = [NSMutableString string];
-    for (NSInteger i = 0; i < [postalCode length]; i++) {
-        unichar c = [postalCode characterAtIndex:i];
-        if (isalnum(c) || c == ' ') {
-            [trimmed appendString:[NSString stringWithCharacters:&c length:1]];
-        }
-    }
-
-    [self.controller setPostalCode:trimmed];
+    [self.controller setPostalCode:postalCode];
     [self.tableView reloadData];
 }
 

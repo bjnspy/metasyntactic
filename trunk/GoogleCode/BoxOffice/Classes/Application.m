@@ -365,7 +365,7 @@ static NSString* starString = nil;
 
 
 + (DifferenceEngine*) differenceEngine {
-    NSAssert([NSThread isMainThread], @"Cannot access difference engine from main thread.");
+    NSAssert([NSThread isMainThread], @"Cannot access difference engine from background thread.");
     return differenceEngine;
 }
 
@@ -377,7 +377,7 @@ static NSString* starString = nil;
 
 
 + (NSString*) host {
-    //*
+    /*
      return @"metaboxoffice6";
      /*/
     return @"metaboxoffice2";

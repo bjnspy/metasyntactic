@@ -27,33 +27,35 @@
 
 
 - (id) initWithController:(UINavigationController*) controller
-                withTitle:(NSString*) title
-               withObject:(id) object_
-             withSelector:(SEL) selector_
-                 withText:(NSString*) text
-                 withType:(UIKeyboardType) type {
+                    title:(NSString*) title
+                   object:(id) object_
+                 selector:(SEL) selector_
+                     text:(NSString*) text
+              placeHolder:(NSString*) placeHolder
+                     type:(UIKeyboardType) type {
     if (self = [super initWithController:controller withObject:object_ withSelector:selector_]) {
         CGRect rect = CGRectMake(20, 72, 280, 30);
         self.textField = [[[UITextField alloc] initWithFrame:rect] autorelease];
         self.textField.text = text;
+        self.textField.placeholder = placeHolder;
         self.textField.borderStyle = UITextBorderStyleRoundedRect;
         self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
         self.textField.font = [UIFont boldSystemFontOfSize:17];
         self.textField.keyboardType = type;
         self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-
+        
         self.title = title;
     }
-
+    
     return self;
 }
 
 
 - (void)loadView {
     [super loadView];
-
+    
     [self.view addSubview:self.textField];
-
+    
     [self.textField becomeFirstResponder];
 }
 
