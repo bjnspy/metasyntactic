@@ -16,6 +16,7 @@
 
 #import "XmlParser.h"
 
+#import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation XmlParser
@@ -28,6 +29,7 @@
     self.elementsStack = nil;
     self.stringBufferStack = nil;
     self.attributesStack = nil;
+    
     [super dealloc];
 }
 
@@ -58,16 +60,6 @@
 }
 
 
-- (id) initWithUrl:(NSString*) url {
-    if (self = [super init]) {
-        NSXMLParser* parser = [[[NSXMLParser alloc] initWithContentsOfURL:[NSURL URLWithString:url]] autorelease];
-        [self run:parser];
-    }
-
-    return self;
-}
-
-
 + (XmlElement*) collect:(XmlParser*) parser {
     if (parser.elementsStack == nil) {
         return nil;
@@ -88,30 +80,25 @@
 
 
 + (XmlElement*) parseUrl:(NSString*) url {
-    if (url == nil) {
-        return nil;
-    }
-
-    XmlParser* xmlParser = [[[XmlParser alloc] initWithUrl:url] autorelease];
-    return [XmlParser collect:xmlParser];
+    return [self parse:[Utilities dataWithContentsOfAddress:url]];
 }
 
 
-- (void)            parser:(NSXMLParser*) parser
-           didStartElement:(NSString*) elementName
-              namespaceURI:(NSString*) namespaceURI
-             qualifiedName:(NSString*) qName
-                attributes:(NSDictionary*) attributeDict {
+- (void)       parser:(NSXMLParser*) parser
+      didStartElement:(NSString*) elementName
+         namespaceURI:(NSString*) namespaceURI
+        qualifiedName:(NSString*) qName
+           attributes:(NSDictionary*) attributeDict {
     [self.elementsStack addObject:[NSMutableArray array]];
     [self.stringBufferStack addObject:[NSMutableString string]];
     [self.attributesStack addObject:[NSDictionary dictionaryWithDictionary:attributeDict]];
 }
 
 
-- (void)            parser:(NSXMLParser*) parser
-             didEndElement:(NSString*) elementName
-              namespaceURI:(NSString*) namespaceURI
-             qualifiedName:(NSString*) qName {
+- (void)     parser:(NSXMLParser*) parser
+      didEndElement:(NSString*) elementName
+       namespaceURI:(NSString*) namespaceURI
+      qualifiedName:(NSString*) qName {
     NSArray* children = [self.elementsStack lastObject];
     NSString* text = [self.stringBufferStack lastObject];
     NSDictionary* attributes = [self.attributesStack lastObject];
@@ -129,8 +116,8 @@
 }
 
 
-- (void)            parser:(NSXMLParser*) parser
-           foundCharacters:(NSString*) string {
+- (void)       parser:(NSXMLParser*) parser
+      foundCharacters:(NSString*) string {
     if (string == nil) {
         return;
     }
