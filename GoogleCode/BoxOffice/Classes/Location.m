@@ -22,12 +22,14 @@
 @synthesize longitude;
 @synthesize address;
 @synthesize city;
+@synthesize country;
 
 - (void) dealloc {
     self.latitude = 0;
     self.longitude = 0;
     self.address = nil;
     self.city = nil;
+    self.country = nil;
 
     [super dealloc];
 }
@@ -36,12 +38,14 @@
 - (id) initWithLatitude:(double) latitude_
               longitude:(double) longitude_
                 address:(NSString*) address_
-                   city:(NSString*) city_ {
+                   city:(NSString*) city_
+                country:(NSString*) country_ {
     if (self = [super init]) {
         latitude = latitude_;
         longitude = longitude_;
         self.address = address_;
         self.city = city_;
+        self.country = country_;
     }
 
     return self;
@@ -52,18 +56,21 @@
     return [self locationWithLatitude:[[dictionary objectForKey:@"latitude"] doubleValue]
                             longitude:[[dictionary objectForKey:@"longitude"] doubleValue]
                               address:[dictionary objectForKey:@"address"]
-                                 city:[dictionary objectForKey:@"city"]];
+                                 city:[dictionary objectForKey:@"city"]
+                              country:[dictionary objectForKey:@"country"]];
 }
 
 
 + (Location*) locationWithLatitude:(double) latitude
                          longitude:(double) longitude
                            address:(NSString*) address
-                              city:(NSString*) city {
+                              city:(NSString*) city
+                           country:(NSString*) country{
     return [[[Location alloc] initWithLatitude:latitude
                                      longitude:longitude
                                        address:address
-                                          city:city] autorelease];
+                                          city:city
+                                       country:country] autorelease];
 }
 
 
@@ -73,6 +80,7 @@
     [dict setObject:[NSNumber numberWithDouble:longitude] forKey:@"longitude"];
     [dict setObject:address forKey:@"address"];
     [dict setObject:city forKey:@"city"];
+    [dict setObject:country forKey:@"country"];
     return dict;
 }
 

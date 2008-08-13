@@ -23,10 +23,11 @@
 @property (retain) UITextField* textField;
 
 - (id) initWithController:(UINavigationController*) navigationController
-                withTitle:(NSString*) title
-               withObject:(id) object
-             withSelector:(SEL) selector
-                 withText:(NSString*) text
-                 withType:(UIKeyboardType) type;
+                    title:(NSString*) title
+                   object:(id) object
+                 selector:(SEL) selector
+                     text:(NSString*) text
+              placeHolder:(NSString*) placeHolder
+                     type:(UIKeyboardType) type;
 
 @end

@@ -63,12 +63,14 @@
         NSString* longitude = [resultElement attributeValue:@"longitude"];
         NSString* address = [resultElement attributeValue:@"address"];
         NSString* city = [resultElement attributeValue:@"city"];
+        NSString* country = [resultElement attributeValue:@"country"];
 
         if (![Utilities isNilOrEmpty:latitude] && ![Utilities isNilOrEmpty:longitude]) {
             return [Location locationWithLatitude:[latitude doubleValue]
                                         longitude:[longitude doubleValue]
                                           address:address
-                                              city:city];
+                                             city:city
+                                          country:country];
         }
     }
 
@@ -120,14 +122,17 @@
 }
 
 
-- (void) downloadAddressLocation:(NSString*) address {
-    if ([self locationForAddress:address] != nil) {
-        return;
+- (Location*) downloadAddressLocation:(NSString*) address {
+    NSAssert(![NSThread isMainThread], @"Only call this from the background");
+    Location* location = [self locationForAddress:address];
+    
+    if (location == nil) {
+        location = [self downloadAddressLocationFromWebService:address];
+
+        [self setLocation:location forAddress:address];
     }
-
-    Location* location = [self downloadAddressLocationFromWebService:address];
-
-    [self setLocation:location forAddress:address];
+    
+    return location;
 }
 
 
@@ -161,12 +166,12 @@
 
 
 - (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode {
-    [NSThread setThreadPriority:0.0];
-
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    {
+        [NSThread setThreadPriority:0.0];
 
-    [self downloadAddressLocation:postalCode];
-
+        [self downloadAddressLocation:postalCode];
+    }
     [autoreleasePool release];
 }
 

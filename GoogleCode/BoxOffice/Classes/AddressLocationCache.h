@@ -34,4 +34,7 @@
 - (NSDictionary*) theaterDistanceMap:(Location*) userLocation
                             theaters:(NSArray*) theaters;
 
+// only call on the background
+- (Location*) downloadAddressLocation:(NSString*) address;
+
 @end
