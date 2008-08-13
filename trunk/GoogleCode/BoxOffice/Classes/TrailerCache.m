@@ -46,7 +46,7 @@
 
 
 - (NSString*) trailerFileName:(NSString*) title {
-    return [[Application sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
+    return [[Application sanitizeFileName:[title lowercaseString]] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -115,10 +115,6 @@
     NSString* fullTitle = [values objectAtIndex:0];
     NSString* studio = [values objectAtIndex:1];
     NSString* location = [values objectAtIndex:2];
-    
-    if ([fullTitle hasPrefix:@"WALL"]) {
-        NSLog(@"");
-    }
     
     NSString* movieTitle = [engine findClosestMatch:[fullTitle lowercaseString] inArray:movieTitles];
     
