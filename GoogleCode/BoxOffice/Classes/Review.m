@@ -34,6 +34,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithText:(NSString*) text_
               score:(NSInteger) score_
                link:(NSString*) link_
@@ -62,6 +63,7 @@
     return self;
 }
 
+
 + (Review*) reviewWithText:(NSString*) text
                      score:(NSInteger) score
                       link:(NSString*) link
@@ -74,6 +76,7 @@
                                   source:source] autorelease];
 }
 
+
 + (Review*) reviewWithDictionary:(NSDictionary*) dictionary {
     return [Review reviewWithText:[dictionary objectForKey:@"text"]
                             score:[[dictionary objectForKey:@"score"] intValue]
@@ -81,6 +84,7 @@
                            author:[dictionary objectForKey:@"author"]
                            source:[dictionary objectForKey:@"source"]];
 }
+
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
@@ -92,6 +96,7 @@
     return dict;
 }
 
+
 - (CGFloat) heightWithFont:(UIFont*) font {
     CGFloat width = self.link ? 255 : 285;
     CGSize size = CGSizeMake(width, 1000);
@@ -101,5 +106,6 @@
 
     return size.height + 10;
 }
+
 
 @end

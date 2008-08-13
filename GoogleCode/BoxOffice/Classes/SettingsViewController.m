@@ -44,11 +44,13 @@
     [super dealloc];
 }
 
+
 - (void) onCurrentLocationClicked:(id) sender {
     self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
     [self.activityIndicator start];
     [self.locationManager startUpdatingLocation];
 }
+
 
 - (void) autoUpdateLocation:(id) sender {
     // only actually auto-update if:
@@ -59,9 +61,11 @@
     }
 }
 
+
 - (void) enqueueUpdateRequest:(NSInteger) delay {
     [self performSelector:@selector(autoUpdateLocation:) withObject:nil afterDelay:delay];
 }
+
 
 - (id) initWithNavigationController:(SettingsNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -91,6 +95,7 @@
     return self;
 }
 
+
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
@@ -99,14 +104,17 @@
     [self refresh];
 }
 
+
 - (void) refresh {
     [self.tableView reloadData];
 }
+
 
 - (void) stopActivityIndicator {
     [self.activityIndicator stop];
     self.activityIndicator = nil;
 }
+
 
 - (void) locationManager:(CLLocationManager*) manager
      didUpdateToLocation:(CLLocation*) newLocation
@@ -119,6 +127,7 @@
     }
 }
 
+
 - (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
 
@@ -126,6 +135,7 @@
 
     [autoreleasePool release];
 }
+
 
 - (NSString*) findUSPostalCode:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = [location coordinate];
@@ -145,6 +155,7 @@
     return [postalElement text];
 }
 
+
 - (NSString*) findCAPostalCode:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = [location coordinate];
     double latitude = coordinates.latitude;
@@ -156,6 +167,7 @@
     return [postalElement text];
 }
 
+
 - (void) findPostalCode:(CLLocation*) location {
     NSString* postalCode = [self findUSPostalCode:location];
     if (postalCode == nil) {
@@ -164,6 +176,7 @@
 
     [self performSelectorOnMainThread:@selector(reportFoundPostalCode:) withObject:postalCode waitUntilDone:NO];
 }
+
 
 - (void)locationManager:(CLLocationManager*) manager
        didFailWithError:(NSError*) error {
@@ -174,13 +187,16 @@
     [self enqueueUpdateRequest:60];
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
 
+
 - (BoxOfficeController*) controller {
     return [self.navigationController controller];
 }
+
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
@@ -193,9 +209,11 @@
     }
 }
 
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 3;
 }
+
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
@@ -207,6 +225,7 @@
         return 1;
     }
 }
+
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -287,12 +306,14 @@
     }
 }
 
+
 - (void) onAutoUpdateChanged:(id) sender {
     BOOL autoUpdate = ![self.model autoUpdateLocation];
     [self.model setAutoUpdateLocation:autoUpdate];
     [self autoUpdateLocation:nil];
 
 }
+
 
 - (void) onUseSmallFontsChanged:(id) sender {
     BOOL useSmallFonts = ![self.model useSmallFonts];
@@ -301,6 +322,7 @@
 
 }
 
+
 - (void) pushSearchDatePicker {
     SearchDatePickerViewController* pickerController =
     [SearchDatePickerViewController pickerWithNavigationController:self.navigationController
@@ -308,6 +330,7 @@
 
     [self.navigationController pushViewController:pickerController animated:YES];
 }
+
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -361,6 +384,7 @@
     }
 }
 
+
 - (void) onPostalCodeChanged:(NSString*) postalCode {
     postalCode = [postalCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
@@ -376,6 +400,7 @@
     [self.tableView reloadData];
 }
 
+
 - (void) reportFoundPostalCode:(NSString*) postalCode {
     [self stopActivityIndicator];
 
@@ -388,9 +413,11 @@
     [self onPostalCodeChanged:postalCode];
 }
 
+
 - (void) onSearchRadiusChanged:(NSString*) radius {
     [self.controller setSearchRadius:[radius intValue]];
     [self.tableView reloadData];
 }
+
 
 @end

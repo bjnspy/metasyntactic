@@ -29,6 +29,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -43,10 +44,12 @@
     return self;
 }
 
+
 - (void) setReview:(Review*) review {
     CGRect rect = CGRectMake(10, 5, review.link ? 255 : 285, [review heightWithFont:[FontCache helvetica14]] - 10);
     self.label.frame = rect;
     self.label.text = review.text;
 }
+
 
 @end

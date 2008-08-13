@@ -49,10 +49,12 @@
     [super dealloc];
 }
 
+
 - (void) viewWillAppear:(BOOL) animated {
     [self.model setCurrentlySelectedMovie:nil theater:nil];
     [self refresh];
 }
+
 
 - (id) initWithNavigationController:(SearchNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
@@ -79,25 +81,31 @@
     return self;
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
+
 
 - (XmlElement*) moviesElement {
     return [searchResult element:@"movies"];
 }
 
+
 - (XmlElement*) peopleElement {
     return [searchResult element:@"people"];
 }
+
 
 - (NSArray*) movies {
     return [self.moviesElement children];
 }
 
+
 - (NSArray*) people {
     return [self.peopleElement children];
 }
+
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -135,10 +143,12 @@
     return cell;
 }
 
+
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     return UITableViewCellAccessoryDisclosureIndicator;
 }
+
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -164,10 +174,12 @@
     }
 }
 
+
 - (void) refresh {
     self.recentResults = [[self.model getSearchResults] allKeys];
     [self.tableView reloadData];
 }
+
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     if (searchResult == nil) {
@@ -176,6 +188,7 @@
         return 3;
     }
 }
+
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
@@ -190,6 +203,7 @@
     return 0;
 }
 
+
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
     if (searchResult == nil || section == RECENTLY_VIEWED_SECTION) {
@@ -202,6 +216,7 @@
 
     return nil;
 }
+
 
 - (void) searchBarSearchButtonClicked:(UISearchBar*) bar {
     [bar resignFirstResponder];
@@ -228,6 +243,7 @@
     }
 }
 
+
 - (void) searchWorker:(SearchRequest*) request {
     NSString* urlString =
     [NSString stringWithFormat:@"%@/Search?q=%@",
@@ -240,6 +256,7 @@
     [self performSelectorOnMainThread:@selector(reportSearchResult:) withObject:result waitUntilDone:NO];
 }
 
+
 - (void) search:(SearchRequest*) request {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     {
@@ -247,6 +264,7 @@
     }
     [autoreleasePool release];
 }
+
 
 - (void) reportSearchResult:(SearchResult*) result {
     if (result.searchId == searchId) {
@@ -266,5 +284,6 @@
         }
     }
 }
+
 
 @end

@@ -44,40 +44,50 @@ static UIImage* unknownRatingImage = nil;
     }
 }
 
+
 + (UIImage*) freshImage {
     return freshImage;
 }
+
 
 + (UIImage*) rottenFadedImage {
     return rottenFadedImage;
 }
 
+
 + (UIImage*) rottenFullImage {
     return rottenFullImage;
 }
+
 
 + (UIImage*) redRatingImage {
     return redRatingImage;
 }
 
+
 + (UIImage*) yellowRatingImage {
     return yellowRatingImage;
 }
+
 
 + (UIImage*) greenRatingImage {
     return greenRatingImage;
 }
 
+
 + (UIImage*) unknownRatingImage {
     return unknownRatingImage;
 }
+
 
 + (UIImage*) emptyStarImage {
     return emptyStarImage;
 }
 
+
 + (UIImage*) filledStarImage {
     return filledStarImage;
 }
+
 
 @end

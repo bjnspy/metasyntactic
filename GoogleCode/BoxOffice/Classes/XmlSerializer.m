@@ -29,6 +29,7 @@
     return sanitized;
 }
 
+
 + (void) serializeAttribute:(NSString*) key
                       value:(NSString*) value
                  withBuffer:(NSMutableString*) buffer {
@@ -38,6 +39,7 @@
     [buffer appendString:[value stringByReplacingOccurrencesOfString:@"\"" withString:@"&quot;"]];
     [buffer appendString:@"\""];
 }
+
 
 + (void) serializeElement:(XmlElement*) node
                     withBuffer:(NSMutableString*) buffer {
@@ -74,11 +76,13 @@
     [buffer appendString:@">"];
 }
 
+
 + (NSString*) serializeElement:(XmlElement*) node  {
     NSMutableString* buffer = [NSMutableString string];
     [self serializeElement:node withBuffer:buffer];
     return buffer;
 }
+
 
 + (NSString*) serializeDocument:(XmlDocument*) document {
     NSMutableString* serialized = [NSMutableString string];
@@ -100,5 +104,6 @@
 
     return serialized;
 }
+
 
 @end

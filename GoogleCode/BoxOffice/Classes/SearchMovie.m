@@ -54,6 +54,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithKey:(MovieKey*) key_
          producers:(NSArray*) producers_
            writers:(NSArray*) writers_
@@ -86,6 +87,7 @@
     return self;
 }
 
+
 + (SearchMovie*) movieWithKey:(MovieKey*) key
                     producers:(NSArray*) producers
                       writers:(NSArray*) writers
@@ -114,6 +116,7 @@
                                       rating:rating] autorelease];
 }
 
+
 - (NSArray*) encodeArray:(NSArray*) array {
     NSMutableArray* result = [NSMutableArray array];
     for (Key* k in array) {
@@ -122,6 +125,7 @@
     return result;
 }
 
+
 + (NSArray*) decodeArray:(NSArray*) array {
     NSMutableArray* result = [NSMutableArray array];
     for (NSDictionary* dict in array) {
@@ -129,6 +133,7 @@
     }
     return result;
 }
+
 
 + (SearchMovie*) movieWithDictionary:(NSDictionary*) dictionary {
     return [SearchMovie movieWithKey:[MovieKey keyWithDictionary:[dictionary objectForKey:@"key"]]
@@ -145,6 +150,7 @@
                                votes:[dictionary objectForKey:@"votes"]
                               rating:[dictionary objectForKey:@"rating"]];
 }
+
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
@@ -165,5 +171,6 @@
     [dict setObject:rating                          forKey:@"rating"];
     return dict;
 }
+
 
 @end

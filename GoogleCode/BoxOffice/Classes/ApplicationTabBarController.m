@@ -40,6 +40,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel {
     if (self = [super init]) {
         self.appDelegate = appDel;
@@ -69,22 +70,27 @@
     return self;
 }
 
+
 + (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate {
     return [[[ApplicationTabBarController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
+
 
 - (void)       tabBarController:(UITabBarController*) tabBarController
         didSelectViewController:(UIViewController*) viewController {
     [self.model setSelectedTabBarViewControllerIndex:self.selectedIndex];
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.appDelegate model];
 }
 
+
 - (BoxOfficeController*) controller {
     return [self.appDelegate controller];
 }
+
 
 - (void) refresh {
     [self.moviesNavigationController refresh];
@@ -92,19 +98,23 @@
     [self.settingsNavigationController refresh];
 }
 
+
 - (void) showTheaterDetails:(Theater*) theater {
     self.selectedViewController = self.theatersNavigationController;
     [self.theatersNavigationController pushTheaterDetails:theater animated:YES];
 }
+
 
 - (void) showMovieDetails:(Movie*) movie {
     self.selectedViewController = self.moviesNavigationController;
     [self.moviesNavigationController pushMovieDetails:movie animated:YES];
 }
 
+
 - (void) popNavigationControllersToRoot {
     [self.moviesNavigationController popToRootViewControllerAnimated:YES];
     [self.theatersNavigationController popToRootViewControllerAnimated:YES];
 }
+
 
 @end

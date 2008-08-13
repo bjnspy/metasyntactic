@@ -29,6 +29,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.viewController = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
@@ -42,11 +43,14 @@
     return self;
 }
 
+
 - (void) refresh {
     [self.viewController refresh];
 }
 
+
 - (void) navigateToLastViewedPage {
 }
+
 
 @end

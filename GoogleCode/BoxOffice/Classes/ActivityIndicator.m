@@ -28,6 +28,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithNavigationItem:(UINavigationItem*) item {
     if (self = [super init]) {
         self.navigationItem = item;
@@ -46,6 +47,7 @@
     return self;
 }
 
+
 - (void) updateImage:(NSNumber*) number {
     if (running == NO) {
         return;
@@ -58,10 +60,12 @@
     [self performSelector:@selector(updateImage:) withObject:[NSNumber numberWithInt:((i + 1) % 10)] afterDelay:0.1];
 }
 
+
 - (void) start {
     running = YES;
     [self updateImage:[NSNumber numberWithInt:1]];
 }
+
 
 - (void) stop:(id) sender {
     running = NO;
@@ -69,12 +73,15 @@
     [self.navigationItem setLeftBarButtonItem:self.originalButton animated:YES];
 }
 
+
 - (void) stop {
     [self stop:nil];
 }
 
+
 - (void) onButtonClicked:(id) sender {
     [self stop];
 }
+
 
 @end

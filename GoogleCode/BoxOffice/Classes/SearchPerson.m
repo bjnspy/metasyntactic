@@ -52,6 +52,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithKey:(PersonKey*) key_
           producer:(NSArray*) producer_
           director:(NSArray*) director_
@@ -82,6 +83,7 @@
     return self;
 }
 
+
 + (SearchPerson*) personWithKey:(PersonKey*) key
                        producer:(NSArray*) producer
                        director:(NSArray*) director
@@ -108,6 +110,7 @@
                                     deathDate:deathDate] autorelease];
 }
 
+
 - (NSArray*) encodeArray:(NSArray*) array {
     NSMutableArray* result = [NSMutableArray array];
     for (Key* k in array) {
@@ -116,6 +119,7 @@
     return result;
 }
 
+
 + (NSArray*) decodeArray:(NSArray*) array {
     NSMutableArray* result = [NSMutableArray array];
     for (NSDictionary* dict in array) {
@@ -123,6 +127,7 @@
     }
     return result;
 }
+
 
 + (SearchPerson*) personWithDictionary:(NSDictionary*) dictionary {
     return [SearchPerson personWithKey:[PersonKey keyWithDictionary:[dictionary objectForKey:@"key"]]
@@ -138,6 +143,7 @@
                              birthDate:[dictionary objectForKey:@"birthDate"]
                              deathDate:[dictionary objectForKey:@"deathDate"]];
 }
+
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
@@ -157,5 +163,6 @@
     [dict setObject:deathDate forKey:@"deathDate"];
     return dict;
 }
+
 
 @end

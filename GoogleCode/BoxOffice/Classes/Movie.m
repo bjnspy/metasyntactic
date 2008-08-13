@@ -42,6 +42,7 @@
     [super dealloc];
 }
 
+
 static NSString* articles[] = {
         @"Der", @"Das", @"Ein", @"Eine", @"The",
         @"A", @"An", @"La", @"Las", @"Le",
@@ -65,6 +66,7 @@ static NSString* articles[] = {
     return title;
 }
 
+
 + (NSString*) makeDisplay:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
@@ -78,6 +80,7 @@ static NSString* articles[] = {
 
     return title;
 }
+
 
 - (id) initWithIdentifier:(NSString*) identifier_
                     title:(NSString*) title_
@@ -108,6 +111,7 @@ static NSString* articles[] = {
     return self;
 }
 
+
 + (Movie*) movieWithIdentifier:(NSString*) identifier
                          title:(NSString*) title
                         rating:(NSString*) rating
@@ -124,6 +128,7 @@ static NSString* articles[] = {
                                      synopsis:synopsis] autorelease];
 }
 
+
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
     return [Movie movieWithIdentifier:[dictionary objectForKey:@"identifier"]
                                 title:[dictionary objectForKey:@"canonicalTitle"]
@@ -133,6 +138,7 @@ static NSString* articles[] = {
                                poster:[dictionary objectForKey:@"poster"]
                              synopsis:[dictionary objectForKey:@"synopsis"]];
 }
+
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -146,9 +152,11 @@ static NSString* articles[] = {
     return dictionary;
 }
 
+
 - (NSString*) description {
     return [[self dictionary] description];
 }
+
 
 - (BOOL) isEqual:(id) anObject {
     Movie* other = anObject;
@@ -158,11 +166,13 @@ static NSString* articles[] = {
     [self.canonicalTitle isEqual:other.canonicalTitle];
 }
 
+
 - (NSUInteger) hash {
     return
     [self.identifier hash];
     [self.canonicalTitle hash];
 }
+
 
 - (NSString*) ratingAndRuntimeString {
     NSInteger movieLength = [self.length intValue];
@@ -193,5 +203,6 @@ static NSString* articles[] = {
 
     return text;
 }
+
 
 @end

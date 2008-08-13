@@ -38,6 +38,7 @@
     [super dealloc];
 }
 
+
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary {
     return [Theater theaterWithIdentifier:[dictionary objectForKey:@"identifier"]
                                      name:[dictionary objectForKey:@"name"]
@@ -47,6 +48,7 @@
                          movieIdentifiers:[dictionary objectForKey:@"movieIdentifiers"]
                     originatingPostalCode:[dictionary objectForKey:@"originatingPostalCode"]];
 }
+
 
 - (id)         initWithIdentifier:(NSString*) identifier_
                              name:(NSString*) name_
@@ -68,6 +70,7 @@
     return self;
 }
 
+
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
                            address:(NSString*) address
@@ -84,6 +87,7 @@
                           originatingPostalCode:originatingPostalCode] autorelease];
 }
 
+
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:identifier            forKey:@"identifier"];
@@ -96,9 +100,11 @@
     return dictionary;
 }
 
+
 - (NSString*) description {
     return [[self dictionary] description];
 }
+
 
 - (BOOL) isEqual:(id) anObject {
     Theater* other = anObject;
@@ -107,11 +113,13 @@
         [self.name isEqual:other.name];
 }
 
+
 - (NSUInteger) hash {
     return
         [self.identifier hash] +
         [self.name hash];
 }
+
 
 + (NSString*) processShowtime:(NSString*) showtime {
     if ([showtime hasSuffix:@" PM"]) {
@@ -122,5 +130,6 @@
 
     return showtime;
 }
+
 
 @end

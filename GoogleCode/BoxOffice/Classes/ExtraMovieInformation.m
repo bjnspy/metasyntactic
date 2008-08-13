@@ -34,6 +34,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithTitle:(NSString*) title_
                 link:(NSString*) link_
             synopsis:(NSString*) synopsis_
@@ -51,6 +52,7 @@
     return self;
 }
 
+
 + (ExtraMovieInformation*) infoWithTitle:(NSString*) title
                                     link:(NSString*) link
                                 synopsis:(NSString*) synopsis
@@ -61,12 +63,14 @@
                                                    score:score] autorelease];
 }
 
+
 + (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary {
     return [ExtraMovieInformation infoWithTitle:[dictionary objectForKey:@"canonicalTitle"]
                                            link:[dictionary objectForKey:@"link"]
                                        synopsis:[dictionary objectForKey:@"synopsis"]
                                           score:[dictionary objectForKey:@"score"]];
 }
+
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -77,6 +81,7 @@
     return dictionary;
 }
 
+
 - (NSInteger) scoreValue {
     int value = [self.score intValue];
     if (value >= 0 && value <= 100) {
@@ -85,5 +90,6 @@
 
     return -1;
 }
+
 
 @end

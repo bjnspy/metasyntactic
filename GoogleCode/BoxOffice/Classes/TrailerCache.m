@@ -30,6 +30,7 @@
     [super dealloc];
 }
 
+
 - (id) init {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
@@ -38,17 +39,21 @@
     return self;
 }
 
+
 + (TrailerCache*) cache {
     return [[[TrailerCache alloc] init] autorelease];
 }
+
 
 - (NSString*) shortTrailerFilePath:(NSString*) title {
     return [[Application sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
 }
 
+
 - (NSString*) trailerFilePath:(NSString*) title {
     return [[Application trailersFolder] stringByAppendingPathComponent:[self shortTrailerFilePath:title]];
 }
+
 
 - (void) deleteObsoleteTrailers:(NSArray*) movies {
 
@@ -66,6 +71,7 @@
         [[NSFileManager defaultManager] removeItemAtPath:fullPath error:NULL];
     }
 }
+
 
 - (NSArray*) getOrderedMovies:(NSArray*) movies {
     NSMutableArray* moviesWithoutTrailers = [NSMutableArray array];
@@ -89,6 +95,7 @@
     return [NSArray arrayWithObjects:moviesWithoutTrailers, moviesWithTrailers, nil];
 }
 
+
 - (void) update:(NSArray*) movies {
     [self deleteObsoleteTrailers:movies];
 
@@ -97,6 +104,7 @@
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:orderedMovies];
 }
+
 
 - (NSString*) getValue:(NSString*) key fromArray:(NSArray*) array {
     for (int i = 0; i < array.count - 2; i++) {
@@ -107,6 +115,7 @@
 
     return nil;
 }
+
 
 - (void) findTrailers:(NSString*) movieTitle
              indexUrl:(NSString*) indexUrl {
@@ -138,6 +147,7 @@
     }
 }
 
+
 - (NSString*) massage:(NSString*) value {
     while (true) {
         NSRange range = [value rangeOfString:@"\\u"];
@@ -151,6 +161,7 @@
 
     return value;
 }
+
 
 - (void) processJsonRow:(NSString*) row
            moviesTitles:(NSArray*) movieTitles
@@ -180,6 +191,7 @@
     [self findTrailers:movieTitle indexUrl:indexUrl];
 }
 
+
 - (void) downloadTrailers:(NSArray*) movies {
     NSString* jsonFeed = [Utilities stringWithContentsOfAddress:@"http://www.apple.com/trailers/home/feeds/studios.json"];
     if (jsonFeed == nil) {
@@ -204,6 +216,7 @@
     }
 }
 
+
 - (void) backgroundEntryPoint:(NSArray*) arguments {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
@@ -218,6 +231,7 @@
     [autoreleasePool release];
 }
 
+
 - (NSArray*) trailersForMovie:(Movie*) movie {
     NSArray* trailers = [NSArray arrayWithContentsOfFile:[self trailerFilePath:movie.canonicalTitle]];
     if (trailers == nil) {
@@ -226,5 +240,6 @@
 
     return trailers;
 }
+
 
 @end

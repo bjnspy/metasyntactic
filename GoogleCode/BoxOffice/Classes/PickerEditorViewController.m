@@ -30,6 +30,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithController:(UINavigationController*) controller_
                     title:(NSString*) title_
                      text:(NSString*) text_
@@ -63,6 +64,7 @@
     return self;
 }
 
+
 - (void) loadView {
     [super loadView];
 
@@ -71,6 +73,7 @@
 
     [self.picker becomeFirstResponder];
 }
+
 
 - (void) viewWillAppear:(BOOL) animated {
     CGRect screenRect = self.view.bounds;
@@ -88,25 +91,30 @@
     self.label.frame = labelRect;
 }
 
+
 - (void) save:(id) sender {
     [self.object performSelector:selector
                       withObject:[self.values objectAtIndex:[self.picker selectedRowInComponent:0]]];
     [super save:sender];
 }
 
+
 - (NSInteger) numberOfComponentsInPickerView:(UIPickerView*) pickerView {
     return 1;
 }
+
 
 - (NSInteger)      pickerView:(UIPickerView*) pickerView
       numberOfRowsInComponent:(NSInteger) component {
     return values.count;
 }
 
+
 - (NSString*) pickerView:(UIPickerView*) pickerView
              titleForRow:(NSInteger) row
             forComponent:(NSInteger) component {
     return [self.values objectAtIndex:row];
 }
+
 
 @end

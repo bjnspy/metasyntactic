@@ -38,6 +38,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithModel:(BoxOfficeModel*) model_
                frame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier {
@@ -62,11 +63,13 @@
     return self;
 }
 
+
 - (void) setImage:(UIImage*) image {
     if (self.image != image) {
         [super setImage:image];
     }
 }
+
 
 - (void) setRottenTomatoesImage:(NSInteger) score {
     self.scoreLabel.text = nil;
@@ -77,6 +80,7 @@
         self.image = [ImageCache rottenFullImage];
     }
 }
+
 
 - (void) setMetacriticImage:(NSInteger) score {
     if (score >= 0 && score <= 40) {
@@ -105,6 +109,7 @@
     }
 }
 
+
 - (void) setReviewImage:(Review*) review {
     int score = review.score;
 
@@ -114,6 +119,7 @@
         [self setMetacriticImage:score];
     }
 }
+
 
 - (void) setReview:(Review*) review {
     [self setReviewImage:review];

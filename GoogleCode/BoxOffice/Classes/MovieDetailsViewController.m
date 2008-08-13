@@ -55,6 +55,7 @@
     [super dealloc];
 }
 
+
 - (void) orderTheaters {
     [self.theatersArray sortUsingFunction:compareTheatersByDistance
      context:[self.model theaterDistanceMap]];
@@ -77,13 +78,16 @@
     self.theatersArray = result;
 }
 
+
 - (BoxOfficeController*) controller {
     return [self.navigationController controller];
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
+
 
 - (void) initializeData {
     NSArray* theatersShowingMovie = [self.model theatersShowingMovie:self.movie];
@@ -104,6 +108,7 @@
         [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
     }
 }
+
 
 - (NSInteger) calculateSynopsisSplit {
     CGFloat posterHeight = self.posterImage.size.height;
@@ -141,6 +146,7 @@
     }
 }
 
+
 - (NSInteger) calculateSynopsisMax {
     if (synopsisSplit == synopsis.length) {
         return synopsis.length;
@@ -158,6 +164,7 @@
 
     return dot.location + 1;
 }
+
 
 - (id) initWithNavigationController:(MoviesNavigationController*) controller
                               movie:(Movie*) movie_ {
@@ -190,6 +197,7 @@
     return self;
 }
 
+
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
     
@@ -200,10 +208,12 @@
     [self refresh];
 }
 
+
 - (void) refresh {
     [self initializeData];
     [self.tableView reloadData];
 }
+
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     // Header
@@ -218,6 +228,7 @@
     return sections;
 }
 
+
 - (NSInteger) numberOfRowsInHeaderSection {
     if (hiddenTheaterCount > 0) {
         return 3;
@@ -225,6 +236,7 @@
         return 2;
     }
 }
+
 
 - (NSInteger) numberOfRowsInActionSection {
     // trailers
@@ -238,6 +250,7 @@
 
     return rows;
 }
+
 
 - (NSInteger) tableView:(UITableView*) tableView
   numberOfRowsInSection:(NSInteger) section {
@@ -253,6 +266,7 @@
     return 2;
 }
 
+
 - (CGRect) synopsisFrame {
     UIImage* image = [self posterImage];
 
@@ -261,6 +275,7 @@
 
     return CGRectMake(synopsisX, 5, width, image.size.height);
 }
+
 
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
@@ -288,9 +303,11 @@
     }
 }
 
+
 - (NSInteger) getTheaterIndex:(NSInteger) section {
     return section - 2;
 }
+
 
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -310,6 +327,7 @@
                                         useSmallFonts:[self.model useSmallFonts]] + 18;
     }
 }
+
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
@@ -385,6 +403,7 @@
     }
 }
 
+
 - (UITableViewCell*) cellForActionRow:(NSInteger) row {
     static NSString* reuseIdentifier = @"MovieDetailsActionCellIdentifier";
 
@@ -413,6 +432,7 @@
 
     return cell;
 }
+
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -456,6 +476,7 @@
     }
 }
 
+
 - (void) didSelectHeaderRow:(NSInteger) row {
     if (row == 2) {
         filterTheatersByDistance = NO;
@@ -463,6 +484,7 @@
         [self.tableView reloadData];
     }
 }
+
 
 - (void) playMovie:(NSString*) urlString {
     NSURL* url = [NSURL URLWithString:urlString];
@@ -475,6 +497,7 @@
 
     [moviePlayer play];
 }
+
 
 // When the movie is done, release the controller.
 - (void) movieFinishedCallback:(NSNotification*) notification {
@@ -489,6 +512,7 @@
 
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
 }
+
 
 - (void) didSelectActionRow:(NSInteger) row {
     if (row < trailersArray.count) {
@@ -532,6 +556,7 @@
     }
 }
 
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
@@ -552,6 +577,7 @@
     }
 }
 
+
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
@@ -567,5 +593,6 @@
     // theater section
     return UITableViewCellAccessoryDisclosureIndicator;
 }
+
 
 @end

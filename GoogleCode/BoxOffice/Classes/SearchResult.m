@@ -28,6 +28,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithElement:(XmlElement*) element_ searchId:(NSInteger) searchId_ {
     if (self = [super init]) {
         self.element = element_;
@@ -37,8 +38,10 @@
     return self;
 }
 
+
 + (SearchResult*) resultWithElement:(XmlElement*) element searchId:(NSInteger) searchId {
     return [[[SearchResult alloc] initWithElement:element searchId:searchId] autorelease];
 }
+
 
 @end

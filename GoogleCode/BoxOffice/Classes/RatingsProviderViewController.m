@@ -30,6 +30,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithNavigationController:(SettingsNavigationController*) navigationController_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
@@ -39,13 +40,16 @@
     return self;
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
 
+
 - (BoxOfficeController*) controller {
     return [self.navigationController controller];
 }
+
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return 1;
@@ -61,23 +65,20 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     static NSString* reuseIdentifier = @"RatingsProviderCellIdentifier";
-
     UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
-
     // Configure the cell
     if (indexPath.row == [self.model ratingsProviderIndex]) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-
     cell.text = [[self.model ratingsProviders] objectAtIndex:indexPath.row];
-
     return cell;
 }
+
 
  - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
      [self.tableView deselectRowAtIndexPath:selectPath animated:YES];

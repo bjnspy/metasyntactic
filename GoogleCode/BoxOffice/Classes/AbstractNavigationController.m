@@ -31,6 +31,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super init]) {
         self.tabBarController = controller;
@@ -39,17 +40,21 @@
     return self;
 }
 
+
 - (void) refresh {
     [self.ticketsViewController refresh];
 }
+
 
 - (BoxOfficeModel*) model {
     return [self.tabBarController model];
 }
 
+
 - (BoxOfficeController*) controller {
     return [self.tabBarController controller];
 }
+
 
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater
@@ -64,7 +69,9 @@
     [self pushViewController:ticketsViewController animated:animated];
 }
 
+
 - (void) navigateToLastViewedPage {
 }
+
 
 @end

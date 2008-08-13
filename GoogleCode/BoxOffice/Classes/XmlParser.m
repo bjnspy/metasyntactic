@@ -31,6 +31,7 @@
     [super dealloc];
 }
 
+
 - (void) run:(NSXMLParser*) parser {
     parser.delegate = self;
 
@@ -46,6 +47,7 @@
     }
 }
 
+
 - (id) initWithData:(NSData*) data {
     if (self = [super init]) {
         NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
@@ -54,6 +56,7 @@
 
     return self;
 }
+
 
 - (id) initWithUrl:(NSString*) url {
     if (self = [super init]) {
@@ -64,6 +67,7 @@
     return self;
 }
 
+
 + (XmlElement*) collect:(XmlParser*) parser {
     if (parser.elementsStack == nil) {
         return nil;
@@ -71,6 +75,7 @@
 
     return [[parser.elementsStack lastObject] lastObject];
 }
+
 
 + (XmlElement*) parse:(NSData*) data {
     if (data == nil) {
@@ -81,6 +86,7 @@
     return [XmlParser collect:xmlParser];
 }
 
+
 + (XmlElement*) parseUrl:(NSString*) url {
     if (url == nil) {
         return nil;
@@ -89,6 +95,7 @@
     XmlParser* xmlParser = [[[XmlParser alloc] initWithUrl:url] autorelease];
     return [XmlParser collect:xmlParser];
 }
+
 
 - (void)            parser:(NSXMLParser*) parser
            didStartElement:(NSString*) elementName
@@ -99,6 +106,7 @@
     [self.stringBufferStack addObject:[NSMutableString string]];
     [self.attributesStack addObject:[NSDictionary dictionaryWithDictionary:attributeDict]];
 }
+
 
 - (void)            parser:(NSXMLParser*) parser
              didEndElement:(NSString*) elementName
@@ -120,6 +128,7 @@
     [[self.elementsStack lastObject] addObject:element];
 }
 
+
 - (void)            parser:(NSXMLParser*) parser
            foundCharacters:(NSString*) string {
     if (string == nil) {
@@ -128,5 +137,6 @@
 
     [[self.stringBufferStack lastObject] appendString:string];
 }
+
 
 @end

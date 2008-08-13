@@ -24,6 +24,7 @@
     return [[[DifferenceEngine alloc] init] autorelease];
 }
 
+
 - (id) initWithAddCost:(NSInteger) add
             deleteCost:(NSInteger) delete
             switchCost:(NSInteger) switch_
@@ -43,12 +44,14 @@
     return self;
 }
 
+
 - (id) init {
     return [self initWithAddCost:1
                       deleteCost:1
                       switchCost:1
                    transposeCost:1];
 }
+
 
 - (BOOL) initializeFrom:(NSString*) S
                      to:(NSString*) T
@@ -87,10 +90,12 @@
     return YES;
 }
 
+
 - (NSInteger) editDistanceFrom:(NSString*) from
                             to:(NSString*) to {
     return [self editDistanceFrom:from to:to withThreshold:-1];
 }
+
 
 - (NSInteger) editDistanceFrom:(NSString*) from
                             to:(NSString*) to
@@ -150,10 +155,12 @@
     return cost;
 }
 
+
 + (BOOL) areSimilar:(NSString*) s1
               other:(NSString*) s2 {
     return [[DifferenceEngine engine] similar:s1 other:s2];
 }
+
 
 - (NSInteger) threshold:(NSString*) string {
     NSInteger threshold = [string length] / 4;
@@ -162,6 +169,7 @@
     }
     return threshold;
 }
+
 
 - (BOOL) similar:(NSString*) s1
            other:(NSString*) s2 {
@@ -180,6 +188,7 @@
     NSInteger diff = [self editDistanceFrom:s1 to:s2 withThreshold:threshold];
     return (diff <= threshold);
 }
+
 
 - (NSInteger) findClosestMatchIndex:(NSString*) string
                             inArray:(NSArray*) array {
@@ -206,6 +215,7 @@
     return NSNotFound;
 }
 
+
 - (NSString*) findClosestMatch:(NSString*) string
                        inArray:(NSArray*) array {
     NSInteger index = [self findClosestMatchIndex:string inArray:array];
@@ -215,5 +225,6 @@
 
     return [array objectAtIndex:index];
 }
+
 
 @end

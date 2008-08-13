@@ -28,6 +28,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithIdentifier:(NSString*) identifier_
                      name:(NSString*) name_ {
     if (self = [super init]) {
@@ -38,11 +39,13 @@
     return self;
 }
 
+
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     [dict setObject:identifier forKey:@"identifier"];
     [dict setObject:name forKey:@"name"];
     return dict;
 }
+
 
 @end

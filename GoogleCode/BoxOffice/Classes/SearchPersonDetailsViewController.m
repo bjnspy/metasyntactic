@@ -37,6 +37,7 @@
     [super dealloc];
 }
 
+
 - (void) getPersonDetails {
     self.personDetailsElement = [self.model getPersonDetails:[personElement attributeValue:@"id"]];
     if (self.personDetailsElement == nil) {
@@ -44,6 +45,7 @@
         [self performSelectorInBackground:@selector(lookupPersonDetails:) withObject:nil];
     }
 }
+
 
 - (id) initWithNavigationController:(SearchNavigationController*) navigationController_
                       personDetails:(XmlElement*) personElement_ {
@@ -58,6 +60,7 @@
     return self;
 }
 
+
 - (void) lookupPersonDetails:(id) object {
     NSString* urlString =
     [NSString stringWithFormat:@"%@/LookupPerson?id=%@",
@@ -68,17 +71,21 @@
     [self performSelectorOnMainThread:@selector(reportLookupResult:) withObject:resultElement waitUntilDone:NO];
 }
 
+
 - (NSArray*) directedMovies {
     return [[self.personDetailsElement element:@"director"] children];
 }
+
 
 - (NSArray*) wroteMovies {
     return [[self.personDetailsElement element:@"writer"] children];
 }
 
+
 - (NSArray*) castMovies {
     return [[self.personDetailsElement element:@"cast"] children];
 }
+
 
 - (void) reportLookupResult:(XmlElement*) element {
     [self stopActivityIndicator];
@@ -88,6 +95,7 @@
 
     [self.tableView reloadData];
 }
+
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -113,10 +121,12 @@
     return cell;
 }
 
+
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     return UITableViewCellAccessoryDisclosureIndicator;
 }
+
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -135,9 +145,11 @@
     }
 }
 
+
 - (void) refresh {
     [self.tableView reloadData];
 }
+
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     if (personDetailsElement == nil) {
@@ -146,6 +158,7 @@
         return 3;
     }
 }
+
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
@@ -161,6 +174,7 @@
 
     return 0;
 }
+
 
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
@@ -178,5 +192,6 @@
 
     return nil;
 }
+
 
 @end

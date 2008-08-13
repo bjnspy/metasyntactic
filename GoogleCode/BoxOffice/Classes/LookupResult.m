@@ -30,6 +30,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithMovies:(NSMutableArray*) movies_
              theaters:(NSMutableArray*) theaters_
          performances:(NSMutableDictionary*) performances_ {
@@ -42,6 +43,7 @@
     return self;
 }
 
+
 + (LookupResult*) resultWithMovies:(NSMutableArray*) movies
                           theaters:(NSMutableArray*) theaters
                       performances:(NSMutableDictionary*) performances {
@@ -49,5 +51,6 @@
                                         theaters:theaters
                                     performances:performances] autorelease];
 }
+
 
 @end

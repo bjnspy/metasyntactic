@@ -48,11 +48,13 @@ static NSString* starString = nil;
     }
 }
 
+
 + (void) createDirectory:(NSString*) folder {
     if (![[NSFileManager defaultManager] fileExistsAtPath:folder]) {
         [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:NULL];
     }
 }
+
 
 + (void) deleteFolders {
     [gate lock];
@@ -83,6 +85,7 @@ static NSString* starString = nil;
     [gate unlock];
 }
 
+
 + (NSString*) documentsFolder {
     [gate lock];
     {
@@ -99,6 +102,7 @@ static NSString* starString = nil;
 
     return documentsFolder;
 }
+
 
 + (NSString*) supportFolder {
     [gate lock];
@@ -119,6 +123,7 @@ static NSString* starString = nil;
     return supportFolder;
 }
 
+
 + (NSString*) tempFolder {
     [gate lock];
     {
@@ -130,6 +135,7 @@ static NSString* starString = nil;
 
     return tempFolder;
 }
+
 
 + (NSString*) dataFolder {
     [gate lock];
@@ -148,6 +154,7 @@ static NSString* starString = nil;
     return dataFolder;
 }
 
+
 + (NSString*) reviewsFolder {
     [gate lock];
     {
@@ -164,6 +171,7 @@ static NSString* starString = nil;
 
     return reviewsFolder;
 }
+
 
 + (NSString*) ratingsFolder {
     [gate lock];
@@ -182,6 +190,7 @@ static NSString* starString = nil;
     return ratingsFolder;
 }
 
+
 + (NSString*) searchFolder {
     [gate lock];
     {
@@ -198,6 +207,7 @@ static NSString* starString = nil;
 
     return searchFolder;
 }
+
 
 + (NSString*) trailersFolder {
     [gate lock];
@@ -216,6 +226,7 @@ static NSString* starString = nil;
     return trailersFolder;
 }
 
+
 + (NSString*) locationsFolder {
     [gate lock];
     {
@@ -233,6 +244,7 @@ static NSString* starString = nil;
     return locationsFolder;
 }
 
+
 + (NSString*) postersFolder {
     [gate lock];
     {
@@ -249,6 +261,7 @@ static NSString* starString = nil;
 
     return postersFolder;
 }
+
 
 + (NSString*) providerReviewsFolder:(NSString*) ratingsProvider {
     NSString* folder = nil;
@@ -269,6 +282,7 @@ static NSString* starString = nil;
     return folder;
 }
 
+
 + (NSString*) randomString {
     NSMutableString* string = [NSMutableString string];
     for (int i = 0; i < 8; i++) {
@@ -276,6 +290,7 @@ static NSString* starString = nil;
     }
     return string;
 }
+
 
 + (NSString*) uniqueTemporaryFolder {
     NSString* finalDir;
@@ -297,21 +312,26 @@ static NSString* starString = nil;
     return finalDir;
 }
 
+
 + (NSString*) movieMapFile {
     return [[Application dataFolder] stringByAppendingPathComponent:@"MovieMap.plist"];
 }
+
 
 + (NSString*) moviesFile {
     return [[Application dataFolder] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
+
 + (NSString*) ratingsFile:(NSString*) provider {
     return [[[Application ratingsFolder] stringByAppendingPathComponent:provider] stringByAppendingPathExtension:@"plist"];
 }
 
+
 + (NSString*) theatersFile {
     return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
 }
+
 
 + (void) openBrowser:(NSString*) address {
     if ([Utilities isNilOrEmpty:address]) {
@@ -322,6 +342,7 @@ static NSString* starString = nil;
     [[UIApplication sharedApplication] openURL:url];
 }
 
+
 + (void) openMap:(NSString*) address {
     NSString* urlString =
     [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",
@@ -329,6 +350,7 @@ static NSString* starString = nil;
 
     [self openBrowser:urlString];
 }
+
 
 + (void) makeCall:(NSString*) phoneNumber {
     if (![[[UIDevice currentDevice] model] isEqual:@"iPhone"]) {
@@ -341,15 +363,18 @@ static NSString* starString = nil;
     [self openBrowser:urlString];
 }
 
+
 + (DifferenceEngine*) differenceEngine {
     NSAssert([NSThread isMainThread], @"Cannot access difference engine from main thread.");
     return differenceEngine;
 }
 
+
 + (NSString*) searchHost {
     //return @"http://metaboxoffice6.appspot.com";
     return @"http://localhost:8086";
 }
+
 
 + (NSString*) host {
     //*
@@ -359,9 +384,11 @@ static NSString* starString = nil;
      //*/
 }
 
+
 + (unichar) starCharacter {
     return (unichar)0x2605;
 }
+
 
 + (NSString*) starString {
     if (starString == nil) {
@@ -372,10 +399,12 @@ static NSString* starString = nil;
     return starString;
 }
 
+
 + (NSString*) sanitizeFileName:(NSString*) name {
     return [[[name stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"]
                    stringByReplacingOccurrencesOfString:@"." withString:@"-dot-"]
                    stringByReplacingOccurrencesOfString:@":" withString:@"-colon-"];
 }
+
 
 @end

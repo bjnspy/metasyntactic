@@ -30,6 +30,7 @@
     [super dealloc];
 }
 
+
 - (id) init {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
@@ -38,19 +39,23 @@
     return self;
 }
 
+
 + (PosterCache*) cache {
     return [[[PosterCache alloc] init] autorelease];
 }
+
 
 - (void) update:(NSArray*) movies {
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:movies]];
 }
 
+
 - (NSString*) posterFilePath:(Movie*) movie {
     NSString* sanitizedTitle = [Application sanitizeFileName:movie.canonicalTitle];
     return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
+
 
 - (void) deleteObsoletePosters:(NSArray*) movies {
     NSMutableSet* set = [NSMutableSet set];
@@ -70,6 +75,7 @@
     }
 }
 
+
 - (void) downloadPoster:(Movie*) movie {
     if ([[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]]) {
         return;
@@ -79,6 +85,7 @@
     NSString* path = [self posterFilePath:movie];
     [data writeToFile:path atomically:YES];
 }
+
 
 - (void) downloadPosters:(NSArray*) movies {
     // movies with poster links download faster.  try them first.
@@ -105,10 +112,12 @@
     }
 }
 
+
 - (void) updateInBackground:(NSArray*) movies {
     [self deleteObsoletePosters:movies];
     [self downloadPosters:movies];
 }
+
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
@@ -122,10 +131,12 @@
     [autoreleasePool release];
 }
 
+
 - (UIImage*) posterForMovie:(Movie*) movie {
     NSString* path = [self posterFilePath:movie];
     NSData* data = [NSData dataWithContentsOfFile:path];
     return [UIImage imageWithData:data];
 }
+
 
 @end

@@ -30,6 +30,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.keyLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
@@ -49,11 +50,13 @@
     return self;
 }
 
+
 - (void) setKey:(NSString*) key
           value:(NSString*) value
    hasIndicator:(BOOL) hasIndicator {
     [self setKey:key value:value hasIndicator:hasIndicator keyWidth:70];
 }
+
 
 - (void) setKey:(NSString*) key
           value:(NSString*) value
@@ -84,6 +87,7 @@
     }
 }
 
+
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
@@ -95,5 +99,6 @@
         self.valueLabel.textColor = [UIColor blackColor];
     }
 }
+
 
 @end

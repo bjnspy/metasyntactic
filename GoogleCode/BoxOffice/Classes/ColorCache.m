@@ -29,12 +29,15 @@ static UIColor* darkDarkGray = nil;
     }
 }
 
+
 + (UIColor*) commandColor {
     return commandColor;
 }
 
+
 + (UIColor*) darkDarkGray {
     return darkDarkGray;
 }
+
 
 @end

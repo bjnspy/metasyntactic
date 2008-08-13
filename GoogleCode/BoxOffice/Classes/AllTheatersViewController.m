@@ -43,22 +43,27 @@
     [super dealloc];
 }
 
+
 - (BOOL) sortingByName {
     return segmentedControl.selectedSegmentIndex == 0;
 }
 
+
 - (BOOL) sortingByDistance {
     return ![self sortingByName];
 }
+
 
 - (void) onSortOrderChanged:(id) sender {
     [self.model setAllTheatersSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self refresh];
 }
 
+
 - (BoxOfficeModel*) model {
     return [self.navigationController model];
 }
+
 
 - (void) removeUnusedSectionTitles {
     for (NSInteger i = sectionTitles.count - 1; i >= 0; --i) {
@@ -68,6 +73,7 @@
         }
     }
 }
+
 
 - (void) sortTheatersByName {
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
@@ -92,6 +98,7 @@
 
     [self removeUnusedSectionTitles];
 }
+
 
 - (void) sortTheatersByDistance {
     NSDictionary* theaterDistanceMap = [self.model theaterDistanceMap];
@@ -149,6 +156,7 @@
     [self removeUnusedSectionTitles];
 }
 
+
 - (void) sortTheaters {
     self.sectionTitleToContentsMap = [MultiDictionary dictionary];
 
@@ -162,6 +170,7 @@
         self.sectionTitles = [NSArray arrayWithObject:[self.model noLocationInformationFound]];
     }
 }
+
 
 - (id) initWithNavigationController:(TheatersNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
@@ -198,6 +207,7 @@
     return self;
 }
 
+
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if ([self sortingByName]) {
@@ -207,6 +217,7 @@
     }
 }
 
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
@@ -214,14 +225,17 @@
     [self.navigationController pushTheaterDetails:theater animated:YES];
 }
 
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     return sectionTitles.count;
 }
+
 
 - (NSInteger)               tableView:(UITableView*) tableView
                 numberOfRowsInSection:(NSInteger) section {
     return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
 }
+
 
 - (UITableViewCell*)                tableView:(UITableView*) tableView
                         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
@@ -239,6 +253,7 @@
     return cell;
 }
 
+
 - (NSString*)               tableView:(UITableView*) tableView
               titleForHeaderInSection:(NSInteger) section {
     NSString* indexTitle = [sectionTitles objectAtIndex:section];
@@ -249,6 +264,7 @@
     return [sectionTitles objectAtIndex:section];
 }
 
+
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
     if ([self sortingByName] && sortedTheaters.count > 0) {
         return self.alphabeticSectionTitles;
@@ -256,6 +272,7 @@
 
     return nil;
 }
+
 
 - (NSInteger) sectionForSectionIndexTitle:(NSString*) title {
     unichar firstChar = [title characterAtIndex:0];
@@ -277,6 +294,7 @@
     }
 }
 
+
 - (NSInteger)           tableView:(UITableView*) tableView
       sectionForSectionIndexTitle:(NSString*) title
                           atIndex:(NSInteger) index {
@@ -288,6 +306,7 @@
     return result;
 }
 
+
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
 
@@ -298,9 +317,11 @@
     [self refresh];
 }
 
+
 - (void) refresh {
     [self sortTheaters];
     [self.tableView reloadData];
 }
+
 
 @end

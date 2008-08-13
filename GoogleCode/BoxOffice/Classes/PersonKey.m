@@ -23,9 +23,11 @@
     return [[[PersonKey alloc] initWithIdentifier:identifier name:name] autorelease];
 }
 
+
 + (PersonKey*) keyWithDictionary:(NSDictionary*) dict {
     return [PersonKey keyWithIdentifier:[dict objectForKey:@"identifier"]
                                    name:[dict objectForKey:@"name"]];
 }
+
 
 @end

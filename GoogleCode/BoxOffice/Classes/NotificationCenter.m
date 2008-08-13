@@ -31,6 +31,7 @@
     [super dealloc];
 }
 
+
 static CGPoint offScreenLeftPoint = { -160, 423 };
 
 static CGRect offScreenRightFrame = { 480, 423 };
@@ -51,13 +52,16 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     return self;
 }
 
+
 + (NotificationCenter*) centerWithWindow:(UIWindow*) window {
     return [[[NotificationCenter alloc] initWithWindow:window] autorelease];
 }
 
+
 - (void) addToWindow {
     [self.window addSubview:self.background];
 }
+
 
 - (void) addStatusMessage:(NSString*) message {
     return;
@@ -77,6 +81,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     }
 }
 
+
 - (void) clearStatus {
     [UIView beginAnimations:nil context:NULL];
     {
@@ -85,6 +90,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     }
     [UIView commitAnimations];
 }
+
 
 - (void) displayNextMessage {
     UILabel* label = [[[UILabel alloc] initWithFrame:offScreenRightFrame] autorelease];
@@ -115,6 +121,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     [self performSelector:@selector(update:) withObject:nil afterDelay:1];
 }
 
+
 - (void) update:(id) object {
     if (self.messages.count == 0) {
         [self clearStatus];
@@ -123,8 +130,10 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     }
 }
 
+
 - (void) removeViewFromSuperview:(UIView*) view {
     [view removeFromSuperview];
 }
+
 
 @end

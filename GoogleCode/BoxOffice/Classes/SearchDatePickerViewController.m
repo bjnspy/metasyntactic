@@ -30,6 +30,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithNavigationController:(UINavigationController*) navigationController_
                          controller:(BoxOfficeController*) controller_
                          withValues:(NSArray*) values_
@@ -46,6 +47,7 @@
 
     return self;
 }
+
 
 + (SearchDatePickerViewController*) pickerWithNavigationController:(UINavigationController*) navigationController
                                                         controller:(BoxOfficeController*) controller {
@@ -67,8 +69,10 @@
                                                                     defaultValue:defaultValue] autorelease];
 }
 
+
 - (void) onSearchDateChanged:(NSString*) dateString {
     [self.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
 }
+
 
 @end

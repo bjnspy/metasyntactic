@@ -28,6 +28,7 @@
     [super dealloc];
 }
 
+
 - (id) initWithText:(NSString*) text_ searchId:(NSInteger) searchId_ {
     if (self = [super init]) {
         self.text = text_;
@@ -36,6 +37,7 @@
 
     return self;
 }
+
 
 + (SearchRequest*) requestWithText:(NSString*) text searchId:(NSInteger) searchId {
     return [[[SearchRequest alloc] initWithText:text searchId:searchId] autorelease];
