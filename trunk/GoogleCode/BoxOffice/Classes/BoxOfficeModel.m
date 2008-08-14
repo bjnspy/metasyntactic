@@ -32,7 +32,6 @@
 #import "TrailerCache.h"
 #import "UnitedKingdomDataProvider.h"
 #import "Utilities.h"
-#import "XmlElement.h"
 
 @implementation BoxOfficeModel
 
@@ -132,25 +131,6 @@ static NSString* currentVersion = @"1.3.1";
 
 - (void) updatePostalCodeAddressLocation {
     [self.addressLocationCache updatePostalCode:self.postalCode];
-}
-
-
-- (void) clearOldSearchResults {
-    NSMutableDictionary* searchDates = [self getSearchDates];
-    NSMutableDictionary* searchResults = [self getSearchResults];
-
-    for (NSString* key in [searchDates allKeys]) {
-        NSDate* searchDate = [searchDates objectForKey:key];
-
-        NSTimeInterval time = [[NSDate date] timeIntervalSinceDate:searchDate];
-        if (time > (24 * 60 * 60)) {
-            [searchDates removeObjectForKey:key];
-            [searchResults removeObjectForKey:key];
-        }
-    }
-
-    [[NSUserDefaults standardUserDefaults] setObject:searchDates forKey:[BoxOfficeModel SEARCH_DATES]];
-    [[NSUserDefaults standardUserDefaults] setObject:searchResults forKey:[BoxOfficeModel SEARCH_RESULTS]];
 }
 
 
@@ -739,87 +719,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     }
 
     [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SHOWING_REVIEWS]];
-}
-
-
-- (void) setSearchDate:(NSDate*) date forIdentifier:(NSString*) identifier {
-    NSMutableDictionary* searchDates = [self getSearchDates];
-    [searchDates setObject:date forKey:identifier];
-
-    [[NSUserDefaults standardUserDefaults] setObject:searchDates forKey:[BoxOfficeModel SEARCH_DATES]];
-
-}
-
-
-- (NSMutableDictionary*) getSearchResults {
-    NSDictionary* result = [[NSUserDefaults standardUserDefaults] dictionaryForKey:[BoxOfficeModel SEARCH_RESULTS]];
-    if (result == nil) {
-        return [NSMutableDictionary dictionary];
-    }
-
-    return [NSMutableDictionary dictionaryWithDictionary:result];
-}
-
-
-- (NSMutableDictionary*) getSearchDates {
-    NSDictionary* result = [[NSUserDefaults standardUserDefaults] dictionaryForKey:[BoxOfficeModel SEARCH_DATES]];
-    if (result == nil) {
-        return [NSMutableDictionary dictionary];
-    }
-
-    return [NSMutableDictionary dictionaryWithDictionary:result];
-}
-
-
-- (XmlElement*) getDetails:(NSString*) identifier {
-    static BOOL firstTime = YES;
-    if (firstTime == YES) {
-        firstTime = NO;
-        [self clearOldSearchResults];
-    }
-
-    NSDictionary* searchResults = [self getSearchResults];
-    NSDictionary* details = [searchResults objectForKey:identifier];
-
-    if (details == nil) {
-        return nil;
-    }
-
-    return [XmlElement elementFromDictionary:details];
-}
-
-
-- (XmlElement*) getPersonDetails:(NSString*) identifier {
-    return [self getDetails:[NSString stringWithFormat:@"person-%@", identifier]];
-}
-
-
-- (XmlElement*) getMovieDetails:(NSString*) identifier {
-    return [self getDetails:[NSString stringWithFormat:@"movie-%@", identifier]];
-}
-
-
-- (void) setDetails:(NSString*) identifier element:(XmlElement*) element {
-    return;
-    if (element == nil) {
-        return;
-    }
-
-    NSMutableDictionary* searchResults = [self getSearchResults];
-    [searchResults setObject:[element dictionary] forKey:identifier];
-
-    [[NSUserDefaults standardUserDefaults] setObject:searchResults forKey:[BoxOfficeModel SEARCH_RESULTS]];
-    [self setSearchDate:[NSDate date] forIdentifier:identifier];
-}
-
-
-- (void) setPersonDetails:(NSString*) identifier element:(XmlElement*) element {
-    [self setDetails:[NSString stringWithFormat:@"person-%@", identifier] element:element];
-}
-
-
-- (void) setMovieDetails:(NSString*) identifier element:(XmlElement*) element {
-    [self setDetails:[NSString stringWithFormat:@"movie-%@", identifier] element:element];
 }
 
 
