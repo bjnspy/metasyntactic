@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
-	<string>BoxOffice</string>
+	<string>Now Playing</string>
 	<key>UIPrerenderedIcon</key>
 	<true/>
 	<key>CFBundleExecutable</key>
