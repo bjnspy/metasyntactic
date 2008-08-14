@@ -1,29 +1,29 @@
 // Copyright (c) 2008, Cyrus Najmabadi
 // All rights reserved.
 //
-// Redistribution and use in source and binary forms, with or without 
+// Redistribution and use in source and binary forms, with or without
 // modification, are permitted provided that the following conditions are met:
 //
 //   Redistributions of source code must retain the above copyright notice, this
 //   list of conditions and the following disclaimer.
 //
-//   Redistributions in binary form must reproduce the above copyright notice, 
+//   Redistributions in binary form must reproduce the above copyright notice,
 //   this list of conditions and the following disclaimer in the documentation
 //   and/or other materials provided with the distribution.
 //
 //   Neither the name 'Cyrus Najmabadi' nor the names of its contributors may be
-//   used to endorse or promote products derived from this software without 
+//   used to endorse or promote products derived from this software without
 //   specific prior written permission.
 //
-// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" 
-// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE 
+// THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+// AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 // IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
-// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE 
-// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR 
+// ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+// LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
 // CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
 // SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
 // INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
-// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) 
+// CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 // ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 // POSSIBILITY OF SUCH DAMAGE.
 
@@ -77,30 +77,30 @@
 - (UITableViewCell*) reviewCellForRow:(NSInteger) row
                               section:(NSInteger) section {
     Review* review = [reviews objectAtIndex:section];
-    
+
     if (row == 0) {
         static NSString* reuseIdentifier = @"ReviewTitleCellIdentifier";
-        
+
         ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[ReviewTitleCell alloc] initWithModel:self.model
                                                      frame:[UIScreen mainScreen].bounds
                                            reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         [cell setReview:review];
-        
+
         return cell;
     } else {
         static NSString* reuseIdentifier = @"ReviewBodyCellIdentifier";
-        
+
         ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[ReviewBodyCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         [cell setReview:review];
-        
+
         return cell;
     }
 }
@@ -128,7 +128,7 @@
     if (section == reviews.count) {
         return @"For movie reviews and more, visit";
     }
-    
+
     return nil;
 }
 
@@ -170,11 +170,11 @@
     if (indexPath.section < reviews.count) {
         if (indexPath.row == 1) {
             Review* review = [reviews objectAtIndex:indexPath.section];
-            
+
             return MAX([review heightWithFont:[FontCache helvetica14]], [self.tableView rowHeight]);
         }
     }
-    
+
     return [tableView rowHeight];
 }
 
@@ -188,7 +188,7 @@
                 return UITableViewCellAccessoryDetailDisclosureButton;
             }
         }
-        
+
         return UITableViewCellAccessoryNone;
     } else {
         return UITableViewCellAccessoryDetailDisclosureButton;
