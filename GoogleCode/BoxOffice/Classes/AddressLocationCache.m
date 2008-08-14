@@ -115,12 +115,14 @@
 
 
 - (Location*) locationForAddress:(NSString*) address {
-    NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self locationFile:address]];
-    if (dict == nil) {
-        return nil;
+    if (![Utilities isNilOrEmpty:address]) {
+        NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self locationFile:address]];
+        if (dict != nil) {
+            return [Location locationWithDictionary:dict];
+        }
     }
-
-    return [Location locationWithDictionary:dict];
+    
+    return nil;
 }
 
 

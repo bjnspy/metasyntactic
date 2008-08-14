@@ -67,7 +67,7 @@
          //searchNavigationController,
          settingsNavigationController, nil];
 
-        if ([Utilities isNilOrEmpty:[self.model postalCode]]) {
+        if ([Utilities isNilOrEmpty:self.model.postalCode]) {
             self.selectedViewController = self.settingsNavigationController;
         } else {
             AbstractNavigationController* controller = [self.viewControllers objectAtIndex:[self.model selectedTabBarViewControllerIndex]];
