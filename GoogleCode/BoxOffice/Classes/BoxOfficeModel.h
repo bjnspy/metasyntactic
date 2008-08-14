@@ -131,15 +131,6 @@ NSInteger compareMoviesByTitle(id t1, id t2, void *context);
 NSInteger compareTheatersByName(id t1, id t2, void *context);
 NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 
-- (XmlElement*) getPersonDetails:(NSString*) identifier;
-- (void) setPersonDetails:(NSString*) identifier element:(XmlElement*) element;
-
-- (XmlElement*) getMovieDetails:(NSString*) identifier;
-- (void) setMovieDetails:(NSString*) identifier element:(XmlElement*) element;
-
-- (NSMutableDictionary*) getSearchDates;
-- (NSMutableDictionary*) getSearchResults;
-
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSInteger) scoreForMovie:(Movie*) movie;
 
