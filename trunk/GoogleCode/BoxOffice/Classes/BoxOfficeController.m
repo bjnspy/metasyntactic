@@ -192,7 +192,7 @@
 
 
 - (void) setPostalCode:(NSString*) postalCode {
-    if ([postalCode isEqual:[self.model postalCode]]) {
+    if ([postalCode isEqual:self.model.postalCode]) {
         return;
     }
 

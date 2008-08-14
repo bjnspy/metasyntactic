@@ -265,16 +265,17 @@
                 key = NSLocalizedString(@"Region", nil);
                 value = [[self.model currentDataProvider] displayName];
             } else
-                */ if (indexPath.row == 0) {
+                */ 
+            if (indexPath.row == 0) {
                 key = NSLocalizedString(@"Location", nil);
-                value = [self.model postalCode];
+                value = self.model.postalCode;
             } else if (indexPath.row == 1) {
                 key = NSLocalizedString(@"Hide Theaters Beyond", nil);
 
-                if ([self.model searchRadius] == 1) {
+                if (self.model.searchRadius == 1) {
                     value = NSLocalizedString(@"1 mile", nil);
                 } else {
-                    value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), [self.model searchRadius]];
+                    value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), self.model.searchRadius];
                 }
             } else if (indexPath.row == 2) {
                 key = NSLocalizedString(@"Search Date", nil);
@@ -368,7 +369,7 @@
                                                                  title:NSLocalizedString(@"Location", nil)
                                                                 object:self
                                                               selector:@selector(onPostalCodeChanged:)
-                                                                  text:[self.model postalCode]
+                                                                  text:self.model.postalCode
                                                            placeHolder:NSLocalizedString(@"Postal Code", nil)
                                                                   type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
 
@@ -378,7 +379,7 @@
                                @"1", @"2", @"3", @"4", @"5",
                                @"10", @"15", @"20", @"25", @"30",
                                @"35", @"40", @"45", @"50", nil];
-            NSString* defaultValue = [NSString stringWithFormat:@"%d", [self.model searchRadius]];
+            NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
 
             PickerEditorViewController* controller =
             [[[PickerEditorViewController alloc] initWithController:self.navigationController
