@@ -91,7 +91,6 @@
 		74EFE3570E353F3600B6E103 /* Rotten-Faded.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3210E353F3600B6E103 /* Rotten-Faded.png */; };
 		74EFE3580E353F3600B6E103 /* Rotten-Full.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3220E353F3600B6E103 /* Rotten-Full.png */; };
 		74EFE35A0E353F3600B6E103 /* RottenTomatoesLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3240E353F3600B6E103 /* RottenTomatoesLogo.png */; };
-		74EFE35B0E353F3600B6E103 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3250E353F3600B6E103 /* Search.png */; };
 		74EFE35C0E353F3600B6E103 /* Spinner0.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3260E353F3600B6E103 /* Spinner0.png */; };
 		74EFE35D0E353F3600B6E103 /* Spinner1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3270E353F3600B6E103 /* Spinner1.png */; };
 		74EFE35E0E353F3600B6E103 /* Spinner2.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3280E353F3600B6E103 /* Spinner2.png */; };
@@ -265,7 +264,6 @@
 		74EFE3210E353F3600B6E103 /* Rotten-Faded.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rotten-Faded.png"; path = "Resources/Rotten-Faded.png"; sourceTree = "<group>"; };
 		74EFE3220E353F3600B6E103 /* Rotten-Full.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rotten-Full.png"; path = "Resources/Rotten-Full.png"; sourceTree = "<group>"; };
 		74EFE3240E353F3600B6E103 /* RottenTomatoesLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RottenTomatoesLogo.png; path = Resources/RottenTomatoesLogo.png; sourceTree = "<group>"; };
-		74EFE3250E353F3600B6E103 /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Search.png; path = Resources/Search.png; sourceTree = "<group>"; };
 		74EFE3260E353F3600B6E103 /* Spinner0.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner0.png; path = Resources/Spinner0.png; sourceTree = "<group>"; };
 		74EFE3270E353F3600B6E103 /* Spinner1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner1.png; path = Resources/Spinner1.png; sourceTree = "<group>"; };
 		74EFE3280E353F3600B6E103 /* Spinner2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Spinner2.png; path = Resources/Spinner2.png; sourceTree = "<group>"; };
@@ -434,7 +432,6 @@
 				74EFE3210E353F3600B6E103 /* Rotten-Faded.png */,
 				74EFE3220E353F3600B6E103 /* Rotten-Full.png */,
 				74EFE3240E353F3600B6E103 /* RottenTomatoesLogo.png */,
-				74EFE3250E353F3600B6E103 /* Search.png */,
 				74EFE3260E353F3600B6E103 /* Spinner0.png */,
 				74EFE3270E353F3600B6E103 /* Spinner1.png */,
 				74EFE3280E353F3600B6E103 /* Spinner2.png */,
@@ -687,7 +684,6 @@
 				74EFE3570E353F3600B6E103 /* Rotten-Faded.png in Resources */,
 				74EFE3580E353F3600B6E103 /* Rotten-Full.png in Resources */,
 				74EFE35A0E353F3600B6E103 /* RottenTomatoesLogo.png in Resources */,
-				74EFE35B0E353F3600B6E103 /* Search.png in Resources */,
 				74EFE35C0E353F3600B6E103 /* Spinner0.png in Resources */,
 				74EFE35D0E353F3600B6E103 /* Spinner1.png in Resources */,
 				74EFE35E0E353F3600B6E103 /* Spinner2.png in Resources */,
