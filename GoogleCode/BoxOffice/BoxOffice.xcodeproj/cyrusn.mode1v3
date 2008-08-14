@@ -280,6 +280,8 @@
 			<key>Layout</key>
 			<array>
 				<dict>
+					<key>BecomeActive</key>
+					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -338,13 +340,13 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>152</integer>
-									<integer>144</integer>
+									<integer>96</integer>
+									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 0}, {383, 788}}</string>
+							<string>{{0, 1189}, {383, 788}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -376,14 +378,12 @@
 					<key>Dock</key>
 					<array>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>License.txt</string>
+								<string>Application.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -391,11 +391,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>License.txt</string>
+										<string>Application.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7402260D0E54AE99006C58A2</string>
+										<string>740226250E54AFEB006C58A2</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -587,7 +587,6 @@
 											<string>740224D80E540334006C58A2</string>
 											<string>740224D90E540334006C58A2</string>
 											<string>740224F00E54AE24006C58A2</string>
-											<string>740224F10E54AE24006C58A2</string>
 											<string>740224F20E54AE24006C58A2</string>
 											<string>740224F30E54AE24006C58A2</string>
 											<string>740224F40E54AE24006C58A2</string>
@@ -670,8 +669,6 @@
 											<string>740225410E54AE24006C58A2</string>
 											<string>740225420E54AE24006C58A2</string>
 											<string>740225430E54AE24006C58A2</string>
-											<string>740225440E54AE24006C58A2</string>
-											<string>740225450E54AE24006C58A2</string>
 											<string>740225460E54AE24006C58A2</string>
 											<string>740225470E54AE24006C58A2</string>
 											<string>740225480E54AE24006C58A2</string>
@@ -715,13 +712,16 @@
 											<string>7402256E0E54AE24006C58A2</string>
 											<string>7402256F0E54AE24006C58A2</string>
 											<string>740225700E54AE24006C58A2</string>
-											<string>740225710E54AE24006C58A2</string>
 											<string>740225720E54AE24006C58A2</string>
 											<string>740225740E54AE24006C58A2</string>
 											<string>740225750E54AE24006C58A2</string>
 											<string>740225760E54AE24006C58A2</string>
 											<string>7402260A0E54AE99006C58A2</string>
-											<string>7402260B0E54AE99006C58A2</string>
+											<string>740226150E54AFB0006C58A2</string>
+											<string>7402261F0E54AFEB006C58A2</string>
+											<string>740226200E54AFEB006C58A2</string>
+											<string>740226210E54AFEB006C58A2</string>
+											<string>740225440E54AE24006C58A2</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -1140,6 +1140,10 @@
 											<string>740226040E54AE24006C58A2</string>
 											<string>740226050E54AE24006C58A2</string>
 											<string>7402260C0E54AE99006C58A2</string>
+											<string>740226170E54AFB0006C58A2</string>
+											<string>740226220E54AFEB006C58A2</string>
+											<string>740226230E54AFEB006C58A2</string>
+											<string>740226240E54AFEB006C58A2</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1318,7 +1322,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>240430745.72500399</real>
+	<real>240431083.49287301</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1333,6 +1337,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>740226080E54AE24006C58A2</string>
 		<string>740226070E54AE24006C58A2</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>740224940E53F8FA006C58A2</string>
@@ -1341,7 +1346,6 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>740226080E54AE24006C58A2</string>
 	</array>
 	<key>WindowString</key>
 	<string>60 31 1154 847 0 0 1440 878 </string>
@@ -1581,7 +1585,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>Localizable.strings</string>
+										<string>DataProvider.h</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1590,7 +1594,7 @@
 										<key>Frame</key>
 										<string>{{0, 0}, {1393, 468}}</string>
 										<key>RubberWindowFrame</key>
-										<string>47 0 1393 878 0 0 1440 878 </string>
+										<string>307 -299 1393 878 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXNavigatorGroup</string>
@@ -1616,7 +1620,7 @@
 								<key>Frame</key>
 								<string>{{0, 473}, {1393, 364}}</string>
 								<key>RubberWindowFrame</key>
-								<string>47 0 1393 878 0 0 1440 878 </string>
+								<string>307 -299 1393 878 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
@@ -1645,7 +1649,7 @@
 				<string>1CD0528E0623707200166675</string>
 			</array>
 			<key>WindowString</key>
-			<string>47 0 1393 878 0 0 1440 878 </string>
+			<string>307 -299 1393 878 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>

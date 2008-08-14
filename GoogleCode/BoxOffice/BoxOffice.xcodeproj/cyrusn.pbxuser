@@ -31,119 +31,119 @@
 		);
 		breakpoints = (
 			74956A070E2D71A5007BFF21 /* -[ReviewCache downloadReview:] */,
-			74737B800E2D7D8E00C37E4B /* ReviewCache.m:1 */,
-			74B3BCA10E2D983300DCE835 /* MovieDetailsViewController.m:1 */,
+			74737B800E2D7D8E00C37E4B /* ReviewCache.m:4 */,
+			74B3BCA10E2D983300DCE835 /* MovieDetailsViewController.m:4 */,
 			741772270E31F84B00551817 /* NSInvalidArgumentException:init */,
 			7417722A0E31F87F00551817 /* -[NSException raise] */,
 			741772310E31F8A600551817 /* -[NSInvalidArgumentException raise] */,
 			741772320E31F8AF00551817 /* -[NSInvalidArgumentException init] */,
 			741772360E31F8D600551817 /* objc_exception_throw */,
-			746932E80E33264B002282B6 /* ReviewCache.m:1 */,
-			74EFE21D0E33DB9100B6E103 /* SettingsViewController.m:1 */,
-			74EFE2AD0E341C5400B6E103 /* BoxOfficeModel.m:1 */,
-			74EFE6BE0E3581A300B6E103 /* Movie.m:1 */,
-			74EFE6C00E3581A300B6E103 /* Movie.m:1 */,
-			74EFE7A60E359F0500B6E103 /* ReviewCache.m:1 */,
-			74EFE7F90E35A56E00B6E103 /* ReviewCache.m:1 */,
-			74EFE7FB0E35A57C00B6E103 /* ReviewCache.m:1 */,
-			74EFEBDD0E36CCF300B6E103 /* TrailerCache.m:42 */,
-			74EFEBDF0E36CCF500B6E103 /* TrailerCache.m:42 */,
-			74EFEC040E36CE6200B6E103 /* TrailerCache.m:42 */,
+			746932E80E33264B002282B6 /* ReviewCache.m:4 */,
+			74EFE21D0E33DB9100B6E103 /* SettingsViewController.m:4 */,
+			74EFE2AD0E341C5400B6E103 /* BoxOfficeModel.m:4 */,
+			74EFE6BE0E3581A300B6E103 /* Movie.m:4 */,
+			74EFE6C00E3581A300B6E103 /* Movie.m:4 */,
+			74EFE7A60E359F0500B6E103 /* ReviewCache.m:4 */,
+			74EFE7F90E35A56E00B6E103 /* ReviewCache.m:4 */,
+			74EFE7FB0E35A57C00B6E103 /* ReviewCache.m:4 */,
+			74EFEBDD0E36CCF300B6E103 /* TrailerCache.m:4 */,
+			74EFEBDF0E36CCF500B6E103 /* TrailerCache.m:4 */,
+			74EFEC040E36CE6200B6E103 /* TrailerCache.m:4 */,
 			74DB915E0E3830CD007D0010 /* PosterCache.m:51 */,
 			74DB91620E3830ED007D0010 /* PosterCache.m:51 */,
-			74DB92890E3841C3007D0010 /* TicketsViewController.m:1 */,
-			74CBC06A0E3E976100747156 /* AbstractDataProvider.m:1 */,
+			74DB92890E3841C3007D0010 /* TicketsViewController.m:4 */,
+			74CBC06A0E3E976100747156 /* AbstractDataProvider.m:4 */,
 			74CBC08E0E3E984800747156 /* UnitedKingdomDataProvider.m:93 */,
-			74CBC09F0E3E9BC200747156 /* UnitedKingdomDataProvider.m:1 */,
+			74CBC09F0E3E9BC200747156 /* UnitedKingdomDataProvider.m:4 */,
 			74CBC0A10E3E9BC300747156 /* UnitedKingdomDataProvider.m:81 */,
 			74CBC0A30E3E9BC400747156 /* UnitedKingdomDataProvider.m:85 */,
 			74CBC0EC0E3EA7DF00747156 /* UnitedKingdomDataProvider.m:97 */,
 			74CBC0EE0E3EA7E700747156 /* UnitedKingdomDataProvider.m:89 */,
-			74CBC0F80E3EA81D00747156 /* XmlParser.m:1 */,
-			74CBC0FA0E3EA81F00747156 /* XmlParser.m:1 */,
-			74CBC0FC0E3EA82200747156 /* XmlParser.m:1 */,
-			74CBC0FE0E3EA88000747156 /* XmlParser.m:1 */,
+			74CBC0F80E3EA81D00747156 /* XmlParser.m:4 */,
+			74CBC0FA0E3EA81F00747156 /* XmlParser.m:4 */,
+			74CBC0FC0E3EA82200747156 /* XmlParser.m:4 */,
+			74CBC0FE0E3EA88000747156 /* XmlParser.m:4 */,
 			74CBC1000E3EA8A900747156 /* UnitedKingdomDataProvider.m:90 */,
-			7479B5920E401C6E003B12C1 /* ReviewCache.m:1 */,
+			7479B5920E401C6E003B12C1 /* ReviewCache.m:4 */,
 			7479B5BC0E401D57003B12C1 /* ReviewCache.m:207 */,
 			7479B5C00E401D7C003B12C1 /* ReviewCache.m:208 */,
 			7479B5C20E401D92003B12C1 /* ReviewCache.m:209 */,
-			74601F3A0E41324C00A0B37C /* ReviewCache.m:1 */,
+			74601F3A0E41324C00A0B37C /* ReviewCache.m:4 */,
 			74601F5D0E41351B00A0B37C /* ReviewCache.m:178 */,
-			74601F700E4135AB00A0B37C /* ReviewCache.m:1 */,
-			74085C9F0E424E360069F0F5 /* RatingsCache.m:1 */,
+			74601F700E4135AB00A0B37C /* ReviewCache.m:4 */,
+			74085C9F0E424E360069F0F5 /* RatingsCache.m:4 */,
 			74085CC50E424F440069F0F5 /* BoxOfficeModel.m:735 */,
 			74085CC70E424F470069F0F5 /* BoxOfficeModel.m:735 */,
 			74085CD50E424F8F0069F0F5 /* BoxOfficeModel.m:735 */,
-			74085CD90E424FD30069F0F5 /* ReviewCache.m:1 */,
-			74085CE90E42500F0069F0F5 /* ReviewCache.m:1 */,
-			74085CF10E4250410069F0F5 /* ReviewCache.m:1 */,
-			74085CF50E42507B0069F0F5 /* BoxOfficeModel.m:1 */,
-			74085D140E4251900069F0F5 /* ReviewCache.m:1 */,
-			74085D230E4252200069F0F5 /* MetacriticDownloader.m:1 */,
-			74085D250E4252240069F0F5 /* MetacriticDownloader.m:1 */,
-			740B15400E441FD90003F4B8 /* NorthAmericaDataProvider.m:1 */,
-			740B15420E441FDA0003F4B8 /* NorthAmericaDataProvider.m:1 */,
-			7436A33F0E4632D500B2FBCE /* NorthAmericaDataProvider.m:1 */,
-			74FFEC710E463EED00151748 /* NorthAmericaDataProvider.m:1 */,
-			74FFEC740E463F0700151748 /* NorthAmericaDataProvider.m:1 */,
-			74FFEC760E463F2000151748 /* NorthAmericaDataProvider.m:1 */,
-			74FFEC800E46404100151748 /* NorthAmericaDataProvider.m:1 */,
-			74FFEC940E4641E500151748 /* NorthAmericaDataProvider.m:1 */,
-			74FFEC960E4641E900151748 /* NorthAmericaDataProvider.m:1 */,
-			74FFEC980E4641EE00151748 /* NorthAmericaDataProvider.m:1 */,
-			74FFEC9A0E4641F500151748 /* NorthAmericaDataProvider.m:1 */,
+			74085CD90E424FD30069F0F5 /* ReviewCache.m:4 */,
+			74085CE90E42500F0069F0F5 /* ReviewCache.m:4 */,
+			74085CF10E4250410069F0F5 /* ReviewCache.m:4 */,
+			74085CF50E42507B0069F0F5 /* BoxOfficeModel.m:4 */,
+			74085D140E4251900069F0F5 /* ReviewCache.m:4 */,
+			74085D230E4252200069F0F5 /* MetacriticDownloader.m:4 */,
+			74085D250E4252240069F0F5 /* MetacriticDownloader.m:4 */,
+			740B15400E441FD90003F4B8 /* NorthAmericaDataProvider.m:4 */,
+			740B15420E441FDA0003F4B8 /* NorthAmericaDataProvider.m:4 */,
+			7436A33F0E4632D500B2FBCE /* NorthAmericaDataProvider.m:4 */,
+			74FFEC710E463EED00151748 /* NorthAmericaDataProvider.m:4 */,
+			74FFEC740E463F0700151748 /* NorthAmericaDataProvider.m:4 */,
+			74FFEC760E463F2000151748 /* NorthAmericaDataProvider.m:4 */,
+			74FFEC800E46404100151748 /* NorthAmericaDataProvider.m:4 */,
+			74FFEC940E4641E500151748 /* NorthAmericaDataProvider.m:4 */,
+			74FFEC960E4641E900151748 /* NorthAmericaDataProvider.m:4 */,
+			74FFEC980E4641EE00151748 /* NorthAmericaDataProvider.m:4 */,
+			74FFEC9A0E4641F500151748 /* NorthAmericaDataProvider.m:4 */,
 			74FFEC9C0E4641F900151748 /* AbstractDataProvider.m:230 */,
-			74FFEC9E0E46423400151748 /* AbstractDataProvider.m:1 */,
+			74FFEC9E0E46423400151748 /* AbstractDataProvider.m:4 */,
 			74FFECA00E46423C00151748 /* AbstractDataProvider.m:238 */,
-			74FFECB20E4642AE00151748 /* BoxOfficeController.m:1 */,
-			74FFECB40E46432500151748 /* BoxOfficeController.m:1 */,
+			74FFECB20E4642AE00151748 /* BoxOfficeController.m:4 */,
+			74FFECB40E46432500151748 /* BoxOfficeController.m:4 */,
 			74FFECB60E46433C00151748 /* AllTheatersViewController.m:315 */,
 			74FFECB80E46437000151748 /* AllTheatersViewController.m:133 */,
-			74B0DA580E48164B007179A1 /* Movie.m:1 */,
-			74B0DA5A0E48164D007179A1 /* Movie.m:1 */,
-			74A291220E4AAB1400ACF4B8 /* TicketsViewController.m:1 */,
-			74A291260E4AAB6A00ACF4B8 /* TicketsViewController.m:1 */,
-			74A291280E4AAB9F00ACF4B8 /* TicketsViewController.m:1 */,
+			74B0DA580E48164B007179A1 /* Movie.m:4 */,
+			74B0DA5A0E48164D007179A1 /* Movie.m:4 */,
+			74A291220E4AAB1400ACF4B8 /* TicketsViewController.m:4 */,
+			74A291260E4AAB6A00ACF4B8 /* TicketsViewController.m:4 */,
+			74A291280E4AAB9F00ACF4B8 /* TicketsViewController.m:4 */,
 			74A291390E4AAD7000ACF4B8 /* TicketsViewController.m:287 */,
-			74A2918D0E4AB6B200ACF4B8 /* TheaterDetailsViewController.m:1 */,
+			74A2918D0E4AB6B200ACF4B8 /* TheaterDetailsViewController.m:4 */,
 			74A291970E4AB72F00ACF4B8 /* AbstractDataProvider.m:186 */,
-			740D0D510E4DE16500A12BB3 /* ReviewsViewController.m:131 */,
+			740D0D510E4DE16500A12BB3 /* ReviewsViewController.m:4 */,
 			74E9C4B80E4FE6A300F29EEA /* MovieDetailsViewController.m:402 */,
 			74E9C4BC0E4FE6BD00F29EEA /* MovieDetailsViewController.m:432 */,
 			74E9C4C30E4FE6E100F29EEA /* MovieDetailsViewController.m:437 */,
-			747F09E10E524A6F00D24AD7 /* Utilities.m:272 */,
-			74AFFF660E52859900CA891E /* SettingsViewController.m:231 */,
-			74AFFF700E5285BB00CA891E /* SettingsViewController.m:232 */,
+			747F09E10E524A6F00D24AD7 /* Utilities.m:4 */,
+			74AFFF660E52859900CA891E /* SettingsViewController.m:4 */,
+			74AFFF700E5285BB00CA891E /* SettingsViewController.m:4 */,
 			74AFFF780E52907300CA891E /* AddressLocationCache.m:193 */,
 			74AFFF7A0E52907A00CA891E /* AddressLocationCache.m:186 */,
-			74AFFF9B0E52919300CA891E /* AddressLocationCache.m:142 */,
+			74AFFF9B0E52919300CA891E /* AddressLocationCache.m:4 */,
 			74AFFFA80E52920500CA891E /* SettingsViewController.m:436 */,
-			74AFFFB00E52922200CA891E /* SettingsViewController.m:174 */,
-			74AFFFB20E52924300CA891E /* AddressLocationCache.m:104 */,
-			747C5BEE0E53745B0022E566 /* TrailerCache.m:150 */,
+			74AFFFB00E52922200CA891E /* SettingsViewController.m:4 */,
+			74AFFFB20E52924300CA891E /* AddressLocationCache.m:4 */,
+			747C5BEE0E53745B0022E566 /* TrailerCache.m:4 */,
 			747C5BFB0E53748C0022E566 /* TrailerCache.m:161 */,
-			747C5BFD0E5374950022E566 /* TrailerCache.m:138 */,
-			747C5C090E53759B0022E566 /* TrailerCache.m:142 */,
+			747C5BFD0E5374950022E566 /* TrailerCache.m:4 */,
+			747C5C090E53759B0022E566 /* TrailerCache.m:4 */,
 			74E8C9DA0E5379CF00C87884 /* TrailerCache.m:181 */,
 			74E8C9E60E537A0800C87884 /* TrailerCache.m:167 */,
-			74E8C9E80E537A1F00C87884 /* TrailerCache.m:134 */,
-			74E8C9F20E537B4C00C87884 /* TrailerCache.m:130 */,
-			74E8CA050E537C3B00C87884 /* AddressLocationCache.m:103 */,
+			74E8C9E80E537A1F00C87884 /* TrailerCache.m:4 */,
+			74E8C9F20E537B4C00C87884 /* TrailerCache.m:4 */,
+			74E8CA050E537C3B00C87884 /* AddressLocationCache.m:4 */,
 			74E8CA070E537C4C00C87884 /* NorthAmericaDataProvider.m:299 */,
-			74E8CA130E537C6100C87884 /* MetacriticDownloader.m:64 */,
-			74E8CA150E537C6800C87884 /* MetacriticDownloader.m:74 */,
+			74E8CA130E537C6100C87884 /* MetacriticDownloader.m:4 */,
+			74E8CA150E537C6800C87884 /* MetacriticDownloader.m:4 */,
 			74E8CA180E537C6C00C87884 /* RottenTomatoesDownloader.m:74 */,
 			74E8CA1A0E537C7800C87884 /* ReviewCache.m:125 */,
 			74E8CA360E537CC700C87884 /* RottenTomatoesDownloader.m:76 */,
 			74E8CA3C0E537CFC00C87884 /* ReviewCache.m:127 */,
-			74E8CA480E537D3000C87884 /* Utilities.m:292 */,
+			74E8CA480E537D3000C87884 /* Utilities.m:4 */,
 			74E8CA4A0E537D5100C87884 /* XmlParser.m:67 */,
 			74E8CA4C0E537D5F00C87884 /* XmlParser.m:59 */,
 			74E8CA5B0E537DD900C87884 /* ReviewCache.m:131 */,
 			74E8CA6C0E537E5F00C87884 /* ReviewCache.m:124 */,
 			74E8CAA10E5386AE00C87884 /* MetacriticDownloader.m:76 */,
-			74E8CABC0E53885100C87884 /* TrailerCache.m:151 */,
+			74E8CABC0E53885100C87884 /* TrailerCache.m:4 */,
 		);
 		codeSenseManager = 746A013F0DC818C80079D89B /* Code sense */;
 		executables = (
@@ -669,6 +669,29 @@
 			7402260B0E54AE99006C58A2 /* PBXTextBookmark */ = 7402260B0E54AE99006C58A2 /* PBXTextBookmark */;
 			7402260C0E54AE99006C58A2 /* PBXTextBookmark */ = 7402260C0E54AE99006C58A2 /* PBXTextBookmark */;
 			7402260D0E54AE99006C58A2 /* PBXTextBookmark */ = 7402260D0E54AE99006C58A2 /* PBXTextBookmark */;
+			7402260E0E54AF9E006C58A2 /* PBXTextBookmark */ = 7402260E0E54AF9E006C58A2 /* PBXTextBookmark */;
+			7402260F0E54AF9E006C58A2 /* PBXTextBookmark */ = 7402260F0E54AF9E006C58A2 /* PBXTextBookmark */;
+			740226100E54AF9E006C58A2 /* PBXTextBookmark */ = 740226100E54AF9E006C58A2 /* PBXTextBookmark */;
+			740226110E54AF9E006C58A2 /* PBXTextBookmark */ = 740226110E54AF9E006C58A2 /* PBXTextBookmark */;
+			740226120E54AF9E006C58A2 /* PBXTextBookmark */ = 740226120E54AF9E006C58A2 /* PBXTextBookmark */;
+			740226130E54AF9E006C58A2 /* PBXTextBookmark */ = 740226130E54AF9E006C58A2 /* PBXTextBookmark */;
+			740226140E54AF9E006C58A2 /* PBXTextBookmark */ = 740226140E54AF9E006C58A2 /* PBXTextBookmark */;
+			740226150E54AFB0006C58A2 /* PBXTextBookmark */ = 740226150E54AFB0006C58A2 /* PBXTextBookmark */;
+			740226160E54AFB0006C58A2 /* PBXTextBookmark */ = 740226160E54AFB0006C58A2 /* PBXTextBookmark */;
+			740226170E54AFB0006C58A2 /* PBXTextBookmark */ = 740226170E54AFB0006C58A2 /* PBXTextBookmark */;
+			740226180E54AFB0006C58A2 /* PBXTextBookmark */ = 740226180E54AFB0006C58A2 /* PBXTextBookmark */;
+			740226190E54AFD8006C58A2 /* PBXTextBookmark */ = 740226190E54AFD8006C58A2 /* PBXTextBookmark */;
+			7402261A0E54AFD8006C58A2 /* PBXTextBookmark */ = 7402261A0E54AFD8006C58A2 /* PBXTextBookmark */;
+			7402261B0E54AFD8006C58A2 /* PBXTextBookmark */ = 7402261B0E54AFD8006C58A2 /* PBXTextBookmark */;
+			7402261C0E54AFD8006C58A2 /* PBXTextBookmark */ = 7402261C0E54AFD8006C58A2 /* PBXTextBookmark */;
+			7402261D0E54AFD8006C58A2 /* PBXTextBookmark */ = 7402261D0E54AFD8006C58A2 /* PBXTextBookmark */;
+			7402261F0E54AFEB006C58A2 /* PBXTextBookmark */ = 7402261F0E54AFEB006C58A2 /* PBXTextBookmark */;
+			740226200E54AFEB006C58A2 /* PBXTextBookmark */ = 740226200E54AFEB006C58A2 /* PBXTextBookmark */;
+			740226210E54AFEB006C58A2 /* PBXTextBookmark */ = 740226210E54AFEB006C58A2 /* PBXTextBookmark */;
+			740226220E54AFEB006C58A2 /* PBXTextBookmark */ = 740226220E54AFEB006C58A2 /* PBXTextBookmark */;
+			740226230E54AFEB006C58A2 /* PBXTextBookmark */ = 740226230E54AFEB006C58A2 /* PBXTextBookmark */;
+			740226240E54AFEB006C58A2 /* PBXTextBookmark */ = 740226240E54AFEB006C58A2 /* PBXTextBookmark */;
+			740226250E54AFEB006C58A2 /* PBXTextBookmark */ = 740226250E54AFEB006C58A2 /* PBXTextBookmark */;
 			74085B800E4237A50069F0F5 = 74085B800E4237A50069F0F5 /* PBXTextBookmark */;
 			74085C1F0E424AD60069F0F5 = 74085C1F0E424AD60069F0F5 /* PBXTextBookmark */;
 			74085C3B0E424AD60069F0F5 = 74085C3B0E424AD60069F0F5 /* PBXTextBookmark */;
@@ -1290,7 +1313,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 15";
 		rLen = 0;
-		rLoc = 1608;
+		rLoc = 1600;
 		rType = 0;
 		vrLen = 351;
 		vrLoc = 0;
@@ -1483,7 +1506,7 @@
 		fRef = 740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */;
 		name = "ActivityIndicator.h: 20";
 		rLen = 0;
-		rLoc = 1817;
+		rLoc = 1809;
 		rType = 0;
 		vrLen = 494;
 		vrLoc = 0;
@@ -1493,7 +1516,7 @@
 		fRef = 740B14E00E2DD09A00493FC3 /* ReviewBodyCell.m */;
 		name = "ReviewBodyCell.m: 37";
 		rLen = 14;
-		rLoc = 2388;
+		rLoc = 2380;
 		rType = 0;
 		vrLen = 1002;
 		vrLoc = 84;
@@ -1510,9 +1533,9 @@
 	};
 	740224570E53F342006C58A2 /* ja */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {688, 3808}}";
-			sepNavSelRange = "{382, 0}";
-			sepNavVisRange = "{0, 930}";
+			sepNavIntBoundsRect = "{{0, 0}, {1332, 3780}}";
+			sepNavSelRange = "{6861, 11}";
+			sepNavVisRange = "{6093, 767}";
 		};
 	};
 	740224580E53F346006C58A2 /* pt */ = {
@@ -1871,7 +1894,7 @@
 		fRef = 74AFFF640E52859900CA891E /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 22";
 		rLen = 0;
-		rLoc = 1713;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 455;
 		vrLoc = 698;
@@ -1889,7 +1912,7 @@
 		fRef = 74085CBD0E424F270069F0F5 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 135";
 		rLen = 0;
-		rLoc = 5193;
+		rLoc = 5185;
 		rType = 0;
 		vrLen = 337;
 		vrLoc = 4207;
@@ -1899,7 +1922,7 @@
 		fRef = 74AFFF640E52859900CA891E /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 22";
 		rLen = 0;
-		rLoc = 1713;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 455;
 		vrLoc = 698;
@@ -1909,7 +1932,7 @@
 		fRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 139";
 		rLen = 0;
-		rLoc = 5193;
+		rLoc = 5185;
 		rType = 0;
 		vrLen = 357;
 		vrLoc = 4381;
@@ -1949,7 +1972,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 133";
 		rLen = 0;
-		rLoc = 5210;
+		rLoc = 5202;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 3778;
@@ -1969,7 +1992,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 133";
 		rLen = 0;
-		rLoc = 5210;
+		rLoc = 5202;
 		rType = 0;
 		vrLen = 1385;
 		vrLoc = 3778;
@@ -1989,7 +2012,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 129";
 		rLen = 0;
-		rLoc = 4968;
+		rLoc = 4960;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 0;
@@ -2017,7 +2040,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 129";
 		rLen = 0;
-		rLoc = 4968;
+		rLoc = 4960;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 0;
@@ -2034,7 +2057,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 129";
 		rLen = 0;
-		rLoc = 4968;
+		rLoc = 4960;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 0;
@@ -2044,7 +2067,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 132";
 		rLen = 0;
-		rLoc = 5110;
+		rLoc = 5102;
 		rType = 0;
 		vrLen = 2542;
 		vrLoc = 4207;
@@ -2054,7 +2077,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 132";
 		rLen = 0;
-		rLoc = 5110;
+		rLoc = 5102;
 		rType = 0;
 		vrLen = 2542;
 		vrLoc = 4207;
@@ -2064,7 +2087,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 132";
 		rLen = 0;
-		rLoc = 5110;
+		rLoc = 5102;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 0;
@@ -2074,7 +2097,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 132";
 		rLen = 0;
-		rLoc = 5110;
+		rLoc = 5102;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 0;
@@ -2084,7 +2107,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 132";
 		rLen = 0;
-		rLoc = 5110;
+		rLoc = 5102;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 0;
@@ -2094,7 +2117,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 132";
 		rLen = 0;
-		rLoc = 5110;
+		rLoc = 5102;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 0;
@@ -2104,7 +2127,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 132";
 		rLen = 0;
-		rLoc = 5110;
+		rLoc = 5102;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 0;
@@ -2114,7 +2137,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 132";
 		rLen = 0;
-		rLoc = 5110;
+		rLoc = 5102;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 0;
@@ -2143,7 +2166,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 132";
 		rLen = 0;
-		rLoc = 5110;
+		rLoc = 5102;
 		rType = 0;
 		vrLen = 1297;
 		vrLoc = 0;
@@ -2184,7 +2207,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 134";
 		rLen = 0;
-		rLoc = 5193;
+		rLoc = 5185;
 		rType = 0;
 		vrLen = 815;
 		vrLoc = 4381;
@@ -2233,7 +2256,7 @@
 		isa = PBXTextBookmark;
 		fRef = 740B14F50E441D690003F4B8 /* DataProvider.h */;
 		name = "DataProvider.h: 1";
-		rLen = 1572;
+		rLen = 1564;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1737;
@@ -2244,7 +2267,7 @@
 		fRef = 74F3B26B0E3CE95600DD25DA /* DataProvider.m */;
 		name = "DataProvider.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1599;
 		vrLoc = 0;
@@ -2254,7 +2277,7 @@
 		fRef = 748C54710E3D414700D141B7 /* AbstractDataProvider.h */;
 		name = "AbstractDataProvider.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1783;
 		vrLoc = 0;
@@ -2264,7 +2287,7 @@
 		fRef = 74A291950E4AB72F00ACF4B8 /* AbstractDataProvider.m */;
 		name = "AbstractDataProvider.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1768;
 		vrLoc = 0;
@@ -2274,7 +2297,7 @@
 		fRef = 74F3B2610E3CE92B00DD25DA /* NorthAmericaDataProvider.h */;
 		name = "NorthAmericaDataProvider.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1786;
 		vrLoc = 0;
@@ -2284,7 +2307,7 @@
 		fRef = 7436A33D0E4632D500B2FBCE /* NorthAmericaDataProvider.m */;
 		name = "NorthAmericaDataProvider.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1793;
 		vrLoc = 0;
@@ -2294,7 +2317,7 @@
 		fRef = 74F3B2E50E3CF02400DD25DA /* LookupResult.h */;
 		name = "LookupResult.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1811;
 		vrLoc = 0;
@@ -2304,7 +2327,7 @@
 		fRef = 7436A3150E4630ED00B2FBCE /* LookupResult.m */;
 		name = "LookupResult.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1718;
 		vrLoc = 0;
@@ -2314,7 +2337,7 @@
 		fRef = 74CBBFCF0E3E807300747156 /* UnitedKingdomDataProvider.h */;
 		name = "UnitedKingdomDataProvider.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1843;
 		vrLoc = 0;
@@ -2324,7 +2347,7 @@
 		fRef = 74CBC08C0E3E984800747156 /* UnitedKingdomDataProvider.m */;
 		name = "UnitedKingdomDataProvider.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 0;
@@ -2334,7 +2357,7 @@
 		fRef = 74EC04DA0DD2A81C006953A4 /* DifferenceEngine.h */;
 		name = "DifferenceEngine.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 0;
@@ -2344,7 +2367,7 @@
 		fRef = 74024FE50E2C72FB00E477DA /* DifferenceEngine.m */;
 		name = "DifferenceEngine.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1752;
 		vrLoc = 0;
@@ -2354,7 +2377,7 @@
 		fRef = 74F946640DEC31EA0074AE42 /* Utilities.h */;
 		name = "Utilities.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1833;
 		vrLoc = 0;
@@ -2364,7 +2387,7 @@
 		fRef = 747F09DF0E524A6F00D24AD7 /* Utilities.m */;
 		name = "Utilities.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1762;
 		vrLoc = 0;
@@ -2374,7 +2397,7 @@
 		fRef = 74EC08710DD3EEBB006953A4 /* MultiDictionary.h */;
 		name = "MultiDictionary.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1772;
 		vrLoc = 0;
@@ -2384,7 +2407,7 @@
 		fRef = 74EC08980DD3FAAD006953A4 /* MultiDictionary.m */;
 		name = "MultiDictionary.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1728;
 		vrLoc = 0;
@@ -2394,7 +2417,7 @@
 		fRef = 747A9FB90E2AFD8B000AE1D9 /* DateUtilies.h */;
 		name = "DateUtilities.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1702;
 		vrLoc = 0;
@@ -2404,7 +2427,7 @@
 		fRef = 74085C0A0E424AB50069F0F5 /* DateUtilities.m */;
 		name = "DateUtilities.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1805;
 		vrLoc = 0;
@@ -2414,7 +2437,7 @@
 		fRef = 74088E660DCD36AE00954696 /* XmlDocument.h */;
 		name = "XmlDocument.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 0;
@@ -2424,7 +2447,7 @@
 		fRef = 74088E670DCD36AE00954696 /* XmlDocument.m */;
 		name = "XmlDocument.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1709;
 		vrLoc = 0;
@@ -2434,7 +2457,7 @@
 		fRef = 74088E680DCD36AE00954696 /* XmlSerializer.h */;
 		name = "XmlSerializer.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1729;
 		vrLoc = 0;
@@ -2444,7 +2467,7 @@
 		fRef = 74CF3FFC0DEFE4B0006272AB /* XmlSerializer.m */;
 		name = "XmlSerializer.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 0;
@@ -2454,7 +2477,7 @@
 		fRef = 74D6F2E10DCC1AF80097A984 /* XmlParser.h */;
 		name = "XmlParser.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1937;
 		vrLoc = 0;
@@ -2464,7 +2487,7 @@
 		fRef = 74CBC1050E3EA90500747156 /* XmlParser.m */;
 		name = "XmlParser.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1728;
 		vrLoc = 0;
@@ -2474,7 +2497,7 @@
 		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
 		name = "XmlElement.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1819;
 		vrLoc = 0;
@@ -2484,7 +2507,7 @@
 		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
 		name = "XmlElement.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1709;
 		vrLoc = 0;
@@ -2494,7 +2517,7 @@
 		fRef = 7464F9340DD4D268000CE93F /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1958;
 		vrLoc = 0;
@@ -2504,7 +2527,7 @@
 		fRef = 74F683F60E4C03BC00DAAE8B /* AbstractNavigationController.m */;
 		name = "AbstractNavigationController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1802;
 		vrLoc = 0;
@@ -2514,7 +2537,7 @@
 		fRef = 745C915B0E4BE74C006C5EB8 /* MoviesNavigationController.h */;
 		name = "MoviesNavigationController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1948;
 		vrLoc = 0;
@@ -2524,7 +2547,7 @@
 		fRef = 74447C390DC83E7400CC146C /* TheatersNavigationController.h */;
 		name = "TheatersNavigationController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1966;
 		vrLoc = 0;
@@ -2534,7 +2557,7 @@
 		fRef = 7417742D0E320DDB00551817 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 0;
@@ -2544,7 +2567,7 @@
 		fRef = 740DE1970DCC3FB100B4E69A /* SettingsNavigationController.h */;
 		name = "SettingsNavigationController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1877;
 		vrLoc = 0;
@@ -2554,7 +2577,7 @@
 		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
 		name = "SettingsNavigationController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1757;
 		vrLoc = 0;
@@ -2564,7 +2587,7 @@
 		fRef = 74EF36E00DCEB380004D7E3B /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1881;
 		vrLoc = 0;
@@ -2574,7 +2597,7 @@
 		fRef = 74A5C89C0E307F4600324BBF /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 0;
@@ -2584,7 +2607,7 @@
 		fRef = 74447C630DC843B200CC146C /* AllTheatersViewController.h */;
 		name = "AllTheatersViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1887;
 		vrLoc = 0;
@@ -2594,7 +2617,7 @@
 		fRef = 746828DE0E2A77C700013DC6 /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1775;
 		vrLoc = 0;
@@ -2604,7 +2627,7 @@
 		fRef = 748379C90DD0169E00DC3B80 /* EditorViewController.h */;
 		name = "EditorViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1809;
 		vrLoc = 0;
@@ -2614,7 +2637,7 @@
 		fRef = 74EC02840DD17369006953A4 /* EditorViewController.m */;
 		name = "EditorViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1757;
 		vrLoc = 0;
@@ -2624,7 +2647,7 @@
 		fRef = 74088F6B0DCD4C7F00954696 /* MovieDetailsViewController.h */;
 		name = "MovieDetailsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1838;
 		vrLoc = 0;
@@ -2634,7 +2657,7 @@
 		fRef = 74B3BC910E2D980E00DCE835 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 0;
@@ -2644,7 +2667,7 @@
 		fRef = 74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */;
 		name = "PickerEditorViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 0;
@@ -2654,7 +2677,7 @@
 		fRef = 740B15500E4422C10003F4B8 /* PickerEditorViewController.m */;
 		name = "PickerEditorViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 0;
@@ -2664,7 +2687,7 @@
 		fRef = 74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */;
 		name = "SearchDatePickerViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1894;
 		vrLoc = 0;
@@ -2674,7 +2697,7 @@
 		fRef = 740B15550E4422D40003F4B8 /* SearchDatePickerViewController.m */;
 		name = "SearchDatePickerViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1776;
 		vrLoc = 0;
@@ -2684,7 +2707,7 @@
 		fRef = 740E7FAE0DCFFF120066FCE5 /* SettingsViewController.h */;
 		name = "SettingsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1882;
 		vrLoc = 0;
@@ -2694,7 +2717,7 @@
 		fRef = 74AFFF640E52859900CA891E /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1816;
 		vrLoc = 0;
@@ -2704,7 +2727,7 @@
 		fRef = 74CA1E3B0DD021820046D1CE /* TextFieldEditorViewController.h */;
 		name = "TextFieldEditorViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1822;
 		vrLoc = 0;
@@ -2714,7 +2737,7 @@
 		fRef = 74AFFF310E527F9600CA891E /* TextFieldEditorViewController.m */;
 		name = "TextFieldEditorViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 0;
@@ -2724,7 +2747,7 @@
 		fRef = 7400F4E30DCC2C81004D712D /* TheaterDetailsViewController.h */;
 		name = "TheaterDetailsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 0;
@@ -2734,7 +2757,7 @@
 		fRef = 74085E140E4262320069F0F5 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1805;
 		vrLoc = 0;
@@ -2744,7 +2767,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1838;
 		vrLoc = 0;
@@ -2754,7 +2777,7 @@
 		fRef = 74A291200E4AAB1400ACF4B8 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1801;
 		vrLoc = 0;
@@ -2764,7 +2787,7 @@
 		fRef = 74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */;
 		name = "ViewControllerUtilities.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 0;
@@ -2774,7 +2797,7 @@
 		fRef = 74E318800DFC815900D3AB6A /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1902;
 		vrLoc = 0;
@@ -2784,7 +2807,7 @@
 		fRef = 741111520DFCF61900B94FB5 /* CreditsViewController.h */;
 		name = "CreditsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 0;
@@ -2794,7 +2817,7 @@
 		fRef = 7416DB320E3C59C100686F79 /* CreditsViewController.m */;
 		name = "CreditsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1762;
 		vrLoc = 0;
@@ -2804,7 +2827,7 @@
 		fRef = 74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */;
 		name = "ReviewsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 0;
@@ -2814,7 +2837,7 @@
 		fRef = 740D0D4F0E4DE16500A12BB3 /* ReviewsViewController.m */;
 		name = "ReviewsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1795;
 		vrLoc = 0;
@@ -2824,7 +2847,7 @@
 		fRef = 74EFE42A0E35555C00B6E103 /* RatingsProviderViewController.h */;
 		name = "RatingsProviderViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1868;
 		vrLoc = 0;
@@ -2834,7 +2857,7 @@
 		fRef = 74DB941D0E385AE9007D0010 /* RatingsProviderViewController.m */;
 		name = "RatingsProviderViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1807;
 		vrLoc = 0;
@@ -2844,7 +2867,7 @@
 		fRef = 74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */;
 		name = "DataProviderViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1865;
 		vrLoc = 0;
@@ -2854,7 +2877,7 @@
 		fRef = 74CBC0040E3E8CDF00747156 /* DataProviderViewController.m */;
 		name = "DataProviderViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 0;
@@ -2864,7 +2887,7 @@
 		fRef = 74489E5E0DDD341E00F565B1 /* AutoresizingCell.h */;
 		name = "AutoresizingCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1686;
 		vrLoc = 0;
@@ -2874,7 +2897,7 @@
 		fRef = 74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */;
 		name = "AutoresizingCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1720;
 		vrLoc = 0;
@@ -2884,7 +2907,7 @@
 		fRef = 743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */;
 		name = "MovieShowtimesCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1847;
 		vrLoc = 0;
@@ -2894,7 +2917,7 @@
 		fRef = 74085DD40E42607E0069F0F5 /* MovieShowtimesCell.m */;
 		name = "MovieShowtimesCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 0;
@@ -2904,7 +2927,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -2914,7 +2937,7 @@
 		fRef = 74EFE53B0E35643E00B6E103 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1747;
 		vrLoc = 0;
@@ -2924,7 +2947,7 @@
 		fRef = 742445A50E2D2F9800C98F84 /* AttributeCell.h */;
 		name = "AttributeCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1781;
 		vrLoc = 0;
@@ -2934,7 +2957,7 @@
 		fRef = 7489DE530E3D6DAF00D77435 /* AttributeCell.m */;
 		name = "AttributeCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1703;
 		vrLoc = 0;
@@ -2944,7 +2967,7 @@
 		fRef = 74737BE50E2D8BA300C37E4B /* SettingCell.h */;
 		name = "SettingCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 0;
@@ -2954,7 +2977,7 @@
 		fRef = 74737BEC0E2D8C7800C37E4B /* SettingCell.m */;
 		name = "SettingCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1696;
 		vrLoc = 0;
@@ -2964,7 +2987,7 @@
 		fRef = 74EFE72A0E358D6D00B6E103 /* ReviewTitleCell.h */;
 		name = "ReviewTitleCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1810;
 		vrLoc = 0;
@@ -2974,7 +2997,7 @@
 		fRef = 74A016740E3A66C3009D2B18 /* ReviewTitleCell.m */;
 		name = "ReviewTitleCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1750;
 		vrLoc = 0;
@@ -2984,7 +3007,7 @@
 		fRef = 740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */;
 		name = "ReviewBodyCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1722;
 		vrLoc = 0;
@@ -2994,7 +3017,7 @@
 		fRef = 740B14E00E2DD09A00493FC3 /* ReviewBodyCell.m */;
 		name = "ReviewBodyCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1696;
 		vrLoc = 0;
@@ -3004,7 +3027,7 @@
 		fRef = 740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */;
 		name = "ActivityIndicator.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1818;
 		vrLoc = 0;
@@ -3014,7 +3037,7 @@
 		fRef = 745E74140E28DCE500B819BE /* ActivityIndicator.m */;
 		name = "ActivityIndicator.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1747;
 		vrLoc = 0;
@@ -3024,7 +3047,7 @@
 		fRef = 7445559D0DD7B9C3008AF706 /* PosterView.h */;
 		name = "PosterView.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1875;
 		vrLoc = 0;
@@ -3034,7 +3057,7 @@
 		fRef = 7454441F0DD53CB400FB6970 /* PosterView.m */;
 		name = "PosterView.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 0;
@@ -3044,7 +3067,7 @@
 		fRef = 744557240DD7E785008AF706 /* NotificationCenter.h */;
 		name = "NotificationCenter.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1775;
 		vrLoc = 0;
@@ -3054,7 +3077,7 @@
 		fRef = 744557370DD7E7FF008AF706 /* NotificationCenter.m */;
 		name = "NotificationCenter.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 0;
@@ -3064,7 +3087,7 @@
 		fRef = 74A016D30E3A6C3D009D2B18 /* Application.h */;
 		name = "Application.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 0;
@@ -3074,7 +3097,7 @@
 		fRef = 74085B680E4237850069F0F5 /* Application.m */;
 		name = "Application.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 0;
@@ -3084,7 +3107,7 @@
 		fRef = 7445573E0DD7F041008AF706 /* BoxOfficeAppDelegate.h */;
 		name = "BoxOfficeAppDelegate.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1846;
 		vrLoc = 0;
@@ -3094,7 +3117,7 @@
 		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
 		name = "BoxOfficeAppDelegate.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1777;
 		vrLoc = 0;
@@ -3104,7 +3127,7 @@
 		fRef = 7400F4AE0DCC2A2E004D712D /* BoxOfficeController.h */;
 		name = "BoxOfficeController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1824;
 		vrLoc = 0;
@@ -3114,7 +3137,7 @@
 		fRef = 74FFECB00E4642AE00151748 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1815;
 		vrLoc = 0;
@@ -3124,7 +3147,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 0;
@@ -3134,7 +3157,7 @@
 		fRef = 7442579F0E21BC80006B1AA5 /* Movie.h */;
 		name = "Movie.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1788;
 		vrLoc = 0;
@@ -3144,7 +3167,7 @@
 		fRef = 74EFE6BC0E3581A300B6E103 /* Movie.m */;
 		name = "Movie.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1711;
 		vrLoc = 0;
@@ -3154,7 +3177,7 @@
 		fRef = 74F059380E36E2E10031A8E5 /* Theater.h */;
 		name = "Theater.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1763;
 		vrLoc = 0;
@@ -3164,7 +3187,7 @@
 		fRef = 748C51970E3CF51700D141B7 /* Theater.m */;
 		name = "Theater.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1734;
 		vrLoc = 0;
@@ -3174,7 +3197,7 @@
 		fRef = 74EC04F30DD2B704006953A4 /* Location.h */;
 		name = "Location.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1752;
 		vrLoc = 0;
@@ -3184,7 +3207,7 @@
 		fRef = 749568640E2D4252007BFF21 /* Location.m */;
 		name = "Location.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1727;
 		vrLoc = 0;
@@ -3194,7 +3217,7 @@
 		fRef = 7457FE900E21A41A00929D3E /* Performance.h */;
 		name = "Performance.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1803;
 		vrLoc = 0;
@@ -3204,7 +3227,7 @@
 		fRef = 7457FE910E21A41A00929D3E /* Performance.m */;
 		name = "Performance.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 0;
@@ -3214,7 +3237,7 @@
 		fRef = 7442579D0E21BC7D006B1AA5 /* PosterCache.h */;
 		name = "PosterCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1725;
 		vrLoc = 0;
@@ -3224,7 +3247,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1722;
 		vrLoc = 0;
@@ -3234,7 +3257,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 0;
@@ -3244,7 +3267,7 @@
 		fRef = 749618AC0DFF9B580081851F /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1756;
 		vrLoc = 0;
@@ -3254,7 +3277,7 @@
 		fRef = 74088E2E0DCD359600954696 /* PosterDownloader.h */;
 		name = "PosterDownloader.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 0;
@@ -3264,7 +3287,7 @@
 		fRef = 747925250E2498C600D8BB3C /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1731;
 		vrLoc = 0;
@@ -3274,7 +3297,7 @@
 		fRef = 7442579B0E21BC79006B1AA5 /* ImdbPosterDownloader.h */;
 		name = "ImdbPosterDownloader.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1702;
 		vrLoc = 0;
@@ -3284,7 +3307,7 @@
 		fRef = 745C914E0E4BE693006C5EB8 /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1733;
 		vrLoc = 0;
@@ -3294,7 +3317,7 @@
 		fRef = 748217E00E2164FF0054759E /* ExtraMovieInformation.h */;
 		name = "ExtraMovieInformation.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1798;
 		vrLoc = 0;
@@ -3304,7 +3327,7 @@
 		fRef = 74EFE6A70E35811900B6E103 /* ExtraMovieInformation.m */;
 		name = "ExtraMovieInformation.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1735;
 		vrLoc = 0;
@@ -3314,7 +3337,7 @@
 		fRef = 74F187310E27145B00AB5E1E /* TrailerCache.h */;
 		name = "TrailerCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1727;
 		vrLoc = 0;
@@ -3324,7 +3347,7 @@
 		fRef = 747C5BEC0E53745B0022E566 /* TrailerCache.m */;
 		name = "TrailerCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1724;
 		vrLoc = 0;
@@ -3334,7 +3357,7 @@
 		fRef = 749569590E2D6248007BFF21 /* Review.h */;
 		name = "Review.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 0;
@@ -3344,7 +3367,7 @@
 		fRef = 74EFE59C0E3566F100B6E103 /* Review.m */;
 		name = "Review.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1713;
 		vrLoc = 0;
@@ -3354,7 +3377,7 @@
 		fRef = 74EFE7CF0E35A3BC00B6E103 /* ReviewCache.h */;
 		name = "ReviewCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1791;
 		vrLoc = 0;
@@ -3364,7 +3387,7 @@
 		fRef = 74EFE7F70E35A56E00B6E103 /* ReviewCache.m */;
 		name = "ReviewCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 0;
@@ -3374,7 +3397,7 @@
 		fRef = 74EFE4AE0E355D7500B6E103 /* ImageCache.h */;
 		name = "ImageCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1758;
 		vrLoc = 0;
@@ -3384,7 +3407,7 @@
 		fRef = 74EFE4B50E355EB000B6E103 /* ImageCache.m */;
 		name = "ImageCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1816;
 		vrLoc = 0;
@@ -3394,7 +3417,7 @@
 		fRef = 74EFE5340E35637200B6E103 /* FontCache.h */;
 		name = "FontCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1716;
 		vrLoc = 0;
@@ -3404,7 +3427,7 @@
 		fRef = 74EFE5350E35637200B6E103 /* FontCache.m */;
 		name = "FontCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 0;
@@ -3414,7 +3437,7 @@
 		fRef = 74EFE5CC0E356AA300B6E103 /* RottenTomatoesDownloader.h */;
 		name = "RottenTomatoesDownloader.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1828;
 		vrLoc = 0;
@@ -3424,7 +3447,7 @@
 		fRef = 74E8CA160E537C6C00C87884 /* RottenTomatoesDownloader.m */;
 		name = "RottenTomatoesDownloader.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1762;
 		vrLoc = 0;
@@ -3434,7 +3457,7 @@
 		fRef = 74EFE5D60E356BBA00B6E103 /* MetacriticDownloader.h */;
 		name = "MetacriticDownloader.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1820;
 		vrLoc = 0;
@@ -3444,7 +3467,7 @@
 		fRef = 74085D210E4252200069F0F5 /* MetacriticDownloader.m */;
 		name = "MetacriticDownloader.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 0;
@@ -3454,7 +3477,7 @@
 		fRef = 740C9FE60E3A838E00D7A56B /* ColorCache.h */;
 		name = "ColorCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 0;
@@ -3464,7 +3487,7 @@
 		fRef = 740C9FF10E3A843100D7A56B /* ColorCache.m */;
 		name = "ColorCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1759;
 		vrLoc = 0;
@@ -3474,7 +3497,7 @@
 		fRef = 74085B8A0E423F010069F0F5 /* RatingsCache.h */;
 		name = "RatingsCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1825;
 		vrLoc = 0;
@@ -3484,7 +3507,7 @@
 		fRef = 74085BDC0E4247C10069F0F5 /* RatingsCache.m */;
 		name = "RatingsCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1778;
 		vrLoc = 0;
@@ -3494,7 +3517,7 @@
 		fRef = 32CA4F630368D1EE00C91783 /* BoxOffice_Prefix.pch */;
 		name = "BoxOffice_Prefix.pch: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 0;
@@ -3504,7 +3527,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 0;
@@ -3514,7 +3537,7 @@
 		fRef = 745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 79";
 		rLen = 0;
-		rLoc = 2871;
+		rLoc = 2863;
 		rType = 0;
 		vrLen = 1009;
 		vrLoc = 2292;
@@ -3544,7 +3567,7 @@
 		fRef = 74C927360E2DDAA400F5EF7D /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1771;
 		vrLoc = 0;
@@ -3554,7 +3577,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 36";
 		rLen = 0;
-		rLoc = 1797;
+		rLoc = 1789;
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 1658;
@@ -3564,7 +3587,7 @@
 		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 39";
 		rLen = 0;
-		rLoc = 2101;
+		rLoc = 2093;
 		rType = 0;
 		vrLen = 1721;
 		vrLoc = 780;
@@ -3592,7 +3615,7 @@
 		isa = PBXTextBookmark;
 		fRef = 740B14F50E441D690003F4B8 /* DataProvider.h */;
 		name = "DataProvider.h: 1";
-		rLen = 1572;
+		rLen = 1564;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1737;
@@ -3603,7 +3626,7 @@
 		fRef = 74F3B26B0E3CE95600DD25DA /* DataProvider.m */;
 		name = "DataProvider.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1599;
 		vrLoc = 0;
@@ -3613,7 +3636,7 @@
 		fRef = 748C54710E3D414700D141B7 /* AbstractDataProvider.h */;
 		name = "AbstractDataProvider.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1783;
 		vrLoc = 0;
@@ -3623,7 +3646,7 @@
 		fRef = 74A291950E4AB72F00ACF4B8 /* AbstractDataProvider.m */;
 		name = "AbstractDataProvider.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1768;
 		vrLoc = 0;
@@ -3633,7 +3656,7 @@
 		fRef = 74F3B2610E3CE92B00DD25DA /* NorthAmericaDataProvider.h */;
 		name = "NorthAmericaDataProvider.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1786;
 		vrLoc = 0;
@@ -3643,7 +3666,7 @@
 		fRef = 7436A33D0E4632D500B2FBCE /* NorthAmericaDataProvider.m */;
 		name = "NorthAmericaDataProvider.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1793;
 		vrLoc = 0;
@@ -3653,7 +3676,7 @@
 		fRef = 74F3B2E50E3CF02400DD25DA /* LookupResult.h */;
 		name = "LookupResult.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1811;
 		vrLoc = 0;
@@ -3663,7 +3686,7 @@
 		fRef = 7436A3150E4630ED00B2FBCE /* LookupResult.m */;
 		name = "LookupResult.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1718;
 		vrLoc = 0;
@@ -3673,7 +3696,7 @@
 		fRef = 74CBBFCF0E3E807300747156 /* UnitedKingdomDataProvider.h */;
 		name = "UnitedKingdomDataProvider.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1843;
 		vrLoc = 0;
@@ -3683,7 +3706,7 @@
 		fRef = 74CBC08C0E3E984800747156 /* UnitedKingdomDataProvider.m */;
 		name = "UnitedKingdomDataProvider.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 0;
@@ -3693,7 +3716,7 @@
 		fRef = 74EC04DA0DD2A81C006953A4 /* DifferenceEngine.h */;
 		name = "DifferenceEngine.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 0;
@@ -3703,7 +3726,7 @@
 		fRef = 74024FE50E2C72FB00E477DA /* DifferenceEngine.m */;
 		name = "DifferenceEngine.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1752;
 		vrLoc = 0;
@@ -3713,7 +3736,7 @@
 		fRef = 74F946640DEC31EA0074AE42 /* Utilities.h */;
 		name = "Utilities.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1833;
 		vrLoc = 0;
@@ -3723,7 +3746,7 @@
 		fRef = 747F09DF0E524A6F00D24AD7 /* Utilities.m */;
 		name = "Utilities.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1762;
 		vrLoc = 0;
@@ -3733,7 +3756,7 @@
 		fRef = 74EC08710DD3EEBB006953A4 /* MultiDictionary.h */;
 		name = "MultiDictionary.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1772;
 		vrLoc = 0;
@@ -3743,7 +3766,7 @@
 		fRef = 747A9FB90E2AFD8B000AE1D9 /* DateUtilies.h */;
 		name = "DateUtilities.h: 26";
 		rLen = 6;
-		rLoc = 1705;
+		rLoc = 1697;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 0;
@@ -3753,7 +3776,7 @@
 		fRef = 74EC08980DD3FAAD006953A4 /* MultiDictionary.m */;
 		name = "MultiDictionary.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1728;
 		vrLoc = 0;
@@ -3763,7 +3786,7 @@
 		fRef = 747A9FB90E2AFD8B000AE1D9 /* DateUtilies.h */;
 		name = "DateUtilities.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1702;
 		vrLoc = 0;
@@ -3773,7 +3796,7 @@
 		fRef = 74085C0A0E424AB50069F0F5 /* DateUtilities.m */;
 		name = "DateUtilities.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1805;
 		vrLoc = 0;
@@ -3783,7 +3806,7 @@
 		fRef = 74088E660DCD36AE00954696 /* XmlDocument.h */;
 		name = "XmlDocument.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 0;
@@ -3793,7 +3816,7 @@
 		fRef = 74088E670DCD36AE00954696 /* XmlDocument.m */;
 		name = "XmlDocument.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1709;
 		vrLoc = 0;
@@ -3803,7 +3826,7 @@
 		fRef = 74088E680DCD36AE00954696 /* XmlSerializer.h */;
 		name = "XmlSerializer.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1729;
 		vrLoc = 0;
@@ -3813,7 +3836,7 @@
 		fRef = 74CF3FFC0DEFE4B0006272AB /* XmlSerializer.m */;
 		name = "XmlSerializer.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1782;
 		vrLoc = 0;
@@ -3823,7 +3846,7 @@
 		fRef = 74D6F2E10DCC1AF80097A984 /* XmlParser.h */;
 		name = "XmlParser.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1937;
 		vrLoc = 0;
@@ -3833,7 +3856,7 @@
 		fRef = 74CBC1050E3EA90500747156 /* XmlParser.m */;
 		name = "XmlParser.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1728;
 		vrLoc = 0;
@@ -3843,7 +3866,7 @@
 		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
 		name = "XmlElement.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1819;
 		vrLoc = 0;
@@ -3853,7 +3876,7 @@
 		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
 		name = "XmlElement.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1709;
 		vrLoc = 0;
@@ -3863,7 +3886,7 @@
 		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 2008;
 		vrLoc = 0;
@@ -3873,7 +3896,7 @@
 		fRef = 741774080E320CDB00551817 /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1819;
 		vrLoc = 0;
@@ -3883,7 +3906,7 @@
 		fRef = 7464F9340DD4D268000CE93F /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1958;
 		vrLoc = 0;
@@ -3893,7 +3916,7 @@
 		fRef = 74F683F60E4C03BC00DAAE8B /* AbstractNavigationController.m */;
 		name = "AbstractNavigationController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1802;
 		vrLoc = 0;
@@ -3903,7 +3926,7 @@
 		fRef = 745C915B0E4BE74C006C5EB8 /* MoviesNavigationController.h */;
 		name = "MoviesNavigationController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1948;
 		vrLoc = 0;
@@ -3913,7 +3936,7 @@
 		fRef = 74C927360E2DDAA400F5EF7D /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1815;
 		vrLoc = 0;
@@ -3923,7 +3946,7 @@
 		fRef = 74447C390DC83E7400CC146C /* TheatersNavigationController.h */;
 		name = "TheatersNavigationController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1966;
 		vrLoc = 0;
@@ -3933,7 +3956,7 @@
 		fRef = 7417742D0E320DDB00551817 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 0;
@@ -3943,7 +3966,7 @@
 		fRef = 740DE1970DCC3FB100B4E69A /* SettingsNavigationController.h */;
 		name = "SettingsNavigationController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1877;
 		vrLoc = 0;
@@ -3953,7 +3976,7 @@
 		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
 		name = "SettingsNavigationController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1757;
 		vrLoc = 0;
@@ -3963,7 +3986,7 @@
 		fRef = 74EF36E00DCEB380004D7E3B /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1881;
 		vrLoc = 0;
@@ -3973,7 +3996,7 @@
 		fRef = 74A5C89C0E307F4600324BBF /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 0;
@@ -3983,7 +4006,7 @@
 		fRef = 74447C630DC843B200CC146C /* AllTheatersViewController.h */;
 		name = "AllTheatersViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1887;
 		vrLoc = 0;
@@ -3993,7 +4016,7 @@
 		fRef = 746828DE0E2A77C700013DC6 /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1775;
 		vrLoc = 0;
@@ -4003,7 +4026,7 @@
 		fRef = 748379C90DD0169E00DC3B80 /* EditorViewController.h */;
 		name = "EditorViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1809;
 		vrLoc = 0;
@@ -4013,7 +4036,7 @@
 		fRef = 74EC02840DD17369006953A4 /* EditorViewController.m */;
 		name = "EditorViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1757;
 		vrLoc = 0;
@@ -4023,7 +4046,7 @@
 		fRef = 74088F6B0DCD4C7F00954696 /* MovieDetailsViewController.h */;
 		name = "MovieDetailsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1838;
 		vrLoc = 0;
@@ -4033,7 +4056,7 @@
 		fRef = 74B3BC910E2D980E00DCE835 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1794;
 		vrLoc = 0;
@@ -4043,7 +4066,7 @@
 		fRef = 74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */;
 		name = "PickerEditorViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1804;
 		vrLoc = 0;
@@ -4053,7 +4076,7 @@
 		fRef = 740B15500E4422C10003F4B8 /* PickerEditorViewController.m */;
 		name = "PickerEditorViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 0;
@@ -4063,7 +4086,7 @@
 		fRef = 74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */;
 		name = "SearchDatePickerViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1894;
 		vrLoc = 0;
@@ -4073,7 +4096,7 @@
 		fRef = 740B15550E4422D40003F4B8 /* SearchDatePickerViewController.m */;
 		name = "SearchDatePickerViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1776;
 		vrLoc = 0;
@@ -4083,7 +4106,7 @@
 		fRef = 740E7FAE0DCFFF120066FCE5 /* SettingsViewController.h */;
 		name = "SettingsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1882;
 		vrLoc = 0;
@@ -4093,7 +4116,7 @@
 		fRef = 74AFFF640E52859900CA891E /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1816;
 		vrLoc = 0;
@@ -4103,7 +4126,7 @@
 		fRef = 74CA1E3B0DD021820046D1CE /* TextFieldEditorViewController.h */;
 		name = "TextFieldEditorViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1822;
 		vrLoc = 0;
@@ -4113,7 +4136,7 @@
 		fRef = 74AFFF310E527F9600CA891E /* TextFieldEditorViewController.m */;
 		name = "TextFieldEditorViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 0;
@@ -4123,7 +4146,7 @@
 		fRef = 7400F4E30DCC2C81004D712D /* TheaterDetailsViewController.h */;
 		name = "TheaterDetailsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 0;
@@ -4133,7 +4156,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1379;
 		vrLoc = 0;
@@ -4143,7 +4166,7 @@
 		fRef = 74085E140E4262320069F0F5 /* TheaterDetailsViewController.m */;
 		name = "TheaterDetailsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1805;
 		vrLoc = 0;
@@ -4153,7 +4176,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1838;
 		vrLoc = 0;
@@ -4163,7 +4186,7 @@
 		fRef = 74A291200E4AAB1400ACF4B8 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1801;
 		vrLoc = 0;
@@ -4173,7 +4196,7 @@
 		fRef = 74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */;
 		name = "ViewControllerUtilities.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1671;
 		vrLoc = 0;
@@ -4183,7 +4206,7 @@
 		fRef = 74E318800DFC815900D3AB6A /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1902;
 		vrLoc = 0;
@@ -4193,7 +4216,7 @@
 		fRef = 741111520DFCF61900B94FB5 /* CreditsViewController.h */;
 		name = "CreditsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 0;
@@ -4203,7 +4226,7 @@
 		fRef = 7416DB320E3C59C100686F79 /* CreditsViewController.m */;
 		name = "CreditsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1762;
 		vrLoc = 0;
@@ -4213,7 +4236,7 @@
 		fRef = 74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */;
 		name = "ReviewsViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1821;
 		vrLoc = 0;
@@ -4223,7 +4246,7 @@
 		fRef = 740D0D4F0E4DE16500A12BB3 /* ReviewsViewController.m */;
 		name = "ReviewsViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1795;
 		vrLoc = 0;
@@ -4233,7 +4256,7 @@
 		fRef = 74EFE42A0E35555C00B6E103 /* RatingsProviderViewController.h */;
 		name = "RatingsProviderViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1868;
 		vrLoc = 0;
@@ -4243,7 +4266,7 @@
 		fRef = 74DB941D0E385AE9007D0010 /* RatingsProviderViewController.m */;
 		name = "RatingsProviderViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1807;
 		vrLoc = 0;
@@ -4253,7 +4276,7 @@
 		fRef = 74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */;
 		name = "DataProviderViewController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1865;
 		vrLoc = 0;
@@ -4263,7 +4286,7 @@
 		fRef = 74CBC0040E3E8CDF00747156 /* DataProviderViewController.m */;
 		name = "DataProviderViewController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 0;
@@ -4273,7 +4296,7 @@
 		fRef = 74489E5E0DDD341E00F565B1 /* AutoresizingCell.h */;
 		name = "AutoresizingCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1686;
 		vrLoc = 0;
@@ -4283,7 +4306,7 @@
 		fRef = 74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */;
 		name = "AutoresizingCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1720;
 		vrLoc = 0;
@@ -4293,7 +4316,7 @@
 		fRef = 743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */;
 		name = "MovieShowtimesCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1847;
 		vrLoc = 0;
@@ -4303,7 +4326,7 @@
 		fRef = 74085DD40E42607E0069F0F5 /* MovieShowtimesCell.m */;
 		name = "MovieShowtimesCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1737;
 		vrLoc = 0;
@@ -4313,7 +4336,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1796;
 		vrLoc = 0;
@@ -4323,7 +4346,7 @@
 		fRef = 74EFE53B0E35643E00B6E103 /* MovieTitleCell.m */;
 		name = "MovieTitleCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1747;
 		vrLoc = 0;
@@ -4333,7 +4356,7 @@
 		fRef = 742445A50E2D2F9800C98F84 /* AttributeCell.h */;
 		name = "AttributeCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1781;
 		vrLoc = 0;
@@ -4343,7 +4366,7 @@
 		fRef = 7489DE530E3D6DAF00D77435 /* AttributeCell.m */;
 		name = "AttributeCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1703;
 		vrLoc = 0;
@@ -4353,7 +4376,7 @@
 		fRef = 74737BE50E2D8BA300C37E4B /* SettingCell.h */;
 		name = "SettingCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 0;
@@ -4363,7 +4386,7 @@
 		fRef = 74737BEC0E2D8C7800C37E4B /* SettingCell.m */;
 		name = "SettingCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1696;
 		vrLoc = 0;
@@ -4373,7 +4396,7 @@
 		fRef = 74EFE72A0E358D6D00B6E103 /* ReviewTitleCell.h */;
 		name = "ReviewTitleCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1810;
 		vrLoc = 0;
@@ -4383,7 +4406,7 @@
 		fRef = 74A016740E3A66C3009D2B18 /* ReviewTitleCell.m */;
 		name = "ReviewTitleCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1750;
 		vrLoc = 0;
@@ -4393,7 +4416,7 @@
 		fRef = 740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */;
 		name = "ReviewBodyCell.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1722;
 		vrLoc = 0;
@@ -4403,7 +4426,7 @@
 		fRef = 740B14E00E2DD09A00493FC3 /* ReviewBodyCell.m */;
 		name = "ReviewBodyCell.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1696;
 		vrLoc = 0;
@@ -4413,7 +4436,7 @@
 		fRef = 740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */;
 		name = "ActivityIndicator.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1818;
 		vrLoc = 0;
@@ -4423,7 +4446,7 @@
 		fRef = 745E74140E28DCE500B819BE /* ActivityIndicator.m */;
 		name = "ActivityIndicator.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1747;
 		vrLoc = 0;
@@ -4433,7 +4456,7 @@
 		fRef = 7445559D0DD7B9C3008AF706 /* PosterView.h */;
 		name = "PosterView.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1875;
 		vrLoc = 0;
@@ -4443,7 +4466,7 @@
 		fRef = 7454441F0DD53CB400FB6970 /* PosterView.m */;
 		name = "PosterView.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 0;
@@ -4453,7 +4476,7 @@
 		fRef = 744557240DD7E785008AF706 /* NotificationCenter.h */;
 		name = "NotificationCenter.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1775;
 		vrLoc = 0;
@@ -4463,7 +4486,7 @@
 		fRef = 744557370DD7E7FF008AF706 /* NotificationCenter.m */;
 		name = "NotificationCenter.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1748;
 		vrLoc = 0;
@@ -4473,7 +4496,7 @@
 		fRef = 74A016D30E3A6C3D009D2B18 /* Application.h */;
 		name = "Application.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 0;
@@ -4483,7 +4506,7 @@
 		fRef = 74085B680E4237850069F0F5 /* Application.m */;
 		name = "Application.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 0;
@@ -4493,7 +4516,7 @@
 		fRef = 7445573E0DD7F041008AF706 /* BoxOfficeAppDelegate.h */;
 		name = "BoxOfficeAppDelegate.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1846;
 		vrLoc = 0;
@@ -4503,7 +4526,7 @@
 		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
 		name = "BoxOfficeAppDelegate.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1777;
 		vrLoc = 0;
@@ -4513,7 +4536,7 @@
 		fRef = 7400F4AE0DCC2A2E004D712D /* BoxOfficeController.h */;
 		name = "BoxOfficeController.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1824;
 		vrLoc = 0;
@@ -4523,7 +4546,7 @@
 		fRef = 74FFECB00E4642AE00151748 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1815;
 		vrLoc = 0;
@@ -4533,7 +4556,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1860;
 		vrLoc = 0;
@@ -4543,7 +4566,7 @@
 		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1787;
 		vrLoc = 0;
@@ -4553,7 +4576,7 @@
 		fRef = 7442579F0E21BC80006B1AA5 /* Movie.h */;
 		name = "Movie.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1788;
 		vrLoc = 0;
@@ -4563,7 +4586,7 @@
 		fRef = 74EFE6BC0E3581A300B6E103 /* Movie.m */;
 		name = "Movie.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1711;
 		vrLoc = 0;
@@ -4573,7 +4596,7 @@
 		fRef = 74F059380E36E2E10031A8E5 /* Theater.h */;
 		name = "Theater.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1763;
 		vrLoc = 0;
@@ -4583,7 +4606,7 @@
 		fRef = 748C51970E3CF51700D141B7 /* Theater.m */;
 		name = "Theater.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1734;
 		vrLoc = 0;
@@ -4593,7 +4616,7 @@
 		fRef = 74EC04F30DD2B704006953A4 /* Location.h */;
 		name = "Location.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1752;
 		vrLoc = 0;
@@ -4603,7 +4626,7 @@
 		fRef = 749568640E2D4252007BFF21 /* Location.m */;
 		name = "Location.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1727;
 		vrLoc = 0;
@@ -4613,7 +4636,7 @@
 		fRef = 7457FE900E21A41A00929D3E /* Performance.h */;
 		name = "Performance.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1803;
 		vrLoc = 0;
@@ -4623,7 +4646,7 @@
 		fRef = 7457FE910E21A41A00929D3E /* Performance.m */;
 		name = "Performance.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1717;
 		vrLoc = 0;
@@ -4633,7 +4656,7 @@
 		fRef = 7442579D0E21BC7D006B1AA5 /* PosterCache.h */;
 		name = "PosterCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1725;
 		vrLoc = 0;
@@ -4643,7 +4666,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1722;
 		vrLoc = 0;
@@ -4653,7 +4676,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1792;
 		vrLoc = 0;
@@ -4663,7 +4686,7 @@
 		fRef = 749618AC0DFF9B580081851F /* AddressLocationCache.m */;
 		name = "AddressLocationCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1756;
 		vrLoc = 0;
@@ -4673,7 +4696,7 @@
 		fRef = 74088E2E0DCD359600954696 /* PosterDownloader.h */;
 		name = "PosterDownloader.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1745;
 		vrLoc = 0;
@@ -4683,7 +4706,7 @@
 		fRef = 747925250E2498C600D8BB3C /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1731;
 		vrLoc = 0;
@@ -4693,7 +4716,7 @@
 		fRef = 7442579B0E21BC79006B1AA5 /* ImdbPosterDownloader.h */;
 		name = "ImdbPosterDownloader.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1702;
 		vrLoc = 0;
@@ -4703,7 +4726,7 @@
 		fRef = 745C914E0E4BE693006C5EB8 /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1733;
 		vrLoc = 0;
@@ -4713,7 +4736,7 @@
 		fRef = 748217E00E2164FF0054759E /* ExtraMovieInformation.h */;
 		name = "ExtraMovieInformation.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1798;
 		vrLoc = 0;
@@ -4723,7 +4746,7 @@
 		fRef = 74EFE6A70E35811900B6E103 /* ExtraMovieInformation.m */;
 		name = "ExtraMovieInformation.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1735;
 		vrLoc = 0;
@@ -4733,7 +4756,7 @@
 		fRef = 74F187310E27145B00AB5E1E /* TrailerCache.h */;
 		name = "TrailerCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1727;
 		vrLoc = 0;
@@ -4743,7 +4766,7 @@
 		fRef = 747C5BEC0E53745B0022E566 /* TrailerCache.m */;
 		name = "TrailerCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1724;
 		vrLoc = 0;
@@ -4753,7 +4776,7 @@
 		fRef = 749569590E2D6248007BFF21 /* Review.h */;
 		name = "Review.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1740;
 		vrLoc = 0;
@@ -4763,7 +4786,7 @@
 		fRef = 74EFE59C0E3566F100B6E103 /* Review.m */;
 		name = "Review.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1713;
 		vrLoc = 0;
@@ -4773,7 +4796,7 @@
 		fRef = 74EFE7CF0E35A3BC00B6E103 /* ReviewCache.h */;
 		name = "ReviewCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1791;
 		vrLoc = 0;
@@ -4783,7 +4806,7 @@
 		fRef = 74EFE7F70E35A56E00B6E103 /* ReviewCache.m */;
 		name = "ReviewCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 0;
@@ -4793,7 +4816,7 @@
 		fRef = 74EFE4AE0E355D7500B6E103 /* ImageCache.h */;
 		name = "ImageCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1758;
 		vrLoc = 0;
@@ -4803,7 +4826,7 @@
 		fRef = 74EFE4B50E355EB000B6E103 /* ImageCache.m */;
 		name = "ImageCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1816;
 		vrLoc = 0;
@@ -4813,7 +4836,7 @@
 		fRef = 74EFE5340E35637200B6E103 /* FontCache.h */;
 		name = "FontCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1716;
 		vrLoc = 0;
@@ -4823,7 +4846,7 @@
 		fRef = 74EFE5350E35637200B6E103 /* FontCache.m */;
 		name = "FontCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1764;
 		vrLoc = 0;
@@ -4833,7 +4856,7 @@
 		fRef = 74EFE5CC0E356AA300B6E103 /* RottenTomatoesDownloader.h */;
 		name = "RottenTomatoesDownloader.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1828;
 		vrLoc = 0;
@@ -4843,7 +4866,7 @@
 		fRef = 74E8CA160E537C6C00C87884 /* RottenTomatoesDownloader.m */;
 		name = "RottenTomatoesDownloader.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1762;
 		vrLoc = 0;
@@ -4853,7 +4876,7 @@
 		fRef = 74EFE5D60E356BBA00B6E103 /* MetacriticDownloader.h */;
 		name = "MetacriticDownloader.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1820;
 		vrLoc = 0;
@@ -4863,7 +4886,7 @@
 		fRef = 74085D210E4252200069F0F5 /* MetacriticDownloader.m */;
 		name = "MetacriticDownloader.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1754;
 		vrLoc = 0;
@@ -4873,7 +4896,7 @@
 		fRef = 740C9FE60E3A838E00D7A56B /* ColorCache.h */;
 		name = "ColorCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1673;
 		vrLoc = 0;
@@ -4883,7 +4906,7 @@
 		fRef = 740C9FF10E3A843100D7A56B /* ColorCache.m */;
 		name = "ColorCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1759;
 		vrLoc = 0;
@@ -4893,7 +4916,7 @@
 		fRef = 74085B8A0E423F010069F0F5 /* RatingsCache.h */;
 		name = "RatingsCache.h: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1825;
 		vrLoc = 0;
@@ -4903,7 +4926,7 @@
 		fRef = 74085BDC0E4247C10069F0F5 /* RatingsCache.m */;
 		name = "RatingsCache.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1778;
 		vrLoc = 0;
@@ -4913,7 +4936,7 @@
 		fRef = 32CA4F630368D1EE00C91783 /* BoxOffice_Prefix.pch */;
 		name = "BoxOffice_Prefix.pch: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 0;
@@ -4923,7 +4946,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1773;
 		vrLoc = 0;
@@ -4933,7 +4956,7 @@
 		fRef = 745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 79";
 		rLen = 0;
-		rLoc = 2871;
+		rLoc = 2863;
 		rType = 0;
 		vrLen = 1009;
 		vrLoc = 2292;
@@ -4963,7 +4986,7 @@
 		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 33";
 		rLen = 0;
-		rLoc = 1826;
+		rLoc = 1818;
 		rType = 0;
 		vrLen = 2023;
 		vrLoc = 0;
@@ -4973,7 +4996,7 @@
 		fRef = 74C927360E2DDAA400F5EF7D /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 28";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1771;
 		vrLoc = 0;
@@ -4983,7 +5006,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 36";
 		rLen = 0;
-		rLoc = 1797;
+		rLoc = 1789;
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 1658;
@@ -4993,7 +5016,7 @@
 		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 39";
 		rLen = 0;
-		rLoc = 2101;
+		rLoc = 2093;
 		rType = 0;
 		vrLen = 1721;
 		vrLoc = 780;
@@ -5003,7 +5026,7 @@
 		fRef = 740224ED0E54AE12006C58A2 /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 48";
 		rLen = 0;
-		rLoc = 2120;
+		rLoc = 2112;
 		rType = 0;
 		vrLen = 1490;
 		vrLoc = 1237;
@@ -5013,7 +5036,7 @@
 		fRef = 740224ED0E54AE12006C58A2 /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 48";
 		rLen = 0;
-		rLoc = 2120;
+		rLoc = 2112;
 		rType = 0;
 		vrLen = 1490;
 		vrLoc = 1237;
@@ -5033,7 +5056,7 @@
 		fRef = 740224ED0E54AE12006C58A2 /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 48";
 		rLen = 0;
-		rLoc = 2120;
+		rLoc = 2112;
 		rType = 0;
 		vrLen = 1490;
 		vrLoc = 1237;
@@ -5046,6 +5069,231 @@
 		rLoc = 552;
 		rType = 0;
 		vrLen = 1472;
+		vrLoc = 0;
+	};
+	7402260E0E54AF9E006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 147";
+		rLen = 0;
+		rLoc = 5185;
+		rType = 0;
+		vrLen = 226;
+		vrLoc = 4474;
+	};
+	7402260F0E54AF9E006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
+		name = "ApplicationTabBarController.h: 34";
+		rLen = 1;
+		rLoc = 1818;
+		rType = 0;
+		vrLen = 771;
+		vrLoc = 1237;
+	};
+	740226100E54AF9E006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "In file included from /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeAppDelegate.m";
+		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
+		rLen = 1;
+		rLoc = 31;
+		rType = 1;
+	};
+	740226110E54AF9E006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740224B30E53F9F6006C58A2 /* BoxOfficeModel.m */;
+		name = "BoxOfficeModel.m: 147";
+		rLen = 0;
+		rLoc = 5185;
+		rType = 0;
+		vrLen = 226;
+		vrLoc = 4474;
+	};
+	740226120E54AF9E006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
+		name = "ApplicationTabBarController.h: 34";
+		rLen = 1;
+		rLoc = 1818;
+		rType = 0;
+		vrLen = 771;
+		vrLoc = 1237;
+	};
+	740226130E54AF9E006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
+		name = "BoxOfficeAppDelegate.m: 32";
+		rLen = 40;
+		rLoc = 1600;
+		rType = 0;
+		vrLen = 502;
+		vrLoc = 1237;
+	};
+	740226140E54AF9E006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740224570E53F342006C58A2 /* ja */;
+		name = "Localizable.strings: 257";
+		rLen = 11;
+		rLoc = 6861;
+		rType = 0;
+		vrLen = 767;
+		vrLoc = 6093;
+	};
+	740226150E54AFB0006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */;
+		name = "License.txt: 12";
+		rLen = 0;
+		rLoc = 1472;
+		rType = 0;
+		vrLen = 1472;
+		vrLoc = 0;
+	};
+	740226160E54AFB0006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */;
+		name = "ForwardDeclarations.h: 79";
+		rLen = 0;
+		rLoc = 2863;
+		rType = 0;
+		vrLen = 988;
+		vrLoc = 2292;
+	};
+	740226170E54AFB0006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */;
+		name = "License.txt: 12";
+		rLen = 0;
+		rLoc = 1472;
+		rType = 0;
+		vrLen = 1472;
+		vrLoc = 0;
+	};
+	740226180E54AFB0006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */;
+		name = "ForwardDeclarations.h: 79";
+		rLen = 0;
+		rLoc = 2863;
+		rType = 0;
+		vrLen = 1779;
+		vrLoc = 63;
+	};
+	740226190E54AFD8006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
+		name = "BoxOfficeAppDelegate.m: 32";
+		rLen = 40;
+		rLoc = 1600;
+		rType = 0;
+		vrLen = 822;
+		vrLoc = 777;
+	};
+	7402261A0E54AFD8006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740224570E53F342006C58A2 /* ja */;
+		name = "Localizable.strings: 257";
+		rLen = 11;
+		rLoc = 6861;
+		rType = 0;
+		vrLen = 767;
+		vrLoc = 6093;
+	};
+	7402261B0E54AFD8006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74F3B22B0E3CE71A00DD25DA /* DataProvider.h */;
+		rLen = 0;
+		rLoc = 135;
+		rType = 0;
+	};
+	7402261C0E54AFD8006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740224570E53F342006C58A2 /* ja */;
+		name = "Localizable.strings: 257";
+		rLen = 11;
+		rLoc = 6861;
+		rType = 0;
+		vrLen = 767;
+		vrLoc = 6093;
+	};
+	7402261D0E54AFD8006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740B14F50E441D690003F4B8 /* DataProvider.h */;
+		name = "DataProvider.h: 26";
+		rLen = 0;
+		rLoc = 1455;
+		rType = 0;
+		vrLen = 1589;
+		vrLoc = 0;
+	};
+	7402261F0E54AFEB006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */;
+		name = "ForwardDeclarations.h: 30";
+		rLen = 0;
+		rLoc = 1589;
+		rType = 0;
+		vrLen = 1779;
+		vrLoc = 63;
+	};
+	740226200E54AFEB006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740B14F50E441D690003F4B8 /* DataProvider.h */;
+		name = "DataProvider.h: 10";
+		rLen = 0;
+		rLoc = 385;
+		rType = 0;
+		vrLen = 1709;
+		vrLoc = 356;
+	};
+	740226210E54AFEB006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74085B680E4237850069F0F5 /* Application.m */;
+		name = "Application.m: 28";
+		rLen = 0;
+		rLoc = 1564;
+		rType = 0;
+		vrLen = 1708;
+		vrLoc = 0;
+	};
+	740226220E54AFEB006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */;
+		name = "ForwardDeclarations.h: 30";
+		rLen = 0;
+		rLoc = 1589;
+		rType = 0;
+		vrLen = 1779;
+		vrLoc = 63;
+	};
+	740226230E54AFEB006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 740B14F50E441D690003F4B8 /* DataProvider.h */;
+		name = "DataProvider.h: 10";
+		rLen = 0;
+		rLoc = 385;
+		rType = 0;
+		vrLen = 1709;
+		vrLoc = 356;
+	};
+	740226240E54AFEB006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74085B680E4237850069F0F5 /* Application.m */;
+		name = "Application.m: 28";
+		rLen = 0;
+		rLoc = 1564;
+		rType = 0;
+		vrLen = 1708;
+		vrLoc = 0;
+	};
+	740226250E54AFEB006C58A2 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74A016D30E3A6C3D009D2B18 /* Application.h */;
+		name = "Application.h: 28";
+		rLen = 0;
+		rLoc = 1564;
+		rType = 0;
+		vrLen = 1750;
 		vrLoc = 0;
 	};
 	74024FE50E2C72FB00E477DA /* DifferenceEngine.m */ = {
@@ -5100,9 +5348,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/Application.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {822, 5936}}";
-			sepNavSelRange = "{1572, 0}";
-			sepNavVisRange = "{0, 1717}";
+			sepNavIntBoundsRect = "{{0, 0}, {688, 5572}}";
+			sepNavSelRange = "{1564, 0}";
+			sepNavVisRange = "{0, 1708}";
 		};
 	};
 	74085B800E4237A50069F0F5 /* PBXTextBookmark */ = {
@@ -5110,7 +5358,7 @@
 		fRef = 746828DE0E2A77C700013DC6 /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 226";
 		rLen = 0;
-		rLoc = 10655;
+		rLoc = 10647;
 		rType = 0;
 		vrLen = 1492;
 		vrLoc = 8341;
@@ -5159,7 +5407,7 @@
 		fRef = 74085B680E4237850069F0F5 /* Application.m */;
 		name = "Application.m: 289";
 		rLen = 0;
-		rLoc = 10736;
+		rLoc = 10728;
 		rType = 0;
 		vrLen = 796;
 		vrLoc = 7276;
@@ -5169,7 +5417,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 49";
 		rLen = 0;
-		rLoc = 2369;
+		rLoc = 2361;
 		rType = 0;
 		vrLen = 1170;
 		vrLoc = 448;
@@ -5191,7 +5439,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/RatingsCache.m;
 		sourceTree = "<group>";
 	};
-	74085C9F0E424E360069F0F5 /* RatingsCache.m:1 */ = {
+	74085C9F0E424E360069F0F5 /* RatingsCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5203,7 +5451,7 @@
 		functionName = "-onRatingsProviderChanged";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377603;
 		state = 2;
@@ -5278,7 +5526,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	74085CD90E424FD30069F0F5 /* ReviewCache.m:1 */ = {
+	74085CD90E424FD30069F0F5 /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5290,7 +5538,7 @@
 		functionName = "-saveMovie:reviews:hash:ratingsProvider:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.37763;
 		state = 2;
@@ -5305,7 +5553,7 @@
 		vrLen = 1415;
 		vrLoc = 821;
 	};
-	74085CE90E42500F0069F0F5 /* ReviewCache.m:1 */ = {
+	74085CE90E42500F0069F0F5 /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5317,12 +5565,12 @@
 		functionName = "-saveMovie:reviews:hash:ratingsProvider:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377637;
 		state = 2;
 	};
-	74085CF10E4250410069F0F5 /* ReviewCache.m:1 */ = {
+	74085CF10E4250410069F0F5 /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5334,12 +5582,12 @@
 		functionName = "-downloadReviews:ratingsProvider:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377644;
 		state = 2;
 	};
-	74085CF50E42507B0069F0F5 /* BoxOfficeModel.m:1 */ = {
+	74085CF50E42507B0069F0F5 /* BoxOfficeModel.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5351,12 +5599,12 @@
 		functionName = "-updateReviewCache";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377651;
 		state = 2;
 	};
-	74085D140E4251900069F0F5 /* ReviewCache.m:1 */ = {
+	74085D140E4251900069F0F5 /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5368,7 +5616,7 @@
 		functionName = "-update:ratingsProvider:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377658;
 		state = 2;
@@ -5385,7 +5633,7 @@
 			sepNavVisRange = "{0, 1754}";
 		};
 	};
-	74085D230E4252200069F0F5 /* MetacriticDownloader.m:1 */ = {
+	74085D230E4252200069F0F5 /* MetacriticDownloader.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5397,12 +5645,12 @@
 		functionName = "-lookupMovieListings:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377665;
 		state = 2;
 	};
-	74085D250E4252240069F0F5 /* MetacriticDownloader.m:1 */ = {
+	74085D250E4252240069F0F5 /* MetacriticDownloader.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -5414,7 +5662,7 @@
 		functionName = "-lookupMovieListings:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377677;
 		state = 2;
@@ -5424,7 +5672,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 15";
 		rLen = 7;
-		rLoc = 1679;
+		rLoc = 1671;
 		rType = 0;
 		vrLen = 772;
 		vrLoc = 0;
@@ -5470,9 +5718,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeAppDelegate.m;
 		sourceTree = "<group>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {688, 1064}}";
-			sepNavSelRange = "{1572, 0}";
-			sepNavVisRange = "{0, 1777}";
+			sepNavIntBoundsRect = "{{0, 0}, {1078, 938}}";
+			sepNavSelRange = "{1600, 40}";
+			sepNavVisRange = "{777, 822}";
 		};
 	};
 	74088BD50DCD0AA800954696 /* PosterCache.h */ = {
@@ -5813,7 +6061,7 @@
 		fRef = 74024FE50E2C72FB00E477DA /* DifferenceEngine.m */;
 		name = "DifferenceEngine.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 0;
@@ -5823,7 +6071,7 @@
 		fRef = 74D6F2E10DCC1AF80097A984 /* XmlParser.h */;
 		name = "XmlParser.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1211;
 		vrLoc = 0;
@@ -5833,7 +6081,7 @@
 		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
 		name = "XmlElement.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1344;
 		vrLoc = 0;
@@ -5843,7 +6091,7 @@
 		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
 		name = "XmlElement.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 0;
@@ -5853,7 +6101,7 @@
 		fRef = 74447C320DC83C2000CC146C /* MoviesNavigationController.h */;
 		name = "MoviesNavigationController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1517;
 		vrLoc = 0;
@@ -5863,7 +6111,7 @@
 		fRef = 74447C390DC83E7400CC146C /* TheatersNavigationController.h */;
 		name = "TheatersNavigationController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1483;
 		vrLoc = 0;
@@ -5873,7 +6121,7 @@
 		fRef = 744557370DD7E7FF008AF706 /* NotificationCenter.m */;
 		name = "NotificationCenter.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1200;
 		vrLoc = 0;
@@ -5883,7 +6131,7 @@
 		fRef = 7457FE910E21A41A00929D3E /* Performance.m */;
 		name = "Performance.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1154;
 		vrLoc = 0;
@@ -5893,7 +6141,7 @@
 		fRef = 7442579D0E21BC7D006B1AA5 /* PosterCache.h */;
 		name = "PosterCache.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 963;
 		vrLoc = 0;
@@ -5903,7 +6151,7 @@
 		fRef = 74EFE5340E35637200B6E103 /* FontCache.h */;
 		name = "FontCache.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 908;
 		vrLoc = 0;
@@ -5951,7 +6199,7 @@
 		fRef = 74F3B2E50E3CF02400DD25DA /* LookupResult.h */;
 		name = "LookupResult.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1237;
 		vrLoc = 0;
@@ -5973,7 +6221,7 @@
 		fRef = 740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */;
 		name = "ReviewBodyCell.h: 16";
 		rLen = 0;
-		rLoc = 1677;
+		rLoc = 1669;
 		rType = 0;
 		vrLen = 321;
 		vrLoc = 0;
@@ -5986,8 +6234,8 @@
 		sourceTree = "<absolute>";
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {688, 672}}";
-			sepNavSelRange = "{0, 1572}";
-			sepNavVisRange = "{0, 1737}";
+			sepNavSelRange = "{385, 0}";
+			sepNavVisRange = "{356, 1709}";
 		};
 	};
 	740B150F0E441EC50003F4B8 /* PBXTextBookmark */ = {
@@ -6005,7 +6253,7 @@
 		fRef = 740B14F50E441D690003F4B8 /* DataProvider.h */;
 		name = "DataProvider.h: 20";
 		rLen = 0;
-		rLoc = 1573;
+		rLoc = 1565;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 0;
@@ -6017,7 +6265,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/NorthAmericaDataProvider.m;
 		sourceTree = "<group>";
 	};
-	740B15400E441FD90003F4B8 /* NorthAmericaDataProvider.m:1 */ = {
+	740B15400E441FD90003F4B8 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -6029,12 +6277,12 @@
 		functionName = "-ticketingUrlForTheater:movie:performance:date:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377687;
 		state = 2;
 	};
-	740B15420E441FDA0003F4B8 /* NorthAmericaDataProvider.m:1 */ = {
+	740B15420E441FDA0003F4B8 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -6046,7 +6294,7 @@
 		functionName = "-ticketingUrlForTheater:movie:performance:date:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377694;
 		state = 2;
@@ -6090,7 +6338,7 @@
 		fRef = 74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */;
 		name = "PickerEditorViewController.h: 27";
 		rLen = 0;
-		rLoc = 1874;
+		rLoc = 1866;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 0;
@@ -6146,7 +6394,7 @@
 		fRef = 740C9FE70E3A838E00D7A56B /* ColorCache.m */;
 		name = "ColorCache.m: 22";
 		rLen = 0;
-		rLoc = 2051;
+		rLoc = 2043;
 		rType = 0;
 		vrLen = 315;
 		vrLoc = 0;
@@ -6156,7 +6404,7 @@
 		fRef = 740C9FE60E3A838E00D7A56B /* ColorCache.h */;
 		name = "ColorCache.h: 17";
 		rLen = 0;
-		rLoc = 1666;
+		rLoc = 1658;
 		rType = 0;
 		vrLen = 268;
 		vrLoc = 0;
@@ -6176,7 +6424,7 @@
 		fRef = 74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */;
 		name = "ReviewsViewController.h: 18";
 		rLen = 26;
-		rLoc = 1638;
+		rLoc = 1630;
 		rType = 0;
 		vrLen = 1147;
 		vrLoc = 0;
@@ -6203,7 +6451,7 @@
 			sepNavVisRange = "{0, 1795}";
 		};
 	};
-	740D0D510E4DE16500A12BB3 /* ReviewsViewController.m:131 */ = {
+	740D0D510E4DE16500A12BB3 /* ReviewsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -6215,7 +6463,7 @@
 		functionName = "-tableView:accessoryButtonTappedForRowWithIndexPath:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 131;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377883;
 		state = 2;
@@ -6225,7 +6473,7 @@
 		fRef = 740D0D4F0E4DE16500A12BB3 /* ReviewsViewController.m */;
 		name = "ReviewsViewController.m: 98";
 		rLen = 0;
-		rLoc = 4362;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 2835;
@@ -6235,7 +6483,7 @@
 		fRef = 74C927360E2DDAA400F5EF7D /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 25";
 		rLen = 43;
-		rLoc = 1772;
+		rLoc = 1764;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 530;
@@ -6245,7 +6493,7 @@
 		fRef = 740D0D4F0E4DE16500A12BB3 /* ReviewsViewController.m */;
 		name = "ReviewsViewController.m: 98";
 		rLen = 0;
-		rLoc = 4362;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1266;
 		vrLoc = 2835;
@@ -6379,7 +6627,7 @@
 		fRef = 74EFE5350E35637200B6E103 /* FontCache.m */;
 		name = "FontCache.m: 30";
 		rLen = 0;
-		rLoc = 2157;
+		rLoc = 2149;
 		rType = 0;
 		vrLen = 817;
 		vrLoc = 79;
@@ -6389,7 +6637,7 @@
 		fRef = 7400784D0DCE6C1200B3799F /* PosterCache.m */;
 		name = "PosterCache.m: 43";
 		rLen = 0;
-		rLoc = 2342;
+		rLoc = 2334;
 		rType = 0;
 		vrLen = 1276;
 		vrLoc = 395;
@@ -6471,7 +6719,7 @@
 		fRef = 741111520DFCF61900B94FB5 /* CreditsViewController.h */;
 		name = "CreditsViewController.h: 22";
 		rLen = 0;
-		rLoc = 1994;
+		rLoc = 1986;
 		rType = 0;
 		vrLen = 533;
 		vrLoc = 0;
@@ -7489,7 +7737,7 @@
 		fRef = 74EF36E00DCEB380004D7E3B /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 27";
 		rLen = 0;
-		rLoc = 1910;
+		rLoc = 1902;
 		rType = 0;
 		vrLen = 1077;
 		vrLoc = 47;
@@ -7530,7 +7778,7 @@
 		fRef = 74F059380E36E2E10031A8E5 /* Theater.h */;
 		name = "Theater.h: 45";
 		rLen = 0;
-		rLoc = 2449;
+		rLoc = 2441;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 762;
@@ -7540,7 +7788,7 @@
 		fRef = 74CBBFCF0E3E807300747156 /* UnitedKingdomDataProvider.h */;
 		name = "UnitedKingdomDataProvider.h: 28";
 		rLen = 0;
-		rLoc = 2011;
+		rLoc = 2003;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 0;
@@ -7569,7 +7817,7 @@
 			sepNavVisRange = "{0, 1793}";
 		};
 	};
-	7436A33F0E4632D500B2FBCE /* NorthAmericaDataProvider.m:1 */ = {
+	7436A33F0E4632D500B2FBCE /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -7581,7 +7829,7 @@
 		functionName = "-lookupMissingFavorites:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377701;
 		state = 2;
@@ -7591,7 +7839,7 @@
 		fRef = 7436A3150E4630ED00B2FBCE /* LookupResult.m */;
 		name = "LookupResult.m: 43";
 		rLen = 77;
-		rLoc = 2455;
+		rLoc = 2447;
 		rType = 0;
 		vrLen = 983;
 		vrLoc = 626;
@@ -7609,7 +7857,7 @@
 	743BE1FC0E3BFB3B00D19F9B /* License.txt */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {4536, 507}}";
-			sepNavSelRange = "{552, 0}";
+			sepNavSelRange = "{1472, 0}";
 			sepNavVisRange = "{0, 1472}";
 		};
 	};
@@ -7913,7 +8161,7 @@
 		fRef = 32CA4F630368D1EE00C91783 /* BoxOffice_Prefix.pch */;
 		name = "BoxOffice_Prefix.pch: 9";
 		rLen = 0;
-		rLoc = 1773;
+		rLoc = 1765;
 		rType = 0;
 		vrLen = 179;
 		vrLoc = 0;
@@ -8005,7 +8253,7 @@
 		fRef = 74489E5E0DDD341E00F565B1 /* AutoresizingCell.h */;
 		name = "AutoresizingCell.h: 12";
 		rLen = 0;
-		rLoc = 1597;
+		rLoc = 1589;
 		rType = 0;
 		vrLen = 292;
 		vrLoc = 0;
@@ -8015,7 +8263,7 @@
 		fRef = 74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */;
 		name = "AutoresizingCell.m: 12";
 		rLen = 0;
-		rLoc = 1634;
+		rLoc = 1626;
 		rType = 0;
 		vrLen = 899;
 		vrLoc = 49;
@@ -8120,7 +8368,7 @@
 		fRef = 74EC08980DD3FAAD006953A4 /* MultiDictionary.m */;
 		name = "MultiDictionary.m: 36";
 		rLen = 0;
-		rLoc = 1936;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 904;
 		vrLoc = 825;
@@ -8130,7 +8378,7 @@
 		fRef = 74EC08980DD3FAAD006953A4 /* MultiDictionary.m */;
 		name = "MultiDictionary.m: 36";
 		rLen = 0;
-		rLoc = 1936;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 904;
 		vrLoc = 825;
@@ -8222,8 +8470,8 @@
 	745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {688, 1330}}";
-			sepNavSelRange = "{2871, 0}";
-			sepNavVisRange = "{2292, 1009}";
+			sepNavSelRange = "{1597, 0}";
+			sepNavVisRange = "{63, 1779}";
 		};
 	};
 	745C91400E4BE5BB006C5EB8 /* SearchCache.m */ = {
@@ -8276,7 +8524,7 @@
 		fRef = 32CA4F630368D1EE00C91783 /* BoxOffice_Prefix.pch */;
 		name = "BoxOffice_Prefix.pch: 23";
 		rLen = 0;
-		rLoc = 1766;
+		rLoc = 1758;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 0;
@@ -8296,7 +8544,7 @@
 		fRef = 745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 998;
 		vrLoc = 1776;
@@ -8306,7 +8554,7 @@
 		fRef = 74EFE5CC0E356AA300B6E103 /* RottenTomatoesDownloader.h */;
 		name = "RottenTomatoesDownloader.h: 16";
 		rLen = 0;
-		rLoc = 1573;
+		rLoc = 1565;
 		rType = 0;
 		vrLen = 1021;
 		vrLoc = 0;
@@ -8360,7 +8608,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	74601F3A0E41324C00A0B37C /* ReviewCache.m:1 */ = {
+	74601F3A0E41324C00A0B37C /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -8372,7 +8620,7 @@
 		functionName = "-downloadReviews:ratingsProvider:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377574;
 		state = 2;
@@ -8394,7 +8642,7 @@
 		modificationTime = 240430643.377581;
 		state = 2;
 	};
-	74601F700E4135AB00A0B37C /* ReviewCache.m:1 */ = {
+	74601F700E4135AB00A0B37C /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -8406,7 +8654,7 @@
 		functionName = "-downloadInfoReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377593;
 		state = 2;
@@ -8598,7 +8846,7 @@
 		path = /Projects/metaboxoffice6/LookupMovieReviews.py;
 		sourceTree = "<absolute>";
 	};
-	746932E80E33264B002282B6 /* ReviewCache.m:1 */ = {
+	746932E80E33264B002282B6 /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -8610,7 +8858,7 @@
 		functionName = "-downloadInfoReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377318;
 		state = 2;
@@ -8748,7 +8996,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	74737B800E2D7D8E00C37E4B /* ReviewCache.m:1 */ = {
+	74737B800E2D7D8E00C37E4B /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -8760,7 +9008,7 @@
 		functionName = "-downloadInfoReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377255;
 		state = 2;
@@ -8805,7 +9053,7 @@
 		isa = PBXTextBookmark;
 		fRef = 742445A50E2D2F9800C98F84 /* AttributeCell.h */;
 		name = "AttributeCell.h: 1";
-		rLen = 1992;
+		rLen = 1984;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 590;
@@ -8816,7 +9064,7 @@
 		fRef = 74737BEC0E2D8C7800C37E4B /* SettingCell.m */;
 		name = "SettingCell.m: 30";
 		rLen = 0;
-		rLoc = 1721;
+		rLoc = 1713;
 		rType = 0;
 		vrLen = 527;
 		vrLoc = 23;
@@ -8826,7 +9074,7 @@
 		fRef = 74737BE50E2D8BA300C37E4B /* SettingCell.h */;
 		name = "SettingCell.h: 12";
 		rLen = 0;
-		rLoc = 1592;
+		rLoc = 1584;
 		rType = 0;
 		vrLen = 357;
 		vrLoc = 0;
@@ -8919,7 +9167,7 @@
 		fRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 29";
 		rLen = 0;
-		rLoc = 2058;
+		rLoc = 2050;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 0;
@@ -8931,7 +9179,7 @@
 		path = /Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator2.0.sdk/usr/include/stdlib.h;
 		sourceTree = "<absolute>";
 	};
-	7479B5920E401C6E003B12C1 /* ReviewCache.m:1 */ = {
+	7479B5920E401C6E003B12C1 /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -8943,7 +9191,7 @@
 		functionName = "-downloadInfoReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377547;
 		state = 2;
@@ -9040,7 +9288,7 @@
 		fRef = 7457FE900E21A41A00929D3E /* Performance.h */;
 		name = "Performance.h: 13";
 		rLen = 0;
-		rLoc = 1658;
+		rLoc = 1650;
 		rType = 0;
 		vrLen = 535;
 		vrLoc = 0;
@@ -9050,7 +9298,7 @@
 		fRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */;
 		name = "DateUtilies.m: 53";
 		rLen = 0;
-		rLoc = 1914;
+		rLoc = 1906;
 		rType = 0;
 		vrLen = 1663;
 		vrLoc = 629;
@@ -9064,7 +9312,7 @@
 		fRef = 74D6F2E10DCC1AF80097A984 /* XmlParser.h */;
 		name = "XmlParser.h: 25";
 		rLen = 0;
-		rLoc = 1936;
+		rLoc = 1928;
 		rType = 0;
 		vrLen = 1211;
 		vrLoc = 0;
@@ -9074,7 +9322,7 @@
 		fRef = 74CF3FFC0DEFE4B0006272AB /* XmlSerializer.m */;
 		name = "XmlSerializer.m: 91";
 		rLen = 0;
-		rLoc = 3836;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1470;
 		vrLoc = 0;
@@ -9084,7 +9332,7 @@
 		fRef = 74CF3FFC0DEFE4B0006272AB /* XmlSerializer.m */;
 		name = "XmlSerializer.m: 91";
 		rLen = 0;
-		rLoc = 3836;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1470;
 		vrLoc = 0;
@@ -9101,7 +9349,7 @@
 			sepNavVisRange = "{0, 1724}";
 		};
 	};
-	747C5BEE0E53745B0022E566 /* TrailerCache.m:150 */ = {
+	747C5BEE0E53745B0022E566 /* TrailerCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -9113,7 +9361,7 @@
 		functionName = "-downloadTrailers:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 150;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378057;
 		state = 2;
@@ -9135,7 +9383,7 @@
 		modificationTime = 240430643.378064;
 		state = 2;
 	};
-	747C5BFD0E5374950022E566 /* TrailerCache.m:138 */ = {
+	747C5BFD0E5374950022E566 /* TrailerCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -9147,12 +9395,12 @@
 		functionName = "-processRow:moviesTitles:engine:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 138;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378071;
 		state = 2;
 	};
-	747C5C090E53759B0022E566 /* TrailerCache.m:142 */ = {
+	747C5C090E53759B0022E566 /* TrailerCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -9164,7 +9412,7 @@
 		functionName = "-processRow:moviesTitles:engine:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 142;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378078;
 		state = 2;
@@ -9178,7 +9426,7 @@
 		fRef = 7416DB320E3C59C100686F79 /* CreditsViewController.m */;
 		name = "CreditsViewController.m: 17";
 		rLen = 0;
-		rLoc = 1607;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 0;
@@ -9236,7 +9484,7 @@
 		fRef = 7416DB320E3C59C100686F79 /* CreditsViewController.m */;
 		name = "CreditsViewController.m: 17";
 		rLen = 0;
-		rLoc = 1607;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1194;
 		vrLoc = 0;
@@ -9250,7 +9498,7 @@
 		fRef = 745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */;
 		name = "ForwardDeclarations.h: 18";
 		rLen = 0;
-		rLoc = 1598;
+		rLoc = 1590;
 		rType = 0;
 		vrLen = 1337;
 		vrLoc = 0;
@@ -9260,7 +9508,7 @@
 		fRef = 29B97316FDCFA39411CA2CEA /* main.m */;
 		name = "main.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 0;
@@ -9287,7 +9535,7 @@
 		fRef = 74F946640DEC31EA0074AE42 /* Utilities.h */;
 		name = "Utilities.h: 33";
 		rLen = 0;
-		rLoc = 2124;
+		rLoc = 2116;
 		rType = 0;
 		vrLen = 1339;
 		vrLoc = 1020;
@@ -9297,7 +9545,7 @@
 		fRef = 747925250E2498C600D8BB3C /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 41";
 		rLen = 0;
-		rLoc = 1995;
+		rLoc = 1987;
 		rType = 0;
 		vrLen = 718;
 		vrLoc = 824;
@@ -9314,7 +9562,7 @@
 			sepNavVisRange = "{0, 1762}";
 		};
 	};
-	747F09E10E524A6F00D24AD7 /* Utilities.m:272 */ = {
+	747F09E10E524A6F00D24AD7 /* Utilities.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -9326,7 +9574,7 @@
 		functionName = "+dataWithContentsOfUrl:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 272;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.37792;
 		state = 2;
@@ -9446,7 +9694,7 @@
 		fRef = 74A016D30E3A6C3D009D2B18 /* Application.h */;
 		name = "Application.h: 21";
 		rLen = 0;
-		rLoc = 1840;
+		rLoc = 1832;
 		rType = 0;
 		vrLen = 871;
 		vrLoc = 147;
@@ -9478,7 +9726,7 @@
 		fRef = 7489DE530E3D6DAF00D77435 /* AttributeCell.m */;
 		name = "AttributeCell.m: 35";
 		rLen = 0;
-		rLoc = 2424;
+		rLoc = 2416;
 		rType = 0;
 		vrLen = 1060;
 		vrLoc = 142;
@@ -9531,7 +9779,7 @@
 		fRef = 748C51970E3CF51700D141B7 /* Theater.m */;
 		name = "Theater.m: 134";
 		rLen = 0;
-		rLoc = 5847;
+		rLoc = 5839;
 		rType = 0;
 		vrLen = 711;
 		vrLoc = 3507;
@@ -9553,7 +9801,7 @@
 		fRef = 74F3B26B0E3CE95600DD25DA /* DataProvider.m */;
 		name = "DataProvider.m: 9";
 		rLen = 0;
-		rLoc = 1598;
+		rLoc = 1590;
 		rType = 0;
 		vrLen = 169;
 		vrLoc = 0;
@@ -9563,7 +9811,7 @@
 		fRef = 747A9FB90E2AFD8B000AE1D9 /* DateUtilies.h */;
 		name = "DateUtilities.h: 18";
 		rLen = 0;
-		rLoc = 1763;
+		rLoc = 1755;
 		rType = 0;
 		vrLen = 623;
 		vrLoc = 0;
@@ -9868,7 +10116,7 @@
 		fRef = 74A016740E3A66C3009D2B18 /* ReviewTitleCell.m */;
 		name = "ReviewTitleCell.m: 84";
 		rLen = 0;
-		rLoc = 1967;
+		rLoc = 1959;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 1889;
@@ -9880,9 +10128,9 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/Application.h;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {688, 938}}";
-			sepNavSelRange = "{1572, 0}";
-			sepNavVisRange = "{0, 1787}";
+			sepNavIntBoundsRect = "{{0, 0}, {688, 826}}";
+			sepNavSelRange = "{1564, 0}";
+			sepNavVisRange = "{0, 1750}";
 		};
 	};
 	74A016DB0E3A6C48009D2B18 /* PBXTextBookmark */ = {
@@ -9900,7 +10148,7 @@
 		fRef = 740B15550E4422D40003F4B8 /* SearchDatePickerViewController.m */;
 		name = "SearchDatePickerViewController.m: 37";
 		rLen = 104;
-		rLoc = 2324;
+		rLoc = 2316;
 		rType = 0;
 		vrLen = 1865;
 		vrLoc = 1338;
@@ -9937,7 +10185,7 @@
 		fRef = 7400F4E30DCC2C81004D712D /* TheaterDetailsViewController.h */;
 		name = "TheaterDetailsViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1314;
 		vrLoc = 117;
@@ -9947,7 +10195,7 @@
 		fRef = 74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */;
 		name = "ViewControllerUtilities.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 858;
 		vrLoc = 0;
@@ -9957,7 +10205,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 42";
 		rLen = 0;
-		rLoc = 2192;
+		rLoc = 2184;
 		rType = 0;
 		vrLen = 1184;
 		vrLoc = 195;
@@ -9974,7 +10222,7 @@
 			sepNavVisRange = "{0, 1801}";
 		};
 	};
-	74A291220E4AAB1400ACF4B8 /* TicketsViewController.m:1 */ = {
+	74A291220E4AAB1400ACF4B8 /* TicketsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -9986,12 +10234,12 @@
 		functionName = "-didSelectEmailListings";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430647.812361;
 		state = 1;
 	};
-	74A291260E4AAB6A00ACF4B8 /* TicketsViewController.m:1 */ = {
+	74A291260E4AAB6A00ACF4B8 /* TicketsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10003,12 +10251,12 @@
 		functionName = "-didSelectEmailListings";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377848;
 		state = 2;
 	};
-	74A291280E4AAB9F00ACF4B8 /* TicketsViewController.m:1 */ = {
+	74A291280E4AAB9F00ACF4B8 /* TicketsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10020,7 +10268,7 @@
 		functionName = "-didSelectEmailListings";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377855;
 		state = 2;
@@ -10047,7 +10295,7 @@
 		fRef = 74A291200E4AAB1400ACF4B8 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 290";
 		rLen = 0;
-		rLoc = 10602;
+		rLoc = 10594;
 		rType = 0;
 		vrLen = 1105;
 		vrLoc = 9526;
@@ -10057,7 +10305,7 @@
 		fRef = 74F946640DEC31EA0074AE42 /* Utilities.h */;
 		name = "Utilities.h: 53";
 		rLen = 75;
-		rLoc = 2639;
+		rLoc = 2631;
 		rType = 0;
 		vrLen = 1237;
 		vrLoc = 763;
@@ -10069,7 +10317,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/TheaterDetailsViewController.m;
 		sourceTree = "<group>";
 	};
-	74A2918D0E4AB6B200ACF4B8 /* TheaterDetailsViewController.m:1 */ = {
+	74A2918D0E4AB6B200ACF4B8 /* TheaterDetailsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10081,7 +10329,7 @@
 		functionName = "-initWithNavigationController:theater:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377869;
 		state = 2;
@@ -10162,7 +10410,7 @@
 		fRef = 74EFEBDB0E36CCF300B6E103 /* TrailerCache.m */;
 		name = "TrailerCache.m: 128";
 		rLen = 0;
-		rLoc = 4969;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1293;
 		vrLoc = 3791;
@@ -10199,7 +10447,7 @@
 		fRef = 74085C0A0E424AB50069F0F5 /* DateUtilities.m */;
 		name = "DateUtilities.m: 58";
 		rLen = 10;
-		rLoc = 3395;
+		rLoc = 3387;
 		rType = 0;
 		vrLen = 1704;
 		vrLoc = 1862;
@@ -10209,7 +10457,7 @@
 		fRef = 74E9C4B60E4FE6A300F29EEA /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 459";
 		rLen = 6;
-		rLoc = 16228;
+		rLoc = 16211;
 		rType = 0;
 		vrLen = 1203;
 		vrLoc = 7784;
@@ -10219,7 +10467,7 @@
 		fRef = 74A5C89C0E307F4600324BBF /* AllMoviesViewController.m */;
 		name = "AllMoviesViewController.m: 268";
 		rLen = 104;
-		rLoc = 10627;
+		rLoc = 10619;
 		rType = 0;
 		vrLen = 1357;
 		vrLoc = 9181;
@@ -10269,7 +10517,7 @@
 		fRef = 74CA1E3B0DD021820046D1CE /* TextFieldEditorViewController.h */;
 		name = "TextFieldEditorViewController.h: 31";
 		rLen = 0;
-		rLoc = 2059;
+		rLoc = 2051;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 0;
@@ -10279,7 +10527,7 @@
 		fRef = 74AFFF350E527FA300CA891E /* TextFieldEditorViewController.m */;
 		name = "TextFieldEditorViewController.m: 70";
 		rLen = 5;
-		rLoc = 3214;
+		rLoc = 3186;
 		rType = 0;
 		vrLen = 1130;
 		vrLoc = 1276;
@@ -10289,7 +10537,7 @@
 		fRef = 74AFFF310E527F9600CA891E /* TextFieldEditorViewController.m */;
 		name = "TextFieldEditorViewController.m: 70";
 		rLen = 5;
-		rLoc = 3214;
+		rLoc = 3186;
 		rType = 0;
 		vrLen = 1562;
 		vrLoc = 296;
@@ -10299,7 +10547,7 @@
 		fRef = 74CA1E3B0DD021820046D1CE /* TextFieldEditorViewController.h */;
 		name = "TextFieldEditorViewController.h: 31";
 		rLen = 0;
-		rLoc = 2059;
+		rLoc = 2051;
 		rType = 0;
 		vrLen = 1280;
 		vrLoc = 0;
@@ -10316,7 +10564,7 @@
 			sepNavVisRange = "{0, 1816}";
 		};
 	};
-	74AFFF660E52859900CA891E /* SettingsViewController.m:231 */ = {
+	74AFFF660E52859900CA891E /* SettingsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10328,12 +10576,12 @@
 		functionName = "-findPostalCodeBackgroundEntryPoint:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 231;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377927;
 		state = 2;
 	};
-	74AFFF700E5285BB00CA891E /* SettingsViewController.m:232 */ = {
+	74AFFF700E5285BB00CA891E /* SettingsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10345,7 +10593,7 @@
 		functionName = "-findPostalCodeBackgroundEntryPoint:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 232;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.37798;
 		state = 2;
@@ -10384,7 +10632,7 @@
 		modificationTime = 240430643.378002;
 		state = 2;
 	};
-	74AFFF9B0E52919300CA891E /* AddressLocationCache.m:142 */ = {
+	74AFFF9B0E52919300CA891E /* AddressLocationCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10396,7 +10644,7 @@
 		functionName = "-downloadAddressLocation:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 142;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378009;
 		state = 2;
@@ -10424,7 +10672,7 @@
 		modificationTime = 240430646.719543;
 		state = 0;
 	};
-	74AFFFB00E52922200CA891E /* SettingsViewController.m:174 */ = {
+	74AFFFB00E52922200CA891E /* SettingsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10436,12 +10684,12 @@
 		functionName = "-findAnyPostalAndCountryCode:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 174;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430647.915466;
 		state = 1;
 	};
-	74AFFFB20E52924300CA891E /* AddressLocationCache.m:104 */ = {
+	74AFFFB20E52924300CA891E /* AddressLocationCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10453,7 +10701,7 @@
 		functionName = "-downloadAddressLocationFromWebService:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 104;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.37805;
 		state = 2;
@@ -10463,7 +10711,7 @@
 		fRef = 740E7FAE0DCFFF120066FCE5 /* SettingsViewController.h */;
 		name = "SettingsViewController.h: 44";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2515;
 		rType = 0;
 		vrLen = 1264;
 		vrLoc = 456;
@@ -10473,7 +10721,7 @@
 		fRef = 7411F2F40E2ECF2500F0725C /* BoxOfficeModel.h */;
 		name = "BoxOfficeModel.h: 71";
 		rLen = 21;
-		rLoc = 3183;
+		rLoc = 3175;
 		rType = 0;
 		vrLen = 1193;
 		vrLoc = 1669;
@@ -10483,7 +10731,7 @@
 		fRef = 74EC04F30DD2B704006953A4 /* Location.h */;
 		name = "Location.h: 38";
 		rLen = 0;
-		rLoc = 2220;
+		rLoc = 2212;
 		rType = 0;
 		vrLen = 1137;
 		vrLoc = 375;
@@ -10493,7 +10741,7 @@
 		fRef = 749568640E2D4252007BFF21 /* Location.m */;
 		name = "Location.m: 126";
 		rLen = 0;
-		rLoc = 4658;
+		rLoc = 4650;
 		rType = 0;
 		vrLen = 648;
 		vrLoc = 3417;
@@ -10502,8 +10750,8 @@
 		isa = PBXTextBookmark;
 		fRef = 74AFFFA60E52920500CA891E /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 213";
-		rLen = 7;
-		rLoc = 8405;
+		rLen = 0;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 0;
 		vrLoc = 16227;
@@ -10513,7 +10761,7 @@
 		fRef = 74FFECB00E4642AE00151748 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 186";
 		rLen = 13;
-		rLoc = 6508;
+		rLoc = 6500;
 		rType = 0;
 		vrLen = 1085;
 		vrLoc = 4921;
@@ -10523,7 +10771,7 @@
 		fRef = 749568640E2D4252007BFF21 /* Location.m */;
 		name = "Location.m: 126";
 		rLen = 0;
-		rLoc = 4658;
+		rLoc = 4650;
 		rType = 0;
 		vrLen = 648;
 		vrLoc = 3417;
@@ -10533,7 +10781,7 @@
 		fRef = 74FFECB00E4642AE00151748 /* BoxOfficeController.m */;
 		name = "BoxOfficeController.m: 159";
 		rLen = 6;
-		rLoc = 5725;
+		rLoc = 5717;
 		rType = 0;
 		vrLen = 1051;
 		vrLoc = 4308;
@@ -10543,7 +10791,7 @@
 		fRef = 74CBC0680E3E976100747156 /* AbstractDataProvider.m */;
 		name = "AbstractDataProvider.m: 237";
 		rLen = 12;
-		rLoc = 7556;
+		rLoc = 7548;
 		rType = 0;
 		vrLen = 956;
 		vrLoc = 6296;
@@ -10553,7 +10801,7 @@
 		fRef = 7445550E0DD7B37D008AF706 /* AddressLocationCache.h */;
 		name = "AddressLocationCache.h: 38";
 		rLen = 23;
-		rLoc = 2205;
+		rLoc = 2197;
 		rType = 0;
 		vrLen = 1327;
 		vrLoc = 116;
@@ -10575,7 +10823,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/Movie.m;
 		sourceTree = "<group>";
 	};
-	74B0DA580E48164B007179A1 /* Movie.m:1 */ = {
+	74B0DA580E48164B007179A1 /* Movie.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10587,12 +10835,12 @@
 		functionName = "+makeCanonical:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377819;
 		state = 2;
 	};
-	74B0DA5A0E48164D007179A1 /* Movie.m:1 */ = {
+	74B0DA5A0E48164D007179A1 /* Movie.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10604,7 +10852,7 @@
 		functionName = "+makeDisplay:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377826;
 		state = 2;
@@ -10660,7 +10908,7 @@
 			sepNavVisRange = "{0, 1794}";
 		};
 	};
-	74B3BCA10E2D983300DCE835 /* MovieDetailsViewController.m:1 */ = {
+	74B3BCA10E2D983300DCE835 /* MovieDetailsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10672,7 +10920,7 @@
 		functionName = "-cellForInfoRow:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377306;
 		state = 2;
@@ -10952,7 +11200,7 @@
 		fRef = 74EFE42A0E35555C00B6E103 /* RatingsProviderViewController.h */;
 		name = "RatingsProviderViewController.h: 16";
 		rLen = 21;
-		rLoc = 1617;
+		rLoc = 1609;
 		rType = 0;
 		vrLen = 519;
 		vrLoc = 0;
@@ -10972,7 +11220,7 @@
 		fRef = 74CBC0040E3E8CDF00747156 /* DataProviderViewController.m */;
 		name = "DataProviderViewController.m: 85";
 		rLen = 0;
-		rLoc = 3944;
+		rLoc = 3936;
 		rType = 0;
 		vrLen = 1482;
 		vrLoc = 1202;
@@ -10984,7 +11232,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/AbstractDataProvider.m;
 		sourceTree = "<group>";
 	};
-	74CBC06A0E3E976100747156 /* AbstractDataProvider.m:1 */ = {
+	74CBC06A0E3E976100747156 /* AbstractDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -10996,7 +11244,7 @@
 		functionName = "-initWithModel:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377435;
 		state = 2;
@@ -11030,7 +11278,7 @@
 		modificationTime = 240430643.377448;
 		state = 2;
 	};
-	74CBC09F0E3E9BC200747156 /* UnitedKingdomDataProvider.m:1 */ = {
+	74CBC09F0E3E9BC200747156 /* UnitedKingdomDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11042,7 +11290,7 @@
 		functionName = "-processFilms:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377458;
 		state = 2;
@@ -11122,7 +11370,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/XmlParser.m;
 		sourceTree = "<group>";
 	};
-	74CBC0F80E3EA81D00747156 /* XmlParser.m:1 */ = {
+	74CBC0F80E3EA81D00747156 /* XmlParser.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11134,12 +11382,12 @@
 		functionName = "-parser:didStartElement:namespaceURI:qualifiedName:attributes:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377502;
 		state = 2;
 	};
-	74CBC0FA0E3EA81F00747156 /* XmlParser.m:1 */ = {
+	74CBC0FA0E3EA81F00747156 /* XmlParser.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11151,12 +11399,12 @@
 		functionName = "-parser:didEndElement:namespaceURI:qualifiedName:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377509;
 		state = 2;
 	};
-	74CBC0FC0E3EA82200747156 /* XmlParser.m:1 */ = {
+	74CBC0FC0E3EA82200747156 /* XmlParser.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11168,12 +11416,12 @@
 		functionName = "-parser:foundCharacters:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377522;
 		state = 2;
 	};
-	74CBC0FE0E3EA88000747156 /* XmlParser.m:1 */ = {
+	74CBC0FE0E3EA88000747156 /* XmlParser.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11185,7 +11433,7 @@
 		functionName = "-run:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377532;
 		state = 2;
@@ -11464,7 +11712,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/TicketsViewController.m;
 		sourceTree = "<group>";
 	};
-	74DB92890E3841C3007D0010 /* TicketsViewController.m:1 */ = {
+	74DB92890E3841C3007D0010 /* TicketsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11476,7 +11724,7 @@
 		functionName = "-didSelectShowtimeAtRow:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377428;
 		state = 2;
@@ -11486,7 +11734,7 @@
 		fRef = 7464F9340DD4D268000CE93F /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 20";
 		rLen = 0;
-		rLoc = 1828;
+		rLoc = 1820;
 		rType = 0;
 		vrLen = 914;
 		vrLoc = 0;
@@ -11496,7 +11744,7 @@
 		fRef = 74C927360E2DDAA400F5EF7D /* MoviesNavigationController.m */;
 		name = "MoviesNavigationController.m: 73";
 		rLen = 0;
-		rLoc = 2051;
+		rLoc = 2043;
 		rType = 0;
 		vrLen = 1094;
 		vrLoc = 1749;
@@ -11506,7 +11754,7 @@
 		fRef = 7417742D0E320DDB00551817 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 75";
 		rLen = 0;
-		rLoc = 3784;
+		rLoc = 3776;
 		rType = 0;
 		vrLen = 1209;
 		vrLoc = 952;
@@ -11516,7 +11764,7 @@
 		fRef = 741774080E320CDB00551817 /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 94";
 		rLen = 0;
-		rLoc = 4670;
+		rLoc = 4662;
 		rType = 0;
 		vrLen = 879;
 		vrLoc = 2513;
@@ -11526,7 +11774,7 @@
 		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
 		name = "SettingsNavigationController.m: 46";
 		rLen = 0;
-		rLoc = 2406;
+		rLoc = 2398;
 		rType = 0;
 		vrLen = 779;
 		vrLoc = 270;
@@ -11550,7 +11798,7 @@
 		fRef = 740E7FAE0DCFFF120066FCE5 /* SettingsViewController.h */;
 		name = "SettingsViewController.h: 40";
 		rLen = 0;
-		rLoc = 2527;
+		rLoc = 2515;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 92;
@@ -11572,7 +11820,7 @@
 		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 34";
 		rLen = 10;
-		rLoc = 2331;
+		rLoc = 2323;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 54;
@@ -11582,7 +11830,7 @@
 		fRef = 74E318800DFC815900D3AB6A /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 17";
 		rLen = 0;
-		rLoc = 1851;
+		rLoc = 1843;
 		rType = 0;
 		vrLen = 733;
 		vrLoc = 0;
@@ -11592,7 +11840,7 @@
 		fRef = 74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */;
 		name = "SearchDatePickerViewController.h: 11";
 		rLen = 0;
-		rLoc = 1612;
+		rLoc = 1604;
 		rType = 0;
 		vrLen = 647;
 		vrLoc = 0;
@@ -11602,7 +11850,7 @@
 		fRef = 74DB941D0E385AE9007D0010 /* RatingsProviderViewController.m */;
 		name = "RatingsProviderViewController.m: 25";
 		rLen = 0;
-		rLoc = 1864;
+		rLoc = 1856;
 		rType = 0;
 		vrLen = 868;
 		vrLoc = 0;
@@ -11701,8 +11949,8 @@
 		isa = PBXTextBookmark;
 		fRef = 74EFE1F50E33D9D400B6E103 /* SettingsViewController.m */;
 		name = "SettingsViewController.m: 317";
-		rLen = 21;
-		rLoc = 12294;
+		rLen = 0;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1313;
 		vrLoc = 10487;
@@ -11729,7 +11977,7 @@
 		fRef = 74EFE2AB0E341C5400B6E103 /* BoxOfficeModel.m */;
 		name = "BoxOfficeModel.m: 371";
 		rLen = 0;
-		rLoc = 12658;
+		rLoc = 12650;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 12069;
@@ -11751,7 +11999,7 @@
 		modificationTime = 240430643.378092;
 		state = 2;
 	};
-	74E8C9E80E537A1F00C87884 /* TrailerCache.m:134 */ = {
+	74E8C9E80E537A1F00C87884 /* TrailerCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11763,7 +12011,7 @@
 		functionName = "-processRow:moviesTitles:engine:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 134;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378098;
 		state = 2;
@@ -11773,12 +12021,12 @@
 		fRef = 74024FE50E2C72FB00E477DA /* DifferenceEngine.m */;
 		name = "DifferenceEngine.m: 219";
 		rLen = 50;
-		rLoc = 6945;
+		rLoc = 6937;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 3919;
 	};
-	74E8C9F20E537B4C00C87884 /* TrailerCache.m:130 */ = {
+	74E8C9F20E537B4C00C87884 /* TrailerCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11790,7 +12038,7 @@
 		functionName = "-processRow:moviesTitles:engine:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 130;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378105;
 		state = 2;
@@ -11810,7 +12058,7 @@
 		fRef = 74EFEBDB0E36CCF300B6E103 /* TrailerCache.m */;
 		name = "TrailerCache.m: 113";
 		rLen = 0;
-		rLoc = 4339;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1361;
 		vrLoc = 3139;
@@ -11820,12 +12068,12 @@
 		fRef = 747F09DF0E524A6F00D24AD7 /* Utilities.m */;
 		name = "Utilities.m: 245";
 		rLen = 0;
-		rLoc = 8163;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 970;
 		vrLoc = 6939;
 	};
-	74E8CA050E537C3B00C87884 /* AddressLocationCache.m:103 */ = {
+	74E8CA050E537C3B00C87884 /* AddressLocationCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11837,7 +12085,7 @@
 		functionName = "-downloadAddressLocationFromWebService:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 103;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378112;
 		state = 2;
@@ -11859,7 +12107,7 @@
 		modificationTime = 240430643.378119;
 		state = 2;
 	};
-	74E8CA130E537C6100C87884 /* MetacriticDownloader.m:64 */ = {
+	74E8CA130E537C6100C87884 /* MetacriticDownloader.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11871,11 +12119,11 @@
 		functionName = "-lookupMovieListings:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 64;
+		lineNumber = 4;
 		modificationTime = 240430643.378126;
 		state = 2;
 	};
-	74E8CA150E537C6800C87884 /* MetacriticDownloader.m:74 */ = {
+	74E8CA150E537C6800C87884 /* MetacriticDownloader.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11887,7 +12135,7 @@
 		functionName = "-lookupMovieListings:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 74;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378133;
 		state = 2;
@@ -11972,7 +12220,7 @@
 		modificationTime = 240430643.37816;
 		state = 2;
 	};
-	74E8CA480E537D3000C87884 /* Utilities.m:292 */ = {
+	74E8CA480E537D3000C87884 /* Utilities.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -11984,7 +12232,7 @@
 		functionName = "+dataWithContentsOfUrl:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 292;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378167;
 		state = 2;
@@ -12045,7 +12293,7 @@
 		fRef = 74CBC0F60E3EA81D00747156 /* XmlParser.m */;
 		name = "XmlParser.m: 54";
 		rLen = 0;
-		rLoc = 2340;
+		rLoc = 2328;
 		rType = 0;
 		vrLen = 809;
 		vrLoc = 1060;
@@ -12072,7 +12320,7 @@
 		fRef = 747F09DF0E524A6F00D24AD7 /* Utilities.m */;
 		name = "Utilities.m: 226";
 		rLen = 0;
-		rLoc = 7617;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 983;
 		vrLoc = 6739;
@@ -12082,7 +12330,7 @@
 		fRef = 74A016D30E3A6C3D009D2B18 /* Application.h */;
 		name = "Application.h: 16";
 		rLen = 0;
-		rLoc = 1573;
+		rLoc = 1565;
 		rType = 0;
 		vrLen = 991;
 		vrLoc = 542;
@@ -12109,7 +12357,7 @@
 		fRef = 74601F380E41324C00A0B37C /* ReviewCache.m */;
 		name = "ReviewCache.m: 112";
 		rLen = 0;
-		rLoc = 4714;
+		rLoc = 4706;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 3076;
@@ -12119,12 +12367,12 @@
 		fRef = 74085D210E4252200069F0F5 /* MetacriticDownloader.m */;
 		name = "MetacriticDownloader.m: 61";
 		rLen = 0;
-		rLoc = 2585;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1742;
 		vrLoc = 1316;
 	};
-	74E8CABC0E53885100C87884 /* TrailerCache.m:151 */ = {
+	74E8CABC0E53885100C87884 /* TrailerCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -12136,7 +12384,7 @@
 		functionName = "-downloadTrailers:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 151;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.378219;
 		state = 2;
@@ -12146,7 +12394,7 @@
 		fRef = 74B0DA560E48164B007179A1 /* Movie.m */;
 		name = "Movie.m: 94";
 		rLen = 0;
-		rLoc = 3921;
+		rLoc = 135;
 		rType = 0;
 		vrLen = 1186;
 		vrLoc = 0;
@@ -12166,7 +12414,7 @@
 		fRef = 748C51970E3CF51700D141B7 /* Theater.m */;
 		name = "Theater.m: 17";
 		rLen = 0;
-		rLoc = 1593;
+		rLoc = 1585;
 		rType = 0;
 		vrLen = 1185;
 		vrLoc = 3864;
@@ -12206,7 +12454,7 @@
 		fRef = 74A290C30E4A96CC00ACF4B8 /* MovieDetailsViewController.m */;
 		name = "MovieDetailsViewController.m: 396";
 		rLen = 9;
-		rLoc = 13830;
+		rLoc = 13813;
 		rType = 0;
 		vrLen = 1300;
 		vrLoc = 12727;
@@ -12226,7 +12474,7 @@
 		fRef = 74DB92750E3840D6007D0010 /* TicketsViewController.m */;
 		name = "TicketsViewController.m: 277";
 		rLen = 0;
-		rLoc = 10642;
+		rLoc = 10634;
 		rType = 0;
 		vrLen = 1509;
 		vrLoc = 9116;
@@ -12627,7 +12875,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/SettingsViewController.m;
 		sourceTree = "<group>";
 	};
-	74EFE21D0E33DB9100B6E103 /* SettingsViewController.m:1 */ = {
+	74EFE21D0E33DB9100B6E103 /* SettingsViewController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -12639,7 +12887,7 @@
 		functionName = "-autoUpdateLocation:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377326;
 		state = 2;
@@ -12651,7 +12899,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/BoxOfficeModel.m;
 		sourceTree = "<group>";
 	};
-	74EFE2AD0E341C5400B6E103 /* BoxOfficeModel.m:1 */ = {
+	74EFE2AD0E341C5400B6E103 /* BoxOfficeModel.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -12663,7 +12911,7 @@
 		functionName = "-checkUserDefaults";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377333;
 		state = 2;
@@ -12762,7 +13010,7 @@
 		fRef = 74EFE4AF0E355D7500B6E103 /* ImageCache.m */;
 		name = "ImageCache.m: 20";
 		rLen = 0;
-		rLoc = 2766;
+		rLoc = 2758;
 		rType = 0;
 		vrLen = 434;
 		vrLoc = 0;
@@ -12810,7 +13058,7 @@
 		fRef = 749569590E2D6248007BFF21 /* Review.h */;
 		name = "Review.h: 30";
 		rLen = 0;
-		rLoc = 2076;
+		rLoc = 2068;
 		rType = 0;
 		vrLen = 821;
 		vrLoc = 16;
@@ -12820,7 +13068,7 @@
 		fRef = 74EFE59C0E3566F100B6E103 /* Review.m */;
 		name = "Review.m: 92";
 		rLen = 0;
-		rLoc = 1841;
+		rLoc = 1833;
 		rType = 0;
 		vrLen = 700;
 		vrLoc = 0;
@@ -12865,7 +13113,7 @@
 		fRef = 740DE1970DCC3FB100B4E69A /* SettingsNavigationController.h */;
 		name = "SettingsNavigationController.h: 22";
 		rLen = 34;
-		rLoc = 1897;
+		rLoc = 1889;
 		rType = 0;
 		vrLen = 555;
 		vrLoc = 0;
@@ -12875,7 +13123,7 @@
 		fRef = 74EC08710DD3EEBB006953A4 /* MultiDictionary.h */;
 		name = "MultiDictionary.h: 26";
 		rLen = 0;
-		rLoc = 1982;
+		rLoc = 1974;
 		rType = 0;
 		vrLen = 558;
 		vrLoc = 0;
@@ -12924,7 +13172,7 @@
 			sepNavVisRange = "{0, 1711}";
 		};
 	};
-	74EFE6BE0E3581A300B6E103 /* Movie.m:1 */ = {
+	74EFE6BE0E3581A300B6E103 /* Movie.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -12936,12 +13184,12 @@
 		functionName = "+massageTitle:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.37734;
 		state = 2;
 	};
-	74EFE6C00E3581A300B6E103 /* Movie.m:1 */ = {
+	74EFE6C00E3581A300B6E103 /* Movie.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -12953,7 +13201,7 @@
 		functionName = "+massageTitle:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377347;
 		state = 2;
@@ -13021,7 +13269,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/ReviewCache.m;
 		sourceTree = "<group>";
 	};
-	74EFE7A60E359F0500B6E103 /* ReviewCache.m:1 */ = {
+	74EFE7A60E359F0500B6E103 /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -13033,7 +13281,7 @@
 		functionName = "-downloadInfoReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377354;
 		state = 2;
@@ -13055,7 +13303,7 @@
 		fRef = 74EFE7CF0E35A3BC00B6E103 /* ReviewCache.h */;
 		name = "ReviewCache.h: 13";
 		rLen = 36;
-		rLoc = 1574;
+		rLoc = 1566;
 		rType = 0;
 		vrLen = 573;
 		vrLoc = 0;
@@ -13072,7 +13320,7 @@
 			sepNavVisRange = "{0, 1754}";
 		};
 	};
-	74EFE7F90E35A56E00B6E103 /* ReviewCache.m:1 */ = {
+	74EFE7F90E35A56E00B6E103 /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -13084,12 +13332,12 @@
 		functionName = "-downloadInfoReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.37736;
 		state = 2;
 	};
-	74EFE7FB0E35A57C00B6E103 /* ReviewCache.m:1 */ = {
+	74EFE7FB0E35A57C00B6E103 /* ReviewCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -13101,7 +13349,7 @@
 		functionName = "-downloadInfoReviews:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377367;
 		state = 2;
@@ -13121,7 +13369,7 @@
 		fRef = 747925250E2498C600D8BB3C /* PosterDownloader.m */;
 		name = "PosterDownloader.m: 34";
 		rLen = 0;
-		rLoc = 1895;
+		rLoc = 1887;
 		rType = 0;
 		vrLen = 674;
 		vrLoc = 0;
@@ -13131,7 +13379,7 @@
 		fRef = 74088F6B0DCD4C7F00954696 /* MovieDetailsViewController.h */;
 		name = "MovieDetailsViewController.h: 37";
 		rLen = 0;
-		rLoc = 2382;
+		rLoc = 2374;
 		rType = 0;
 		vrLen = 1036;
 		vrLoc = 0;
@@ -13180,7 +13428,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/TrailerCache.m;
 		sourceTree = "<group>";
 	};
-	74EFEBDD0E36CCF300B6E103 /* TrailerCache.m:42 */ = {
+	74EFEBDD0E36CCF300B6E103 /* TrailerCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -13192,12 +13440,12 @@
 		functionName = "-deleteObsoleteTrailers:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 42;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377374;
 		state = 2;
 	};
-	74EFEBDF0E36CCF500B6E103 /* TrailerCache.m:42 */ = {
+	74EFEBDF0E36CCF500B6E103 /* TrailerCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -13209,7 +13457,7 @@
 		functionName = "-deleteObsoleteTrailers:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 42;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377387;
 		state = 2;
@@ -13224,7 +13472,7 @@
 		vrLen = 451;
 		vrLoc = 0;
 	};
-	74EFEC040E36CE6200B6E103 /* TrailerCache.m:42 */ = {
+	74EFEC040E36CE6200B6E103 /* TrailerCache.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -13236,7 +13484,7 @@
 		functionName = "-deleteObsoleteTrailers:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 42;
+		lineNumber = 4;
 		modificationTime = 240430643.377398;
 		state = 2;
 	};
@@ -13264,7 +13512,7 @@
 		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
 		name = "BoxOfficeAppDelegate.m: 40";
 		rLen = 7;
-		rLoc = 2609;
+		rLoc = 2601;
 		rType = 0;
 		vrLen = 1040;
 		vrLoc = 214;
@@ -13664,7 +13912,7 @@
 		fRef = 74F187310E27145B00AB5E1E /* TrailerCache.h */;
 		name = "TrailerCache.h: 23";
 		rLen = 0;
-		rLoc = 1749;
+		rLoc = 1741;
 		rType = 0;
 		vrLen = 370;
 		vrLoc = 0;
@@ -13674,7 +13922,7 @@
 		fRef = 74EC04DA0DD2A81C006953A4 /* DifferenceEngine.h */;
 		name = "DifferenceEngine.h: 38";
 		rLen = 0;
-		rLoc = 2376;
+		rLoc = 2368;
 		rType = 0;
 		vrLen = 909;
 		vrLoc = 43;
@@ -13784,7 +14032,7 @@
 		fRef = 7400F4AE0DCC2A2E004D712D /* BoxOfficeController.h */;
 		name = "BoxOfficeController.h: 21";
 		rLen = 0;
-		rLoc = 1718;
+		rLoc = 1710;
 		rType = 0;
 		vrLen = 882;
 		vrLoc = 0;
@@ -13794,7 +14042,7 @@
 		fRef = 74F3B2610E3CE92B00DD25DA /* NorthAmericaDataProvider.h */;
 		name = "NorthAmericaDataProvider.h: 16";
 		rLen = 0;
-		rLoc = 1783;
+		rLoc = 1775;
 		rType = 0;
 		vrLen = 359;
 		vrLoc = 0;
@@ -13916,7 +14164,7 @@
 		fRef = 74447C630DC843B200CC146C /* AllTheatersViewController.h */;
 		name = "AllTheatersViewController.h: 17";
 		rLen = 0;
-		rLoc = 1735;
+		rLoc = 1727;
 		rType = 0;
 		vrLen = 1045;
 		vrLoc = 0;
@@ -13938,7 +14186,7 @@
 		fRef = 74F683F60E4C03BC00DAAE8B /* AbstractNavigationController.m */;
 		name = "AbstractNavigationController.m: 73";
 		rLen = 0;
-		rLoc = 2903;
+		rLoc = 2895;
 		rType = 0;
 		vrLen = 1321;
 		vrLoc = 0;
@@ -13962,7 +14210,7 @@
 		fRef = 74F3B26B0E3CE95600DD25DA /* DataProvider.m */;
 		name = "DataProvider.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 786;
 		vrLoc = 0;
@@ -13972,7 +14220,7 @@
 		fRef = 740B14F50E441D690003F4B8 /* DataProvider.h */;
 		name = "DataProvider.h: 16";
 		rLen = 0;
-		rLoc = 1573;
+		rLoc = 1565;
 		rType = 0;
 		vrLen = 1260;
 		vrLoc = 0;
@@ -13992,7 +14240,7 @@
 		fRef = 74F3B2E50E3CF02400DD25DA /* LookupResult.h */;
 		name = "LookupResult.h: 31";
 		rLen = 0;
-		rLoc = 2078;
+		rLoc = 2070;
 		rType = 0;
 		vrLen = 1298;
 		vrLoc = 0;
@@ -14012,7 +14260,7 @@
 		fRef = 74F3B2610E3CE92B00DD25DA /* NorthAmericaDataProvider.h */;
 		name = "NorthAmericaDataProvider.h: 17";
 		rLen = 0;
-		rLoc = 1606;
+		rLoc = 1598;
 		rType = 0;
 		vrLen = 1322;
 		vrLoc = 0;
@@ -14022,7 +14270,7 @@
 		fRef = 74CBBFCF0E3E807300747156 /* UnitedKingdomDataProvider.h */;
 		name = "UnitedKingdomDataProvider.h: 28";
 		rLen = 0;
-		rLoc = 2011;
+		rLoc = 2003;
 		rType = 0;
 		vrLen = 1205;
 		vrLoc = 0;
@@ -14212,7 +14460,7 @@
 		fRef = 74EC04DA0DD2A81C006953A4 /* DifferenceEngine.h */;
 		name = "DifferenceEngine.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1315;
 		vrLoc = 0;
@@ -14222,7 +14470,7 @@
 		fRef = 74EC08710DD3EEBB006953A4 /* MultiDictionary.h */;
 		name = "MultiDictionary.h: 17";
 		rLen = 0;
-		rLoc = 1613;
+		rLoc = 1605;
 		rType = 0;
 		vrLen = 1176;
 		vrLoc = 0;
@@ -14232,7 +14480,7 @@
 		fRef = 74088E660DCD36AE00954696 /* XmlDocument.h */;
 		name = "XmlDocument.h: 16";
 		rLen = 0;
-		rLoc = 1573;
+		rLoc = 1565;
 		rType = 0;
 		vrLen = 1202;
 		vrLoc = 0;
@@ -14242,7 +14490,7 @@
 		fRef = 74088E670DCD36AE00954696 /* XmlDocument.m */;
 		name = "XmlDocument.m: 17";
 		rLen = 0;
-		rLoc = 1597;
+		rLoc = 1589;
 		rType = 0;
 		vrLen = 1231;
 		vrLoc = 0;
@@ -14252,7 +14500,7 @@
 		fRef = 74088E680DCD36AE00954696 /* XmlSerializer.h */;
 		name = "XmlSerializer.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 916;
 		vrLoc = 0;
@@ -14262,7 +14510,7 @@
 		fRef = 74D6F2C70DCC1A080097A984 /* XmlElement.h */;
 		name = "XmlElement.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1384;
 		vrLoc = 0;
@@ -14272,7 +14520,7 @@
 		fRef = 74D6F2CC0DCC1A200097A984 /* XmlElement.m */;
 		name = "XmlElement.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1254;
 		vrLoc = 0;
@@ -14282,7 +14530,7 @@
 		fRef = 743ED81D0DCAF504007A6F9F /* ApplicationTabBarController.h */;
 		name = "ApplicationTabBarController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1735;
 		vrLoc = 0;
@@ -14292,7 +14540,7 @@
 		fRef = 741774080E320CDB00551817 /* ApplicationTabBarController.m */;
 		name = "ApplicationTabBarController.m: 24";
 		rLen = 0;
-		rLoc = 1815;
+		rLoc = 1807;
 		rType = 0;
 		vrLen = 1438;
 		vrLoc = 0;
@@ -14302,7 +14550,7 @@
 		fRef = 7464F9340DD4D268000CE93F /* AbstractNavigationController.h */;
 		name = "AbstractNavigationController.h: 17";
 		rLen = 0;
-		rLoc = 1574;
+		rLoc = 1566;
 		rType = 0;
 		vrLen = 1438;
 		vrLoc = 0;
@@ -14312,7 +14560,7 @@
 		fRef = 74F683F60E4C03BC00DAAE8B /* AbstractNavigationController.m */;
 		name = "AbstractNavigationController.m: 71";
 		rLen = 0;
-		rLoc = 2903;
+		rLoc = 2895;
 		rType = 0;
 		vrLen = 1265;
 		vrLoc = 0;
@@ -14322,7 +14570,7 @@
 		fRef = 745C915B0E4BE74C006C5EB8 /* MoviesNavigationController.h */;
 		name = "MoviesNavigationController.h: 17";
 		rLen = 0;
-		rLoc = 1614;
+		rLoc = 1606;
 		rType = 0;
 		vrLen = 1539;
 		vrLoc = 0;
@@ -14332,7 +14580,7 @@
 		fRef = 74447C390DC83E7400CC146C /* TheatersNavigationController.h */;
 		name = "TheatersNavigationController.h: 18";
 		rLen = 0;
-		rLoc = 1615;
+		rLoc = 1607;
 		rType = 0;
 		vrLen = 1512;
 		vrLoc = 0;
@@ -14342,7 +14590,7 @@
 		fRef = 745C91740E4BE7E0006C5EB8 /* TheatersNavigationController.m */;
 		name = "TheatersNavigationController.m: 24";
 		rLen = 0;
-		rLoc = 1767;
+		rLoc = 1759;
 		rType = 0;
 		vrLen = 1389;
 		vrLoc = 0;
@@ -14372,7 +14620,7 @@
 		fRef = 740DE1970DCC3FB100B4E69A /* SettingsNavigationController.h */;
 		name = "SettingsNavigationController.h: 16";
 		rLen = 0;
-		rLoc = 1573;
+		rLoc = 1565;
 		rType = 0;
 		vrLen = 1125;
 		vrLoc = 0;
@@ -14382,7 +14630,7 @@
 		fRef = 7405F7D50DCAF401002E2D06 /* SettingsNavigationController.m */;
 		name = "SettingsNavigationController.m: 19";
 		rLen = 0;
-		rLoc = 1646;
+		rLoc = 1638;
 		rType = 0;
 		vrLen = 1425;
 		vrLoc = 0;
@@ -14392,7 +14640,7 @@
 		fRef = 74EF36E00DCEB380004D7E3B /* AllMoviesViewController.h */;
 		name = "AllMoviesViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1568;
 		vrLoc = 0;
@@ -14402,7 +14650,7 @@
 		fRef = 74447C630DC843B200CC146C /* AllTheatersViewController.h */;
 		name = "AllTheatersViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1554;
 		vrLoc = 0;
@@ -14412,7 +14660,7 @@
 		fRef = 746828DE0E2A77C700013DC6 /* AllTheatersViewController.m */;
 		name = "AllTheatersViewController.m: 24";
 		rLen = 0;
-		rLoc = 1773;
+		rLoc = 1765;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 0;
@@ -14422,7 +14670,7 @@
 		fRef = 748379C90DD0169E00DC3B80 /* EditorViewController.h */;
 		name = "EditorViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1212;
 		vrLoc = 0;
@@ -14432,7 +14680,7 @@
 		fRef = 74EC02840DD17369006953A4 /* EditorViewController.m */;
 		name = "EditorViewController.m: 17";
 		rLen = 0;
-		rLoc = 1606;
+		rLoc = 1598;
 		rType = 0;
 		vrLen = 1286;
 		vrLoc = 0;
@@ -14442,7 +14690,7 @@
 		fRef = 74088F6B0DCD4C7F00954696 /* MovieDetailsViewController.h */;
 		name = "MovieDetailsViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1296;
 		vrLoc = 457;
@@ -14452,7 +14700,7 @@
 		fRef = 74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */;
 		name = "PickerEditorViewController.h: 27";
 		rLen = 0;
-		rLoc = 1874;
+		rLoc = 1866;
 		rType = 0;
 		vrLen = 1404;
 		vrLoc = 0;
@@ -14472,7 +14720,7 @@
 		fRef = 74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */;
 		name = "SearchDatePickerViewController.h: 17";
 		rLen = 0;
-		rLoc = 1612;
+		rLoc = 1604;
 		rType = 0;
 		vrLen = 1189;
 		vrLoc = 0;
@@ -14482,7 +14730,7 @@
 		fRef = 740B15550E4422D40003F4B8 /* SearchDatePickerViewController.m */;
 		name = "SearchDatePickerViewController.m: 21";
 		rLen = 0;
-		rLoc = 1700;
+		rLoc = 1692;
 		rType = 0;
 		vrLen = 1454;
 		vrLoc = 0;
@@ -14562,7 +14810,7 @@
 		fRef = 7400F4E30DCC2C81004D712D /* TheaterDetailsViewController.h */;
 		name = "TheaterDetailsViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1431;
 		vrLoc = 0;
@@ -14582,7 +14830,7 @@
 		fRef = 742CA71E0DD6616600A69B79 /* TicketsViewController.h */;
 		name = "TicketsViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1379;
 		vrLoc = 0;
@@ -14592,7 +14840,7 @@
 		fRef = 74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */;
 		name = "ViewControllerUtilities.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 858;
 		vrLoc = 0;
@@ -14602,7 +14850,7 @@
 		fRef = 74E318800DFC815900D3AB6A /* ViewControllerUtilities.m */;
 		name = "ViewControllerUtilities.m: 18";
 		rLen = 0;
-		rLoc = 1610;
+		rLoc = 1602;
 		rType = 0;
 		vrLen = 1342;
 		vrLoc = 0;
@@ -14612,7 +14860,7 @@
 		fRef = 741111520DFCF61900B94FB5 /* CreditsViewController.h */;
 		name = "CreditsViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1188;
 		vrLoc = 0;
@@ -14622,7 +14870,7 @@
 		fRef = 74EFE42A0E35555C00B6E103 /* RatingsProviderViewController.h */;
 		name = "RatingsProviderViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1055;
 		vrLoc = 0;
@@ -14632,7 +14880,7 @@
 		fRef = 74DB941D0E385AE9007D0010 /* RatingsProviderViewController.m */;
 		name = "RatingsProviderViewController.m: 18";
 		rLen = 0;
-		rLoc = 1616;
+		rLoc = 1608;
 		rType = 0;
 		vrLen = 1357;
 		vrLoc = 0;
@@ -14642,7 +14890,7 @@
 		fRef = 74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */;
 		name = "DataProviderViewController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1052;
 		vrLoc = 0;
@@ -14662,7 +14910,7 @@
 		fRef = 74489E5E0DDD341E00F565B1 /* AutoresizingCell.h */;
 		name = "AutoresizingCell.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 873;
 		vrLoc = 0;
@@ -14672,7 +14920,7 @@
 		fRef = 74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */;
 		name = "AutoresizingCell.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1452;
 		vrLoc = 0;
@@ -14692,7 +14940,7 @@
 		fRef = 74085DD40E42607E0069F0F5 /* MovieShowtimesCell.m */;
 		name = "MovieShowtimesCell.m: 110";
 		rLen = 36;
-		rLoc = 4361;
+		rLoc = 4353;
 		rType = 0;
 		vrLen = 1259;
 		vrLoc = 0;
@@ -14702,7 +14950,7 @@
 		fRef = 748218AA0E216B330054759E /* MovieTitleCell.h */;
 		name = "MovieTitleCell.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1344;
 		vrLoc = 0;
@@ -14722,7 +14970,7 @@
 		fRef = 742445A50E2D2F9800C98F84 /* AttributeCell.h */;
 		name = "AttributeCell.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1179;
 		vrLoc = 0;
@@ -14732,7 +14980,7 @@
 		fRef = 7489DE530E3D6DAF00D77435 /* AttributeCell.m */;
 		name = "AttributeCell.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1366;
 		vrLoc = 0;
@@ -14742,7 +14990,7 @@
 		fRef = 74737BE50E2D8BA300C37E4B /* SettingCell.h */;
 		name = "SettingCell.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 946;
 		vrLoc = 0;
@@ -14752,7 +15000,7 @@
 		fRef = 74737BEC0E2D8C7800C37E4B /* SettingCell.m */;
 		name = "SettingCell.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1301;
 		vrLoc = 0;
@@ -14762,7 +15010,7 @@
 		fRef = 74EFE72A0E358D6D00B6E103 /* ReviewTitleCell.h */;
 		name = "ReviewTitleCell.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1255;
 		vrLoc = 0;
@@ -14772,7 +15020,7 @@
 		fRef = 74A016740E3A66C3009D2B18 /* ReviewTitleCell.m */;
 		name = "ReviewTitleCell.m: 21";
 		rLen = 0;
-		rLoc = 1669;
+		rLoc = 1661;
 		rType = 0;
 		vrLen = 1180;
 		vrLoc = 0;
@@ -14782,7 +15030,7 @@
 		fRef = 740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */;
 		name = "ReviewBodyCell.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 909;
 		vrLoc = 0;
@@ -14792,7 +15040,7 @@
 		fRef = 740B14E00E2DD09A00493FC3 /* ReviewBodyCell.m */;
 		name = "ReviewBodyCell.m: 20";
 		rLen = 0;
-		rLoc = 1640;
+		rLoc = 1632;
 		rType = 0;
 		vrLen = 1362;
 		vrLoc = 0;
@@ -14802,7 +15050,7 @@
 		fRef = 740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */;
 		name = "ActivityIndicator.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1110;
 		vrLoc = 0;
@@ -14812,7 +15060,7 @@
 		fRef = 745E74140E28DCE500B819BE /* ActivityIndicator.m */;
 		name = "ActivityIndicator.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1530;
 		vrLoc = 0;
@@ -14822,7 +15070,7 @@
 		fRef = 7445559D0DD7B9C3008AF706 /* PosterView.h */;
 		name = "PosterView.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1068;
 		vrLoc = 0;
@@ -14832,7 +15080,7 @@
 		fRef = 7454441F0DD53CB400FB6970 /* PosterView.m */;
 		name = "PosterView.m: 18";
 		rLen = 0;
-		rLoc = 1597;
+		rLoc = 1589;
 		rType = 0;
 		vrLen = 1274;
 		vrLoc = 0;
@@ -14842,7 +15090,7 @@
 		fRef = 744557240DD7E785008AF706 /* NotificationCenter.h */;
 		name = "NotificationCenter.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 0;
@@ -14852,7 +15100,7 @@
 		fRef = 744557370DD7E7FF008AF706 /* NotificationCenter.m */;
 		name = "NotificationCenter.m: 17";
 		rLen = 0;
-		rLoc = 1604;
+		rLoc = 1596;
 		rType = 0;
 		vrLen = 1305;
 		vrLoc = 0;
@@ -14862,7 +15110,7 @@
 		fRef = 7445573E0DD7F041008AF706 /* BoxOfficeAppDelegate.h */;
 		name = "BoxOfficeAppDelegate.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1307;
 		vrLoc = 0;
@@ -14872,7 +15120,7 @@
 		fRef = 74088ADF0DCCFCFF00954696 /* BoxOfficeAppDelegate.m */;
 		name = "BoxOfficeAppDelegate.m: 22";
 		rLen = 0;
-		rLoc = 1735;
+		rLoc = 1727;
 		rType = 0;
 		vrLen = 1272;
 		vrLoc = 0;
@@ -14882,7 +15130,7 @@
 		fRef = 7400F4AE0DCC2A2E004D712D /* BoxOfficeController.h */;
 		name = "BoxOfficeController.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1418;
 		vrLoc = 0;
@@ -14901,7 +15149,7 @@
 		isa = PBXTextBookmark;
 		fRef = 7457FE900E21A41A00929D3E /* Performance.h */;
 		name = "Performance.h: 1";
-		rLen = 1572;
+		rLen = 1564;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1154;
@@ -14912,7 +15160,7 @@
 		fRef = 7457FE910E21A41A00929D3E /* Performance.m */;
 		name = "Performance.m: 17";
 		rLen = 0;
-		rLoc = 1574;
+		rLoc = 1566;
 		rType = 0;
 		vrLen = 1169;
 		vrLoc = 0;
@@ -14922,7 +15170,7 @@
 		fRef = 7442579D0E21BC7D006B1AA5 /* PosterCache.h */;
 		name = "PosterCache.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 963;
 		vrLoc = 0;
@@ -14932,7 +15180,7 @@
 		fRef = 74DB91580E3830B3007D0010 /* PosterCache.m */;
 		name = "PosterCache.m: 24";
 		rLen = 0;
-		rLoc = 1707;
+		rLoc = 1699;
 		rType = 0;
 		vrLen = 1120;
 		vrLoc = 0;
@@ -14942,7 +15190,7 @@
 		fRef = 74088E2E0DCD359600954696 /* PosterDownloader.h */;
 		name = "PosterDownloader.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 938;
 		vrLoc = 0;
@@ -14952,7 +15200,7 @@
 		fRef = 7442579B0E21BC79006B1AA5 /* ImdbPosterDownloader.h */;
 		name = "ImdbPosterDownloader.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 889;
 		vrLoc = 0;
@@ -14962,7 +15210,7 @@
 		fRef = 745C914E0E4BE693006C5EB8 /* ImdbPosterDownloader.m */;
 		name = "ImdbPosterDownloader.m: 21";
 		rLen = 0;
-		rLoc = 1670;
+		rLoc = 1662;
 		rType = 0;
 		vrLen = 1632;
 		vrLoc = 0;
@@ -14992,7 +15240,7 @@
 		fRef = 74F187310E27145B00AB5E1E /* TrailerCache.h */;
 		name = "TrailerCache.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 967;
 		vrLoc = 0;
@@ -15002,7 +15250,7 @@
 		fRef = 749569590E2D6248007BFF21 /* Review.h */;
 		name = "Review.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1355;
 		vrLoc = 0;
@@ -15012,7 +15260,7 @@
 		fRef = 74EFE59C0E3566F100B6E103 /* Review.m */;
 		name = "Review.m: 17";
 		rLen = 0;
-		rLoc = 1592;
+		rLoc = 1584;
 		rType = 0;
 		vrLen = 898;
 		vrLoc = 531;
@@ -15022,7 +15270,7 @@
 		fRef = 74EFE7CF0E35A3BC00B6E103 /* ReviewCache.h */;
 		name = "ReviewCache.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1141;
 		vrLoc = 0;
@@ -15052,7 +15300,7 @@
 		fRef = 74EFE4AE0E355D7500B6E103 /* ImageCache.h */;
 		name = "ImageCache.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1077;
 		vrLoc = 0;
@@ -15062,7 +15310,7 @@
 		fRef = 74EFE4B50E355EB000B6E103 /* ImageCache.m */;
 		name = "ImageCache.m: 18";
 		rLen = 0;
-		rLoc = 1597;
+		rLoc = 1589;
 		rType = 0;
 		vrLen = 1622;
 		vrLoc = 0;
@@ -15072,7 +15320,7 @@
 		fRef = 74EFE5340E35637200B6E103 /* FontCache.h */;
 		name = "FontCache.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 908;
 		vrLoc = 0;
@@ -15082,7 +15330,7 @@
 		fRef = 74EFE5350E35637200B6E103 /* FontCache.m */;
 		name = "FontCache.m: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1347;
 		vrLoc = 0;
@@ -15092,7 +15340,7 @@
 		fRef = 74EFE5CC0E356AA300B6E103 /* RottenTomatoesDownloader.h */;
 		name = "RottenTomatoesDownloader.h: 16";
 		rLen = 0;
-		rLoc = 1573;
+		rLoc = 1565;
 		rType = 0;
 		vrLen = 1021;
 		vrLoc = 0;
@@ -15102,7 +15350,7 @@
 		fRef = 74EFE5D60E356BBA00B6E103 /* MetacriticDownloader.h */;
 		name = "MetacriticDownloader.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 1013;
 		vrLoc = 0;
@@ -15112,7 +15360,7 @@
 		fRef = 740C9FE60E3A838E00D7A56B /* ColorCache.h */;
 		name = "ColorCache.h: 15";
 		rLen = 0;
-		rLoc = 1572;
+		rLoc = 1564;
 		rType = 0;
 		vrLen = 860;
 		vrLoc = 0;
@@ -15122,7 +15370,7 @@
 		fRef = 740C9FF10E3A843100D7A56B /* ColorCache.m */;
 		name = "ColorCache.m: 17";
 		rLen = 0;
-		rLoc = 1596;
+		rLoc = 1588;
 		rType = 0;
 		vrLen = 1244;
 		vrLoc = 0;
@@ -15172,7 +15420,7 @@
 		fRef = 747A9FB90E2AFD8B000AE1D9 /* DateUtilies.h */;
 		name = "DateUtilities.h: 26";
 		rLen = 6;
-		rLoc = 1705;
+		rLoc = 1697;
 		rType = 0;
 		vrLen = 1240;
 		vrLoc = 0;
@@ -15189,7 +15437,7 @@
 		fRef = 74085B680E4237850069F0F5 /* Application.m */;
 		name = "Application.m: 385";
 		rLen = 0;
-		rLoc = 10851;
+		rLoc = 10843;
 		rType = 0;
 		vrLen = 778;
 		vrLoc = 9838;
@@ -15286,7 +15534,7 @@
 		fRef = 74CBC08C0E3E984800747156 /* UnitedKingdomDataProvider.m */;
 		name = "UnitedKingdomDataProvider.m: 68";
 		rLen = 0;
-		rLoc = 3121;
+		rLoc = 3113;
 		rType = 0;
 		vrLen = 1225;
 		vrLoc = 1278;
@@ -15298,7 +15546,7 @@
 		path = /Projects/GoogleCode/BoxOffice/Classes/NorthAmericaDataProvider.m;
 		sourceTree = "<group>";
 	};
-	74FFEC710E463EED00151748 /* NorthAmericaDataProvider.m:1 */ = {
+	74FFEC710E463EED00151748 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15310,12 +15558,12 @@
 		functionName = "-lookupMissingFavorites:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377708;
 		state = 2;
 	};
-	74FFEC740E463F0700151748 /* NorthAmericaDataProvider.m:1 */ = {
+	74FFEC740E463F0700151748 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15327,12 +15575,12 @@
 		functionName = "-lookupMissingFavorites:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377714;
 		state = 2;
 	};
-	74FFEC760E463F2000151748 /* NorthAmericaDataProvider.m:1 */ = {
+	74FFEC760E463F2000151748 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15344,12 +15592,12 @@
 		functionName = "-lookupMissingFavorites:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377721;
 		state = 2;
 	};
-	74FFEC800E46404100151748 /* NorthAmericaDataProvider.m:1 */ = {
+	74FFEC800E46404100151748 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15361,12 +15609,12 @@
 		functionName = "-lookupMissingFavorites:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377728;
 		state = 2;
 	};
-	74FFEC940E4641E500151748 /* NorthAmericaDataProvider.m:1 */ = {
+	74FFEC940E4641E500151748 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15378,12 +15626,12 @@
 		functionName = "-lookupMissingFavorites:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377735;
 		state = 2;
 	};
-	74FFEC960E4641E900151748 /* NorthAmericaDataProvider.m:1 */ = {
+	74FFEC960E4641E900151748 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15395,12 +15643,12 @@
 		functionName = "-lookupMissingFavorites:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377742;
 		state = 2;
 	};
-	74FFEC980E4641EE00151748 /* NorthAmericaDataProvider.m:1 */ = {
+	74FFEC980E4641EE00151748 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15412,12 +15660,12 @@
 		functionName = "-lookupMissingFavorites:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377748;
 		state = 2;
 	};
-	74FFEC9A0E4641F500151748 /* NorthAmericaDataProvider.m:1 */ = {
+	74FFEC9A0E4641F500151748 /* NorthAmericaDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15429,7 +15677,7 @@
 		functionName = "-lookupWorker";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377755;
 		state = 2;
@@ -15451,7 +15699,7 @@
 		modificationTime = 240430643.377761;
 		state = 2;
 	};
-	74FFEC9E0E46423400151748 /* AbstractDataProvider.m:1 */ = {
+	74FFEC9E0E46423400151748 /* AbstractDataProvider.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15463,7 +15711,7 @@
 		functionName = "-saveResult:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377768;
 		state = 2;
@@ -15497,7 +15745,7 @@
 			sepNavVisRange = "{0, 1815}";
 		};
 	};
-	74FFECB20E4642AE00151748 /* BoxOfficeController.m:1 */ = {
+	74FFECB20E4642AE00151748 /* BoxOfficeController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15509,12 +15757,12 @@
 		functionName = "-dataProviderLookupBackgroundThreadEntryPoint:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377782;
 		state = 2;
 	};
-	74FFECB40E46432500151748 /* BoxOfficeController.m:1 */ = {
+	74FFECB40E46432500151748 /* BoxOfficeController.m:4 */ = {
 		isa = PBXFileBreakpoint;
 		actions = (
 		);
@@ -15526,7 +15774,7 @@
 		functionName = "-onBackgroundTaskEnded:";
 		hitCount = 0;
 		ignoreCount = 0;
-		lineNumber = 1;
+		lineNumber = 4;
 		location = BoxOffice;
 		modificationTime = 240430643.377789;
 		state = 2;
