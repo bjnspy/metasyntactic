@@ -63,6 +63,8 @@
 @class MultiDictionary;
 @class NorthAmericaDataProvider;
 @class NotificationCenter;
+@class NumbersNavigationController;
+@class NumbersViewController;
 @class Performance;
 @class PickerEditorViewController;
 @class PosterCache;

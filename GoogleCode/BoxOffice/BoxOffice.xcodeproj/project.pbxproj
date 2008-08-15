@@ -20,6 +20,10 @@
 		74088C6C0DCD17D100954696 /* PosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088C6B0DCD17D100954696 /* PosterDownloader.m */; };
 		74088E6A0DCD36AE00954696 /* XmlDocument.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E670DCD36AE00954696 /* XmlDocument.m */; };
 		74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */; };
+		740AFF360E54E87F004EC5EE /* NumbersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AFF350E54E87F004EC5EE /* NumbersNavigationController.m */; };
+		740AFF760E54EAB0004EC5EE /* Numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 740AFF750E54EAB0004EC5EE /* Numbers.png */; };
+		740AFF8D0E54F067004EC5EE /* MovieStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AFF8C0E54F067004EC5EE /* MovieStatistics.m */; };
+		740AFFBB0E54F971004EC5EE /* NumbersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AFFBA0E54F971004EC5EE /* NumbersViewController.m */; };
 		740B14730E2DCA7B00493FC3 /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */; };
 		740B14BD0E2DCDDB00493FC3 /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */; };
 		740C9FE80E3A838E00D7A56B /* ColorCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 740C9FE70E3A838E00D7A56B /* ColorCache.m */; };
@@ -145,6 +149,13 @@
 		74088E670DCD36AE00954696 /* XmlDocument.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlDocument.m; sourceTree = "<group>"; };
 		74088E680DCD36AE00954696 /* XmlSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlSerializer.h; sourceTree = "<group>"; };
 		74088E690DCD36AE00954696 /* XmlSerializer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlSerializer.m; sourceTree = "<group>"; wrapsLines = 0; };
+		740AFF340E54E87F004EC5EE /* NumbersNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumbersNavigationController.h; sourceTree = "<group>"; };
+		740AFF350E54E87F004EC5EE /* NumbersNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumbersNavigationController.m; sourceTree = "<group>"; };
+		740AFF750E54EAB0004EC5EE /* Numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Numbers.png; path = Resources/Numbers.png; sourceTree = "<group>"; };
+		740AFF8B0E54F067004EC5EE /* MovieStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieStatistics.h; sourceTree = "<group>"; };
+		740AFF8C0E54F067004EC5EE /* MovieStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieStatistics.m; sourceTree = "<group>"; };
+		740AFFB90E54F971004EC5EE /* NumbersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumbersViewController.h; sourceTree = "<group>"; };
+		740AFFBA0E54F971004EC5EE /* NumbersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumbersViewController.m; sourceTree = "<group>"; };
 		740B14710E2DCA7B00493FC3 /* ReviewTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTitleCell.h; sourceTree = "<group>"; };
 		740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewTitleCell.m; sourceTree = "<group>"; };
 		740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewBodyCell.h; sourceTree = "<group>"; };
@@ -373,6 +384,8 @@
 				740C9FE70E3A838E00D7A56B /* ColorCache.m */,
 				74085B8A0E423F010069F0F5 /* RatingsCache.h */,
 				74085B8B0E423F010069F0F5 /* RatingsCache.m */,
+				740AFF8B0E54F067004EC5EE /* MovieStatistics.h */,
+				740AFF8C0E54F067004EC5EE /* MovieStatistics.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -410,6 +423,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				740AFF750E54EAB0004EC5EE /* Numbers.png */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
 				7479B5D30E402E21003B12C1 /* MetacriticLogo.png */,
 				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
@@ -515,6 +529,8 @@
 				74447C330DC83C2000CC146C /* MoviesNavigationController.m */,
 				74447C390DC83E7400CC146C /* TheatersNavigationController.h */,
 				74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */,
+				740AFF340E54E87F004EC5EE /* NumbersNavigationController.h */,
+				740AFF350E54E87F004EC5EE /* NumbersNavigationController.m */,
 				7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */,
 				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
 			);
@@ -554,6 +570,8 @@
 				74EFE3EB0E354E0900B6E103 /* RatingsProviderViewController.m */,
 				74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */,
 				74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */,
+				740AFFB90E54F971004EC5EE /* NumbersViewController.h */,
+				740AFFBA0E54F971004EC5EE /* NumbersViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -700,6 +718,7 @@
 				743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */,
 				7479B5D40E402E21003B12C1 /* MetacriticLogo.png in Resources */,
 				740224550E53F323006C58A2 /* Localizable.strings in Resources */,
+				740AFF760E54EAB0004EC5EE /* Numbers.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -776,6 +795,9 @@
 				74CBBFC80E3E803A00747156 /* UnitedKingdomDataProvider.m in Sources */,
 				74CBBFF80E3E8C6000747156 /* DataProviderViewController.m in Sources */,
 				74085B8C0E423F010069F0F5 /* RatingsCache.m in Sources */,
+				740AFF360E54E87F004EC5EE /* NumbersNavigationController.m in Sources */,
+				740AFF8D0E54F067004EC5EE /* MovieStatistics.m in Sources */,
+				740AFFBB0E54F971004EC5EE /* NumbersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
