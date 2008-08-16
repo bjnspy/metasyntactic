@@ -67,8 +67,15 @@ static NSRecursiveLock* gate = nil;
         NSDateComponents* components2 = [calendar components:NSWeekdayCalendarUnit fromDate:date];
 
         NSInteger weekday = components2.weekday;
-        return [NSString stringWithFormat:NSLocalizedString(@"Last %@", nil),
-                                           [dateFormatter.weekdaySymbols objectAtIndex:(weekday - 1)]];
+        switch (weekday) {
+            case 1: return NSLocalizedString(@"Last Sunday", nil);
+            case 2: return NSLocalizedString(@"Last Monday", nil);
+            case 3: return NSLocalizedString(@"Last Tuesday", nil);
+            case 4: return NSLocalizedString(@"Last Wednesday", nil);
+            case 5: return NSLocalizedString(@"Last Thursday", nil);
+            case 6: return NSLocalizedString(@"Last Friday", nil);
+            default: return NSLocalizedString(@"Last Saturday", nil);
+        }
     }
 }
 
