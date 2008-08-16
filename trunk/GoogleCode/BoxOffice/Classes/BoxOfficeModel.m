@@ -521,11 +521,6 @@ static NSString* currentVersion = @"1.3.1";
 }
 
 
-- (Location*) locationForPostalCode:(NSString*) postalCode {
-    return [self.addressLocationCache locationForPostalCode:postalCode];
-}
-
-
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie {
     NSMutableArray* array = [NSMutableArray array];
 

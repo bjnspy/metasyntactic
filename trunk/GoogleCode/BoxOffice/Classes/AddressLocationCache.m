@@ -202,10 +202,6 @@
 - (NSDictionary*) theaterDistanceMap:(NSString*) userPostalCode
                             theaters:(NSArray*) theaters
                        useKilometers:(BOOL) useKilometers {
-    if ([Utilities isNilOrEmpty:userPostalCode]) {
-        return [NSDictionary dictionary];
-    }
-    
     Location* userLocation = [self locationForPostalCode:userPostalCode];
 
     NSMutableDictionary* theaterDistanceMap = [self.cachedTheaterDistanceMap objectForKey:userPostalCode];

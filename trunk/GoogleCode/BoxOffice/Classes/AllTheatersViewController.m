@@ -101,7 +101,7 @@
 
 
 - (void) sortTheatersByDistance {
-    NSDictionary* theaterDistanceMap = [self.model theaterDistanceMap];
+    NSDictionary* theaterDistanceMap = self.model.theaterDistanceMap;
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
                                                                 context:theaterDistanceMap];
 
@@ -145,25 +145,26 @@
             
             if (distance <= 0.5) {
                 [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
-            } else {
-                BOOL added = NO;
-                for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
-                    if (distance <= distances[i]) {
-                        [self.sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
-                        added = YES;
-                        break;
-                    }
-                }
-                
-                if (!added) {
-                    if (distance < UNKNOWN_DISTANCE) {
-                        [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
-                    } else {
-                        [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
-                    }
+                continue;
+            }
+            
+            for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
+                if (distance <= distances[i]) {
+                    [self.sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
+                    goto outer;
                 }
             }
+            
+            if (distance < UNKNOWN_DISTANCE) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
+            } else {
+                [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
+            }
         }
+      
+        // i hate goto/labels.  however, objective-c lacks a 'continue outer' statement.
+        // so we simulate here directly.
+        outer: ;
     }
 
     [self removeUnusedSectionTitles];
