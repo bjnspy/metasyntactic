@@ -105,50 +105,63 @@
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
                                                                 context:theaterDistanceMap];
 
-    NSString* favorites                 = NSLocalizedString(@"Favorites", nil);
-    NSString* reallyCloseBy             = NSLocalizedString(@"Really close by", nil);
-    NSString* oneHalfToOneMile          = NSLocalizedString(@"Less than 1 mile away", nil);
-    NSString* oneToTwoMiles             = NSLocalizedString(@"Less than 2 miles away", nil);
-    NSString* twoToFileMiles            = NSLocalizedString(@"Less than 5 miles away", nil);
-    NSString* fiveToTenMiles            = NSLocalizedString(@"Less than 10 miles away", nil);
-    NSString* tenToFifteenMiles         = NSLocalizedString(@"Less than 15 miles away", nil);
-    NSString* fifteenToTwentyFiveMiles  = NSLocalizedString(@"Less than 25 miles away", nil);
-    NSString* twentyFiveToFiftyMiles    = NSLocalizedString(@"Less than 50 miles away", nil);
-    NSString* reallyFarAway             = NSLocalizedString(@"Really far away", nil);
-    NSString* unknownDistance           = NSLocalizedString(@"Unknown Distance", nil);
+    NSString* favorites = NSLocalizedString(@"Favorites", nil);
+    NSString* reallyCloseBy = NSLocalizedString(@"Really close by", nil);
+    NSString* reallyFarAway = NSLocalizedString(@"Really far away", nil);
+    NSString* unknownDistance = NSLocalizedString(@"Unknown Distance", nil);
+    
+    NSString* singularUnit = (self.model.useKilometers ? NSLocalizedString(@"kilometer", nil) :
+                              NSLocalizedString(@"mile", nil));
+    NSString* pluralUnit = (self.model.useKilometers ? NSLocalizedString(@"kilometers", nil) :
+                              NSLocalizedString(@"miles", nil));
 
-    self.sectionTitles = [NSMutableArray arrayWithObjects:
-                          favorites, reallyCloseBy, oneHalfToOneMile, oneToTwoMiles,
-                          twoToFileMiles, fiveToTenMiles, tenToFifteenMiles,
-                          fifteenToTwentyFiveMiles, twentyFiveToFiftyMiles, reallyFarAway,
-                          unknownDistance, nil];
+    int distances[] = {
+        1, 2, 5, 10, 15, 25, 50
+    };
+
+    NSMutableArray* distancesArray = [NSMutableArray array];
+    for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
+        int distance = distances[i];
+        if (distance == 1) {
+            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than 1 %@ away", nil), singularUnit]];            
+        } else {
+            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than %d %@ away", nil), distance, pluralUnit]];                        
+        }
+    }
+    
+    self.sectionTitles = [NSMutableArray array];
+    
+    [self.sectionTitles addObject:favorites];
+    [self.sectionTitles addObject:reallyCloseBy];
+    [self.sectionTitles addObjectsFromArray:distancesArray];
+    [self.sectionTitles addObject:reallyFarAway];
+    [self.sectionTitles addObject:unknownDistance];
 
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [self.sectionTitleToContentsMap addObject:theater forKey:favorites];
         } else {
             double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
-
+            
             if (distance <= 0.5) {
                 [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
-            } else if (distance <= 1) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:oneHalfToOneMile];
-            } else if (distance <= 2) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:oneToTwoMiles];
-            } else if (distance <= 5) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:twoToFileMiles];
-            } else if (distance <= 10) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:fiveToTenMiles];
-            } else if (distance <= 15) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:tenToFifteenMiles];
-            } else if (distance <= 25) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:fifteenToTwentyFiveMiles];
-            } else if (distance <= 50) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:twentyFiveToFiftyMiles];
-            } else if (distance < UNKNOWN_DISTANCE) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
             } else {
-                [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
+                BOOL added = NO;
+                for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
+                    if (distance <= distances[i]) {
+                        [self.sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
+                        added = YES;
+                        break;
+                    }
+                }
+                
+                if (!added) {
+                    if (distance < UNKNOWN_DISTANCE) {
+                        [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
+                    } else {
+                        [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
+                    }
+                }
             }
         }
     }

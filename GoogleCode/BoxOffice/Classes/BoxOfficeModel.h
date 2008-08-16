@@ -73,6 +73,8 @@
 - (NSString*) currentRatingsProvider;
 - (NSArray*) ratingsProviders;
 
+- (BOOL) useKilometers;
+
 - (NSInteger) selectedTabBarViewControllerIndex;
 - (void) setSelectedTabBarViewControllerIndex:(NSInteger) index;
 

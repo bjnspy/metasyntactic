@@ -248,11 +248,6 @@
 
             NSString* key;
             NSString* value;
-            /* if (indexPath.row == 0) {
-                key = NSLocalizedString(@"Region", nil);
-                value = [[self.model currentDataProvider] displayName];
-            } else
-                */ 
             if (indexPath.row == 0) {
                 key = NSLocalizedString(@"Location", nil);
                 value = self.model.postalCode;
@@ -260,9 +255,11 @@
                 key = NSLocalizedString(@"Hide Theaters Beyond", nil);
 
                 if (self.model.searchRadius == 1) {
-                    value = NSLocalizedString(@"1 mile", nil);
+                    value = (self.model.useKilometers ? NSLocalizedString(@"1 km", nil) : NSLocalizedString(@"1 mile", nil));
                 } else {
-                    value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), self.model.searchRadius];
+                    value = [NSString stringWithFormat:NSLocalizedString(@"%d %@", @"5 kilometers or 5 miles"), 
+                             self.model.searchRadius,
+                             (self.model.useKilometers ? NSLocalizedString(@"km", nil) : NSLocalizedString(@"miles", nil))];
                 }
             } else if (indexPath.row == 2) {
                 key = NSLocalizedString(@"Search Date", nil);
@@ -275,34 +272,34 @@
                 }
             } else if (indexPath.row == 3) {
                 key = NSLocalizedString(@"Reviews", nil);
-                value = [self.model currentRatingsProvider];
-            }
+                value = self.model.currentRatingsProvider;
+            } 
 
             [cell setKey:key value:value];
 
             return cell;
-        } else if (indexPath.row == 4) {
+        } else if (indexPath.row >= 4 && indexPath.row <= 5) {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            cell.text = NSLocalizedString(@"Auto-Update Location", nil);
-            //cell.text = NSLocalizedString(@"Only Ticketable Theaters", nil);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            picker.on = [self.model autoUpdateLocation];
-            [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
-
             cell.accessoryView = picker;
-            return cell;
-        } else {
-            UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            cell.text = NSLocalizedString(@"Use Small Fonts", nil);
-            cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-            UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-            picker.on = [self.model useSmallFonts];
-            [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
-
-            cell.accessoryView = picker;
+            
+            NSString* text;
+            BOOL on;
+            if (indexPath.row == 4) {
+                text = NSLocalizedString(@"Auto-Update Location", nil);
+                on = self.model.autoUpdateLocation;
+                [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
+            } else if (indexPath.row == 5) {
+                text = NSLocalizedString(@"Use Small Fonts", nil);
+                on = self.model.useSmallFonts;
+                [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
+            }
+            
+            picker.on = on;
+            cell.text = text;
+            
             return cell;
         }
     } else {
@@ -310,12 +307,13 @@
         cell.text = NSLocalizedString(@"About", nil);
         return cell;
     }
+    
+    return nil;
 }
 
 
 - (void) onAutoUpdateChanged:(id) sender {
-    BOOL autoUpdate = ![self.model autoUpdateLocation];
-    [self.model setAutoUpdateLocation:autoUpdate];
+    [self.model setAutoUpdateLocation:!self.model.autoUpdateLocation];
     [self autoUpdateLocation:nil];
 
 }
@@ -346,11 +344,7 @@
     if (section == 0) {
         [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     } else if (section == 1) {
-        /*if (row == 0) {
-            DataProviderViewController* controller =
-                [[[DataProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
-        } else */if (row == 0) {
+        if (row == 0) {
             TextFieldEditorViewController* controller =
             [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
                                                                  title:NSLocalizedString(@"Location", nil)
