@@ -158,7 +158,7 @@
                                                 reuseIdentifier:nil] autorelease];
 
     if (row == 0) {
-    [cell setKey:NSLocalizedString(@"Map", nil) value:[self.model simpleAddressForTheater:theater]];
+        [cell setKey:NSLocalizedString(@"Map", nil) value:[self.model simpleAddressForTheater:theater]];
     } else {
         [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber];
     }
