@@ -19,6 +19,7 @@
 #import "BoxOfficeAppDelegate.h"
 #import "BoxOfficeModel.h"
 #import "MoviesNavigationController.h"
+#import "NumbersNavigationController.h"
 #import "SettingsNavigationController.h"
 #import "TheatersNavigationController.h"
 #import "Utilities.h"
@@ -27,14 +28,17 @@
 
 @synthesize moviesNavigationController;
 @synthesize theatersNavigationController;
+@synthesize numbersNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
 
 - (void) dealloc {
     self.moviesNavigationController = nil;
     self.theatersNavigationController = nil;
+    self.numbersNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
+    
     [super dealloc];
 }
 
@@ -44,14 +48,14 @@
         self.appDelegate = appDel;
         self.moviesNavigationController   = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
-        //self.searchNavigationController   = [[[SearchNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.numbersNavigationController   = [[[NumbersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
 
         self.viewControllers =
         [NSArray arrayWithObjects:
          moviesNavigationController,
          theatersNavigationController,
-         //searchNavigationController,
+         numbersNavigationController,
          settingsNavigationController, nil];
 
         if ([Utilities isNilOrEmpty:self.model.postalCode]) {

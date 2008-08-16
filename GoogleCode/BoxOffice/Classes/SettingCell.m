@@ -34,9 +34,23 @@
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.valueLabel.textColor = [ColorCache commandColor];
 
-        [self addSubview:valueLabel];
+        [self.contentView addSubview:valueLabel];
     }
     return self;
+}
+
+- (void) layoutSubviews {
+    [super layoutSubviews];
+    
+    CGRect frame = valueLabel.frame;
+    frame.origin.y = floor((self.contentView.frame.size.height - valueLabel.frame.size.height) / 2);
+    frame.origin.x = self.contentView.frame.size.width - frame.size.width;
+    
+    if (self.accessoryType == UITableViewCellAccessoryNone) {
+        frame.origin.x -= 10;
+    }
+    
+    valueLabel.frame = frame;
 }
 
 
@@ -47,8 +61,6 @@
 
     [valueLabel sizeToFit];
     CGRect frame = valueLabel.frame;
-    frame.origin.x = 320 - 38 - frame.size.width;
-    frame.origin.y = 11;
     valueLabel.frame = frame;
 }
 
