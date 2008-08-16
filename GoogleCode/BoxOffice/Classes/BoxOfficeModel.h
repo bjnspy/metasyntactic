@@ -116,7 +116,6 @@
 
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (Location*) locationForAddress:(NSString*) address;
-- (Location*) locationForPostalCode:(NSString*) postalCode;
 
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie;
 - (NSArray*) moviesAtTheater:(Theater*) theater;

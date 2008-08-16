@@ -29,7 +29,6 @@
 - (void) updatePostalCode:(NSString*) postalCode;
 
 - (Location*) locationForAddress:(NSString*) address;
-- (Location*) locationForPostalCode:(NSString*) postalCode;
 
 - (NSDictionary*) theaterDistanceMap:(NSString*) userPostalCode
                             theaters:(NSArray*) theaters
