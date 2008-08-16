@@ -91,7 +91,7 @@
 
 
 - (NSArray*) loadMovies {
-    NSArray* array = [NSArray arrayWithContentsOfFile:[self moviesFile]];
+    NSArray* array = [NSArray arrayWithContentsOfFile:self.moviesFile];
     if (array == nil) {
         return [NSArray array];
     }
@@ -139,8 +139,8 @@
 
 - (void) saveResult:(LookupResult*) result {
     if (result.movies.count > 0 || result.theaters.count > 0) {
-        [self saveArray:result.movies to:[self moviesFile]];
-        [self saveArray:result.theaters to:[self theatersFile]];
+        [self saveArray:result.movies to:self.moviesFile];
+        [self saveArray:result.theaters to:self.theatersFile];
 
         NSString* tempFolder = [Application uniqueTemporaryFolder];
         for (NSString* key in result.performances) {
@@ -149,8 +149,8 @@
             [Utilities writeObject:value toFile:[self performancesFile:key parentFolder:tempFolder]];
         }
 
-        [[NSFileManager defaultManager] removeItemAtPath:[self performancesFolder] error:NULL];
-        [[NSFileManager defaultManager] moveItemAtPath:tempFolder toPath:[self performancesFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:self.performancesFolder error:NULL];
+        [[NSFileManager defaultManager] moveItemAtPath:tempFolder toPath:self.performancesFolder error:NULL];
 
         [self setLastLookupDate];
     }
@@ -191,7 +191,7 @@
 
 
 - (NSArray*) loadTheaters {
-    NSArray* array = [NSArray arrayWithContentsOfFile:[self theatersFile]];
+    NSArray* array = [NSArray arrayWithContentsOfFile:self.theatersFile];
     if (array == nil) {
         return [NSArray array];
     }
@@ -228,8 +228,8 @@
 
 
 - (void) invalidateDiskCache {
-    [[NSFileManager defaultManager] removeItemAtPath:[self providerFolder] error:NULL];
-    [Application createDirectory:[self providerFolder]];
+    [[NSFileManager defaultManager] removeItemAtPath:self.providerFolder error:NULL];
+    [Application createDirectory:self.providerFolder];
 }
 
 

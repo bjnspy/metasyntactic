@@ -138,12 +138,12 @@
 
 
 + (NSInteger) hashString:(NSString*) string {
-    if ([string length] == 0) {
+    if (string.length == 0) {
         return 0;
     }
 
     int result = [string characterAtIndex:0];
-    for (int i = 1; i < [string length]; i++) {
+    for (int i = 1; i < string.length; i++) {
         result = 31 * result + [string characterAtIndex:i];
     }
 
@@ -208,7 +208,7 @@
             NSString* url = [[model currentDataProvider] ticketingUrlForTheater:theater
                                                                           movie:movie
                                                                     performance:performance
-                                                                           date:[model searchDate]];
+                                                                           date:model.searchDate];
 
             [body appendString:@"<a href=\""];
             [body appendString:url];
