@@ -44,7 +44,6 @@
 		74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */; };
 		74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */; };
 		744557260DD7E785008AF706 /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 744557250DD7E785008AF706 /* NotificationCenter.m */; };
-		74489E600DDD341E00F565B1 /* AutoresizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */; };
 		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		7464FDBA0DD52F22000CE93F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7464FDB90DD52F22000CE93F /* PosterView.m */; };
@@ -194,8 +193,6 @@
 		74447C670DC843D900CC146C /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
 		744557240DD7E785008AF706 /* NotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenter.h; sourceTree = "<group>"; };
 		744557250DD7E785008AF706 /* NotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenter.m; sourceTree = "<group>"; };
-		74489E5E0DDD341E00F565B1 /* AutoresizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoresizingCell.h; sourceTree = "<group>"; };
-		74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoresizingCell.m; sourceTree = "<group>"; };
 		74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
 		74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
@@ -579,8 +576,6 @@
 		74489CCE0DDD11FC00F565B1 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				74489E5E0DDD341E00F565B1 /* AutoresizingCell.h */,
-				74489E5F0DDD341E00F565B1 /* AutoresizingCell.m */,
 				743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */,
 				743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */,
 				74D739C60DDBE31300D8CCDF /* MovieTitleCell.h */,
@@ -767,7 +762,6 @@
 				743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */,
 				744557260DD7E785008AF706 /* NotificationCenter.m in Sources */,
 				74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */,
-				74489E600DDD341E00F565B1 /* AutoresizingCell.m in Sources */,
 				74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */,
 				741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */,
 				748217D70E2163760054759E /* ExtraMovieInformation.m in Sources */,
