@@ -23,12 +23,10 @@
 @property (retain) UILabel* valueLabel;
 
 - (void) setKey:(NSString*) key
-          value:(NSString*) value
-   hasIndicator:(BOOL)hasIndicator;
+          value:(NSString*) value;
 
 - (void) setKey:(NSString*) key
           value:(NSString*) value
-   hasIndicator:(BOOL)hasIndicator
        keyWidth:(CGFloat) width;
 
 @end

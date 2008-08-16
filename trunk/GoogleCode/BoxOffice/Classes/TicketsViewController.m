@@ -185,13 +185,12 @@
         Location* location = [self.model locationForAddress:theater.address];
         if (![Utilities isNilOrEmpty:location.address] && ![Utilities isNilOrEmpty:location.city]) {
             [cell setKey:NSLocalizedString(@"Map", nil)
-                   value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]
-            hasIndicator:NO];
+                   value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]];
         } else {
-            [cell setKey:NSLocalizedString(@"Map", nil) value:theater.address hasIndicator:NO];
+            [cell setKey:NSLocalizedString(@"Map", nil) value:theater.address];
         }
     } else {
-        [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber hasIndicator:NO];
+        [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber];
     }
 
     return cell;

@@ -158,9 +158,9 @@
                                                 reuseIdentifier:nil] autorelease];
 
     if (row == 0) {
-        [cell setKey:NSLocalizedString(@"Map", nil) value:[self.model simpleAddressForTheater:theater]  hasIndicator:NO];
+    [cell setKey:NSLocalizedString(@"Map", nil) value:[self.model simpleAddressForTheater:theater]];
     } else {
-        [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber hasIndicator:NO];
+        [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber];
     }
 
     return cell;

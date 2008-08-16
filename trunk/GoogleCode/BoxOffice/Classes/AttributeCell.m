@@ -52,15 +52,15 @@
 
 
 - (void) setKey:(NSString*) key
-          value:(NSString*) value
-   hasIndicator:(BOOL) hasIndicator {
-    [self setKey:key value:value hasIndicator:hasIndicator keyWidth:70];
+          value:(NSString*) value {
+    [self setKey:key
+           value:value 
+        keyWidth:50];
 }
 
 
 - (void) setKey:(NSString*) key
           value:(NSString*) value
-   hasIndicator:(BOOL) hasIndicator
        keyWidth:(CGFloat) keyWidth {
     self.keyLabel.text = key;
     self.valueLabel.text = value;
@@ -81,7 +81,7 @@
 
         frame.origin.x = keyWidth + 10;
         frame.origin.y = 13;
-        frame.size.width = 320 - frame.origin.x - 15 - (hasIndicator ? 15 : 0);
+        frame.size.width = 320 - frame.origin.x - 15;
 
         self.valueLabel.frame = frame;
     }
