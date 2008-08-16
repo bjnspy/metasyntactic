@@ -568,8 +568,7 @@ static NSString* currentVersion = @"1.3.1";
 
 
 - (NSDictionary*) theaterDistanceMap {
-    Location* userLocation = [self locationForPostalCode:[self postalCode]];
-    return [self.addressLocationCache theaterDistanceMap:userLocation
+    return [self.addressLocationCache theaterDistanceMap:self.postalCode
                                                 theaters:self.theaters
                                            useKilometers:self.useKilometers];
 }

@@ -124,6 +124,11 @@
 }
 
 
+- (void) invalidateCachedData:(id) object {
+    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
+}
+
+
 - (Location*) downloadAddressLocation:(NSString*) address {
     NSAssert(![NSThread isMainThread], @"Only call this from the background");
     Location* location = [self locationForAddress:address];
@@ -194,25 +199,16 @@
 }
 
 
-- (void) invalidateCachedData:(id) object {
-    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
-}
-
-
-- (void) clearDistanceMap {
-    [self invalidateCachedData:nil];
-}
-
-
-- (NSDictionary*) theaterDistanceMap:(Location*) userLocation
+- (NSDictionary*) theaterDistanceMap:(NSString*) userPostalCode
                             theaters:(NSArray*) theaters
                        useKilometers:(BOOL) useKilometers {
-    NSString* locationDescription = [userLocation description];
-    if (locationDescription == nil) {
-        locationDescription = @"";
+    if ([Utilities isNilOrEmpty:userPostalCode]) {
+        return [NSDictionary dictionary];
     }
+    
+    Location* userLocation = [self locationForPostalCode:userPostalCode];
 
-    NSMutableDictionary* theaterDistanceMap = [self.cachedTheaterDistanceMap objectForKey:locationDescription];
+    NSMutableDictionary* theaterDistanceMap = [self.cachedTheaterDistanceMap objectForKey:userPostalCode];
     if (theaterDistanceMap == nil) {
         theaterDistanceMap = [NSMutableDictionary dictionary];
 
@@ -230,7 +226,7 @@
         }
 
         [self.cachedTheaterDistanceMap setObject:theaterDistanceMap
-                                          forKey:locationDescription];
+                                          forKey:userPostalCode];
     }
 
     return theaterDistanceMap;
