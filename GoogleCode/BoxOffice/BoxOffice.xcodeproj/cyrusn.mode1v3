@@ -378,7 +378,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AddressLocationCache.m</string>
+								<string>AbstractDataProvider.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -386,11 +386,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>AddressLocationCache.m</string>
+										<string>AbstractDataProvider.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>743417970E568EE800EF3938</string>
+										<string>743417AB0E56910500EF3938</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -622,7 +622,6 @@
 											<string>7434139A0E5563D100EF3938</string>
 											<string>7434139B0E5563D100EF3938</string>
 											<string>7434139C0E5563D100EF3938</string>
-											<string>7434139D0E5563D100EF3938</string>
 											<string>7434139E0E5563D100EF3938</string>
 											<string>743413A00E5563D100EF3938</string>
 											<string>743413A10E5563D100EF3938</string>
@@ -694,7 +693,8 @@
 											<string>743417880E568EE800EF3938</string>
 											<string>743417890E568EE800EF3938</string>
 											<string>7434178A0E568EE800EF3938</string>
-											<string>7434178B0E568EE800EF3938</string>
+											<string>743417A90E56910500EF3938</string>
+											<string>7434179A0E568FEE00EF3938</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -991,6 +991,7 @@
 											<string>743417940E568EE800EF3938</string>
 											<string>743417950E568EE800EF3938</string>
 											<string>743417960E568EE800EF3938</string>
+											<string>743417AA0E56910500EF3938</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1169,7 +1170,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>240553704.27901101</real>
+	<real>240554245.201359</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1184,6 +1185,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>743417570E568B7F00EF3938</string>
 		<string>743417560E568B7F00EF3938</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>743415530E565C8200EF3938</string>
@@ -1192,7 +1194,6 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>743417570E568B7F00EF3938</string>
 	</array>
 	<key>WindowString</key>
 	<string>58 31 1154 847 0 0 1440 878 </string>
@@ -1427,12 +1428,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BoxOfficeModel.m</string>
+										<string>Utilities.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1441,7 +1444,7 @@
 										<key>Frame</key>
 										<string>{{0, 0}, {1393, 468}}</string>
 										<key>RubberWindowFrame</key>
-										<string>200 0 1393 878 0 0 1440 878 </string>
+										<string>35 0 1393 878 0 0 1440 878 </string>
 									</dict>
 									<key>Module</key>
 									<string>PBXNavigatorGroup</string>
@@ -1453,8 +1456,6 @@
 							<string>468pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -1467,7 +1468,7 @@
 								<key>Frame</key>
 								<string>{{0, 473}, {1393, 364}}</string>
 								<key>RubberWindowFrame</key>
-								<string>200 0 1393 878 0 0 1440 878 </string>
+								<string>35 0 1393 878 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXProjectFindModule</string>
@@ -1496,7 +1497,7 @@
 				<string>1CD0528E0623707200166675</string>
 			</array>
 			<key>WindowString</key>
-			<string>200 0 1393 878 0 0 1440 878 </string>
+			<string>35 0 1393 878 0 0 1440 878 </string>
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>

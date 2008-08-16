@@ -60,8 +60,8 @@
         return NO;
     }
 
-    cached_S_length = [S length];
-    cached_T_length = [T length];
+    cached_S_length = S.length;
+    cached_T_length = T.length;
 
     if (cached_T_length > MaxLength || cached_S_length > MaxLength) {
         return NO;
@@ -163,7 +163,7 @@
 
 
 - (NSInteger) threshold:(NSString*) string {
-    NSInteger threshold = [string length] / 4;
+    NSInteger threshold = string.length / 4;
     if (threshold == 0) {
         threshold = 1;
     }
@@ -177,7 +177,7 @@
         return NO;
     }
 
-    if ([s1 length] > 4 && [s2 length] > 4) {
+    if (s1.length > 4 && s2.length > 4) {
         if ([s1 rangeOfString:s2 options:NSCaseInsensitiveSearch].location != NSNotFound ||
             [s2 rangeOfString:s1 options:NSCaseInsensitiveSearch].location != NSNotFound) {
             return YES;

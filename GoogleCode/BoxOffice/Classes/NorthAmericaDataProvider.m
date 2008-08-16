@@ -96,12 +96,12 @@
     //    return;
     //}
 
-    NSString* name = [[theaterElement element:@"name"] text];
-    NSString* address = [[theaterElement element:@"address1"] text];
-    NSString* city = [[theaterElement element:@"city"] text];
-    NSString* state = [[theaterElement element:@"state"] text];
-    NSString* postalCode = [[theaterElement element:@"postalcode"] text];
-    NSString* phone = [[theaterElement element:@"phonenumber"] text];
+    NSString* name =       [theaterElement element:@"name"].text;
+    NSString* address =    [theaterElement element:@"address1"].text;
+    NSString* city =       [theaterElement element:@"city"].text;
+    NSString* state =      [theaterElement element:@"state"].text;
+    NSString* postalCode = [theaterElement element:@"postalcode"].text;
+    NSString* phone =      [theaterElement element:@"phonenumber"].text;
 
     NSString* fullAddress;
     if ([address hasSuffix:@"."]) {
@@ -203,7 +203,7 @@
         return;
     }
 
-    NSArray* favoriteTheaters = [self.model favoriteTheaters];
+    NSArray* favoriteTheaters = self.model.favoriteTheaters;
     if (favoriteTheaters.count == 0) {
         return;
     }
@@ -255,7 +255,7 @@
 
 - (NSString*) trimPostalCode:(NSString*) postalCode {
     NSMutableString* trimmed = [NSMutableString string];
-    for (NSInteger i = 0; i < [postalCode length]; i++) {
+    for (NSInteger i = 0; i < postalCode.length; i++) {
         unichar c = [postalCode characterAtIndex:i];
         if (isalnum(c)) {
             [trimmed appendString:[NSString stringWithCharacters:&c length:1]];
@@ -277,9 +277,9 @@
                                @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                                [Application host],
                                [self trimPostalCode:postalCode],
-                               [components year],
-                               [components month],
-                               [components day]];
+                               components.year,
+                               components.month,
+                               components.day];
 
         XmlElement* element = [Utilities downloadXml:urlString];
 
@@ -313,7 +313,7 @@
     if ([performance.identifier hasPrefix:@"F-"]) {
         NSDateComponents* dateComponents =
         [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                        fromDate:[self.model searchDate]];
+                                        fromDate:self.model.searchDate];
         NSDateComponents* timeComponents =
         [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
                                         fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
@@ -321,11 +321,11 @@
         NSString* url = [NSString stringWithFormat:@"https://iphone.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
                          movie.identifier,
                          theater.identifier,
-                         [dateComponents year],
-                         [dateComponents month],
-                         [dateComponents day],
-                         [timeComponents hour],
-                         [timeComponents minute]];
+                         dateComponents.year,
+                         dateComponents.month,
+                         dateComponents.day,
+                         timeComponents.hour,
+                         timeComponents.minute];
 
         return url;
     }
