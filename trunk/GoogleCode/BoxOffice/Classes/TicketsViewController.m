@@ -182,13 +182,7 @@
                                                 reuseIdentifier:nil] autorelease];
 
     if (row == 0) {
-        Location* location = [self.model locationForAddress:theater.address];
-        if (![Utilities isNilOrEmpty:location.address] && ![Utilities isNilOrEmpty:location.city]) {
-            [cell setKey:NSLocalizedString(@"Map", nil)
-                   value:[NSString stringWithFormat:@"%@, %@", location.address, location.city]];
-        } else {
-            [cell setKey:NSLocalizedString(@"Map", nil) value:theater.address];
-        }
+        [cell setKey:NSLocalizedString(@"Map", nil) value:[self.model simpleAddressForTheater:theater]];
     } else {
         [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber];
     }

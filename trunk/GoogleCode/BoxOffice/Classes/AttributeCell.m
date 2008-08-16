@@ -42,14 +42,32 @@
 
         self.valueLabel.font = [UIFont boldSystemFontOfSize:14.0];
         self.valueLabel.adjustsFontSizeToFitWidth = YES;
-        self.valueLabel.minimumFontSize = 8.0;
+        self.valueLabel.minimumFontSize = 10.0;
 
-        [self addSubview:keyLabel];
-        [self addSubview:valueLabel];
+        [self.contentView addSubview:keyLabel];
+        [self.contentView addSubview:valueLabel];
     }
+    
     return self;
 }
 
+
+- (void) layoutSubviews {
+    [super layoutSubviews];
+
+    {
+        CGRect frame = keyLabel.frame;
+        frame.origin.y = floor((self.contentView.frame.size.height - keyLabel.frame.size.height) / 2);
+        keyLabel.frame = frame;        
+    }
+    
+    {
+        CGRect frame = valueLabel.frame;
+        frame.origin.y = floor((self.contentView.frame.size.height - valueLabel.frame.size.height) / 2);
+        frame.size.width = self.contentView.frame.size.width - frame.origin.x;
+        valueLabel.frame = frame;        
+    }
+}
 
 - (void) setKey:(NSString*) key
           value:(NSString*) value {
@@ -68,21 +86,14 @@
     {
         [self.keyLabel sizeToFit];
         CGRect frame = self.keyLabel.frame;
-
         frame.origin.x = keyWidth - frame.size.width;
-        frame.origin.y = 14;
-
         self.keyLabel.frame = frame;
     }
 
     {
         [self.valueLabel sizeToFit];
         CGRect frame = self.valueLabel.frame;
-
         frame.origin.x = keyWidth + 10;
-        frame.origin.y = 13;
-        frame.size.width = 320 - frame.origin.x - 15;
-
         self.valueLabel.frame = frame;
     }
 }
