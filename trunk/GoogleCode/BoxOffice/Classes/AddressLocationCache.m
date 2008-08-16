@@ -199,8 +199,14 @@
 }
 
 
+- (void) clearDistanceMap {
+    [self invalidateCachedData:nil];
+}
+
+
 - (NSDictionary*) theaterDistanceMap:(Location*) userLocation
-                            theaters:(NSArray*) theaters {
+                            theaters:(NSArray*) theaters
+                       useKilometers:(BOOL) useKilometers {
     NSString* locationDescription = [userLocation description];
     if (locationDescription == nil) {
         locationDescription = @"";
@@ -213,7 +219,7 @@
         for (Theater* theater in theaters) {
             double d;
             if (userLocation != nil) {
-                d = [userLocation distanceTo:[self locationForAddress:theater.address]];
+                d = [userLocation distanceTo:[self locationForAddress:theater.address]  useKilometers:useKilometers];
             } else {
                 d = UNKNOWN_DISTANCE;
             }

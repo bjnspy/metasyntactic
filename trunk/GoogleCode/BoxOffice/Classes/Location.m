@@ -85,8 +85,10 @@
 }
 
 
-- (double) distanceTo:(Location*) to {
+- (double) distanceTo:(Location*) to useKilometers:(BOOL) useKilometers {
+    const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
     const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
+    
     const double pi = 3.14159265358979323846;
 
     if (to == nil) {
@@ -104,10 +106,15 @@
     if (diff > pi) { diff = 2 * pi; }
 
     double distance =
-    GREAT_CIRCLE_RADIUS_MILES *
     acos(sin(lat2) * sin(lat1) +
          cos(lat2) * cos(lat1) * cos(diff));
 
+    if (useKilometers) {
+        distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
+    } else {
+        distance *= GREAT_CIRCLE_RADIUS_MILES;
+    }
+    
     if (distance > 200) {
         return UNKNOWN_DISTANCE;
     }

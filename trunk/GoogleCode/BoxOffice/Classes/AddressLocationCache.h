@@ -32,9 +32,12 @@
 - (Location*) locationForPostalCode:(NSString*) postalCode;
 
 - (NSDictionary*) theaterDistanceMap:(Location*) userLocation
-                            theaters:(NSArray*) theaters;
+                            theaters:(NSArray*) theaters
+                       useKilometers:(BOOL) useKilometers;
 
 // only call on the background
 - (Location*) downloadAddressLocation:(NSString*) address;
+
+- (void) clearDistanceMap;
 
 @end

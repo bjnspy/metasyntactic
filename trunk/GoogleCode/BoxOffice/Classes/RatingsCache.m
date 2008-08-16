@@ -37,7 +37,7 @@
 
 
 - (NSString*) ratingsFile {
-    return [Application ratingsFile:[self.model currentRatingsProvider]];
+    return [Application ratingsFile:self.model.currentRatingsProvider];
 }
 
 

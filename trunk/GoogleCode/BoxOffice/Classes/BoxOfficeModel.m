@@ -302,6 +302,16 @@ static NSString* currentVersion = @"1.3.1";
 }
 
 
+- (BOOL) useKilometers {
+    if (![Utilities isNilOrEmpty:self.postalCode]) {
+        Location* location = [self.addressLocationCache locationForAddress:self.postalCode];
+        return ![location.country isEqual:@"US"];
+    }
+    
+    return NO;
+}
+
+
 - (NSInteger) selectedTabBarViewControllerIndex {
     return [[NSUserDefaults standardUserDefaults] integerForKey:[BoxOfficeModel SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX]];
 }
@@ -559,7 +569,9 @@ static NSString* currentVersion = @"1.3.1";
 
 - (NSDictionary*) theaterDistanceMap {
     Location* userLocation = [self locationForPostalCode:[self postalCode]];
-    return [self.addressLocationCache theaterDistanceMap:userLocation theaters:self.theaters];
+    return [self.addressLocationCache theaterDistanceMap:userLocation
+                                                theaters:self.theaters
+                                           useKilometers:self.useKilometers];
 }
 
 
