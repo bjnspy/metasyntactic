@@ -302,13 +302,24 @@ static NSString* currentVersion = @"1.3.1";
 }
 
 
-- (BOOL) useKilometers {
-    if (![Utilities isNilOrEmpty:self.postalCode]) {
-        Location* location = [self.addressLocationCache locationForAddress:self.postalCode];
-        return ![location.country isEqual:@"US"];
+- (BOOL) useMiles {
+    if ([Utilities isNilOrEmpty:self.postalCode]) {
+        return YES;
+    }
+
+    Location* location = [self.addressLocationCache locationForAddress:self.postalCode];
+    if (location.country == nil) {
+        return YES;
     }
     
-    return NO;
+    
+    NSArray* nonMetricCountries = [NSArray arrayWithObjects:@"US", @"UK", @"GB", nil];
+    return [nonMetricCountries containsObject:location.country];
+}
+
+
+- (BOOL) useKilometers {
+    return !self.useMiles;
 }
 
 
