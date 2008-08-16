@@ -18,12 +18,14 @@
     BoxOfficeAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
+    NumbersNavigationController* numbersNavigationController;
     SettingsNavigationController* settingsNavigationController;
 }
 
 @property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
+@property (retain) NumbersNavigationController* numbersNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
 
 + (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;
