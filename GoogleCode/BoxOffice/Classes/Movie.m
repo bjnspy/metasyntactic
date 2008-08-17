@@ -175,7 +175,7 @@ static NSString* articles[] = {
 
 
 - (NSString*) ratingAndRuntimeString {
-    NSInteger movieLength = [self.length intValue];
+    NSInteger movieLength = self.length.intValue;
     NSInteger hours = movieLength / 60;
     NSInteger minutes = movieLength % 60;
 

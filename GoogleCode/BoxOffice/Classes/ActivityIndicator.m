@@ -53,7 +53,7 @@
         return;
     }
 
-    NSInteger i = [number intValue];
+    NSInteger i = number.intValue;
     self.navigationItem.leftBarButtonItem.image =
     [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
 
