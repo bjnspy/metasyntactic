@@ -17,6 +17,7 @@
 #import "AllTheatersViewController.h"
 
 #import "Application.h"
+#import "AutoResizingCell.h"
 #import "BoxOfficeModel.h"
 #import "Location.h"
 #import "MultiDictionary.h"
@@ -191,7 +192,7 @@
         self.navigationController = controller;
         self.sortedTheaters = [NSArray array];
 
-        segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+        self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                              [NSArray arrayWithObjects:NSLocalizedString(@"Name", nil), NSLocalizedString(@"Distance", nil), nil]] autorelease];
 
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
@@ -257,9 +258,9 @@
 
     static NSString* reuseIdentifier = @"AllTheatersCellIdentifier";
 
-    UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    AutoResizingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[AutoResizingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame reuseIdentifier:reuseIdentifier] autorelease];
     }
 
     cell.text = theater.name;

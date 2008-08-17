@@ -23,10 +23,12 @@
 @implementation NumbersViewController
 
 @synthesize navigationController;
+@synthesize segmentedControl;
 
 - (void) dealloc {
     self.navigationController = nil;
-
+    self.segmentedControl = nil;
+    
     [super dealloc];
 }
 
@@ -35,6 +37,24 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
         self.title = NSLocalizedString(@"Numbers", nil);
+        
+        self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+                             [NSArray arrayWithObjects:
+                              NSLocalizedString(@"Daily", nil),
+                              NSLocalizedString(@"Weekend", nil), nil]] autorelease];
+        
+        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+        segmentedControl.selectedSegmentIndex = [self.model allTheatersSelectedSegmentIndex];
+        /*
+        [segmentedControl addTarget:self
+                             action:@selector(onSortOrderChanged:)
+                   forControlEvents:UIControlEventValueChanged];
+        */
+        CGRect rect = segmentedControl.frame;
+        rect.size.width = 240;
+        segmentedControl.frame = rect;
+        
+        self.navigationItem.titleView = segmentedControl;
     }
 
     return self;

@@ -46,6 +46,7 @@
 		744557260DD7E785008AF706 /* NotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 744557250DD7E785008AF706 /* NotificationCenter.m */; };
 		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
+		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
 		7464FDBA0DD52F22000CE93F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7464FDB90DD52F22000CE93F /* PosterView.m */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
@@ -198,6 +199,8 @@
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
 		7457FE910E21A41A00929D3E /* Performance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Performance.m; sourceTree = "<group>"; };
 		745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		745E203A0E58858A00105751 /* AutoResizingCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AutoResizingCell.h; sourceTree = "<group>"; };
+		745E203B0E58858A00105751 /* AutoResizingCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AutoResizingCell.m; sourceTree = "<group>"; };
 		7464FDB80DD52F22000CE93F /* PosterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
 		7464FDB90DD52F22000CE93F /* PosterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
 		746A01410DC819270079D89B /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
@@ -588,6 +591,8 @@
 				740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */,
 				740B14BB0E2DCDDB00493FC3 /* ReviewBodyCell.h */,
 				740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */,
+				745E203A0E58858A00105751 /* AutoResizingCell.h */,
+				745E203B0E58858A00105751 /* AutoResizingCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -792,6 +797,7 @@
 				740AFF360E54E87F004EC5EE /* NumbersNavigationController.m in Sources */,
 				740AFF8D0E54F067004EC5EE /* MovieStatistics.m in Sources */,
 				740AFFBB0E54F971004EC5EE /* NumbersViewController.m in Sources */,
+				745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

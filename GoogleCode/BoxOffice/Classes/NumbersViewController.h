@@ -16,9 +16,11 @@
 
 @interface NumbersViewController : UITableViewController {
     NumbersNavigationController* navigationController;
+    UISegmentedControl* segmentedControl;
 }
 
 @property (assign) NumbersNavigationController* navigationController;
+@property (retain) UISegmentedControl* segmentedControl;
 
 - (id) initWithNavigationController:(NumbersNavigationController*) navigationController;
 

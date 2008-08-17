@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "ApplicationTabBarController.h"
+#import "AutoResizingCell.h"
 #import "BoxOfficeModel.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
@@ -447,9 +448,9 @@
     // theater section
     if (indexPath.row == 0) {
         static NSString* reuseIdentifier = @"MovieDetailsTheaterCellIdentifier";
-        UITableViewCell* cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        AutoResizingCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+            cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero
                                            reuseIdentifier:reuseIdentifier] autorelease];
         }
 

@@ -243,7 +243,7 @@
     NSString* url = nil;
     if (section == 0) {
         if (row == 0) {
-            url = @"mailto:cyrus.najmabadi@gmail.com?subject=BoxOffice";
+            url = @"mailto:cyrus.najmabadi@gmail.com?subject=Now%20Playing";
         } else {
             url = @"http://metasyntactic.googlecode.com";
         }
