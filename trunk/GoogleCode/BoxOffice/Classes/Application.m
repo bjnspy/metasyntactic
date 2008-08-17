@@ -346,7 +346,7 @@ static NSString* starString = nil;
 + (void) openMap:(NSString*) address {
     NSString* urlString =
     [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",
-     [Utilities stringByAddingPercentEscapesUsingEncoding:address]];
+     [Utilities stringByAddingPercentEscapes:address]];
 
     [self openBrowser:urlString];
 }

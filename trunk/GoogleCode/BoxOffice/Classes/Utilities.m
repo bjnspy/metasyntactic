@@ -179,12 +179,18 @@
 }
 
 
-+ (NSString*) stringByAddingPercentEscapesUsingEncoding:(NSString*) string {
-    string = [string stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
++ (NSString*)                      string:(NSString*) string
+      byAddingPercentEscapesUsingEncoding:(NSStringEncoding) encoding {
+    string = [string stringByAddingPercentEscapesUsingEncoding:encoding];
     string = [string stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
     string = [string stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
 
     return string;
+}
+
+
++ (NSString*) stringByAddingPercentEscapes:(NSString*) string {
+    return [self string:string byAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
 }
 
 

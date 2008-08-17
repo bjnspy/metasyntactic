@@ -549,8 +549,8 @@
         }
 
         NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                         [Utilities stringByAddingPercentEscapesUsingEncoding:movieAndDate],
-                         [Utilities stringByAddingPercentEscapesUsingEncoding:body]];
+                         [Utilities stringByAddingPercentEscapes:movieAndDate],
+                         [Utilities stringByAddingPercentEscapes:body]];
 
         [Application openBrowser:url];
     }
