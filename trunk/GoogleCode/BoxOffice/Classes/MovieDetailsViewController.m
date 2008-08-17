@@ -549,7 +549,7 @@
         }
 
         NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                         [movieAndDate stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding],
+                         [Utilities stringByAddingPercentEscapesUsingEncoding:movieAndDate],
                          [Utilities stringByAddingPercentEscapesUsingEncoding:body]];
 
         [Application openBrowser:url];
