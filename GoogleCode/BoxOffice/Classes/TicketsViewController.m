@@ -276,8 +276,8 @@
                                            performances:performances]];
 
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                     [Utilities stringByAddingPercentEscapesUsingEncoding:theaterAndDate],
-                     [Utilities stringByAddingPercentEscapesUsingEncoding:body]];
+                     [Utilities stringByAddingPercentEscapes:theaterAndDate],
+                     [Utilities stringByAddingPercentEscapes:body]];
 
     [Application openBrowser:url];
 }

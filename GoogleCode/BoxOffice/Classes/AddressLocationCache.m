@@ -83,7 +83,7 @@
         return nil;
     }
 
-    NSString* escapedAddress = [Utilities stringByAddingPercentEscapesUsingEncoding:address];
+    NSString* escapedAddress = [Utilities stringByAddingPercentEscapes:address];
     if (escapedAddress != nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
 

@@ -46,7 +46,7 @@
 
 + (void) writeObject:(id) object toFile:(NSString*) file;
 
-+ (NSString*) stringByAddingPercentEscapesUsingEncoding:(NSString*) string;
++ (NSString*) stringByAddingPercentEscapes:(NSString*) string;
 
 + (NSString*) generateShowtimeLinks:(BoxOfficeModel*) model
                               movie:(Movie*) movie
