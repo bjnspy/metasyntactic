@@ -94,7 +94,7 @@
         }
 
         NSString* score = [columns objectAtIndex:1];
-        NSInteger scoreValue = [score intValue];
+        NSInteger scoreValue = score.intValue;
 
         [result addObject:[Review reviewWithText:[columns objectAtIndex:0]
                                            score:scoreValue

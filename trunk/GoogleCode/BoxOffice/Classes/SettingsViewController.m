@@ -408,7 +408,7 @@
 
 
 - (void) onSearchRadiusChanged:(NSString*) radius {
-    [self.controller setSearchRadius:[radius intValue]];
+    [self.controller setSearchRadius:radius.intValue];
     [self.tableView reloadData];
 }
 

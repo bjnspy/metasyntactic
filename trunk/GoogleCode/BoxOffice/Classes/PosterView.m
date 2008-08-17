@@ -54,7 +54,7 @@
 - (void) showPoster:(NSNumber*) number {
     const double pi = 3.14159265358979323846;
 
-    int index = [number intValue];
+    int index = number.intValue;
 
     int row = index % 2;
     int column = index / 2;
