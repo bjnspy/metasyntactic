@@ -189,15 +189,19 @@ static NSString* articles[] = {
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {
         if (hours == 1) {
-            [text appendString:@" 1 hour"];
+            [text appendString:@" "];
+            [text appendString:NSLocalizedString(@"1 hour", nil)];
         } else if (hours > 1) {
-            [text appendFormat:@" %d hours", hours];
+            [text appendString:@" "];
+            [text appendFormat:NSLocalizedString(@"%d hours", nil), hours];
         }
 
         if (minutes == 1) {
-            [text appendString:@" 1 minute"];
+            [text appendString:@" "];
+            [text appendString:NSLocalizedString(@"1 minute", nil)];
         } else if (minutes > 1) {
-            [text appendFormat:@" %d minutes", minutes];
+            [text appendString:@" "];
+            [text appendFormat:NSLocalizedString(@"%d minutes", nil), minutes];
         }
     }
 
