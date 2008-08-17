@@ -35,7 +35,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.3.1";
+static NSString* currentVersion = @"1.4.0";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -311,7 +311,6 @@ static NSString* currentVersion = @"1.3.1";
     if (location.country == nil) {
         return YES;
     }
-    
     
     NSArray* nonMetricCountries = [NSArray arrayWithObjects:@"US", @"UK", @"GB", nil];
     return [nonMetricCountries containsObject:location.country];
