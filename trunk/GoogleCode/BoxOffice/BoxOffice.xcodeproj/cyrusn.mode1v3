@@ -396,7 +396,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>745E20D60E588C9200105751</string>
+										<string>745E20DB0E588DCC00105751</string>
 										<key>history</key>
 										<array>
 											<string>749DF0DD0DC96FBD00A551D9</string>
@@ -1136,7 +1136,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>240684178.45736</real>
+	<real>240684492.09079999</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1151,15 +1151,14 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>745E20D40E588C8500105751</string>
+		<string>745E20D90E588DB500105751</string>
 		<string>745E1FBF0E58019D00105751</string>
 		<string>745E1FC20E58019D00105751</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>746A021D0DC8202B0079D89B</string>
-		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>745E20D50E588C8500105751</string>
+		<string>745E20DA0E588DB500105751</string>
 	</array>
 	<key>WindowString</key>
 	<string>57 29 1154 847 0 0 1440 878 </string>
