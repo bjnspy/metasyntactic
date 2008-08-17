@@ -25,7 +25,7 @@
 @class Application;
 @class ApplicationTabBarController;
 @class AttributeCell;
-@class AutoresizingCell;
+@class AutoResizingCell;
 @class BoxOfficeAppDelegate;
 @class BoxOfficeController;
 @class BoxOfficeModel;
