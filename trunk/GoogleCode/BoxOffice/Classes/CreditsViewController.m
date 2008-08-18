@@ -58,7 +58,7 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 7;
+    return 8;
 }
 
 
@@ -77,6 +77,8 @@
     } else if (section == 5) {
         return 3;
     } else if (section == 6) {
+        return 1;
+    } else if (section == 7) {
         return 1;
     }
 
@@ -163,6 +165,10 @@
             cell.text = @"GeoCoder.ca";
         }
     } else if (section == 6) {
+        if (row == 0) {
+            cell.text = @"Pedro Pinhao";
+        }
+    } else if (section == 7) {
         cell.text = NSLocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
@@ -185,6 +191,8 @@
         return NSLocalizedString(@"Movie details provided by:", nil);
     } else if (section == 5) {
         return NSLocalizedString(@"Geolocation services provided by:", nil);
+    } else if (section == 6) {
+        return NSLocalizedString(@"Localized by:", nil);
     }
 
     return nil;
@@ -193,7 +201,7 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    if (section == 6) {
+    if (section == 7) {
         return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes.  Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
     }
 
@@ -205,6 +213,8 @@
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section >= 0 && indexPath.section <= 5) {
         return UITableViewCellAccessoryDetailDisclosureButton;
+    } else if (indexPath.section == 6) {
+        return UITableViewCellAccessoryNone;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
     }
@@ -229,7 +239,7 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 6) {
+    if (indexPath.section == 7) {
         [self licenseCellTapped];
     }
 }
@@ -272,6 +282,8 @@
             url = @"http://geocoder.ca";
         }
     } else if (section == 6) {
+        return;
+    } else if (section == 7) {
         return;
     }
 
