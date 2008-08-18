@@ -17,6 +17,7 @@
 #import "CreditsViewController.h"
 
 #import "Application.h"
+#import "SettingCell.h"
 
 @implementation CreditsViewController
 
@@ -77,7 +78,7 @@
     } else if (section == 5) {
         return 3;
     } else if (section == 6) {
-        return 1;
+        return 2;
     } else if (section == 7) {
         return 1;
     }
@@ -125,10 +126,51 @@
 }
 
 
+- (UITableViewCell*) localizationCellForRow:(NSInteger) row {
+    SettingCell* cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    NSString* language;
+    NSString* person;
+    if (row == 0) {        
+        language = NSLocalizedString(@"Portuguese", nil);
+        person = @"Pedro Pinhao";
+    } else if (row == 1) {
+        language = NSLocalizedString(@"French", nil);
+        person = @"Jonathan Grenier";
+    } else {
+        language = NSLocalizedString(@"German", nil);
+        language = NSLocalizedString(@"Japanese", nil);
+        language = NSLocalizedString(@"German", nil);
+        language = NSLocalizedString(@"Spanish", nil);
+        language = NSLocalizedString(@"Czech", nil);
+        language = NSLocalizedString(@"Arabic", nil);
+        language = NSLocalizedString(@"Hungarian", nil);
+        language = NSLocalizedString(@"Hebrew", nil);
+        language = NSLocalizedString(@"Italian", nil);
+        language = NSLocalizedString(@"Dutch", nil);
+        language = NSLocalizedString(@"Romanian", nil);
+        language = NSLocalizedString(@"Russian", nil);
+        language = NSLocalizedString(@"Slovak", nil);
+        language = NSLocalizedString(@"Swedish", nil);
+        language = NSLocalizedString(@"Turkish", nil);
+        language = NSLocalizedString(@"Danish", nil);
+        language = NSLocalizedString(@"Thai", nil);        
+    }
+    
+    [cell setKey:language value:person];
+    return cell;
+}
+
+
 - (UITableViewCell*)    tableView:(UITableView*) tableView
             cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
+    
+    if (section == 6) {
+        return [self localizationCellForRow:row];
+    }
 
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -163,10 +205,6 @@
             cell.text = @"GeoNames";
         } else if (row == 2) {
             cell.text = @"GeoCoder.ca";
-        }
-    } else if (section == 6) {
-        if (row == 0) {
-            cell.text = @"Pedro Pinhao";
         }
     } else if (section == 7) {
         cell.text = NSLocalizedString(@"License", nil);
