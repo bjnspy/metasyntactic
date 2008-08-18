@@ -124,7 +124,7 @@
     for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
         int distance = distances[i];
         if (distance == 1) {
-            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than 1 %@ away", @"singular"), singularUnit]];            
+            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than 1 %@ away", @"singular"), singularUnit]];
         } else {
             [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than %d %@ away", @"plural"), distance, pluralUnit]];                        
         }
