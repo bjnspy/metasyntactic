@@ -64,7 +64,7 @@
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     [self refresh];
 }
@@ -76,12 +76,12 @@
 
 
 - (BoxOfficeModel*) model {
-    return [self.navigationController model];
+    return self.navigationController.model;
 }
 
 
 - (BoxOfficeController*) controller {
-    return [self.navigationController controller];
+    return self.navigationController.controller;
 }
 
 
@@ -148,10 +148,10 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.row == 0) {
-        return [tableView rowHeight];
+        return tableView.rowHeight;
     }
     
-    return [tableView rowHeight] - 16;
+    return tableView.rowHeight - 16;
 }
 
 /*

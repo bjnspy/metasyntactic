@@ -104,8 +104,8 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
     [self.model setCurrentlySelectedMovie:self.movie theater:self.theater];
-
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
 
 
@@ -181,10 +181,21 @@
     AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                 reuseIdentifier:nil] autorelease];
 
+    NSString* mapString = NSLocalizedString(@"Map", nil);
+    NSString* callString = NSLocalizedString(@"Call", nil);
+    CGSize size1 = [mapString sizeWithFont:[AttributeCell keyFont]];
+    CGSize size2 = [callString sizeWithFont:[AttributeCell keyFont]];
+    
+    NSInteger width = MAX(size1.width, size2.width) + 30;
+    
     if (row == 0) {
-        [cell setKey:NSLocalizedString(@"Map", nil) value:[self.model simpleAddressForTheater:theater]];
+        [cell setKey:mapString
+               value:[self.model simpleAddressForTheater:theater]
+               keyWidth:width];
     } else {
-        [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber];
+        [cell setKey:callString
+               value:theater.phoneNumber
+               keyWidth:width];
     }
 
     return cell;

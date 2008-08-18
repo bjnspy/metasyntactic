@@ -113,7 +113,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     [self.model setCurrentlySelectedMovie:nil theater:self.theater];
 
@@ -157,10 +157,21 @@
     AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
                                                 reuseIdentifier:nil] autorelease];
 
+    NSString* mapString = NSLocalizedString(@"Map", nil);
+    NSString* callString = NSLocalizedString(@"Call", nil);
+    CGSize size1 = [mapString sizeWithFont:[AttributeCell keyFont]];
+    CGSize size2 = [callString sizeWithFont:[AttributeCell keyFont]];
+    
+    NSInteger width = MAX(size1.width, size2.width) + 30;
+    
     if (row == 0) {
-        [cell setKey:NSLocalizedString(@"Map", nil) value:[self.model simpleAddressForTheater:theater]];
+        [cell setKey:mapString
+               value:[self.model simpleAddressForTheater:theater]
+            keyWidth:width];
     } else {
-        [cell setKey:NSLocalizedString(@"Call", nil) value:theater.phoneNumber];
+        [cell setKey:callString
+               value:theater.phoneNumber
+            keyWidth:width];
     }
 
     return cell;
@@ -233,12 +244,12 @@
     NSInteger row = indexPath.row;
 
     if (section == 0 || section == 1) {
-        return [tableView rowHeight];
+        return tableView.rowHeight;
     } else {
         section -= 2;
 
         if (row == 0) {
-            return [tableView rowHeight];
+            return tableView.rowHeight;
         } else {
             return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:section]
                                             useSmallFonts:[self.model useSmallFonts]] + 18;
