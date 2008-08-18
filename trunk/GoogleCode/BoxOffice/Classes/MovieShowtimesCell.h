@@ -17,10 +17,15 @@
 @interface MovieShowtimesCell : UITableViewCell {
     UILabel* headerLabel;
     UILabel* showtimesLabel;
+    
+    NSArray* showtimes;
+    BOOL useSmallFonts;
 }
 
 @property (retain) UILabel* headerLabel;
 @property (retain) UILabel* showtimesLabel;
+@property (retain) NSArray* showtimes;
+@property BOOL useSmallFonts;
 
 - (void) setShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts;
 
