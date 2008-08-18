@@ -54,7 +54,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
 
 
@@ -114,7 +114,7 @@
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     UIImage* image = [self getImage:indexPath];
-    CGFloat height = [tableView rowHeight];;
+    CGFloat height = tableView.rowHeight;
     if (image != nil) {
         CGFloat imageHeight = image.size.height + 10;
         if (imageHeight > height) {

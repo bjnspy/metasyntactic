@@ -158,11 +158,11 @@
         if (indexPath.row == 1) {
             Review* review = [reviews objectAtIndex:indexPath.section];
 
-            return MAX([review heightWithFont:[FontCache helvetica14]], [self.tableView rowHeight]);
+            return MAX([review heightWithFont:[FontCache helvetica14]], self.tableView.rowHeight);
         }
     }
 
-    return [tableView rowHeight];
+    return tableView.rowHeight;
 }
 
 

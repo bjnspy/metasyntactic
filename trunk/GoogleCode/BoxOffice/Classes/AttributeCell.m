@@ -30,6 +30,10 @@
     [super dealloc];
 }
 
++ (UIFont*) keyFont {
+    return [UIFont boldSystemFontOfSize:12.0];
+}
+
 
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
@@ -37,7 +41,7 @@
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
 
         self.keyLabel.textColor = [ColorCache commandColor];
-        self.keyLabel.font = [UIFont boldSystemFontOfSize:12.0];
+        self.keyLabel.font = [AttributeCell keyFont];
         self.keyLabel.textAlignment = UITextAlignmentRight;
 
         self.valueLabel.font = [UIFont boldSystemFontOfSize:14.0];
@@ -67,13 +71,6 @@
         frame.size.width = self.contentView.frame.size.width - frame.origin.x;
         valueLabel.frame = frame;        
     }
-}
-
-- (void) setKey:(NSString*) key
-          value:(NSString*) value {
-    [self setKey:key
-           value:value 
-        keyWidth:50];
 }
 
 

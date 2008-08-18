@@ -200,7 +200,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:animated];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
@@ -298,9 +298,9 @@
 
         return h1 + h2 + 10;
     } else if (row == 1) {
-        return [self.tableView rowHeight] - 10;
+        return self.tableView.rowHeight - 10;
     } else {
-        return [self.tableView rowHeight];
+        return self.tableView.rowHeight;
     }
 }
 
@@ -317,12 +317,12 @@
     }
 
     if (indexPath.section == 1) {
-        return [tableView rowHeight];
+        return tableView.rowHeight;
     }
 
     // theater section
     if (indexPath.row == 0) {
-        return [tableView rowHeight];
+        return tableView.rowHeight;
     } else {
         return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
                                         useSmallFonts:[self.model useSmallFonts]] + 18;
@@ -511,7 +511,7 @@
     // Release the movie instance created in playMovieAtURL:
     [moviePlayer autorelease];
 
-    [self.tableView deselectRowAtIndexPath:[self.tableView indexPathForSelectedRow] animated:YES];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 }
 
 

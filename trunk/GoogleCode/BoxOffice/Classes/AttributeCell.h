@@ -22,8 +22,7 @@
 @property (retain) UILabel* keyLabel;
 @property (retain) UILabel* valueLabel;
 
-- (void) setKey:(NSString*) key
-          value:(NSString*) value;
++ (UIFont*) keyFont;
 
 - (void) setKey:(NSString*) key
           value:(NSString*) value
