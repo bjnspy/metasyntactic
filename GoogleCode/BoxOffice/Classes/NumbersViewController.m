@@ -214,7 +214,6 @@
         } else if (indexPath.row == 4) {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.text = NSLocalizedString(@"Auto-Update Location", nil);
-            //cell.text = NSLocalizedString(@"Only Ticketable Theaters", nil);
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
