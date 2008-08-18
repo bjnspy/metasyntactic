@@ -134,7 +134,7 @@
     NSString* person;
     if (row == 0) {        
         language = NSLocalizedString(@"Portuguese", nil);
-        person = @"Pedro Pinhao";
+        person = @"Pedro Pinhão";
     } else if (row == 1) {
         language = NSLocalizedString(@"French", nil);
         person = @"Jonathan Grenier";

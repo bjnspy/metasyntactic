@@ -129,12 +129,12 @@
     self.sectionTitles = [NSMutableArray array];
     self.sectionTitleToContentsMap = [MultiDictionary dictionary];
 
-    if ([self.model sortingMoviesByTitle]) {
+    if (self.model.sortingMoviesByTitle) {
         [self sortMoviesByTitle];
-    } else if ([self.model sortingMoviesByScore]) {
-        [self sortMoviesByScore];
-    } else {
+    } else if (self.model.sortingMoviesByReleaseDate) {
         [self sortMoviesByReleaseDate];
+    } else if (self.model.sortingMoviesByScore) {
+        [self sortMoviesByScore];
     }
 
     if (sectionTitles.count == 0) {
@@ -147,14 +147,15 @@
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:
                                NSLocalizedString(@"Title", nil),
-                               NSLocalizedString(@"Score", nil),
-                               NSLocalizedString(@"Release", nil), nil]] autorelease];
-
+                               NSLocalizedString(@"Release", nil),
+                               NSLocalizedString(@"Score", nil), nil]] autorelease];
+    
     self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    self.segmentedControl.selectedSegmentIndex = [self.model allMoviesSelectedSegmentIndex];
+    self.segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
+    
     [self.segmentedControl addTarget:self
-     action:@selector(onSortOrderChanged:)
-     forControlEvents:UIControlEventValueChanged];
+                              action:@selector(onSortOrderChanged:)
+                    forControlEvents:UIControlEventValueChanged];
 
     CGRect rect = self.segmentedControl.frame;
     rect.size.width = 240;
@@ -170,7 +171,7 @@
         self.sortedMovies = [NSArray array];
 
         [self setupSegmentedControl];
-
+        
         self.alphabeticSectionTitles =
         [NSArray arrayWithObjects:
          @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
@@ -196,6 +197,13 @@
 
 
 - (void) refresh {
+    if (self.model.noRatings && self.segmentedControl.numberOfSegments == 3) {
+        self.segmentedControl.selectedSegmentIndex  = self.model.allMoviesSelectedSegmentIndex;
+        [self.segmentedControl removeSegmentAtIndex:2 animated:NO];
+    } else if (!self.model.noRatings && self.segmentedControl.numberOfSegments == 2) {
+        [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
+    }
+    
     [self sortMovies];
     [self.tableView reloadData];
 }

@@ -35,7 +35,7 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.4.0";
+static NSString* currentVersion = @"1.4.1";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -274,6 +274,10 @@ static NSString* currentVersion = @"1.4.0";
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel RATINGS_PROVIDER_INDEX]];
     [self.ratingsCache onRatingsProviderChanged];
     [self updateReviewCache];
+    
+    if (self.noRatings && self.sortingMoviesByScore) {
+        [self setAllMoviesSelectedSegmentIndex:0];
+    }
 }
 
 
@@ -347,12 +351,12 @@ static NSString* currentVersion = @"1.4.0";
 }
 
 
-- (BOOL) sortingMoviesByScore {
+- (BOOL) sortingMoviesByReleaseDate {
     return [self allMoviesSelectedSegmentIndex] == 1;
 }
 
 
-- (BOOL) sortingMoviesByReleaseDate {
+- (BOOL) sortingMoviesByScore {
     return [self allMoviesSelectedSegmentIndex] == 2;
 }
 
