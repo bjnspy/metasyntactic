@@ -37,6 +37,11 @@
 }
 
 
++ (NSString*) showsString {
+    return NSLocalizedString(@"Shows", @"This string must be kept small.  Preferably 6 characters or less");
+}
+
+
 + (NSString*) showtimesString:(NSArray*) showtimes {
     NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
 
@@ -66,7 +71,7 @@
     // screen - outer margin - inner margin - space between labels;
     double width = 320 - 20 - (8 + 18) - 8;
 
-    NSString* showsString = NSLocalizedString(@"Shows", nil);
+    NSString* showsString = [MovieShowtimesCell showsString];
     double showsWidth = [showsString sizeWithFont:font].width;
     width -= showsWidth;
     
@@ -86,7 +91,7 @@
 
         self.headerLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.headerLabel.textColor = [ColorCache commandColor];
-        self.headerLabel.text = NSLocalizedString(@"Shows", nil);
+        self.headerLabel.text = [MovieShowtimesCell showsString];
 
         [self.contentView addSubview:showtimesLabel];
         [self.contentView addSubview:headerLabel];
