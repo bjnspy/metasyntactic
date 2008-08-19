@@ -78,7 +78,7 @@
     } else if (section == 5) {
         return 3;
     } else if (section == 6) {
-        return 2;
+        return 3;
     } else if (section == 7) {
         return 1;
     }
@@ -133,11 +133,14 @@
     NSString* language;
     NSString* person;
     if (row == 0) {        
-        language = NSLocalizedString(@"Portuguese", nil);
-        person = @"Pedro Pinhão";
-    } else if (row == 1) {
         language = NSLocalizedString(@"French", nil);
         person = @"Jonathan Grenier";
+    } else if (row == 1) {
+        language = NSLocalizedString(@"Portuguese", nil);
+        person = @"Pedro Pinhão";
+    } else if (row == 2) {
+        language = NSLocalizedString(@"Turkish", nil);
+        person = @"Oguz";
     } else {
         language = NSLocalizedString(@"German", nil);
         language = NSLocalizedString(@"Japanese", nil);
@@ -153,7 +156,6 @@
         language = NSLocalizedString(@"Russian", nil);
         language = NSLocalizedString(@"Slovak", nil);
         language = NSLocalizedString(@"Swedish", nil);
-        language = NSLocalizedString(@"Turkish", nil);
         language = NSLocalizedString(@"Danish", nil);
         language = NSLocalizedString(@"Thai", nil);        
     }
