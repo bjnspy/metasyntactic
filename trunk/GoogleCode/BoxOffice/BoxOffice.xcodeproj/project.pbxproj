@@ -192,6 +192,7 @@
 		74447C640DC843B200CC146C /* AllTheatersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AllTheatersViewController.m; sourceTree = "<group>"; };
 		74447C660DC843D900CC146C /* TheaterDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterDetailsViewController.h; sourceTree = "<group>"; };
 		74447C670DC843D900CC146C /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
+		744483150E5B8EB300E4B2CE /* en_GB */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en_GB; path = Resources/en_GB.lproj/Localizable.strings; sourceTree = "<group>"; };
 		744557240DD7E785008AF706 /* NotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotificationCenter.h; sourceTree = "<group>"; };
 		744557250DD7E785008AF706 /* NotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NotificationCenter.m; sourceTree = "<group>"; };
 		74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
@@ -696,6 +697,7 @@
 				sv,
 				th,
 				tr,
+				en_GB,
 			);
 			mainGroup = 29B97314FDCFA39411CA2CEA /* CustomTemplate */;
 			projectDirPath = "";
@@ -840,6 +842,7 @@
 				745E213D0E5962DE00105751 /* da */,
 				7402245A0E53F353006C58A2 /* de */,
 				7402245B0E53F35A006C58A2 /* en */,
+				744483150E5B8EB300E4B2CE /* en_GB */,
 				745E213A0E5961F700105751 /* es */,
 				740224590E53F351006C58A2 /* fr */,
 				745E213E0E59630200105751 /* he */,
