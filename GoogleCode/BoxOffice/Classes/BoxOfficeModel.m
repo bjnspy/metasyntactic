@@ -306,23 +306,8 @@ static NSString* currentVersion = @"1.4.1";
 }
 
 
-- (BOOL) useMiles {
-    if ([Utilities isNilOrEmpty:self.postalCode]) {
-        return YES;
-    }
-
-    Location* location = [self.addressLocationCache locationForAddress:self.postalCode];
-    if (location.country == nil) {
-        return YES;
-    }
-    
-    NSArray* nonMetricCountries = [NSArray arrayWithObjects:@"US", @"UK", @"GB", nil];
-    return [nonMetricCountries containsObject:location.country];
-}
-
-
 - (BOOL) useKilometers {
-    return !self.useMiles;
+    return [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
 }
 
 
