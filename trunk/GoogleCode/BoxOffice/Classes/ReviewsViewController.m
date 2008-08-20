@@ -27,37 +27,45 @@
 @implementation ReviewsViewController
 
 @synthesize navigationController;
+@synthesize movie;
 @synthesize reviews;
 
 - (void) dealloc {
     self.navigationController = nil;
+    self.movie = nil;
     self.reviews = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(MoviesNavigationController*) navigationController_
-                            reviews:(NSArray*) reviews_ {
+- (BoxOfficeModel*) model {
+    return self.navigationController.model;
+}
+
+
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
+                              movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
+        self.movie = movie_;
+        
         self.title = NSLocalizedString(@"Reviews", nil);
-        self.reviews = reviews_;
+        
+        self.reviews = [self.model reviewsForMovie:movie];
     }
 
     return self;
 }
 
 
-- (BoxOfficeModel*) model {
-    return [self.navigationController model];
+- (void) viewWillAppear:(BOOL) animated {
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[navigationController model].activityView] autorelease];
 }
 
 
-- (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[navigationController model].activityView] autorelease];
-
-    [[navigationController model] setCurrentlyShowingReviews];
+- (void) viewDidAppear:(BOOL) animated {
+    [self.model saveNavigationStack:self.navigationController];
 }
 
 
@@ -180,6 +188,10 @@
     } else {
         return UITableViewCellAccessoryDetailDisclosureButton;
     }
+}
+
+
+- (void) refresh {
 }
 
 

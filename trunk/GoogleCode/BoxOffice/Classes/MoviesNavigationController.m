@@ -25,12 +25,10 @@
 @implementation MoviesNavigationController
 
 @synthesize allMoviesViewController;
-@synthesize movieDetailsViewController;
 @synthesize tabBarController;
 
 - (void) dealloc {
     self.allMoviesViewController = nil;
-    self.movieDetailsViewController = nil;
     self.tabBarController = nil;
 
     [super dealloc];
@@ -51,57 +49,12 @@
 }
 
 
-- (void) navigateToLastViewedPage {
-    Movie* currentMovie = [self.model currentlySelectedMovie];
-    if (currentMovie != nil) {
-        [self pushMovieDetails:currentMovie animated:NO];
-
-        Theater* currentTheater = [self.model currentlySelectedTheater];
-        if (currentTheater != nil) {
-            [self pushTicketsView:currentMovie
-                          theater:currentTheater
-                         animated:NO];
-        }
-
-        if ([self.model currentlyShowingReviews]) {
-            [self pushReviewsView:[self.model reviewsForMovie:currentMovie]
-                         animated:NO];
-        }
-    }
-}
-
-
 - (void) refresh {
     [super refresh];
-    [self.allMoviesViewController refresh];
-    [self.movieDetailsViewController refresh];
-}
-
-
-- (void) pushMovieDetails:(Movie*) movie
-                 animated:(BOOL) animated {
-    [self popToRootViewControllerAnimated:NO];
-
-    self.movieDetailsViewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self movie:movie] autorelease];
-
-    [self pushViewController:movieDetailsViewController animated:animated];
-}
-
-
-- (void) pushTicketsView:(Movie*) movie
-                 theater:(Theater*) theater
-                animated:(BOOL) animated {
-    [self pushTicketsView:movie
-                         theater:theater
-                           title:theater.name
-                        animated:animated];
-}
-
-
-- (void) pushReviewsView:(NSArray*) reviews animated:(BOOL) animated {
-    ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithNavigationController:self
-                                                                                             reviews:reviews] autorelease];
-    [self pushViewController:controller animated:animated];
+    
+    for (id controller in self.viewControllers) {
+        [controller refresh];
+    }
 }
 
 

@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface TheaterDetailsViewController : UITableViewController {
-    TheatersNavigationController* navigationController;
+    AbstractNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
     Theater* theater;
 
@@ -23,13 +23,13 @@
     NSMutableArray* movieShowtimes;
 }
 
-@property (assign) TheatersNavigationController* navigationController;
+@property (assign) AbstractNavigationController* navigationController;
 @property (retain) UISegmentedControl* segmentedControl;
 @property (retain) Theater* theater;
 @property (retain) NSArray* movies;
 @property (retain) NSMutableArray* movieShowtimes;
 
-- (id) initWithNavigationController:(TheatersNavigationController*) navigationController
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                             theater:(Theater*) theater;
 
 - (void) refresh;

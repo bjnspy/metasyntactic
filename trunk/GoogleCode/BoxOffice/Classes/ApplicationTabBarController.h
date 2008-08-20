@@ -35,9 +35,6 @@
 
 - (void) refresh;
 
-- (void) showTheaterDetails:(Theater*) theater;
-- (void) showMovieDetails:(Movie*) movie;
-
 - (void) popNavigationControllersToRoot;
 
 @end

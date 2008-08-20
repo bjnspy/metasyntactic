@@ -14,6 +14,13 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
+enum ViewControllerType {
+    MovieDetails = 1,
+    TheaterDetails = 2,
+    Reviews = 3,
+    Tickets = 4
+};
+
 @interface BoxOfficeModel : NSObject {
     NotificationCenter* notificationCenter;
 
@@ -88,13 +95,9 @@
 - (NSInteger) allTheatersSelectedSegmentIndex;
 - (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index;
 
-- (Movie*) currentlySelectedMovie;
-- (Theater*) currentlySelectedTheater;
-- (BOOL) currentlyShowingReviews;
-
-- (void) setCurrentlyShowingReviews;
-- (void) setCurrentlySelectedMovie:(Movie*) movie
-                           theater:(Theater*) theater;
+- (void) saveNavigationStack:(AbstractNavigationController*) controller;
+- (NSArray*) navigationStackTypes;
+- (NSArray*) navigationStackValues;
 
 - (BOOL) autoUpdateLocation;
 - (void) setAutoUpdateLocation:(BOOL) value;
@@ -151,13 +154,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 + (NSString*) SEARCH_RESULTS;
 + (NSString*) SEARCH_RADIUS;
 + (NSString*) POSTAL_CODE;
-+ (NSString*) CURRENTLY_SELECTED_MOVIE;
-+ (NSString*) CURRENTLY_SELECTED_THEATER;
 + (NSString*) SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX;
 + (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX;
 + (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX;
 + (NSString*) FAVORITE_THEATERS;
-+ (NSString*) CURRENTLY_SHOWING_REVIEWS;
 + (NSString*) SEARCH_DATE;
 + (NSString*) AUTO_UPDATE_LOCATION;
 + (NSString*) DATA_PROVIDER_INDEX;

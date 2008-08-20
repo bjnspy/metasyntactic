@@ -15,15 +15,19 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ReviewsViewController :  UITableViewController {
-    MoviesNavigationController* navigationController;
+    AbstractNavigationController* navigationController;
 
+    Movie* movie;
     NSArray* reviews;
 }
 
-@property (assign) MoviesNavigationController* navigationController;
+@property (assign) AbstractNavigationController* navigationController;
+@property (retain) Movie* movie;
 @property (retain) NSArray* reviews;
 
-- (id) initWithNavigationController:(MoviesNavigationController*) controller
-                            reviews:(NSArray*) reviews;
+- (id) initWithNavigationController:(AbstractNavigationController*) controller
+                              movie:(Movie*) movie;
+
+- (void) refresh;
 
 @end

@@ -102,10 +102,13 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-
-    [self.model setCurrentlySelectedMovie:self.movie theater:self.theater];
     
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+}
+
+
+- (void) viewDidAppear:(BOOL) animated {
+    [self.model saveNavigationStack:self.navigationController];
 }
 
 

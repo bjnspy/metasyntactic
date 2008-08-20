@@ -24,13 +24,12 @@
 @implementation TheatersNavigationController
 
 @synthesize allTheatersViewController;
-@synthesize theaterDetailsViewController;
 @synthesize tabBarController;
 
 - (void) dealloc {
     self.allTheatersViewController = nil;
-    self.theaterDetailsViewController = nil;
     self.tabBarController = nil;
+    
     [super dealloc];
 }
 
@@ -49,44 +48,12 @@
 }
 
 
-- (void) navigateToLastViewedPage {
-    Theater* currentTheater = [self.model currentlySelectedTheater];
-    if (currentTheater != nil) {
-        [self pushTheaterDetails:currentTheater animated:NO];
-
-        Movie* currentMovie = [self.model currentlySelectedMovie];
-        if (currentMovie != nil) {
-            [self pushTicketsView:currentTheater
-                            movie:currentMovie
-                         animated:NO];
-        }
-    }
-}
-
-
 - (void) refresh {
     [super refresh];
-    [self.allTheatersViewController refresh];
-    [self.theaterDetailsViewController refresh];
-}
 
-
-- (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
-    [self popToRootViewControllerAnimated:NO];
-
-    self.theaterDetailsViewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self theater:theater] autorelease];
-
-    [self pushViewController:theaterDetailsViewController animated:animated];
-}
-
-
-- (void) pushTicketsView:(Theater*) theater
-                   movie:(Movie*) movie
-                animated:(BOOL) animated {
-    [self pushTicketsView:movie
-                  theater:theater
-                    title:movie.displayTitle
-                 animated:animated];
+    for (id controller in self.viewControllers) {
+        [controller refresh];
+    }
 }
 
 

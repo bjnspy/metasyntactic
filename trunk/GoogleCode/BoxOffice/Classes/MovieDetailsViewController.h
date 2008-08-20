@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface MovieDetailsViewController : UITableViewController {
-    MoviesNavigationController* navigationController;
+    AbstractNavigationController* navigationController;
 
     Movie* movie;
     NSMutableArray* theatersArray;
@@ -33,7 +33,7 @@
     BOOL filterTheatersByDistance;
 }
 
-@property (assign) MoviesNavigationController* navigationController;
+@property (assign) AbstractNavigationController* navigationController;
 @property (retain) Movie* movie;
 @property (retain) NSMutableArray* theatersArray;
 @property (retain) NSMutableArray* showtimesArray;
@@ -43,7 +43,7 @@
 @property (copy) NSString* synopsis;
 @property (retain) UIImage* posterImage;
 
-- (id) initWithNavigationController:(MoviesNavigationController*) navigationController
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
                               movie:(Movie*) movie;
 
 - (void) refresh;
