@@ -167,7 +167,7 @@
 }
 
 
-- (id) initWithNavigationController:(MoviesNavigationController*) controller
+- (id) initWithNavigationController:(AbstractNavigationController*) controller
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
@@ -204,9 +204,12 @@
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 
-    [self.model setCurrentlySelectedMovie:self.movie theater:nil];
-
     [self refresh];
+}
+
+
+- (void) viewDidAppear:(BOOL) animated {
+    [self.model saveNavigationStack:self.navigationController];
 }
 
 
@@ -519,7 +522,7 @@
     if (row < trailersArray.count) {
         [self playMovie:[trailersArray objectAtIndex:row]];
     } else if (row == trailersArray.count && self.reviewsArray.count > 0) {
-        [self.navigationController pushReviewsView:reviewsArray animated:YES];
+        [self.navigationController pushReviewsView:movie animated:YES];
     } else {
         NSString* movieAndDate = [NSString stringWithFormat:@"%@ - %@",
                                   self.movie.canonicalTitle,
@@ -558,6 +561,15 @@
 }
 
 
+- (void) pushTicketsView:(Theater*) theater
+                animated:(BOOL) animated {
+    [self.navigationController pushTicketsView:self.movie
+                                       theater:theater
+                                         title:theater.name
+                                      animated:animated];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
@@ -572,9 +584,9 @@
     Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
 
     if (indexPath.row == 0) {
-        [self.navigationController.tabBarController showTheaterDetails:theater];
+        [self.navigationController pushTheaterDetails:theater animated:YES];
     } else {
-        [self.navigationController pushTicketsView:self.movie theater:theater animated:YES];
+        [self pushTicketsView:theater animated:YES];
     }
 }
 

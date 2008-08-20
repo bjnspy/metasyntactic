@@ -61,7 +61,7 @@
         if ([Utilities isNilOrEmpty:self.model.postalCode]) {
             self.selectedViewController = self.settingsNavigationController;
         } else {
-            AbstractNavigationController* controller = [self.viewControllers objectAtIndex:[self.model selectedTabBarViewControllerIndex]];
+            AbstractNavigationController* controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
             self.selectedViewController = controller;
             [controller navigateToLastViewedPage];
         }
@@ -98,18 +98,6 @@
     [self.moviesNavigationController refresh];
     [self.theatersNavigationController refresh];
     [self.settingsNavigationController refresh];
-}
-
-
-- (void) showTheaterDetails:(Theater*) theater {
-    self.selectedViewController = self.theatersNavigationController;
-    [self.theatersNavigationController pushTheaterDetails:theater animated:YES];
-}
-
-
-- (void) showMovieDetails:(Movie*) movie {
-    self.selectedViewController = self.moviesNavigationController;
-    [self.moviesNavigationController pushMovieDetails:movie animated:YES];
 }
 
 

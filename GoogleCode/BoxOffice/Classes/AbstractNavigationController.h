@@ -34,6 +34,10 @@
                    title:(NSString*) title
                 animated:(BOOL) animated;
 
+- (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated;
+- (void) pushMovieDetails:(Movie*) movie animated:(BOOL) animated;
+- (void) pushReviewsView:(Movie*) movie animated:(BOOL) animated;
+
 - (void) navigateToLastViewedPage;
 
 @end

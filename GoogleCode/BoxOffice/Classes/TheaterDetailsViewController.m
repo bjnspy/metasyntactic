@@ -79,7 +79,7 @@
 }
 
 
-- (id) initWithNavigationController:(TheatersNavigationController*) controller
+- (id) initWithNavigationController:(AbstractNavigationController*) controller
                             theater:(Theater*) theater_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.theater = theater_;
@@ -115,9 +115,12 @@
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
-    [self.model setCurrentlySelectedMovie:nil theater:self.theater];
-
     [self refresh];
+}
+
+
+- (void) viewDidAppear:(BOOL) animated {
+    [self.model saveNavigationStack:self.navigationController];
 }
 
 
@@ -306,6 +309,15 @@
 }
 
 
+- (void) pushTicketsView:(Movie*) movie
+                animated:(BOOL) animated {
+    [self.navigationController pushTicketsView:movie
+                                       theater:self.theater
+                                         title:movie.displayTitle
+                                      animated:animated];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath; {
     NSInteger section = indexPath.section;
@@ -324,9 +336,9 @@
 
         Movie* movie = [self.movies objectAtIndex:section];
         if (row == 0) {
-            [self.navigationController.tabBarController showMovieDetails:movie];
+            [self.navigationController pushMovieDetails:movie animated:YES];
         } else {
-            [self.navigationController  pushTicketsView:self.theater movie:movie animated:YES];
+            [self pushTicketsView:movie animated:YES];
         }
     }
 }

@@ -16,45 +16,50 @@
 
 #import "BoxOfficeModel.h"
 
+#import "AbstractNavigationController.h"
 #import "AddressLocationCache.h"
+#import "AllMoviesViewController.h"
+#import "AllTheatersViewController.h"
 #import "Application.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "ExtraMovieInformation.h"
 #import "Location.h"
 #import "Movie.h"
+#import "MovieDetailsViewController.h"
 #import "NorthAmericaDataProvider.h"
 #import "NotificationCenter.h"
 #import "PosterCache.h"
 #import "RatingsCache.h"
 #import "ReviewCache.h"
+#import "ReviewsViewController.h"
 #import "Theater.h"
+#import "TheaterDetailsViewController.h"
+#import "TicketsViewController.h"
 #import "TrailerCache.h"
 #import "UnitedKingdomDataProvider.h"
 #import "Utilities.h"
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.4.1";
+static NSString* currentVersion = @"1.4.5";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
 + (NSString*) SEARCH_RESULTS                            { return @"searchResults"; }
 + (NSString*) SEARCH_RADIUS                             { return @"searchRadius"; }
 + (NSString*) POSTAL_CODE                               { return @"postalCode"; }
-+ (NSString*) CURRENTLY_SELECTED_MOVIE                  { return @"currentlySelectedMovie"; }
-+ (NSString*) CURRENTLY_SELECTED_THEATER                { return @"currentlySelectedTheater"; }
 + (NSString*) SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX    { return @"selectedTabBarViewControllerIndex"; }
 + (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX         { return @"allMoviesSelectedSegmentIndex"; }
 + (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX       { return @"allTheatersSelectedSegmentIndex"; }
 + (NSString*) FAVORITE_THEATERS                         { return @"favoriteTheaters"; }
-+ (NSString*) CURRENTLY_SHOWING_REVIEWS                 { return @"currentlyShowingReviews"; }
 + (NSString*) SEARCH_DATE                               { return @"searchDate"; }
 + (NSString*) AUTO_UPDATE_LOCATION                      { return @"autoUpdateLocation"; }
 + (NSString*) RATINGS_PROVIDER_INDEX                    { return @"ratingsProviderIndex"; }
 + (NSString*) DATA_PROVIDER_INDEX                       { return @"dataProviderIndex"; }
 + (NSString*) USE_NORMAL_FONTS                          { return @"useNormalFonts"; }
-
++ (NSString*) NAVIGATION_STACK_TYPES                    { return @"navigationStackTypes"; }
++ (NSString*) NAVIGATION_STACK_VALUES                   { return @"navigationStackValues"; }
 
 @synthesize notificationCenter;
 
@@ -149,13 +154,12 @@ static NSString* currentVersion = @"1.4.1";
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SEARCH_RESULTS]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SEARCH_RADIUS]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel POSTAL_CODE]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SELECTED_MOVIE]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SELECTED_THEATER]];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel NAVIGATION_STACK_TYPES]];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel NAVIGATION_STACK_VALUES]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel ALL_MOVIES_SELECTED_SEGMENT_INDEX]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel FAVORITE_THEATERS]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SHOWING_REVIEWS]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SEARCH_DATE]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel AUTO_UPDATE_LOCATION]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel RATINGS_PROVIDER_INDEX]];
@@ -681,57 +685,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 
-- (Movie*) currentlySelectedMovie {
-    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel CURRENTLY_SELECTED_MOVIE]];
-    if (dict == nil) {
-        return nil;
-    }
-
-    return [Movie movieWithDictionary:dict];
-}
-
-
-- (Theater*) currentlySelectedTheater {
-    NSDictionary* dict = [[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel CURRENTLY_SELECTED_THEATER]];
-    if (dict == nil) {
-        return nil;
-    }
-
-    return [Theater theaterWithDictionary:dict];
-}
-
-
-- (BOOL) currentlyShowingReviews {
-    return [[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel CURRENTLY_SHOWING_REVIEWS]] != nil;
-}
-
-
-- (void) setCurrentlyShowingReviews {
-    [[NSUserDefaults standardUserDefaults] setObject:@""
-                                              forKey:[BoxOfficeModel CURRENTLY_SHOWING_REVIEWS]];
-}
-
-
-- (void) setCurrentlySelectedMovie:(Movie*) movie
-                           theater:(Theater*) theater {
-    if (movie == nil) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SELECTED_MOVIE]];
-    } else {
-        [[NSUserDefaults standardUserDefaults] setObject:[movie dictionary]
-                                                  forKey:[BoxOfficeModel CURRENTLY_SELECTED_MOVIE]];
-    }
-
-    if (theater == nil) {
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SELECTED_THEATER]];
-    } else {
-        [[NSUserDefaults standardUserDefaults] setObject:[theater dictionary]
-                                                  forKey:[BoxOfficeModel CURRENTLY_SELECTED_THEATER]];
-    }
-
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel CURRENTLY_SHOWING_REVIEWS]];
-}
-
-
 - (void) createMovieMap {
     if (self.movieMap == nil) {
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -831,5 +784,60 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     [[NSUserDefaults standardUserDefaults] setBool:!useSmallFonts forKey:[BoxOfficeModel USE_NORMAL_FONTS]];
 }
 
+
+- (void) saveNavigationStack:(AbstractNavigationController*) controller {
+    NSMutableArray* types = [NSMutableArray array];
+    NSMutableArray* values = [NSMutableArray array];
+    
+    for (id viewController in controller.viewControllers) {
+        NSInteger type;
+        id value;
+        if ([viewController isKindOfClass:[MovieDetailsViewController class]]) {
+            type = MovieDetails;
+            value = [[viewController movie] dictionary];
+        } else if ([viewController isKindOfClass:[TheaterDetailsViewController class]]) {
+            type = TheaterDetails;
+            value = [[viewController theater] dictionary];
+        } else if ([viewController isKindOfClass:[ReviewsViewController class]]) {
+            type = Reviews;
+            value = [[viewController movie] dictionary];
+        } else if ([viewController isKindOfClass:[TicketsViewController class]]) {
+            type = Tickets;
+            value = [NSArray arrayWithObjects:[[viewController movie] dictionary], [[viewController theater] dictionary], [viewController title], nil];
+        } else if ([viewController isKindOfClass:[AllMoviesViewController class]]) {
+            continue;
+        } else if ([viewController isKindOfClass:[AllTheatersViewController class]]) {
+            continue;
+        } else {
+            NSAssert(false, @"");
+        }
+        
+        [types addObject:[NSNumber numberWithInt:type]];
+        [values addObject:value];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:types forKey:[BoxOfficeModel NAVIGATION_STACK_TYPES]];
+    [[NSUserDefaults standardUserDefaults] setObject:values forKey:[BoxOfficeModel NAVIGATION_STACK_VALUES]];
+}
+
+
+- (NSArray*) navigationStackTypes {
+    NSArray* result = [[NSUserDefaults standardUserDefaults] arrayForKey:[BoxOfficeModel NAVIGATION_STACK_TYPES]];
+    if (result == nil) {
+        return [NSArray array];
+    }
+    
+    return result;
+}
+
+
+- (NSArray*) navigationStackValues {
+    NSArray* result = [[NSUserDefaults standardUserDefaults] arrayForKey:[BoxOfficeModel NAVIGATION_STACK_VALUES]];
+    if (result == nil) {
+        return [NSArray array];
+    }
+    
+    return result;
+}
 
 @end

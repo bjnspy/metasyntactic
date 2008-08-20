@@ -18,23 +18,12 @@
 
 @interface TheatersNavigationController : AbstractNavigationController {
     AllTheatersViewController* allTheatersViewController;
-    TheaterDetailsViewController* theaterDetailsViewController;
 }
 
 @property (retain) AllTheatersViewController* allTheatersViewController;
-@property (retain) TheaterDetailsViewController* theaterDetailsViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
 - (void) refresh;
-
-- (void) pushTheaterDetails:(Theater*) theater
-                   animated:(BOOL) animated;
-
-- (void) pushTicketsView:(Theater*) theater
-                   movie:(Movie*) movie
-                animated:(BOOL) animated;
-
-- (void) navigateToLastViewedPage;
 
 @end
