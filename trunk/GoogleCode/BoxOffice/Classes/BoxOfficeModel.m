@@ -309,10 +309,10 @@ static NSString* currentVersion = @"1.4.1";
 - (BOOL) useKilometers {
     // yeah... so the UK supposedly uses metric...
     // except they don't.  so we special case them to stick with 'miles' in the UI.
-    BOOL usesMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
+    BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
     BOOL isUK = [@"GB" isEqual:[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
     
-    return usesMetric && !isUK;
+    return isMetric && !isUK;
 }
 
 
