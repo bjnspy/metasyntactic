@@ -16,7 +16,6 @@
 
 #import "NorthAmericaDataProvider.h"
 
-#import "AddressLocationCache.h"
 #import "Application.h"
 #import "BoxOfficeModel.h"
 #import "DateUtilities.h"

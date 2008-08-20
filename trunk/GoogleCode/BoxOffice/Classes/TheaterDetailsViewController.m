@@ -17,7 +17,6 @@
 #import "TheaterDetailsViewController.h"
 
 #import "Application.h"
-#import "ApplicationTabBarController.h"
 #import "AttributeCell.h"
 #import "BoxOfficeModel.h"
 #import "ColorCache.h"
