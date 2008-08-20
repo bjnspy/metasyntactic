@@ -252,8 +252,8 @@
 }
 
 
-- (UITableViewCell*)                tableView:(UITableView*) tableView
-                        cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     static NSString* reuseIdentifier = @"AllTheatersCellIdentifier";
@@ -269,8 +269,8 @@
 }
 
 
-- (NSString*)               tableView:(UITableView*) tableView
-              titleForHeaderInSection:(NSInteger) section {
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
     NSString* indexTitle = [sectionTitles objectAtIndex:section];
     if (indexTitle == [Application starString]) {
         return NSLocalizedString(@"Favorites", nil);
