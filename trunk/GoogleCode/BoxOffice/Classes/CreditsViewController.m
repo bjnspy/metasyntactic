@@ -78,7 +78,7 @@
     } else if (section == 5) {
         return 3;
     } else if (section == 6) {
-        return 3;
+        return 4;
     } else if (section == 7) {
         return 1;
     }
@@ -132,32 +132,18 @@
     
     NSString* language;
     NSString* person;
-    if (row == 0) {        
-        language = NSLocalizedString(@"French", nil);
+    if (row == 0) {
+        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"fr"];
         person = @"Jonathan Grenier";
     } else if (row == 1) {
-        language = NSLocalizedString(@"Portuguese", nil);
+        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"pt"];
         person = @"Pedro Pinhão";
     } else if (row == 2) {
-        language = NSLocalizedString(@"Turkish", nil);
+        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"sv"];
+        person = @"André van Haren";
+    } else if (row == 3) {
+        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"tr"];
         person = @"Oğuz Taş";
-    } else {
-        language = NSLocalizedString(@"German", nil);
-        language = NSLocalizedString(@"Japanese", nil);
-        language = NSLocalizedString(@"German", nil);
-        language = NSLocalizedString(@"Spanish", nil);
-        language = NSLocalizedString(@"Czech", nil);
-        language = NSLocalizedString(@"Arabic", nil);
-        language = NSLocalizedString(@"Hungarian", nil);
-        language = NSLocalizedString(@"Hebrew", nil);
-        language = NSLocalizedString(@"Italian", nil);
-        language = NSLocalizedString(@"Dutch", nil);
-        language = NSLocalizedString(@"Romanian", nil);
-        language = NSLocalizedString(@"Russian", nil);
-        language = NSLocalizedString(@"Slovak", nil);
-        language = NSLocalizedString(@"Swedish", nil);
-        language = NSLocalizedString(@"Danish", nil);
-        language = NSLocalizedString(@"Thai", nil);        
     }
     
     [cell setKey:language value:person];
