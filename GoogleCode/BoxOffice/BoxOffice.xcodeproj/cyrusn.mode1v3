@@ -337,11 +337,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>215</integer>
+									<integer>160</integer>
+									<integer>152</integer>
+									<integer>150</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 3024}, {383, 750}}</string>
+							<string>{{0, 2438}, {383, 750}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -380,7 +383,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>BoxOfficeModel.m</string>
+								<string>Localizable.strings</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -388,26 +391,28 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>BoxOfficeModel.m</string>
+										<string>Localizable.strings</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>744483700E5BF9D200E4B2CE</string>
+										<string>744483800E5C8B5F00E4B2CE</string>
 										<key>history</key>
 										<array>
 											<string>7444833F0E5BF32200E4B2CE</string>
 											<string>744483460E5BF3A800E4B2CE</string>
-											<string>7444834F0E5BF7CA00E4B2CE</string>
-											<string>744483500E5BF7CA00E4B2CE</string>
-											<string>7444836A0E5BF92A00E4B2CE</string>
+											<string>744483720E5BFACA00E4B2CE</string>
+											<string>744483730E5BFACA00E4B2CE</string>
+											<string>7444837B0E5C8A6700E4B2CE</string>
+											<string>744483790E5C8A5C00E4B2CE</string>
 										</array>
 										<key>prevStack</key>
 										<array>
 											<string>744483410E5BF32200E4B2CE</string>
 											<string>744483420E5BF32200E4B2CE</string>
 											<string>744483480E5BF3A800E4B2CE</string>
-											<string>744483520E5BF7CA00E4B2CE</string>
-											<string>744483530E5BF7CA00E4B2CE</string>
+											<string>744483750E5BFACA00E4B2CE</string>
+											<string>744483760E5BFACA00E4B2CE</string>
+											<string>7444837C0E5C8A6700E4B2CE</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -586,7 +591,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>240908754.549777</real>
+	<real>240946015.67947</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -842,12 +847,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>&lt;No Editor&gt;</string>
+										<string>Localizable.strings</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
