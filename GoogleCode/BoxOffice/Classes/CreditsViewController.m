@@ -140,7 +140,7 @@
         person = @"Pedro Pinhão";
     } else if (row == 2) {
         language = NSLocalizedString(@"Turkish", nil);
-        person = @"Oguz";
+        person = @"Oğuz Taş";
     } else {
         language = NSLocalizedString(@"German", nil);
         language = NSLocalizedString(@"Japanese", nil);
@@ -279,7 +279,9 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.section == 7) {
+    if (indexPath.section == 6) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    } else if (indexPath.section == 7) {
         [self licenseCellTapped];
     }
 }
