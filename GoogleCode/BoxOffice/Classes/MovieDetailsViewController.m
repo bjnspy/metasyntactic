@@ -17,7 +17,6 @@
 #import "MovieDetailsViewController.h"
 
 #import "Application.h"
-#import "ApplicationTabBarController.h"
 #import "AutoResizingCell.h"
 #import "BoxOfficeModel.h"
 #import "ColorCache.h"

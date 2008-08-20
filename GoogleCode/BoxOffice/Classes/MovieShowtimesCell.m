@@ -24,8 +24,8 @@
 
 @synthesize headerLabel;
 @synthesize showtimesLabel;
-@synthesize useSmallFonts;
 @synthesize showtimes;
+@synthesize useSmallFonts;
 
 - (void) dealloc {
     self.headerLabel = nil;

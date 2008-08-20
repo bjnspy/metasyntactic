@@ -17,10 +17,6 @@
 #import "MoviesNavigationController.h"
 
 #import "AllMoviesViewController.h"
-#import "BoxOfficeModel.h"
-#import "MovieDetailsViewController.h"
-#import "ReviewsViewController.h"
-#import "Theater.h"
 
 @implementation MoviesNavigationController
 

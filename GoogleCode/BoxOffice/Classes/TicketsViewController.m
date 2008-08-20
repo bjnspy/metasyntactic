@@ -23,7 +23,6 @@
 #import "ColorCache.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
-#import "Location.h"
 #import "Movie.h"
 #import "Performance.h"
 #import "SearchDatePickerViewController.h"
