@@ -60,6 +60,10 @@ class LookupTrailerListingsHandler(webapp.RequestHandler):
   def get_trailers_from_site(self, studio, name):
     url = "http://www.apple.com/moviesxml/s/" + studio + "/" + name + "/index.xml"
     content = urlfetch.fetch(url).content
+
+    if content.find("Apple - Page Not Found") >= 0:
+      return ""
+
     document = parseString(content)
     elements = document.getElementsByTagName("string")
 
