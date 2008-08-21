@@ -337,15 +337,15 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>81</integer>
-									<integer>79</integer>
+									<integer>70</integer>
+									<integer>46</integer>
 									<integer>31</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1177}, {383, 714}}</string>
+							<string>{{0, 613}, {383, 714}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -384,7 +384,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>AbstractDataProvider.m</string>
+								<string>CreditsViewController.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -392,22 +392,20 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>AbstractDataProvider.m</string>
+										<string>CreditsViewController.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>741C4E160E5DDBE20084A375</string>
+										<string>741C4E2B0E5E03550084A375</string>
 										<key>history</key>
 										<array>
 											<string>7444839F0E5C934400E4B2CE</string>
 											<string>744483A00E5C934400E4B2CE</string>
 											<string>744483A10E5C934400E4B2CE</string>
-											<string>744483A20E5C934400E4B2CE</string>
 											<string>744483A50E5C934400E4B2CE</string>
 											<string>744483A70E5C934400E4B2CE</string>
 											<string>744483A80E5C934400E4B2CE</string>
 											<string>744483A90E5C934400E4B2CE</string>
-											<string>744483AA0E5C934400E4B2CE</string>
 											<string>744483AB0E5C934400E4B2CE</string>
 											<string>744483AC0E5C934400E4B2CE</string>
 											<string>744483AD0E5C934400E4B2CE</string>
@@ -455,11 +453,14 @@
 											<string>7444887D0E5CC1AE00E4B2CE</string>
 											<string>744488A70E5D118C00E4B2CE</string>
 											<string>744488A80E5D118C00E4B2CE</string>
-											<string>741C4DF40E5D17690084A375</string>
 											<string>741C4E0F0E5DDBE20084A375</string>
 											<string>741C4E100E5DDBE20084A375</string>
-											<string>741C4E110E5DDBE20084A375</string>
-											<string>741C4E120E5DDBE20084A375</string>
+											<string>741C4E1A0E5E026E0084A375</string>
+											<string>741C4E1B0E5E026E0084A375</string>
+											<string>741C4E1C0E5E026E0084A375</string>
+											<string>741C4E1D0E5E026E0084A375</string>
+											<string>741C4E280E5E03550084A375</string>
+											<string>741C4E290E5E03550084A375</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -525,6 +526,12 @@
 											<string>741C4E130E5DDBE20084A375</string>
 											<string>741C4E140E5DDBE20084A375</string>
 											<string>741C4E150E5DDBE20084A375</string>
+											<string>741C4E1F0E5E026E0084A375</string>
+											<string>741C4E200E5E026E0084A375</string>
+											<string>741C4E210E5E026E0084A375</string>
+											<string>741C4E220E5E026E0084A375</string>
+											<string>741C4E230E5E026E0084A375</string>
+											<string>741C4E2A0E5E03550084A375</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -703,7 +710,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>241032162.13763401</real>
+	<real>241042261.860782</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -718,15 +725,15 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>741C4E2C0E5E03550084A375</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
-		<string>741C4E170E5DDBE20084A375</string>
-		<string>741C4E180E5DDBE20084A375</string>
 		<string>741C4DF80E5D17690084A375</string>
 		<string>741C4DF20E5D15620084A375</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
+		<string>741C4E2D0E5E03550084A375</string>
 	</array>
 	<key>WindowString</key>
 	<string>49 100 1389 773 0 0 1440 878 </string>

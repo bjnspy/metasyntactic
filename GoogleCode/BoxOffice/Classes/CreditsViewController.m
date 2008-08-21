@@ -78,7 +78,7 @@
     } else if (section == 5) {
         return 3;
     } else if (section == 6) {
-        return 4;
+        return 5;
     } else if (section == 7) {
         return 1;
     }
@@ -136,15 +136,18 @@
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"fr"];
         person = @"Jonathan Grenier";
     } else if (row == 1) {
+        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"ja"];
+        person = @"Leo Yamamoto";
+    } else if (row == 2) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"pt"];
         person = @"Pedro Pinhão";
-    } else if (row == 2) {
-        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"sv"];
-        person = @"André van Haren";
     } else if (row == 3) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"es"];
         person = @"Jorge Herskovic";
     } else if (row == 4) {
+        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"sv"];
+        person = @"André van Haren";
+    } else if (row == 5) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"tr"];
         person = @"Oğuz Taş";
     }
