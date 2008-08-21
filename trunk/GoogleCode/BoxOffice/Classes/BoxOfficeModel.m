@@ -494,7 +494,7 @@ static NSString* currentVersion = @"1.4.5";
 - (BOOL) isFavoriteTheater:(Theater*) theater {
     NSArray* array = [self favoriteTheaters];
     for (Theater* currentTheater in array) {
-        if ([currentTheater.identifier isEqual:theater.identifier]) {
+        if ([currentTheater.name isEqual:theater.name]) {
             return YES;
         }
     }
