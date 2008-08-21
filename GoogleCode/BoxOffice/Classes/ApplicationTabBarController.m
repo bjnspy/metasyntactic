@@ -61,7 +61,13 @@
         if ([Utilities isNilOrEmpty:self.model.postalCode]) {
             self.selectedViewController = self.settingsNavigationController;
         } else {
-            AbstractNavigationController* controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
+            AbstractNavigationController* controller;
+            if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
+                controller = [self.viewControllers objectAtIndex:0];
+            } else {
+                controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
+            }
+
             self.selectedViewController = controller;
             [controller navigateToLastViewedPage];
         }

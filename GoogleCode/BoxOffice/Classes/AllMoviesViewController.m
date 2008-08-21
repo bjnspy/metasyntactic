@@ -149,7 +149,7 @@
                                NSLocalizedString(@"Title", nil),
                                NSLocalizedString(@"Release", nil),
                                NSLocalizedString(@"Score", nil), nil]] autorelease];
-    
+
     self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     self.segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
     

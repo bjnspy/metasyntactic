@@ -142,6 +142,9 @@
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"sv"];
         person = @"André van Haren";
     } else if (row == 3) {
+        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"es"];
+        person = @"Jorge Herskovic";
+    } else if (row == 4) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"tr"];
         person = @"Oğuz Taş";
     }
