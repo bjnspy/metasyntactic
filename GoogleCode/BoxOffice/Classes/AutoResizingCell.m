@@ -14,7 +14,7 @@
 
 - (void) dealloc {
     self.label = nil;
-    
+
     [super dealloc];
 }
 
@@ -26,14 +26,14 @@
         label.adjustsFontSizeToFitWidth = YES;
         label.minimumFontSize = 12;
         label.lineBreakMode = UILineBreakModeMiddleTruncation;
-        
+
         CGRect frame = label.frame;
         frame.origin.x = 10;
         label.frame = frame;
-        
+
         [self.contentView addSubview:label];
     }
-    
+
     return self;
 }
 

@@ -101,7 +101,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
+
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     [self refresh];
@@ -257,7 +257,7 @@
                 if (self.model.searchRadius == 1) {
                     value = (self.model.useKilometers ? NSLocalizedString(@"1 km", nil) : NSLocalizedString(@"1 mile", nil));
                 } else {
-                    value = [NSString stringWithFormat:NSLocalizedString(@"%d %@", @"5 kilometers or 5 miles"), 
+                    value = [NSString stringWithFormat:NSLocalizedString(@"%d %@", @"5 kilometers or 5 miles"),
                              self.model.searchRadius,
                              (self.model.useKilometers ? NSLocalizedString(@"km", nil) : NSLocalizedString(@"miles", nil))];
                 }
@@ -273,7 +273,7 @@
             } else if (indexPath.row == 3) {
                 key = NSLocalizedString(@"Reviews", nil);
                 value = self.model.currentRatingsProvider;
-            } 
+            }
 
             [cell setKey:key value:value];
 
@@ -284,7 +284,7 @@
 
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.accessoryView = picker;
-            
+
             NSString* text;
             BOOL on;
             if (indexPath.row == 4) {
@@ -296,10 +296,10 @@
                 on = self.model.useSmallFonts;
                 [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
             }
-            
+
             picker.on = on;
             cell.text = text;
-            
+
             return cell;
         }
     } else {
@@ -307,7 +307,7 @@
         cell.text = NSLocalizedString(@"About", nil);
         return cell;
     }
-    
+
     return nil;
 }
 
@@ -336,6 +336,26 @@
 }
 
 
+- (void) pushFilterDistancePicker {
+    NSArray* values = [NSArray arrayWithObjects:
+                       @"1", @"2", @"3", @"4", @"5",
+                       @"10", @"15", @"20", @"25", @"30",
+                       @"35", @"40", @"45", @"50", nil];
+    NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
+
+    PickerEditorViewController* controller =
+    [[[PickerEditorViewController alloc] initWithController:self.navigationController
+                                                      title:NSLocalizedString(@"Distance", nil)
+                                                       text:NSLocalizedString(@"Most providers will only return results for theaters within 15 miles of your location.  This filter will then hide theaters from those results that fall outside the specified distance.", nil)
+                                                     object:self
+                                                   selector:@selector(onSearchRadiusChanged:)
+                                                     values:values
+                                               defaultValue:defaultValue] autorelease];
+
+    [self.navigationController pushViewController:controller animated:YES];
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
@@ -356,22 +376,7 @@
 
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == 1) {
-            NSArray* values = [NSArray arrayWithObjects:
-                               @"1", @"2", @"3", @"4", @"5",
-                               @"10", @"15", @"20", @"25", @"30",
-                               @"35", @"40", @"45", @"50", nil];
-            NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
-
-            PickerEditorViewController* controller =
-            [[[PickerEditorViewController alloc] initWithController:self.navigationController
-                                                              title:NSLocalizedString(@"Distance", nil)
-                                                               text:@""
-                                                             object:self
-                                                           selector:@selector(onSearchRadiusChanged:)
-                                                             values:values
-                                                       defaultValue:defaultValue] autorelease];
-
-            [self.navigationController pushViewController:controller animated:YES];
+            [self pushFilterDistancePicker];
         } else if (row == 2) {
             [self pushSearchDatePicker];
         } else if (row == 3) {

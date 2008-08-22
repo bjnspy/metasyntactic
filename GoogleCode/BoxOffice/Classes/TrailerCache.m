@@ -27,6 +27,7 @@
 
 - (void) dealloc {
     self.gate = nil;
+
     [super dealloc];
 }
 
@@ -67,7 +68,14 @@
     for (NSString* filePath in set) {
         NSString* fullPath = [[Application trailersFolder] stringByAppendingPathComponent:filePath];
 
-        [[NSFileManager defaultManager] removeItemAtPath:fullPath error:NULL];
+        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:NULL] objectForKey:NSFileModificationDate];
+
+        if (downloadDate != nil) {
+            NSTimeInterval span = [downloadDate timeIntervalSinceNow];
+            if (ABS(span) > (60 * 60 * 1000)) {
+                [[NSFileManager defaultManager] removeItemAtPath:fullPath error:NULL];
+            }
+        }
     }
 }
 
@@ -132,13 +140,7 @@
 }
 
 
-- (void) downloadTrailers:(NSArray*) movies {
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-    NSString* index = [Utilities stringWithContentsOfAddress:url];
-    if (index == nil) {
-        return;
-    }
-
+- (void) downloadTrailers:(NSArray*) movies index:(NSString*) index {
     NSMutableArray* movieTitles = [NSMutableArray array];
 
     for (Movie* movie in movies) {
@@ -164,8 +166,14 @@
     {
         [NSThread setThreadPriority:0.0];
 
+        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
+        NSString* index = [Utilities stringWithContentsOfAddress:url];
+        if (index == nil) {
+            return;
+        }
+
         for (NSArray* movies in arguments) {
-            [self downloadTrailers:movies];
+            [self downloadTrailers:movies index:index];
         }
     }
     [gate unlock];

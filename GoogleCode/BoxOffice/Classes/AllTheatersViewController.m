@@ -110,7 +110,7 @@
     NSString* reallyCloseBy = NSLocalizedString(@"Really close by", nil);
     NSString* reallyFarAway = NSLocalizedString(@"Really far away", nil);
     NSString* unknownDistance = NSLocalizedString(@"Unknown Distance", nil);
-    
+
     NSString* singularUnit = (self.model.useKilometers ? NSLocalizedString(@"kilometer", nil) :
                               NSLocalizedString(@"mile", nil));
     NSString* pluralUnit = (self.model.useKilometers ? NSLocalizedString(@"kilometers", nil) :
@@ -126,12 +126,12 @@
         if (distance == 1) {
             [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than 1 %@ away", @"singular"), singularUnit]];
         } else {
-            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than %d %@ away", @"plural"), distance, pluralUnit]];                        
+            [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than %d %@ away", @"plural"), distance, pluralUnit]];
         }
     }
-    
+
     self.sectionTitles = [NSMutableArray array];
-    
+
     [self.sectionTitles addObject:favorites];
     [self.sectionTitles addObject:reallyCloseBy];
     [self.sectionTitles addObjectsFromArray:distancesArray];
@@ -143,26 +143,26 @@
             [self.sectionTitleToContentsMap addObject:theater forKey:favorites];
         } else {
             double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
-            
+
             if (distance <= 0.5) {
                 [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
                 continue;
             }
-            
+
             for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
                 if (distance <= distances[i]) {
                     [self.sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
                     goto outer;
                 }
             }
-            
+
             if (distance < UNKNOWN_DISTANCE) {
                 [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
             } else {
                 [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
             }
         }
-      
+
         // i hate goto/labels.  however, objective-c lacks a 'continue outer' statement.
         // so we simulate here directly.
         outer: ;
@@ -326,7 +326,7 @@
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
+
     [self refresh];
 }
 

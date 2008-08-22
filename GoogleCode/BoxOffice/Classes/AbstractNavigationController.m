@@ -79,11 +79,11 @@
 - (void) navigateToLastViewedPage {
     NSArray* types = self.model.navigationStackTypes;
     NSArray* values = self.model.navigationStackValues;
-    
+
     for (int i = 0; i < types.count; i++) {
         NSInteger type = [[types objectAtIndex:i] intValue];
         id value = [values objectAtIndex:i];
-        
+
         if (type == MovieDetails) {
             Movie* movie = [Movie movieWithDictionary:value];
             [self pushMovieDetails:movie animated:NO];
@@ -97,7 +97,7 @@
             Movie* movie = [Movie movieWithDictionary:[value objectAtIndex:0]];
             Theater* theater = [Theater theaterWithDictionary:[value objectAtIndex:1]];
             NSString* title = [value objectAtIndex:2];
-            
+
             [self pushTicketsView:movie theater:theater title:title animated:NO];
         }
     }
@@ -114,14 +114,14 @@
 - (void) pushMovieDetails:(Movie*) movie
                  animated:(BOOL) animated {
     UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self movie:movie] autorelease];
-    
+
     [self pushViewController:viewController animated:animated];
 }
 
 
 - (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
     UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self theater:theater] autorelease];
-    
+
     [self pushViewController:viewController animated:animated];
 }
 
