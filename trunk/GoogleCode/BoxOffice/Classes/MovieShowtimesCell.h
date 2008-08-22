@@ -17,7 +17,7 @@
 @interface MovieShowtimesCell : UITableViewCell {
     UILabel* headerLabel;
     UILabel* showtimesLabel;
-    
+
     NSArray* showtimes;
     BOOL useSmallFonts;
 }

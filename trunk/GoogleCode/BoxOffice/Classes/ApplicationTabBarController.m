@@ -38,7 +38,7 @@
     self.numbersNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
-    
+
     [super dealloc];
 }
 

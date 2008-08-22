@@ -71,7 +71,14 @@
     }
 
     for (NSString* filePath in set) {
-        [[NSFileManager defaultManager] removeItemAtPath:filePath error:NULL];
+        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:NULL] objectForKey:NSFileModificationDate];
+
+        if (downloadDate != nil) {
+            NSTimeInterval span = [downloadDate timeIntervalSinceNow];
+            if (ABS(span) > (60 * 60 * 1000)) {
+                [[NSFileManager defaultManager] removeItemAtPath:filePath error:NULL];
+            }
+        }
     }
 }
 

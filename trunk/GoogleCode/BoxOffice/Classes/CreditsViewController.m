@@ -129,32 +129,32 @@
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
     SettingCell* cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-    
+
     NSString* language;
     NSString* person;
     if (row == 0) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"da"];
         person = @"Allan Lund Jensen";
     } else if (row == 1) {
+        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"nl"];
+        person = @"André van Haren";
+    } else if (row == 2) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"fr"];
         person = @"Jonathan Grenier";
-    } else if (row == 2) {
+    } else if (row == 3) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"ja"];
         person = @"Leo Yamamoto";
-    } else if (row == 3) {
+    } else if (row == 4) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"pt"];
         person = @"Pedro Pinhão";
-    } else if (row == 4) {
+    } else if (row == 5) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"es"];
         person = @"Jorge Herskovic";
-    } else if (row == 5) {
-        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"sv"];
-        person = @"André van Haren";
     } else if (row == 6) {
         language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"tr"];
         person = @"Oğuz Taş";
     }
-    
+
     [cell setKey:language value:person];
     return cell;
 }
@@ -164,7 +164,7 @@
             cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-    
+
     if (section == 6) {
         return [self localizationCellForRow:row];
     }

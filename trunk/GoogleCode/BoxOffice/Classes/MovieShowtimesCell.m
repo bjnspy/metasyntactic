@@ -67,14 +67,14 @@
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts {
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
     UIFont* font = [MovieShowtimesCell showtimesFont:useSmallFonts];
-    
+
     // screen - outer margin - inner margin - space between labels;
     double width = 320 - 20 - (8 + 18) - 8;
 
     NSString* showsString = [MovieShowtimesCell showsString];
     double showsWidth = [showsString sizeWithFont:font].width;
     width -= showsWidth;
-    
+
     return [string sizeWithFont:font
               constrainedToSize:CGSizeMake(width, 2000)
                   lineBreakMode:UILineBreakModeWordWrap].height;
@@ -105,24 +105,24 @@
         useSmallFonts:(BOOL) useSmallFonts_ {
     self.showtimes = showtimes_;
     self.useSmallFonts = useSmallFonts_;
-    
+
     self.showtimesLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
     self.headerLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
 
     [self.headerLabel sizeToFit];
     showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimes];
-    
-    
+
+
     CGRect headerFrame = headerLabel.frame;
     headerFrame.origin.x = 8;
     headerFrame.origin.y = 9;
     self.headerLabel.frame = headerFrame;
-    
-    
+
+
     CGRect showtimesFrame = showtimesLabel.frame;
     showtimesFrame.origin.x = headerFrame.origin.x + headerFrame.size.width + 8;
     showtimesFrame.origin.y = headerFrame.origin.y;
-    
+
     double width = 320 - 20 - (8 + 18) - 8;
     width -= headerFrame.size.width;
     showtimesFrame.size.width = width;

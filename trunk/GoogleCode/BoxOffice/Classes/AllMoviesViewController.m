@@ -152,7 +152,7 @@
 
     self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     self.segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
-    
+
     [self.segmentedControl addTarget:self
                               action:@selector(onSortOrderChanged:)
                     forControlEvents:UIControlEventValueChanged];
@@ -171,7 +171,7 @@
         self.sortedMovies = [NSArray array];
 
         [self setupSegmentedControl];
-        
+
         self.alphabeticSectionTitles =
         [NSArray arrayWithObjects:
          @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
@@ -189,7 +189,7 @@
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
+
     [self refresh];
 }
 
@@ -206,7 +206,7 @@
     } else if (!self.model.noRatings && self.segmentedControl.numberOfSegments == 2) {
         [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
     }
-    
+
     [self sortMovies];
     [self.tableView reloadData];
 }

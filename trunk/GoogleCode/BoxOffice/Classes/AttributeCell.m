@@ -51,7 +51,7 @@
         [self.contentView addSubview:keyLabel];
         [self.contentView addSubview:valueLabel];
     }
-    
+
     return self;
 }
 
@@ -62,14 +62,14 @@
     {
         CGRect frame = keyLabel.frame;
         frame.origin.y = floor((self.contentView.frame.size.height - keyLabel.frame.size.height) / 2);
-        keyLabel.frame = frame;        
+        keyLabel.frame = frame;
     }
 
     {
         CGRect frame = valueLabel.frame;
         frame.origin.y = floor((self.contentView.frame.size.height - valueLabel.frame.size.height) / 2);
         frame.size.width = self.contentView.frame.size.width - frame.origin.x;
-        valueLabel.frame = frame;        
+        valueLabel.frame = frame;
     }
 }
 

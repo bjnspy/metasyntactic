@@ -101,7 +101,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
+
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
 
@@ -191,9 +191,9 @@
     NSString* callString = NSLocalizedString(@"Call", nil);
     CGSize size1 = [mapString sizeWithFont:[AttributeCell keyFont]];
     CGSize size2 = [callString sizeWithFont:[AttributeCell keyFont]];
-    
+
     NSInteger width = MAX(size1.width, size2.width) + 30;
-    
+
     if (row == 0) {
         [cell setKey:mapString
                value:[self.model simpleAddressForTheater:theater]

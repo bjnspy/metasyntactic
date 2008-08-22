@@ -49,9 +49,9 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
         self.movie = movie_;
-        
+
         self.title = NSLocalizedString(@"Reviews", nil);
-        
+
         self.reviews = [self.model reviewsForMovie:movie];
     }
 

@@ -28,7 +28,7 @@
 - (void) dealloc {
     self.navigationController = nil;
     self.segmentedControl = nil;
-    
+
     [super dealloc];
 }
 
@@ -37,12 +37,12 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
         self.title = NSLocalizedString(@"Numbers", nil);
-        
+
         self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                              [NSArray arrayWithObjects:
                               NSLocalizedString(@"Daily", nil),
                               NSLocalizedString(@"Weekend", nil), nil]] autorelease];
-        
+
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
         segmentedControl.selectedSegmentIndex = [self.model allTheatersSelectedSegmentIndex];
         /*
@@ -53,7 +53,7 @@
         CGRect rect = segmentedControl.frame;
         rect.size.width = 240;
         segmentedControl.frame = rect;
-        
+
         self.navigationItem.titleView = segmentedControl;
     }
 
@@ -103,7 +103,7 @@
     if (cell == nil) {
         cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSeparatorStyleNone;
-        
+
         if (indexPath.row >= 2) {
             UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, -1, 300, 2)] autorelease];
             label.backgroundColor = [UIColor whiteColor];
@@ -150,7 +150,7 @@
     if (indexPath.row == 0) {
         return tableView.rowHeight;
     }
-    
+
     return tableView.rowHeight - 16;
 }
 

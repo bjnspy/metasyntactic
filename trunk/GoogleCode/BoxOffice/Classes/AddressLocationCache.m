@@ -108,7 +108,7 @@
             return [Location locationWithDictionary:dict];
         }
     }
-    
+
     return nil;
 }
 

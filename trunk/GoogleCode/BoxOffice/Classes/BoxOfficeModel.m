@@ -278,7 +278,7 @@ static NSString* currentVersion = @"1.4.5";
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel RATINGS_PROVIDER_INDEX]];
     [self.ratingsCache onRatingsProviderChanged];
     [self updateReviewCache];
-    
+
     if (self.noRatings && self.sortingMoviesByScore) {
         [self setAllMoviesSelectedSegmentIndex:0];
     }
@@ -315,7 +315,7 @@ static NSString* currentVersion = @"1.4.5";
     // except they don't.  so we special case them to stick with 'miles' in the UI.
     BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
     BOOL isUK = [@"GB" isEqual:[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
-    
+
     return isMetric && !isUK;
 }
 
@@ -788,7 +788,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 - (void) saveNavigationStack:(AbstractNavigationController*) controller {
     NSMutableArray* types = [NSMutableArray array];
     NSMutableArray* values = [NSMutableArray array];
-    
+
     for (id viewController in controller.viewControllers) {
         NSInteger type;
         id value;
@@ -811,11 +811,11 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         } else {
             NSAssert(false, @"");
         }
-        
+
         [types addObject:[NSNumber numberWithInt:type]];
         [values addObject:value];
     }
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:types forKey:[BoxOfficeModel NAVIGATION_STACK_TYPES]];
     [[NSUserDefaults standardUserDefaults] setObject:values forKey:[BoxOfficeModel NAVIGATION_STACK_VALUES]];
 }
@@ -826,7 +826,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (result == nil) {
         return [NSArray array];
     }
-    
+
     return result;
 }
 
@@ -836,7 +836,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (result == nil) {
         return [NSArray array];
     }
-    
+
     return result;
 }
 

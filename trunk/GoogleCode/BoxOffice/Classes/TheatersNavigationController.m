@@ -26,7 +26,7 @@
 - (void) dealloc {
     self.allTheatersViewController = nil;
     self.tabBarController = nil;
-    
+
     [super dealloc];
 }
 
