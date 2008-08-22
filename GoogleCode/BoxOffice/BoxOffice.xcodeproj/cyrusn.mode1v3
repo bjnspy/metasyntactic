@@ -382,7 +382,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TrailerCache.m</string>
+								<string>ReviewCache.m</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -390,11 +390,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TrailerCache.m</string>
+										<string>ReviewCache.m</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>741C4ED20E5F86AD0084A375</string>
+										<string>741C4EDD0E5F88680084A375</string>
 										<key>history</key>
 										<array>
 											<string>741C4E7A0E5E29460084A375</string>
@@ -406,10 +406,11 @@
 											<string>741C4E960E5EBA3A0084A375</string>
 											<string>741C4EC60E5F86AD0084A375</string>
 											<string>741C4EC70E5F86AD0084A375</string>
-											<string>741C4EC80E5F86AD0084A375</string>
-											<string>741C4EC90E5F86AD0084A375</string>
-											<string>741C4ECA0E5F86AD0084A375</string>
-											<string>741C4ECB0E5F86AD0084A375</string>
+											<string>741C4ED30E5F88680084A375</string>
+											<string>741C4ED40E5F88680084A375</string>
+											<string>741C4ED50E5F88680084A375</string>
+											<string>741C4ED60E5F88680084A375</string>
+											<string>741C4ED80E5F88680084A375</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -425,8 +426,9 @@
 											<string>741C4ECD0E5F86AD0084A375</string>
 											<string>741C4ECE0E5F86AD0084A375</string>
 											<string>741C4ECF0E5F86AD0084A375</string>
-											<string>741C4ED00E5F86AD0084A375</string>
-											<string>741C4ED10E5F86AD0084A375</string>
+											<string>741C4ED90E5F88680084A375</string>
+											<string>741C4EDA0E5F88680084A375</string>
+											<string>741C4EDB0E5F88680084A375</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -605,7 +607,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>241141421.560969</real>
+	<real>241141864.508582</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -620,13 +622,13 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>741C4DF80E5D17690084A375</string>
 		<string>741C4DF20E5D15620084A375</string>
 		<string>1C78EAAD065D492600B07095</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>/Projects/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
+		<string>1C530D57069F1CE1000CFCEE</string>
 	</array>
 	<key>WindowString</key>
 	<string>49 100 1389 773 0 0 1440 878 </string>
@@ -861,12 +863,14 @@
 							<key>Dock</key>
 							<array>
 								<dict>
+									<key>BecomeActive</key>
+									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TrailerCache.m</string>
+										<string>ReviewCache.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -887,8 +891,6 @@
 							<string>418pt</string>
 						</dict>
 						<dict>
-							<key>BecomeActive</key>
-							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
@@ -934,7 +936,7 @@
 			<key>WindowToolGUID</key>
 			<string>1C530D57069F1CE1000CFCEE</string>
 			<key>WindowToolIsVisible</key>
-			<false/>
+			<true/>
 		</dict>
 		<dict>
 			<key>Identifier</key>
