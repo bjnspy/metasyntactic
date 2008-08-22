@@ -92,7 +92,7 @@
             [moviesWithoutTrailers addObject:movie];
         } else {
             NSTimeInterval span = [downloadDate timeIntervalSinceNow];
-            if (ABS(span) > (24 * 60 * 60)) {
+            if (ABS(span) > (48 * 60 * 60)) {
                 [moviesWithTrailers addObject:movie];
             }
         }
