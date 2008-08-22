@@ -204,7 +204,7 @@
                 [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
             } else {
                 NSTimeInterval span = [downloadDate timeIntervalSinceNow];
-                if (ABS(span) > (24 * 60 * 60)) {
+                if (ABS(span) > (48 * 60 * 60)) {
                     [infoWithReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
                 }
             }
