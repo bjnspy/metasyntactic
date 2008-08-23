@@ -287,17 +287,17 @@ static NSString* persistenceVersion = @"1";
 
 
 - (BOOL) rottenTomatoesRatings {
-    return [self ratingsProviderIndex] == 0;
+    return self.ratingsProviderIndex == 0;
 }
 
 
 - (BOOL) metacriticRatings {
-    return [self ratingsProviderIndex] == 1;
+    return self.ratingsProviderIndex == 1;
 }
 
 
 - (BOOL) noRatings {
-    return [self ratingsProviderIndex] == 2;
+    return self.ratingsProviderIndex == 2;
 }
 
 
@@ -307,7 +307,7 @@ static NSString* persistenceVersion = @"1";
 
 
 - (NSString*) currentRatingsProvider {
-    return [[self ratingsProviders] objectAtIndex:[self ratingsProviderIndex]];
+    return [self.ratingsProviders objectAtIndex:self.ratingsProviderIndex];
 }
 
 
@@ -342,17 +342,17 @@ static NSString* persistenceVersion = @"1";
 
 
 - (BOOL) sortingMoviesByTitle {
-    return [self allMoviesSelectedSegmentIndex] == 0;
+    return self.allMoviesSelectedSegmentIndex == 0;
 }
 
 
 - (BOOL) sortingMoviesByReleaseDate {
-    return [self allMoviesSelectedSegmentIndex] == 1;
+    return self.allMoviesSelectedSegmentIndex == 1;
 }
 
 
 - (BOOL) sortingMoviesByScore {
-    return [self allMoviesSelectedSegmentIndex] == 2;
+    return self.allMoviesSelectedSegmentIndex == 2;
 }
 
 
