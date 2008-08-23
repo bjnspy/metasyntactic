@@ -7,6 +7,7 @@ import LookupMovieReviews
 import LookupTheaterListings
 import LookupTrailerListings
 import CacheStatistics
+import DeleteLocation
 
 from google.appengine.ext import webapp
 
@@ -16,15 +17,15 @@ class MainHandler(webapp.RequestHandler):
 
 def main():
   application = webapp.WSGIApplication([
-#                                        ('/', MainHandler),
-                                        ('/LookupLocation', LookupLocation.LookupLocationHandler),
-                                        ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
-                                        ('/LookupMovieReviews', LookupMovieReviews.LookupMovieReviewsHandler),
-                                        ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler),
-                                        ('/LookupTrailerListings', LookupTrailerListings.LookupTrailerListingsHandler),
-                                        ('/CacheStatistics', CacheStatistics.CacheStatisticsHandler)
-                                        ],
-                                       debug=True)
+      ('/DeleteLocation', DeleteLocation.DeleteLocationHandler),
+      ('/LookupLocation', LookupLocation.LookupLocationHandler),
+      ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
+      ('/LookupMovieReviews', LookupMovieReviews.LookupMovieReviewsHandler),
+      ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler),
+      ('/LookupTrailerListings', LookupTrailerListings.LookupTrailerListingsHandler),
+      ('/CacheStatistics', CacheStatistics.CacheStatisticsHandler)
+      ],
+      debug=True)
   wsgiref.handlers.CGIHandler().run(application)
 
 
