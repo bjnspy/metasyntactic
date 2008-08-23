@@ -66,7 +66,7 @@
         return NO;
     }
 
-    // it's been less than 8 hours.  it's too soon to refresh
+    // it's been less than 12 hours.  it's too soon to refresh
     return YES;
 }
 
@@ -77,6 +77,7 @@
     if ([self tooSoon:lastLookupDate]) {
         return;
     }
+
     [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading movie list", nil)];
     [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint:) withObject:nil];
 }

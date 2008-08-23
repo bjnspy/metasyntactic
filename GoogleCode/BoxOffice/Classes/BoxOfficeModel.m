@@ -43,6 +43,7 @@
 @implementation BoxOfficeModel
 
 static NSString* currentVersion = @"1.4.5";
+static NSString* persistenceVersion = @"1";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -147,7 +148,7 @@ static NSString* currentVersion = @"1.4.5";
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
 
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:[BoxOfficeModel VERSION]];
-    if (version == nil || ![currentVersion isEqual:version]) {
+    if (version == nil || ![persistenceVersion isEqual:version]) {
         self.movieMap = nil;
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel VERSION]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[BoxOfficeModel SEARCH_DATES]];
@@ -172,7 +173,7 @@ static NSString* currentVersion = @"1.4.5";
             [provider invalidateDiskCache];
         }
 
-        [[NSUserDefaults standardUserDefaults] setObject:currentVersion forKey:[BoxOfficeModel VERSION]];
+        [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:[BoxOfficeModel VERSION]];
     }
 }
 
