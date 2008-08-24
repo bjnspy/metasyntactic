@@ -192,8 +192,6 @@
         self.synopsis = [self.model synopsisForMovie:self.movie];
         synopsisSplit = [self calculateSynopsisSplit];
         synopsisMax = [self calculateSynopsisMax];
-
-        playingMovieIndex = -1;
     }
 
     return self;
@@ -210,9 +208,6 @@
 
 
 - (void) removeNotifications {
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                    name:MPMoviePlayerContentPreloadDidFinishNotification
-                                                  object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:MPMoviePlayerPlaybackDidFinishNotification
                                                   object:nil];
@@ -431,26 +426,23 @@
 
 
 - (UITableViewCell*) cellForActionRow:(NSInteger) row {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
-                                                    reuseIdentifier:nil] autorelease];
+    static NSString* reuseIdentifier = @"MovieDetailsActionCellIdentifier";
 
-    cell.textColor = [ColorCache commandColor];
-    cell.font = [UIFont boldSystemFontOfSize:14];
-    cell.textAlignment = UITextAlignmentCenter;
+    UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+                                                    reuseIdentifier:reuseIdentifier] autorelease];
 
-    UIActivityIndicatorView* activityIndicator = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray] autorelease];
-    activityIndicator.tag = 1;
-    cell.accessoryView = activityIndicator;
+        cell.textColor = [ColorCache commandColor];
+        cell.font = [UIFont boldSystemFontOfSize:14];
+        cell.textAlignment = UITextAlignmentCenter;
+    }
 
     if (row < trailersArray.count) {
         if (trailersArray.count == 1) {
             cell.text = NSLocalizedString(@"Play trailer", nil);
         } else {
             cell.text = [NSString stringWithFormat:NSLocalizedString(@"Play trailer %d", nil), (row + 1)];
-        }
-
-        if (row == playingMovieIndex) {
-            [self setupLoadingTrailerCell:cell];
         }
     } else if (row == trailersArray.count && self.reviewsArray.count > 0) {
         cell.text = NSLocalizedString(@"Read reviews", nil);
@@ -515,29 +507,15 @@
 
 
 - (void) playTrailer:(NSInteger) row {
-    UITableViewCell* cell = [self.tableView cellForRowAtIndexPath:self.tableView.indexPathForSelectedRow];
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-
-    if (playingMovieIndex >= 0) {
-        return;
-    }
-
-    playingMovieIndex = row;
-    [self setupLoadingTrailerCell:cell];
-
     NSString* urlString = [trailersArray objectAtIndex:row];
-    NSURL* url = [NSURL URLWithString:urlString];
-    MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:url];
-
-    [[NSNotificationCenter defaultCenter] addObserver:self
-                                             selector:@selector(movieFinishedPreloading:)
-                                                 name:MPMoviePlayerContentPreloadDidFinishNotification
-                                               object:moviePlayer];
+    MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:urlString]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(movieFinishedPlaying:)
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:moviePlayer];
+    
+    [moviePlayer play];
 }
 
 
@@ -545,18 +523,9 @@
     MPMoviePlayerController* moviePlayer = notification.object;
     [moviePlayer stop];
     [moviePlayer autorelease];
-    playingMovieIndex = -1;
-    [self refresh];
-}
-
-
-- (void) movieFinishedPreloading:(NSNotification*) notification {
-    if ([notification.userInfo objectForKey:@"error"]) {
-        [self movieFinishedPlaying:notification];
-    } else {
-        MPMoviePlayerController* moviePlayer = notification.object;
-        [moviePlayer play];
-    }
+    
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
+    [self removeNotifications];
 }
 
 
@@ -648,6 +617,5 @@
     // theater section
     return UITableViewCellAccessoryDisclosureIndicator;
 }
-
 
 @end
