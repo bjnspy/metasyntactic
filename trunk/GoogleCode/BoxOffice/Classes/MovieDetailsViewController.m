@@ -418,13 +418,6 @@
 }
 
 
-- (void) setupLoadingTrailerCell:(UITableViewCell*) cell {
-    cell.text = NSLocalizedString(@"Loading trailer...", nil);
-    UIActivityIndicatorView* activityIndicator = (UIActivityIndicatorView*)cell.accessoryView;
-    [activityIndicator startAnimating];    
-}
-
-
 - (UITableViewCell*) cellForActionRow:(NSInteger) row {
     static NSString* reuseIdentifier = @"MovieDetailsActionCellIdentifier";
 

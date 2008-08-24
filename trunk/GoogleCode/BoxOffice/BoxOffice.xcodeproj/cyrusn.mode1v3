@@ -361,7 +361,7 @@
 							<real>361</real>
 						</array>
 						<key>RubberWindowFrame</key>
-						<string>176 106 1201 772 0 0 1440 878 </string>
+						<string>176 104 1201 772 0 0 1440 878 </string>
 					</dict>
 					<key>Module</key>
 					<string>PBXSmartGroupTreeModule</string>
@@ -391,7 +391,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74E430150E61356E003234AB</string>
+										<string>74E4301B0E6139D6003234AB</string>
 										<key>history</key>
 										<array>
 											<string>74E42F570E60F999003234AB</string>
@@ -430,7 +430,7 @@
 								<key>Frame</key>
 								<string>{{0, 0}, {796, 523}}</string>
 								<key>RubberWindowFrame</key>
-								<string>176 106 1201 772 0 0 1440 878 </string>
+								<string>176 104 1201 772 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>PBXNavigatorGroup</string>
@@ -450,7 +450,7 @@
 								<key>Frame</key>
 								<string>{{0, 528}, {796, 203}}</string>
 								<key>RubberWindowFrame</key>
-								<string>176 106 1201 772 0 0 1440 878 </string>
+								<string>176 104 1201 772 0 0 1440 878 </string>
 							</dict>
 							<key>Module</key>
 							<string>XCDetailModule</string>
@@ -595,7 +595,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>241251694.09092599</real>
+	<real>241252822.320604</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -610,7 +610,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>74E430160E61356E003234AB</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>74E42F520E60F8E5003234AB</string>
 		<string>74E42F4A0E60F7A1003234AB</string>
@@ -619,10 +618,9 @@
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>74A7A39A0E32720500748DD0</string>
 		<string>/Projects/metasyntactic/trunk/GoogleCode/BoxOffice/BoxOffice.xcodeproj</string>
-		<string>74E430170E61356E003234AB</string>
 	</array>
 	<key>WindowString</key>
-	<string>176 106 1201 772 0 0 1440 878 </string>
+	<string>176 104 1201 772 0 0 1440 878 </string>
 	<key>WindowToolsV3</key>
 	<array>
 		<dict>
