@@ -31,6 +31,7 @@
     NSInteger synopsisMax;
 
     BOOL filterTheatersByDistance;
+    NSInteger playingMovieIndex;
 }
 
 @property (assign) AbstractNavigationController* navigationController;
