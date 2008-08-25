@@ -4,6 +4,7 @@ import wsgiref.handlers
 import LookupLocation
 import LookupMovieListings
 import LookupMovieReviews
+import LookupPosterListings
 import LookupTheaterListings
 import LookupTrailerListings
 import CacheStatistics
@@ -21,6 +22,7 @@ def main():
       ('/LookupLocation', LookupLocation.LookupLocationHandler),
       ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
       ('/LookupMovieReviews', LookupMovieReviews.LookupMovieReviewsHandler),
+      ('/LookupPosterListings', LookupPosterListings.LookupPosterListingsHandler),
       ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler),
       ('/LookupTrailerListings', LookupTrailerListings.LookupTrailerListingsHandler),
       ('/CacheStatistics', CacheStatistics.CacheStatisticsHandler)
