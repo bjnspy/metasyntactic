@@ -18,12 +18,15 @@
 
 #import "FontCache.h"
 #import "Review.h"
+#import "Utilities.h"
 
 @implementation ReviewBodyCell
 
+@synthesize review;
 @synthesize label;
 
 - (void) dealloc {
+    self.review = nil;
     self.label = nil;
 
     [super dealloc];
@@ -45,10 +48,40 @@
 }
 
 
-- (void) setReview:(Review*) review {
-    CGRect rect = CGRectMake(10, 5, review.link ? 255 : 285, [review heightWithFont:[FontCache helvetica14]] - 10);
-    self.label.frame = rect;
+- (void) layoutSubviews {
+    [super layoutSubviews];
+
     self.label.text = review.text;
+
+    double width = self.frame.size.width;
+    width -= 40;
+    if (![Utilities isNilOrEmpty:review.link]) {
+        width -= 25;
+    }
+
+    CGRect rect = CGRectMake(10, 5, width, [ReviewBodyCell height:review] - 10);
+    self.label.frame = rect;
+}
+
+
++ (CGFloat) height:(Review*) review {
+    double width;
+    if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
+        width = [UIScreen mainScreen].bounds.size.height;
+    } else {
+        width = [UIScreen mainScreen].bounds.size.width;
+    }
+    width -= 40;
+    if (![Utilities isNilOrEmpty:review.link]) {
+        width -= 25;
+    }
+
+    CGSize size = CGSizeMake(width, 2000);
+    size = [review.text sizeWithFont:[FontCache helvetica14]
+                   constrainedToSize:size
+                       lineBreakMode:UILineBreakModeWordWrap];
+
+    return size.height + 10;
 }
 
 

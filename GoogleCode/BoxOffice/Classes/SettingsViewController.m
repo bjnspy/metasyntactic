@@ -252,14 +252,14 @@
                 key = NSLocalizedString(@"Location", nil);
                 value = self.model.postalCode;
             } else if (indexPath.row == 1) {
-                key = NSLocalizedString(@"Hide Theaters Beyond", nil);
+                key = NSLocalizedString(@"Search Distance", nil);
 
                 if (self.model.searchRadius == 1) {
-                    value = (self.model.useKilometers ? NSLocalizedString(@"1 km", nil) : NSLocalizedString(@"1 mile", nil));
+                    value = (self.model.useKilometers ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
                 } else {
                     value = [NSString stringWithFormat:NSLocalizedString(@"%d %@", @"5 kilometers or 5 miles"),
                              self.model.searchRadius,
-                             (self.model.useKilometers ? NSLocalizedString(@"km", nil) : NSLocalizedString(@"miles", nil))];
+                             (self.model.useKilometers ? NSLocalizedString(@"kilometers", nil) : NSLocalizedString(@"miles", nil))];
                 }
             } else if (indexPath.row == 2) {
                 key = NSLocalizedString(@"Search Date", nil);
@@ -338,15 +338,15 @@
 
 - (void) pushFilterDistancePicker {
     NSArray* values = [NSArray arrayWithObjects:
-                       @"1", @"2", @"3", @"4", @"5",
+                       @"1", @"2", @"3", @"4", @"5", @"6", @"7", @"8", @"9",
                        @"10", @"15", @"20", @"25", @"30",
                        @"35", @"40", @"45", @"50", nil];
     NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
 
     PickerEditorViewController* controller =
     [[[PickerEditorViewController alloc] initWithController:self.navigationController
-                                                      title:NSLocalizedString(@"Distance", nil)
-                                                       text:NSLocalizedString(@"Most providers will only return results for theaters within 15 miles of your location.  This filter will then hide theaters from those results that fall outside the specified distance.", nil)
+                                                      title:NSLocalizedString(@"Search Distance", nil)
+                                                       text:NSLocalizedString(@"Ticketing providers often limit the maximum search distance they will provide results for.  As a result, some theaters may not show up in your results even if your search distance is set very high.", nil)
                                                      object:self
                                                    selector:@selector(onSearchRadiusChanged:)
                                                      values:values

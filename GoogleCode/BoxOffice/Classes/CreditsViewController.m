@@ -53,6 +53,11 @@
 }
 
 
+- (void) refresh {
+    [self.tableView reloadData];
+}
+
+
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
@@ -160,8 +165,8 @@
 }
 
 
-- (UITableViewCell*)    tableView:(UITableView*) tableView
-            cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+- (UITableViewCell*) tableView:(UITableView*) tableView
+         cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
 
@@ -177,11 +182,9 @@
     if (image != nil) {
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
 
-        NSInteger yMid = (NSInteger)([self tableView:tableView heightForRowAtIndexPath:indexPath] / 2);
-        NSInteger xMid = 130;
+        NSInteger x = (self.tableView.contentSize.width - image.size.width) / 2 - 20;
+        NSInteger y = ([self tableView:tableView heightForRowAtIndexPath:indexPath] - image.size.height) / 2;
 
-        NSInteger x = xMid - (image.size.width / 2);
-        NSInteger y = yMid - (image.size.height / 2);
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
 
         [cell.contentView addSubview:imageView];
@@ -259,13 +262,15 @@
 - (void) licenseCellTapped {
     UIViewController* controller = [[[UIViewController alloc] init] autorelease];
     controller.title = NSLocalizedString(@"License", nil);
+
     UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
     textView.editable = NO;
+    textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+
     NSString* licensePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"License.txt"];
     textView.text = [NSString stringWithContentsOfFile:licensePath];
     textView.font = [UIFont boldSystemFontOfSize:12];
     textView.textColor = [UIColor grayColor];
-    [textView sizeToFit];
 
     [controller.view addSubview:textView];
     [self.navigationController pushViewController:controller animated:YES];
@@ -325,6 +330,11 @@
     }
 
     [Application openBrowser:url];
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self refresh];
 }
 
 

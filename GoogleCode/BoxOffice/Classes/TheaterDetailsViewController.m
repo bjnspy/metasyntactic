@@ -156,7 +156,7 @@
 
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
-    AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+    AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                 reuseIdentifier:nil] autorelease];
 
     NSString* mapString = NSLocalizedString(@"Map", nil);
@@ -181,7 +181,7 @@
 
 
 - (UITableViewCell*) cellForEmailListings {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                     reuseIdentifier:nil] autorelease];
 
     cell.textColor = [ColorCache commandColor];
@@ -199,7 +199,7 @@
         static NSString* reuseIdentifier = @"TheaterDetailsMovieCellIdentifier";
         MovieTitleCell* movieCell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (movieCell == nil) {
-            movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+            movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                reuseIdentifier:reuseIdentifier
                                                          model:self.model
                                                          style:UITableViewStyleGrouped] autorelease];
@@ -213,7 +213,7 @@
         id i = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         MovieShowtimesCell* cell = i;
         if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                               reuseIdentifier:reuseIdentifier] autorelease];
         }
 
@@ -340,6 +340,11 @@
             [self pushTicketsView:movie animated:YES];
         }
     }
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self refresh];
 }
 
 

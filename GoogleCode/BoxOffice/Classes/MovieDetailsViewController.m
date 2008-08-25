@@ -23,6 +23,7 @@
 #import "DateUtilities.h"
 #import "FontCache.h"
 #import "Movie.h"
+#import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
 #import "Theater.h"
@@ -38,8 +39,6 @@
 @synthesize trailersArray;
 @synthesize reviewsArray;
 @synthesize hiddenTheaterCount;
-@synthesize posterImage;
-@synthesize synopsis;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -49,8 +48,6 @@
     self.trailersArray = nil;
     self.reviewsArray = nil;
     self.hiddenTheaterCount = 0;
-    self.posterImage = nil;
-    self.synopsis = nil;
 
     [super dealloc];
 }
@@ -110,62 +107,6 @@
 }
 
 
-- (NSInteger) calculateSynopsisSplit {
-    CGFloat posterHeight = self.posterImage.size.height;
-    int synopsisX = 5 + self.posterImage.size.width + 5;
-    int width = 295 - synopsisX;
-
-    CGFloat synopsisHeight = [synopsis sizeWithFont:[FontCache helvetica14]
-                                  constrainedToSize:CGSizeMake(width, 2000)
-                                      lineBreakMode:UILineBreakModeWordWrap].height;
-    if (synopsisHeight <= posterHeight) {
-        return synopsis.length;
-    }
-
-    NSInteger guess = synopsis.length * posterHeight * 1.1 / synopsisHeight;
-    guess = MIN(guess, synopsis.length);
-
-    while (true) {
-        NSRange whitespaceRange = [synopsis rangeOfString:@" " options:NSBackwardsSearch range:NSMakeRange(0, guess)];
-        NSInteger whitespace = whitespaceRange.location;
-        if (whitespace == 0) {
-            return synopsis.length;
-        }
-
-        NSString* synopsisChunk = [synopsis substringToIndex:whitespace];
-
-        CGFloat chunkHeight = [synopsisChunk sizeWithFont:[FontCache helvetica14]
-                                        constrainedToSize:CGSizeMake(width, 2000)
-                                            lineBreakMode:UILineBreakModeWordWrap].height;
-
-        if (chunkHeight <= posterHeight) {
-            return whitespace;
-        }
-
-        guess = whitespace;
-    }
-}
-
-
-- (NSInteger) calculateSynopsisMax {
-    if (synopsisSplit == synopsis.length) {
-        return synopsis.length;
-    }
-
-    NSInteger guess = synopsisSplit * 2;
-    if (guess >= synopsis.length) {
-        return synopsis.length;
-    }
-
-    NSRange dot = [synopsis rangeOfString:@"." options:0 range:NSMakeRange(guess, synopsis.length - guess)];
-    if (dot.length == 0) {
-        return synopsis.length;
-    }
-
-    return dot.location + 1;
-}
-
-
 - (id) initWithNavigationController:(AbstractNavigationController*) controller
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -183,15 +124,6 @@
         if (!self.model.noRatings) {
             self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:self.movie]];
         }
-
-        self.posterImage = [self.model posterForMovie:self.movie];
-        if (self.posterImage == nil) {
-            self.posterImage = [UIImage imageNamed:@"ImageNotAvailable.png"];
-        }
-
-        self.synopsis = [self.model synopsisForMovie:self.movie];
-        synopsisSplit = [self calculateSynopsisSplit];
-        synopsisMax = [self calculateSynopsisMax];
     }
 
     return self;
@@ -282,34 +214,9 @@
 }
 
 
-- (CGRect) synopsisFrame {
-    UIImage* image = self.posterImage;
-
-    int synopsisX = 5 + image.size.width + 5;
-    int width = 295 - synopsisX;
-
-    return CGRectMake(synopsisX, 5, width, image.size.height);
-}
-
-
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
-        double h1 = self.posterImage.size.height;
-
-        if (synopsisSplit == synopsis.length) {
-            return h1 + 10;
-        }
-
-        NSInteger start = synopsisSplit + 1;
-        NSInteger end = synopsisMax;
-
-        NSString* remainder = [synopsis substringWithRange:NSMakeRange(start, end - start)];
-
-        double h2 = [remainder sizeWithFont:[FontCache helvetica14]
-                               constrainedToSize:CGSizeMake(290, 2000)
-                                   lineBreakMode:UILineBreakModeWordWrap].height;
-
-        return h1 + h2 + 10;
+        return [MovieOverviewCell heightForMovie:movie model:self.model];
     } else if (row == 1) {
         return self.tableView.rowHeight - 10;
     } else {
@@ -345,52 +252,7 @@
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        UIImage* image = [self posterImage];
-        UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-        imageView.frame = CGRectMake(5, 5, image.size.width, image.size.height);
-        [cell.contentView addSubview:imageView];
-
-        CGRect synopsisFrame = [self synopsisFrame];
-
-        UILabel* synopsisLabel = [[[UILabel alloc] initWithFrame:synopsisFrame] autorelease];
-        synopsisLabel.font = [FontCache helvetica14];
-        synopsisLabel.lineBreakMode = UILineBreakModeWordWrap;
-        synopsisLabel.numberOfLines = 0;
-        synopsisLabel.text = [synopsis substringToIndex:synopsisSplit];
-        [synopsisLabel sizeToFit];
-
-        if (synopsisSplit < synopsis.length) {
-            NSInteger start = synopsisSplit + 1;
-            NSInteger end = synopsisMax;
-
-            NSString* remainder = [synopsis substringWithRange:NSMakeRange(start, end - start)];
-
-            CGFloat height = [remainder sizeWithFont:[FontCache helvetica14]
-                                constrainedToSize:CGSizeMake(290, 2000)
-                                    lineBreakMode:UILineBreakModeWordWrap].height;
-
-            CGRect remainderRect =  CGRectMake(5, posterImage.size.height + 5, 290, height);
-
-            UILabel* remainderChunk = [[[UILabel alloc] initWithFrame:remainderRect] autorelease];
-            remainderChunk.font = [FontCache helvetica14];
-            remainderChunk.lineBreakMode = UILineBreakModeWordWrap;
-            remainderChunk.numberOfLines = 0;
-            remainderChunk.text = remainder;
-
-            [cell.contentView addSubview:remainderChunk];
-
-            synopsisFrame = synopsisLabel.frame;
-            synopsisFrame.origin.y = (self.posterImage.size.height + 5) - synopsisFrame.size.height;
-            synopsisLabel.frame = synopsisFrame;
-        }
-
-
-        [cell.contentView addSubview:synopsisLabel];
-
-        return cell;
+        return [MovieOverviewCell cellWithMovie:movie model:self.model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
     } else if (row == 1) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
@@ -423,8 +285,8 @@
 
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
-                                                    reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                       reuseIdentifier:reuseIdentifier] autorelease];
 
         cell.textColor = [ColorCache commandColor];
         cell.font = [UIFont boldSystemFontOfSize:14];
@@ -478,7 +340,7 @@
         static NSString* reuseIdentifier = @"MovieDetailsShowtimesCellIdentifier";
         MovieShowtimesCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                               reuseIdentifier:reuseIdentifier] autorelease];
         }
 
@@ -507,7 +369,7 @@
                                              selector:@selector(movieFinishedPlaying:)
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:moviePlayer];
-    
+
     [moviePlayer play];
 }
 
@@ -516,7 +378,7 @@
     MPMoviePlayerController* moviePlayer = notification.object;
     [moviePlayer stop];
     [moviePlayer autorelease];
-    
+
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
     [self removeNotifications];
 }
@@ -609,6 +471,11 @@
 
     // theater section
     return UITableViewCellAccessoryDisclosureIndicator;
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self refresh];
 }
 
 @end

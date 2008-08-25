@@ -225,7 +225,7 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if ([self sortingByName]) {
+    if ([self sortingByName] && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         return UITableViewCellAccessoryNone;
     } else {
         return UITableViewCellAccessoryDisclosureIndicator;
@@ -246,8 +246,8 @@
 }
 
 
-- (NSInteger)               tableView:(UITableView*) tableView
-                numberOfRowsInSection:(NSInteger) section {
+- (NSInteger)     tableView:(UITableView*) tableView
+      numberOfRowsInSection:(NSInteger) section {
     return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
 }
 
@@ -281,7 +281,9 @@
 
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
-    if ([self sortingByName] && sortedTheaters.count > 0) {
+    if ([self sortingByName] &&
+        sortedTheaters.count > 0 &&
+        UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         return self.alphabeticSectionTitles;
     }
 
@@ -339,6 +341,11 @@
 - (void) refresh {
     [self sortTheaters];
     [self.tableView reloadData];
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self refresh];
 }
 
 

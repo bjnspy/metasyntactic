@@ -32,7 +32,7 @@
 
 
 - (id) initWithController:(AllMoviesViewController*) controller_ {
-    if (self = [super initWithFrame:[UIScreen mainScreen].bounds]) {
+    if (self = [super initWithFrame:[UIScreen mainScreen].applicationFrame]) {
         self.controller = controller_;
         self.backgroundColor = [UIColor blackColor];
     }

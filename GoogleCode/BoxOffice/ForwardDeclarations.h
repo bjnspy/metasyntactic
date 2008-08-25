@@ -44,6 +44,7 @@
 @class MetacriticDownloader;
 @class Movie;
 @class MovieDetailsViewController;
+@class MovieOverviewCell;
 @class MovieShowtimesCell;
 @class MovieTitleCell;
 @class MoviesNavigationController;

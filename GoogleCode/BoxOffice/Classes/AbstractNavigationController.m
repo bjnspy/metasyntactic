@@ -41,6 +41,7 @@
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super init]) {
         self.tabBarController = controller;
+        self.view.autoresizesSubviews = YES;
     }
 
     return self;
@@ -123,6 +124,11 @@
     UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self theater:theater] autorelease];
 
     [self pushViewController:viewController animated:animated];
+}
+
+
+- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+    return YES;
 }
 
 

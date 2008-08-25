@@ -187,7 +187,7 @@
                 key = NSLocalizedString(@"Location", nil);
                 value = self.model.postalCode;
             } else if (indexPath.row == 1) {
-                key = NSLocalizedString(@"Hide Theaters Beyond", nil);
+                key = NSLocalizedString(@"Search Distance", nil);
 
                 if (self.model.searchRadius == 1) {
                     value = NSLocalizedString(@"1 mile", nil);

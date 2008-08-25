@@ -15,11 +15,15 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ReviewBodyCell : UITableViewCell {
+    Review* review;
     UILabel* label;
 }
 
+@property (retain) Review* review;
 @property (retain) UILabel* label;
 
 - (void) setReview:(Review*) review;
+
++ (CGFloat) height:(Review*) review;
 
 @end

@@ -168,6 +168,7 @@
 - (id) initWithNavigationController:(MoviesNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
+
         self.sortedMovies = [NSArray array];
 
         [self setupSegmentedControl];
@@ -232,7 +233,7 @@
     id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     MovieTitleCell* movieCell = cell;
     if (movieCell == nil) {
-        movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+        movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                            reuseIdentifier:reuseIdentifier
                                                      model:self.model
                                                      style:UITableViewStylePlain] autorelease];
@@ -245,7 +246,7 @@
 
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
-    if ([self.model sortingMoviesByTitle]) {
+    if ([self.model sortingMoviesByTitle] && UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         return UITableViewCellAccessoryNone;
     } else if ([self.model sortingMoviesByScore]) {
         return UITableViewCellAccessoryDisclosureIndicator;
@@ -306,7 +307,9 @@
 
 
 - (NSArray*) sectionIndexTitlesForTableView:(UITableView*) tableView {
-    if ([self.model sortingMoviesByTitle] && self.sortedMovies.count > 0) {
+    if ([self.model sortingMoviesByTitle] &&
+        self.sortedMovies.count > 0 &&
+        UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         return self.alphabeticSectionTitles;
     }
 
@@ -334,48 +337,8 @@
 }
 
 
-- (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return NO;
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self refresh];
 }
-
-
-- (void)willRotateToInterfaceOrientation:(UIInterfaceOrientation)toInterfaceOrientation duration:(NSTimeInterval)duration {
-    return;
-    [UIView beginAnimations:nil context:NULL];
-    {
-        [UIView setAnimationDuration:duration];
-
-        UIInterfaceOrientation orientation = [[UIDevice currentDevice] orientation];
-
-        [[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:YES];
-
-        UIWindow* window = self.navigationController.tabBarController.appDelegate.window;
-
-        [[UIApplication sharedApplication] setStatusBarOrientation:orientation animated:YES];
-
-        if (orientation == UIInterfaceOrientationPortrait) {
-            self.navigationController.tabBarController.view.alpha = 1;
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleDefault animated:YES];
-
-            if (self.posterView != nil) {
-                [self.posterView removeFromSuperview];
-                self.posterView = nil;
-            }
-        } else {
-            self.navigationController.tabBarController.view.alpha = 0;
-            [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleBlackTranslucent animated:YES];
-
-            if (self.posterView == nil) {
-                self.posterView = [PosterView viewWithController:self];
-            }
-
-            if (self.posterView.superview == nil) {
-                [window addSubview:self.posterView];
-            }
-        }
-    }
-    [UIView commitAnimations];
-}
-
 
 @end

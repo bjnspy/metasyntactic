@@ -141,13 +141,21 @@
     } else if (section == 1) {
         return nil;
     } else if (section == 2 && performances.count) {
-        NSString* dateString = [DateUtilities formatFullDate:[self.model searchDate]];
-
         if ([DateUtilities isToday:[self.model searchDate]]) {
-            return [NSString stringWithFormat:NSLocalizedString(@"Today - %@", nil), dateString];
+            return NSLocalizedString(@"Today", nil);
         } else {
-            return dateString;
+            return [DateUtilities formatFullDate:[self.model searchDate]];
         }
+    }
+
+    return nil;
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+    if (section == 1 && performances.count == 0) {
+        return NSLocalizedString(@"No showtimes available today.", nil);
     }
 
     return nil;
@@ -159,7 +167,7 @@
 
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                        reuseIdentifier:reuseIdentifier] autorelease];
 
         cell.textAlignment = UITextAlignmentCenter;
@@ -184,7 +192,7 @@
 
 
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
-    AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+    AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                 reuseIdentifier:nil] autorelease];
 
     NSString* mapString = NSLocalizedString(@"Map", nil);
@@ -197,11 +205,11 @@
     if (row == 0) {
         [cell setKey:mapString
                value:[self.model simpleAddressForTheater:theater]
-               keyWidth:width];
+            keyWidth:width];
     } else {
         [cell setKey:callString
                value:theater.phoneNumber
-               keyWidth:width];
+            keyWidth:width];
     }
 
     return cell;
@@ -209,7 +217,7 @@
 
 
 - (UITableViewCell*) infoCellForRow:(NSInteger) row {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].bounds
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                     reuseIdentifier:nil] autorelease];
 
     cell.textAlignment = UITextAlignmentCenter;
@@ -262,8 +270,8 @@
 
     NSString* url = [[self.model currentDataProvider] ticketingUrlForTheater:theater
                                                                        movie:movie
-                                                               performance:performance
-                                                                      date:[self.model searchDate]];
+                                                                 performance:performance
+                                                                        date:[self.model searchDate]];
 
     [Application openBrowser:url];
 }
