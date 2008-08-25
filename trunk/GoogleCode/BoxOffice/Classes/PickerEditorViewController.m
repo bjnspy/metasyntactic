@@ -31,6 +31,11 @@
 }
 
 
+- (void) refresh {
+    label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+}
+
+
 - (id) initWithController:(UINavigationController*) controller_
                     title:(NSString*) title_
                      text:(NSString*) text_
@@ -68,16 +73,13 @@
 
 - (void) loadView {
     [super loadView];
+    
+    [self refresh];
 
     [self.view addSubview:self.picker];
     [self.view addSubview:self.label];
 
     [self.picker becomeFirstResponder];
-}
-
-
-- (void) refresh {
-    label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
 }
 
 
