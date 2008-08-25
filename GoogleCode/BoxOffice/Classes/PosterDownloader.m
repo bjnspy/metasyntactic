@@ -16,6 +16,7 @@
 
 #import "PosterDownloader.h"
 
+#import "ApplePosterDownloader.h"
 #import "ImdbPosterDownloader.h"
 #import "Movie.h"
 #import "Utilities.h"
@@ -45,6 +46,11 @@
         return data;
     }
 
+    data = [ApplePosterDownloader download:self.movie];
+    if (data != nil) {
+        return data;
+    }
+    
     data = [ImdbPosterDownloader download:self.movie];
     if (data != nil) {
         return data;
