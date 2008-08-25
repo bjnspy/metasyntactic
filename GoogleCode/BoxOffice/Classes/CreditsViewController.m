@@ -49,7 +49,7 @@
         self.yahooImage = [UIImage imageNamed:@"YahooLogo.png"];
 
         self.title = NSLocalizedString(@"About", nil);
-        
+
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
         [dictionary setObject:@"Allan Lund Jensen"  forKey:@"da"];
         [dictionary setObject:@"André van Haren"    forKey:@"nl"];
@@ -147,7 +147,7 @@
 NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSString* language1 = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code1];
     NSString* language2 = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code2];
-    
+
     return [language1 compare:language2];
 }
 

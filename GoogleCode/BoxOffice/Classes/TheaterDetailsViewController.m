@@ -82,15 +82,15 @@
     [favoriteButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
     [favoriteButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
     [favoriteButton addTarget: self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
-    
+
     CGRect frame = favoriteButton.frame;
     frame.size = [ImageCache emptyStarImage].size;
     frame.size.width += 10;
     frame.size.height += 10;
     favoriteButton.frame = frame;
-    
+
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:favoriteButton] autorelease];
-    [self setFavoriteImage];    
+    [self setFavoriteImage];
 }
 
 
@@ -354,6 +354,17 @@
     }
 }
 
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+    if (section == 1 && movies.count == 0) {
+        return [NSString stringWithFormat:
+                NSLocalizedString(@"This theater has not yet reported its show times. When they become available, %@ will retrieve them automatically.", nil),
+                [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+    }
+
+    return nil;
+}
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     [self refresh];

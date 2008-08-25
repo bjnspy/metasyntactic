@@ -113,7 +113,7 @@
     NSDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement];
 
     if (movieToShowtimesMap.count == 0) {
-        return;
+        NSLog(@"%@ has no movies", name);
     }
 
     [performances setObject:movieToShowtimesMap forKey:identifier];
