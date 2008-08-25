@@ -58,4 +58,6 @@
 + (NSData*) dataWithContentsOfAddress:(NSString*) address;
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url;
 
++ (NSString*) stripHtmlCodes:(NSString*) string;
+
 @end
