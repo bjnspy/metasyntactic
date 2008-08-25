@@ -22,6 +22,7 @@
 @class AddressLocationCache;
 @class AllMoviesViewController;
 @class AllTheatersViewController;
+@class ApplePosterDownloader;
 @class Application;
 @class ApplicationTabBarController;
 @class AttributeCell;
