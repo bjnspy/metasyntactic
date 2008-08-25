@@ -290,4 +290,20 @@
 }
 
 
++ (NSString*) stripHtmlCodes:(NSString*) string {
+    if (string == nil) {
+        return @"";
+    }
+
+    NSArray* htmlCodes = [NSArray arrayWithObjects:@"em", @"p", @"b", @"i", nil];
+    
+    for (NSString* code in htmlCodes) {
+        string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"<%@>", code] withString:@""];
+        string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"</%@>", code] withString:@""];
+    }
+    
+    return string;
+}
+
+
 @end

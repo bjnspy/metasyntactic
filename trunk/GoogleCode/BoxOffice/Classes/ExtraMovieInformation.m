@@ -17,6 +17,7 @@
 #import "ExtraMovieInformation.h"
 
 #import "Movie.h"
+#import "Utilities.h"
 
 @implementation ExtraMovieInformation
 
@@ -42,11 +43,9 @@
     if (self = [super init]) {
         self.canonicalTitle = [Movie makeCanonical:title_];
         self.link = link_;
-        self.synopsis = synopsis_;
         self.score = score_;
 
-        self.synopsis = [synopsis stringByReplacingOccurrencesOfString:@"<i>" withString:@""];
-        self.synopsis = [synopsis stringByReplacingOccurrencesOfString:@"</i>" withString:@""];
+        self.synopsis = [Utilities stripHtmlCodes:synopsis_];
     }
 
     return self;

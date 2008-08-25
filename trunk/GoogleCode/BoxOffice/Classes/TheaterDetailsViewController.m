@@ -37,6 +37,7 @@
 @synthesize movies;
 @synthesize movieShowtimes;
 @synthesize segmentedControl;
+@synthesize favoriteButton;
 
 - (void) dealloc {
     self.navigationController = nil;
@@ -44,6 +45,7 @@
     self.movies = nil;
     self.movieShowtimes = nil;
     self.segmentedControl = nil;
+    self.favoriteButton = nil;
 
     [super dealloc];
 }
@@ -60,10 +62,7 @@
 
 
 - (void) setFavoriteImage {
-    UIImage* image = [self.model isFavoriteTheater:theater] ? [ImageCache filledStarImage]
-                                                            : [ImageCache emptyStarImage];
-
-    self.navigationItem.rightBarButtonItem.image = image;
+    self.favoriteButton.selected = [self.model isFavoriteTheater:theater];
 }
 
 
@@ -75,6 +74,23 @@
     }
 
     [self setFavoriteImage];
+}
+
+
+- (void) initializeFavoriteButton {
+    self.favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [favoriteButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
+    [favoriteButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
+    [favoriteButton addTarget: self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGRect frame = favoriteButton.frame;
+    frame.size = [ImageCache emptyStarImage].size;
+    frame.size.width += 10;
+    frame.size.height += 10;
+    favoriteButton.frame = frame;
+    
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:favoriteButton] autorelease];
+    [self setFavoriteImage];    
 }
 
 
@@ -100,11 +116,7 @@
         self.title = self.theater.name;
         self.navigationItem.titleView = label;
 
-        self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithImage:[ImageCache emptyStarImage]
-                                                                                   style:UIBarButtonItemStylePlain
-                                                                                  target:self
-                                                                                  action:@selector(switchFavorite:)] autorelease];
-        [self setFavoriteImage];
+        [self initializeFavoriteButton];
     }
 
     return self;
