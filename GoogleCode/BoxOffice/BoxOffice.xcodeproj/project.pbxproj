@@ -175,7 +175,7 @@
 		742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
 		742CA71F0DD6616600A69B79 /* TicketsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketsViewController.m; sourceTree = "<group>"; };
 		743394100E61E52000D285F0 /* MovieOverviewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieOverviewCell.m; sourceTree = "<group>"; };
-		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fi; path = Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
+		743398430E62615300D285F0 /* fi */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = fi; path = Resources/fi.lproj/Localizable.strings; sourceTree = "<group>"; };
 		743BE1FC0E3BFB3B00D19F9B /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
 		743E90620DD786AA00A93DD1 /* MovieShowtimesCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieShowtimesCell.h; sourceTree = "<group>"; };
 		743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieShowtimesCell.m; sourceTree = "<group>"; };
