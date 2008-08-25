@@ -33,10 +33,10 @@
 
 - (void) refresh {
     label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
-    
+
     CGRect screenRect = self.view.bounds;
     CGSize pickerSize = self.picker.frame.size;
-    
+
     CGRect labelRect = CGRectMake(10, 10, screenRect.size.width - 20, screenRect.size.height - 20 - pickerSize.height);
     self.label.frame = labelRect;
     [self.label sizeToFit];
@@ -88,7 +88,7 @@
     [self.view addSubview:self.label];
 
     [self.picker becomeFirstResponder];
-    
+
     [self refresh];
 }
 

@@ -155,7 +155,7 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
     if (section == 1 && performances.count == 0) {
-        return NSLocalizedString(@"No showtimes available today.", nil);
+        return NSLocalizedString(@"No show times available today.", nil);
     }
 
     return nil;

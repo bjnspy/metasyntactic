@@ -50,7 +50,7 @@
     if (data != nil) {
         return data;
     }
-    
+
     data = [ImdbPosterDownloader download:self.movie];
     if (data != nil) {
         return data;
