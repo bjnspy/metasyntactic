@@ -26,6 +26,7 @@
 @synthesize rottenTomatoesImage;
 @synthesize tryntImage;
 @synthesize yahooImage;
+@synthesize localizers;
 
 - (void) dealloc {
     self.fandangoImage = nil;
@@ -33,6 +34,7 @@
     self.rottenTomatoesImage = nil;
     self.tryntImage = nil;
     self.yahooImage = nil;
+    self.localizers = nil;
 
     [super dealloc];
 }
@@ -47,6 +49,17 @@
         self.yahooImage = [UIImage imageNamed:@"YahooLogo.png"];
 
         self.title = NSLocalizedString(@"About", nil);
+        
+        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+        [dictionary setObject:@"Allan Lund Jensen"  forKey:@"da"];
+        [dictionary setObject:@"André van Haren"    forKey:@"nl"];
+        [dictionary setObject:@"Jonathan Grenier"   forKey:@"fr"];
+        [dictionary setObject:@"Leo Yamamoto"       forKey:@"ja"];
+        [dictionary setObject:@"Pedro Pinhão"       forKey:@"pt"];
+        [dictionary setObject:@"Jorge Herskovic"    forKey:@"es"];
+        [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
+        [dictionary setObject:@"J-P. Helisten"      forKey:@"fi"];
+        self.localizers = dictionary;
     }
 
     return self;
@@ -83,7 +96,7 @@
     } else if (section == 5) {
         return 3;
     } else if (section == 6) {
-        return 6;
+        return self.localizers.count;
     } else if (section == 7) {
         return 1;
     }
@@ -131,34 +144,21 @@
 }
 
 
+NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
+    NSString* language1 = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code1];
+    NSString* language2 = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code2];
+    
+    return [language1 compare:language2];
+}
+
+
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
     SettingCell* cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    NSString* language;
-    NSString* person;
-    if (row == 0) {
-        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"da"];
-        person = @"Allan Lund Jensen";
-    } else if (row == 1) {
-        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"nl"];
-        person = @"André van Haren";
-    } else if (row == 2) {
-        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"fr"];
-        person = @"Jonathan Grenier";
-    } else if (row == 3) {
-        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"ja"];
-        person = @"Leo Yamamoto";
-    } else if (row == 4) {
-        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"pt"];
-        person = @"Pedro Pinhão";
-    } else if (row == 5) {
-        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"es"];
-        person = @"Jorge Herskovic";
-    } else if (row == 6) {
-        language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:@"tr"];
-        person = @"Oğuz Taş";
-    }
+    NSString* code = [[self.localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL] objectAtIndex:row];
+    NSString* person = [self.localizers objectForKey:code];
+    NSString* language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code];
 
     [cell setKey:language value:person];
     return cell;

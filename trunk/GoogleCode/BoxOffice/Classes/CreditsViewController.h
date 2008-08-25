@@ -20,6 +20,8 @@
     UIImage* rottenTomatoesImage;
     UIImage* tryntImage;
     UIImage* yahooImage;
+    
+    NSDictionary* localizers;
 }
 
 @property (retain) UIImage* fandangoImage;
@@ -27,5 +29,6 @@
 @property (retain) UIImage* rottenTomatoesImage;
 @property (retain) UIImage* tryntImage;
 @property (retain) UIImage* yahooImage;
+@property (retain) NSDictionary* localizers;
 
 @end
