@@ -101,7 +101,7 @@ static NSString* articles[] = {
         self.length = length_;
         self.releaseDate = releaseDate_;
         self.poster = poster_;
-        self.synopsis = synopsis_;
+        self.synopsis = [NSString stringWithFormat:@"%@ %@", synopsis_, @"now is the time for all good men to come to the aid of their party.  the quick brown fo jumped over the lazy dog"];
 
         self.synopsis = [synopsis stringByReplacingOccurrencesOfString:@"<em>" withString:@""];
         self.synopsis = [synopsis stringByReplacingOccurrencesOfString:@"</em>" withString:@""];

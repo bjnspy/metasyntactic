@@ -47,23 +47,23 @@
         self.model = model_;
         style = style_;
 
-        self.scoreLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        self.scoreLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.textAlignment = UITextAlignmentCenter;
 
-        self.titleLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        self.titleLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
         titleLabel.minimumFontSize = 14;
         titleLabel.textColor = [UIColor blackColor];
 
-        self.ratingLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        self.ratingLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         ratingLabel.font = [UIFont systemFontOfSize:12];
         ratingLabel.textColor = [UIColor grayColor];
 
-        [self addSubview:titleLabel];
+        [self.contentView addSubview:titleLabel];
+        [self.contentView addSubview:ratingLabel];
         [self addSubview:scoreLabel];
-        [self addSubview:ratingLabel];
     }
 
     return self;
@@ -154,27 +154,27 @@
 }
 
 
-- (void) setScore:(Movie*) movie {
-    {
-        CGRect frame;
-        if ([self.model noRatings]) {
-            frame = CGRectMake(10, 25, 285, 12);
-        } else {
-            frame = CGRectMake(50, 25, 245, 12);
-        }
+- (void) layoutSubviews {
+    [super layoutSubviews];
 
-        if (style == UITableViewStyleGrouped) {
-            frame.origin.x += 10;
-            frame.size.width -= 20;
-        }
-
-        self.ratingLabel.frame = frame;
-
-        frame.origin.y = 5;
-        frame.size.height = 20;
-        self.titleLabel.frame = frame;
+    CGRect frame;
+    if ([self.model noRatings]) {
+        frame = CGRectMake(10, 25, 0, 12);
+    } else {
+        frame = CGRectMake(50, 25, 0, 12);
     }
 
+    frame.size.width = self.contentView.frame.size.width - frame.origin.x;
+
+    self.ratingLabel.frame = frame;
+
+    frame.origin.y = 5;
+    frame.size.height = 20;
+    self.titleLabel.frame = frame;
+}
+
+
+- (void) setScore:(Movie*) movie {
     if ([self.model rottenTomatoesRatings]) {
         [self setRottenTomatoesScore:movie];
     } else if ([self.model metacriticRatings]) {
@@ -188,7 +188,7 @@
 
 - (void) setMovie:(Movie*) movie {
     [self setScore:movie];
-    self.ratingLabel.text = [movie ratingAndRuntimeString];
+    self.ratingLabel.text = movie.ratingAndRuntimeString;
     self.titleLabel.text = movie.displayTitle;
 }
 
@@ -196,6 +196,7 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
+
     if (selected) {
         ratingLabel.textColor = [UIColor whiteColor];
         titleLabel.textColor = [UIColor whiteColor];

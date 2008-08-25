@@ -41,12 +41,13 @@
     if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
         self.values = values_;
 
-        self.picker = [[[UIPickerView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
+        self.picker = [[[UIPickerView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         self.picker.delegate = self;
         self.picker.showsSelectionIndicator = YES;
         [self.picker selectRow:[values indexOfObject:defaultValue]
                    inComponent:0
                       animated:NO];
+        picker.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 
         self.title = title_;
 
@@ -75,6 +76,11 @@
 }
 
 
+- (void) refresh {
+    label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+}
+
+
 - (void) viewWillAppear:(BOOL) animated {
     CGRect screenRect = self.view.bounds;
     CGSize pickerSize = [self.picker sizeThatFits:CGSizeZero];
@@ -87,7 +93,7 @@
     self.label.frame = labelRect;
     [self.label sizeToFit];
     labelRect = self.label.frame;
-    labelRect.origin.x = floor((320 - labelRect.size.width) / 2);
+    labelRect.origin.x = floor((self.view.bounds.size.width - labelRect.size.width) / 2);
     self.label.frame = labelRect;
 }
 
@@ -114,6 +120,11 @@
              titleForRow:(NSInteger) row
             forComponent:(NSInteger) component {
     return [self.values objectAtIndex:row];
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self refresh];
 }
 
 

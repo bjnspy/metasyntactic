@@ -23,6 +23,7 @@
 #import "Review.h"
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"
+#import "Utilities.h"
 
 @implementation ReviewsViewController
 
@@ -79,7 +80,7 @@
         ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[ReviewTitleCell alloc] initWithModel:self.model
-                                                     frame:[UIScreen mainScreen].bounds
+                                                     frame:[UIScreen mainScreen].applicationFrame
                                            reuseIdentifier:reuseIdentifier] autorelease];
         }
 
@@ -91,7 +92,7 @@
 
         ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[ReviewBodyCell alloc] initWithFrame:[UIScreen mainScreen].bounds reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[ReviewBodyCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame reuseIdentifier:reuseIdentifier] autorelease];
         }
 
         [cell setReview:review];
@@ -166,7 +167,7 @@
         if (indexPath.row == 1) {
             Review* review = [reviews objectAtIndex:indexPath.section];
 
-            return MAX([review heightWithFont:[FontCache helvetica14]], self.tableView.rowHeight);
+            return MAX([ReviewBodyCell height:review], self.tableView.rowHeight);
         }
     }
 
@@ -179,7 +180,7 @@
     if (indexPath.section < reviews.count) {
         if (indexPath.row == 1) {
             Review* review = [reviews objectAtIndex:indexPath.section];
-            if (review.link != nil) {
+            if (![Utilities isNilOrEmpty:review.link]) {
                 return UITableViewCellAccessoryDetailDisclosureButton;
             }
         }
@@ -192,6 +193,12 @@
 
 
 - (void) refresh {
+    [self.tableView reloadData];
+}
+
+
+- (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self refresh];
 }
 
 

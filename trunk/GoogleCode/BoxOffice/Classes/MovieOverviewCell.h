@@ -14,32 +14,29 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface MovieDetailsViewController : UITableViewController {
-    AbstractNavigationController* navigationController;
-
+@interface MovieOverviewCell : UITableViewCell {
+    BoxOfficeModel* model;
     Movie* movie;
-    NSMutableArray* theatersArray;
-    NSMutableArray* showtimesArray;
-    NSArray* trailersArray;
-    NSArray* reviewsArray;
 
-    NSInteger hiddenTheaterCount;
+    UIImage* posterImage;
+    NSString* synopsis;
+    NSInteger synopsisSplit;
+    NSInteger synopsisMax;
 
-    BOOL filterTheatersByDistance;
+    UILabel* synopsisChunk1Label;
+    UILabel* synopsisChunk2Label;
 }
 
-@property (assign) AbstractNavigationController* navigationController;
+@property (retain) BoxOfficeModel* model;
 @property (retain) Movie* movie;
-@property (retain) NSMutableArray* theatersArray;
-@property (retain) NSMutableArray* showtimesArray;
-@property (retain) NSArray* trailersArray;
-@property (retain) NSArray* reviewsArray;
-@property NSInteger hiddenTheaterCount;
+@property (retain) UIImage* posterImage;
+@property (copy) NSString* synopsis;
+@property NSInteger synopsisSplit;
+@property NSInteger synopsisMax;
+@property (retain) UILabel* synopsisChunk1Label;
+@property (retain) UILabel* synopsisChunk2Label;
 
-- (id) initWithNavigationController:(AbstractNavigationController*) navigationController
-                              movie:(Movie*) movie;
-
-- (void) refresh;
-- (BoxOfficeModel*) model;
++ (MovieOverviewCell*) cellWithMovie:(Movie*) movie model:(BoxOfficeModel*) model frame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier;
++ (CGFloat) heightForMovie:(Movie*) movie model:(BoxOfficeModel*) model;
 
 @end

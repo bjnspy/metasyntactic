@@ -16,6 +16,8 @@
 
 #import "Review.h"
 
+#import "Utilities.h"
+
 @implementation Review
 
 @synthesize score;
@@ -94,17 +96,6 @@
     [dict setObject:author forKey:@"author"];
     [dict setObject:source forKey:@"source"];
     return dict;
-}
-
-
-- (CGFloat) heightWithFont:(UIFont*) font {
-    CGFloat width = self.link ? 255 : 285;
-    CGSize size = CGSizeMake(width, 1000);
-    size = [self.text sizeWithFont:font
-                 constrainedToSize:size
-                     lineBreakMode:UILineBreakModeWordWrap];
-
-    return size.height + 10;
 }
 
 

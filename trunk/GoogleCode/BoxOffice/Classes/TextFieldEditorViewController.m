@@ -34,8 +34,9 @@
               placeHolder:(NSString*) placeHolder
                      type:(UIKeyboardType) type {
     if (self = [super initWithController:controller withObject:object_ withSelector:selector_]) {
-        CGRect rect = CGRectMake(20, 72, 280, 30);
-        self.textField = [[[UITextField alloc] initWithFrame:rect] autorelease];
+        self.textField = [[[UITextField alloc] initWithFrame:CGRectZero] autorelease];
+        self.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+
         self.textField.text = text;
         self.textField.placeholder = placeHolder;
         self.textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -51,10 +52,12 @@
 }
 
 
-- (void)loadView {
+- (void) loadView {
     [super loadView];
 
     [self.view addSubview:self.textField];
+    CGRect frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);
+    self.textField.frame = frame;
 
     [self.textField becomeFirstResponder];
 }

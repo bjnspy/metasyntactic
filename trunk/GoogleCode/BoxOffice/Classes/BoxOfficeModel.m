@@ -734,7 +734,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         return -1;
     }
 
-    return [extraInfo scoreValue];
+    return extraInfo.scoreValue;
 }
 
 
