@@ -346,7 +346,7 @@
     PickerEditorViewController* controller =
     [[[PickerEditorViewController alloc] initWithController:self.navigationController
                                                       title:NSLocalizedString(@"Search Distance", nil)
-                                                       text:NSLocalizedString(@"Ticketing providers often limit the maximum search distance they will provide results for.  As a result, some theaters may not show up in your results even if your search distance is set very high.", nil)
+                                                       text:NSLocalizedString(@"Theater providers often limit the maximum search distance they will provide data for. As a result, some theaters may not show up for you even if your search distance is set very high.", nil)
                                                      object:self
                                                    selector:@selector(onSearchRadiusChanged:)
                                                      values:values
