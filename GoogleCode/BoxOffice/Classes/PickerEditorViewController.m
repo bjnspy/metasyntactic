@@ -33,6 +33,16 @@
 
 - (void) refresh {
     label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
+    
+    CGRect screenRect = self.view.bounds;
+    CGSize pickerSize = self.picker.frame.size;
+    
+    CGRect labelRect = CGRectMake(10, 10, screenRect.size.width - 20, screenRect.size.height - 20 - pickerSize.height);
+    self.label.frame = labelRect;
+    [self.label sizeToFit];
+    labelRect = self.label.frame;
+    labelRect.origin.x = floor((self.view.bounds.size.width - labelRect.size.width) / 2);
+    self.label.frame = labelRect;
 }
 
 
@@ -73,13 +83,13 @@
 
 - (void) loadView {
     [super loadView];
-    
-    [self refresh];
 
     [self.view addSubview:self.picker];
     [self.view addSubview:self.label];
 
     [self.picker becomeFirstResponder];
+    
+    [self refresh];
 }
 
 
@@ -90,13 +100,6 @@
 
     CGRect pickerRect = CGRectMake(0, screenBottom - pickerSize.height, pickerSize.width, pickerSize.height);
     self.picker.frame = pickerRect;
-
-    CGRect labelRect = CGRectMake(10, 10, screenRect.size.width - 20, screenRect.size.height - 20 - pickerSize.height);
-    self.label.frame = labelRect;
-    [self.label sizeToFit];
-    labelRect = self.label.frame;
-    labelRect.origin.x = floor((self.view.bounds.size.width - labelRect.size.width) / 2);
-    self.label.frame = labelRect;
 }
 
 
