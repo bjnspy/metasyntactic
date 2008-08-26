@@ -7,7 +7,7 @@
 //
 // This program is distributed in the hope that it will be useful, but WITHOUT
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-// FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
@@ -42,8 +42,8 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.4.5";
-static NSString* persistenceVersion = @"1";
+static NSString* currentVersion = @"1.4.6";
+static NSString* persistenceVersion = @"2";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -59,7 +59,7 @@ static NSString* persistenceVersion = @"1";
 + (NSString*) RATINGS_PROVIDER_INDEX                    { return @"ratingsProviderIndex"; }
 + (NSString*) DATA_PROVIDER_INDEX                       { return @"dataProviderIndex"; }
 + (NSString*) USE_NORMAL_FONTS                          { return @"useNormalFonts"; }
-+ (NSString*) SHOW_EMPTY_THEATERS                       { return @"showEmptyTheaters"; }
++ (NSString*) HIDE_EMPTY_THEATERS                       { return @"hideEmptyTheaters"; }
 + (NSString*) NAVIGATION_STACK_TYPES                    { return @"navigationStackTypes"; }
 + (NSString*) NAVIGATION_STACK_VALUES                   { return @"navigationStackValues"; }
 
@@ -314,7 +314,7 @@ static NSString* persistenceVersion = @"1";
 
 - (BOOL) useKilometers {
     // yeah... so the UK supposedly uses metric...
-    // except they don't.  so we special case them to stick with 'miles' in the UI.
+    // except they don't. so we special case them to stick with 'miles' in the UI.
     BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
     BOOL isUK = [@"GB" isEqual:[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
 
@@ -787,13 +787,13 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 
-- (BOOL) showEmptyTheaters {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:[BoxOfficeModel SHOW_EMPTY_THEATERS]];
+- (BOOL) hideEmptyTheaters {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:[BoxOfficeModel HIDE_EMPTY_THEATERS]];
 }
 
 
-- (void) setShowEmptyTheaters:(BOOL) showEmptyTheaters {
-    [[NSUserDefaults standardUserDefaults] setBool:showEmptyTheaters forKey:[BoxOfficeModel SHOW_EMPTY_THEATERS]];
+- (void) setHideEmptyTheaters:(BOOL) hideEmptyTheaters {
+    [[NSUserDefaults standardUserDefaults] setBool:hideEmptyTheaters forKey:[BoxOfficeModel HIDE_EMPTY_THEATERS]];
 }
 
 

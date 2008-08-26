@@ -7,7 +7,7 @@
 //
 // This program is distributed in the hope that it will be useful, but WITHOUT
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-// FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
@@ -121,7 +121,7 @@
     // poster (i.e. synopsisSplit), doubling that amount, and then terminating
     // at the first period that follows.
     if (synopsisSplit == synopsis.length) {
-        // we didn't even need to split the synopsis.  so there's no need to
+        // we didn't even need to split the synopsis. so there's no need to
         // trim.
         return synopsis.length;
     }
@@ -132,7 +132,7 @@
         return synopsis.length;
     }
 
-    // This is a long synopsis.  make a reasonable guess as to where we can
+    // This is a long synopsis. make a reasonable guess as to where we can
     // trim it in order to keep it short.
     NSRange dot = [synopsis rangeOfString:@"." options:0 range:NSMakeRange(guess, synopsis.length - guess)];
     if (dot.length == 0) {
@@ -161,7 +161,8 @@
     CGRect chunk1Frame = CGRectMake(chunk1X, 5, chunk1Width, posterImage.size.height);
     self.synopsisChunk1Label.frame = chunk1Frame;
     self.synopsisChunk1Label.text = [synopsis substringToIndex:synopsisSplit];
-
+    [synopsisChunk1Label sizeToFit];
+    
     self.synopsisChunk2Label.text = @"";
     if (synopsisSplit < synopsis.length) {
         NSInteger start = synopsisSplit + 1;
@@ -179,7 +180,6 @@
         synopsisChunk2Label.frame = chunk2Frame;
 
         // shift the first chunk down to align with the second
-        [synopsisChunk1Label sizeToFit];
         chunk1Frame = synopsisChunk1Label.frame;
         chunk1Frame.origin.y = self.posterImage.size.height + 5 - chunk1Frame.size.height;
         synopsisChunk1Label.frame = chunk1Frame;

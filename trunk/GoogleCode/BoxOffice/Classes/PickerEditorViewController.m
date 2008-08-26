@@ -7,7 +7,7 @@
 //
 // This program is distributed in the hope that it will be useful, but WITHOUT
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-// FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
@@ -56,7 +56,7 @@
     if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
         self.values = values_;
 
-        self.picker = [[[UIPickerView alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        self.picker = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];
         self.picker.delegate = self;
         self.picker.showsSelectionIndicator = YES;
         [self.picker selectRow:[values indexOfObject:defaultValue]
