@@ -7,7 +7,7 @@
 //
 // This program is distributed in the hope that it will be useful, but WITHOUT
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-// FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
@@ -57,7 +57,7 @@
     NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSHourCalendarUnit fromDate:now];
 
     if ([lastDateComponents day] != [nowDateComponents day]) {
-        // different days.  we definitely need to refresh
+        // different days. we definitely need to refresh
         return NO;
     }
 
@@ -66,7 +66,7 @@
         return NO;
     }
 
-    // it's been less than 8 hours.  it's too soon to refresh
+    // it's been less than 8 hours. it's too soon to refresh
     return YES;
 }
 

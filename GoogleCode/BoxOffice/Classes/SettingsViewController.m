@@ -7,7 +7,7 @@
 //
 // This program is distributed in the hope that it will be useful, but WITHOUT
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-// FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
@@ -188,7 +188,7 @@
     [locationManager stopUpdatingLocation];
     [self stopActivityIndicator];
 
-    // intermittent failures are not uncommon.  retry in a minute.
+    // intermittent failures are not uncommon. retry in a minute.
     [self enqueueUpdateRequest:60];
 }
 
@@ -292,13 +292,13 @@
                 on = self.model.autoUpdateLocation;
                 [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
             } else if (indexPath.row == 5) {
-                text = NSLocalizedString(@"Show empty theaters", @"This string has to be small enough to be visible with a picker switch next to it");
-                on = self.model.showEmptyTheaters;
-                [picker addTarget:self action:@selector(onShowEmptyTheatersChanged:) forControlEvents:UIControlEventValueChanged];
-            } else if (indexPath.row == 6) {
                 text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
                 on = self.model.useSmallFonts;
                 [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
+            } else if (indexPath.row == 6) {
+                text = NSLocalizedString(@"Hide empty theaters", @"This string has to be small enough to be visible with a picker switch next to it");
+                on = self.model.hideEmptyTheaters;
+                [picker addTarget:self action:@selector(onHideEmptyTheatersChanged:) forControlEvents:UIControlEventValueChanged];
             }
 
             picker.on = on;
@@ -310,6 +310,20 @@
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         cell.text = NSLocalizedString(@"About", nil);
         return cell;
+    }
+
+    return nil;
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForFooterInSection:(NSInteger) section {
+    if (section == 1) {
+        if (self.model.hideEmptyTheaters) {
+            return NSLocalizedString(@"Theaters without show time data will be hidden from view. When show time data is available, the theater will automatically be listed.", nil);
+        } else {
+            return NSLocalizedString(@"Theaters will be listed even if no show time data is available for them.", nil);
+        }
     }
 
     return nil;
@@ -329,9 +343,8 @@
 }
 
 
-- (void) onShowEmptyTheatersChanged:(id) sender {
-    BOOL showEmptyTheaters = !self.model.showEmptyTheaters;
-    [self.model setShowEmptyTheaters:showEmptyTheaters];
+- (void) onHideEmptyTheatersChanged:(id) sender {
+    [self.model setHideEmptyTheaters:!self.model.hideEmptyTheaters];
     [self.navigationController.tabBarController refresh];
 }
 

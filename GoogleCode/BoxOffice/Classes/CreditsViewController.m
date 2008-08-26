@@ -7,7 +7,7 @@
 //
 // This program is distributed in the hope that it will be useful, but WITHOUT
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-// FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
@@ -240,7 +240,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
     if (section == 7) {
-        return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes.  Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
+        return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes. Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
     }
 
     return nil;

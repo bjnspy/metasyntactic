@@ -7,7 +7,7 @@
 //
 // This program is distributed in the hope that it will be useful, but WITHOUT
 // ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
-// FOR A PARTICULAR PURPOSE.  See the GNU General Public License for more
+// FOR A PARTICULAR PURPOSE. See the GNU General Public License for more
 // details.
 //
 // You should have received a copy of the GNU General Public License along with
@@ -92,7 +92,7 @@
             continue;
         }
 
-        if (theater.movieIdentifiers.count == 0 && !self.model.showEmptyTheaters) {
+        if (theater.movieIdentifiers.count == 0 && self.model.hideEmptyTheaters) {
             continue;
         }
 
@@ -154,7 +154,7 @@
             continue;
         }
 
-        if (theater.movieIdentifiers.count == 0 && !self.model.showEmptyTheaters) {
+        if (theater.movieIdentifiers.count == 0 && self.model.hideEmptyTheaters) {
             continue;
         }
 
@@ -178,7 +178,7 @@
             [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
         }
 
-        // i hate goto/labels.  however, objective-c lacks a 'continue outer' statement.
+        // i hate goto/labels. however, objective-c lacks a 'continue outer' statement.
         // so we simulate here directly.
         outer: ;
     }
