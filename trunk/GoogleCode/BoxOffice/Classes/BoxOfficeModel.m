@@ -59,6 +59,7 @@ static NSString* persistenceVersion = @"1";
 + (NSString*) RATINGS_PROVIDER_INDEX                    { return @"ratingsProviderIndex"; }
 + (NSString*) DATA_PROVIDER_INDEX                       { return @"dataProviderIndex"; }
 + (NSString*) USE_NORMAL_FONTS                          { return @"useNormalFonts"; }
++ (NSString*) SHOW_EMPTY_THEATERS                       { return @"showEmptyTheaters"; }
 + (NSString*) NAVIGATION_STACK_TYPES                    { return @"navigationStackTypes"; }
 + (NSString*) NAVIGATION_STACK_VALUES                   { return @"navigationStackValues"; }
 
@@ -783,6 +784,16 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (void) setUseSmallFonts:(BOOL) useSmallFonts {
     [[NSUserDefaults standardUserDefaults] setBool:!useSmallFonts forKey:[BoxOfficeModel USE_NORMAL_FONTS]];
+}
+
+
+- (BOOL) showEmptyTheaters {
+    return [[NSUserDefaults standardUserDefaults] boolForKey:[BoxOfficeModel SHOW_EMPTY_THEATERS]];
+}
+
+
+- (void) setShowEmptyTheaters:(BOOL) showEmptyTheaters {
+    [[NSUserDefaults standardUserDefaults] setBool:showEmptyTheaters forKey:[BoxOfficeModel SHOW_EMPTY_THEATERS]];
 }
 
 

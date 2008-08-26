@@ -51,13 +51,13 @@
 }
 
 
-- (BoxOfficeController*) controller {
-    return [self.navigationController controller];
+- (BoxOfficeModel*) model {
+    return self.navigationController.model;
 }
 
 
-- (BoxOfficeModel*) model {
-    return [self.navigationController model];
+- (BoxOfficeController*) controller {
+    return self.navigationController.controller;
 }
 
 

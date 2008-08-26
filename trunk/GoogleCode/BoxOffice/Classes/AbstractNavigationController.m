@@ -54,12 +54,12 @@
 
 
 - (BoxOfficeModel*) model {
-    return [self.tabBarController model];
+    return self.tabBarController.model;
 }
 
 
 - (BoxOfficeController*) controller {
-    return [self.tabBarController controller];
+    return self.tabBarController.controller;
 }
 
 

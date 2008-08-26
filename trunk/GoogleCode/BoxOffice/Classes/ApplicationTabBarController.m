@@ -91,12 +91,12 @@
 
 
 - (BoxOfficeModel*) model {
-    return [self.appDelegate model];
+    return self.appDelegate.model;
 }
 
 
 - (BoxOfficeController*) controller {
-    return [self.appDelegate controller];
+    return self.appDelegate.controller;
 }
 
 

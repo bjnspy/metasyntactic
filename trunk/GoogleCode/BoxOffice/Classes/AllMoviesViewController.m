@@ -214,7 +214,12 @@
 
 
 - (BoxOfficeModel*) model {
-    return [self.navigationController model];
+    return self.navigationController.model;
+}
+
+
+- (BoxOfficeController*) controller {
+    return self.navigationController.controller;
 }
 
 
