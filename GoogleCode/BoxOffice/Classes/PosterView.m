@@ -47,7 +47,7 @@
 
 
 - (BoxOfficeModel*) model {
-    return [controller model];
+    return controller.model;
 }
 
 

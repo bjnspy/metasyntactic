@@ -194,12 +194,12 @@
 
 
 - (BoxOfficeModel*) model {
-    return [self.navigationController model];
+    return self.navigationController.model;
 }
 
 
 - (BoxOfficeController*) controller {
-    return [self.navigationController controller];
+    return self.navigationController.controller;
 }
 
 
@@ -225,7 +225,7 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return 6;
+        return 7;
     } else {
         return 1;
     }
@@ -278,21 +278,25 @@
             [cell setKey:key value:value];
 
             return cell;
-        } else if (indexPath.row >= 4 && indexPath.row <= 5) {
+        } else if (indexPath.row >= 4 && indexPath.row <= 6) {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.accessoryView = picker;
 
-            NSString* text;
-            BOOL on;
+            NSString* text = @"";
+            BOOL on = NO;
             if (indexPath.row == 4) {
-                text = NSLocalizedString(@"Auto-Update Location", nil);
+                text = NSLocalizedString(@"Auto-Update Location", @"This string has to be small enough to be visible with a picker switch next to it");
                 on = self.model.autoUpdateLocation;
                 [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
             } else if (indexPath.row == 5) {
-                text = NSLocalizedString(@"Use Small Fonts", nil);
+                text = NSLocalizedString(@"Show empty theaters", @"This string has to be small enough to be visible with a picker switch next to it");
+                on = self.model.showEmptyTheaters;
+                [picker addTarget:self action:@selector(onShowEmptyTheatersChanged:) forControlEvents:UIControlEventValueChanged];
+            } else if (indexPath.row == 6) {
+                text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
                 on = self.model.useSmallFonts;
                 [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
             }
@@ -315,15 +319,20 @@
 - (void) onAutoUpdateChanged:(id) sender {
     [self.model setAutoUpdateLocation:!self.model.autoUpdateLocation];
     [self autoUpdateLocation:nil];
-
 }
 
 
 - (void) onUseSmallFontsChanged:(id) sender {
-    BOOL useSmallFonts = ![self.model useSmallFonts];
+    BOOL useSmallFonts = !self.model.useSmallFonts;
     [self.model setUseSmallFonts:useSmallFonts];
     [self.navigationController.tabBarController refresh];
+}
 
+
+- (void) onShowEmptyTheatersChanged:(id) sender {
+    BOOL showEmptyTheaters = !self.model.showEmptyTheaters;
+    [self.model setShowEmptyTheaters:showEmptyTheaters];
+    [self.navigationController.tabBarController refresh];
 }
 
 

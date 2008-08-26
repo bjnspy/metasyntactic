@@ -150,6 +150,9 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 - (BOOL) useSmallFonts;
 - (void) setUseSmallFonts:(BOOL) useSmallFonts;
 
+- (BOOL) showEmptyTheaters;
+- (void) setShowEmptyTheaters:(BOOL) showEmptyTheaters;
+
 + (NSString*) SEARCH_DATES;
 + (NSString*) SEARCH_RESULTS;
 + (NSString*) SEARCH_RADIUS;

@@ -51,7 +51,7 @@
 
 
 - (BOOL) sortingByDistance {
-    return ![self sortingByName];
+    return !self.sortingByName;
 }
 
 
@@ -62,7 +62,12 @@
 
 
 - (BoxOfficeModel*) model {
-    return [self.navigationController model];
+    return self.navigationController.model;
+}
+
+
+- (BoxOfficeController*) controller {
+    return self.navigationController.controller;
 }
 
 
@@ -84,6 +89,11 @@
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [self.sectionTitleToContentsMap addObject:theater forKey:[Application starString]];
+            continue;
+        }
+
+        if (theater.movieIdentifiers.count == 0 && !self.model.showEmptyTheaters) {
+            continue;
         }
 
         unichar firstChar = [theater.name characterAtIndex:0];
@@ -141,26 +151,31 @@
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [self.sectionTitleToContentsMap addObject:theater forKey:favorites];
+            continue;
+        }
+
+        if (theater.movieIdentifiers.count == 0 && !self.model.showEmptyTheaters) {
+            continue;
+        }
+
+        double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
+
+        if (distance <= 0.5) {
+            [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
+            continue;
+        }
+
+        for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
+            if (distance <= distances[i]) {
+                [self.sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
+                goto outer;
+            }
+        }
+
+        if (distance < UNKNOWN_DISTANCE) {
+            [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
         } else {
-            double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
-
-            if (distance <= 0.5) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
-                continue;
-            }
-
-            for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
-                if (distance <= distances[i]) {
-                    [self.sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
-                    goto outer;
-                }
-            }
-
-            if (distance < UNKNOWN_DISTANCE) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
-            } else {
-                [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
-            }
+            [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
         }
 
         // i hate goto/labels.  however, objective-c lacks a 'continue outer' statement.

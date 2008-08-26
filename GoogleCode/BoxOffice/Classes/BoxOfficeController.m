@@ -61,12 +61,12 @@
         return NO;
     }
 
-    // same day, check if they're at least 12 hours apart.
-    if ([nowDateComponents hour] >= ([lastDateComponents hour] + 12)) {
+    // same day, check if they're at least 8 hours apart.
+    if ([nowDateComponents hour] >= ([lastDateComponents hour] + 8)) {
         return NO;
     }
 
-    // it's been less than 12 hours.  it's too soon to refresh
+    // it's been less than 8 hours.  it's too soon to refresh
     return YES;
 }
 

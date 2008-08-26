@@ -45,6 +45,11 @@
 }
 
 
+- (BoxOfficeController*) controller {
+    return self.navigationController.controller;
+}
+
+
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                               movie:(Movie*) movie_ {
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
@@ -61,7 +66,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[navigationController model].activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
 }
 
 
