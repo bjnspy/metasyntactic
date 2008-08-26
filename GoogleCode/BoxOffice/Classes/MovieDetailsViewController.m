@@ -17,7 +17,6 @@
 #import "MovieDetailsViewController.h"
 
 #import "Application.h"
-#import "AutoResizingCell.h"
 #import "BoxOfficeModel.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
@@ -27,6 +26,7 @@
 #import "MovieShowtimesCell.h"
 #import "MoviesNavigationController.h"
 #import "Theater.h"
+#import "TheaterNameCell.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
 
@@ -322,18 +322,15 @@
     // theater section
     if (indexPath.row == 0) {
         static NSString* reuseIdentifier = @"MovieDetailsTheaterCellIdentifier";
-        AutoResizingCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        TheaterNameCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
-            cell = [[[AutoResizingCell alloc] initWithFrame:CGRectZero
-                                           reuseIdentifier:reuseIdentifier] autorelease];
+            cell = [[[TheaterNameCell alloc] initWithFrame:CGRectZero
+                                           reuseIdentifier:reuseIdentifier
+                                                     model:self.model] autorelease];
         }
 
         Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
-        if ([self.model isFavoriteTheater:theater]) {
-            cell.text = [NSString stringWithFormat:@"%@ %@", [Application starString], theater.name];
-        } else {
-            cell.text = theater.name;
-        }
+        [cell setTheater:theater];
 
         return cell;
     } else {
