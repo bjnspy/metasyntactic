@@ -159,9 +159,9 @@
 
     CGRect frame;
     if ([self.model noRatings]) {
-        frame = CGRectMake(10, 25, 0, 12);
+        frame = CGRectMake(10, 25, 0, 14);
     } else {
-        frame = CGRectMake(50, 25, 0, 12);
+        frame = CGRectMake(50, 25, 0, 14);
     }
 
     frame.size.width = self.contentView.frame.size.width - frame.origin.x;

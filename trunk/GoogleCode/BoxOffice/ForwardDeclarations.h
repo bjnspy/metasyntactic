@@ -74,6 +74,7 @@
 @class TextFieldEditorViewController;
 @class Theater;
 @class TheaterDetailsViewController;
+@class TheaterNameCell;
 @class TheatersNavigationController;
 @class TicketsViewController;
 @class TrailerCache;

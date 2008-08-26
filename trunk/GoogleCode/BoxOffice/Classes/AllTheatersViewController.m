@@ -17,11 +17,11 @@
 #import "AllTheatersViewController.h"
 
 #import "Application.h"
-#import "AutoResizingCell.h"
 #import "BoxOfficeModel.h"
 #import "Location.h"
 #import "MultiDictionary.h"
 #import "Theater.h"
+#import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
 
 @implementation AllTheatersViewController
@@ -273,13 +273,14 @@
 
     static NSString* reuseIdentifier = @"AllTheatersCellIdentifier";
 
-    AutoResizingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[AutoResizingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame reuseIdentifier:reuseIdentifier] autorelease];
+        cell = [[[TheaterNameCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame 
+                                       reuseIdentifier:reuseIdentifier
+                                                 model:self.model] autorelease];
     }
 
-    cell.text = theater.name;
-
+    [cell setTheater:theater];
     return cell;
 }
 
