@@ -20,12 +20,11 @@
 
 @implementation SettingsNavigationController
 
-@synthesize tabBarController;
 @synthesize viewController;
 
 - (void) dealloc {
-    self.tabBarController = nil;
     self.viewController = nil;
+
     [super dealloc];
 }
 
@@ -41,11 +40,6 @@
     }
 
     return self;
-}
-
-
-- (void) refresh {
-    [self.viewController refresh];
 }
 
 

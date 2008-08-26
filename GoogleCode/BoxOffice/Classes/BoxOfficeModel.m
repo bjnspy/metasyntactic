@@ -37,13 +37,14 @@
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
 #import "TrailerCache.h"
+#import "UpcomingCache.h"
 #import "UnitedKingdomDataProvider.h"
 #import "Utilities.h"
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.4.6";
-static NSString* persistenceVersion = @"2";
+static NSString* currentVersion = @"1.5.0";
+static NSString* persistenceVersion = @"5";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -74,6 +75,7 @@ static NSString* persistenceVersion = @"2";
 @synthesize trailerCache;
 @synthesize ratingsCache;
 @synthesize reviewCache;
+@synthesize upcomingCache;
 
 @synthesize backgroundTaskCount;
 @synthesize activityView;
@@ -91,6 +93,7 @@ static NSString* persistenceVersion = @"2";
     self.trailerCache = nil;
     self.ratingsCache = nil;
     self.reviewCache = nil;
+    self.upcomingCache = nil;
 
     self.backgroundTaskCount = 0;
     self.activityView = nil;
@@ -122,6 +125,11 @@ static NSString* persistenceVersion = @"2";
 
 - (void) updateReviewCache {
     [self.reviewCache update:self.ratings ratingsProvider:[self ratingsProviderIndex]];
+}
+
+
+- (void) updateUpcomingCache {
+    [self.upcomingCache update];
 }
 
 
@@ -190,6 +198,7 @@ static NSString* persistenceVersion = @"2";
         self.addressLocationCache = [AddressLocationCache cache];
         self.reviewCache = [ReviewCache cacheWithModel:self];
         self.ratingsCache = [RatingsCache cacheWithModel:self];
+        self.upcomingCache = [UpcomingCache cache];
 
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
         CGRect frame = self.activityIndicatorView.frame;
@@ -214,6 +223,7 @@ static NSString* persistenceVersion = @"2";
     [self updatePostalCodeAddressLocation];
     [self updateTrailerCache];
     [self updateReviewCache];
+    [self updateUpcomingCache];
 }
 
 
@@ -222,25 +232,21 @@ static NSString* persistenceVersion = @"2";
 }
 
 
-- (void) addBackgroundTask:(NSString*) description {
+- (void) addBackgroundTask {
     backgroundTaskCount++;
 
     if (backgroundTaskCount == 1) {
         [self.activityIndicatorView startAnimating];
     }
-
-    [self.notificationCenter addStatusMessage:description];
 }
 
 
-- (void) removeBackgroundTask:(NSString*) description {
+- (void) removeBackgroundTask {
     backgroundTaskCount--;
 
     if (backgroundTaskCount == 0) {
         [self.activityIndicatorView stopAnimating];
     }
-
-    [self.notificationCenter addStatusMessage:description];
 }
 
 

@@ -28,11 +28,9 @@
 @implementation AbstractNavigationController
 
 @synthesize tabBarController;
-@synthesize ticketsViewController;
 
 - (void) dealloc {
     self.tabBarController = nil;
-    self.ticketsViewController = nil;
 
     [super dealloc];
 }
@@ -49,7 +47,11 @@
 
 
 - (void) refresh {
-    [self.ticketsViewController refresh];
+    for (id controller in self.viewControllers) {
+        if ([controller respondsToSelector:@selector(refresh)]) {
+            [controller refresh];
+        }
+    }
 }
 
 
@@ -60,20 +62,6 @@
 
 - (BoxOfficeController*) controller {
     return self.tabBarController.controller;
-}
-
-
-- (void) pushTicketsView:(Movie*) movie
-                 theater:(Theater*) theater
-                   title:(NSString*) title
-                animated:(BOOL) animated {
-    self.ticketsViewController =
-    [[[TicketsViewController alloc] initWithController:self
-                                               theater:theater
-                                                 movie:movie
-                                                 title:title] autorelease];
-
-    [self pushViewController:ticketsViewController animated:animated];
 }
 
 
@@ -108,21 +96,37 @@
 - (void) pushReviewsView:(Movie*) movie animated:(BOOL) animated {
     ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithNavigationController:self
                                                                                               movie:movie] autorelease];
+
     [self pushViewController:controller animated:animated];
 }
 
 
 - (void) pushMovieDetails:(Movie*) movie
                  animated:(BOOL) animated {
-    UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self movie:movie] autorelease];
+    UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self
+                                                                                                   movie:movie] autorelease];
 
     [self pushViewController:viewController animated:animated];
 }
 
 
 - (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
-    UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self theater:theater] autorelease];
+    UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self
+                                                                                                   theater:theater] autorelease];
 
+    [self pushViewController:viewController animated:animated];
+}
+
+
+- (void) pushTicketsView:(Movie*) movie
+                 theater:(Theater*) theater
+                   title:(NSString*) title
+                animated:(BOOL) animated {
+    UIViewController* viewController = [[[TicketsViewController alloc] initWithController:self
+                                                                                  theater:theater
+                                                                                    movie:movie
+                                                                                    title:title] autorelease];
+    
     [self pushViewController:viewController animated:animated];
 }
 

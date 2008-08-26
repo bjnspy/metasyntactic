@@ -14,33 +14,45 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "TheatersNavigationController.h"
+#import "UpcomingNavigationController.h"
 
-#import "AllTheatersViewController.h"
+#import "UpcomingViewController.h"
 
-@implementation TheatersNavigationController
+@implementation UpcomingNavigationController
 
-@synthesize allTheatersViewController;
+@synthesize upcomingViewController;
 
 - (void) dealloc {
-    self.allTheatersViewController = nil;
-
+    self.upcomingViewController = nil;
+    
     [super dealloc];
 }
 
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
-        self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
-
-        [self pushViewController:allTheatersViewController animated:NO];
-
-        self.title = NSLocalizedString(@"Theaters", nil);
-        self.tabBarItem.image = [UIImage imageNamed:@"MostViewed.png"];
+        self.upcomingViewController = [[[UpcomingViewController alloc] initWithNavigationController:self] autorelease];
+        
+        [self pushViewController:upcomingViewController animated:NO];
+        
+        self.title = NSLocalizedString(@"Upcoming", nil);
+        self.tabBarItem.image = [UIImage imageNamed:@"Upcoming.png"];
     }
-
+    
     return self;
 }
 
+
+- (void) refresh {
+    [super refresh];
+
+    for (id controller in self.viewControllers) {
+        [controller refresh];
+    }
+}
+
+
+- (void) navigateToLastViewedPage {
+}
 
 @end

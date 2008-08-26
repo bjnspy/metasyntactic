@@ -21,11 +21,9 @@
 @implementation MoviesNavigationController
 
 @synthesize allMoviesViewController;
-@synthesize tabBarController;
 
 - (void) dealloc {
     self.allMoviesViewController = nil;
-    self.tabBarController = nil;
 
     [super dealloc];
 }
@@ -42,15 +40,6 @@
     }
 
     return self;
-}
-
-
-- (void) refresh {
-    [super refresh];
-
-    for (id controller in self.viewControllers) {
-        [controller refresh];
-    }
 }
 
 

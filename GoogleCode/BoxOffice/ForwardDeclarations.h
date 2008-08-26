@@ -79,6 +79,9 @@
 @class TicketsViewController;
 @class TrailerCache;
 @class UnitedKingdomDataProvider;
+@class UpcomingCache;
+@class UpcomingNavigationController;
+@class UpcomingViewController;
 @class Utilities;
 @class ViewControllerUtilities;
 @class XmlDocument;
