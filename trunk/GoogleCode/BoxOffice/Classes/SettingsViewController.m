@@ -320,9 +320,9 @@
       titleForFooterInSection:(NSInteger) section {
     if (section == 1) {
         if (self.model.hideEmptyTheaters) {
-            return NSLocalizedString(@"Theaters without show time data will be hidden from view. When show time data is available, the theater will automatically be listed.", nil);
+            return NSLocalizedString(@"Theaters without show time data will be hidden. When show time data is available, the theater will automatically be shown.", nil);
         } else {
-            return NSLocalizedString(@"Theaters will be listed even if no show time data is available for them.", nil);
+            return NSLocalizedString(@"Theaters will be shown even if no show time data is available for them.", nil);
         }
     }
 
