@@ -21,7 +21,7 @@
     NSLock* dataProviderLock;
 }
 
-//@property (assign) BoxOfficeAppDelegate* appDelegate;
+@property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) NSLock* ratingsLookupLock;
 @property (retain) NSLock* dataProviderLock;
 

@@ -14,33 +14,40 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "TheatersNavigationController.h"
+#import "UpcomingCache.h"
 
-#import "AllTheatersViewController.h"
+@implementation UpcomingCache
 
-@implementation TheatersNavigationController
-
-@synthesize allTheatersViewController;
+@synthesize gate;
 
 - (void) dealloc {
-    self.allTheatersViewController = nil;
+    self.gate = nil;
 
     [super dealloc];
 }
 
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
-    if (self = [super initWithTabBarController:controller]) {
-        self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
-
-        [self pushViewController:allTheatersViewController animated:NO];
-
-        self.title = NSLocalizedString(@"Theaters", nil);
-        self.tabBarItem.image = [UIImage imageNamed:@"MostViewed.png"];
+- (id) init {
+    if (self = [super init]) {
+        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
-
+    
     return self;
 }
 
+
++ (UpcomingCache*) cache {
+    return [[[UpcomingCache alloc] init] autorelease];
+}
+
+
+- (void) update {
+    
+}
+
+
+- (NSArray*) upcomingMovies {
+    return [NSArray array];
+}
 
 @end

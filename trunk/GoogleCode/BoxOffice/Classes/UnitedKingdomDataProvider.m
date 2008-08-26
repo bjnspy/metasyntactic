@@ -51,7 +51,8 @@
                                length:0
                           releaseDate:nil
                                poster:@""
-                             synopsis:synopsis];
+                             synopsis:synopsis
+                               studio:@""];
 }
 
 

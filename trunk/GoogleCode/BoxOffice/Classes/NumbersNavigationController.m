@@ -42,11 +42,6 @@
 }
 
 
-- (void) refresh {
-    [self.viewController refresh];
-}
-
-
 - (void) navigateToLastViewedPage {
 }
 

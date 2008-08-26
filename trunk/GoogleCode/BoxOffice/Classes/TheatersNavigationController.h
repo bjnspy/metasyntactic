@@ -24,6 +24,4 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
-- (void) refresh;
-
 @end

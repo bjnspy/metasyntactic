@@ -32,6 +32,8 @@
 		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
 		741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
 		741377B10E64765000404519 /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741377B00E64765000404519 /* TheaterNameCell.m */; };
+		7413782B0E64968300404519 /* UpcomingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7413782A0E64968300404519 /* UpcomingNavigationController.m */; };
+		7413783C0E64972700404519 /* UpcomingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7413783B0E64972700404519 /* UpcomingViewController.m */; };
 		742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742445A60E2D2F9800C98F84 /* AttributeCell.m */; };
 		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
 		743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743394100E61E52000D285F0 /* MovieOverviewCell.m */; };
@@ -71,6 +73,8 @@
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
 		74CBBFC80E3E803A00747156 /* UnitedKingdomDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CBBFC70E3E803A00747156 /* UnitedKingdomDataProvider.m */; };
 		74CBBFF80E3E8C6000747156 /* DataProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */; };
+		74CDF0BC0E64A026005699E9 /* Upcoming.png in Resources */ = {isa = PBXBuildFile; fileRef = 74CDF0BB0E64A026005699E9 /* Upcoming.png */; };
+		74CDF0CA0E64A2EE005699E9 /* UpcomingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */; };
 		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
 		74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */; };
@@ -174,6 +178,10 @@
 		741111530DFCF61900B94FB5 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		741377AF0E64765000404519 /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
 		741377B00E64765000404519 /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
+		741378290E64968300404519 /* UpcomingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingNavigationController.h; sourceTree = "<group>"; };
+		7413782A0E64968300404519 /* UpcomingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingNavigationController.m; sourceTree = "<group>"; };
+		7413783A0E64972700404519 /* UpcomingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingViewController.h; sourceTree = "<group>"; };
+		7413783B0E64972700404519 /* UpcomingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingViewController.m; sourceTree = "<group>"; };
 		742445A50E2D2F9800C98F84 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
 		742445A60E2D2F9800C98F84 /* AttributeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeCell.m; sourceTree = "<group>"; };
 		742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
@@ -263,6 +271,9 @@
 		74CBBFC70E3E803A00747156 /* UnitedKingdomDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedKingdomDataProvider.m; sourceTree = "<group>"; };
 		74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProviderViewController.h; sourceTree = "<group>"; };
 		74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProviderViewController.m; sourceTree = "<group>"; };
+		74CDF0BB0E64A026005699E9 /* Upcoming.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Upcoming.png; path = Resources/Upcoming.png; sourceTree = "<group>"; };
+		74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingCache.h; sourceTree = "<group>"; };
+		74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingCache.m; sourceTree = "<group>"; };
 		74D6F2B50DCC144D0097A984 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
 		74D6F2B60DCC144D0097A984 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		74D6F2BC0DCC176D0097A984 /* XmlElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlElement.h; sourceTree = "<group>"; };
@@ -425,6 +436,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74CDF0BB0E64A026005699E9 /* Upcoming.png */,
 				740AFF750E54EAB0004EC5EE /* Numbers.png */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
 				7479B5D30E402E21003B12C1 /* MetacriticLogo.png */,
@@ -535,6 +547,8 @@
 				740AFF350E54E87F004EC5EE /* NumbersNavigationController.m */,
 				7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */,
 				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
+				741378290E64968300404519 /* UpcomingNavigationController.h */,
+				7413782A0E64968300404519 /* UpcomingNavigationController.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -574,6 +588,8 @@
 				74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */,
 				740AFFB90E54F971004EC5EE /* NumbersViewController.h */,
 				740AFFBA0E54F971004EC5EE /* NumbersViewController.m */,
+				7413783A0E64972700404519 /* UpcomingViewController.h */,
+				7413783B0E64972700404519 /* UpcomingViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -648,6 +664,8 @@
 				740C9FE70E3A838E00D7A56B /* ColorCache.m */,
 				74085B8A0E423F010069F0F5 /* RatingsCache.h */,
 				74085B8B0E423F010069F0F5 /* RatingsCache.m */,
+				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
+				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
 			);
 			name = Caches;
 			sourceTree = "<group>";
@@ -790,6 +808,7 @@
 				7479B5D40E402E21003B12C1 /* MetacriticLogo.png in Resources */,
 				740224550E53F323006C58A2 /* Localizable.strings in Resources */,
 				740AFF760E54EAB0004EC5EE /* Numbers.png in Resources */,
+				74CDF0BC0E64A026005699E9 /* Upcoming.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -872,6 +891,9 @@
 				743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */,
 				7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */,
 				741377B10E64765000404519 /* TheaterNameCell.m in Sources */,
+				7413782B0E64968300404519 /* UpcomingNavigationController.m in Sources */,
+				7413783C0E64972700404519 /* UpcomingViewController.m in Sources */,
+				74CDF0CA0E64A2EE005699E9 /* UpcomingCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

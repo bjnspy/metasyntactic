@@ -14,33 +14,16 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "TheatersNavigationController.h"
+#import "AbstractNavigationController.h"
 
-#import "AllTheatersViewController.h"
-
-@implementation TheatersNavigationController
-
-@synthesize allTheatersViewController;
-
-- (void) dealloc {
-    self.allTheatersViewController = nil;
-
-    [super dealloc];
+@interface UpcomingNavigationController : AbstractNavigationController {
+    UpcomingViewController* upcomingViewController;
 }
 
+@property (retain) UpcomingViewController* upcomingViewController;
 
-- (id) initWithTabBarController:(ApplicationTabBarController*) controller {
-    if (self = [super initWithTabBarController:controller]) {
-        self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
+- (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
-        [self pushViewController:allTheatersViewController animated:NO];
-
-        self.title = NSLocalizedString(@"Theaters", nil);
-        self.tabBarItem.image = [UIImage imageNamed:@"MostViewed.png"];
-    }
-
-    return self;
-}
-
+- (void) navigateToLastViewedPage;
 
 @end

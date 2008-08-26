@@ -28,6 +28,7 @@
 @synthesize poster;
 @synthesize synopsis;
 @synthesize displayTitle;
+@synthesize studio;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -38,6 +39,7 @@
     self.poster = nil;
     self.synopsis = nil;
     self.displayTitle = nil;
+    self.studio = nil;
 
     [super dealloc];
 }
@@ -88,7 +90,8 @@ static NSString* articles[] = {
                    length:(NSString*) length_
               releaseDate:(NSDate*) releaseDate_
                    poster:(NSString*) poster_
-                 synopsis:(NSString*) synopsis_ {
+                 synopsis:(NSString*) synopsis_
+                   studio:(NSString*) studio_ {
     if (self = [self init]) {
         self.identifier = identifier_;
         self.canonicalTitle = [Movie makeCanonical:title_];
@@ -102,6 +105,7 @@ static NSString* articles[] = {
         self.releaseDate = releaseDate_;
         self.poster = poster_;
         self.synopsis = [Utilities stripHtmlCodes:synopsis_];
+        self.studio = studio_;
     }
 
     return self;
@@ -114,14 +118,16 @@ static NSString* articles[] = {
                         length:(NSString*) length
                    releaseDate:(NSDate*) releaseDate
                         poster:(NSString*) poster
-                      synopsis:(NSString*) synopsis  {
+                      synopsis:(NSString*) synopsis
+                        studio:(NSString*) studio  {
     return [[[Movie alloc] initWithIdentifier:identifier
                                         title:title
                                        rating:rating
                                        length:length
                                   releaseDate:releaseDate
                                        poster:poster
-                                     synopsis:synopsis] autorelease];
+                                     synopsis:synopsis
+                                       studio:studio] autorelease];
 }
 
 
@@ -132,25 +138,27 @@ static NSString* articles[] = {
                                length:[dictionary objectForKey:@"length"]
                           releaseDate:[dictionary objectForKey:@"releaseDate"]
                                poster:[dictionary objectForKey:@"poster"]
-                             synopsis:[dictionary objectForKey:@"synopsis"]];
+                             synopsis:[dictionary objectForKey:@"synopsis"]
+                               studio:[dictionary objectForKey:@"studio"]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:self.identifier     forKey:@"identifier"];
-    [dictionary setValue:self.canonicalTitle forKey:@"canonicalTitle"];
-    [dictionary setValue:self.rating         forKey:@"rating"];
-    [dictionary setValue:self.length         forKey:@"length"];
-    [dictionary setValue:self.releaseDate    forKey:@"releaseDate"];
-    [dictionary setValue:self.poster         forKey:@"poster"];
-    [dictionary setValue:self.synopsis       forKey:@"synopsis"];
+    [dictionary setValue:identifier     forKey:@"identifier"];
+    [dictionary setValue:canonicalTitle forKey:@"canonicalTitle"];
+    [dictionary setValue:rating         forKey:@"rating"];
+    [dictionary setValue:length         forKey:@"length"];
+    [dictionary setValue:releaseDate    forKey:@"releaseDate"];
+    [dictionary setValue:poster         forKey:@"poster"];
+    [dictionary setValue:synopsis       forKey:@"synopsis"];
+    [dictionary setValue:studio         forKey:@"studio"];
     return dictionary;
 }
 
 
 - (NSString*) description {
-    return [[self dictionary] description];
+    return self.dictionary.description;
 }
 
 

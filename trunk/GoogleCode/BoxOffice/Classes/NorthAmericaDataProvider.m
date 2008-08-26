@@ -168,7 +168,8 @@
                                            length:length
                                       releaseDate:releaseDate
                                            poster:poster
-                                         synopsis:synopsis];
+                                         synopsis:synopsis
+                                           studio:@""];
 
         [array addObject:movie];
     }

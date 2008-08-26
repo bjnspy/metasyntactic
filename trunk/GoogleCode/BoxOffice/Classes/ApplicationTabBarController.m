@@ -18,6 +18,7 @@
 
 #import "BoxOfficeAppDelegate.h"
 #import "BoxOfficeModel.h"
+#import "UpcomingNavigationController.h"
 #import "MoviesNavigationController.h"
 #import "NumbersNavigationController.h"
 #import "SettingsNavigationController.h"
@@ -28,6 +29,7 @@
 
 @synthesize moviesNavigationController;
 @synthesize theatersNavigationController;
+@synthesize upcomingNavigationController;
 @synthesize numbersNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
@@ -35,6 +37,7 @@
 - (void) dealloc {
     self.moviesNavigationController = nil;
     self.theatersNavigationController = nil;
+    self.upcomingNavigationController = nil;
     self.numbersNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
@@ -48,6 +51,7 @@
         self.appDelegate = appDel;
         self.moviesNavigationController   = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
+        //self.upcomingNavigationController = [[[UpcomingNavigationController alloc] initWithTabBarController:self] autorelease];
         //self.numbersNavigationController   = [[[NumbersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
 
@@ -55,6 +59,7 @@
         [NSArray arrayWithObjects:
          moviesNavigationController,
          theatersNavigationController,
+         //upcomingNavigationController,
          //numbersNavigationController,
          settingsNavigationController, nil];
 

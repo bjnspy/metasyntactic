@@ -29,6 +29,7 @@ enum ViewControllerType {
     AddressLocationCache* addressLocationCache;
     ReviewCache* reviewCache;
     RatingsCache* ratingsCache;
+    UpcomingCache* upcomingCache;
 
     NSInteger backgroundTaskCount;
     UIActivityIndicatorView* activityIndicatorView;
@@ -50,6 +51,7 @@ enum ViewControllerType {
 @property (retain) ReviewCache* reviewCache;
 @property (retain) AddressLocationCache* addressLocationCache;
 @property (retain) RatingsCache* ratingsCache;
+@property (retain) UpcomingCache* upcomingCache;
 
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
 @property (retain) UIView* activityView;
@@ -63,8 +65,8 @@ enum ViewControllerType {
 
 + (NSString*) version;
 
-- (void) addBackgroundTask:(NSString*) description;
-- (void) removeBackgroundTask:(NSString*) description;
+- (void) addBackgroundTask;
+- (void) removeBackgroundTask;
 
 - (id<DataProvider>) currentDataProvider;
 - (NSInteger) dataProviderIndex;

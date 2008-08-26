@@ -18,6 +18,7 @@
     BoxOfficeAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
+    UpcomingNavigationController* upcomingNavigationController;
     NumbersNavigationController* numbersNavigationController;
     SettingsNavigationController* settingsNavigationController;
 }
@@ -25,6 +26,7 @@
 @property (assign) BoxOfficeAppDelegate* appDelegate;
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
+@property (retain) UpcomingNavigationController* upcomingNavigationController;
 @property (retain) NumbersNavigationController* numbersNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
 

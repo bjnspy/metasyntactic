@@ -24,8 +24,6 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
-- (void) refresh;
-
 - (void) navigateToLastViewedPage;
 
 @end

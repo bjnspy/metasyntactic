@@ -26,10 +26,12 @@
 
 @implementation BoxOfficeController
 
+@synthesize appDelegate;
 @synthesize ratingsLookupLock;
 @synthesize dataProviderLock;
 
 - (void) dealloc {
+    self.appDelegate = nil;
     self.ratingsLookupLock = nil;
     self.dataProviderLock = nil;
 
@@ -38,12 +40,12 @@
 
 
 - (BoxOfficeModel*) model {
-    return appDelegate.model;
+    return self.appDelegate.model;
 }
 
 
-- (void) onBackgroundTaskStarted:(NSString*) description {
-    [self.model addBackgroundTask:description];
+- (void) onBackgroundTaskStarted {
+    [self.model addBackgroundTask];
 }
 
 
@@ -78,7 +80,7 @@
         return;
     }
 
-    [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading movie list", nil)];
+    [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
 
@@ -92,7 +94,7 @@
         return;
     }
 
-    [self onBackgroundTaskStarted:NSLocalizedString(@"Downloading ticketing data", nil)];
+    [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(dataProviderLookupBackgroundThreadEntryPoint:) withObject:nil];
 }
 
@@ -100,12 +102,13 @@
 - (void) spawnBackgroundThreads {
     [self spawnRatingsLookupThread];
     [self spawnDataProviderLookupThread];
+    //[self spawnUpcomingLookupThread];
 }
 
 
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate_ {
     if (self = [super init]) {
-        appDelegate = appDelegate_;
+        self.appDelegate = appDelegate_;
         self.ratingsLookupLock = [[[NSLock alloc] init] autorelease];
         self.dataProviderLock = [[[NSLock alloc] init] autorelease];
 
@@ -138,9 +141,9 @@
 }
 
 
-- (void) onBackgroundTaskEnded:(NSString*) description {
-    [self.model removeBackgroundTask:description];
-    [appDelegate.tabBarController refresh];
+- (void) onBackgroundTaskEnded {
+    [self.model removeBackgroundTask];
+    [self.appDelegate.tabBarController refresh];
 }
 
 
@@ -149,7 +152,7 @@
         [self.model onRatingsUpdated];
     }
 
-    [self onBackgroundTaskEnded:NSLocalizedString(@"Finished downloading movie list", nil)];
+    [self onBackgroundTaskEnded];
 }
 
 
@@ -158,8 +161,8 @@
     [self.dataProviderLock lock];
     {
         [[self.model currentDataProvider] lookup];
-        [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded:)
-                               withObject:NSLocalizedString(@"Finished downloading movie and theater data", nil)
+        [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded)
+                               withObject:nil
                             waitUntilDone:NO];
     }
     [self.dataProviderLock unlock];
@@ -174,7 +177,7 @@
 
     [self.model setSearchDate:searchDate];
     [self spawnBackgroundThreads];
-    [appDelegate.tabBarController popNavigationControllersToRoot];
+    [self.appDelegate.tabBarController popNavigationControllersToRoot];
     [appDelegate.tabBarController refresh];
 }
 
