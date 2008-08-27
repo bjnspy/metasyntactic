@@ -26,7 +26,7 @@
     UILabel* genreTitleLabel;
     UILabel* genreLabel;
     UIImageView* imageView;
-    
+
     CGFloat titleWidth;
 }
 

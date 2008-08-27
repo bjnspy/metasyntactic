@@ -58,6 +58,7 @@
 		7479B5D40E402E21003B12C1 /* MetacriticLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7479B5D30E402E21003B12C1 /* MetacriticLogo.png */; };
 		7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7479D8350E65255F00D91649 /* UpcomingMovieCell.m */; };
 		7479D9270E653FD100D91649 /* Filled Star - Large.png in Resources */ = {isa = PBXBuildFile; fileRef = 7479D9260E653FD100D91649 /* Filled Star - Large.png */; };
+		7479DC250E66127100D91649 /* Movies.png in Resources */ = {isa = PBXBuildFile; fileRef = 7479DC240E66127100D91649 /* Movies.png */; };
 		747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */; };
 		748217D70E2163760054759E /* ExtraMovieInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 748217D60E2163760054759E /* ExtraMovieInformation.m */; };
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
@@ -90,7 +91,6 @@
 		74EFE3360E353F3600B6E103 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3000E353F3600B6E103 /* Default.png */; };
 		74EFE3370E353F3600B6E103 /* Empty Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3010E353F3600B6E103 /* Empty Star.png */; };
 		74EFE3390E353F3600B6E103 /* FandangoLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3030E353F3600B6E103 /* FandangoLogo.png */; };
-		74EFE33A0E353F3600B6E103 /* Featured.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3040E353F3600B6E103 /* Featured.png */; };
 		74EFE33B0E353F3600B6E103 /* Filled Star.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3050E353F3600B6E103 /* Filled Star.png */; };
 		74EFE33D0E353F3600B6E103 /* Fresh.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3070E353F3600B6E103 /* Fresh.png */; };
 		74EFE33E0E353F3600B6E103 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3080E353F3600B6E103 /* Icon.png */; };
@@ -245,6 +245,7 @@
 		7479D8340E65255F00D91649 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
 		7479D8350E65255F00D91649 /* UpcomingMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMovieCell.m; sourceTree = "<group>"; };
 		7479D9260E653FD100D91649 /* Filled Star - Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Filled Star - Large.png"; path = "Resources/Filled Star - Large.png"; sourceTree = "<group>"; };
+		7479DC240E66127100D91649 /* Movies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Movies.png; path = Resources/Movies.png; sourceTree = "<group>"; };
 		747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
 		747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
 		748217D50E2163760054759E /* ExtraMovieInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraMovieInformation.h; sourceTree = "<group>"; };
@@ -301,7 +302,6 @@
 		74EFE3000E353F3600B6E103 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
 		74EFE3010E353F3600B6E103 /* Empty Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Empty Star.png"; path = "Resources/Empty Star.png"; sourceTree = "<group>"; };
 		74EFE3030E353F3600B6E103 /* FandangoLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = FandangoLogo.png; path = Resources/FandangoLogo.png; sourceTree = "<group>"; };
-		74EFE3040E353F3600B6E103 /* Featured.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Featured.png; path = Resources/Featured.png; sourceTree = "<group>"; };
 		74EFE3050E353F3600B6E103 /* Filled Star.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Filled Star.png"; path = "Resources/Filled Star.png"; sourceTree = "<group>"; };
 		74EFE3070E353F3600B6E103 /* Fresh.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Fresh.png; path = Resources/Fresh.png; sourceTree = "<group>"; };
 		74EFE3080E353F3600B6E103 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
@@ -441,6 +441,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7479DC240E66127100D91649 /* Movies.png */,
 				7479D9260E653FD100D91649 /* Filled Star - Large.png */,
 				74CDF0BB0E64A026005699E9 /* Upcoming.png */,
 				740AFF750E54EAB0004EC5EE /* Numbers.png */,
@@ -452,7 +453,6 @@
 				74EFE3000E353F3600B6E103 /* Default.png */,
 				74EFE3010E353F3600B6E103 /* Empty Star.png */,
 				74EFE3030E353F3600B6E103 /* FandangoLogo.png */,
-				74EFE3040E353F3600B6E103 /* Featured.png */,
 				74EFE3050E353F3600B6E103 /* Filled Star.png */,
 				74EFE3070E353F3600B6E103 /* Fresh.png */,
 				74EFE3080E353F3600B6E103 /* Icon.png */,
@@ -825,7 +825,6 @@
 				74EFE3360E353F3600B6E103 /* Default.png in Resources */,
 				74EFE3370E353F3600B6E103 /* Empty Star.png in Resources */,
 				74EFE3390E353F3600B6E103 /* FandangoLogo.png in Resources */,
-				74EFE33A0E353F3600B6E103 /* Featured.png in Resources */,
 				74EFE33B0E353F3600B6E103 /* Filled Star.png in Resources */,
 				74EFE33D0E353F3600B6E103 /* Fresh.png in Resources */,
 				74EFE33E0E353F3600B6E103 /* Icon.png in Resources */,
@@ -858,6 +857,7 @@
 				740AFF760E54EAB0004EC5EE /* Numbers.png in Resources */,
 				74CDF0BC0E64A026005699E9 /* Upcoming.png in Resources */,
 				7479D9270E653FD100D91649 /* Filled Star - Large.png in Resources */,
+				7479DC250E66127100D91649 /* Movies.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
