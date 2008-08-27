@@ -53,6 +53,11 @@
 }
 
 
+- (int(*)(id,id,void*)) sortByReleaseDateFunction {
+    return compareMoviesByReleaseDateDescending;
+}
+
+
 - (void) setupSegmentedControl {
     self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                               [NSArray arrayWithObjects:

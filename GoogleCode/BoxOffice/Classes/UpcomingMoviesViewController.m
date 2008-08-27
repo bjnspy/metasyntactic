@@ -17,8 +17,8 @@
 #import "UpcomingMoviesViewController.h"
 
 #import "BoxOfficeModel.h"
-#import "MovieTitleCell.h"
 #import "UpcomingCache.h"
+#import "UpcomingMovieCell.h"
 #import "UpcomingMoviesNavigationController.h"
 
 @implementation UpcomingMoviesViewController
@@ -45,6 +45,11 @@
 
 - (BOOL) sortingByScore {
     return NO;
+}
+
+
+- (int(*)(id,id,void*)) sortByReleaseDateFunction {
+    return compareMoviesByReleaseDateAscending;
 }
 
 
@@ -78,6 +83,7 @@
 - (id) initWithNavigationController:(UpcomingMoviesNavigationController*) controller {
     if (self = [super initWithNavigationController:controller]) {
         self.title = NSLocalizedString(@"Upcoming", nil);
+        self.tableView.rowHeight = 100;
     }
     
     return self;
@@ -85,10 +91,9 @@
 
 
 - (id) createCell:(NSString*) reuseIdentifier {
-    return [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                  reuseIdentifier:reuseIdentifier
-                                            model:self.model
-                                            style:UITableViewStylePlain] autorelease];
+    return [[[UpcomingMovieCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                     reuseIdentifier:reuseIdentifier
+                                               model:self.model] autorelease];
 }
 
 

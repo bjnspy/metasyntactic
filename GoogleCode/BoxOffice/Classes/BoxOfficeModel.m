@@ -655,7 +655,7 @@ NSInteger compareMoviesByScore(id t1, id t2, void *context) {
 }
 
 
-NSInteger compareMoviesByReleaseDate(id t1, id t2, void *context) {
+NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void *context) {
     Movie* movie1 = t1;
     Movie* movie2 = t2;
 
@@ -673,6 +673,11 @@ NSInteger compareMoviesByReleaseDate(id t1, id t2, void *context) {
     }
 
     return -[releaseDate1 compare:releaseDate2];
+}
+
+
+NSInteger compareMoviesByReleaseDateAscending(id t1, id t2, void *context) {
+    return -compareMoviesByReleaseDateDescending(t1, t2, context);
 }
 
 
