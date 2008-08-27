@@ -80,11 +80,11 @@
     if ([Utilities isNilOrEmpty:self.model.postalCode]) {
         return;
     }
-    
+
     if ([self tooSoon:[[self.model currentDataProvider] lastLookupDate]]) {
         return;
     }
-    
+
     [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(dataProviderLookupBackgroundThreadEntryPoint) withObject:nil];
 }
@@ -96,7 +96,7 @@
     if ([self tooSoon:lastLookupDate]) {
         return;
     }
-    
+
     [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint) withObject:nil];
 }

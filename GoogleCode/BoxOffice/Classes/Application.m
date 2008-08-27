@@ -267,14 +267,14 @@ static NSString* starString = nil;
         if (trailersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
-            
+
             [Application createDirectory:folder];
-            
+
             trailersFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return trailersFolder;
 }
 
@@ -285,14 +285,14 @@ static NSString* starString = nil;
         if (upcomingFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Upcoming"];
-            
+
             [Application createDirectory:folder];
-            
+
             upcomingFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return upcomingFolder;
 }
 
@@ -303,14 +303,14 @@ static NSString* starString = nil;
         if (upcomingPostersFolder == nil) {
             NSString* parent = [Application upcomingFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
-            
+
             [Application createDirectory:folder];
-            
+
             upcomingPostersFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return upcomingPostersFolder;
 }
 
@@ -321,14 +321,14 @@ static NSString* starString = nil;
         if (upcomingSynopsesFolder == nil) {
             NSString* parent = [Application upcomingFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Synopses"];
-            
+
             [Application createDirectory:folder];
-            
+
             upcomingSynopsesFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return upcomingSynopsesFolder;
 }
 
@@ -339,14 +339,14 @@ static NSString* starString = nil;
         if (upcomingTrailersFolder == nil) {
             NSString* parent = [Application upcomingFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
-            
+
             [Application createDirectory:folder];
-            
+
             upcomingTrailersFolder = [folder retain];
         }
     }
     [gate unlock];
-    
+
     return upcomingTrailersFolder;
 }
 

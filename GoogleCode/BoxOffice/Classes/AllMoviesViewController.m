@@ -64,18 +64,18 @@
                                NSLocalizedString(@"Title", nil),
                                NSLocalizedString(@"Release", nil),
                                NSLocalizedString(@"Score", nil), nil]] autorelease];
-    
+
     self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     self.segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
-    
+
     [self.segmentedControl addTarget:self
      action:@selector(onSortOrderChanged:)
      forControlEvents:UIControlEventValueChanged];
-    
+
     CGRect rect = self.segmentedControl.frame;
     rect.size.width = 240;
     self.segmentedControl.frame = rect;
-    
+
     self.navigationItem.titleView = segmentedControl;
 }
 
@@ -102,7 +102,7 @@
     } else if (!self.model.noRatings && self.segmentedControl.numberOfSegments == 2) {
         [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
     }
-    
+
     [super refresh];
 }
 

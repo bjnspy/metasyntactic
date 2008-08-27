@@ -17,6 +17,7 @@
 #import "MovieOverviewCell.h"
 
 #import "BoxOfficeModel.h"
+#import "ImageCache.h"
 #import "FontCache.h"
 
 @implementation MovieOverviewCell
@@ -48,7 +49,7 @@
     CGSize actualSize = posterImage.size;
     CGFloat adjustedHeight = 18 * (((int)actualSize.height) / 18);
     CGFloat ratio = adjustedHeight / actualSize.height;
-    
+
     return CGSizeMake(actualSize.width * ratio, adjustedHeight);
 }
 
@@ -61,7 +62,7 @@
 
         self.posterImage = [self.model posterForMovie:self.movie];
         if (self.posterImage == nil) {
-            self.posterImage = [UIImage imageNamed:@"ImageNotAvailable.png"];
+            self.posterImage = [ImageCache imageNotAvailable];
         }
 
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:self.posterImage] autorelease];
@@ -171,7 +172,7 @@
     self.synopsisChunk1Label.frame = chunk1Frame;
     self.synopsisChunk1Label.text = [synopsis substringToIndex:synopsisSplit];
     [synopsisChunk1Label sizeToFit];
-    
+
     self.synopsisChunk2Label.text = @"";
     if (synopsisSplit < synopsis.length) {
         NSInteger start = synopsisSplit + 1;

@@ -30,6 +30,8 @@ static UIImage* yellowRatingImage = nil;
 static UIImage* greenRatingImage = nil;
 static UIImage* unknownRatingImage = nil;
 
+static UIImage* imageNotAvailable = nil;
+
 + (void) initialize {
     if (self == [ImageCache class]) {
         freshImage          = [[UIImage imageNamed:@"Fresh.png"] retain];
@@ -43,6 +45,8 @@ static UIImage* unknownRatingImage = nil;
         yellowRatingImage   = [[UIImage imageNamed:@"Rating-Yellow.png"] retain];
         greenRatingImage    = [[UIImage imageNamed:@"Rating-Green.png"] retain];
         unknownRatingImage  = [[UIImage imageNamed:@"Rating-Unknown.png"] retain];
+
+        imageNotAvailable   = [[UIImage imageNamed:@"   .png"] retain];
     }
 }
 
@@ -94,6 +98,11 @@ static UIImage* unknownRatingImage = nil;
 
 + (UIImage*) largeFilledStarImage {
     return largeFilledStarImage;
+}
+
+
++ (UIImage*) imageNotAvailable {
+    return imageNotAvailable;
 }
 
 

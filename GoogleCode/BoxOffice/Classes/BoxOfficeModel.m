@@ -554,7 +554,7 @@ static NSString* persistenceVersion = @"6";
     if (image != nil) {
         return image;
     }
-    
+
     return [self.upcomingCache posterForMovie:movie];
 }
 
@@ -802,7 +802,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (result.count > 0) {
         return result;
     }
-    
+
     return [upcomingCache trailersForMovie:movie];
 }
 

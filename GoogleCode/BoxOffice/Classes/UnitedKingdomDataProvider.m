@@ -54,7 +54,7 @@
                              synopsis:synopsis
                                studio:@""
                              director:@""
-                                 cast:[NSArray array] 
+                                 cast:[NSArray array]
                                genres:[NSArray array]];
 }
 
