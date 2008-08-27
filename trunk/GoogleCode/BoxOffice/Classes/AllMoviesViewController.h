@@ -14,30 +14,11 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface AllMoviesViewController : UITableViewController {
-    MoviesNavigationController* navigationController;
-    UISegmentedControl* segmentedControl;
+#import "AbstractMovieListViewController.h"
 
-    NSArray* sortedMovies;
-    NSMutableArray* sectionTitles;
-    MultiDictionary* sectionTitleToContentsMap;
-
-    NSArray* alphabeticSectionTitles;
-
-    PosterView* posterView;
+@interface AllMoviesViewController : AbstractMovieListViewController {
 }
 
-@property (assign) MoviesNavigationController* navigationController;
-@property (retain) NSArray* sortedMovies;
-@property (retain) UISegmentedControl* segmentedControl;
-@property (retain) NSMutableArray* sectionTitles;
-@property (retain) MultiDictionary* sectionTitleToContentsMap;
-@property (retain) NSArray* alphabeticSectionTitles;
-@property (retain) PosterView* posterView;
-
 - (id) initWithNavigationController:(MoviesNavigationController*) navigationController;
-
-- (void) refresh;
-- (BoxOfficeModel*) model;
 
 @end

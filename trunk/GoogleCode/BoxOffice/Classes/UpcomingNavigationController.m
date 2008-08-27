@@ -18,12 +18,12 @@
 
 #import "UpcomingViewController.h"
 
-@implementation UpcomingNavigationController
+@implementation UpcomingMoviesNavigationController
 
-@synthesize upcomingViewController;
+@synthesize upcomingMoviesViewController;
 
 - (void) dealloc {
-    self.upcomingViewController = nil;
+    self.upcomingMoviesViewController = nil;
     
     [super dealloc];
 }
@@ -31,9 +31,9 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
-        self.upcomingViewController = [[[UpcomingViewController alloc] initWithNavigationController:self] autorelease];
+        self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] initWithNavigationController:self] autorelease];
         
-        [self pushViewController:upcomingViewController animated:NO];
+        [self pushViewController:upcomingMoviesViewController animated:NO];
         
         self.title = NSLocalizedString(@"Upcoming", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Upcoming.png"];
