@@ -37,8 +37,9 @@
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
 #import "TrailerCache.h"
-#import "UpcomingCache.h"
 #import "UnitedKingdomDataProvider.h"
+#import "UpcomingCache.h"
+#import "UpcomingViewController.h"
 #import "Utilities.h"
 
 @implementation BoxOfficeModel
@@ -54,6 +55,7 @@ static NSString* persistenceVersion = @"6";
 + (NSString*) SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX    { return @"selectedTabBarViewControllerIndex"; }
 + (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX         { return @"allMoviesSelectedSegmentIndex"; }
 + (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX       { return @"allTheatersSelectedSegmentIndex"; }
++ (NSString*) UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX    { return @"upcomingMoviesSelectedSegmentIndex"; }
 + (NSString*) FAVORITE_THEATERS                         { return @"favoriteTheaters"; }
 + (NSString*) SEARCH_DATE                               { return @"searchDate"; }
 + (NSString*) AUTO_UPDATE_LOCATION                      { return @"autoUpdateLocation"; }
@@ -287,7 +289,7 @@ static NSString* persistenceVersion = @"6";
     [self.ratingsCache onRatingsProviderChanged];
     [self updateReviewCache];
 
-    if (self.noRatings && self.sortingMoviesByScore) {
+    if (self.noRatings && self.allMoviesSortingByScore) {
         [self setAllMoviesSelectedSegmentIndex:0];
     }
 }
@@ -348,17 +350,17 @@ static NSString* persistenceVersion = @"6";
 }
 
 
-- (BOOL) sortingMoviesByTitle {
+- (BOOL) allMoviesSortingByTitle {
     return self.allMoviesSelectedSegmentIndex == 0;
 }
 
 
-- (BOOL) sortingMoviesByReleaseDate {
+- (BOOL) allMoviesSortingByReleaseDate {
     return self.allMoviesSelectedSegmentIndex == 1;
 }
 
 
-- (BOOL) sortingMoviesByScore {
+- (BOOL) allMoviesSortingByScore {
     return self.allMoviesSelectedSegmentIndex == 2;
 }
 
@@ -370,6 +372,26 @@ static NSString* persistenceVersion = @"6";
 
 - (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index {
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
+}
+
+
+- (BOOL) upcomingMoviesSortingByTitle {
+    return self.upcomingMoviesSelectedSegmentIndex == 0;
+}
+
+
+- (BOOL) upcomingMoviesSortingByReleaseDate {
+    return self.upcomingMoviesSelectedSegmentIndex == 1;
+}
+
+
+- (NSInteger) upcomingMoviesSelectedSegmentIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:[BoxOfficeModel UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX]];
+}
+
+
+- (void) setUpcomingMoviesSelectedSegmentIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[BoxOfficeModel UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX]];
 }
 
 
@@ -836,6 +858,8 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         } else if ([viewController isKindOfClass:[AllMoviesViewController class]]) {
             continue;
         } else if ([viewController isKindOfClass:[AllTheatersViewController class]]) {
+            continue;
+        } else if ([viewController isKindOfClass:[UpcomingMoviesViewController class]]) {
             continue;
         } else {
             NSAssert(false, @"");

@@ -90,9 +90,15 @@ enum ViewControllerType {
 - (NSInteger) allMoviesSelectedSegmentIndex;
 - (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index;
 
-- (BOOL) sortingMoviesByTitle;
-- (BOOL) sortingMoviesByScore;
-- (BOOL) sortingMoviesByReleaseDate;
+- (BOOL) allMoviesSortingByTitle;
+- (BOOL) allMoviesSortingByScore;
+- (BOOL) allMoviesSortingByReleaseDate;
+
+- (NSInteger) upcomingMoviesSelectedSegmentIndex;
+- (void) setUpcomingMoviesSelectedSegmentIndex:(NSInteger) index;
+
+- (BOOL) upcomingMoviesSortingByTitle;
+- (BOOL) upcomingMoviesSortingByReleaseDate;
 
 - (NSInteger) allTheatersSelectedSegmentIndex;
 - (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index;

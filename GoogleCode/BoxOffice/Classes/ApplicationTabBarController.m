@@ -29,7 +29,7 @@
 
 @synthesize moviesNavigationController;
 @synthesize theatersNavigationController;
-@synthesize upcomingNavigationController;
+@synthesize upcomingMoviesNavigationController;
 @synthesize numbersNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
@@ -37,7 +37,7 @@
 - (void) dealloc {
     self.moviesNavigationController = nil;
     self.theatersNavigationController = nil;
-    self.upcomingNavigationController = nil;
+    self.upcomingMoviesNavigationController = nil;
     self.numbersNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
@@ -51,7 +51,7 @@
         self.appDelegate = appDel;
         self.moviesNavigationController   = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
-        //self.upcomingNavigationController = [[[UpcomingNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         //self.numbersNavigationController   = [[[NumbersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
 
@@ -59,7 +59,7 @@
         [NSArray arrayWithObjects:
          moviesNavigationController,
          theatersNavigationController,
-         //upcomingNavigationController,
+         upcomingMoviesNavigationController,
          //numbersNavigationController,
          settingsNavigationController, nil];
 
@@ -89,8 +89,8 @@
 }
 
 
-- (void)       tabBarController:(UITabBarController*) tabBarController
-        didSelectViewController:(UIViewController*) viewController {
+- (void)     tabBarController:(UITabBarController*) tabBarController
+      didSelectViewController:(UIViewController*) viewController {
     [self.model setSelectedTabBarViewControllerIndex:self.selectedIndex];
 }
 
@@ -106,15 +106,16 @@
 
 
 - (void) refresh {
-    [self.moviesNavigationController refresh];
-    [self.theatersNavigationController refresh];
-    [self.settingsNavigationController refresh];
+    for (id viewController in self.viewControllers) {
+        [viewController refresh];
+    }
 }
 
 
 - (void) popNavigationControllersToRoot {
     [self.moviesNavigationController popToRootViewControllerAnimated:YES];
     [self.theatersNavigationController popToRootViewControllerAnimated:YES];
+    [self.numbersNavigationController popToRootViewControllerAnimated:YES];
 }
 
 

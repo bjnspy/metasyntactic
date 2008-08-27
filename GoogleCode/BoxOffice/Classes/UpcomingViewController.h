@@ -14,19 +14,11 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface UpcomingViewController : UITableViewController {
-    UpcomingNavigationController* navigationController;
-    UISegmentedControl* segmentedControl;
+#import "AbstractMovieListViewController.h"
+
+@interface UpcomingMoviesViewController : AbstractMovieListViewController {
 }
-
-@property (assign) UpcomingNavigationController* navigationController;
-@property (retain) UISegmentedControl* segmentedControl;
-
-- (id) initWithNavigationController:(UpcomingNavigationController*) navigationController;
-
-- (void) refresh;
-
-- (BoxOfficeModel*) model;
-- (BoxOfficeController*) controller;
+ 
+- (id) initWithNavigationController:(UpcomingMoviesNavigationController*) navigationController;
 
 @end

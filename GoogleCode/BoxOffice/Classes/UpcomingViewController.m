@@ -16,57 +16,69 @@
 
 #import "UpcomingViewController.h"
 
+#import "BoxOfficeModel.h"
 #import "UpcomingNavigationController.h"
 
-@implementation UpcomingViewController
+@implementation UpcomingMoviesViewController
 
-@synthesize navigationController;
-@synthesize segmentedControl;
-
-
-- (void)dealloc {
-    self.navigationController = nil;
-    self.segmentedControl = nil;
-
+- (void) dealloc {
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(UpcomingNavigationController*) controller {
-    if (self = [super initWithStyle:UITableViewStyleGrouped]) {
-        self.navigationController = controller;
-        self.title = NSLocalizedString(@"Upcoming", nil);
-        
-        self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                                  [NSArray arrayWithObjects:
-                                   NSLocalizedString(@"Title", nil),
-                                   NSLocalizedString(@"Release", nil), nil]] autorelease];
-        
-        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+- (NSArray*) movies {
+    return [NSArray array];
+}
 
-        CGRect rect = segmentedControl.frame;
-        rect.size.width = 240;
-        segmentedControl.frame = rect;
-        
-        self.navigationItem.titleView = segmentedControl;
+
+- (BOOL) sortingByTitle {
+    return self.model.upcomingMoviesSortingByTitle;
+}
+
+
+- (BOOL) sortingByReleaseDate {
+    return self.model.upcomingMoviesSortingByReleaseDate;
+}
+
+
+- (BOOL) sortingByScore {
+    return NO;
+}
+
+
+- (void) setupSegmentedControl {
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+                              [NSArray arrayWithObjects:
+                               NSLocalizedString(@"Title", nil),
+                               NSLocalizedString(@"Release", nil), nil]] autorelease];
+    
+    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    self.segmentedControl.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
+    
+    [self.segmentedControl addTarget:self
+                              action:@selector(onSortOrderChanged:)
+                    forControlEvents:UIControlEventValueChanged];
+    
+    CGRect rect = self.segmentedControl.frame;
+    rect.size.width = 240;
+    self.segmentedControl.frame = rect;
+    
+    self.navigationItem.titleView = segmentedControl;
+}
+
+
+- (void) onSortOrderChanged:(id) sender {
+    [self.model setAllMoviesSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
+    [self refresh];
+}
+
+
+- (id) initWithNavigationController:(UpcomingMoviesNavigationController*) controller {
+    if (self = [super initWithNavigationController:controller]) {
+        self.title = NSLocalizedString(@"Upcoming", nil);
     }
     
     return self;
-}
-
-
-- (void) refresh {
-    [self.tableView reloadData];
-}
-
-
-- (BoxOfficeModel*) model {
-    return self.navigationController.model;
-}
-
-
-- (BoxOfficeController*) controller {
-    return self.navigationController.controller;
 }
 
 
