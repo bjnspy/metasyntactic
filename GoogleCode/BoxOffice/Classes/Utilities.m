@@ -184,10 +184,10 @@
     if (data == nil) {
         return nil;
     }
-    
+
     return [NSPropertyListSerialization propertyListFromData:data
-                                            mutabilityOption:NSPropertyListImmutable 
-                                                      format:NULL 
+                                            mutabilityOption:NSPropertyListImmutable
+                                                      format:NULL
                                             errorDescription:NULL];
 }
 

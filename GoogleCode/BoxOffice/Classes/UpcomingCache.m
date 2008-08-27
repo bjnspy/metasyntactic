@@ -257,10 +257,10 @@
                  studio:(NSString*) studio
                   title:(NSString*) title {
     NSString* trailersFile = [self trailersFile:movie];
-    
+
     NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:trailersFile
                                                                                error:NULL] objectForKey:NSFileModificationDate];
-    
+
     if (lastLookupDate != nil) {
         if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * 24 * 60 * 60)) {
             return;
