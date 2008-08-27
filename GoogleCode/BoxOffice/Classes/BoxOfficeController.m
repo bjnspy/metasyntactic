@@ -103,7 +103,7 @@
 
 
 - (void) spawnUpcomingMoviesLookupThread {
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application upcomingMoviesFile]
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application upcomingMoviesIndexFile]
                                                                                error:NULL] objectForKey:NSFileModificationDate];
 
     if ([self tooSoon:lastLookupDate]) {

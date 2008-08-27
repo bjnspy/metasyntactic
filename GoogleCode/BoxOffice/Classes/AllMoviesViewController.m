@@ -101,4 +101,12 @@
     [super refresh];
 }
 
+
+- (MovieTitleCell*) createCell:(NSString*) reuseIdentifier {
+    return [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                  reuseIdentifier:reuseIdentifier
+                                            model:self.model
+                                            style:UITableViewStylePlain] autorelease];
+}
+
 @end

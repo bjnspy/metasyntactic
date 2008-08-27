@@ -32,8 +32,6 @@
 		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
 		741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
 		741377B10E64765000404519 /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741377B00E64765000404519 /* TheaterNameCell.m */; };
-		7413782B0E64968300404519 /* UpcomingNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7413782A0E64968300404519 /* UpcomingNavigationController.m */; };
-		7413783C0E64972700404519 /* UpcomingViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7413783B0E64972700404519 /* UpcomingViewController.m */; };
 		742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742445A60E2D2F9800C98F84 /* AttributeCell.m */; };
 		742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 742CA71F0DD6616600A69B79 /* TicketsViewController.m */; };
 		743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743394100E61E52000D285F0 /* MovieOverviewCell.m */; };
@@ -51,7 +49,6 @@
 		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
-		7464FDBA0DD52F22000CE93F /* PosterView.m in Sources */ = {isa = PBXBuildFile; fileRef = 7464FDB90DD52F22000CE93F /* PosterView.m */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
 		746A02100DC819F00079D89B /* BoxOfficeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A020F0DC819F00079D89B /* BoxOfficeModel.m */; };
@@ -67,6 +64,9 @@
 		749DF1710DC9737700A551D9 /* BoxOfficeController.m in Sources */ = {isa = PBXBuildFile; fileRef = 749DF1700DC9737700A551D9 /* BoxOfficeController.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
+		74A863ED0E64F22A003A2249 /* AbstractMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */; };
+		74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */; };
+		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
@@ -178,10 +178,6 @@
 		741111530DFCF61900B94FB5 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		741377AF0E64765000404519 /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
 		741377B00E64765000404519 /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
-		741378290E64968300404519 /* UpcomingNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingNavigationController.h; sourceTree = "<group>"; };
-		7413782A0E64968300404519 /* UpcomingNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingNavigationController.m; sourceTree = "<group>"; };
-		7413783A0E64972700404519 /* UpcomingViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingViewController.h; sourceTree = "<group>"; };
-		7413783B0E64972700404519 /* UpcomingViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingViewController.m; sourceTree = "<group>"; };
 		742445A50E2D2F9800C98F84 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
 		742445A60E2D2F9800C98F84 /* AttributeCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AttributeCell.m; sourceTree = "<group>"; };
 		742CA71E0DD6616600A69B79 /* TicketsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketsViewController.h; sourceTree = "<group>"; };
@@ -231,8 +227,6 @@
 		745E21450E59639000105751 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21460E5963A200105751 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = Resources/th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21470E5963A200105751 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		7464FDB80DD52F22000CE93F /* PosterView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PosterView.h; sourceTree = "<group>"; };
-		7464FDB90DD52F22000CE93F /* PosterView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PosterView.m; sourceTree = "<group>"; };
 		746A01410DC819270079D89B /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		746A01420DC819270079D89B /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		746A02030DC819430079D89B /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
@@ -260,6 +254,12 @@
 		749DF1700DC9737700A551D9 /* BoxOfficeController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BoxOfficeController.m; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
+		74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieListViewController.h; sourceTree = "<group>"; };
+		74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieListViewController.m; sourceTree = "<group>"; };
+		74A865420E64FCAD003A2249 /* UpcomingMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesViewController.h; sourceTree = "<group>"; };
+		74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesViewController.m; sourceTree = "<group>"; };
+		74A865450E64FCC6003A2249 /* UpcomingMoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesNavigationController.h; sourceTree = "<group>"; };
+		74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesNavigationController.m; sourceTree = "<group>"; };
 		74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
@@ -517,8 +517,6 @@
 				74489CCE0DDD11FC00F565B1 /* TableViewCells */,
 				740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */,
 				740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */,
-				7464FDB80DD52F22000CE93F /* PosterView.h */,
-				7464FDB90DD52F22000CE93F /* PosterView.m */,
 				744557240DD7E785008AF706 /* NotificationCenter.h */,
 				744557250DD7E785008AF706 /* NotificationCenter.m */,
 			);
@@ -543,12 +541,12 @@
 				74447C330DC83C2000CC146C /* MoviesNavigationController.m */,
 				74447C390DC83E7400CC146C /* TheatersNavigationController.h */,
 				74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */,
+				74A865450E64FCC6003A2249 /* UpcomingMoviesNavigationController.h */,
+				74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */,
 				740AFF340E54E87F004EC5EE /* NumbersNavigationController.h */,
 				740AFF350E54E87F004EC5EE /* NumbersNavigationController.m */,
 				7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */,
 				7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */,
-				741378290E64968300404519 /* UpcomingNavigationController.h */,
-				7413782A0E64968300404519 /* UpcomingNavigationController.m */,
 			);
 			name = NavigationControllers;
 			sourceTree = "<group>";
@@ -556,40 +554,17 @@
 		74489CCD0DDD11D600F565B1 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				74447C550DC8405200CC146C /* AllMoviesViewController.h */,
-				74447C560DC8405200CC146C /* AllMoviesViewController.m */,
-				74447C630DC843B200CC146C /* AllTheatersViewController.h */,
-				74447C640DC843B200CC146C /* AllTheatersViewController.m */,
-				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
-				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
-				74447C580DC840D100CC146C /* MovieDetailsViewController.h */,
-				74447C590DC840D100CC146C /* MovieDetailsViewController.m */,
-				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
-				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
-				74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */,
-				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
-				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
-				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
-				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
-				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
-				74447C660DC843D900CC146C /* TheaterDetailsViewController.h */,
-				74447C670DC843D900CC146C /* TheaterDetailsViewController.m */,
+				74A863EE0E64F23E003A2249 /* Movies */,
+				74A863EF0E64F243003A2249 /* Theaters */,
+				74A863F00E64F247003A2249 /* Upcoming */,
+				74A863F10E64F24E003A2249 /* Numbers */,
+				74A863F20E64F255003A2249 /* Settings */,
+				74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */,
+				74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */,
 				742CA71E0DD6616600A69B79 /* TicketsViewController.h */,
 				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
 				74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */,
 				74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */,
-				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
-				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
-				74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */,
-				74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */,
-				74EFE3EA0E354E0900B6E103 /* RatingsProviderViewController.h */,
-				74EFE3EB0E354E0900B6E103 /* RatingsProviderViewController.m */,
-				74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */,
-				74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */,
-				740AFFB90E54F971004EC5EE /* NumbersViewController.h */,
-				740AFFBA0E54F971004EC5EE /* NumbersViewController.m */,
-				7413783A0E64972700404519 /* UpcomingViewController.h */,
-				7413783B0E64972700404519 /* UpcomingViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -668,6 +643,71 @@
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
 			);
 			name = Caches;
+			sourceTree = "<group>";
+		};
+		74A863EE0E64F23E003A2249 /* Movies */ = {
+			isa = PBXGroup;
+			children = (
+				74447C550DC8405200CC146C /* AllMoviesViewController.h */,
+				74447C560DC8405200CC146C /* AllMoviesViewController.m */,
+				74447C580DC840D100CC146C /* MovieDetailsViewController.h */,
+				74447C590DC840D100CC146C /* MovieDetailsViewController.m */,
+				74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */,
+				74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */,
+			);
+			name = Movies;
+			sourceTree = "<group>";
+		};
+		74A863EF0E64F243003A2249 /* Theaters */ = {
+			isa = PBXGroup;
+			children = (
+				74447C630DC843B200CC146C /* AllTheatersViewController.h */,
+				74447C640DC843B200CC146C /* AllTheatersViewController.m */,
+				74447C660DC843D900CC146C /* TheaterDetailsViewController.h */,
+				74447C670DC843D900CC146C /* TheaterDetailsViewController.m */,
+			);
+			name = Theaters;
+			sourceTree = "<group>";
+		};
+		74A863F00E64F247003A2249 /* Upcoming */ = {
+			isa = PBXGroup;
+			children = (
+				74A865420E64FCAD003A2249 /* UpcomingMoviesViewController.h */,
+				74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */,
+			);
+			name = Upcoming;
+			sourceTree = "<group>";
+		};
+		74A863F10E64F24E003A2249 /* Numbers */ = {
+			isa = PBXGroup;
+			children = (
+				740AFFB90E54F971004EC5EE /* NumbersViewController.h */,
+				740AFFBA0E54F971004EC5EE /* NumbersViewController.m */,
+			);
+			name = Numbers;
+			sourceTree = "<group>";
+		};
+		74A863F20E64F255003A2249 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				74447C3C0DC83E8800CC146C /* SettingsViewController.h */,
+				74447C3D0DC83E8800CC146C /* SettingsViewController.m */,
+				741111520DFCF61900B94FB5 /* CreditsViewController.h */,
+				741111530DFCF61900B94FB5 /* CreditsViewController.m */,
+				74EFE3EA0E354E0900B6E103 /* RatingsProviderViewController.h */,
+				74EFE3EB0E354E0900B6E103 /* RatingsProviderViewController.m */,
+				748379C90DD0169E00DC3B80 /* EditorViewController.h */,
+				748379CA0DD0169E00DC3B80 /* EditorViewController.m */,
+				74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */,
+				74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */,
+				74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */,
+				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
+				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
+				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
+				74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */,
+				74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */,
+			);
+			name = Settings;
 			sourceTree = "<group>";
 		};
 		74D6F2B40DCC14420097A984 /* Xml */ = {
@@ -852,7 +892,6 @@
 				74EC04F50DD2B704006953A4 /* Location.m in Sources */,
 				74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */,
 				74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */,
-				7464FDBA0DD52F22000CE93F /* PosterView.m in Sources */,
 				742CA7200DD6616600A69B79 /* TicketsViewController.m in Sources */,
 				743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */,
 				744557260DD7E785008AF706 /* NotificationCenter.m in Sources */,
@@ -891,9 +930,10 @@
 				743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */,
 				7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */,
 				741377B10E64765000404519 /* TheaterNameCell.m in Sources */,
-				7413782B0E64968300404519 /* UpcomingNavigationController.m in Sources */,
-				7413783C0E64972700404519 /* UpcomingViewController.m in Sources */,
 				74CDF0CA0E64A2EE005699E9 /* UpcomingCache.m in Sources */,
+				74A863ED0E64F22A003A2249 /* AbstractMovieListViewController.m in Sources */,
+				74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */,
+				74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
