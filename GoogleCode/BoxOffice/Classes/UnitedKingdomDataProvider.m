@@ -53,7 +53,7 @@
                                poster:@""
                              synopsis:synopsis
                                studio:@""
-                             director:@""
+                            directors:[NSArray array]
                                  cast:[NSArray array]
                                genres:[NSArray array]];
 }

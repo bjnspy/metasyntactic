@@ -17,17 +17,29 @@
 @interface UpcomingMovieCell : UITableViewCell {
     BoxOfficeModel* model;
     UILabel* titleLabel;
+    UILabel* directorTitleLabel;
     UILabel* directorLabel;
+    UILabel* castTitleLabel;
     UILabel* castLabel;
-    UILabel* ratingsLabel;
+    UILabel* ratedTitleLabel;
+    UILabel* ratedLabel;
+    UILabel* genreTitleLabel;
+    UILabel* genreLabel;
     UIImageView* imageView;
+    
+    CGFloat titleWidth;
 }
 
 @property (retain) BoxOfficeModel* model;
 @property (retain) UILabel* titleLabel;
 @property (retain) UILabel* directorLabel;
 @property (retain) UILabel* castLabel;
-@property (retain) UILabel* ratingsLabel;
+@property (retain) UILabel* ratedLabel;
+@property (retain) UILabel* genreLabel;
+@property (retain) UILabel* directorTitleLabel;
+@property (retain) UILabel* castTitleLabel;
+@property (retain) UILabel* ratedTitleLabel;
+@property (retain) UILabel* genreTitleLabel;
 @property (retain) UIImageView* imageView;
 
 - (id)      initWithFrame:(CGRect) frame

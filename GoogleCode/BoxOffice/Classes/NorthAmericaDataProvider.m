@@ -182,7 +182,7 @@
                                            poster:poster
                                          synopsis:synopsis
                                            studio:@""
-                                         director:@""
+                                        directors:[NSArray array]
                                              cast:cast
                                            genres:genres];
 
