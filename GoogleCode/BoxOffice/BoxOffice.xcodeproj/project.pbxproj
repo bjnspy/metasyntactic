@@ -59,6 +59,7 @@
 		7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7479D8350E65255F00D91649 /* UpcomingMovieCell.m */; };
 		7479D9270E653FD100D91649 /* Filled Star - Large.png in Resources */ = {isa = PBXBuildFile; fileRef = 7479D9260E653FD100D91649 /* Filled Star - Large.png */; };
 		7479DC250E66127100D91649 /* Movies.png in Resources */ = {isa = PBXBuildFile; fileRef = 7479DC240E66127100D91649 /* Movies.png */; };
+		7479DC570E6616E600D91649 /* Theaters.png in Resources */ = {isa = PBXBuildFile; fileRef = 7479DC560E6616E600D91649 /* Theaters.png */; };
 		747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */; };
 		748217D70E2163760054759E /* ExtraMovieInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 748217D60E2163760054759E /* ExtraMovieInformation.m */; };
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
@@ -96,7 +97,6 @@
 		74EFE33E0E353F3600B6E103 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE3080E353F3600B6E103 /* Icon.png */; };
 		74EFE3500E353F3600B6E103 /* ImageNotAvailable.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE31A0E353F3600B6E103 /* ImageNotAvailable.png */; };
 		74EFE3510E353F3600B6E103 /* More.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE31B0E353F3600B6E103 /* More.png */; };
-		74EFE3520E353F3600B6E103 /* MostViewed.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE31C0E353F3600B6E103 /* MostViewed.png */; };
 		74EFE3530E353F3600B6E103 /* Rating-Blue.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE31D0E353F3600B6E103 /* Rating-Blue.png */; };
 		74EFE3540E353F3600B6E103 /* Rating-Green.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE31E0E353F3600B6E103 /* Rating-Green.png */; };
 		74EFE3550E353F3600B6E103 /* Rating-Red.png in Resources */ = {isa = PBXBuildFile; fileRef = 74EFE31F0E353F3600B6E103 /* Rating-Red.png */; };
@@ -246,6 +246,7 @@
 		7479D8350E65255F00D91649 /* UpcomingMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMovieCell.m; sourceTree = "<group>"; };
 		7479D9260E653FD100D91649 /* Filled Star - Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Filled Star - Large.png"; path = "Resources/Filled Star - Large.png"; sourceTree = "<group>"; };
 		7479DC240E66127100D91649 /* Movies.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Movies.png; path = Resources/Movies.png; sourceTree = "<group>"; };
+		7479DC560E6616E600D91649 /* Theaters.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Theaters.png; path = Resources/Theaters.png; sourceTree = "<group>"; };
 		747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
 		747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
 		748217D50E2163760054759E /* ExtraMovieInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraMovieInformation.h; sourceTree = "<group>"; };
@@ -307,7 +308,6 @@
 		74EFE3080E353F3600B6E103 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Icon.png; path = Resources/Icon.png; sourceTree = "<group>"; };
 		74EFE31A0E353F3600B6E103 /* ImageNotAvailable.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ImageNotAvailable.png; path = Resources/ImageNotAvailable.png; sourceTree = "<group>"; };
 		74EFE31B0E353F3600B6E103 /* More.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = More.png; path = Resources/More.png; sourceTree = "<group>"; };
-		74EFE31C0E353F3600B6E103 /* MostViewed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MostViewed.png; path = Resources/MostViewed.png; sourceTree = "<group>"; };
 		74EFE31D0E353F3600B6E103 /* Rating-Blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rating-Blue.png"; path = "Resources/Rating-Blue.png"; sourceTree = "<group>"; };
 		74EFE31E0E353F3600B6E103 /* Rating-Green.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rating-Green.png"; path = "Resources/Rating-Green.png"; sourceTree = "<group>"; };
 		74EFE31F0E353F3600B6E103 /* Rating-Red.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Rating-Red.png"; path = "Resources/Rating-Red.png"; sourceTree = "<group>"; };
@@ -441,11 +441,12 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				740224540E53F323006C58A2 /* Localizable.strings */,
 				7479DC240E66127100D91649 /* Movies.png */,
+				7479DC560E6616E600D91649 /* Theaters.png */,
 				7479D9260E653FD100D91649 /* Filled Star - Large.png */,
 				74CDF0BB0E64A026005699E9 /* Upcoming.png */,
 				740AFF750E54EAB0004EC5EE /* Numbers.png */,
-				740224540E53F323006C58A2 /* Localizable.strings */,
 				7479B5D30E402E21003B12C1 /* MetacriticLogo.png */,
 				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 				74EFE3930E35433700B6E103 /* Rating-Unknown.png */,
@@ -458,7 +459,6 @@
 				74EFE3080E353F3600B6E103 /* Icon.png */,
 				74EFE31A0E353F3600B6E103 /* ImageNotAvailable.png */,
 				74EFE31B0E353F3600B6E103 /* More.png */,
-				74EFE31C0E353F3600B6E103 /* MostViewed.png */,
 				74EFE31D0E353F3600B6E103 /* Rating-Blue.png */,
 				74EFE31E0E353F3600B6E103 /* Rating-Green.png */,
 				74EFE31F0E353F3600B6E103 /* Rating-Red.png */,
@@ -830,7 +830,6 @@
 				74EFE33E0E353F3600B6E103 /* Icon.png in Resources */,
 				74EFE3500E353F3600B6E103 /* ImageNotAvailable.png in Resources */,
 				74EFE3510E353F3600B6E103 /* More.png in Resources */,
-				74EFE3520E353F3600B6E103 /* MostViewed.png in Resources */,
 				74EFE3530E353F3600B6E103 /* Rating-Blue.png in Resources */,
 				74EFE3540E353F3600B6E103 /* Rating-Green.png in Resources */,
 				74EFE3550E353F3600B6E103 /* Rating-Red.png in Resources */,
@@ -858,6 +857,7 @@
 				74CDF0BC0E64A026005699E9 /* Upcoming.png in Resources */,
 				7479D9270E653FD100D91649 /* Filled Star - Large.png in Resources */,
 				7479DC250E66127100D91649 /* Movies.png in Resources */,
+				7479DC570E6616E600D91649 /* Theaters.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
