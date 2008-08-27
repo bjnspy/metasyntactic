@@ -29,7 +29,7 @@
 @synthesize synopsis;
 @synthesize displayTitle;
 @synthesize studio;
-@synthesize director;
+@synthesize directors;
 @synthesize cast;
 @synthesize genres;
 
@@ -43,7 +43,7 @@
     self.synopsis = nil;
     self.displayTitle = nil;
     self.studio = nil;
-    self.director = nil;
+    self.directors = nil;
     self.cast = nil;
     self.genres = nil;
 
@@ -98,7 +98,7 @@ static NSString* articles[] = {
                    poster:(NSString*) poster_
                  synopsis:(NSString*) synopsis_
                    studio:(NSString*) studio_
-                 director:(NSString*) director_
+                directors:(NSArray*) directors_
                      cast:(NSArray*) cast_
                    genres:(NSArray*) genres_ {
     if (self = [self init]) {
@@ -115,7 +115,7 @@ static NSString* articles[] = {
         self.poster = poster_;
         self.synopsis = [Utilities stripHtmlCodes:synopsis_];
         self.studio = studio_;
-        self.director = director_;
+        self.directors = directors_;
         self.cast = cast_;
         self.genres = genres_;
     }
@@ -132,7 +132,7 @@ static NSString* articles[] = {
                         poster:(NSString*) poster
                       synopsis:(NSString*) synopsis
                         studio:(NSString*) studio
-                      director:(NSString*) director
+                     directors:(NSArray*) directors
                           cast:(NSArray*) cast
                         genres:(NSArray*) genres {
     return [[[Movie alloc] initWithIdentifier:identifier
@@ -143,7 +143,7 @@ static NSString* articles[] = {
                                        poster:poster
                                      synopsis:synopsis
                                        studio:studio
-                                     director:director
+                                    directors:directors
                                          cast:cast
                                        genres:genres] autorelease];
 }
@@ -158,7 +158,7 @@ static NSString* articles[] = {
                                poster:[dictionary objectForKey:@"poster"]
                              synopsis:[dictionary objectForKey:@"synopsis"]
                                studio:[dictionary objectForKey:@"studio"]
-                             director:[dictionary objectForKey:@"director"]
+                            directors:[dictionary objectForKey:@"directors"]
                                  cast:[dictionary objectForKey:@"cast"]
                                genres:[dictionary objectForKey:@"genres"]];
 }
@@ -174,7 +174,7 @@ static NSString* articles[] = {
     [dictionary setValue:poster         forKey:@"poster"];
     [dictionary setValue:synopsis       forKey:@"synopsis"];
     [dictionary setValue:studio         forKey:@"studio"];
-    [dictionary setValue:director       forKey:@"director"];
+    [dictionary setValue:directors      forKey:@"directors"];
     [dictionary setValue:cast           forKey:@"cast"];
     [dictionary setValue:genres         forKey:@"genres"];
     return dictionary;

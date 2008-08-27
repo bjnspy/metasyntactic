@@ -23,7 +23,7 @@
     NSString* poster;
     NSString* synopsis;
     NSString* studio;
-    NSString* director;
+    NSArray* directors;
     NSArray* cast;
     NSArray* genres;
 
@@ -39,7 +39,7 @@
 @property (copy) NSString* synopsis;
 @property (copy) NSString* displayTitle;
 @property (copy) NSString* studio;
-@property (copy) NSString* director;
+@property (retain) NSArray* directors;
 @property (retain) NSArray* cast;
 @property (retain) NSArray* genres;
 
@@ -52,7 +52,7 @@
                         poster:(NSString*) poster
                       synopsis:(NSString*) synopsis
                         studio:(NSString*) studio
-                      director:(NSString*) director
+                     directors:(NSArray*) directors
                           cast:(NSArray*) cast
                         genres:(NSArray*) genres;
 

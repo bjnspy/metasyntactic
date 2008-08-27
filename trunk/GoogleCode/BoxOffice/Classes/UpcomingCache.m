@@ -89,11 +89,11 @@
         return nil;
     }
 
-    NSString* director = [movieElement attributeValue:@"director"];
     NSString* poster = [movieElement attributeValue:@"poster"];
     NSString* rating = [movieElement attributeValue:@"rating"];
     NSString* studio = [movieElement attributeValue:@"studio"];
     NSString* title = [movieElement attributeValue:@"title"];
+    NSArray* directors = [self processArray:[movieElement element:@"directors"]];
     NSArray* cast = [self processArray:[movieElement element:@"actors"]];
     NSArray* genres = [self processArray:[movieElement element:@"genres"]];
 
@@ -108,7 +108,7 @@
                                        poster:poster
                                      synopsis:@""
                                        studio:studio
-                                     director:director
+                                    directors:directors
                                          cast:cast
                                        genres:genres];
 
