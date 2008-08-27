@@ -33,6 +33,9 @@ static NSString* trailersFolder = nil;
 static NSString* postersFolder = nil;
 static NSString* searchFolder = nil;
 static NSString* supportFolder = nil;
+static NSString* upcomingFolder = nil;
+static NSString* upcomingPostersFolder = nil;
+static NSString* upcomingSynopsesFolder = nil;
 static NSMutableDictionary* providerReviewsFolder = nil;
 
 static DifferenceEngine* differenceEngine = nil;
@@ -65,6 +68,9 @@ static NSString* starString = nil;
         [[NSFileManager defaultManager] removeItemAtPath:[Application trailersFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application reviewsFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingPostersFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingSynopsesFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingFolder] error:NULL];
 
         [dataFolder release];
         [locationsFolder release];
@@ -73,6 +79,9 @@ static NSString* starString = nil;
         [ratingsFolder release];
         [reviewsFolder release];
         [providerReviewsFolder release];
+        [upcomingPostersFolder release];
+        [upcomingSynopsesFolder release];
+        [upcomingFolder release];
 
         dataFolder = nil;
         locationsFolder = nil;
@@ -80,6 +89,9 @@ static NSString* starString = nil;
         trailersFolder = nil;
         ratingsFolder = nil;
         reviewsFolder = nil;
+        upcomingPostersFolder = nil;
+        upcomingSynopsesFolder = nil;
+        upcomingFolder = nil;
         providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
     }
     [gate unlock];
@@ -209,24 +221,6 @@ static NSString* starString = nil;
 }
 
 
-+ (NSString*) trailersFolder {
-    [gate lock];
-    {
-        if (trailersFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
-
-            [Application createDirectory:folder];
-
-            trailersFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-
-    return trailersFolder;
-}
-
-
 + (NSString*) locationsFolder {
     [gate lock];
     {
@@ -260,6 +254,78 @@ static NSString* starString = nil;
     [gate unlock];
 
     return postersFolder;
+}
+
+
++ (NSString*) trailersFolder {
+    [gate lock];
+    {
+        if (trailersFolder == nil) {
+            NSString* parent = [Application supportFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
+            
+            [Application createDirectory:folder];
+            
+            trailersFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return trailersFolder;
+}
+
+
++ (NSString*) upcomingFolder {
+    [gate lock];
+    {
+        if (upcomingFolder == nil) {
+            NSString* parent = [Application supportFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Upcoming"];
+            
+            [Application createDirectory:folder];
+            
+            upcomingFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return upcomingFolder;
+}
+
+
++ (NSString*) upcomingPostersFolder {
+    [gate lock];
+    {
+        if (upcomingPostersFolder == nil) {
+            NSString* parent = [Application upcomingFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
+            
+            [Application createDirectory:folder];
+            
+            upcomingPostersFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return upcomingPostersFolder;
+}
+
+
++ (NSString*) upcomingSynopsesFolder {
+    [gate lock];
+    {
+        if (upcomingSynopsesFolder == nil) {
+            NSString* parent = [Application upcomingFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Synopses"];
+            
+            [Application createDirectory:folder];
+            
+            upcomingSynopsesFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return upcomingSynopsesFolder;
 }
 
 
@@ -318,18 +384,13 @@ static NSString* starString = nil;
 }
 
 
-+ (NSString*) moviesFile {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"Movies.plist"];
++ (NSString*) upcomingMoviesFile {
+    return [[Application upcomingFolder] stringByAppendingPathComponent:@"Movies.plist"];
 }
 
 
 + (NSString*) ratingsFile:(NSString*) provider {
     return [[[Application ratingsFolder] stringByAppendingPathComponent:provider] stringByAppendingPathExtension:@"plist"];
-}
-
-
-+ (NSString*) theatersFile {
-    return [[Application dataFolder] stringByAppendingPathComponent:@"Theaters.plist"];
 }
 
 

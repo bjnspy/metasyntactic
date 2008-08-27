@@ -21,15 +21,19 @@
 + (NSString*) documentsFolder;
 + (NSString*) locationsFolder;
 + (NSString*) postersFolder;
++ (NSString*) ratingsFolder;
++ (NSString*) reviewsFolder;
 + (NSString*) searchFolder;
 + (NSString*) supportFolder;
 + (NSString*) tempFolder;
-+ (NSString*) ratingsFolder;
 + (NSString*) trailersFolder;
-+ (NSString*) reviewsFolder;
++ (NSString*) upcomingFolder;
++ (NSString*) upcomingPostersFolder;
++ (NSString*) upcomingSynopsesFolder;
 + (NSString*) providerReviewsFolder:(NSString*) provider;
 
 + (NSString*) movieMapFile;
++ (NSString*) upcomingMoviesFile;
 + (NSString*) ratingsFile:(NSString*) ratingsProvider;
 
 + (void) deleteFolders;

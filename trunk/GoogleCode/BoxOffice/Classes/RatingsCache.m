@@ -83,12 +83,12 @@
 }
 
 
-- (void) saveRatings:(NSDictionary*) dictionary {
+- (void) saveRatingsInBackground:(NSDictionary*) dictionary {
     if (dictionary.count == 0) {
         return;
     }
 
-    self.ratingsAndHash = dictionary;
+    [self performSelectorOnMainThread:@selector(saveRatingsInForeground:) withObject:dictionary waitUntilDone:NO];
 
     NSMutableDictionary* encodedRatings = [NSMutableDictionary dictionary];
     NSDictionary* ratings = [dictionary objectForKey:@"Ratings"];
@@ -103,16 +103,21 @@
     [result setObject:hash forKey:@"Hash"];
 
         //[Application ratingsFile:[self currentRatingsProvider]]
-    [Utilities writeObject:result toFile:[self ratingsFile]];
+    [Utilities writeObject:result toFile:self.ratingsFile];
+}
+
+
+- (void) saveRatingsInForeground:(NSDictionary*) dictionary {
+    self.ratingsAndHash = dictionary;
 }
 
 
 - (NSDictionary*) updateWorker {
     NSString* hash = [self.ratingsAndHash objectForKey:@"Hash"];
 
-    if ([self.model rottenTomatoesRatings]) {
+    if (self.model.rottenTomatoesRatings) {
         return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings:hash];
-    } else if ([self.model metacriticRatings]) {
+    } else if (self.model.metacriticRatings) {
         return [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings:hash];
     }
 
@@ -121,9 +126,10 @@
 
 
 - (NSDictionary*) update {
+    NSAssert(![NSThread isMainThread], @"");
     NSDictionary* result = [self updateWorker];
 
-    [self saveRatings:result];
+    [self saveRatingsInBackground:result];
 
     return [result objectForKey:@"Ratings"];
 }

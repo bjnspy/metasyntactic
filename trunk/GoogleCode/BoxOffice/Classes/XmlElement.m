@@ -109,7 +109,7 @@
 
     NSMutableArray* array = [NSMutableArray array];
     for (XmlElement* element in self.children) {
-        [array addObject:[element dictionary]];
+        [array addObject:element.dictionary];
     }
 
     [dictionary setValue:self.name forKey:@"name"];
