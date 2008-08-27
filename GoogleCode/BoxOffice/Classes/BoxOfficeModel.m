@@ -39,7 +39,7 @@
 #import "TrailerCache.h"
 #import "UnitedKingdomDataProvider.h"
 #import "UpcomingCache.h"
-#import "UpcomingViewController.h"
+#import "UpcomingMoviesViewController.h"
 #import "Utilities.h"
 
 @implementation BoxOfficeModel

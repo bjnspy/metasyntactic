@@ -14,10 +14,11 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "UpcomingViewController.h"
+#import "UpcomingMoviesViewController.h"
 
 #import "BoxOfficeModel.h"
-#import "UpcomingNavigationController.h"
+#import "UpcomingCache.h"
+#import "UpcomingMoviesNavigationController.h"
 
 @implementation UpcomingMoviesViewController
 
@@ -27,7 +28,7 @@
 
 
 - (NSArray*) movies {
-    return [NSArray array];
+    return self.model.upcomingCache.upcomingMovies;
 }
 
 
@@ -68,7 +69,7 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
-    [self.model setAllMoviesSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
+    [self.model setUpcomingMoviesSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
     [self refresh];
 }
 
