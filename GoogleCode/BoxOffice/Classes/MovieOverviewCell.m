@@ -44,6 +44,15 @@
 }
 
 
+- (CGSize) posterSize {
+    CGSize actualSize = posterImage.size;
+    CGFloat adjustedHeight = 18 * (((int)actualSize.height) / 18);
+    CGFloat ratio = adjustedHeight / actualSize.height;
+    
+    return CGSizeMake(actualSize.width * ratio, adjustedHeight);
+}
+
+
 - (id) initWithMovie:(Movie*) movie_ model:(BoxOfficeModel*) model_ frame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.movie = movie_;
@@ -56,7 +65,7 @@
         }
 
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:self.posterImage] autorelease];
-        imageView.frame = CGRectMake(5, 5, posterImage.size.width, posterImage.size.height);
+        imageView.frame = CGRectMake(5, 5, self.posterSize.width, self.posterSize.height);
 
         self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.synopsisChunk2Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -79,8 +88,8 @@
 
 
 - (NSInteger) calculateSynopsisSplit:(double) cellWidth {
-    CGFloat posterHeight = self.posterImage.size.height;
-    int chunk1X = 5 + self.posterImage.size.width + 5;
+    CGFloat posterHeight = self.posterSize.height;
+    int chunk1X = 5 + self.posterSize.width + 5;
     int chunk1Width = cellWidth - 5 - chunk1X;
 
     CGFloat chunk1Height = [synopsis sizeWithFont:[FontCache helvetica14]
@@ -155,10 +164,10 @@
 
     [self calculateSynopsisChunks:self.contentView.frame.size.width];
 
-    int chunk1X = 5 + posterImage.size.width + 5;
+    int chunk1X = 5 + self.posterSize.width + 5;
     int chunk1Width = self.contentView.frame.size.width - 5 - chunk1X;
 
-    CGRect chunk1Frame = CGRectMake(chunk1X, 5, chunk1Width, posterImage.size.height);
+    CGRect chunk1Frame = CGRectMake(chunk1X, 5, chunk1Width, self.posterSize.height);
     self.synopsisChunk1Label.frame = chunk1Frame;
     self.synopsisChunk1Label.text = [synopsis substringToIndex:synopsisSplit];
     [synopsisChunk1Label sizeToFit];
@@ -175,13 +184,13 @@
                                           constrainedToSize:CGSizeMake(chunk2Width, 2000)
                                               lineBreakMode:UILineBreakModeWordWrap].height;
 
-        CGRect chunk2Frame =  CGRectMake(5, posterImage.size.height + 5, chunk2Width, chunk2Height);
+        CGRect chunk2Frame =  CGRectMake(5, self.posterSize.height + 5, chunk2Width, chunk2Height);
         synopsisChunk2Label.text = synopsisChunk2;
         synopsisChunk2Label.frame = chunk2Frame;
 
         // shift the first chunk down to align with the second
         chunk1Frame = synopsisChunk1Label.frame;
-        chunk1Frame.origin.y = self.posterImage.size.height + 5 - chunk1Frame.size.height;
+        chunk1Frame.origin.y = self.posterSize.height + 5 - chunk1Frame.size.height;
         synopsisChunk1Label.frame = chunk1Frame;
     }
 }
@@ -204,7 +213,7 @@
     }
     [self calculateSynopsisChunks:width - 20];
 
-    double h1 = self.posterImage.size.height;
+    double h1 = self.posterSize.height;
 
     if (synopsisSplit == synopsis.length) {
         return h1 + 10;
