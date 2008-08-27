@@ -202,17 +202,26 @@ static NSString* articles[] = {
 }
 
 
+- (BOOL) isUnrated {
+    return [Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"];
+}
+
+
+- (NSString*) ratingString {
+    if (self.isUnrated) {
+        return NSLocalizedString(@"Unrated.", nil);
+    }  else {
+        return [NSString stringWithFormat:NSLocalizedString(@"Rated %@.", nil), self.rating];
+    }
+}
+
+
 - (NSString*) ratingAndRuntimeString {
     NSInteger movieLength = self.length.intValue;
     NSInteger hours = movieLength / 60;
     NSInteger minutes = movieLength % 60;
 
-    NSString* ratingString;
-    if ([Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"]) {
-        ratingString = NSLocalizedString(@"Unrated.", nil);
-    }  else {
-        ratingString = [NSString stringWithFormat:NSLocalizedString(@"Rated %@.", nil), self.rating];
-    }
+    NSString* ratingString = self.ratingString;
 
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {

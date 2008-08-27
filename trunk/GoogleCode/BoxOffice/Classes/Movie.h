@@ -57,6 +57,9 @@
                         genres:(NSArray*) genres;
 
 - (NSDictionary*) dictionary;
+
+- (BOOL) isUnrated;
+- (NSString*) ratingString;
 - (NSString*) ratingAndRuntimeString;
 
 + (NSString*) makeCanonical:(NSString*) title;
