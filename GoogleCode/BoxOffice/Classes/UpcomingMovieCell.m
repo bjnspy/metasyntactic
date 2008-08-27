@@ -56,7 +56,7 @@
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
 
     label.font = [UIFont systemFontOfSize:12];
-    label.textColor = [UIColor lightGrayColor];
+    label.textColor = [UIColor darkGrayColor];
     label.text = title;
     label.textAlignment = UITextAlignmentRight;
     [label sizeToFit];
@@ -94,21 +94,20 @@
             label.frame = frame;
         }
 
-        self.directorLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 22, 0, 14)] autorelease];
+        self.directorLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 22, 0, 0)] autorelease];
         directorLabel.font = [UIFont systemFontOfSize:12];
         directorLabel.textColor = [UIColor darkGrayColor];
         
         self.castLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 37, 0, 30)] autorelease];
         castLabel.font = [UIFont systemFontOfSize:12];
-        castLabel.numberOfLines = 0;
         castLabel.textColor = [UIColor darkGrayColor];
-        castLabel.contentMode = UIViewContentModeTopLeft;
+        castLabel.numberOfLines = 0;
         
-        self.genreLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 67, 0, 14)] autorelease];
+        self.genreLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 67, 0, 0)] autorelease];
         genreLabel.font = [UIFont systemFontOfSize:12];
         genreLabel.textColor = [UIColor darkGrayColor];
     
-        self.ratedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 82, 0, 14)] autorelease];
+        self.ratedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 82, 0, 0)] autorelease];
         ratedLabel.font = [UIFont systemFontOfSize:12];
         ratedLabel.textColor = [UIColor darkGrayColor];
         
@@ -189,6 +188,10 @@
     } else {
         directorTitleLabel.text = NSLocalizedString(@"Directors:", nil);
     }
+    
+    [ratedLabel sizeToFit];
+    [directorLabel sizeToFit];
+    [genreLabel sizeToFit];    
 }
 
 
@@ -212,10 +215,10 @@
         castLabel.textColor = [UIColor darkGrayColor];
         ratedLabel.textColor = [UIColor darkGrayColor];
         genreLabel.textColor = [UIColor darkGrayColor];
-        directorTitleLabel.textColor = [UIColor lightGrayColor];
-        castTitleLabel.textColor = [UIColor lightGrayColor];
-        ratedTitleLabel.textColor = [UIColor lightGrayColor];
-        genreTitleLabel.textColor = [UIColor lightGrayColor];
+        directorTitleLabel.textColor = [UIColor darkGrayColor];
+        castTitleLabel.textColor = [UIColor darkGrayColor];
+        ratedTitleLabel.textColor = [UIColor darkGrayColor];
+        genreTitleLabel.textColor = [UIColor darkGrayColor];
     }
 }
 
