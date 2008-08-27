@@ -82,23 +82,9 @@ class LookupUpcomingListingsHandler(webapp.RequestHandler):
       memcache.Client().set(hash_key, str(hash(listings)), hash_cache_time)
 
     return listings
-
-
-  def get_listings_hash_from_cache(self, studio, name):
-    (key, hash_key) = self.get_listings_keys(studio, name)
-
-    hash = memcache.get(hash_key)
-    if hash is None:
-      self.get_listings_from_cache("false")
-      hash = memcache.get(hash_key)
-
-    return hash
     
 
   def get_listings_from_cache(self, h, studio, name):
-    if h == "true":
-      return self.get_listings_hash_from_cache(studio, name)
-
     (key, hash_key) = self.get_listings_keys(studio, name)
     (cache_time, hash_cache_time) = self.get_cache_times()
 
@@ -107,10 +93,6 @@ class LookupUpcomingListingsHandler(webapp.RequestHandler):
     if listings is None:
       listings = self.get_listings_from_site(studio, name)
       memcache.Client().set(key, listings, cache_time)
-      memcache.Client().set(hash_key, str(hash(listings)), hash_cache_time)
-
-    if memcache.get(hash_key) is None:
-      memcache.Client().set(hash_key, str(hash(listings)), hash_cache_time)
 
     return listings
 
@@ -123,17 +105,19 @@ class LookupUpcomingListingsHandler(webapp.RequestHandler):
       return ""
 
     document = parseString(content)
-    elements = document.getElementsByTagName("string")
+    elements = document.getElementsByTagName("TextView")
 
-    result = ""
-    for element in elements:
-      text = element.firstChild
-      if not text is None and text.data.endswith(".m4v"):
-        if len(result) > 0:
-          result += "\n"
-        result += text.data
+    if len(elements) < 3:
+      return ""
 
-    return result
+    elements = elements[2].getElementsByTagName("SetFontStyle")
+    if len(elements) < 1:
+      return ""
+
+    if elements[0].firstChild is None:
+      return ""
+
+    return elements[0].firstChild.data.strip()
 
 
   def get_index_from_site(self):
