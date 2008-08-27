@@ -183,6 +183,12 @@
     } else {
         imageView.image = image;
     }
+
+    if (movie.directors.count == 1) {
+        directorTitleLabel.text = NSLocalizedString(@"Director:", nil);
+    } else {
+        directorTitleLabel.text = NSLocalizedString(@"Directors:", nil);
+    }
 }
 
 
