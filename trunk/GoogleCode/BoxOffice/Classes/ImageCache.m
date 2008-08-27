@@ -46,7 +46,7 @@ static UIImage* imageNotAvailable = nil;
         greenRatingImage    = [[UIImage imageNamed:@"Rating-Green.png"] retain];
         unknownRatingImage  = [[UIImage imageNamed:@"Rating-Unknown.png"] retain];
 
-        imageNotAvailable   = [[UIImage imageNamed:@"   .png"] retain];
+        imageNotAvailable   = [[UIImage imageNamed:@"ImageNotAvailable.png"] retain];
     }
 }
 
