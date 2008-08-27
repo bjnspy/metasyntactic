@@ -176,10 +176,29 @@ class LookupUpcomingListingsHandler(webapp.RequestHandler):
         for actor in entity["actors"]:
           actorElement = document.createElement("actor")
           actorsElement.appendChild(actorElement)
-          actorElement.setAttribute("value", actor)
+          actorElement.setAttribute("value", self.removeEncodings(actor))
 
       if entity.has_key("director"):
-        movieElement.setAttribute("director", entity["director"])
+        directorsElement = document.createElement("directors")
+        movieElement.appendChild(directorsElement)
 
+        for director in entity["director"].split(", "):
+          directorElement = document.createElement("director")
+          directorsElement.appendChild(directorElement)
+          directorElement.setAttribute("value", self.removeEncodings(director))
 
     return resultElement.toxml()
+
+
+  def removeEncodings(self, string):
+    while string.find("&#x") >= 0:
+      startIndex = string.find("&#x")
+      endIndex = string.find(";", startIndex)
+      if endIndex == -1:
+        break
+
+      extracted = string[startIndex+3:endIndex]
+      value = unichr(long(extracted, 16))
+      string = string[0:startIndex] + value + string[endIndex + 1:]
+
+    return string
