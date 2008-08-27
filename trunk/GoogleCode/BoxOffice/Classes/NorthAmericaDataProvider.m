@@ -51,14 +51,14 @@
 + (NSDictionary*) processFandangoShowtimes:(XmlElement*) moviesElement {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
-    for (XmlElement* movieElement in [moviesElement children]) {
+    for (XmlElement* movieElement in moviesElement.children) {
         NSString* movieId = [movieElement attributeValue:@"id"];
 
         XmlElement* performancesElement = [movieElement element:@"performances"];
 
         NSMutableArray* performances = [NSMutableArray array];
 
-        for (XmlElement* performanceElement in [performancesElement children]) {
+        for (XmlElement* performanceElement in performancesElement.children) {
             NSString* showId = [performanceElement attributeValue:@"showid"];
             if (![Utilities isNilOrEmpty:showId]) {
                 showId = [NSString stringWithFormat:@"F-%@", showId];
@@ -129,7 +129,7 @@
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
 
-    for (XmlElement* theaterElement in [theatersElement children]) {
+    for (XmlElement* theaterElement in theatersElement.children) {
         [self processFandangoTheaterElement:theaterElement
                                    theaters:theaters
                                performances:performances
@@ -141,22 +141,38 @@
 }
 
 
++ (NSArray*) processCast:(XmlElement*) element {
+    if (element == nil) {
+        return [NSArray array];
+    }
+    
+    NSMutableArray* cast = [NSMutableArray array];
+    for (XmlElement* child in element.children) {
+        [cast addObject:child.text];
+    }
+    return cast;
+}
+
+
 + (NSMutableArray*) processFandangoMovies:(XmlElement*) moviesElement {
     NSMutableArray* array = [NSMutableArray array];
 
-    for (XmlElement* movieElement in [moviesElement children]) {
+    for (XmlElement* movieElement in moviesElement.children) {
         NSString* identifier = [movieElement attributeValue:@"id"];
         NSString* poster = [movieElement attributeValue:@"posterhref"];
-        NSString* title = [[movieElement element:@"title"] text];
-        NSString* rating = [[movieElement element:@"rating"] text];
-        NSString* length = [[movieElement element:@"runtime"] text];
-        NSString* synopsis = [[movieElement element:@"synopsis"] text];
-
+        NSString* title = [movieElement element:@"title"].text;
+        NSString* rating = [movieElement element:@"rating"].text;
+        NSString* length = [movieElement element:@"runtime"].text;
+        NSString* synopsis = [movieElement element:@"synopsis"].text;
+        NSArray* genres = [[movieElement element:@"genre"].text componentsSeparatedByString:@", "];
+        NSArray* cast = [self processCast:[moviesElement element:@"cast"]];
+        
         NSString* releaseDateText = [[movieElement element:@"releasedate"] text];
         NSDate* releaseDate = nil;
         if (releaseDateText != nil) {
             releaseDate = [DateUtilities dateWithNaturalLanguageString:releaseDateText];
         }
+        
 
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
@@ -167,8 +183,8 @@
                                          synopsis:synopsis
                                            studio:@""
                                          director:@""
-                                             cast:[NSArray array]
-                                           genres:[NSArray array]];
+                                             cast:cast
+                                           genres:genres];
 
         [array addObject:movie];
     }

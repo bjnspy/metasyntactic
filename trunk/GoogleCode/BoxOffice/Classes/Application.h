@@ -30,10 +30,11 @@
 + (NSString*) upcomingFolder;
 + (NSString*) upcomingPostersFolder;
 + (NSString*) upcomingSynopsesFolder;
++ (NSString*) upcomingTrailersFolder;
 + (NSString*) providerReviewsFolder:(NSString*) provider;
 
 + (NSString*) movieMapFile;
-+ (NSString*) upcomingMoviesFile;
++ (NSString*) upcomingMoviesIndexFile;
 + (NSString*) ratingsFile:(NSString*) ratingsProvider;
 
 + (void) deleteFolders;

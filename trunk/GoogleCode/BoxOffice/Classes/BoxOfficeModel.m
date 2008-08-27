@@ -793,7 +793,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSArray*) trailersForMovie:(Movie*) movie {
-    return [trailerCache trailersForMovie:movie];
+    NSArray* result = [trailerCache trailersForMovie:movie];
+    if (result.count > 0) {
+        return result;
+    }
+    
+    return [upcomingCache trailersForMovie:movie];
 }
 
 

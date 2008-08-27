@@ -34,7 +34,7 @@
     self.titleLabel = nil;
     self.ratingLabel = nil;
     self.model = nil;
-
+    
     [super dealloc];
 }
 
@@ -46,26 +46,26 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
         style = style_;
-
+        
         self.scoreLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.textAlignment = UITextAlignmentCenter;
-
+        
         self.titleLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
         titleLabel.minimumFontSize = 14;
         titleLabel.textColor = [UIColor blackColor];
-
+        
         self.ratingLabel = [[[UILabel alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         ratingLabel.font = [UIFont systemFontOfSize:12];
         ratingLabel.textColor = [UIColor grayColor];
-
+        
         [self.contentView addSubview:titleLabel];
         [self.contentView addSubview:ratingLabel];
         [self addSubview:scoreLabel];
     }
-
+    
     return self;
 }
 
@@ -79,38 +79,38 @@
 
 - (void) setRottenTomatoesScore:(Movie*) movie {
     int score = [self.model scoreForMovie:movie];
-
+    
     if (score >= 0 && score <= 100) {
         if (score >= 60) {
             if (self.image != [ImageCache freshImage]) {
                 self.image = [ImageCache freshImage];
-
+                
                 scoreLabel.font = [UIFont boldSystemFontOfSize:15];
                 scoreLabel.textColor = [UIColor whiteColor];
-
+                
                 CGRect frame = CGRectMake(10, 8, 32, 32);
                 if (style == UITableViewStyleGrouped) {
                     frame.origin.x += 10;
                 }
-
+                
                 scoreLabel.frame = frame;
             }
         } else {
             if (self.image != [ImageCache rottenFadedImage]) {
                 self.image = [ImageCache rottenFadedImage];
-
+                
                 scoreLabel.font = [UIFont boldSystemFontOfSize:17];
                 scoreLabel.textColor = [UIColor blackColor];
-
+                
                 CGRect frame = CGRectMake(10, 6, 30, 32);
                 if (style == UITableViewStyleGrouped) {
                     frame.origin.x += 10;
                 }
-
+                
                 scoreLabel.frame = frame;
             }
         }
-
+        
         scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     } else {
         if (self.image != [ImageCache unknownRatingImage]) {
@@ -123,7 +123,7 @@
 
 - (void) setMetacriticScore:(Movie*) movie {
     int score = [self.model scoreForMovie:movie];
-
+    
     if (score >= 0 && score <= 100) {
         CGRect frame = CGRectMake(10, 7, 30, 30);
         if (score == 100) {
@@ -131,16 +131,16 @@
         } else {
             scoreLabel.font = [FontCache boldSystem19];
         }
-
+        
         if (style == UITableViewStyleGrouped) {
             frame.origin.x += 10;
         }
-
+        
         scoreLabel.textColor = [ColorCache darkDarkGray];
         scoreLabel.frame = frame;
         scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     }
-
+    
     if (score >= 0 && score <= 40) {
         self.image = [ImageCache redRatingImage];
     } else if (score > 40 && score <= 60) {
@@ -156,18 +156,18 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-
+    
     CGRect frame;
-    if ([self.model noRatings]) {
+    if (self.model.noRatings) {
         frame = CGRectMake(10, 25, 0, 14);
     } else {
         frame = CGRectMake(50, 25, 0, 14);
     }
-
+    
     frame.size.width = self.contentView.frame.size.width - frame.origin.x;
-
+    
     self.ratingLabel.frame = frame;
-
+    
     frame.origin.y = 5;
     frame.size.height = 20;
     self.titleLabel.frame = frame;
@@ -196,7 +196,7 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-
+    
     if (selected) {
         ratingLabel.textColor = [UIColor whiteColor];
         titleLabel.textColor = [UIColor whiteColor];

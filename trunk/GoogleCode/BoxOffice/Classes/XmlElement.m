@@ -184,7 +184,7 @@
 
 
 - (XmlElement*) elementAtIndex:(NSInteger) index {
-    if (index >= 0 && index < [[self children] count]) {
+    if (index >= 0 && index < self.children.count) {
         return [[self children] objectAtIndex:index];
     }
 

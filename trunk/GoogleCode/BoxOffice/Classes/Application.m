@@ -36,6 +36,7 @@ static NSString* supportFolder = nil;
 static NSString* upcomingFolder = nil;
 static NSString* upcomingPostersFolder = nil;
 static NSString* upcomingSynopsesFolder = nil;
+static NSString* upcomingTrailersFolder = nil;
 static NSMutableDictionary* providerReviewsFolder = nil;
 
 static DifferenceEngine* differenceEngine = nil;
@@ -70,6 +71,7 @@ static NSString* starString = nil;
         [[NSFileManager defaultManager] removeItemAtPath:[Application reviewsFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingPostersFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingSynopsesFolder] error:NULL];
+        [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingTrailersFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingFolder] error:NULL];
 
         [dataFolder release];
@@ -81,6 +83,7 @@ static NSString* starString = nil;
         [providerReviewsFolder release];
         [upcomingPostersFolder release];
         [upcomingSynopsesFolder release];
+        [upcomingTrailersFolder release];
         [upcomingFolder release];
 
         dataFolder = nil;
@@ -91,6 +94,7 @@ static NSString* starString = nil;
         reviewsFolder = nil;
         upcomingPostersFolder = nil;
         upcomingSynopsesFolder = nil;
+        upcomingTrailersFolder = nil;
         upcomingFolder = nil;
         providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
     }
@@ -329,6 +333,24 @@ static NSString* starString = nil;
 }
 
 
++ (NSString*) upcomingTrailersFolder {
+    [gate lock];
+    {
+        if (upcomingTrailersFolder == nil) {
+            NSString* parent = [Application upcomingFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
+            
+            [Application createDirectory:folder];
+            
+            upcomingTrailersFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return upcomingTrailersFolder;
+}
+
+
 + (NSString*) providerReviewsFolder:(NSString*) ratingsProvider {
     NSString* folder = nil;
 
@@ -384,8 +406,8 @@ static NSString* starString = nil;
 }
 
 
-+ (NSString*) upcomingMoviesFile {
-    return [[Application upcomingFolder] stringByAppendingPathComponent:@"Movies.plist"];
++ (NSString*) upcomingMoviesIndexFile {
+    return [[Application upcomingFolder] stringByAppendingPathComponent:@"Index.plist"];
 }
 
 

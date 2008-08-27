@@ -17,6 +17,7 @@
 #import "UpcomingMoviesViewController.h"
 
 #import "BoxOfficeModel.h"
+#import "MovieTitleCell.h"
 #import "UpcomingCache.h"
 #import "UpcomingMoviesNavigationController.h"
 
@@ -80,6 +81,14 @@
     }
     
     return self;
+}
+
+
+- (id) createCell:(NSString*) reuseIdentifier {
+    return [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                  reuseIdentifier:reuseIdentifier
+                                            model:self.model
+                                            style:UITableViewStylePlain] autorelease];
 }
 
 

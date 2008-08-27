@@ -58,7 +58,6 @@
 @class PickerEditorViewController;
 @class PosterCache;
 @class PosterDownloader;
-@class PosterView;
 @class RatingsCache;
 @class RatingsProviderViewController;
 @class Review;
@@ -80,8 +79,8 @@
 @class TrailerCache;
 @class UnitedKingdomDataProvider;
 @class UpcomingCache;
-@class UpcomingNavigationController;
-@class UpcomingViewController;
+@class UpcomingMoviesNavigationController;
+@class UpcomingMoviesViewController;
 @class Utilities;
 @class ViewControllerUtilities;
 @class XmlDocument;

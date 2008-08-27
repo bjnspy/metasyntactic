@@ -34,7 +34,7 @@
             XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
             XmlElement* matchedIdElement = [movieImdbElement element:@"matched-id"];
 
-            return [matchedIdElement text];
+            return matchedIdElement.text;
         }
     }
 
@@ -56,7 +56,7 @@
         XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
         XmlElement* pictureUrlElement = [movieImdbElement element:@"picture-url"];
 
-        return [pictureUrlElement text];
+        return pictureUrlElement.text;
     }
 
     return nil;

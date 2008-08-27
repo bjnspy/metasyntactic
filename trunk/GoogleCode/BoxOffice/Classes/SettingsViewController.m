@@ -146,7 +146,7 @@
         return nil;
     }
 
-    return [postalElement text];
+    return postalElement.text;
 }
 
 
@@ -158,7 +158,7 @@
 
     XmlElement* geodataElement = [Utilities downloadXml:urlString];
     XmlElement* postalElement = [geodataElement element:@"postal"];
-    return [postalElement text];
+    return postalElement.text;
 }
 
 
