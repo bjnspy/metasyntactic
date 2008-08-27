@@ -18,7 +18,7 @@
 
 @interface UpcomingMoviesViewController : AbstractMovieListViewController {
 }
- 
+
 - (id) initWithNavigationController:(UpcomingMoviesNavigationController*) navigationController;
 
 @end

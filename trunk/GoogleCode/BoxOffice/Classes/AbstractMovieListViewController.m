@@ -41,7 +41,7 @@
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.alphabeticSectionTitles = nil;
-    
+
     [super dealloc];
 }
 
@@ -104,7 +104,7 @@
 - (void) removeUnusedSectionTitles {
     for (NSInteger i = sectionTitles.count - 1; i >= 0; --i) {
         NSString* title = [sectionTitles objectAtIndex:i];
-        
+
         if ([[sectionTitleToContentsMap objectsForKey:title] count] == 0) {
             [sectionTitles removeObjectAtIndex:i];
         }
@@ -114,13 +114,13 @@
 
 - (void) sortMoviesByTitle {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
-    
+
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
-    
+
     for (Movie* movie in self.sortedMovies) {
         unichar firstChar = [movie.displayTitle characterAtIndex:0];
         firstChar = toupper(firstChar);
-        
+
         if (firstChar >= 'A' && firstChar <= 'Z') {
             NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
             [self.sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
@@ -128,7 +128,7 @@
             [self.sectionTitleToContentsMap addObject:movie forKey:@"#"];
         }
     }
-    
+
     [self removeUnusedSectionTitles];
 }
 
@@ -140,13 +140,13 @@
 
 - (void) sortMoviesByReleaseDate {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:self.sortByReleaseDateFunction context:self.model];
-    
+
     NSDateFormatter* formatter = [[[NSDateFormatter alloc] init] autorelease];
     [formatter setDateStyle:kCFDateFormatterMediumStyle];
     [formatter setTimeStyle:kCFDateFormatterNoStyle];
-    
+
     NSDate* today = [DateUtilities today];
-    
+
     for (Movie* movie in self.sortedMovies) {
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
         if (movie.releaseDate != nil) {
@@ -156,14 +156,14 @@
                 title = [DateUtilities timeSinceNow:movie.releaseDate];
             }
         }
-        
+
         [self.sectionTitleToContentsMap addObject:movie forKey:title];
-        
+
         if (![self.sectionTitles containsObject:title]) {
             [self.sectionTitles addObject:title];
         }
     }
-    
+
     for (NSString* key in [self.sectionTitleToContentsMap allKeys]) {
         NSMutableArray* values = [self.sectionTitleToContentsMap mutableObjectsForKey:key];
         [values sortUsingFunction:compareMoviesByScore context:self.model];
@@ -174,7 +174,7 @@
 - (void) sortMovies {
     self.sectionTitles = [NSMutableArray array];
     self.sectionTitleToContentsMap = [MultiDictionary dictionary];
-    
+
     if (self.sortingByTitle) {
         [self sortMoviesByTitle];
     } else if (self.sortingByReleaseDate) {
@@ -182,7 +182,7 @@
     } else if (self.sortingByScore) {
         [self sortMoviesByScore];
     }
-    
+
     if (sectionTitles.count == 0) {
         self.sectionTitles = [NSArray arrayWithObject:[self.model noLocationInformationFound]];
     }
@@ -192,27 +192,27 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
-        
+
         self.sortedMovies = [NSArray array];
-        
+
         [self setupSegmentedControl];
-        
+
         self.alphabeticSectionTitles =
         [NSArray arrayWithObjects:
          @"#", @"A", @"B", @"C", @"D", @"E", @"F", @"G", @"H",
          @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
          @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
     }
-    
+
     return self;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-    
+
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
+
     [self refresh];
 }
 
@@ -238,13 +238,13 @@
     } else if (self.sortingByReleaseDate) {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     }
-    
+
     static NSString* reuseIdentifier = @"AbstractMovieListCellIdentifier";
     id cell = [tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [self createCell:reuseIdentifier];
     }
-    
+
     [cell setMovie:movie];
     return cell;
 }
@@ -272,7 +272,7 @@
     } else {
         movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     }
-    
+
     [self.navigationController pushMovieDetails:movie animated:YES];
 }
 
@@ -318,7 +318,7 @@
         UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         return self.alphabeticSectionTitles;
     }
-    
+
     return nil;
 }
 
@@ -329,16 +329,16 @@
     if (index == 0) {
         return index;
     }
-    
+
     for (unichar c = [title characterAtIndex:0]; c >= 'A'; c--) {
         NSString* s = [NSString stringWithFormat:@"%c", c];
-        
+
         NSInteger result = [self.sectionTitles indexOfObject:s];
         if (result != NSNotFound) {
             return result;
         }
     }
-    
+
     return 0;
 }
 

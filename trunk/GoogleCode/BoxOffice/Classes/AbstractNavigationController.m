@@ -126,7 +126,7 @@
                                                                                   theater:theater
                                                                                     movie:movie
                                                                                     title:title] autorelease];
-    
+
     [self pushViewController:viewController animated:animated];
 }
 

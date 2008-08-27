@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "BoxOfficeModel.h"
+#import "ImageCache.h"
 #import "Movie.h"
 
 @implementation UpcomingMovieCell
@@ -46,13 +47,13 @@
                model:(BoxOfficeModel*) model_ {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
-        
+
         self.titleLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, 0, 20)] autorelease];
         titleLabel.font = [UIFont boldSystemFontOfSize:18];
         titleLabel.adjustsFontSizeToFitWidth = YES;
         titleLabel.minimumFontSize = 14;
         titleLabel.textColor = [UIColor blackColor];
-        
+
         self.directorLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 25, 0, 14)] autorelease];
         directorLabel.font = [UIFont systemFontOfSize:12];
         directorLabel.textColor = [UIColor grayColor];
@@ -61,12 +62,12 @@
         castLabel.font = [UIFont systemFontOfSize:12];
         castLabel.textColor = [UIColor grayColor];
         castLabel.numberOfLines = 0;
-        
+
         self.ratingsLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 80, 0, 14)] autorelease];
         ratingsLabel.font = [UIFont systemFontOfSize:12];
         ratingsLabel.textColor = [UIColor grayColor];
-        
-        self.imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ImageNotAvailable.png"]] autorelease];
+
+        self.imageView = [[[UIImageView alloc] initWithImage:[ImageCache imageNotAvailable]] autorelease];
 
         [self.contentView addSubview:titleLabel];
         [self.contentView addSubview:directorLabel];
@@ -74,21 +75,21 @@
         [self.contentView addSubview:ratingsLabel];
         [self.contentView addSubview:imageView];
     }
-    
+
     return self;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     CGRect imageFrame = imageView.frame;
     if (imageFrame.size.height >= 100) {
         imageFrame.size.width *= 99.0 / imageFrame.size.height;
         imageFrame.size.height = 99.0;
     }
     imageView.frame = imageFrame;
-    
+
     for (UILabel* label in [NSArray arrayWithObjects:self.titleLabel, self.directorLabel, self.castLabel, self.ratingsLabel, nil]) {
         CGRect frame = label.frame;
         frame.origin.x = (int)(imageFrame.size.width + 7);
@@ -105,7 +106,7 @@
     self.ratingsLabel.text = movie.ratingAndRuntimeString;
     UIImage* image = [self.model posterForMovie:movie];
     if (image == nil) {
-        imageView.image = [UIImage imageNamed:@"ImageNotAvailable.png"];
+        imageView.image = [ImageCache imageNotAvailable];
     } else {
         imageView.image = image;
     }
@@ -115,7 +116,7 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-    
+
     if (selected) {
         titleLabel.textColor = [UIColor whiteColor];
         directorLabel.textColor = [UIColor whiteColor];

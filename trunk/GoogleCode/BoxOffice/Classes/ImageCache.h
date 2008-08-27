@@ -30,4 +30,6 @@
 + (UIImage*) greenRatingImage;
 + (UIImage*) unknownRatingImage;
 
++ (UIImage*) imageNotAvailable;
+
 @end

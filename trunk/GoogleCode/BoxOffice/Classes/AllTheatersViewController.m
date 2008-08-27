@@ -275,7 +275,7 @@
 
     TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
-        cell = [[[TheaterNameCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame 
+        cell = [[[TheaterNameCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                        reuseIdentifier:reuseIdentifier
                                                  model:self.model] autorelease];
     }

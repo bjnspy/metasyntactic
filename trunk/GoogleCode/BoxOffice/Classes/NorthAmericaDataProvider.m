@@ -145,7 +145,7 @@
     if (element == nil) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* cast = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         [cast addObject:child.text];
@@ -166,13 +166,13 @@
         NSString* synopsis = [movieElement element:@"synopsis"].text;
         NSArray* genres = [[movieElement element:@"genre"].text componentsSeparatedByString:@", "];
         NSArray* cast = [self processCast:[moviesElement element:@"cast"]];
-        
+
         NSString* releaseDateText = [[movieElement element:@"releasedate"] text];
         NSDate* releaseDate = nil;
         if (releaseDateText != nil) {
             releaseDate = [DateUtilities dateWithNaturalLanguageString:releaseDateText];
         }
-        
+
 
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
