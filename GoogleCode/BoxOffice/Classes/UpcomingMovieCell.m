@@ -103,7 +103,13 @@
     self.titleLabel.text = movie.displayTitle;
     self.directorLabel.text = [NSString stringWithFormat:NSLocalizedString(@"Directed by: %@", nil), movie.director];
     self.castLabel.text = [movie.cast componentsJoinedByString:@", "];
-    self.ratingsLabel.text = movie.ratingAndRuntimeString;
+    
+    if (movie.isUnrated) {
+        self.ratingsLabel.text = @"";
+    } else {
+        self.ratingsLabel.text = movie.ratingAndRuntimeString;
+    }
+    
     UIImage* image = [self.model posterForMovie:movie];
     if (image == nil) {
         imageView.image = [ImageCache imageNotAvailable];
