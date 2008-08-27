@@ -7,6 +7,7 @@ import LookupMovieReviews
 import LookupPosterListings
 import LookupTheaterListings
 import LookupTrailerListings
+import LookupUpcomingListings
 import CacheStatistics
 import DeleteLocation
 
@@ -25,6 +26,7 @@ def main():
       ('/LookupPosterListings', LookupPosterListings.LookupPosterListingsHandler),
       ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler),
       ('/LookupTrailerListings', LookupTrailerListings.LookupTrailerListingsHandler),
+      ('/LookupUpcomingListings', LookupUpcomingListings.LookupUpcomingListingsHandler),
       ('/CacheStatistics', CacheStatistics.CacheStatisticsHandler)
       ],
       debug=True)
