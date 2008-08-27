@@ -79,6 +79,7 @@
 @class TrailerCache;
 @class UnitedKingdomDataProvider;
 @class UpcomingCache;
+@class UpcomingMovieCell;
 @class UpcomingMoviesNavigationController;
 @class UpcomingMoviesViewController;
 @class Utilities;

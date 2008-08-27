@@ -56,6 +56,8 @@
 		74737BE70E2D8BA300C37E4B /* SettingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74737BE60E2D8BA300C37E4B /* SettingCell.m */; };
 		7474FE8E0E63594B00BAA43D /* ApplePosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */; };
 		7479B5D40E402E21003B12C1 /* MetacriticLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7479B5D30E402E21003B12C1 /* MetacriticLogo.png */; };
+		7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 7479D8350E65255F00D91649 /* UpcomingMovieCell.m */; };
+		7479D9270E653FD100D91649 /* Filled Star - Large.png in Resources */ = {isa = PBXBuildFile; fileRef = 7479D9260E653FD100D91649 /* Filled Star - Large.png */; };
 		747A9FB20E2AFBDD000AE1D9 /* DateUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */; };
 		748217D70E2163760054759E /* ExtraMovieInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 748217D60E2163760054759E /* ExtraMovieInformation.m */; };
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
@@ -240,6 +242,9 @@
 		7474FE8C0E63594A00BAA43D /* ApplePosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplePosterDownloader.h; sourceTree = "<group>"; };
 		7474FE8D0E63594B00BAA43D /* ApplePosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplePosterDownloader.m; sourceTree = "<group>"; };
 		7479B5D30E402E21003B12C1 /* MetacriticLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = MetacriticLogo.png; path = Resources/MetacriticLogo.png; sourceTree = "<group>"; };
+		7479D8340E65255F00D91649 /* UpcomingMovieCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMovieCell.h; sourceTree = "<group>"; };
+		7479D8350E65255F00D91649 /* UpcomingMovieCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMovieCell.m; sourceTree = "<group>"; };
+		7479D9260E653FD100D91649 /* Filled Star - Large.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Filled Star - Large.png"; path = "Resources/Filled Star - Large.png"; sourceTree = "<group>"; };
 		747A9FB00E2AFBDD000AE1D9 /* DateUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DateUtilities.h; sourceTree = "<group>"; };
 		747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DateUtilities.m; sourceTree = "<group>"; };
 		748217D50E2163760054759E /* ExtraMovieInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraMovieInformation.h; sourceTree = "<group>"; };
@@ -436,6 +441,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				7479D9260E653FD100D91649 /* Filled Star - Large.png */,
 				74CDF0BB0E64A026005699E9 /* Upcoming.png */,
 				740AFF750E54EAB0004EC5EE /* Numbers.png */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
@@ -590,6 +596,8 @@
 				745E203B0E58858A00105751 /* AutoResizingCell.m */,
 				74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */,
 				743394100E61E52000D285F0 /* MovieOverviewCell.m */,
+				7479D8340E65255F00D91649 /* UpcomingMovieCell.h */,
+				7479D8350E65255F00D91649 /* UpcomingMovieCell.m */,
 			);
 			name = TableViewCells;
 			sourceTree = "<group>";
@@ -849,6 +857,7 @@
 				740224550E53F323006C58A2 /* Localizable.strings in Resources */,
 				740AFF760E54EAB0004EC5EE /* Numbers.png in Resources */,
 				74CDF0BC0E64A026005699E9 /* Upcoming.png in Resources */,
+				7479D9270E653FD100D91649 /* Filled Star - Large.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -934,6 +943,7 @@
 				74A863ED0E64F22A003A2249 /* AbstractMovieListViewController.m in Sources */,
 				74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */,
 				74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */,
+				7479D8360E65255F00D91649 /* UpcomingMovieCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

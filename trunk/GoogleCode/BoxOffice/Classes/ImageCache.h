@@ -23,6 +23,7 @@
 + (UIImage*) rottenFullImage;
 + (UIImage*) emptyStarImage;
 + (UIImage*) filledStarImage;
++ (UIImage*) largeFilledStarImage;
 
 + (UIImage*) redRatingImage;
 + (UIImage*) yellowRatingImage;

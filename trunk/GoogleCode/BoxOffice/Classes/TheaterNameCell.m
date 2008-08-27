@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "BoxOfficeModel.h"
+#import "ImageCache.h"
 #import "Theater.h"
 
 @implementation TheaterNameCell
@@ -41,13 +42,13 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
 
-        self.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, 0, 20)] autorelease];
+        self.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(38, 5, 0, 20)] autorelease];
         nameLabel.font = [UIFont boldSystemFontOfSize:18];
         nameLabel.adjustsFontSizeToFitWidth = YES;
         nameLabel.minimumFontSize = 14;
         nameLabel.textColor = [UIColor blackColor];
         
-        self.addressLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 25, 0, 14)] autorelease];
+        self.addressLabel = [[[UILabel alloc] initWithFrame:CGRectMake(38, 25, 0, 14)] autorelease];
         addressLabel.font = [UIFont systemFontOfSize:12];
         addressLabel.textColor = [UIColor grayColor];
         
@@ -72,11 +73,12 @@
 
 - (void) setTheater:(Theater*) theater {
     if ([self.model isFavoriteTheater:theater]) {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], theater.name];
+        self.image = [ImageCache largeFilledStarImage];
     } else {
-        self.nameLabel.text = theater.name;
+        self.image = nil;
     }
-
+    
+    self.nameLabel.text = theater.name;
     self.addressLabel.text = [self.model simpleAddressForTheater:theater];
 }
 

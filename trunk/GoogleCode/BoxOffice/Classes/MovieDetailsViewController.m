@@ -193,7 +193,7 @@
     rows += (reviewsArray.count ? 1 : 0);
 
     // email listings
-    rows++;
+    rows += (theatersArray.count ? 1 : 0);
 
     return rows;
 }
