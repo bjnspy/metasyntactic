@@ -179,6 +179,19 @@
 }
 
 
++ (id) readObject:(NSString*) file {
+    NSData* data = [NSData dataWithContentsOfFile:file];
+    if (data == nil) {
+        return nil;
+    }
+    
+    return [NSPropertyListSerialization propertyListFromData:data
+                                            mutabilityOption:NSPropertyListImmutable 
+                                                      format:NULL 
+                                            errorDescription:NULL];
+}
+
+
 + (NSString*)                      string:(NSString*) string
       byAddingPercentEscapesUsingEncoding:(NSStringEncoding) encoding {
     string = [string stringByAddingPercentEscapesUsingEncoding:encoding];
