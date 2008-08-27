@@ -235,15 +235,20 @@
                  studio:(NSString*) studio
                   title:(NSString*) title {
     NSString* synopsisFile = [self synopsisFile:movie];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:synopsisFile]) {
-        return;
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:synopsisFile
+                                                                               error:NULL] objectForKey:NSFileModificationDate];
+
+    if (lastLookupDate != nil) {
+        if (ABS([lastLookupDate timeIntervalSinceNow]) < (7 * 24 * 60 * 60)) {
+            return;
+        }
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@", [Application host], studio, title];
     NSString* synopsis = [Utilities stringWithContentsOfAddress:url];
 
     if (![Utilities isNilOrEmpty:synopsis]) {
-        [Utilities writeObject:[NSArray arrayWithObject:synopsis] toFile:synopsisFile];
+        [Utilities writeObject:synopsis toFile:synopsisFile];
     }
 }
 
@@ -252,8 +257,14 @@
                  studio:(NSString*) studio
                   title:(NSString*) title {
     NSString* trailersFile = [self trailersFile:movie];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:trailersFile]) {
-        return;
+    
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:trailersFile
+                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    
+    if (lastLookupDate != nil) {
+        if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * 24 * 60 * 60)) {
+            return;
+        }
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, title];
@@ -346,12 +357,7 @@
 
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
-    NSArray* array = [NSArray arrayWithContentsOfFile:[self synopsisFile:movie]];
-    if (array == nil) {
-        return nil;
-    }
-
-    return [array objectAtIndex:0];
+    return [Utilities readObject:[self synopsisFile:movie]];
 }
 
 
