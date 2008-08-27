@@ -16,14 +16,16 @@
 
 @interface BoxOfficeController : NSObject {
     BoxOfficeAppDelegate* appDelegate;
-
-    NSLock* ratingsLookupLock;
+    
     NSLock* dataProviderLock;
+    NSLock* ratingsLookupLock;
+    NSLock* upcomingMoviesLookupLock;
 }
 
 @property (assign) BoxOfficeAppDelegate* appDelegate;
-@property (retain) NSLock* ratingsLookupLock;
 @property (retain) NSLock* dataProviderLock;
+@property (retain) NSLock* ratingsLookupLock;
+@property (retain) NSLock* upcomingMoviesLookupLock;
 
 - (BoxOfficeModel*) model;
 

@@ -43,8 +43,8 @@
 
 @implementation BoxOfficeModel
 
-static NSString* currentVersion = @"1.5.0";
-static NSString* persistenceVersion = @"5";
+static NSString* currentVersion = @"1.5.1";
+static NSString* persistenceVersion = @"6";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -129,7 +129,7 @@ static NSString* persistenceVersion = @"5";
 
 
 - (void) updateUpcomingCache {
-    [self.upcomingCache update];
+    [self.upcomingCache updateMovieDetails];
 }
 
 
@@ -486,7 +486,7 @@ static NSString* persistenceVersion = @"5";
 - (void) saveFavoriteTheaters {
     NSMutableArray* encodedTheaters = [NSMutableArray array];
     for (Theater* theater in self.favoriteTheatersData) {
-        [encodedTheaters addObject:[theater dictionary]];
+        [encodedTheaters addObject:theater.dictionary];
     }
 
     [[NSUserDefaults standardUserDefaults] setObject:encodedTheaters forKey:[BoxOfficeModel FAVORITE_THEATERS]];
@@ -528,7 +528,12 @@ static NSString* persistenceVersion = @"5";
 
 
 - (UIImage*) posterForMovie:(Movie*) movie {
-    return [self.posterCache posterForMovie:movie];
+    UIImage* image = [self.posterCache posterForMovie:movie];
+    if (image != nil) {
+        return image;
+    }
+    
+    return [self.upcomingCache posterForMovie:movie];
 }
 
 
@@ -746,13 +751,19 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
-    if (![Utilities isNilOrEmpty:movie.synopsis]) {
-        return movie.synopsis;
+    NSString* synopsis = movie.synopsis;
+    if (![Utilities isNilOrEmpty:synopsis]) {
+        return synopsis;
     }
 
-    ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
-    if (extraInfo != nil && ![Utilities isNilOrEmpty:extraInfo.synopsis]) {
-        return extraInfo.synopsis;
+    synopsis = [self extraInformationForMovie:movie].synopsis;
+    if (![Utilities isNilOrEmpty:synopsis]) {
+        return synopsis;
+    }
+
+    synopsis = [self.upcomingCache synopsisForMovie:movie];
+    if (![Utilities isNilOrEmpty:synopsis]) {
+        return synopsis;
     }
 
     return NSLocalizedString(@"No synopsis available.", nil);

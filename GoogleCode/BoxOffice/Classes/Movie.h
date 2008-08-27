@@ -23,6 +23,9 @@
     NSString* poster;
     NSString* synopsis;
     NSString* studio;
+    NSString* director;
+    NSArray* cast;
+    NSArray* genres;
 
     NSString* displayTitle;
 }
@@ -36,6 +39,9 @@
 @property (copy) NSString* synopsis;
 @property (copy) NSString* displayTitle;
 @property (copy) NSString* studio;
+@property (copy) NSString* director;
+@property (retain) NSArray* cast;
+@property (retain) NSArray* genres;
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary;
 + (Movie*) movieWithIdentifier:(NSString*) identifier
@@ -45,7 +51,10 @@
                    releaseDate:(NSDate*) releaseDate
                         poster:(NSString*) poster
                       synopsis:(NSString*) synopsis
-                        studio:(NSString*) studio;
+                        studio:(NSString*) studio
+                      director:(NSString*) director
+                          cast:(NSArray*) cast
+                        genres:(NSArray*) genres;
 
 - (NSDictionary*) dictionary;
 - (NSString*) ratingAndRuntimeString;

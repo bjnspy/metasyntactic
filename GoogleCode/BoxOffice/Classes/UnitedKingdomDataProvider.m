@@ -52,7 +52,10 @@
                           releaseDate:nil
                                poster:@""
                              synopsis:synopsis
-                               studio:@""];
+                               studio:@""
+                             director:@""
+                                 cast:[NSArray array] 
+                               genres:[NSArray array]];
 }
 
 

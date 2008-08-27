@@ -70,7 +70,7 @@
             Performance* performance = [Performance performanceWithIdentifier:showId
                                                                          time:time];
 
-            [performances addObject:[performance dictionary]];
+            [performances addObject:performance.dictionary];
         }
 
         [dictionary setObject:performances forKey:movieId];
@@ -111,10 +111,6 @@
 
     XmlElement* moviesElement = [theaterElement element:@"movies"];
     NSDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement];
-
-    if (movieToShowtimesMap.count == 0) {
-        NSLog(@"%@ has no movies", name);
-    }
 
     [performances setObject:movieToShowtimesMap forKey:identifier];
     [theaters addObject:[Theater theaterWithIdentifier:identifier
@@ -169,7 +165,10 @@
                                       releaseDate:releaseDate
                                            poster:poster
                                          synopsis:synopsis
-                                           studio:@""];
+                                           studio:@""
+                                         director:@""
+                                             cast:[NSArray array]
+                                           genres:[NSArray array]];
 
         [array addObject:movie];
     }

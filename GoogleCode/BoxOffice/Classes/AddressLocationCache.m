@@ -119,7 +119,7 @@
         return;
     }
 
-    [Utilities writeObject:[location dictionary] toFile:[self locationFile:address]];
+    [Utilities writeObject:location.dictionary toFile:[self locationFile:address]];
     [self performSelectorOnMainThread:@selector(invalidateCachedData:) withObject:nil waitUntilDone:NO];
 }
 

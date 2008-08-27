@@ -22,18 +22,21 @@
 #import "BoxOfficeModel.h"
 #import "NorthAmericaDataProvider.h"
 #import "RatingsCache.h"
+#import "UpcomingCache.h"
 #import "Utilities.h"
 
 @implementation BoxOfficeController
 
 @synthesize appDelegate;
-@synthesize ratingsLookupLock;
 @synthesize dataProviderLock;
+@synthesize ratingsLookupLock;
+@synthesize upcomingMoviesLookupLock;
 
 - (void) dealloc {
     self.appDelegate = nil;
-    self.ratingsLookupLock = nil;
     self.dataProviderLock = nil;
+    self.ratingsLookupLock = nil;
+    self.upcomingMoviesLookupLock = nil;
 
     [super dealloc];
 }
@@ -73,44 +76,58 @@
 }
 
 
+- (void) spawnDataProviderLookupThread {
+    if ([Utilities isNilOrEmpty:self.model.postalCode]) {
+        return;
+    }
+    
+    if ([self tooSoon:[[self.model currentDataProvider] lastLookupDate]]) {
+        return;
+    }
+    
+    [self onBackgroundTaskStarted];
+    [self performSelectorInBackground:@selector(dataProviderLookupBackgroundThreadEntryPoint) withObject:nil];
+}
+
+
 - (void) spawnRatingsLookupThread {
     NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application ratingsFile:self.model.currentRatingsProvider]
                                                                                error:NULL] objectForKey:NSFileModificationDate];
     if ([self tooSoon:lastLookupDate]) {
         return;
     }
-
+    
     [self onBackgroundTaskStarted];
-    [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint:) withObject:nil];
+    [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint) withObject:nil];
 }
 
 
-- (void) spawnDataProviderLookupThread {
-    if ([Utilities isNilOrEmpty:self.model.postalCode]) {
-        return;
-    }
+- (void) spawnUpcomingMoviesLookupThread {
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application upcomingMoviesFile]
+                                                                               error:NULL] objectForKey:NSFileModificationDate];
 
-    if ([self tooSoon:[[self.model currentDataProvider] lastLookupDate]]) {
+    if ([self tooSoon:lastLookupDate]) {
         return;
     }
 
     [self onBackgroundTaskStarted];
-    [self performSelectorInBackground:@selector(dataProviderLookupBackgroundThreadEntryPoint:) withObject:nil];
+    [self performSelectorInBackground:@selector(upcomingMoviesLookupBackgroundThreadEntryPoint) withObject:nil];
 }
 
 
 - (void) spawnBackgroundThreads {
     [self spawnRatingsLookupThread];
     [self spawnDataProviderLookupThread];
-    //[self spawnUpcomingLookupThread];
+    [self spawnUpcomingMoviesLookupThread];
 }
 
 
 - (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate_ {
     if (self = [super init]) {
         self.appDelegate = appDelegate_;
-        self.ratingsLookupLock = [[[NSLock alloc] init] autorelease];
         self.dataProviderLock = [[[NSLock alloc] init] autorelease];
+        self.ratingsLookupLock = [[[NSLock alloc] init] autorelease];
+        self.upcomingMoviesLookupLock = [[[NSLock alloc] init] autorelease];
 
         [self spawnBackgroundThreads];
     }
@@ -129,7 +146,7 @@
 }
 
 
-- (void) ratingsLookupBackgroundThreadEntryPoint:(id) arguments {
+- (void) ratingsLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [self.ratingsLookupLock lock];
     {
@@ -137,6 +154,18 @@
         [self performSelectorOnMainThread:@selector(setRatings:) withObject:ratings waitUntilDone:NO];
     }
     [self.ratingsLookupLock unlock];
+    [autoreleasePool release];
+}
+
+
+- (void) upcomingMoviesLookupBackgroundThreadEntryPoint {
+    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    [self.upcomingMoviesLookupLock lock];
+    {
+        [self.model.upcomingCache updateMoviesList];
+        [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded) withObject:nil waitUntilDone:NO];
+    }
+    [self.upcomingMoviesLookupLock unlock];
     [autoreleasePool release];
 }
 
@@ -156,7 +185,7 @@
 }
 
 
-- (void) dataProviderLookupBackgroundThreadEntryPoint:(id) anObject {
+- (void) dataProviderLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [self.dataProviderLock lock];
     {

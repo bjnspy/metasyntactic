@@ -16,14 +16,20 @@
 
 @interface UpcomingCache : NSObject {
     NSLock* gate;
+    NSDictionary* moviesAndHash;
 }
 
 @property (retain) NSLock* gate;
+@property (retain) NSDictionary* moviesAndHash;
 
 + (UpcomingCache*) cache;
 
-- (void) update;
+- (void) updateMoviesList;
+- (void) updateMovieDetails;
 
 - (NSArray*) upcomingMovies;
+
+- (UIImage*) posterForMovie:(Movie*) movie;
+- (NSString*) synopsisForMovie:(Movie*) movie;
 
 @end

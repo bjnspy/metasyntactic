@@ -122,7 +122,7 @@
 - (void) saveMovie:(NSString*) title reviews:(NSArray*) reviews hash:(NSString*) hash ratingsProvider:(NSInteger) ratingsProvider {
     NSMutableArray* encodedReviews = [NSMutableArray array];
     for (Review* review in reviews) {
-        [encodedReviews addObject:[review dictionary]];
+        [encodedReviews addObject:review.dictionary];
     }
 
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
