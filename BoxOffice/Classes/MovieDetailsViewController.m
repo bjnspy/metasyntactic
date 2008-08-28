@@ -171,16 +171,17 @@
     // theaters
     sections += theatersArray.count;
 
+    // show hidden theaters
+    if (hiddenTheaterCount > 0) {
+        sections += 1;
+    }
+    
     return sections;
 }
 
 
 - (NSInteger) numberOfRowsInHeaderSection {
-    if (hiddenTheaterCount > 0) {
-        return 3;
-    } else {
-        return 2;
-    }
+    return 2;
 }
 
 
@@ -198,8 +199,19 @@
 }
 
 
-- (NSInteger) tableView:(UITableView*) tableView
-  numberOfRowsInSection:(NSInteger) section {
+- (NSInteger) getTheaterIndex:(NSInteger) section {
+    return section - 2;
+}
+
+
+- (NSInteger) isTheaterSection:(NSInteger) section {
+    NSInteger theaterIndex = [self getTheaterIndex:section];
+    return theaterIndex >= 0 && theaterIndex < theatersArray.count;
+}
+
+
+- (NSInteger)     tableView:(UITableView*) tableView
+      numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return [self numberOfRowsInHeaderSection];
     }
@@ -208,8 +220,12 @@
         return [self numberOfRowsInActionSection];
     }
 
-    // theater section
-    return 2;
+    if ([self isTheaterSection:section]) {
+        return 2;
+    }
+    
+    // show hidden theaters
+    return 1;
 }
 
 
@@ -224,11 +240,6 @@
 }
 
 
-- (NSInteger) getTheaterIndex:(NSInteger) section {
-    return section - 2;
-}
-
-
 - (CGFloat)         tableView:(UITableView*) tableView
       heightForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
@@ -239,40 +250,31 @@
         return tableView.rowHeight;
     }
 
-    // theater section
-    if (indexPath.row == 0) {
-        return tableView.rowHeight;
-    } else {
-        return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
-                                        useSmallFonts:[self.model useSmallFonts]] + 18;
+    if ([self isTheaterSection:indexPath.section]) {
+        // theater section
+        if (indexPath.row == 0) {
+            return tableView.rowHeight;
+        } else {
+            return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
+                                            useSmallFonts:[self.model useSmallFonts]] + 18;
+        }
     }
+    
+    // show hidden theaters
+    return tableView.rowHeight;
 }
 
 
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell cellWithMovie:movie model:self.model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
-    } else if (row == 1) {
+    } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
         cell.textAlignment = UITextAlignmentCenter;
         cell.text = self.movie.ratingAndRuntimeString;
         cell.font = [UIFont boldSystemFontOfSize:14];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        return cell;
-    } else {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        cell.textAlignment = UITextAlignmentCenter;
-
-        if (self.hiddenTheaterCount == 1) {
-            cell.text = NSLocalizedString(@"Show 1 hidden theater", nil);
-        } else {
-            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", nil), self.hiddenTheaterCount];
-        }
-
-        cell.textColor = [ColorCache commandColor];
-        cell.font = [UIFont boldSystemFontOfSize:14];
 
         return cell;
     }
@@ -308,6 +310,54 @@
 }
 
 
+- (UITableViewCell*) cellForTheaterSection:(NSInteger) theaterIndex
+                                       row:(NSInteger) row {
+    if (row == 0) {
+        static NSString* reuseIdentifier = @"MovieDetailsTheaterCellIdentifier";
+        id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[TheaterNameCell alloc] initWithFrame:CGRectZero
+                                           reuseIdentifier:reuseIdentifier
+                                                     model:self.model] autorelease];
+        }
+        
+        Theater* theater = [self.theatersArray objectAtIndex:theaterIndex];
+        [cell setTheater:theater];
+        
+        return cell;
+    } else {
+        static NSString* reuseIdentifier = @"MovieDetailsShowtimesCellIdentifier";
+        id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        if (cell == nil) {
+            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                              reuseIdentifier:reuseIdentifier] autorelease];
+        }
+        
+        [cell setShowtimes:[self.showtimesArray objectAtIndex:theaterIndex]
+             useSmallFonts:self.model.useSmallFonts];
+        
+        return cell;
+    }
+}
+
+
+- (UITableViewCell*) showHiddenTheatersCell {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+    cell.textAlignment = UITextAlignmentCenter;
+    
+    if (self.hiddenTheaterCount == 1) {
+        cell.text = NSLocalizedString(@"Show 1 hidden theater", nil);
+    } else {
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", nil), self.hiddenTheaterCount];
+    }
+    
+    cell.textColor = [ColorCache commandColor];
+    cell.font = [UIFont boldSystemFontOfSize:14];
+    
+    return cell;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
@@ -317,43 +367,22 @@
     if (indexPath.section == 1) {
         return [self cellForActionRow:indexPath.row];
     }
-
-    // theater section
-    if (indexPath.row == 0) {
-        static NSString* reuseIdentifier = @"MovieDetailsTheaterCellIdentifier";
-        TheaterNameCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        if (cell == nil) {
-            cell = [[[TheaterNameCell alloc] initWithFrame:CGRectZero
-                                           reuseIdentifier:reuseIdentifier
-                                                     model:self.model] autorelease];
-        }
-
-        Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
-        [cell setTheater:theater];
-
-        return cell;
-    } else {
-        static NSString* reuseIdentifier = @"MovieDetailsShowtimesCellIdentifier";
-        MovieShowtimesCell* cell = (id)[tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        if (cell == nil) {
-            cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                              reuseIdentifier:reuseIdentifier] autorelease];
-        }
-
-        [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
-             useSmallFonts:self.model.useSmallFonts];
-
-        return cell;
+    
+    if ([self isTheaterSection:indexPath.section]) {
+        // theater section
+        return [self cellForTheaterSection:[self getTheaterIndex:indexPath.section] row:indexPath.row];
     }
+    
+    return [self showHiddenTheatersCell];
 }
 
 
-- (void) didSelectHeaderRow:(NSInteger) row {
-    if (row == 2) {
-        filterTheatersByDistance = NO;
-        [self initializeData];
-        [self.tableView reloadData];
-    }
+- (void) didSelectShowHiddenTheaters {
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
+
+    filterTheatersByDistance = NO;
+    [self initializeData];
+    [self.tableView reloadData];
 }
 
 
@@ -435,21 +464,27 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        return [self didSelectHeaderRow:indexPath.row];
+        return;
     }
 
     if (indexPath.section == 1) {
-        return [self didSelectActionRow:indexPath.row];
+        [self didSelectActionRow:indexPath.row];
+        return;
     }
 
-    // theater section
-    Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
-
-    if (indexPath.row == 0) {
-        [self.navigationController pushTheaterDetails:theater animated:YES];
-    } else {
-        [self pushTicketsView:theater animated:YES];
+    if ([self isTheaterSection:indexPath.section]) {
+        // theater section
+        Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
+        
+        if (indexPath.row == 0) {
+            [self.navigationController pushTheaterDetails:theater animated:YES];
+        } else {
+            [self pushTicketsView:theater animated:YES];
+        }
+        return;
     }
+    
+    [self didSelectShowHiddenTheaters];
 }
 
 
@@ -465,13 +500,19 @@
         return UITableViewCellAccessoryNone;
     }
 
-    // theater section
-    return UITableViewCellAccessoryDisclosureIndicator;
+    if ([self isTheaterSection:section]) {
+        // theater section
+        return UITableViewCellAccessoryDisclosureIndicator;
+    }
+    
+    // show hidden theaters
+    return UITableViewCellAccessoryNone;
 }
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
     [self refresh];
 }
+
 
 @end
