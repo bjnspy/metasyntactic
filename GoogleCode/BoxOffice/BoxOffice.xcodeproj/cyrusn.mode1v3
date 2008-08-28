@@ -339,7 +339,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>79</integer>
+									<integer>90</integer>
 									<integer>73</integer>
 									<integer>46</integer>
 									<integer>1</integer>
@@ -347,7 +347,7 @@
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 1093}, {383, 713}}</string>
+							<string>{{0, 1133}, {383, 713}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -386,7 +386,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>TheaterNameCell.m</string>
+								<string>MovieOverviewCell.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -394,11 +394,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>TheaterNameCell.m</string>
+										<string>MovieOverviewCell.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>7408C1DF0E66534000C6031A</string>
+										<string>7408C1F70E66568400C6031A</string>
 										<key>history</key>
 										<array>
 											<string>74E42F570E60F999003234AB</string>
@@ -513,7 +513,6 @@
 											<string>7479D7D20E651DA700D91649</string>
 											<string>7479D7FA0E65209C00D91649</string>
 											<string>7479D7FB0E65209C00D91649</string>
-											<string>7479D7FC0E65209C00D91649</string>
 											<string>7479D84D0E6527E500D91649</string>
 											<string>7479D8500E6527E500D91649</string>
 											<string>7479D86D0E65283000D91649</string>
@@ -569,7 +568,6 @@
 											<string>7408C12D0E6647C100C6031A</string>
 											<string>7408C1430E664A5900C6031A</string>
 											<string>7408C1450E664A5900C6031A</string>
-											<string>7408C1460E664A5900C6031A</string>
 											<string>7408C15A0E664AB700C6031A</string>
 											<string>7408C1610E664B3500C6031A</string>
 											<string>7408C1950E664D9A00C6031A</string>
@@ -578,7 +576,9 @@
 											<string>7408C1D50E6652EA00C6031A</string>
 											<string>7408C1D60E6652EA00C6031A</string>
 											<string>7408C1D70E6652EA00C6031A</string>
-											<string>7408C1C80E66524D00C6031A</string>
+											<string>7408C1E50E6654BC00C6031A</string>
+											<string>7408C1F40E66568400C6031A</string>
+											<string>7408C1F50E66568400C6031A</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -732,6 +732,9 @@
 											<string>7408C1D80E6652EA00C6031A</string>
 											<string>7408C1D90E6652EA00C6031A</string>
 											<string>7408C1DA0E6652EA00C6031A</string>
+											<string>7408C1E70E6654BC00C6031A</string>
+											<string>7408C1E80E6654BC00C6031A</string>
+											<string>7408C1F60E66568400C6031A</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -910,7 +913,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>241587008.268121</real>
+	<real>241587844.03383201</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -925,7 +928,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>7408C1E00E66534000C6031A</string>
+		<string>7408C1F80E66568400C6031A</string>
 		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>7408C11C0E663D5D00C6031A</string>
 		<string>7408C11D0E663D5D00C6031A</string>
@@ -1167,8 +1170,6 @@
 							<key>Dock</key>
 							<array>
 								<dict>
-									<key>BecomeActive</key>
-									<true/>
 									<key>ContentConfiguration</key>
 									<dict>
 										<key>PBXProjectModuleGUID</key>
@@ -1195,6 +1196,8 @@
 							<string>418pt</string>
 						</dict>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>

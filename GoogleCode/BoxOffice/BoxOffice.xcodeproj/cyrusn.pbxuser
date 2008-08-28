@@ -287,6 +287,17 @@
 			7408C1DA0E6652EA00C6031A /* PBXTextBookmark */ = 7408C1DA0E6652EA00C6031A /* PBXTextBookmark */;
 			7408C1DB0E6652EA00C6031A /* PBXTextBookmark */ = 7408C1DB0E6652EA00C6031A /* PBXTextBookmark */;
 			7408C1DF0E66534000C6031A /* PBXTextBookmark */ = 7408C1DF0E66534000C6031A /* PBXTextBookmark */;
+			7408C1E50E6654BC00C6031A /* PBXTextBookmark */ = 7408C1E50E6654BC00C6031A /* PBXTextBookmark */;
+			7408C1E60E6654BC00C6031A /* PBXTextBookmark */ = 7408C1E60E6654BC00C6031A /* PBXTextBookmark */;
+			7408C1E70E6654BC00C6031A /* PBXTextBookmark */ = 7408C1E70E6654BC00C6031A /* PBXTextBookmark */;
+			7408C1E80E6654BC00C6031A /* PBXTextBookmark */ = 7408C1E80E6654BC00C6031A /* PBXTextBookmark */;
+			7408C1E90E6654BC00C6031A /* PBXTextBookmark */ = 7408C1E90E6654BC00C6031A /* PBXTextBookmark */;
+			7408C1F10E66556400C6031A /* PBXTextBookmark */ = 7408C1F10E66556400C6031A /* PBXTextBookmark */;
+			7408C1F20E66567F00C6031A /* PBXTextBookmark */ = 7408C1F20E66567F00C6031A /* PBXTextBookmark */;
+			7408C1F40E66568400C6031A /* PBXTextBookmark */ = 7408C1F40E66568400C6031A /* PBXTextBookmark */;
+			7408C1F50E66568400C6031A /* PBXTextBookmark */ = 7408C1F50E66568400C6031A /* PBXTextBookmark */;
+			7408C1F60E66568400C6031A /* PBXTextBookmark */ = 7408C1F60E66568400C6031A /* PBXTextBookmark */;
+			7408C1F70E66568400C6031A /* PBXTextBookmark */ = 7408C1F70E66568400C6031A /* PBXTextBookmark */;
 			7413779D0E63E43500404519 = 7413779D0E63E43500404519 /* PBXTextBookmark */;
 			741377C60E6478F300404519 = 741377C60E6478F300404519 /* PBXTextBookmark */;
 			741377C90E6478F300404519 = 741377C90E6478F300404519 /* PBXTextBookmark */;
@@ -1739,7 +1750,7 @@
 		fRef = 74088E670DCD36AE00954696 /* XmlDocument.m */;
 		name = "XmlDocument.m: 18";
 		rLen = 0;
-		rLoc = 788;
+		rLoc = 784;
 		rType = 0;
 		vrLen = 1115;
 		vrLoc = 0;
@@ -1749,7 +1760,7 @@
 		fRef = 74088E670DCD36AE00954696 /* XmlDocument.m */;
 		name = "XmlDocument.m: 18";
 		rLen = 0;
-		rLoc = 791;
+		rLoc = 787;
 		rType = 0;
 		vrLen = 1118;
 		vrLoc = 0;
@@ -1759,7 +1770,7 @@
 		fRef = 74088E670DCD36AE00954696 /* XmlDocument.m */;
 		name = "XmlDocument.m: 18";
 		rLen = 0;
-		rLoc = 788;
+		rLoc = 784;
 		rType = 0;
 		vrLen = 1115;
 		vrLoc = 0;
@@ -1798,7 +1809,7 @@
 		fRef = 74088E670DCD36AE00954696 /* XmlDocument.m */;
 		name = "XmlDocument.m: 18";
 		rLen = 0;
-		rLoc = 788;
+		rLoc = 784;
 		rType = 0;
 		vrLen = 1115;
 		vrLoc = 0;
@@ -1828,7 +1839,7 @@
 		fRef = 741377AF0E64765000404519 /* TheaterNameCell.h */;
 		name = "TheaterNameCell.h: 27";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1010;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 0;
@@ -1838,7 +1849,7 @@
 		fRef = 7408C1410E6649DA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 76";
 		rLen = 0;
-		rLoc = 2839;
+		rLoc = 2559;
 		rType = 0;
 		vrLen = 783;
 		vrLoc = 1863;
@@ -1848,7 +1859,7 @@
 		fRef = 74088E670DCD36AE00954696 /* XmlDocument.m */;
 		name = "XmlDocument.m: 18";
 		rLen = 0;
-		rLoc = 788;
+		rLoc = 784;
 		rType = 0;
 		vrLen = 1115;
 		vrLoc = 0;
@@ -1878,7 +1889,7 @@
 		fRef = 7408C1410E6649DA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 76";
 		rLen = 0;
-		rLoc = 2839;
+		rLoc = 2559;
 		rType = 0;
 		vrLen = 783;
 		vrLoc = 1863;
@@ -1888,7 +1899,7 @@
 		fRef = 741377AF0E64765000404519 /* TheaterNameCell.h */;
 		name = "TheaterNameCell.h: 27";
 		rLen = 0;
-		rLoc = 1073;
+		rLoc = 1010;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 0;
@@ -1898,7 +1909,7 @@
 		fRef = 7408C1410E6649DA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 63";
 		rLen = 0;
-		rLoc = 2403;
+		rLoc = 1969;
 		rType = 0;
 		vrLen = 1231;
 		vrLoc = 1106;
@@ -1928,9 +1939,9 @@
 		path = /Projects/metasyntactic/trunk/GoogleCode/BoxOffice/Classes/TheaterNameCell.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {735, 1442}}";
-			sepNavSelRange = "{1993, 0}";
-			sepNavVisRange = "{1160, 1320}";
+			sepNavIntBoundsRect = "{{0, 0}, {735, 1400}}";
+			sepNavSelRange = "{2568, 0}";
+			sepNavVisRange = "{1996, 1030}";
 		};
 	};
 	7408C15A0E664AB700C6031A /* PBXTextBookmark */ = {
@@ -1947,7 +1958,7 @@
 		isa = PBXTextBookmark;
 		fRef = 7408C1550E664AAA00C6031A /* TheaterNameCell.m */;
 		rLen = 1;
-		rLoc = 82;
+		rLoc = 73;
 		rType = 1;
 	};
 	7408C15C0E664AB700C6031A /* PBXTextBookmark */ = {
@@ -1955,7 +1966,7 @@
 		fRef = 7408C1410E6649DA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 35";
 		rLen = 0;
-		rLoc = 1130;
+		rLoc = 1081;
 		rType = 0;
 		vrLen = 904;
 		vrLoc = 293;
@@ -1975,7 +1986,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 84";
 		rLen = 0;
-		rLoc = 2839;
+		rLoc = 2559;
 		rType = 0;
 		vrLen = 873;
 		vrLoc = 2157;
@@ -2000,8 +2011,8 @@
 		isa = PBXTextBookmark;
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 60";
-		rLen = 7;
-		rLoc = 2156;
+		rLen = 0;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1395;
 		vrLoc = 1246;
@@ -2027,7 +2038,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 2003;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1346;
 		vrLoc = 1294;
@@ -2037,7 +2048,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 60";
 		rLen = 0;
-		rLoc = 2213;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1370;
 		vrLoc = 1372;
@@ -2047,7 +2058,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1368;
 		vrLoc = 1372;
@@ -2056,8 +2067,8 @@
 		isa = PBXTextBookmark;
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 60";
-		rLen = 4;
-		rLoc = 2193;
+		rLen = 0;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1350;
 		vrLoc = 1372;
@@ -2067,7 +2078,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 60";
 		rLen = 0;
-		rLoc = 2213;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 1372;
@@ -2087,7 +2098,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 1372;
@@ -2097,7 +2108,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 58";
 		rLen = 0;
-		rLoc = 2071;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 1372;
@@ -2107,7 +2118,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1993;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1351;
 		vrLoc = 1372;
@@ -2117,7 +2128,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 58";
 		rLen = 0;
-		rLoc = 2071;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1350;
 		vrLoc = 1372;
@@ -2136,8 +2147,8 @@
 		isa = PBXTextBookmark;
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
-		rLen = 7;
-		rLoc = 1952;
+		rLen = 0;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1350;
 		vrLoc = 1372;
@@ -2156,8 +2167,8 @@
 		isa = PBXTextBookmark;
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
-		rLen = 7;
-		rLoc = 1952;
+		rLen = 0;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1350;
 		vrLoc = 1372;
@@ -2167,7 +2178,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1993;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1349;
 		vrLoc = 1372;
@@ -2187,7 +2198,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 60";
 		rLen = 0;
-		rLoc = 2155;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 1372;
@@ -2206,8 +2217,8 @@
 		isa = PBXTextBookmark;
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
-		rLen = 7;
-		rLoc = 1952;
+		rLen = 0;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1373;
 		vrLoc = 1372;
@@ -2227,7 +2238,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 61";
 		rLen = 0;
-		rLoc = 2216;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1401;
 		vrLoc = 1372;
@@ -2237,7 +2248,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 61";
 		rLen = 0;
-		rLoc = 2216;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1400;
 		vrLoc = 1372;
@@ -2257,7 +2268,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 62";
 		rLen = 0;
-		rLoc = 2216;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1355;
 		vrLoc = 1372;
@@ -2277,7 +2288,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 62";
 		rLen = 0;
-		rLoc = 2216;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1372;
 		vrLoc = 1372;
@@ -2287,7 +2298,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 61";
 		rLen = 0;
-		rLoc = 2216;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1376;
 		vrLoc = 1372;
@@ -2297,7 +2308,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 61";
 		rLen = 0;
-		rLoc = 2216;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1484;
 		vrLoc = 1372;
@@ -2307,7 +2318,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 60";
 		rLen = 0;
-		rLoc = 2155;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1354;
 		vrLoc = 1372;
@@ -2317,7 +2328,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 58";
 		rLen = 0;
-		rLoc = 2071;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1462;
 		vrLoc = 1372;
@@ -2356,8 +2367,8 @@
 		isa = PBXTextBookmark;
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 84";
-		rLen = 6;
-		rLoc = 2791;
+		rLen = 0;
+		rLoc = 2559;
 		rType = 0;
 		vrLen = 978;
 		vrLoc = 2480;
@@ -2397,7 +2408,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 84";
 		rLen = 0;
-		rLoc = 2840;
+		rLoc = 2559;
 		rType = 0;
 		vrLen = 926;
 		vrLoc = 2424;
@@ -2407,7 +2418,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 1159;
@@ -2417,7 +2428,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 1159;
@@ -2427,7 +2438,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1324;
 		vrLoc = 1159;
@@ -2437,7 +2448,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 1159;
@@ -2447,7 +2458,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 1159;
@@ -2457,7 +2468,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 1159;
@@ -2477,7 +2488,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1996;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1323;
 		vrLoc = 1159;
@@ -2547,7 +2558,7 @@
 		fRef = 7479DB230E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 111";
 		rLen = 0;
-		rLoc = 4273;
+		rLoc = 4269;
 		rType = 0;
 		vrLen = 1203;
 		vrLoc = 4357;
@@ -2577,7 +2588,7 @@
 		fRef = 7479DB230E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 111";
 		rLen = 0;
-		rLoc = 4273;
+		rLoc = 4269;
 		rType = 0;
 		vrLen = 1203;
 		vrLoc = 4357;
@@ -2587,7 +2598,7 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1993;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1417;
 		vrLoc = 1160;
@@ -2597,10 +2608,120 @@
 		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 57";
 		rLen = 0;
-		rLoc = 1993;
+		rLoc = 1861;
 		rType = 0;
 		vrLen = 1320;
 		vrLoc = 1160;
+	};
+	7408C1E50E6654BC00C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741377AF0E64765000404519 /* TheaterNameCell.h */;
+		name = "TheaterNameCell.h: 25";
+		rLen = 0;
+		rLoc = 1010;
+		rType = 0;
+		vrLen = 1204;
+		vrLoc = 0;
+	};
+	7408C1E60E6654BC00C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
+		name = "TheaterNameCell.m: 57";
+		rLen = 0;
+		rLoc = 1861;
+		rType = 0;
+		vrLen = 1320;
+		vrLoc = 1160;
+	};
+	7408C1E70E6654BC00C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
+		name = "TheaterNameCell.m: 57";
+		rLen = 0;
+		rLoc = 1861;
+		rType = 0;
+		vrLen = 1320;
+		vrLoc = 1160;
+	};
+	7408C1E80E6654BC00C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 741377AF0E64765000404519 /* TheaterNameCell.h */;
+		name = "TheaterNameCell.h: 25";
+		rLen = 0;
+		rLoc = 1010;
+		rType = 0;
+		vrLen = 1204;
+		vrLoc = 0;
+	};
+	7408C1E90E6654BC00C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
+		name = "TheaterNameCell.m: 81";
+		rLen = 0;
+		rLoc = 2564;
+		rType = 0;
+		vrLen = 1030;
+		vrLoc = 1996;
+	};
+	7408C1F10E66556400C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
+		name = "TheaterNameCell.m: 81";
+		rLen = 0;
+		rLoc = 2564;
+		rType = 0;
+		vrLen = 1032;
+		vrLoc = 1996;
+	};
+	7408C1F20E66567F00C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7408C1530E664AA300C6031A /* ImageCache.m */;
+		name = "ImageCache.m: 94";
+		rLen = 0;
+		rLoc = 2648;
+		rType = 0;
+		vrLen = 331;
+		vrLoc = 2392;
+	};
+	7408C1F40E66568400C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
+		name = "TheaterNameCell.m: 81";
+		rLen = 0;
+		rLoc = 2564;
+		rType = 0;
+		vrLen = 1030;
+		vrLoc = 1996;
+	};
+	7408C1F50E66568400C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */;
+		name = "MovieOverviewCell.h: 21";
+		rLen = 7;
+		rLoc = 859;
+		rType = 0;
+		vrLen = 1205;
+		vrLoc = 375;
+	};
+	7408C1F60E66568400C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7408C1570E664AAA00C6031A /* TheaterNameCell.m */;
+		name = "TheaterNameCell.m: 81";
+		rLen = 0;
+		rLoc = 2564;
+		rType = 0;
+		vrLen = 1030;
+		vrLoc = 1996;
+	};
+	7408C1F70E66568400C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */;
+		name = "MovieOverviewCell.h: 20";
+		rLen = 0;
+		rLoc = 854;
+		rType = 0;
+		vrLen = 1124;
+		vrLoc = 456;
 	};
 	740AFF340E54E87F004EC5EE /* NumbersNavigationController.h */ = {
 		uiCtxt = {
@@ -2747,9 +2868,9 @@
 	};
 	741377AF0E64765000404519 /* TheaterNameCell.h */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {735, 490}}";
-			sepNavSelRange = "{1073, 0}";
-			sepNavVisRange = "{0, 1267}";
+			sepNavIntBoundsRect = "{{0, 0}, {735, 468}}";
+			sepNavSelRange = "{1010, 0}";
+			sepNavVisRange = "{0, 1204}";
 		};
 	};
 	741377B00E64765000404519 /* TheaterNameCell.m */ = {
@@ -2848,7 +2969,7 @@
 		fRef = 741377AF0E64765000404519 /* TheaterNameCell.h */;
 		name = "TheaterNameCell.h: 25";
 		rLen = 0;
-		rLoc = 1033;
+		rLoc = 1009;
 		rType = 0;
 		vrLen = 1204;
 		vrLoc = 0;
@@ -3031,7 +3152,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libobjc.A.dylib;
-		modificationTime = 241587181.180887;
+		modificationTime = 241587895.111207;
 		state = 1;
 		symbolName = objc_exception_throw;
 	};
@@ -7135,7 +7256,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 42;
-		modificationTime = 241587181.538129;
+		modificationTime = 241587895.461227;
 		state = 0;
 	};
 	7479D7EF0E651EF800D91649 /* PBXTextBookmark */ = {
@@ -7335,7 +7456,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 52;
-		modificationTime = 241587181.550215;
+		modificationTime = 241587895.476397;
 		state = 0;
 	};
 	7479D8080E6520C400D91649 /* PBXTextBookmark */ = {
@@ -7505,7 +7626,7 @@
 		isa = PBXTextBookmark;
 		fRef = 741377AF0E64765000404519 /* TheaterNameCell.h */;
 		name = "TheaterNameCell.h: 1";
-		rLen = 1267;
+		rLen = 1204;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1204;
@@ -7515,7 +7636,7 @@
 		isa = PBXTextBookmark;
 		fRef = 741377BB0E6477BF00404519 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 1";
-		rLen = 3350;
+		rLen = 3029;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1081;
@@ -7605,7 +7726,7 @@
 		isa = PBXTextBookmark;
 		fRef = 741377AF0E64765000404519 /* TheaterNameCell.h */;
 		name = "TheaterNameCell.h: 1";
-		rLen = 1267;
+		rLen = 1204;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1204;
@@ -7625,7 +7746,7 @@
 		isa = PBXTextBookmark;
 		fRef = 741377BB0E6477BF00404519 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 1";
-		rLen = 3350;
+		rLen = 3029;
 		rLoc = 0;
 		rType = 0;
 		vrLen = 1081;
@@ -7666,7 +7787,7 @@
 		fRef = 7479D8350E65255F00D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 94";
 		rLen = 0;
-		rLoc = 7658;
+		rLoc = 7654;
 		rType = 0;
 		vrLen = 1038;
 		vrLoc = 2322;
@@ -8495,7 +8616,7 @@
 		fRef = 7479D8470E6527BD00D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 124";
 		rLen = 0;
-		rLoc = 8045;
+		rLoc = 8041;
 		rType = 0;
 		vrLen = 1074;
 		vrLoc = 3447;
@@ -8846,7 +8967,7 @@
 		isa = PBXTextBookmark;
 		fRef = 7479D92A0E65401100D91649 /* TheaterNameCell.m */;
 		rLen = 0;
-		rLoc = 51;
+		rLoc = 49;
 		rType = 1;
 	};
 	7479D9350E65402100D91649 /* PBXTextBookmark */ = {
@@ -8864,7 +8985,7 @@
 		fRef = 741377BB0E6477BF00404519 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 77";
 		rLen = 0;
-		rLoc = 1701;
+		rLoc = 1648;
 		rType = 0;
 		vrLen = 870;
 		vrLoc = 1957;
@@ -8904,7 +9025,7 @@
 		fRef = 7479D92C0E65401100D91649 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 76";
 		rLen = 0;
-		rLoc = 1701;
+		rLoc = 1648;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 2079;
@@ -8914,7 +9035,7 @@
 		fRef = 7479D92C0E65401100D91649 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 76";
 		rLen = 0;
-		rLoc = 1701;
+		rLoc = 1648;
 		rType = 0;
 		vrLen = 920;
 		vrLoc = 2079;
@@ -8924,7 +9045,7 @@
 		fRef = 7479D92C0E65401100D91649 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 75";
 		rLen = 0;
-		rLoc = 1701;
+		rLoc = 1648;
 		rType = 0;
 		vrLen = 823;
 		vrLoc = 1980;
@@ -8934,7 +9055,7 @@
 		fRef = 7479D92C0E65401100D91649 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 51";
 		rLen = 0;
-		rLoc = 1701;
+		rLoc = 1648;
 		rType = 0;
 		vrLen = 1226;
 		vrLoc = 1144;
@@ -8944,7 +9065,7 @@
 		fRef = 7479D92C0E65401100D91649 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 56";
 		rLen = 0;
-		rLoc = 1701;
+		rLoc = 1648;
 		rType = 0;
 		vrLen = 1021;
 		vrLoc = 1505;
@@ -8954,7 +9075,7 @@
 		fRef = 7479D92C0E65401100D91649 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 56";
 		rLen = 0;
-		rLoc = 1701;
+		rLoc = 1648;
 		rType = 0;
 		vrLen = 1021;
 		vrLoc = 1505;
@@ -8981,7 +9102,7 @@
 		fRef = 7479D8EF0E65331900D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 140";
 		rLen = 0;
-		rLoc = 8525;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 1013;
 		vrLoc = 4026;
@@ -8991,7 +9112,7 @@
 		fRef = 7479D92C0E65401100D91649 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 56";
 		rLen = 0;
-		rLoc = 1701;
+		rLoc = 1648;
 		rType = 0;
 		vrLen = 1021;
 		vrLoc = 1505;
@@ -9018,7 +9139,7 @@
 		fRef = 7479D8EF0E65331900D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 134";
 		rLen = 0;
-		rLoc = 8525;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 3929;
@@ -9043,7 +9164,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 223;
-		modificationTime = 241587181.578228;
+		modificationTime = 241587895.522981;
 		state = 0;
 	};
 	7479D9620E65450800D91649 /* PBXTextBookmark */ = {
@@ -9051,7 +9172,7 @@
 		fRef = 7479D95E0E6544FD00D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 134";
 		rLen = 0;
-		rLoc = 8525;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 3929;
@@ -9091,7 +9212,7 @@
 		fRef = 7479D95E0E6544FD00D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 134";
 		rLen = 0;
-		rLoc = 8525;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 960;
 		vrLoc = 3929;
@@ -9131,7 +9252,7 @@
 		fRef = 7479D95E0E6544FD00D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 138";
 		rLen = 0;
-		rLoc = 8525;
+		rLoc = 8521;
 		rType = 0;
 		vrLen = 890;
 		vrLoc = 4059;
@@ -9605,7 +9726,7 @@
 		fRef = 7479D92C0E65401100D91649 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 74";
 		rLen = 0;
-		rLoc = 2771;
+		rLoc = 2558;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 1649;
@@ -9665,7 +9786,7 @@
 		fRef = 7479D92C0E65401100D91649 /* TheaterNameCell.m */;
 		name = "TheaterNameCell.m: 74";
 		rLen = 0;
-		rLoc = 2771;
+		rLoc = 2558;
 		rType = 0;
 		vrLen = 997;
 		vrLoc = 1649;
@@ -10809,7 +10930,7 @@
 		fRef = 7479D99F0E6549BE00D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 132";
 		rLen = 0;
-		rLoc = 8043;
+		rLoc = 8039;
 		rType = 0;
 		vrLen = 972;
 		vrLoc = 3785;
@@ -10819,7 +10940,7 @@
 		fRef = 7479D99F0E6549BE00D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 132";
 		rLen = 0;
-		rLoc = 8043;
+		rLoc = 8039;
 		rType = 0;
 		vrLen = 969;
 		vrLoc = 3785;
@@ -11302,7 +11423,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 66;
-		modificationTime = 241587181.591075;
+		modificationTime = 241587895.556141;
 		state = 0;
 	};
 	7479DAB50E65E1B200D91649 /* PBXTextBookmark */ = {
@@ -11338,7 +11459,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 66;
-		modificationTime = 241587181.164729;
+		modificationTime = 241587895.099061;
 		state = 2;
 	};
 	7479DABC0E65E1DC00D91649 /* PBXTextBookmark */ = {
@@ -11574,7 +11695,7 @@
 		ignoreCount = 0;
 		lineNumber = 66;
 		location = BoxOffice;
-		modificationTime = 241587181.164736;
+		modificationTime = 241587895.09907;
 		state = 2;
 	};
 	7479DADF0E65E42200D91649 /* PBXTextBookmark */ = {
@@ -11879,7 +12000,7 @@
 		fRef = 7479DB250E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 207";
 		rLen = 0;
-		rLoc = 8045;
+		rLoc = 8041;
 		rType = 0;
 		vrLen = 1267;
 		vrLoc = 6854;
@@ -12623,7 +12744,7 @@
 		fRef = 7479DB250E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 223";
 		rLen = 0;
-		rLoc = 8269;
+		rLoc = 8265;
 		rType = 0;
 		vrLen = 1170;
 		vrLoc = 7363;
@@ -13228,7 +13349,7 @@
 		fRef = 7479DB250E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 115";
 		rLen = 0;
-		rLoc = 4465;
+		rLoc = 4461;
 		rType = 0;
 		vrLen = 1447;
 		vrLoc = 3629;
@@ -13238,7 +13359,7 @@
 		fRef = 7479DB250E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 115";
 		rLen = 0;
-		rLoc = 4465;
+		rLoc = 4461;
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 3629;
@@ -13248,7 +13369,7 @@
 		fRef = 7479DB250E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 115";
 		rLen = 0;
-		rLoc = 4465;
+		rLoc = 4461;
 		rType = 0;
 		vrLen = 1439;
 		vrLoc = 3629;
@@ -13258,7 +13379,7 @@
 		fRef = 7479DB250E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 111";
 		rLen = 0;
-		rLoc = 4273;
+		rLoc = 4269;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 3629;
@@ -13268,7 +13389,7 @@
 		fRef = 7479DB250E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 111";
 		rLen = 0;
-		rLoc = 4273;
+		rLoc = 4269;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 3629;
@@ -13286,7 +13407,7 @@
 		fRef = 7479DB250E65EA4300D91649 /* UpcomingMovieCell.m */;
 		name = "UpcomingMovieCell.m: 111";
 		rLen = 0;
-		rLoc = 4273;
+		rLoc = 4269;
 		rType = 0;
 		vrLen = 1414;
 		vrLoc = 3629;
@@ -16627,7 +16748,7 @@
 	74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {894, 602}}";
-			sepNavSelRange = "{859, 7}";
+			sepNavSelRange = "{854, 0}";
 			sepNavVisRange = "{456, 1124}";
 		};
 	};
