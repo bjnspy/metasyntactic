@@ -44,9 +44,9 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
         self.messages = [NSMutableArray array];
 
         self.background = [[[UILabel alloc] initWithFrame:emptyFrame] autorelease];
-        self.background.opaque = NO;
-        self.background.alpha = 0.5;
-        self.background.backgroundColor = [UIColor lightGrayColor];
+        background.opaque = NO;
+        background.alpha = 0.5;
+        background.backgroundColor = [UIColor lightGrayColor];
     }
 
     return self;
@@ -59,21 +59,21 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
 
 
 - (void) addToWindow {
-    [self.window addSubview:self.background];
+    [window addSubview:self.background];
 }
 
 
 - (void) addStatusMessage:(NSString*) message {
     return;
 
-    [self.messages addObject:message];
+    [messages addObject:message];
 
-    if (self.messages.count == 1) {
-        self.background.frame = emptyFrame;
+    if (messages.count == 1) {
+        background.frame = emptyFrame;
 
         [UIView beginAnimations:nil context:NULL];
         {
-            self.background.frame = frame;
+            background.frame = frame;
         }
         [UIView commitAnimations];
 
@@ -85,8 +85,8 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
 - (void) clearStatus {
     [UIView beginAnimations:nil context:NULL];
     {
-        self.background.frame = emptyFrame;
-        self.currentlyDisplayedMessage.center = offScreenLeftPoint;
+        background.frame = emptyFrame;
+        currentlyDisplayedMessage.center = offScreenLeftPoint;
     }
     [UIView commitAnimations];
 }
@@ -95,8 +95,8 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
 - (void) displayNextMessage {
     UILabel* label = [[[UILabel alloc] initWithFrame:offScreenRightFrame] autorelease];
 
-    label.text = [self.messages objectAtIndex:0];
-    [self.messages removeObjectAtIndex:0];
+    label.text = [messages objectAtIndex:0];
+    [messages removeObjectAtIndex:0];
 
     label.font = [UIFont systemFontOfSize:11];
     label.textColor = [UIColor blackColor];
@@ -106,15 +106,15 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
 
     [UIView beginAnimations:nil context:NULL];
     {
-        self.currentlyDisplayedMessage.center = offScreenLeftPoint;
+        currentlyDisplayedMessage.center = offScreenLeftPoint;
         [self performSelector:@selector(removeViewFromSuperview:)
                    withObject:self.currentlyDisplayedMessage
                    afterDelay:1];
 
         self.currentlyDisplayedMessage = label;
-        self.currentlyDisplayedMessage.frame = frame;
+        currentlyDisplayedMessage.frame = frame;
 
-        [self.window addSubview:self.currentlyDisplayedMessage];
+        [window addSubview:currentlyDisplayedMessage];
     }
     [UIView commitAnimations];
 
@@ -123,7 +123,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
 
 
 - (void) update:(id) object {
-    if (self.messages.count == 0) {
+    if (messages.count == 0) {
         [self clearStatus];
     } else {
         [self displayNextMessage];

@@ -109,15 +109,13 @@
 - (BOOL) isEqual:(id) anObject {
     Theater* other = anObject;
     return
-    [self.identifier isEqual:other.identifier] &&
-    [self.name isEqual:other.name];
+    [identifier isEqual:other.identifier] &&
+    [name isEqual:other.name];
 }
 
 
 - (NSUInteger) hash {
-    return
-    [self.identifier hash] +
-    [self.name hash];
+    return identifier.hash + name.hash;
 }
 
 

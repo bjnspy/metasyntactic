@@ -60,8 +60,8 @@
         self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        self.posterImage = [self.model posterForMovie:self.movie];
-        if (self.posterImage == nil) {
+        self.posterImage = [model posterForMovie:movie];
+        if (posterImage == nil) {
             self.posterImage = [ImageCache imageNotAvailable];
         }
 
@@ -154,7 +154,7 @@
 
 
 - (void) calculateSynopsisChunks:(double) width {
-    self.synopsis = [self.model synopsisForMovie:self.movie];
+    self.synopsis = [model synopsisForMovie:movie];
     self.synopsisSplit = [self calculateSynopsisSplit:width];
     self.synopsisMax = [self calculateSynopsisMax];
 }

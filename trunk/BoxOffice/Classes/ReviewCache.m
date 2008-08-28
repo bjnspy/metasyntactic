@@ -152,7 +152,7 @@
 - (void) downloadReviews:(NSDictionary*) supplementaryInformation
          ratingsProvider:(NSInteger) ratingsProvider {
     for (NSString* movieId in supplementaryInformation) {
-        if ([self.model ratingsProviderIndex] != ratingsProvider) {
+        if (self.model.ratingsProviderIndex != ratingsProvider) {
             break;
         }
 

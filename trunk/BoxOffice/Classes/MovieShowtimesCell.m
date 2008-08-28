@@ -136,10 +136,10 @@
     self.showtimes = showtimes_;
     self.useSmallFonts = useSmallFonts_;
 
-    self.showtimesLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
-    self.headerLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
+    showtimesLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
+    headerLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
 
-    [self.headerLabel sizeToFit];
+    [headerLabel sizeToFit];
 
     showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimes];
 }

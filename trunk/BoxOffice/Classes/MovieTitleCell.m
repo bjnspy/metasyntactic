@@ -78,7 +78,7 @@
 
 
 - (void) setRottenTomatoesScore:(Movie*) movie {
-    int score = [self.model scoreForMovie:movie];
+    int score = [model scoreForMovie:movie];
 
     if (score >= 0 && score <= 100) {
         if (score >= 60) {
@@ -122,7 +122,7 @@
 
 
 - (void) setMetacriticScore:(Movie*) movie {
-    int score = [self.model scoreForMovie:movie];
+    int score = [model scoreForMovie:movie];
 
     if (score >= 0 && score <= 100) {
         CGRect frame = CGRectMake(10, 7, 30, 30);
@@ -166,30 +166,30 @@
 
     frame.size.width = self.contentView.frame.size.width - frame.origin.x;
 
-    self.ratingLabel.frame = frame;
+    ratingLabel.frame = frame;
 
     frame.origin.y = 5;
     frame.size.height = 20;
-    self.titleLabel.frame = frame;
+    titleLabel.frame = frame;
 }
 
 
 - (void) setScore:(Movie*) movie {
-    if ([self.model rottenTomatoesRatings]) {
+    if (model.rottenTomatoesRatings) {
         [self setRottenTomatoesScore:movie];
-    } else if ([self.model metacriticRatings]) {
+    } else if (model.metacriticRatings) {
         [self setMetacriticScore:movie];
-    } else if ([self.model noRatings]) {
+    } else if (model.noRatings) {
         self.image = nil;
-        self.scoreLabel.text = nil;
+        scoreLabel.text = nil;
     }
 }
 
 
 - (void) setMovie:(Movie*) movie {
     [self setScore:movie];
-    self.ratingLabel.text = movie.ratingAndRuntimeString;
-    self.titleLabel.text = movie.displayTitle;
+    ratingLabel.text = movie.ratingAndRuntimeString;
+    titleLabel.text = movie.displayTitle;
 }
 
 

@@ -104,16 +104,16 @@
         self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:sortFunction context:self.model];
 
         self.movieShowtimes = [NSMutableArray array];
-        for (Movie* movie in self.movies) {
+        for (Movie* movie in movies) {
             NSArray* showtimes = [self.model moviePerformances:movie forTheater:theater];
 
-            [self.movieShowtimes addObject:showtimes];
+            [movieShowtimes addObject:showtimes];
         }
 
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = self.theater.name;
+        label.text = theater.name;
 
-        self.title = self.theater.name;
+        self.title = theater.name;
         self.navigationItem.titleView = label;
 
         [self initializeFavoriteButton];
@@ -148,7 +148,7 @@
     sections++;
 
     // movies
-    sections += self.movies.count;
+    sections += movies.count;
 
     return sections;
 }
@@ -209,7 +209,7 @@
 - (UITableViewCell*) cellForTheaterIndex:(NSInteger) index row:(NSInteger) row {
     if (row == 0) {
         static NSString* reuseIdentifier = @"TheaterDetailsMovieCellIdentifier";
-        MovieTitleCell* movieCell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+        id movieCell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (movieCell == nil) {
             movieCell = [[[MovieTitleCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                reuseIdentifier:reuseIdentifier
@@ -217,19 +217,18 @@
                                                          style:UITableViewStyleGrouped] autorelease];
         }
 
-        [movieCell setMovie:[self.movies objectAtIndex:index]];
+        [movieCell setMovie:[movies objectAtIndex:index]];
 
         return movieCell;
     } else {
         static NSString* reuseIdentifier = @"TheaterDetailsShowtimesCellIdentifier";
-        id i = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-        MovieShowtimesCell* cell = i;
+        id cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                               reuseIdentifier:reuseIdentifier] autorelease];
         }
 
-        [cell setShowtimes:[self.movieShowtimes objectAtIndex:index]
+        [cell setShowtimes:[movieShowtimes objectAtIndex:index]
              useSmallFonts:[self.model useSmallFonts]];
 
         return cell;
@@ -265,7 +264,7 @@
         if (row == 0) {
             return tableView.rowHeight;
         } else {
-            return [MovieShowtimesCell heightForShowtimes:[self.movieShowtimes objectAtIndex:section]
+            return [MovieShowtimesCell heightForShowtimes:[movieShowtimes objectAtIndex:section]
                                             useSmallFonts:[self.model useSmallFonts]] + 18;
         }
     }
@@ -288,7 +287,7 @@
 
 - (void) didSelectEmailListings {
     NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
-                                self.theater.name,
+                                theater.name,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
 
@@ -322,10 +321,10 @@
 
 - (void) pushTicketsView:(Movie*) movie
                 animated:(BOOL) animated {
-    [self.navigationController pushTicketsView:movie
-     theater:self.theater
-     title:movie.displayTitle
-     animated:animated];
+    [navigationController pushTicketsView:movie
+                                  theater:theater
+                                    title:movie.displayTitle
+                                 animated:animated];
 }
 
 
@@ -345,9 +344,9 @@
     } else {
         section -= 2;
 
-        Movie* movie = [self.movies objectAtIndex:section];
+        Movie* movie = [movies objectAtIndex:section];
         if (row == 0) {
-            [self.navigationController pushMovieDetails:movie animated:YES];
+            [navigationController pushMovieDetails:movie animated:YES];
         } else {
             [self pushTicketsView:movie animated:YES];
         }

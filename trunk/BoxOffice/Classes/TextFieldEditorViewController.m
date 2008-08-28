@@ -35,15 +35,15 @@
                      type:(UIKeyboardType) type {
     if (self = [super initWithController:controller withObject:object_ withSelector:selector_]) {
         self.textField = [[[UITextField alloc] initWithFrame:CGRectZero] autorelease];
-        self.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
 
-        self.textField.text = text;
-        self.textField.placeholder = placeHolder;
-        self.textField.borderStyle = UITextBorderStyleRoundedRect;
-        self.textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
-        self.textField.font = [UIFont boldSystemFontOfSize:17];
-        self.textField.keyboardType = type;
-        self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.text = text;
+        textField.placeholder = placeHolder;
+        textField.borderStyle = UITextBorderStyleRoundedRect;
+        textField.contentVerticalAlignment = UIControlContentVerticalAlignmentCenter;
+        textField.font = [UIFont boldSystemFontOfSize:17];
+        textField.keyboardType = type;
+        textField.clearButtonMode = UITextFieldViewModeWhileEditing;
 
         self.title = title;
     }
@@ -55,17 +55,17 @@
 - (void) loadView {
     [super loadView];
 
-    [self.view addSubview:self.textField];
+    [self.view addSubview:textField];
     CGRect frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);
-    self.textField.frame = frame;
+    textField.frame = frame;
 
-    [self.textField becomeFirstResponder];
+    [textField becomeFirstResponder];
 }
 
 
 - (void) save:(id) sender {
     NSString* trimmedValue = [self.textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-    [self.object performSelector:selector withObject:trimmedValue];
+    [object performSelector:selector withObject:trimmedValue];
     [super save:sender];
 }
 

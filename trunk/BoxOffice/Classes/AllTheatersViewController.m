@@ -88,7 +88,7 @@
 
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:[Application starString]];
+            [sectionTitleToContentsMap addObject:theater forKey:[Application starString]];
             continue;
         }
 
@@ -101,9 +101,9 @@
 
         if (firstChar >= 'A' && firstChar <= 'Z') {
             NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
-            [self.sectionTitleToContentsMap addObject:theater forKey:sectionTitle];
+            [sectionTitleToContentsMap addObject:theater forKey:sectionTitle];
         } else {
-            [self.sectionTitleToContentsMap addObject:theater forKey:@"#"];
+            [sectionTitleToContentsMap addObject:theater forKey:@"#"];
         }
     }
 
@@ -142,15 +142,15 @@
 
     self.sectionTitles = [NSMutableArray array];
 
-    [self.sectionTitles addObject:favorites];
-    [self.sectionTitles addObject:reallyCloseBy];
-    [self.sectionTitles addObjectsFromArray:distancesArray];
-    [self.sectionTitles addObject:reallyFarAway];
-    [self.sectionTitles addObject:unknownDistance];
+    [sectionTitles addObject:favorites];
+    [sectionTitles addObject:reallyCloseBy];
+    [sectionTitles addObjectsFromArray:distancesArray];
+    [sectionTitles addObject:reallyFarAway];
+    [sectionTitles addObject:unknownDistance];
 
-    for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
+    for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:favorites];
+            [sectionTitleToContentsMap addObject:theater forKey:favorites];
             continue;
         }
 
@@ -161,21 +161,21 @@
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
 
         if (distance <= 0.5) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
+            [sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
             continue;
         }
 
         for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
             if (distance <= distances[i]) {
-                [self.sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
+                [sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
                 goto outer;
             }
         }
 
         if (distance < UNKNOWN_DISTANCE) {
-            [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
+            [sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
         } else {
-            [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
+            [sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
         }
 
         // i hate goto/labels. however, objective-c lacks a 'continue outer' statement.
@@ -250,9 +250,9 @@
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
-    [self.navigationController pushTheaterDetails:theater animated:YES];
+    [navigationController pushTheaterDetails:theater animated:YES];
 }
 
 
@@ -263,13 +263,13 @@
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
+    return [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:section]] count];
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+    Theater* theater = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
 
     static NSString* reuseIdentifier = @"AllTheatersCellIdentifier";
 
@@ -310,14 +310,14 @@
 - (NSInteger) sectionForSectionIndexTitle:(NSString*) title {
     unichar firstChar = [title characterAtIndex:0];
     if (firstChar == '#') {
-        return [self.sectionTitles indexOfObject:@"#"];
+        return [sectionTitles indexOfObject:@"#"];
     } else if (firstChar == [Application starCharacter]) {
-        return [self.sectionTitles indexOfObject:[Application starString]];
+        return [sectionTitles indexOfObject:[Application starString]];
     } else {
         for (unichar c = firstChar; c >= 'A'; c--) {
             NSString* s = [NSString stringWithFormat:@"%c", c];
 
-            NSInteger result = [self.sectionTitles indexOfObject:s];
+            NSInteger result = [sectionTitles indexOfObject:s];
             if (result != NSNotFound) {
                 return result;
             }

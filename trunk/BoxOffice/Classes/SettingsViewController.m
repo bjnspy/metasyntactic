@@ -49,8 +49,8 @@
 
 - (void) onCurrentLocationClicked:(id) sender {
     self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
-    [self.activityIndicator start];
-    [self.locationManager startUpdatingLocation];
+    [activityIndicator start];
+    [locationManager startUpdatingLocation];
 }
 
 
@@ -58,7 +58,7 @@
     // only actually auto-update if:
     //   a) the user wants it
     //   b) we're not currently searching
-    if ([self.model autoUpdateLocation] && self.activityIndicator == nil) {
+    if ([self.model autoUpdateLocation] && activityIndicator == nil) {
         [self onCurrentLocationClicked:nil];
     }
 }
@@ -114,7 +114,7 @@
 
 
 - (void) stopActivityIndicator {
-    [self.activityIndicator stop];
+    [activityIndicator stop];
     self.activityIndicator = nil;
 }
 
@@ -339,22 +339,22 @@
 - (void) onUseSmallFontsChanged:(id) sender {
     BOOL useSmallFonts = !self.model.useSmallFonts;
     [self.model setUseSmallFonts:useSmallFonts];
-    [self.navigationController.tabBarController refresh];
+    [navigationController.tabBarController refresh];
 }
 
 
 - (void) onHideEmptyTheatersChanged:(id) sender {
     [self.model setHideEmptyTheaters:!self.model.hideEmptyTheaters];
-    [self.navigationController.tabBarController refresh];
+    [navigationController.tabBarController refresh];
 }
 
 
 - (void) pushSearchDatePicker {
     SearchDatePickerViewController* pickerController =
-    [SearchDatePickerViewController pickerWithNavigationController:self.navigationController
+    [SearchDatePickerViewController pickerWithNavigationController:navigationController
                                                         controller:self.controller];
 
-    [self.navigationController pushViewController:pickerController animated:YES];
+    [navigationController pushViewController:pickerController animated:YES];
 }
 
 
@@ -374,7 +374,7 @@
                                                      values:values
                                                defaultValue:defaultValue] autorelease];
 
-    [self.navigationController pushViewController:controller animated:YES];
+    [navigationController pushViewController:controller animated:YES];
 }
 
 
@@ -396,19 +396,19 @@
                                                            placeHolder:NSLocalizedString(@"Postal Code", nil)
                                                                   type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
 
-            [self.navigationController pushViewController:controller animated:YES];
+            [navigationController pushViewController:controller animated:YES];
         } else if (row == 1) {
             [self pushFilterDistancePicker];
         } else if (row == 2) {
             [self pushSearchDatePicker];
         } else if (row == 3) {
             RatingsProviderViewController* controller =
-            [[[RatingsProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
-            [self.navigationController pushViewController:controller animated:YES];
+            [[[RatingsProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
+            [navigationController pushViewController:controller animated:YES];
         }
     } else if (section == 2) {
         CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
-        [self.navigationController pushViewController:controller animated:YES];
+        [navigationController pushViewController:controller animated:YES];
     }
 }
 

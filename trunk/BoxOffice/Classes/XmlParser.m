@@ -41,7 +41,7 @@
     self.stringBufferStack = [NSMutableArray array];
     self.attributesStack = [NSMutableArray array];
 
-    [self.elementsStack addObject:[NSMutableArray array]];
+    [elementsStack addObject:[NSMutableArray array]];
 
     if ([parser parse] == NO) {
         self.elementsStack = nil;
@@ -89,9 +89,9 @@
          namespaceURI:(NSString*) namespaceURI
         qualifiedName:(NSString*) qName
            attributes:(NSDictionary*) attributeDict {
-    [self.elementsStack addObject:[NSMutableArray array]];
-    [self.stringBufferStack addObject:[NSMutableString string]];
-    [self.attributesStack addObject:[NSDictionary dictionaryWithDictionary:attributeDict]];
+    [elementsStack addObject:[NSMutableArray array]];
+    [stringBufferStack addObject:[NSMutableString string]];
+    [attributesStack addObject:[NSDictionary dictionaryWithDictionary:attributeDict]];
 }
 
 
@@ -99,20 +99,20 @@
       didEndElement:(NSString*) elementName
        namespaceURI:(NSString*) namespaceURI
       qualifiedName:(NSString*) qName {
-    NSArray* children = [self.elementsStack lastObject];
-    NSString* text = [self.stringBufferStack lastObject];
-    NSDictionary* attributes = [self.attributesStack lastObject];
+    NSArray* children = [elementsStack lastObject];
+    NSString* text = [stringBufferStack lastObject];
+    NSDictionary* attributes = [attributesStack lastObject];
 
-    [self.elementsStack removeLastObject];
-    [self.stringBufferStack removeLastObject];
-    [self.attributesStack removeLastObject];
+    [elementsStack removeLastObject];
+    [stringBufferStack removeLastObject];
+    [attributesStack removeLastObject];
 
     XmlElement* element = [XmlElement elementWithName:elementName
                                            attributes:attributes
                                              children:children
                                                  text:text];
 
-    [[self.elementsStack lastObject] addObject:element];
+    [[elementsStack lastObject] addObject:element];
 }
 
 
@@ -122,7 +122,7 @@
         return;
     }
 
-    [[self.stringBufferStack lastObject] appendString:string];
+    [[stringBufferStack lastObject] appendString:string];
 }
 
 

@@ -38,11 +38,11 @@
     CGSize pickerSize = self.picker.frame.size;
 
     CGRect labelRect = CGRectMake(10, 10, screenRect.size.width - 20, screenRect.size.height - 20 - pickerSize.height);
-    self.label.frame = labelRect;
-    [self.label sizeToFit];
-    labelRect = self.label.frame;
+    label.frame = labelRect;
+    [label sizeToFit];
+    labelRect = label.frame;
     labelRect.origin.x = floor((self.view.bounds.size.width - labelRect.size.width) / 2);
-    self.label.frame = labelRect;
+    label.frame = labelRect;
 }
 
 
@@ -57,23 +57,23 @@
         self.values = values_;
 
         self.picker = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];
-        self.picker.delegate = self;
-        self.picker.showsSelectionIndicator = YES;
-        [self.picker selectRow:[values indexOfObject:defaultValue]
-         inComponent:0
-         animated:NO];
+        picker.delegate = self;
+        picker.showsSelectionIndicator = YES;
+        [picker selectRow:[values indexOfObject:defaultValue]
+              inComponent:0
+                 animated:NO];
         picker.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
 
         self.title = title_;
 
         if (text_ != nil) {
             self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-            self.label.text = text_;
-            self.label.font = [UIFont systemFontOfSize:15];
-            self.label.textAlignment = UITextAlignmentCenter;
-            self.label.textColor = [UIColor darkGrayColor];
-            self.label.backgroundColor = [UIColor clearColor];
-            self.label.numberOfLines = 0;
+            label.text = text_;
+            label.font = [UIFont systemFontOfSize:15];
+            label.textAlignment = UITextAlignmentCenter;
+            label.textColor = [UIColor darkGrayColor];
+            label.backgroundColor = [UIColor clearColor];
+            label.numberOfLines = 0;
         }
     }
 
@@ -84,10 +84,10 @@
 - (void) loadView {
     [super loadView];
 
-    [self.view addSubview:self.picker];
-    [self.view addSubview:self.label];
+    [self.view addSubview:picker];
+    [self.view addSubview:label];
 
-    [self.picker becomeFirstResponder];
+    [picker becomeFirstResponder];
 
     [self refresh];
 }
@@ -95,17 +95,17 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     CGRect screenRect = self.view.bounds;
-    CGSize pickerSize = [self.picker sizeThatFits:CGSizeZero];
+    CGSize pickerSize = [picker sizeThatFits:CGSizeZero];
     CGFloat screenBottom = screenRect.origin.y + screenRect.size.height;
 
     CGRect pickerRect = CGRectMake(0, screenBottom - pickerSize.height, pickerSize.width, pickerSize.height);
-    self.picker.frame = pickerRect;
+    picker.frame = pickerRect;
 }
 
 
 - (void) save:(id) sender {
-    [self.object performSelector:selector
-     withObject:[self.values objectAtIndex:[self.picker selectedRowInComponent:0]]];
+    [object performSelector:selector
+                 withObject:[values objectAtIndex:[picker selectedRowInComponent:0]]];
     [super save:sender];
 }
 
@@ -124,7 +124,7 @@
 - (NSString*) pickerView:(UIPickerView*) pickerView
              titleForRow:(NSInteger) row
             forComponent:(NSInteger) component {
-    return [self.values objectAtIndex:row];
+    return [values objectAtIndex:row];
 }
 
 

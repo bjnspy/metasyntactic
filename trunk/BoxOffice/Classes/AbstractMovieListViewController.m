@@ -121,9 +121,9 @@
 
         if (firstChar >= 'A' && firstChar <= 'Z') {
             NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
-            [self.sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
+            [sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
         } else {
-            [self.sectionTitleToContentsMap addObject:movie forKey:@"#"];
+            [sectionTitleToContentsMap addObject:movie forKey:@"#"];
         }
     }
 
@@ -155,15 +155,15 @@
             }
         }
 
-        [self.sectionTitleToContentsMap addObject:movie forKey:title];
+        [sectionTitleToContentsMap addObject:movie forKey:title];
 
-        if (![self.sectionTitles containsObject:title]) {
-            [self.sectionTitles addObject:title];
+        if (![sectionTitles containsObject:title]) {
+            [sectionTitles addObject:title];
         }
     }
 
-    for (NSString* key in [self.sectionTitleToContentsMap allKeys]) {
-        NSMutableArray* values = [self.sectionTitleToContentsMap mutableObjectsForKey:key];
+    for (NSString* key in sectionTitleToContentsMap.allKeys) {
+        NSMutableArray* values = [sectionTitleToContentsMap mutableObjectsForKey:key];
         [values sortUsingFunction:compareMoviesByScore context:self.model];
     }
 }
@@ -230,11 +230,11 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie;
     if (self.sortingByTitle) {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+        movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     } else if (self.sortingByScore) {
-        movie = [self.sortedMovies objectAtIndex:indexPath.row];
+        movie = [sortedMovies objectAtIndex:indexPath.row];
     } else if (self.sortingByReleaseDate) {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+        movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     }
 
     static NSString* reuseIdentifier = @"AbstractMovieListCellIdentifier";
@@ -264,14 +264,14 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Movie* movie;
     if (self.sortingByTitle) {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+        movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     } else if (self.sortingByScore) {
-        movie = [self.sortedMovies objectAtIndex:indexPath.row];
+        movie = [sortedMovies objectAtIndex:indexPath.row];
     } else {
-        movie = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
+        movie = [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
     }
 
-    [self.navigationController pushMovieDetails:movie animated:YES];
+    [navigationController pushMovieDetails:movie animated:YES];
 }
 
 
@@ -289,11 +289,11 @@
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (self.sortingByTitle) {
-        return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
+        return [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:section]] count];
     } else if (self.sortingByScore) {
         return sortedMovies.count;
     } else {
-        return [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:section]] count];
+        return [[sectionTitleToContentsMap objectsForKey:[sectionTitles objectAtIndex:section]] count];
     }
 }
 
@@ -301,11 +301,11 @@
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
     if (self.sortingByTitle) {
-        return [self.sectionTitles objectAtIndex:section];
-    } else if (self.sortingByScore && self.sortedMovies.count > 0) {
+        return [sectionTitles objectAtIndex:section];
+    } else if (self.sortingByScore && sortedMovies.count > 0) {
         return nil;
     } else {
-        return [self.sectionTitles objectAtIndex:section];
+        return [sectionTitles objectAtIndex:section];
     }
 }
 
@@ -331,7 +331,7 @@
     for (unichar c = [title characterAtIndex:0]; c >= 'A'; c--) {
         NSString* s = [NSString stringWithFormat:@"%c", c];
 
-        NSInteger result = [self.sectionTitles indexOfObject:s];
+        NSInteger result = [sectionTitles indexOfObject:s];
         if (result != NSNotFound) {
             return result;
         }

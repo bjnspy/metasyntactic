@@ -175,7 +175,7 @@
         self.ratedLabel.text = movie.rating;
     }
 
-    UIImage* image = [self.model posterForMovie:movie];
+    UIImage* image = [model posterForMovie:movie];
     if (image == nil) {
         imageView.image = [ImageCache imageNotAvailable];
     } else {

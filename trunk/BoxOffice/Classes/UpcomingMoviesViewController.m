@@ -59,16 +59,16 @@
                                NSLocalizedString(@"Title", nil),
                                NSLocalizedString(@"Release", nil), nil]] autorelease];
 
-    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    self.segmentedControl.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    segmentedControl.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
 
-    [self.segmentedControl addTarget:self
-     action:@selector(onSortOrderChanged:)
-     forControlEvents:UIControlEventValueChanged];
+    [segmentedControl addTarget:self
+                         action:@selector(onSortOrderChanged:)
+               forControlEvents:UIControlEventValueChanged];
 
-    CGRect rect = self.segmentedControl.frame;
+    CGRect rect = segmentedControl.frame;
     rect.size.width = 240;
-    self.segmentedControl.frame = rect;
+    segmentedControl.frame = rect;
 
     self.navigationItem.titleView = segmentedControl;
 }

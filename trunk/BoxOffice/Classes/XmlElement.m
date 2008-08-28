@@ -114,7 +114,7 @@
 
     [dictionary setValue:self.name forKey:@"name"];
 
-    if (![self.text isEqual:@""]) {
+    if (![text isEqual:@""]) {
         [dictionary setValue:self.text forKey:@"text"];
     }
 
@@ -193,7 +193,7 @@
 
 
 - (NSString*) attributeValue:(NSString*) key {
-    return [self.attributes valueForKey:key];
+    return [attributes valueForKey:key];
 }
 
 

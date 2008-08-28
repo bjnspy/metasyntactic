@@ -71,7 +71,7 @@
 
 
 - (void) onSearchDateChanged:(NSString*) dateString {
-    [self.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
+    [controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
 }
 
 
