@@ -16,8 +16,8 @@
 
 #import "ApplicationTabBarController.h"
 
-#import "BoxOfficeAppDelegate.h"
-#import "BoxOfficeModel.h"
+#import "NowPlayingAppDelegate.h"
+#import "NowPlayingModel.h"
 #import "MoviesNavigationController.h"
 #import "SettingsNavigationController.h"
 #import "TheatersNavigationController.h"

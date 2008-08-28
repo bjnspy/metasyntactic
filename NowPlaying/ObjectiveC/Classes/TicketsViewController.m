@@ -19,7 +19,7 @@
 #import "AbstractNavigationController.h"
 #import "Application.h"
 #import "AttributeCell.h"
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "ColorCache.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"

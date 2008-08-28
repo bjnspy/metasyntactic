@@ -17,7 +17,7 @@
 #import "TheaterNameCell.h"
 
 #import "Application.h"
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "Theater.h"
 
 @implementation TheaterNameCell

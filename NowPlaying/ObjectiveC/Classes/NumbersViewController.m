@@ -16,7 +16,7 @@
 
 #import "NumbersViewController.h"
 
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "NumbersNavigationController.h"
 #import "SettingCell.h"
 

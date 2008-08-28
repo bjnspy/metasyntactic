@@ -16,7 +16,7 @@
 
 #import "Utilities.h"
 
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "DataProvider.h"
 #import "Performance.h"
 #import "Theater.h"
