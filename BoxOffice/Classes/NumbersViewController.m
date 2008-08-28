@@ -45,11 +45,7 @@
 
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
         segmentedControl.selectedSegmentIndex = [self.model allTheatersSelectedSegmentIndex];
-        /*
-         [segmentedControl addTarget:self
-         action:@selector(onSortOrderChanged:)
-         forControlEvents:UIControlEventValueChanged];
-         */
+
         CGRect rect = segmentedControl.frame;
         rect.size.width = 240;
         segmentedControl.frame = rect;

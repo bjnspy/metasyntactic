@@ -16,8 +16,6 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "ApplicationTabBarController.h"
-#import "BoxOfficeAppDelegate.h"
 #import "BoxOfficeModel.h"
 #import "DateUtilities.h"
 #import "Movie.h"
