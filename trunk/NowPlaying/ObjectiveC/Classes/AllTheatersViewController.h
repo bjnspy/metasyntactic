@@ -35,6 +35,6 @@
 - (id) initWithNavigationController:(TheatersNavigationController*) navigationController;
 
 - (void) refresh;
-- (BoxOfficeModel*) model;
+- (NowPlayingModel*) model;
 
 @end

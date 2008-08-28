@@ -25,7 +25,7 @@
 - (id) initWithNavigationController:(NumbersNavigationController*) navigationController;
 
 - (void) refresh;
-- (BoxOfficeModel*) model;
-- (BoxOfficeController*) controller;
+- (NowPlayingModel*) model;
+- (NowPlayingController*) controller;
 
 @end

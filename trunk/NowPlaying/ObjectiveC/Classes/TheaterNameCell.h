@@ -15,18 +15,18 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface TheaterNameCell : UITableViewCell {
-    BoxOfficeModel* model;
+    NowPlayingModel* model;
     UILabel* nameLabel;
     UILabel* addressLabel;
 }
 
-@property (retain) BoxOfficeModel* model;
+@property (retain) NowPlayingModel* model;
 @property (retain) UILabel* nameLabel;
 @property (retain) UILabel* addressLabel;
 
 - (id)      initWithFrame:(CGRect) frame
           reuseIdentifier:(NSString*) reuseIdentifier
-                    model:(BoxOfficeModel*) model;
+                    model:(NowPlayingModel*) model;
 
 - (void) setTheater:(Theater*) theater;
 

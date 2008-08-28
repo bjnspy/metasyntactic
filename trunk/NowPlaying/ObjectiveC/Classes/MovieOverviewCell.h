@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface MovieOverviewCell : UITableViewCell {
-    BoxOfficeModel* model;
+    NowPlayingModel* model;
     Movie* movie;
 
     UIImage* posterImage;
@@ -27,7 +27,7 @@
     UILabel* synopsisChunk2Label;
 }
 
-@property (retain) BoxOfficeModel* model;
+@property (retain) NowPlayingModel* model;
 @property (retain) Movie* movie;
 @property (retain) UIImage* posterImage;
 @property (copy) NSString* synopsis;
@@ -36,7 +36,7 @@
 @property (retain) UILabel* synopsisChunk1Label;
 @property (retain) UILabel* synopsisChunk2Label;
 
-+ (MovieOverviewCell*) cellWithMovie:(Movie*) movie model:(BoxOfficeModel*) model frame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier;
-+ (CGFloat) heightForMovie:(Movie*) movie model:(BoxOfficeModel*) model;
++ (MovieOverviewCell*) cellWithMovie:(Movie*) movie model:(NowPlayingModel*) model frame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier;
++ (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model;
 
 @end

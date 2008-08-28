@@ -15,12 +15,12 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface MetacriticDownloader : NSObject {
-    BoxOfficeModel* model;
+    NowPlayingModel* model;
 }
 
-@property (retain) BoxOfficeModel* model;
+@property (retain) NowPlayingModel* model;
 
-+ (MetacriticDownloader*) downloaderWithModel:(BoxOfficeModel*) model;
++ (MetacriticDownloader*) downloaderWithModel:(NowPlayingModel*) model;
 
 - (NSDictionary*) lookupMovieListings:(NSString*) hash;
 

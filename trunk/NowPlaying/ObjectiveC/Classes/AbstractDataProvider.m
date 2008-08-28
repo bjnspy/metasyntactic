@@ -41,7 +41,7 @@
 }
 
 
-- (id) initWithModel:(BoxOfficeModel*) model_ {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
         [Application createDirectory:[self providerFolder]];

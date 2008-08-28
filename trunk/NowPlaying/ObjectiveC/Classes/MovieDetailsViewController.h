@@ -40,6 +40,6 @@
                               movie:(Movie*) movie;
 
 - (void) refresh;
-- (BoxOfficeModel*) model;
+- (NowPlayingModel*) model;
 
 @end

@@ -35,7 +35,7 @@
 }
 
 
-- (id) initWithModel:(BoxOfficeModel*) model_ {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
         self.gate = [[[NSLock alloc] init] autorelease];
@@ -45,7 +45,7 @@
 }
 
 
-+ (ReviewCache*) cacheWithModel:(BoxOfficeModel*) model {
++ (ReviewCache*) cacheWithModel:(NowPlayingModel*) model {
     return [[[ReviewCache alloc] initWithModel:model] autorelease];
 }
 

@@ -15,14 +15,14 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ReviewCache : NSObject {
-    BoxOfficeModel* model;
+    NowPlayingModel* model;
     NSLock* gate;
 }
 
-@property (assign) BoxOfficeModel* model;
+@property (assign) NowPlayingModel* model;
 @property (retain) NSLock* gate;
 
-+ (ReviewCache*) cacheWithModel:(BoxOfficeModel*) model;
++ (ReviewCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider;
 

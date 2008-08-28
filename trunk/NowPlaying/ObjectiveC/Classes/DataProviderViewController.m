@@ -41,12 +41,12 @@
 }
 
 
-- (BoxOfficeModel*) model {
+- (NowPlayingModel*) model {
     return self.navigationController.model;
 }
 
 
-- (BoxOfficeController*) controller {
+- (NowPlayingController*) controller {
     return self.navigationController.controller;
 }
 

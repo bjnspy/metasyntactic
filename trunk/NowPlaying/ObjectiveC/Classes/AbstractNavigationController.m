@@ -55,12 +55,12 @@
 }
 
 
-- (BoxOfficeModel*) model {
+- (NowPlayingModel*) model {
     return self.tabBarController.model;
 }
 
 
-- (BoxOfficeController*) controller {
+- (NowPlayingController*) controller {
     return self.tabBarController.controller;
 }
 

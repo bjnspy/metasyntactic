@@ -54,7 +54,7 @@
 }
 
 
-- (id) initWithMovie:(Movie*) movie_ model:(BoxOfficeModel*) model_ frame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
+- (id) initWithMovie:(Movie*) movie_ model:(NowPlayingModel*) model_ frame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.movie = movie_;
         self.model = model_;
@@ -198,7 +198,7 @@
 
 
 + (MovieOverviewCell*) cellWithMovie:(Movie*) movie
-                               model:(BoxOfficeModel*) model
+                               model:(NowPlayingModel*) model
                                frame:(CGRect) frame
                      reuseIdentifier:(NSString*) reuseIdentifier {
     return [[[MovieOverviewCell alloc] initWithMovie:movie model:model frame:frame reuseIdentifier:reuseIdentifier] autorelease];
@@ -233,7 +233,7 @@
 }
 
 
-+ (CGFloat) heightForMovie:(Movie*) movie model:(BoxOfficeModel*) model {
++ (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model {
     MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie model:model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
     return [cell height];
 }

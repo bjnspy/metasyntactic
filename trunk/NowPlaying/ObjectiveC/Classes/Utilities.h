@@ -49,7 +49,7 @@
 
 + (NSString*) stringByAddingPercentEscapes:(NSString*) string;
 
-+ (NSString*) generateShowtimeLinks:(BoxOfficeModel*) model
++ (NSString*) generateShowtimeLinks:(NowPlayingModel*) model
                               movie:(Movie*) movie
                             theater:(Theater*) theater
                        performances:(NSArray*) performances;

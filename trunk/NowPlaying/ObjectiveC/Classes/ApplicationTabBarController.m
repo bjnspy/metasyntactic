@@ -45,7 +45,7 @@
 }
 
 
-- (id) initWithAppDelegate:(BoxOfficeAppDelegate*) appDel {
+- (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDel {
     if (self = [super init]) {
         self.appDelegate = appDel;
         self.moviesNavigationController   = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
@@ -83,7 +83,7 @@
 }
 
 
-+ (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate {
++ (ApplicationTabBarController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate {
     return [[[ApplicationTabBarController alloc] initWithAppDelegate:appDelegate] autorelease];
 }
 
@@ -94,12 +94,12 @@
 }
 
 
-- (BoxOfficeModel*) model {
+- (NowPlayingModel*) model {
     return self.appDelegate.model;
 }
 
 
-- (BoxOfficeController*) controller {
+- (NowPlayingController*) controller {
     return self.appDelegate.controller;
 }
 

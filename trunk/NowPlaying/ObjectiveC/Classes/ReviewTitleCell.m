@@ -39,7 +39,7 @@
 }
 
 
-- (id) initWithModel:(BoxOfficeModel*) model_
+- (id) initWithModel:(NowPlayingModel*) model_
                frame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {

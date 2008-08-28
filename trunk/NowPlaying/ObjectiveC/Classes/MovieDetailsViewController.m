@@ -75,12 +75,12 @@
 }
 
 
-- (BoxOfficeController*) controller {
+- (NowPlayingController*) controller {
     return self.navigationController.controller;
 }
 
 
-- (BoxOfficeModel*) model {
+- (NowPlayingModel*) model {
     return self.navigationController.model;
 }
 

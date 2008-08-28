@@ -24,8 +24,8 @@
 
 - (void) refresh;
 
-- (BoxOfficeModel*) model;
-- (BoxOfficeController*) controller;
+- (NowPlayingModel*) model;
+- (NowPlayingController*) controller;
 
 - (void) pushTicketsView:(Movie*) movie
                  theater:(Theater*) theater
