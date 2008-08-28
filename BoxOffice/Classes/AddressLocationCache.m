@@ -204,7 +204,7 @@
                        useKilometers:(BOOL) useKilometers {
     Location* userLocation = [self locationForPostalCode:userPostalCode];
 
-    NSMutableDictionary* theaterDistanceMap = [self.cachedTheaterDistanceMap objectForKey:userPostalCode];
+    NSMutableDictionary* theaterDistanceMap = [cachedTheaterDistanceMap objectForKey:userPostalCode];
     if (theaterDistanceMap == nil) {
         theaterDistanceMap = [NSMutableDictionary dictionary];
 
@@ -221,8 +221,8 @@
             [theaterDistanceMap setObject:value forKey:key];
         }
 
-        [self.cachedTheaterDistanceMap setObject:theaterDistanceMap
-         forKey:userPostalCode];
+        [cachedTheaterDistanceMap setObject:theaterDistanceMap
+                                     forKey:userPostalCode];
     }
 
     return theaterDistanceMap;

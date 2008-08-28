@@ -112,9 +112,9 @@
 
 
 - (void) popNavigationControllersToRoot {
-    [self.moviesNavigationController popToRootViewControllerAnimated:YES];
-    [self.theatersNavigationController popToRootViewControllerAnimated:YES];
-    [self.numbersNavigationController popToRootViewControllerAnimated:YES];
+    [moviesNavigationController popToRootViewControllerAnimated:YES];
+    [theatersNavigationController popToRootViewControllerAnimated:YES];
+    [numbersNavigationController popToRootViewControllerAnimated:YES];
 }
 
 

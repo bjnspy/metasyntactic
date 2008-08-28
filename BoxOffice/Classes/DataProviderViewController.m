@@ -70,7 +70,7 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
     // Configure the cell
-    if (indexPath.row == [self.model dataProviderIndex]) {
+    if (indexPath.row == self.model.dataProviderIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
@@ -95,8 +95,8 @@
     }
 
     [self.controller setDataProviderIndex:selectPath.row];
-    [self.navigationController.tabBarController popNavigationControllersToRoot];
-    [self.navigationController popViewControllerAnimated:YES];
+    [navigationController.tabBarController popNavigationControllersToRoot];
+    [navigationController popViewControllerAnimated:YES];
 }
 
 

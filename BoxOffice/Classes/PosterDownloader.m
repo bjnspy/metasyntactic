@@ -41,17 +41,17 @@
 
 
 - (NSData*) go {
-    NSData* data = [Utilities dataWithContentsOfAddress:self.movie.poster];
+    NSData* data = [Utilities dataWithContentsOfAddress:movie.poster];
     if (data != nil) {
         return data;
     }
 
-    data = [ApplePosterDownloader download:self.movie];
+    data = [ApplePosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
 
-    data = [ImdbPosterDownloader download:self.movie];
+    data = [ImdbPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }

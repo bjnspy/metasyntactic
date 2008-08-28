@@ -190,15 +190,13 @@ static NSString* articles[] = {
     Movie* other = anObject;
 
     return
-    [self.identifier isEqual:other.identifier] &&
-    [self.canonicalTitle isEqual:other.canonicalTitle];
+    [identifier isEqual:other.identifier] &&
+    [canonicalTitle isEqual:other.canonicalTitle];
 }
 
 
 - (NSUInteger) hash {
-    return
-    [self.identifier hash] +
-    [self.canonicalTitle hash];
+    return identifier.hash + canonicalTitle.hash;
 }
 
 

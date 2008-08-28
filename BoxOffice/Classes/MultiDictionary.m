@@ -42,10 +42,10 @@
 
 - (void) addObject:(id) object
             forKey:(id) key {
-    NSMutableArray* array = [self.dictionary objectForKey:key];
+    NSMutableArray* array = [dictionary objectForKey:key];
     if (array == nil) {
         array = [NSMutableArray array];
-        [self.dictionary setObject:array forKey:key];
+        [dictionary setObject:array forKey:key];
     }
     [array addObject:object];
 }
@@ -53,17 +53,17 @@
 
 - (void) addObjects:(NSArray*) objects
              forKey:(id) key {
-    NSMutableArray* array = [self.dictionary objectForKey:key];
+    NSMutableArray* array = [dictionary objectForKey:key];
     if (array == nil) {
         array = [NSMutableArray array];
-        [self.dictionary setObject:array forKey:key];
+        [dictionary setObject:array forKey:key];
     }
     [array addObjectsFromArray:objects];
 }
 
 
 - (NSArray*) objectsForKey:(id) key {
-    NSArray* array = [self.dictionary objectForKey:key];
+    NSArray* array = [dictionary objectForKey:key];
     if (array == nil) {
         array = [NSArray array];
     }
@@ -72,12 +72,12 @@
 
 
 - (NSMutableArray*) mutableObjectsForKey:(id) key {
-    return [self.dictionary objectForKey:key];
+    return [dictionary objectForKey:key];
 }
 
 
 - (NSArray*) allKeys {
-    return [self.dictionary allKeys];
+    return [dictionary allKeys];
 }
 
 

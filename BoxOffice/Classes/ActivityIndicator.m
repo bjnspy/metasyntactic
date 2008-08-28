@@ -34,11 +34,11 @@
         self.navigationItem = item;
         self.originalButton = self.navigationItem.leftBarButtonItem;
 
-        [self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
-                                                                                    style:UIBarButtonItemStyleDone
-                                                                                   target:self
-                                                                                   action:@selector(onButtonClicked:)] autorelease]
-         animated:YES];
+        [navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
+                                                                               style:UIBarButtonItemStyleDone
+                                                                              target:self
+                                                                              action:@selector(onButtonClicked:)] autorelease]
+                                    animated:YES];
 
 
         running = NO;
@@ -70,7 +70,7 @@
 - (void) stop:(id) sender {
     running = NO;
 
-    [self.navigationItem setLeftBarButtonItem:self.originalButton animated:YES];
+    [navigationItem setLeftBarButtonItem:self.originalButton animated:YES];
 }
 
 

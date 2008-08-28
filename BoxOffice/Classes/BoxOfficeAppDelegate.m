@@ -46,10 +46,10 @@
 
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
-    [self.notificationCenter addToWindow];
+    [notificationCenter addToWindow];
 
     self.controller = [BoxOfficeController controllerWithAppDelegate:self];
-    [self.tabBarController refresh];
+    [tabBarController refresh];
 }
 
 

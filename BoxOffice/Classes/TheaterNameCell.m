@@ -71,13 +71,13 @@
 
 
 - (void) setTheater:(Theater*) theater {
-    if ([self.model isFavoriteTheater:theater]) {
-        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], theater.name];
+    if ([model isFavoriteTheater:theater]) {
+        nameLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], theater.name];
     } else {
-        self.nameLabel.text = theater.name;
+        nameLabel.text = theater.name;
     }
 
-    self.addressLabel.text = [self.model simpleAddressForTheater:theater];
+    addressLabel.text = [model simpleAddressForTheater:theater];
 }
 
 

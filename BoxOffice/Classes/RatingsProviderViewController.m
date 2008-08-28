@@ -95,8 +95,8 @@
     }
 
     [self.controller setRatingsProviderIndex:selectPath.row];
-    [self.navigationController.tabBarController popNavigationControllersToRoot];
-    [self.navigationController popViewControllerAnimated:YES];
+    [navigationController.tabBarController popNavigationControllersToRoot];
+    [navigationController popViewControllerAnimated:YES];
 }
 
 

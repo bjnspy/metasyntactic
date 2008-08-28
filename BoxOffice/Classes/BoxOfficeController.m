@@ -148,31 +148,31 @@
 
 - (void) ratingsLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [self.ratingsLookupLock lock];
+    [ratingsLookupLock lock];
     {
         NSDictionary* ratings = [self ratingsLookup];
         [self performSelectorOnMainThread:@selector(setRatings:) withObject:ratings waitUntilDone:NO];
     }
-    [self.ratingsLookupLock unlock];
+    [ratingsLookupLock unlock];
     [autoreleasePool release];
 }
 
 
 - (void) upcomingMoviesLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [self.upcomingMoviesLookupLock lock];
+    [upcomingMoviesLookupLock lock];
     {
         [self.model.upcomingCache updateMoviesList];
         [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded) withObject:nil waitUntilDone:NO];
     }
-    [self.upcomingMoviesLookupLock unlock];
+    [upcomingMoviesLookupLock unlock];
     [autoreleasePool release];
 }
 
 
 - (void) onBackgroundTaskEnded {
     [self.model removeBackgroundTask];
-    [self.appDelegate.tabBarController refresh];
+    [appDelegate.tabBarController refresh];
 }
 
 
@@ -187,14 +187,14 @@
 
 - (void) dataProviderLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [self.dataProviderLock lock];
+    [dataProviderLock lock];
     {
         [[self.model currentDataProvider] lookup];
         [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded)
                                withObject:nil
                             waitUntilDone:NO];
     }
-    [self.dataProviderLock unlock];
+    [dataProviderLock unlock];
     [autoreleasePool release];
 }
 
@@ -206,7 +206,7 @@
 
     [self.model setSearchDate:searchDate];
     [self spawnBackgroundThreads];
-    [self.appDelegate.tabBarController popNavigationControllersToRoot];
+    [appDelegate.tabBarController popNavigationControllersToRoot];
     [appDelegate.tabBarController refresh];
 }
 

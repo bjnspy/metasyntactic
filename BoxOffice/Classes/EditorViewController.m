@@ -24,6 +24,7 @@
 - (void) dealloc {
     self.navigationController = nil;
     self.object = nil;
+
     [super dealloc];
 }
 
@@ -59,12 +60,12 @@
 
 
 - (void) cancel:(id) sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [navigationController popViewControllerAnimated:YES];
 }
 
 
 - (void) save:(id) sender {
-    [self.navigationController popViewControllerAnimated:YES];
+    [navigationController popViewControllerAnimated:YES];
 }
 
 

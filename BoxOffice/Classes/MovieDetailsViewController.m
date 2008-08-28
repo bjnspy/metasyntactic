@@ -53,13 +53,13 @@
 
 
 - (void) orderTheaters {
-    [self.theatersArray sortUsingFunction:compareTheatersByDistance
-     context:[self.model theaterDistanceMap]];
+    [theatersArray sortUsingFunction:compareTheatersByDistance
+                             context:[self.model theaterDistanceMap]];
 
     NSMutableArray* favorites = [NSMutableArray array];
     NSMutableArray* nonFavorites = [NSMutableArray array];
 
-    for (Theater* theater in self.theatersArray) {
+    for (Theater* theater in theatersArray) {
         if ([self.model isFavoriteTheater:theater]) {
             [favorites addObject:theater];
         } else {
@@ -86,7 +86,7 @@
 
 
 - (void) initializeData {
-    NSArray* theatersShowingMovie = [self.model theatersShowingMovie:self.movie];
+    NSArray* theatersShowingMovie = [self.model theatersShowingMovie:movie];
 
     if (filterTheatersByDistance) {
         self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:theatersShowingMovie]];
@@ -100,7 +100,7 @@
 
     self.showtimesArray = [NSMutableArray array];
 
-    for (Theater* theater in self.theatersArray) {
+    for (Theater* theater in theatersArray) {
         [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
     }
 }
@@ -114,14 +114,14 @@
         filterTheatersByDistance = YES;
 
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
-        label.text = self.movie.displayTitle;
+        label.text = movie.displayTitle;
 
-        self.title = self.movie.displayTitle;
+        self.title = movie.displayTitle;
         self.navigationItem.titleView = label;
-        self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:self.movie]];
+        self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:movie]];
 
         if (!self.model.noRatings) {
-            self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:self.movie]];
+            self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
         }
     }
 
@@ -175,7 +175,7 @@
     if (hiddenTheaterCount > 0) {
         sections += 1;
     }
-    
+
     return sections;
 }
 
@@ -223,7 +223,7 @@
     if ([self isTheaterSection:section]) {
         return 2;
     }
-    
+
     // show hidden theaters
     return 1;
 }
@@ -255,11 +255,11 @@
         if (indexPath.row == 0) {
             return tableView.rowHeight;
         } else {
-            return [MovieShowtimesCell heightForShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
+            return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
                                             useSmallFonts:[self.model useSmallFonts]] + 18;
         }
     }
-    
+
     // show hidden theaters
     return tableView.rowHeight;
 }
@@ -272,7 +272,7 @@
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
         cell.textAlignment = UITextAlignmentCenter;
-        cell.text = self.movie.ratingAndRuntimeString;
+        cell.text = movie.ratingAndRuntimeString;
         cell.font = [UIFont boldSystemFontOfSize:14];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -320,10 +320,10 @@
                                            reuseIdentifier:reuseIdentifier
                                                      model:self.model] autorelease];
         }
-        
-        Theater* theater = [self.theatersArray objectAtIndex:theaterIndex];
+
+        Theater* theater = [theatersArray objectAtIndex:theaterIndex];
         [cell setTheater:theater];
-        
+
         return cell;
     } else {
         static NSString* reuseIdentifier = @"MovieDetailsShowtimesCellIdentifier";
@@ -332,10 +332,10 @@
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                               reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
-        [cell setShowtimes:[self.showtimesArray objectAtIndex:theaterIndex]
+
+        [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]
              useSmallFonts:self.model.useSmallFonts];
-        
+
         return cell;
     }
 }
@@ -344,16 +344,16 @@
 - (UITableViewCell*) showHiddenTheatersCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.textAlignment = UITextAlignmentCenter;
-    
+
     if (self.hiddenTheaterCount == 1) {
         cell.text = NSLocalizedString(@"Show 1 hidden theater", nil);
     } else {
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", nil), self.hiddenTheaterCount];
     }
-    
+
     cell.textColor = [ColorCache commandColor];
     cell.font = [UIFont boldSystemFontOfSize:14];
-    
+
     return cell;
 }
 
@@ -367,12 +367,12 @@
     if (indexPath.section == 1) {
         return [self cellForActionRow:indexPath.row];
     }
-    
+
     if ([self isTheaterSection:indexPath.section]) {
         // theater section
         return [self cellForTheaterSection:[self getTheaterIndex:indexPath.section] row:indexPath.row];
     }
-    
+
     return [self showHiddenTheatersCell];
 }
 
@@ -413,10 +413,10 @@
     if (row < trailersArray.count) {
         [self playTrailer:row];
     } else if (row == trailersArray.count && self.reviewsArray.count > 0) {
-        [self.navigationController pushReviewsView:movie animated:YES];
+        [navigationController pushReviewsView:movie animated:YES];
     } else {
         NSString* movieAndDate = [NSString stringWithFormat:@"%@ - %@",
-                                  self.movie.canonicalTitle,
+                                  movie.canonicalTitle,
                                   [DateUtilities formatFullDate:self.model.searchDate]];
         NSMutableString* body = [NSMutableString string];
 
@@ -454,10 +454,10 @@
 
 - (void) pushTicketsView:(Theater*) theater
                 animated:(BOOL) animated {
-    [self.navigationController pushTicketsView:self.movie
-     theater:theater
-     title:theater.name
-     animated:animated];
+    [navigationController pushTicketsView:movie
+                                  theater:theater
+                                    title:theater.name
+                                 animated:animated];
 }
 
 
@@ -474,16 +474,16 @@
 
     if ([self isTheaterSection:indexPath.section]) {
         // theater section
-        Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
-        
+        Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
+
         if (indexPath.row == 0) {
-            [self.navigationController pushTheaterDetails:theater animated:YES];
+            [navigationController pushTheaterDetails:theater animated:YES];
         } else {
             [self pushTicketsView:theater animated:YES];
         }
         return;
     }
-    
+
     [self didSelectShowHiddenTheaters];
 }
 
@@ -504,7 +504,7 @@
         // theater section
         return UITableViewCellAccessoryDisclosureIndicator;
     }
-    
+
     // show hidden theaters
     return UITableViewCellAccessoryNone;
 }

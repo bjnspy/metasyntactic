@@ -156,8 +156,8 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     SettingCell* cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-    NSString* code = [[self.localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL] objectAtIndex:row];
-    NSString* person = [self.localizers objectForKey:code];
+    NSString* code = [[localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL] objectAtIndex:row];
+    NSString* person = [localizers objectForKey:code];
     NSString* language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code];
 
     [cell setKey:language value:person];

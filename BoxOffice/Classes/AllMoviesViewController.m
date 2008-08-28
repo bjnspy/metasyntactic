@@ -60,23 +60,23 @@
                                NSLocalizedString(@"Release", nil),
                                NSLocalizedString(@"Score", nil), nil]] autorelease];
 
-    self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-    self.segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
 
-    [self.segmentedControl addTarget:self
-     action:@selector(onSortOrderChanged:)
-     forControlEvents:UIControlEventValueChanged];
+    [segmentedControl addTarget:self
+                         action:@selector(onSortOrderChanged:)
+               forControlEvents:UIControlEventValueChanged];
 
-    CGRect rect = self.segmentedControl.frame;
+    CGRect rect = segmentedControl.frame;
     rect.size.width = 240;
-    self.segmentedControl.frame = rect;
+    segmentedControl.frame = rect;
 
     self.navigationItem.titleView = segmentedControl;
 }
 
 
 - (void) onSortOrderChanged:(id) sender {
-    [self.model setAllMoviesSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
+    [self.model setAllMoviesSelectedSegmentIndex:segmentedControl.selectedSegmentIndex];
     [self refresh];
 }
 
@@ -91,11 +91,11 @@
 
 
 - (void) refresh {
-    if (self.model.noRatings && self.segmentedControl.numberOfSegments == 3) {
-        self.segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
-        [self.segmentedControl removeSegmentAtIndex:2 animated:NO];
-    } else if (!self.model.noRatings && self.segmentedControl.numberOfSegments == 2) {
-        [self.segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
+    if (self.model.noRatings && segmentedControl.numberOfSegments == 3) {
+        segmentedControl.selectedSegmentIndex = self.model.allMoviesSelectedSegmentIndex;
+        [segmentedControl removeSegmentAtIndex:2 animated:NO];
+    } else if (!self.model.noRatings && segmentedControl.numberOfSegments == 2) {
+        [segmentedControl insertSegmentWithTitle:NSLocalizedString(@"Score", nil) atIndex:2 animated:NO];
     }
 
     [super refresh];

@@ -67,12 +67,11 @@
             NSDate* showtimeDate = [DateUtilities dateWithNaturalLanguageString:performance.time];
 
             if ([now compare:showtimeDate] == NSOrderedDescending) {
-                //[self.futurePerformances addObject:performance];
                 continue;
             }
         }
 
-        [self.performances addObject:performance];
+        [performances addObject:performance];
     }
 }
 
@@ -141,10 +140,10 @@
     } else if (section == 1) {
         return nil;
     } else if (section == 2 && performances.count) {
-        if ([DateUtilities isToday:[self.model searchDate]]) {
+        if ([DateUtilities isToday:self.model.searchDate]) {
             return NSLocalizedString(@"Today", nil);
         } else {
-            return [DateUtilities formatFullDate:[self.model searchDate]];
+            return [DateUtilities formatFullDate:self.model.searchDate];
         }
     }
 
@@ -174,16 +173,16 @@
         cell.font = [UIFont boldSystemFontOfSize:14];
     }
 
-    Performance* performance = [self.performances objectAtIndex:row];
+    Performance* performance = [performances objectAtIndex:row];
 
-    if (![self.theater.sellsTickets isEqual:@"True"] ||
-        [Utilities isNilOrEmpty:[performance identifier]]) {
+    if (![theater.sellsTickets isEqual:@"True"] ||
+        [Utilities isNilOrEmpty:performance.identifier]) {
         cell.textColor = [UIColor blackColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), [performance time]];
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), performance.time];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     } else {
         cell.textColor = [ColorCache commandColor];
-        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil), [performance time]];
+        cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil), performance.time];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
 
@@ -258,9 +257,9 @@
 
 
 - (void) didSelectShowtimeAtRow:(NSInteger) row {
-    Performance* performance = [self.performances objectAtIndex:row];
+    Performance* performance = [performances objectAtIndex:row];
 
-    if (![self.theater.sellsTickets isEqual:@"True"] ||
+    if (![theater.sellsTickets isEqual:@"True"] ||
         [Utilities isNilOrEmpty:performance.identifier]) {
         return;
     }
@@ -279,7 +278,7 @@
 
 - (void) didSelectEmailListings {
     NSString* theaterAndDate = [NSString stringWithFormat:@"%@ - %@",
-                                self.movie.canonicalTitle,
+                                movie.canonicalTitle,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
 
@@ -292,7 +291,7 @@
     [body appendString:@"</a>"];
 
     [body appendString:@"\n\n"];
-    [body appendString:self.movie.canonicalTitle];
+    [body appendString:movie.canonicalTitle];
     [body appendString:@"\n"];
 
     [body appendString:[Utilities generateShowtimeLinks:self.model
@@ -311,8 +310,8 @@
 - (void) didSelectInfoCellAtRow:(NSInteger) row {
     if (row == 0) {
         SearchDatePickerViewController* pickerController =
-        [SearchDatePickerViewController pickerWithNavigationController:self.navigationController controller:[self.navigationController controller]];
-        [self.navigationController pushViewController:pickerController animated:YES];
+        [SearchDatePickerViewController pickerWithNavigationController:navigationController controller:navigationController.controller];
+        [navigationController pushViewController:pickerController animated:YES];
     } else {
         [self didSelectEmailListings];
     }

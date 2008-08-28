@@ -81,17 +81,17 @@
     self.valueLabel.text = value;
 
     {
-        [self.keyLabel sizeToFit];
+        [keyLabel sizeToFit];
         CGRect frame = self.keyLabel.frame;
         frame.origin.x = keyWidth - frame.size.width;
-        self.keyLabel.frame = frame;
+        keyLabel.frame = frame;
     }
 
     {
-        [self.valueLabel sizeToFit];
+        [valueLabel sizeToFit];
         CGRect frame = self.valueLabel.frame;
         frame.origin.x = keyWidth + 10;
-        self.valueLabel.frame = frame;
+        valueLabel.frame = frame;
     }
 }
 

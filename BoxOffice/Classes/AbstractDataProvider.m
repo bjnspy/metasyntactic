@@ -158,7 +158,7 @@
 
 
 - (NSMutableDictionary*) lookupTheaterPerformances:(Theater*) theater {
-    NSMutableDictionary* theaterPerformances = [self.performances objectForKey:theater.identifier];
+    NSMutableDictionary* theaterPerformances = [performances objectForKey:theater.identifier];
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
                                [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.identifier]]];

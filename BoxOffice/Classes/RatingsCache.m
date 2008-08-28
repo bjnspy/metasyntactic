@@ -113,7 +113,7 @@
 
 
 - (NSDictionary*) updateWorker {
-    NSString* hash = [self.ratingsAndHash objectForKey:@"Hash"];
+    NSString* hash = [ratingsAndHash objectForKey:@"Hash"];
 
     if (self.model.rottenTomatoesRatings) {
         return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings:hash];
@@ -136,7 +136,7 @@
 
 
 - (NSDictionary*) ratings {
-    NSDictionary* result = [self.ratingsAndHash objectForKey:@"Ratings"];
+    NSDictionary* result = [ratingsAndHash objectForKey:@"Ratings"];
     if (result == nil) {
         return [NSDictionary dictionary];
     }

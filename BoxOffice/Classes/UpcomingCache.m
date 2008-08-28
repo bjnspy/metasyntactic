@@ -286,7 +286,7 @@
 
 - (void) updateMovieDetailsInBackground:(NSDictionary*) index_ {
     NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-    [self.gate lock];
+    [gate lock];
     {
         [NSThread setThreadPriority:0.0];
         NSArray* movies = [index_ objectForKey:@"Movies"];
@@ -303,7 +303,7 @@
             [autoreleasePool release];
         }
     }
-    [self.gate unlock];
+    [gate unlock];
     [autoreleasePool release];
 }
 
