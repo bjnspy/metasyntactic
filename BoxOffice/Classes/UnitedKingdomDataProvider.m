@@ -44,7 +44,7 @@
     NSString* identifier = [filmElement element:@"film_uid"].text;
     NSString* title      = [filmElement element:@"film_title"].text;
     NSString* synopsis   = [filmElement element:@"film_url"].text;
-
+    
     return [Movie movieWithIdentifier:identifier
                                 title:title
                                rating:@"NR"
@@ -61,14 +61,14 @@
 
 - (NSMutableArray*) processFilms:(XmlElement*) filmsElement {
     NSMutableArray* result = [NSMutableArray array];
-
+    
     for (XmlElement* child in filmsElement.children) {
         Movie* movie = [self processFilm:child];
         if (movie != nil) {
             [result addObject:movie];
         }
     }
-
+    
     return result;
 }
 
@@ -87,15 +87,15 @@
     XmlElement* filmsElement      = [XmlParser parseUrl:@"http://www.remotegoat.co.uk/f/11013/films.xml"];
     XmlElement* venuesElement     = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films_venues.xml"];
     XmlElement* screeningsElement = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films_screenings_today.xml"];
-
+    
     //XmlElement* filmsElement      = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films.xml"];
     //XmlElement* venuesElement     = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films_venues.xml"];
     //XmlElement* screeningsElement = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films_screenings_today.xml"];
-
+    
     NSMutableArray* movies_            = [self processFilms:filmsElement];
     NSMutableArray* theaters_          = [self processVenues:venuesElement];
     NSMutableDictionary* performances_ = [self processScreenings:screeningsElement];
-
+    
     return [LookupResult resultWithMovies:movies_
                                  theaters:theaters_
                              performances:performances_];

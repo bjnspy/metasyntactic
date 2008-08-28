@@ -36,7 +36,7 @@
     if (self = [super initWithController:controller withObject:object_ withSelector:selector_]) {
         self.textField = [[[UITextField alloc] initWithFrame:CGRectZero] autorelease];
         self.textField.autoresizingMask = UIViewAutoresizingFlexibleWidth;
-
+        
         self.textField.text = text;
         self.textField.placeholder = placeHolder;
         self.textField.borderStyle = UITextBorderStyleRoundedRect;
@@ -44,21 +44,21 @@
         self.textField.font = [UIFont boldSystemFontOfSize:17];
         self.textField.keyboardType = type;
         self.textField.clearButtonMode = UITextFieldViewModeWhileEditing;
-
+        
         self.title = title;
     }
-
+    
     return self;
 }
 
 
 - (void) loadView {
     [super loadView];
-
+    
     [self.view addSubview:self.textField];
     CGRect frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);
     self.textField.frame = frame;
-
+    
     [self.textField becomeFirstResponder];
 }
 

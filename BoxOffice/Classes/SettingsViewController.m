@@ -42,7 +42,7 @@
     self.activityIndicator = nil;
     self.locationManager = nil;
     self.gate = nil;
-
+    
     [super dealloc];
 }
 
@@ -73,37 +73,37 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = controller;
         self.gate = [[[NSLock alloc] init] autorelease];
-
+        
         NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
         NSString* appVersion = [BoxOfficeModel version];
         appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
-
+        
         self.title = [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
-
+        
         UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
                                                                  action:@selector(onCurrentLocationClicked:)] autorelease];
-
+        
         self.navigationItem.leftBarButtonItem = item;
-
+        
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         self.locationManager.delegate = self;
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         self.locationManager.distanceFilter = kCLDistanceFilterNone;
-
+        
         [self performSelector:@selector(autoUpdateLocation:) withObject:nil afterDelay:2];
     }
-
+    
     return self;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-
+    
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-
+    
     [self refresh];
 }
 
@@ -136,16 +136,16 @@
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
     NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", latitude, longitude];
-
+    
     XmlElement* geonamesElement = [Utilities downloadXml:urlString];
     XmlElement* codeElement = [geonamesElement element:@"code"];
     XmlElement* postalElement = [codeElement element:@"postalcode"];
     XmlElement* countryElement = [codeElement element:@"countryCode"];
-
+    
     if ([@"CA" isEqual:countryElement.text]) {
         return nil;
     }
-
+    
     return postalElement.text;
 }
 
@@ -155,7 +155,7 @@
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
     NSString* urlString = [NSString stringWithFormat:@"http://geocoder.ca/?latt=%f&longt=%f&geoit=xml&reverse=Reverse+GeoCode+it", latitude, longitude];
-
+    
     XmlElement* geodataElement = [Utilities downloadXml:urlString];
     XmlElement* postalElement = [geodataElement element:@"postal"];
     return postalElement.text;
@@ -167,7 +167,7 @@
     if (postalCode == nil) {
         postalCode = [self findCAPostalCode:location];
     }
-
+    
     [self performSelectorOnMainThread:@selector(reportFoundPostalCode:) withObject:postalCode waitUntilDone:NO];
 }
 
@@ -187,7 +187,7 @@
        didFailWithError:(NSError*) error {
     [locationManager stopUpdatingLocation];
     [self stopActivityIndicator];
-
+    
     // intermittent failures are not uncommon. retry in a minute.
     [self enqueueUpdateRequest:60];
 }
@@ -236,16 +236,16 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
+        
         cell.text = NSLocalizedString(@"Donate", nil);
         cell.textColor = [ColorCache commandColor];
         cell.textAlignment = UITextAlignmentCenter;
-
+        
         return cell;
     } else if (indexPath.section == 1) {
         if (indexPath.row >= 0 && indexPath.row <= 3) {
             SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
+            
             NSString* key;
             NSString* value;
             if (indexPath.row == 0) {
@@ -253,7 +253,7 @@
                 value = self.model.postalCode;
             } else if (indexPath.row == 1) {
                 key = NSLocalizedString(@"Search Distance", nil);
-
+                
                 if (self.model.searchRadius == 1) {
                     value = (self.model.useKilometers ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
                 } else {
@@ -263,7 +263,7 @@
                 }
             } else if (indexPath.row == 2) {
                 key = NSLocalizedString(@"Search Date", nil);
-
+                
                 NSDate* date = [self.model searchDate];
                 if ([DateUtilities isToday:date]) {
                     value = NSLocalizedString(@"Today", nil);
@@ -274,17 +274,17 @@
                 key = NSLocalizedString(@"Reviews", nil);
                 value = self.model.currentRatingsProvider;
             }
-
+            
             [cell setKey:key value:value];
-
+            
             return cell;
         } else if (indexPath.row >= 4 && indexPath.row <= 6) {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+            
             UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.accessoryView = picker;
-
+            
             NSString* text = @"";
             BOOL on = NO;
             if (indexPath.row == 4) {
@@ -300,10 +300,10 @@
                 on = self.model.hideEmptyTheaters;
                 [picker addTarget:self action:@selector(onHideEmptyTheatersChanged:) forControlEvents:UIControlEventValueChanged];
             }
-
+            
             picker.on = on;
             cell.text = text;
-
+            
             return cell;
         }
     } else {
@@ -311,7 +311,7 @@
         cell.text = NSLocalizedString(@"About", nil);
         return cell;
     }
-
+    
     return nil;
 }
 
@@ -325,7 +325,7 @@
             return NSLocalizedString(@"Theaters will be shown even if no show time data is available for them.", nil);
         }
     }
-
+    
     return nil;
 }
 
@@ -353,7 +353,7 @@
     SearchDatePickerViewController* pickerController =
     [SearchDatePickerViewController pickerWithNavigationController:self.navigationController
                                                         controller:self.controller];
-
+    
     [self.navigationController pushViewController:pickerController animated:YES];
 }
 
@@ -364,7 +364,7 @@
                        @"10", @"15", @"20", @"25", @"30",
                        @"35", @"40", @"45", @"50", nil];
     NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
-
+    
     PickerEditorViewController* controller =
     [[[PickerEditorViewController alloc] initWithController:self.navigationController
                                                       title:NSLocalizedString(@"Search Distance", nil)
@@ -373,7 +373,7 @@
                                                    selector:@selector(onSearchRadiusChanged:)
                                                      values:values
                                                defaultValue:defaultValue] autorelease];
-
+    
     [self.navigationController pushViewController:controller animated:YES];
 }
 
@@ -382,7 +382,7 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     if (section == 0) {
         [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     } else if (section == 1) {
@@ -395,7 +395,7 @@
                                                                   text:self.model.postalCode
                                                            placeHolder:NSLocalizedString(@"Postal Code", nil)
                                                                   type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
-
+            
             [self.navigationController pushViewController:controller animated:YES];
         } else if (row == 1) {
             [self pushFilterDistancePicker];
@@ -403,7 +403,7 @@
             [self pushSearchDatePicker];
         } else if (row == 3) {
             RatingsProviderViewController* controller =
-                [[[RatingsProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
+            [[[RatingsProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
             [self.navigationController pushViewController:controller animated:YES];
         }
     } else if (section == 2) {
@@ -415,7 +415,7 @@
 
 - (void) onPostalCodeChanged:(NSString*) postalCode {
     postalCode = [postalCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
-
+    
     [self.controller setPostalCode:postalCode];
     [self.tableView reloadData];
 }
@@ -423,13 +423,13 @@
 
 - (void) reportFoundPostalCode:(NSString*) postalCode {
     [self stopActivityIndicator];
-
+    
     if ([Utilities isNilOrEmpty:postalCode]) {
         [self enqueueUpdateRequest:60];
     } else {
         [self enqueueUpdateRequest:5 * 60];
     }
-
+    
     [self onPostalCodeChanged:postalCode];
 }
 

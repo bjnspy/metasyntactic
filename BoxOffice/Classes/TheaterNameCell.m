@@ -31,7 +31,7 @@
     self.model = nil;
     self.nameLabel = nil;
     self.addressLabel = nil;
-
+    
     [super dealloc];
 }
 
@@ -41,28 +41,28 @@
                model:(BoxOfficeModel*) model_ {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
-
+        
         self.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, 0, 20)] autorelease];
         nameLabel.font = [UIFont boldSystemFontOfSize:18];
         nameLabel.adjustsFontSizeToFitWidth = YES;
         nameLabel.minimumFontSize = 14;
         nameLabel.textColor = [UIColor blackColor];
-
+        
         self.addressLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 25, 0, 14)] autorelease];
         addressLabel.font = [UIFont systemFontOfSize:12];
         addressLabel.textColor = [UIColor grayColor];
-
+        
         [self.contentView addSubview:nameLabel];
         [self.contentView addSubview:addressLabel];
     }
-
+    
     return self;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-
+    
     for (UILabel* label in [NSArray arrayWithObjects:self.nameLabel, self.addressLabel, nil]) {
         CGRect frame = label.frame;
         frame.size.width = self.contentView.frame.size.width - frame.origin.x;
@@ -77,7 +77,7 @@
     } else {
         self.nameLabel.text = theater.name;
     }
-
+    
     self.addressLabel.text = [self.model simpleAddressForTheater:theater];
 }
 
@@ -85,7 +85,7 @@
 - (void) setSelected:(BOOL) selected
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
-
+    
     if (selected) {
         nameLabel.textColor = [UIColor whiteColor];
         addressLabel.textColor = [UIColor whiteColor];

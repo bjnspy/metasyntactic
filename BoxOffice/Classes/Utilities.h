@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface Utilities : NSObject {
-
+    
 }
 
 + (BOOL) isNilOrEmpty:(NSString*) string;
@@ -26,8 +26,8 @@
 
 + (id) findSmallestElementInArray:(NSArray*) array
                     usingFunction:(NSInteger(*)(id, id, void*, void*)) comparator
-                          context1:(void*) context1
-                          context2:(void*) context2;
+                         context1:(void*) context1
+                         context2:(void*) context2;
 
 + (NSString*) titleForMovie:(XmlElement*) element;
 

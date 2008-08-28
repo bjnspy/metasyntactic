@@ -20,7 +20,7 @@
     UIImage* rottenTomatoesImage;
     UIImage* tryntImage;
     UIImage* yahooImage;
-
+    
     NSDictionary* localizers;
 }
 

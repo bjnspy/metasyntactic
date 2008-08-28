@@ -58,18 +58,18 @@
                               [NSArray arrayWithObjects:
                                NSLocalizedString(@"Title", nil),
                                NSLocalizedString(@"Release", nil), nil]] autorelease];
-
+    
     self.segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
     self.segmentedControl.selectedSegmentIndex = self.model.upcomingMoviesSelectedSegmentIndex;
-
+    
     [self.segmentedControl addTarget:self
-                              action:@selector(onSortOrderChanged:)
-                    forControlEvents:UIControlEventValueChanged];
-
+     action:@selector(onSortOrderChanged:)
+     forControlEvents:UIControlEventValueChanged];
+    
     CGRect rect = self.segmentedControl.frame;
     rect.size.width = 240;
     self.segmentedControl.frame = rect;
-
+    
     self.navigationItem.titleView = segmentedControl;
 }
 
@@ -85,7 +85,7 @@
         self.title = NSLocalizedString(@"Upcoming", nil);
         self.tableView.rowHeight = 100;
     }
-
+    
     return self;
 }
 

@@ -16,7 +16,7 @@
 
 @interface AddressLocationCache : NSObject {
     NSLock* gate;
-
+    
     NSMutableDictionary* cachedTheaterDistanceMap;
 }
 

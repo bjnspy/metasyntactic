@@ -36,24 +36,24 @@
         self.object = object_;
         selector = selector_;
     }
-
+    
     return self;
 }
 
 
 - (void) loadView {
     [super loadView];
-
+    
     UIBarButtonItem *saveItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemSave
                                                                                target:self
                                                                                action:@selector(save:)] autorelease];
     self.navigationItem.rightBarButtonItem = saveItem;
-
+    
     UIBarButtonItem *cancelItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel
                                                                                  target:self
                                                                                  action:@selector(cancel:)] autorelease];
     self.navigationItem.leftBarButtonItem = cancelItem;
-
+    
     self.view.backgroundColor = [UIColor groupTableViewBackgroundColor];
 }
 

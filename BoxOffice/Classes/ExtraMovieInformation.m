@@ -31,7 +31,7 @@
     self.link = nil;
     self.synopsis = nil;
     self.score = nil;
-
+    
     [super dealloc];
 }
 
@@ -44,10 +44,10 @@
         self.canonicalTitle = [Movie makeCanonical:title_];
         self.link = link_;
         self.score = score_;
-
+        
         self.synopsis = [Utilities stripHtmlCodes:synopsis_];
     }
-
+    
     return self;
 }
 
@@ -86,7 +86,7 @@
     if (value >= 0 && value <= 100) {
         return value;
     }
-
+    
     return -1;
 }
 

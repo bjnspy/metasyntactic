@@ -26,7 +26,7 @@
     NSArray* directors;
     NSArray* cast;
     NSArray* genres;
-
+    
     NSString* displayTitle;
 }
 

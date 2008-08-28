@@ -46,23 +46,23 @@
     self.directors = nil;
     self.cast = nil;
     self.genres = nil;
-
+    
     [super dealloc];
 }
 
 
 static NSString* articles[] = {
-        @"Der", @"Das", @"Ein", @"Eine", @"The",
-        @"A", @"An", @"La", @"Las", @"Le",
-        @"Les", @"Los", @"El", @"Un", @"Une",
-        @"Una", @"Il", @"O", @"Het", @"De",
-        @"Os", @"Az", @"Den", @"Al", @"En",
-        @"L'"
-    };
+@"Der", @"Das", @"Ein", @"Eine", @"The",
+@"A", @"An", @"La", @"Las", @"Le",
+@"Les", @"Los", @"El", @"Un", @"Une",
+@"Una", @"Il", @"O", @"Het", @"De",
+@"Os", @"Az", @"Den", @"Al", @"En",
+@"L'"
+};
 
 + (NSString*) makeCanonical:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
+    
     int count = sizeof(articles) / sizeof(NSString*);
     for (int i = 0; i < count; i++) {
         NSString* article = articles[i];
@@ -70,14 +70,14 @@ static NSString* articles[] = {
             return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
         }
     }
-
+    
     return title;
 }
 
 
 + (NSString*) makeDisplay:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
+    
     int count = sizeof(articles) / sizeof(NSString*);
     for (int i = 0; i < count; i++) {
         NSString* article = articles[i];
@@ -85,7 +85,7 @@ static NSString* articles[] = {
             return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
         }
     }
-
+    
     return title;
 }
 
@@ -105,7 +105,7 @@ static NSString* articles[] = {
         self.identifier = identifier_;
         self.canonicalTitle = [Movie makeCanonical:title_];
         self.displayTitle   = [Movie makeDisplay:title_];
-
+        
         self.rating = [rating_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         if (self.rating == nil) {
             self.rating = @"NR";
@@ -119,7 +119,7 @@ static NSString* articles[] = {
         self.cast = cast_;
         self.genres = genres_;
     }
-
+    
     return self;
 }
 
@@ -188,17 +188,17 @@ static NSString* articles[] = {
 
 - (BOOL) isEqual:(id) anObject {
     Movie* other = anObject;
-
+    
     return
-        [self.identifier isEqual:other.identifier] &&
-        [self.canonicalTitle isEqual:other.canonicalTitle];
+    [self.identifier isEqual:other.identifier] &&
+    [self.canonicalTitle isEqual:other.canonicalTitle];
 }
 
 
 - (NSUInteger) hash {
     return
-        [self.identifier hash] +
-        [self.canonicalTitle hash];
+    [self.identifier hash] +
+    [self.canonicalTitle hash];
 }
 
 
@@ -220,9 +220,9 @@ static NSString* articles[] = {
     NSInteger movieLength = self.length.intValue;
     NSInteger hours = movieLength / 60;
     NSInteger minutes = movieLength % 60;
-
+    
     NSString* ratingString = self.ratingString;
-
+    
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {
         if (hours == 1) {
@@ -232,7 +232,7 @@ static NSString* articles[] = {
             [text appendString:@" "];
             [text appendFormat:NSLocalizedString(@"%d hours", nil), hours];
         }
-
+        
         if (minutes == 1) {
             [text appendString:@" "];
             [text appendString:NSLocalizedString(@"1 minute", nil)];
@@ -241,7 +241,7 @@ static NSString* articles[] = {
             [text appendFormat:NSLocalizedString(@"%d minutes", nil), minutes];
         }
     }
-
+    
     return text;
 }
 

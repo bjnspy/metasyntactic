@@ -26,7 +26,7 @@
 
 - (void) dealloc {
     self.navigationController = nil;
-
+    
     [super dealloc];
 }
 
@@ -36,7 +36,7 @@
         self.navigationController = navigationController_;
         self.title = NSLocalizedString(@"Reviews", nil);
     }
-
+    
     return self;
 }
 
@@ -80,24 +80,24 @@
 }
 
 
- - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
-     [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
-
-     for (int i = 0; i < self.model.ratingsProviders.count; i++) {
-         NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
-         UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
-
-         if ([cellPath isEqual:selectPath]) {
-             cell.accessoryType = UITableViewCellAccessoryCheckmark;
-         } else {
-             cell.accessoryType = UITableViewCellAccessoryNone;
-         }
-     }
-
-     [self.controller setRatingsProviderIndex:selectPath.row];
-     [self.navigationController.tabBarController popNavigationControllersToRoot];
-     [self.navigationController popViewControllerAnimated:YES];
- }
+- (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
+    [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
+    
+    for (int i = 0; i < self.model.ratingsProviders.count; i++) {
+        NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
+        UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
+        
+        if ([cellPath isEqual:selectPath]) {
+            cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        } else {
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
+    }
+    
+    [self.controller setRatingsProviderIndex:selectPath.row];
+    [self.navigationController.tabBarController popNavigationControllersToRoot];
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 
 @end

@@ -32,7 +32,7 @@
     self.text = nil;
     self.author = nil;
     self.source = nil;
-
+    
     [super dealloc];
 }
 
@@ -48,20 +48,20 @@
         self.text = text_;
         self.author = author_;
         self.source = source_;
-
+        
         if (self.link == nil) {
             self.link = @"";
         }
-
+        
         if (self.author == nil) {
             self.author = @"";
         }
-
+        
         if (self.source == nil) {
             self.source = @"";
         }
     }
-
+    
     return self;
 }
 

@@ -45,9 +45,9 @@ static NSString* starString = nil;
 + (void) initialize {
     if (self == [Application class]) {
         gate = [[NSRecursiveLock alloc] init];
-
+        
         differenceEngine = [[DifferenceEngine engine] retain];
-
+        
         providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
     }
 }
@@ -73,7 +73,7 @@ static NSString* starString = nil;
         [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingSynopsesFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingTrailersFolder] error:NULL];
         [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingFolder] error:NULL];
-
+        
         [dataFolder release];
         [locationsFolder release];
         [postersFolder release];
@@ -85,7 +85,7 @@ static NSString* starString = nil;
         [upcomingSynopsesFolder release];
         [upcomingTrailersFolder release];
         [upcomingFolder release];
-
+        
         dataFolder = nil;
         locationsFolder = nil;
         postersFolder = nil;
@@ -108,14 +108,14 @@ static NSString* starString = nil;
         if (documentsFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, /*expandTilde:*/YES);
             NSString* folder = [paths objectAtIndex:0];
-
+            
             [Application createDirectory:folder];
-
+            
             documentsFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return documentsFolder;
 }
 
@@ -125,17 +125,17 @@ static NSString* starString = nil;
     {
         if (supportFolder == nil) {
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, /*expandTilde:*/YES);
-
+            
             NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
             NSString* folder = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
-
+            
             [Application createDirectory:folder];
-
+            
             supportFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return supportFolder;
 }
 
@@ -148,7 +148,7 @@ static NSString* starString = nil;
         }
     }
     [gate unlock];
-
+    
     return tempFolder;
 }
 
@@ -159,14 +159,14 @@ static NSString* starString = nil;
         if (dataFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Data"];
-
+            
             [Application createDirectory:folder];
-
+            
             dataFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return dataFolder;
 }
 
@@ -177,14 +177,14 @@ static NSString* starString = nil;
         if (reviewsFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Reviews"];
-
+            
             [Application createDirectory:folder];
-
+            
             reviewsFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return reviewsFolder;
 }
 
@@ -195,14 +195,14 @@ static NSString* starString = nil;
         if (ratingsFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Ratings"];
-
+            
             [Application createDirectory:folder];
-
+            
             ratingsFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return ratingsFolder;
 }
 
@@ -213,14 +213,14 @@ static NSString* starString = nil;
         if (searchFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Search"];
-
+            
             [Application createDirectory:folder];
-
+            
             searchFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return searchFolder;
 }
 
@@ -231,14 +231,14 @@ static NSString* starString = nil;
         if (locationsFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Locations"];
-
+            
             [Application createDirectory:folder];
-
+            
             locationsFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return locationsFolder;
 }
 
@@ -249,14 +249,14 @@ static NSString* starString = nil;
         if (postersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
-
+            
             [Application createDirectory:folder];
-
+            
             postersFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return postersFolder;
 }
 
@@ -267,14 +267,14 @@ static NSString* starString = nil;
         if (trailersFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
-
+            
             [Application createDirectory:folder];
-
+            
             trailersFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return trailersFolder;
 }
 
@@ -285,14 +285,14 @@ static NSString* starString = nil;
         if (upcomingFolder == nil) {
             NSString* parent = [Application supportFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Upcoming"];
-
+            
             [Application createDirectory:folder];
-
+            
             upcomingFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return upcomingFolder;
 }
 
@@ -303,14 +303,14 @@ static NSString* starString = nil;
         if (upcomingPostersFolder == nil) {
             NSString* parent = [Application upcomingFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
-
+            
             [Application createDirectory:folder];
-
+            
             upcomingPostersFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return upcomingPostersFolder;
 }
 
@@ -321,14 +321,14 @@ static NSString* starString = nil;
         if (upcomingSynopsesFolder == nil) {
             NSString* parent = [Application upcomingFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Synopses"];
-
+            
             [Application createDirectory:folder];
-
+            
             upcomingSynopsesFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return upcomingSynopsesFolder;
 }
 
@@ -339,34 +339,34 @@ static NSString* starString = nil;
         if (upcomingTrailersFolder == nil) {
             NSString* parent = [Application upcomingFolder];
             NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
-
+            
             [Application createDirectory:folder];
-
+            
             upcomingTrailersFolder = [folder retain];
         }
     }
     [gate unlock];
-
+    
     return upcomingTrailersFolder;
 }
 
 
 + (NSString*) providerReviewsFolder:(NSString*) ratingsProvider {
     NSString* folder = nil;
-
+    
     [gate lock];
     {
         folder = [providerReviewsFolder objectForKey:ratingsProvider];
         if (folder == nil) {
             folder = [[Application reviewsFolder] stringByAppendingPathComponent:ratingsProvider];
-
+            
             [Application createDirectory:folder];
-
+            
             [providerReviewsFolder setObject:folder forKey:ratingsProvider];
         }
     }
     [gate unlock];
-
+    
     return folder;
 }
 
@@ -382,21 +382,21 @@ static NSString* starString = nil;
 
 + (NSString*) uniqueTemporaryFolder {
     NSString* finalDir;
-
+    
     [gate lock];
     {
         NSFileManager* manager = [NSFileManager defaultManager];
-
+        
         NSString* tempDir = [Application tempFolder];
         do {
             NSString* random = [Application randomString];
             finalDir = [tempDir stringByAppendingPathComponent:random];
         } while ([manager fileExistsAtPath:finalDir]);
-
+        
         [Application createDirectory:finalDir];
     }
     [gate unlock];
-
+    
     return finalDir;
 }
 
@@ -420,7 +420,7 @@ static NSString* starString = nil;
     if ([Utilities isNilOrEmpty:address]) {
         return;
     }
-
+    
     NSURL* url = [NSURL URLWithString:address];
     [[UIApplication sharedApplication] openURL:url];
 }
@@ -430,7 +430,7 @@ static NSString* starString = nil;
     NSString* urlString =
     [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",
      [Utilities stringByAddingPercentEscapes:address]];
-
+    
     [self openBrowser:urlString];
 }
 
@@ -440,9 +440,9 @@ static NSString* starString = nil;
         // can't make a phonecall if you're not an iPhone.
         return;
     }
-
+    
     NSString* urlString = [NSString stringWithFormat:@"tel:%@", phoneNumber];
-
+    
     [self openBrowser:urlString];
 }
 
@@ -462,7 +462,7 @@ static NSString* starString = nil;
 + (NSString*) host {
     /*
      return @"metaboxoffice6";
-    /*/
+     /*/
     return @"metaboxoffice2";
     //*/
 }
@@ -478,15 +478,15 @@ static NSString* starString = nil;
         unichar c = [Application starCharacter];
         starString = [NSString stringWithCharacters:&c length:1];
     }
-
+    
     return starString;
 }
 
 
 + (NSString*) sanitizeFileName:(NSString*) name {
     return [[[name stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"]
-                   stringByReplacingOccurrencesOfString:@"." withString:@"-dot-"]
-                   stringByReplacingOccurrencesOfString:@":" withString:@"-colon-"];
+             stringByReplacingOccurrencesOfString:@"." withString:@"-dot-"]
+            stringByReplacingOccurrencesOfString:@":" withString:@"-colon-"];
 }
 
 

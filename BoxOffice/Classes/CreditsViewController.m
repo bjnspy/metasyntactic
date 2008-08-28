@@ -35,7 +35,7 @@
     self.tryntImage = nil;
     self.yahooImage = nil;
     self.localizers = nil;
-
+    
     [super dealloc];
 }
 
@@ -47,9 +47,9 @@
         self.rottenTomatoesImage = [UIImage imageNamed:@"RottenTomatoesLogo.png"];
         self.tryntImage = [UIImage imageNamed:@"TryntLogo.png"];
         self.yahooImage = [UIImage imageNamed:@"YahooLogo.png"];
-
+        
         self.title = NSLocalizedString(@"About", nil);
-
+        
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
         [dictionary setObject:@"Allan Lund Jensen"  forKey:@"da"];
         [dictionary setObject:@"André van Haren"    forKey:@"nl"];
@@ -61,7 +61,7 @@
         [dictionary setObject:@"J-P. Helisten"      forKey:@"fi"];
         self.localizers = dictionary;
     }
-
+    
     return self;
 }
 
@@ -100,7 +100,7 @@
     } else if (section == 7) {
         return 1;
     }
-
+    
     return 1;
 }
 
@@ -108,7 +108,7 @@
 - (UIImage*) getImage:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     if (section == 2) {
         if (row == 0) {
             return rottenTomatoesImage;
@@ -124,7 +124,7 @@
             return yahooImage;
         }
     }
-
+    
     return nil;
 }
 
@@ -139,7 +139,7 @@
             height = imageHeight;
         }
     }
-
+    
     return height;
 }
 
@@ -147,7 +147,7 @@
 NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     NSString* language1 = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code1];
     NSString* language2 = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code2];
-
+    
     return [language1 compare:language2];
 }
 
@@ -155,11 +155,11 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (UITableViewCell*) localizationCellForRow:(NSInteger) row {
     SettingCell* cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:nil] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
     NSString* code = [[self.localizers.allKeys sortedArrayUsingFunction:compareLanguageCodes context:NULL] objectAtIndex:row];
     NSString* person = [self.localizers objectForKey:code];
     NSString* language = [[NSLocale currentLocale] displayNameForKey:NSLocaleIdentifier value:code];
-
+    
     [cell setKey:language value:person];
     return cell;
 }
@@ -169,24 +169,24 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     if (section == 6) {
         return [self localizationCellForRow:row];
     }
-
+    
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
+    
     UIImage* image = [self getImage:indexPath];
-
+    
     if (image != nil) {
         UIImageView* imageView = [[[UIImageView alloc] initWithImage:image] autorelease];
-
+        
         NSInteger x = (self.tableView.contentSize.width - image.size.width) / 2 - 20;
         NSInteger y = ([self tableView:tableView heightForRowAtIndexPath:indexPath] - image.size.height) / 2;
-
+        
         imageView.frame = CGRectMake(x, y, image.size.width, image.size.height);
-
+        
         [cell.contentView addSubview:imageView];
     } else if (section == 0) {
         if (row == 0) {
@@ -210,7 +210,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
         cell.text = NSLocalizedString(@"License", nil);
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
-
+    
     return cell;
 }
 
@@ -232,7 +232,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == 6) {
         return NSLocalizedString(@"Localized by:", nil);
     }
-
+    
     return nil;
 }
 
@@ -242,7 +242,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     if (section == 7) {
         return @"All Rotten Tomatoes content is used under license from Rotten Tomatoes. Rotten Tomatoes, Certified Fresh and the Tomatometer are the trademarks of Incfusion Corporation, d/b/a Rotten Tomatoes, a subsidiary of IGN Entertainment, Inc.";
     }
-
+    
     return nil;
 }
 
@@ -262,16 +262,16 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
 - (void) licenseCellTapped {
     UIViewController* controller = [[[UIViewController alloc] init] autorelease];
     controller.title = NSLocalizedString(@"License", nil);
-
+    
     UITextView* textView = [[[UITextView alloc] initWithFrame:[UIScreen mainScreen].bounds] autorelease];
     textView.editable = NO;
     textView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-
+    
     NSString* licensePath = [[[NSBundle mainBundle] resourcePath] stringByAppendingPathComponent:@"License.txt"];
     textView.text = [NSString stringWithContentsOfFile:licensePath];
     textView.font = [UIFont boldSystemFontOfSize:12];
     textView.textColor = [UIColor grayColor];
-
+    
     [controller.view addSubview:textView];
     [self.navigationController pushViewController:controller animated:YES];
 }
@@ -291,7 +291,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
      accessoryButtonTappedForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
     NSInteger row = indexPath.row;
-
+    
     NSString* url = nil;
     if (section == 0) {
         if (row == 0) {
@@ -328,7 +328,7 @@ NSComparisonResult compareLanguageCodes(id code1, id code2, void* context) {
     } else if (section == 7) {
         return;
     }
-
+    
     [Application openBrowser:url];
 }
 

@@ -35,7 +35,7 @@
     self.navigationController = nil;
     self.movie = nil;
     self.reviews = nil;
-
+    
     [super dealloc];
 }
 
@@ -55,12 +55,12 @@
     if (self = [super initWithStyle:UITableViewStyleGrouped]) {
         self.navigationController = navigationController_;
         self.movie = movie_;
-
+        
         self.title = NSLocalizedString(@"Reviews", nil);
-
+        
         self.reviews = [self.model reviewsForMovie:movie];
     }
-
+    
     return self;
 }
 
@@ -78,30 +78,30 @@
 - (UITableViewCell*) reviewCellForRow:(NSInteger) row
                               section:(NSInteger) section {
     Review* review = [reviews objectAtIndex:section];
-
+    
     if (row == 0) {
         static NSString* reuseIdentifier = @"ReviewTitleCellIdentifier";
-
+        
         ReviewTitleCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[ReviewTitleCell alloc] initWithModel:self.model
                                                      frame:[UIScreen mainScreen].applicationFrame
                                            reuseIdentifier:reuseIdentifier] autorelease];
         }
-
+        
         [cell setReview:review];
-
+        
         return cell;
     } else {
         static NSString* reuseIdentifier = @"ReviewBodyCellIdentifier";
-
+        
         ReviewBodyCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
         if (cell == nil) {
             cell = [[[ReviewBodyCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame reuseIdentifier:reuseIdentifier] autorelease];
         }
-
+        
         [cell setReview:review];
-
+        
         return cell;
     }
 }
@@ -129,7 +129,7 @@
     if (section == reviews.count) {
         return @"For movie reviews and more, visit";
     }
-
+    
     return nil;
 }
 
@@ -171,11 +171,11 @@
     if (indexPath.section < reviews.count) {
         if (indexPath.row == 1) {
             Review* review = [reviews objectAtIndex:indexPath.section];
-
+            
             return MAX([ReviewBodyCell height:review], self.tableView.rowHeight);
         }
     }
-
+    
     return tableView.rowHeight;
 }
 
@@ -189,7 +189,7 @@
                 return UITableViewCellAccessoryDetailDisclosureButton;
             }
         }
-
+        
         return UITableViewCellAccessoryNone;
     } else {
         return UITableViewCellAccessoryDetailDisclosureButton;
