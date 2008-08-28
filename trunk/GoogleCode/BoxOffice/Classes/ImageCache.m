@@ -23,7 +23,6 @@ static UIImage* rottenFadedImage = nil;
 static UIImage* rottenFullImage = nil;
 static UIImage* emptyStarImage = nil;
 static UIImage* filledStarImage = nil;
-static UIImage* largeFilledStarImage = nil;
 
 static UIImage* redRatingImage = nil;
 static UIImage* yellowRatingImage = nil;
@@ -39,7 +38,6 @@ static UIImage* imageNotAvailable = nil;
         rottenFullImage     = [[UIImage imageNamed:@"Rotten-Full.png"] retain];
         emptyStarImage      = [[UIImage imageNamed:@"Empty Star.png"] retain];
         filledStarImage     = [[UIImage imageNamed:@"Filled Star.png"] retain];
-        largeFilledStarImage= [[UIImage imageNamed:@"Filled Star - Large.png"] retain];
 
         redRatingImage      = [[UIImage imageNamed:@"Rating-Red.png"] retain];
         yellowRatingImage   = [[UIImage imageNamed:@"Rating-Yellow.png"] retain];
@@ -93,11 +91,6 @@ static UIImage* imageNotAvailable = nil;
 
 + (UIImage*) filledStarImage {
     return filledStarImage;
-}
-
-
-+ (UIImage*) largeFilledStarImage {
-    return largeFilledStarImage;
 }
 
 
