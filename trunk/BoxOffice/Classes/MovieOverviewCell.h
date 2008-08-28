@@ -17,12 +17,12 @@
 @interface MovieOverviewCell : UITableViewCell {
     BoxOfficeModel* model;
     Movie* movie;
-    
+
     UIImage* posterImage;
     NSString* synopsis;
     NSInteger synopsisSplit;
     NSInteger synopsisMax;
-    
+
     UILabel* synopsisChunk1Label;
     UILabel* synopsisChunk2Label;
 }

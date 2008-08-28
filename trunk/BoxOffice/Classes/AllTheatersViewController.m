@@ -40,7 +40,7 @@
     self.sectionTitles = nil;
     self.sectionTitleToContentsMap = nil;
     self.alphabeticSectionTitles = nil;
-    
+
     [super dealloc];
 }
 
@@ -83,22 +83,22 @@
 
 - (void) sortTheatersByName {
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
-    
+
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
-    
+
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [self.sectionTitleToContentsMap addObject:theater forKey:[Application starString]];
             continue;
         }
-        
+
         if (theater.movieIdentifiers.count == 0 && self.model.hideEmptyTheaters) {
             continue;
         }
-        
+
         unichar firstChar = [theater.name characterAtIndex:0];
         firstChar = toupper(firstChar);
-        
+
         if (firstChar >= 'A' && firstChar <= 'Z') {
             NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
             [self.sectionTitleToContentsMap addObject:theater forKey:sectionTitle];
@@ -106,7 +106,7 @@
             [self.sectionTitleToContentsMap addObject:theater forKey:@"#"];
         }
     }
-    
+
     [self removeUnusedSectionTitles];
 }
 
@@ -115,21 +115,21 @@
     NSDictionary* theaterDistanceMap = self.model.theaterDistanceMap;
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByDistance
                            context:theaterDistanceMap];
-    
+
     NSString* favorites = NSLocalizedString(@"Favorites", nil);
     NSString* reallyCloseBy = NSLocalizedString(@"Really close by", nil);
     NSString* reallyFarAway = NSLocalizedString(@"Really far away", nil);
     NSString* unknownDistance = NSLocalizedString(@"Unknown Distance", nil);
-    
+
     NSString* singularUnit = (self.model.useKilometers ? NSLocalizedString(@"kilometer", nil) :
                               NSLocalizedString(@"mile", nil));
     NSString* pluralUnit = (self.model.useKilometers ? NSLocalizedString(@"kilometers", nil) :
                             NSLocalizedString(@"miles", nil));
-    
+
     int distances[] = {
         1, 2, 5, 10, 15, 25, 50
     };
-    
+
     NSMutableArray* distancesArray = [NSMutableArray array];
     for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
         int distance = distances[i];
@@ -139,63 +139,63 @@
             [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than %d %@ away", @"plural"), distance, pluralUnit]];
         }
     }
-    
+
     self.sectionTitles = [NSMutableArray array];
-    
+
     [self.sectionTitles addObject:favorites];
     [self.sectionTitles addObject:reallyCloseBy];
     [self.sectionTitles addObjectsFromArray:distancesArray];
     [self.sectionTitles addObject:reallyFarAway];
     [self.sectionTitles addObject:unknownDistance];
-    
+
     for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [self.sectionTitleToContentsMap addObject:theater forKey:favorites];
             continue;
         }
-        
+
         if (theater.movieIdentifiers.count == 0 && self.model.hideEmptyTheaters) {
             continue;
         }
-        
+
         double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
-        
+
         if (distance <= 0.5) {
             [self.sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];
             continue;
         }
-        
+
         for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
             if (distance <= distances[i]) {
                 [self.sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
                 goto outer;
             }
         }
-        
+
         if (distance < UNKNOWN_DISTANCE) {
             [self.sectionTitleToContentsMap addObject:theater forKey:reallyFarAway];
         } else {
             [self.sectionTitleToContentsMap addObject:theater forKey:unknownDistance];
         }
-        
+
         // i hate goto/labels. however, objective-c lacks a 'continue outer' statement.
         // so we simulate here directly.
     outer: ;
     }
-    
+
     [self removeUnusedSectionTitles];
 }
 
 
 - (void) sortTheaters {
     self.sectionTitleToContentsMap = [MultiDictionary dictionary];
-    
+
     if ([self sortingByName]) {
         [self sortTheatersByName];
     } else {
         [self sortTheatersByDistance];
     }
-    
+
     if (sectionTitles.count == 0) {
         self.sectionTitles = [NSArray arrayWithObject:[self.model noLocationInformationFound]];
     }
@@ -206,22 +206,22 @@
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
         self.sortedTheaters = [NSArray array];
-        
+
         self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                                   [NSArray arrayWithObjects:NSLocalizedString(@"Name", nil), NSLocalizedString(@"Distance", nil), nil]] autorelease];
-        
+
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
         segmentedControl.selectedSegmentIndex = [self.model allTheatersSelectedSegmentIndex];
         [segmentedControl addTarget:self
                              action:@selector(onSortOrderChanged:)
                    forControlEvents:UIControlEventValueChanged];
-        
+
         CGRect rect = segmentedControl.frame;
         rect.size.width = 240;
         segmentedControl.frame = rect;
-        
+
         self.navigationItem.titleView = segmentedControl;
-        
+
         {
             self.alphabeticSectionTitles =
             [NSArray arrayWithObjects:
@@ -230,10 +230,10 @@
              @"I", @"J", @"K", @"L", @"M", @"N", @"O", @"P", @"Q",
              @"R", @"S", @"T", @"U", @"V", @"W", @"X", @"Y", @"Z", nil];
         }
-        
+
         self.title = NSLocalizedString(@"Theaters", nil);
     }
-    
+
     return self;
 }
 
@@ -251,7 +251,7 @@
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-    
+
     [self.navigationController pushTheaterDetails:theater animated:YES];
 }
 
@@ -270,16 +270,16 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     Theater* theater = [[self.sectionTitleToContentsMap objectsForKey:[self.sectionTitles objectAtIndex:indexPath.section]] objectAtIndex:indexPath.row];
-    
+
     static NSString* reuseIdentifier = @"AllTheatersCellIdentifier";
-    
+
     TheaterNameCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[TheaterNameCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                        reuseIdentifier:reuseIdentifier
                                                  model:self.model] autorelease];
     }
-    
+
     [cell setTheater:theater];
     return cell;
 }
@@ -291,7 +291,7 @@
     if (indexTitle == [Application starString]) {
         return NSLocalizedString(@"Favorites", nil);
     }
-    
+
     return [sectionTitles objectAtIndex:section];
 }
 
@@ -302,7 +302,7 @@
         UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
         return self.alphabeticSectionTitles;
     }
-    
+
     return nil;
 }
 
@@ -316,13 +316,13 @@
     } else {
         for (unichar c = firstChar; c >= 'A'; c--) {
             NSString* s = [NSString stringWithFormat:@"%c", c];
-            
+
             NSInteger result = [self.sectionTitles indexOfObject:s];
             if (result != NSNotFound) {
                 return result;
             }
         }
-        
+
         return NSNotFound;
     }
 }
@@ -335,16 +335,16 @@
     if (result == NSNotFound) {
         return 0;
     }
-    
+
     return result;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-    
+
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
+
     [self refresh];
 }
 

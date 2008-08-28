@@ -48,7 +48,7 @@
     self.trailersArray = nil;
     self.reviewsArray = nil;
     self.hiddenTheaterCount = 0;
-    
+
     [super dealloc];
 }
 
@@ -56,10 +56,10 @@
 - (void) orderTheaters {
     [self.theatersArray sortUsingFunction:compareTheatersByDistance
      context:[self.model theaterDistanceMap]];
-    
+
     NSMutableArray* favorites = [NSMutableArray array];
     NSMutableArray* nonFavorites = [NSMutableArray array];
-    
+
     for (Theater* theater in self.theatersArray) {
         if ([self.model isFavoriteTheater:theater]) {
             [favorites addObject:theater];
@@ -67,11 +67,11 @@
             [nonFavorites addObject:theater];
         }
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
     [result addObjectsFromArray:favorites];
     [result addObjectsFromArray:nonFavorites];
-    
+
     self.theatersArray = result;
 }
 
@@ -88,7 +88,7 @@
 
 - (void) initializeData {
     NSArray* theatersShowingMovie = [self.model theatersShowingMovie:self.movie];
-    
+
     if (filterTheatersByDistance) {
         self.theatersArray = [NSMutableArray arrayWithArray:[self.model theatersInRange:theatersShowingMovie]];
         self.hiddenTheaterCount = theatersShowingMovie.count - theatersArray.count;
@@ -96,11 +96,11 @@
         self.theatersArray = [NSMutableArray arrayWithArray:theatersShowingMovie];
         self.hiddenTheaterCount = 0;
     }
-    
+
     [self orderTheaters];
-    
+
     self.showtimesArray = [NSMutableArray array];
-    
+
     for (Theater* theater in self.theatersArray) {
         [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
     }
@@ -113,28 +113,28 @@
         self.navigationController = controller;
         self.movie = movie_;
         filterTheatersByDistance = YES;
-        
+
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = self.movie.displayTitle;
-        
+
         self.title = self.movie.displayTitle;
         self.navigationItem.titleView = label;
         self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:self.movie]];
-        
+
         if (!self.model.noRatings) {
             self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:self.movie]];
         }
     }
-    
+
     return self;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-    
+
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
+
     [self refresh];
 }
 
@@ -165,13 +165,13 @@
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     // Header
     NSInteger sections = 1;
-    
+
     // actions
     sections += 1;
-    
+
     // theaters
     sections += theatersArray.count;
-    
+
     return sections;
 }
 
@@ -188,13 +188,13 @@
 - (NSInteger) numberOfRowsInActionSection {
     // trailers
     NSInteger rows = trailersArray.count;
-    
+
     // reviews
     rows += (reviewsArray.count ? 1 : 0);
-    
+
     // email listings
     rows += (theatersArray.count ? 1 : 0);
-    
+
     return rows;
 }
 
@@ -204,11 +204,11 @@
     if (section == 0) {
         return [self numberOfRowsInHeaderSection];
     }
-    
+
     if (section == 1) {
         return [self numberOfRowsInActionSection];
     }
-    
+
     // theater section
     return 2;
 }
@@ -235,11 +235,11 @@
     if (indexPath.section == 0) {
         return [self heightForRowInHeaderSection:indexPath.row];
     }
-    
+
     if (indexPath.section == 1) {
         return tableView.rowHeight;
     }
-    
+
     // theater section
     if (indexPath.row == 0) {
         return tableView.rowHeight;
@@ -255,26 +255,26 @@
         return [MovieOverviewCell cellWithMovie:movie model:self.model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
     } else if (row == 1) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        
+
         cell.textAlignment = UITextAlignmentCenter;
         cell.text = self.movie.ratingAndRuntimeString;
         cell.font = [UIFont boldSystemFontOfSize:14];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+
         return cell;
     } else {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
         cell.textAlignment = UITextAlignmentCenter;
-        
+
         if (self.hiddenTheaterCount == 1) {
             cell.text = NSLocalizedString(@"Show 1 hidden theater", nil);
         } else {
             cell.text = [NSString stringWithFormat:NSLocalizedString(@"Show %d hidden theaters", nil), self.hiddenTheaterCount];
         }
-        
+
         cell.textColor = [ColorCache commandColor];
         cell.font = [UIFont boldSystemFontOfSize:14];
-        
+
         return cell;
     }
 }
@@ -282,17 +282,17 @@
 
 - (UITableViewCell*) cellForActionRow:(NSInteger) row {
     static NSString* reuseIdentifier = @"MovieDetailsActionCellIdentifier";
-    
+
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                        reuseIdentifier:reuseIdentifier] autorelease];
-        
+
         cell.textColor = [ColorCache commandColor];
         cell.font = [UIFont boldSystemFontOfSize:14];
         cell.textAlignment = UITextAlignmentCenter;
     }
-    
+
     if (row < trailersArray.count) {
         if (trailersArray.count == 1) {
             cell.text = NSLocalizedString(@"Play trailer", nil);
@@ -304,7 +304,7 @@
     } else {
         cell.text = NSLocalizedString(@"E-mail listings", nil);
     }
-    
+
     return cell;
 }
 
@@ -314,11 +314,11 @@
     if (indexPath.section == 0) {
         return [self cellForHeaderRow:indexPath.row];
     }
-    
+
     if (indexPath.section == 1) {
         return [self cellForActionRow:indexPath.row];
     }
-    
+
     // theater section
     if (indexPath.row == 0) {
         static NSString* reuseIdentifier = @"MovieDetailsTheaterCellIdentifier";
@@ -328,10 +328,10 @@
                                            reuseIdentifier:reuseIdentifier
                                                      model:self.model] autorelease];
         }
-        
+
         Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
         [cell setTheater:theater];
-        
+
         return cell;
     } else {
         static NSString* reuseIdentifier = @"MovieDetailsShowtimesCellIdentifier";
@@ -340,10 +340,10 @@
             cell = [[[MovieShowtimesCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                               reuseIdentifier:reuseIdentifier] autorelease];
         }
-        
+
         [cell setShowtimes:[self.showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
              useSmallFonts:self.model.useSmallFonts];
-        
+
         return cell;
     }
 }
@@ -361,12 +361,12 @@
 - (void) playTrailer:(NSInteger) row {
     NSString* urlString = [trailersArray objectAtIndex:row];
     MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:urlString]];
-    
+
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(movieFinishedPlaying:)
                                                  name:MPMoviePlayerPlaybackDidFinishNotification
                                                object:moviePlayer];
-    
+
     [moviePlayer play];
 }
 
@@ -375,7 +375,7 @@
     MPMoviePlayerController* moviePlayer = notification.object;
     [moviePlayer stop];
     [moviePlayer autorelease];
-    
+
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
     [self removeNotifications];
 }
@@ -391,15 +391,15 @@
                                   self.movie.canonicalTitle,
                                   [DateUtilities formatFullDate:self.model.searchDate]];
         NSMutableString* body = [NSMutableString string];
-        
+
         for (int i = 0; i < theatersArray.count; i++) {
             if (i != 0) {
                 [body appendString:@"\n\n"];
             }
-            
+
             Theater* theater = [theatersArray objectAtIndex:i];
             NSArray* performances = [showtimesArray objectAtIndex:i];
-            
+
             [body appendString:theater.name];
             [body appendString:@"\n"];
             [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
@@ -407,18 +407,18 @@
             [body appendString:@"\">"];
             [body appendString:[self.model simpleAddressForTheater:theater]];
             [body appendString:@"</a>"];
-            
+
             [body appendString:@"\n"];
             [body appendString:[Utilities generateShowtimeLinks:self.model
                                                           movie:movie
                                                         theater:theater
                                                    performances:performances]];
         }
-        
+
         NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
                          [Utilities stringByAddingPercentEscapes:movieAndDate],
                          [Utilities stringByAddingPercentEscapes:body]];
-        
+
         [Application openBrowser:url];
     }
 }
@@ -438,14 +438,14 @@
     if (indexPath.section == 0) {
         return [self didSelectHeaderRow:indexPath.row];
     }
-    
+
     if (indexPath.section == 1) {
         return [self didSelectActionRow:indexPath.row];
     }
-    
+
     // theater section
     Theater* theater = [self.theatersArray objectAtIndex:[self getTheaterIndex:indexPath.section]];
-    
+
     if (indexPath.row == 0) {
         [self.navigationController pushTheaterDetails:theater animated:YES];
     } else {
@@ -457,15 +457,15 @@
 - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
           accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
     NSInteger section = indexPath.section;
-    
+
     if (section == 0) {
         return UITableViewCellAccessoryNone;
     }
-    
+
     if (section == 1) {
         return UITableViewCellAccessoryNone;
     }
-    
+
     // theater section
     return UITableViewCellAccessoryDisclosureIndicator;
 }

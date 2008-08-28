@@ -31,7 +31,7 @@
 - (void) dealloc {
     self.model = nil;
     self.ratingsAndHash = nil;
-    
+
     [super dealloc];
 }
 
@@ -46,19 +46,19 @@
     if (dictionary == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     NSDictionary* encodedRatings = [dictionary objectForKey:@"Ratings"];
     NSString* hash = [dictionary objectForKey:@"Hash"];
-    
+
     NSMutableDictionary* decodedRatings = [NSMutableDictionary dictionary];
     for (NSString* key in encodedRatings) {
         [decodedRatings setObject:[ExtraMovieInformation infoWithDictionary:[encodedRatings objectForKey:key]] forKey:key];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:decodedRatings forKey:@"Ratings"];
     [result setObject:hash forKey:@"Hash"];
-    
+
     return result;
 }
 
@@ -73,7 +73,7 @@
         self.model = model_;
         [self onRatingsProviderChanged];
     }
-    
+
     return self;
 }
 
@@ -87,21 +87,21 @@
     if (dictionary.count == 0) {
         return;
     }
-    
+
     [self performSelectorOnMainThread:@selector(saveRatingsInForeground:) withObject:dictionary waitUntilDone:NO];
-    
+
     NSMutableDictionary* encodedRatings = [NSMutableDictionary dictionary];
     NSDictionary* ratings = [dictionary objectForKey:@"Ratings"];
     NSString* hash = [dictionary objectForKey:@"Hash"];
-    
+
     for (NSString* key in ratings) {
         [encodedRatings setObject:[[ratings objectForKey:key] dictionary] forKey:key];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:encodedRatings forKey:@"Ratings"];
     [result setObject:hash forKey:@"Hash"];
-    
+
     //[Application ratingsFile:[self currentRatingsProvider]]
     [Utilities writeObject:result toFile:self.ratingsFile];
 }
@@ -114,13 +114,13 @@
 
 - (NSDictionary*) updateWorker {
     NSString* hash = [self.ratingsAndHash objectForKey:@"Hash"];
-    
+
     if (self.model.rottenTomatoesRatings) {
         return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings:hash];
     } else if (self.model.metacriticRatings) {
         return [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings:hash];
     }
-    
+
     return nil;
 }
 
@@ -128,9 +128,9 @@
 - (NSDictionary*) update {
     NSAssert(![NSThread isMainThread], @"");
     NSDictionary* result = [self updateWorker];
-    
+
     [self saveRatingsInBackground:result];
-    
+
     return [result objectForKey:@"Ratings"];
 }
 
@@ -140,7 +140,7 @@
     if (result == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     return result;
 }
 

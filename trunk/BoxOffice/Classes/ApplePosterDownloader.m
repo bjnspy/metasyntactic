@@ -29,27 +29,27 @@ static NSDictionary* movieNameToPosterMap = nil;
     if (movieNameToPosterMap != nil) {
         return;
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings", [Application host]];
     NSString* index = [Utilities stringWithContentsOfAddress:url];
     if (index == nil) {
         return;
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    
+
     NSArray* rows = [index componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
-        
+
         if (columns.count >= 2) {
             NSString* movieName = [Movie makeCanonical:[columns objectAtIndex:0]];
             NSString* posterUrl = [columns objectAtIndex:1];
-            
+
             [result setObject:posterUrl forKey:movieName];
         }
     }
-    
+
     movieNameToPosterMap = result;
     [movieNameToPosterMap retain];
 }
@@ -59,12 +59,12 @@ static NSDictionary* movieNameToPosterMap = nil;
     if (movieNameToPosterMap == nil) {
         return nil;
     }
-    
+
     NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle inArray:[movieNameToPosterMap allKeys]];
     if (key == nil) {
         return nil;
     }
-    
+
     NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
     return [Utilities dataWithContentsOfAddress:posterUrl];
 }

@@ -29,20 +29,20 @@
     self.elementsStack = nil;
     self.stringBufferStack = nil;
     self.attributesStack = nil;
-    
+
     [super dealloc];
 }
 
 
 - (void) run:(NSXMLParser*) parser {
     parser.delegate = self;
-    
+
     self.elementsStack = [NSMutableArray array];
     self.stringBufferStack = [NSMutableArray array];
     self.attributesStack = [NSMutableArray array];
-    
+
     [self.elementsStack addObject:[NSMutableArray array]];
-    
+
     if ([parser parse] == NO) {
         self.elementsStack = nil;
         NSLog(@"%@", [parser parserError]);
@@ -55,7 +55,7 @@
         NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
         [self run:parser];
     }
-    
+
     return self;
 }
 
@@ -64,7 +64,7 @@
     if (parser.elementsStack == nil) {
         return nil;
     }
-    
+
     return [[parser.elementsStack lastObject] lastObject];
 }
 
@@ -73,7 +73,7 @@
     if (data == nil) {
         return nil;
     }
-    
+
     XmlParser* xmlParser = [[[XmlParser alloc] initWithData:data] autorelease];
     return [XmlParser collect:xmlParser];
 }
@@ -102,16 +102,16 @@
     NSArray* children = [self.elementsStack lastObject];
     NSString* text = [self.stringBufferStack lastObject];
     NSDictionary* attributes = [self.attributesStack lastObject];
-    
+
     [self.elementsStack removeLastObject];
     [self.stringBufferStack removeLastObject];
     [self.attributesStack removeLastObject];
-    
+
     XmlElement* element = [XmlElement elementWithName:elementName
                                            attributes:attributes
                                              children:children
                                                  text:text];
-    
+
     [[self.elementsStack lastObject] addObject:element];
 }
 
@@ -121,7 +121,7 @@
     if (string == nil) {
         return;
     }
-    
+
     [[self.stringBufferStack lastObject] appendString:string];
 }
 

@@ -18,7 +18,7 @@
 #import "DataProvider.h"
 
 @interface UnitedKingdomDataProvider : AbstractDataProvider<DataProvider> {
-    
+
 }
 
 + (UnitedKingdomDataProvider*) providerWithModel:(BoxOfficeModel*) model;

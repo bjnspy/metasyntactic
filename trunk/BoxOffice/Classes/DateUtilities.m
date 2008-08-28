@@ -27,11 +27,11 @@ static NSRecursiveLock* gate = nil;
 + (void) initialize {
     if (self == [DateUtilities class]) {
         gate = [[NSRecursiveLock alloc] init];
-        
+
         timeDifferenceMap = [[NSMutableDictionary dictionary] retain];
         calendar = [[NSCalendar currentCalendar] retain];
         dateFormatter = [[NSDateFormatter alloc] init];
-        
+
         NSDateComponents* todayComponents = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                         fromDate:[NSDate date]];
         todayComponents.hour = 12;
@@ -46,7 +46,7 @@ static NSRecursiveLock* gate = nil;
                                                fromDate:date
                                                  toDate:today
                                                 options:0];
-    
+
     if (components.year == 1) {
         return NSLocalizedString(@"1 year ago", nil);
     } else if (components.year > 1) {
@@ -65,7 +65,7 @@ static NSRecursiveLock* gate = nil;
         return NSLocalizedString(@"Yesterday", nil);
     } else {
         NSDateComponents* components2 = [calendar components:NSWeekdayCalendarUnit fromDate:date];
-        
+
         NSInteger weekday = components2.weekday;
         switch (weekday) {
             case 1: return NSLocalizedString(@"Last Sunday", nil);
@@ -102,7 +102,7 @@ static NSRecursiveLock* gate = nil;
 + (NSDate*) tomorrow {
     NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
     components.day = 1;
-    
+
     return [[NSCalendar currentCalendar] dateByAddingComponents:components
                                                          toDate:[DateUtilities today]
                                                         options:0];
@@ -116,7 +116,7 @@ static NSRecursiveLock* gate = nil;
                                                 fromDate:d1];
     NSDateComponents* components2 = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                 fromDate:d2];
-    
+
     return
     [components1 year] == [components2 year] &&
     [components1 month] == [components2 month] &&

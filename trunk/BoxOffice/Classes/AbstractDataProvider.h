@@ -18,7 +18,7 @@
     BoxOfficeModel* model;
     NSArray* moviesData;
     NSArray* theatersData;
-    
+
     NSMutableDictionary* performances;
 }
 

@@ -38,12 +38,12 @@ static UIImage* imageNotAvailable = nil;
         rottenFullImage     = [[UIImage imageNamed:@"Rotten-Full.png"] retain];
         emptyStarImage      = [[UIImage imageNamed:@"Empty Star.png"] retain];
         filledStarImage     = [[UIImage imageNamed:@"Filled Star.png"] retain];
-        
+
         redRatingImage      = [[UIImage imageNamed:@"Rating-Red.png"] retain];
         yellowRatingImage   = [[UIImage imageNamed:@"Rating-Yellow.png"] retain];
         greenRatingImage    = [[UIImage imageNamed:@"Rating-Green.png"] retain];
         unknownRatingImage  = [[UIImage imageNamed:@"Rating-Unknown.png"] retain];
-        
+
         imageNotAvailable   = [[UIImage imageNamed:@"ImageNotAvailable.png"] retain];
     }
 }

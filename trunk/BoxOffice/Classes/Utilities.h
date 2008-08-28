@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface Utilities : NSObject {
-    
+
 }
 
 + (BOOL) isNilOrEmpty:(NSString*) string;

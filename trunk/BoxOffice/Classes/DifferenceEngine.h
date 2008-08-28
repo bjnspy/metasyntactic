@@ -19,12 +19,12 @@
     NSInteger deleteCost;
     NSInteger switchCost;
     NSInteger transposeCost;
-    
+
     NSInteger costTable[128][128];
-    
+
     NSInteger cached_S_length;
     NSInteger cached_T_length;
-    
+
     NSInteger costThreshold;
 }
 

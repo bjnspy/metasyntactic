@@ -42,7 +42,7 @@
     self.theater = nil;
     self.movie = nil;
     self.performances = nil;
-    
+
     [super dealloc];
 }
 
@@ -60,18 +60,18 @@
 - (void) refresh {
     NSArray* allPerformances =  [self.model moviePerformances:movie forTheater:theater];
     self.performances = [NSMutableArray array];
-    
+
     NSDate* now = [NSDate date];
     for (Performance* performance in allPerformances) {
         if ([DateUtilities isToday:[self.model searchDate]]) {
             NSDate* showtimeDate = [DateUtilities dateWithNaturalLanguageString:performance.time];
-            
+
             if ([now compare:showtimeDate] == NSOrderedDescending) {
                 //[self.futurePerformances addObject:performance];
                 continue;
             }
         }
-        
+
         [self.performances addObject:performance];
     }
 }
@@ -85,23 +85,23 @@
         self.navigationController = navigationController_;
         self.theater = theater_;
         self.movie = movie_;
-        
+
         UILabel* label = [ViewControllerUtilities viewControllerTitleLabel];
         label.text = title_;
-        
+
         self.title = title_;
         self.navigationItem.titleView = label;
-        
+
         [self refresh];
     }
-    
+
     return self;
 }
 
 
 - (void) viewWillAppear:(BOOL) animated {
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
-    
+
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
 
@@ -129,7 +129,7 @@
     } else if (section == 2) {
         return performances.count;
     }
-    
+
     return 0;
 }
 
@@ -147,7 +147,7 @@
             return [DateUtilities formatFullDate:[self.model searchDate]];
         }
     }
-    
+
     return nil;
 }
 
@@ -157,25 +157,25 @@
     if (section == 1 && performances.count == 0) {
         return NSLocalizedString(@"No show times available today.", nil);
     }
-    
+
     return nil;
 }
 
 
 - (UITableViewCell*) showtimeCellForSection:(NSInteger) section row:(NSInteger) row {
     static NSString* reuseIdentifier = @"TicketsViewShowtimeCellIdentifier";
-    
+
     UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                        reuseIdentifier:reuseIdentifier] autorelease];
-        
+
         cell.textAlignment = UITextAlignmentCenter;
         cell.font = [UIFont boldSystemFontOfSize:14];
     }
-    
+
     Performance* performance = [self.performances objectAtIndex:row];
-    
+
     if (![self.theater.sellsTickets isEqual:@"True"] ||
         [Utilities isNilOrEmpty:[performance identifier]]) {
         cell.textColor = [UIColor blackColor];
@@ -186,7 +186,7 @@
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"Order tickets for %@", nil), [performance time]];
         cell.selectionStyle = UITableViewCellSelectionStyleBlue;
     }
-    
+
     return cell;
 }
 
@@ -194,14 +194,14 @@
 - (UITableViewCell*) commandCellForRow:(NSInteger) row {
     AttributeCell* cell = [[[AttributeCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                 reuseIdentifier:nil] autorelease];
-    
+
     NSString* mapString = NSLocalizedString(@"Map", nil);
     NSString* callString = NSLocalizedString(@"Call", nil);
     CGSize size1 = [mapString sizeWithFont:[AttributeCell keyFont]];
     CGSize size2 = [callString sizeWithFont:[AttributeCell keyFont]];
-    
+
     NSInteger width = MAX(size1.width, size2.width) + 30;
-    
+
     if (row == 0) {
         [cell setKey:mapString
                value:[self.model simpleAddressForTheater:theater]
@@ -211,7 +211,7 @@
                value:theater.phoneNumber
             keyWidth:width];
     }
-    
+
     return cell;
 }
 
@@ -219,17 +219,17 @@
 - (UITableViewCell*) infoCellForRow:(NSInteger) row {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
                                                     reuseIdentifier:nil] autorelease];
-    
+
     cell.textAlignment = UITextAlignmentCenter;
     cell.font = [UIFont boldSystemFontOfSize:14];
     cell.textColor = [ColorCache commandColor];
-    
+
     if (row == 0) {
         cell.text = NSLocalizedString(@"Change date", nil);
     } else {
         cell.text = NSLocalizedString(@"E-mail listings", nil);
     }
-    
+
     return cell;
 }
 
@@ -243,7 +243,7 @@
     } else if (indexPath.section == 2 || indexPath.section == 3) {
         return [self showtimeCellForSection:indexPath.section row:indexPath.row];
     }
-    
+
     return nil;
 }
 
@@ -259,20 +259,20 @@
 
 - (void) didSelectShowtimeAtRow:(NSInteger) row {
     Performance* performance = [self.performances objectAtIndex:row];
-    
+
     if (![self.theater.sellsTickets isEqual:@"True"] ||
         [Utilities isNilOrEmpty:performance.identifier]) {
         return;
     }
-    
+
     //https://mobile.fandango.com/tickets.jsp?mk=98591&tk=557&showtime=2008:5:11:16:00
     //https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=1601099982&mid=98591&tid=AAJNK
-    
+
     NSString* url = [[self.model currentDataProvider] ticketingUrlForTheater:theater
                                                                        movie:movie
                                                                  performance:performance
                                                                         date:[self.model searchDate]];
-    
+
     [Application openBrowser:url];
 }
 
@@ -282,7 +282,7 @@
                                 self.movie.canonicalTitle,
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
-    
+
     [body appendString:theater.name];
     [body appendString:@"\n"];
     [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
@@ -290,20 +290,20 @@
     [body appendString:@"\">"];
     [body appendString:[self.model simpleAddressForTheater:theater]];
     [body appendString:@"</a>"];
-    
+
     [body appendString:@"\n\n"];
     [body appendString:self.movie.canonicalTitle];
     [body appendString:@"\n"];
-    
+
     [body appendString:[Utilities generateShowtimeLinks:self.model
                                                   movie:movie
                                                 theater:theater
                                            performances:performances]];
-    
+
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
                      [Utilities stringByAddingPercentEscapes:theaterAndDate],
                      [Utilities stringByAddingPercentEscapes:body]];
-    
+
     [Application openBrowser:url];
 }
 

@@ -19,10 +19,10 @@
     NSString* name;
     NSString* address;
     NSString* phoneNumber;
-    
+
     NSString* sellsTickets;
     NSArray* movieIdentifiers;
-    
+
     NSString* originatingPostalCode;
 }
 

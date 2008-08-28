@@ -32,7 +32,7 @@
     self.showtimesLabel = nil;
     self.showtimes = nil;
     self.useSmallFonts = NO;
-    
+
     [super dealloc];
 }
 
@@ -44,13 +44,13 @@
 
 + (NSString*) showtimesString:(NSArray*) showtimes {
     NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
-    
+
     for (int i = 1; i < showtimes.count; i++) {
         [text appendString:@", "];
         Performance* performance = [showtimes objectAtIndex:i];
         [text appendString:performance.time];
     }
-    
+
     return text;
 }
 
@@ -67,21 +67,21 @@
 + (CGFloat) heightForShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts {
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
     UIFont* font = [MovieShowtimesCell showtimesFont:useSmallFonts];
-    
+
     double width;
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
         width = [UIScreen mainScreen].bounds.size.width;
     }
-    
+
     // screen - outer margin - inner margin - space between labels;
     width -= (20 + (8 + 18) + 8);
-    
+
     NSString* showsString = [MovieShowtimesCell showsString];
     double showsWidth = [showsString sizeWithFont:font].width;
     width -= showsWidth;
-    
+
     return [string sizeWithFont:font
               constrainedToSize:CGSizeMake(width, 2000)
                   lineBreakMode:UILineBreakModeWordWrap].height;
@@ -93,35 +93,35 @@
     if (self = [super initWithFrame:frame
                     reuseIdentifier:reuseIdentifier]) {
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        
+
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.showtimesLabel.numberOfLines = 0;
         self.showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
-        
+
         self.headerLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         self.headerLabel.textColor = [ColorCache commandColor];
         self.headerLabel.text = [MovieShowtimesCell showsString];
-        
+
         [self.contentView addSubview:showtimesLabel];
         [self.contentView addSubview:headerLabel];
     }
-    
+
     return self;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     CGRect headerFrame = headerLabel.frame;
     headerFrame.origin.x = 8;
     headerFrame.origin.y = 9;
     self.headerLabel.frame = headerFrame;
-    
+
     CGRect showtimesFrame = showtimesLabel.frame;
     showtimesFrame.origin.x = headerFrame.origin.x + headerFrame.size.width + 8;
     showtimesFrame.origin.y = headerFrame.origin.y;
-    
+
     double width = self.frame.size.width;
     width -= 20 + (8 + 18) + 8;
     width -= headerFrame.size.width;
@@ -135,12 +135,12 @@
         useSmallFonts:(BOOL) useSmallFonts_ {
     self.showtimes = showtimes_;
     self.useSmallFonts = useSmallFonts_;
-    
+
     self.showtimesLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
     self.headerLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
-    
+
     [self.headerLabel sizeToFit];
-    
+
     showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimes];
 }
 

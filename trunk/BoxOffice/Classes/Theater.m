@@ -34,7 +34,7 @@
     self.sellsTickets = nil;
     self.movieIdentifiers = nil;
     self.originatingPostalCode = nil;
-    
+
     [super dealloc];
 }
 
@@ -66,7 +66,7 @@
         self.movieIdentifiers = movieIdentifiers_;
         self.originatingPostalCode = originatingPostalCode_;
     }
-    
+
     return self;
 }
 
@@ -127,7 +127,7 @@
     } else if ([showtime hasSuffix:@" AM"]) {
         return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:[showtime length] - 3]];
     }
-    
+
     return showtime;
 }
 

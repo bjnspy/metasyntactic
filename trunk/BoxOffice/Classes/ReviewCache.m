@@ -30,7 +30,7 @@
 - (void) dealloc {
     self.model = nil;
     self.gate = nil;
-    
+
     [super dealloc];
 }
 
@@ -40,7 +40,7 @@
         self.model = model_;
         self.gate = [[[NSLock alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
@@ -62,16 +62,16 @@
     if (encodedDictionary == nil) {
         return [NSDictionary dictionary];
     }
-    
+
     NSMutableArray* reviews = [NSMutableArray array];
     for (NSDictionary* dict in [encodedDictionary objectForKey:@"Reviews"]) {
         [reviews addObject:[Review reviewWithDictionary:dict]];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:reviews forKey:@"Reviews"];
     [result setObject:[encodedDictionary objectForKey:@"Hash"] forKey:@"Hash"];
-    
+
     return result;
 }
 
@@ -84,25 +84,25 @@
 
 - (NSArray*) extractReviews:(NSString*) reviewPage {
     NSMutableArray* result = [NSMutableArray array];
-    
+
     NSArray* rows = [reviewPage componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSArray* columns = [row componentsSeparatedByString:@"\t"];
-        
+
         if (columns.count < 5) {
             continue;
         }
-        
+
         NSString* score = [columns objectAtIndex:1];
         NSInteger scoreValue = score.intValue;
-        
+
         [result addObject:[Review reviewWithText:[columns objectAtIndex:0]
                                            score:scoreValue
                                             link:[columns objectAtIndex:2]
                                           author:[columns objectAtIndex:3]
                                           source:[columns objectAtIndex:4]]];
     }
-    
+
     return result;
 }
 
@@ -110,11 +110,11 @@
 - (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", [Application host], info.link];
     NSString* reviewPage = [Utilities stringWithContentsOfAddress:url];
-    
+
     if (reviewPage != nil) {
         return [self extractReviews:reviewPage];
     }
-    
+
     return nil;
 }
 
@@ -124,11 +124,11 @@
     for (Review* review in reviews) {
         [encodedReviews addObject:review.dictionary];
     }
-    
+
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:encodedReviews forKey:@"Reviews"];
     [dictionary setObject:hash forKey:@"Hash"];
-    
+
     [Utilities writeObject:dictionary toFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
 }
 
@@ -138,7 +138,7 @@
     if (dictionary == nil) {
         return [NSArray array];
     }
-    
+
     return [dictionary objectForKey:@"Reviews"];
 }
 
@@ -155,9 +155,9 @@
         if ([self.model ratingsProviderIndex] != ratingsProvider) {
             break;
         }
-        
+
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        
+
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
         if (info.link.length > 0) {
             NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&hash=true", [Application host], info.link];
@@ -165,20 +165,20 @@
             if (serverHash == nil) {
                 serverHash = @"0";
             }
-            
+
             NSString* localHash = [self reviewsHashForMovie:movieId];
-            
+
             if (localHash != nil &&
                 [localHash isEqual:serverHash]) {
                 continue;
             }
-            
+
             NSArray* reviews = [self downloadInfoReviews:info];
             if (reviews.count > 0) {
                 [self saveMovie:movieId reviews:reviews hash:serverHash ratingsProvider:ratingsProvider];
             }
         }
-        
+
         [autoreleasePool release];
     }
 }
@@ -189,17 +189,17 @@
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
-        
+
         NSDictionary* supplementaryInformation = [arguments objectAtIndex:0];
         NSInteger ratingsProvider = [[arguments objectAtIndex:1] intValue];
-        
+
         NSMutableDictionary* infoWithReviews = [NSMutableDictionary dictionary];
         NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
-        
+
         for (NSString* title in supplementaryInformation) {
             NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title ratingsProvider:ratingsProvider]
                                                                                      error:NULL] objectForKey:NSFileModificationDate];
-            
+
             if (downloadDate == nil) {
                 [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
             } else {
@@ -209,7 +209,7 @@
                 }
             }
         }
-        
+
         [self downloadReviews:infoWithoutReviews ratingsProvider:ratingsProvider];
         [self downloadReviews:infoWithReviews    ratingsProvider:ratingsProvider];
     }

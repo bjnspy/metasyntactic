@@ -24,7 +24,7 @@
 - (void) dealloc {
     self.navigationItem = nil;
     self.originalButton = nil;
-    
+
     [super dealloc];
 }
 
@@ -33,17 +33,17 @@
     if (self = [super init]) {
         self.navigationItem = item;
         self.originalButton = self.navigationItem.leftBarButtonItem;
-        
+
         [self.navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                                     style:UIBarButtonItemStyleDone
                                                                                    target:self
                                                                                    action:@selector(onButtonClicked:)] autorelease]
          animated:YES];
-        
-        
+
+
         running = NO;
     }
-    
+
     return self;
 }
 
@@ -52,11 +52,11 @@
     if (running == NO) {
         return;
     }
-    
+
     NSInteger i = number.intValue;
     self.navigationItem.leftBarButtonItem.image =
     [UIImage imageNamed:[NSString stringWithFormat:@"Spinner%d.png", i]];
-    
+
     [self performSelector:@selector(updateImage:) withObject:[NSNumber numberWithInt:((i + 1) % 10)] afterDelay:0.1];
 }
 
@@ -69,7 +69,7 @@
 
 - (void) stop:(id) sender {
     running = NO;
-    
+
     [self.navigationItem setLeftBarButtonItem:self.originalButton animated:YES];
 }
 

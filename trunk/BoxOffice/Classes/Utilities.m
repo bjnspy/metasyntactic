@@ -38,18 +38,18 @@
     if (array.count == 0) {
         return nil;
     }
-    
+
     id value = [array objectAtIndex:0];
-    
+
     for (NSInteger i = 1; i < array.count; i++) {
         id current = [array objectAtIndex:i];
-        
+
         NSComparisonResult result = comparator(value, current, context);
         if (result == NSOrderedDescending) {
             value = current;
         }
     }
-    
+
     return value;
 }
 
@@ -61,18 +61,18 @@
     if (array.count == 0) {
         return nil;
     }
-    
+
     id value = [array objectAtIndex:0];
-    
+
     for (NSInteger i = 1; i < array.count; i++) {
         id current = [array objectAtIndex:i];
-        
+
         NSComparisonResult result = comparator(value, current, context1, context2);
         if (result == NSOrderedDescending) {
             value = current;
         }
     }
-    
+
     return value;
 }
 
@@ -91,7 +91,7 @@
     if (data == nil) {
         return nil;
     }
-    
+
     return [XmlParser parse:data];
 }
 
@@ -100,20 +100,20 @@
                           atUrl:(NSString*) urlString
                          atHost:(NSString*) host
                      withAction:(NSString*) soapAction {
-    
+
     XmlDocument* document = [XmlDocument documentWithRoot:element];
     NSString* post = [XmlSerializer serializeDocument:document];
     NSData *postData = [post dataUsingEncoding:NSISOLatin1StringEncoding allowLossyConversion:YES];
-    
+
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:[NSURL URLWithString:urlString]];
     [request setHTTPMethod:@"POST"];
-    
+
     [request setValue:@"text/xml" forHTTPHeaderField:@"Content-Type"];
     [request setValue:soapAction forHTTPHeaderField:@"Soapaction"];
     [request setValue:host forHTTPHeaderField:@"Host"];
-    
+
     [request setHTTPBody:postData];
-    
+
     NSURLResponse* response = nil;
     NSError* error = nil;
     NSData* result =
@@ -123,7 +123,7 @@
     if (error != nil) {
         return nil;
     }
-    
+
     return [XmlParser parse:result];
 }
 
@@ -132,7 +132,7 @@
     NSInteger index = rand() % array.count;
     id value = [array objectAtIndex:index];
     [array removeObjectAtIndex:index];
-    
+
     return value;
 }
 
@@ -141,12 +141,12 @@
     if (string.length == 0) {
         return 0;
     }
-    
+
     int result = [string characterAtIndex:0];
     for (int i = 1; i < string.length; i++) {
         result = 31 * result + [string characterAtIndex:i];
     }
-    
+
     return result;
 }
 
@@ -155,7 +155,7 @@
     if (array == nil) {
         return [NSArray array];
     }
-    
+
     return array;
 }
 
@@ -164,7 +164,7 @@
     if (string == nil) {
         return @"";
     }
-    
+
     return string;
 }
 
@@ -184,7 +184,7 @@
     if (data == nil) {
         return nil;
     }
-    
+
     return [NSPropertyListSerialization propertyListFromData:data
                                             mutabilityOption:NSPropertyListImmutable
                                                       format:NULL
@@ -197,7 +197,7 @@
     string = [string stringByAddingPercentEscapesUsingEncoding:encoding];
     string = [string stringByReplacingOccurrencesOfString:@"?" withString:@"%3F"];
     string = [string stringByReplacingOccurrencesOfString:@"&" withString:@"%26"];
-    
+
     return string;
 }
 
@@ -212,14 +212,14 @@
                             theater:(Theater*) theater
                        performances:(NSArray*) performances {
     NSMutableString* body = [NSMutableString string];
-    
+
     for (int i = 0; i < performances.count; i++) {
         if (i != 0) {
             [body appendString:@", "];
         }
-        
+
         Performance* performance = [performances objectAtIndex:i];
-        
+
         if (![theater.sellsTickets isEqual:@"True"] ||
             [Utilities isNilOrEmpty:performance.identifier]) {
             [body appendString:performance.time];
@@ -228,7 +228,7 @@
                                                                           movie:movie
                                                                     performance:performance
                                                                            date:model.searchDate];
-            
+
             [body appendString:@"<a href=\""];
             [body appendString:url];
             [body appendString:@"\">"];
@@ -236,7 +236,7 @@
             [body appendString:@"</a>"];
         }
     }
-    
+
     return body;
 }
 
@@ -245,7 +245,7 @@
     if (address == nil) {
         return nil;
     }
-    
+
     return [Utilities stringWithContentsOfUrl:[NSURL URLWithString:address]];
 }
 
@@ -254,18 +254,18 @@
     if (url == nil) {
         return nil;
     }
-    
+
     NSData* data = [Utilities dataWithContentsOfUrl:url];
     if (data == nil) {
         return nil;
     }
-    
+
     //return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
     NSString* result = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if (result != nil) {
         return result;
     }
-    
+
     return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
 }
 
@@ -274,7 +274,7 @@
     if (address == nil) {
         return nil;
     }
-    
+
     return [Utilities dataWithContentsOfUrl:[NSURL URLWithString:address]];
 }
 
@@ -283,22 +283,22 @@
     if (url == nil) {
         return nil;
     }
-    
+
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.timeoutInterval = 120;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setValue:@"gzip" forHTTPHeaderField:@"User-Agent"];
-    
+
     NSURLResponse* response = nil;
     NSError* error;
     NSData* data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response
                                                      error:&error];
-    
+
     if (error != nil) {
         return nil;
     }
-    
+
     return data;
 }
 
@@ -307,14 +307,14 @@
     if (string == nil) {
         return @"";
     }
-    
+
     NSArray* htmlCodes = [NSArray arrayWithObjects:@"em", @"p", @"b", @"i", nil];
-    
+
     for (NSString* code in htmlCodes) {
         string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"<%@>", code] withString:@""];
         string = [string stringByReplacingOccurrencesOfString:[NSString stringWithFormat:@"</%@>", code] withString:@""];
     }
-    
+
     return string;
 }
 

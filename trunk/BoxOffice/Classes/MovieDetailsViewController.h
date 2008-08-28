@@ -16,15 +16,15 @@
 
 @interface MovieDetailsViewController : UITableViewController {
     AbstractNavigationController* navigationController;
-    
+
     Movie* movie;
     NSMutableArray* theatersArray;
     NSMutableArray* showtimesArray;
     NSArray* trailersArray;
     NSArray* reviewsArray;
-    
+
     NSInteger hiddenTheaterCount;
-    
+
     BOOL filterTheatersByDistance;
 }
 

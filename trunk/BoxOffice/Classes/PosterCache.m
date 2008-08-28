@@ -35,7 +35,7 @@
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
@@ -59,20 +59,20 @@
 
 - (void) deleteObsoletePosters:(NSArray*) movies {
     NSMutableSet* set = [NSMutableSet set];
-    
+
     NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application postersFolder]];
     for (NSString* fileName in contents) {
         NSString* filePath = [[Application postersFolder] stringByAppendingPathComponent:fileName];
         [set addObject:filePath];
     }
-    
+
     for (Movie* movie in movies) {
         [set removeObject:[self posterFilePath:movie]];
     }
-    
+
     for (NSString* filePath in set) {
         NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:NULL] objectForKey:NSFileModificationDate];
-        
+
         if (downloadDate != nil) {
             NSTimeInterval span = [downloadDate timeIntervalSinceNow];
             if (ABS(span) > (60 * 60 * 1000)) {
@@ -87,7 +87,7 @@
     if ([[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]]) {
         return;
     }
-    
+
     NSData* data = [PosterDownloader download:movie];
     NSString* path = [self posterFilePath:movie];
     [data writeToFile:path atomically:YES];
@@ -98,7 +98,7 @@
     // movies with poster links download faster. try them first.
     NSMutableArray* moviesWithPosterLinks = [NSMutableArray array];
     NSMutableArray* moviesWithoutPosterLinks = [NSMutableArray array];
-    
+
     for (Movie* movie in movies) {
         if ([Utilities isNilOrEmpty:movie.poster]) {
             [moviesWithoutPosterLinks addObject:movie];
@@ -106,14 +106,14 @@
             [moviesWithPosterLinks addObject:movie];
         }
     }
-    
+
     NSArray* arguments = [NSArray arrayWithObjects:moviesWithPosterLinks, moviesWithoutPosterLinks, nil];
     for (NSArray* list in arguments) {
         for (Movie* movie in list) {
             NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-            
+
             [self downloadPoster:movie];
-            
+
             [autoreleasePool release];
         }
     }
@@ -131,7 +131,7 @@
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
-        
+
         [self updateInBackground:movies];
     }
     [gate unlock];
