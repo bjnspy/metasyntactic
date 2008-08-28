@@ -18,7 +18,7 @@
 
 #import "Application.h"
 #import "AttributeCell.h"
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
 #import "ImageCache.h"

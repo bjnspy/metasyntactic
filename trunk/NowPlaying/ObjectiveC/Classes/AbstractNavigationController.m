@@ -17,7 +17,7 @@
 #import "AbstractNavigationController.h"
 
 #import "ApplicationTabBarController.h"
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "ReviewsViewController.h"

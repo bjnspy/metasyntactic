@@ -17,7 +17,7 @@
 #import "MovieDetailsViewController.h"
 
 #import "Application.h"
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
 #import "Movie.h"

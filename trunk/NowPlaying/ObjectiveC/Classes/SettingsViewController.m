@@ -18,7 +18,7 @@
 
 #import "ActivityIndicator.h"
 #import "Application.h"
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "ColorCache.h"
 #import "CreditsViewController.h"
 #import "DateUtilities.h"

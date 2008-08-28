@@ -16,7 +16,7 @@
 
 #import "MovieOverviewCell.h"
 
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "FontCache.h"
 #import "ImageCache.h"
 

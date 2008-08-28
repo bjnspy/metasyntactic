@@ -17,7 +17,7 @@
 #import "RatingsCache.h"
 
 #import "Application.h"
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "ExtraMovieInformation.h"
 #import "MetacriticDownloader.h"
 #import "RottenTomatoesDownloader.h"

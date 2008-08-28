@@ -17,7 +17,7 @@
 #import "NorthAmericaDataProvider.h"
 
 #import "Application.h"
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "DateUtilities.h"
 #import "LookupResult.h"
 #import "Movie.h"

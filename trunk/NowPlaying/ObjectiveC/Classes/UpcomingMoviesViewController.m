@@ -16,7 +16,7 @@
 
 #import "UpcomingMoviesViewController.h"
 
-#import "BoxOfficeModel.h"
+#import "NowPlayingModel.h"
 #import "UpcomingCache.h"
 #import "UpcomingMovieCell.h"
 #import "UpcomingMoviesNavigationController.h"
