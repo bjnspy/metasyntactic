@@ -16,7 +16,6 @@
 
 #import "UpcomingMovieCell.h"
 
-#import "Application.h"
 #import "BoxOfficeModel.h"
 #import "ImageCache.h"
 #import "Movie.h"

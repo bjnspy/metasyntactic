@@ -20,7 +20,6 @@
 #import "BoxOfficeModel.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
-#import "FontCache.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"

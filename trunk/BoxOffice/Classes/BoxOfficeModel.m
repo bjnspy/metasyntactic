@@ -28,7 +28,6 @@
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "NorthAmericaDataProvider.h"
-#import "NotificationCenter.h"
 #import "PosterCache.h"
 #import "RatingsCache.h"
 #import "ReviewCache.h"

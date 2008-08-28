@@ -16,8 +16,6 @@
 
 #import "Review.h"
 
-#import "Utilities.h"
-
 @implementation Review
 
 @synthesize score;

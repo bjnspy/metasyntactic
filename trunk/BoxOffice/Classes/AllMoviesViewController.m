@@ -16,14 +16,9 @@
 
 #import "AllMoviesViewController.h"
 
-#import "ApplicationTabBarController.h"
-#import "BoxOfficeAppDelegate.h"
 #import "BoxOfficeModel.h"
-#import "DateUtilities.h"
-#import "Movie.h"
 #import "MovieTitleCell.h"
 #import "MoviesNavigationController.h"
-#import "MultiDictionary.h"
 
 @implementation AllMoviesViewController
 
