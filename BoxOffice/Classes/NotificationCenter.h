@@ -17,7 +17,7 @@
 @interface NotificationCenter : NSObject {
     UIWindow* window;
     NSMutableArray* messages;
-    
+
     UILabel* background;
     UILabel* currentlyDisplayedMessage;
 }

@@ -30,7 +30,7 @@
     self.address = nil;
     self.city = nil;
     self.country = nil;
-    
+
     [super dealloc];
 }
 
@@ -47,7 +47,7 @@
         self.city = city_;
         self.country = country_;
     }
-    
+
     return self;
 }
 
@@ -88,44 +88,44 @@
 - (double) distanceTo:(Location*) to useKilometers:(BOOL) useKilometers {
     const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
     const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
-    
+
     const double pi = 3.14159265358979323846;
-    
+
     if (to == nil) {
         return UNKNOWN_DISTANCE;
     }
-    
+
     double lat1 = (self.latitude / 180) * pi;
     double lng1 = (self.longitude / 180) * pi;
     double lat2 = (to.latitude / 180) * pi;
     double lng2 = (to.longitude / 180) * pi;
-    
+
     double diff = lng1 - lng2;
-    
+
     if (diff < 0) { diff = -diff; }
     if (diff > pi) { diff = 2 * pi; }
-    
+
     double distance =
     acos(sin(lat2) * sin(lat1) +
          cos(lat2) * cos(lat1) * cos(diff));
-    
+
     if (useKilometers) {
         distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
     } else {
         distance *= GREAT_CIRCLE_RADIUS_MILES;
     }
-    
+
     if (distance > 200) {
         return UNKNOWN_DISTANCE;
     }
-    
+
     return distance;
 }
 
 
 - (BOOL) isEqual:(id) anObject {
     Location* other = anObject;
-    
+
     return
     self.latitude == other.latitude &&
     self.longitude == other.longitude;
@@ -134,7 +134,7 @@
 
 - (NSUInteger) hash {
     double hash = self.latitude + self.longitude;
-    
+
     return *(NSUInteger*)&hash;
 }
 

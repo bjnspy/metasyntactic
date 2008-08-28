@@ -26,17 +26,17 @@
     self.picker = nil;
     self.values = nil;
     self.label = nil;
-    
+
     [super dealloc];
 }
 
 
 - (void) refresh {
     label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
-    
+
     CGRect screenRect = self.view.bounds;
     CGSize pickerSize = self.picker.frame.size;
-    
+
     CGRect labelRect = CGRectMake(10, 10, screenRect.size.width - 20, screenRect.size.height - 20 - pickerSize.height);
     self.label.frame = labelRect;
     [self.label sizeToFit];
@@ -55,7 +55,7 @@
              defaultValue:(NSString*) defaultValue {
     if (self = [super initWithController:controller_ withObject:object_ withSelector:selector_]) {
         self.values = values_;
-        
+
         self.picker = [[[UIPickerView alloc] initWithFrame:CGRectZero] autorelease];
         self.picker.delegate = self;
         self.picker.showsSelectionIndicator = YES;
@@ -63,9 +63,9 @@
          inComponent:0
          animated:NO];
         picker.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-        
+
         self.title = title_;
-        
+
         if (text_ != nil) {
             self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
             self.label.text = text_;
@@ -76,19 +76,19 @@
             self.label.numberOfLines = 0;
         }
     }
-    
+
     return self;
 }
 
 
 - (void) loadView {
     [super loadView];
-    
+
     [self.view addSubview:self.picker];
     [self.view addSubview:self.label];
-    
+
     [self.picker becomeFirstResponder];
-    
+
     [self refresh];
 }
 
@@ -97,7 +97,7 @@
     CGRect screenRect = self.view.bounds;
     CGSize pickerSize = [self.picker sizeThatFits:CGSizeZero];
     CGFloat screenBottom = screenRect.origin.y + screenRect.size.height;
-    
+
     CGRect pickerRect = CGRectMake(0, screenBottom - pickerSize.height, pickerSize.width, pickerSize.height);
     self.picker.frame = pickerRect;
 }

@@ -39,7 +39,7 @@
         self.gate = [[[NSLock alloc] init] autorelease];
         self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
     }
-    
+
     return self;
 }
 
@@ -51,7 +51,7 @@
 
 - (void) updateAddresses:(NSArray*) addresses {
     self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
-    
+
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:[NSArray arrayWithArray:addresses]];
 }
@@ -64,7 +64,7 @@
         NSString* address = [resultElement attributeValue:@"address"];
         NSString* city = [resultElement attributeValue:@"city"];
         NSString* country = [resultElement attributeValue:@"country"];
-        
+
         if (![Utilities isNilOrEmpty:latitude] && ![Utilities isNilOrEmpty:longitude]) {
             return [Location locationWithLatitude:[latitude doubleValue]
                                         longitude:[longitude doubleValue]
@@ -73,7 +73,7 @@
                                           country:country];
         }
     }
-    
+
     return nil;
 }
 
@@ -82,15 +82,15 @@
     if ([Utilities isNilOrEmpty:address]) {
         return nil;
     }
-    
+
     NSString* escapedAddress = [Utilities stringByAddingPercentEscapes:address];
     if (escapedAddress != nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
-        
+
         XmlElement* element = [Utilities downloadXml:url];
         return [self processResult:element];
     }
-    
+
     return nil;
 }
 
@@ -108,7 +108,7 @@
             return [Location locationWithDictionary:dict];
         }
     }
-    
+
     return nil;
 }
 
@@ -118,7 +118,7 @@
     if (location == nil || [Utilities isNilOrEmpty:address]) {
         return;
     }
-    
+
     [Utilities writeObject:location.dictionary toFile:[self locationFile:address]];
     [self performSelectorOnMainThread:@selector(invalidateCachedData:) withObject:nil waitUntilDone:NO];
 }
@@ -132,13 +132,13 @@
 - (Location*) downloadAddressLocation:(NSString*) address {
     NSAssert(![NSThread isMainThread], @"Only call this from the background");
     Location* location = [self locationForAddress:address];
-    
+
     if (location == nil) {
         location = [self downloadAddressLocationFromWebService:address];
-        
+
         [self setLocation:location forAddress:address];
     }
-    
+
     return location;
 }
 
@@ -146,9 +146,9 @@
 - (void) downloadAddressLocations:(NSArray*) addresses {
     for (NSString* address in addresses) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-        
+
         [self downloadAddressLocation:address];
-        
+
         [autoreleasePool release];
     }
 }
@@ -159,7 +159,7 @@
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
-        
+
         [self downloadAddressLocations:addresses];
     }
     [gate unlock];
@@ -176,7 +176,7 @@
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     {
         [NSThread setThreadPriority:0.0];
-        
+
         [self downloadAddressLocation:postalCode];
     }
     [autoreleasePool release];
@@ -185,15 +185,15 @@
 
 - (void) updatePostalCode:(NSString*) postalCode {
     self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
-    
+
     if ([Utilities isNilOrEmpty:postalCode]) {
         return;
     }
-    
+
     if ([self locationForPostalCode:postalCode] != nil) {
         return;
     }
-    
+
     [self performSelectorInBackground:@selector(updatePostalCodeBackgroundEntryPoint:)
                            withObject:postalCode];
 }
@@ -203,11 +203,11 @@
                             theaters:(NSArray*) theaters
                        useKilometers:(BOOL) useKilometers {
     Location* userLocation = [self locationForPostalCode:userPostalCode];
-    
+
     NSMutableDictionary* theaterDistanceMap = [self.cachedTheaterDistanceMap objectForKey:userPostalCode];
     if (theaterDistanceMap == nil) {
         theaterDistanceMap = [NSMutableDictionary dictionary];
-        
+
         for (Theater* theater in theaters) {
             double d;
             if (userLocation != nil) {
@@ -215,16 +215,16 @@
             } else {
                 d = UNKNOWN_DISTANCE;
             }
-            
+
             NSNumber* value = [NSNumber numberWithDouble:d];
             NSString* key = theater.address;
             [theaterDistanceMap setObject:value forKey:key];
         }
-        
+
         [self.cachedTheaterDistanceMap setObject:theaterDistanceMap
          forKey:userPostalCode];
     }
-    
+
     return theaterDistanceMap;
 }
 

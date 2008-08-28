@@ -16,7 +16,7 @@
 
 @interface ReviewsViewController :  UITableViewController {
     AbstractNavigationController* navigationController;
-    
+
     Movie* movie;
     NSArray* reviews;
 }

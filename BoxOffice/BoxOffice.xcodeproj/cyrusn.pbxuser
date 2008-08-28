@@ -762,6 +762,16 @@
 			74A79ED10E6679D800B7E79F /* PBXTextBookmark */ = 74A79ED10E6679D800B7E79F /* PBXTextBookmark */;
 			74A79ED20E6679D800B7E79F /* PBXTextBookmark */ = 74A79ED20E6679D800B7E79F /* PBXTextBookmark */;
 			74A79ED30E6679D800B7E79F /* PBXTextBookmark */ = 74A79ED30E6679D800B7E79F /* PBXTextBookmark */;
+			74A79EE50E667AB200B7E79F /* PBXTextBookmark */ = 74A79EE50E667AB200B7E79F /* PBXTextBookmark */;
+			74A79EE60E667AB200B7E79F /* PBXTextBookmark */ = 74A79EE60E667AB200B7E79F /* PBXTextBookmark */;
+			74A79EE80E667AB200B7E79F /* PBXTextBookmark */ = 74A79EE80E667AB200B7E79F /* PBXTextBookmark */;
+			74A79EE90E667AB200B7E79F /* PBXTextBookmark */ = 74A79EE90E667AB200B7E79F /* PBXTextBookmark */;
+			74A79EEA0E667AB200B7E79F /* PBXTextBookmark */ = 74A79EEA0E667AB200B7E79F /* PBXTextBookmark */;
+			74A79EEB0E667AB200B7E79F /* PBXTextBookmark */ = 74A79EEB0E667AB200B7E79F /* PBXTextBookmark */;
+			74A79EEF0E667AC000B7E79F /* PBXTextBookmark */ = 74A79EEF0E667AC000B7E79F /* PBXTextBookmark */;
+			74A79EF00E667AC000B7E79F /* PBXTextBookmark */ = 74A79EF00E667AC000B7E79F /* PBXTextBookmark */;
+			74A79EF10E667AC000B7E79F /* PBXTextBookmark */ = 74A79EF10E667AC000B7E79F /* PBXTextBookmark */;
+			74A79EF20E667AC000B7E79F /* PBXTextBookmark */ = 74A79EF20E667AC000B7E79F /* PBXTextBookmark */;
 			74A862F90E64DD63003A2249 = 74A862F90E64DD63003A2249 /* PBXTextBookmark */;
 			74A863C30E64F161003A2249 = 74A863C30E64F161003A2249 /* PBXTextBookmark */;
 			74A863C50E64F161003A2249 = 74A863C50E64F161003A2249 /* PBXTextBookmark */;
@@ -6042,7 +6052,7 @@
 		fRef = 74A79D690E66745B00B7E79F /* DateUtilities.m */;
 		name = "DateUtilities.m: 185";
 		rLen = 0;
-		rLoc = 6720;
+		rLoc = 6684;
 		rType = 0;
 		vrLen = 784;
 		vrLoc = 6015;
@@ -7632,7 +7642,7 @@
 		fRef = 74A79D690E66745B00B7E79F /* DateUtilities.m */;
 		name = "DateUtilities.m: 185";
 		rLen = 0;
-		rLoc = 6720;
+		rLoc = 6684;
 		rType = 0;
 		vrLen = 784;
 		vrLoc = 6015;
@@ -7955,13 +7965,14 @@
 	};
 	74A79ECC0E6679B900B7E79F /* DateUtilities.m */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
 		name = DateUtilities.m;
 		path = /Projects/metasyntactic/trunk/BoxOffice/Classes/DateUtilities.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {774, 2562}}";
-			sepNavSelRange = "{0, 38}";
-			sepNavVisRange = "{0, 1514}";
+			sepNavIntBoundsRect = "{{0, 0}, {1078, 2590}}";
+			sepNavSelRange = "{6763, 0}";
+			sepNavVisRange = "{0, 1605}";
 		};
 	};
 	74A79ED00E6679D800B7E79F /* PBXTextBookmark */ = {
@@ -8000,6 +8011,98 @@
 		rType = 0;
 		vrLen = 1514;
 		vrLoc = 0;
+	};
+	74A79EE50E667AB200B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "(Messages without a matching method signature will be assumed to return 'id' and accept '...' as arguments.)";
+		fRef = 747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */;
+		rLen = 0;
+		rLoc = 29;
+		rType = 1;
+	};
+	74A79EE60E667AB200B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74A79ECC0E6679B900B7E79F /* DateUtilities.m */;
+		name = "DateUtilities.m: 191";
+		rLen = 0;
+		rLoc = 6763;
+		rType = 0;
+		vrLen = 1605;
+		vrLoc = 0;
+	};
+	74A79EE80E667AB200B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */;
+		name = "AddressLocationCache.h: 19";
+		rLen = 0;
+		rLoc = 823;
+		rType = 0;
+		vrLen = 1063;
+		vrLoc = 0;
+	};
+	74A79EE90E667AB200B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */;
+		rLen = 0;
+		rLoc = 1288;
+		rType = 0;
+	};
+	74A79EEA0E667AB200B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */;
+		name = "AddressLocationCache.h: 19";
+		rLen = 0;
+		rLoc = 823;
+		rType = 0;
+		vrLen = 1063;
+		vrLoc = 0;
+	};
+	74A79EEB0E667AB200B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */;
+		name = "AddressLocationCache.m: 227";
+		rLen = 0;
+		rLoc = 6952;
+		rType = 0;
+		vrLen = 1115;
+		vrLoc = 1600;
+	};
+	74A79EEF0E667AC000B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74A79ECC0E6679B900B7E79F /* DateUtilities.m */;
+		name = "DateUtilities.m: 10";
+		rLen = 0;
+		rLoc = 479;
+		rType = 0;
+		vrLen = 1514;
+		vrLoc = 0;
+	};
+	74A79EF00E667AC000B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */;
+		rLen = 0;
+		rLoc = 823;
+		rType = 0;
+	};
+	74A79EF10E667AC000B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74A79ECC0E6679B900B7E79F /* DateUtilities.m */;
+		name = "DateUtilities.m: 10";
+		rLen = 0;
+		rLoc = 479;
+		rType = 0;
+		vrLen = 1514;
+		vrLoc = 0;
+	};
+	74A79EF20E667AC000B7E79F /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */;
+		name = "AddressLocationCache.h: 4";
+		rLen = 0;
+		rLoc = 138;
+		rType = 0;
+		vrLen = 1167;
+		vrLoc = 275;
 	};
 	74A862DD0E64DCB1003A2249 /* ApplicationTabBarController.m */ = {
 		isa = PBXFileReference;
@@ -9109,15 +9212,15 @@
 	74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */ = {
 		uiCtxt = {
 			sepNavIntBoundsRect = "{{0, 0}, {735, 574}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1350}";
+			sepNavSelRange = "{138, 0}";
+			sepNavVisRange = "{275, 1167}";
 		};
 	};
 	74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */ = {
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {735, 3346}}";
-			sepNavSelRange = "{0, 0}";
-			sepNavVisRange = "{0, 1106}";
+			sepNavIntBoundsRect = "{{0, 0}, {1147, 3136}}";
+			sepNavSelRange = "{6952, 0}";
+			sepNavVisRange = "{1600, 1115}";
 		};
 	};
 	74EC04F30DD2B704006953A4 /* Location.h */ = {

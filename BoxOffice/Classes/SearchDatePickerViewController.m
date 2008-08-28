@@ -26,7 +26,7 @@
 
 - (void) dealloc {
     self.controller = nil;
-    
+
     [super dealloc];
 }
 
@@ -44,7 +44,7 @@
                             defaultValue:defaultValue_]) {
         self.controller = controller_;
     }
-    
+
     return self;
 }
 
@@ -58,11 +58,11 @@
         NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
         [components setDay:i];
         NSDate* date = [calendar dateByAddingComponents:components toDate:today options:0];
-        
+
         [values addObject:[DateUtilities formatFullDate:date]];
     }
     NSString* defaultValue = [DateUtilities formatFullDate:controller.model.searchDate];
-    
+
     return [[[SearchDatePickerViewController alloc] initWithNavigationController:navigationController
                                                                       controller:controller
                                                                       withValues:values

@@ -24,7 +24,7 @@
 
 - (void) dealloc {
     self.viewController = nil;
-    
+
     [super dealloc];
 }
 
@@ -33,11 +33,11 @@
     if (self = [super initWithTabBarController:controller]) {
         self.title = NSLocalizedString(@"Numbers", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Numbers.png"];
-        
+
         self.viewController = [[[NumbersViewController alloc] initWithNavigationController:self] autorelease];
         [self pushViewController:self.viewController animated:NO];
     }
-    
+
     return self;
 }
 

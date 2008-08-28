@@ -26,7 +26,7 @@
 - (void) dealloc {
     self.keyLabel = nil;
     self.valueLabel = nil;
-    
+
     [super dealloc];
 }
 
@@ -39,32 +39,32 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.keyLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        
+
         self.keyLabel.textColor = [ColorCache commandColor];
         self.keyLabel.font = [AttributeCell keyFont];
         self.keyLabel.textAlignment = UITextAlignmentRight;
-        
+
         self.valueLabel.font = [UIFont boldSystemFontOfSize:14.0];
         self.valueLabel.adjustsFontSizeToFitWidth = YES;
         self.valueLabel.minimumFontSize = 10.0;
-        
+
         [self.contentView addSubview:keyLabel];
         [self.contentView addSubview:valueLabel];
     }
-    
+
     return self;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     {
         CGRect frame = keyLabel.frame;
         frame.origin.y = floor((self.contentView.frame.size.height - keyLabel.frame.size.height) / 2);
         keyLabel.frame = frame;
     }
-    
+
     {
         CGRect frame = valueLabel.frame;
         frame.origin.y = floor((self.contentView.frame.size.height - valueLabel.frame.size.height) / 2);
@@ -79,14 +79,14 @@
        keyWidth:(CGFloat) keyWidth {
     self.keyLabel.text = key;
     self.valueLabel.text = value;
-    
+
     {
         [self.keyLabel sizeToFit];
         CGRect frame = self.keyLabel.frame;
         frame.origin.x = keyWidth - frame.size.width;
         self.keyLabel.frame = frame;
     }
-    
+
     {
         [self.valueLabel sizeToFit];
         CGRect frame = self.valueLabel.frame;

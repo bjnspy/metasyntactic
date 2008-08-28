@@ -28,7 +28,7 @@
     label.font = [UIFont boldSystemFontOfSize:20];
     label.textAlignment = UITextAlignmentCenter;
     label.minimumFontSize = 14;
-    
+
     return label;
 }
 

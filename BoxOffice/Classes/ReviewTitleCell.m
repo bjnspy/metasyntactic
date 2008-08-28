@@ -34,7 +34,7 @@
     self.authorLabel = nil;
     self.scoreLabel = nil;
     self.sourceLabel = nil;
-    
+
     [super dealloc];
 }
 
@@ -45,17 +45,17 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+
         self.authorLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.sourceLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.scoreLabel  = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        
+
         self.authorLabel.font = [UIFont boldSystemFontOfSize:14];
         self.sourceLabel.font = [UIFont systemFontOfSize:12];
-        
+
         scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.textAlignment = UITextAlignmentCenter;
-        
+
         [self.contentView addSubview:authorLabel];
         [self.contentView addSubview:sourceLabel];
         [self addSubview:scoreLabel];
@@ -94,7 +94,7 @@
         self.scoreLabel.frame = CGRectZero;
         self.image = [ImageCache unknownRatingImage];
     }
-    
+
     if (score >= 0 && score <= 100) {
         CGRect frame = CGRectMake(20, 7, 30, 30);
         if (score == 100) {
@@ -102,7 +102,7 @@
         } else {
             scoreLabel.font = [FontCache boldSystem19];
         }
-        
+
         scoreLabel.textColor = [ColorCache darkDarkGray];
         scoreLabel.frame = frame;
         scoreLabel.text = [NSString stringWithFormat:@"%d", score];
@@ -112,7 +112,7 @@
 
 - (void) setReviewImage:(Review*) review {
     int score = review.score;
-    
+
     if ([self.model rottenTomatoesRatings]) {
         [self setRottenTomatoesImage:score];
     } else {
@@ -123,20 +123,20 @@
 
 - (void) setReview:(Review*) review {
     [self setReviewImage:review];
-    
+
     authorLabel.text = review.author;
     sourceLabel.text = review.source;
-    
+
     [authorLabel sizeToFit];
     [sourceLabel sizeToFit];
-    
+
     CGRect frame;
-    
+
     frame = authorLabel.frame;
     frame.origin.y = 5;
     frame.origin.x = 50;
     authorLabel.frame = frame;
-    
+
     frame = sourceLabel.frame;
     frame.origin.y = 23;
     frame.origin.x = 50;

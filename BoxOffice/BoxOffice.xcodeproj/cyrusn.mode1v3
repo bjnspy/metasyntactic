@@ -280,8 +280,6 @@
 			<key>Layout</key>
 			<array>
 				<dict>
-					<key>BecomeActive</key>
-					<true/>
 					<key>ContentConfiguration</key>
 					<dict>
 						<key>PBXBottomSmartGroupGIDs</key>
@@ -383,12 +381,14 @@
 					<key>Dock</key>
 					<array>
 						<dict>
+							<key>BecomeActive</key>
+							<true/>
 							<key>ContentConfiguration</key>
 							<dict>
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>DateUtilities.m</string>
+								<string>AddressLocationCache.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -396,11 +396,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>DateUtilities.m</string>
+										<string>AddressLocationCache.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74A79ED30E6679D800B7E79F</string>
+										<string>74A79EF20E667AC000B7E79F</string>
 										<key>history</key>
 										<array>
 											<string>74E42F730E6123B9003234AB</string>
@@ -467,7 +467,6 @@
 											<string>7408C1AD0E66503A00C6031A</string>
 											<string>7408C1D50E6652EA00C6031A</string>
 											<string>7408C2010E666E0B00C6031A</string>
-											<string>74A79D910E6678CB00B7E79F</string>
 											<string>74A79D920E6678CB00B7E79F</string>
 											<string>74A79D930E6678CB00B7E79F</string>
 											<string>74A79D940E6678CB00B7E79F</string>
@@ -619,7 +618,8 @@
 											<string>74A79E270E6678CC00B7E79F</string>
 											<string>74A79E280E6678CC00B7E79F</string>
 											<string>74A79ED00E6679D800B7E79F</string>
-											<string>74A79ED10E6679D800B7E79F</string>
+											<string>74A79EEF0E667AC000B7E79F</string>
+											<string>74A79EF00E667AC000B7E79F</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -906,6 +906,7 @@
 											<string>74A79EC60E6678CC00B7E79F</string>
 											<string>74A79EC70E6678CC00B7E79F</string>
 											<string>74A79ED20E6679D800B7E79F</string>
+											<string>74A79EF10E667AC000B7E79F</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -1084,7 +1085,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>241596888.490035</real>
+	<real>241597120.731677</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1099,6 +1100,7 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
+		<string>1C530D57069F1CE1000CFCEE</string>
 		<string>1CD10A99069EF8BA00B06720</string>
 		<string>746A021D0DC8202B0079D89B</string>
 		<string>/Projects/metasyntactic/trunk/BoxOffice/BoxOffice.xcodeproj</string>
@@ -1341,7 +1343,7 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CDD528C0622207200134675</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ImageCache.m</string>
+										<string>AddressLocationCache.m</string>
 										<key>StatusBarVisibility</key>
 										<true/>
 									</dict>
@@ -1399,8 +1401,8 @@
 			<key>TableOfContents</key>
 			<array>
 				<string>1C530D57069F1CE1000CFCEE</string>
-				<string>7408C13B0E6649CD00C6031A</string>
-				<string>7408C13C0E6649CD00C6031A</string>
+				<string>74A79EEC0E667AB200B7E79F</string>
+				<string>74A79EED0E667AB200B7E79F</string>
 				<string>1CDD528C0622207200134675</string>
 				<string>1CD0528E0623707200166675</string>
 			</array>

@@ -28,7 +28,7 @@
 - (void) dealloc {
     self.review = nil;
     self.label = nil;
-    
+
     [super dealloc];
 }
 
@@ -36,12 +36,12 @@
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.selectionStyle = UITableViewCellSelectionStyleNone;
-        
+
         self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.label.font = [FontCache helvetica14];
         self.label.lineBreakMode = UILineBreakModeWordWrap;
         self.label.numberOfLines = 0;
-        
+
         [self.contentView addSubview:label];
     }
     return self;
@@ -50,15 +50,15 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     self.label.text = review.text;
-    
+
     double width = self.frame.size.width;
     width -= 40;
     if (![Utilities isNilOrEmpty:review.link]) {
         width -= 25;
     }
-    
+
     CGRect rect = CGRectMake(10, 5, width, [ReviewBodyCell height:review] - 10);
     self.label.frame = rect;
 }
@@ -75,12 +75,12 @@
     if (![Utilities isNilOrEmpty:review.link]) {
         width -= 25;
     }
-    
+
     CGSize size = CGSizeMake(width, 2000);
     size = [review.text sizeWithFont:[FontCache helvetica14]
             constrainedToSize:size
             lineBreakMode:UILineBreakModeWordWrap];
-    
+
     return size.height + 10;
 }
 
