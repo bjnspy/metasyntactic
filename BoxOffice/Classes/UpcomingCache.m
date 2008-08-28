@@ -154,7 +154,7 @@
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
     NSArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
     if (movies.count == 0) {
-        return;
+        return [NSDictionary dictionary];
     }
 
     NSMutableDictionary* result = [NSMutableDictionary dictionary];

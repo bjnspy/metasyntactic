@@ -588,6 +588,9 @@
 			74FADC2E0E672287006494E5 /* PBXTextBookmark */ = 74FADC2E0E672287006494E5 /* PBXTextBookmark */;
 			74FADC2F0E672287006494E5 /* PBXTextBookmark */ = 74FADC2F0E672287006494E5 /* PBXTextBookmark */;
 			74FADC350E6726E9006494E5 /* PBXTextBookmark */ = 74FADC350E6726E9006494E5 /* PBXTextBookmark */;
+			74FADC390E67270E006494E5 /* PBXTextBookmark */ = 74FADC390E67270E006494E5 /* PBXTextBookmark */;
+			74FADC3A0E67270E006494E5 /* PBXTextBookmark */ = 74FADC3A0E67270E006494E5 /* PBXTextBookmark */;
+			74FADC3C0E67272C006494E5 /* PBXTextBookmark */ = 74FADC3C0E67272C006494E5 /* PBXTextBookmark */;
 			74FCC3C20E61D191003D15F4 = 74FCC3C20E61D191003D15F4 /* PBXTextBookmark */;
 			74FCC3C80E61D191003D15F4 = 74FCC3C80E61D191003D15F4 /* PBXTextBookmark */;
 			74FCC3C90E61D191003D15F4 = 74FCC3C90E61D191003D15F4 /* PBXTextBookmark */;
@@ -1075,7 +1078,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		location = libobjc.A.dylib;
-		modificationTime = 241640131.345852;
+		modificationTime = 241641241.81595;
 		state = 1;
 		symbolName = objc_exception_throw;
 	};
@@ -2453,8 +2456,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 42;
-		modificationTime = 241641193.233119;
-		state = 1;
+		modificationTime = 241641242.689791;
+		state = 0;
 	};
 	7479D7FB0E65209C00D91649 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -2496,8 +2499,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 52;
-		modificationTime = 241641193.233127;
-		state = 1;
+		modificationTime = 241641242.701407;
+		state = 0;
 	};
 	7479D8340E65255F00D91649 /* UpcomingMovieCell.h */ = {
 		uiCtxt = {
@@ -2607,8 +2610,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 223;
-		modificationTime = 241641193.233107;
-		state = 1;
+		modificationTime = 241641242.732764;
+		state = 0;
 	};
 	7479D9660E65456000D91649 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -2720,8 +2723,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 66;
-		modificationTime = 241641193.233086;
-		state = 1;
+		modificationTime = 241641242.759174;
+		state = 0;
 	};
 	7479DABB0E65E1D200D91649 /* UpcomingMovieCell.m:66 */ = {
 		isa = PBXFileBreakpoint;
@@ -2736,7 +2739,7 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 66;
-		modificationTime = 241640131.333664;
+		modificationTime = 241641241.815711;
 		state = 2;
 	};
 	7479DACF0E65E2FB00D91649 /* UILabel.h */ = {
@@ -2760,7 +2763,7 @@
 		ignoreCount = 0;
 		lineNumber = 66;
 		location = BoxOffice;
-		modificationTime = 241640131.333669;
+		modificationTime = 241641241.815717;
 		state = 2;
 	};
 	7479DB450E65EC7100D91649 /* PBXTextBookmark */ = {
@@ -6216,7 +6219,7 @@
 		fRef = 74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */;
 		name = "UpcomingCache.m: 198";
 		rLen = 0;
-		rLoc = 6436;
+		rLoc = 6462;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 6162;
@@ -6226,10 +6229,55 @@
 		fRef = 74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */;
 		name = "UpcomingCache.m: 198";
 		rLen = 0;
-		rLoc = 6436;
+		rLoc = 6462;
 		rType = 0;
 		vrLen = 1081;
 		vrLoc = 6162;
+	};
+	74FADC360E6726FB006494E5 /* UpcomingCache.m */ = {
+		isa = PBXFileReference;
+		name = UpcomingCache.m;
+		path = /Projects/metasyntactic/trunk/BoxOffice/Classes/UpcomingCache.m;
+		sourceTree = "<absolute>";
+	};
+	74FADC370E6726FB006494E5 /* UpcomingCache.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = UpcomingCache.m;
+		path = /Projects/metasyntactic/trunk/BoxOffice/Classes/UpcomingCache.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1098, 5264}}";
+			sepNavSelRange = "{11920, 0}";
+			sepNavVisRange = "{4578, 1338}";
+		};
+	};
+	74FADC390E67270E006494E5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74FADC360E6726FB006494E5 /* UpcomingCache.m */;
+		rLen = 1;
+		rLoc = 156;
+		rType = 1;
+	};
+	74FADC3A0E67270E006494E5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74FADC370E6726FB006494E5 /* UpcomingCache.m */;
+		name = "UpcomingCache.m: 157";
+		rLen = 0;
+		rLoc = 5524;
+		rType = 0;
+		vrLen = 794;
+		vrLoc = 5531;
+	};
+	74FADC3C0E67272C006494E5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74FADC370E6726FB006494E5 /* UpcomingCache.m */;
+		name = "UpcomingCache.m: 358";
+		rLen = 0;
+		rLoc = 11920;
+		rType = 0;
+		vrLen = 1338;
+		vrLoc = 4578;
 	};
 	74FCC3C20E61D191003D15F4 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
