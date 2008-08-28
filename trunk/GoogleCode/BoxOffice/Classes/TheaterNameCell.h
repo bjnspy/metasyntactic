@@ -18,13 +18,11 @@
     BoxOfficeModel* model;
     UILabel* nameLabel;
     UILabel* addressLabel;
-    UILabel* starLabel;
 }
 
 @property (retain) BoxOfficeModel* model;
 @property (retain) UILabel* nameLabel;
 @property (retain) UILabel* addressLabel;
-@property (retain) UILabel* starLabel;
 
 - (id)      initWithFrame:(CGRect) frame
           reuseIdentifier:(NSString*) reuseIdentifier

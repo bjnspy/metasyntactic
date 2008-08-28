@@ -26,14 +26,12 @@
 @synthesize model;
 @synthesize nameLabel;
 @synthesize addressLabel;
-@synthesize starLabel;
 
 - (void) dealloc {
     self.model = nil;
     self.nameLabel = nil;
     self.addressLabel = nil;
-    self.starLabel = nil;
-    
+
     [super dealloc];
 }
 
@@ -44,25 +42,18 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.model = model_;
 
-        self.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(38, 5, 0, 20)] autorelease];
+        self.nameLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 5, 0, 20)] autorelease];
         nameLabel.font = [UIFont boldSystemFontOfSize:18];
         nameLabel.adjustsFontSizeToFitWidth = YES;
         nameLabel.minimumFontSize = 14;
         nameLabel.textColor = [UIColor blackColor];
 
-        self.addressLabel = [[[UILabel alloc] initWithFrame:CGRectMake(38, 25, 0, 14)] autorelease];
+        self.addressLabel = [[[UILabel alloc] initWithFrame:CGRectMake(10, 25, 0, 14)] autorelease];
         addressLabel.font = [UIFont systemFontOfSize:12];
         addressLabel.textColor = [UIColor grayColor];
-        
-        self.starLabel = [[[UILabel alloc] initWithFrame:CGRectMake(9, 4, 0, 0)] autorelease];
-        starLabel.font = [UIFont systemFontOfSize:27];
-        starLabel.text = [Application starString];
-        starLabel.textColor = [UIColor colorWithRed:0 green:0 blue:205.0/256.0 alpha:1.0];
-        [starLabel sizeToFit];
 
         [self.contentView addSubview:nameLabel];
         [self.contentView addSubview:addressLabel];
-        [self.contentView addSubview:starLabel];
     }
 
     return self;
@@ -81,8 +72,12 @@
 
 
 - (void) setTheater:(Theater*) theater {
-    self.starLabel.hidden = ![self.model isFavoriteTheater:theater];
-    self.nameLabel.text = theater.name;
+    if ([self.model isFavoriteTheater:theater]) {
+        self.nameLabel.text = [NSString stringWithFormat:@"%@ %@", [Application starString], theater.name];
+    } else {
+        self.nameLabel.text = theater.name;
+    }
+
     self.addressLabel.text = [self.model simpleAddressForTheater:theater];
 }
 

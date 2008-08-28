@@ -106,7 +106,7 @@
         self.genreLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 67, 0, 0)] autorelease];
         genreLabel.font = [UIFont systemFontOfSize:12];
         genreLabel.textColor = [UIColor darkGrayColor];
-    
+
         self.ratedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 82, 0, 0)] autorelease];
         ratedLabel.font = [UIFont systemFontOfSize:12];
         ratedLabel.textColor = [UIColor darkGrayColor];
