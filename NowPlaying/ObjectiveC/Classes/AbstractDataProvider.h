@@ -15,19 +15,19 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface AbstractDataProvider : NSObject {
-    BoxOfficeModel* model;
+    NowPlayingModel* model;
     NSArray* moviesData;
     NSArray* theatersData;
 
     NSMutableDictionary* performances;
 }
 
-@property (retain) BoxOfficeModel* model;
+@property (retain) NowPlayingModel* model;
 @property (retain) NSArray* moviesData;
 @property (retain) NSArray* theatersData;
 @property (retain) NSMutableDictionary* performances;
 
-- (id) initWithModel:(BoxOfficeModel*) model;
+- (id) initWithModel:(NowPlayingModel*) model;
 
 - (NSString*) providerFolder;
 - (void) invalidateDiskCache;

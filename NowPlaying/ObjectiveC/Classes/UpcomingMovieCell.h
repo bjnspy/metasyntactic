@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface UpcomingMovieCell : UITableViewCell {
-    BoxOfficeModel* model;
+    NowPlayingModel* model;
     UILabel* titleLabel;
     UILabel* directorTitleLabel;
     UILabel* directorLabel;
@@ -30,7 +30,7 @@
     CGFloat titleWidth;
 }
 
-@property (retain) BoxOfficeModel* model;
+@property (retain) NowPlayingModel* model;
 @property (retain) UILabel* titleLabel;
 @property (retain) UILabel* directorLabel;
 @property (retain) UILabel* castLabel;
@@ -44,7 +44,7 @@
 
 - (id)      initWithFrame:(CGRect) frame
           reuseIdentifier:(NSString*) reuseIdentifier
-                    model:(BoxOfficeModel*) model;
+                    model:(NowPlayingModel*) model;
 
 - (void) setMovie:(Movie*) movie;
 

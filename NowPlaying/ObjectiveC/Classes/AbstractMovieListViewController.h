@@ -37,8 +37,8 @@
 - (void) refresh;
 
 /* protected */
-- (BoxOfficeModel*) model;
-- (BoxOfficeController*) controller;
+- (NowPlayingModel*) model;
+- (NowPlayingController*) controller;
 
 
 @end

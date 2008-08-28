@@ -75,7 +75,7 @@
         self.gate = [[[NSLock alloc] init] autorelease];
 
         NSString* appName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"];
-        NSString* appVersion = [BoxOfficeModel version];
+        NSString* appVersion = [NowPlayingModel version];
         appVersion = [appVersion substringToIndex:[appVersion rangeOfString:@"." options:NSBackwardsSearch].location];
 
         self.title = [NSString stringWithFormat:@"%@ v%@", appName, appVersion];
@@ -193,12 +193,12 @@
 }
 
 
-- (BoxOfficeModel*) model {
+- (NowPlayingModel*) model {
     return self.navigationController.model;
 }
 
 
-- (BoxOfficeController*) controller {
+- (NowPlayingController*) controller {
     return self.navigationController.controller;
 }
 

@@ -32,8 +32,8 @@
 - (id) initWithNavigationController:(SettingsNavigationController*) navigationController;
 
 - (void) refresh;
-- (BoxOfficeModel*) model;
-- (BoxOfficeController*) controller;
+- (NowPlayingModel*) model;
+- (NowPlayingController*) controller;
 
 - (void) locationManager:(CLLocationManager*) manager
      didUpdateToLocation:(CLLocation*) newLocation

@@ -68,7 +68,7 @@
 }
 
 
-- (id) initWithModel:(BoxOfficeModel*) model_ {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
         [self onRatingsProviderChanged];
@@ -78,7 +78,7 @@
 }
 
 
-+ (RatingsCache*) cacheWithModel:(BoxOfficeModel*) model {
++ (RatingsCache*) cacheWithModel:(NowPlayingModel*) model {
     return [[[RatingsCache alloc] initWithModel:model] autorelease];
 }
 

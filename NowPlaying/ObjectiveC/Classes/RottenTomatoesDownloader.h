@@ -15,12 +15,12 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface RottenTomatoesDownloader : NSObject {
-    BoxOfficeModel* model;
+    NowPlayingModel* model;
 }
 
-@property (retain) BoxOfficeModel* model;
+@property (retain) NowPlayingModel* model;
 
-+ (RottenTomatoesDownloader*) downloaderWithModel:(BoxOfficeModel*) model;
++ (RottenTomatoesDownloader*) downloaderWithModel:(NowPlayingModel*) model;
 
 - (NSDictionary*) lookupMovieListings:(NSString*) hash;
 

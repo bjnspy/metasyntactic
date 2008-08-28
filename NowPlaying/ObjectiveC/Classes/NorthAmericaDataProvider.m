@@ -38,7 +38,7 @@
 }
 
 
-+ (NorthAmericaDataProvider*) providerWithModel:(BoxOfficeModel*) model {
++ (NorthAmericaDataProvider*) providerWithModel:(NowPlayingModel*) model {
     return [[[NorthAmericaDataProvider alloc] initWithModel:model] autorelease];
 }
 

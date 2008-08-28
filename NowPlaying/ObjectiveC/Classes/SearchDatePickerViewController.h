@@ -17,12 +17,12 @@
 #import "PickerEditorViewController.h"
 
 @interface SearchDatePickerViewController : PickerEditorViewController {
-    BoxOfficeController* controller;
+    NowPlayingController* controller;
 }
 
-@property (retain) BoxOfficeController* controller;
+@property (retain) NowPlayingController* controller;
 
 + (SearchDatePickerViewController*) pickerWithNavigationController:(UINavigationController*) navigationController
-                                                        controller:(BoxOfficeController*) controller;
+                                                        controller:(NowPlayingController*) controller;
 
 @end

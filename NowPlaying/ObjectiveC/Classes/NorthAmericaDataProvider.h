@@ -20,7 +20,7 @@
 @interface NorthAmericaDataProvider : AbstractDataProvider<DataProvider> {
 }
 
-+ (NorthAmericaDataProvider*) providerWithModel:(BoxOfficeModel*) model;
++ (NorthAmericaDataProvider*) providerWithModel:(NowPlayingModel*) model;
 
 
 

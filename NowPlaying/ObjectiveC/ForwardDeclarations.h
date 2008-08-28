@@ -27,9 +27,9 @@
 @class ApplicationTabBarController;
 @class AttributeCell;
 @class AutoResizingCell;
-@class BoxOfficeAppDelegate;
-@class BoxOfficeController;
-@class BoxOfficeModel;
+@class NowPlayingAppDelegate;
+@class NowPlayingController;
+@class NowPlayingModel;
 @class ColorCache;
 @class CreditsViewController;
 @class DataProviderViewController;

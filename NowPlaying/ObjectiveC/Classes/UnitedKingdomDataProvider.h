@@ -21,7 +21,7 @@
 
 }
 
-+ (UnitedKingdomDataProvider*) providerWithModel:(BoxOfficeModel*) model;
++ (UnitedKingdomDataProvider*) providerWithModel:(NowPlayingModel*) model;
 - (NSString*) ticketingUrlForTheater:(Theater*) theater
                                movie:(Movie*) movie
                          performance:(Performance*) performance

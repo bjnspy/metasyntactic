@@ -32,7 +32,7 @@
 
 
 - (id) initWithNavigationController:(UINavigationController*) navigationController_
-                         controller:(BoxOfficeController*) controller_
+                         controller:(NowPlayingController*) controller_
                          withValues:(NSArray*) values_
                        defaultValue:(NSString*) defaultValue_ {
     if (self = [super initWithController:navigationController_
@@ -50,7 +50,7 @@
 
 
 + (SearchDatePickerViewController*) pickerWithNavigationController:(UINavigationController*) navigationController
-                                                        controller:(BoxOfficeController*) controller {
+                                                        controller:(NowPlayingController*) controller {
     NSMutableArray* values = [NSMutableArray array];
     NSDate* today = [NSDate date];
     NSCalendar* calendar = [NSCalendar currentCalendar];

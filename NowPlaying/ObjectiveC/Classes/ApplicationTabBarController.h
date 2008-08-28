@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ApplicationTabBarController : UITabBarController<UITabBarControllerDelegate> {
-    BoxOfficeAppDelegate* appDelegate;
+    NowPlayingAppDelegate* appDelegate;
     MoviesNavigationController* moviesNavigationController;
     TheatersNavigationController* theatersNavigationController;
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
@@ -23,17 +23,17 @@
     SettingsNavigationController* settingsNavigationController;
 }
 
-@property (assign) BoxOfficeAppDelegate* appDelegate;
+@property (assign) NowPlayingAppDelegate* appDelegate;
 @property (retain) MoviesNavigationController* moviesNavigationController;
 @property (retain) TheatersNavigationController* theatersNavigationController;
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
 @property (retain) NumbersNavigationController* numbersNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
 
-+ (ApplicationTabBarController*) controllerWithAppDelegate:(BoxOfficeAppDelegate*) appDelegate;
++ (ApplicationTabBarController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
 
-- (BoxOfficeModel*) model;
-- (BoxOfficeController*) controller;
+- (NowPlayingModel*) model;
+- (NowPlayingController*) controller;
 
 - (void) refresh;
 

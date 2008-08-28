@@ -31,7 +31,7 @@
 }
 
 
-- (id) initWithModel:(BoxOfficeModel*) model_ {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
     }
@@ -40,7 +40,7 @@
 }
 
 
-+ (RottenTomatoesDownloader*) downloaderWithModel:(BoxOfficeModel*) model {
++ (RottenTomatoesDownloader*) downloaderWithModel:(NowPlayingModel*) model {
     return [[[RottenTomatoesDownloader alloc] initWithModel:model] autorelease];
 }
 

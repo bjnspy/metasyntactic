@@ -25,7 +25,7 @@
 
 @implementation UnitedKingdomDataProvider
 
-+ (UnitedKingdomDataProvider*) providerWithModel:(BoxOfficeModel*) model {
++ (UnitedKingdomDataProvider*) providerWithModel:(NowPlayingModel*) model {
     return [[[UnitedKingdomDataProvider alloc] initWithModel:model] autorelease];
 }
 
