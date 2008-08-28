@@ -24,7 +24,7 @@
 
 - (void) dealloc {
     self.upcomingMoviesViewController = nil;
-
+    
     [super dealloc];
 }
 
@@ -32,20 +32,20 @@
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] initWithNavigationController:self] autorelease];
-
+        
         [self pushViewController:upcomingMoviesViewController animated:NO];
-
+        
         self.title = NSLocalizedString(@"Upcoming", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Upcoming.png"];
     }
-
+    
     return self;
 }
 
 
 - (void) refresh {
     [super refresh];
-
+    
     for (id controller in self.viewControllers) {
         [controller refresh];
     }

@@ -17,11 +17,11 @@
 @interface AbstractMovieListViewController : UITableViewController {
     AbstractNavigationController* navigationController;
     UISegmentedControl* segmentedControl;
-
+    
     NSArray* sortedMovies;
     NSMutableArray* sectionTitles;
     MultiDictionary* sectionTitleToContentsMap;
-
+    
     NSArray* alphabeticSectionTitles;
 }
 

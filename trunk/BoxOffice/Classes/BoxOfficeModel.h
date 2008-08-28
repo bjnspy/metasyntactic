@@ -23,24 +23,24 @@ enum ViewControllerType {
 
 @interface BoxOfficeModel : NSObject {
     NotificationCenter* notificationCenter;
-
+    
     PosterCache* posterCache;
     TrailerCache* trailerCache;
     AddressLocationCache* addressLocationCache;
     ReviewCache* reviewCache;
     RatingsCache* ratingsCache;
     UpcomingCache* upcomingCache;
-
+    
     NSInteger backgroundTaskCount;
     UIActivityIndicatorView* activityIndicatorView;
     UIView* activityView;
-
+    
     NSInteger searchRadius;
-
+    
     NSDictionary* movieMap;
-
+    
     NSMutableArray* favoriteTheatersData;
-
+    
     NSArray* dataProviders;
 }
 

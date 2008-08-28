@@ -35,7 +35,7 @@
     if (self = [super init]) {
         self.dictionary = [NSMutableDictionary dictionary];
     }
-
+    
     return self;
 }
 

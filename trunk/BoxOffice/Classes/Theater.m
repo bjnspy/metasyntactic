@@ -34,7 +34,7 @@
     self.sellsTickets = nil;
     self.movieIdentifiers = nil;
     self.originatingPostalCode = nil;
-
+    
     [super dealloc];
 }
 
@@ -66,7 +66,7 @@
         self.movieIdentifiers = movieIdentifiers_;
         self.originatingPostalCode = originatingPostalCode_;
     }
-
+    
     return self;
 }
 
@@ -109,15 +109,15 @@
 - (BOOL) isEqual:(id) anObject {
     Theater* other = anObject;
     return
-        [self.identifier isEqual:other.identifier] &&
-        [self.name isEqual:other.name];
+    [self.identifier isEqual:other.identifier] &&
+    [self.name isEqual:other.name];
 }
 
 
 - (NSUInteger) hash {
     return
-        [self.identifier hash] +
-        [self.name hash];
+    [self.identifier hash] +
+    [self.name hash];
 }
 
 
@@ -127,7 +127,7 @@
     } else if ([showtime hasSuffix:@" AM"]) {
         return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:[showtime length] - 3]];
     }
-
+    
     return showtime;
 }
 

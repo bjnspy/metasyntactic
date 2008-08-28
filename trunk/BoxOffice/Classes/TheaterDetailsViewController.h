@@ -19,7 +19,7 @@
     UISegmentedControl* segmentedControl;
     UIButton* favoriteButton;
     Theater* theater;
-
+    
     NSArray* movies;
     NSMutableArray* movieShowtimes;
 }

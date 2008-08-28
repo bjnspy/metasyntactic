@@ -17,9 +17,9 @@
 @interface SettingsViewController : UITableViewController<CLLocationManagerDelegate> {
     SettingsNavigationController* navigationController;
     CLLocationManager* locationManager;
-
+    
     NSLock* gate;
-
+    
     // a non-null value means we are actively searching.
     ActivityIndicator* activityIndicator;
 }

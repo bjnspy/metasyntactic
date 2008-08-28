@@ -37,7 +37,7 @@
     self.dataProviderLock = nil;
     self.ratingsLookupLock = nil;
     self.upcomingMoviesLookupLock = nil;
-
+    
     [super dealloc];
 }
 
@@ -56,21 +56,21 @@
     if (lastDate == nil) {
         return NO;
     }
-
+    
     NSDate* now = [NSDate date];
     NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSHourCalendarUnit fromDate:lastDate];
     NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSHourCalendarUnit fromDate:now];
-
+    
     if ([lastDateComponents day] != [nowDateComponents day]) {
         // different days. we definitely need to refresh
         return NO;
     }
-
+    
     // same day, check if they're at least 8 hours apart.
     if ([nowDateComponents hour] >= ([lastDateComponents hour] + 8)) {
         return NO;
     }
-
+    
     // it's been less than 8 hours. it's too soon to refresh
     return YES;
 }
@@ -80,11 +80,11 @@
     if ([Utilities isNilOrEmpty:self.model.postalCode]) {
         return;
     }
-
+    
     if ([self tooSoon:[[self.model currentDataProvider] lastLookupDate]]) {
         return;
     }
-
+    
     [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(dataProviderLookupBackgroundThreadEntryPoint) withObject:nil];
 }
@@ -96,7 +96,7 @@
     if ([self tooSoon:lastLookupDate]) {
         return;
     }
-
+    
     [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint) withObject:nil];
 }
@@ -105,11 +105,11 @@
 - (void) spawnUpcomingMoviesLookupThread {
     NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application upcomingMoviesIndexFile]
                                                                                error:NULL] objectForKey:NSFileModificationDate];
-
+    
     if ([self tooSoon:lastLookupDate]) {
         return;
     }
-
+    
     [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(upcomingMoviesLookupBackgroundThreadEntryPoint) withObject:nil];
 }
@@ -128,10 +128,10 @@
         self.dataProviderLock = [[[NSLock alloc] init] autorelease];
         self.ratingsLookupLock = [[[NSLock alloc] init] autorelease];
         self.upcomingMoviesLookupLock = [[[NSLock alloc] init] autorelease];
-
+        
         [self spawnBackgroundThreads];
     }
-
+    
     return self;
 }
 
@@ -180,7 +180,7 @@
     if (ratings.count > 0) {
         [self.model onRatingsUpdated];
     }
-
+    
     [self onBackgroundTaskEnded];
 }
 
@@ -203,7 +203,7 @@
     if ([searchDate isEqual:[self.model searchDate]]) {
         return;
     }
-
+    
     [self.model setSearchDate:searchDate];
     [self spawnBackgroundThreads];
     [self.appDelegate.tabBarController popNavigationControllersToRoot];
@@ -215,7 +215,7 @@
     if ([postalCode isEqual:self.model.postalCode]) {
         return;
     }
-
+    
     [self.model setPostalCode:postalCode];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController popNavigationControllersToRoot];
@@ -233,7 +233,7 @@
     if (index == [self.model ratingsProviderIndex]) {
         return;
     }
-
+    
     [self.model setRatingsProviderIndex:index];
     [self spawnRatingsLookupThread];
     [appDelegate.tabBarController refresh];
@@ -244,7 +244,7 @@
     if (index == [self.model dataProviderIndex]) {
         return;
     }
-
+    
     [self.model setDataProviderIndex:index];
     [self spawnDataProviderLookupThread];
     [appDelegate.tabBarController refresh];

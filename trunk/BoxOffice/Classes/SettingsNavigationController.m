@@ -24,7 +24,7 @@
 
 - (void) dealloc {
     self.viewController = nil;
-
+    
     [super dealloc];
 }
 
@@ -32,13 +32,13 @@
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
         self.viewController = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
-
+        
         [self pushViewController:viewController animated:NO];
-
+        
         self.title = NSLocalizedString(@"Settings", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"More.png"];
     }
-
+    
     return self;
 }
 

@@ -24,7 +24,7 @@
 
 - (void) dealloc {
     self.valueLabel = nil;
-
+    
     [super dealloc];
 }
 
@@ -33,7 +33,7 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.valueLabel.textColor = [ColorCache commandColor];
-
+        
         [self.contentView addSubview:valueLabel];
     }
     return self;
@@ -42,15 +42,15 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-
+    
     CGRect frame = valueLabel.frame;
     frame.origin.y = floor((self.contentView.frame.size.height - valueLabel.frame.size.height) / 2);
     frame.origin.x = self.contentView.frame.size.width - frame.size.width;
-
+    
     if (self.accessoryType == UITableViewCellAccessoryNone) {
         frame.origin.x -= 10;
     }
-
+    
     valueLabel.frame = frame;
 }
 
@@ -59,7 +59,7 @@
           value:(NSString*) value {
     self.text = key;
     self.valueLabel.text = value;
-
+    
     [valueLabel sizeToFit];
     CGRect frame = valueLabel.frame;
     valueLabel.frame = frame;

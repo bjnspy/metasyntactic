@@ -24,7 +24,7 @@
 - (void) dealloc {
     self.identifier = nil;
     self.time = nil;
-
+    
     [super dealloc];
 }
 
@@ -35,7 +35,7 @@
         self.identifier = identifier_;
         self.time = time_;
     }
-
+    
     return self;
 }
 
@@ -54,10 +54,10 @@
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-
+    
     [dictionary setObject:self.identifier forKey:@"identifier"];
     [dictionary setObject:self.time forKey:@"time"];
-
+    
     return dictionary;
 }
 

@@ -31,7 +31,7 @@
 
 - (void) dealloc {
     self.tabBarController = nil;
-
+    
     [super dealloc];
 }
 
@@ -41,7 +41,7 @@
         self.tabBarController = controller;
         self.view.autoresizesSubviews = YES;
     }
-
+    
     return self;
 }
 
@@ -68,11 +68,11 @@
 - (void) navigateToLastViewedPage {
     NSArray* types = self.model.navigationStackTypes;
     NSArray* values = self.model.navigationStackValues;
-
+    
     for (int i = 0; i < types.count; i++) {
         NSInteger type = [[types objectAtIndex:i] intValue];
         id value = [values objectAtIndex:i];
-
+        
         if (type == MovieDetails) {
             Movie* movie = [Movie movieWithDictionary:value];
             [self pushMovieDetails:movie animated:NO];
@@ -86,7 +86,7 @@
             Movie* movie = [Movie movieWithDictionary:[value objectAtIndex:0]];
             Theater* theater = [Theater theaterWithDictionary:[value objectAtIndex:1]];
             NSString* title = [value objectAtIndex:2];
-
+            
             [self pushTicketsView:movie theater:theater title:title animated:NO];
         }
     }
@@ -95,8 +95,8 @@
 
 - (void) pushReviewsView:(Movie*) movie animated:(BOOL) animated {
     ReviewsViewController* controller = [[[ReviewsViewController alloc] initWithNavigationController:self
-                                                                                              movie:movie] autorelease];
-
+                                                                                               movie:movie] autorelease];
+    
     [self pushViewController:controller animated:animated];
 }
 
@@ -105,7 +105,7 @@
                  animated:(BOOL) animated {
     UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self
                                                                                                    movie:movie] autorelease];
-
+    
     [self pushViewController:viewController animated:animated];
 }
 
@@ -113,7 +113,7 @@
 - (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
     UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self
                                                                                                    theater:theater] autorelease];
-
+    
     [self pushViewController:viewController animated:animated];
 }
 
@@ -126,7 +126,7 @@
                                                                                   theater:theater
                                                                                     movie:movie
                                                                                     title:title] autorelease];
-
+    
     [self pushViewController:viewController animated:animated];
 }
 

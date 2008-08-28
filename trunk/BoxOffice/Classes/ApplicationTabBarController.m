@@ -41,7 +41,7 @@
     self.numbersNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
-
+    
     [super dealloc];
 }
 
@@ -54,7 +54,7 @@
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         //self.numbersNavigationController   = [[[NumbersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
-
+        
         self.viewControllers =
         [NSArray arrayWithObjects:
          moviesNavigationController,
@@ -62,7 +62,7 @@
          upcomingMoviesNavigationController,
          //numbersNavigationController,
          settingsNavigationController, nil];
-
+        
         if ([Utilities isNilOrEmpty:self.model.postalCode]) {
             self.selectedViewController = self.settingsNavigationController;
         } else {
@@ -72,14 +72,14 @@
             } else {
                 controller = [self.viewControllers objectAtIndex:self.model.selectedTabBarViewControllerIndex];
             }
-
+            
             self.selectedViewController = controller;
             [controller navigateToLastViewedPage];
         }
-
+        
         self.delegate = self;
     }
-
+    
     return self;
 }
 

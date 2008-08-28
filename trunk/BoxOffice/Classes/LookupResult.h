@@ -17,7 +17,7 @@
 @interface LookupResult : NSObject {
     NSMutableArray* movies;
     NSMutableArray* theaters;
-
+    
     // theaterId -> movieId -> [ { showtime, showid } ]
     NSMutableDictionary* performances;
 }

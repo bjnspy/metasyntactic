@@ -27,7 +27,7 @@
 
 - (void) dealloc {
     self.gate = nil;
-
+    
     [super dealloc];
 }
 
@@ -36,7 +36,7 @@
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
     }
-
+    
     return self;
 }
 
@@ -59,17 +59,17 @@
 - (void) deleteObsoleteTrailers:(NSArray*) movies {
     NSArray* contents = [[NSFileManager defaultManager] directoryContentsAtPath:[Application trailersFolder]];
     NSMutableSet* set = [NSMutableSet setWithArray:contents];
-
+    
     for (Movie* movie in movies) {
         NSString* filePath = [self trailerFileName:movie.canonicalTitle];
         [set removeObject:filePath];
     }
-
+    
     for (NSString* filePath in set) {
         NSString* fullPath = [[Application trailersFolder] stringByAppendingPathComponent:filePath];
-
+        
         NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:NULL] objectForKey:NSFileModificationDate];
-
+        
         if (downloadDate != nil) {
             NSTimeInterval span = [downloadDate timeIntervalSinceNow];
             if (ABS(span) > (60 * 60 * 1000)) {
@@ -83,11 +83,11 @@
 - (NSArray*) getOrderedMovies:(NSArray*) movies {
     NSMutableArray* moviesWithoutTrailers = [NSMutableArray array];
     NSMutableArray* moviesWithTrailers = [NSMutableArray array];
-
+    
     for (Movie* movie in movies) {
         NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self trailerFilePath:movie.canonicalTitle]
                                                                                  error:NULL] objectForKey:NSFileModificationDate];
-
+        
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
         } else {
@@ -97,16 +97,16 @@
             }
         }
     }
-
+    
     return [NSArray arrayWithObjects:moviesWithoutTrailers, moviesWithTrailers, nil];
 }
 
 
 - (void) update:(NSArray*) movies {
     [self deleteObsoleteTrailers:movies];
-
+    
     NSArray* orderedMovies = [self getOrderedMovies:movies];
-
+    
     [self performSelectorInBackground:@selector(backgroundEntryPoint:)
                            withObject:orderedMovies];
 }
@@ -114,26 +114,26 @@
 
 - (void) processRow:(NSString*) row
        moviesTitles:(NSArray*) movieTitles
-            engine:(DifferenceEngine*) engine {
+             engine:(DifferenceEngine*) engine {
     NSArray* values = [row componentsSeparatedByString:@"\t"];
     if (values.count != 3) {
         return;
     }
-
+    
     NSString* fullTitle = [values objectAtIndex:0];
     NSString* studio = [values objectAtIndex:1];
     NSString* location = [values objectAtIndex:2];
-
+    
     NSString* movieTitle = [engine findClosestMatch:[fullTitle lowercaseString] inArray:movieTitles];
-
+    
     if (movieTitle == nil) {
         return;
     }
-
+    
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
     NSString* trailersString = [Utilities stringWithContentsOfAddress:url];
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
-
+    
     if (trailers.count) {
         [Utilities writeObject:trailers toFile:[self trailerFilePath:movieTitle]];
     }
@@ -142,19 +142,19 @@
 
 - (void) downloadTrailers:(NSArray*) movies index:(NSString*) index {
     NSMutableArray* movieTitles = [NSMutableArray array];
-
+    
     for (Movie* movie in movies) {
         [movieTitles addObject:[movie.canonicalTitle lowercaseString]];
     }
-
+    
     DifferenceEngine* engine = [DifferenceEngine engine];
-
+    
     NSArray* rows = [index componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-
+        
         [self processRow:row moviesTitles:movieTitles engine:engine];
-
+        
         [autoreleasePool release];
     }
 }
@@ -165,13 +165,13 @@
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
-
+        
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
         NSString* index = [Utilities stringWithContentsOfAddress:url];
         if (index == nil) {
             return;
         }
-
+        
         for (NSArray* movies in arguments) {
             [self downloadTrailers:movies index:index];
         }
@@ -186,7 +186,7 @@
     if (trailers == nil) {
         return [NSArray array];
     }
-
+    
     return trailers;
 }
 

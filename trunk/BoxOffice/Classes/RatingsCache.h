@@ -30,15 +30,3 @@
 - (void) onRatingsProviderChanged;
 
 @end
-
-/*
-
-
- - (NSDictionary*) supplementaryInformation {
- if (self.supplementaryInformationData == nil) {
- self.supplementaryInformationData = [self loadSupplementaryInformation];
- }
-
- return self.supplementaryInformationData;
- }
-*/

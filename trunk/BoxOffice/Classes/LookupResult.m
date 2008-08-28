@@ -26,7 +26,7 @@
     self.movies = nil;
     self.theaters = nil;
     self.performances = nil;
-
+    
     [super dealloc];
 }
 
@@ -39,7 +39,7 @@
         self.theaters = theaters_;
         self.performances = performances_;
     }
-
+    
     return self;
 }
 
