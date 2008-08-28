@@ -153,7 +153,9 @@
     NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
     NSArray* movies = [self processResultElement:resultElement studioKeys:studioKeys titleKeys:titleKeys];
-
+    if (movies.count == 0) {
+        return;
+    }
 
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:serverHash forKey:@"Hash"];
