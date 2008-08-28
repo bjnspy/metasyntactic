@@ -18,10 +18,12 @@
 
 @implementation FontCache
 
+
 static UIFont* helvetica14 = nil;
 static UIFont* boldSystem11 = nil;
 static UIFont* boldSystem18 = nil;
 static UIFont* boldSystem19 = nil;
+
 
 + (void) initialize {
     if (self == [FontCache class]) {
