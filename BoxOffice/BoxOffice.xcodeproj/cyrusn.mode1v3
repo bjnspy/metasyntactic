@@ -345,11 +345,14 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>239</integer>
+									<integer>16</integer>
+									<integer>2</integer>
+									<integer>1</integer>
+									<integer>0</integer>
 								</array>
 							</array>
 							<key>PBXSmartGroupTreeModuleOutlineStateVisibleRectKey</key>
-							<string>{{0, 3469}, {383, 713}}</string>
+							<string>{{0, 125}, {383, 713}}</string>
 						</dict>
 						<key>PBXTopSmartGroupGIDs</key>
 						<array/>
@@ -400,7 +403,7 @@
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74FADC3C0E67272C006494E5</string>
+										<string>74FADC480E675209006494E5</string>
 										<key>history</key>
 										<array>
 											<string>74E42F730E6123B9003234AB</string>
@@ -442,9 +445,7 @@
 											<string>7479DA2C0E65D7D700D91649</string>
 											<string>7479DA800E65E08F00D91649</string>
 											<string>7479DB450E65EC7100D91649</string>
-											<string>7479DB750E65F09900D91649</string>
 											<string>7479DB760E65F09900D91649</string>
-											<string>7479DB780E65F09900D91649</string>
 											<string>7479DB7A0E65F09900D91649</string>
 											<string>7479DB7B0E65F09900D91649</string>
 											<string>7479DB7C0E65F09900D91649</string>
@@ -462,7 +463,6 @@
 											<string>7408C1950E664D9A00C6031A</string>
 											<string>7408C1AB0E66503A00C6031A</string>
 											<string>7408C1AD0E66503A00C6031A</string>
-											<string>7408C1D50E6652EA00C6031A</string>
 											<string>7408C2010E666E0B00C6031A</string>
 											<string>74A79DA90E6678CB00B7E79F</string>
 											<string>74A79DB10E6678CB00B7E79F</string>
@@ -617,7 +617,10 @@
 											<string>74FADC180E67115B006494E5</string>
 											<string>74FADC2B0E672287006494E5</string>
 											<string>74FADC2C0E672287006494E5</string>
-											<string>74FADC390E67270E006494E5</string>
+											<string>74FADC400E675209006494E5</string>
+											<string>74FADC410E675209006494E5</string>
+											<string>74FADC420E675209006494E5</string>
+											<string>74FADC430E675209006494E5</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -809,6 +812,10 @@
 											<string>74FADC1A0E67115B006494E5</string>
 											<string>74FADC2D0E672287006494E5</string>
 											<string>74FADC2E0E672287006494E5</string>
+											<string>74FADC440E675209006494E5</string>
+											<string>74FADC450E675209006494E5</string>
+											<string>74FADC460E675209006494E5</string>
+											<string>74FADC470E675209006494E5</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -987,7 +994,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>241641260.88498801</real>
+	<real>241652233.65970501</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>
@@ -1002,7 +1009,6 @@
 	<integer>5</integer>
 	<key>WindowOrderList</key>
 	<array>
-		<string>74FADC3B0E67270E006494E5</string>
 		<string>74FADC300E672287006494E5</string>
 		<string>74FADC270E67115B006494E5</string>
 		<string>1C78EAAD065D492600B07095</string>
