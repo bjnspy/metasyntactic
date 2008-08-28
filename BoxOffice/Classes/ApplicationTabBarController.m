@@ -18,11 +18,11 @@
 
 #import "BoxOfficeAppDelegate.h"
 #import "BoxOfficeModel.h"
-#import "UpcomingMoviesNavigationController.h"
 #import "MoviesNavigationController.h"
 #import "NumbersNavigationController.h"
 #import "SettingsNavigationController.h"
 #import "TheatersNavigationController.h"
+#import "UpcomingMoviesNavigationController.h"
 #import "Utilities.h"
 
 @implementation ApplicationTabBarController
