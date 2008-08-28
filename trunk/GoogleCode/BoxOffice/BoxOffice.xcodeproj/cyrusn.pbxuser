@@ -22,7 +22,7 @@
 		);
 	};
 	29B97313FDCFA39411CA2CEA /* Project object */ = {
-		activeBuildConfigurationName = Release;
+		activeBuildConfigurationName = Distribution;
 		activeExecutable = 746A01350DC818A90079D89B /* BoxOffice */;
 		activeSDKPreference = iphoneos2.0;
 		activeTarget = 1D6058900D05DD3D006BFB54 /* BoxOffice */;
@@ -298,6 +298,10 @@
 			7408C1F50E66568400C6031A /* PBXTextBookmark */ = 7408C1F50E66568400C6031A /* PBXTextBookmark */;
 			7408C1F60E66568400C6031A /* PBXTextBookmark */ = 7408C1F60E66568400C6031A /* PBXTextBookmark */;
 			7408C1F70E66568400C6031A /* PBXTextBookmark */ = 7408C1F70E66568400C6031A /* PBXTextBookmark */;
+			7408C1FA0E6657CE00C6031A /* PBXTextBookmark */ = 7408C1FA0E6657CE00C6031A /* PBXTextBookmark */;
+			7408C1FB0E6657CE00C6031A /* PlistBookmark */ = 7408C1FB0E6657CE00C6031A /* PlistBookmark */;
+			7408C1FC0E6657CE00C6031A /* PBXTextBookmark */ = 7408C1FC0E6657CE00C6031A /* PBXTextBookmark */;
+			7408C1FD0E6657CE00C6031A /* PlistBookmark */ = 7408C1FD0E6657CE00C6031A /* PlistBookmark */;
 			7413779D0E63E43500404519 = 7413779D0E63E43500404519 /* PBXTextBookmark */;
 			741377C60E6478F300404519 = 741377C60E6478F300404519 /* PBXTextBookmark */;
 			741377C90E6478F300404519 = 741377C90E6478F300404519 /* PBXTextBookmark */;
@@ -2722,6 +2726,50 @@
 		rType = 0;
 		vrLen = 1124;
 		vrLoc = 456;
+	};
+	7408C1FA0E6657CE00C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */;
+		name = "MovieOverviewCell.h: 20";
+		rLen = 0;
+		rLoc = 854;
+		rType = 0;
+		vrLen = 1124;
+		vrLoc = 456;
+	};
+	7408C1FB0E6657CE00C6031A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleSignature,
+		);
+		name = /Projects/metasyntactic/trunk/GoogleCode/BoxOffice/Info.plist;
+		rLen = 4;
+		rLoc = 0;
+	};
+	7408C1FC0E6657CE00C6031A /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */;
+		name = "MovieOverviewCell.h: 20";
+		rLen = 0;
+		rLoc = 854;
+		rType = 0;
+		vrLen = 1124;
+		vrLoc = 456;
+	};
+	7408C1FD0E6657CE00C6031A /* PlistBookmark */ = {
+		isa = PlistBookmark;
+		fRef = 8D1107310486CEB800E47090 /* Info.plist */;
+		fallbackIsa = PBXBookmark;
+		isK = 0;
+		kPath = (
+			CFBundleSignature,
+		);
+		name = /Projects/metasyntactic/trunk/GoogleCode/BoxOffice/Info.plist;
+		rLen = 0;
+		rLoc = 2147483647;
 	};
 	740AFF340E54E87F004EC5EE /* NumbersNavigationController.h */ = {
 		uiCtxt = {
@@ -7256,8 +7304,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 42;
-		modificationTime = 241587895.461227;
-		state = 0;
+		modificationTime = 241589475.605023;
+		state = 1;
 	};
 	7479D7EF0E651EF800D91649 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -7456,8 +7504,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 52;
-		modificationTime = 241587895.476397;
-		state = 0;
+		modificationTime = 241589475.605032;
+		state = 1;
 	};
 	7479D8080E6520C400D91649 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -9164,8 +9212,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 223;
-		modificationTime = 241587895.522981;
-		state = 0;
+		modificationTime = 241589475.605041;
+		state = 1;
 	};
 	7479D9620E65450800D91649 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -11423,8 +11471,8 @@
 		hitCount = 0;
 		ignoreCount = 0;
 		lineNumber = 66;
-		modificationTime = 241587895.556141;
-		state = 0;
+		modificationTime = 241589475.605006;
+		state = 1;
 	};
 	7479DAB50E65E1B200D91649 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
