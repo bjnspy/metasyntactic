@@ -442,11 +442,6 @@ static NSString* starString = nil;
 }
 
 
-+ (NSString*) numbersIndexFile {
-    return [[Application numbersFolder] stringByAppendingPathComponent:@"Index.plist"];
-}
-
-
 + (NSString*) upcomingMoviesIndexFile {
     return [[Application upcomingFolder] stringByAppendingPathComponent:@"Index.plist"];
 }
