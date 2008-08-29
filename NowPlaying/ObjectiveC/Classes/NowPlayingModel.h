@@ -108,8 +108,9 @@ enum ViewControllerType {
 - (BOOL) upcomingMoviesSortingByTitle;
 - (BOOL) upcomingMoviesSortingByReleaseDate;
 
-- (BOOL) numbersDailyFilter;
-- (BOOL) numbersWeekendFilter;
+- (BOOL) numbersSortingByDailyGross;
+- (BOOL) numbersSortingByWeekendGross;
+- (BOOL) numbersSortingByTotalGross;
 
 - (void) saveNavigationStack:(AbstractNavigationController*) controller;
 - (NSArray*) navigationStackTypes;

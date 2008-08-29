@@ -69,6 +69,7 @@
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
 		74A3EF770E67DA45007ED6DC /* DownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A3EF750E67DA45007ED6DC /* DownArrow.png */; };
 		74A3EF780E67DA45007ED6DC /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A3EF760E67DA45007ED6DC /* UpArrow.png */; };
+		74A3F03A0E686817007ED6DC /* NeutralSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A3F0390E686817007ED6DC /* NeutralSquare.png */; };
 		74A863ED0E64F22A003A2249 /* AbstractMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */; };
 		74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */; };
 		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
@@ -263,6 +264,7 @@
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		74A3EF750E67DA45007ED6DC /* DownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DownArrow.png; path = Resources/DownArrow.png; sourceTree = "<group>"; };
 		74A3EF760E67DA45007ED6DC /* UpArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UpArrow.png; path = Resources/UpArrow.png; sourceTree = "<group>"; };
+		74A3F0390E686817007ED6DC /* NeutralSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeutralSquare.png; path = Resources/NeutralSquare.png; sourceTree = "<group>"; };
 		74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieListViewController.h; sourceTree = "<group>"; };
 		74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieListViewController.m; sourceTree = "<group>"; };
 		74A865420E64FCAD003A2249 /* UpcomingMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesViewController.h; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74A3F0390E686817007ED6DC /* NeutralSquare.png */,
 				74A3EF750E67DA45007ED6DC /* DownArrow.png */,
 				74A3EF760E67DA45007ED6DC /* UpArrow.png */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
@@ -867,6 +870,7 @@
 				7479DC570E6616E600D91649 /* Theaters.png in Resources */,
 				74A3EF770E67DA45007ED6DC /* DownArrow.png in Resources */,
 				74A3EF780E67DA45007ED6DC /* UpArrow.png in Resources */,
+				74A3F03A0E686817007ED6DC /* NeutralSquare.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

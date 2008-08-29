@@ -46,7 +46,8 @@
         self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
                                   [NSArray arrayWithObjects:
                                    NSLocalizedString(@"Daily", nil),
-                                   NSLocalizedString(@"Weekend", nil), nil]] autorelease];
+                                   NSLocalizedString(@"Weekend", nil),
+                                   NSLocalizedString(@"Total", nil), nil]] autorelease];
 
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
         segmentedControl.selectedSegmentIndex = self.model.numbersSelectedSegmentIndex;
@@ -80,11 +81,29 @@
 }
 
 
+NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
+    MovieStatistics* m1 = i1;
+    MovieStatistics* m2 = i2;
+    
+    if (m1.totalGross > m2.totalGross) {
+        return NSOrderedAscending;
+    } else if (m1.totalGross < m2.totalGross) {
+        return NSOrderedDescending;
+    } else {
+        return NSOrderedSame;
+    }
+}
+
+
 - (void) refresh {
-    if (self.model.numbersWeekendFilter) {
-        self.movieNumbers = self.model.numbersCache.weekendNumbers;
-    } else if (self.model.numbersDailyFilter) {
+    if (self.model.numbersSortingByDailyGross) {
         self.movieNumbers = self.model.numbersCache.dailyNumbers;
+    } else if (self.model.numbersSortingByWeekendGross) {
+        self.movieNumbers = self.model.numbersCache.weekendNumbers;
+    } else if (self.model.numbersSortingByTotalGross) {
+        NSMutableArray* movies = [NSMutableArray arrayWithArray:self.model.numbersCache.dailyNumbers];
+        [movies sortUsingFunction:compareMoviesByTotalGross context:NULL];
+        self.movieNumbers = movies;
     }
     
     [self.tableView reloadData];
@@ -131,9 +150,9 @@
     
     MovieStatistics* numbers = [self.movieNumbers objectAtIndex:section];
     UILabel* label = (id)[cell viewWithTag:1];
-    
+
     if (numbers.previousRank == 0 || numbers.currentRank == numbers.previousRank) {
-        cell.image = nil;
+        cell.image = [ImageCache neutralSquare];
         label.text = nil;
     } else if (numbers.currentRank > numbers.previousRank) {
         cell.image = [ImageCache upArrow];
@@ -142,15 +161,11 @@
         cell.image = [ImageCache downArrow];
         label.text = [NSString stringWithFormat:@"-%d", numbers.previousRank - numbers.currentRank];
     }
-    
+
     [label sizeToFit];
-    
-    if (cell.image == nil) {
-        cell.text = numbers.canonicalTitle;
-    } else {
-        cell.text = [NSString stringWithFormat:@"   %@", numbers.canonicalTitle];
-    }
-    
+
+    cell.text = [NSString stringWithFormat:@"   %@", numbers.canonicalTitle];
+
     return cell;
 }
 
@@ -197,11 +212,11 @@
         NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:statistics.currentGross]];
         NSString* value = [NSString stringWithFormat:@"$%@", gross];
         
-        if (self.model.numbersDailyFilter) {
-            [cell setKey:NSLocalizedString(@"Daily gross", nil)
+        if (self.model.numbersSortingByWeekendGross) {
+            [cell setKey:NSLocalizedString(@"Weekend gross", nil)
                    value:value];
         } else {
-            [cell setKey:NSLocalizedString(@"Weekend gross", nil)
+            [cell setKey:NSLocalizedString(@"Daily gross", nil)
                    value:value];
         }
     } else if (indexPath.row == 4) { 
@@ -236,6 +251,13 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
+    if (self.model.numbersSortingByTotalGross) {
+        NSInteger index = [self.model.numbersCache.dailyNumbers indexOfObject:[self.movieNumbers objectAtIndex:section]];
+        if (index != NSNotFound) {
+            return [NSString stringWithFormat:@"#%d", index + 1];
+        }
+    }
+
     return [NSString stringWithFormat:@"#%d", section + 1];
 }
 
