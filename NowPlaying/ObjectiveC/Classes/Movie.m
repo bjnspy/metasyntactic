@@ -107,7 +107,7 @@ static NSString* articles[] = {
         self.displayTitle   = [Movie makeDisplay:title_];
 
         self.rating = [rating_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        if (self.rating == nil) {
+        if (rating == nil) {
             self.rating = @"NR";
         }
         self.length = length_;
@@ -209,13 +209,13 @@ static NSString* articles[] = {
     if (self.isUnrated) {
         return NSLocalizedString(@"Unrated.", nil);
     }  else {
-        return [NSString stringWithFormat:NSLocalizedString(@"Rated %@.", nil), self.rating];
+        return [NSString stringWithFormat:NSLocalizedString(@"Rated %@.", nil), rating];
     }
 }
 
 
 - (NSString*) ratingAndRuntimeString {
-    NSInteger movieLength = self.length.intValue;
+    NSInteger movieLength = length.intValue;
     NSInteger hours = movieLength / 60;
     NSInteger minutes = movieLength % 60;
 

@@ -62,7 +62,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    for (UILabel* label in [NSArray arrayWithObjects:self.nameLabel, self.addressLabel, nil]) {
+    for (UILabel* label in [NSArray arrayWithObjects:nameLabel, addressLabel, nil]) {
         CGRect frame = label.frame;
         frame.size.width = self.contentView.frame.size.width - frame.origin.x;
         label.frame = frame;

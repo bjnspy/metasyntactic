@@ -58,7 +58,7 @@
     // only actually auto-update if:
     //   a) the user wants it
     //   b) we're not currently searching
-    if ([self.model autoUpdateLocation] && activityIndicator == nil) {
+    if (self.model.autoUpdateLocation && activityIndicator == nil) {
         [self onCurrentLocationClicked:nil];
     }
 }
@@ -88,9 +88,9 @@
         self.navigationItem.leftBarButtonItem = item;
 
         self.locationManager = [[[CLLocationManager alloc] init] autorelease];
-        self.locationManager.delegate = self;
-        self.locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-        self.locationManager.distanceFilter = kCLDistanceFilterNone;
+        locationManager.delegate = self;
+        locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        locationManager.distanceFilter = kCLDistanceFilterNone;
 
         [self performSelector:@selector(autoUpdateLocation:) withObject:nil afterDelay:2];
     }
@@ -194,12 +194,12 @@
 
 
 - (NowPlayingModel*) model {
-    return self.navigationController.model;
+    return navigationController.model;
 }
 
 
 - (NowPlayingController*) controller {
-    return self.navigationController.controller;
+    return navigationController.controller;
 }
 
 
@@ -264,7 +264,7 @@
             } else if (indexPath.row == 2) {
                 key = NSLocalizedString(@"Search Date", nil);
 
-                NSDate* date = [self.model searchDate];
+                NSDate* date = self.model.searchDate;
                 if ([DateUtilities isToday:date]) {
                     value = NSLocalizedString(@"Today", nil);
                 } else {
@@ -386,7 +386,7 @@
     } else if (section == 1) {
         if (row == 0) {
             TextFieldEditorViewController* controller =
-            [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
+            [[[TextFieldEditorViewController alloc] initWithController:navigationController
                                                                  title:NSLocalizedString(@"Location", nil)
                                                                 object:self
                                                               selector:@selector(onPostalCodeChanged:)

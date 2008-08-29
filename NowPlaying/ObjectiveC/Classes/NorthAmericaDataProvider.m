@@ -286,7 +286,7 @@
         //Location* location = [[self.model addressLocationCache] downloadAddressLocation:postalCode];
 
         NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                                                       fromDate:[self.model searchDate]];
+                                                                       fromDate:self.model.searchDate];
 
         NSString* urlString = [NSString stringWithFormat:
                                @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",

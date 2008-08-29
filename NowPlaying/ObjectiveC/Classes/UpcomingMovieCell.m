@@ -144,10 +144,10 @@
         label.frame = frame;
     }
 
-    CGRect titleFrame = self.titleLabel.frame;
+    CGRect titleFrame = titleLabel.frame;
     titleFrame.origin.x = (int)(imageFrame.size.width + 7);
     titleFrame.size.width = self.contentView.frame.size.width - titleFrame.origin.x;
-    self.titleLabel.frame = titleFrame;
+    titleLabel.frame = titleFrame;
 
     for (UILabel* label in [NSArray arrayWithObjects:directorLabel, castLabel, genreLabel, ratedLabel, nil]) {
         CGRect frame = label.frame;
@@ -170,9 +170,9 @@
     genreLabel.text = [movie.genres componentsJoinedByString:@", "];
 
     if (movie.isUnrated) {
-        self.ratedLabel.text = NSLocalizedString(@"Not yet rated", nil);
+        ratedLabel.text = NSLocalizedString(@"Not yet rated", nil);
     } else {
-        self.ratedLabel.text = movie.rating;
+        ratedLabel.text = movie.rating;
     }
 
     UIImage* image = [model posterForMovie:movie];

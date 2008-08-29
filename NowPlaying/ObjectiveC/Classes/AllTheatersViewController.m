@@ -56,18 +56,18 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
-    [self.model setAllTheatersSelectedSegmentIndex:self.segmentedControl.selectedSegmentIndex];
+    [self.model setAllTheatersSelectedSegmentIndex:segmentedControl.selectedSegmentIndex];
     [self refresh];
 }
 
 
 - (NowPlayingModel*) model {
-    return self.navigationController.model;
+    return navigationController.model;
 }
 
 
 - (NowPlayingController*) controller {
-    return self.navigationController.controller;
+    return navigationController.controller;
 }
 
 
@@ -84,9 +84,9 @@
 - (void) sortTheatersByName {
     self.sortedTheaters = [self.model.theaters sortedArrayUsingFunction:compareTheatersByName context:nil];
 
-    self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
+    self.sectionTitles = [NSMutableArray arrayWithArray:alphabeticSectionTitles];
 
-    for (Theater* theater in [self.model theatersInRange:self.sortedTheaters]) {
+    for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [sectionTitleToContentsMap addObject:theater forKey:[Application starString]];
             continue;
@@ -300,7 +300,7 @@
     if ([self sortingByName] &&
         sortedTheaters.count > 0 &&
         UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        return self.alphabeticSectionTitles;
+        return alphabeticSectionTitles;
     }
 
     return nil;

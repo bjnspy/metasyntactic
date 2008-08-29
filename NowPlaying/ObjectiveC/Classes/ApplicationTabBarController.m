@@ -63,7 +63,7 @@
          settingsNavigationController, nil];
 
         if ([Utilities isNilOrEmpty:self.model.postalCode]) {
-            self.selectedViewController = self.settingsNavigationController;
+            self.selectedViewController = settingsNavigationController;
         } else {
             AbstractNavigationController* controller;
             if (self.model.selectedTabBarViewControllerIndex >= self.viewControllers.count) {
@@ -95,12 +95,12 @@
 
 
 - (NowPlayingModel*) model {
-    return self.appDelegate.model;
+    return appDelegate.model;
 }
 
 
 - (NowPlayingController*) controller {
-    return self.appDelegate.controller;
+    return appDelegate.controller;
 }
 
 

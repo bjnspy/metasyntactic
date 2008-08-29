@@ -70,7 +70,7 @@
 - (void) stop:(id) sender {
     running = NO;
 
-    [navigationItem setLeftBarButtonItem:self.originalButton animated:YES];
+    [navigationItem setLeftBarButtonItem:originalButton animated:YES];
 }
 
 

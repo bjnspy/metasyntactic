@@ -38,12 +38,13 @@
         self.selectionStyle = UITableViewCellSelectionStyleNone;
 
         self.label = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.label.font = [FontCache helvetica14];
-        self.label.lineBreakMode = UILineBreakModeWordWrap;
-        self.label.numberOfLines = 0;
+        label.font = [FontCache helvetica14];
+        label.lineBreakMode = UILineBreakModeWordWrap;
+        label.numberOfLines = 0;
 
         [self.contentView addSubview:label];
     }
+
     return self;
 }
 
@@ -51,7 +52,7 @@
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    self.label.text = review.text;
+    label.text = review.text;
 
     double width = self.frame.size.width;
     width -= 40;
@@ -60,7 +61,7 @@
     }
 
     CGRect rect = CGRectMake(10, 5, width, [ReviewBodyCell height:review] - 10);
-    self.label.frame = rect;
+    label.frame = rect;
 }
 
 

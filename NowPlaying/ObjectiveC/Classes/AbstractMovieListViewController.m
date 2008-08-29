@@ -90,12 +90,12 @@
 }
 
 - (NowPlayingModel*) model {
-    return self.navigationController.model;
+    return navigationController.model;
 }
 
 
 - (NowPlayingController*) controller {
-    return self.navigationController.controller;
+    return navigationController.controller;
 }
 
 
@@ -115,7 +115,7 @@
 
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
 
-    for (Movie* movie in self.sortedMovies) {
+    for (Movie* movie in sortedMovies) {
         unichar firstChar = [movie.displayTitle characterAtIndex:0];
         firstChar = toupper(firstChar);
 
@@ -145,7 +145,7 @@
 
     NSDate* today = [DateUtilities today];
 
-    for (Movie* movie in self.sortedMovies) {
+    for (Movie* movie in sortedMovies) {
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
         if (movie.releaseDate != nil) {
             if ([movie.releaseDate compare:today] == NSOrderedDescending) {
@@ -182,7 +182,7 @@
     }
 
     if (sectionTitles.count == 0) {
-        self.sectionTitles = [NSArray arrayWithObject:[self.model noLocationInformationFound]];
+        self.sectionTitles = [NSArray arrayWithObject:self.model.noLocationInformationFound];
     }
 }
 
@@ -216,7 +216,7 @@
 
 
 - (void) viewDidAppear:(BOOL) animated {
-    [self.model saveNavigationStack:self.navigationController];
+    [self.model saveNavigationStack:navigationController];
 }
 
 
@@ -314,7 +314,7 @@
     if (self.sortingByTitle &&
         self.sortedMovies.count > 0 &&
         UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        return self.alphabeticSectionTitles;
+        return alphabeticSectionTitles;
     }
 
     return nil;
