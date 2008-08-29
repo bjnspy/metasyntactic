@@ -52,6 +52,7 @@
 @class MultiDictionary;
 @class NorthAmericaDataProvider;
 @class NotificationCenter;
+@class NumbersCache;
 @class NumbersNavigationController;
 @class NumbersViewController;
 @class Performance;

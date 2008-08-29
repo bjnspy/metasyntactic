@@ -19,6 +19,7 @@
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "MoviesNavigationController.h"
+#import "NumbersNavigationController.h"
 #import "SettingsNavigationController.h"
 #import "TheatersNavigationController.h"
 #import "UpcomingMoviesNavigationController.h"
@@ -51,7 +52,7 @@
         self.moviesNavigationController   = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
-        //self.numbersNavigationController   = [[[NumbersNavigationController alloc] initWithTabBarController:self] autorelease];
+        self.numbersNavigationController   = [[[NumbersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.settingsNavigationController = [[[SettingsNavigationController alloc] initWithTabBarController:self] autorelease];
 
         self.viewControllers =
@@ -59,7 +60,7 @@
          moviesNavigationController,
          theatersNavigationController,
          upcomingMoviesNavigationController,
-         //numbersNavigationController,
+         numbersNavigationController,
          settingsNavigationController, nil];
 
         if ([Utilities isNilOrEmpty:self.model.postalCode]) {

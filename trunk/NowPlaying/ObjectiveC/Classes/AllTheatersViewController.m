@@ -56,7 +56,7 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
-    [self.model setAllTheatersSelectedSegmentIndex:segmentedControl.selectedSegmentIndex];
+    self.model.allTheatersSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
     [self refresh];
 }
 

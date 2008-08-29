@@ -16,26 +16,29 @@
 
 @interface MovieStatistics : NSObject {
     NSString* canonicalTitle;
-    NSInteger weekendGross;
-    double change;
-    NSInteger theaters;
+    NSInteger currentRank;
+    NSInteger previousRank;
+    NSInteger currentGross;
     NSInteger totalGross;
+    NSInteger theaters;
     NSInteger days;
 }
 
 @property (copy) NSString* canonicalTitle;
-@property NSInteger weekendGross;
-@property double change;
-@property NSInteger theaters;
+@property NSInteger currentRank;
+@property NSInteger previousRank;
+@property NSInteger currentGross;
 @property NSInteger totalGross;
+@property NSInteger theaters;
 @property NSInteger days;
 
 + (MovieStatistics*) statisticsWithDictionary:(NSDictionary*) dictionary;
 + (MovieStatistics*) statisticsWithTitle:(NSString*) title
-                            weekendGross:(NSInteger) weekendGross
-                                  change:(double) change
-                                theaters:(NSInteger) theaters
+                             currentRank:(NSInteger) currentRank
+                            previousRank:(NSInteger) previousRank
+                            currentGross:(NSInteger) currentGross
                               totalGross:(NSInteger) totalGross
+                                theaters:(NSInteger) theaters
                                     days:(NSInteger) days;
 
 - (NSDictionary*) dictionary;

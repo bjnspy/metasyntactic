@@ -75,7 +75,7 @@
 
 
 - (void) onSortOrderChanged:(id) sender {
-    [self.model setUpcomingMoviesSelectedSegmentIndex:segmentedControl.selectedSegmentIndex];
+    self.model.upcomingMoviesSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
     [self refresh];
 }
 

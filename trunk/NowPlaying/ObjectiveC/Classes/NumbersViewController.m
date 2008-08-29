@@ -16,7 +16,10 @@
 
 #import "NumbersViewController.h"
 
+#import "ImageCache.h"
+#import "MovieStatistics.h"
 #import "NowPlayingModel.h"
+#import "NumbersCache.h"
 #import "NumbersNavigationController.h"
 #import "SettingCell.h"
 
@@ -24,10 +27,12 @@
 
 @synthesize navigationController;
 @synthesize segmentedControl;
+@synthesize movieNumbers;
 
 - (void) dealloc {
     self.navigationController = nil;
     self.segmentedControl = nil;
+    self.movieNumbers = nil;
 
     [super dealloc];
 }
@@ -44,7 +49,10 @@
                                    NSLocalizedString(@"Weekend", nil), nil]] autorelease];
 
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-        segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;
+        segmentedControl.selectedSegmentIndex = self.model.numbersSelectedSegmentIndex;
+        [segmentedControl addTarget:self
+                             action:@selector(onFilterChanged:)
+                   forControlEvents:UIControlEventValueChanged];
 
         CGRect rect = segmentedControl.frame;
         rect.size.width = 240;
@@ -54,6 +62,12 @@
     }
 
     return self;
+}
+
+
+- (void) onFilterChanged:(id) sender {
+    self.model.numbersSelectedSegmentIndex = segmentedControl.selectedSegmentIndex;
+    [self refresh];
 }
 
 
@@ -67,6 +81,12 @@
 
 
 - (void) refresh {
+    if (self.model.numbersWeekendFilter) {
+        self.movieNumbers = self.model.numbersCache.weekendNumbers;
+    } else if (self.model.numbersDailyFilter) {
+        self.movieNumbers = self.model.numbersCache.dailyNumbers;
+    }
+    
     [self.tableView reloadData];
 }
 
@@ -82,61 +102,116 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 3;
+    return MAX(1, self.movieNumbers.count);
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    return 6;
+    if (self.movieNumbers.count == 0) {
+        return 0;
+    }
+
+    return 5;
+}
+
+
+- (UITableViewCell*) headerCellForSection:(NSInteger) section {
+    static NSString* reuseIdentifier = @"NumbersViewTitleCellIdentifier";
+    UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (cell == nil) {
+        cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+        
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(43, 16, 0, 0)] autorelease];
+        label.font = [UIFont systemFontOfSize:12];
+        label.tag = 1;
+        
+        [cell addSubview:label];
+    }
+    
+    MovieStatistics* numbers = [self.movieNumbers objectAtIndex:section];
+    UILabel* label = (id)[cell viewWithTag:1];
+    
+    if (numbers.previousRank == 0 || numbers.currentRank == numbers.previousRank) {
+        cell.image = nil;
+        label.text = nil;
+    } else if (numbers.currentRank > numbers.previousRank) {
+        cell.image = [ImageCache upArrow];
+        label.text = [NSString stringWithFormat:@"+%d", numbers.currentRank - numbers.previousRank];
+    } else {
+        cell.image = [ImageCache downArrow];
+        label.text = [NSString stringWithFormat:@"-%d", numbers.previousRank - numbers.currentRank];
+    }
+    
+    [label sizeToFit];
+    
+    if (cell.image == nil) {
+        cell.text = numbers.canonicalTitle;
+    } else {
+        cell.text = [NSString stringWithFormat:@"   %@", numbers.canonicalTitle];
+    }
+    
+    return cell;
+}
+
+
+- (NSNumberFormatter*) currencyFormatter {
+    NSNumberFormatter* formatter = [[[NSNumberFormatter alloc] init] autorelease];
+    formatter.numberStyle = NSNumberFormatterCurrencyStyle;
+    formatter.maximumFractionDigits = 0;
+    formatter.currencySymbol = @"";
+    return formatter;
 }
 
 
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
-    static NSString* reuseIdentifier = @"NumbersViewCellIdentifier";
-    SettingCell* cell = nil;//(id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
+    if (indexPath.row == 0) {
+        return [self headerCellForSection:indexPath.section];
+    }
+    
+    static NSString* reuseIdentifier = @"NumbersViewDetailCellIdentifier";
+    SettingCell* cell = (id)[self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
     if (cell == nil) {
         cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
-        cell.selectionStyle = UITableViewCellSeparatorStyleNone;
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        if (indexPath.row >= 2) {
-            UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, -1, 300, 2)] autorelease];
-            label.backgroundColor = [UIColor whiteColor];
-            [cell.contentView addSubview:label];
-        }
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, -1, 300, 2)] autorelease];
+        label.backgroundColor = [UIColor whiteColor];
+        label.tag = 1;
+        [cell.contentView addSubview:label];
     }
-
-    if (indexPath.section == 0) {
-        if (indexPath.row == 0) {
-            [cell setKey:@"Title" value:@"Dark Knight, The"];
-        } else if (indexPath.row == 1) {
-            [cell setKey:@"Days in Theater" value:@"24"];
-        } else if (indexPath.row == 2) {
-            [cell setKey:@"Weekend Gross" value:@"$26,117,030"];
-        } else if (indexPath.row == 3) {
-            [cell setKey:@"Change" value:@"-38.78%"];
-        } else if (indexPath.row == 4) {
-            [cell setKey:@"Theaters" value:@"4,025"];
-        } else if (indexPath.row == 5) {
-            [cell setKey:@"Total Gross" value:@"$441,628,497"];
+    
+    UIView* label = [cell viewWithTag:1];
+    label.hidden = (indexPath.row == 1);
+    
+    MovieStatistics* statistics = [self.movieNumbers objectAtIndex:indexPath.section];
+    
+    if (indexPath.row == 1) {  
+        [cell setKey:NSLocalizedString(@"Days in theater", nil)
+               value:[NSString stringWithFormat:@"%d", statistics.days]];
+    } else if (indexPath.row == 2) {
+        [cell setKey:NSLocalizedString(@"Theaters", nil)
+               value:[NSString stringWithFormat:@"%d", statistics.theaters]];
+    } else if (indexPath.row == 3) {
+        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:statistics.currentGross]];
+        NSString* value = [NSString stringWithFormat:@"$%@", gross];
+        
+        if (self.model.numbersDailyFilter) {
+            [cell setKey:NSLocalizedString(@"Daily gross", nil)
+                   value:value];
+        } else {
+            [cell setKey:NSLocalizedString(@"Weekend gross", nil)
+                   value:value];
         }
-    } else {
-        if (indexPath.row == 0) {
-            [cell setKey:@"Title" value:@"Mummy"];
-        } else if (indexPath.row == 1) {
-            [cell setKey:@"Days in Theater" value:@"10"];
-        } else if (indexPath.row == 2) {
-            [cell setKey:@"Weekend Gross" value:@"$16,490,970"];
-        } else if (indexPath.row == 3) {
-            [cell setKey:@"Change" value:@"-59.24%"];
-        } else if (indexPath.row == 4) {
-            [cell setKey:@"Theaters" value:@"3,778"];
-        } else if (indexPath.row == 5) {
-            [cell setKey:@"Total Gross" value:@"$71,048,920"];
-        }
+    } else if (indexPath.row == 4) { 
+        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:statistics.totalGross]];
+        NSString* value = [NSString stringWithFormat:@"$%@", gross];
+        
+        [cell setKey:NSLocalizedString(@"Total gross", nil)
+               value:value];
     }
-
+    
     return cell;
 }
 
@@ -146,8 +221,22 @@
     if (indexPath.row == 0) {
         return tableView.rowHeight;
     }
-
+    
     return tableView.rowHeight - 16;
+}
+
+
+- (void)            tableView:(UITableView*) tableView
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+    if (indexPath.row > 0) {
+        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    }
+}
+
+
+- (NSString*)       tableView:(UITableView*) tableView
+      titleForHeaderInSection:(NSInteger) section {
+    return [NSString stringWithFormat:@"#%d", section + 1];
 }
 
 

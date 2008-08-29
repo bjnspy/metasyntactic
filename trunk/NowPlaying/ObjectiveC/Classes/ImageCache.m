@@ -31,6 +31,9 @@ static UIImage* unknownRatingImage = nil;
 
 static UIImage* imageNotAvailable = nil;
 
+static UIImage* upArrow = nil;
+static UIImage* downArrow = nil;
+
 + (void) initialize {
     if (self == [ImageCache class]) {
         freshImage          = [[UIImage imageNamed:@"Fresh.png"] retain];
@@ -45,6 +48,9 @@ static UIImage* imageNotAvailable = nil;
         unknownRatingImage  = [[UIImage imageNamed:@"Rating-Unknown.png"] retain];
 
         imageNotAvailable   = [[UIImage imageNamed:@"ImageNotAvailable.png"] retain];
+        
+        upArrow             = [[UIImage imageNamed:@"UpArrow.png"] retain];
+        downArrow           = [[UIImage imageNamed:@"DownArrow.png"] retain];
     }
 }
 
@@ -96,6 +102,16 @@ static UIImage* imageNotAvailable = nil;
 
 + (UIImage*) imageNotAvailable {
     return imageNotAvailable;
+}
+
+
++ (UIImage*) upArrow {
+    return upArrow;
+}
+
+
++ (UIImage*) downArrow {
+    return downArrow;
 }
 
 

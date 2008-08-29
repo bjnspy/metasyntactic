@@ -20,6 +20,7 @@
 + (NSString*) dataFolder;
 + (NSString*) documentsFolder;
 + (NSString*) locationsFolder;
++ (NSString*) numbersFolder;
 + (NSString*) postersFolder;
 + (NSString*) ratingsFolder;
 + (NSString*) reviewsFolder;
@@ -34,6 +35,7 @@
 + (NSString*) providerReviewsFolder:(NSString*) provider;
 
 + (NSString*) movieMapFile;
++ (NSString*) numbersIndexFile;
 + (NSString*) upcomingMoviesIndexFile;
 + (NSString*) ratingsFile:(NSString*) ratingsProvider;
 

@@ -28,6 +28,7 @@
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "NorthAmericaDataProvider.h"
+#import "NumbersCache.h"
 #import "PosterCache.h"
 #import "RatingsCache.h"
 #import "ReviewCache.h"
@@ -43,8 +44,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"1.5.2";
-static NSString* persistenceVersion = @"7";
+static NSString* currentVersion = @"1.5.3";
+static NSString* persistenceVersion = @"8";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -55,6 +56,7 @@ static NSString* persistenceVersion = @"7";
 + (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX         { return @"allMoviesSelectedSegmentIndex"; }
 + (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX       { return @"allTheatersSelectedSegmentIndex"; }
 + (NSString*) UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX    { return @"upcomingMoviesSelectedSegmentIndex"; }
++ (NSString*) NUMBERS_SELECTED_SEGMENT_INDEX            { return @"numbersSelectedSegmentIndex"; }
 + (NSString*) FAVORITE_THEATERS                         { return @"favoriteTheaters"; }
 + (NSString*) SEARCH_DATE                               { return @"searchDate"; }
 + (NSString*) AUTO_UPDATE_LOCATION                      { return @"autoUpdateLocation"; }
@@ -72,10 +74,11 @@ static NSString* persistenceVersion = @"7";
 @synthesize favoriteTheatersData;
 
 @synthesize addressLocationCache;
+@synthesize numbersCache;
 @synthesize posterCache;
-@synthesize trailerCache;
 @synthesize ratingsCache;
 @synthesize reviewCache;
+@synthesize trailerCache;
 @synthesize upcomingCache;
 
 @synthesize backgroundTaskCount;
@@ -90,10 +93,11 @@ static NSString* persistenceVersion = @"7";
     self.favoriteTheatersData = nil;
 
     self.addressLocationCache = nil;
+    self.numbersCache = nil;
     self.posterCache = nil;
-    self.trailerCache = nil;
     self.ratingsCache = nil;
     self.reviewCache = nil;
+    self.trailerCache = nil;
     self.upcomingCache = nil;
 
     self.backgroundTaskCount = 0;
@@ -106,6 +110,11 @@ static NSString* persistenceVersion = @"7";
 
 + (NSString*) version {
     return currentVersion;
+}
+
+
+- (void) updateNumbersCache {
+    [numbersCache update];
 }
 
 
@@ -193,12 +202,13 @@ static NSString* persistenceVersion = @"7";
         [self loadData];
 
         self.notificationCenter = notificationCenter_;
-
-        self.posterCache = [PosterCache cache];
-        self.trailerCache = [TrailerCache cache];
+        
         self.addressLocationCache = [AddressLocationCache cache];
+        self.numbersCache = [NumbersCache cache];
+        self.posterCache = [PosterCache cache];
         self.reviewCache = [ReviewCache cacheWithModel:self];
         self.ratingsCache = [RatingsCache cacheWithModel:self];
+        self.trailerCache = [TrailerCache cache];
         self.upcomingCache = [UpcomingCache cache];
 
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
@@ -211,19 +221,20 @@ static NSString* persistenceVersion = @"7";
         backgroundTaskCount = 0;
         searchRadius = -1;
 
-        [self performSelector:@selector(updateCaches:) withObject:nil afterDelay:2];
+        [self performSelector:@selector(updateCaches) withObject:nil afterDelay:2];
     }
 
     return self;
 }
 
 
-- (void) updateCaches:(id) arg {
-    [self updatePosterCache];
+- (void) updateCaches {
     [self updateAddressLocationCache];
+    [self updateNumbersCache];
+    [self updatePosterCache];
     [self updatePostalCodeAddressLocation];
-    [self updateTrailerCache];
     [self updateReviewCache];
+    [self updateTrailerCache];
     [self updateUpcomingCache];
 }
 
@@ -349,6 +360,35 @@ static NSString* persistenceVersion = @"7";
 }
 
 
+- (NSInteger) allTheatersSelectedSegmentIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
+}
+
+
+- (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
+}
+
+- (NSInteger) upcomingMoviesSelectedSegmentIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX]];
+}
+
+
+- (void) setUpcomingMoviesSelectedSegmentIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX]];
+}
+
+
+- (NSInteger) numbersSelectedSegmentIndex {
+    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel NUMBERS_SELECTED_SEGMENT_INDEX]];
+}
+
+
+- (void) setNumbersSelectedSegmentIndex:(NSInteger) index {
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel NUMBERS_SELECTED_SEGMENT_INDEX]];
+}
+
+
 - (BOOL) allMoviesSortingByTitle {
     return self.allMoviesSelectedSegmentIndex == 0;
 }
@@ -364,16 +404,6 @@ static NSString* persistenceVersion = @"7";
 }
 
 
-- (NSInteger) allTheatersSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
-}
-
-
-- (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
-}
-
-
 - (BOOL) upcomingMoviesSortingByTitle {
     return self.upcomingMoviesSelectedSegmentIndex == 0;
 }
@@ -384,13 +414,13 @@ static NSString* persistenceVersion = @"7";
 }
 
 
-- (NSInteger) upcomingMoviesSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX]];
+- (BOOL) numbersDailyFilter {
+    return self.numbersSelectedSegmentIndex == 0;
 }
 
 
-- (void) setUpcomingMoviesSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX]];
+- (BOOL) numbersWeekendFilter {
+    return self.numbersSelectedSegmentIndex == 1;
 }
 
 
