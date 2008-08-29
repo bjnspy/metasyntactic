@@ -14,7 +14,7 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface MovieStatistics : NSObject {
+@interface MovieNumbers : NSObject {
     NSString* canonicalTitle;
     NSInteger currentRank;
     NSInteger previousRank;
@@ -32,8 +32,8 @@
 @property NSInteger theaters;
 @property NSInteger days;
 
-+ (MovieStatistics*) statisticsWithDictionary:(NSDictionary*) dictionary;
-+ (MovieStatistics*) statisticsWithTitle:(NSString*) title
++ (MovieNumbers*) numbersWithDictionary:(NSDictionary*) dictionary;
++ (MovieNumbers*) numbersWithTitle:(NSString*) title
                              currentRank:(NSInteger) currentRank
                             previousRank:(NSInteger) previousRank
                             currentGross:(NSInteger) currentGross

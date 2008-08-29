@@ -82,8 +82,8 @@
 
 
 NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
-    MovieStatistics* m1 = i1;
-    MovieStatistics* m2 = i2;
+    MovieNumbers* m1 = i1;
+    MovieNumbers* m2 = i2;
     
     if (m1.totalGross > m2.totalGross) {
         return NSOrderedAscending;
@@ -148,7 +148,7 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
         [cell addSubview:label];
     }
     
-    MovieStatistics* numbers = [self.movieNumbers objectAtIndex:section];
+    MovieNumbers* numbers = [self.movieNumbers objectAtIndex:section];
     UILabel* label = (id)[cell viewWithTag:1];
 
     if (numbers.previousRank == 0 || numbers.currentRank == numbers.previousRank) {
@@ -200,7 +200,7 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
     UIView* label = [cell viewWithTag:1];
     label.hidden = (indexPath.row == 1);
     
-    MovieStatistics* statistics = [self.movieNumbers objectAtIndex:indexPath.section];
+    MovieNumbers* statistics = [self.movieNumbers objectAtIndex:indexPath.section];
     
     if (indexPath.row == 1) {  
         [cell setKey:NSLocalizedString(@"Days in theater", nil)
