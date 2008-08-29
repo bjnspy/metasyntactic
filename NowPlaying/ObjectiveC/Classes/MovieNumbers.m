@@ -20,6 +20,7 @@
 
 @implementation MovieNumbers
 
+@synthesize identifier;
 @synthesize canonicalTitle;
 @synthesize currentRank;
 @synthesize previousRank;
@@ -29,6 +30,7 @@
 @synthesize days;
 
 - (void) dealloc {
+    self.identifier = nil;
     self.canonicalTitle = nil;
     self.currentRank = 0;
     self.previousRank = 0;
@@ -36,19 +38,21 @@
     self.totalGross = 0;
     self.theaters = 0;
     self.days = 0;
-
+    
     [super dealloc];
 }
 
 
-- (id) initWithTitle:(NSString*) title_
-               currentRank:(NSInteger) currentRank_
-              previousRank:(NSInteger) previousRank_
-              currentGross:(NSInteger) currentGross_
-                totalGross:(NSInteger) totalGross_
-                  theaters:(NSInteger) theaters_
-                      days:(NSInteger) days_ {
+- (id) initWithIdentifier:(NSString*) identifier_
+                    title:(NSString*) title_
+              currentRank:(NSInteger) currentRank_
+             previousRank:(NSInteger) previousRank_
+             currentGross:(NSInteger) currentGross_
+               totalGross:(NSInteger) totalGross_
+                 theaters:(NSInteger) theaters_
+                     days:(NSInteger) days_ {
     if (self = [super init]) {
+        self.identifier = identifier_;
         self.canonicalTitle = [Movie makeCanonical:title_];
         self.currentRank = currentRank_;
         self.previousRank = previousRank_;
@@ -57,41 +61,45 @@
         self.theaters = theaters_;
         self.days = days_;
     }
-
+    
     return self;
 }
 
 
-+ (MovieNumbers*) numbersWithTitle:(NSString*) title
-                             currentRank:(NSInteger) currentRank
-                            previousRank:(NSInteger) previousRank
-                            currentGross:(NSInteger) currentGross
-                              totalGross:(NSInteger) totalGross
-                                theaters:(NSInteger) theaters
-                                    days:(NSInteger) days {
-    return [[[MovieNumbers alloc] initWithTitle:title
-                                       currentRank:currentRank
-                                      previousRank:previousRank
-                                      currentGross:currentGross
-                                        totalGross:totalGross
-                                          theaters:theaters
-                                              days:days] autorelease];
++ (MovieNumbers*) numbersWithIdentifier:(NSString*) identifier
+                                  title:(NSString*) title
+                            currentRank:(NSInteger) currentRank
+                           previousRank:(NSInteger) previousRank
+                           currentGross:(NSInteger) currentGross
+                             totalGross:(NSInteger) totalGross
+                               theaters:(NSInteger) theaters
+                                   days:(NSInteger) days {
+    return [[[MovieNumbers alloc] initWithIdentifier:identifier
+                                               title:title
+                                         currentRank:currentRank
+                                        previousRank:previousRank
+                                        currentGross:currentGross
+                                          totalGross:totalGross
+                                            theaters:theaters
+                                                days:days] autorelease];
 }
 
 
 + (MovieNumbers*) numbersWithDictionary:(NSDictionary*) dictionary {
-    return [MovieNumbers numbersWithTitle:[dictionary objectForKey:@"title"]
-                                    currentRank:[[dictionary objectForKey:@"currentRank"] intValue]
-                                   previousRank:[[dictionary objectForKey:@"previousRank"] intValue]
-                                   currentGross:[[dictionary objectForKey:@"currentGross"] intValue]
-                                     totalGross:[[dictionary objectForKey:@"totalGross"] intValue]
-                                       theaters:[[dictionary objectForKey:@"theaters"] intValue]
-                                           days:[[dictionary objectForKey:@"days"] intValue]];
+    return [MovieNumbers numbersWithIdentifier:[dictionary objectForKey:@"identifier"]
+                                         title:[dictionary objectForKey:@"title"]
+                                   currentRank:[[dictionary objectForKey:@"currentRank"] intValue]
+                                  previousRank:[[dictionary objectForKey:@"previousRank"] intValue]
+                                  currentGross:[[dictionary objectForKey:@"currentGross"] intValue]
+                                    totalGross:[[dictionary objectForKey:@"totalGross"] intValue]
+                                      theaters:[[dictionary objectForKey:@"theaters"] intValue]
+                                          days:[[dictionary objectForKey:@"days"] intValue]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
+    [dict setObject:identifier forKey:@"identifier"];
     [dict setObject:canonicalTitle forKey:@"title"];
     [dict setObject:[NSNumber numberWithInt:currentRank] forKey:@"currentRank"];
     [dict setObject:[NSNumber numberWithInt:previousRank] forKey:@"previousRank"];

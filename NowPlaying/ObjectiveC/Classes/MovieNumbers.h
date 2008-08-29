@@ -15,6 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface MovieNumbers : NSObject {
+    NSString* identifier;
     NSString* canonicalTitle;
     NSInteger currentRank;
     NSInteger previousRank;
@@ -24,6 +25,7 @@
     NSInteger days;
 }
 
+@property (copy) NSString* identifier;
 @property (copy) NSString* canonicalTitle;
 @property NSInteger currentRank;
 @property NSInteger previousRank;
@@ -33,13 +35,14 @@
 @property NSInteger days;
 
 + (MovieNumbers*) numbersWithDictionary:(NSDictionary*) dictionary;
-+ (MovieNumbers*) numbersWithTitle:(NSString*) title
-                             currentRank:(NSInteger) currentRank
-                            previousRank:(NSInteger) previousRank
-                            currentGross:(NSInteger) currentGross
-                              totalGross:(NSInteger) totalGross
-                                theaters:(NSInteger) theaters
-                                    days:(NSInteger) days;
++ (MovieNumbers*) numbersWithIdentifier:(NSString*) identifier
+                                  title:(NSString*) title
+                            currentRank:(NSInteger) currentRank
+                           previousRank:(NSInteger) previousRank
+                           currentGross:(NSInteger) currentGross
+                             totalGross:(NSInteger) totalGross
+                               theaters:(NSInteger) theaters
+                                   days:(NSInteger) days;
 
 - (NSDictionary*) dictionary;
 
