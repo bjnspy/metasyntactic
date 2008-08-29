@@ -24,7 +24,7 @@
 
 + (NumbersCache*) cache;
 
-- (void) update;
+- (void) updateIndex;
 
 - (NSArray*) weekendNumbers;
 - (NSArray*) dailyNumbers;

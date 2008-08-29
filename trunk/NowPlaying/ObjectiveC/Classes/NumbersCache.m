@@ -100,8 +100,15 @@
 }
 
 
-- (void) update {
-    [self performSelectorInBackground:@selector(updateBackgroundEntryPoint) withObject:nil];
+- (void) updateIndex {
+    [self performSelectorInBackground:@selector(updateIndexBackgroundEntryPoint) withObject:nil];
+}
+
+
+- (void) updateDetails {
+    if (indexData != nil) {
+        [self performSelectorInBackground:@selector(updateDetailsBackgroundEntryPoint:) withObject:indexData];
+    }
 }
 
 
@@ -127,13 +134,14 @@
 
 
 - (MovieNumbers*) processMovieElement:(XmlElement*) movieElement {
-    return [MovieNumbers numbersWithTitle:[movieElement attributeValue:@"title"]
-                                    currentRank:[[movieElement attributeValue:@"current_rank"] intValue]
-                                   previousRank:[[movieElement attributeValue:@"previous_rank"] intValue]
-                                   currentGross:[[movieElement attributeValue:@"revenue"] intValue]
-                                     totalGross:[[movieElement attributeValue:@"total_revenue"] intValue]
-                                       theaters:[[movieElement attributeValue:@"theaters"] intValue] 
-                                           days:[[movieElement attributeValue:@"days"] intValue]];
+    return [MovieNumbers numbersWithIdentifier:[movieElement attributeValue:@"id"]
+                                         title:[movieElement attributeValue:@"title"]
+                                   currentRank:[[movieElement attributeValue:@"current_rank"] intValue]
+                                  previousRank:[[movieElement attributeValue:@"previous_rank"] intValue]
+                                  currentGross:[[movieElement attributeValue:@"revenue"] intValue]
+                                    totalGross:[[movieElement attributeValue:@"total_revenue"] intValue]
+                                      theaters:[[movieElement attributeValue:@"theaters"] intValue] 
+                                          days:[[movieElement attributeValue:@"days"] intValue]];
     
 }
 
@@ -147,7 +155,7 @@
 }
 
 
-- (void) updateWorker {
+- (void) updateIndexBackgroundWorker {
     NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application numbersIndexFile]
                                                                                error:NULL] objectForKey:NSFileModificationDate];
     
@@ -184,16 +192,33 @@
 }
 
 
-- (void) updateBackgroundEntryPoint {
+- (void) updateIndexBackgroundEntryPoint {
     NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
-        [self updateWorker];        
+        [self updateIndexBackgroundWorker];    
+        [self performSelectorOnMainThread:@selector(updateIndexBackgroundWorker) withObject:nil waitUntilDone:NO];
     }
     [gate unlock];
-    [autoreleasePool release];
-    
+    [autoreleasePool release];    
 }
+
+
+- (void) updateDetailsBackgroundWorker:(NSDictionary*) numbers {
+}
+
+
+- (void) updateDetailsBackgroundEntryPoint:(NSDictionary*) numbers {
+    NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
+    [gate lock];
+    {
+        [NSThread setThreadPriority:0.0];
+        [self updateDetailsBackgroundWorker:numbers];    
+    }
+    [gate unlock];
+    [autoreleasePool release];    
+}
+
 
 @end

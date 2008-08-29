@@ -44,8 +44,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"1.5.3";
-static NSString* persistenceVersion = @"8";
+static NSString* currentVersion = @"1.6.0";
+static NSString* persistenceVersion = @"9";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -114,7 +114,7 @@ static NSString* persistenceVersion = @"8";
 
 
 - (void) updateNumbersCache {
-    [numbersCache update];
+    [numbersCache updateIndex];
 }
 
 
@@ -221,21 +221,35 @@ static NSString* persistenceVersion = @"8";
         backgroundTaskCount = 0;
         searchRadius = -1;
 
-        [self performSelector:@selector(updateCaches) withObject:nil afterDelay:2];
+        [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:0] afterDelay:2];
     }
 
     return self;
 }
 
 
-- (void) updateCaches {
-    [self updateAddressLocationCache];
-    [self updateNumbersCache];
-    [self updatePosterCache];
-    [self updatePostalCodeAddressLocation];
-    [self updateReviewCache];
-    [self updateTrailerCache];
-    [self updateUpcomingCache];
+- (void) updateCaches:(NSNumber*) number {
+    int value = number.intValue;
+    
+    if (value == 0) {
+        [self updateAddressLocationCache];
+    } else if (value == 1) {
+        [self updateNumbersCache];
+    } else if (value == 2) {
+        [self updatePosterCache];
+    } else if (value == 3) {
+        [self updatePostalCodeAddressLocation];
+    } else if (value == 4) {
+        [self updateReviewCache];
+    } else if (value == 5) {
+        [self updateTrailerCache];
+    } else if (value == 6) {
+        [self updateUpcomingCache];
+    } else {
+        return;
+    }
+
+    [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:value + 1] afterDelay:1];
 }
 
 
