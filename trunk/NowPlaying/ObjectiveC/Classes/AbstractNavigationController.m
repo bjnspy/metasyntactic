@@ -56,12 +56,12 @@
 
 
 - (NowPlayingModel*) model {
-    return self.tabBarController.model;
+    return tabBarController.model;
 }
 
 
 - (NowPlayingController*) controller {
-    return self.tabBarController.controller;
+    return tabBarController.controller;
 }
 
 

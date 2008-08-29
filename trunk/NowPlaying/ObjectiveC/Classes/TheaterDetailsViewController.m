@@ -52,12 +52,12 @@
 
 
 - (NowPlayingModel*) model {
-    return self.navigationController.model;
+    return navigationController.model;
 }
 
 
 - (NowPlayingController*) controller {
-    return self.navigationController.controller;
+    return navigationController.controller;
 }
 
 
@@ -131,7 +131,7 @@
 
 
 - (void) viewDidAppear:(BOOL) animated {
-    [self.model saveNavigationStack:self.navigationController];
+    [self.model saveNavigationStack:navigationController];
 }
 
 

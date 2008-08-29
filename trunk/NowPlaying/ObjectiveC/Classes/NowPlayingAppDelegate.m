@@ -35,6 +35,7 @@
     self.model = nil;
     self.tabBarController = nil;
     self.notificationCenter = nil;
+
     [super dealloc];
 }
 

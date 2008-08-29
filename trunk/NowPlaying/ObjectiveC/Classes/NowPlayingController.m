@@ -43,7 +43,7 @@
 
 
 - (NowPlayingModel*) model {
-    return self.appDelegate.model;
+    return appDelegate.model;
 }
 
 
@@ -189,7 +189,7 @@
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [dataProviderLock lock];
     {
-        [[self.model currentDataProvider] lookup];
+        [self.model.currentDataProvider lookup];
         [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded)
                                withObject:nil
                             waitUntilDone:NO];
@@ -200,7 +200,7 @@
 
 
 - (void) setSearchDate:(NSDate*) searchDate {
-    if ([searchDate isEqual:[self.model searchDate]]) {
+    if ([searchDate isEqual:self.model.searchDate]) {
         return;
     }
 
@@ -230,7 +230,7 @@
 
 
 - (void) setRatingsProviderIndex:(NSInteger) index {
-    if (index == [self.model ratingsProviderIndex]) {
+    if (index == self.model.ratingsProviderIndex) {
         return;
     }
 
@@ -241,7 +241,7 @@
 
 
 - (void) setDataProviderIndex:(NSInteger) index {
-    if (index == [self.model dataProviderIndex]) {
+    if (index == self.model.dataProviderIndex) {
         return;
     }
 

@@ -65,7 +65,7 @@
             self.posterImage = [ImageCache imageNotAvailable];
         }
 
-        UIImageView* imageView = [[[UIImageView alloc] initWithImage:self.posterImage] autorelease];
+        UIImageView* imageView = [[[UIImageView alloc] initWithImage:posterImage] autorelease];
         imageView.frame = CGRectMake(5, 5, self.posterSize.width, self.posterSize.height);
 
         self.synopsisChunk1Label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
@@ -169,11 +169,11 @@
     int chunk1Width = self.contentView.frame.size.width - 5 - chunk1X;
 
     CGRect chunk1Frame = CGRectMake(chunk1X, 5, chunk1Width, self.posterSize.height);
-    self.synopsisChunk1Label.frame = chunk1Frame;
-    self.synopsisChunk1Label.text = [synopsis substringToIndex:synopsisSplit];
+    synopsisChunk1Label.frame = chunk1Frame;
+    synopsisChunk1Label.text = [synopsis substringToIndex:synopsisSplit];
     [synopsisChunk1Label sizeToFit];
 
-    self.synopsisChunk2Label.text = @"";
+    synopsisChunk2Label.text = @"";
     if (synopsisSplit < synopsis.length) {
         NSInteger start = synopsisSplit + 1;
         NSInteger end = synopsisMax;

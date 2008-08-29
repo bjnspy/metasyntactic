@@ -95,12 +95,12 @@
         self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
 
         self.showtimesLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        self.showtimesLabel.numberOfLines = 0;
-        self.showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
+        showtimesLabel.numberOfLines = 0;
+        showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
 
         self.headerLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        self.headerLabel.textColor = [ColorCache commandColor];
-        self.headerLabel.text = [MovieShowtimesCell showsString];
+        headerLabel.textColor = [ColorCache commandColor];
+        headerLabel.text = [MovieShowtimesCell showsString];
 
         [self.contentView addSubview:showtimesLabel];
         [self.contentView addSubview:headerLabel];
@@ -116,7 +116,7 @@
     CGRect headerFrame = headerLabel.frame;
     headerFrame.origin.x = 8;
     headerFrame.origin.y = 9;
-    self.headerLabel.frame = headerFrame;
+    headerLabel.frame = headerFrame;
 
     CGRect showtimesFrame = showtimesLabel.frame;
     showtimesFrame.origin.x = headerFrame.origin.x + headerFrame.size.width + 8;
@@ -127,7 +127,7 @@
     width -= headerFrame.size.width;
     showtimesFrame.size.width = width;
     showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimes useSmallFonts:useSmallFonts];
-    self.showtimesLabel.frame = showtimesFrame;
+    showtimesLabel.frame = showtimesFrame;
 }
 
 

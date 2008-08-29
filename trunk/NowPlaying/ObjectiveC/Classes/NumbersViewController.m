@@ -72,12 +72,12 @@
 
 
 - (NowPlayingModel*) model {
-    return self.navigationController.model;
+    return navigationController.model;
 }
 
 
 - (NowPlayingController*) controller {
-    return self.navigationController.controller;
+    return navigationController.controller;
 }
 
 
@@ -149,144 +149,6 @@
 
     return tableView.rowHeight - 16;
 }
-
-/*
- - (UITableViewCellAccessoryType) tableView:(UITableView*) tableView
- accessoryTypeForRowWithIndexPath:(NSIndexPath*) indexPath {
- if (indexPath.section == 0) {
- return UITableViewCellAccessoryNone;
- } else if (indexPath.section == 1) {
- return UITableViewCellAccessoryDisclosureIndicator;
- } else {
- return UITableViewCellAccessoryDisclosureIndicator;
- }
- }
-
-
- - (UITableViewCell*) tableView:(UITableView*) tableView
- cellForRowAtIndexPath:(NSIndexPath*) indexPath {
- if (indexPath.section == 0) {
- UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
- cell.text = NSLocalizedString(@"Donate", nil);
- cell.textColor = [ColorCache commandColor];
- cell.textAlignment = UITextAlignmentCenter;
-
- return cell;
- } else if (indexPath.section == 1) {
- if (indexPath.row >= 0 && indexPath.row <= 3) {
- SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
- NSString* key;
- NSString* value;
- if (indexPath.row == 0) {
- key = NSLocalizedString(@"Location", nil);
- value = self.model.postalCode;
- } else if (indexPath.row == 1) {
- key = NSLocalizedString(@"Search Distance", nil);
-
- if (self.model.searchRadius == 1) {
- value = NSLocalizedString(@"1 mile", nil);
- } else {
- value = [NSString stringWithFormat:NSLocalizedString(@"%d miles", nil), self.model.searchRadius];
- }
- } else if (indexPath.row == 2) {
- key = NSLocalizedString(@"Search Date", nil);
-
- NSDate* date = [self.model searchDate];
- if ([DateUtilities isToday:date]) {
- value = NSLocalizedString(@"Today", nil);
- } else {
- value = [DateUtilities formatLongDate:date];
- }
- } else if (indexPath.row == 3) {
- key = NSLocalizedString(@"Reviews", nil);
- value = [self.model currentRatingsProvider];
- }
-
- [cell setKey:key value:value];
-
- return cell;
- } else if (indexPath.row == 4) {
- UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
- cell.text = NSLocalizedString(@"Auto-Update Location", nil);
- cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
- UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
- picker.on = [self.model autoUpdateLocation];
- [picker addTarget:self action:@selector(onAutoUpdateChanged:) forControlEvents:UIControlEventValueChanged];
-
- cell.accessoryView = picker;
- return cell;
- } else {
- UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
- cell.text = NSLocalizedString(@"Use Small Fonts", nil);
- cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
- UISwitch* picker = [[[UISwitch alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
- picker.on = [self.model useSmallFonts];
- [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
-
- cell.accessoryView = picker;
- return cell;
- }
- } else {
- UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
- cell.text = NSLocalizedString(@"About", nil);
- return cell;
- }
- }
-
-
- - (void)            tableView:(UITableView*) tableView
- didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
- NSInteger section = indexPath.section;
- NSInteger row = indexPath.row;
-
- if (section == 0) {
- [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
- } else if (section == 1) {
- if (row == 0) {
- TextFieldEditorViewController* controller =
- [[[TextFieldEditorViewController alloc] initWithController:self.navigationController
- title:NSLocalizedString(@"Location", nil)
- object:self
- selector:@selector(onPostalCodeChanged:)
- text:self.model.postalCode
- placeHolder:NSLocalizedString(@"Postal Code", nil)
- type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
-
- [self.navigationController pushViewController:controller animated:YES];
- } else if (row == 1) {
- NSArray* values = [NSArray arrayWithObjects:
- @"1", @"2", @"3", @"4", @"5",
- @"10", @"15", @"20", @"25", @"30",
- @"35", @"40", @"45", @"50", nil];
- NSString* defaultValue = [NSString stringWithFormat:@"%d", self.model.searchRadius];
-
- PickerEditorViewController* controller =
- [[[PickerEditorViewController alloc] initWithController:self.navigationController
- title:NSLocalizedString(@"Distance", nil)
- text:@""
- object:self
- selector:@selector(onSearchRadiusChanged:)
- values:values
- defaultValue:defaultValue] autorelease];
-
- [self.navigationController pushViewController:controller animated:YES];
- } else if (row == 2) {
- [self pushSearchDatePicker];
- } else if (row == 3) {
- RatingsProviderViewController* controller =
- [[[RatingsProviderViewController alloc] initWithNavigationController:self.navigationController] autorelease];
- [self.navigationController pushViewController:controller animated:YES];
- }
- } else if (section == 2) {
- CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
- [self.navigationController pushViewController:controller animated:YES];
- }
- }
- */
 
 
 @end

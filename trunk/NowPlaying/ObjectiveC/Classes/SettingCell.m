@@ -32,10 +32,11 @@
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        self.valueLabel.textColor = [ColorCache commandColor];
+        valueLabel.textColor = [ColorCache commandColor];
 
         [self.contentView addSubview:valueLabel];
     }
+
     return self;
 }
 
@@ -58,7 +59,7 @@
 - (void) setKey:(NSString*) key
           value:(NSString*) value {
     self.text = key;
-    self.valueLabel.text = value;
+    valueLabel.text = value;
 
     [valueLabel sizeToFit];
     CGRect frame = valueLabel.frame;
@@ -70,9 +71,9 @@
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        self.valueLabel.textColor = [UIColor whiteColor];
+        valueLabel.textColor = [UIColor whiteColor];
     } else {
-        self.valueLabel.textColor = [ColorCache commandColor];
+        valueLabel.textColor = [ColorCache commandColor];
     }
 }
 

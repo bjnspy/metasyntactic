@@ -126,14 +126,13 @@
 - (BOOL) isEqual:(id) anObject {
     Location* other = anObject;
 
-    return
-    self.latitude == other.latitude &&
-    self.longitude == other.longitude;
+    return latitude == other.latitude &&
+           longitude == other.longitude;
 }
 
 
 - (NSUInteger) hash {
-    double hash = self.latitude + self.longitude;
+    double hash = latitude + longitude;
 
     return *(NSUInteger*)&hash;
 }

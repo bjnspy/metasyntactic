@@ -59,7 +59,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
 
 
 - (void) addToWindow {
-    [window addSubview:self.background];
+    [window addSubview:background];
 }
 
 
@@ -108,7 +108,7 @@ static CGRect frame = { { 0, 416 }, { 320, 15 } };
     {
         currentlyDisplayedMessage.center = offScreenLeftPoint;
         [self performSelector:@selector(removeViewFromSuperview:)
-                   withObject:self.currentlyDisplayedMessage
+                   withObject:currentlyDisplayedMessage
                    afterDelay:1];
 
         self.currentlyDisplayedMessage = label;

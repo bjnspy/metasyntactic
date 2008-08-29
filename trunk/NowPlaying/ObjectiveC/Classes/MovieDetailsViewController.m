@@ -76,12 +76,12 @@
 
 
 - (NowPlayingController*) controller {
-    return self.navigationController.controller;
+    return navigationController.controller;
 }
 
 
 - (NowPlayingModel*) model {
-    return self.navigationController.model;
+    return navigationController.model;
 }
 
 
@@ -151,7 +151,7 @@
 
 
 - (void) viewDidAppear:(BOOL) animated {
-    [self.model saveNavigationStack:self.navigationController];
+    [self.model saveNavigationStack:navigationController];
 }
 
 
@@ -412,7 +412,7 @@
 - (void) didSelectActionRow:(NSInteger) row {
     if (row < trailersArray.count) {
         [self playTrailer:row];
-    } else if (row == trailersArray.count && self.reviewsArray.count > 0) {
+    } else if (row == trailersArray.count && reviewsArray.count > 0) {
         [navigationController pushReviewsView:movie animated:YES];
     } else {
         NSString* movieAndDate = [NSString stringWithFormat:@"%@ - %@",

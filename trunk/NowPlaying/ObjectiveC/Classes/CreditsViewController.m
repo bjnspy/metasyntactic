@@ -96,7 +96,7 @@
     } else if (section == 5) {
         return 3;
     } else if (section == 6) {
-        return self.localizers.count;
+        return localizers.count;
     } else if (section == 7) {
         return 1;
     }

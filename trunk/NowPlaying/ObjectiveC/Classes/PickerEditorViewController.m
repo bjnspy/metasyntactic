@@ -35,7 +35,7 @@
     label.hidden = UIInterfaceOrientationIsLandscape(self.interfaceOrientation);
 
     CGRect screenRect = self.view.bounds;
-    CGSize pickerSize = self.picker.frame.size;
+    CGSize pickerSize = picker.frame.size;
 
     CGRect labelRect = CGRectMake(10, 10, screenRect.size.width - 20, screenRect.size.height - 20 - pickerSize.height);
     label.frame = labelRect;

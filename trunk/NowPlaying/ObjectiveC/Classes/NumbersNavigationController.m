@@ -35,7 +35,7 @@
         self.tabBarItem.image = [UIImage imageNamed:@"Numbers.png"];
 
         self.viewController = [[[NumbersViewController alloc] initWithNavigationController:self] autorelease];
-        [self pushViewController:self.viewController animated:NO];
+        [self pushViewController:viewController animated:NO];
     }
 
     return self;

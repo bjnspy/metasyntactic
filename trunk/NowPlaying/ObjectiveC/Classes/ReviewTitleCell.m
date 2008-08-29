@@ -50,8 +50,8 @@
         self.sourceLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.scoreLabel  = [[[UILabel alloc] initWithFrame:frame] autorelease];
 
-        self.authorLabel.font = [UIFont boldSystemFontOfSize:14];
-        self.sourceLabel.font = [UIFont systemFontOfSize:12];
+        authorLabel.font = [UIFont boldSystemFontOfSize:14];
+        sourceLabel.font = [UIFont systemFontOfSize:12];
 
         scoreLabel.backgroundColor = [UIColor clearColor];
         scoreLabel.textAlignment = UITextAlignmentCenter;
@@ -72,8 +72,9 @@
 
 
 - (void) setRottenTomatoesImage:(NSInteger) score {
-    self.scoreLabel.text = nil;
-    self.scoreLabel.frame = CGRectZero;
+    scoreLabel.text = nil;
+    scoreLabel.frame = CGRectZero;
+
     if (score >= 60) {
         self.image = [ImageCache freshImage];
     } else {
@@ -90,8 +91,8 @@
     } else if (score > 60 && score <= 100) {
         self.image = [ImageCache greenRatingImage];
     } else {
-        self.scoreLabel.text = nil;
-        self.scoreLabel.frame = CGRectZero;
+        scoreLabel.text = nil;
+        scoreLabel.frame = CGRectZero;
         self.image = [ImageCache unknownRatingImage];
     }
 

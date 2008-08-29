@@ -52,7 +52,7 @@
 
 - (NSString*) reviewFilePath:(NSString*) title ratingsProvider:(NSInteger) ratingsProvider {
     NSString* sanitizedTitle = [Application sanitizeFileName:title];
-    NSString* reviewsFolder = [Application providerReviewsFolder:[[self.model ratingsProviders] objectAtIndex:ratingsProvider]];
+    NSString* reviewsFolder = [Application providerReviewsFolder:[self.model.ratingsProviders objectAtIndex:ratingsProvider]];
     return [[reviewsFolder stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"plist"];
 }
 
@@ -134,7 +134,7 @@
 
 
 - (NSArray*) reviewsForMovie:(NSString*) movieTitle {
-    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:[self.model ratingsProviderIndex]];
+    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:self.model.ratingsProviderIndex];
     if (dictionary == nil) {
         return [NSArray array];
     }
@@ -144,7 +144,7 @@
 
 
 - (NSString*) reviewsHashForMovie:(NSString*) movieTitle {
-    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:[self.model ratingsProviderIndex]];
+    NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:self.model.ratingsProviderIndex];
     return [dictionary objectForKey:@"Hash"];
 }
 

@@ -55,8 +55,8 @@
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
-    [dictionary setObject:self.identifier forKey:@"identifier"];
-    [dictionary setObject:self.time forKey:@"time"];
+    [dictionary setObject:identifier forKey:@"identifier"];
+    [dictionary setObject:time forKey:@"time"];
 
     return dictionary;
 }

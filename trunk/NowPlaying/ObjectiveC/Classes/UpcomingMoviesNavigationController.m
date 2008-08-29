@@ -43,15 +43,6 @@
 }
 
 
-- (void) refresh {
-    [super refresh];
-
-    for (id controller in self.viewControllers) {
-        [controller refresh];
-    }
-}
-
-
 - (void) navigateToLastViewedPage {
 }
 

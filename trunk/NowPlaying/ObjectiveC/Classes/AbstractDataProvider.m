@@ -108,11 +108,11 @@
 
 
 - (NSArray*) movies {
-    if (self.moviesData == nil) {
+    if (moviesData == nil) {
         self.moviesData = [self loadMovies];
     }
 
-    return self.moviesData;
+    return moviesData;
 }
 
 
@@ -207,11 +207,11 @@
 
 
 - (NSArray*) theaters {
-    if (self.theatersData == nil) {
+    if (theatersData == nil) {
         self.theatersData = [self loadTheaters];
     }
 
-    return self.theatersData;
+    return theatersData;
 }
 
 

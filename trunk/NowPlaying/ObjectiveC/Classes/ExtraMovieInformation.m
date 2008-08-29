@@ -82,7 +82,7 @@
 
 
 - (NSInteger) scoreValue {
-    int value = self.score.intValue;
+    int value = score.intValue;
     if (value >= 0 && value <= 100) {
         return value;
     }

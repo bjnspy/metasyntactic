@@ -42,12 +42,12 @@
 
 
 - (NowPlayingModel*) model {
-    return self.navigationController.model;
+    return navigationController.model;
 }
 
 
 - (NowPlayingController*) controller {
-    return self.navigationController.controller;
+    return navigationController.controller;
 }
 
 
@@ -70,12 +70,12 @@
         cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
     }
     // Configure the cell
-    if (indexPath.row == [self.model ratingsProviderIndex]) {
+    if (indexPath.row == self.model.ratingsProviderIndex) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
-    cell.text = [[self.model ratingsProviders] objectAtIndex:indexPath.row];
+    cell.text = [self.model.ratingsProviders objectAtIndex:indexPath.row];
     return cell;
 }
 

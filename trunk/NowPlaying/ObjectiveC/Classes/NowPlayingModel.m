@@ -202,11 +202,11 @@ static NSString* persistenceVersion = @"7";
         self.upcomingCache = [UpcomingCache cache];
 
         self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-        CGRect frame = self.activityIndicatorView.frame;
+        CGRect frame = activityIndicatorView.frame;
         frame.size.width += 4;
 
         self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
-        [activityView addSubview:self.activityIndicatorView];
+        [activityView addSubview:activityIndicatorView];
 
         backgroundTaskCount = 0;
         searchRadius = -1;
@@ -496,17 +496,17 @@ static NSString* persistenceVersion = @"7";
 
 
 - (NSMutableArray*) favoriteTheaters {
-    if (self.favoriteTheatersData == nil) {
+    if (favoriteTheatersData == nil) {
         self.favoriteTheatersData = [self loadFavoriteTheaters];
     }
 
-    return self.favoriteTheatersData;
+    return favoriteTheatersData;
 }
 
 
 - (void) saveFavoriteTheaters {
     NSMutableArray* encodedTheaters = [NSMutableArray array];
-    for (Theater* theater in self.favoriteTheatersData) {
+    for (Theater* theater in favoriteTheatersData) {
         [encodedTheaters addObject:theater.dictionary];
     }
 
@@ -725,7 +725,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (void) createMovieMap {
-    if (self.movieMap == nil) {
+    if (movieMap == nil) {
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
         NSArray* keys = [[self ratings] allKeys];

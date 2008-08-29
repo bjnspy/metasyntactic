@@ -47,15 +47,15 @@
         self.author = author_;
         self.source = source_;
 
-        if (self.link == nil) {
+        if (link == nil) {
             self.link = @"";
         }
 
-        if (self.author == nil) {
+        if (author == nil) {
             self.author = @"";
         }
 
-        if (self.source == nil) {
+        if (source == nil) {
             self.source = @"";
         }
     }

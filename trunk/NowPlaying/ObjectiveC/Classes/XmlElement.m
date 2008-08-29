@@ -108,18 +108,18 @@
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
     NSMutableArray* array = [NSMutableArray array];
-    for (XmlElement* element in self.children) {
+    for (XmlElement* element in children) {
         [array addObject:element.dictionary];
     }
 
-    [dictionary setValue:self.name forKey:@"name"];
+    [dictionary setValue:name forKey:@"name"];
 
     if (![text isEqual:@""]) {
-        [dictionary setValue:self.text forKey:@"text"];
+        [dictionary setValue:text forKey:@"text"];
     }
 
     if (attributes.count > 0) {
-        [dictionary setValue:self.attributes forKey:@"attributes"];
+        [dictionary setValue:attributes forKey:@"attributes"];
     }
 
     if (array.count > 0) {
@@ -161,7 +161,7 @@
 
 
 - (XmlElement*) element:(NSString*) name_ {
-    for (XmlElement* child in self.children) {
+    for (XmlElement* child in children) {
         if ([name_ isEqualToString:child.name]) {
             return child;
         }
@@ -173,7 +173,7 @@
 
 - (NSArray*) elements:(NSString*) name_ {
     NSMutableArray* array = [NSMutableArray array];
-    for (XmlElement* child in self.children) {
+    for (XmlElement* child in children) {
         if ([name_ isEqualToString:child.name]) {
             [array addObject:child];
         }
@@ -184,7 +184,7 @@
 
 
 - (XmlElement*) elementAtIndex:(NSInteger) index {
-    if (index >= 0 && index < self.children.count) {
+    if (index >= 0 && index < children.count) {
         return [[self children] objectAtIndex:index];
     }
 

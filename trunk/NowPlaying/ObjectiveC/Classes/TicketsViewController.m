@@ -48,12 +48,12 @@
 
 
 - (NowPlayingModel*) model {
-    return self.navigationController.model;
+    return navigationController.model;
 }
 
 
 - (NowPlayingController*) controller {
-    return self.navigationController.controller;
+    return navigationController.controller;
 }
 
 
@@ -63,7 +63,7 @@
 
     NSDate* now = [NSDate date];
     for (Performance* performance in allPerformances) {
-        if ([DateUtilities isToday:[self.model searchDate]]) {
+        if ([DateUtilities isToday:self.model.searchDate]) {
             NSDate* showtimeDate = [DateUtilities dateWithNaturalLanguageString:performance.time];
 
             if ([now compare:showtimeDate] == NSOrderedDescending) {
@@ -106,7 +106,7 @@
 
 
 - (void) viewDidAppear:(BOOL) animated {
-    [self.model saveNavigationStack:self.navigationController];
+    [self.model saveNavigationStack:navigationController];
 }
 
 
@@ -270,7 +270,7 @@
     NSString* url = [[self.model currentDataProvider] ticketingUrlForTheater:theater
                                                                        movie:movie
                                                                  performance:performance
-                                                                        date:[self.model searchDate]];
+                                                                        date:self.model.searchDate];
 
     [Application openBrowser:url];
 }

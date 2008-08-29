@@ -114,7 +114,7 @@
         scoreLabel.text = [NSString stringWithFormat:@"%d", score];
     } else {
         if (self.image != [ImageCache unknownRatingImage]) {
-            self.scoreLabel.text = nil;
+            scoreLabel.text = nil;
             self.image = [ImageCache unknownRatingImage];
         }
     }
@@ -158,7 +158,7 @@
     [super layoutSubviews];
 
     CGRect frame;
-    if (self.model.noRatings) {
+    if (model.noRatings) {
         frame = CGRectMake(10, 25, 0, 14);
     } else {
         frame = CGRectMake(50, 25, 0, 14);
