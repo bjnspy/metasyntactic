@@ -19,6 +19,7 @@
     UISegmentedControl* segmentedControl;
 
     NSArray* movieNumbers;
+    NSDictionary* movieMap;
 }
 
 @property (assign) NumbersNavigationController* navigationController;

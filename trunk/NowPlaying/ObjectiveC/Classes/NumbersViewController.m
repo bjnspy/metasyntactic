@@ -18,6 +18,7 @@
 
 #import "ColorCache.h"
 #import "ImageCache.h"
+#import "Movie.h"
 #import "MovieNumbers.h"
 #import "NowPlayingModel.h"
 #import "NumbersCache.h"
@@ -96,6 +97,11 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
 }
 
 
+- (void) createMovieMap {
+    
+}
+
+
 - (void) refresh {
     if (self.model.numbersSortingByDailyGross) {
         self.movieNumbers = self.model.numbersCache.dailyNumbers;
@@ -106,6 +112,8 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
         [movies sortUsingFunction:compareMoviesByTotalGross context:NULL];
         self.movieNumbers = movies;
     }
+    
+    [self createMovieMap];
     
     [self.tableView reloadData];
 }
@@ -126,13 +134,17 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
 }
 
 
+- (BOOL) sortingByTotalGross {
+    return self.model.numbersSortingByTotalGross;
+}
+
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (self.movieNumbers.count == 0) {
         return 0;
     }
 
-    if (self.model.numbersSortingByTotalGross) {
+    if (self.sortingByTotalGross) {
         return 5;
     } else {
         return 6;
@@ -155,21 +167,34 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
     
     MovieNumbers* numbers = [self.movieNumbers objectAtIndex:section];
     UILabel* label = (id)[cell viewWithTag:1];
-
-    if (numbers.previousRank == 0 || numbers.currentRank == numbers.previousRank) {
-        cell.image = [ImageCache neutralSquare];
-        label.text = nil;
-    } else if (numbers.currentRank > numbers.previousRank) {
-        cell.image = [ImageCache upArrow];
-        label.text = [NSString stringWithFormat:@"+%d", numbers.currentRank - numbers.previousRank];
+    
+    NSString* displayTitle = [Movie makeDisplay:numbers.canonicalTitle];
+    
+    if (self.sortingByTotalGross) {
+        label.hidden = YES;
+        cell.image = nil;
+        cell.text = displayTitle;
     } else {
-        cell.image = [ImageCache downArrow];
-        label.text = [NSString stringWithFormat:@"-%d", numbers.previousRank - numbers.currentRank];
+        label.hidden = NO;
+        
+        if (numbers.previousRank == 0 || numbers.currentRank == numbers.previousRank) {
+            cell.image = [ImageCache neutralSquare];
+            cell.text = displayTitle;
+            label.text = nil;
+        } else {
+            cell.text = [NSString stringWithFormat:@"   %@", [Movie makeDisplay:numbers.canonicalTitle]];
+            
+            if (numbers.currentRank > numbers.previousRank) {
+                cell.image = [ImageCache upArrow];
+                label.text = [NSString stringWithFormat:@"+%d", numbers.currentRank - numbers.previousRank];
+            } else {
+                cell.image = [ImageCache downArrow];
+                label.text = [NSString stringWithFormat:@"-%d", numbers.previousRank - numbers.currentRank];
+            }
+        }
+        
+        [label sizeToFit];
     }
-
-    [label sizeToFit];
-
-    cell.text = [NSString stringWithFormat:@"   %@", numbers.canonicalTitle];
 
     return cell;
 }
@@ -209,15 +234,31 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
     
     MovieNumbers* movie = [self.movieNumbers objectAtIndex:indexPath.section];
     
-    if (indexPath.row == 1) {  
-        [cell setKey:NSLocalizedString(@"Days in theater", nil)
-               value:[NSString stringWithFormat:@"%d", movie.days]];
-    } else if (indexPath.row == 2) {
-        [cell setKey:NSLocalizedString(@"Theaters", nil)
-               value:[NSString stringWithFormat:@"%d", movie.theaters]];
-    } else if (indexPath.row == 3) {
+    NSInteger row = indexPath.row;
+    if (self.sortingByTotalGross) {
+        row++;
+    }
+    
+    if (row == 1) {
+        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:movie.currentGross]];
+        NSString* value = [NSString stringWithFormat:@"$%@", gross];
+        
+        if (self.model.numbersSortingByDailyGross) {
+            [cell setKey:NSLocalizedString(@"Daily gross", nil)
+                   value:value];
+        } else {
+            [cell setKey:NSLocalizedString(@"Weekend gross", nil)
+                   value:value];
+        }
+    } else if (row == 2) {
+        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:movie.totalGross]];
+        NSString* value = [NSString stringWithFormat:@"$%@", gross];
+        
+        [cell setKey:NSLocalizedString(@"Total gross", nil)
+               value:value];
+    } else if (row == 3) {
         double change;
-
+        
         if (self.model.numbersSortingByDailyGross) {
             change = [self.model.numbersCache dailyChange:movie];
         } else if (self.model.numbersSortingByWeekendGross) {
@@ -259,24 +300,12 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
             [cell setKey:NSLocalizedString(@"Total change", nil)
                    value:value];
         }
-    } else if (indexPath.row == 4) {
-        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:movie.totalGross]];
-        NSString* value = [NSString stringWithFormat:@"$%@", gross];
-        
-        [cell setKey:NSLocalizedString(@"Total gross", nil)
-               value:value];
-        
-    } else if (indexPath.row == 5) { 
-        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:movie.currentGross]];
-        NSString* value = [NSString stringWithFormat:@"$%@", gross];
-        
-        if (self.model.numbersSortingByDailyGross) {
-            [cell setKey:NSLocalizedString(@"Daily gross", nil)
-                   value:value];
-        } else {
-            [cell setKey:NSLocalizedString(@"Weekend gross", nil)
-                   value:value];
-        }
+    } else if (row == 4) {
+        [cell setKey:NSLocalizedString(@"Days in theater", nil)
+               value:[NSString stringWithFormat:@"%d", movie.days]];
+    } else if (row == 5) {
+        [cell setKey:NSLocalizedString(@"Theaters", nil)
+               value:[NSString stringWithFormat:@"%d", movie.theaters]];
     }
     
     return cell;
@@ -295,21 +324,20 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
 
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
-    if (indexPath.row > 0) {
-        [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
+    if (indexPath.row == 0) {
+//        NSMutableArray* lowercaseTitles = [NSMutableArray array]
+ //       for (
+            
+   //     index = [[Application differenceEngine] findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
+
     }
+
+    [self.tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
 
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForHeaderInSection:(NSInteger) section {
-    if (self.model.numbersSortingByTotalGross) {
-        NSInteger index = [self.model.numbersCache.dailyNumbers indexOfObject:[self.movieNumbers objectAtIndex:section]];
-        if (index != NSNotFound) {
-            return [NSString stringWithFormat:@"#%d", index + 1];
-        }
-    }
-
     return [NSString stringWithFormat:@"#%d", section + 1];
 }
 

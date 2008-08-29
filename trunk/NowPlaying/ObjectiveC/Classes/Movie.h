@@ -63,5 +63,6 @@
 - (NSString*) ratingAndRuntimeString;
 
 + (NSString*) makeCanonical:(NSString*) title;
++ (NSString*) makeDisplay:(NSString*) title;
 
 @end
