@@ -16,6 +16,7 @@
 
 #import "NumbersViewController.h"
 
+#import "ColorCache.h"
 #import "ImageCache.h"
 #import "MovieNumbers.h"
 #import "NowPlayingModel.h"
@@ -131,7 +132,11 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
         return 0;
     }
 
-    return 5;
+    if (self.model.numbersSortingByTotalGross) {
+        return 5;
+    } else {
+        return 6;
+    }
 }
 
 
@@ -199,32 +204,79 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
     
     UIView* label = [cell viewWithTag:1];
     label.hidden = (indexPath.row == 1);
+
+    [cell setValueColor:[ColorCache commandColor]];
     
-    MovieNumbers* statistics = [self.movieNumbers objectAtIndex:indexPath.section];
+    MovieNumbers* movie = [self.movieNumbers objectAtIndex:indexPath.section];
     
     if (indexPath.row == 1) {  
         [cell setKey:NSLocalizedString(@"Days in theater", nil)
-               value:[NSString stringWithFormat:@"%d", statistics.days]];
+               value:[NSString stringWithFormat:@"%d", movie.days]];
     } else if (indexPath.row == 2) {
         [cell setKey:NSLocalizedString(@"Theaters", nil)
-               value:[NSString stringWithFormat:@"%d", statistics.theaters]];
+               value:[NSString stringWithFormat:@"%d", movie.theaters]];
     } else if (indexPath.row == 3) {
-        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:statistics.currentGross]];
-        NSString* value = [NSString stringWithFormat:@"$%@", gross];
+        double change;
+
+        if (self.model.numbersSortingByDailyGross) {
+            change = [self.model.numbersCache dailyChange:movie];
+        } else if (self.model.numbersSortingByWeekendGross) {
+            change = [self.model.numbersCache weekendChange:movie];
+        } else {
+            change = [self.model.numbersCache totalChange:movie];
+        }
         
-        if (self.model.numbersSortingByWeekendGross) {
-            [cell setKey:NSLocalizedString(@"Weekend gross", nil)
+        NSString* value;
+        if (IS_RETRIEVING(change)) {
+            value = NSLocalizedString(@"Retrieving...", nil);
+            [cell setValueColor:[UIColor grayColor]];
+        } else if (IS_NOT_ENOUGH_DATA(change)) {
+            value = NSLocalizedString(@"Not enough data", nil);
+            [cell setValueColor:[UIColor grayColor]];
+        } else {
+            NSNumberFormatter* formatter = [[[NSNumberFormatter alloc] init] autorelease];
+            formatter.numberStyle = NSNumberFormatterPercentStyle;
+            formatter.minimumFractionDigits = 2;
+            formatter.maximumFractionDigits = 2;
+            value = [formatter stringFromNumber:[NSNumber numberWithDouble:change]];
+            
+            if (change < 0) {
+                [cell setValueColor:[UIColor redColor]];
+            } else if (change > 0) {
+                [cell setValueColor:[UIColor colorWithHue:120.0/360.0 saturation:0.75 brightness:0.75 alpha:1.0]];
+            } else {
+                [cell setValueColor:[UIColor grayColor]];
+            }
+        }
+        
+        if (self.model.numbersSortingByDailyGross) {
+            [cell setKey:NSLocalizedString(@"Daily change", nil)
+                   value:value];
+        } else if (self.model.numbersSortingByWeekendGross) {
+            [cell setKey:NSLocalizedString(@"Weekend change", nil)
                    value:value];
         } else {
-            [cell setKey:NSLocalizedString(@"Daily gross", nil)
+            [cell setKey:NSLocalizedString(@"Total change", nil)
                    value:value];
         }
-    } else if (indexPath.row == 4) { 
-        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:statistics.totalGross]];
+    } else if (indexPath.row == 4) {
+        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:movie.totalGross]];
         NSString* value = [NSString stringWithFormat:@"$%@", gross];
         
         [cell setKey:NSLocalizedString(@"Total gross", nil)
                value:value];
+        
+    } else if (indexPath.row == 5) { 
+        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:movie.currentGross]];
+        NSString* value = [NSString stringWithFormat:@"$%@", gross];
+        
+        if (self.model.numbersSortingByDailyGross) {
+            [cell setKey:NSLocalizedString(@"Daily gross", nil)
+                   value:value];
+        } else {
+            [cell setKey:NSLocalizedString(@"Weekend gross", nil)
+                   value:value];
+        }
     }
     
     return cell;

@@ -21,7 +21,7 @@
 
 @implementation Application
 
-static NSRecursiveLock* gate = nil;
+static NSLock* gate = nil;
 
 static NSString* dataFolder = nil;
 static NSString* documentsFolder = nil;

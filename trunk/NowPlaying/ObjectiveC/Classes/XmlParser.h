@@ -25,6 +25,5 @@
 @property (retain) NSMutableArray* attributesStack;
 
 + (XmlElement*) parse:(NSData*) data;
-+ (XmlElement*) parseUrl:(NSString*) url;
 
 @end

@@ -47,6 +47,7 @@
 @class MovieDetailsViewController;
 @class MovieOverviewCell;
 @class MovieShowtimesCell;
+@class MovieNumbers;
 @class MovieTitleCell;
 @class MoviesNavigationController;
 @class MultiDictionary;

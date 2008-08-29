@@ -21,6 +21,14 @@
 
 @implementation XmlParser
 
+static NSLock* gate = nil;
+
++ (void) initialize {
+    if (self == [XmlParser class]) {
+        gate = [[NSLock alloc] init];
+    }
+}
+
 @synthesize elementsStack;
 @synthesize stringBufferStack;
 @synthesize attributesStack;
@@ -69,7 +77,7 @@
 }
 
 
-+ (XmlElement*) parse:(NSData*) data {
++ (XmlElement*) parseWorker:(NSData*) data {
     if (data == nil) {
         return nil;
     }
@@ -79,8 +87,16 @@
 }
 
 
-+ (XmlElement*) parseUrl:(NSString*) url {
-    return [self parse:[Utilities dataWithContentsOfAddress:url]];
++ (XmlElement*) parse:(NSData*) data {
+    XmlElement* result = nil;
+
+    [gate lock];
+    {
+        result = [self parseWorker:data];
+    }
+    [gate unlock];
+    
+    return result;
 }
 
 

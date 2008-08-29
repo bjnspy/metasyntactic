@@ -21,9 +21,11 @@
 @implementation SettingCell
 
 @synthesize valueLabel;
+@synthesize valueColor;
 
 - (void) dealloc {
     self.valueLabel = nil;
+    self.valueColor = nil;
 
     [super dealloc];
 }
@@ -32,7 +34,7 @@
 - (id) initWithFrame:(CGRect) frame reuseIdentifier:(NSString*) reuseIdentifier {
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
-        valueLabel.textColor = [ColorCache commandColor];
+        self.valueColor = [ColorCache commandColor];
 
         [self.contentView addSubview:valueLabel];
     }
@@ -73,7 +75,7 @@
     if (selected) {
         valueLabel.textColor = [UIColor whiteColor];
     } else {
-        valueLabel.textColor = [ColorCache commandColor];
+        valueLabel.textColor = valueColor;
     }
 }
 

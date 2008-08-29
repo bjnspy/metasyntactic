@@ -16,9 +16,11 @@
 
 @interface SettingCell : UITableViewCell {
     UILabel* valueLabel;
+    UIColor* valueColor;
 }
 
 @property (retain) UILabel* valueLabel;
+@property (retain) UIColor* valueColor;
 
 - (void) setKey:(NSString*) key
           value:(NSString*) value;

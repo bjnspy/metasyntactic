@@ -14,9 +14,11 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#define RETREIVING NAN
-#define NOT_ENOUGH_DATA INFINITY
 
+#define RETRIEVING NAN
+#define NOT_ENOUGH_DATA INFINITY
+#define IS_RETRIEVING isnan
+#define IS_NOT_ENOUGH_DATA isinf
 
 @interface NumbersCache : NSObject {
     NSLock* gate;
@@ -32,5 +34,9 @@
 
 - (NSArray*) weekendNumbers;
 - (NSArray*) dailyNumbers;
+
+- (double) dailyChange:(MovieNumbers*) movie;
+- (double) weekendChange:(MovieNumbers*) movie;
+- (double) totalChange:(MovieNumbers*) movie;
 
 @end
