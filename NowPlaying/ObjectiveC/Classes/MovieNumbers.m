@@ -18,7 +18,7 @@
 
 #import "Movie.h"
 
-@implementation MovieStatistics
+@implementation MovieNumbers
 
 @synthesize canonicalTitle;
 @synthesize currentRank;
@@ -62,14 +62,14 @@
 }
 
 
-+ (MovieStatistics*) statisticsWithTitle:(NSString*) title
++ (MovieNumbers*) numbersWithTitle:(NSString*) title
                              currentRank:(NSInteger) currentRank
                             previousRank:(NSInteger) previousRank
                             currentGross:(NSInteger) currentGross
                               totalGross:(NSInteger) totalGross
                                 theaters:(NSInteger) theaters
                                     days:(NSInteger) days {
-    return [[[MovieStatistics alloc] initWithTitle:title
+    return [[[MovieNumbers alloc] initWithTitle:title
                                        currentRank:currentRank
                                       previousRank:previousRank
                                       currentGross:currentGross
@@ -79,8 +79,8 @@
 }
 
 
-+ (MovieStatistics*) statisticsWithDictionary:(NSDictionary*) dictionary {
-    return [MovieStatistics statisticsWithTitle:[dictionary objectForKey:@"title"]
++ (MovieNumbers*) numbersWithDictionary:(NSDictionary*) dictionary {
+    return [MovieNumbers numbersWithTitle:[dictionary objectForKey:@"title"]
                                     currentRank:[[dictionary objectForKey:@"currentRank"] intValue]
                                    previousRank:[[dictionary objectForKey:@"previousRank"] intValue]
                                    currentGross:[[dictionary objectForKey:@"currentGross"] intValue]

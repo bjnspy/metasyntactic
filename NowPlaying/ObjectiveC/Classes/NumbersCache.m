@@ -51,7 +51,7 @@
 - (NSArray*) decodeNumbers:(NSArray*) array {
     NSMutableArray* result = [NSMutableArray array];
     for (NSDictionary* dictionary in array) {
-        [result addObject:[MovieStatistics statisticsWithDictionary:dictionary]];
+        [result addObject:[MovieNumbers numbersWithDictionary:dictionary]];
     }
     return result;
 }
@@ -107,7 +107,7 @@
 
 - (NSArray*) encodeArray:(NSArray*) array {
     NSMutableArray* result = [NSMutableArray array];
-    for (MovieStatistics* stats in array) {
+    for (MovieNumbers* stats in array) {
         [result addObject:stats.dictionary];
     }
     return result;
@@ -126,8 +126,8 @@
 }
 
 
-- (MovieStatistics*) processMovieElement:(XmlElement*) movieElement {
-    return [MovieStatistics statisticsWithTitle:[movieElement attributeValue:@"title"]
+- (MovieNumbers*) processMovieElement:(XmlElement*) movieElement {
+    return [MovieNumbers numbersWithTitle:[movieElement attributeValue:@"title"]
                                     currentRank:[[movieElement attributeValue:@"current_rank"] intValue]
                                    previousRank:[[movieElement attributeValue:@"previous_rank"] intValue]
                                    currentGross:[[movieElement attributeValue:@"revenue"] intValue]
