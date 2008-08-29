@@ -14,21 +14,19 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface NumbersViewController : UITableViewController {
-    NumbersNavigationController* navigationController;
-    UISegmentedControl* segmentedControl;
-
-    NSArray* movieNumbers;
+@interface NumbersCache : NSObject {
+    NSLock* gate;
+    NSDictionary* indexData;
 }
 
-@property (assign) NumbersNavigationController* navigationController;
-@property (retain) UISegmentedControl* segmentedControl;
-@property (retain) NSArray* movieNumbers;
+@property (retain) NSLock* gate;
+@property (retain) NSDictionary* indexData;
 
-- (id) initWithNavigationController:(NumbersNavigationController*) navigationController;
++ (NumbersCache*) cache;
 
-- (void) refresh;
-- (NowPlayingModel*) model;
-- (NowPlayingController*) controller;
+- (void) update;
+
+- (NSArray*) weekendNumbers;
+- (NSArray*) dailyNumbers;
 
 @end

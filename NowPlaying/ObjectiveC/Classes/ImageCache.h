@@ -21,6 +21,7 @@
 + (UIImage*) freshImage;
 + (UIImage*) rottenFadedImage;
 + (UIImage*) rottenFullImage;
+
 + (UIImage*) emptyStarImage;
 + (UIImage*) filledStarImage;
 
@@ -30,5 +31,8 @@
 + (UIImage*) unknownRatingImage;
 
 + (UIImage*) imageNotAvailable;
+
++ (UIImage*) upArrow;
++ (UIImage*) downArrow;
 
 @end

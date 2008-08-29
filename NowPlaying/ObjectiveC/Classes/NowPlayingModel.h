@@ -23,12 +23,13 @@ enum ViewControllerType {
 
 @interface NowPlayingModel : NSObject {
     NotificationCenter* notificationCenter;
-
-    PosterCache* posterCache;
-    TrailerCache* trailerCache;
+    
     AddressLocationCache* addressLocationCache;
+    NumbersCache* numbersCache;
+    PosterCache* posterCache;
     ReviewCache* reviewCache;
     RatingsCache* ratingsCache;
+    TrailerCache* trailerCache;
     UpcomingCache* upcomingCache;
 
     NSInteger backgroundTaskCount;
@@ -46,11 +47,12 @@ enum ViewControllerType {
 
 @property (retain) NotificationCenter* notificationCenter;
 
-@property (retain) PosterCache* posterCache;
-@property (retain) TrailerCache* trailerCache;
-@property (retain) ReviewCache* reviewCache;
 @property (retain) AddressLocationCache* addressLocationCache;
+@property (retain) NumbersCache* numbersCache;
+@property (retain) PosterCache* posterCache;
+@property (retain) ReviewCache* reviewCache;
 @property (retain) RatingsCache* ratingsCache;
+@property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
 
 @property (retain) UIActivityIndicatorView* activityIndicatorView;
@@ -90,18 +92,24 @@ enum ViewControllerType {
 - (NSInteger) allMoviesSelectedSegmentIndex;
 - (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index;
 
-- (BOOL) allMoviesSortingByTitle;
-- (BOOL) allMoviesSortingByScore;
-- (BOOL) allMoviesSortingByReleaseDate;
+- (NSInteger) allTheatersSelectedSegmentIndex;
+- (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index;
 
 - (NSInteger) upcomingMoviesSelectedSegmentIndex;
 - (void) setUpcomingMoviesSelectedSegmentIndex:(NSInteger) index;
 
+- (NSInteger) numbersSelectedSegmentIndex;
+- (void) setNumbersSelectedSegmentIndex:(NSInteger) index;
+
+- (BOOL) allMoviesSortingByTitle;
+- (BOOL) allMoviesSortingByScore;
+- (BOOL) allMoviesSortingByReleaseDate;
+
 - (BOOL) upcomingMoviesSortingByTitle;
 - (BOOL) upcomingMoviesSortingByReleaseDate;
 
-- (NSInteger) allTheatersSelectedSegmentIndex;
-- (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index;
+- (BOOL) numbersDailyFilter;
+- (BOOL) numbersWeekendFilter;
 
 - (void) saveNavigationStack:(AbstractNavigationController*) controller;
 - (NSArray*) navigationStackTypes;
