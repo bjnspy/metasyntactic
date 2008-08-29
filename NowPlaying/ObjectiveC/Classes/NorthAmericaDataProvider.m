@@ -288,7 +288,7 @@
         NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                        fromDate:self.model.searchDate];
 
-        NSString* urlString = [NSString stringWithFormat:
+        NSString* url = [NSString stringWithFormat:
                                @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                                [Application host],
                                [self trimPostalCode:postalCode],
@@ -296,7 +296,7 @@
                                components.month,
                                components.day];
 
-        XmlElement* element = [Utilities downloadXml:urlString];
+        XmlElement* element = [Utilities xmlWithContentsOfAddress:url];
 
         if (element != nil) {
             return [NorthAmericaDataProvider processFandangoElement:element

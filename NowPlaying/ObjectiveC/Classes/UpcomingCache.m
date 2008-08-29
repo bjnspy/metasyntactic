@@ -148,7 +148,7 @@
         return [NSDictionary dictionary];
     }
 
-    XmlElement* resultElement = [Utilities downloadXml:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]];
+    XmlElement* resultElement = [Utilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]];
 
     NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];

@@ -21,10 +21,11 @@
 + (NSString*) documentsFolder;
 + (NSString*) locationsFolder;
 + (NSString*) numbersFolder;
++ (NSString*) numbersDailyFolder;
++ (NSString*) numbersWeekendFolder;
 + (NSString*) postersFolder;
 + (NSString*) ratingsFolder;
 + (NSString*) reviewsFolder;
-+ (NSString*) searchFolder;
 + (NSString*) supportFolder;
 + (NSString*) tempFolder;
 + (NSString*) trailersFolder;
@@ -49,7 +50,6 @@
 
 + (DifferenceEngine*) differenceEngine;
 
-+ (NSString*) searchHost;
 + (NSString*) host;
 
 + (unichar) starCharacter;
