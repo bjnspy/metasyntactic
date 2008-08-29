@@ -17,7 +17,7 @@
 #import "NumbersCache.h"
 
 #import "Application.h"
-#import "MovieStatistics.h"
+#import "MovieNumbers.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 

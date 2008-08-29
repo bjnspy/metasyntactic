@@ -17,7 +17,7 @@
 #import "NumbersViewController.h"
 
 #import "ImageCache.h"
-#import "MovieStatistics.h"
+#import "MovieNumbers.h"
 #import "NowPlayingModel.h"
 #import "NumbersCache.h"
 #import "NumbersNavigationController.h"
