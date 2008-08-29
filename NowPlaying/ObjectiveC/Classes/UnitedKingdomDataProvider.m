@@ -84,7 +84,7 @@
 
 
 - (LookupResult*) lookupWorker {
-    XmlElement* filmsElement      = [XmlParser parseUrl:@"http://www.remotegoat.co.uk/f/11013/films.xml"];
+    XmlElement* filmsElement      = [Utilities xmlWithContentsOfAddress:@"http://www.remotegoat.co.uk/f/11013/films.xml"];
     XmlElement* venuesElement     = [Utilities xmlWithContentsOfAddress:@"http://www.remotegoat.co.uk/f/11013/films_venues.xml"];
     XmlElement* screeningsElement = [Utilities xmlWithContentsOfAddress:@"http://www.remotegoat.co.uk/f/11013/films_screenings_today.xml"];
 

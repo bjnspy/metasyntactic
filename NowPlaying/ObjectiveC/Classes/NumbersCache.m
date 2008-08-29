@@ -267,4 +267,70 @@
 }
 
 
+- (double) change:(NSInteger) current previous:(NSInteger) previous {
+    if (previous == 0) {
+        return NOT_ENOUGH_DATA;
+    }
+    
+    return ((double)current / (double)previous) - 1;
+}
+
+
+- (double) totalChangeValue:(NSArray*) values {
+    if (values == nil) {
+        return RETRIEVING;
+    }
+    
+    if (values.count != 2) {
+        return NOT_ENOUGH_DATA;
+    }
+    
+    MovieNumbers* previous = [MovieNumbers numbersWithDictionary:[values objectAtIndex:0]];
+    MovieNumbers* current = [MovieNumbers numbersWithDictionary:[values objectAtIndex:1]];
+    
+    return [self change:current.totalGross previous:previous.totalGross];
+}
+
+
+- (double) currentChangeValue:(NSArray*) values {
+    if (values == nil) {
+        return RETRIEVING;
+    }
+    
+    if (values.count != 2) {
+        return NOT_ENOUGH_DATA;
+    }
+    
+    MovieNumbers* previous = [MovieNumbers numbersWithDictionary:[values objectAtIndex:0]];
+    MovieNumbers* current = [MovieNumbers numbersWithDictionary:[values objectAtIndex:1]];
+    
+    return [self change:current.currentGross previous:previous.currentGross];
+}
+
+
+- (double) dailyChange:(MovieNumbers*) movie {
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self moviesFile:movie folder:[Application numbersDailyFolder]]];
+
+    return [self currentChangeValue:[dictionary objectForKey:@"Daily"]];
+}
+
+
+- (double) weekendChange:(MovieNumbers*) movie {
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self moviesFile:movie folder:[Application numbersWeekendFolder]]];
+    
+    return [self currentChangeValue:[dictionary objectForKey:@"Weekend"]];
+}
+
+- (double) totalChange:(MovieNumbers*) movie {
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self moviesFile:movie folder:[Application numbersWeekendFolder]]];
+ 
+    double result = [self totalChangeValue:[dictionary objectForKey:@"Weekend"]];
+    if (IS_NOT_ENOUGH_DATA(result) || IS_RETRIEVING(result)) {
+        result = [self totalChangeValue:[dictionary objectForKey:@"Daily"]];
+    }
+        
+    return result;
+}
+
+
 @end
