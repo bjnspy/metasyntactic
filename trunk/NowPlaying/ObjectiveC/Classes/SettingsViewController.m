@@ -189,7 +189,7 @@
     [self stopActivityIndicator];
 
     // intermittent failures are not uncommon. retry in a minute.
-    [self enqueueUpdateRequest:60];
+    [self enqueueUpdateRequest:ONE_MINUTE];
 }
 
 
@@ -423,9 +423,9 @@
     [self stopActivityIndicator];
 
     if ([Utilities isNilOrEmpty:postalCode]) {
-        [self enqueueUpdateRequest:60];
+        [self enqueueUpdateRequest:ONE_MINUTE];
     } else {
-        [self enqueueUpdateRequest:5 * 60];
+        [self enqueueUpdateRequest:5 * ONE_MINUTE];
     }
 
     [self onPostalCodeChanged:postalCode];

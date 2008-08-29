@@ -166,7 +166,7 @@
                                                                                error:NULL] objectForKey:NSFileModificationDate];
     
     if (lastLookupDate != nil) {
-        if (ABS(lastLookupDate.timeIntervalSinceNow) < (24 * 60 * 60)) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
             return;
         }
     }
@@ -223,14 +223,14 @@
                                                                                error:NULL] objectForKey:NSFileModificationDate];
     
     if (lastLookupDate != nil) {
-        if (ABS(lastLookupDate.timeIntervalSinceNow) < (24 * 60 * 60)) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < ONE_DAY) {
             return;
         }
     }
     
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?id=%@", [Application host], numbers.identifier];
     XmlElement* result = [Utilities xmlWithContentsOfAddress:url];
-    
+
     if (result == nil) {
         return;
     }
