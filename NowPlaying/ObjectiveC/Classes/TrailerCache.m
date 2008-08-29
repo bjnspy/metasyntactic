@@ -72,7 +72,7 @@
 
         if (downloadDate != nil) {
             NSTimeInterval span = downloadDate.timeIntervalSinceNow;
-            if (ABS(span) > (60 * 60 * 1000)) {
+            if (ABS(span) > (ONE_HOUR * 1000)) {
                 [[NSFileManager defaultManager] removeItemAtPath:fullPath error:NULL];
             }
         }
@@ -92,7 +92,7 @@
             [moviesWithoutTrailers addObject:movie];
         } else {
             NSTimeInterval span = downloadDate.timeIntervalSinceNow;
-            if (ABS(span) > (48 * 60 * 60)) {
+            if (ABS(span) > (2 * ONE_DAY)) {
                 [moviesWithTrailers addObject:movie];
             }
         }

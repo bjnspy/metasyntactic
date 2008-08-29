@@ -84,26 +84,23 @@
     return dict;
 }
 
-
 - (double) distanceTo:(Location*) to useKilometers:(BOOL) useKilometers {
     const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
     const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
-
-    const double pi = 3.14159265358979323846;
 
     if (to == nil) {
         return UNKNOWN_DISTANCE;
     }
 
-    double lat1 = (self.latitude / 180) * pi;
-    double lng1 = (self.longitude / 180) * pi;
-    double lat2 = (to.latitude / 180) * pi;
-    double lng2 = (to.longitude / 180) * pi;
+    double lat1 = (self.latitude / 180) * M_PI;
+    double lng1 = (self.longitude / 180) * M_PI;
+    double lat2 = (to.latitude / 180) * M_PI;
+    double lng2 = (to.longitude / 180) * M_PI;
 
     double diff = lng1 - lng2;
 
     if (diff < 0) { diff = -diff; }
-    if (diff > pi) { diff = 2 * pi; }
+    if (diff > M_PI) { diff = 2 * M_PI; }
 
     double distance =
     acos(sin(lat2) * sin(lat1) +
