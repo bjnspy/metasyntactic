@@ -309,8 +309,7 @@
 
 - (void) didSelectInfoCellAtRow:(NSInteger) row {
     if (row == 0) {
-        SearchDatePickerViewController* pickerController =
-        [SearchDatePickerViewController pickerWithNavigationController:navigationController controller:navigationController.controller];
+        SearchDatePickerViewController* pickerController = [SearchDatePickerViewController pickerWithNavigationController:navigationController];
         [navigationController pushViewController:pickerController animated:YES];
     } else {
         [self didSelectEmailListings];

@@ -16,23 +16,20 @@
 
 #import "SearchDatePickerViewController.h"
 
+#import "AbstractNavigationController.h"
 #import "NowPlayingController.h"
 #import "NowPlayingModel.h"
 #import "DateUtilities.h"
 
 @implementation SearchDatePickerViewController
 
-@synthesize controller;
 
 - (void) dealloc {
-    self.controller = nil;
-
     [super dealloc];
 }
 
 
-- (id) initWithNavigationController:(UINavigationController*) navigationController_
-                         controller:(NowPlayingController*) controller_
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController_
                          withValues:(NSArray*) values_
                        defaultValue:(NSString*) defaultValue_ {
     if (self = [super initWithController:navigationController_
@@ -42,15 +39,13 @@
                                 selector:@selector(onSearchDateChanged:)
                                   values:values_
                             defaultValue:defaultValue_]) {
-        self.controller = controller_;
     }
 
     return self;
 }
 
 
-+ (SearchDatePickerViewController*) pickerWithNavigationController:(UINavigationController*) navigationController
-                                                        controller:(NowPlayingController*) controller {
++ (SearchDatePickerViewController*) pickerWithNavigationController:(AbstractNavigationController*) navigationController {
     NSMutableArray* values = [NSMutableArray array];
     NSDate* today = [NSDate date];
     NSCalendar* calendar = [NSCalendar currentCalendar];
@@ -61,17 +56,16 @@
 
         [values addObject:[DateUtilities formatFullDate:date]];
     }
-    NSString* defaultValue = [DateUtilities formatFullDate:controller.model.searchDate];
+    NSString* defaultValue = [DateUtilities formatFullDate:navigationController.model.searchDate];
 
     return [[[SearchDatePickerViewController alloc] initWithNavigationController:navigationController
-                                                                      controller:controller
                                                                       withValues:values
                                                                     defaultValue:defaultValue] autorelease];
 }
 
 
 - (void) onSearchDateChanged:(NSString*) dateString {
-    [controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
+    [navigationController.controller setSearchDate:[DateUtilities dateWithNaturalLanguageString:dateString]];
 }
 
 

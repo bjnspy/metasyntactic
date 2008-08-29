@@ -26,7 +26,7 @@
 @property (retain) NSArray* values;
 @property (retain) UILabel* label;
 
-- (id) initWithController:(UINavigationController*) navigationController
+- (id) initWithController:(AbstractNavigationController*) navigationController
                     title:(NSString*) title
                      text:(NSString*) text
                    object:(id) object

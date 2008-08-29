@@ -26,7 +26,7 @@
 }
 
 
-- (id) initWithController:(UINavigationController*) controller
+- (id) initWithController:(AbstractNavigationController*) controller
                     title:(NSString*) title
                    object:(id) object_
                  selector:(SEL) selector_
