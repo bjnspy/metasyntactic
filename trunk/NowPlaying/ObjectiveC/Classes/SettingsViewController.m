@@ -123,7 +123,7 @@
      didUpdateToLocation:(CLLocation*) newLocation
             fromLocation:(CLLocation*) oldLocation {
     if (newLocation != nil) {
-        if (ABS([newLocation.timestamp timeIntervalSinceNow]) < 10) {
+        if (ABS(newLocation.timestamp.timeIntervalSinceNow) < 10) {
             [locationManager stopUpdatingLocation];
             [self performSelectorInBackground:@selector(findPostalCodeBackgroundEntryPoint:) withObject:newLocation];
         }
@@ -132,7 +132,7 @@
 
 
 - (NSString*) findUSPostalCode:(CLLocation*) location {
-    CLLocationCoordinate2D coordinates = [location coordinate];
+    CLLocationCoordinate2D coordinates = location.coordinate;
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
     NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", latitude, longitude];
@@ -151,7 +151,7 @@
 
 
 - (NSString*) findCAPostalCode:(CLLocation*) location {
-    CLLocationCoordinate2D coordinates = [location coordinate];
+    CLLocationCoordinate2D coordinates = location.coordinate;
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
     NSString* urlString = [NSString stringWithFormat:@"http://geocoder.ca/?latt=%f&longt=%f&geoit=xml&reverse=Reverse+GeoCode+it", latitude, longitude];

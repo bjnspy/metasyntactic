@@ -114,7 +114,7 @@
 - (void) setReviewImage:(Review*) review {
     int score = review.score;
 
-    if ([model rottenTomatoesRatings]) {
+    if (model.rottenTomatoesRatings) {
         [self setRottenTomatoesImage:score];
     } else {
         [self setMetacriticImage:score];

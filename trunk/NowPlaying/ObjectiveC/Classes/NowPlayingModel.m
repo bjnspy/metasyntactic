@@ -268,12 +268,12 @@ static NSString* persistenceVersion = @"7";
 
 
 - (BOOL) northAmericaDataProvider {
-    return [self dataProviderIndex] == 0;
+    return self.dataProviderIndex == 0;
 }
 
 
 - (BOOL) unitedKingdomDataProvider {
-    return [self dataProviderIndex] == 1;
+    return self.dataProviderIndex == 1;
 }
 
 
@@ -457,12 +457,12 @@ static NSString* persistenceVersion = @"7";
 
 
 - (NSArray*) movies {
-    return [[self currentDataProvider] movies];
+    return [self.currentDataProvider movies];
 }
 
 
 - (NSArray*) theaters {
-    return [[self currentDataProvider] theaters];
+    return [self.currentDataProvider theaters];
 }
 
 
@@ -590,7 +590,7 @@ static NSString* persistenceVersion = @"7";
 
 
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
-    return [[self currentDataProvider] moviePerformances:movie forTheater:theater];
+    return [self.currentDataProvider moviePerformances:movie forTheater:theater];
 }
 
 
@@ -728,17 +728,17 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (movieMap == nil) {
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
-        NSArray* keys = [[self ratings] allKeys];
+        NSArray* keys = self.ratings.allKeys;
         NSMutableArray* lowercaseKeys = [NSMutableArray array];
         for (NSString* key in keys) {
-            [lowercaseKeys addObject:[key lowercaseString]];
+            [lowercaseKeys addObject:key.lowercaseString];
         }
 
         for (Movie* movie in self.movies) {
-            NSString* lowercaseTitle = [movie.canonicalTitle lowercaseString];
+            NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
             NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
             if (index == NSNotFound) {
-                index = [[Application differenceEngine] findClosestMatchIndex:[movie.canonicalTitle lowercaseString] inArray:lowercaseKeys];
+                index = [[Application differenceEngine] findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
             }
 
             if (index != NSNotFound) {
@@ -761,7 +761,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         return nil;
     }
 
-    return [[self ratings] objectForKey:key];
+    return [self.ratings objectForKey:key];
 }
 
 

@@ -44,7 +44,7 @@
                                    NSLocalizedString(@"Weekend", nil), nil]] autorelease];
 
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-        segmentedControl.selectedSegmentIndex = [self.model allTheatersSelectedSegmentIndex];
+        segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;
 
         CGRect rect = segmentedControl.frame;
         rect.size.width = 240;

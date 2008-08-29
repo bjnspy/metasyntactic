@@ -118,7 +118,7 @@
                                                address:fullAddress
                                            phoneNumber:phone
                                           sellsTickets:sellsTickets
-                                      movieIdentifiers:[movieToShowtimesMap allKeys]
+                                      movieIdentifiers:movieToShowtimesMap.allKeys
                                  originatingPostalCode:originatingPostalCode]];
 }
 
@@ -167,7 +167,7 @@
         NSArray* genres = [[movieElement element:@"genre"].text componentsSeparatedByString:@", "];
         NSArray* cast = [self processCast:[moviesElement element:@"cast"]];
 
-        NSString* releaseDateText = [[movieElement element:@"releasedate"] text];
+        NSString* releaseDateText = [movieElement element:@"releasedate"].text;
         NSDate* releaseDate = nil;
         if (releaseDateText != nil) {
             releaseDate = [DateUtilities dateWithNaturalLanguageString:releaseDateText];

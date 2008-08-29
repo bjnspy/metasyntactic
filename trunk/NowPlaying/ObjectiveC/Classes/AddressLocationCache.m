@@ -66,8 +66,8 @@
         NSString* country = [resultElement attributeValue:@"country"];
 
         if (![Utilities isNilOrEmpty:latitude] && ![Utilities isNilOrEmpty:longitude]) {
-            return [Location locationWithLatitude:[latitude doubleValue]
-                                        longitude:[longitude doubleValue]
+            return [Location locationWithLatitude:latitude.doubleValue
+                                        longitude:longitude.doubleValue
                                           address:address
                                              city:city
                                           country:country];

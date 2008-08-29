@@ -65,7 +65,7 @@
         return nil;
     }
 
-    return [[parser.elementsStack lastObject] lastObject];
+    return [parser.elementsStack.lastObject lastObject];
 }
 
 
@@ -99,9 +99,9 @@
       didEndElement:(NSString*) elementName
        namespaceURI:(NSString*) namespaceURI
       qualifiedName:(NSString*) qName {
-    NSArray* children = [elementsStack lastObject];
-    NSString* text = [stringBufferStack lastObject];
-    NSDictionary* attributes = [attributesStack lastObject];
+    NSArray* children = elementsStack.lastObject;
+    NSString* text = stringBufferStack.lastObject;
+    NSDictionary* attributes = attributesStack.lastObject;
 
     [elementsStack removeLastObject];
     [stringBufferStack removeLastObject];
@@ -112,7 +112,7 @@
                                              children:children
                                                  text:text];
 
-    [[elementsStack lastObject] addObject:element];
+    [elementsStack.lastObject addObject:element];
 }
 
 
@@ -122,7 +122,7 @@
         return;
     }
 
-    [[stringBufferStack lastObject] appendString:string];
+    [stringBufferStack.lastObject appendString:string];
 }
 
 

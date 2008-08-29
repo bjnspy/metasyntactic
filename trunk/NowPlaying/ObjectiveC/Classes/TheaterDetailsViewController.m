@@ -229,7 +229,7 @@
         }
 
         [cell setShowtimes:[movieShowtimes objectAtIndex:index]
-             useSmallFonts:[self.model useSmallFonts]];
+             useSmallFonts:self.model.useSmallFonts];
 
         return cell;
     }
@@ -265,7 +265,7 @@
             return tableView.rowHeight;
         } else {
             return [MovieShowtimesCell heightForShowtimes:[movieShowtimes objectAtIndex:section]
-                                            useSmallFonts:[self.model useSmallFonts]] + 18;
+                                            useSmallFonts:self.model.useSmallFonts] + 18;
         }
     }
 }

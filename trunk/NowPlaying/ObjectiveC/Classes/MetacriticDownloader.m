@@ -83,7 +83,7 @@
                                                                                   score:score];
 
 
-                [ratings setObject:extraInfo forKey:[extraInfo canonicalTitle]];
+                [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
             }
         }
 

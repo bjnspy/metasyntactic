@@ -54,7 +54,7 @@
 
 - (void) orderTheaters {
     [theatersArray sortUsingFunction:compareTheatersByDistance
-                             context:[self.model theaterDistanceMap]];
+                             context:self.model.theaterDistanceMap];
 
     NSMutableArray* favorites = [NSMutableArray array];
     NSMutableArray* nonFavorites = [NSMutableArray array];
@@ -256,7 +256,7 @@
             return tableView.rowHeight;
         } else {
             return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:[self getTheaterIndex:indexPath.section]]
-                                            useSmallFonts:[self.model useSmallFonts]] + 18;
+                                            useSmallFonts:self.model.useSmallFonts] + 18;
         }
     }
 

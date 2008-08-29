@@ -47,7 +47,7 @@
 
 
 - (NSString*) trailerFileName:(NSString*) title {
-    return [[Application sanitizeFileName:[title lowercaseString]] stringByAppendingPathExtension:@"plist"];
+    return [[Application sanitizeFileName:title.lowercaseString] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -71,7 +71,7 @@
         NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:fullPath error:NULL] objectForKey:NSFileModificationDate];
 
         if (downloadDate != nil) {
-            NSTimeInterval span = [downloadDate timeIntervalSinceNow];
+            NSTimeInterval span = downloadDate.timeIntervalSinceNow;
             if (ABS(span) > (60 * 60 * 1000)) {
                 [[NSFileManager defaultManager] removeItemAtPath:fullPath error:NULL];
             }
@@ -91,7 +91,7 @@
         if (downloadDate == nil) {
             [moviesWithoutTrailers addObject:movie];
         } else {
-            NSTimeInterval span = [downloadDate timeIntervalSinceNow];
+            NSTimeInterval span = downloadDate.timeIntervalSinceNow;
             if (ABS(span) > (48 * 60 * 60)) {
                 [moviesWithTrailers addObject:movie];
             }
@@ -124,7 +124,7 @@
     NSString* studio = [values objectAtIndex:1];
     NSString* location = [values objectAtIndex:2];
 
-    NSString* movieTitle = [engine findClosestMatch:[fullTitle lowercaseString] inArray:movieTitles];
+    NSString* movieTitle = [engine findClosestMatch:fullTitle.lowercaseString inArray:movieTitles];
 
     if (movieTitle == nil) {
         return;
@@ -144,7 +144,7 @@
     NSMutableArray* movieTitles = [NSMutableArray array];
 
     for (Movie* movie in movies) {
-        [movieTitles addObject:[movie.canonicalTitle lowercaseString]];
+        [movieTitles addObject:movie.canonicalTitle.lowercaseString];
     }
 
     DifferenceEngine* engine = [DifferenceEngine engine];

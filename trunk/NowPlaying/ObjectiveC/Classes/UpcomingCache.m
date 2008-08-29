@@ -241,7 +241,7 @@
                                                                                error:NULL] objectForKey:NSFileModificationDate];
 
     if (lastLookupDate != nil) {
-        if (ABS([lastLookupDate timeIntervalSinceNow]) < (7 * 24 * 60 * 60)) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < (7 * 24 * 60 * 60)) {
             return;
         }
     }
@@ -264,7 +264,7 @@
                                                                                error:NULL] objectForKey:NSFileModificationDate];
 
     if (lastLookupDate != nil) {
-        if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * 24 * 60 * 60)) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < (3 * 24 * 60 * 60)) {
             return;
         }
     }

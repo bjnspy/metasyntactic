@@ -197,7 +197,7 @@
     }
 
     if (sectionTitles.count == 0) {
-        self.sectionTitles = [NSArray arrayWithObject:[self.model noLocationInformationFound]];
+        self.sectionTitles = [NSArray arrayWithObject:self.model.noLocationInformationFound];
     }
 }
 
@@ -211,7 +211,7 @@
                                   [NSArray arrayWithObjects:NSLocalizedString(@"Name", nil), NSLocalizedString(@"Distance", nil), nil]] autorelease];
 
         segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-        segmentedControl.selectedSegmentIndex = [self.model allTheatersSelectedSegmentIndex];
+        segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;
         [segmentedControl addTarget:self
                              action:@selector(onSortOrderChanged:)
                    forControlEvents:UIControlEventValueChanged];

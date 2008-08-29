@@ -235,7 +235,7 @@
 
 + (CGFloat) heightForMovie:(Movie*) movie model:(NowPlayingModel*) model {
     MovieOverviewCell* cell = [MovieOverviewCell cellWithMovie:movie model:model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
-    return [cell height];
+    return cell.height;
 }
 
 
