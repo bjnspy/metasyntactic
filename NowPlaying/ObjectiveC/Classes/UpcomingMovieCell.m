@@ -67,6 +67,14 @@
 }
 
 
+- (UILabel*) createValueLabel:(NSInteger) yPosition {
+    UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, yPosition, 0, 0)] autorelease];
+    label.font = [UIFont systemFontOfSize:12];
+    label.textColor = [UIColor darkGrayColor];
+    return label;
+}
+
+
 - (id) initWithFrame:(CGRect) frame
      reuseIdentifier:(NSString*) reuseIdentifier
                model:(NowPlayingModel*) model_ {
@@ -79,9 +87,17 @@
         titleLabel.minimumFontSize = 14;
 
         self.directorTitleLabel = [self createTitleLabel:NSLocalizedString(@"Directors:", nil) yPosition:22];
+        self.directorLabel = [self createValueLabel:22];
+        
         self.castTitleLabel = [self createTitleLabel:NSLocalizedString(@"Cast:", nil) yPosition:37];
+        self.castLabel = [self createValueLabel:37];
+        castLabel.numberOfLines = 0;
+        
         self.genreTitleLabel = [self createTitleLabel:NSLocalizedString(@"Genre:", nil) yPosition:67];
+        self.genreLabel = [self createValueLabel:67];
+        
         self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:82];
+        self.ratedLabel = [self createValueLabel:82];
 
         titleWidth = 0;
         for (UILabel* label in [NSArray arrayWithObjects:directorTitleLabel, castTitleLabel, genreTitleLabel, ratedTitleLabel, nil]) {
@@ -92,23 +108,6 @@
             frame.size.width = titleWidth;
             label.frame = frame;
         }
-
-        self.directorLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 22, 0, 0)] autorelease];
-        directorLabel.font = [UIFont systemFontOfSize:12];
-        directorLabel.textColor = [UIColor darkGrayColor];
-
-        self.castLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 37, 0, 30)] autorelease];
-        castLabel.font = [UIFont systemFontOfSize:12];
-        castLabel.textColor = [UIColor darkGrayColor];
-        castLabel.numberOfLines = 0;
-
-        self.genreLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 67, 0, 0)] autorelease];
-        genreLabel.font = [UIFont systemFontOfSize:12];
-        genreLabel.textColor = [UIColor darkGrayColor];
-
-        self.ratedLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 82, 0, 0)] autorelease];
-        ratedLabel.font = [UIFont systemFontOfSize:12];
-        ratedLabel.textColor = [UIColor darkGrayColor];
 
         self.imageView = [[[UIImageView alloc] initWithImage:[ImageCache imageNotAvailable]] autorelease];
 

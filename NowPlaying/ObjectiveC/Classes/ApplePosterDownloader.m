@@ -60,7 +60,7 @@ static NSDictionary* movieNameToPosterMap = nil;
         return nil;
     }
 
-    NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle inArray:[movieNameToPosterMap allKeys]];
+    NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle inArray:movieNameToPosterMap.allKeys];
     if (key == nil) {
         return nil;
     }

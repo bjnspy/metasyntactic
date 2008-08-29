@@ -83,7 +83,7 @@
 - (void) tableView:(UITableView*) tableView didSelectRowAtIndexPath:(NSIndexPath*) selectPath {
     [self.tableView deselectRowAtIndexPath:selectPath animated:YES];
 
-    for (int i = 0; i < [[self.model ratingsProviders] count]; i++) {
+    for (int i = 0; i < self.model.ratingsProviders.count; i++) {
         NSIndexPath* cellPath = [NSIndexPath indexPathForRow:i inSection:0];
         UITableViewCell* cell = [tableView cellForRowAtIndexPath:cellPath];
 

@@ -74,7 +74,7 @@
         NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:filePath error:NULL] objectForKey:NSFileModificationDate];
 
         if (downloadDate != nil) {
-            NSTimeInterval span = [downloadDate timeIntervalSinceNow];
+            NSTimeInterval span = downloadDate.timeIntervalSinceNow;
             if (ABS(span) > (60 * 60 * 1000)) {
                 [[NSFileManager defaultManager] removeItemAtPath:filePath error:NULL];
             }

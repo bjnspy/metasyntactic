@@ -224,10 +224,10 @@
             [Utilities isNilOrEmpty:performance.identifier]) {
             [body appendString:performance.time];
         } else {
-            NSString* url = [[model currentDataProvider] ticketingUrlForTheater:theater
-                                                                          movie:movie
-                                                                    performance:performance
-                                                                           date:model.searchDate];
+            NSString* url = [model.currentDataProvider ticketingUrlForTheater:theater
+                                                                        movie:movie
+                                                                  performance:performance
+                                                                         date:model.searchDate];
 
             [body appendString:@"<a href=\""];
             [body appendString:url];

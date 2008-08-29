@@ -267,10 +267,10 @@
     //https://mobile.fandango.com/tickets.jsp?mk=98591&tk=557&showtime=2008:5:11:16:00
     //https://www.fandango.com/purchase/movietickets/process03/ticketboxoffice.aspx?row_count=1601099982&mid=98591&tid=AAJNK
 
-    NSString* url = [[self.model currentDataProvider] ticketingUrlForTheater:theater
-                                                                       movie:movie
-                                                                 performance:performance
-                                                                        date:self.model.searchDate];
+    NSString* url = [self.model.currentDataProvider ticketingUrlForTheater:theater
+                                                                     movie:movie
+                                                               performance:performance
+                                                                       date:self.model.searchDate];
 
     [Application openBrowser:url];
 }

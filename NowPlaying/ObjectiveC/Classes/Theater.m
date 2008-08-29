@@ -102,7 +102,7 @@
 
 
 - (NSString*) description {
-    return [[self dictionary] description];
+    return self.dictionary.description;
 }
 
 
@@ -121,9 +121,9 @@
 
 + (NSString*) processShowtime:(NSString*) showtime {
     if ([showtime hasSuffix:@" PM"]) {
-        return [NSString stringWithFormat:@"%@pm", [showtime substringToIndex:[showtime length] - 3]];
+        return [NSString stringWithFormat:@"%@pm", [showtime substringToIndex:showtime.length - 3]];
     } else if ([showtime hasSuffix:@" AM"]) {
-        return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:[showtime length] - 3]];
+        return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:showtime.length - 3]];
     }
 
     return showtime;
