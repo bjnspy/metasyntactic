@@ -46,7 +46,7 @@
 }
 
 
-- (id) initWithController:(UINavigationController*) controller_
+- (id) initWithController:(AbstractNavigationController*) controller_
                     title:(NSString*) title_
                      text:(NSString*) text_
                    object:(id) object_

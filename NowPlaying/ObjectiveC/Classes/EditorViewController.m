@@ -29,7 +29,7 @@
 }
 
 
-- (id) initWithController:(UINavigationController*) controller
+- (id) initWithController:(AbstractNavigationController*) controller
                withObject:(id) object_
              withSelector:(SEL) selector_ {
     if (self = [super init]) {

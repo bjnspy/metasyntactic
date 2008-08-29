@@ -22,7 +22,7 @@
 
 @property (retain) UITextField* textField;
 
-- (id) initWithController:(UINavigationController*) navigationController
+- (id) initWithController:(AbstractNavigationController*) navigationController
                     title:(NSString*) title
                    object:(id) object
                  selector:(SEL) selector

@@ -350,9 +350,7 @@
 
 
 - (void) pushSearchDatePicker {
-    SearchDatePickerViewController* pickerController =
-    [SearchDatePickerViewController pickerWithNavigationController:navigationController
-                                                        controller:self.controller];
+    SearchDatePickerViewController* pickerController = [SearchDatePickerViewController pickerWithNavigationController:navigationController];
 
     [navigationController pushViewController:pickerController animated:YES];
 }

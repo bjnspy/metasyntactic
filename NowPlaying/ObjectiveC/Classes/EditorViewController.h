@@ -15,15 +15,15 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface EditorViewController : UIViewController {
-    UINavigationController* navigationController;
+    AbstractNavigationController* navigationController;
     id object;
     SEL selector;
 }
 
-@property (assign) UINavigationController* navigationController;
+@property (assign) AbstractNavigationController* navigationController;
 @property (assign) id object;
 
-- (id) initWithController:(UINavigationController*) navigationController
+- (id) initWithController:(AbstractNavigationController*) navigationController
                withObject:(id) object
              withSelector:(SEL) selector;
 
