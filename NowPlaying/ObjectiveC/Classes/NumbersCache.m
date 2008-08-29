@@ -57,8 +57,13 @@
 }
 
 
+- (NSString*) indexFile {
+    return [[Application numbersFolder] stringByAppendingPathComponent:@"Index.plist"];
+}
+
+
 - (NSDictionary*) loadIndex {
-    NSDictionary* encoded = [NSDictionary dictionaryWithContentsOfFile:[Application numbersIndexFile]];
+    NSDictionary* encoded = [NSDictionary dictionaryWithContentsOfFile:self.indexFile];
     if (encoded == nil) {
         return [NSDictionary dictionary];
     }
@@ -121,7 +126,7 @@
 }
 
 
-- (void) writeFile:(NSArray*) weekendNumbers daily:(NSArray*) dailyNumbers {
+- (void) writeFile:(NSString*) file weekend:(NSArray*) weekendNumbers daily:(NSArray*) dailyNumbers {
     NSArray* weekend = [self encodeArray:weekendNumbers];
     NSArray* daily = [self encodeArray:dailyNumbers];
     
@@ -129,8 +134,9 @@
     [dictionary setObject:weekend forKey:@"Weekend"];
     [dictionary setObject:daily forKey:@"Daily"]; 
     
-    [Utilities writeObject:dictionary toFile:[Application numbersIndexFile]];
+    [Utilities writeObject:dictionary toFile:file];
 }
+
 
 
 - (MovieNumbers*) processMovieElement:(XmlElement*) movieElement {
@@ -156,7 +162,7 @@
 
 
 - (void) updateIndexBackgroundWorker {
-    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application numbersIndexFile]
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:self.indexFile
                                                                                error:NULL] objectForKey:NSFileModificationDate];
     
     if (lastLookupDate != nil) {
@@ -176,7 +182,7 @@
     NSArray* dailyNumbers = [self processNumbers:[result element:@"daily"]];
     
     if (weekendNumbers.count && dailyNumbers.count) {
-        [self writeFile:weekendNumbers daily:dailyNumbers];
+        [self writeFile:self.indexFile weekend:weekendNumbers daily:dailyNumbers];
         
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
         [dictionary setObject:weekendNumbers forKey:@"Weekend"];
@@ -198,14 +204,43 @@
     {
         [NSThread setThreadPriority:0.0];
         [self updateIndexBackgroundWorker];    
-        [self performSelectorOnMainThread:@selector(updateIndexBackgroundWorker) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(updateDetails) withObject:nil waitUntilDone:NO];
     }
     [gate unlock];
     [autoreleasePool release];    
 }
 
 
+- (NSString*) moviesFile:(MovieNumbers*) numbers folder:(NSString*) folder {
+    NSString* name = [[Application sanitizeFileName:numbers.canonicalTitle] stringByAppendingPathExtension:@"plist"];
+    return [folder stringByAppendingPathComponent:name];
+}
+
+
 - (void) downloadDetails:(MovieNumbers*) numbers folder:(NSString*) folder {
+    NSString* file = [self moviesFile:numbers folder:folder];
+    NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:file
+                                                                               error:NULL] objectForKey:NSFileModificationDate];
+    
+    if (lastLookupDate != nil) {
+        if (ABS(lastLookupDate.timeIntervalSinceNow) < (24 * 60 * 60)) {
+            return;
+        }
+    }
+    
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?id=%@", [Application host], numbers.identifier];
+    XmlElement* result = [Utilities xmlWithContentsOfAddress:url];
+    
+    if (result == nil) {
+        return;
+    }
+    
+    NSArray* weekendNumbers = [self processNumbers:[result element:@"weekend"]];
+    NSArray* dailyNumbers = [self processNumbers:[result element:@"daily"]];
+    
+    if (weekendNumbers.count || dailyNumbers.count) {
+        [self writeFile:file weekend:weekendNumbers daily:dailyNumbers];
+    }   
 }
 
 
