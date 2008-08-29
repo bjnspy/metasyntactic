@@ -34,5 +34,6 @@
 
 + (UIImage*) upArrow;
 + (UIImage*) downArrow;
++ (UIImage*) neutralSquare;
 
 @end

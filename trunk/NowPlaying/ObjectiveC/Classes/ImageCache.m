@@ -33,6 +33,7 @@ static UIImage* imageNotAvailable = nil;
 
 static UIImage* upArrow = nil;
 static UIImage* downArrow = nil;
+static UIImage* neutralSquare = nil;
 
 + (void) initialize {
     if (self == [ImageCache class]) {
@@ -51,6 +52,7 @@ static UIImage* downArrow = nil;
         
         upArrow             = [[UIImage imageNamed:@"UpArrow.png"] retain];
         downArrow           = [[UIImage imageNamed:@"DownArrow.png"] retain];
+        neutralSquare       = [[UIImage imageNamed:@"NeutralSquare.png"] retain];
     }
 }
 
@@ -112,6 +114,11 @@ static UIImage* downArrow = nil;
 
 + (UIImage*) downArrow {
     return downArrow;
+}
+
+
++ (UIImage*) neutralSquare {
+    return neutralSquare;
 }
 
 

@@ -414,13 +414,18 @@ static NSString* persistenceVersion = @"8";
 }
 
 
-- (BOOL) numbersDailyFilter {
+- (BOOL) numbersSortingByDailyGross {
     return self.numbersSelectedSegmentIndex == 0;
 }
 
 
-- (BOOL) numbersWeekendFilter {
+- (BOOL) numbersSortingByWeekendGross {
     return self.numbersSelectedSegmentIndex == 1;
+}
+
+
+- (BOOL) numbersSortingByTotalGross {
+    return self.numbersSelectedSegmentIndex == 2;
 }
 
 
