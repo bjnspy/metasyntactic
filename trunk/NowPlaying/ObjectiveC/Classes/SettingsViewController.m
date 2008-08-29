@@ -135,9 +135,9 @@
     CLLocationCoordinate2D coordinates = location.coordinate;
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
-    NSString* urlString = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", latitude, longitude];
+    NSString* url = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", latitude, longitude];
 
-    XmlElement* geonamesElement = [Utilities downloadXml:urlString];
+    XmlElement* geonamesElement = [Utilities xmlWithContentsOfAddress:url];
     XmlElement* codeElement = [geonamesElement element:@"code"];
     XmlElement* postalElement = [codeElement element:@"postalcode"];
     XmlElement* countryElement = [codeElement element:@"countryCode"];
@@ -154,9 +154,9 @@
     CLLocationCoordinate2D coordinates = location.coordinate;
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
-    NSString* urlString = [NSString stringWithFormat:@"http://geocoder.ca/?latt=%f&longt=%f&geoit=xml&reverse=Reverse+GeoCode+it", latitude, longitude];
+    NSString* url = [NSString stringWithFormat:@"http://geocoder.ca/?latt=%f&longt=%f&geoit=xml&reverse=Reverse+GeoCode+it", latitude, longitude];
 
-    XmlElement* geodataElement = [Utilities downloadXml:urlString];
+    XmlElement* geodataElement = [Utilities xmlWithContentsOfAddress:url];
     XmlElement* postalElement = [geodataElement element:@"postal"];
     return postalElement.text;
 }

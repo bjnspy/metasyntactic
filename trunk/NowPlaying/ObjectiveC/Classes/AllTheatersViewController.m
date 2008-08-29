@@ -131,7 +131,7 @@
     };
 
     NSMutableArray* distancesArray = [NSMutableArray array];
-    for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
+    for (int i = 0; i < ArrayLength(distances); i++) {
         int distance = distances[i];
         if (distance == 1) {
             [distancesArray addObject:[NSString stringWithFormat:NSLocalizedString(@"Less than 1 %@ away", @"singular"), singularUnit]];
@@ -165,7 +165,7 @@
             continue;
         }
 
-        for (int i = 0; i < (sizeof(distances)/sizeof(int)); i++) {
+        for (int i = 0; i < ArrayLength(distances); i++) {
             if (distance <= distances[i]) {
                 [sectionTitleToContentsMap addObject:theater forKey:[distancesArray objectAtIndex:i]];
                 goto outer;

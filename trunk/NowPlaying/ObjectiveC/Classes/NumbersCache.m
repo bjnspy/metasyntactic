@@ -166,7 +166,7 @@
     }
     
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?q=index", [Application host]];
-    XmlElement* result = [Utilities downloadXml:url];
+    XmlElement* result = [Utilities xmlWithContentsOfAddress:url];
 
     if (result == nil) {
         return;
@@ -205,7 +205,18 @@
 }
 
 
+- (void) downloadDetails:(MovieNumbers*) numbers folder:(NSString*) folder {
+}
+
+
 - (void) updateDetailsBackgroundWorker:(NSDictionary*) numbers {
+    for (MovieNumbers* movie in [numbers objectForKey:@"Daily"]) {
+        [self downloadDetails:movie folder:[Application numbersDailyFolder]];
+    }
+
+    for (MovieNumbers* movie in [numbers objectForKey:@"Weekend"]) {
+        [self downloadDetails:movie folder:[Application numbersWeekendFolder]];
+    }
 }
 
 

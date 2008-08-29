@@ -21,7 +21,6 @@
 		74088E6B0DCD36AE00954696 /* XmlSerializer.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088E690DCD36AE00954696 /* XmlSerializer.m */; };
 		740AFF360E54E87F004EC5EE /* NumbersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AFF350E54E87F004EC5EE /* NumbersNavigationController.m */; };
 		740AFF760E54EAB0004EC5EE /* Numbers.png in Resources */ = {isa = PBXBuildFile; fileRef = 740AFF750E54EAB0004EC5EE /* Numbers.png */; };
-		740AFF8D0E54F067004EC5EE /* MovieStatistics.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AFF8C0E54F067004EC5EE /* MovieStatistics.m */; };
 		740AFFBB0E54F971004EC5EE /* NumbersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 740AFFBA0E54F971004EC5EE /* NumbersViewController.m */; };
 		740B14730E2DCA7B00493FC3 /* ReviewTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14720E2DCA7B00493FC3 /* ReviewTitleCell.m */; };
 		740B14BD0E2DCDDB00493FC3 /* ReviewBodyCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 740B14BC0E2DCDDB00493FC3 /* ReviewBodyCell.m */; };
@@ -70,6 +69,7 @@
 		74A3EF770E67DA45007ED6DC /* DownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A3EF750E67DA45007ED6DC /* DownArrow.png */; };
 		74A3EF780E67DA45007ED6DC /* UpArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A3EF760E67DA45007ED6DC /* UpArrow.png */; };
 		74A3F03A0E686817007ED6DC /* NeutralSquare.png in Resources */ = {isa = PBXBuildFile; fileRef = 74A3F0390E686817007ED6DC /* NeutralSquare.png */; };
+		74A3F0500E686A7D007ED6DC /* MovieNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A3F04F0E686A7D007ED6DC /* MovieNumbers.m */; };
 		74A863ED0E64F22A003A2249 /* AbstractMovieListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */; };
 		74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */; };
 		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
@@ -161,8 +161,6 @@
 		740AFF340E54E87F004EC5EE /* NumbersNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumbersNavigationController.h; sourceTree = "<group>"; };
 		740AFF350E54E87F004EC5EE /* NumbersNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumbersNavigationController.m; sourceTree = "<group>"; };
 		740AFF750E54EAB0004EC5EE /* Numbers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Numbers.png; path = Resources/Numbers.png; sourceTree = "<group>"; };
-		740AFF8B0E54F067004EC5EE /* MovieStatistics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieStatistics.h; sourceTree = "<group>"; };
-		740AFF8C0E54F067004EC5EE /* MovieStatistics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieStatistics.m; sourceTree = "<group>"; };
 		740AFFB90E54F971004EC5EE /* NumbersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumbersViewController.h; sourceTree = "<group>"; };
 		740AFFBA0E54F971004EC5EE /* NumbersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumbersViewController.m; sourceTree = "<group>"; };
 		740B14710E2DCA7B00493FC3 /* ReviewTitleCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewTitleCell.h; sourceTree = "<group>"; };
@@ -265,6 +263,9 @@
 		74A3EF750E67DA45007ED6DC /* DownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = DownArrow.png; path = Resources/DownArrow.png; sourceTree = "<group>"; };
 		74A3EF760E67DA45007ED6DC /* UpArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = UpArrow.png; path = Resources/UpArrow.png; sourceTree = "<group>"; };
 		74A3F0390E686817007ED6DC /* NeutralSquare.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = NeutralSquare.png; path = Resources/NeutralSquare.png; sourceTree = "<group>"; };
+		74A3F04E0E686A7D007ED6DC /* MovieNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieNumbers.h; sourceTree = "<group>"; };
+		74A3F04F0E686A7D007ED6DC /* MovieNumbers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieNumbers.m; sourceTree = "<group>"; };
+		74A3F11D0E687D26007ED6DC /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMovieListViewController.h; sourceTree = "<group>"; };
 		74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieListViewController.m; sourceTree = "<group>"; };
 		74A865420E64FCAD003A2249 /* UpcomingMoviesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingMoviesViewController.h; sourceTree = "<group>"; };
@@ -409,8 +410,8 @@
 				7457FE910E21A41A00929D3E /* Performance.m */,
 				748217D50E2163760054759E /* ExtraMovieInformation.h */,
 				748217D60E2163760054759E /* ExtraMovieInformation.m */,
-				740AFF8B0E54F067004EC5EE /* MovieStatistics.h */,
-				740AFF8C0E54F067004EC5EE /* MovieStatistics.m */,
+				74A3F04E0E686A7D007ED6DC /* MovieNumbers.h */,
+				74A3F04F0E686A7D007ED6DC /* MovieNumbers.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -441,6 +442,7 @@
 				74F6D0590E6754B200943D78 /* NowPlaying_Prefix.pch */,
 				29B97316FDCFA39411CA2CEA /* main.m */,
 				745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */,
+				74A3F11D0E687D26007ED6DC /* Macros.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -448,14 +450,14 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				74A3F0390E686817007ED6DC /* NeutralSquare.png */,
-				74A3EF750E67DA45007ED6DC /* DownArrow.png */,
-				74A3EF760E67DA45007ED6DC /* UpArrow.png */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
+				74A3EF750E67DA45007ED6DC /* DownArrow.png */,
 				7479DC240E66127100D91649 /* Movies.png */,
-				7479DC560E6616E600D91649 /* Theaters.png */,
-				74CDF0BB0E64A026005699E9 /* Upcoming.png */,
+				74A3F0390E686817007ED6DC /* NeutralSquare.png */,
 				740AFF750E54EAB0004EC5EE /* Numbers.png */,
+				7479DC560E6616E600D91649 /* Theaters.png */,
+				74A3EF760E67DA45007ED6DC /* UpArrow.png */,
+				74CDF0BB0E64A026005699E9 /* Upcoming.png */,
 				7479B5D30E402E21003B12C1 /* MetacriticLogo.png */,
 				743BE1FC0E3BFB3B00D19F9B /* License.txt */,
 				74EFE3930E35433700B6E103 /* Rating-Unknown.png */,
@@ -943,7 +945,6 @@
 				74CBBFF80E3E8C6000747156 /* DataProviderViewController.m in Sources */,
 				74085B8C0E423F010069F0F5 /* RatingsCache.m in Sources */,
 				740AFF360E54E87F004EC5EE /* NumbersNavigationController.m in Sources */,
-				740AFF8D0E54F067004EC5EE /* MovieStatistics.m in Sources */,
 				740AFFBB0E54F971004EC5EE /* NumbersViewController.m in Sources */,
 				745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */,
 				743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */,
@@ -958,6 +959,7 @@
 				747C56980E67583600BD69DA /* NowPlayingController.m in Sources */,
 				747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */,
 				74EC36400E67BC7D0084F7E0 /* NumbersCache.m in Sources */,
+				74A3F0500E686A7D007ED6DC /* MovieNumbers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

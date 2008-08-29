@@ -28,11 +28,12 @@ static NSString* documentsFolder = nil;
 static NSString* tempFolder = nil;
 static NSString* locationsFolder = nil;
 static NSString* numbersFolder = nil;
+static NSString* numbersDailyFolder = nil;
+static NSString* numbersWeekendFolder = nil;
 static NSString* ratingsFolder = nil;
 static NSString* reviewsFolder = nil;
 static NSString* trailersFolder = nil;
 static NSString* postersFolder = nil;
-static NSString* searchFolder = nil;
 static NSString* supportFolder = nil;
 static NSString* upcomingFolder = nil;
 static NSString* upcomingPostersFolder = nil;
@@ -64,42 +65,37 @@ static NSString* starString = nil;
 + (void) deleteFolders {
     [gate lock];
     {
-        [[NSFileManager defaultManager] removeItemAtPath:[Application dataFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application locationsFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application numbersFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application postersFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application trailersFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application ratingsFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application reviewsFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingPostersFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingSynopsesFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingTrailersFolder] error:NULL];
-        [[NSFileManager defaultManager] removeItemAtPath:[Application upcomingFolder] error:NULL];
+        NSString** folders[] = {
+            &dataFolder,
+            &documentsFolder,
+            &tempFolder,
+            &locationsFolder,
+            &numbersFolder,
+            &numbersDailyFolder,
+            &numbersWeekendFolder,
+            &ratingsFolder,
+            &reviewsFolder,
+            &trailersFolder,
+            &postersFolder,
+            &supportFolder,
+            &upcomingFolder,
+            &upcomingPostersFolder,
+            &upcomingSynopsesFolder,
+            &upcomingTrailersFolder
+        };
 
-        [dataFolder release];
-        [locationsFolder release];
-        [numbersFolder release];
-        [postersFolder release];
-        [trailersFolder release];
-        [ratingsFolder release];
-        [reviewsFolder release];
+        for (int i = 0; i < ArrayLength(folders); i++) {
+            NSString** folderReference = folders[i];
+            NSString* folder = *folderReference;
+            
+            if (folder != nil) {
+                [[NSFileManager defaultManager] removeItemAtPath:folder error:NULL];
+                [folder release];
+                *folderReference = nil;
+            }
+        }
+        
         [providerReviewsFolder release];
-        [upcomingPostersFolder release];
-        [upcomingSynopsesFolder release];
-        [upcomingTrailersFolder release];
-        [upcomingFolder release];
-
-        dataFolder = nil;
-        locationsFolder = nil;
-        numbersFolder = nil;
-        postersFolder = nil;
-        trailersFolder = nil;
-        ratingsFolder = nil;
-        reviewsFolder = nil;
-        upcomingPostersFolder = nil;
-        upcomingSynopsesFolder = nil;
-        upcomingTrailersFolder = nil;
-        upcomingFolder = nil;
         providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
     }
     [gate unlock];
@@ -211,6 +207,42 @@ static NSString* starString = nil;
 }
 
 
++ (NSString*) numbersDailyFolder {
+    [gate lock];
+    {
+        if (numbersDailyFolder == nil) {
+            NSString* parent = [Application numbersFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Daily"];
+            
+            [Application createDirectory:folder];
+            
+            numbersDailyFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return numbersDailyFolder;
+}
+
+
++ (NSString*) numbersWeekendFolder {
+    [gate lock];
+    {
+        if (numbersWeekendFolder == nil) {
+            NSString* parent = [Application numbersFolder];
+            NSString* folder = [parent stringByAppendingPathComponent:@"Weekend"];
+            
+            [Application createDirectory:folder];
+            
+            numbersWeekendFolder = [folder retain];
+        }
+    }
+    [gate unlock];
+    
+    return numbersWeekendFolder;
+}
+
+
 + (NSString*) postersFolder {
     [gate lock];
     {
@@ -262,24 +294,6 @@ static NSString* starString = nil;
     [gate unlock];
 
     return reviewsFolder;
-}
-
-
-+ (NSString*) searchFolder {
-    [gate lock];
-    {
-        if (searchFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Search"];
-
-            [Application createDirectory:folder];
-
-            searchFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-
-    return searchFolder;
 }
 
 
@@ -477,12 +491,6 @@ static NSString* starString = nil;
 + (DifferenceEngine*) differenceEngine {
     NSAssert([NSThread isMainThread], @"Cannot access difference engine from background thread.");
     return differenceEngine;
-}
-
-
-+ (NSString*) searchHost {
-    //return @"http://metaboxoffice6.appspot.com";
-    return @"http://localhost:8086";
 }
 
 

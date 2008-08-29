@@ -86,16 +86,6 @@
 }
 
 
-+ (XmlElement*) downloadXml:(NSString*) urlString {
-    NSData* data = [Utilities dataWithContentsOfAddress:urlString];
-    if (data == nil) {
-        return nil;
-    }
-
-    return [XmlParser parse:data];
-}
-
-
 + (XmlElement*) makeSoapRequest:(XmlElement*) element
                           atUrl:(NSString*) urlString
                          atHost:(NSString*) host
@@ -270,6 +260,25 @@
 }
 
 
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address {
+    if (address == nil) {
+        return nil;
+    }
+    
+    return [Utilities xmlWithContentsOfUrl:[NSURL URLWithString:address]];
+}
+
+
++ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url {
+    if (url == nil) {
+        return nil;
+    }
+    
+    NSData* data = [Utilities dataWithContentsOfUrl:url];
+    return [XmlParser parse:data];
+}
+
+
 + (NSData*) dataWithContentsOfAddress:(NSString*) address {
     if (address == nil) {
         return nil;
@@ -280,6 +289,8 @@
 
 
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url {
+    NSAssert(![NSThread isMainThread], @"");
+
     if (url == nil) {
         return nil;
     }

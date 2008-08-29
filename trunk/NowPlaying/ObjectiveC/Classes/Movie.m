@@ -63,8 +63,7 @@ static NSString* articles[] = {
 + (NSString*) makeCanonical:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-    int count = sizeof(articles) / sizeof(NSString*);
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < ArrayLength(articles); i++) {
         NSString* article = articles[i];
         if ([title hasSuffix:[NSString stringWithFormat:@", %@", article]]) {
             return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
@@ -78,8 +77,7 @@ static NSString* articles[] = {
 + (NSString*) makeDisplay:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
 
-    int count = sizeof(articles) / sizeof(NSString*);
-    for (int i = 0; i < count; i++) {
+    for (int i = 0; i < ArrayLength(articles); i++) {
         NSString* article = articles[i];
         if ([title hasPrefix:[NSString stringWithFormat:@"%@ ", article]]) {
             return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
