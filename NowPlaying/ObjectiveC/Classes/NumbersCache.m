@@ -126,13 +126,17 @@
 }
 
 
-- (void) writeFile:(NSString*) file weekend:(NSArray*) weekendNumbers daily:(NSArray*) dailyNumbers {
-    NSArray* weekend = [self encodeArray:weekendNumbers];
-    NSArray* daily = [self encodeArray:dailyNumbers];
+- (void) writeFile:(NSString*) file
+           weekend:(NSArray*) weekend
+             daily:(NSArray*) daily
+            budget:(NSString*) budget{
+    NSArray* encodedWeekend = [self encodeArray:weekend];
+    NSArray* encodedDaily = [self encodeArray:daily];
     
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:weekend forKey:@"Weekend"];
-    [dictionary setObject:daily forKey:@"Daily"]; 
+    [dictionary setObject:encodedWeekend forKey:@"Weekend"];
+    [dictionary setObject:encodedDaily forKey:@"Daily"];
+    [dictionary setObject:budget forKey:@"Budget"];
     
     [Utilities writeObject:dictionary toFile:file];
 }
@@ -182,7 +186,7 @@
     NSArray* dailyNumbers = [self processNumbers:[result element:@"daily"]];
     
     if (weekendNumbers.count && dailyNumbers.count) {
-        [self writeFile:self.indexFile weekend:weekendNumbers daily:dailyNumbers];
+        [self writeFile:self.indexFile weekend:weekendNumbers daily:dailyNumbers budget:@""];
         
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
         [dictionary setObject:weekendNumbers forKey:@"Weekend"];
@@ -211,14 +215,14 @@
 }
 
 
-- (NSString*) moviesFile:(MovieNumbers*) numbers folder:(NSString*) folder {
+- (NSString*) movieDetailsFile:(MovieNumbers*) numbers {
     NSString* name = [[Application sanitizeFileName:numbers.canonicalTitle] stringByAppendingPathExtension:@"plist"];
-    return [folder stringByAppendingPathComponent:name];
+    return [[Application numbersDetailsFolder] stringByAppendingPathComponent:name];
 }
 
 
-- (void) downloadDetails:(MovieNumbers*) numbers folder:(NSString*) folder {
-    NSString* file = [self moviesFile:numbers folder:folder];
+- (void) downloadDetails:(MovieNumbers*) numbers {
+    NSString* file = [self movieDetailsFile:numbers];
     NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:file
                                                                                error:NULL] objectForKey:NSFileModificationDate];
     
@@ -228,6 +232,11 @@
         }
     }
     
+    if ([Utilities isNilOrEmpty:numbers.identifier] ||
+        [@"0" isEqual:numbers.identifier]) {
+        return;
+    }
+    
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?id=%@", [Application host], numbers.identifier];
     XmlElement* result = [Utilities xmlWithContentsOfAddress:url];
 
@@ -235,22 +244,23 @@
         return;
     }
     
+    NSString* budget = [result attributeValue:@"budget"];
     NSArray* weekendNumbers = [self processNumbers:[result element:@"weekend"]];
     NSArray* dailyNumbers = [self processNumbers:[result element:@"daily"]];
     
     if (weekendNumbers.count || dailyNumbers.count) {
-        [self writeFile:file weekend:weekendNumbers daily:dailyNumbers];
+        [self writeFile:file weekend:weekendNumbers daily:dailyNumbers budget:budget];
     }   
 }
 
 
 - (void) updateDetailsBackgroundWorker:(NSDictionary*) numbers {
-    for (MovieNumbers* movie in [numbers objectForKey:@"Daily"]) {
-        [self downloadDetails:movie folder:[Application numbersDailyFolder]];
-    }
-
     for (MovieNumbers* movie in [numbers objectForKey:@"Weekend"]) {
-        [self downloadDetails:movie folder:[Application numbersWeekendFolder]];
+        NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
+        
+        [self downloadDetails:movie];
+
+        [autoreleasePool release];
     }
 }
 
@@ -309,20 +319,20 @@
 
 
 - (double) dailyChange:(MovieNumbers*) movie {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self moviesFile:movie folder:[Application numbersDailyFolder]]];
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
 
     return [self currentChangeValue:[dictionary objectForKey:@"Daily"]];
 }
 
 
 - (double) weekendChange:(MovieNumbers*) movie {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self moviesFile:movie folder:[Application numbersWeekendFolder]]];
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
     
     return [self currentChangeValue:[dictionary objectForKey:@"Weekend"]];
 }
 
 - (double) totalChange:(MovieNumbers*) movie {
-    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self moviesFile:movie folder:[Application numbersWeekendFolder]]];
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
  
     double result = [self totalChangeValue:[dictionary objectForKey:@"Weekend"]];
     if (IS_NOT_ENOUGH_DATA(result) || IS_RETRIEVING(result)) {
@@ -330,6 +340,15 @@
     }
         
     return result;
+}
+
+- (NSInteger) budgetForMovie:(MovieNumbers*) movie {
+    NSDictionary* dictionary = [NSDictionary dictionaryWithContentsOfFile:[self movieDetailsFile:movie]];
+    if (dictionary == nil) {
+        return -1;
+    }
+    
+    return [[dictionary objectForKey:@"Budget"] intValue];
 }
 
 

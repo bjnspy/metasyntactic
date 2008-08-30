@@ -20,19 +20,21 @@
 + (NSString*) dataFolder;
 + (NSString*) documentsFolder;
 + (NSString*) locationsFolder;
-+ (NSString*) numbersFolder;
-+ (NSString*) numbersDailyFolder;
-+ (NSString*) numbersWeekendFolder;
 + (NSString*) postersFolder;
 + (NSString*) ratingsFolder;
 + (NSString*) reviewsFolder;
 + (NSString*) supportFolder;
 + (NSString*) tempFolder;
 + (NSString*) trailersFolder;
+
++ (NSString*) numbersFolder;
++ (NSString*) numbersDetailsFolder;
+
 + (NSString*) upcomingFolder;
 + (NSString*) upcomingPostersFolder;
 + (NSString*) upcomingSynopsesFolder;
 + (NSString*) upcomingTrailersFolder;
+
 + (NSString*) providerReviewsFolder:(NSString*) provider;
 
 + (NSString*) movieMapFile;

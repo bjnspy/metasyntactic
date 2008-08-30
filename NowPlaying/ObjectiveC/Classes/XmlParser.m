@@ -60,8 +60,9 @@ static NSLock* gate = nil;
 
 - (id) initWithData:(NSData*) data {
     if (self = [super init]) {
-        NSXMLParser* parser = [[[NSXMLParser alloc] initWithData:data] autorelease];
+        NSXMLParser* parser = [[NSXMLParser alloc] initWithData:data];
         [self run:parser];
+        [parser release];
     }
 
     return self;
@@ -82,8 +83,11 @@ static NSLock* gate = nil;
         return nil;
     }
 
-    XmlParser* xmlParser = [[[XmlParser alloc] initWithData:data] autorelease];
-    return [XmlParser collect:xmlParser];
+    XmlParser* xmlParser = [[XmlParser alloc] initWithData:data];
+    XmlElement* result = [XmlParser collect:xmlParser];
+    [xmlParser release];
+    
+    return result;
 }
 
 
