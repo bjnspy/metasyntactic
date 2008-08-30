@@ -88,14 +88,14 @@
 
         self.directorTitleLabel = [self createTitleLabel:NSLocalizedString(@"Directors:", nil) yPosition:22];
         self.directorLabel = [self createValueLabel:22];
-        
+
         self.castTitleLabel = [self createTitleLabel:NSLocalizedString(@"Cast:", nil) yPosition:37];
         self.castLabel = [self createValueLabel:37];
         castLabel.numberOfLines = 0;
-        
+
         self.genreTitleLabel = [self createTitleLabel:NSLocalizedString(@"Genre:", nil) yPosition:67];
         self.genreLabel = [self createValueLabel:67];
-        
+
         self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:82];
         self.ratedLabel = [self createValueLabel:82];
 

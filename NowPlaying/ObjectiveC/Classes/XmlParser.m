@@ -86,7 +86,7 @@ static NSLock* gate = nil;
     XmlParser* xmlParser = [[XmlParser alloc] initWithData:data];
     XmlElement* result = [XmlParser collect:xmlParser];
     [xmlParser release];
-    
+
     return result;
 }
 
@@ -99,7 +99,7 @@ static NSLock* gate = nil;
         result = [self parseWorker:data];
     }
     [gate unlock];
-    
+
     return result;
 }
 
@@ -145,5 +145,10 @@ static NSLock* gate = nil;
     [stringBufferStack.lastObject appendString:string];
 }
 
+
+- (void)          parser:(NSXMLParser*) parser
+      parseErrorOccurred:(NSError*) parseError {
+    NSLog(@"%@", parseError);
+}
 
 @end

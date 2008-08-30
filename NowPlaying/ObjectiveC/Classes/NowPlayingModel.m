@@ -202,7 +202,7 @@ static NSString* persistenceVersion = @"10";
         [self loadData];
 
         self.notificationCenter = notificationCenter_;
-        
+
         self.addressLocationCache = [AddressLocationCache cache];
         self.numbersCache = [NumbersCache cache];
         self.posterCache = [PosterCache cache];
@@ -230,7 +230,7 @@ static NSString* persistenceVersion = @"10";
 
 - (void) updateCaches:(NSNumber*) number {
     int value = number.intValue;
-    
+
     if (value == 0) {
         [self updateAddressLocationCache];
     } else if (value == 1) {

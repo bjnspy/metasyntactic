@@ -23,7 +23,7 @@ enum ViewControllerType {
 
 @interface NowPlayingModel : NSObject {
     NotificationCenter* notificationCenter;
-    
+
     AddressLocationCache* addressLocationCache;
     NumbersCache* numbersCache;
     PosterCache* posterCache;

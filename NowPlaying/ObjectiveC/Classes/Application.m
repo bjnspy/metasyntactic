@@ -92,14 +92,14 @@ static NSString* starString = nil;
         for (int i = 0; i < ArrayLength(folders); i++) {
             NSString** folderReference = folders[i];
             NSString* folder = *folderReference;
-            
+
             if (folder != nil) {
                 [[NSFileManager defaultManager] removeItemAtPath:folder error:NULL];
                 [folder release];
                 *folderReference = nil;
             }
         }
-        
+
         [providerReviewsFolder release];
         providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
     }
@@ -167,7 +167,7 @@ static NSString* starString = nil;
         }
     }
     [gate unlock];
-    
+
     return *folder;
 }
 
@@ -335,7 +335,7 @@ static NSString* starString = nil;
 
 
 + (NSString*) host {
-    //*
+    /*
      return @"metaboxoffice6";
      /*/
     return @"metaboxoffice2";

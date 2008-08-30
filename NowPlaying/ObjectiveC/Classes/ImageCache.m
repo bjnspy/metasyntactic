@@ -49,7 +49,7 @@ static UIImage* neutralSquare = nil;
         unknownRatingImage  = [[UIImage imageNamed:@"Rating-Unknown.png"] retain];
 
         imageNotAvailable   = [[UIImage imageNamed:@"ImageNotAvailable.png"] retain];
-        
+
         upArrow             = [[UIImage imageNamed:@"UpArrow.png"] retain];
         downArrow           = [[UIImage imageNamed:@"DownArrow.png"] retain];
         neutralSquare       = [[UIImage imageNamed:@"NeutralSquare.png"] retain];
