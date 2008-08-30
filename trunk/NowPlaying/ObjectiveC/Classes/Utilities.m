@@ -264,7 +264,7 @@
     if (address == nil) {
         return nil;
     }
-    
+
     return [Utilities xmlWithContentsOfUrl:[NSURL URLWithString:address]];
 }
 
@@ -273,7 +273,7 @@
     if (url == nil) {
         return nil;
     }
-    
+
     NSData* data = [Utilities dataWithContentsOfUrl:url];
     return [XmlParser parse:data];
 }

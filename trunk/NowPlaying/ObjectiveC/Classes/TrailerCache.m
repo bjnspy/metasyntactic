@@ -129,7 +129,7 @@
     if (index == NSNotFound) {
         return;
     }
-    
+
     NSString* movieTitle = [movieTitles objectAtIndex:index];
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];

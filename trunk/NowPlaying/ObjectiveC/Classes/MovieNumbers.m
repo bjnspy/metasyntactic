@@ -38,7 +38,7 @@
     self.totalGross = 0;
     self.theaters = 0;
     self.days = 0;
-    
+
     [super dealloc];
 }
 
@@ -61,7 +61,7 @@
         self.theaters = theaters_;
         self.days = days_;
     }
-    
+
     return self;
 }
 
