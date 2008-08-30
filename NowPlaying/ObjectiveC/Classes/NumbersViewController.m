@@ -311,6 +311,7 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
 
         if (budget <= 0) {
             value = NSLocalizedString(@"Unknown", nil);
+            [cell setValueColor:[UIColor grayColor]];
         } else {
             value = [self formatCurrency:[NSNumber numberWithInt:budget]];
         }
