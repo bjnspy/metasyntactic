@@ -145,9 +145,9 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
     }
 
     if (self.sortingByTotalGross) {
-        return 5;
-    } else {
         return 6;
+    } else {
+        return 7;
     }
 }
 
@@ -209,6 +209,12 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
 }
 
 
+- (NSString*) formatCurrency:(NSNumber*) number {
+    NSString* value = [self.currencyFormatter stringFromNumber:number];
+    return [NSString stringWithFormat:@"$%@", value];
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.row == 0) {
@@ -240,8 +246,7 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
     }
     
     if (row == 1) {
-        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:movie.currentGross]];
-        NSString* value = [NSString stringWithFormat:@"$%@", gross];
+        NSString* value = [self formatCurrency:[NSNumber numberWithInt:movie.currentGross]];
         
         if (self.model.numbersSortingByDailyGross) {
             [cell setKey:NSLocalizedString(@"Daily gross", nil)
@@ -251,8 +256,7 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
                    value:value];
         }
     } else if (row == 2) {
-        NSString* gross = [self.currencyFormatter stringFromNumber:[NSNumber numberWithInt:movie.totalGross]];
-        NSString* value = [NSString stringWithFormat:@"$%@", gross];
+        NSString* value = [self formatCurrency:[NSNumber numberWithInt:movie.totalGross]];
         
         [cell setKey:NSLocalizedString(@"Total gross", nil)
                value:value];
@@ -301,9 +305,21 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
                    value:value];
         }
     } else if (row == 4) {
+        NSInteger budget = [self.model.numbersCache budgetForMovie:movie];
+        NSString* value;
+        
+        if (budget <= 0) {
+            value = NSLocalizedString(@"Unknown", nil);
+        } else {
+            value = [self formatCurrency:[NSNumber numberWithInt:budget]];
+        }
+        
+        [cell setKey:NSLocalizedString(@"Budget", nil)
+               value:value];
+    } else if (row == 5) {
         [cell setKey:NSLocalizedString(@"Days in theater", nil)
                value:[NSString stringWithFormat:@"%d", movie.days]];
-    } else if (row == 5) {
+    } else if (row == 6) {
         [cell setKey:NSLocalizedString(@"Theaters", nil)
                value:[NSString stringWithFormat:@"%d", movie.theaters]];
     }

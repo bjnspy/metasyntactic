@@ -38,5 +38,6 @@
 - (double) dailyChange:(MovieNumbers*) movie;
 - (double) weekendChange:(MovieNumbers*) movie;
 - (double) totalChange:(MovieNumbers*) movie;
+- (NSInteger) budgetForMovie:(MovieNumbers*) movie;
 
 @end

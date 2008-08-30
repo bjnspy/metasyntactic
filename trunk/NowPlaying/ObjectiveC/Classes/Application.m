@@ -27,18 +27,22 @@ static NSString* dataFolder = nil;
 static NSString* documentsFolder = nil;
 static NSString* tempFolder = nil;
 static NSString* locationsFolder = nil;
-static NSString* numbersFolder = nil;
-static NSString* numbersDailyFolder = nil;
-static NSString* numbersWeekendFolder = nil;
 static NSString* ratingsFolder = nil;
 static NSString* reviewsFolder = nil;
 static NSString* trailersFolder = nil;
 static NSString* postersFolder = nil;
 static NSString* supportFolder = nil;
+
+static NSString* numbersFolder = nil;
+static NSString* numbersBudgetsFolder = nil;
+static NSString* numbersDailyFolder = nil;
+static NSString* numbersWeekendFolder = nil;
+
 static NSString* upcomingFolder = nil;
 static NSString* upcomingPostersFolder = nil;
 static NSString* upcomingSynopsesFolder = nil;
 static NSString* upcomingTrailersFolder = nil;
+
 static NSMutableDictionary* providerReviewsFolder = nil;
 
 static DifferenceEngine* differenceEngine = nil;
@@ -71,6 +75,7 @@ static NSString* starString = nil;
             &tempFolder,
             &locationsFolder,
             &numbersFolder,
+            &numbersBudgetsFolder,
             &numbersDailyFolder,
             &numbersWeekendFolder,
             &ratingsFolder,
@@ -152,238 +157,78 @@ static NSString* starString = nil;
     return tempFolder;
 }
 
-
-+ (NSString*) dataFolder {
++ (NSString*) findOrCreateFolder:(NSString**) folder parent:(NSString*) parent name:(NSString*) child {
     [gate lock];
     {
-        if (dataFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Data"];
-
-            [Application createDirectory:folder];
-
-            dataFolder = [folder retain];
+        if (*folder == nil) {
+            NSString* result = [parent stringByAppendingPathComponent:child];
+            [Application createDirectory:result];
+            *folder = [result retain];
         }
     }
     [gate unlock];
+    
+    return *folder;
+}
 
-    return dataFolder;
+
++ (NSString*) dataFolder {
+    return [self findOrCreateFolder:&dataFolder parent:[Application supportFolder] name:@"Data"];
 }
 
 
 + (NSString*) locationsFolder {
-    [gate lock];
-    {
-        if (locationsFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Locations"];
-            
-            [Application createDirectory:folder];
-            
-            locationsFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-    
-    return locationsFolder;
+    return [self findOrCreateFolder:&locationsFolder parent:[Application supportFolder] name:@"Locations"];
 }
 
 
 + (NSString*) numbersFolder {
-    [gate lock];
-    {
-        if (numbersFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Numbers"];
-            
-            [Application createDirectory:folder];
-            
-            numbersFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-    
-    return numbersFolder;
+    return [self findOrCreateFolder:&numbersFolder parent:[Application supportFolder] name:@"Numbers"];
 }
 
 
-+ (NSString*) numbersDailyFolder {
-    [gate lock];
-    {
-        if (numbersDailyFolder == nil) {
-            NSString* parent = [Application numbersFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Daily"];
-            
-            [Application createDirectory:folder];
-            
-            numbersDailyFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-    
-    return numbersDailyFolder;
-}
-
-
-+ (NSString*) numbersWeekendFolder {
-    [gate lock];
-    {
-        if (numbersWeekendFolder == nil) {
-            NSString* parent = [Application numbersFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Weekend"];
-            
-            [Application createDirectory:folder];
-            
-            numbersWeekendFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-    
-    return numbersWeekendFolder;
++ (NSString*) numbersDetailsFolder {
+    return [self findOrCreateFolder:&numbersWeekendFolder parent:[Application numbersFolder] name:@"Details"];
 }
 
 
 + (NSString*) postersFolder {
-    [gate lock];
-    {
-        if (postersFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
-            
-            [Application createDirectory:folder];
-            
-            postersFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-    
-    return postersFolder;
+    return [self findOrCreateFolder:&postersFolder parent:[Application supportFolder] name:@"Posters"];
 }
 
 
 + (NSString*) ratingsFolder {
-    [gate lock];
-    {
-        if (ratingsFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Ratings"];
-            
-            [Application createDirectory:folder];
-            
-            ratingsFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-    
-    return ratingsFolder;
+    return [self findOrCreateFolder:&ratingsFolder parent:[Application supportFolder] name:@"Ratings"];
 }
 
 
 + (NSString*) reviewsFolder {
-    [gate lock];
-    {
-        if (reviewsFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Reviews"];
-
-            [Application createDirectory:folder];
-
-            reviewsFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-
-    return reviewsFolder;
+    return [self findOrCreateFolder:&reviewsFolder parent:[Application supportFolder] name:@"Reviews"];
 }
 
 
 + (NSString*) trailersFolder {
-    [gate lock];
-    {
-        if (trailersFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
-
-            [Application createDirectory:folder];
-
-            trailersFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-
-    return trailersFolder;
+    return [self findOrCreateFolder:&trailersFolder parent:[Application supportFolder] name:@"Trailers"];
 }
 
 
 + (NSString*) upcomingFolder {
-    [gate lock];
-    {
-        if (upcomingFolder == nil) {
-            NSString* parent = [Application supportFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Upcoming"];
-
-            [Application createDirectory:folder];
-
-            upcomingFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-
-    return upcomingFolder;
+    return [self findOrCreateFolder:&upcomingFolder parent:[Application supportFolder] name:@"Upcoming"];
 }
 
 
 + (NSString*) upcomingPostersFolder {
-    [gate lock];
-    {
-        if (upcomingPostersFolder == nil) {
-            NSString* parent = [Application upcomingFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Posters"];
-
-            [Application createDirectory:folder];
-
-            upcomingPostersFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-
-    return upcomingPostersFolder;
+    return [self findOrCreateFolder:&upcomingPostersFolder parent:[Application upcomingFolder] name:@"Posters"];
 }
 
 
 + (NSString*) upcomingSynopsesFolder {
-    [gate lock];
-    {
-        if (upcomingSynopsesFolder == nil) {
-            NSString* parent = [Application upcomingFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Synopses"];
-
-            [Application createDirectory:folder];
-
-            upcomingSynopsesFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-
-    return upcomingSynopsesFolder;
+    return [self findOrCreateFolder:&upcomingPostersFolder parent:[Application upcomingFolder] name:@"Synopses"];
 }
 
 
 + (NSString*) upcomingTrailersFolder {
-    [gate lock];
-    {
-        if (upcomingTrailersFolder == nil) {
-            NSString* parent = [Application upcomingFolder];
-            NSString* folder = [parent stringByAppendingPathComponent:@"Trailers"];
-
-            [Application createDirectory:folder];
-
-            upcomingTrailersFolder = [folder retain];
-        }
-    }
-    [gate unlock];
-
-    return upcomingTrailersFolder;
+    return [self findOrCreateFolder:&upcomingPostersFolder parent:[Application upcomingFolder] name:@"Trailers"];
 }
 
 

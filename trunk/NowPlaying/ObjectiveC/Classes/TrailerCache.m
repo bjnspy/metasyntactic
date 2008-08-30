@@ -47,7 +47,7 @@
 
 
 - (NSString*) trailerFileName:(NSString*) title {
-    return [[Application sanitizeFileName:title.lowercaseString] stringByAppendingPathExtension:@"plist"];
+    return [[Application sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -112,9 +112,10 @@
 }
 
 
-- (void) processRow:(NSString*) row
-       moviesTitles:(NSArray*) movieTitles
-             engine:(DifferenceEngine*) engine {
+- (void)        processRow:(NSString*) row
+              moviesTitles:(NSArray*) movieTitles
+      lowercaseMovieTitles:(NSArray*) lowercaseMovieTitles
+                    engine:(DifferenceEngine*) engine {
     NSArray* values = [row componentsSeparatedByString:@"\t"];
     if (values.count != 3) {
         return;
@@ -124,11 +125,12 @@
     NSString* studio = [values objectAtIndex:1];
     NSString* location = [values objectAtIndex:2];
 
-    NSString* movieTitle = [engine findClosestMatch:fullTitle.lowercaseString inArray:movieTitles];
-
-    if (movieTitle == nil) {
+    NSInteger index = [engine findClosestMatchIndex:fullTitle.lowercaseString inArray:lowercaseMovieTitles];
+    if (index == NSNotFound) {
         return;
     }
+    
+    NSString* movieTitle = [movieTitles objectAtIndex:index];
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
     NSString* trailersString = [Utilities stringWithContentsOfAddress:url];
@@ -142,9 +144,11 @@
 
 - (void) downloadTrailers:(NSArray*) movies index:(NSString*) index {
     NSMutableArray* movieTitles = [NSMutableArray array];
+    NSMutableArray* lowercaseMovieTitles = [NSMutableArray array];
 
     for (Movie* movie in movies) {
-        [movieTitles addObject:movie.canonicalTitle.lowercaseString];
+        [movieTitles addObject:movie.canonicalTitle];
+        [lowercaseMovieTitles addObject:movie.canonicalTitle.lowercaseString];
     }
 
     DifferenceEngine* engine = [DifferenceEngine engine];
@@ -153,7 +157,10 @@
     for (NSString* row in rows) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
 
-        [self processRow:row moviesTitles:movieTitles engine:engine];
+        [self processRow:row
+            moviesTitles:movieTitles
+    lowercaseMovieTitles:lowercaseMovieTitles
+                  engine:engine];
 
         [autoreleasePool release];
     }
