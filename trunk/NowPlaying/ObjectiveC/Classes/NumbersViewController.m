@@ -227,9 +227,10 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
         cell = [[[SettingCell alloc] initWithFrame:CGRectZero reuseIdentifier:reuseIdentifier] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
-        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, -1, 300, 2)] autorelease];
+        UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, -1, 320, 2)] autorelease];
         label.backgroundColor = [UIColor whiteColor];
         label.tag = 1;
+        label.autoresizingMask = UIViewAutoresizingFlexibleWidth;
         [cell.contentView addSubview:label];
     }
 
