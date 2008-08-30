@@ -231,12 +231,12 @@
             return;
         }
     }
-
+ 
     if ([Utilities isNilOrEmpty:numbers.identifier] ||
         [@"0" isEqual:numbers.identifier]) {
         return;
     }
-
+ 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?id=%@", [Application host], numbers.identifier];
     XmlElement* result = [Utilities xmlWithContentsOfAddress:url];
 
