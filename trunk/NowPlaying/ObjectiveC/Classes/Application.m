@@ -223,12 +223,12 @@ static NSString* starString = nil;
 
 
 + (NSString*) upcomingSynopsesFolder {
-    return [self findOrCreateFolder:&upcomingPostersFolder parent:[Application upcomingFolder] name:@"Synopses"];
+    return [self findOrCreateFolder:&upcomingSynopsesFolder parent:[Application upcomingFolder] name:@"Synopses"];
 }
 
 
 + (NSString*) upcomingTrailersFolder {
-    return [self findOrCreateFolder:&upcomingPostersFolder parent:[Application upcomingFolder] name:@"Trailers"];
+    return [self findOrCreateFolder:&upcomingTrailersFolder parent:[Application upcomingFolder] name:@"Trailers"];
 }
 
 
@@ -336,8 +336,8 @@ static NSString* starString = nil;
 
 + (NSString*) host {
     /*
-     return @"metaboxoffice6";
-     /*/
+    return @"metaboxoffice6";
+    /*/
     return @"metaboxoffice2";
     //*/
 }
