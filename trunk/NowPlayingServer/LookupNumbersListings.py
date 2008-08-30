@@ -72,15 +72,12 @@ class LookupNumbersListingsHandler(webapp.RequestHandler):
     server = object["server"]
   
     url = "http://" + server + "/movie_theatrical_chart/oe" + name + "/session_id=" + session_id
-    time.sleep(1)
     weekend = urlfetch.fetch(url).content
 
     url = "http://" + server + "/movie_theatrical_chart/oy" + name + "/session_id=" + session_id
-    time.sleep(0.5)
     daily = urlfetch.fetch(url).content
 
     url = "http://" + server + "/movie/" + name + "/session_id=" + session_id
-    time.sleep(0.5)
     movie = urlfetch.fetch(url).content
 
     urlfetch.fetch("http://access.opusdata.com/session/close/" + session_id)
@@ -129,11 +126,9 @@ class LookupNumbersListingsHandler(webapp.RequestHandler):
     server = object["server"]
   
     url = "http://" + server + "/movie_theatrical_chart/we99999999/session_id=" + session_id
-    time.sleep(1)
     weekend = urlfetch.fetch(url).content
 
     url = "http://" + server + "/movie_theatrical_chart/da99999999/session_id=" + session_id
-    time.sleep(0.5)
     daily = urlfetch.fetch(url).content
 
     urlfetch.fetch("http://access.opusdata.com/session/close/" + session_id)
