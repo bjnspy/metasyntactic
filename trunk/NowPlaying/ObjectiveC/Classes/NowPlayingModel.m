@@ -67,7 +67,6 @@ static NSString* persistenceVersion = @"14";
 + (NSString*) NAVIGATION_STACK_TYPES                    { return @"navigationStackTypes"; }
 + (NSString*) NAVIGATION_STACK_VALUES                   { return @"navigationStackValues"; }
 
-@synthesize notificationCenter;
 
 @synthesize dataProviders;
 @synthesize movieMap;
@@ -86,8 +85,6 @@ static NSString* persistenceVersion = @"14";
 @synthesize activityIndicatorView;
 
 - (void) dealloc {
-    self.notificationCenter = nil;
-
     self.dataProviders = nil;
     self.movieMap = nil;
     self.favoriteTheatersData = nil;
@@ -198,11 +195,9 @@ static NSString* persistenceVersion = @"14";
 }
 
 
-- (id) initWithCenter:(NotificationCenter*) notificationCenter_ {
+- (id) init {
     if (self = [super init]) {
         [self loadData];
-
-        self.notificationCenter = notificationCenter_;
 
         self.addressLocationCache = [AddressLocationCache cache];
         self.numbersCache = [NumbersCache cache];
@@ -254,8 +249,8 @@ static NSString* persistenceVersion = @"14";
 }
 
 
-+ (NowPlayingModel*) modelWithCenter:(NotificationCenter*) notificationCenter {
-    return [[[NowPlayingModel alloc] initWithCenter:notificationCenter] autorelease];
++ (NowPlayingModel*) model {
+    return [[[NowPlayingModel alloc] init] autorelease];
 }
 
 
