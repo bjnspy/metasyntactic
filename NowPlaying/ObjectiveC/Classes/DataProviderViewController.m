@@ -17,8 +17,8 @@
 #import "DataProviderViewController.h"
 
 #import "ApplicationTabBarController.h"
-#import "NowPlayingModel.h"
 #import "DataProvider.h"
+#import "NowPlayingModel.h"
 #import "SettingsNavigationController.h"
 
 @implementation DataProviderViewController

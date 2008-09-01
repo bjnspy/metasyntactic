@@ -17,9 +17,9 @@
 #import "NowPlayingAppDelegate.h"
 
 #import "ApplicationTabBarController.h"
+#import "NotificationCenter.h"
 #import "NowPlayingController.h"
 #import "NowPlayingModel.h"
-#import "NotificationCenter.h"
 
 @implementation NowPlayingAppDelegate
 

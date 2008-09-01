@@ -17,8 +17,8 @@
 #import "ReviewsViewController.h"
 
 #import "Application.h"
-#import "NowPlayingModel.h"
 #import "MoviesNavigationController.h"
+#import "NowPlayingModel.h"
 #import "Review.h"
 #import "ReviewBodyCell.h"
 #import "ReviewTitleCell.h"

@@ -17,9 +17,9 @@
 #import "ReviewCache.h"
 
 #import "Application.h"
-#import "NowPlayingModel.h"
 #import "ExtraMovieInformation.h"
 #import "NetworkUtilities.h"
+#import "NowPlayingModel.h"
 #import "Review.h"
 #import "Utilities.h"
 

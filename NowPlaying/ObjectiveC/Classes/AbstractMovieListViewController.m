@@ -16,12 +16,12 @@
 
 #import "AbstractMovieListViewController.h"
 
-#import "NowPlayingModel.h"
 #import "DateUtilities.h"
 #import "Movie.h"
 #import "MovieTitleCell.h"
 #import "MoviesNavigationController.h"
 #import "MultiDictionary.h"
+#import "NowPlayingModel.h"
 
 @implementation AbstractMovieListViewController
 

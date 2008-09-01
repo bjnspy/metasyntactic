@@ -17,9 +17,9 @@
 #import "AllTheatersViewController.h"
 
 #import "Application.h"
-#import "NowPlayingModel.h"
 #import "Location.h"
 #import "MultiDictionary.h"
+#import "NowPlayingModel.h"
 #import "Theater.h"
 #import "TheaterNameCell.h"
 #import "TheatersNavigationController.h"
