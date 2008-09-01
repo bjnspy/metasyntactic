@@ -97,4 +97,10 @@
 }
 
 
+- (void) refresh {
+    self.tableView.rowHeight = 100;
+    [super refresh];
+}
+
+
 @end
