@@ -257,11 +257,11 @@
                 key = NSLocalizedString(@"Search Distance", nil);
 
                 if (self.model.searchRadius == 1) {
-                    value = (self.model.useKilometers ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
+                    value = ([Application useKilometers] ? NSLocalizedString(@"1 kilometer", nil) : NSLocalizedString(@"1 mile", nil));
                 } else {
                     value = [NSString stringWithFormat:NSLocalizedString(@"%d %@", @"5 kilometers or 5 miles"),
                              self.model.searchRadius,
-                             (self.model.useKilometers ? NSLocalizedString(@"kilometers", nil) : NSLocalizedString(@"miles", nil))];
+                             ([Application useKilometers] ? NSLocalizedString(@"kilometers", nil) : NSLocalizedString(@"miles", nil))];
                 }
             } else if (indexPath.row == 2) {
                 key = NSLocalizedString(@"Search Date", nil);

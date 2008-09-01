@@ -121,9 +121,9 @@
     NSString* reallyFarAway = NSLocalizedString(@"Really far away", nil);
     NSString* unknownDistance = NSLocalizedString(@"Unknown Distance", nil);
 
-    NSString* singularUnit = (self.model.useKilometers ? NSLocalizedString(@"kilometer", nil) :
+    NSString* singularUnit = ([Application useKilometers] ? NSLocalizedString(@"kilometer", nil) :
                               NSLocalizedString(@"mile", nil));
-    NSString* pluralUnit = (self.model.useKilometers ? NSLocalizedString(@"kilometers", nil) :
+    NSString* pluralUnit = ([Application useKilometers] ? NSLocalizedString(@"kilometers", nil) :
                             NSLocalizedString(@"miles", nil));
 
     int distances[] = {

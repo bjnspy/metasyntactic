@@ -59,4 +59,6 @@
 + (void) createDirectory:(NSString*) path;
 + (NSString*) sanitizeFileName:(NSString*) name;
 
++ (BOOL) useKilometers;
+
 @end
