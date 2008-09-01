@@ -55,13 +55,6 @@
 
 + (NSString*) generateShowtimesRetrievedOnString:(NSDate*) syncDate;
 
-+ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address    important:(BOOL) important;
-+ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url               important:(BOOL) important;
-+ (NSString*) stringWithContentsOfAddress:(NSString*) address   important:(BOOL) important;
-+ (NSString*) stringWithContentsOfUrl:(NSURL*) url              important:(BOOL) important;
-+ (NSData*) dataWithContentsOfAddress:(NSString*) address       important:(BOOL) important;
-+ (NSData*) dataWithContentsOfUrl:(NSURL*) url                  important:(BOOL) important;
-
 + (NSString*) stripHtmlCodes:(NSString*) string;
 
 @end

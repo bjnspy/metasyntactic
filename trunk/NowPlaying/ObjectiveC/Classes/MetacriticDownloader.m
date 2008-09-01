@@ -19,6 +19,7 @@
 #import "Application.h"
 #import "NowPlayingModel.h"
 #import "ExtraMovieInformation.h"
+#import "NetworkUtilities.h"
 #import "Utilities.h"
 
 @implementation MetacriticDownloader
@@ -48,7 +49,7 @@
 - (NSDictionary*) lookupMovieListings:(NSString*) localHash {
     NSString* host = [Application host];
 
-    NSString* serverHash = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&hash=true", host] 
+    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&hash=true", host] 
                                                         important:YES];
     if (serverHash == nil) {
         serverHash = @"0";
@@ -59,7 +60,7 @@
         return [NSDictionary dictionary];
     }
 
-    NSString* movieListings = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic", host]
+    NSString* movieListings = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic", host]
                                                            important:YES];
 
     if (movieListings != nil) {

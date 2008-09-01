@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "MovieNumbers.h"
+#import "NetworkUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
@@ -176,7 +177,7 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?q=index", [Application host]];
-    XmlElement* result = [Utilities xmlWithContentsOfAddress:url important:NO];
+    XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
 
     if (result == nil) {
         return;
@@ -238,7 +239,7 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?id=%@", [Application host], numbers.identifier];
-    XmlElement* result = [Utilities xmlWithContentsOfAddress:url important:NO];
+    XmlElement* result = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
 
     if (result == nil) {
         return;
