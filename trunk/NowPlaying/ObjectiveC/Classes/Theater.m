@@ -23,7 +23,7 @@
 @synthesize address;
 @synthesize phoneNumber;
 @synthesize sellsTickets;
-@synthesize movieIdentifiers;
+@synthesize movieTitles;
 @synthesize originatingPostalCode;
 
 - (void) dealloc {
@@ -32,7 +32,7 @@
     self.address = nil;
     self.phoneNumber = nil;
     self.sellsTickets = nil;
-    self.movieIdentifiers = nil;
+    self.movieTitles = nil;
     self.originatingPostalCode = nil;
 
     [super dealloc];
@@ -45,7 +45,7 @@
                                   address:[dictionary objectForKey:@"address"]
                               phoneNumber:[dictionary objectForKey:@"phoneNumber"]
                              sellsTickets:[dictionary objectForKey:@"sellsTickets"]
-                         movieIdentifiers:[dictionary objectForKey:@"movieIdentifiers"]
+                              movieTitles:[dictionary objectForKey:@"movieTitles"]
                     originatingPostalCode:[dictionary objectForKey:@"originatingPostalCode"]];
 }
 
@@ -55,7 +55,7 @@
                        address:(NSString*) address_
                    phoneNumber:(NSString*) phoneNumber_
                   sellsTickets:(NSString*) sellsTickets_
-              movieIdentifiers:(NSArray*) movieIdentifiers_
+                   movieTitles:(NSArray*) movieTitles_
          originatingPostalCode:(NSString*) originatingPostalCode_ {
     if (self = [self init]) {
         self.identifier = identifier_;
@@ -63,7 +63,7 @@
         self.address = [address_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.phoneNumber = phoneNumber_ != nil ? phoneNumber_ : @"";
         self.sellsTickets = sellsTickets_;
-        self.movieIdentifiers = movieIdentifiers_;
+        self.movieTitles = movieTitles_;
         self.originatingPostalCode = originatingPostalCode_;
     }
 
@@ -76,14 +76,14 @@
                            address:(NSString*) address
                        phoneNumber:(NSString*) phoneNumber
                       sellsTickets:(NSString*) sellsTickets
-                  movieIdentifiers:(NSArray*) movieIdentifiers
+                       movieTitles:(NSArray*) movieTitles
              originatingPostalCode:(NSString*) originatingPostalCode {
     return [[[Theater alloc] initWithIdentifier:identifier
                                            name:name
                                         address:address
                                     phoneNumber:phoneNumber
                                    sellsTickets:sellsTickets
-                               movieIdentifiers:movieIdentifiers
+                                    movieTitles:movieTitles
                           originatingPostalCode:originatingPostalCode] autorelease];
 }
 
@@ -95,7 +95,7 @@
     [dictionary setObject:address               forKey:@"address"];
     [dictionary setObject:phoneNumber           forKey:@"phoneNumber"];
     [dictionary setObject:sellsTickets          forKey:@"sellsTickets"];
-    [dictionary setObject:movieIdentifiers      forKey:@"movieIdentifiers"];
+    [dictionary setObject:movieTitles           forKey:@"movieTitles"];
     [dictionary setObject:originatingPostalCode forKey:@"originatingPostalCode"];
     return dictionary;
 }
@@ -108,14 +108,12 @@
 
 - (BOOL) isEqual:(id) anObject {
     Theater* other = anObject;
-    return
-    [identifier isEqual:other.identifier] &&
-    [name isEqual:other.name];
+    return [name isEqual:other.name];
 }
 
 
 - (NSUInteger) hash {
-    return identifier.hash + name.hash;
+    return name.hash;
 }
 
 

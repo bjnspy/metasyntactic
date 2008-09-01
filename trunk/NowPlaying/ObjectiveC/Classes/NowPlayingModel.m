@@ -602,7 +602,7 @@ static NSString* persistenceVersion = @"14";
     NSMutableArray* array = [NSMutableArray array];
 
     for (Theater* theater in self.theaters) {
-        if ([theater.movieIdentifiers containsObject:movie.identifier]) {
+        if ([theater.movieTitles containsObject:movie.canonicalTitle]) {
             [array addObject:theater];
         }
     }
@@ -615,7 +615,7 @@ static NSString* persistenceVersion = @"14";
     NSMutableArray* array = [NSMutableArray array];
 
     for (Movie* movie in self.movies) {
-        if ([theater.movieIdentifiers containsObject:movie.identifier]) {
+        if ([theater.movieTitles containsObject:movie.canonicalTitle]) {
             [array addObject:movie];
         }
     }

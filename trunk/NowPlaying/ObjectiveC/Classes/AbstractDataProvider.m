@@ -128,13 +128,13 @@
 }
 
 
-- (NSString*) performancesFile:(NSString*) identifier parentFolder:(NSString*) folder {
-    return [[folder stringByAppendingPathComponent:identifier] stringByAppendingPathExtension:@"plist"];
+- (NSString*) performancesFile:(NSString*) theaterName parentFolder:(NSString*) folder {
+    return [[folder stringByAppendingPathComponent:[Application sanitizeFileName:theaterName]] stringByAppendingPathExtension:@"plist"];
 }
 
 
-- (NSString*) performancesFile:(NSString*) identifier {
-    return [self performancesFile:identifier parentFolder:[self performancesFolder]];
+- (NSString*) performancesFile:(NSString*) theaterName {
+    return [self performancesFile:theaterName parentFolder:self.performancesFolder];
 }
 
 
@@ -144,13 +144,13 @@
         [self saveArray:result.theaters to:self.theatersFile];
 
         NSString* tempFolder = [Application uniqueTemporaryFolder];
-        for (NSString* key in result.performances) {
-            NSMutableDictionary* value = [result.performances objectForKey:key];
+        for (NSString* theaterName in result.performances) {
+            NSMutableDictionary* value = [result.performances objectForKey:theaterName];
             if ([value objectForKey:@"SynchronizationDate"] == nil) {
                 [value setObject:[DateUtilities today] forKey:@"SynchronizationDate"];
             }
 
-            [Utilities writeObject:value toFile:[self performancesFile:key parentFolder:tempFolder]];
+            [Utilities writeObject:value toFile:[self performancesFile:theaterName parentFolder:tempFolder]];
         }
 
         [[NSFileManager defaultManager] removeItemAtPath:self.performancesFolder error:NULL];
@@ -162,11 +162,11 @@
 
 
 - (NSMutableDictionary*) lookupTheaterPerformances:(Theater*) theater {
-    NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.identifier];
+    NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.name];
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
-                               [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.identifier]]];
-        [self.performancesData setObject:theaterPerformances forKey:theater.identifier];
+                               [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.name]]];
+        [self.performancesData setObject:theaterPerformances forKey:theater.name];
     }
     return theaterPerformances;
 }
@@ -175,7 +175,7 @@
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
     NSMutableDictionary* theaterPerformances = [self lookupTheaterPerformances:theater];
 
-    NSArray* unsureArray = [theaterPerformances objectForKey:movie.identifier];
+    NSArray* unsureArray = [theaterPerformances objectForKey:movie.canonicalTitle];
     if (unsureArray.count == 0) {
         return [NSArray array];
     }
@@ -189,7 +189,7 @@
         [decodedArray addObject:[Performance performanceWithDictionary:encodedPerformance]];
     }
 
-    [theaterPerformances setObject:decodedArray forKey:movie.identifier];
+    [theaterPerformances setObject:decodedArray forKey:movie.canonicalTitle];
     return decodedArray;
 }
 
@@ -259,7 +259,7 @@
 
 
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater {
-    return [[performancesData objectForKey:theater.identifier] objectForKey:@"SynchronizationDate"];
+    return [[self lookupTheaterPerformances:theater] objectForKey:@"SynchronizationDate"];
 }
 
 

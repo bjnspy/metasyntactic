@@ -51,11 +51,13 @@
 }
 
 
-- (NSMutableDictionary*) processFandangoShowtimes:(XmlElement*) moviesElement {
+- (NSMutableDictionary*) processFandangoShowtimes:(XmlElement*) moviesElement
+                                movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
     for (XmlElement* movieElement in moviesElement.children) {
         NSString* movieId = [movieElement attributeValue:@"id"];
+        NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
 
         XmlElement* performancesElement = [movieElement element:@"performances"];
 
@@ -76,7 +78,7 @@
             [performances addObject:performance.dictionary];
         }
 
-        [dictionary setObject:performances forKey:movieId];
+        [dictionary setObject:performances forKey:movieTitle];
     }
 
     return dictionary;
@@ -87,18 +89,16 @@
                               theaters:(NSMutableArray*) theaters
                           performances:(NSMutableDictionary*) performances
                  originatingPostalCode:(NSString*) originatingPostalCode
-                            theaterIds:(NSArray*) theaterIds {
-    NSString* identifier = [theaterElement attributeValue:@"id"];
-    if (theaterIds != nil && ![theaterIds containsObject:identifier]) {
+                          theaterNames:(NSArray*) theaterNames
+                     movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
+    
+    NSString* name = [theaterElement element:@"name"].text;
+    if (theaterNames != nil && ![theaterNames containsObject:name]) {
         return;
     }
-
+    
+    NSString* identifier = [theaterElement attributeValue:@"id"];
     NSString* sellsTickets = [theaterElement attributeValue:@"iswired"];
-    //if (![@"True" isEqual:sellsTickets]) {
-    //    return;
-    //}
-
-    NSString* name =       [theaterElement element:@"name"].text;
     NSString* address =    [theaterElement element:@"address1"].text;
     NSString* city =       [theaterElement element:@"city"].text;
     NSString* state =      [theaterElement element:@"state"].text;
@@ -113,13 +113,14 @@
     }
 
     XmlElement* moviesElement = [theaterElement element:@"movies"];
-    NSMutableDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement];
+    NSMutableDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement
+                                                            movieIdToMovieMap:movieIdToMovieMap];
 
     if (movieToShowtimesMap.count == 0) {
         // no showtime information available.  fallback to anything we've
         // stored (but warn the user).
 
-        NSString* performancesFile = [super performancesFile:identifier];
+        NSString* performancesFile = [self performancesFile:name];
         NSDictionary* oldPerformances = [NSDictionary dictionaryWithContentsOfFile:performancesFile];
 
         if (oldPerformances.count > 0) {
@@ -127,20 +128,21 @@
         }
     }
 
-    [performances setObject:movieToShowtimesMap forKey:identifier];
+    [performances setObject:movieToShowtimesMap forKey:name];
     [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                   name:name
                                                address:fullAddress
                                            phoneNumber:phone
                                           sellsTickets:sellsTickets
-                                      movieIdentifiers:movieToShowtimesMap.allKeys
+                                           movieTitles:movieToShowtimesMap.allKeys
                                  originatingPostalCode:originatingPostalCode]];
 }
 
 
 - (NSArray*) processFandangoTheaters:(XmlElement*) theatersElement
                           postalCode:(NSString*) postalCode
-                          theaterIds:(NSArray*) theaterIds {
+                        theaterNames:(NSArray*) theaterNames
+                   movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
 
@@ -149,7 +151,8 @@
                                    theaters:theaters
                                performances:performances
                       originatingPostalCode:postalCode
-                                 theaterIds:theaterIds];
+                               theaterNames:theaterNames
+                          movieIdToMovieMap:movieIdToMovieMap];
     }
 
     return [NSArray arrayWithObjects:theaters, performances, nil];
@@ -169,8 +172,8 @@
 }
 
 
-- (NSMutableArray*) processFandangoMovies:(XmlElement*) moviesElement {
-    NSMutableArray* array = [NSMutableArray array];
+- (NSDictionary*) processFandangoMovies:(XmlElement*) moviesElement {
+    NSMutableDictionary* movieIdToMovieMap = [NSMutableDictionary dictionary];
 
     for (XmlElement* movieElement in moviesElement.children) {
         NSString* identifier = [movieElement attributeValue:@"id"];
@@ -201,24 +204,27 @@
                                              cast:cast
                                            genres:genres];
 
-        [array addObject:movie];
+        [movieIdToMovieMap setObject:movie forKey:identifier];
     }
 
-    return array;
+    return movieIdToMovieMap;
 }
 
 
 - (LookupResult*) processFandangoElement:(XmlElement*) element
                               postalCode:(NSString*) postalCode
-                              theaterIds:(NSArray*) theaterIds {
+                            theaterNames:(NSArray*) theaterNames {
     XmlElement* dataElement = [element element:@"data"];
     XmlElement* moviesElement = [dataElement element:@"movies"];
     XmlElement* theatersElement = [dataElement element:@"theaters"];
 
-    NSMutableArray* movies = [self processFandangoMovies:moviesElement];
+    NSDictionary* movieIdToMovieMap = [self processFandangoMovies:moviesElement];
     NSArray* theatersAndPerformances = [self processFandangoTheaters:theatersElement
                                                           postalCode:postalCode
-                                                          theaterIds:theaterIds];
+                                                        theaterNames:theaterNames
+                                                   movieIdToMovieMap:movieIdToMovieMap];
+    
+    NSMutableArray* movies = [NSMutableArray arrayWithArray:movieIdToMovieMap.allValues];
     NSMutableArray* theaters = [theatersAndPerformances objectAtIndex:0];
     NSMutableDictionary* performances = [theatersAndPerformances objectAtIndex:1];
 
@@ -259,7 +265,7 @@
 
 
 - (LookupResult*) lookupLocation:(NSString*) location
-                      theaterIds:(NSArray*) theaterIds {
+                    theaterNames:(NSArray*) theaterNames {
     if (![Utilities isNilOrEmpty:location]) {
         Location* actualLocation = [self.model.addressLocationCache downloadAddressLocation:location];
         if (actualLocation.postalCode == nil) {
@@ -283,7 +289,7 @@
         if (element != nil) {
             return [self processFandangoElement:element
                                      postalCode:actualLocation.postalCode
-                                     theaterIds:theaterIds];
+                                   theaterNames:theaterNames];
         }
     }
 
@@ -309,32 +315,32 @@
         }
     }
     
-    NSMutableSet* movieIds = [NSMutableSet set];
+    NSMutableSet* movieTitles = [NSMutableSet set];
     for (Movie* movie in lookupResult.movies) {
-        [movieIds addObject:movie.identifier];
+        [movieTitles addObject:movie.canonicalTitle];
     }
     
     for (NSString* postalCode in postalCodeToMissingTheaters.allKeys) {
         NSArray* missingTheaters = [postalCodeToMissingTheaters objectsForKey:postalCode];
-        NSMutableArray* theaterIds = [NSMutableArray array];
+        NSMutableArray* theaterNames = [NSMutableArray array];
         for (Theater* theater in missingTheaters) {
-            [theaterIds addObject:theater.identifier];
+            [theaterNames addObject:theater.name];
         }
         
         LookupResult* favoritesLookupResult = [self lookupLocation:postalCode
-                                                        theaterIds:theaterIds];
+                                                      theaterNames:theaterNames];
         
         [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
         [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
         
         // the theater may refer to movies that we don't know about.
-        for (NSString* theaterId in favoritesLookupResult.performances.allKeys) {
-            for (NSString* movieId in [[favoritesLookupResult.performances objectForKey:theaterId] allKeys]) {
-                if (![movieIds containsObject:movieId]) {
-                    [movieIds addObject:movieId];
+        for (NSString* theaterName in favoritesLookupResult.performances.allKeys) {
+            for (NSString* movieTitle in [[favoritesLookupResult.performances objectForKey:theaterName] allKeys]) {
+                if (![movieTitles containsObject:movieTitle]) {
+                    [movieTitles addObject:movieTitle];
                     
                     for (Movie* movie in favoritesLookupResult.movies) {
-                        if ([movie.identifier isEqual:movieId]) {
+                        if ([movie.canonicalTitle isEqual:movieTitle]) {
                             [lookupResult.movies addObject:movie];
                             break;
                         }
@@ -347,7 +353,7 @@
 
 
 - (LookupResult*) lookupWorker {
-    LookupResult* result = [self lookupLocation:self.model.userLocation theaterIds:nil];
+    LookupResult* result = [self lookupLocation:self.model.userLocation theaterNames:nil];
     [self lookupMissingFavorites:result];
     return result;
 }
