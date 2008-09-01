@@ -22,6 +22,7 @@
 #import "LookupResult.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
+#import "NetworkUtilities.h"
 #import "Performance.h"
 #import "Theater.h"
 #import "Utilities.h"
@@ -308,7 +309,7 @@
                                components.month,
                                components.day];
 
-        XmlElement* element = [Utilities xmlWithContentsOfAddress:url 
+        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url 
                                                         important:YES];
 
         if (element != nil) {

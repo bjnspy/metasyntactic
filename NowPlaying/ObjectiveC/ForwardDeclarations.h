@@ -51,6 +51,7 @@
 @class MovieTitleCell;
 @class MoviesNavigationController;
 @class MultiDictionary;
+@class NetworkUtilities;
 @class NorthAmericaDataProvider;
 @class NotificationCenter;
 @class NumbersCache;

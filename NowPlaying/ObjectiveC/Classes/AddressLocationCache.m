@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "Location.h"
+#import "NetworkUtilities.h"
 #import "Theater.h"
 #import "Utilities.h"
 #import "XmlElement.h"
@@ -87,7 +88,7 @@
     if (escapedAddress != nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
 
-        XmlElement* element = [Utilities xmlWithContentsOfAddress:url important:NO];
+        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
         return [self processResult:element];
     }
 

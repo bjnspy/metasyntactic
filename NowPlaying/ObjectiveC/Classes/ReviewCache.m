@@ -19,6 +19,7 @@
 #import "Application.h"
 #import "NowPlayingModel.h"
 #import "ExtraMovieInformation.h"
+#import "NetworkUtilities.h"
 #import "Review.h"
 #import "Utilities.h"
 
@@ -109,7 +110,7 @@
 
 - (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", [Application host], info.link];
-    NSString* reviewPage = [Utilities stringWithContentsOfAddress:url important:NO];
+    NSString* reviewPage = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
 
     if (reviewPage != nil) {
         return [self extractReviews:reviewPage];
@@ -161,7 +162,7 @@
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
         if (info.link.length > 0) {
             NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&hash=true", [Application host], info.link];
-            NSString* serverHash = [Utilities stringWithContentsOfAddress:url important:NO];
+            NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
             if (serverHash == nil) {
                 serverHash = @"0";
             }

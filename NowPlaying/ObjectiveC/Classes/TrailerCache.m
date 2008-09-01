@@ -19,6 +19,7 @@
 #import "Application.h"
 #import "DifferenceEngine.h"
 #import "Movie.h"
+#import "NetworkUtilities.h"
 #import "Utilities.h"
 
 @implementation TrailerCache
@@ -133,7 +134,7 @@
     NSString* movieTitle = [movieTitles objectAtIndex:index];
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
-    NSString* trailersString = [Utilities stringWithContentsOfAddress:url
+    NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url
                                                             important:NO];
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
 
@@ -175,7 +176,7 @@
         [NSThread setThreadPriority:0.0];
 
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-        NSString* index = [Utilities stringWithContentsOfAddress:url important:NO];
+        NSString* index = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
         if (index == nil) {
             return;
         }

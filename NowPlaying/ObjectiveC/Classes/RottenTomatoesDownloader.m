@@ -17,8 +17,9 @@
 #import "RottenTomatoesDownloader.h"
 
 #import "Application.h"
-#import "NowPlayingModel.h"
 #import "ExtraMovieInformation.h"
+#import "NowPlayingModel.h"
+#import "NetworkUtilities.h"
 #import "Utilities.h"
 
 @implementation RottenTomatoesDownloader
@@ -46,7 +47,7 @@
 
 
 - (NSDictionary*) lookupMovieListings:(NSString*) localHash {
-    NSString* serverHash = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&hash=true", [Application host]]
+    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&hash=true", [Application host]]
                                                         important:YES];
     if (serverHash == nil) {
         serverHash = @"0";
@@ -57,7 +58,7 @@
         return [NSDictionary dictionary];
     }
 
-    NSString* movieListings = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes", [Application host]]
+    NSString* movieListings = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes", [Application host]]
                                                            important:YES];
 
     if (movieListings != nil) {

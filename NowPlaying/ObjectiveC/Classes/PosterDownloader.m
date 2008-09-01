@@ -19,6 +19,7 @@
 #import "ApplePosterDownloader.h"
 #import "ImdbPosterDownloader.h"
 #import "Movie.h"
+#import "NetworkUtilities.h"
 #import "Utilities.h"
 
 @implementation PosterDownloader
@@ -41,7 +42,7 @@
 
 
 - (NSData*) go {
-    NSData* data = [Utilities dataWithContentsOfAddress:movie.poster important:NO];
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
     if (data != nil) {
         return data;
     }
