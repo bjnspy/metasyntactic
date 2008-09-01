@@ -19,9 +19,12 @@
 @implementation TextFieldEditorViewController
 
 @synthesize textField;
+@synthesize messageLabel;
 
 - (void) dealloc {
     self.textField = nil;
+    self.messageLabel = nil;
+
     [super dealloc];
 }
 
@@ -31,6 +34,7 @@
                    object:(id) object_
                  selector:(SEL) selector_
                      text:(NSString*) text
+                  message:(NSString*) message
               placeHolder:(NSString*) placeHolder
                      type:(UIKeyboardType) type {
     if (self = [super initWithController:controller withObject:object_ withSelector:selector_]) {
@@ -44,7 +48,15 @@
         textField.font = [UIFont boldSystemFontOfSize:17];
         textField.keyboardType = type;
         textField.clearButtonMode = UITextFieldViewModeWhileEditing;
+        textField.delegate = self;
+        textField.autocorrectionType = UITextAutocorrectionTypeNo;
 
+        self.messageLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
+        messageLabel.backgroundColor = [UIColor clearColor];
+        messageLabel.text = message;
+        messageLabel.textColor = [UIColor grayColor];
+        [messageLabel sizeToFit];
+        
         self.title = title;
     }
 
@@ -54,11 +66,16 @@
 
 - (void) loadView {
     [super loadView];
-
+    
     [self.view addSubview:textField];
-    CGRect frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);
-    textField.frame = frame;
-
+    textField.frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);;
+            
+    [self.view addSubview:messageLabel];
+    CGRect frame = messageLabel.frame;
+    frame.origin.x = 20;
+    frame.origin.y = 90;
+    messageLabel.frame = frame;
+    
     [textField becomeFirstResponder];
 }
 
@@ -67,6 +84,12 @@
     NSString* trimmedValue = [textField.text stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
     [object performSelector:selector withObject:trimmedValue];
     [super save:sender];
+}
+
+
+- (BOOL) textFieldShouldClear:(UITextField*) textField {
+    messageLabel.text = @"";
+    return YES;
 }
 
 

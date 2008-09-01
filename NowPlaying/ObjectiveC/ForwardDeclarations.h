@@ -41,6 +41,7 @@
 @class ImageCache;
 @class ImdbPosterDownloader;
 @class Location;
+@class LocationUtilities;
 @class LookupResult;
 @class MetacriticDownloader;
 @class Movie;

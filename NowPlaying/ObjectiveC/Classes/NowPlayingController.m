@@ -78,7 +78,7 @@
 
 
 - (void) spawnDataProviderLookupThread {
-    if ([Utilities isNilOrEmpty:self.model.postalCode]) {
+    if ([Utilities isNilOrEmpty:self.model.userLocation]) {
         return;
     }
 
@@ -212,12 +212,12 @@
 }
 
 
-- (void) setPostalCode:(NSString*) postalCode {
-    if ([postalCode isEqual:self.model.postalCode]) {
+- (void) setUserLocation:(NSString*) userLocation {
+    if ([userLocation isEqual:self.model.userLocation]) {
         return;
     }
 
-    [self.model setPostalCode:postalCode];
+    [self.model setUserLocation:userLocation];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController popNavigationControllersToRoot];
     [appDelegate.tabBarController refresh];

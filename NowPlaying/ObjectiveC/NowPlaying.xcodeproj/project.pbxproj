@@ -134,6 +134,7 @@
 		74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
 		74F949020E6B892F00075068 /* Warning-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F949010E6B892F00075068 /* Warning-16x16.png */; };
 		74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */; };
+		74F94C8D0E6BB34800075068 /* LocationUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F94C8C0E6BB34800075068 /* LocationUtilities.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -364,6 +365,8 @@
 		74F949010E6B892F00075068 /* Warning-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-16x16.png"; path = "Resources/Warning-16x16.png"; sourceTree = "<group>"; };
 		74F94A9E0E6B9ECB00075068 /* NetworkUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkUtilities.h; sourceTree = "<group>"; };
 		74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkUtilities.m; sourceTree = "<group>"; };
+		74F94C8B0E6BB34800075068 /* LocationUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationUtilities.h; sourceTree = "<group>"; };
+		74F94C8C0E6BB34800075068 /* LocationUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationUtilities.m; sourceTree = "<group>"; };
 		74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieOverviewCell.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -529,6 +532,8 @@
 				747A9FB10E2AFBDD000AE1D9 /* DateUtilities.m */,
 				74F94A9E0E6B9ECB00075068 /* NetworkUtilities.h */,
 				74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */,
+				74F94C8B0E6BB34800075068 /* LocationUtilities.h */,
+				74F94C8C0E6BB34800075068 /* LocationUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -970,6 +975,7 @@
 				74EC36400E67BC7D0084F7E0 /* NumbersCache.m in Sources */,
 				74A3F0500E686A7D007ED6DC /* MovieNumbers.m in Sources */,
 				74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */,
+				74F94C8D0E6BB34800075068 /* LocationUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

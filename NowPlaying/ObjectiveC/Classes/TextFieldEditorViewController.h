@@ -16,17 +16,20 @@
 
 #import "EditorViewController.h"
 
-@interface TextFieldEditorViewController : EditorViewController {
+@interface TextFieldEditorViewController : EditorViewController<UITextFieldDelegate> {
     UITextField* textField;
+    UILabel* messageLabel;
 }
 
 @property (retain) UITextField* textField;
+@property (retain) UILabel* messageLabel;
 
 - (id) initWithController:(AbstractNavigationController*) navigationController
                     title:(NSString*) title
                    object:(id) object
                  selector:(SEL) selector
                      text:(NSString*) text
+                  message:(NSString*) message
               placeHolder:(NSString*) placeHolder
                      type:(UIKeyboardType) type;
 

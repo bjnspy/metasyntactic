@@ -29,7 +29,4 @@
                          performance:(Performance*) performance
                                 date:(NSDate*) date;
 
-- (LookupResult*) lookupPostalCode:(NSString*) postalCode
-                        theaterIds:(NSArray*) theaterIds;
-
 @end

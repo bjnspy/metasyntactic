@@ -16,8 +16,10 @@
 
 #import "NorthAmericaDataProvider.h"
 
+#import "AddressLocationCache.h"
 #import "Application.h"
 #import "DateUtilities.h"
+#import "Location.h"
 #import "LookupResult.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
@@ -226,61 +228,6 @@
 }
 
 
-- (void) lookupMissingFavorites:(LookupResult*) lookupResult {
-    if (lookupResult == nil) {
-        return;
-    }
-
-    NSArray* favoriteTheaters = self.model.favoriteTheaters;
-    if (favoriteTheaters.count == 0) {
-        return;
-    }
-
-    MultiDictionary* postalCodeToMissingTheaters = [MultiDictionary dictionary];
-
-    for (Theater* theater in favoriteTheaters) {
-        if (![lookupResult.theaters containsObject:theater]) {
-            [postalCodeToMissingTheaters addObject:theater forKey:theater.originatingPostalCode];
-        }
-    }
-
-    NSMutableSet* movieIds = [NSMutableSet set];
-    for (Movie* movie in lookupResult.movies) {
-        [movieIds addObject:movie.identifier];
-    }
-
-    for (NSString* postalCode in postalCodeToMissingTheaters.allKeys) {
-        NSArray* missingTheaters = [postalCodeToMissingTheaters objectsForKey:postalCode];
-        NSMutableArray* theaterIds = [NSMutableArray array];
-        for (Theater* theater in missingTheaters) {
-            [theaterIds addObject:theater.identifier];
-        }
-
-        LookupResult* favoritesLookupResult = [self lookupPostalCode:postalCode
-                                                          theaterIds:theaterIds];
-
-        [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
-        [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
-
-        // the theater may refer to movies that we don't know about.
-        for (NSString* theaterId in favoritesLookupResult.performances.allKeys) {
-            for (NSString* movieId in [[favoritesLookupResult.performances objectForKey:theaterId] allKeys]) {
-                if (![movieIds containsObject:movieId]) {
-                    [movieIds addObject:movieId];
-
-                    for (Movie* movie in favoritesLookupResult.movies) {
-                        if ([movie.identifier isEqual:movieId]) {
-                            [lookupResult.movies addObject:movie];
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-
 - (NSString*) trimPostalCode:(NSString*) postalCode {
     NSMutableString* trimmed = [NSMutableString string];
     for (NSInteger i = 0; i < postalCode.length; i++) {
@@ -293,10 +240,10 @@
 }
 
 
-- (void) reportUnknownLocation:(NSString*) postalCode {
+- (void) reportUnknownLocation {
     if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(reportUnknownLocation:)
-                               withObject:postalCode 
+        [self performSelectorOnMainThread:@selector(reportUnknownLocation)
+                               withObject:nil 
                             waitUntilDone:NO];
         return;
     }
@@ -311,11 +258,13 @@
 }
 
 
-- (LookupResult*) lookupPostalCode:(NSString*) postalCode
-                        theaterIds:(NSArray*) theaterIds {
-    if (![Utilities isNilOrEmpty:postalCode]) {
-        //[self reportUnknownLocation:postalCode];
-        //Location* location = [[self.model addressLocationCache] downloadAddressLocation:postalCode];
+- (LookupResult*) lookupLocation:(NSString*) location
+                      theaterIds:(NSArray*) theaterIds {
+    if (![Utilities isNilOrEmpty:location]) {
+        Location* actualLocation = [self.model.addressLocationCache downloadAddressLocation:location];
+        if (actualLocation.postalCode == nil) {
+            [self reportUnknownLocation];
+        }
 
         NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                        fromDate:self.model.searchDate];
@@ -323,7 +272,7 @@
         NSString* url = [NSString stringWithFormat:
                                @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                                [Application host],
-                               [self trimPostalCode:postalCode],
+                               [self trimPostalCode:actualLocation.postalCode],
                                components.year,
                                components.month,
                                components.day];
@@ -333,8 +282,8 @@
 
         if (element != nil) {
             return [self processFandangoElement:element
-                                                         postalCode:postalCode
-                                                         theaterIds:theaterIds];
+                                     postalCode:actualLocation.postalCode
+                                     theaterIds:theaterIds];
         }
     }
 
@@ -342,8 +291,63 @@
 }
 
 
+- (void) lookupMissingFavorites:(LookupResult*) lookupResult {
+    if (lookupResult == nil) {
+        return;
+    }
+    
+    NSArray* favoriteTheaters = self.model.favoriteTheaters;
+    if (favoriteTheaters.count == 0) {
+        return;
+    }
+    
+    MultiDictionary* postalCodeToMissingTheaters = [MultiDictionary dictionary];
+    
+    for (Theater* theater in favoriteTheaters) {
+        if (![lookupResult.theaters containsObject:theater]) {
+            [postalCodeToMissingTheaters addObject:theater forKey:theater.originatingPostalCode];
+        }
+    }
+    
+    NSMutableSet* movieIds = [NSMutableSet set];
+    for (Movie* movie in lookupResult.movies) {
+        [movieIds addObject:movie.identifier];
+    }
+    
+    for (NSString* postalCode in postalCodeToMissingTheaters.allKeys) {
+        NSArray* missingTheaters = [postalCodeToMissingTheaters objectsForKey:postalCode];
+        NSMutableArray* theaterIds = [NSMutableArray array];
+        for (Theater* theater in missingTheaters) {
+            [theaterIds addObject:theater.identifier];
+        }
+        
+        LookupResult* favoritesLookupResult = [self lookupLocation:postalCode
+                                                        theaterIds:theaterIds];
+        
+        [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
+        [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
+        
+        // the theater may refer to movies that we don't know about.
+        for (NSString* theaterId in favoritesLookupResult.performances.allKeys) {
+            for (NSString* movieId in [[favoritesLookupResult.performances objectForKey:theaterId] allKeys]) {
+                if (![movieIds containsObject:movieId]) {
+                    [movieIds addObject:movieId];
+                    
+                    for (Movie* movie in favoritesLookupResult.movies) {
+                        if ([movie.identifier isEqual:movieId]) {
+                            [lookupResult.movies addObject:movie];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 - (LookupResult*) lookupWorker {
-    LookupResult* result = [self lookupPostalCode:self.model.postalCode theaterIds:nil];
+    LookupResult* result = [self lookupLocation:self.model.userLocation theaterIds:nil];
     [self lookupMissingFavorites:result];
     return result;
 }

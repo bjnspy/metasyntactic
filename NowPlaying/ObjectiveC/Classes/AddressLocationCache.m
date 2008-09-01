@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "Location.h"
+#import "LocationUtilities.h"
 #import "NetworkUtilities.h"
 #import "Theater.h"
 #import "Utilities.h"
@@ -61,21 +62,38 @@
 
 - (Location*) processResult:(XmlElement*) resultElement {
     if (resultElement != nil) {
-        NSString* latitude = [resultElement attributeValue:@"latitude"];
-        NSString* longitude = [resultElement attributeValue:@"longitude"];
-        NSString* address = [resultElement attributeValue:@"address"];
-        NSString* city = [resultElement attributeValue:@"city"];
-        NSString* country = [resultElement attributeValue:@"country"];
+        NSString* latitude =    [resultElement attributeValue:@"latitude"];
+        NSString* longitude =   [resultElement attributeValue:@"longitude"];
+        NSString* address =     [resultElement attributeValue:@"address"];
+        NSString* city =        [resultElement attributeValue:@"city"];
+        NSString* state =       [resultElement attributeValue:@"state"];
+        NSString* country =     [resultElement attributeValue:@"country"];
+        NSString* postalCode =  [resultElement attributeValue:@"zipcode"];
 
         if (![Utilities isNilOrEmpty:latitude] && ![Utilities isNilOrEmpty:longitude]) {
             return [Location locationWithLatitude:latitude.doubleValue
                                         longitude:longitude.doubleValue
                                           address:address
                                              city:city
+                                            state:state
+                                       postalCode:postalCode
                                           country:country];
         }
     }
 
+    return nil;
+}
+
+
+- (Location*) downloadAddressLocationFromWebServiceWorker:(NSString*) address {
+    NSString* escapedAddress = [Utilities stringByAddingPercentEscapes:address];
+    if (escapedAddress != nil) {
+        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
+        
+        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
+        return [self processResult:element];
+    }
+    
     return nil;
 }
 
@@ -85,15 +103,25 @@
         return nil;
     }
 
-    NSString* escapedAddress = [Utilities stringByAddingPercentEscapes:address];
-    if (escapedAddress != nil) {
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
-
-        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
-        return [self processResult:element];
+    Location* result = [self downloadAddressLocationFromWebServiceWorker:address];
+    if (result != nil && 
+        [Utilities isNilOrEmpty:result.postalCode] &&
+        result.latitude != 0 && result.longitude != 0) {
+        
+        CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
+        NSString* postalCode = [LocationUtilities findPostalCode:location];
+        if (![Utilities isNilOrEmpty:postalCode]) {
+            return [Location locationWithLatitude:result.latitude
+                                        longitude:result.longitude
+                                          address:result.address 
+                                             city:result.city 
+                                            state:result.state
+                                       postalCode:postalCode
+                                          country:result.country];
+        }
     }
-
-    return nil;
+    
+    return result;
 }
 
 
@@ -169,11 +197,6 @@
 }
 
 
-- (Location*) locationForPostalCode:(NSString*) postalCode {
-    return [self locationForAddress:postalCode];
-}
-
-
 - (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     {
@@ -192,7 +215,7 @@
         return;
     }
 
-    if ([self locationForPostalCode:postalCode] != nil) {
+    if ([self locationForAddress:postalCode] != nil) {
         return;
     }
 
@@ -203,7 +226,7 @@
 
 - (NSDictionary*) theaterDistanceMap:(NSString*) userPostalCode
                             theaters:(NSArray*) theaters {
-    Location* userLocation = [self locationForPostalCode:userPostalCode];
+    Location* userLocation = [self locationForAddress:userPostalCode];
 
     NSMutableDictionary* theaterDistanceMap = [cachedTheaterDistanceMap objectForKey:userPostalCode];
     if (theaterDistanceMap == nil) {

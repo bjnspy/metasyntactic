@@ -117,8 +117,8 @@ enum ViewControllerType {
 - (BOOL) autoUpdateLocation;
 - (void) setAutoUpdateLocation:(BOOL) value;
 
-- (NSString*) postalCode;
-- (void) setPostalCode:(NSString*) postalCode;
+- (NSString*) userLocation;
+- (void) setUserLocation:(NSString*) userLocation;
 
 - (NSInteger) searchRadius;
 - (void) setSearchRadius:(NSInteger) searchRadius;
@@ -174,7 +174,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 + (NSString*) SEARCH_DATES;
 + (NSString*) SEARCH_RESULTS;
 + (NSString*) SEARCH_RADIUS;
-+ (NSString*) POSTAL_CODE;
 + (NSString*) SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX;
 + (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX;
 + (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX;
