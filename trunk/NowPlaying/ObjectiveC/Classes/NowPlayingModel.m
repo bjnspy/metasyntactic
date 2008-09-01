@@ -578,7 +578,7 @@ static NSString* persistenceVersion = @"14";
     for (int i = 0; i < array.count; i++) {
         Theater* currentTheater = [array objectAtIndex:i];
 
-        if ([currentTheater.identifier isEqual:theater.identifier]) {
+        if ([currentTheater.name isEqual:theater.name]) {
             [array removeObjectAtIndex:i];
             break;
         }
