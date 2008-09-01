@@ -232,21 +232,25 @@
 }
 
 
-+ (NSString*) stringWithContentsOfAddress:(NSString*) address {
++ (NSString*) stringWithContentsOfAddress:(NSString*) address
+                                important:(BOOL) important {
     if (address == nil) {
         return nil;
     }
 
-    return [Utilities stringWithContentsOfUrl:[NSURL URLWithString:address]];
+    return [Utilities stringWithContentsOfUrl:[NSURL URLWithString:address]
+                                    important:important];
 }
 
 
-+ (NSString*) stringWithContentsOfUrl:(NSURL*) url {
++ (NSString*) stringWithContentsOfUrl:(NSURL*) url
+                            important:(BOOL) important {
     if (url == nil) {
         return nil;
     }
 
-    NSData* data = [Utilities dataWithContentsOfUrl:url];
+    NSData* data = [Utilities dataWithContentsOfUrl:url
+                                          important:important];
     if (data == nil) {
         return nil;
     }
@@ -261,35 +265,42 @@
 }
 
 
-+ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address {
++ (XmlElement*) xmlWithContentsOfAddress:(NSString*) address
+                               important:(BOOL) important {
     if (address == nil) {
         return nil;
     }
 
-    return [Utilities xmlWithContentsOfUrl:[NSURL URLWithString:address]];
+    return [Utilities xmlWithContentsOfUrl:[NSURL URLWithString:address]
+                                 important:important];
 }
 
 
-+ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url {
++ (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url
+                           important:(BOOL) important {
     if (url == nil) {
         return nil;
     }
 
-    NSData* data = [Utilities dataWithContentsOfUrl:url];
+    NSData* data = [Utilities dataWithContentsOfUrl:url
+                                          important:important];
     return [XmlParser parse:data];
 }
 
 
-+ (NSData*) dataWithContentsOfAddress:(NSString*) address {
++ (NSData*) dataWithContentsOfAddress:(NSString*) address
+                            important:(BOOL) important {
     if (address == nil) {
         return nil;
     }
 
-    return [Utilities dataWithContentsOfUrl:[NSURL URLWithString:address]];
+    return [Utilities dataWithContentsOfUrl:[NSURL URLWithString:address]
+                                  important:important];
 }
 
 
-+ (NSData*) dataWithContentsOfUrl:(NSURL*) url {
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url
+                        important:(BOOL) important {
     NSAssert(![NSThread isMainThread], @"");
 
     if (url == nil) {

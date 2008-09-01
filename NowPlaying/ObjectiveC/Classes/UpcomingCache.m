@@ -138,7 +138,8 @@
 - (NSDictionary*) updateMoviesListWorker {
     NSString* localHash = [index objectForKey:@"Hash"];
 
-    NSString* serverHash = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]];
+    NSString* serverHash = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
+                                                        important:NO];
     if (serverHash == nil) {
         serverHash = @"0";
     }
@@ -148,7 +149,8 @@
         return [NSDictionary dictionary];
     }
 
-    XmlElement* resultElement = [Utilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]];
+    XmlElement* resultElement = [Utilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index", [Application host]]
+                                                          important:NO];
 
     NSMutableDictionary* studioKeys = [NSMutableDictionary dictionary];
     NSMutableDictionary* titleKeys = [NSMutableDictionary dictionary];
@@ -226,7 +228,8 @@
         return;
     }
 
-    NSData* data = [Utilities dataWithContentsOfAddress:movie.poster];
+    NSData* data = [Utilities dataWithContentsOfAddress:movie.poster
+                                              important:NO];
     if (data != nil) {
         [data writeToFile:posterFile atomically:YES];
     }
@@ -247,7 +250,7 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@", [Application host], studio, title];
-    NSString* synopsis = [Utilities stringWithContentsOfAddress:url];
+    NSString* synopsis = [Utilities stringWithContentsOfAddress:url important:NO];
 
     if (![Utilities isNilOrEmpty:synopsis]) {
         [Utilities writeObject:synopsis toFile:synopsisFile];
@@ -268,9 +271,9 @@
             return;
         }
     }
-
+    
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, title];
-    NSString* trailersString = [Utilities stringWithContentsOfAddress:url];
+    NSString* trailersString = [Utilities stringWithContentsOfAddress:url important:NO];
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
 
     if (trailers.count) {

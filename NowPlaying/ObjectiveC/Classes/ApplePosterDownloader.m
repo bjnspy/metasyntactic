@@ -31,7 +31,7 @@ static NSDictionary* movieNameToPosterMap = nil;
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupPosterListings", [Application host]];
-    NSString* index = [Utilities stringWithContentsOfAddress:url];
+    NSString* index = [Utilities stringWithContentsOfAddress:url important:NO];
     if (index == nil) {
         return;
     }
@@ -66,7 +66,7 @@ static NSDictionary* movieNameToPosterMap = nil;
     }
 
     NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
-    return [Utilities dataWithContentsOfAddress:posterUrl];
+    return [Utilities dataWithContentsOfAddress:posterUrl important:NO];
 }
 
 @end
