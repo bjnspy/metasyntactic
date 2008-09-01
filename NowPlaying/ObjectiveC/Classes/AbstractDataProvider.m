@@ -17,6 +17,7 @@
 #import "AbstractDataProvider.h"
 
 #import "Application.h"
+#import "DateUtilities.h"
 #import "NowPlayingModel.h"
 #import "LookupResult.h"
 #import "Movie.h"
@@ -29,13 +30,13 @@
 @synthesize model;
 @synthesize moviesData;
 @synthesize theatersData;
-@synthesize performances;
+@synthesize performancesData;
 
 - (void) dealloc {
     self.model = nil;
     self.moviesData = nil;
     self.theatersData = nil;
-    self.performances = nil;
+    self.performancesData = nil;
 
     [super dealloc];
 }
@@ -45,7 +46,7 @@
     if (self = [super init]) {
         self.model = model_;
         [Application createDirectory:[self providerFolder]];
-        self.performances = [NSMutableDictionary dictionary];
+        self.performancesData = [NSMutableDictionary dictionary];
     }
 
     return self;
@@ -144,7 +145,10 @@
 
         NSString* tempFolder = [Application uniqueTemporaryFolder];
         for (NSString* key in result.performances) {
-            NSDictionary* value = [result.performances objectForKey:key];
+            NSMutableDictionary* value = [result.performances objectForKey:key];
+            if ([value objectForKey:@"SynchronizationDate"] == nil) {
+                [value setObject:[DateUtilities today] forKey:@"SynchronizationDate"];
+            }
 
             [Utilities writeObject:value toFile:[self performancesFile:key parentFolder:tempFolder]];
         }
@@ -158,11 +162,11 @@
 
 
 - (NSMutableDictionary*) lookupTheaterPerformances:(Theater*) theater {
-    NSMutableDictionary* theaterPerformances = [performances objectForKey:theater.identifier];
+    NSMutableDictionary* theaterPerformances = [performancesData objectForKey:theater.identifier];
     if (theaterPerformances == nil) {
         theaterPerformances = [NSMutableDictionary dictionaryWithDictionary:
                                [NSDictionary dictionaryWithContentsOfFile:[self performancesFile:theater.identifier]]];
-        [self.performances setObject:theaterPerformances forKey:theater.identifier];
+        [self.performancesData setObject:theaterPerformances forKey:theater.identifier];
     }
     return theaterPerformances;
 }
@@ -248,9 +252,14 @@
     if (result.movies.count > 0 || result.theaters.count > 0) {
         self.moviesData = result.movies;
         self.theatersData = result.theaters;
-        self.performances = [NSMutableDictionary dictionary];
+        self.performancesData = [NSMutableDictionary dictionary];
         [self.model onProviderUpdated];
     }
+}
+
+
+- (NSDate*) synchronizationDateForTheater:(Theater*) theater {
+    return [[performancesData objectForKey:theater.identifier] objectForKey:@"SynchronizationDate"];
 }
 
 

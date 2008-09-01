@@ -18,27 +18,21 @@
 
 #import "ColorCache.h"
 #import "FontCache.h"
+#import "ImageCache.h"
 #import "Performance.h"
 
 @implementation MovieShowtimesCell
 
-@synthesize headerLabel;
 @synthesize showtimesLabel;
 @synthesize showtimes;
 @synthesize useSmallFonts;
 
 - (void) dealloc {
-    self.headerLabel = nil;
     self.showtimesLabel = nil;
     self.showtimes = nil;
     self.useSmallFonts = NO;
 
     [super dealloc];
-}
-
-
-+ (NSString*) showsString {
-    return NSLocalizedString(@"Shows", @"This string must be kept small. Preferably 6 characters or less");
 }
 
 
@@ -64,7 +58,9 @@
 }
 
 
-+ (CGFloat) heightForShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts {
++ (CGFloat) heightForShowtimes:(NSArray*) showtimes
+                         stale:(BOOL) stale
+                 useSmallFonts:(BOOL) useSmallFonts {
     NSString* string = [MovieShowtimesCell showtimesString:showtimes];
     UIFont* font = [MovieShowtimesCell showtimesFont:useSmallFonts];
 
@@ -75,12 +71,15 @@
         width = [UIScreen mainScreen].bounds.size.width;
     }
 
-    // screen - outer margin - inner margin - space between labels;
-    width -= (20 + (8 + 18) + 8);
-
-    NSString* showsString = [MovieShowtimesCell showsString];
-    double showsWidth = [showsString sizeWithFont:font].width;
-    width -= showsWidth;
+    width -= 20; // outer margin
+    
+    if (stale) {
+        width -= 32; // image
+    } else {
+        width -= 8; // left inner margin
+    }
+    
+    width -= 18; // accessory
 
     return [string sizeWithFont:font
               constrainedToSize:CGSizeMake(width, 2000)
@@ -98,35 +97,43 @@
         showtimesLabel.numberOfLines = 0;
         showtimesLabel.lineBreakMode = UILineBreakModeWordWrap;
 
-        self.headerLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        headerLabel.textColor = [ColorCache commandColor];
-        headerLabel.text = [MovieShowtimesCell showsString];
-
         [self.contentView addSubview:showtimesLabel];
-        [self.contentView addSubview:headerLabel];
     }
 
     return self;
 }
 
 
+- (void) setStale:(BOOL) stale {
+    if (stale) {
+        self.image = [ImageCache warning16x16];
+    } else {
+        self.image = nil;
+    }
+}
+
+
 - (void) layoutSubviews {
     [super layoutSubviews];
 
-    CGRect headerFrame = headerLabel.frame;
-    headerFrame.origin.x = 8;
-    headerFrame.origin.y = 9;
-    headerLabel.frame = headerFrame;
-
     CGRect showtimesFrame = showtimesLabel.frame;
-    showtimesFrame.origin.x = headerFrame.origin.x + headerFrame.size.width + 8;
-    showtimesFrame.origin.y = headerFrame.origin.y;
+    if (self.image == nil) {
+        showtimesFrame.origin.x = 8;
+    } else {
+        showtimesFrame.origin.x = 32;
+    }
+    showtimesFrame.origin.y = 9;
 
     double width = self.frame.size.width;
-    width -= 20 + (8 + 18) + 8;
-    width -= headerFrame.size.width;
+    width -= 20; // outer margin
+    width -= showtimesFrame.origin.x; // image
+    width -= 18; // accessory
+    
     showtimesFrame.size.width = width;
-    showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimes useSmallFonts:useSmallFonts];
+    showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimes
+                                                                  stale:(self.image != nil)
+                                                          useSmallFonts:useSmallFonts];
+    
     showtimesLabel.frame = showtimesFrame;
 }
 
@@ -137,10 +144,6 @@
     self.useSmallFonts = useSmallFonts_;
 
     showtimesLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
-    headerLabel.font = [MovieShowtimesCell showtimesFont:useSmallFonts];
-
-    [headerLabel sizeToFit];
-
     showtimesLabel.text = [MovieShowtimesCell showtimesString:showtimes];
 }
 
@@ -149,10 +152,8 @@
             animated:(BOOL) animated {
     [super setSelected:selected animated:animated];
     if (selected) {
-        headerLabel.textColor = [UIColor whiteColor];
         showtimesLabel.textColor = [UIColor whiteColor];
     } else {
-        headerLabel.textColor = [ColorCache commandColor];
         showtimesLabel.textColor = [UIColor blackColor];
     }
 }

@@ -24,7 +24,7 @@
 @synthesize phoneNumber;
 @synthesize sellsTickets;
 @synthesize movieIdentifiers;
-@synthesize originatingPostalCode;
+@synthesize originatingPostalCode;;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -50,13 +50,13 @@
 }
 
 
-- (id)         initWithIdentifier:(NSString*) identifier_
-                             name:(NSString*) name_
-                          address:(NSString*) address_
-                      phoneNumber:(NSString*) phoneNumber_
-                     sellsTickets:(NSString*) sellsTickets_
-                 movieIdentifiers:(NSArray*) movieIdentifiers_
-            originatingPostalCode:(NSString*) originatingPostalCode_ {
+- (id)      initWithIdentifier:(NSString*) identifier_
+                          name:(NSString*) name_
+                       address:(NSString*) address_
+                   phoneNumber:(NSString*) phoneNumber_
+                  sellsTickets:(NSString*) sellsTickets_
+              movieIdentifiers:(NSArray*) movieIdentifiers_
+         originatingPostalCode:(NSString*) originatingPostalCode_ {
     if (self = [self init]) {
         self.identifier = identifier_;
         self.name = [name_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
@@ -77,7 +77,7 @@
                        phoneNumber:(NSString*) phoneNumber
                       sellsTickets:(NSString*) sellsTickets
                   movieIdentifiers:(NSArray*) movieIdentifiers
-             originatingPostalCode:(NSString*) originatingPostalCode{
+             originatingPostalCode:(NSString*) originatingPostalCode {
     return [[[Theater alloc] initWithIdentifier:identifier
                                            name:name
                                         address:address
@@ -90,13 +90,13 @@
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:identifier            forKey:@"identifier"];
-    [dictionary setObject:name                  forKey:@"name"];
-    [dictionary setObject:address               forKey:@"address"];
-    [dictionary setObject:phoneNumber           forKey:@"phoneNumber"];
-    [dictionary setObject:sellsTickets          forKey:@"sellsTickets"];
-    [dictionary setObject:movieIdentifiers      forKey:@"movieIdentifiers"];
-    [dictionary setObject:originatingPostalCode forKey:@"originatingPostalCode"];
+    [dictionary setObject:identifier                        forKey:@"identifier"];
+    [dictionary setObject:name                              forKey:@"name"];
+    [dictionary setObject:address                           forKey:@"address"];
+    [dictionary setObject:phoneNumber                       forKey:@"phoneNumber"];
+    [dictionary setObject:sellsTickets                      forKey:@"sellsTickets"];
+    [dictionary setObject:movieIdentifiers                  forKey:@"movieIdentifiers"];
+    [dictionary setObject:originatingPostalCode             forKey:@"originatingPostalCode"];
     return dictionary;
 }
 

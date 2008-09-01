@@ -53,6 +53,8 @@
                             theater:(Theater*) theater
                        performances:(NSArray*) performances;
 
++ (NSString*) generateShowtimesRetrievedOnString:(NSDate*) syncDate;
+
 + (XmlElement*) xmlWithContentsOfAddress:(NSString*) address;
 + (XmlElement*) xmlWithContentsOfUrl:(NSURL*) url;
 + (NSString*) stringWithContentsOfAddress:(NSString*) address;

@@ -24,6 +24,7 @@
 - (NSArray*) movies;
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
+- (NSDate*) synchronizationDateForTheater:(Theater*) theater;
 
 - (NSString*) ticketingUrlForTheater:(Theater*) theater
                                movie:(Movie*) movie

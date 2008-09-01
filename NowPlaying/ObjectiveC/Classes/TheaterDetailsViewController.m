@@ -100,8 +100,8 @@
         self.theater = theater_;
         self.navigationController = controller;
 
-        NSInteger (*sortFunction)(id, id, void *) = compareMoviesByTitle;
-        self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:sortFunction context:self.model];
+        self.movies = [[self.model moviesAtTheater:theater] sortedArrayUsingFunction:compareMoviesByTitle
+                                                                             context:self.model];
 
         self.movieShowtimes = [NSMutableArray array];
         for (Movie* movie in movies) {
@@ -265,6 +265,7 @@
             return tableView.rowHeight;
         } else {
             return [MovieShowtimesCell heightForShowtimes:[movieShowtimes objectAtIndex:section]
+                                                    stale:NO
                                             useSmallFonts:self.model.useSmallFonts] + 18;
         }
     }
@@ -356,10 +357,16 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    if (section == 1 && movies.count == 0) {
-        return [NSString stringWithFormat:
-                NSLocalizedString(@"This theater has not yet reported its show times. When they become available, %@ will retrieve them automatically.", nil),
-                [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+    if (section == 1) {
+        if (movies.count == 0) {
+            return [NSString stringWithFormat:
+                    NSLocalizedString(@"This theater has not yet reported its show times. "
+                                      "When they become available, %@ will retrieve them automatically.", nil),
+                    [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
+        }
+        
+        NSDate* syncDate = [self.model synchronizationDateForTheater:theater];
+        return [Utilities generateShowtimesRetrievedOnString:syncDate];
     }
 
     return nil;
