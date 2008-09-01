@@ -44,8 +44,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"1.6.0";
-static NSString* persistenceVersion = @"10";
+static NSString* currentVersion = @"1.6.1";
+static NSString* persistenceVersion = @"12";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -114,6 +114,7 @@ static NSString* persistenceVersion = @"10";
 
 
 - (void) updateNumbersCache {
+    return;
     [numbersCache updateIndex];
 }
 
@@ -640,6 +641,18 @@ static NSString* persistenceVersion = @"10";
 
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
     return [self.currentDataProvider moviePerformances:movie forTheater:theater];
+}
+
+
+- (NSDate*) synchronizationDateForTheater:(Theater*) theater {
+    return [self.currentDataProvider synchronizationDateForTheater:theater];
+}
+
+
+- (BOOL) isStale:(Theater*) theater {
+    NSDate* today = [DateUtilities today];
+    
+    return (NSOrderedAscending == [[self synchronizationDateForTheater:theater] compare:today]);    
 }
 
 

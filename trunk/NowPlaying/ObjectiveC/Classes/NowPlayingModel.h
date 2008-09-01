@@ -141,6 +141,8 @@ enum ViewControllerType {
 - (NSArray*) moviesAtTheater:(Theater*) theater;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
 - (NSString*) simpleAddressForTheater:(Theater*) theater;
+- (NSDate*) synchronizationDateForTheater:(Theater*) theater;
+- (BOOL) isStale:(Theater*) theater;
 
 - (NSDictionary*) theaterDistanceMap;
 - (NSArray*) theatersInRange:(NSArray*) theaters;

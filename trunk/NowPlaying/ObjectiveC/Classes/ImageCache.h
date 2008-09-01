@@ -36,4 +36,6 @@
 + (UIImage*) downArrow;
 + (UIImage*) neutralSquare;
 
++ (UIImage*) warning16x16;
+
 @end

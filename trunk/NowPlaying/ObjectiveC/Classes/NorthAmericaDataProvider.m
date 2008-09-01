@@ -48,7 +48,7 @@
 }
 
 
-+ (NSDictionary*) processFandangoShowtimes:(XmlElement*) moviesElement {
+- (NSMutableDictionary*) processFandangoShowtimes:(XmlElement*) moviesElement {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
     for (XmlElement* movieElement in moviesElement.children) {
@@ -80,7 +80,7 @@
 }
 
 
-+ (void) processFandangoTheaterElement:(XmlElement*) theaterElement
+- (void) processFandangoTheaterElement:(XmlElement*) theaterElement
                               theaters:(NSMutableArray*) theaters
                           performances:(NSMutableDictionary*) performances
                  originatingPostalCode:(NSString*) originatingPostalCode
@@ -110,8 +110,20 @@
     }
 
     XmlElement* moviesElement = [theaterElement element:@"movies"];
-    NSDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement];
+    NSMutableDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement];
 
+    if (movieToShowtimesMap.count == 0) {
+        // no showtime information available.  fallback to anything we've 
+        // stored (but warn the user).
+        
+        NSString* performancesFile = [super performancesFile:identifier];
+        NSDictionary* oldPerformances = [NSDictionary dictionaryWithContentsOfFile:performancesFile];
+        
+        if (oldPerformances.count > 0) {
+            movieToShowtimesMap = [NSMutableDictionary dictionaryWithDictionary:oldPerformances];
+        }
+    }
+    
     [performances setObject:movieToShowtimesMap forKey:identifier];
     [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                   name:name
@@ -123,7 +135,7 @@
 }
 
 
-+ (NSArray*) processFandangoTheaters:(XmlElement*) theatersElement
+- (NSArray*) processFandangoTheaters:(XmlElement*) theatersElement
                           postalCode:(NSString*) postalCode
                           theaterIds:(NSArray*) theaterIds {
     NSMutableArray* theaters = [NSMutableArray array];
@@ -141,7 +153,7 @@
 }
 
 
-+ (NSArray*) processCast:(XmlElement*) element {
+- (NSArray*) processCast:(XmlElement*) element {
     if (element == nil) {
         return [NSArray array];
     }
@@ -154,7 +166,7 @@
 }
 
 
-+ (NSMutableArray*) processFandangoMovies:(XmlElement*) moviesElement {
+- (NSMutableArray*) processFandangoMovies:(XmlElement*) moviesElement {
     NSMutableArray* array = [NSMutableArray array];
 
     for (XmlElement* movieElement in moviesElement.children) {
@@ -193,7 +205,7 @@
 }
 
 
-+ (LookupResult*) processFandangoElement:(XmlElement*) element
+- (LookupResult*) processFandangoElement:(XmlElement*) element
                               postalCode:(NSString*) postalCode
                               theaterIds:(NSArray*) theaterIds {
     XmlElement* dataElement = [element element:@"data"];
@@ -299,7 +311,7 @@
         XmlElement* element = [Utilities xmlWithContentsOfAddress:url];
 
         if (element != nil) {
-            return [NorthAmericaDataProvider processFandangoElement:element
+            return [self processFandangoElement:element
                                                          postalCode:postalCode
                                                          theaterIds:theaterIds];
         }

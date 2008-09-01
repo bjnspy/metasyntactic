@@ -153,8 +153,13 @@
 
 - (NSString*)       tableView:(UITableView*) tableView
       titleForFooterInSection:(NSInteger) section {
-    if (section == 1 && performances.count == 0) {
-        return NSLocalizedString(@"No show times available today.", nil);
+    if (section == 1) {
+        if (performances.count == 0) {
+            return NSLocalizedString(@"No more show times available today.", nil);
+        } else {
+            NSDate* syncDate = [self.model synchronizationDateForTheater:theater];
+            return [Utilities generateShowtimesRetrievedOnString:syncDate];
+        }
     }
 
     return nil;
@@ -327,6 +332,7 @@
         [self didSelectShowtimeAtRow:indexPath.row];
     }
 }
+
 
 
 @end

@@ -19,13 +19,13 @@
     NSArray* moviesData;
     NSArray* theatersData;
 
-    NSMutableDictionary* performances;
+    NSMutableDictionary* performancesData;
 }
 
 @property (retain) NowPlayingModel* model;
 @property (retain) NSArray* moviesData;
 @property (retain) NSArray* theatersData;
-@property (retain) NSMutableDictionary* performances;
+@property (retain) NSMutableDictionary* performancesData;
 
 - (id) initWithModel:(NowPlayingModel*) model;
 
@@ -35,11 +35,15 @@
 - (NSArray*) movies;
 - (NSArray*) theaters;
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
+- (NSDate*) synchronizationDateForTheater:(Theater*) theater;
 
 - (void) setStale;
 - (NSDate*) lastLookupDate;
 
 - (void) lookup;
 - (LookupResult*) lookupWorker;
+
+/* @protected */
+- (NSString*) performancesFile:(NSString*) identifier;
 
 @end

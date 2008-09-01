@@ -15,21 +15,22 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface MovieShowtimesCell : UITableViewCell {
-    UILabel* headerLabel;
     UILabel* showtimesLabel;
 
     NSArray* showtimes;
     BOOL useSmallFonts;
 }
 
-@property (retain) UILabel* headerLabel;
 @property (retain) UILabel* showtimesLabel;
 @property (retain) NSArray* showtimes;
 @property BOOL useSmallFonts;
 
+- (void) setStale:(BOOL) stale;
 - (void) setShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts;
 
 + (NSString*) showtimesString:(NSArray*) showtimes;
-+ (CGFloat) heightForShowtimes:(NSArray*) showtimes useSmallFonts:(BOOL) useSmallFonts;
++ (CGFloat) heightForShowtimes:(NSArray*) showtimes
+                         stale:(BOOL) stale
+                 useSmallFonts:(BOOL) useSmallFonts;
 
 @end

@@ -132,6 +132,7 @@
 		74F3B2DA0E3CEF6000DD25DA /* AbstractDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B2D90E3CEF6000DD25DA /* AbstractDataProvider.m */; };
 		74F3B2E70E3CF02400DD25DA /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B2E60E3CF02400DD25DA /* LookupResult.m */; };
 		74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
+		74F949020E6B892F00075068 /* Warning-16x16.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F949010E6B892F00075068 /* Warning-16x16.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -359,6 +360,7 @@
 		74F65B300DCE47BC0085A39C /* ImdbPosterDownloader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImdbPosterDownloader.h; sourceTree = "<group>"; };
 		74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImdbPosterDownloader.m; sourceTree = "<group>"; };
 		74F6D0590E6754B200943D78 /* NowPlaying_Prefix.pch */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 4; path = NowPlaying_Prefix.pch; sourceTree = "<group>"; };
+		74F949010E6B892F00075068 /* Warning-16x16.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-16x16.png"; path = "Resources/Warning-16x16.png"; sourceTree = "<group>"; };
 		74FCC4C30E61DCF2003D15F4 /* MovieOverviewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieOverviewCell.h; sourceTree = "<group>"; };
 		8D1107310486CEB800E47090 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -450,6 +452,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				74F949010E6B892F00075068 /* Warning-16x16.png */,
 				740224540E53F323006C58A2 /* Localizable.strings */,
 				74A3EF750E67DA45007ED6DC /* DownArrow.png */,
 				7479DC240E66127100D91649 /* Movies.png */,
@@ -873,6 +876,7 @@
 				74A3EF770E67DA45007ED6DC /* DownArrow.png in Resources */,
 				74A3EF780E67DA45007ED6DC /* UpArrow.png in Resources */,
 				74A3F03A0E686817007ED6DC /* NeutralSquare.png in Resources */,
+				74F949020E6B892F00075068 /* Warning-16x16.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
