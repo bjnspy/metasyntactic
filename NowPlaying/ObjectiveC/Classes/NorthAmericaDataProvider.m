@@ -293,9 +293,28 @@
 }
 
 
+- (void) reportUnknownLocation:(NSString*) postalCode {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(reportUnknownLocation:)
+                               withObject:postalCode 
+                            waitUntilDone:NO];
+        return;
+    }
+    
+    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
+                                                     message:NSLocalizedString(@"Could not find location.", nil) 
+                                                    delegate:nil 
+                                           cancelButtonTitle:NSLocalizedString(@"OK", nil) 
+                                           otherButtonTitles:nil] autorelease];
+    
+    [alert show];
+}
+
+
 - (LookupResult*) lookupPostalCode:(NSString*) postalCode
                         theaterIds:(NSArray*) theaterIds {
     if (![Utilities isNilOrEmpty:postalCode]) {
+        //[self reportUnknownLocation:postalCode];
         //Location* location = [[self.model addressLocationCache] downloadAddressLocation:postalCode];
 
         NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)

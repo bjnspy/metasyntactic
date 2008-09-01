@@ -345,16 +345,6 @@ static NSString* persistenceVersion = @"12";
 }
 
 
-- (BOOL) useKilometers {
-    // yeah... so the UK supposedly uses metric...
-    // except they don't. so we special case them to stick with 'miles' in the UI.
-    BOOL isMetric = [[[NSLocale currentLocale] objectForKey:NSLocaleUsesMetricSystem] boolValue];
-    BOOL isUK = [@"GB" isEqual:[[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]];
-
-    return isMetric && !isUK;
-}
-
-
 - (NSInteger) selectedTabBarViewControllerIndex {
     return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX]];
 }
@@ -668,8 +658,7 @@ static NSString* persistenceVersion = @"12";
 
 - (NSDictionary*) theaterDistanceMap {
     return [addressLocationCache theaterDistanceMap:self.postalCode
-                                           theaters:self.theaters
-                                      useKilometers:self.useKilometers];
+                                           theaters:self.theaters];
 }
 
 

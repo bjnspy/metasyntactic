@@ -16,6 +16,8 @@
 
 #import "Location.h"
 
+#import "Application.h"
+
 @implementation Location
 
 @synthesize latitude;
@@ -84,7 +86,7 @@
     return dict;
 }
 
-- (double) distanceTo:(Location*) to useKilometers:(BOOL) useKilometers {
+- (double) distanceTo:(Location*) to {
     const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
     const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
 
@@ -106,7 +108,7 @@
     acos(sin(lat2) * sin(lat1) +
          cos(lat2) * cos(lat1) * cos(diff));
 
-    if (useKilometers) {
+    if ([Application useKilometers]) {
         distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
     } else {
         distance *= GREAT_CIRCLE_RADIUS_MILES;

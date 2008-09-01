@@ -31,6 +31,7 @@
 - (void) dealloc {
     self.gate = nil;
     self.cachedTheaterDistanceMap = nil;
+
     [super dealloc];
 }
 
@@ -201,8 +202,7 @@
 
 
 - (NSDictionary*) theaterDistanceMap:(NSString*) userPostalCode
-                            theaters:(NSArray*) theaters
-                       useKilometers:(BOOL) useKilometers {
+                            theaters:(NSArray*) theaters {
     Location* userLocation = [self locationForPostalCode:userPostalCode];
 
     NSMutableDictionary* theaterDistanceMap = [cachedTheaterDistanceMap objectForKey:userPostalCode];
@@ -212,7 +212,7 @@
         for (Theater* theater in theaters) {
             double d;
             if (userLocation != nil) {
-                d = [userLocation distanceTo:[self locationForAddress:theater.address]  useKilometers:useKilometers];
+                d = [userLocation distanceTo:[self locationForAddress:theater.address]];
             } else {
                 d = UNKNOWN_DISTANCE;
             }

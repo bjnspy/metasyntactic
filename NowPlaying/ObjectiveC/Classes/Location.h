@@ -39,6 +39,6 @@
 
 - (NSDictionary*) dictionary;
 
-- (double) distanceTo:(Location*) to useKilometers:(BOOL) useKilometers;
+- (double) distanceTo:(Location*) to;
 
 @end
