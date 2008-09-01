@@ -16,7 +16,7 @@
 
 @interface NowPlayingAppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow* window;
-    IBOutlet ApplicationTabBarController* tabBarController;
+    ApplicationTabBarController* tabBarController;
     NotificationCenter* notificationCenter;
 
     NowPlayingModel* model;
