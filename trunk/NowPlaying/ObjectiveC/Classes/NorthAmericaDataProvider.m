@@ -308,7 +308,8 @@
                                components.month,
                                components.day];
 
-        XmlElement* element = [Utilities xmlWithContentsOfAddress:url];
+        XmlElement* element = [Utilities xmlWithContentsOfAddress:url 
+                                                        important:YES];
 
         if (element != nil) {
             return [self processFandangoElement:element

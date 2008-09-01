@@ -176,7 +176,7 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?q=index", [Application host]];
-    XmlElement* result = [Utilities xmlWithContentsOfAddress:url];
+    XmlElement* result = [Utilities xmlWithContentsOfAddress:url important:NO];
 
     if (result == nil) {
         return;
@@ -238,7 +238,7 @@
     }
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupNumbersListings?id=%@", [Application host], numbers.identifier];
-    XmlElement* result = [Utilities xmlWithContentsOfAddress:url];
+    XmlElement* result = [Utilities xmlWithContentsOfAddress:url important:NO];
 
     if (result == nil) {
         return;

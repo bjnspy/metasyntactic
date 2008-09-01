@@ -46,7 +46,8 @@
 
 
 - (NSDictionary*) lookupMovieListings:(NSString*) localHash {
-    NSString* serverHash = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&hash=true", [Application host]]];
+    NSString* serverHash = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&hash=true", [Application host]]
+                                                        important:YES];
     if (serverHash == nil) {
         serverHash = @"0";
     }
@@ -56,7 +57,8 @@
         return [NSDictionary dictionary];
     }
 
-    NSString* movieListings = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes", [Application host]]];
+    NSString* movieListings = [Utilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes", [Application host]]
+                                                           important:YES];
 
     if (movieListings != nil) {
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];

@@ -133,7 +133,8 @@
     NSString* movieTitle = [movieTitles objectAtIndex:index];
 
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
-    NSString* trailersString = [Utilities stringWithContentsOfAddress:url];
+    NSString* trailersString = [Utilities stringWithContentsOfAddress:url
+                                                            important:NO];
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
 
     if (trailers.count) {
@@ -174,7 +175,7 @@
         [NSThread setThreadPriority:0.0];
 
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-        NSString* index = [Utilities stringWithContentsOfAddress:url];
+        NSString* index = [Utilities stringWithContentsOfAddress:url important:NO];
         if (index == nil) {
             return;
         }

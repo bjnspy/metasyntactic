@@ -84,9 +84,9 @@
 
 
 - (LookupResult*) lookupWorker {
-    XmlElement* filmsElement      = [Utilities xmlWithContentsOfAddress:@"http://www.remotegoat.co.uk/f/11013/films.xml"];
-    XmlElement* venuesElement     = [Utilities xmlWithContentsOfAddress:@"http://www.remotegoat.co.uk/f/11013/films_venues.xml"];
-    XmlElement* screeningsElement = [Utilities xmlWithContentsOfAddress:@"http://www.remotegoat.co.uk/f/11013/films_screenings_today.xml"];
+    XmlElement* filmsElement      = [Utilities xmlWithContentsOfAddress:@"http://www.remotegoat.co.uk/f/11013/films.xml" important:YES];
+    XmlElement* venuesElement     = [Utilities xmlWithContentsOfAddress:@"http://www.remotegoat.co.uk/f/11013/films_venues.xml" important:YES];
+    XmlElement* screeningsElement = [Utilities xmlWithContentsOfAddress:@"http://www.remotegoat.co.uk/f/11013/films_screenings_today.xml" important:YES];
 
     //XmlElement* filmsElement      = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films.xml"];
     //XmlElement* venuesElement     = [Utilities downloadXml:@"http://www.remotegoat.co.uk/f/11013/films_venues.xml"];

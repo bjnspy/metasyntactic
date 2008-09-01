@@ -41,7 +41,7 @@
 
 
 - (NSData*) go {
-    NSData* data = [Utilities dataWithContentsOfAddress:movie.poster];
+    NSData* data = [Utilities dataWithContentsOfAddress:movie.poster important:NO];
     if (data != nil) {
         return data;
     }
