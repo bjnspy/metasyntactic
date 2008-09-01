@@ -274,7 +274,7 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
 
         NSString* value;
         if (IS_RETRIEVING(change)) {
-            value = NSLocalizedString(@"Retrieving...", nil);
+            value = NSLocalizedString(@"Retrieving data...", nil);
             [cell setValueColor:[UIColor grayColor]];
         } else if (IS_NOT_ENOUGH_DATA(change)) {
             value = NSLocalizedString(@"Not enough data", nil);
