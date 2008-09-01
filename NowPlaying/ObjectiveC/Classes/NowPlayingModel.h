@@ -22,8 +22,6 @@ enum ViewControllerType {
 };
 
 @interface NowPlayingModel : NSObject {
-    NotificationCenter* notificationCenter;
-
     AddressLocationCache* addressLocationCache;
     NumbersCache* numbersCache;
     PosterCache* posterCache;
@@ -45,8 +43,6 @@ enum ViewControllerType {
     NSArray* dataProviders;
 }
 
-@property (retain) NotificationCenter* notificationCenter;
-
 @property (retain) AddressLocationCache* addressLocationCache;
 @property (retain) NumbersCache* numbersCache;
 @property (retain) PosterCache* posterCache;
@@ -63,7 +59,7 @@ enum ViewControllerType {
 @property (retain) NSMutableArray* favoriteTheatersData;
 @property (retain) NSArray* dataProviders;
 
-+ (NowPlayingModel*) modelWithCenter:(NotificationCenter*) notificationCenter;
++ (NowPlayingModel*) model;
 
 + (NSString*) version;
 

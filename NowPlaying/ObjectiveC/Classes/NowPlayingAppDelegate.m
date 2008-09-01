@@ -17,7 +17,6 @@
 #import "NowPlayingAppDelegate.h"
 
 #import "ApplicationTabBarController.h"
-#import "NotificationCenter.h"
 #import "NowPlayingController.h"
 #import "NowPlayingModel.h"
 
@@ -27,27 +26,23 @@
 @synthesize controller;
 @synthesize model;
 @synthesize tabBarController;
-@synthesize notificationCenter;
 
 - (void) dealloc {
     self.window = nil;
     self.controller = nil;
     self.model = nil;
     self.tabBarController = nil;
-    self.notificationCenter = nil;
 
     [super dealloc];
 }
 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
-    self.notificationCenter = [NotificationCenter centerWithWindow:window];
-    self.model = [NowPlayingModel modelWithCenter:notificationCenter];
+    self.model = [NowPlayingModel model];
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
 
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
-    [notificationCenter addToWindow];
 
     self.controller = [NowPlayingController controllerWithAppDelegate:self];
     [tabBarController refresh];

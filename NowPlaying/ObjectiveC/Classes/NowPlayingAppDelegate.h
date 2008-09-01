@@ -17,7 +17,6 @@
 @interface NowPlayingAppDelegate : NSObject <UIApplicationDelegate> {
     IBOutlet UIWindow* window;
     ApplicationTabBarController* tabBarController;
-    NotificationCenter* notificationCenter;
 
     NowPlayingModel* model;
     NowPlayingController* controller;
@@ -27,6 +26,5 @@
 @property (retain) NowPlayingController* controller;
 @property (retain) NowPlayingModel* model;
 @property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) NotificationCenter* notificationCenter;
 
 @end
