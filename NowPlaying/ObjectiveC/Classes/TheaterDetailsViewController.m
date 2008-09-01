@@ -364,7 +364,7 @@
                                       "When they become available, %@ will retrieve them automatically.", nil),
                     [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleDisplayName"]];
         }
-        
+
         NSDate* syncDate = [self.model synchronizationDateForTheater:theater];
         return [Utilities generateShowtimesRetrievedOnString:syncDate];
     }

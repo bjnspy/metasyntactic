@@ -359,7 +359,7 @@ NSComparisonResult compareMoviesByTotalGross(id i1, id i2, void* context) {
     if (movieNumbers.count == 0) {
         return NSLocalizedString(@"Retrieving data...", nil);
     }
-    
+
     return [NSString stringWithFormat:@"#%d", section + 1];
 }
 

@@ -651,8 +651,8 @@ static NSString* persistenceVersion = @"12";
 
 - (BOOL) isStale:(Theater*) theater {
     NSDate* today = [DateUtilities today];
-    
-    return (NSOrderedAscending == [[self synchronizationDateForTheater:theater] compare:today]);    
+
+    return (NSOrderedAscending == [[self synchronizationDateForTheater:theater] compare:today]);
 }
 
 

@@ -55,7 +55,7 @@ static UIImage* warning16x16 = nil;
         upArrow             = [[UIImage imageNamed:@"UpArrow.png"] retain];
         downArrow           = [[UIImage imageNamed:@"DownArrow.png"] retain];
         neutralSquare       = [[UIImage imageNamed:@"NeutralSquare.png"] retain];
-        
+
         warning16x16        = [[UIImage imageNamed:@"Warning-16x16.png"] retain];
     }
 }

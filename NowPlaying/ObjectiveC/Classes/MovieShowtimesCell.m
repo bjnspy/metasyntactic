@@ -72,13 +72,13 @@
     }
 
     width -= 20; // outer margin
-    
+
     if (stale) {
         width -= 32; // image
     } else {
         width -= 8; // left inner margin
     }
-    
+
     width -= 18; // accessory
 
     return [string sizeWithFont:font
@@ -128,12 +128,12 @@
     width -= 20; // outer margin
     width -= showtimesFrame.origin.x; // image
     width -= 18; // accessory
-    
+
     showtimesFrame.size.width = width;
     showtimesFrame.size.height = [MovieShowtimesCell heightForShowtimes:showtimes
                                                                   stale:(self.image != nil)
                                                           useSmallFonts:useSmallFonts];
-    
+
     showtimesLabel.frame = showtimesFrame;
 }
 

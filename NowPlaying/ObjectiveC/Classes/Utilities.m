@@ -332,7 +332,7 @@
 
 + (NSString*) generateShowtimesRetrievedOnString:(NSDate*) syncDate {
     NSDate* today = [DateUtilities today];
-    
+
     if (NSOrderedAscending == [syncDate compare:today]) {
         // we're showing out of date information
         return [NSString stringWithFormat:
@@ -340,7 +340,7 @@
                 [DateUtilities formatLongDate:syncDate]];
     } else {
         return [NSString stringWithFormat:
-                NSLocalizedString(@"Show times retrieved on %@", nil), 
+                NSLocalizedString(@"Show times retrieved on %@", nil),
                 [DateUtilities formatLongDate:syncDate]];
     }
 }
