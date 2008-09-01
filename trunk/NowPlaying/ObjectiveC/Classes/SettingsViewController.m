@@ -220,7 +220,12 @@
             NSString* value;
             if (indexPath.row == 0) {
                 key = NSLocalizedString(@"Location", nil);
-                value = self.model.userLocation;
+                Location* location = [self.model.addressLocationCache locationForAddress:self.model.userLocation];
+                if (location.postalCode == nil) {
+                    value = self.model.userLocation;
+                } else {
+                    value = location.postalCode;
+                }
             } else if (indexPath.row == 1) {
                 key = NSLocalizedString(@"Search Distance", nil);
 
@@ -375,7 +380,7 @@
                                                               selector:@selector(onUserLocationChanged:)
                                                                   text:self.model.userLocation
                                                                message:message
-                                                           placeHolder:NSLocalizedString(@"Postal Code or Address", nil)
+                                                           placeHolder:NSLocalizedString(@"Postal Code or City/State", nil)
                                                                   type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
 
             [navigationController pushViewController:controller animated:YES];

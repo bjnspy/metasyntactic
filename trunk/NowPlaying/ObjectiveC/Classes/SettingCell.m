@@ -35,6 +35,9 @@
     if (self = [super initWithFrame:frame reuseIdentifier:reuseIdentifier]) {
         self.valueLabel = [[[UILabel alloc] initWithFrame:frame] autorelease];
         self.valueColor = [ColorCache commandColor];
+        
+        valueLabel.adjustsFontSizeToFitWidth = YES;
+        valueLabel.minimumFontSize = valueLabel.font.pointSize - 4;
 
         [self.contentView addSubview:valueLabel];
     }
@@ -49,7 +52,7 @@
     CGRect frame = valueLabel.frame;
     frame.origin.y = floor((self.contentView.frame.size.height - valueLabel.frame.size.height) / 2);
     frame.origin.x = self.contentView.frame.size.width - frame.size.width;
-
+    
     if (self.accessoryType == UITableViewCellAccessoryNone) {
         frame.origin.x -= 10;
     }
