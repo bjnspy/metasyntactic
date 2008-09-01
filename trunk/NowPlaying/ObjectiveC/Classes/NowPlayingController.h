@@ -30,7 +30,7 @@
 - (NowPlayingModel*) model;
 
 - (void) setSearchDate:(NSDate*) searchDate;
-- (void) setPostalCode:(NSString*) postalCode;
+- (void) setUserLocation:(NSString*) userLocation;
 - (void) setSearchRadius:(NSInteger) radius;
 - (void) setDataProviderIndex:(NSInteger) index;
 - (void) setRatingsProviderIndex:(NSInteger) index;

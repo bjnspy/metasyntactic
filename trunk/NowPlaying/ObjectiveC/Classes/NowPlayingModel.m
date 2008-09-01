@@ -45,13 +45,13 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"1.6.1";
-static NSString* persistenceVersion = @"12";
+static NSString* persistenceVersion = @"13";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
 + (NSString*) SEARCH_RESULTS                            { return @"searchResults"; }
 + (NSString*) SEARCH_RADIUS                             { return @"searchRadius"; }
-+ (NSString*) POSTAL_CODE                               { return @"postalCode"; }
++ (NSString*) USER_LOCATION                             { return @"userLocation"; }
 + (NSString*) SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX    { return @"selectedTabBarViewControllerIndex"; }
 + (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX         { return @"allMoviesSelectedSegmentIndex"; }
 + (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX       { return @"allTheatersSelectedSegmentIndex"; }
@@ -155,8 +155,8 @@ static NSString* persistenceVersion = @"12";
 }
 
 
-- (void) updatePostalCodeAddressLocation {
-    [addressLocationCache updatePostalCode:self.postalCode];
+- (void) updateUserAddressLocation {
+    [addressLocationCache updatePostalCode:self.userLocation];
 }
 
 
@@ -174,7 +174,7 @@ static NSString* persistenceVersion = @"12";
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel SEARCH_DATES]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel SEARCH_RESULTS]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel SEARCH_RADIUS]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel POSTAL_CODE]];
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel USER_LOCATION]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel NAVIGATION_STACK_TYPES]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel NAVIGATION_STACK_VALUES]];
         [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX]];
@@ -239,7 +239,7 @@ static NSString* persistenceVersion = @"12";
     } else if (value == 2) {
         [self updatePosterCache];
     } else if (value == 3) {
-        [self updatePostalCodeAddressLocation];
+        [self updateUserAddressLocation];
     } else if (value == 4) {
         [self updateReviewCache];
     } else if (value == 5) {
@@ -444,8 +444,8 @@ static NSString* persistenceVersion = @"12";
 }
 
 
-- (NSString*) postalCode {
-    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:[NowPlayingModel POSTAL_CODE]];
+- (NSString*) userLocation {
+    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:[NowPlayingModel USER_LOCATION]];
     if (result == nil) {
         result =  @"";
     }
@@ -657,7 +657,7 @@ static NSString* persistenceVersion = @"12";
 
 
 - (NSDictionary*) theaterDistanceMap {
-    return [addressLocationCache theaterDistanceMap:self.postalCode
+    return [addressLocationCache theaterDistanceMap:self.userLocation
                                            theaters:self.theaters];
 }
 
@@ -766,12 +766,12 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 
-- (void) setPostalCode:(NSString*) postalCode {
+- (void) setUserLocation:(NSString*) userLocation {
     [self markDataProvidersOutOfDate];
 
-    [[NSUserDefaults standardUserDefaults] setObject:postalCode forKey:[NowPlayingModel POSTAL_CODE]];
+    [[NSUserDefaults standardUserDefaults] setObject:userLocation forKey:[NowPlayingModel USER_LOCATION]];
 
-    [self updatePostalCodeAddressLocation];
+    [self updateUserAddressLocation];
 }
 
 
@@ -868,7 +868,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSString*) noLocationInformationFound {
-    if ([Utilities isNilOrEmpty:[self postalCode]]) {
+    if ([Utilities isNilOrEmpty:self.userLocation]) {
         return NSLocalizedString(@"Please enter your location", nil);
     } else {
         return NSLocalizedString(@"No information found", nil);

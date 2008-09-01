@@ -63,7 +63,7 @@
          //numbersNavigationController,
          settingsNavigationController, nil];
 
-        if ([Utilities isNilOrEmpty:self.model.postalCode]) {
+        if ([Utilities isNilOrEmpty:self.model.userLocation]) {
             self.selectedViewController = settingsNavigationController;
         } else {
             AbstractNavigationController* controller;

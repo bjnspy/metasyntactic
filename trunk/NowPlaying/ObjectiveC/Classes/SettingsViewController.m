@@ -17,10 +17,13 @@
 #import "SettingsViewController.h"
 
 #import "ActivityIndicator.h"
+#import "AddressLocationCache.h"
 #import "Application.h"
 #import "ColorCache.h"
 #import "CreditsViewController.h"
 #import "DateUtilities.h"
+#import "Location.h"
+#import "LocationUtilities.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "RatingsProviderViewController.h"
@@ -132,45 +135,10 @@
 }
 
 
-- (NSString*) findUSPostalCode:(CLLocation*) location {
-    CLLocationCoordinate2D coordinates = location.coordinate;
-    double latitude = coordinates.latitude;
-    double longitude = coordinates.longitude;
-    NSString* url = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", latitude, longitude];
-
-    XmlElement* geonamesElement = [NetworkUtilities xmlWithContentsOfAddress:url important:YES];
-    XmlElement* codeElement = [geonamesElement element:@"code"];
-    XmlElement* postalElement = [codeElement element:@"postalcode"];
-    XmlElement* countryElement = [codeElement element:@"countryCode"];
-
-    if ([@"CA" isEqual:countryElement.text]) {
-        return nil;
-    }
-
-    return postalElement.text;
-}
-
-
-- (NSString*) findCAPostalCode:(CLLocation*) location {
-    CLLocationCoordinate2D coordinates = location.coordinate;
-    double latitude = coordinates.latitude;
-    double longitude = coordinates.longitude;
-    NSString* url = [NSString stringWithFormat:@"http://geocoder.ca/?latt=%f&longt=%f&geoit=xml&reverse=Reverse+GeoCode+it", latitude, longitude];
-
-    XmlElement* geodataElement = [NetworkUtilities xmlWithContentsOfAddress:url
-                                                           important:YES];
-    XmlElement* postalElement = [geodataElement element:@"postal"];
-    return postalElement.text;
-}
-
-
 - (void) findPostalCode:(CLLocation*) location {
-    NSString* postalCode = [self findUSPostalCode:location];
-    if (postalCode == nil) {
-        postalCode = [self findCAPostalCode:location];
-    }
+    NSString* postalCode = [LocationUtilities findPostalCode:location];
 
-    [self performSelectorOnMainThread:@selector(reportFoundPostalCode:) withObject:postalCode waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:postalCode waitUntilDone:NO];
 }
 
 
@@ -252,7 +220,7 @@
             NSString* value;
             if (indexPath.row == 0) {
                 key = NSLocalizedString(@"Location", nil);
-                value = self.model.postalCode;
+                value = self.model.userLocation;
             } else if (indexPath.row == 1) {
                 key = NSLocalizedString(@"Search Distance", nil);
 
@@ -387,13 +355,27 @@
         [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
     } else if (section == 1) {
         if (row == 0) {
+            NSString* message;
+            
+            if ([Utilities isNilOrEmpty:self.model.userLocation]) {
+                message = @"";
+            } else {
+                Location* location = [self.model.addressLocationCache locationForAddress:self.model.userLocation];
+                if (location.postalCode == nil) {
+                    message = NSLocalizedString(@"Could not find location.", nil);
+                } else {
+                    message = [NSString stringWithFormat:@"%@, %@ %@, %@", location.city, location.state, location.postalCode, location.country];
+                }
+            }
+            
             TextFieldEditorViewController* controller =
             [[[TextFieldEditorViewController alloc] initWithController:navigationController
                                                                  title:NSLocalizedString(@"Location", nil)
                                                                 object:self
-                                                              selector:@selector(onPostalCodeChanged:)
-                                                                  text:self.model.postalCode
-                                                           placeHolder:NSLocalizedString(@"Postal Code", nil)
+                                                              selector:@selector(onUserLocationChanged:)
+                                                                  text:self.model.userLocation
+                                                               message:message
+                                                           placeHolder:NSLocalizedString(@"Postal Code or Address", nil)
                                                                   type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
 
             [navigationController pushViewController:controller animated:YES];
@@ -413,24 +395,24 @@
 }
 
 
-- (void) onPostalCodeChanged:(NSString*) postalCode {
-    postalCode = [postalCode stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+- (void) onUserLocationChanged:(NSString*) userLocation {
+    userLocation = [userLocation stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-    [self.controller setPostalCode:postalCode];
+    [self.controller setUserLocation:userLocation];
     [self.tableView reloadData];
 }
 
 
-- (void) reportFoundPostalCode:(NSString*) postalCode {
+- (void) reportFoundUserLocation:(NSString*) location {
     [self stopActivityIndicator];
 
-    if ([Utilities isNilOrEmpty:postalCode]) {
+    if ([Utilities isNilOrEmpty:location]) {
         [self enqueueUpdateRequest:ONE_MINUTE];
     } else {
         [self enqueueUpdateRequest:5 * ONE_MINUTE];
     }
 
-    [self onPostalCodeChanged:postalCode];
+    [self onUserLocationChanged:location];
 }
 
 

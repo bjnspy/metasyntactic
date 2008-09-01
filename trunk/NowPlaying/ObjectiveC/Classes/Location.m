@@ -24,6 +24,8 @@
 @synthesize longitude;
 @synthesize address;
 @synthesize city;
+@synthesize state;
+@synthesize postalCode;
 @synthesize country;
 
 - (void) dealloc {
@@ -31,6 +33,8 @@
     self.longitude = 0;
     self.address = nil;
     self.city = nil;
+    self.state = nil;
+    self.postalCode = nil;
     self.country = nil;
 
     [super dealloc];
@@ -41,13 +45,22 @@
               longitude:(double) longitude_
                 address:(NSString*) address_
                    city:(NSString*) city_
+                  state:(NSString*) state_
+             postalCode:(NSString*) postalCode_
                 country:(NSString*) country_ {
     if (self = [super init]) {
-        latitude = latitude_;
-        longitude = longitude_;
-        self.address = address_;
-        self.city = city_;
-        self.country = country_;
+        latitude        = latitude_;
+        longitude       = longitude_;
+        self.address    = (address_ == nil    ? @"" : address_);
+        self.city       = (city_ == nil       ? @"" : city_);
+        self.state      = (state_ == nil      ? @"" : state_);
+        self.postalCode = (postalCode_ == nil ? @"" : postalCode_);
+        self.country    = (country_ == nil    ? @"" : country_);
+        
+        if ([country isEqual:@"US"] && [postalCode rangeOfString:@"-"].length > 0) {
+            NSRange range = [postalCode rangeOfString:@"-"];
+            self.postalCode = [postalCode substringToIndex:range.location];
+        }
     }
 
     return self;
@@ -59,6 +72,8 @@
                             longitude:[[dictionary objectForKey:@"longitude"] doubleValue]
                               address:[dictionary objectForKey:@"address"]
                                  city:[dictionary objectForKey:@"city"]
+                                state:[dictionary objectForKey:@"state"]
+                           postalCode:[dictionary objectForKey:@"postalCode"]
                               country:[dictionary objectForKey:@"country"]];
 }
 
@@ -67,22 +82,28 @@
                          longitude:(double) longitude
                            address:(NSString*) address
                               city:(NSString*) city
+                             state:(NSString*) state
+                        postalCode:(NSString*) postalCode
                            country:(NSString*) country{
     return [[[Location alloc] initWithLatitude:latitude
                                      longitude:longitude
                                        address:address
                                           city:city
+                                         state:state
+                                    postalCode:postalCode
                                        country:country] autorelease];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithDouble:latitude] forKey:@"latitude"];
-    [dict setObject:[NSNumber numberWithDouble:longitude] forKey:@"longitude"];
-    [dict setObject:address forKey:@"address"];
-    [dict setObject:city forKey:@"city"];
-    [dict setObject:country forKey:@"country"];
+    [dict setObject:[NSNumber numberWithDouble:latitude]    forKey:@"latitude"];
+    [dict setObject:[NSNumber numberWithDouble:longitude]   forKey:@"longitude"];
+    [dict setObject:address                                 forKey:@"address"];
+    [dict setObject:city                                    forKey:@"city"];
+    [dict setObject:state                                   forKey:@"state"];
+    [dict setObject:postalCode                              forKey:@"postalCode"];
+    [dict setObject:country                                 forKey:@"country"];
     return dict;
 }
 
