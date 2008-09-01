@@ -16,10 +16,10 @@
 
 #import "ReviewTitleCell.h"
 
-#import "NowPlayingModel.h"
 #import "ColorCache.h"
 #import "FontCache.h"
 #import "ImageCache.h"
+#import "NowPlayingModel.h"
 #import "Review.h"
 
 @implementation ReviewTitleCell

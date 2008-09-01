@@ -16,9 +16,9 @@
 
 #import "UpcomingMovieCell.h"
 
-#import "NowPlayingModel.h"
 #import "ImageCache.h"
 #import "Movie.h"
+#import "NowPlayingModel.h"
 
 @implementation UpcomingMovieCell
 

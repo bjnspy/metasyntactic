@@ -16,9 +16,9 @@
 
 #import "AllMoviesViewController.h"
 
-#import "NowPlayingModel.h"
 #import "MovieTitleCell.h"
 #import "MoviesNavigationController.h"
+#import "NowPlayingModel.h"
 
 @implementation AllMoviesViewController
 

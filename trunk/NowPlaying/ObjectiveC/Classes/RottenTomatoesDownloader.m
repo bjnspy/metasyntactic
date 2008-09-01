@@ -18,8 +18,8 @@
 
 #import "Application.h"
 #import "ExtraMovieInformation.h"
-#import "NowPlayingModel.h"
 #import "NetworkUtilities.h"
+#import "NowPlayingModel.h"
 #import "Utilities.h"
 
 @implementation RottenTomatoesDownloader

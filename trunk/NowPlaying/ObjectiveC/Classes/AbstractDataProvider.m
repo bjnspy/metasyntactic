@@ -18,9 +18,9 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
-#import "NowPlayingModel.h"
 #import "LookupResult.h"
 #import "Movie.h"
+#import "NowPlayingModel.h"
 #import "Performance.h"
 #import "Theater.h"
 #import "Utilities.h"

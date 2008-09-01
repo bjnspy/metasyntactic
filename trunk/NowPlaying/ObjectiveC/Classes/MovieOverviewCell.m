@@ -16,9 +16,9 @@
 
 #import "MovieOverviewCell.h"
 
-#import "NowPlayingModel.h"
 #import "FontCache.h"
 #import "ImageCache.h"
+#import "NowPlayingModel.h"
 
 @implementation MovieOverviewCell
 
