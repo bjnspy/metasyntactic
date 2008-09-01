@@ -113,17 +113,17 @@
     NSMutableDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement];
 
     if (movieToShowtimesMap.count == 0) {
-        // no showtime information available.  fallback to anything we've 
+        // no showtime information available.  fallback to anything we've
         // stored (but warn the user).
-        
+
         NSString* performancesFile = [super performancesFile:identifier];
         NSDictionary* oldPerformances = [NSDictionary dictionaryWithContentsOfFile:performancesFile];
-        
+
         if (oldPerformances.count > 0) {
             movieToShowtimesMap = [NSMutableDictionary dictionaryWithDictionary:oldPerformances];
         }
     }
-    
+
     [performances setObject:movieToShowtimesMap forKey:identifier];
     [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                   name:name

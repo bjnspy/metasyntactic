@@ -24,7 +24,7 @@
 @synthesize phoneNumber;
 @synthesize sellsTickets;
 @synthesize movieIdentifiers;
-@synthesize originatingPostalCode;;
+@synthesize originatingPostalCode;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -90,13 +90,13 @@
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:identifier                        forKey:@"identifier"];
-    [dictionary setObject:name                              forKey:@"name"];
-    [dictionary setObject:address                           forKey:@"address"];
-    [dictionary setObject:phoneNumber                       forKey:@"phoneNumber"];
-    [dictionary setObject:sellsTickets                      forKey:@"sellsTickets"];
-    [dictionary setObject:movieIdentifiers                  forKey:@"movieIdentifiers"];
-    [dictionary setObject:originatingPostalCode             forKey:@"originatingPostalCode"];
+    [dictionary setObject:identifier            forKey:@"identifier"];
+    [dictionary setObject:name                  forKey:@"name"];
+    [dictionary setObject:address               forKey:@"address"];
+    [dictionary setObject:phoneNumber           forKey:@"phoneNumber"];
+    [dictionary setObject:sellsTickets          forKey:@"sellsTickets"];
+    [dictionary setObject:movieIdentifiers      forKey:@"movieIdentifiers"];
+    [dictionary setObject:originatingPostalCode forKey:@"originatingPostalCode"];
     return dictionary;
 }
 

@@ -257,7 +257,7 @@
         } else {
             NSInteger theaterIndex = [self getTheaterIndex:indexPath.section];
             Theater* theater = [theatersArray objectAtIndex:theaterIndex];
-            
+
             return [MovieShowtimesCell heightForShowtimes:[showtimesArray objectAtIndex:theaterIndex]
                                                     stale:[self.model isStale:theater]
                                             useSmallFonts:self.model.useSmallFonts] + 18;
@@ -340,7 +340,7 @@
         Theater* theater = [theatersArray objectAtIndex:theaterIndex];
         BOOL stale = [self.model isStale:theater];
         [cell setStale:stale];
-        
+
         [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]
              useSmallFonts:self.model.useSmallFonts];
 
@@ -354,16 +354,16 @@
     if (![self isTheaterSection:section]) {
         return nil;
     }
-    
+
     Theater* theater = [theatersArray objectAtIndex:[self getTheaterIndex:section]];
     if (![self.model isStale:theater]) {
         return nil;
     }
-    
+
     NSDate* syncDate = [self.model synchronizationDateForTheater:theater];
     return [Utilities generateShowtimesRetrievedOnString:syncDate];
 }
-    
+
 
 - (UITableViewCell*) showHiddenTheatersCell {
     UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
