@@ -44,6 +44,6 @@
 - (LookupResult*) lookupWorker;
 
 /* @protected */
-- (NSString*) performancesFile:(NSString*) identifier;
+- (NSString*) performancesFile:(NSString*) theaterName;
 
 @end

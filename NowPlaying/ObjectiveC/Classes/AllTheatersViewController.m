@@ -92,7 +92,7 @@
             continue;
         }
 
-        if (theater.movieIdentifiers.count == 0 && self.model.hideEmptyTheaters) {
+        if (theater.movieTitles.count == 0 && self.model.hideEmptyTheaters) {
             continue;
         }
 
@@ -154,7 +154,7 @@
             continue;
         }
 
-        if (theater.movieIdentifiers.count == 0 && self.model.hideEmptyTheaters) {
+        if (theater.movieTitles.count == 0 && self.model.hideEmptyTheaters) {
             continue;
         }
 
