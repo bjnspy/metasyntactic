@@ -49,7 +49,7 @@
 - (NSDictionary*) lookupMovieListings:(NSString*) localHash {
     NSString* host = [Application host];
 
-    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&hash=true", host] 
+    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&hash=true", host]
                                                         important:YES];
     if (serverHash == nil) {
         serverHash = @"0";

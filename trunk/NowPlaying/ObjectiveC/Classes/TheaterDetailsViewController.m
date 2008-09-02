@@ -384,7 +384,7 @@
             }
         }
     }
-    
+
     return nil;
 }
 
@@ -395,7 +395,7 @@
     if (view != nil) {
         return view.height;
     }
-    
+
     return -1;
 }
 

@@ -56,7 +56,7 @@ property_definition(country);
         self.state      = (state_ == nil      ? @"" : state_);
         self.postalCode = (postalCode_ == nil ? @"" : postalCode_);
         self.country    = (country_ == nil    ? @"" : country_);
-        
+
         if ([country isEqual:@"US"] && [postalCode rangeOfString:@"-"].length > 0) {
             NSRange range = [postalCode rangeOfString:@"-"];
             self.postalCode = [postalCode substringToIndex:range.location];

@@ -26,16 +26,16 @@
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
     NSString* url = [NSString stringWithFormat:@"http://ws.geonames.org/findNearbyPostalCodes?lat=%f&lng=%f&maxRows=1", latitude, longitude];
-    
+
     XmlElement* geonamesElement = [NetworkUtilities xmlWithContentsOfAddress:url important:YES];
     XmlElement* codeElement = [geonamesElement element:@"code"];
     XmlElement* postalElement = [codeElement element:@"postalcode"];
     XmlElement* countryElement = [codeElement element:@"countryCode"];
-    
+
     if ([@"CA" isEqual:countryElement.text]) {
         return nil;
     }
-    
+
     return postalElement.text;
 }
 
@@ -45,7 +45,7 @@
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
     NSString* url = [NSString stringWithFormat:@"http://geocoder.ca/?latt=%f&longt=%f&geoit=xml&reverse=Reverse+GeoCode+it", latitude, longitude];
-    
+
     XmlElement* geodataElement = [NetworkUtilities xmlWithContentsOfAddress:url
                                                                   important:YES];
     XmlElement* postalElement = [geodataElement element:@"postal"];
