@@ -18,11 +18,11 @@
 
 @implementation Review
 
-@synthesize score;
-@synthesize link;
-@synthesize text;
-@synthesize author;
-@synthesize source;
+property_definition(score);
+property_definition(link);
+property_definition(text);
+property_definition(author);
+property_definition(source);
 
 - (void) dealloc {
     self.score = 0;
@@ -42,22 +42,10 @@
              source:(NSString*) source_ {
     if (self = [super init]) {
         self.score = score_;
-        self.link = link_;
-        self.text = text_;
-        self.author = author_;
-        self.source = source_;
-
-        if (link == nil) {
-            self.link = @"";
-        }
-
-        if (author == nil) {
-            self.author = @"";
-        }
-
-        if (source == nil) {
-            self.source = @"";
-        }
+        self.link = link_ == nil ? @"" : link_;
+        self.text = text_ == nil ? @"" : text_;
+        self.author = author_ == nil ? @"" : author_;
+        self.source = source_ == nil ? @"" : source_;
     }
 
     return self;
@@ -78,21 +66,21 @@
 
 
 + (Review*) reviewWithDictionary:(NSDictionary*) dictionary {
-    return [Review reviewWithText:[dictionary objectForKey:@"text"]
-                            score:[[dictionary objectForKey:@"score"] intValue]
-                             link:[dictionary objectForKey:@"link"]
-                           author:[dictionary objectForKey:@"author"]
-                           source:[dictionary objectForKey:@"source"]];
+    return [Review reviewWithText:[dictionary objectForKey:text_key]
+                            score:[[dictionary objectForKey:score_key] intValue]
+                             link:[dictionary objectForKey:link_key]
+                           author:[dictionary objectForKey:author_key]
+                           source:[dictionary objectForKey:source_key]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithInt:score] forKey:@"score"];
-    [dict setObject:link forKey:@"link"];
-    [dict setObject:text forKey:@"text"];
-    [dict setObject:author forKey:@"author"];
-    [dict setObject:source forKey:@"source"];
+    [dict setObject:[NSNumber numberWithInt:score]  forKey:score_key];
+    [dict setObject:link                            forKey:link_key];
+    [dict setObject:text                            forKey:text_key];
+    [dict setObject:author                          forKey:author_key];
+    [dict setObject:source                          forKey:source_key];
     return dict;
 }
 

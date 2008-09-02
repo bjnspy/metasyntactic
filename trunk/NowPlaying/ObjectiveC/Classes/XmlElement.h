@@ -63,7 +63,7 @@
 - (NSString*) description;
 
 - (NSDictionary*) dictionary;
-+ (XmlElement*) elementFromDictionary:(NSDictionary*) dictionary;
++ (XmlElement*) elementWithDictionary:(NSDictionary*) dictionary;
 
 - (XmlElement*) element:(NSString*) name;
 - (NSArray*) elements:(NSString*) name;

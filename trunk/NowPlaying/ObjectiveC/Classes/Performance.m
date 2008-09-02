@@ -18,8 +18,8 @@
 
 @implementation Performance
 
-@synthesize identifier;
-@synthesize time;
+property_definition(identifier);
+property_definition(time);
 
 - (void) dealloc {
     self.identifier = nil;
@@ -47,16 +47,16 @@
 
 
 + (Performance*) performanceWithDictionary:(NSDictionary*) dictionary {
-    return [Performance performanceWithIdentifier:[dictionary valueForKey:@"identifier"]
-                                             time:[dictionary valueForKey:@"time"]];
+    return [Performance performanceWithIdentifier:[dictionary valueForKey:identifier_key]
+                                             time:[dictionary valueForKey:time_key]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
-    [dictionary setObject:identifier forKey:@"identifier"];
-    [dictionary setObject:time forKey:@"time"];
+    [dictionary setObject:identifier forKey:identifier_key];
+    [dictionary setObject:time forKey:time_key];
 
     return dictionary;
 }

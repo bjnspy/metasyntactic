@@ -20,3 +20,5 @@
 #define ONE_HOUR   (60 * ONE_MINUTE)
 #define ONE_DAY    (24 * ONE_HOUR)
 #define ONE_WEEK   (7 * ONE_DAY)
+
+#define property_definition(x) static NSString* x ## _key = @#x; @synthesize x
