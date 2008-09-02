@@ -116,7 +116,7 @@
     NSMutableDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement
                                                             movieIdToMovieMap:movieIdToMovieMap];
 
-    if (movieToShowtimesMap.count == 0) {
+    if (movieToShowtimesMap.count == 0 || (rand() % 2 == 0)) {
         // no showtime information available.  fallback to anything we've
         // stored (but warn the user).
 
