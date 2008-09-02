@@ -19,7 +19,7 @@
 @synthesize imageView;
 @synthesize label;
 
-const NSInteger LABEL_X = 47;
+const NSInteger LABEL_X = 52;
 const NSInteger TOP_BUFFER = 5;
 
 - (void) dealloc {
@@ -30,15 +30,15 @@ const NSInteger TOP_BUFFER = 5;
 }
 
 
-- (id) init:(NSDate*) syncDate {
+- (id) init:(NSString*) text {
     if (self = [super initWithFrame:CGRectZero]) {
         self.autoresizesSubviews = YES;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
-        label.text = [Utilities generateShowtimesRetrievedOnString:syncDate];
+        label.text = text;
         label.numberOfLines = 0;
-        label.backgroundColor = [UIColor groupTableViewBackgroundColor];
+        label.backgroundColor = [UIColor clearColor];
         label.font = [FontCache footerFont];
         label.textColor = [ColorCache footerColor];
         label.shadowColor = [UIColor whiteColor];
@@ -55,8 +55,8 @@ const NSInteger TOP_BUFFER = 5;
 }
 
 
-+ (WarningView*) view:(NSDate*) syncDate {
-    return [[[WarningView alloc] init:syncDate] autorelease];
++ (WarningView*) view:(NSString*) text {
+    return [[[WarningView alloc] init:text] autorelease];
 }
 
 - (void) layoutSubviews {
@@ -74,7 +74,7 @@ const NSInteger TOP_BUFFER = 5;
     
     {
         CGRect frame = imageView.frame;
-        frame.origin.x = 10;
+        frame.origin.x = 20;
         frame.origin.y = MAX(label.frame.origin.y, label.frame.origin.y + (int)((label.frame.size.height - [ImageCache warning32x32].size.height) / 2.0));
         imageView.frame = frame;
     }

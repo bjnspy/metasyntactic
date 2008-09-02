@@ -367,8 +367,7 @@
         }
 
         if (![self.model isStale:theater]) {
-            NSDate* syncDate = [self.model synchronizationDateForTheater:theater];
-            return [Utilities generateShowtimesRetrievedOnString:syncDate];
+            return [self.model showtimesRetrievedOnString:theater];
         }
     }
 
@@ -381,7 +380,7 @@
     if (section == 1) {
         if (movies.count > 0 ) {
             if ([self.model isStale:theater]) {
-                return [WarningView view:[self.model synchronizationDateForTheater:theater]];
+                return [WarningView view:[self.model showtimesRetrievedOnString:theater]];
             }
         }
     }
