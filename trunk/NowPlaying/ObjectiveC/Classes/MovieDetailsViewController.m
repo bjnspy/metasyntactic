@@ -360,8 +360,7 @@
         return nil;
     }
 
-    NSDate* syncDate = [self.model synchronizationDateForTheater:theater];
-    return [Utilities generateShowtimesRetrievedOnString:syncDate];
+    return [self.model showtimesRetrievedOnString:theater];
 }
 
 

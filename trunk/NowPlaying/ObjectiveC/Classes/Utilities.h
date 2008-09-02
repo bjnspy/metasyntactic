@@ -53,8 +53,6 @@
                             theater:(Theater*) theater
                        performances:(NSArray*) performances;
 
-+ (NSString*) generateShowtimesRetrievedOnString:(NSDate*) syncDate;
-
 + (NSString*) stripHtmlCodes:(NSString*) string;
 
 @end

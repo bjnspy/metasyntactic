@@ -635,9 +635,26 @@ static NSString* persistenceVersion = @"14";
 
 
 - (BOOL) isStale:(Theater*) theater {
-    NSDate* today = [DateUtilities today];
+    NSDate* globalSyncDate = [self.currentDataProvider lastLookupDate];
+    NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
+    
+    return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
+}
 
-    return (NSOrderedAscending == [[self synchronizationDateForTheater:theater] compare:today]);
+
+- (NSString*) showtimesRetrievedOnString:(Theater*) theater {
+    if ([self isStale:theater]) {
+        // we're showing out of date information
+        NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
+        return [NSString stringWithFormat:
+                NSLocalizedString(@"Theater last reported show times on\n%@.", nil),
+                [DateUtilities formatLongDate:theaterSyncDate]];
+    } else {
+        NSDate* globalSyncDate = [self.currentDataProvider lastLookupDate];
+        return [NSString stringWithFormat:
+                NSLocalizedString(@"Show times retrieved on %@.", nil),
+                [DateUtilities formatLongDate:globalSyncDate]];
+    }
 }
 
 

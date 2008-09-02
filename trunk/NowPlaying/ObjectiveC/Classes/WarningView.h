@@ -14,7 +14,7 @@
 @property (retain) UIImageView* imageView;
 @property (retain) UILabel* label;
 
-+ (WarningView*) view:(NSDate*) syncDate;
++ (WarningView*) view:(NSString*) text;
 
 - (CGFloat) height;
 
