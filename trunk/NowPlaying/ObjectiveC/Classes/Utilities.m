@@ -253,11 +253,11 @@
     if (NSOrderedAscending == [syncDate compare:today]) {
         // we're showing out of date information
         return [NSString stringWithFormat:
-                NSLocalizedString(@"Warning: information out of date.  Displaying show times retrieved on %@", nil),
+                NSLocalizedString(@"Information out of date. Show times retrieved on %@.", nil),
                 [DateUtilities formatLongDate:syncDate]];
     } else {
         return [NSString stringWithFormat:
-                NSLocalizedString(@"Show times retrieved on %@", nil),
+                NSLocalizedString(@"Show times retrieved on %@.", nil),
                 [DateUtilities formatLongDate:syncDate]];
     }
 }

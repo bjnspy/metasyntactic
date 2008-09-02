@@ -42,6 +42,8 @@
 		74447C5A0DC840D100CC146C /* MovieDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C590DC840D100CC146C /* MovieDetailsViewController.m */; };
 		74447C650DC843B200CC146C /* AllTheatersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C640DC843B200CC146C /* AllTheatersViewController.m */; };
 		74447C680DC843D900CC146C /* TheaterDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C670DC843D900CC146C /* TheaterDetailsViewController.m */; };
+		744592040E6CA017002D05C3 /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744592030E6CA017002D05C3 /* WarningView.m */; };
+		744592070E6CA06C002D05C3 /* Warning-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 744592060E6CA06C002D05C3 /* Warning-32x32.png */; };
 		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
@@ -205,6 +207,9 @@
 		74447C660DC843D900CC146C /* TheaterDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterDetailsViewController.h; sourceTree = "<group>"; };
 		74447C670DC843D900CC146C /* TheaterDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterDetailsViewController.m; sourceTree = "<group>"; };
 		744483150E5B8EB300E4B2CE /* en_GB */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = en_GB; path = Resources/en_GB.lproj/Localizable.strings; sourceTree = "<group>"; };
+		744592020E6CA017002D05C3 /* WarningView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WarningView.h; sourceTree = "<group>"; };
+		744592030E6CA017002D05C3 /* WarningView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WarningView.m; sourceTree = "<group>"; };
+		744592060E6CA06C002D05C3 /* Warning-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-32x32.png"; path = "Resources/Warning-32x32.png"; sourceTree = "<group>"; };
 		74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
 		74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
@@ -496,6 +501,7 @@
 				74F94FC60E6BC98800075068 /* UpArrow.png */,
 				74F94FC70E6BC98800075068 /* Upcoming.png */,
 				74F94FC80E6BC98800075068 /* Warning-16x16.png */,
+				744592060E6CA06C002D05C3 /* Warning-32x32.png */,
 				74F94FC90E6BC98800075068 /* YahooLogo.png */,
 			);
 			name = Resources;
@@ -590,6 +596,8 @@
 				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
 				74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */,
 				74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */,
+				744592020E6CA017002D05C3 /* WarningView.h */,
+				744592030E6CA017002D05C3 /* WarningView.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -882,6 +890,7 @@
 				74F94FED0E6BC98800075068 /* Upcoming.png in Resources */,
 				74F94FEE0E6BC98800075068 /* Warning-16x16.png in Resources */,
 				74F94FEF0E6BC98800075068 /* YahooLogo.png in Resources */,
+				744592070E6CA06C002D05C3 /* Warning-32x32.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -970,6 +979,7 @@
 				74A3F0500E686A7D007ED6DC /* MovieNumbers.m in Sources */,
 				74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */,
 				74F94C8D0E6BB34800075068 /* LocationUtilities.m in Sources */,
+				744592040E6CA017002D05C3 /* WarningView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

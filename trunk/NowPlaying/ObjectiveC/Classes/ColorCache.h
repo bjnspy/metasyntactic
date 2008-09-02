@@ -20,5 +20,6 @@
 
 + (UIColor*) commandColor;
 + (UIColor*) darkDarkGray;
++ (UIColor*) footerColor;
 
 @end

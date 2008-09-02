@@ -36,6 +36,7 @@ static UIImage* downArrow = nil;
 static UIImage* neutralSquare = nil;
 
 static UIImage* warning16x16 = nil;
+static UIImage* warning32x32 = nil;
 
 + (void) initialize {
     if (self == [ImageCache class]) {
@@ -57,6 +58,7 @@ static UIImage* warning16x16 = nil;
         neutralSquare       = [[UIImage imageNamed:@"NeutralSquare.png"] retain];
 
         warning16x16        = [[UIImage imageNamed:@"Warning-16x16.png"] retain];
+        warning32x32        = [[UIImage imageNamed:@"Warning-32x32.png"] retain];
     }
 }
 
@@ -128,6 +130,11 @@ static UIImage* warning16x16 = nil;
 
 + (UIImage*) warning16x16 {
     return warning16x16;
+}
+
+
++ (UIImage*) warning32x32 {
+    return warning32x32;
 }
 
 
