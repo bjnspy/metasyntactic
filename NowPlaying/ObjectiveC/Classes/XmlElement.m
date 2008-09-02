@@ -18,16 +18,17 @@
 
 @implementation XmlElement
 
-@synthesize name;
-@synthesize attributes;
-@synthesize children;
-@synthesize text;
+property_definition(name);
+property_definition(attributes);
+property_definition(children);
+property_definition(text);
 
 - (void) dealloc {
     self.name = nil;
     self.attributes = nil;
     self.children = nil;
     self.text = nil;
+
     [super dealloc];
 }
 
@@ -112,48 +113,48 @@
         [array addObject:element.dictionary];
     }
 
-    [dictionary setValue:name forKey:@"name"];
+    [dictionary setValue:name forKey:name_key];
 
     if (![text isEqual:@""]) {
-        [dictionary setValue:text forKey:@"text"];
+        [dictionary setValue:text forKey:text_key];
     }
 
     if (attributes.count > 0) {
-        [dictionary setValue:attributes forKey:@"attributes"];
+        [dictionary setValue:attributes forKey:attributes_key];
     }
 
     if (array.count > 0) {
-        [dictionary setValue:array forKey:@"children"];
+        [dictionary setValue:array forKey:children_key];
     }
 
     return dictionary;
 }
 
 
-+ (XmlElement*) elementFromDictionary:(NSDictionary*) dictionary {
-    NSString* name = [dictionary valueForKey:@"name"];
++ (XmlElement*) elementWithDictionary:(NSDictionary*) dictionary {
+    NSString* name = [dictionary valueForKey:name_key];
     if (name == nil) {
         name = @"";
     }
 
-    NSString* text = [dictionary valueForKey:@"text"];
+    NSString* text = [dictionary valueForKey:text_key];
     if (text == nil) {
         text = @"";
     }
 
-    NSDictionary* attributes = [dictionary valueForKey:@"attributes"];
+    NSDictionary* attributes = [dictionary valueForKey:attributes_key];
     if (attributes == nil) {
         attributes = [NSDictionary dictionary];
     }
 
-    NSArray* childDictionaries = [dictionary valueForKey:@"children"];
+    NSArray* childDictionaries = [dictionary valueForKey:children_key];
     if (childDictionaries == nil) {
         childDictionaries = [NSArray array];
     }
 
     NSMutableArray* children = [NSMutableArray array];
     for (NSDictionary* childDict in childDictionaries) {
-        [children addObject:[XmlElement elementFromDictionary:childDict]];
+        [children addObject:[XmlElement elementWithDictionary:childDict]];
     }
 
     return [XmlElement elementWithName:name attributes:attributes children:children text:text];

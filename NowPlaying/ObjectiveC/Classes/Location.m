@@ -20,13 +20,13 @@
 
 @implementation Location
 
-@synthesize latitude;
-@synthesize longitude;
-@synthesize address;
-@synthesize city;
-@synthesize state;
-@synthesize postalCode;
-@synthesize country;
+property_definition(latitude);
+property_definition(longitude);
+property_definition(address);
+property_definition(city);
+property_definition(state);
+property_definition(postalCode);
+property_definition(country);
 
 - (void) dealloc {
     self.latitude = 0;
@@ -68,13 +68,13 @@
 
 
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary {
-    return [self locationWithLatitude:[[dictionary objectForKey:@"latitude"] doubleValue]
-                            longitude:[[dictionary objectForKey:@"longitude"] doubleValue]
-                              address:[dictionary objectForKey:@"address"]
-                                 city:[dictionary objectForKey:@"city"]
-                                state:[dictionary objectForKey:@"state"]
-                           postalCode:[dictionary objectForKey:@"postalCode"]
-                              country:[dictionary objectForKey:@"country"]];
+    return [self locationWithLatitude:[[dictionary objectForKey:latitude_key] doubleValue]
+                            longitude:[[dictionary objectForKey:longitude_key] doubleValue]
+                              address:[dictionary objectForKey:address_key]
+                                 city:[dictionary objectForKey:city_key]
+                                state:[dictionary objectForKey:state_key]
+                           postalCode:[dictionary objectForKey:postalCode_key]
+                              country:[dictionary objectForKey:country_key]];
 }
 
 
@@ -97,13 +97,13 @@
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
-    [dict setObject:[NSNumber numberWithDouble:latitude]    forKey:@"latitude"];
-    [dict setObject:[NSNumber numberWithDouble:longitude]   forKey:@"longitude"];
-    [dict setObject:address                                 forKey:@"address"];
-    [dict setObject:city                                    forKey:@"city"];
-    [dict setObject:state                                   forKey:@"state"];
-    [dict setObject:postalCode                              forKey:@"postalCode"];
-    [dict setObject:country                                 forKey:@"country"];
+    [dict setObject:[NSNumber numberWithDouble:latitude]    forKey:latitude_key];
+    [dict setObject:[NSNumber numberWithDouble:longitude]   forKey:longitude_key];
+    [dict setObject:address                                 forKey:address_key];
+    [dict setObject:city                                    forKey:city_key];
+    [dict setObject:state                                   forKey:state_key];
+    [dict setObject:postalCode                              forKey:postalCode_key];
+    [dict setObject:country                                 forKey:country_key];
     return dict;
 }
 

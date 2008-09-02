@@ -20,18 +20,18 @@
 
 @implementation Movie
 
-@synthesize identifier;
-@synthesize canonicalTitle;
-@synthesize rating;
-@synthesize length;
-@synthesize releaseDate;
-@synthesize poster;
-@synthesize synopsis;
+property_definition(identifier);
+property_definition(canonicalTitle);
+property_definition(rating);
+property_definition(length);
+property_definition(releaseDate);
+property_definition(poster);
+property_definition(synopsis);
+property_definition(studio);
+property_definition(directors);
+property_definition(cast);
+property_definition(genres);
 @synthesize displayTitle;
-@synthesize studio;
-@synthesize directors;
-@synthesize cast;
-@synthesize genres;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -148,33 +148,33 @@ static NSString* articles[] = {
 
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
-    return [Movie movieWithIdentifier:[dictionary objectForKey:@"identifier"]
-                                title:[dictionary objectForKey:@"canonicalTitle"]
-                               rating:[dictionary objectForKey:@"rating"]
-                               length:[dictionary objectForKey:@"length"]
-                          releaseDate:[dictionary objectForKey:@"releaseDate"]
-                               poster:[dictionary objectForKey:@"poster"]
-                             synopsis:[dictionary objectForKey:@"synopsis"]
-                               studio:[dictionary objectForKey:@"studio"]
-                            directors:[dictionary objectForKey:@"directors"]
-                                 cast:[dictionary objectForKey:@"cast"]
-                               genres:[dictionary objectForKey:@"genres"]];
+    return [Movie movieWithIdentifier:[dictionary objectForKey:identifier_key]
+                                title:[dictionary objectForKey:canonicalTitle_key]
+                               rating:[dictionary objectForKey:rating_key]
+                               length:[dictionary objectForKey:length_key]
+                          releaseDate:[dictionary objectForKey:releaseDate_key]
+                               poster:[dictionary objectForKey:poster_key]
+                             synopsis:[dictionary objectForKey:synopsis_key]
+                               studio:[dictionary objectForKey:studio_key]
+                            directors:[dictionary objectForKey:directors_key]
+                                 cast:[dictionary objectForKey:cast_key]
+                               genres:[dictionary objectForKey:genres_key]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:identifier     forKey:@"identifier"];
-    [dictionary setValue:canonicalTitle forKey:@"canonicalTitle"];
-    [dictionary setValue:rating         forKey:@"rating"];
-    [dictionary setValue:length         forKey:@"length"];
-    [dictionary setValue:releaseDate    forKey:@"releaseDate"];
-    [dictionary setValue:poster         forKey:@"poster"];
-    [dictionary setValue:synopsis       forKey:@"synopsis"];
-    [dictionary setValue:studio         forKey:@"studio"];
-    [dictionary setValue:directors      forKey:@"directors"];
-    [dictionary setValue:cast           forKey:@"cast"];
-    [dictionary setValue:genres         forKey:@"genres"];
+    [dictionary setValue:identifier     forKey:identifier_key];
+    [dictionary setValue:canonicalTitle forKey:canonicalTitle_key];
+    [dictionary setValue:rating         forKey:rating_key];
+    [dictionary setValue:length         forKey:length_key];
+    [dictionary setValue:releaseDate    forKey:releaseDate_key];
+    [dictionary setValue:poster         forKey:poster_key];
+    [dictionary setValue:synopsis       forKey:synopsis_key];
+    [dictionary setValue:studio         forKey:studio_key];
+    [dictionary setValue:directors      forKey:directors_key];
+    [dictionary setValue:cast           forKey:cast_key];
+    [dictionary setValue:genres         forKey:genres_key];
     return dictionary;
 }
 

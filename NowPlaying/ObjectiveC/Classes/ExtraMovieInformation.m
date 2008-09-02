@@ -21,10 +21,10 @@
 
 @implementation ExtraMovieInformation
 
-@synthesize canonicalTitle;
-@synthesize link;
-@synthesize synopsis;
-@synthesize score;
+property_definition(canonicalTitle);
+property_definition(link);
+property_definition(synopsis);
+property_definition(score);
 
 - (void) dealloc {
     self.canonicalTitle = nil;
@@ -64,19 +64,19 @@
 
 
 + (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary {
-    return [ExtraMovieInformation infoWithTitle:[dictionary objectForKey:@"canonicalTitle"]
-                                           link:[dictionary objectForKey:@"link"]
-                                       synopsis:[dictionary objectForKey:@"synopsis"]
-                                          score:[dictionary objectForKey:@"score"]];
+    return [ExtraMovieInformation infoWithTitle:[dictionary objectForKey:canonicalTitle_key]
+                                           link:[dictionary objectForKey:link_key]
+                                       synopsis:[dictionary objectForKey:synopsis_key]
+                                          score:[dictionary objectForKey:score_key]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:canonicalTitle forKey:@"canonicalTitle"];
-    [dictionary setObject:link forKey:@"link"];
-    [dictionary setObject:synopsis forKey:@"synopsis"];
-    [dictionary setObject:score forKey:@"score"];
+    [dictionary setObject:canonicalTitle    forKey:canonicalTitle_key];
+    [dictionary setObject:link              forKey:link_key];
+    [dictionary setObject:synopsis          forKey:synopsis_key];
+    [dictionary setObject:score             forKey:score_key];
     return dictionary;
 }
 
