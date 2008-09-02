@@ -19,6 +19,7 @@
 #import "Application.h"
 #import "ApplicationTabBarController.h"
 #import "DataProvider.h"
+#import "DateUtilities.h"
 #import "NorthAmericaDataProvider.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
@@ -59,14 +60,15 @@
     }
 
     NSDate* now = [NSDate date];
-    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSHourCalendarUnit fromDate:lastDate];
-    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSDayCalendarUnit | NSHourCalendarUnit fromDate:now];
 
-    if (lastDateComponents.day != nowDateComponents.day) {
+    if (![DateUtilities isSameDay:now date:lastDate]) {
         // different days. we definitely need to refresh
         return NO;
     }
 
+    NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
+    NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
+    
     // same day, check if they're at least 8 hours apart.
     if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
         return NO;
