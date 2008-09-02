@@ -34,7 +34,7 @@ static NSLock* gate = nil;
     if (address == nil) {
         return nil;
     }
-    
+
     return [self stringWithContentsOfUrl:[NSURL URLWithString:address]
                                important:important];
 }
@@ -45,19 +45,19 @@ static NSLock* gate = nil;
     if (url == nil) {
         return nil;
     }
-    
+
     NSData* data = [self dataWithContentsOfUrl:url
                                      important:important];
     if (data == nil) {
         return nil;
     }
-    
+
     //return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
     NSString* result = [[[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding] autorelease];
     if (result != nil) {
         return result;
     }
-    
+
     return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
 }
 
@@ -67,7 +67,7 @@ static NSLock* gate = nil;
     if (address == nil) {
         return nil;
     }
-    
+
     return [self xmlWithContentsOfUrl:[NSURL URLWithString:address]
                             important:important];
 }
@@ -78,7 +78,7 @@ static NSLock* gate = nil;
     if (url == nil) {
         return nil;
     }
-    
+
     NSData* data = [self dataWithContentsOfUrl:url
                                      important:important];
     return [XmlParser parse:data];
@@ -90,7 +90,7 @@ static NSLock* gate = nil;
     if (address == nil) {
         return nil;
     }
-    
+
     return [self dataWithContentsOfUrl:[NSURL URLWithString:address]
                              important:important];
 }
@@ -99,26 +99,26 @@ static NSLock* gate = nil;
 + (NSData*) dataWithContentsOfUrlWorker:(NSURL*) url
                               important:(BOOL) important {
     NSAssert(![NSThread isMainThread], @"");
-    
+
     if (url == nil) {
         return nil;
     }
-    
+
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.timeoutInterval = 120;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setValue:@"gzip" forHTTPHeaderField:@"User-Agent"];
-    
+
     NSURLResponse* response = nil;
     NSError* error;
     NSData* data = [NSURLConnection sendSynchronousRequest:request
                                          returningResponse:&response
                                                      error:&error];
-    
+
     if (error != nil) {
         return nil;
     }
-    
+
     return data;
 }
 
@@ -128,13 +128,13 @@ static NSLock* gate = nil;
     if (!important) {
         [gate lock];
     }
-    
+
     NSData* data = [self dataWithContentsOfUrlWorker:url important:important];
-    
+
     if (!important) {
         [gate unlock];
     }
-    
+
     return data;
 }
 

@@ -272,7 +272,7 @@
             return;
         }
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, title];
     NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];

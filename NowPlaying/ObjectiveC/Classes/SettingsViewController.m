@@ -361,7 +361,7 @@
     } else if (section == 1) {
         if (row == 0) {
             NSString* message;
-            
+
             if ([Utilities isNilOrEmpty:self.model.userLocation]) {
                 message = @"";
             } else {
@@ -372,7 +372,7 @@
                     message = [NSString stringWithFormat:@"%@, %@ %@, %@", location.city, location.state, location.postalCode, location.country];
                 }
             }
-            
+
             TextFieldEditorViewController* controller =
             [[[TextFieldEditorViewController alloc] initWithController:navigationController
                                                                  title:NSLocalizedString(@"Location", nil)

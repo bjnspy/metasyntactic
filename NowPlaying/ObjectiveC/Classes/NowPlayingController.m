@@ -68,7 +68,7 @@
 
     NSDateComponents* lastDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:lastDate];
     NSDateComponents* nowDateComponents = [[NSCalendar currentCalendar] components:NSHourCalendarUnit fromDate:now];
-    
+
     // same day, check if they're at least 8 hours apart.
     if (nowDateComponents.hour >= (lastDateComponents.hour + 8)) {
         return NO;

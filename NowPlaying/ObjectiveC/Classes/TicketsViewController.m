@@ -158,7 +158,7 @@
         if (performances.count == 0) {
             return NSLocalizedString(@"No more show times available today.", nil);
         }
-        
+
         if (![self.model isStale:theater]) {
             return [self.model showtimesRetrievedOnString:theater];
         }
@@ -176,7 +176,7 @@
             }
         }
     }
-    
+
     return nil;
 }
 
@@ -186,7 +186,7 @@
     if (view != nil) {
         return view.height;
     }
-    
+
     return -1;
 }
 

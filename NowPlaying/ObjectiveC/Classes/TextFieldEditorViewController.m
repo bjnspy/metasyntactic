@@ -56,7 +56,7 @@
         messageLabel.text = message;
         messageLabel.textColor = [UIColor grayColor];
         [messageLabel sizeToFit];
-        
+
         self.title = title;
     }
 
@@ -66,16 +66,16 @@
 
 - (void) loadView {
     [super loadView];
-    
+
     [self.view addSubview:textField];
     textField.frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);;
-            
+
     [self.view addSubview:messageLabel];
     CGRect frame = messageLabel.frame;
     frame.origin.x = 20;
     frame.origin.y = 90;
     messageLabel.frame = frame;
-    
+
     [textField becomeFirstResponder];
 }
 

@@ -89,11 +89,11 @@
     NSString* escapedAddress = [Utilities stringByAddingPercentEscapes:address];
     if (escapedAddress != nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
-        
+
         XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
         return [self processResult:element];
     }
-    
+
     return nil;
 }
 
@@ -104,23 +104,23 @@
     }
 
     Location* result = [self downloadAddressLocationFromWebServiceWorker:address];
-    if (result != nil && 
+    if (result != nil &&
         [Utilities isNilOrEmpty:result.postalCode] &&
         result.latitude != 0 && result.longitude != 0) {
-        
+
         CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
         NSString* postalCode = [LocationUtilities findPostalCode:location];
         if (![Utilities isNilOrEmpty:postalCode]) {
             return [Location locationWithLatitude:result.latitude
                                         longitude:result.longitude
-                                          address:result.address 
-                                             city:result.city 
+                                          address:result.address
+                                             city:result.city
                                             state:result.state
                                        postalCode:postalCode
                                           country:result.country];
         }
     }
-    
+
     return result;
 }
 

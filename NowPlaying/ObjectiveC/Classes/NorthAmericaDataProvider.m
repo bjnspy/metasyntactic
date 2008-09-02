@@ -91,12 +91,12 @@
                  originatingPostalCode:(NSString*) originatingPostalCode
                           theaterNames:(NSArray*) theaterNames
                      movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
-    
+
     NSString* name = [theaterElement element:@"name"].text;
     if (theaterNames != nil && ![theaterNames containsObject:name]) {
         return;
     }
-    
+
     NSString* identifier = [theaterElement attributeValue:@"id"];
     NSString* sellsTickets = [theaterElement attributeValue:@"iswired"];
     NSString* address =    [theaterElement element:@"address1"].text;
@@ -223,7 +223,7 @@
                                                           postalCode:postalCode
                                                         theaterNames:theaterNames
                                                    movieIdToMovieMap:movieIdToMovieMap];
-    
+
     NSMutableArray* movies = [NSMutableArray arrayWithArray:movieIdToMovieMap.allValues];
     NSMutableArray* theaters = [theatersAndPerformances objectAtIndex:0];
     NSMutableDictionary* performances = [theatersAndPerformances objectAtIndex:1];
@@ -249,17 +249,17 @@
 - (void) reportUnknownLocation {
     if (![NSThread isMainThread]) {
         [self performSelectorOnMainThread:@selector(reportUnknownLocation)
-                               withObject:nil 
+                               withObject:nil
                             waitUntilDone:NO];
         return;
     }
-    
+
     UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:NSLocalizedString(@"Could not find location.", nil) 
-                                                    delegate:nil 
-                                           cancelButtonTitle:NSLocalizedString(@"OK", nil) 
+                                                     message:NSLocalizedString(@"Could not find location.", nil)
+                                                    delegate:nil
+                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                            otherButtonTitles:nil] autorelease];
-    
+
     [alert show];
 }
 
@@ -283,7 +283,7 @@
                                components.month,
                                components.day];
 
-        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url 
+        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url
                                                         important:YES];
 
         if (element != nil) {
@@ -301,44 +301,44 @@
     if (lookupResult == nil) {
         return;
     }
-    
+
     NSArray* favoriteTheaters = self.model.favoriteTheaters;
     if (favoriteTheaters.count == 0) {
         return;
     }
-    
+
     MultiDictionary* postalCodeToMissingTheaters = [MultiDictionary dictionary];
-    
+
     for (Theater* theater in favoriteTheaters) {
         if (![lookupResult.theaters containsObject:theater]) {
             [postalCodeToMissingTheaters addObject:theater forKey:theater.originatingPostalCode];
         }
     }
-    
+
     NSMutableSet* movieTitles = [NSMutableSet set];
     for (Movie* movie in lookupResult.movies) {
         [movieTitles addObject:movie.canonicalTitle];
     }
-    
+
     for (NSString* postalCode in postalCodeToMissingTheaters.allKeys) {
         NSArray* missingTheaters = [postalCodeToMissingTheaters objectsForKey:postalCode];
         NSMutableArray* theaterNames = [NSMutableArray array];
         for (Theater* theater in missingTheaters) {
             [theaterNames addObject:theater.name];
         }
-        
+
         LookupResult* favoritesLookupResult = [self lookupLocation:postalCode
                                                       theaterNames:theaterNames];
-        
+
         [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
         [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
-        
+
         // the theater may refer to movies that we don't know about.
         for (NSString* theaterName in favoritesLookupResult.performances.allKeys) {
             for (NSString* movieTitle in [[favoritesLookupResult.performances objectForKey:theaterName] allKeys]) {
                 if (![movieTitles containsObject:movieTitle]) {
                     [movieTitles addObject:movieTitle];
-                    
+
                     for (Movie* movie in favoritesLookupResult.movies) {
                         if ([movie.canonicalTitle isEqual:movieTitle]) {
                             [lookupResult.movies addObject:movie];

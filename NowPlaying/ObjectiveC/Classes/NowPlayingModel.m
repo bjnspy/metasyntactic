@@ -637,7 +637,7 @@ static NSString* persistenceVersion = @"14";
 - (BOOL) isStale:(Theater*) theater {
     NSDate* globalSyncDate = [self.currentDataProvider lastLookupDate];
     NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
-    
+
     return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
 }
 
