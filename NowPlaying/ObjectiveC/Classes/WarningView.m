@@ -33,13 +33,12 @@ const NSInteger TOP_BUFFER = 5;
 - (id) init:(NSDate*) syncDate {
     if (self = [super initWithFrame:CGRectZero]) {
         self.autoresizesSubviews = YES;
-        //self.autoresizingMask = UIViewAutoresizingFlexibleWidth;
+        self.backgroundColor = [UIColor groupTableViewBackgroundColor];
         
         self.label = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         label.text = [Utilities generateShowtimesRetrievedOnString:syncDate];
         label.numberOfLines = 0;
-        label.backgroundColor = [UIColor clearColor];
-        label.opaque = NO;
+        label.backgroundColor = [UIColor groupTableViewBackgroundColor];
         label.font = [FontCache footerFont];
         label.textColor = [ColorCache footerColor];
         label.shadowColor = [UIColor whiteColor];
