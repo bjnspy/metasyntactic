@@ -37,5 +37,6 @@
 + (UIImage*) neutralSquare;
 
 + (UIImage*) warning16x16;
++ (UIImage*) warning32x32;
 
 @end

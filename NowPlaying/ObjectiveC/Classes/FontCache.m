@@ -23,6 +23,7 @@ static UIFont* helvetica14 = nil;
 static UIFont* boldSystem11 = nil;
 static UIFont* boldSystem18 = nil;
 static UIFont* boldSystem19 = nil;
+static UIFont* footerFont = nil;
 
 
 + (void) initialize {
@@ -31,6 +32,7 @@ static UIFont* boldSystem19 = nil;
         boldSystem11 = [[UIFont boldSystemFontOfSize:11] retain];
         boldSystem18 = [[UIFont boldSystemFontOfSize:18] retain];
         boldSystem19 = [[UIFont boldSystemFontOfSize:20] retain];
+        footerFont   = [[UIFont systemFontOfSize:15] retain];
     }
 }
 
@@ -52,6 +54,11 @@ static UIFont* boldSystem19 = nil;
 
 + (UIFont*) boldSystem19 {
     return boldSystem19;
+}
+
+
++ (UIFont*) footerFont {
+    return footerFont;
 }
 
 

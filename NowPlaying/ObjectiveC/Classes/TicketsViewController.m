@@ -29,6 +29,7 @@
 #import "Theater.h"
 #import "Utilities.h"
 #import "ViewControllerUtilities.h"
+#import "WarningView.h"
 
 @implementation TicketsViewController
 
@@ -156,13 +157,38 @@
     if (section == 1) {
         if (performances.count == 0) {
             return NSLocalizedString(@"No more show times available today.", nil);
-        } else {
+        }
+        
+        if (![self.model isStale:theater]) {
             NSDate* syncDate = [self.model synchronizationDateForTheater:theater];
             return [Utilities generateShowtimesRetrievedOnString:syncDate];
         }
     }
 
     return nil;
+}
+
+- (UIView*)        tableView:(UITableView*) tableView
+      viewForFooterInSection:(NSInteger) section {
+    if (section == 1) {
+        if (performances.count > 0 ) {
+            if ([self.model isStale:theater]) {
+                return [WarningView view:[self.model synchronizationDateForTheater:theater]];
+            }
+        }
+    }
+    
+    return nil;
+}
+
+- (CGFloat)          tableView:(UITableView*) tableView
+      heightForFooterInSection:(NSInteger)section {
+    WarningView* view = (id)[self tableView:tableView viewForFooterInSection:section];
+    if (view != nil) {
+        return view.height;
+    }
+    
+    return -1;
 }
 
 
