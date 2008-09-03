@@ -57,7 +57,7 @@ static NSLock* gate = nil;
     if (result != nil) {
         return result;
     }
-
+    
     return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
 }
 
