@@ -22,6 +22,7 @@
 
 property_definition(identifier);
 property_definition(canonicalTitle);
+property_definition(displayTitle);
 property_definition(rating);
 property_definition(length);
 property_definition(releaseDate);
@@ -31,7 +32,6 @@ property_definition(studio);
 property_definition(directors);
 property_definition(cast);
 property_definition(genres);
-@synthesize displayTitle;
 
 - (void) dealloc {
     self.identifier = nil;
@@ -46,7 +46,7 @@ property_definition(genres);
     self.directors = nil;
     self.cast = nil;
     self.genres = nil;
-
+    
     [super dealloc];
 }
 
@@ -62,34 +62,35 @@ static NSString* articles[] = {
 
 + (NSString*) makeCanonical:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
+    
     for (int i = 0; i < ArrayLength(articles); i++) {
         NSString* article = articles[i];
         if ([title hasSuffix:[NSString stringWithFormat:@", %@", article]]) {
             return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
         }
     }
-
+    
     return title;
 }
 
 
 + (NSString*) makeDisplay:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-
+    
     for (int i = 0; i < ArrayLength(articles); i++) {
         NSString* article = articles[i];
         if ([title hasPrefix:[NSString stringWithFormat:@"%@ ", article]]) {
             return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
         }
     }
-
+    
     return title;
 }
 
 
 - (id) initWithIdentifier:(NSString*) identifier_
-                    title:(NSString*) title_
+           canonicalTitle:(NSString*) canonicalTitle_
+             displayTitle:(NSString*) displayTitle_
                    rating:(NSString*) rating_
                    length:(NSString*) length_
               releaseDate:(NSDate*) releaseDate_
@@ -101,24 +102,20 @@ static NSString* articles[] = {
                    genres:(NSArray*) genres_ {
     if (self = [self init]) {
         self.identifier = identifier_;
-        self.canonicalTitle = [Movie makeCanonical:title_];
-        self.displayTitle   = [Movie makeDisplay:title_];
-
-        self.rating = [rating_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        if (rating == nil) {
-            self.rating = @"NR";
-        }
+        self.canonicalTitle = canonicalTitle_;
+        self.displayTitle = displayTitle_;
+        self.rating = rating_;
         self.length = length_;
         self.releaseDate = releaseDate_;
         self.poster = poster_;
-        self.synopsis = [Utilities stripHtmlCodes:synopsis_];
+        self.synopsis = synopsis_;
         self.studio = studio_;
         self.directors = directors_;
         self.cast = cast_;
         self.genres = genres_;
     }
-
-    return self;
+    
+    return self;  
 }
 
 
@@ -133,13 +130,19 @@ static NSString* articles[] = {
                      directors:(NSArray*) directors
                           cast:(NSArray*) cast
                         genres:(NSArray*) genres {
+    rating = [rating stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+    if ([Utilities isNilOrEmpty:rating]) {
+        rating = @"NR";
+    }
+    
     return [[[Movie alloc] initWithIdentifier:identifier
-                                        title:title
+                               canonicalTitle:[self makeCanonical:title]
+                                 displayTitle:[self makeDisplay:title]
                                        rating:rating
                                        length:length
                                   releaseDate:releaseDate
                                        poster:poster
-                                     synopsis:synopsis
+                                     synopsis:[Utilities stripHtmlCodes:synopsis]
                                        studio:studio
                                     directors:directors
                                          cast:cast
@@ -148,17 +151,18 @@ static NSString* articles[] = {
 
 
 + (Movie*) movieWithDictionary:(NSDictionary*) dictionary {
-    return [Movie movieWithIdentifier:[dictionary objectForKey:identifier_key]
-                                title:[dictionary objectForKey:canonicalTitle_key]
-                               rating:[dictionary objectForKey:rating_key]
-                               length:[dictionary objectForKey:length_key]
-                          releaseDate:[dictionary objectForKey:releaseDate_key]
-                               poster:[dictionary objectForKey:poster_key]
-                             synopsis:[dictionary objectForKey:synopsis_key]
-                               studio:[dictionary objectForKey:studio_key]
-                            directors:[dictionary objectForKey:directors_key]
-                                 cast:[dictionary objectForKey:cast_key]
-                               genres:[dictionary objectForKey:genres_key]];
+    return [[[Movie alloc] initWithIdentifier:[dictionary objectForKey:identifier_key]
+                               canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
+                                 displayTitle:[dictionary objectForKey:displayTitle_key]
+                                       rating:[dictionary objectForKey:rating_key]
+                                       length:[dictionary objectForKey:length_key]
+                                  releaseDate:[dictionary objectForKey:releaseDate_key]
+                                       poster:[dictionary objectForKey:poster_key]
+                                     synopsis:[dictionary objectForKey:synopsis_key]
+                                       studio:[dictionary objectForKey:studio_key]
+                                    directors:[dictionary objectForKey:directors_key]
+                                         cast:[dictionary objectForKey:cast_key]
+                                       genres:[dictionary objectForKey:genres_key]] autorelease];
 }
 
 
@@ -166,6 +170,7 @@ static NSString* articles[] = {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setValue:identifier     forKey:identifier_key];
     [dictionary setValue:canonicalTitle forKey:canonicalTitle_key];
+    [dictionary setValue:displayTitle   forKey:displayTitle_key];
     [dictionary setValue:rating         forKey:rating_key];
     [dictionary setValue:length         forKey:length_key];
     [dictionary setValue:releaseDate    forKey:releaseDate_key];
@@ -186,7 +191,7 @@ static NSString* articles[] = {
 
 - (BOOL) isEqual:(id) anObject {
     Movie* other = anObject;
-
+    
     return [canonicalTitle isEqual:other.canonicalTitle];
 }
 
@@ -214,9 +219,9 @@ static NSString* articles[] = {
     NSInteger movieLength = length.intValue;
     NSInteger hours = movieLength / 60;
     NSInteger minutes = movieLength % 60;
-
+    
     NSString* ratingString = self.ratingString;
-
+    
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {
         if (hours == 1) {
@@ -226,7 +231,7 @@ static NSString* articles[] = {
             [text appendString:@" "];
             [text appendFormat:NSLocalizedString(@"%d hours", nil), hours];
         }
-
+        
         if (minutes == 1) {
             [text appendString:@" "];
             [text appendString:NSLocalizedString(@"1 minute", nil)];
@@ -235,7 +240,7 @@ static NSString* articles[] = {
             [text appendFormat:NSLocalizedString(@"%d minutes", nil), minutes];
         }
     }
-
+    
     return text;
 }
 
