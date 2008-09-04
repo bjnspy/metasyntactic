@@ -244,5 +244,4 @@ static NSString* articles[] = {
     return text;
 }
 
-
 @end
