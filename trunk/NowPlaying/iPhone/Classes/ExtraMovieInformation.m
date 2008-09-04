@@ -31,23 +31,22 @@ property_definition(score);
     self.link = nil;
     self.synopsis = nil;
     self.score = nil;
-
+    
     [super dealloc];
 }
 
 
-- (id) initWithTitle:(NSString*) title_
-                link:(NSString*) link_
-            synopsis:(NSString*) synopsis_
-               score:(NSString*) score_ {
+- (id) initWithCanonicalTitle:(NSString*) canonicalTitle_
+                         link:(NSString*) link_
+                     synopsis:(NSString*) synopsis_
+                        score:(NSString*) score_ {
     if (self = [super init]) {
-        self.canonicalTitle = [Movie makeCanonical:title_];
+        self.canonicalTitle = canonicalTitle_;
         self.link = link_;
         self.score = score_;
-
-        self.synopsis = [Utilities stripHtmlCodes:synopsis_];
+        self.synopsis = synopsis_;
     }
-
+    
     return self;
 }
 
@@ -56,18 +55,18 @@ property_definition(score);
                                     link:(NSString*) link
                                 synopsis:(NSString*) synopsis
                                    score:(NSString*) score {
-    return [[[ExtraMovieInformation alloc] initWithTitle:title
-                                                    link:link
-                                                synopsis:synopsis
-                                                   score:score] autorelease];
+    return [[[ExtraMovieInformation alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
+                                                             link:link
+                                                         synopsis:[Utilities stripHtmlCodes:synopsis]
+                                                            score:score] autorelease];
 }
 
 
 + (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary {
-    return [ExtraMovieInformation infoWithTitle:[dictionary objectForKey:canonicalTitle_key]
-                                           link:[dictionary objectForKey:link_key]
-                                       synopsis:[dictionary objectForKey:synopsis_key]
-                                          score:[dictionary objectForKey:score_key]];
+    return [[[ExtraMovieInformation alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
+                                                             link:[dictionary objectForKey:link_key]
+                                                         synopsis:[dictionary objectForKey:synopsis_key]
+                                                            score:[dictionary objectForKey:score_key]] autorelease];
 }
 
 
@@ -86,7 +85,7 @@ property_definition(score);
     if (value >= 0 && value <= 100) {
         return value;
     }
-
+    
     return -1;
 }
 
