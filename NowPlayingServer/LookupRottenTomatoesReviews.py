@@ -20,17 +20,40 @@ from google.appengine.api import memcache
 from google.appengine.api import urlfetch
 
 class LookupRottenTomatoesReviewsHandler:
-  def get_listings(self, content):
+  def get_listings(self, content, format):
     sections  = self.extract_review_sections(content)
-    result = ""
-    for s in sections:
+
+    if format == "tab":
+      result = u""
+      for s in sections:
         review = self.extract_review(s)
         if not review is None:
-            result += (review + "\n")
+          (text, score, link, author, source) = review
+          result += text + "\t" + score + "\t" + link + "\t" + author + "\t" + source
+          result += u"\n"
     
-    return zlib.compress(result)
+      return result
+    else:
+      document = getDOMImplementation().createDocument(None, "result", None)
+      resultElement = document.documentElement
+
+      for s in sections:
+        review = self.extract_review(s)
+        if not review is None:
+          (text, score, link, author, source) = review
+
+          reviewElement = document.createElement("review")
+          resultElement.appendChild(reviewElement)
+
+          reviewElement.setAttribute("text", text)
+          reviewElement.setAttribute("score", score)
+          reviewElement.setAttribute("link", link)
+          reviewElement.setAttribute("author", author)
+          reviewElement.setAttribute("source", source)
+
+      return document.toxml()
     
-    
+
   def extract_review(self, section):
     text = self.extract_text(section)
     if text is None:
@@ -47,22 +70,22 @@ class LookupRottenTomatoesReviewsHandler:
     author = self.replace_lines(author)
     source = self.replace_lines(source)
     
-    return text + "\t" + score + "\t" + link + "\t" + author + "\t" + source
+    return (text, score, link, author, source)
 
 
   def extract_critic_information(self, section, anchor):
     anchorLocation = section.find(anchor)
     if anchorLocation < 0:
-        return ""
+        return u""
         
     startTag = "\">"
     startLocation = section.find(startTag, anchorLocation + len(anchor))
     if startLocation < 0:
-        return ""
+        return u""
         
     endLocation = section.find("</a>", startLocation)
     if endLocation < 0:
-        return ""
+        return u""
         
     result = section[(startLocation + len(startTag)):endLocation]
     result = result.replace("&amp;", "&")
@@ -86,14 +109,14 @@ class LookupRottenTomatoesReviewsHandler:
     hrefString = "href=\""
     startLocation = section[:fullReviewLocation].rfind("href=\"")
     if startLocation < 0:
-        return ""
+        return u""
         
     quoteLocation = section.find("\"", startLocation + len(hrefString))
     if quoteLocation < 0:
-        return ""
+        return u""
         
     address = section[(startLocation + len(hrefString)):quoteLocation]
-    return "http://www.rottentomatoes.com" + address
+    return u"http://www.rottentomatoes.com" + address
 
 
   def extract_text(self, section):
