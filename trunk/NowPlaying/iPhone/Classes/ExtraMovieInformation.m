@@ -31,7 +31,7 @@ property_definition(score);
     self.link = nil;
     self.synopsis = nil;
     self.score = nil;
-    
+
     [super dealloc];
 }
 
@@ -46,7 +46,7 @@ property_definition(score);
         self.score = score_;
         self.synopsis = synopsis_;
     }
-    
+
     return self;
 }
 
@@ -85,7 +85,7 @@ property_definition(score);
     if (value >= 0 && value <= 100) {
         return value;
     }
-    
+
     return -1;
 }
 

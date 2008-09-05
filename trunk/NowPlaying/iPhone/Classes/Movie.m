@@ -46,7 +46,7 @@ property_definition(genres);
     self.directors = nil;
     self.cast = nil;
     self.genres = nil;
-    
+
     [super dealloc];
 }
 
@@ -62,28 +62,28 @@ static NSString* articles[] = {
 
 + (NSString*) makeCanonical:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
+
     for (int i = 0; i < ArrayLength(articles); i++) {
         NSString* article = articles[i];
         if ([title hasSuffix:[NSString stringWithFormat:@", %@", article]]) {
             return [NSString stringWithFormat:@"%@ %@", article, [title substringToIndex:(title.length - article.length - 2)]];
         }
     }
-    
+
     return title;
 }
 
 
 + (NSString*) makeDisplay:(NSString*) title {
     title = [title stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    
+
     for (int i = 0; i < ArrayLength(articles); i++) {
         NSString* article = articles[i];
         if ([title hasPrefix:[NSString stringWithFormat:@"%@ ", article]]) {
             return [NSString stringWithFormat:@"%@, %@", [title substringFromIndex:(article.length + 1)], article];
         }
     }
-    
+
     return title;
 }
 
@@ -114,8 +114,8 @@ static NSString* articles[] = {
         self.cast = cast_;
         self.genres = genres_;
     }
-    
-    return self;  
+
+    return self;
 }
 
 
@@ -134,7 +134,7 @@ static NSString* articles[] = {
     if ([Utilities isNilOrEmpty:rating]) {
         rating = @"NR";
     }
-    
+
     return [[[Movie alloc] initWithIdentifier:identifier
                                canonicalTitle:[self makeCanonical:title]
                                  displayTitle:[self makeDisplay:title]
@@ -191,7 +191,7 @@ static NSString* articles[] = {
 
 - (BOOL) isEqual:(id) anObject {
     Movie* other = anObject;
-    
+
     return [canonicalTitle isEqual:other.canonicalTitle];
 }
 
@@ -219,9 +219,9 @@ static NSString* articles[] = {
     NSInteger movieLength = length.intValue;
     NSInteger hours = movieLength / 60;
     NSInteger minutes = movieLength % 60;
-    
+
     NSString* ratingString = self.ratingString;
-    
+
     NSMutableString* text = [NSMutableString stringWithString:ratingString];
     if (movieLength != 0) {
         if (hours == 1) {
@@ -231,7 +231,7 @@ static NSString* articles[] = {
             [text appendString:@" "];
             [text appendFormat:NSLocalizedString(@"%d hours", nil), hours];
         }
-        
+
         if (minutes == 1) {
             [text appendString:@" "];
             [text appendString:NSLocalizedString(@"1 minute", nil)];
@@ -240,7 +240,7 @@ static NSString* articles[] = {
             [text appendFormat:NSLocalizedString(@"%d minutes", nil), minutes];
         }
     }
-    
+
     return text;
 }
 

@@ -93,7 +93,7 @@
         NSString* link =   [reviewElement attributeValue:@"link"];
         NSString* author = [reviewElement attributeValue:@"author"];
         NSString* source = [reviewElement attributeValue:@"source"];
-        
+
         NSInteger scoreValue = score.intValue;
 
         [result addObject:[Review reviewWithText:text

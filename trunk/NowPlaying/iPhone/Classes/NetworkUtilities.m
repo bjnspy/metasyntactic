@@ -58,7 +58,7 @@ static NSInteger importantTaskCount = 0;
     if (result != nil) {
         return result;
     }
-    
+
     return [[[NSString alloc] initWithData:data encoding:NSISOLatin1StringEncoding] autorelease];
 }
 
@@ -123,49 +123,17 @@ static NSInteger importantTaskCount = 0;
 }
 
 
-+ (NSData*) highPriorityDataWithContentsOfUrl:(NSURL*) url {
-    [gate lock];
-    {
-        importantTaskCount++;
-    }
-    [gate unlock];
-    
-    NSData* data = [self dataWithContentsOfUrlWorker:url];
-    
-    [gate lock];
-    {
-        importantTaskCount--;
-        
-        if (importantTaskCount == 0) {
-            [gate broadcast];
-        }
-    }
-    [gate unlock];
-    
-    return data;  
-}
-
-
-+ (NSData*) lowPriorityDataWithContentsOfUrl:(NSURL*) url {
-    [gate lock];
-    {
-        while (importantTaskCount > 0) {
-            [gate wait];
-        }
-    }
-    [gate unlock];
-    
-    return [self dataWithContentsOfUrlWorker:url];
-}
-
-
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url
                         important:(BOOL) important {
-    if (important) {
-        return [self highPriorityDataWithContentsOfUrl:url];
-    } else {
-        return [self lowPriorityDataWithContentsOfUrl:url];
+    NSData* data;
+    
+    [gate lock];
+    {
+        data = [self dataWithContentsOfUrlWorker:url];
     }
+    [gate unlock];
+    
+    return data;
 }
 
 

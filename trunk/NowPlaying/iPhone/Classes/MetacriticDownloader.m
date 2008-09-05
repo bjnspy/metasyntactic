@@ -66,26 +66,26 @@
 
     if (resultElement != nil) {
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
-        
+
         for (XmlElement* movieElement in resultElement.children) {
             NSString* title =    [movieElement attributeValue:@"title"];
             NSString* link =     [movieElement attributeValue:@"link"];
             NSString* synopsis = [movieElement attributeValue:@"synopsis"];
             NSString* score =    [movieElement attributeValue:@"score"];
-            
+
             if ([score isEqual:@"xx"]) {
                 score = @"-1";
             }
-            
+
             ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
                                                                                link:link
                                                                            synopsis:synopsis
                                                                               score:score];
-            
-            
+
+
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
-        
+
         if (ratings.count > 0) {
             NSMutableDictionary* result = [NSMutableDictionary dictionary];
             [result setObject:ratings forKey:@"Ratings"];
