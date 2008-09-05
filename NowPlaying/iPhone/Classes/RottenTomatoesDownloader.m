@@ -37,7 +37,7 @@
     if (self = [super init]) {
         self.model = model_;
     }
-    
+
     return self;
 }
 
@@ -53,42 +53,42 @@
     if (serverHash == nil) {
         serverHash = @"0";
     }
-    
+
     if (localHash != nil &&
         [localHash isEqual:serverHash]) {
         return [NSDictionary dictionary];
     }
-    
+
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&format=xml", [Application host]]
                                                                  important:YES];
-    
+
     if (resultElement != nil) {
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
-        
+
         for (XmlElement* movieElement in resultElement.children) {
             NSString* title =    [movieElement attributeValue:@"title"];
             NSString* link =     [movieElement attributeValue:@"link"];
             NSString* synopsis = [movieElement attributeValue:@"synopsis"];
             NSString* score =    [movieElement attributeValue:@"score"];
-            
+
             ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
                                                                                link:link
                                                                            synopsis:synopsis
                                                                               score:score];
-            
-            
+
+
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
-        
+
         if (ratings.count > 0) {
             NSMutableDictionary* result = [NSMutableDictionary dictionary];
             [result setObject:ratings forKey:@"Ratings"];
             [result setObject:serverHash forKey:@"Hash"];
-            
+
             return result;
         }
     }
-    
+
     return nil;
 }
 
