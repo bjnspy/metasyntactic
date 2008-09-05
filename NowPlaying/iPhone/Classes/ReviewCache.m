@@ -22,6 +22,7 @@
 #import "NowPlayingModel.h"
 #import "Review.h"
 #import "Utilities.h"
+#import "XmlElement.h"
 
 @implementation ReviewCache
 
@@ -83,25 +84,23 @@
 }
 
 
-- (NSArray*) extractReviews:(NSString*) reviewPage {
+- (NSArray*) extractReviews:(XmlElement*) resultElement {
     NSMutableArray* result = [NSMutableArray array];
 
-    NSArray* rows = [reviewPage componentsSeparatedByString:@"\n"];
-    for (NSString* row in rows) {
-        NSArray* columns = [row componentsSeparatedByString:@"\t"];
-
-        if (columns.count < 5) {
-            continue;
-        }
-
-        NSString* score = [columns objectAtIndex:1];
+    for (XmlElement* reviewElement in resultElement.children) {
+        NSString* text =   [reviewElement attributeValue:@"text"];
+        NSString* score =  [reviewElement attributeValue:@"score"];
+        NSString* link =   [reviewElement attributeValue:@"link"];
+        NSString* author = [reviewElement attributeValue:@"author"];
+        NSString* source = [reviewElement attributeValue:@"source"];
+        
         NSInteger scoreValue = score.intValue;
 
-        [result addObject:[Review reviewWithText:[columns objectAtIndex:0]
+        [result addObject:[Review reviewWithText:text
                                            score:scoreValue
-                                            link:[columns objectAtIndex:2]
-                                          author:[columns objectAtIndex:3]
-                                          source:[columns objectAtIndex:4]]];
+                                            link:link
+                                          author:author
+                                          source:source]];
     }
 
     return result;
@@ -109,11 +108,11 @@
 
 
 - (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@", [Application host], info.link];
-    NSString* reviewPage = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&format=xml", [Application host], info.link];
+    XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
 
-    if (reviewPage != nil) {
-        return [self extractReviews:reviewPage];
+    if (resultElement != nil) {
+        return [self extractReviews:resultElement];
     }
 
     return nil;
@@ -161,7 +160,7 @@
 
         ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
         if (info.link.length > 0) {
-            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&hash=true", [Application host], info.link];
+            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&format=xml&hash=true", [Application host], info.link];
             NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
             if (serverHash == nil) {
                 serverHash = @"0";
