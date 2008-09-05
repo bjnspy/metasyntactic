@@ -401,11 +401,10 @@
 
 
 - (void) didSelectShowHiddenTheaters {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
+    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
 
     filterTheatersByDistance = NO;
-    [self initializeData];
-    [self.tableView reloadData];
+    [self performSelector:@selector(refresh) withObject:nil afterDelay:0.3];
 }
 
 
