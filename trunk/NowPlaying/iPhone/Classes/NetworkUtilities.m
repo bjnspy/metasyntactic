@@ -21,7 +21,10 @@
 @implementation NetworkUtilities
 
 static NSCondition* gate = nil;
-static NSInteger importantTaskCount = 0;
+
+static NSInteger highTaskWaitCount = 0;
+static BOOL highTaskRunning = NO;
+static BOOL lowTaskRunning = NO;
 
 + (void) initialize {
     if (self == [NetworkUtilities class]) {
@@ -123,17 +126,61 @@ static NSInteger importantTaskCount = 0;
 }
 
 
-+ (NSData*) dataWithContentsOfUrl:(NSURL*) url
-                        important:(BOOL) important {
-    NSData* data;
++ (NSData*) highPriorityDataWithContentsOfUrl:(NSURL*) url {
+    [gate lock];
+    {
+        highTaskWaitCount++;
+        while (highTaskRunning || lowTaskRunning) {
+            [gate wait];
+        }
+        highTaskWaitCount--;
+        highTaskRunning = YES;
+    }
+    [gate unlock];
+
+    NSData* data = [self dataWithContentsOfUrlWorker:url];
     
     [gate lock];
     {
-        data = [self dataWithContentsOfUrlWorker:url];
+        highTaskRunning = NO;
+        [gate broadcast];
     }
     [gate unlock];
     
     return data;
+}
+
+
++ (NSData*) lowPriorityDataWithContentsOfUrl:(NSURL*) url {
+    [gate lock];
+    {
+        while (lowTaskRunning || highTaskRunning || highTaskWaitCount > 0) {
+            [gate wait];
+        }
+        lowTaskRunning = YES;
+    }
+    [gate unlock];
+    
+    NSData* data = [self dataWithContentsOfUrlWorker:url];
+    
+    [gate lock];
+    {
+        lowTaskRunning = NO;
+        [gate broadcast];
+    }
+    [gate unlock];
+    
+    return data;
+}
+
+
++ (NSData*) dataWithContentsOfUrl:(NSURL*) url
+                        important:(BOOL) important {
+    if (important) {
+        return [self highPriorityDataWithContentsOfUrl:url];
+    } else {
+        return [self lowPriorityDataWithContentsOfUrl:url];
+    }
 }
 
 
