@@ -20,11 +20,12 @@
 
 @implementation NetworkUtilities
 
-static NSLock* gate = nil;
+static NSCondition* gate = nil;
+static NSInteger importantTaskCount = 0;
 
 + (void) initialize {
     if (self == [NetworkUtilities class]) {
-        gate = [[NSRecursiveLock alloc] init];
+        gate = [[NSCondition alloc] init];
     }
 }
 
@@ -96,8 +97,7 @@ static NSLock* gate = nil;
 }
 
 
-+ (NSData*) dataWithContentsOfUrlWorker:(NSURL*) url
-                              important:(BOOL) important {
++ (NSData*) dataWithContentsOfUrlWorker:(NSURL*) url {
     NSAssert(![NSThread isMainThread], @"");
 
     if (url == nil) {
@@ -123,19 +123,49 @@ static NSLock* gate = nil;
 }
 
 
++ (NSData*) highPriorityDataWithContentsOfUrl:(NSURL*) url {
+    [gate lock];
+    {
+        importantTaskCount++;
+    }
+    [gate unlock];
+    
+    NSData* data = [self dataWithContentsOfUrlWorker:url];
+    
+    [gate lock];
+    {
+        importantTaskCount--;
+        
+        if (importantTaskCount == 0) {
+            [gate broadcast];
+        }
+    }
+    [gate unlock];
+    
+    return data;  
+}
+
+
++ (NSData*) lowPriorityDataWithContentsOfUrl:(NSURL*) url {
+    [gate lock];
+    {
+        while (importantTaskCount > 0) {
+            [gate wait];
+        }
+    }
+    [gate unlock];
+    
+    return [self dataWithContentsOfUrlWorker:url];
+}
+
+
 + (NSData*) dataWithContentsOfUrl:(NSURL*) url
                         important:(BOOL) important {
-    if (!important) {
-        [gate lock];
+    if (important) {
+        return [self highPriorityDataWithContentsOfUrl:url];
+    } else {
+        return [self lowPriorityDataWithContentsOfUrl:url];
     }
-
-    NSData* data = [self dataWithContentsOfUrlWorker:url important:important];
-
-    if (!important) {
-        [gate unlock];
-    }
-
-    return data;
 }
 
 
