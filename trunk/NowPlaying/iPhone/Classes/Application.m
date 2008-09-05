@@ -360,7 +360,6 @@ static NSString* starString = nil;
 
 + (NSString*) sanitizeFileName:(NSString*) name {
     return [[[name stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"]
-                   stringByReplacingOccurrencesOfString:@"." withString:@"-dot-"]
                    stringByReplacingOccurrencesOfString:@":" withString:@"-colon-"];
 }
 

@@ -21,6 +21,7 @@
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "Utilities.h"
+#import "XmlElement.h"
 
 @implementation MetacriticDownloader
 
@@ -49,7 +50,7 @@
 - (NSDictionary*) lookupMovieListings:(NSString*) localHash {
     NSString* host = [Application host];
 
-    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&hash=true", host]
+    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&format=xml&hash=true", host]
                                                         important:YES];
     if (serverHash == nil) {
         serverHash = @"0";
@@ -60,36 +61,31 @@
         return [NSDictionary dictionary];
     }
 
-    NSString* movieListings = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic", host]
-                                                           important:YES];
+    XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&format=xml", host]
+                                                                 important:YES];
 
-    if (movieListings != nil) {
+    if (resultElement != nil) {
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
-
-        NSArray* rows = [movieListings componentsSeparatedByString:@"\n"];
-
-        for (NSString* row in rows) {
-            NSArray* columns = [row componentsSeparatedByString:@"\t"];
-
-            if (columns.count >= 3) {
-                NSString* synopsis = @"";
-                NSString* score = [columns objectAtIndex:0];
-                NSString* link  = [columns objectAtIndex:1];
-                NSString* title = [columns objectAtIndex:2];
-                if ([score isEqual:@"xx"]) {
-                    score = @"-1";
-                }
-
-                ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
-                                                                                   link:link
-                                                                               synopsis:synopsis
-                                                                                  score:score];
-
-
-                [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
+        
+        for (XmlElement* movieElement in resultElement.children) {
+            NSString* title =    [movieElement attributeValue:@"title"];
+            NSString* link =     [movieElement attributeValue:@"link"];
+            NSString* synopsis = [movieElement attributeValue:@"synopsis"];
+            NSString* score =    [movieElement attributeValue:@"score"];
+            
+            if ([score isEqual:@"xx"]) {
+                score = @"-1";
             }
+            
+            ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
+                                                                               link:link
+                                                                           synopsis:synopsis
+                                                                              score:score];
+            
+            
+            [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
-
+        
         if (ratings.count > 0) {
             NSMutableDictionary* result = [NSMutableDictionary dictionary];
             [result setObject:ratings forKey:@"Ratings"];

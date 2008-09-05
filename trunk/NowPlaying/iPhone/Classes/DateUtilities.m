@@ -30,6 +30,10 @@ static NSDateFormatter* fullDateFormatter;
 static NSDateFormatter* shortTimeFormatter;
 
 
+static NSMutableDictionary* yearsAgoMap;
+static NSMutableDictionary* monthsAgoMap;
+static NSMutableDictionary* weeksAgoMap;
+
 + (void) initialize {
     if (self == [DateUtilities class]) {
         gate = [[NSRecursiveLock alloc] init];
@@ -41,6 +45,9 @@ static NSDateFormatter* shortTimeFormatter;
         todayComponents.hour = 12;
         today = [[calendar dateFromComponents:todayComponents] retain];
         
+        yearsAgoMap = [[NSMutableDictionary dictionary] retain];
+        monthsAgoMap = [[NSMutableDictionary dictionary] retain];
+        weeksAgoMap = [[NSMutableDictionary dictionary] retain];
         
         {
             shortDateFormatter = [[NSDateFormatter alloc] init];
@@ -69,6 +76,48 @@ static NSDateFormatter* shortTimeFormatter;
 }
 
 
++ (NSString*) agoString:(NSInteger) time
+                    map:(NSMutableDictionary*) map
+               singular:(NSString*) singular
+                 plural:(NSString*) plural {
+    if (time == 1) {
+        return singular;
+    } else {
+        NSNumber* number = [NSNumber numberWithInt:time];
+        NSString* result = [map objectForKey:number];
+        if (result == nil) {
+            result = [NSString stringWithFormat:plural, time];
+            [map setObject:result forKey:number];
+        }
+        return result;
+    }
+}
+
+
++ (NSString*) yearsAgoString:(NSInteger) year {
+    return [self agoString:year
+                       map:yearsAgoMap 
+                  singular:NSLocalizedString(@"1 year ago", nil) 
+                    plural:NSLocalizedString(@"%d years ago", nil)];
+}
+
+
++ (NSString*) monthsAgoString:(NSInteger) month {
+    return [self agoString:month
+                       map:monthsAgoMap 
+                  singular:NSLocalizedString(@"1 month ago", nil) 
+                    plural:NSLocalizedString(@"%d months ago", nil)];
+}
+
+
++ (NSString*) weeksAgoString:(NSInteger) week {
+    return [self agoString:week
+                       map:weeksAgoMap 
+                  singular:NSLocalizedString(@"1 week ago", nil) 
+                    plural:NSLocalizedString(@"%d weeks ago", nil)];
+}
+
+
 + (NSString*) timeSinceNowWorker:(NSDate*) date {
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSDayCalendarUnit)
@@ -76,18 +125,12 @@ static NSDateFormatter* shortTimeFormatter;
                                                  toDate:today
                                                 options:0];
     
-    if (components.year == 1) {
-        return NSLocalizedString(@"1 year ago", nil);
-    } else if (components.year > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"%d years ago", nil), components.year];
-    } else if (components.month == 1) {
-        return NSLocalizedString(@"1 month ago", nil);
-    } else if (components.month > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"%d months ago", nil), components.month];
-    } else if (components.week == 1) {
-        return NSLocalizedString(@"1 week ago", nil);
-    } else if (components.week > 1) {
-        return [NSString stringWithFormat:NSLocalizedString(@"%d weeks ago", nil), components.week];
+    if (components.year >= 1) {
+        return [self yearsAgoString:components.year];
+    } else if (components.month >= 1) {
+        return [self monthsAgoString:components.month];
+    } else if (components.week >= 1) {
+        return [self weeksAgoString:components.week];
     } else if (components.day == 0) {
         return NSLocalizedString(@"Today", nil);
     } else if (components.day == 1) {
