@@ -20,16 +20,39 @@ from google.appengine.api import memcache
 from google.appengine.api import urlfetch
 
 class LookupMetacriticReviewsHandler(webapp.RequestHandler):
-  def get_listings(self, content):
+  def get_listings(self, content, format):
     sections  = self.extract_review_sections(content)
-    result = ""
-    for s in sections:
+
+    if format == "tab":
+      result = u""
+      for s in sections:
         review = self.extract_review(s)
         if not review is None:
-            result += (review + "\n")
+          (text, score, link, author, source) = review
+          result += text + "\t" + score + "\t" + link + "\t" + author + "\t" + source
+          result += u"\n"
     
-    return zlib.compress(result)
-    
+      return result
+    else:
+      document = getDOMImplementation().createDocument(None, "result", None)
+      resultElement = document.documentElement
+
+      for s in sections:
+        review = self.extract_review(s)
+        if not review is None:
+          (text, score, link, author, source) = review
+
+          reviewElement = document.createElement("review")
+          resultElement.appendChild(reviewElement)
+
+          reviewElement.setAttribute("text", text)
+          reviewElement.setAttribute("score", score)
+          reviewElement.setAttribute("link", link)
+          reviewElement.setAttribute("author", author)
+          reviewElement.setAttribute("source", source)
+
+      return document.toxml()
+      
     
   def extract_review(self, section):
     text = self.extract_text(section)
@@ -46,17 +69,17 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
     author = self.replace_lines(author)
     source = self.replace_lines(source)
     
-    return text + "\t" + score + "\t" + link + "\t" + author + "\t" + source
+    return (text, score, link, author, source)
 
   
   def extract_score(self, section):
     scoreStart = section.find("<div class=\"criticscore\">")
     if scoreStart < 0:
-        return ""
+        return u""
         
     scoreEnd = section.find("</div>", scoreStart)
     if scoreEnd < 0:
-        return ""
+        return u""
         
     return section[scoreStart + len("<div class=\"criticscore\">"):scoreEnd]
 
@@ -64,11 +87,11 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
   def extract_critic_information(self, section, anchor):
     startLocation = section.find(anchor)
     if startLocation < 0:
-        return ""
+        return u""
                 
     endLocation = section.find("</span>", startLocation)
     if endLocation < 0:
-        return ""
+        return u""
         
     result = section[(startLocation + len(anchor)):endLocation]
     result = result.replace("&amp;", "&")
@@ -87,11 +110,11 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
   def extract_link(self, section):
     startLocation = section.find("<a href=\"")
     if startLocation < 0:
-        return ""
+        return u""
         
     quoteLocation = section.find("\"", startLocation + len("<a href=\""))
     if quoteLocation < 0:
-        return ""
+        return u""
         
     address = section[(startLocation + len("<a href=\"")):quoteLocation]
     return address
