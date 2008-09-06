@@ -16,19 +16,16 @@
 
 #import "NetworkUtilities.h"
 
+#import "PriorityMutex.h"
 #import "XmlParser.h"
 
 @implementation NetworkUtilities
 
-static NSCondition* gate = nil;
-
-static NSInteger highTaskWaitCount = 0;
-static BOOL highTaskRunning = NO;
-static BOOL lowTaskRunning = NO;
+static PriorityMutex* mutex = nil;
 
 + (void) initialize {
     if (self == [NetworkUtilities class]) {
-        gate = [[NSCondition alloc] init];
+        mutex = [[PriorityMutex alloc] init];
     }
 }
 
@@ -127,49 +124,27 @@ static BOOL lowTaskRunning = NO;
 
 
 + (NSData*) highPriorityDataWithContentsOfUrl:(NSURL*) url {
-    [gate lock];
-    {
-        highTaskWaitCount++;
-        while (highTaskRunning || lowTaskRunning) {
-            [gate wait];
-        }
-        highTaskWaitCount--;
-        highTaskRunning = YES;
-    }
-    [gate unlock];
+    NSData* data;
 
-    NSData* data = [self dataWithContentsOfUrlWorker:url];
-    
-    [gate lock];
+    [mutex lockHigh];
     {
-        highTaskRunning = NO;
-        [gate broadcast];
+        data = [self dataWithContentsOfUrlWorker:url];
     }
-    [gate unlock];
-    
+    [mutex unlockHigh];
+
     return data;
 }
 
 
 + (NSData*) lowPriorityDataWithContentsOfUrl:(NSURL*) url {
-    [gate lock];
+    NSData* data;
+
+    [mutex lockLow];
     {
-        while (lowTaskRunning || highTaskRunning || highTaskWaitCount > 0) {
-            [gate wait];
-        }
-        lowTaskRunning = YES;
+        data = [self dataWithContentsOfUrlWorker:url];
     }
-    [gate unlock];
-    
-    NSData* data = [self dataWithContentsOfUrlWorker:url];
-    
-    [gate lock];
-    {
-        lowTaskRunning = NO;
-        [gate broadcast];
-    }
-    [gate unlock];
-    
+    [mutex unlockLow];
+
     return data;
 }
 

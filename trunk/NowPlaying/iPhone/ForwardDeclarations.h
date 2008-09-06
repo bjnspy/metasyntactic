@@ -61,6 +61,7 @@
 @class PickerEditorViewController;
 @class PosterCache;
 @class PosterDownloader;
+@class PriorityMutex;
 @class RatingsCache;
 @class RatingsProviderViewController;
 @class Review;

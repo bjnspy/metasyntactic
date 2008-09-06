@@ -78,6 +78,7 @@
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
 		74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */; };
 		74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */; };
+		74E6F01D0E723FB700A4C2BE /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */; };
 		74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */; };
 		74EC04F20DD2B44E006953A4 /* AddressLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */; };
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
@@ -291,6 +292,8 @@
 		74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTitleCell.m; sourceTree = "<group>"; };
 		74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDatePickerViewController.h; sourceTree = "<group>"; };
 		74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDatePickerViewController.m; sourceTree = "<group>"; };
+		74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityMutex.h; sourceTree = "<group>"; };
+		74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
 		74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
 		74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
 		74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressLocationCache.h; sourceTree = "<group>"; };
@@ -395,6 +398,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				74E6F0190E723FA200A4C2BE /* Threading */,
 				7474FE910E6359BC00BAA43D /* Caches */,
 				74F3B2430E3CE79900DD25DA /* DataProviders */,
 				7474FE8F0E63595400BAA43D /* Posters */,
@@ -762,6 +766,15 @@
 			name = Xml;
 			sourceTree = "<group>";
 		};
+		74E6F0190E723FA200A4C2BE /* Threading */ = {
+			isa = PBXGroup;
+			children = (
+				74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */,
+				74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */,
+			);
+			name = Threading;
+			sourceTree = "<group>";
+		};
 		74F3B2430E3CE79900DD25DA /* DataProviders */ = {
 			isa = PBXGroup;
 			children = (
@@ -980,6 +993,7 @@
 				74F94AA00E6B9ECB00075068 /* NetworkUtilities.m in Sources */,
 				74F94C8D0E6BB34800075068 /* LocationUtilities.m in Sources */,
 				744592040E6CA017002D05C3 /* WarningView.m in Sources */,
+				74E6F01D0E723FB700A4C2BE /* PriorityMutex.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
