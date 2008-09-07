@@ -217,31 +217,28 @@ static NSString* articles[] = {
 
 - (NSString*) ratingAndRuntimeString {
     NSInteger movieLength = length.intValue;
-    NSInteger hours = movieLength / 60;
-    NSInteger minutes = movieLength % 60;
-
-    NSString* ratingString = self.ratingString;
-
-    NSMutableString* text = [NSMutableString stringWithString:ratingString];
-    if (movieLength != 0) {
+    
+    NSString* hoursString = @"";
+    NSString* minutesString = @"";
+    
+    if (movieLength > 0) {
+        NSInteger hours = movieLength / 60;
+        NSInteger minutes = movieLength % 60;
+        
         if (hours == 1) {
-            [text appendString:@" "];
-            [text appendString:NSLocalizedString(@"1 hour", nil)];
+            hoursString = NSLocalizedString(@"1 hour", nil);
         } else if (hours > 1) {
-            [text appendString:@" "];
-            [text appendFormat:NSLocalizedString(@"%d hours", nil), hours];
+            hoursString = [NSString stringWithFormat:NSLocalizedString(@"%d hours", nil), hours];
         }
-
+        
         if (minutes == 1) {
-            [text appendString:@" "];
-            [text appendString:NSLocalizedString(@"1 minute", nil)];
+            minutesString = NSLocalizedString(@"1 minute", nil);
         } else if (minutes > 1) {
-            [text appendString:@" "];
-            [text appendFormat:NSLocalizedString(@"%d minutes", nil), minutes];
+            minutesString = [NSString stringWithFormat:NSLocalizedString(@"%d minutes", nil), minutes];
         }
     }
-
-    return text;
+    
+    return [NSString stringWithFormat:NSLocalizedString(@"%@ %@ %@", "Rated PG-13. 2 hours 34 minutes"), self.ratingString, hoursString, minutesString];
 }
 
 @end
