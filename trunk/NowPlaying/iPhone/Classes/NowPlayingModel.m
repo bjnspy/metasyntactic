@@ -45,7 +45,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"1.6.2";
-static NSString* persistenceVersion = @"15";
+static NSString* persistenceVersion = @"16";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
