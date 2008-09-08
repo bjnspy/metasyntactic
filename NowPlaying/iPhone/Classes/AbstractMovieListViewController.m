@@ -89,6 +89,7 @@
     return NULL;
 }
 
+
 - (NowPlayingModel*) model {
     return navigationController.model;
 }

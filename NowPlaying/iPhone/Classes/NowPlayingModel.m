@@ -45,7 +45,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"1.6.2";
-static NSString* persistenceVersion = @"16";
+static NSString* persistenceVersion = @"17";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -521,12 +521,7 @@ static NSString* persistenceVersion = @"16";
         return [NSMutableArray array];
     }
 
-    NSMutableArray* result = [NSMutableArray array];
-    for (NSDictionary* dictionary in array) {
-        [result addObject:[Theater theaterWithDictionary:dictionary]];
-    }
-
-    return result;
+    return [NSMutableArray arrayWithArray:array];
 }
 
 
@@ -540,45 +535,26 @@ static NSString* persistenceVersion = @"16";
 
 
 - (void) saveFavoriteTheaters {
-    NSMutableArray* encodedTheaters = [NSMutableArray array];
-    for (Theater* theater in favoriteTheatersData) {
-        [encodedTheaters addObject:theater.dictionary];
-    }
-
-    [[NSUserDefaults standardUserDefaults] setObject:encodedTheaters forKey:[NowPlayingModel FAVORITE_THEATERS]];
+    [[NSUserDefaults standardUserDefaults] setObject:favoriteTheatersData forKey:[NowPlayingModel FAVORITE_THEATERS]];
 }
 
 
 - (void) addFavoriteTheater:(Theater*) theater {
-    [favoriteTheatersData addObject:theater];
+    if (![favoriteTheatersData containsObject:theater.name]) {
+        [favoriteTheatersData addObject:theater.name];
+    }
+
     [self saveFavoriteTheaters];
 }
 
 
 - (BOOL) isFavoriteTheater:(Theater*) theater {
-    NSArray* array = [self favoriteTheaters];
-    for (Theater* currentTheater in array) {
-        if ([currentTheater.name isEqual:theater.name]) {
-            return YES;
-        }
-    }
-
-    return NO;
+    return [[self favoriteTheaters] containsObject:theater.name];
 }
 
 
 - (void) removeFavoriteTheater:(Theater*) theater {
-    NSMutableArray* array = [self favoriteTheaters];
-
-    for (int i = 0; i < array.count; i++) {
-        Theater* currentTheater = [array objectAtIndex:i];
-
-        if ([currentTheater.name isEqual:theater.name]) {
-            [array removeObjectAtIndex:i];
-            break;
-        }
-    }
-
+    [favoriteTheatersData removeObject:theater.name];
     [self saveFavoriteTheaters];
 }
 
