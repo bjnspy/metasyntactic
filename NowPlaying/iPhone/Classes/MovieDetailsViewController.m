@@ -229,13 +229,20 @@
 }
 
 
+static BOOL expanded = NO;
+
+
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell heightForMovie:movie model:self.model];
     } else if (row == 1) {
         return self.tableView.rowHeight - 10;
     } else {
-        return self.tableView.rowHeight;
+        if (expanded) {
+            return 2 * self.tableView.rowHeight;
+        } else {
+            return self.tableView.rowHeight;
+        }
     }
 }
 
@@ -272,13 +279,24 @@
 - (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell cellWithMovie:movie model:self.model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
-    } else {
+    } else if (row == 1) {
         UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
         cell.textAlignment = UITextAlignmentCenter;
         cell.text = movie.ratingAndRuntimeString;
         cell.font = [UIFont boldSystemFontOfSize:14];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
+
+        return cell;
+    } else {
+        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
+        cell.textAlignment = UITextAlignmentCenter;
+        
+        if (expanded) {
+            cell.text = @"Click me and i'll shrink";
+        } else {
+            cell.text = @"Click me and i'll expand";
+        }
 
         return cell;
     }
@@ -483,9 +501,30 @@
 }
 
 
+- (void) didSelectHeaderRow:(NSInteger) row {
+    if (row == 2) {
+        UITableView* tableView = self.tableView;
+        
+        [tableView beginUpdates];
+        
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]]
+                         withRowAnimation:UITableViewRowAnimationFade];
+        
+        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]]
+                         withRowAnimation:UITableViewRowAnimationFade];
+        
+        NSLog(@"%f", [UIApplication sharedApplication].statusBarOrientationAnimationDuration);
+        
+        expanded = !expanded;
+        [tableView endUpdates];
+    }
+}
+
+
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
+        [self didSelectHeaderRow:indexPath.row];
         return;
     }
 

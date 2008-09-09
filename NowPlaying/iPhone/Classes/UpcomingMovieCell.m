@@ -164,9 +164,9 @@
 
 - (void) setMovie:(Movie*) movie {
     titleLabel.text = movie.displayTitle;
-    directorLabel.text = [movie.directors componentsJoinedByString:@", "];
-    castLabel.text = [movie.cast componentsJoinedByString:@", "];
-    genreLabel.text = [movie.genres componentsJoinedByString:@", "];
+    directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
+    castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
+    genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
 
     if (movie.isUnrated) {
         ratedLabel.text = NSLocalizedString(@"Not yet rated", nil);

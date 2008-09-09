@@ -17,10 +17,15 @@
 @interface UpcomingCache : NSObject {
     NSLock* gate;
     NSDictionary* index;
+    
+    NSArray* recentMovies;
+    NSDictionary* movieMap;
 }
 
 @property (retain) NSLock* gate;
 @property (retain) NSDictionary* index;
+@property (retain) NSArray* recentMovies;
+@property (retain) NSDictionary* movieMap;
 
 + (UpcomingCache*) cache;
 
@@ -32,5 +37,8 @@
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (NSString*) synopsisForMovie:(Movie*) movie;
 - (NSArray*) trailersForMovie:(Movie*) movie;
+- (NSArray*) directorsForMovie:(Movie*) movie;
+- (NSArray*) castForMovie:(Movie*) movie;
+- (NSArray*) genresForMovie:(Movie*) movie;
 
 @end

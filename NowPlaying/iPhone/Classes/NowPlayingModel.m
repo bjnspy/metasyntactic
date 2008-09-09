@@ -45,7 +45,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"1.6.2";
-static NSString* persistenceVersion = @"17";
+static NSString* persistenceVersion = @"19";
 
 + (NSString*) VERSION                                   { return @"version"; }
 + (NSString*) SEARCH_DATES                              { return @"searchDates"; }
@@ -520,8 +520,13 @@ static NSString* persistenceVersion = @"17";
     if (array.count == 0) {
         return [NSMutableArray array];
     }
+    
+    NSMutableArray* result = [NSMutableArray array];
+    for (NSDictionary* dictionary in array) {
+        [result addObject:[Theater theaterWithDictionary:dictionary]];
+    }
 
-    return [NSMutableArray arrayWithArray:array];
+    return result;
 }
 
 
@@ -535,13 +540,18 @@ static NSString* persistenceVersion = @"17";
 
 
 - (void) saveFavoriteTheaters {
-    [[NSUserDefaults standardUserDefaults] setObject:favoriteTheatersData forKey:[NowPlayingModel FAVORITE_THEATERS]];
+    NSMutableArray* result = [NSMutableArray array];
+    for (Theater* theater in self.favoriteTheaters) {
+        [result addObject:theater.dictionary];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:result forKey:[NowPlayingModel FAVORITE_THEATERS]];
 }
 
 
 - (void) addFavoriteTheater:(Theater*) theater {
-    if (![favoriteTheatersData containsObject:theater.name]) {
-        [favoriteTheatersData addObject:theater.name];
+    if (![self.favoriteTheaters containsObject:theater.name]) {
+        [self.favoriteTheaters addObject:theater.name];
     }
 
     [self saveFavoriteTheaters];
@@ -549,13 +559,40 @@ static NSString* persistenceVersion = @"17";
 
 
 - (BOOL) isFavoriteTheater:(Theater*) theater {
-    return [[self favoriteTheaters] containsObject:theater.name];
+    return [self.favoriteTheaters containsObject:theater];
 }
 
 
 - (void) removeFavoriteTheater:(Theater*) theater {
-    [favoriteTheatersData removeObject:theater.name];
+    [self.favoriteTheaters removeObject:theater];
     [self saveFavoriteTheaters];
+}
+
+
+- (NSArray*) directorsForMovie:(Movie*) movie {
+    if (movie.directors.count > 0) {
+        return movie.directors;
+    }
+    
+    return [upcomingCache directorsForMovie:movie];
+}
+
+
+- (NSArray*) castForMovie:(Movie*) movie {
+    if (movie.cast.count > 0) {
+        return movie.cast;
+    }
+    
+    return [upcomingCache castForMovie:movie];
+}
+
+
+- (NSArray*) genresForMovie:(Movie*) movie {
+    if (movie.genres.count > 0) {
+        return movie.genres;
+    }
+    
+    return [upcomingCache genresForMovie:movie];
 }
 
 
