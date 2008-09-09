@@ -24,14 +24,16 @@
 static NSLock* gate;
 static UIActivityIndicatorView* activityIndicatorView = nil;
 static UIView* activityView = nil;
-static NSInteger backgroundTaskCount = 0;
 static NowPlayingAppDelegate* appDelegate;
 static GlobalActivityIndicator* indicator;
 
+static NSInteger totalBackgroundTaskCount = 0;
+static NSInteger visibleBackgroundTaskCount = 0;
+
 + (void) initialize {
     if (self == [GlobalActivityIndicator class]) {
-        gate = [[NSLock alloc] init];
-        
+        gate = [[NSRecursiveLock alloc] init];
+
         activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         CGRect frame = activityIndicatorView.frame;
         frame.size.width += 4;
@@ -54,38 +56,64 @@ static GlobalActivityIndicator* indicator;
 }
 
 
-- (void) start {
+- (void) startIndicator {
     [activityIndicatorView startAnimating];
 }
 
 
-- (void) stop {
+- (void) startNetworkIndicator {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES; 
+}
+
+
+- (void) stopIndicator {
     [activityIndicatorView stopAnimating];
+}
+
+
+- (void) stopNetworkIndicator {
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = NO;
+}
+
+
+- (void) refresh {
     [appDelegate.tabBarController refresh];
 }
 
 
-+ (void) addBackgroundTask {
++ (void) addBackgroundTask:(BOOL) isVisible {
     [gate lock];
     {
-        backgroundTaskCount++;
+        totalBackgroundTaskCount++;
+        visibleBackgroundTaskCount++;
         
-        if (backgroundTaskCount == 1) {
-            [indicator performSelectorOnMainThread:@selector(start) withObject:nil waitUntilDone:NO];
+        if (visibleBackgroundTaskCount == 1) {
+            [indicator performSelectorOnMainThread:@selector(startIndicator) withObject:nil waitUntilDone:NO];
+        }
+        
+        if (totalBackgroundTaskCount == 1) {
+            [indicator performSelectorOnMainThread:@selector(startNetworkIndicator) withObject:nil waitUntilDone:NO];
         }
     }
     [gate unlock];
 }
 
 
-+ (void) removeBackgroundTask {
++ (void) removeBackgroundTask:(BOOL) isVisible {
     [gate lock];
     {
-        backgroundTaskCount--;
+        totalBackgroundTaskCount--;
+        visibleBackgroundTaskCount--;
         
-        if (backgroundTaskCount == 0) {
-            [indicator performSelectorOnMainThread:@selector(stop) withObject:nil waitUntilDone:NO];
+        if (visibleBackgroundTaskCount == 0) {
+            [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
         }
+        
+        if (totalBackgroundTaskCount == 0) {
+            [indicator performSelectorOnMainThread:@selector(stopNetworkIndicator) withObject:nil waitUntilDone:NO];
+        }
+        
+        [indicator performSelectorOnMainThread:@selector(refresh) withObject:nil waitUntilDone:NO];
     }
     [gate unlock];
 }

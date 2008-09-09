@@ -188,13 +188,13 @@
 - (void) backgroundEntryPoint:(NSArray*) addresses {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
-    [GlobalActivityIndicator addBackgroundTask];
+    [GlobalActivityIndicator addBackgroundTask:NO];
     {
         [NSThread setThreadPriority:0.0];
 
         [self downloadAddressLocations:addresses];
     }
-    [GlobalActivityIndicator removeBackgroundTask];
+    [GlobalActivityIndicator removeBackgroundTask:NO];
     [gate unlock];
     [autoreleasePool release];
 }
@@ -202,13 +202,13 @@
 
 - (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [GlobalActivityIndicator addBackgroundTask];
+    [GlobalActivityIndicator addBackgroundTask:YES];
     {
         [NSThread setThreadPriority:0.0];
 
         [self downloadAddressLocation:postalCode];
     }
-    [GlobalActivityIndicator removeBackgroundTask];
+    [GlobalActivityIndicator removeBackgroundTask:YES];
     [autoreleasePool release];
 }
 

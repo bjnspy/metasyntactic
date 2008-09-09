@@ -298,7 +298,7 @@ static NSString* titles_key = @"Titles";
 - (void) updateMovieDetailsInBackground:(NSDictionary*) index_ {
     NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
     [gate lock];
-    [GlobalActivityIndicator addBackgroundTask];
+    [GlobalActivityIndicator addBackgroundTask:NO];
     {
         [NSThread setThreadPriority:0.0];
         NSArray* movies = [index_ objectForKey:movies_key];
@@ -315,7 +315,7 @@ static NSString* titles_key = @"Titles";
             [autoreleasePool release];
         }
     }
-    [GlobalActivityIndicator removeBackgroundTask];
+    [GlobalActivityIndicator removeBackgroundTask:NO];
     [gate unlock];
     [autoreleasePool release];
 }

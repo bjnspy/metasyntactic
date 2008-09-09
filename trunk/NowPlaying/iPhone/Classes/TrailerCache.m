@@ -173,7 +173,7 @@
 - (void) backgroundEntryPoint:(NSArray*) arguments {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
-    [GlobalActivityIndicator addBackgroundTask];
+    [GlobalActivityIndicator addBackgroundTask:NO];
     {
         [NSThread setThreadPriority:0.0];
 
@@ -187,7 +187,7 @@
             [self downloadTrailers:movies index:index];
         }
     }
-    [GlobalActivityIndicator removeBackgroundTask];
+    [GlobalActivityIndicator removeBackgroundTask:NO];
     [gate unlock];
     [autoreleasePool release];
 }

@@ -21,7 +21,7 @@
 + (void) setAppDelegate:(NowPlayingAppDelegate*) appDelegate;
 + (UIView*) activityView;
 
-+ (void) addBackgroundTask;
-+ (void) removeBackgroundTask;
++ (void) addBackgroundTask:(BOOL) isVisible;
++ (void) removeBackgroundTask:(BOOL) isVisible;
 
 @end

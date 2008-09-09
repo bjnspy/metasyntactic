@@ -146,11 +146,11 @@
 - (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
-    [GlobalActivityIndicator addBackgroundTask];
+    [GlobalActivityIndicator addBackgroundTask:YES];
     {
         [self findPostalCode:location];
     }
-    [GlobalActivityIndicator removeBackgroundTask];
+    [GlobalActivityIndicator removeBackgroundTask:YES];
     [gate unlock];
     [autoreleasePool release];
 }

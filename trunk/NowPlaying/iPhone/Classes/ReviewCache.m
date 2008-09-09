@@ -191,7 +191,7 @@ static NSString* hash_key = @"Hash";
 - (void) updateInBackground:(NSArray*) arguments {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
-    [GlobalActivityIndicator addBackgroundTask];
+    [GlobalActivityIndicator addBackgroundTask:NO];
     {
         [NSThread setThreadPriority:0.0];
 
@@ -218,7 +218,7 @@ static NSString* hash_key = @"Hash";
         [self downloadReviews:infoWithoutReviews ratingsProvider:ratingsProvider];
         [self downloadReviews:infoWithReviews    ratingsProvider:ratingsProvider];
     }
-    [GlobalActivityIndicator removeBackgroundTask];
+    [GlobalActivityIndicator removeBackgroundTask:NO];
     [gate unlock];
     [autoreleasePool release];
 }
