@@ -128,6 +128,9 @@ enum ViewControllerType {
 - (void) onProviderUpdated;
 - (void) onRatingsUpdated;
 
+- (NSArray*) directorsForMovie:(Movie*) movie;
+- (NSArray*) castForMovie:(Movie*) movie;
+- (NSArray*) genresForMovie:(Movie*) movie;
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (Location*) locationForAddress:(NSString*) address;
 

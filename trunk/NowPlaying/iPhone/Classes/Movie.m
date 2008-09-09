@@ -217,27 +217,27 @@ static NSString* articles[] = {
 
 - (NSString*) ratingAndRuntimeString {
     NSInteger movieLength = length.intValue;
-    
+
     NSString* hoursString = @"";
     NSString* minutesString = @"";
-    
+
     if (movieLength > 0) {
         NSInteger hours = movieLength / 60;
         NSInteger minutes = movieLength % 60;
-        
+
         if (hours == 1) {
             hoursString = NSLocalizedString(@"1 hour", nil);
         } else if (hours > 1) {
             hoursString = [NSString stringWithFormat:NSLocalizedString(@"%d hours", nil), hours];
         }
-        
+
         if (minutes == 1) {
             minutesString = NSLocalizedString(@"1 minute", nil);
         } else if (minutes > 1) {
             minutesString = [NSString stringWithFormat:NSLocalizedString(@"%d minutes", nil), minutes];
         }
     }
-    
+
     return [NSString stringWithFormat:NSLocalizedString(@"%@ %@ %@", "Rated PG-13. 2 hours 34 minutes"), self.ratingString, hoursString, minutesString];
 }
 

@@ -27,10 +27,14 @@
 
 @synthesize gate;
 @synthesize index;
+@synthesize recentMovies;
+@synthesize movieMap;
 
 - (void) dealloc {
     self.gate = nil;
     self.index = nil;
+    self.recentMovies = nil;
+    self.movieMap = nil;
 
     [super dealloc];
 }
@@ -50,21 +54,19 @@
 }
 
 
-- (void) writeMovies:(NSArray*) movies
-          studioKeys:(NSMutableDictionary*) studioKeys
-           titleKeys:(NSMutableDictionary*) titleKeys
-                hash:(NSString*) hash {
+- (void) writeData:(NSDictionary*) data {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:hash forKey:@"Hash"];
-    [result setObject:studioKeys forKey:@"Studios"];
-    [result setObject:titleKeys forKey:@"Titles"];
+    [result setObject:[data objectForKey:@"Hash"]       forKey:@"Hash"];
+    [result setObject:[data objectForKey:@"Studios"]    forKey:@"Studios"];
+    [result setObject:[data objectForKey:@"Titles"]     forKey:@"Titles"];
 
     NSMutableArray* encodedMovies = [NSMutableArray array];
-    for (Movie* movie in movies) {
+    for (Movie* movie in [data objectForKey:@"Movies"]) {
         [encodedMovies addObject:movie.dictionary];
     }
 
     [result setObject:encodedMovies forKey:@"Movies"];
+    
     [Utilities writeObject:result toFile:[Application upcomingMoviesIndexFile]];
 }
 
@@ -83,13 +85,7 @@
 - (Movie*) processMovieElement:(XmlElement*) movieElement
                     studioKeys:(NSMutableDictionary*) studioKeys
                      titleKeys:(NSMutableDictionary*) titleKeys  {
-    NSDate* now = [NSDate date];
-    NSDate* releaseDate = [DateUtilities dateWithNaturalLanguageString:[movieElement attributeValue:@"date"]];
-
-    if ([now compare:releaseDate] == NSOrderedDescending) {
-        return nil;
-    }
-
+    NSDate* releaseDate = [DateUtilities dateWithNaturalLanguageString:[movieElement attributeValue:@"date"]];    
     NSString* poster = [movieElement attributeValue:@"poster"];
     NSString* rating = [movieElement attributeValue:@"rating"];
     NSString* studio = [movieElement attributeValue:@"studio"];
@@ -159,14 +155,14 @@
     if (movies.count == 0) {
         return [NSDictionary dictionary];
     }
-
+    
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:serverHash forKey:@"Hash"];
     [result setObject:movies forKey:@"Movies"];
     [result setObject:studioKeys forKey:@"Studios"];
     [result setObject:titleKeys forKey:@"Titles"];
 
-    [self writeMovies:movies studioKeys:studioKeys titleKeys:titleKeys hash:serverHash];
+    [self writeData:result];
 
     return result;
 }
@@ -185,6 +181,9 @@
 
 - (void) saveIndex:(NSDictionary*) index_ {
     self.index = index_;
+    self.recentMovies = nil;
+    self.movieMap = nil;
+    
     [self updateMovieDetails];
 }
 
@@ -320,19 +319,17 @@
         return [NSDictionary dictionary];
     }
 
-    NSArray* encodedMovies = [dictionary objectForKey:@"Movies"];
     NSMutableArray* decodedMovies = [NSMutableArray array];
-
-    for (NSDictionary* dictionary in encodedMovies) {
-        [decodedMovies addObject:[Movie movieWithDictionary:dictionary]];
+    for (NSDictionary* encodedMovie in [dictionary objectForKey:@"Movies"]) {
+        [decodedMovies addObject:[Movie movieWithDictionary:encodedMovie]];
     }
-
+    
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:decodedMovies forKey:@"Movies"];
     [result setObject:[dictionary objectForKey:@"Hash"] forKey:@"Hash"];
     [result setObject:[dictionary objectForKey:@"Studios"] forKey:@"Studios"];
     [result setObject:[dictionary objectForKey:@"Titles"] forKey:@"Titles"];
-
+    
     return result;
 }
 
@@ -342,13 +339,59 @@
         self.index = [self loadIndex];
     }
 
-    NSArray* result = [index objectForKey:@"Movies"];
+    if (recentMovies == nil) {
+        NSMutableArray* result = [NSMutableArray array];
+        NSDate* now = [NSDate date];
+        
+        for (Movie* movie in [index objectForKey:@"Movies"]) {
+            if ([now compare:movie.releaseDate] == NSOrderedDescending) {
+                continue;
+            }
+            
+            [result addObject:movie];
+        }
+        
+        self.recentMovies = result;
+    }
 
-    if (result == nil) {
+    if (recentMovies == nil) {
         return [NSArray array];
     }
 
-    return result;
+    return recentMovies;
+}
+
+
+- (void) createMovieMap {
+    if (movieMap != nil) {
+        return;
+    }
+    
+    NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
+    for (Movie* movie in [index objectForKey:@"Movies"]) {
+        [dictionary setObject:movie forKey:movie.canonicalTitle];
+    }
+    self.movieMap = dictionary;
+}
+
+
+- (NSArray*) directorsForMovie:(Movie*) movie {
+    [self createMovieMap];
+    return [[movieMap objectForKey:movie.canonicalTitle] directors];
+}
+
+
+- (NSArray*) castForMovie:(Movie*) movie {
+    [self createMovieMap];
+    return [[movieMap objectForKey:movie.canonicalTitle] cast];
+    
+}
+
+
+- (NSArray*) genresForMovie:(Movie*) movie {
+    [self createMovieMap];
+    return [[movieMap objectForKey:movie.canonicalTitle] genres];
+
 }
 
 
