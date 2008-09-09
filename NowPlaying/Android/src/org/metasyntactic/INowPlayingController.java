@@ -3,12 +3,7 @@
  * Original file: /Projects/metasyntactic/trunk/NowPlaying/Android/src/org/metasyntactic/INowPlayingController.aidl
  */
 package org.metasyntactic;
-import java.lang.String;
-import android.os.RemoteException;
 import android.os.IBinder;
-import android.os.IInterface;
-import android.os.Binder;
-import android.os.Parcel;
 public interface INowPlayingController extends android.os.IInterface
 {
 /** Local-side IPC implementation stub class. */
@@ -57,6 +52,90 @@ this.setUserLocation(_arg0);
 reply.writeNoException();
 return true;
 }
+case TRANSACTION_getSelectedTabIndex:
+{
+data.enforceInterface(DESCRIPTOR);
+int _result = this.getSelectedTabIndex();
+reply.writeNoException();
+reply.writeInt(_result);
+return true;
+}
+case TRANSACTION_setSelectedTabIndex:
+{
+data.enforceInterface(DESCRIPTOR);
+int _arg0;
+_arg0 = data.readInt();
+this.setSelectedTabIndex(_arg0);
+reply.writeNoException();
+return true;
+}
+case TRANSACTION_getAllMoviesSelectedSortIndex:
+{
+data.enforceInterface(DESCRIPTOR);
+int _result = this.getAllMoviesSelectedSortIndex();
+reply.writeNoException();
+reply.writeInt(_result);
+return true;
+}
+case TRANSACTION_setAllMoviesSelectedSortIndex:
+{
+data.enforceInterface(DESCRIPTOR);
+int _arg0;
+_arg0 = data.readInt();
+this.setAllMoviesSelectedSortIndex(_arg0);
+reply.writeNoException();
+return true;
+}
+case TRANSACTION_getAllTheatersSelectedSortIndex:
+{
+data.enforceInterface(DESCRIPTOR);
+int _result = this.getAllTheatersSelectedSortIndex();
+reply.writeNoException();
+reply.writeInt(_result);
+return true;
+}
+case TRANSACTION_setAllTheatersSelectedSortIndex:
+{
+data.enforceInterface(DESCRIPTOR);
+int _arg0;
+_arg0 = data.readInt();
+this.setAllTheatersSelectedSortIndex(_arg0);
+reply.writeNoException();
+return true;
+}
+case TRANSACTION_getUpcomingMoviesSelectedSortIndex:
+{
+data.enforceInterface(DESCRIPTOR);
+int _result = this.getUpcomingMoviesSelectedSortIndex();
+reply.writeNoException();
+reply.writeInt(_result);
+return true;
+}
+case TRANSACTION_setUpcomingMoviesSelectedSortIndex:
+{
+data.enforceInterface(DESCRIPTOR);
+int _arg0;
+_arg0 = data.readInt();
+this.setUpcomingMoviesSelectedSortIndex(_arg0);
+reply.writeNoException();
+return true;
+}
+case TRANSACTION_getMovies:
+{
+data.enforceInterface(DESCRIPTOR);
+java.util.List<org.metasyntactic.data.Movie> _result = this.getMovies();
+reply.writeNoException();
+reply.writeTypedList(_result);
+return true;
+}
+case TRANSACTION_getTheaters:
+{
+data.enforceInterface(DESCRIPTOR);
+java.util.List<org.metasyntactic.data.Theater> _result = this.getTheaters();
+reply.writeNoException();
+reply.writeTypedList(_result);
+return true;
+}
 }
 return super.onTransact(code, data, reply, flags);
 }
@@ -90,8 +169,190 @@ _reply.recycle();
 _data.recycle();
 }
 }
+public int getSelectedTabIndex() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+int _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getSelectedTabIndex, _data, _reply, 0);
+_reply.readException();
+_result = _reply.readInt();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
+public void setSelectedTabIndex(int index) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+_data.writeInt(index);
+mRemote.transact(Stub.TRANSACTION_setSelectedTabIndex, _data, _reply, 0);
+_reply.readException();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+}
+public int getAllMoviesSelectedSortIndex() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+int _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getAllMoviesSelectedSortIndex, _data, _reply, 0);
+_reply.readException();
+_result = _reply.readInt();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
+public void setAllMoviesSelectedSortIndex(int index) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+_data.writeInt(index);
+mRemote.transact(Stub.TRANSACTION_setAllMoviesSelectedSortIndex, _data, _reply, 0);
+_reply.readException();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+}
+public int getAllTheatersSelectedSortIndex() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+int _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getAllTheatersSelectedSortIndex, _data, _reply, 0);
+_reply.readException();
+_result = _reply.readInt();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
+public void setAllTheatersSelectedSortIndex(int index) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+_data.writeInt(index);
+mRemote.transact(Stub.TRANSACTION_setAllTheatersSelectedSortIndex, _data, _reply, 0);
+_reply.readException();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+}
+public int getUpcomingMoviesSelectedSortIndex() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+int _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getUpcomingMoviesSelectedSortIndex, _data, _reply, 0);
+_reply.readException();
+_result = _reply.readInt();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
+public void setUpcomingMoviesSelectedSortIndex(int index) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+_data.writeInt(index);
+mRemote.transact(Stub.TRANSACTION_setUpcomingMoviesSelectedSortIndex, _data, _reply, 0);
+_reply.readException();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+}
+public java.util.List<org.metasyntactic.data.Movie> getMovies() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+java.util.List<org.metasyntactic.data.Movie> _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getMovies, _data, _reply, 0);
+_reply.readException();
+_result = _reply.createTypedArrayList(org.metasyntactic.data.Movie.CREATOR);
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
+public java.util.List<org.metasyntactic.data.Theater> getTheaters() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+java.util.List<org.metasyntactic.data.Theater> _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getTheaters, _data, _reply, 0);
+_reply.readException();
+_result = _reply.createTypedArrayList(org.metasyntactic.data.Theater.CREATOR);
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
 }
 static final int TRANSACTION_setUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 0);
+static final int TRANSACTION_getSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 1);
+static final int TRANSACTION_setSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 2);
+static final int TRANSACTION_getAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 3);
+static final int TRANSACTION_setAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 4);
+static final int TRANSACTION_getAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 5);
+static final int TRANSACTION_setAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 6);
+static final int TRANSACTION_getUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 7);
+static final int TRANSACTION_setUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 8);
+static final int TRANSACTION_getMovies = (IBinder.FIRST_CALL_TRANSACTION + 9);
+static final int TRANSACTION_getTheaters = (IBinder.FIRST_CALL_TRANSACTION + 10);
 }
 public void setUserLocation(java.lang.String userLocation) throws android.os.RemoteException;
+public int getSelectedTabIndex() throws android.os.RemoteException;
+public void setSelectedTabIndex(int index) throws android.os.RemoteException;
+public int getAllMoviesSelectedSortIndex() throws android.os.RemoteException;
+public void setAllMoviesSelectedSortIndex(int index) throws android.os.RemoteException;
+public int getAllTheatersSelectedSortIndex() throws android.os.RemoteException;
+public void setAllTheatersSelectedSortIndex(int index) throws android.os.RemoteException;
+public int getUpcomingMoviesSelectedSortIndex() throws android.os.RemoteException;
+public void setUpcomingMoviesSelectedSortIndex(int index) throws android.os.RemoteException;
+public java.util.List<org.metasyntactic.data.Movie> getMovies() throws android.os.RemoteException;
+public java.util.List<org.metasyntactic.data.Theater> getTheaters() throws android.os.RemoteException;
 }
