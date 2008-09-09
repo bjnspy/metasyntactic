@@ -85,10 +85,13 @@ static NSInteger visibleBackgroundTaskCount = 0;
     [gate lock];
     {
         totalBackgroundTaskCount++;
-        visibleBackgroundTaskCount++;
         
-        if (visibleBackgroundTaskCount == 1) {
-            [indicator performSelectorOnMainThread:@selector(startIndicator) withObject:nil waitUntilDone:NO];
+        if (isVisible) {
+            visibleBackgroundTaskCount++;
+            
+            if (visibleBackgroundTaskCount == 1) {
+                [indicator performSelectorOnMainThread:@selector(startIndicator) withObject:nil waitUntilDone:NO];
+            }
         }
         
         if (totalBackgroundTaskCount == 1) {
@@ -103,10 +106,13 @@ static NSInteger visibleBackgroundTaskCount = 0;
     [gate lock];
     {
         totalBackgroundTaskCount--;
-        visibleBackgroundTaskCount--;
         
-        if (visibleBackgroundTaskCount == 0) {
-            [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
+        if (isVisible) {
+            visibleBackgroundTaskCount--;
+            
+            if (visibleBackgroundTaskCount == 0) {
+                [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
+            }
         }
         
         if (totalBackgroundTaskCount == 0) {
