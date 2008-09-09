@@ -17,6 +17,7 @@
 #import "AllTheatersViewController.h"
 
 #import "Application.h"
+#import "GlobalActivityIndicator.h"
 #import "Location.h"
 #import "MultiDictionary.h"
 #import "NowPlayingModel.h"
@@ -343,7 +344,7 @@
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self refresh];
 }

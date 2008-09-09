@@ -17,6 +17,7 @@
 #import "PosterCache.h"
 
 #import "Application.h"
+#import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "PosterDownloader.h"
 #import "Utilities.h"
@@ -129,11 +130,13 @@
 - (void) backgroundEntryPoint:(NSArray*) movies {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [NSThread setThreadPriority:0.0];
 
         [self updateInBackground:movies];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [gate unlock];
     [autoreleasePool release];
 }

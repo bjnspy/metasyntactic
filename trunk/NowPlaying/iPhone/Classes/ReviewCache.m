@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "ExtraMovieInformation.h"
+#import "GlobalActivityIndicator.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "Review.h"
@@ -190,6 +191,7 @@ static NSString* hash_key = @"Hash";
 - (void) updateInBackground:(NSArray*) arguments {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [NSThread setThreadPriority:0.0];
 
@@ -216,6 +218,7 @@ static NSString* hash_key = @"Hash";
         [self downloadReviews:infoWithoutReviews ratingsProvider:ratingsProvider];
         [self downloadReviews:infoWithReviews    ratingsProvider:ratingsProvider];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [gate unlock];
     [autoreleasePool release];
 }

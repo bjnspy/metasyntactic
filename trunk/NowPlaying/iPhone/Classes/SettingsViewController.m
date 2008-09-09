@@ -22,6 +22,7 @@
 #import "ColorCache.h"
 #import "CreditsViewController.h"
 #import "DateUtilities.h"
+#import "GlobalActivityIndicator.h"
 #import "Location.h"
 #import "LocationUtilities.h"
 #import "NetworkUtilities.h"
@@ -104,7 +105,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
@@ -145,9 +146,11 @@
 - (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [self findPostalCode:location];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [gate unlock];
     [autoreleasePool release];
 }

@@ -20,6 +20,7 @@
 #import "ApplicationTabBarController.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
+#import "GlobalActivityIndicator.h"
 #import "NorthAmericaDataProvider.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
@@ -46,11 +47,6 @@
 
 - (NowPlayingModel*) model {
     return appDelegate.model;
-}
-
-
-- (void) onBackgroundTaskStarted {
-    [self.model addBackgroundTask];
 }
 
 
@@ -88,7 +84,6 @@
         return;
     }
 
-    [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(dataProviderLookupBackgroundThreadEntryPoint) withObject:nil];
 }
 
@@ -100,7 +95,6 @@
         return;
     }
 
-    [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(ratingsLookupBackgroundThreadEntryPoint) withObject:nil];
 }
 
@@ -113,7 +107,6 @@
         return;
     }
 
-    [self onBackgroundTaskStarted];
     [self performSelectorInBackground:@selector(upcomingMoviesLookupBackgroundThreadEntryPoint) withObject:nil];
 }
 
@@ -152,10 +145,12 @@
 - (void) ratingsLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [ratingsLookupLock lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         NSDictionary* ratings = [self ratingsLookup];
         [self performSelectorOnMainThread:@selector(setRatings:) withObject:ratings waitUntilDone:NO];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [ratingsLookupLock unlock];
     [autoreleasePool release];
 }
@@ -164,18 +159,13 @@
 - (void) upcomingMoviesLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [upcomingMoviesLookupLock lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [self.model.upcomingCache updateMoviesList];
-        [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded) withObject:nil waitUntilDone:NO];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [upcomingMoviesLookupLock unlock];
     [autoreleasePool release];
-}
-
-
-- (void) onBackgroundTaskEnded {
-    [self.model removeBackgroundTask];
-    [appDelegate.tabBarController refresh];
 }
 
 
@@ -183,20 +173,17 @@
     if (ratings.count > 0) {
         [self.model onRatingsUpdated];
     }
-
-    [self onBackgroundTaskEnded];
 }
 
 
 - (void) dataProviderLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [dataProviderLock lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [self.model.currentDataProvider lookup];
-        [self performSelectorOnMainThread:@selector(onBackgroundTaskEnded)
-                               withObject:nil
-                            waitUntilDone:NO];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [dataProviderLock unlock];
     [autoreleasePool release];
 }

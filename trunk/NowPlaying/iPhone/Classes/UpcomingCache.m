@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
+#import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "Utilities.h"
@@ -297,6 +298,7 @@ static NSString* titles_key = @"Titles";
 - (void) updateMovieDetailsInBackground:(NSDictionary*) index_ {
     NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
     [gate lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [NSThread setThreadPriority:0.0];
         NSArray* movies = [index_ objectForKey:movies_key];
@@ -313,6 +315,7 @@ static NSString* titles_key = @"Titles";
             [autoreleasePool release];
         }
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [gate unlock];
     [autoreleasePool release];
 }
