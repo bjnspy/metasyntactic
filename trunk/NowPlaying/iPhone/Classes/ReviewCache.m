@@ -22,6 +22,7 @@
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "Review.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
@@ -188,39 +189,38 @@ static NSString* hash_key = @"Hash";
 }
 
 
-- (void) updateInBackground:(NSArray*) arguments {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:NO];
-    {
-        [NSThread setThreadPriority:0.0];
-
-        NSDictionary* supplementaryInformation = [arguments objectAtIndex:0];
-        NSInteger ratingsProvider = [[arguments objectAtIndex:1] intValue];
-
-        NSMutableDictionary* infoWithReviews = [NSMutableDictionary dictionary];
-        NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
-
-        for (NSString* title in supplementaryInformation) {
-            NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title ratingsProvider:ratingsProvider]
-                                                                                     error:NULL] objectForKey:NSFileModificationDate];
-
-            if (downloadDate == nil) {
-                [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
-            } else {
-                NSTimeInterval span = downloadDate.timeIntervalSinceNow;
-                if (ABS(span) > (2 * ONE_DAY)) {
-                    [infoWithReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
-                }
+- (void) updateInBackgroundWorker:(NSArray*) arguments {
+    NSDictionary* supplementaryInformation = [arguments objectAtIndex:0];
+    NSInteger ratingsProvider = [[arguments objectAtIndex:1] intValue];
+    
+    NSMutableDictionary* infoWithReviews = [NSMutableDictionary dictionary];
+    NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
+    
+    for (NSString* title in supplementaryInformation) {
+        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title ratingsProvider:ratingsProvider]
+                                                                                 error:NULL] objectForKey:NSFileModificationDate];
+        
+        if (downloadDate == nil) {
+            [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
+        } else {
+            NSTimeInterval span = downloadDate.timeIntervalSinceNow;
+            if (ABS(span) > (2 * ONE_DAY)) {
+                [infoWithReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
             }
         }
-
-        [self downloadReviews:infoWithoutReviews ratingsProvider:ratingsProvider];
-        [self downloadReviews:infoWithReviews    ratingsProvider:ratingsProvider];
     }
-    [GlobalActivityIndicator removeBackgroundTask:NO];
-    [gate unlock];
-    [autoreleasePool release];
+    
+    [self downloadReviews:infoWithoutReviews ratingsProvider:ratingsProvider];
+    [self downloadReviews:infoWithReviews    ratingsProvider:ratingsProvider];
+}
+
+
+- (void) updateInBackground:(NSArray*) arguments {
+    [ThreadingUtilities performSelector:@selector(updateInBackgroundWorker:)
+                               onObject:self
+               inBackgroundWithArgument:arguments
+                                   gate:gate
+                                visible:NO];
 }
 
 

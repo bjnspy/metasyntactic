@@ -32,6 +32,7 @@
 #import "SettingCell.h"
 #import "SettingsNavigationController.h"
 #import "TextFieldEditorViewController.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
@@ -144,15 +145,11 @@
 
 
 - (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:YES];
-    {
-        [self findPostalCode:location];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:YES];
-    [gate unlock];
-    [autoreleasePool release];
+    [ThreadingUtilities performSelector:@selector(findPostalCode:)
+                               onObject:self
+               inBackgroundWithArgument:location
+                                   gate:gate
+                                visible:YES];
 }
 
 

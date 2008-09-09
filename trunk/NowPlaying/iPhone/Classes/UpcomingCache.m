@@ -22,6 +22,7 @@
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "Utilities.h"
+#import "ThreadingUtilities.h"
 #import "XmlElement.h"
 
 @implementation UpcomingCache
@@ -295,29 +296,29 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (void) updateMovieDetailsInBackground:(NSDictionary*) index_ {
-    NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-    [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:NO];
-    {
-        [NSThread setThreadPriority:0.0];
-        NSArray* movies = [index_ objectForKey:movies_key];
-        NSDictionary* studios = [index_ objectForKey:studios_key];
-        NSDictionary* titles = [index_ objectForKey:titles_key];
-
-        for (Movie* movie in movies) {
-            NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-
-            [self updateDetails:movie
-                         studio:[studios objectForKey:movie.canonicalTitle]
-                          title:[titles objectForKey:movie.canonicalTitle]];
-
-            [autoreleasePool release];
-        }
+- (void) updateMovieDetailsInBackgroundWorker:(NSDictionary*) index_ {
+    NSArray* movies = [index_ objectForKey:movies_key];
+    NSDictionary* studios = [index_ objectForKey:studios_key];
+    NSDictionary* titles = [index_ objectForKey:titles_key];
+    
+    for (Movie* movie in movies) {
+        NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
+        
+        [self updateDetails:movie
+                     studio:[studios objectForKey:movie.canonicalTitle]
+                      title:[titles objectForKey:movie.canonicalTitle]];
+        
+        [autoreleasePool release];
     }
-    [GlobalActivityIndicator removeBackgroundTask:NO];
-    [gate unlock];
-    [autoreleasePool release];
+}
+
+
+- (void) updateMovieDetailsInBackground:(NSDictionary*) index_ {
+    [ThreadingUtilities performSelector:@selector(updateMovieDetailsInBackgroundWorker:)
+                               onObject:self
+               inBackgroundWithArgument:index_
+                                   gate:gate
+                                visible:NO];
 }
 
 

@@ -25,6 +25,7 @@
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "RatingsCache.h"
+#import "ThreadingUtilities.h"
 #import "UpcomingCache.h"
 #import "Utilities.h"
 
@@ -142,30 +143,28 @@
 }
 
 
+- (void) ratingsLookupBackgroundThreadEntryPointWorker {
+    NSDictionary* ratings = [self ratingsLookup];
+    [self performSelectorOnMainThread:@selector(setRatings:) withObject:ratings waitUntilDone:NO];
+
+}
+
+
 - (void) ratingsLookupBackgroundThreadEntryPoint {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [ratingsLookupLock lock];
-    [GlobalActivityIndicator addBackgroundTask:YES];
-    {
-        NSDictionary* ratings = [self ratingsLookup];
-        [self performSelectorOnMainThread:@selector(setRatings:) withObject:ratings waitUntilDone:NO];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:YES];
-    [ratingsLookupLock unlock];
-    [autoreleasePool release];
+    [ThreadingUtilities performSelector:@selector(ratingsLookupBackgroundThreadEntryPointWorker)
+                               onObject:self
+               inBackgroundWithArgument:nil
+                                   gate:ratingsLookupLock
+                                visible:YES];
 }
 
 
 - (void) upcomingMoviesLookupBackgroundThreadEntryPoint {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [upcomingMoviesLookupLock lock];
-    [GlobalActivityIndicator addBackgroundTask:YES];
-    {
-        [self.model.upcomingCache updateMoviesList];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:YES];
-    [upcomingMoviesLookupLock unlock];
-    [autoreleasePool release];
+    [ThreadingUtilities performSelector:@selector(updateMoviesList)
+                               onObject:self.model.upcomingCache
+               inBackgroundWithArgument:nil
+                                   gate:upcomingMoviesLookupLock
+                                visible:YES];
 }
 
 
@@ -177,15 +176,11 @@
 
 
 - (void) dataProviderLookupBackgroundThreadEntryPoint {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [dataProviderLock lock];
-    [GlobalActivityIndicator addBackgroundTask:YES];
-    {
-        [self.model.currentDataProvider lookup];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:YES];
-    [dataProviderLock unlock];
-    [autoreleasePool release];
+    [ThreadingUtilities performSelector:@selector(lookup)
+                               onObject:self.model.currentDataProvider
+               inBackgroundWithArgument:nil
+                                   gate:dataProviderLock
+                                visible:YES];
 }
 
 

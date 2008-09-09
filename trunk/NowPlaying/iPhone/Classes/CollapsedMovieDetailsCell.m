@@ -46,7 +46,7 @@
         clickToExpandLabel.font = [UIFont systemFontOfSize:10];
         clickToExpandLabel.textColor = [ColorCache commandColor];
         clickToExpandLabel.textAlignment = UITextAlignmentCenter;
-        clickToExpandLabel.text = NSLocalizedString(@"click for more details", nil);
+        clickToExpandLabel.text = NSLocalizedString(@"tap for more details", nil);
         [clickToExpandLabel sizeToFit];
 
         [self.contentView addSubview:ratingAndRuntimeLabel];

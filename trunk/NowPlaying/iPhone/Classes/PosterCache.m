@@ -20,6 +20,7 @@
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "PosterDownloader.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 
 @implementation PosterCache
@@ -128,17 +129,11 @@
 
 
 - (void) backgroundEntryPoint:(NSArray*) movies {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:NO];
-    {
-        [NSThread setThreadPriority:0.0];
-
-        [self updateInBackground:movies];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:NO];
-    [gate unlock];
-    [autoreleasePool release];
+    [ThreadingUtilities performSelector:@selector(updateInBackground:)
+                               onObject:self
+               inBackgroundWithArgument:movies
+                                   gate:gate
+                                visible:NO];
 }
 
 

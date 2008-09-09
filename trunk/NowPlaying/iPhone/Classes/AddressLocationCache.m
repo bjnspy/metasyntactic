@@ -22,6 +22,7 @@
 #import "LocationUtilities.h"
 #import "NetworkUtilities.h"
 #import "Theater.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
@@ -186,30 +187,20 @@
 
 
 - (void) backgroundEntryPoint:(NSArray*) addresses {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:NO];
-    {
-        [NSThread setThreadPriority:0.0];
-
-        [self downloadAddressLocations:addresses];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:NO];
-    [gate unlock];
-    [autoreleasePool release];
+    [ThreadingUtilities performSelector:@selector(downloadAddressLocations:)
+                               onObject:self
+               inBackgroundWithArgument:addresses
+                                   gate:gate
+                                visible:NO];
 }
 
 
 - (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [GlobalActivityIndicator addBackgroundTask:NO];
-    {
-        [NSThread setThreadPriority:0.0];
-
-        [self downloadAddressLocation:postalCode];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:NO];
-    [autoreleasePool release];
+    [ThreadingUtilities performSelector:@selector(downloadAddressLocation:)
+                               onObject:self
+               inBackgroundWithArgument:postalCode
+                                   gate:nil
+                                visible:NO];
 }
 
 
