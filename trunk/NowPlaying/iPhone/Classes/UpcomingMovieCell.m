@@ -101,7 +101,7 @@
 
         titleWidth = 0;
         for (UILabel* label in [NSArray arrayWithObjects:directorTitleLabel, castTitleLabel, genreTitleLabel, ratedTitleLabel, nil]) {
-            titleWidth = MAX(titleWidth, [label.text sizeWithFont:[UIFont systemFontOfSize:12]].width);
+            titleWidth = MAX(titleWidth, [label.text sizeWithFont:label.font].width);
         }
         for (UILabel* label in [NSArray arrayWithObjects:directorTitleLabel, castTitleLabel, genreTitleLabel, ratedTitleLabel, nil]) {
             CGRect frame = label.frame;

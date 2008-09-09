@@ -14,26 +14,18 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface DateUtilities : NSObject {
-
+@interface AbstractMovieDetailsCell : UITableViewCell {
+    NowPlayingModel* model;
+    Movie* movie;
 }
 
-+ (NSString*) timeSinceNow:(NSDate*) date;
+@property (retain) NowPlayingModel* model;
+@property (retain) Movie* movie;
 
-+ (NSDate*) today;
-+ (NSDate*) tomorrow;
+- (id) initWithFrame:(CGRect) frame
+               model:(NowPlayingModel*) model
+               movie:(Movie*) movie;
 
-+ (NSDate*) dateWithNaturalLanguageString:(NSString*) string;
-
-+ (BOOL) isSameDay:(NSDate*) d1
-              date:(NSDate*) d2;
-
-+ (BOOL) isToday:(NSDate*) date;
-
-+ (NSString*) formatShortTime:(NSDate*) date;
-+ (NSString*) formatShortDate:(NSDate*) date;
-+ (NSString*) formatLongDate:(NSDate*) date;
-+ (NSString*) formatMediumDate:(NSDate*) date;
-+ (NSString*) formatFullDate:(NSDate*) date;
+- (CGFloat) height:(UITableView*) tableView;
 
 @end
