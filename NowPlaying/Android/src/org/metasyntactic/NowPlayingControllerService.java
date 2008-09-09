@@ -94,7 +94,7 @@ public class NowPlayingControllerService extends Service {
   }
 
   public void setAllTheatersSelectedSortIndex(int index) throws RemoteException {
-    model.setAllTheatersSelectedSortIndex();
+    model.setAllTheatersSelectedSortIndex(index);
   }
 
   public int getUpcomingMoviesSelectedSortIndex() throws RemoteException {
