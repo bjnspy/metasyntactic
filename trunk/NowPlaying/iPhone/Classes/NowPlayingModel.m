@@ -489,7 +489,7 @@ static NSString* persistenceVersion = @"22";
     if (array.count == 0) {
         return [NSMutableArray array];
     }
-    
+
     NSMutableArray* result = [NSMutableArray array];
     for (NSDictionary* dictionary in array) {
         [result addObject:[Theater theaterWithDictionary:dictionary]];
@@ -513,7 +513,7 @@ static NSString* persistenceVersion = @"22";
     for (Theater* theater in self.favoriteTheaters) {
         [result addObject:theater.dictionary];
     }
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:result forKey:[NowPlayingModel FAVORITE_THEATERS]];
 }
 
@@ -542,7 +542,7 @@ static NSString* persistenceVersion = @"22";
     if (movie.directors.count > 0) {
         return movie.directors;
     }
-    
+
     return [upcomingCache directorsForMovie:movie];
 }
 
@@ -551,7 +551,7 @@ static NSString* persistenceVersion = @"22";
     if (movie.cast.count > 0) {
         return movie.cast;
     }
-    
+
     return [upcomingCache castForMovie:movie];
 }
 
@@ -560,7 +560,7 @@ static NSString* persistenceVersion = @"22";
     if (movie.genres.count > 0) {
         return movie.genres;
     }
-    
+
     return [upcomingCache genresForMovie:movie];
 }
 

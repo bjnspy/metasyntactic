@@ -17,7 +17,7 @@
 @interface UpcomingCache : NSObject {
     NSLock* gate;
     NSDictionary* index;
-    
+
     NSArray* recentMovies;
     NSDictionary* movieMap;
 }

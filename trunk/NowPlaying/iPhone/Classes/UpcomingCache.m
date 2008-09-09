@@ -72,7 +72,7 @@ static NSString* titles_key = @"Titles";
     }
 
     [result setObject:encodedMovies forKey:movies_key];
-    
+
     [Utilities writeObject:result toFile:[Application upcomingMoviesIndexFile]];
 }
 
@@ -91,7 +91,7 @@ static NSString* titles_key = @"Titles";
 - (Movie*) processMovieElement:(XmlElement*) movieElement
                     studioKeys:(NSMutableDictionary*) studioKeys
                      titleKeys:(NSMutableDictionary*) titleKeys  {
-    NSDate* releaseDate = [DateUtilities dateWithNaturalLanguageString:[movieElement attributeValue:@"date"]];    
+    NSDate* releaseDate = [DateUtilities dateWithNaturalLanguageString:[movieElement attributeValue:@"date"]];
     NSString* poster = [movieElement attributeValue:@"poster"];
     NSString* rating = [movieElement attributeValue:@"rating"];
     NSString* studio = [movieElement attributeValue:@"studio"];
@@ -161,7 +161,7 @@ static NSString* titles_key = @"Titles";
     if (movies.count == 0) {
         return [NSDictionary dictionary];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:serverHash forKey:hash_key];
     [result setObject:movies forKey:movies_key];
@@ -189,7 +189,7 @@ static NSString* titles_key = @"Titles";
     self.index = index_;
     self.recentMovies = nil;
     self.movieMap = nil;
-    
+
     [self updateMovieDetails];
 }
 
@@ -331,13 +331,13 @@ static NSString* titles_key = @"Titles";
     for (NSDictionary* encodedMovie in [dictionary objectForKey:movies_key]) {
         [decodedMovies addObject:[Movie movieWithDictionary:encodedMovie]];
     }
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     [result setObject:decodedMovies forKey:movies_key];
     [result setObject:[dictionary objectForKey:hash_key] forKey:hash_key];
     [result setObject:[dictionary objectForKey:studios_key] forKey:studios_key];
     [result setObject:[dictionary objectForKey:titles_key] forKey:titles_key];
-    
+
     return result;
 }
 
@@ -350,15 +350,15 @@ static NSString* titles_key = @"Titles";
     if (recentMovies == nil) {
         NSMutableArray* result = [NSMutableArray array];
         NSDate* now = [NSDate date];
-        
+
         for (Movie* movie in [index objectForKey:movies_key]) {
             if ([now compare:movie.releaseDate] == NSOrderedDescending) {
                 continue;
             }
-            
+
             [result addObject:movie];
         }
-        
+
         self.recentMovies = result;
     }
 
@@ -374,7 +374,7 @@ static NSString* titles_key = @"Titles";
     if (movieMap != nil) {
         return;
     }
-    
+
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     for (Movie* movie in [index objectForKey:movies_key]) {
         [dictionary setObject:movie forKey:movie.canonicalTitle];
@@ -392,7 +392,7 @@ static NSString* titles_key = @"Titles";
 - (NSArray*) castForMovie:(Movie*) movie {
     [self createMovieMap];
     return [[movieMap objectForKey:movie.canonicalTitle] cast];
-    
+
 }
 
 

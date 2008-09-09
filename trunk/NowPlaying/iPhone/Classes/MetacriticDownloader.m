@@ -81,7 +81,7 @@
 
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
-        
+
         return ratings;
     }
 

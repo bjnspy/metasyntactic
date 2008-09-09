@@ -121,7 +121,7 @@ static NSString* hash_key = @"Hash";
     } else if (self.model.metacriticRatings) {
         return [[MetacriticDownloader downloaderWithModel:self.model] lookupServerHash];
     }
-    
+
     return nil;
 }
 
@@ -133,24 +133,24 @@ static NSString* hash_key = @"Hash";
     if (serverHash.length == 0) {
         serverHash = @"0";
     }
-    
+
     if (localHash != nil &&
         [localHash isEqual:serverHash]) {
         return nil;
     }
-    
+
     NSDictionary* ratings = nil;
     if (self.model.rottenTomatoesRatings) {
         ratings = [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings];
     } else if (self.model.metacriticRatings) {
         ratings = [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings];
     }
-    
+
     if (ratings.count > 0) {
         NSMutableDictionary* result = [NSMutableDictionary dictionary];
         [result setObject:ratings forKey:ratings_key];
         [result setObject:serverHash forKey:hash_key];
-        
+
         return result;
     }
 

@@ -490,13 +490,13 @@
       didSelectHeaderRow:(NSInteger) row {
     if (row == 1) {
         expandedDetails = !expandedDetails;
-        
+
         [tableView beginUpdates];
-        
+
         NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]];
         [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
         [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
-        
+
         [tableView endUpdates];
     }
 }

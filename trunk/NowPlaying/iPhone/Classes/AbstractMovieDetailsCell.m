@@ -30,7 +30,7 @@
         self.movie = movie_;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
+
     return self;
 }
 
