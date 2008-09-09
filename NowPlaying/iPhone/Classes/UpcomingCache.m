@@ -25,6 +25,11 @@
 
 @implementation UpcomingCache
 
+static NSString* movies_key = @"Movies";
+static NSString* hash_key = @"Hash";
+static NSString* studios_key = @"Studios";
+static NSString* titles_key = @"Titles";
+
 @synthesize gate;
 @synthesize index;
 @synthesize recentMovies;
@@ -56,16 +61,16 @@
 
 - (void) writeData:(NSDictionary*) data {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:[data objectForKey:@"Hash"]       forKey:@"Hash"];
-    [result setObject:[data objectForKey:@"Studios"]    forKey:@"Studios"];
-    [result setObject:[data objectForKey:@"Titles"]     forKey:@"Titles"];
+    [result setObject:[data objectForKey:hash_key]       forKey:hash_key];
+    [result setObject:[data objectForKey:studios_key]    forKey:studios_key];
+    [result setObject:[data objectForKey:titles_key]     forKey:titles_key];
 
     NSMutableArray* encodedMovies = [NSMutableArray array];
-    for (Movie* movie in [data objectForKey:@"Movies"]) {
+    for (Movie* movie in [data objectForKey:movies_key]) {
         [encodedMovies addObject:movie.dictionary];
     }
 
-    [result setObject:encodedMovies forKey:@"Movies"];
+    [result setObject:encodedMovies forKey:movies_key];
     
     [Utilities writeObject:result toFile:[Application upcomingMoviesIndexFile]];
 }
@@ -133,7 +138,7 @@
 
 
 - (NSDictionary*) updateMoviesListWorker {
-    NSString* localHash = [index objectForKey:@"Hash"];
+    NSString* localHash = [index objectForKey:hash_key];
 
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?q=index&hash=true", [Application host]]
                                                         important:NO];
@@ -157,10 +162,10 @@
     }
     
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:serverHash forKey:@"Hash"];
-    [result setObject:movies forKey:@"Movies"];
-    [result setObject:studioKeys forKey:@"Studios"];
-    [result setObject:titleKeys forKey:@"Titles"];
+    [result setObject:serverHash forKey:hash_key];
+    [result setObject:movies forKey:movies_key];
+    [result setObject:studioKeys forKey:studios_key];
+    [result setObject:titleKeys forKey:titles_key];
 
     [self writeData:result];
 
@@ -294,9 +299,9 @@
     [gate lock];
     {
         [NSThread setThreadPriority:0.0];
-        NSArray* movies = [index_ objectForKey:@"Movies"];
-        NSDictionary* studios = [index_ objectForKey:@"Studios"];
-        NSDictionary* titles = [index_ objectForKey:@"Titles"];
+        NSArray* movies = [index_ objectForKey:movies_key];
+        NSDictionary* studios = [index_ objectForKey:studios_key];
+        NSDictionary* titles = [index_ objectForKey:titles_key];
 
         for (Movie* movie in movies) {
             NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
@@ -320,15 +325,15 @@
     }
 
     NSMutableArray* decodedMovies = [NSMutableArray array];
-    for (NSDictionary* encodedMovie in [dictionary objectForKey:@"Movies"]) {
+    for (NSDictionary* encodedMovie in [dictionary objectForKey:movies_key]) {
         [decodedMovies addObject:[Movie movieWithDictionary:encodedMovie]];
     }
     
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:decodedMovies forKey:@"Movies"];
-    [result setObject:[dictionary objectForKey:@"Hash"] forKey:@"Hash"];
-    [result setObject:[dictionary objectForKey:@"Studios"] forKey:@"Studios"];
-    [result setObject:[dictionary objectForKey:@"Titles"] forKey:@"Titles"];
+    [result setObject:decodedMovies forKey:movies_key];
+    [result setObject:[dictionary objectForKey:hash_key] forKey:hash_key];
+    [result setObject:[dictionary objectForKey:studios_key] forKey:studios_key];
+    [result setObject:[dictionary objectForKey:titles_key] forKey:titles_key];
     
     return result;
 }
@@ -343,7 +348,7 @@
         NSMutableArray* result = [NSMutableArray array];
         NSDate* now = [NSDate date];
         
-        for (Movie* movie in [index objectForKey:@"Movies"]) {
+        for (Movie* movie in [index objectForKey:movies_key]) {
             if ([now compare:movie.releaseDate] == NSOrderedDescending) {
                 continue;
             }
@@ -368,7 +373,7 @@
     }
     
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    for (Movie* movie in [index objectForKey:@"Movies"]) {
+    for (Movie* movie in [index objectForKey:movies_key]) {
         [dictionary setObject:movie forKey:movie.canonicalTitle];
     }
     self.movieMap = dictionary;

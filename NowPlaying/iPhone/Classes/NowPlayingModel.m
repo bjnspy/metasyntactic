@@ -551,7 +551,7 @@ static NSString* persistenceVersion = @"19";
 
 - (void) addFavoriteTheater:(Theater*) theater {
     if (![self.favoriteTheaters containsObject:theater.name]) {
-        [self.favoriteTheaters addObject:theater.name];
+        [self.favoriteTheaters addObject:theater];
     }
 
     [self saveFavoriteTheaters];

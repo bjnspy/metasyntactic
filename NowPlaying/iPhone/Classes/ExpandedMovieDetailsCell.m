@@ -81,7 +81,7 @@
         self.ratedTitleLabel = [self createTitleLabel:NSLocalizedString(@"Rated:", nil) yPosition:5];
         self.ratedLabel = [self createValueLabel:ratedTitleLabel.frame.origin.y];
         if (movie.isUnrated) {
-            ratedLabel.text = NSLocalizedString(@"Not yet rated", nil);
+            ratedLabel.text = NSLocalizedString(@"Unrated.", nil);
         } else {
             ratedLabel.text = movie.rating;
         }

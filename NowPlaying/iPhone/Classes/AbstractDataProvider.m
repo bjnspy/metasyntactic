@@ -27,6 +27,8 @@
 
 @implementation AbstractDataProvider
 
+static NSString* synchronization_date_key = @"SynchronizationDate";
+
 @synthesize model;
 @synthesize moviesData;
 @synthesize theatersData;
@@ -146,8 +148,8 @@
         NSString* tempFolder = [Application uniqueTemporaryFolder];
         for (NSString* theaterName in result.performances) {
             NSMutableDictionary* value = [result.performances objectForKey:theaterName];
-            if ([value objectForKey:@"SynchronizationDate"] == nil) {
-                [value setObject:[DateUtilities today] forKey:@"SynchronizationDate"];
+            if ([value objectForKey:synchronization_date_key] == nil) {
+                [value setObject:[DateUtilities today] forKey:synchronization_date_key];
             }
 
             [Utilities writeObject:value toFile:[self performancesFile:theaterName parentFolder:tempFolder]];
@@ -259,7 +261,7 @@
 
 
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater {
-    return [[self lookupTheaterPerformances:theater] objectForKey:@"SynchronizationDate"];
+    return [[self lookupTheaterPerformances:theater] objectForKey:synchronization_date_key];
 }
 
 

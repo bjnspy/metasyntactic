@@ -22,6 +22,7 @@
 
 + (MetacriticDownloader*) downloaderWithModel:(NowPlayingModel*) model;
 
-- (NSDictionary*) lookupMovieListings:(NSString*) hash;
+- (NSString*) lookupServerHash;
+- (NSDictionary*) lookupMovieListings;
 
 @end

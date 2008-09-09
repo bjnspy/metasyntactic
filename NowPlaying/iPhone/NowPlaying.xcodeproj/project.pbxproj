@@ -411,6 +411,7 @@
 				7474FE910E6359BC00BAA43D /* Caches */,
 				74F3B2430E3CE79900DD25DA /* DataProviders */,
 				7474FE8F0E63595400BAA43D /* Posters */,
+				7491444F0E764D0E00CC42A8 /* Ratings */,
 				7474FE900E63599200BAA43D /* Reviews */,
 				74447D550DC8474A00CC146C /* UI */,
 				740DE12F0DCC3D5400B4E69A /* Utilities */,
@@ -670,10 +671,6 @@
 				7495695A0E2D6248007BFF21 /* Review.m */,
 				7495695C0E2D6354007BFF21 /* ReviewCache.h */,
 				7495695D0E2D6354007BFF21 /* ReviewCache.m */,
-				74EFE5CC0E356AA300B6E103 /* RottenTomatoesDownloader.h */,
-				74EFE5CD0E356AA300B6E103 /* RottenTomatoesDownloader.m */,
-				74EFE5D60E356BBA00B6E103 /* MetacriticDownloader.h */,
-				74EFE5D70E356BBA00B6E103 /* MetacriticDownloader.m */,
 			);
 			name = Reviews;
 			sourceTree = "<group>";
@@ -691,14 +688,25 @@
 				74EFE4AF0E355D7500B6E103 /* ImageCache.m */,
 				74EC363B0E67BA710084F7E0 /* NumbersCache.h */,
 				74EC363F0E67BC7D0084F7E0 /* NumbersCache.m */,
-				74085B8A0E423F010069F0F5 /* RatingsCache.h */,
-				74085B8B0E423F010069F0F5 /* RatingsCache.m */,
 				74F187200E2710A400AB5E1E /* TrailerCache.h */,
 				74F187210E2710A400AB5E1E /* TrailerCache.m */,
 				74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */,
 				74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */,
 			);
 			name = Caches;
+			sourceTree = "<group>";
+		};
+		7491444F0E764D0E00CC42A8 /* Ratings */ = {
+			isa = PBXGroup;
+			children = (
+				74085B8A0E423F010069F0F5 /* RatingsCache.h */,
+				74085B8B0E423F010069F0F5 /* RatingsCache.m */,
+				74EFE5CC0E356AA300B6E103 /* RottenTomatoesDownloader.h */,
+				74EFE5CD0E356AA300B6E103 /* RottenTomatoesDownloader.m */,
+				74EFE5D60E356BBA00B6E103 /* MetacriticDownloader.h */,
+				74EFE5D70E356BBA00B6E103 /* MetacriticDownloader.m */,
+			);
+			name = Ratings;
 			sourceTree = "<group>";
 		};
 		74A863EE0E64F23E003A2249 /* Movies */ = {

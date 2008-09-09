@@ -25,6 +25,9 @@
 
 @implementation RatingsCache
 
+static NSString* ratings_key = @"Ratings";
+static NSString* hash_key = @"Hash";
+
 @synthesize model;
 @synthesize ratingsAndHash;
 
@@ -47,8 +50,8 @@
         return [NSDictionary dictionary];
     }
 
-    NSDictionary* encodedRatings = [dictionary objectForKey:@"Ratings"];
-    NSString* hash = [dictionary objectForKey:@"Hash"];
+    NSDictionary* encodedRatings = [dictionary objectForKey:ratings_key];
+    NSString* hash = [dictionary objectForKey:hash_key];
 
     NSMutableDictionary* decodedRatings = [NSMutableDictionary dictionary];
     for (NSString* key in encodedRatings) {
@@ -56,8 +59,8 @@
     }
 
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:decodedRatings forKey:@"Ratings"];
-    [result setObject:hash forKey:@"Hash"];
+    [result setObject:decodedRatings forKey:ratings_key];
+    [result setObject:hash forKey:hash_key];
 
     return result;
 }
@@ -91,16 +94,16 @@
     [self performSelectorOnMainThread:@selector(saveRatingsInForeground:) withObject:dictionary waitUntilDone:NO];
 
     NSMutableDictionary* encodedRatings = [NSMutableDictionary dictionary];
-    NSDictionary* ratings = [dictionary objectForKey:@"Ratings"];
-    NSString* hash = [dictionary objectForKey:@"Hash"];
+    NSDictionary* ratings = [dictionary objectForKey:ratings_key];
+    NSString* hash = [dictionary objectForKey:hash_key];
 
     for (NSString* key in ratings) {
         [encodedRatings setObject:[[ratings objectForKey:key] dictionary] forKey:key];
     }
 
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:encodedRatings forKey:@"Ratings"];
-    [result setObject:hash forKey:@"Hash"];
+    [result setObject:encodedRatings forKey:ratings_key];
+    [result setObject:hash forKey:hash_key];
 
     //[Application ratingsFile:[self currentRatingsProvider]]
     [Utilities writeObject:result toFile:self.ratingsFile];
@@ -112,13 +115,43 @@
 }
 
 
-- (NSDictionary*) updateWorker {
-    NSString* hash = [ratingsAndHash objectForKey:@"Hash"];
-
+- (NSString*) lookupServerHash {
     if (self.model.rottenTomatoesRatings) {
-        return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings:hash];
+        return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupServerHash];
     } else if (self.model.metacriticRatings) {
-        return [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings:hash];
+        return [[MetacriticDownloader downloaderWithModel:self.model] lookupServerHash];
+    }
+    
+    return nil;
+}
+
+
+- (NSDictionary*) updateWorker {
+    NSString* localHash = [ratingsAndHash objectForKey:hash_key];
+    NSString* serverHash = [self lookupServerHash];
+
+    if (serverHash.length == 0) {
+        serverHash = @"0";
+    }
+    
+    if (localHash != nil &&
+        [localHash isEqual:serverHash]) {
+        return nil;
+    }
+    
+    NSDictionary* ratings = nil;
+    if (self.model.rottenTomatoesRatings) {
+        ratings = [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings];
+    } else if (self.model.metacriticRatings) {
+        ratings = [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings];
+    }
+    
+    if (ratings.count > 0) {
+        NSMutableDictionary* result = [NSMutableDictionary dictionary];
+        [result setObject:ratings forKey:ratings_key];
+        [result setObject:serverHash forKey:hash_key];
+        
+        return result;
     }
 
     return nil;
@@ -131,12 +164,12 @@
 
     [self saveRatingsInBackground:result];
 
-    return [result objectForKey:@"Ratings"];
+    return [result objectForKey:ratings_key];
 }
 
 
 - (NSDictionary*) ratings {
-    NSDictionary* result = [ratingsAndHash objectForKey:@"Ratings"];
+    NSDictionary* result = [ratingsAndHash objectForKey:ratings_key];
     if (result == nil) {
         return [NSDictionary dictionary];
     }
