@@ -63,6 +63,7 @@
 		749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142AB0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m */; };
 		749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */; };
 		749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */; };
+		749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */; };
 		7495695B0E2D6248007BFF21 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495695A0E2D6248007BFF21 /* Review.m */; };
 		7495695E0E2D6354007BFF21 /* ReviewCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495695D0E2D6354007BFF21 /* ReviewCache.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
@@ -268,6 +269,8 @@
 		749142D70E762D0400CC42A8 /* AbstractMovieDetailsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMovieDetailsCell.m; sourceTree = "<group>"; };
 		749144B50E76537900CC42A8 /* GlobalActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GlobalActivityIndicator.h; sourceTree = "<group>"; };
 		749144B60E76537900CC42A8 /* GlobalActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GlobalActivityIndicator.m; sourceTree = "<group>"; };
+		749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ThreadingUtilities.h; sourceTree = "<group>"; };
+		749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ThreadingUtilities.m; sourceTree = "<group>"; };
 		749569590E2D6248007BFF21 /* Review.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Review.h; sourceTree = "<group>"; };
 		7495695A0E2D6248007BFF21 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		7495695C0E2D6354007BFF21 /* ReviewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewCache.h; sourceTree = "<group>"; };
@@ -410,13 +413,13 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				74447D550DC8474A00CC146C /* UI */,
 				74E6F0190E723FA200A4C2BE /* Threading */,
 				7474FE910E6359BC00BAA43D /* Caches */,
 				74F3B2430E3CE79900DD25DA /* DataProviders */,
 				7474FE8F0E63595400BAA43D /* Posters */,
 				7491444F0E764D0E00CC42A8 /* Ratings */,
 				7474FE900E63599200BAA43D /* Reviews */,
-				74447D550DC8474A00CC146C /* UI */,
 				740DE12F0DCC3D5400B4E69A /* Utilities */,
 				74D6F2B40DCC14420097A984 /* Xml */,
 				746A02140DC81A1A0079D89B /* Application.h */,
@@ -554,6 +557,8 @@
 				74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */,
 				74F94C8B0E6BB34800075068 /* LocationUtilities.h */,
 				74F94C8C0E6BB34800075068 /* LocationUtilities.m */,
+				749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */,
+				749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1026,6 +1031,7 @@
 				749142AC0E7629D500CC42A8 /* ExpandedMovieDetailsCell.m in Sources */,
 				749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */,
 				749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */,
+				749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

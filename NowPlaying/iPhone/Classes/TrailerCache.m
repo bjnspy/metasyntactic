@@ -21,6 +21,7 @@
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 
 @implementation TrailerCache
@@ -170,26 +171,25 @@
 }
 
 
-- (void) backgroundEntryPoint:(NSArray*) arguments {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:NO];
-    {
-        [NSThread setThreadPriority:0.0];
-
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-        NSString* index = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
-        if (index == nil) {
-            return;
-        }
-
-        for (NSArray* movies in arguments) {
-            [self downloadTrailers:movies index:index];
-        }
+- (void) backgroundEntryPointWorker:(NSArray*) arguments {
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
+    NSString* index = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    if (index == nil) {
+        return;
     }
-    [GlobalActivityIndicator removeBackgroundTask:NO];
-    [gate unlock];
-    [autoreleasePool release];
+    
+    for (NSArray* movies in arguments) {
+        [self downloadTrailers:movies index:index];
+    }
+}
+
+
+- (void) backgroundEntryPoint:(NSArray*) arguments {
+    [ThreadingUtilities performSelector:@selector(backgroundEntryPointWorker:)
+                               onObject:self
+               inBackgroundWithArgument:arguments
+                                   gate:gate
+                                visible:NO];
 }
 
 

@@ -20,6 +20,7 @@
 #import "GlobalActivityIndicator.h"
 #import "MovieNumbers.h"
 #import "NetworkUtilities.h"
+#import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
@@ -204,18 +205,14 @@
 }
 
 
+- (void) updateIndexWorker {
+    [self updateIndexBackgroundWorker];
+    [self performSelectorOnMainThread:@selector(updateDetails) withObject:nil waitUntilDone:NO];
+}
+
+
 - (void) updateIndexBackgroundEntryPoint {
-    NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-    [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:YES];
-    {
-        [NSThread setThreadPriority:0.0];
-        [self updateIndexBackgroundWorker];
-        [self performSelectorOnMainThread:@selector(updateDetails) withObject:nil waitUntilDone:NO];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:YES];
-    [gate unlock];
-    [autoreleasePool release];
+    [ThreadingUtilities performSelector:@selector(updateIndexWorker) onObject:self inBackgroundWithArgument:nil gate:gate visible:YES];
 }
 
 
@@ -270,16 +267,11 @@
 
 
 - (void) updateDetailsBackgroundEntryPoint:(NSDictionary*) numbers {
-    NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-    [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:NO];
-    {
-        [NSThread setThreadPriority:0.0];
-        [self updateDetailsBackgroundWorker:numbers];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:NO];
-    [gate unlock];
-    [autoreleasePool release];
+    [ThreadingUtilities performSelector:@selector(updateDetailsBackgroundWorker:) 
+                               onObject:self
+               inBackgroundWithArgument:numbers
+                                   gate:gate
+                                visible:NO];
 }
 
 
