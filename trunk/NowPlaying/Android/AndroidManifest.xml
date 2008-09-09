@@ -2,11 +2,12 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.metasyntactic">
     <application android:icon="@drawable/icon" android:label="@string/app_name">
-        <activity android:name=".NowPlayingActivity" android:label="@string/app_name">
+        <activity android:label="@string/app_name" android:name="NowPlayingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+    <service android:label="@string/app_name" android:name="NowPlayingControllerService"></service>
+</application>
 </manifest> 
