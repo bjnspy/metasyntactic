@@ -17,8 +17,10 @@
 #import "MovieDetailsViewController.h"
 
 #import "Application.h"
+#import "CollapsedMovieDetailsCell.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
+#import "ExpandedMovieDetailsCell.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
@@ -229,20 +231,29 @@
 }
 
 
-static BOOL expanded = NO;
+- (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
+    if (row == 0) {
+        return [MovieOverviewCell cellWithMovie:movie model:self.model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
+    } else {
+        if (expandedDetails) {
+            return [[[ExpandedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                                              model:self.model
+                                                              movie:movie] autorelease];
+        } else {
+            return [[[CollapsedMovieDetailsCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
+                                                              model:self.model
+                                                              movie:movie] autorelease];
+        }
+    }
+}
 
 
 - (CGFloat) heightForRowInHeaderSection:(NSInteger) row {
     if (row == 0) {
         return [MovieOverviewCell heightForMovie:movie model:self.model];
-    } else if (row == 1) {
-        return self.tableView.rowHeight - 10;
     } else {
-        if (expanded) {
-            return 2 * self.tableView.rowHeight;
-        } else {
-            return self.tableView.rowHeight;
-        }
+        AbstractMovieDetailsCell* cell = (AbstractMovieDetailsCell*)[self cellForHeaderRow:row];
+        return [cell height:self.tableView];
     }
 }
 
@@ -273,33 +284,6 @@ static BOOL expanded = NO;
 
     // show hidden theaters
     return tableView.rowHeight;
-}
-
-
-- (UITableViewCell*) cellForHeaderRow:(NSInteger) row {
-    if (row == 0) {
-        return [MovieOverviewCell cellWithMovie:movie model:self.model frame:[UIScreen mainScreen].applicationFrame reuseIdentifier:nil];
-    } else if (row == 1) {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
-        cell.textAlignment = UITextAlignmentCenter;
-        cell.text = movie.ratingAndRuntimeString;
-        cell.font = [UIFont boldSystemFontOfSize:14];
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
-
-        return cell;
-    } else {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-        cell.textAlignment = UITextAlignmentCenter;
-        
-        if (expanded) {
-            cell.text = @"Click me and i'll shrink";
-        } else {
-            cell.text = @"Click me and i'll expand";
-        }
-
-        return cell;
-    }
 }
 
 
@@ -501,21 +485,17 @@ static BOOL expanded = NO;
 }
 
 
-- (void) didSelectHeaderRow:(NSInteger) row {
-    if (row == 2) {
-        UITableView* tableView = self.tableView;
+- (void)       tableView:(UITableView*) tableView
+      didSelectHeaderRow:(NSInteger) row {
+    if (row == 1) {
+        expandedDetails = !expandedDetails;
         
         [tableView beginUpdates];
         
-        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]]
-                         withRowAnimation:UITableViewRowAnimationFade];
+        NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]];
+        [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+        [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
         
-        [tableView insertRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:2 inSection:0]]
-                         withRowAnimation:UITableViewRowAnimationFade];
-        
-        NSLog(@"%f", [UIApplication sharedApplication].statusBarOrientationAnimationDuration);
-        
-        expanded = !expanded;
         [tableView endUpdates];
     }
 }
@@ -524,7 +504,7 @@ static BOOL expanded = NO;
 - (void)            tableView:(UITableView*) tableView
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        [self didSelectHeaderRow:indexPath.row];
+        [self tableView:tableView didSelectHeaderRow:indexPath.row];
         return;
     }
 

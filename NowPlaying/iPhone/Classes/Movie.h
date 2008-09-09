@@ -60,6 +60,7 @@
 
 - (BOOL) isUnrated;
 - (NSString*) ratingString;
+- (NSString*) runtimeString;
 - (NSString*) ratingAndRuntimeString;
 
 + (NSString*) makeCanonical:(NSString*) title;

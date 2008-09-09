@@ -31,11 +31,13 @@
 @class NowPlayingController;
 @class NowPlayingModel;
 @class ColorCache;
+@class CollapsedMovieDetailsCell;
 @class CreditsViewController;
 @class DataProviderViewController;
 @class DateUtilities;
 @class DifferenceEngine;
 @class EditorViewController;
+@class ExpandedMovieDetailsCell;
 @class ExtraMovieInformation;
 @class FontCache;
 @class ImageCache;

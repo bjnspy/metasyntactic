@@ -25,6 +25,7 @@ static NSRecursiveLock* gate = nil;
 
 
 static NSDateFormatter* shortDateFormatter;
+static NSDateFormatter* mediumDateFormatter;
 static NSDateFormatter* longDateFormatter;
 static NSDateFormatter* fullDateFormatter;
 static NSDateFormatter* shortTimeFormatter;
@@ -54,7 +55,13 @@ static NSMutableDictionary* weeksAgoMap;
             [shortDateFormatter setDateStyle:NSDateFormatterShortStyle];
             [shortDateFormatter setTimeStyle:NSDateFormatterNoStyle];
         }
-
+        
+        {
+            mediumDateFormatter = [[NSDateFormatter alloc] init];
+            [mediumDateFormatter setDateStyle:NSDateFormatterMediumStyle];
+            [mediumDateFormatter setTimeStyle:NSDateFormatterNoStyle];
+        }
+        
         {
             longDateFormatter = [[NSDateFormatter alloc] init];
             [longDateFormatter setDateStyle:NSDateFormatterLongStyle];
@@ -201,47 +208,39 @@ static NSMutableDictionary* weeksAgoMap;
 }
 
 
-+ (NSString*) formatShortTime:(NSDate*) date {
++ (NSString*) format:(NSDate*) date formatter:(NSDateFormatter*) formatter {
     NSString* result;
     [gate lock];
     {
-        result = [shortTimeFormatter stringFromDate:date];
+        result = [formatter stringFromDate:date];
     }
     [gate unlock];
     return result;
+}
+
+
++ (NSString*) formatShortTime:(NSDate*) date {
+    return [self format:date formatter:shortTimeFormatter];
+}
+
+
++ (NSString*) formatMediumDate:(NSDate*) date {
+    return [self format:date formatter:mediumDateFormatter];
 }
 
 
 + (NSString*) formatShortDate:(NSDate*) date {
-    NSString* result;
-    [gate lock];
-    {
-        result = [shortDateFormatter stringFromDate:date];
-    }
-    [gate unlock];
-    return result;
+    return [self format:date formatter:shortDateFormatter];
 }
 
 
 + (NSString*) formatLongDate:(NSDate*) date {
-    NSString* result;
-    [gate lock];
-    {
-        result = [longDateFormatter stringFromDate:date];
-    }
-    [gate unlock];
-    return result;
+    return [self format:date formatter:longDateFormatter];
 }
 
 
 + (NSString*) formatFullDate:(NSDate*) date {
-    NSString* result;
-    [gate lock];
-    {
-        result = [fullDateFormatter stringFromDate:date];
-    }
-    [gate unlock];
-    return result;
+    return [self format:date formatter:fullDateFormatter];
 }
 
 

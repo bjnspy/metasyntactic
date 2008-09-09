@@ -14,26 +14,14 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface DateUtilities : NSObject {
+#import "AbstractMovieDetailsCell.h"
 
+@interface CollapsedMovieDetailsCell : AbstractMovieDetailsCell {
+    UILabel* ratingAndRuntimeLabel;
+    UILabel* clickToExpandLabel;
 }
 
-+ (NSString*) timeSinceNow:(NSDate*) date;
-
-+ (NSDate*) today;
-+ (NSDate*) tomorrow;
-
-+ (NSDate*) dateWithNaturalLanguageString:(NSString*) string;
-
-+ (BOOL) isSameDay:(NSDate*) d1
-              date:(NSDate*) d2;
-
-+ (BOOL) isToday:(NSDate*) date;
-
-+ (NSString*) formatShortTime:(NSDate*) date;
-+ (NSString*) formatShortDate:(NSDate*) date;
-+ (NSString*) formatLongDate:(NSDate*) date;
-+ (NSString*) formatMediumDate:(NSDate*) date;
-+ (NSString*) formatFullDate:(NSDate*) date;
+@property (retain) UILabel* ratingAndRuntimeLabel;
+@property (retain) UILabel* clickToExpandLabel;
 
 @end

@@ -26,6 +26,7 @@
     NSInteger hiddenTheaterCount;
 
     BOOL filterTheatersByDistance;
+    BOOL expandedDetails;
 }
 
 @property (assign) AbstractNavigationController* navigationController;

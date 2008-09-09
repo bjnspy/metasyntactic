@@ -182,8 +182,8 @@
         NSString* rating = [movieElement element:@"rating"].text;
         NSString* length = [movieElement element:@"runtime"].text;
         NSString* synopsis = [movieElement element:@"synopsis"].text;
-        NSArray* genres = [[movieElement element:@"genre"].text componentsSeparatedByString:@", "];
-        NSArray* cast = [self processCast:[moviesElement element:@"cast"]];
+        NSArray* genres = [[[movieElement element:@"genre"].text stringByReplacingOccurrencesOfString:@"_" withString:@" "] componentsSeparatedByString:@", "];
+        NSArray* cast = [self processCast:[movieElement element:@"cast"]];
 
         NSString* releaseDateText = [movieElement element:@"releasedate"].text;
         NSDate* releaseDate = nil;
