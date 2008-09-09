@@ -17,6 +17,7 @@
 #import "AddressLocationCache.h"
 
 #import "Application.h"
+#import "GlobalActivityIndicator.h"
 #import "Location.h"
 #import "LocationUtilities.h"
 #import "NetworkUtilities.h"
@@ -187,11 +188,13 @@
 - (void) backgroundEntryPoint:(NSArray*) addresses {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [NSThread setThreadPriority:0.0];
 
         [self downloadAddressLocations:addresses];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [gate unlock];
     [autoreleasePool release];
 }
@@ -199,11 +202,13 @@
 
 - (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [NSThread setThreadPriority:0.0];
 
         [self downloadAddressLocation:postalCode];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [autoreleasePool release];
 }
 

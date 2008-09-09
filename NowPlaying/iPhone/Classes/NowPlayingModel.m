@@ -44,7 +44,7 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"1.6.2";
+static NSString* currentVersion = @"1.7.9";
 static NSString* persistenceVersion = @"19";
 
 + (NSString*) VERSION                                   { return @"version"; }
@@ -81,8 +81,6 @@ static NSString* persistenceVersion = @"19";
 @synthesize upcomingCache;
 
 @synthesize backgroundTaskCount;
-@synthesize activityView;
-@synthesize activityIndicatorView;
 
 - (void) dealloc {
     self.dataProviders = nil;
@@ -96,10 +94,6 @@ static NSString* persistenceVersion = @"19";
     self.reviewCache = nil;
     self.trailerCache = nil;
     self.upcomingCache = nil;
-
-    self.backgroundTaskCount = 0;
-    self.activityView = nil;
-    self.activityIndicatorView = nil;
 
     [super dealloc];
 }
@@ -207,13 +201,6 @@ static NSString* persistenceVersion = @"19";
         self.trailerCache = [TrailerCache cache];
         self.upcomingCache = [UpcomingCache cache];
 
-        self.activityIndicatorView = [[[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite] autorelease];
-        CGRect frame = activityIndicatorView.frame;
-        frame.size.width += 4;
-
-        self.activityView = [[[UIView alloc] initWithFrame:frame] autorelease];
-        [activityView addSubview:activityIndicatorView];
-
         backgroundTaskCount = 0;
         searchRadius = -1;
 
@@ -251,24 +238,6 @@ static NSString* persistenceVersion = @"19";
 
 + (NowPlayingModel*) model {
     return [[[NowPlayingModel alloc] init] autorelease];
-}
-
-
-- (void) addBackgroundTask {
-    backgroundTaskCount++;
-
-    if (backgroundTaskCount == 1) {
-        [activityIndicatorView startAnimating];
-    }
-}
-
-
-- (void) removeBackgroundTask {
-    backgroundTaskCount--;
-
-    if (backgroundTaskCount == 0) {
-        [activityIndicatorView stopAnimating];
-    }
 }
 
 

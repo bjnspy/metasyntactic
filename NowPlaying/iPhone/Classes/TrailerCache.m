@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "DifferenceEngine.h"
+#import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "Utilities.h"
@@ -172,6 +173,7 @@
 - (void) backgroundEntryPoint:(NSArray*) arguments {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [gate lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [NSThread setThreadPriority:0.0];
 
@@ -185,6 +187,7 @@
             [self downloadTrailers:movies index:index];
         }
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [gate unlock];
     [autoreleasePool release];
 }

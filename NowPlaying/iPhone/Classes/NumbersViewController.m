@@ -17,6 +17,7 @@
 #import "NumbersViewController.h"
 
 #import "ColorCache.h"
+#import "GlobalActivityIndicator.h"
 #import "ImageCache.h"
 #import "Movie.h"
 #import "MovieNumbers.h"
@@ -75,7 +76,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 

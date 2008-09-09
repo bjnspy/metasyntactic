@@ -17,6 +17,7 @@
 #import "NumbersCache.h"
 
 #import "Application.h"
+#import "GlobalActivityIndicator.h"
 #import "MovieNumbers.h"
 #import "NetworkUtilities.h"
 #import "Utilities.h"
@@ -206,11 +207,13 @@
 - (void) updateIndexBackgroundEntryPoint {
     NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
     [gate lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [NSThread setThreadPriority:0.0];
         [self updateIndexBackgroundWorker];
         [self performSelectorOnMainThread:@selector(updateDetails) withObject:nil waitUntilDone:NO];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [gate unlock];
     [autoreleasePool release];
 }
@@ -269,10 +272,12 @@
 - (void) updateDetailsBackgroundEntryPoint:(NSDictionary*) numbers {
     NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
     [gate lock];
+    [GlobalActivityIndicator addBackgroundTask];
     {
         [NSThread setThreadPriority:0.0];
         [self updateDetailsBackgroundWorker:numbers];
     }
+    [GlobalActivityIndicator removeBackgroundTask];
     [gate unlock];
     [autoreleasePool release];
 }

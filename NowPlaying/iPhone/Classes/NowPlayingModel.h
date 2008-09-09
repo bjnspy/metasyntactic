@@ -31,8 +31,6 @@ enum ViewControllerType {
     UpcomingCache* upcomingCache;
 
     NSInteger backgroundTaskCount;
-    UIActivityIndicatorView* activityIndicatorView;
-    UIView* activityView;
 
     NSInteger searchRadius;
 
@@ -51,8 +49,6 @@ enum ViewControllerType {
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
 
-@property (retain) UIActivityIndicatorView* activityIndicatorView;
-@property (retain) UIView* activityView;
 @property NSInteger backgroundTaskCount;
 
 @property (retain) NSDictionary* movieMap;
@@ -62,9 +58,6 @@ enum ViewControllerType {
 + (NowPlayingModel*) model;
 
 + (NSString*) version;
-
-- (void) addBackgroundTask;
-- (void) removeBackgroundTask;
 
 - (id<DataProvider>) currentDataProvider;
 - (NSInteger) dataProviderIndex;

@@ -22,6 +22,7 @@
 #import "ColorCache.h"
 #import "DataProvider.h"
 #import "DateUtilities.h"
+#import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "NowPlayingModel.h"
 #import "Performance.h"
@@ -100,7 +101,7 @@
 
 
 - (void) viewWillAppear:(BOOL) animated {
-    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:self.model.activityView] autorelease];
+    self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 }
