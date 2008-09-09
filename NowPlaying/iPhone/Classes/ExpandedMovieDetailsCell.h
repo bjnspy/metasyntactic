@@ -23,15 +23,15 @@
     UILabel* genreTitleLabel;
     UILabel* directorTitleLabel;
     UILabel* castTitleLabel;
-    
+
     UILabel* ratedLabel;
     UILabel* runningTimeLabel;
     UILabel* releaseDateLabel;
     UILabel* genreLabel;
     UILabel* directorLabel;
     NSArray* castLabels;
-    
-    CGFloat titleWidth;    
+
+    CGFloat titleWidth;
 }
 
 @property (retain) UILabel* ratedTitleLabel;

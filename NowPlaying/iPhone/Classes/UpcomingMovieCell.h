@@ -21,12 +21,12 @@
     UILabel* castTitleLabel;
     UILabel* genreTitleLabel;
     UILabel* releaseTitleLabel;
-    
+
     UILabel* directorLabel;
     UILabel* castLabel;
     UILabel* genreLabel;
     UILabel* releaseLabel;
-    
+
     UIImageView* imageView;
 
     CGFloat titleWidth;

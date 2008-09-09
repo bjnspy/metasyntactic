@@ -37,10 +37,10 @@ static NSInteger visibleBackgroundTaskCount = 0;
         activityIndicatorView = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleWhite];
         CGRect frame = activityIndicatorView.frame;
         frame.size.width += 4;
-        
+
         activityView = [[UIView alloc] initWithFrame:frame];
         [activityView addSubview:activityIndicatorView];
-        
+
         indicator = [[GlobalActivityIndicator alloc] init];
     }
 }
@@ -62,7 +62,7 @@ static NSInteger visibleBackgroundTaskCount = 0;
 
 
 - (void) startNetworkIndicator {
-    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES; 
+    [UIApplication sharedApplication].networkActivityIndicatorVisible = YES;
 }
 
 
@@ -85,15 +85,15 @@ static NSInteger visibleBackgroundTaskCount = 0;
     [gate lock];
     {
         totalBackgroundTaskCount++;
-        
+
         if (isVisible) {
             visibleBackgroundTaskCount++;
-            
+
             if (visibleBackgroundTaskCount == 1) {
                 [indicator performSelectorOnMainThread:@selector(startIndicator) withObject:nil waitUntilDone:NO];
             }
         }
-        
+
         if (totalBackgroundTaskCount == 1) {
             [indicator performSelectorOnMainThread:@selector(startNetworkIndicator) withObject:nil waitUntilDone:NO];
         }
@@ -106,19 +106,19 @@ static NSInteger visibleBackgroundTaskCount = 0;
     [gate lock];
     {
         totalBackgroundTaskCount--;
-        
+
         if (isVisible) {
             visibleBackgroundTaskCount--;
-            
+
             if (visibleBackgroundTaskCount == 0) {
                 [indicator performSelectorOnMainThread:@selector(stopIndicator) withObject:nil waitUntilDone:NO];
             }
         }
-        
+
         if (totalBackgroundTaskCount == 0) {
             [indicator performSelectorOnMainThread:@selector(stopNetworkIndicator) withObject:nil waitUntilDone:NO];
         }
-        
+
         [indicator performSelectorOnMainThread:@selector(refresh) withObject:nil waitUntilDone:NO];
     }
     [gate unlock];

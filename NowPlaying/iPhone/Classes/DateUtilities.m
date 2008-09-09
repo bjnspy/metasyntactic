@@ -55,13 +55,13 @@ static NSMutableDictionary* weeksAgoMap;
             [shortDateFormatter setDateStyle:NSDateFormatterShortStyle];
             [shortDateFormatter setTimeStyle:NSDateFormatterNoStyle];
         }
-        
+
         {
             mediumDateFormatter = [[NSDateFormatter alloc] init];
             [mediumDateFormatter setDateStyle:NSDateFormatterMediumStyle];
             [mediumDateFormatter setTimeStyle:NSDateFormatterNoStyle];
         }
-        
+
         {
             longDateFormatter = [[NSDateFormatter alloc] init];
             [longDateFormatter setDateStyle:NSDateFormatterLongStyle];

@@ -27,7 +27,7 @@
 - (void) dealloc {
     self.ratingAndRuntimeLabel = nil;
     self.clickToExpandLabel = nil;
-    
+
     [super dealloc];
 }
 
@@ -41,31 +41,31 @@
         ratingAndRuntimeLabel.text = movie.ratingAndRuntimeString;
         ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
         [ratingAndRuntimeLabel sizeToFit];
-        
+
         self.clickToExpandLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 0, 0)] autorelease];
         clickToExpandLabel.font = [UIFont systemFontOfSize:10];
         clickToExpandLabel.textColor = [ColorCache commandColor];
         clickToExpandLabel.textAlignment = UITextAlignmentCenter;
         clickToExpandLabel.text = NSLocalizedString(@"click for more details", nil);
         [clickToExpandLabel sizeToFit];
-    
+
         [self.contentView addSubview:ratingAndRuntimeLabel];
         [self.contentView addSubview:clickToExpandLabel];
     }
-    
+
     return self;
 }
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     CGRect frame;
-    
+
     frame = ratingAndRuntimeLabel.frame;
     frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2);
     ratingAndRuntimeLabel.frame = frame;
-    
+
     frame = clickToExpandLabel.frame;
     frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2);
     clickToExpandLabel.frame = frame;
