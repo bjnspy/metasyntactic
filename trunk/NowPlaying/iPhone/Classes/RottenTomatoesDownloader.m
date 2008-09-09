@@ -47,18 +47,14 @@
 }
 
 
-- (NSDictionary*) lookupMovieListings:(NSString*) localHash {
-    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&format=xml&hash=true", [Application host]]
-                                                               important:YES];
-    if (serverHash == nil) {
-        serverHash = @"0";
-    }
+- (NSString*) lookupServerHash {
+    NSString* value = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&format=xml&hash=true", [Application host]]
+                                                          important:YES];
+    return value;
+}
 
-    if (localHash != nil &&
-        [localHash isEqual:serverHash]) {
-        return [NSDictionary dictionary];
-    }
 
+- (NSDictionary*) lookupMovieListings {
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=RottenTomatoes&format=xml", [Application host]]
                                                                  important:YES];
 
@@ -79,14 +75,8 @@
 
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
-
-        if (ratings.count > 0) {
-            NSMutableDictionary* result = [NSMutableDictionary dictionary];
-            [result setObject:ratings forKey:@"Ratings"];
-            [result setObject:serverHash forKey:@"Hash"];
-
-            return result;
-        }
+        
+        return ratings;
     }
 
     return nil;

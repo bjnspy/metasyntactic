@@ -26,6 +26,9 @@
 
 @implementation ReviewCache
 
+static NSString* reviews_key = @"Reviews";
+static NSString* hash_key = @"Hash";
+
 @synthesize model;
 @synthesize gate;
 
@@ -66,13 +69,13 @@
     }
 
     NSMutableArray* reviews = [NSMutableArray array];
-    for (NSDictionary* dict in [encodedDictionary objectForKey:@"Reviews"]) {
+    for (NSDictionary* dict in [encodedDictionary objectForKey:reviews_key]) {
         [reviews addObject:[Review reviewWithDictionary:dict]];
     }
 
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:reviews forKey:@"Reviews"];
-    [result setObject:[encodedDictionary objectForKey:@"Hash"] forKey:@"Hash"];
+    [result setObject:reviews forKey:reviews_key];
+    [result setObject:[encodedDictionary objectForKey:hash_key] forKey:hash_key];
 
     return result;
 }
@@ -126,8 +129,8 @@
     }
 
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:encodedReviews forKey:@"Reviews"];
-    [dictionary setObject:hash forKey:@"Hash"];
+    [dictionary setObject:encodedReviews forKey:reviews_key];
+    [dictionary setObject:hash forKey:hash_key];
 
     [Utilities writeObject:dictionary toFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
 }
@@ -139,13 +142,13 @@
         return [NSArray array];
     }
 
-    return [dictionary objectForKey:@"Reviews"];
+    return [dictionary objectForKey:reviews_key];
 }
 
 
 - (NSString*) reviewsHashForMovie:(NSString*) movieTitle {
     NSDictionary* dictionary = [self loadReviewFile:movieTitle ratingsProvider:self.model.ratingsProviderIndex];
-    return [dictionary objectForKey:@"Hash"];
+    return [dictionary objectForKey:hash_key];
 }
 
 

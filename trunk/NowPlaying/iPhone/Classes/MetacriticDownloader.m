@@ -47,21 +47,17 @@
 }
 
 
-- (NSDictionary*) lookupMovieListings:(NSString*) localHash {
-    NSString* host = [Application host];
+- (NSString*) lookupServerHash {
+    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&format=xml&hash=true", [Application host]];
+    NSString* value = [NetworkUtilities stringWithContentsOfAddress:address
+                                                          important:YES];
+    return value;
+}
 
-    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&format=xml&hash=true", host]
-                                                        important:YES];
-    if (serverHash == nil) {
-        serverHash = @"0";
-    }
 
-    if (localHash != nil &&
-        [localHash isEqual:serverHash]) {
-        return [NSDictionary dictionary];
-    }
-
-    XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:[NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&format=xml", host]
+- (NSDictionary*) lookupMovieListings {
+    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&format=xml", [Application host]];
+    XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address
                                                                  important:YES];
 
     if (resultElement != nil) {
@@ -85,14 +81,8 @@
 
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
-
-        if (ratings.count > 0) {
-            NSMutableDictionary* result = [NSMutableDictionary dictionary];
-            [result setObject:ratings forKey:@"Ratings"];
-            [result setObject:serverHash forKey:@"Hash"];
-
-            return result;
-        }
+        
+        return ratings;
     }
 
     return nil;
