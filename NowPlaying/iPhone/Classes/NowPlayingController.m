@@ -145,12 +145,12 @@
 - (void) ratingsLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [ratingsLookupLock lock];
-    [GlobalActivityIndicator addBackgroundTask];
+    [GlobalActivityIndicator addBackgroundTask:YES];
     {
         NSDictionary* ratings = [self ratingsLookup];
         [self performSelectorOnMainThread:@selector(setRatings:) withObject:ratings waitUntilDone:NO];
     }
-    [GlobalActivityIndicator removeBackgroundTask];
+    [GlobalActivityIndicator removeBackgroundTask:YES];
     [ratingsLookupLock unlock];
     [autoreleasePool release];
 }
@@ -159,11 +159,11 @@
 - (void) upcomingMoviesLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [upcomingMoviesLookupLock lock];
-    [GlobalActivityIndicator addBackgroundTask];
+    [GlobalActivityIndicator addBackgroundTask:YES];
     {
         [self.model.upcomingCache updateMoviesList];
     }
-    [GlobalActivityIndicator removeBackgroundTask];
+    [GlobalActivityIndicator removeBackgroundTask:YES];
     [upcomingMoviesLookupLock unlock];
     [autoreleasePool release];
 }
@@ -179,11 +179,11 @@
 - (void) dataProviderLookupBackgroundThreadEntryPoint {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     [dataProviderLock lock];
-    [GlobalActivityIndicator addBackgroundTask];
+    [GlobalActivityIndicator addBackgroundTask:YES];
     {
         [self.model.currentDataProvider lookup];
     }
-    [GlobalActivityIndicator removeBackgroundTask];
+    [GlobalActivityIndicator removeBackgroundTask:YES];
     [dataProviderLock unlock];
     [autoreleasePool release];
 }
