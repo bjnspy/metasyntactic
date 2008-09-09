@@ -202,13 +202,13 @@
 
 - (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode {
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [GlobalActivityIndicator addBackgroundTask:YES];
+    [GlobalActivityIndicator addBackgroundTask:NO];
     {
         [NSThread setThreadPriority:0.0];
 
         [self downloadAddressLocation:postalCode];
     }
-    [GlobalActivityIndicator removeBackgroundTask:YES];
+    [GlobalActivityIndicator removeBackgroundTask:NO];
     [autoreleasePool release];
 }
 
