@@ -18,13 +18,15 @@
     NowPlayingModel* model;
     UILabel* titleLabel;
     UILabel* directorTitleLabel;
-    UILabel* directorLabel;
     UILabel* castTitleLabel;
-    UILabel* castLabel;
-    UILabel* ratedTitleLabel;
-    UILabel* ratedLabel;
     UILabel* genreTitleLabel;
+    UILabel* releaseTitleLabel;
+    
+    UILabel* directorLabel;
+    UILabel* castLabel;
     UILabel* genreLabel;
+    UILabel* releaseLabel;
+    
     UIImageView* imageView;
 
     CGFloat titleWidth;
@@ -32,14 +34,16 @@
 
 @property (retain) NowPlayingModel* model;
 @property (retain) UILabel* titleLabel;
-@property (retain) UILabel* directorLabel;
-@property (retain) UILabel* castLabel;
-@property (retain) UILabel* ratedLabel;
-@property (retain) UILabel* genreLabel;
 @property (retain) UILabel* directorTitleLabel;
 @property (retain) UILabel* castTitleLabel;
-@property (retain) UILabel* ratedTitleLabel;
+@property (retain) UILabel* releaseTitleLabel;
 @property (retain) UILabel* genreTitleLabel;
+
+@property (retain) UILabel* directorLabel;
+@property (retain) UILabel* castLabel;
+@property (retain) UILabel* genreLabel;
+@property (retain) UILabel* releaseLabel;
+
 @property (retain) UIImageView* imageView;
 
 - (id)      initWithFrame:(CGRect) frame

@@ -151,11 +151,11 @@
     }
 
     [Utilities writeObject:location.dictionary toFile:[self locationFile:address]];
-    [self performSelectorOnMainThread:@selector(invalidateCachedData:) withObject:nil waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(invalidateCachedData) withObject:nil waitUntilDone:NO];
 }
 
 
-- (void) invalidateCachedData:(id) object {
+- (void) invalidateCachedData {
     self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
 }
 
