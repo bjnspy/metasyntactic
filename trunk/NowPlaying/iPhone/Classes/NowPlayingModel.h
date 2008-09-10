@@ -31,8 +31,6 @@ enum ViewControllerType {
     TrailerCache* trailerCache;
     UpcomingCache* upcomingCache;
 
-    NSInteger backgroundTaskCount;
-
     NSInteger searchRadius;
 
     NSDictionary* movieMap;
@@ -50,8 +48,6 @@ enum ViewControllerType {
 @property (retain) RatingsCache* ratingsCache;
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
-
-@property NSInteger backgroundTaskCount;
 
 @property (retain) NSDictionary* movieMap;
 @property (retain) NSMutableArray* favoriteTheatersData;
