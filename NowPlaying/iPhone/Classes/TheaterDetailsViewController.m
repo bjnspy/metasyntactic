@@ -218,7 +218,7 @@
                                                          style:UITableViewStyleGrouped] autorelease];
         }
 
-        [movieCell setMovie:[movies objectAtIndex:index]];
+        [movieCell setMovie:[movies objectAtIndex:index] owner:self];
 
         return movieCell;
     } else {

@@ -32,7 +32,7 @@
                     model:(NowPlayingModel*) model
                     style:(UITableViewStyle) style;
 
-- (void) setMovie:(Movie*) movie;
+- (void) setMovie:(Movie*) movie owner:(id) owner;
 
 
 @end
