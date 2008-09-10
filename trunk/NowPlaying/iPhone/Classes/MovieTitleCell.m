@@ -186,7 +186,7 @@
 }
 
 
-- (void) setMovie:(Movie*) movie {
+- (void) setMovie:(Movie*) movie owner:(id) owner {
     [self setScore:movie];
     ratingLabel.text = movie.ratingAndRuntimeString;
     titleLabel.text = movie.displayTitle;

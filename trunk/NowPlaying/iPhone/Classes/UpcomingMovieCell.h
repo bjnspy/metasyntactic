@@ -20,12 +20,12 @@
     UILabel* directorTitleLabel;
     UILabel* castTitleLabel;
     UILabel* genreTitleLabel;
-    UILabel* releaseTitleLabel;
+    UILabel* ratedTitleLabel;
 
     UILabel* directorLabel;
     UILabel* castLabel;
     UILabel* genreLabel;
-    UILabel* releaseLabel;
+    UILabel* ratedLabel;
 
     UIImageView* imageView;
 
@@ -36,13 +36,13 @@
 @property (retain) UILabel* titleLabel;
 @property (retain) UILabel* directorTitleLabel;
 @property (retain) UILabel* castTitleLabel;
-@property (retain) UILabel* releaseTitleLabel;
+@property (retain) UILabel* ratedTitleLabel;
 @property (retain) UILabel* genreTitleLabel;
 
 @property (retain) UILabel* directorLabel;
 @property (retain) UILabel* castLabel;
 @property (retain) UILabel* genreLabel;
-@property (retain) UILabel* releaseLabel;
+@property (retain) UILabel* ratedLabel;
 
 @property (retain) UIImageView* imageView;
 
@@ -50,6 +50,6 @@
           reuseIdentifier:(NSString*) reuseIdentifier
                     model:(NowPlayingModel*) model;
 
-- (void) setMovie:(Movie*) movie;
+- (void) setMovie:(Movie*) movie owner:(id) owner;
 
 @end

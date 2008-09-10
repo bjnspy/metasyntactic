@@ -245,7 +245,7 @@
         cell = [self createCell:reuseIdentifier];
     }
 
-    [cell setMovie:movie];
+    [cell setMovie:movie owner:self];
     return cell;
 }
 
