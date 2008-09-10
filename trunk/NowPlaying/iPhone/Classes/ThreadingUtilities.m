@@ -17,7 +17,7 @@
 #import "ThreadingUtilities.h"
 
 #import "GlobalActivityIndicator.h"
-#import "Invocation.h"
+#import "BackgroundInvocation.h"
 
 @implementation ThreadingUtilities
 
@@ -27,7 +27,11 @@
       inBackgroundWithArgument:(id) argument
                           gate:(NSLock*) gate
                        visible:(BOOL) visible {
-    Invocation* invocation = [Invocation invocationWithSelector:selector target:target argument:argument gate:gate visible:visible];
+    BackgroundInvocation* invocation = [BackgroundInvocation invocationWithTarget:target
+                                                                         selector:selector
+                                                                         argument:argument
+                                                                             gate:gate
+                                                                          visible:visible];
     [invocation performSelectorInBackground:@selector(run) withObject:nil];
 }
 

@@ -27,6 +27,7 @@
 @class ApplicationTabBarController;
 @class AttributeCell;
 @class AutoResizingCell;
+@class BackgroundInvocation;
 @class NowPlayingAppDelegate;
 @class NowPlayingController;
 @class NowPlayingModel;

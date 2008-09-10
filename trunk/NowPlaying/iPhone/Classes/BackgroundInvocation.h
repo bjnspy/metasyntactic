@@ -14,24 +14,20 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface Invocation : NSObject {
-    SEL selector;
-    id target;
-    id argument;
+#import "Invocation.h"
+
+@interface BackgroundInvocation : Invocation {
     NSLock* gate;
     BOOL visible;
 }
 
-@property SEL selector;
-@property (retain) id target;
-@property (retain) id argument;
 @property (retain) NSLock* gate;
 @property BOOL visible;
 
-+ (Invocation*) invocationWithSelector:(SEL) selector
-                                target:(id) target
-                              argument:(id) argument
-                                  gate:(NSLock*) gate
-                               visible:(BOOL) visible;
++ (BackgroundInvocation*) invocationWithTarget:(id) target
+                                      selector:(SEL) selector
+                                      argument:(id) argument
+                                          gate:(NSLock*) gate
+                                       visible:(BOOL) visible;
 
 @end

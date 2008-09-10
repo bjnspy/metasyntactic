@@ -14,11 +14,11 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "Invocation.h"
+#import "BackgroundInvocation.h"
 
 #import "GlobalActivityIndicator.h"
 
-@implementation Invocation
+@implementation BackgroundInvocation
 
 @synthesize selector;
 @synthesize target;
@@ -32,34 +32,38 @@
     self.argument = nil;
     self.gate = nil;
     self.visible = NO;
-
+    
     [super dealloc];
 }
 
 
-- (id) initWithSelector:(SEL) selector_
-                 target:(id) target_
-               argument:(id) argument_
-                   gate:(NSLock*) gate_
-                visible:(BOOL) visible_ {
+- (id) initWithTarget:(id) target_
+             selector:(SEL) selector_
+             argument:(id) argument_
+                 gate:(NSLock*) gate_
+              visible:(BOOL) visible_ {
     if (self = [super init]) {
-        self.selector = selector_;
         self.target = target_;
+        self.selector = selector_;
         self.argument = argument_;
         self.gate = gate_;
         self.visible = visible_;
     }
-
+    
     return self;
 }
 
 
-+ (Invocation*) invocationWithSelector:(SEL) selector
-                                target:(id) target
-                              argument:(id) argument
-                                  gate:(NSLock*) gate
-                               visible:(BOOL) visible {
-    return [[[Invocation alloc] initWithSelector:selector target:target argument:argument gate:gate visible:visible] autorelease];
++ (BackgroundInvocation*) invocationWithTarget:(id) target
+                                      selector:(SEL) selector
+                                      argument:(id) argument
+                                          gate:(NSLock*) gate
+                                       visible:(BOOL) visible {
+    return [[[BackgroundInvocation alloc] initWithTarget:target
+                                                selector:selector
+                                                argument:argument
+                                                    gate:gate
+                                                 visible:visible] autorelease];
 }
 
 
