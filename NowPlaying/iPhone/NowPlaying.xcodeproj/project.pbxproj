@@ -47,6 +47,7 @@
 		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
+		74632BBD0E77795C00F26D3C /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74632BBC0E77795C00F26D3C /* Invocation.m */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
@@ -237,6 +238,8 @@
 		745E21450E59639000105751 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21460E5963A200105751 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = Resources/th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21470E5963A200105751 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
+		74632BBB0E77795C00F26D3C /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
+		74632BBC0E77795C00F26D3C /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
 		746A01410DC819270079D89B /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		746A01420DC819270079D89B /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		746A02030DC819430079D89B /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
@@ -557,8 +560,6 @@
 				74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */,
 				74F94C8B0E6BB34800075068 /* LocationUtilities.h */,
 				74F94C8C0E6BB34800075068 /* LocationUtilities.m */,
-				749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */,
-				749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -802,8 +803,12 @@
 		74E6F0190E723FA200A4C2BE /* Threading */ = {
 			isa = PBXGroup;
 			children = (
+				749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */,
+				749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */,
 				74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */,
 				74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */,
+				74632BBB0E77795C00F26D3C /* Invocation.h */,
+				74632BBC0E77795C00F26D3C /* Invocation.m */,
 			);
 			name = Threading;
 			sourceTree = "<group>";
@@ -1032,6 +1037,7 @@
 				749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */,
 				749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */,
 				749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */,
+				74632BBD0E77795C00F26D3C /* Invocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

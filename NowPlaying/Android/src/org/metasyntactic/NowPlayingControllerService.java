@@ -16,6 +16,18 @@ public class NowPlayingControllerService extends Service {
   public void onCreate() {
     super.onCreate();
 
+    update();
+  }
+
+  private void update() {
+    new Thread(new Runnable() {
+      public void run() {
+        updateBackgroundEntryPoint();
+      }
+    }).start();
+  }
+
+  private void updateBackgroundEntryPoint() {
     model.update();
   }
 

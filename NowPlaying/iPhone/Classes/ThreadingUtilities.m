@@ -17,24 +17,18 @@
 #import "ThreadingUtilities.h"
 
 #import "GlobalActivityIndicator.h"
+#import "Invocation.h"
 
 @implementation ThreadingUtilities
 
+
 + (void)       performSelector:(SEL) selector
-                      onObject:(id) object
+                      onTarget:(id) target
       inBackgroundWithArgument:(id) argument
                           gate:(NSLock*) gate
                        visible:(BOOL) visible {
-    NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-    [gate lock];
-    [GlobalActivityIndicator addBackgroundTask:visible];
-    {
-        [NSThread setThreadPriority:0.0];
-        [object performSelector:selector withObject:argument];
-    }
-    [GlobalActivityIndicator removeBackgroundTask:visible];
-    [gate unlock];
-    [autoreleasePool release];    
+    Invocation* invocation = [Invocation invocationWithSelector:selector target:target argument:argument gate:gate visible:visible];
+    [invocation performSelectorInBackground:@selector(run) withObject:nil];
 }
 
 @end

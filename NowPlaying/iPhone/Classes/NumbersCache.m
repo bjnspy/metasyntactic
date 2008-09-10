@@ -109,13 +109,21 @@
 
 
 - (void) updateIndex {
-    [self performSelectorInBackground:@selector(updateIndexBackgroundEntryPoint) withObject:nil];
+    [ThreadingUtilities performSelector:@selector(updateIndexBackgroundEntryPoint)
+                               onTarget:self
+               inBackgroundWithArgument:nil
+                                   gate:gate
+                                visible:YES];
 }
 
 
 - (void) updateDetails {
     if (indexData != nil) {
-        [self performSelectorInBackground:@selector(updateDetailsBackgroundEntryPoint:) withObject:indexData];
+        [ThreadingUtilities performSelector:@selector(updateDetailsBackgroundEntryPoint:) 
+                                   onTarget:self
+                   inBackgroundWithArgument:indexData
+                                       gate:gate
+                                    visible:NO];
     }
 }
 
@@ -205,14 +213,9 @@
 }
 
 
-- (void) updateIndexWorker {
+- (void) updateIndexBackgroundEntryPoint {
     [self updateIndexBackgroundWorker];
     [self performSelectorOnMainThread:@selector(updateDetails) withObject:nil waitUntilDone:NO];
-}
-
-
-- (void) updateIndexBackgroundEntryPoint {
-    [ThreadingUtilities performSelector:@selector(updateIndexWorker) onObject:self inBackgroundWithArgument:nil gate:gate visible:YES];
 }
 
 
@@ -255,7 +258,7 @@
 }
 
 
-- (void) updateDetailsBackgroundWorker:(NSDictionary*) numbers {
+- (void) updateDetailsBackgroundEntryPoint:(NSDictionary*) numbers {
     for (MovieNumbers* movie in [numbers objectForKey:@"Weekend"]) {
         NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
 
@@ -263,15 +266,6 @@
 
         [autoreleasePool release];
     }
-}
-
-
-- (void) updateDetailsBackgroundEntryPoint:(NSDictionary*) numbers {
-    [ThreadingUtilities performSelector:@selector(updateDetailsBackgroundWorker:) 
-                               onObject:self
-               inBackgroundWithArgument:numbers
-                                   gate:gate
-                                visible:NO];
 }
 
 

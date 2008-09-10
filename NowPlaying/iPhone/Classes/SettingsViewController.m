@@ -131,25 +131,21 @@
     if (newLocation != nil) {
         if (ABS(newLocation.timestamp.timeIntervalSinceNow) < 10) {
             [locationManager stopUpdatingLocation];
-            [self performSelectorInBackground:@selector(findPostalCodeBackgroundEntryPoint:) withObject:newLocation];
+
+            [ThreadingUtilities performSelector:@selector(findPostalCodeBackgroundEntryPoint:)
+                                       onTarget:self
+                       inBackgroundWithArgument:newLocation
+                                           gate:gate
+                                        visible:YES];
         }
     }
 }
 
 
-- (void) findPostalCode:(CLLocation*) location {
+- (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
     NSString* postalCode = [LocationUtilities findPostalCode:location];
 
     [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:postalCode waitUntilDone:NO];
-}
-
-
-- (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
-    [ThreadingUtilities performSelector:@selector(findPostalCode:)
-                               onObject:self
-               inBackgroundWithArgument:location
-                                   gate:gate
-                                visible:YES];
 }
 
 
