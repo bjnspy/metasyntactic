@@ -82,7 +82,7 @@
     self.favoriteButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [favoriteButton setImage:[ImageCache emptyStarImage] forState:UIControlStateNormal];
     [favoriteButton setImage:[ImageCache filledStarImage] forState:UIControlStateSelected];
-    [favoriteButton addTarget: self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
+    [favoriteButton addTarget:self action:@selector(switchFavorite:) forControlEvents:UIControlEventTouchUpInside];
 
     CGRect frame = favoriteButton.frame;
     frame.size = [ImageCache emptyStarImage].size;

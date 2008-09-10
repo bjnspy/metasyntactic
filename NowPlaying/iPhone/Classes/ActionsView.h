@@ -14,14 +14,18 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface ThreadingUtilities : NSObject {
-
+@interface ActionsView : UIView {
+    NSArray* invocations;
+    NSArray* titles;
+    
+    NSArray* buttons;
 }
 
-+ (void) performSelector:(SEL) selector
-                onTarget:(id) target
-inBackgroundWithArgument:(id) argument
-                    gate:(NSLock*) gate
-                 visible:(BOOL) visible;
+@property (retain) NSArray* invocations;
+@property (retain) NSArray* titles;
+@property (retain) NSArray* buttons;
+
++ (ActionsView*) viewWithInvocations:(NSArray*) invocations
+                              titles:(NSArray*) titles;
 
 @end

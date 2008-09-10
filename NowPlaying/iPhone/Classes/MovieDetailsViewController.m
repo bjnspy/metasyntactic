@@ -16,12 +16,14 @@
 
 #import "MovieDetailsViewController.h"
 
+#import "ActionsView.h"
 #import "Application.h"
 #import "CollapsedMovieDetailsCell.h"
 #import "ColorCache.h"
 #import "DateUtilities.h"
 #import "ExpandedMovieDetailsCell.h"
 #import "GlobalActivityIndicator.h"
+#import "Invocation.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"
@@ -120,22 +122,22 @@
         NSMutableArray* actionTitlesArray = [NSMutableArray array];
         
         if (trailersArray.count > 0) {
-            [actionsArray addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
+            [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(playTrailer) argument:nil]];
             [actionTitlesArray addObject:NSLocalizedString(@"Play trailer", nil)];
         }
         
         if (reviewsArray.count > 0) {
-            [actionsArray addObject:[NSValue valueWithPointer:@selector(readReviews)]];
+            [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(readReviews) argument:nil]];
             [actionTitlesArray addObject:NSLocalizedString(@"Read reviews", nil)];
         }
         
         if (theatersArray.count > 0) {
-            [actionsArray addObject:[NSValue valueWithPointer:@selector(emailListings)]];
+            [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(emailListings) argument:nil]];
             [actionTitlesArray addObject:NSLocalizedString(@"E-mail listings", nil)];
         }
         
         if (imdbAddress.length > 0) {
-            [actionsArray addObject:[NSValue valueWithPointer:@selector(visitIMDb)]];
+            [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(visitIMDb) argument:nil]];
             [actionTitlesArray addObject:NSLocalizedString(@"Visit IMDb", nil)];
         }
         
@@ -204,9 +206,6 @@
     // Header
     NSInteger sections = 1;
 
-    // actions
-    sections += 1;
-
     // theaters
     sections += theatersArray.count;
 
@@ -224,13 +223,8 @@
 }
 
 
-- (NSInteger) numberOfRowsInActionSection {
-    return actions.count;
-}
-
-
 - (NSInteger) getTheaterIndex:(NSInteger) section {
-    return section - 2;
+    return section - 1;
 }
 
 
@@ -244,10 +238,6 @@
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         return [self numberOfRowsInHeaderSection];
-    }
-
-    if (section == 1) {
-        return [self numberOfRowsInActionSection];
     }
 
     if ([self isTheaterSection:section]) {
@@ -292,10 +282,6 @@
         return [self heightForRowInHeaderSection:indexPath.row];
     }
 
-    if (indexPath.section == 1) {
-        return tableView.rowHeight;
-    }
-
     if ([self isTheaterSection:indexPath.section]) {
         // theater section
         if (indexPath.row == 0) {
@@ -312,25 +298,6 @@
 
     // show hidden theaters
     return tableView.rowHeight;
-}
-
-
-- (UITableViewCell*) cellForActionRow:(NSInteger) row {
-    static NSString* reuseIdentifier = @"MovieDetailsActionCellIdentifier";
-
-    UITableViewCell* cell = [self.tableView dequeueReusableCellWithIdentifier:reuseIdentifier];
-    if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                       reuseIdentifier:reuseIdentifier] autorelease];
-
-        cell.textColor = [ColorCache commandColor];
-        cell.font = [UIFont boldSystemFontOfSize:14];
-        cell.textAlignment = UITextAlignmentCenter;
-    }
-    
-    cell.text = [actionTitles objectAtIndex:row];
-    
-    return cell;
 }
 
 
@@ -366,6 +333,29 @@
 
         return cell;
     }
+}
+
+
+- (UIView*)        tableView:(UITableView*) tableView
+      viewForFooterInSection:(NSInteger) section {
+    if (section == 0) {        
+        UIView* view = [ActionsView viewWithInvocations:actions titles:actionTitles];
+        [view sizeToFit];
+        return view;
+    }
+    
+    return nil;
+}
+
+
+- (CGFloat)          tableView:(UITableView*) tableView
+      heightForFooterInSection:(NSInteger)section {
+    if (section == 0) {
+        UIView* view = [self tableView:tableView viewForFooterInSection:section];
+        return [view sizeThatFits:CGSizeZero].height;
+    }
+    
+    return -1;
 }
 
 
@@ -405,10 +395,6 @@
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         return [self cellForHeaderRow:indexPath.row];
-    }
-
-    if (indexPath.section == 1) {
-        return [self cellForActionRow:indexPath.row];
     }
 
     if ([self isTheaterSection:indexPath.section]) {
@@ -498,12 +484,6 @@
 }
 
 
-- (void) didSelectActionRow:(NSInteger) row {
-    SEL selector = [[actions objectAtIndex:row] pointerValue];
-    [self performSelector:selector withObject:nil];
-}
-
-
 - (void) pushTicketsView:(Theater*) theater
                 animated:(BOOL) animated {
     [navigationController pushTicketsView:movie
@@ -533,11 +513,6 @@
       didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
         [self tableView:tableView didSelectHeaderRow:indexPath.row];
-        return;
-    }
-
-    if (indexPath.section == 1) {
-        [self didSelectActionRow:indexPath.row];
         return;
     }
 

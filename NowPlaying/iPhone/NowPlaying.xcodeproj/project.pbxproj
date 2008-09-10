@@ -16,6 +16,9 @@
 		740244300E77926C00ECE1B4 /* DownDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442E0E77926C00ECE1B4 /* DownDisclosureTriangle.png */; };
 		740244310E77926C00ECE1B4 /* RightDisclosureTriangle.png in Resources */ = {isa = PBXBuildFile; fileRef = 7402442F0E77926C00ECE1B4 /* RightDisclosureTriangle.png */; };
 		740244B70E783D4F00ECE1B4 /* IMDbCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 740244B60E783D4F00ECE1B4 /* IMDbCache.m */; };
+		740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 740245680E7848BF00ECE1B4 /* ActionsView.m */; };
+		740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246610E785A9000ECE1B4 /* BackgroundInvocation.m */; };
+		740246790E785B0000ECE1B4 /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 740246780E785B0000ECE1B4 /* Invocation.m */; };
 		7405F7CD0DCAF3B9002E2D06 /* SettingsNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */; };
 		74085B8C0E423F010069F0F5 /* RatingsCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74085B8B0E423F010069F0F5 /* RatingsCache.m */; };
 		74088BD70DCD0AA800954696 /* PosterCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74088BD60DCD0AA800954696 /* PosterCache.m */; };
@@ -50,7 +53,6 @@
 		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
-		74632BBD0E77795C00F26D3C /* Invocation.m in Sources */ = {isa = PBXBuildFile; fileRef = 74632BBC0E77795C00F26D3C /* Invocation.m */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
 		746A02050DC819430079D89B /* Theater.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02040DC819430079D89B /* Theater.m */; };
 		746A02160DC81A1A0079D89B /* Application.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A02150DC81A1A0079D89B /* Application.m */; };
@@ -164,6 +166,12 @@
 		7402442F0E77926C00ECE1B4 /* RightDisclosureTriangle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = RightDisclosureTriangle.png; path = Resources/RightDisclosureTriangle.png; sourceTree = "<group>"; };
 		740244B50E783D4F00ECE1B4 /* IMDbCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IMDbCache.h; sourceTree = "<group>"; };
 		740244B60E783D4F00ECE1B4 /* IMDbCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IMDbCache.m; sourceTree = "<group>"; };
+		740245670E7848BF00ECE1B4 /* ActionsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionsView.h; sourceTree = "<group>"; };
+		740245680E7848BF00ECE1B4 /* ActionsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionsView.m; sourceTree = "<group>"; };
+		740246600E785A9000ECE1B4 /* BackgroundInvocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BackgroundInvocation.h; sourceTree = "<group>"; };
+		740246610E785A9000ECE1B4 /* BackgroundInvocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BackgroundInvocation.m; sourceTree = "<group>"; };
+		740246770E785B0000ECE1B4 /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
+		740246780E785B0000ECE1B4 /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
 		7405F7CB0DCAF3B9002E2D06 /* SettingsNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingsNavigationController.h; sourceTree = "<group>"; };
 		7405F7CC0DCAF3B9002E2D06 /* SettingsNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingsNavigationController.m; sourceTree = "<group>"; };
 		74085B8A0E423F010069F0F5 /* RatingsCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RatingsCache.h; sourceTree = "<group>"; };
@@ -245,8 +253,6 @@
 		745E21450E59639000105751 /* sv */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = sv; path = Resources/sv.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21460E5963A200105751 /* th */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = th; path = Resources/th.lproj/Localizable.strings; sourceTree = "<group>"; };
 		745E21470E5963A200105751 /* tr */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = tr; path = Resources/tr.lproj/Localizable.strings; sourceTree = "<group>"; };
-		74632BBB0E77795C00F26D3C /* Invocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Invocation.h; sourceTree = "<group>"; };
-		74632BBC0E77795C00F26D3C /* Invocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Invocation.m; sourceTree = "<group>"; };
 		746A01410DC819270079D89B /* Movie.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Movie.h; sourceTree = "<group>"; };
 		746A01420DC819270079D89B /* Movie.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Movie.m; sourceTree = "<group>"; };
 		746A02030DC819430079D89B /* Theater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Theater.h; sourceTree = "<group>"; };
@@ -554,6 +560,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		740245660E78488D00ECE1B4 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				744592020E6CA017002D05C3 /* WarningView.h */,
+				744592030E6CA017002D05C3 /* WarningView.m */,
+				740245670E7848BF00ECE1B4 /* ActionsView.h */,
+				740245680E7848BF00ECE1B4 /* ActionsView.m */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
 		740DE12F0DCC3D5400B4E69A /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
@@ -577,9 +594,10 @@
 			isa = PBXGroup;
 			children = (
 				74489CCB0DDD11AB00F565B1 /* TabBarControllers */,
+				74489CCE0DDD11FC00F565B1 /* TableViewCells */,
 				74489CCC0DDD11B700F565B1 /* NavigationControllers */,
 				74489CCD0DDD11D600F565B1 /* ViewControllers */,
-				74489CCE0DDD11FC00F565B1 /* TableViewCells */,
+				740245660E78488D00ECE1B4 /* Views */,
 				740E7F050DCFEC440066FCE5 /* ActivityIndicator.h */,
 				740E7F060DCFEC440066FCE5 /* ActivityIndicator.m */,
 				749144B50E76537900CC42A8 /* GlobalActivityIndicator.h */,
@@ -630,8 +648,6 @@
 				742CA71F0DD6616600A69B79 /* TicketsViewController.m */,
 				74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */,
 				74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */,
-				744592020E6CA017002D05C3 /* WarningView.h */,
-				744592030E6CA017002D05C3 /* WarningView.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -814,12 +830,14 @@
 		74E6F0190E723FA200A4C2BE /* Threading */ = {
 			isa = PBXGroup;
 			children = (
+				740246600E785A9000ECE1B4 /* BackgroundInvocation.h */,
+				740246610E785A9000ECE1B4 /* BackgroundInvocation.m */,
 				749146FE0E766F4500CC42A8 /* ThreadingUtilities.h */,
 				749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */,
 				74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */,
 				74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */,
-				74632BBB0E77795C00F26D3C /* Invocation.h */,
-				74632BBC0E77795C00F26D3C /* Invocation.m */,
+				740246770E785B0000ECE1B4 /* Invocation.h */,
+				740246780E785B0000ECE1B4 /* Invocation.m */,
 			);
 			name = Threading;
 			sourceTree = "<group>";
@@ -1050,8 +1068,10 @@
 				749142D80E762D0400CC42A8 /* AbstractMovieDetailsCell.m in Sources */,
 				749144B70E76537900CC42A8 /* GlobalActivityIndicator.m in Sources */,
 				749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */,
-				74632BBD0E77795C00F26D3C /* Invocation.m in Sources */,
 				740244B70E783D4F00ECE1B4 /* IMDbCache.m in Sources */,
+				740245690E7848BF00ECE1B4 /* ActionsView.m in Sources */,
+				740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */,
+				740246790E785B0000ECE1B4 /* Invocation.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
