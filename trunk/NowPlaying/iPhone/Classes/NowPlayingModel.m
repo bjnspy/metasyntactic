@@ -24,6 +24,7 @@
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "ExtraMovieInformation.h"
+#import "FavoriteTheater.h"
 #import "IMDbCache.h"
 #import "Location.h"
 #import "Movie.h"
@@ -46,27 +47,47 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"1.7.0";
-static NSString* persistenceVersion = @"26";
+static NSString* persistenceVersion = @"28";
 
-+ (NSString*) VERSION                                   { return @"version"; }
-+ (NSString*) SEARCH_DATES                              { return @"searchDates"; }
-+ (NSString*) SEARCH_RESULTS                            { return @"searchResults"; }
-+ (NSString*) SEARCH_RADIUS                             { return @"searchRadius"; }
-+ (NSString*) USER_LOCATION                             { return @"userLocation"; }
-+ (NSString*) SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX    { return @"selectedTabBarViewControllerIndex"; }
-+ (NSString*) ALL_MOVIES_SELECTED_SEGMENT_INDEX         { return @"allMoviesSelectedSegmentIndex"; }
-+ (NSString*) ALL_THEATERS_SELECTED_SEGMENT_INDEX       { return @"allTheatersSelectedSegmentIndex"; }
-+ (NSString*) UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX    { return @"upcomingMoviesSelectedSegmentIndex"; }
-+ (NSString*) NUMBERS_SELECTED_SEGMENT_INDEX            { return @"numbersSelectedSegmentIndex"; }
-+ (NSString*) FAVORITE_THEATERS                         { return @"favoriteTheaters"; }
-+ (NSString*) SEARCH_DATE                               { return @"searchDate"; }
-+ (NSString*) AUTO_UPDATE_LOCATION                      { return @"autoUpdateLocation"; }
-+ (NSString*) RATINGS_PROVIDER_INDEX                    { return @"ratingsProviderIndex"; }
-+ (NSString*) DATA_PROVIDER_INDEX                       { return @"dataProviderIndex"; }
-+ (NSString*) USE_NORMAL_FONTS                          { return @"useNormalFonts"; }
-+ (NSString*) HIDE_EMPTY_THEATERS                       { return @"hideEmptyTheaters"; }
-+ (NSString*) NAVIGATION_STACK_TYPES                    { return @"navigationStackTypes"; }
-+ (NSString*) NAVIGATION_STACK_VALUES                   { return @"navigationStackValues"; }
+static NSString* VERSION = @"version";
+
+static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSegmentIndex";
+static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
+static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
+static NSString* DATA_PROVIDER_INDEX                    = @"dataProviderIndex";
+static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
+static NSString* HIDE_EMPTY_THEATERS                    = @"hideEmptyTheaters";
+static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
+static NSString* NAVIGATION_STACK_VALUES                = @"navigationStackValues";
+static NSString* NUMBERS_SELECTED_SEGMENT_INDEX         = @"numbersSelectedSegmentIndex";
+static NSString* RATINGS_PROVIDER_INDEX                 = @"ratingsProviderIndex";
+static NSString* SEARCH_DATE                            = @"searchDate";
+static NSString* SEARCH_RADIUS                          = @"searchRadius";
+static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
+static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX = @"upcomingMoviesSelectedSegmentIndex";
+static NSString* USER_LOCATION                          = @"userLocation";
+static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
+
+
+static NSString** KEYS[] = {
+    &VERSION,
+    &ALL_MOVIES_SELECTED_SEGMENT_INDEX,
+    &ALL_THEATERS_SELECTED_SEGMENT_INDEX,
+    &AUTO_UPDATE_LOCATION,
+    &DATA_PROVIDER_INDEX,
+    &FAVORITE_THEATERS,
+    &HIDE_EMPTY_THEATERS,
+    &NAVIGATION_STACK_TYPES,
+    &NAVIGATION_STACK_VALUES,
+    &NUMBERS_SELECTED_SEGMENT_INDEX,
+    &RATINGS_PROVIDER_INDEX,
+    &SEARCH_DATE,
+    &SEARCH_RADIUS,
+    &SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
+    &UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
+    &USER_LOCATION,
+    &USE_NORMAL_FONTS,
+};
 
 
 @synthesize dataProviders;
@@ -157,6 +178,64 @@ static NSString* persistenceVersion = @"26";
 }
 
 
++ (void) saveFavoriteTheaters:(NSArray*) favoriteTheaters {
+    NSMutableArray* result = [NSMutableArray array];
+    for (FavoriteTheater* theater in favoriteTheaters) {
+        [result addObject:theater.dictionary];
+    }
+    
+    [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];
+    
+}
+
+
+- (void) restorePreviousValues:(id) previousUserLocation
+                  searchRadius:(id) previousSearchRadius
+            autoUpdateLocation:(id) previousAutoUpdateLocation
+             hideEmptyTheaters:(id) previousHideEmptyTheaters
+                useNormalFonts:(id) previousUseNormalFonts
+              favoriteTheaters:(id) previousFavoriteTheaters {
+    if ([previousUserLocation isKindOfClass:[NSString class]]) {
+        [[NSUserDefaults standardUserDefaults] setObject:previousUserLocation forKey:USER_LOCATION];
+    }
+    
+    if ([previousSearchRadius isKindOfClass:[NSNumber class]]) {
+        [[NSUserDefaults standardUserDefaults] setInteger:[previousSearchRadius intValue] forKey:SEARCH_RADIUS];
+    }
+    
+    if ([previousAutoUpdateLocation isKindOfClass:[NSNumber class]]) {
+        [[NSUserDefaults standardUserDefaults] setBool:[previousAutoUpdateLocation boolValue] forKey:AUTO_UPDATE_LOCATION];   
+    }
+
+    if ([previousHideEmptyTheaters isKindOfClass:[NSNumber class]]) {
+        [[NSUserDefaults standardUserDefaults] setBool:[previousHideEmptyTheaters boolValue] forKey:HIDE_EMPTY_THEATERS];
+    }
+    
+    if ([previousUseNormalFonts isKindOfClass:[NSNumber class]]) {
+        [[NSUserDefaults standardUserDefaults] setBool:[previousUseNormalFonts boolValue] forKey:USE_NORMAL_FONTS];
+    }
+    
+    if ([previousFavoriteTheaters isKindOfClass:[NSArray class]]) {
+        NSMutableArray* favoriteTheaters = [NSMutableArray array];
+        
+        for (id previousTheater in previousFavoriteTheaters) {
+            if (![previousTheater isKindOfClass:[NSDictionary class]]) {
+                continue;
+            }
+
+            if (![FavoriteTheater canReadDictionary:previousTheater]) {
+                continue;
+            }
+            
+            FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:previousTheater];
+            [favoriteTheaters addObject:theater];
+        }
+
+        [NowPlayingModel saveFavoriteTheaters:favoriteTheaters];
+    }
+}
+
+
 - (void) loadData {
     self.dataProviders = [NSArray arrayWithObjects:
                           [NorthAmericaDataProvider providerWithModel:self],
@@ -164,33 +243,35 @@ static NSString* persistenceVersion = @"26";
 
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
 
-    NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:[NowPlayingModel VERSION]];
+    NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
     if (version == nil || ![persistenceVersion isEqual:version]) {
-        self.movieMap = nil;
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel VERSION]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel SEARCH_DATES]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel SEARCH_RESULTS]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel SEARCH_RADIUS]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel USER_LOCATION]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel NAVIGATION_STACK_TYPES]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel NAVIGATION_STACK_VALUES]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel ALL_MOVIES_SELECTED_SEGMENT_INDEX]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel FAVORITE_THEATERS]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel SEARCH_DATE]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel AUTO_UPDATE_LOCATION]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel RATINGS_PROVIDER_INDEX]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel DATA_PROVIDER_INDEX]];
-        [[NSUserDefaults standardUserDefaults] removeObjectForKey:[NowPlayingModel USE_NORMAL_FONTS]];
+        id previousUserLocation = [[NSUserDefaults standardUserDefaults] objectForKey:USER_LOCATION];
+        id previousSearchRadius = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_RADIUS];
+        id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
+        id previousHideEmptyTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:HIDE_EMPTY_THEATERS];
+        id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
+        id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
+
+        self.movieMap = nil;        
+        for (int i = 0; i < ArrayLength(KEYS); i++) {
+            NSString** key = KEYS[i];
+            [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];
+        }
 
         [Application deleteFolders];
 
         for (id<DataProvider> provider in self.dataProviders) {
             [provider invalidateDiskCache];
         }
-
-        [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:[NowPlayingModel VERSION]];
+        
+        [self restorePreviousValues:previousUserLocation
+                       searchRadius:previousSearchRadius
+                 autoUpdateLocation:previousAutoUpdateLocation
+                  hideEmptyTheaters:previousHideEmptyTheaters
+                     useNormalFonts:previousUseNormalFonts
+                   favoriteTheaters:previousFavoriteTheaters];
+        
+        [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
 }
 
@@ -250,13 +331,13 @@ static NSString* persistenceVersion = @"26";
 
 
 - (NSInteger) dataProviderIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel DATA_PROVIDER_INDEX]];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:DATA_PROVIDER_INDEX];
 }
 
 
 - (void) setDataProviderIndex:(NSInteger) index {
     self.movieMap = nil;
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel DATA_PROVIDER_INDEX]];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:DATA_PROVIDER_INDEX];
 }
 
 
@@ -276,13 +357,13 @@ static NSString* persistenceVersion = @"26";
 
 
 - (NSInteger) ratingsProviderIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel RATINGS_PROVIDER_INDEX]];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:RATINGS_PROVIDER_INDEX];
 }
 
 
 - (void) setRatingsProviderIndex:(NSInteger) index {
     self.movieMap = nil;
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel RATINGS_PROVIDER_INDEX]];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:RATINGS_PROVIDER_INDEX];
     [ratingsCache onRatingsProviderChanged];
     [self updateReviewCache];
 
@@ -318,51 +399,51 @@ static NSString* persistenceVersion = @"26";
 
 
 - (NSInteger) selectedTabBarViewControllerIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX]];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX];
 }
 
 
 - (void) setSelectedTabBarViewControllerIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX]];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX];
 }
 
 
 - (NSInteger) allMoviesSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel ALL_MOVIES_SELECTED_SEGMENT_INDEX]];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
 }
 
 
 - (void) setAllMoviesSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel ALL_MOVIES_SELECTED_SEGMENT_INDEX]];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_MOVIES_SELECTED_SEGMENT_INDEX];
 }
 
 
 - (NSInteger) allTheatersSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:ALL_THEATERS_SELECTED_SEGMENT_INDEX];
 }
 
 
 - (void) setAllTheatersSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel ALL_THEATERS_SELECTED_SEGMENT_INDEX]];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:ALL_THEATERS_SELECTED_SEGMENT_INDEX];
 }
 
 - (NSInteger) upcomingMoviesSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX]];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX];
 }
 
 
 - (void) setUpcomingMoviesSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX]];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX];
 }
 
 
 - (NSInteger) numbersSelectedSegmentIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel NUMBERS_SELECTED_SEGMENT_INDEX]];
+    return [[NSUserDefaults standardUserDefaults] integerForKey:NUMBERS_SELECTED_SEGMENT_INDEX];
 }
 
 
 - (void) setNumbersSelectedSegmentIndex:(NSInteger) index {
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:[NowPlayingModel NUMBERS_SELECTED_SEGMENT_INDEX]];
+    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:NUMBERS_SELECTED_SEGMENT_INDEX];
 }
 
 
@@ -407,17 +488,17 @@ static NSString* persistenceVersion = @"26";
 
 
 - (BOOL) autoUpdateLocation {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:[NowPlayingModel AUTO_UPDATE_LOCATION]];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:AUTO_UPDATE_LOCATION];
 }
 
 
 - (void) setAutoUpdateLocation:(BOOL) value {
-    [[NSUserDefaults standardUserDefaults] setBool:value forKey:[NowPlayingModel AUTO_UPDATE_LOCATION]];
+    [[NSUserDefaults standardUserDefaults] setBool:value forKey:AUTO_UPDATE_LOCATION];
 }
 
 
 - (NSString*) userLocation {
-    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:[NowPlayingModel USER_LOCATION]];
+    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:USER_LOCATION];
     if (result == nil) {
         result =  @"";
     }
@@ -428,7 +509,7 @@ static NSString* persistenceVersion = @"26";
 
 - (int) searchRadius {
     if (searchRadius == -1) {
-        searchRadius = [[NSUserDefaults standardUserDefaults] integerForKey:[NowPlayingModel SEARCH_RADIUS]];
+        searchRadius = [[NSUserDefaults standardUserDefaults] integerForKey:SEARCH_RADIUS];
         if (searchRadius == 0) {
             searchRadius = 5;
         }
@@ -442,12 +523,12 @@ static NSString* persistenceVersion = @"26";
 
 - (void) setSearchRadius:(NSInteger) radius {
     searchRadius = radius;
-    [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:[NowPlayingModel SEARCH_RADIUS]];
+    [[NSUserDefaults standardUserDefaults] setInteger:searchRadius forKey:SEARCH_RADIUS];
 }
 
 
 - (NSDate*) searchDate {
-    NSDate* date = [[NSUserDefaults standardUserDefaults] objectForKey:[NowPlayingModel SEARCH_DATE]];
+    NSDate* date = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_DATE];
     if (date == nil || [date compare:[NSDate date]] == NSOrderedAscending) {
         return [DateUtilities today];
     }
@@ -464,7 +545,7 @@ static NSString* persistenceVersion = @"26";
 
 - (void) setSearchDate:(NSDate*) date {
     [self markDataProvidersOutOfDate];
-    [[NSUserDefaults standardUserDefaults] setObject:date forKey:[NowPlayingModel SEARCH_DATE]];
+    [[NSUserDefaults standardUserDefaults] setObject:date forKey:SEARCH_DATE];
 }
 
 
@@ -494,14 +575,14 @@ static NSString* persistenceVersion = @"26";
 
 
 - (NSMutableArray*) loadFavoriteTheaters {
-    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:[NowPlayingModel FAVORITE_THEATERS]];
+    NSArray* array = [[NSUserDefaults standardUserDefaults] arrayForKey:FAVORITE_THEATERS];
     if (array.count == 0) {
         return [NSMutableArray array];
     }
 
     NSMutableArray* result = [NSMutableArray array];
     for (NSDictionary* dictionary in array) {
-        [result addObject:[Theater theaterWithDictionary:dictionary]];
+        [result addObject:[FavoriteTheater theaterWithDictionary:dictionary]];
     }
 
     return result;
@@ -518,18 +599,15 @@ static NSString* persistenceVersion = @"26";
 
 
 - (void) saveFavoriteTheaters {
-    NSMutableArray* result = [NSMutableArray array];
-    for (Theater* theater in self.favoriteTheaters) {
-        [result addObject:theater.dictionary];
-    }
-
-    [[NSUserDefaults standardUserDefaults] setObject:result forKey:[NowPlayingModel FAVORITE_THEATERS]];
+    [NowPlayingModel saveFavoriteTheaters:self.favoriteTheaters];
 }
 
 
 - (void) addFavoriteTheater:(Theater*) theater {
-    if (![self.favoriteTheaters containsObject:theater.name]) {
-        [self.favoriteTheaters addObject:theater];
+    FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
+                                                  originatingPostalCode:theater.originatingPostalCode];
+    if (![self.favoriteTheaters containsObject:favoriteTheater]) {
+        [self.favoriteTheaters addObject:favoriteTheater];
     }
 
     [self saveFavoriteTheaters];
@@ -537,12 +615,21 @@ static NSString* persistenceVersion = @"26";
 
 
 - (BOOL) isFavoriteTheater:(Theater*) theater {
-    return [self.favoriteTheaters containsObject:theater];
+    for (FavoriteTheater* favorite in self.favoriteTheaters) {
+        if ([favorite.name isEqual:theater.name]) {
+            return YES;
+        }
+    }
+    
+    return NO;
 }
 
 
 - (void) removeFavoriteTheater:(Theater*) theater {
-    [self.favoriteTheaters removeObject:theater];
+    FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
+                                                  originatingPostalCode:theater.originatingPostalCode];
+    
+    [self.favoriteTheaters removeObject:favoriteTheater];
     [self saveFavoriteTheaters];
 }
 
@@ -782,7 +869,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 - (void) setUserLocation:(NSString*) userLocation {
     [self markDataProvidersOutOfDate];
 
-    [[NSUserDefaults standardUserDefaults] setObject:userLocation forKey:[NowPlayingModel USER_LOCATION]];
+    [[NSUserDefaults standardUserDefaults] setObject:userLocation forKey:USER_LOCATION];
 
     [self updateUserAddressLocation];
 }
@@ -890,22 +977,22 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (BOOL) useSmallFonts {
-    return ![[NSUserDefaults standardUserDefaults] boolForKey:[NowPlayingModel USE_NORMAL_FONTS]];
+    return ![[NSUserDefaults standardUserDefaults] boolForKey:USE_NORMAL_FONTS];
 }
 
 
 - (void) setUseSmallFonts:(BOOL) useSmallFonts {
-    [[NSUserDefaults standardUserDefaults] setBool:!useSmallFonts forKey:[NowPlayingModel USE_NORMAL_FONTS]];
+    [[NSUserDefaults standardUserDefaults] setBool:!useSmallFonts forKey:USE_NORMAL_FONTS];
 }
 
 
 - (BOOL) hideEmptyTheaters {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:[NowPlayingModel HIDE_EMPTY_THEATERS]];
+    return [[NSUserDefaults standardUserDefaults] boolForKey:HIDE_EMPTY_THEATERS];
 }
 
 
 - (void) setHideEmptyTheaters:(BOOL) hideEmptyTheaters {
-    [[NSUserDefaults standardUserDefaults] setBool:hideEmptyTheaters forKey:[NowPlayingModel HIDE_EMPTY_THEATERS]];
+    [[NSUserDefaults standardUserDefaults] setBool:hideEmptyTheaters forKey:HIDE_EMPTY_THEATERS];
 }
 
 
@@ -942,13 +1029,13 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         [values addObject:value];
     }
 
-    [[NSUserDefaults standardUserDefaults] setObject:types forKey:[NowPlayingModel NAVIGATION_STACK_TYPES]];
-    [[NSUserDefaults standardUserDefaults] setObject:values forKey:[NowPlayingModel NAVIGATION_STACK_VALUES]];
+    [[NSUserDefaults standardUserDefaults] setObject:types forKey:NAVIGATION_STACK_TYPES];
+    [[NSUserDefaults standardUserDefaults] setObject:values forKey:NAVIGATION_STACK_VALUES];
 }
 
 
 - (NSArray*) navigationStackTypes {
-    NSArray* result = [[NSUserDefaults standardUserDefaults] arrayForKey:[NowPlayingModel NAVIGATION_STACK_TYPES]];
+    NSArray* result = [[NSUserDefaults standardUserDefaults] arrayForKey:NAVIGATION_STACK_TYPES];
     if (result == nil) {
         return [NSArray array];
     }
@@ -958,7 +1045,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSArray*) navigationStackValues {
-    NSArray* result = [[NSUserDefaults standardUserDefaults] arrayForKey:[NowPlayingModel NAVIGATION_STACK_VALUES]];
+    NSArray* result = [[NSUserDefaults standardUserDefaults] arrayForKey:NAVIGATION_STACK_VALUES];
     if (result == nil) {
         return [NSArray array];
     }

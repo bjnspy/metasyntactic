@@ -41,6 +41,7 @@
 @class EditorViewController;
 @class ExpandedMovieDetailsCell;
 @class ExtraMovieInformation;
+@class FavoriteTheater;
 @class FontCache;
 @class ImageCache;
 @class IMDbCache;

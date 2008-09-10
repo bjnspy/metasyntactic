@@ -19,6 +19,7 @@
 #import "AddressLocationCache.h"
 #import "Application.h"
 #import "DateUtilities.h"
+#import "FavoriteTheater.h"
 #import "Location.h"
 #import "LookupResult.h"
 #import "Movie.h"
@@ -297,6 +298,18 @@
 }
 
 
+- (BOOL)        results:(LookupResult*) lookupResult
+      containsFavorite:(FavoriteTheater*) favorite {
+    for (Theater* theater in lookupResult.theaters) {
+        if ([theater.name isEqual:favorite.name]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
 - (void) lookupMissingFavorites:(LookupResult*) lookupResult {
     if (lookupResult == nil) {
         return;
@@ -307,11 +320,11 @@
         return;
     }
 
-    MultiDictionary* postalCodeToMissingTheaters = [MultiDictionary dictionary];
+    MultiDictionary* postalCodeToMissingTheaterNames = [MultiDictionary dictionary];
 
-    for (Theater* theater in favoriteTheaters) {
-        if (![lookupResult.theaters containsObject:theater]) {
-            [postalCodeToMissingTheaters addObject:theater forKey:theater.originatingPostalCode];
+    for (FavoriteTheater* favorite in favoriteTheaters) {
+        if (![self results:lookupResult containsFavorite:favorite]) {
+            [postalCodeToMissingTheaterNames addObject:favorite.name forKey:favorite.originatingPostalCode];
         }
     }
 
@@ -320,12 +333,8 @@
         [movieTitles addObject:movie.canonicalTitle];
     }
 
-    for (NSString* postalCode in postalCodeToMissingTheaters.allKeys) {
-        NSArray* missingTheaters = [postalCodeToMissingTheaters objectsForKey:postalCode];
-        NSMutableArray* theaterNames = [NSMutableArray array];
-        for (Theater* theater in missingTheaters) {
-            [theaterNames addObject:theater.name];
-        }
+    for (NSString* postalCode in postalCodeToMissingTheaterNames.allKeys) {
+        NSArray* theaterNames = [postalCodeToMissingTheaterNames objectsForKey:postalCode];
 
         LookupResult* favoritesLookupResult = [self lookupLocation:postalCode
                                                       theaterNames:theaterNames];
