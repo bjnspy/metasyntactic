@@ -17,7 +17,7 @@
 @interface ActionsView : UIView {
     NSArray* invocations;
     NSArray* titles;
-    
+
     NSArray* buttons;
 }
 
@@ -27,5 +27,7 @@
 
 + (ActionsView*) viewWithInvocations:(NSArray*) invocations
                               titles:(NSArray*) titles;
+
+- (CGFloat) height;
 
 @end

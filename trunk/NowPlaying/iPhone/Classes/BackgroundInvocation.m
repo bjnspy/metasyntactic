@@ -32,7 +32,7 @@
     self.argument = nil;
     self.gate = nil;
     self.visible = NO;
-    
+
     [super dealloc];
 }
 
@@ -49,7 +49,7 @@
         self.gate = gate_;
         self.visible = visible_;
     }
-    
+
     return self;
 }
 

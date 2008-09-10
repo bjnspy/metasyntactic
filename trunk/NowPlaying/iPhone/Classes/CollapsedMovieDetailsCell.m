@@ -41,9 +41,9 @@
         ratingAndRuntimeLabel.text = movie.ratingAndRuntimeString;
         ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
         [ratingAndRuntimeLabel sizeToFit];
-        
+
         [self.contentView addSubview:ratingAndRuntimeLabel];
-        
+
         self.image = [UIImage imageNamed:@"RightDisclosureTriangle.png"];
     }
 
@@ -58,7 +58,7 @@
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-    
+
     CGRect frame = ratingAndRuntimeLabel.frame;
     frame.origin.y = (int)((self.contentView.frame.size.height - frame.size.height) / 2.0);
     frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2.0);

@@ -45,6 +45,7 @@
 @synthesize imdbAddress;
 @synthesize actions;
 @synthesize actionTitles;
+@synthesize actionsView;
 @synthesize hiddenTheaterCount;
 
 - (void) dealloc {
@@ -57,6 +58,7 @@
     self.imdbAddress = nil;
     self.actions = nil;
     self.actionTitles = nil;
+    self.actionsView = nil;
     self.hiddenTheaterCount = 0;
 
     [super dealloc];
@@ -114,35 +116,38 @@
     for (Theater* theater in theatersArray) {
         [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
     }
-    
+
     self.imdbAddress = [self.model imdbAddressForMovie:movie];
-    
+
     {
         NSMutableArray* actionsArray = [NSMutableArray array];
         NSMutableArray* actionTitlesArray = [NSMutableArray array];
-        
+
         if (trailersArray.count > 0) {
             [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(playTrailer) argument:nil]];
             [actionTitlesArray addObject:NSLocalizedString(@"Play trailer", nil)];
         }
-        
+
         if (reviewsArray.count > 0) {
             [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(readReviews) argument:nil]];
             [actionTitlesArray addObject:NSLocalizedString(@"Read reviews", nil)];
         }
-        
+
         if (theatersArray.count > 0) {
             [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(emailListings) argument:nil]];
             [actionTitlesArray addObject:NSLocalizedString(@"E-mail listings", nil)];
         }
-        
+
         if (imdbAddress.length > 0) {
             [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(visitIMDb) argument:nil]];
             [actionTitlesArray addObject:NSLocalizedString(@"Visit IMDb", nil)];
         }
-        
+
         self.actions = actionsArray;
         self.actionTitles = actionTitlesArray;
+        
+        self.actionsView = [ActionsView viewWithInvocations:actions titles:actionTitles];
+        [actionsView sizeToFit];
     }
 }
 
@@ -330,7 +335,7 @@
 
         [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]
              useSmallFonts:self.model.useSmallFonts];
-
+        
         return cell;
     }
 }
@@ -338,12 +343,10 @@
 
 - (UIView*)        tableView:(UITableView*) tableView
       viewForFooterInSection:(NSInteger) section {
-    if (section == 0) {        
-        UIView* view = [ActionsView viewWithInvocations:actions titles:actionTitles];
-        [view sizeToFit];
-        return view;
+    if (section == 0) {
+        return actionsView;
     }
-    
+
     return nil;
 }
 
@@ -351,10 +354,15 @@
 - (CGFloat)          tableView:(UITableView*) tableView
       heightForFooterInSection:(NSInteger)section {
     if (section == 0) {
-        UIView* view = [self tableView:tableView viewForFooterInSection:section];
-        return [view sizeThatFits:CGSizeZero].height;
+        CGFloat height = [actionsView height];
+        
+        if (theatersArray.count == 0) {
+            return height + 8;
+        } else {
+            return height;
+        }
     }
-    
+
     return -1;
 }
 
@@ -452,15 +460,15 @@
                               movie.canonicalTitle,
                               [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
-    
+
     for (int i = 0; i < theatersArray.count; i++) {
         if (i != 0) {
             [body appendString:@"\n\n"];
         }
-        
+
         Theater* theater = [theatersArray objectAtIndex:i];
         NSArray* performances = [showtimesArray objectAtIndex:i];
-        
+
         [body appendString:theater.name];
         [body appendString:@"\n"];
         [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
@@ -468,18 +476,18 @@
         [body appendString:@"\">"];
         [body appendString:[self.model simpleAddressForTheater:theater]];
         [body appendString:@"</a>"];
-        
+
         [body appendString:@"\n"];
         [body appendString:[Utilities generateShowtimeLinks:self.model
                                                       movie:movie
                                                     theater:theater
                                                performances:performances]];
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
                      [Utilities stringByAddingPercentEscapes:movieAndDate],
                      [Utilities stringByAddingPercentEscapes:body]];
-    
+
     [Application openBrowser:url];
 }
 
@@ -505,6 +513,12 @@
         [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
 
         [tableView endUpdates];
+        
+        // hack: when shrinking the details pane, the 'actions view' can 
+        // sometimes go missing.  To prevent that, we refresh explicitly. 
+        if (!expandedDetails) {
+            [self.tableView reloadData];
+        }
     }
 }
 

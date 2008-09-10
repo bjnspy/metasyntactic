@@ -582,7 +582,7 @@ static NSString* persistenceVersion = @"26";
     if (result.length > 0) {
         return result;
     }
-    
+
     return [upcomingCache imdbAddressForMovie:movie];
 }
 

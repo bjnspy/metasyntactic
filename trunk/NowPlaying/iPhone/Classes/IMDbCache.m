@@ -30,7 +30,7 @@
 
 - (void) dealloc {
     self.gate = nil;
-    
+
     [super dealloc];
 }
 
@@ -39,7 +39,7 @@
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
@@ -66,7 +66,7 @@
 
 - (void) update:(NSArray*) movies {
     [self deleteObsoleteAddresses:movies];
-        
+
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:movies
@@ -81,10 +81,10 @@
         if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
             continue;
         }
-        
+
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
         NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
-        
+
         if (imdbAddress.length > 0) {
             [Utilities writeObject:imdbAddress toFile:path];
         }
