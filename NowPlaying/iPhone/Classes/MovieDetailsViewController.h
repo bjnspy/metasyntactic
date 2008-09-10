@@ -22,9 +22,13 @@
     NSMutableArray* showtimesArray;
     NSArray* trailersArray;
     NSArray* reviewsArray;
+    NSString* imdbAddress;
 
     NSInteger hiddenTheaterCount;
 
+    NSArray* actions;
+    NSArray* actionTitles;
+    
     BOOL filterTheatersByDistance;
     BOOL expandedDetails;
 }
@@ -35,6 +39,9 @@
 @property (retain) NSMutableArray* showtimesArray;
 @property (retain) NSArray* trailersArray;
 @property (retain) NSArray* reviewsArray;
+@property (retain) NSString* imdbAddress;
+@property (retain) NSArray* actions;
+@property (retain) NSArray* actionTitles;
 @property NSInteger hiddenTheaterCount;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

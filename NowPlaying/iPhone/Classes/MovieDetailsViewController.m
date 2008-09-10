@@ -40,6 +40,9 @@
 @synthesize showtimesArray;
 @synthesize trailersArray;
 @synthesize reviewsArray;
+@synthesize imdbAddress;
+@synthesize actions;
+@synthesize actionTitles;
 @synthesize hiddenTheaterCount;
 
 - (void) dealloc {
@@ -49,6 +52,9 @@
     self.showtimesArray = nil;
     self.trailersArray = nil;
     self.reviewsArray = nil;
+    self.imdbAddress = nil;
+    self.actions = nil;
+    self.actionTitles = nil;
     self.hiddenTheaterCount = 0;
 
     [super dealloc];
@@ -105,6 +111,36 @@
 
     for (Theater* theater in theatersArray) {
         [self.showtimesArray addObject:[self.model moviePerformances:movie forTheater:theater]];
+    }
+    
+    self.imdbAddress = [self.model imdbAddressForMovie:movie];
+    
+    {
+        NSMutableArray* actionsArray = [NSMutableArray array];
+        NSMutableArray* actionTitlesArray = [NSMutableArray array];
+        
+        if (trailersArray.count > 0) {
+            [actionsArray addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
+            [actionTitlesArray addObject:NSLocalizedString(@"Play trailer", nil)];
+        }
+        
+        if (reviewsArray.count > 0) {
+            [actionsArray addObject:[NSValue valueWithPointer:@selector(readReviews)]];
+            [actionTitlesArray addObject:NSLocalizedString(@"Read reviews", nil)];
+        }
+        
+        if (theatersArray.count > 0) {
+            [actionsArray addObject:[NSValue valueWithPointer:@selector(emailListings)]];
+            [actionTitlesArray addObject:NSLocalizedString(@"E-mail listings", nil)];
+        }
+        
+        if (imdbAddress.length > 0) {
+            [actionsArray addObject:[NSValue valueWithPointer:@selector(visitIMDb)]];
+            [actionTitlesArray addObject:NSLocalizedString(@"Visit IMDb", nil)];
+        }
+        
+        self.actions = actionsArray;
+        self.actionTitles = actionTitlesArray;
     }
 }
 
@@ -189,16 +225,7 @@
 
 
 - (NSInteger) numberOfRowsInActionSection {
-    // trailers
-    NSInteger rows = trailersArray.count;
-
-    // reviews
-    rows += (reviewsArray.count ? 1 : 0);
-
-    // email listings
-    rows += (theatersArray.count ? 1 : 0);
-
-    return rows;
+    return actions.count;
 }
 
 
@@ -300,19 +327,9 @@
         cell.font = [UIFont boldSystemFontOfSize:14];
         cell.textAlignment = UITextAlignmentCenter;
     }
-
-    if (row < trailersArray.count) {
-        if (trailersArray.count == 1) {
-            cell.text = NSLocalizedString(@"Play trailer", nil);
-        } else {
-            cell.text = [NSString stringWithFormat:NSLocalizedString(@"Play trailer %d", nil), (row + 1)];
-        }
-    } else if (row == trailersArray.count && self.reviewsArray.count > 0) {
-        cell.text = NSLocalizedString(@"Read reviews", nil);
-    } else {
-        cell.text = NSLocalizedString(@"E-mail listings", nil);
-    }
-
+    
+    cell.text = [actionTitles objectAtIndex:row];
+    
     return cell;
 }
 
@@ -411,8 +428,8 @@
 }
 
 
-- (void) playTrailer:(NSInteger) row {
-    NSString* urlString = [trailersArray objectAtIndex:row];
+- (void) playTrailer {
+    NSString* urlString = [trailersArray objectAtIndex:0];
     MPMoviePlayerController* moviePlayer = [[MPMoviePlayerController alloc] initWithContentURL:[NSURL URLWithString:urlString]];
 
     [[NSNotificationCenter defaultCenter] addObserver:self
@@ -434,46 +451,56 @@
 }
 
 
-- (void) didSelectActionRow:(NSInteger) row {
-    if (row < trailersArray.count) {
-        [self playTrailer:row];
-    } else if (row == trailersArray.count && reviewsArray.count > 0) {
-        [navigationController pushReviewsView:movie animated:YES];
-    } else {
-        NSString* movieAndDate = [NSString stringWithFormat:@"%@ - %@",
-                                  movie.canonicalTitle,
-                                  [DateUtilities formatFullDate:self.model.searchDate]];
-        NSMutableString* body = [NSMutableString string];
+- (void) readReviews {
+    [navigationController pushReviewsView:movie animated:YES];
+}
 
-        for (int i = 0; i < theatersArray.count; i++) {
-            if (i != 0) {
-                [body appendString:@"\n\n"];
-            }
 
-            Theater* theater = [theatersArray objectAtIndex:i];
-            NSArray* performances = [showtimesArray objectAtIndex:i];
+- (void) visitIMDb {
+    [Application openBrowser:imdbAddress];
+}
 
-            [body appendString:theater.name];
-            [body appendString:@"\n"];
-            [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
-            [body appendString:theater.address];
-            [body appendString:@"\">"];
-            [body appendString:[self.model simpleAddressForTheater:theater]];
-            [body appendString:@"</a>"];
 
-            [body appendString:@"\n"];
-            [body appendString:[Utilities generateShowtimeLinks:self.model
-                                                          movie:movie
-                                                        theater:theater
-                                                   performances:performances]];
+- (void) emailListings {
+    NSString* movieAndDate = [NSString stringWithFormat:@"%@ - %@",
+                              movie.canonicalTitle,
+                              [DateUtilities formatFullDate:self.model.searchDate]];
+    NSMutableString* body = [NSMutableString string];
+    
+    for (int i = 0; i < theatersArray.count; i++) {
+        if (i != 0) {
+            [body appendString:@"\n\n"];
         }
-
-        NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
-                         [Utilities stringByAddingPercentEscapes:movieAndDate],
-                         [Utilities stringByAddingPercentEscapes:body]];
-
-        [Application openBrowser:url];
+        
+        Theater* theater = [theatersArray objectAtIndex:i];
+        NSArray* performances = [showtimesArray objectAtIndex:i];
+        
+        [body appendString:theater.name];
+        [body appendString:@"\n"];
+        [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
+        [body appendString:theater.address];
+        [body appendString:@"\">"];
+        [body appendString:[self.model simpleAddressForTheater:theater]];
+        [body appendString:@"</a>"];
+        
+        [body appendString:@"\n"];
+        [body appendString:[Utilities generateShowtimeLinks:self.model
+                                                      movie:movie
+                                                    theater:theater
+                                               performances:performances]];
     }
+    
+    NSString* url = [NSString stringWithFormat:@"mailto:?subject=%@&body=%@",
+                     [Utilities stringByAddingPercentEscapes:movieAndDate],
+                     [Utilities stringByAddingPercentEscapes:body]];
+    
+    [Application openBrowser:url];
+}
+
+
+- (void) didSelectActionRow:(NSInteger) row {
+    SEL selector = [[actions objectAtIndex:row] pointerValue];
+    [self performSelector:selector withObject:nil];
 }
 
 

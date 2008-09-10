@@ -23,6 +23,7 @@ enum ViewControllerType {
 
 @interface NowPlayingModel : NSObject {
     AddressLocationCache* addressLocationCache;
+    IMDbCache* imdbCache;
     NumbersCache* numbersCache;
     PosterCache* posterCache;
     ReviewCache* reviewCache;
@@ -42,6 +43,7 @@ enum ViewControllerType {
 }
 
 @property (retain) AddressLocationCache* addressLocationCache;
+@property (retain) IMDbCache* imdbCache;
 @property (retain) NumbersCache* numbersCache;
 @property (retain) PosterCache* posterCache;
 @property (retain) ReviewCache* reviewCache;
@@ -123,6 +125,7 @@ enum ViewControllerType {
 
 - (NSArray*) directorsForMovie:(Movie*) movie;
 - (NSArray*) castForMovie:(Movie*) movie;
+- (NSString*) imdbAddressForMovie:(Movie*) movie;
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (Location*) locationForAddress:(NSString*) address;
