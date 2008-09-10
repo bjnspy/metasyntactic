@@ -32,7 +32,7 @@
     self.argument = nil;
     self.gate = nil;
     self.visible = NO;
-    
+
     [super dealloc];
 }
 
@@ -40,7 +40,7 @@
 - (id) initWithSelector:(SEL) selector_
                  target:(id) target_
                argument:(id) argument_
-                   gate:(NSLock*) gate_ 
+                   gate:(NSLock*) gate_
                 visible:(BOOL) visible_ {
     if (self = [super init]) {
         self.selector = selector_;
@@ -49,7 +49,7 @@
         self.gate = gate_;
         self.visible = visible_;
     }
-    
+
     return self;
 }
 
@@ -57,7 +57,7 @@
 + (Invocation*) invocationWithSelector:(SEL) selector
                                 target:(id) target
                               argument:(id) argument
-                                  gate:(NSLock*) gate 
+                                  gate:(NSLock*) gate
                                visible:(BOOL) visible {
     return [[[Invocation alloc] initWithSelector:selector target:target argument:argument gate:gate visible:visible] autorelease];
 }
@@ -69,13 +69,13 @@
         [NSThread setThreadPriority:0.0];
         [gate lock];
         [GlobalActivityIndicator addBackgroundTask:visible];
-        {   
+        {
             [target performSelector:selector withObject:argument];
         }
         [GlobalActivityIndicator removeBackgroundTask:visible];
         [gate unlock];
     }
-    [autoreleasePool release];    
+    [autoreleasePool release];
 }
 
 

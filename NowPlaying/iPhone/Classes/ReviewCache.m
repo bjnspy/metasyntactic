@@ -197,14 +197,14 @@ static NSString* hash_key = @"Hash";
 - (void) backgroundEntryPoint:(NSArray*) arguments {
     NSDictionary* supplementaryInformation = [arguments objectAtIndex:0];
     NSInteger ratingsProvider = [[arguments objectAtIndex:1] intValue];
-    
+
     NSMutableDictionary* infoWithReviews = [NSMutableDictionary dictionary];
     NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
-    
+
     for (NSString* title in supplementaryInformation) {
         NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title ratingsProvider:ratingsProvider]
                                                                                  error:NULL] objectForKey:NSFileModificationDate];
-        
+
         if (downloadDate == nil) {
             [infoWithoutReviews setObject:[supplementaryInformation objectForKey:title] forKey:title];
         } else {
@@ -214,7 +214,7 @@ static NSString* hash_key = @"Hash";
             }
         }
     }
-    
+
     [self downloadReviews:infoWithoutReviews ratingsProvider:ratingsProvider];
     [self downloadReviews:infoWithReviews    ratingsProvider:ratingsProvider];
 }

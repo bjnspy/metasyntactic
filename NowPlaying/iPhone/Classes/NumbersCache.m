@@ -119,7 +119,7 @@
 
 - (void) updateDetails {
     if (indexData != nil) {
-        [ThreadingUtilities performSelector:@selector(updateDetailsBackgroundEntryPoint:) 
+        [ThreadingUtilities performSelector:@selector(updateDetailsBackgroundEntryPoint:)
                                    onTarget:self
                    inBackgroundWithArgument:indexData
                                        gate:gate

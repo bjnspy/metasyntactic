@@ -18,10 +18,10 @@
 
 @interface CollapsedMovieDetailsCell : AbstractMovieDetailsCell {
     UILabel* ratingAndRuntimeLabel;
-    UILabel* clickToExpandLabel;
+    //UILabel* clickToExpandLabel;
 }
 
 @property (retain) UILabel* ratingAndRuntimeLabel;
-@property (retain) UILabel* clickToExpandLabel;
+//@property (retain) UILabel* clickToExpandLabel;
 
 @end

@@ -31,7 +31,7 @@
 + (Invocation*) invocationWithSelector:(SEL) selector
                                 target:(id) target
                               argument:(id) argument
-                                  gate:(NSLock*) gate 
+                                  gate:(NSLock*) gate
                                visible:(BOOL) visible;
 
 @end
