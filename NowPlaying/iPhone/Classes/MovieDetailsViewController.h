@@ -26,8 +26,6 @@
 
     NSInteger hiddenTheaterCount;
 
-    NSArray* actions;
-    NSArray* actionTitles;
     ActionsView* actionsView;
 
     BOOL filterTheatersByDistance;
@@ -41,8 +39,6 @@
 @property (retain) NSArray* trailersArray;
 @property (retain) NSArray* reviewsArray;
 @property (retain) NSString* imdbAddress;
-@property (retain) NSArray* actions;
-@property (retain) NSArray* actionTitles;
 @property (retain) UIView* actionsView;
 @property NSInteger hiddenTheaterCount;
 
