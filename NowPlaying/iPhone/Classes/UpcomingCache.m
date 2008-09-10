@@ -21,8 +21,8 @@
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "Utilities.h"
 #import "ThreadingUtilities.h"
+#import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation UpcomingCache

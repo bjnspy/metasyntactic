@@ -82,8 +82,6 @@ static NSString* persistenceVersion = @"26";
 @synthesize trailerCache;
 @synthesize upcomingCache;
 
-@synthesize backgroundTaskCount;
-
 - (void) dealloc {
     self.dataProviders = nil;
     self.movieMap = nil;
@@ -209,8 +207,7 @@ static NSString* persistenceVersion = @"26";
         self.ratingsCache = [RatingsCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cache];
         self.upcomingCache = [UpcomingCache cache];
-
-        backgroundTaskCount = 0;
+        
         searchRadius = -1;
 
         [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:0] afterDelay:2];
