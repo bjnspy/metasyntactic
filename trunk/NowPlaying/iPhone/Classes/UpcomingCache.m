@@ -304,14 +304,14 @@ static NSString* titles_key = @"Titles";
     NSArray* movies = [index_ objectForKey:movies_key];
     NSDictionary* studios = [index_ objectForKey:studios_key];
     NSDictionary* titles = [index_ objectForKey:titles_key];
-    
+
     for (Movie* movie in movies) {
         NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-        
+
         [self updateDetails:movie
                      studio:[studios objectForKey:movie.canonicalTitle]
                       title:[titles objectForKey:movie.canonicalTitle]];
-        
+
         [autoreleasePool release];
     }
 }

@@ -59,6 +59,7 @@
 
     label.font = [UIFont systemFontOfSize:14];
     label.textColor = [UIColor darkGrayColor];
+    label.backgroundColor = [UIColor clearColor];
     label.text = title;
     label.textAlignment = UITextAlignmentRight;
     [label sizeToFit];
@@ -70,7 +71,19 @@
 - (UILabel*) createValueLabel:(NSInteger) yPosition {
     UILabel* label = [[[UILabel alloc] initWithFrame:CGRectMake(0, yPosition, 0, 0)] autorelease];
     label.font = [UIFont systemFontOfSize:14];
+    label.backgroundColor = [UIColor clearColor];
     return label;
+}
+
+
+- (void) addDisclosureTriangle {
+    UIImageView* imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"DownDisclosureTriangle.png"]] autorelease];
+    CGRect frame = imageView.frame;
+    frame.origin.x = 10;
+    frame.origin.y = 3;
+    imageView.frame = frame;
+
+    [self.contentView addSubview:imageView];
 }
 
 
@@ -153,6 +166,8 @@
         for (UILabel* label in [titleLabels arrayByAddingObjectsFromArray:valueLabels]) {
             [self.contentView addSubview:label];
         }
+
+        [self addDisclosureTriangle];
     }
 
     return self;

@@ -22,11 +22,11 @@
 @implementation CollapsedMovieDetailsCell
 
 @synthesize ratingAndRuntimeLabel;
-@synthesize clickToExpandLabel;
+//@synthesize clickToExpandLabel;
 
 - (void) dealloc {
     self.ratingAndRuntimeLabel = nil;
-    self.clickToExpandLabel = nil;
+    //self.clickToExpandLabel = nil;
 
     [super dealloc];
 }
@@ -36,39 +36,33 @@
                model:(NowPlayingModel*) model_
                movie:(Movie*) movie_ {
     if (self = [super initWithFrame:frame model:model_ movie:movie_]) {
-        self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 4, 0, 0)] autorelease];
+        self.ratingAndRuntimeLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         ratingAndRuntimeLabel.font = [UIFont boldSystemFontOfSize:14];
         ratingAndRuntimeLabel.text = movie.ratingAndRuntimeString;
         ratingAndRuntimeLabel.textAlignment = UITextAlignmentCenter;
         [ratingAndRuntimeLabel sizeToFit];
-
-        self.clickToExpandLabel = [[[UILabel alloc] initWithFrame:CGRectMake(0, 24, 0, 0)] autorelease];
-        clickToExpandLabel.font = [UIFont systemFontOfSize:10];
-        clickToExpandLabel.textColor = [ColorCache commandColor];
-        clickToExpandLabel.textAlignment = UITextAlignmentCenter;
-        clickToExpandLabel.text = NSLocalizedString(@"tap for more details", nil);
-        [clickToExpandLabel sizeToFit];
-
+        
         [self.contentView addSubview:ratingAndRuntimeLabel];
-        [self.contentView addSubview:clickToExpandLabel];
+        
+        self.image = [UIImage imageNamed:@"RightDisclosureTriangle.png"];
     }
 
     return self;
 }
 
 
+- (CGFloat) height:(UITableView*) tableView {
+    return tableView.rowHeight - 14;
+}
+
+
 - (void) layoutSubviews {
     [super layoutSubviews];
-
-    CGRect frame;
-
-    frame = ratingAndRuntimeLabel.frame;
-    frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2);
+    
+    CGRect frame = ratingAndRuntimeLabel.frame;
+    frame.origin.y = (int)((self.contentView.frame.size.height - frame.size.height) / 2.0);
+    frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2.0);
     ratingAndRuntimeLabel.frame = frame;
-
-    frame = clickToExpandLabel.frame;
-    frame.origin.x = (int)((self.contentView.frame.size.width - frame.size.width) / 2);
-    clickToExpandLabel.frame = frame;
 }
 
 

@@ -45,12 +45,12 @@
     self.castTitleLabel = nil;
     self.ratedTitleLabel = nil;
     self.genreTitleLabel = nil;
-    
+
     self.directorLabel = nil;
     self.castLabel = nil;
     self.ratedLabel = nil;
     self.genreLabel = nil;
-    
+
     self.imageView = nil;
 
     [super dealloc];
@@ -173,17 +173,17 @@
     directorLabel.text  = [[model directorsForMovie:movie]  componentsJoinedByString:@", "];
     castLabel.text      = [[model castForMovie:movie]       componentsJoinedByString:@", "];
     genreLabel.text     = [[model genresForMovie:movie]     componentsJoinedByString:@", "];
-    
+
     NSString* rating;
     if (movie.isUnrated) {		
         rating = NSLocalizedString(@"Not yet rated", nil);		
     } else {		
         rating = movie.rating;		
     }
-    
+
     if ([owner sortingByTitle]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
-        
+
         if (movie.isUnrated) {
             ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
         } else {
@@ -222,7 +222,7 @@
         castTitleLabel.textColor = [UIColor whiteColor];
         ratedTitleLabel.textColor = [UIColor whiteColor];
         genreTitleLabel.textColor = [UIColor whiteColor];
-        
+
         directorLabel.textColor = [UIColor whiteColor];
         castLabel.textColor = [UIColor whiteColor];
         ratedLabel.textColor = [UIColor whiteColor];

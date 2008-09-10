@@ -40,7 +40,7 @@
     if (showtimes.count == 0) {
         return @"";
     }
-    
+
     NSMutableString* text = [NSMutableString stringWithString:[[showtimes objectAtIndex:0] time]];
 
     for (int i = 1; i < showtimes.count; i++) {

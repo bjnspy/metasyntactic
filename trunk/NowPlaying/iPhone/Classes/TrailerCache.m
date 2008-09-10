@@ -180,7 +180,7 @@
     if (index == nil) {
         return;
     }
-    
+
     for (NSArray* movies in arguments) {
         [self downloadTrailers:movies index:index];
     }
