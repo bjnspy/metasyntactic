@@ -41,6 +41,7 @@
 @class ExtraMovieInformation;
 @class FontCache;
 @class ImageCache;
+@class IMDbCache;
 @class ImdbPosterDownloader;
 @class Invocation;
 @class Location;

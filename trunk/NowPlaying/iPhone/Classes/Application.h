@@ -19,6 +19,7 @@
 
 + (NSString*) dataFolder;
 + (NSString*) documentsFolder;
++ (NSString*) imdbFolder;
 + (NSString*) locationsFolder;
 + (NSString*) postersFolder;
 + (NSString*) ratingsFolder;
@@ -31,6 +32,7 @@
 + (NSString*) numbersDetailsFolder;
 
 + (NSString*) upcomingFolder;
++ (NSString*) upcomingIMDbFolder;
 + (NSString*) upcomingPostersFolder;
 + (NSString*) upcomingSynopsesFolder;
 + (NSString*) upcomingTrailersFolder;

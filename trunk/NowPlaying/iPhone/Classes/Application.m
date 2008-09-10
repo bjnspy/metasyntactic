@@ -26,6 +26,7 @@ static NSLock* gate = nil;
 static NSString* dataFolder = nil;
 static NSString* documentsFolder = nil;
 static NSString* tempFolder = nil;
+static NSString* imdbFolder = nil;
 static NSString* locationsFolder = nil;
 static NSString* ratingsFolder = nil;
 static NSString* reviewsFolder = nil;
@@ -39,6 +40,7 @@ static NSString* numbersDailyFolder = nil;
 static NSString* numbersWeekendFolder = nil;
 
 static NSString* upcomingFolder = nil;
+static NSString* upcomingIMDbFolder = nil;
 static NSString* upcomingPostersFolder = nil;
 static NSString* upcomingSynopsesFolder = nil;
 static NSString* upcomingTrailersFolder = nil;
@@ -73,6 +75,7 @@ static NSString* starString = nil;
             &dataFolder,
             &documentsFolder,
             &tempFolder,
+            &imdbFolder,
             &locationsFolder,
             &numbersFolder,
             &numbersBudgetsFolder,
@@ -84,6 +87,7 @@ static NSString* starString = nil;
             &postersFolder,
             &supportFolder,
             &upcomingFolder,
+            &upcomingIMDbFolder,
             &upcomingPostersFolder,
             &upcomingSynopsesFolder,
             &upcomingTrailersFolder
@@ -177,6 +181,11 @@ static NSString* starString = nil;
 }
 
 
++ (NSString*) imdbFolder {
+    return [self findOrCreateFolder:&imdbFolder parent:[Application supportFolder] name:@"IMDb"];
+}
+
+
 + (NSString*) locationsFolder {
     return [self findOrCreateFolder:&locationsFolder parent:[Application supportFolder] name:@"Locations"];
 }
@@ -214,6 +223,11 @@ static NSString* starString = nil;
 
 + (NSString*) upcomingFolder {
     return [self findOrCreateFolder:&upcomingFolder parent:[Application supportFolder] name:@"Upcoming"];
+}
+
+
++ (NSString*) upcomingIMDbFolder {
+    return [self findOrCreateFolder:&upcomingIMDbFolder parent:[Application upcomingFolder] name:@"IMDb"];
 }
 
 

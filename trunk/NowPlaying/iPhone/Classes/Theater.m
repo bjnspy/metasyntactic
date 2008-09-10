@@ -16,6 +16,8 @@
 
 #import "Theater.h"
 
+#import "Utilities.h"
+
 @implementation Theater
 
 property_definition(identifier);
@@ -58,13 +60,13 @@ property_definition(originatingPostalCode);
                    movieTitles:(NSArray*) movieTitles_
          originatingPostalCode:(NSString*) originatingPostalCode_ {
     if (self = [self init]) {
-        self.identifier = identifier_;
-        self.name = [name_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.address = [address_ stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.phoneNumber = phoneNumber_ != nil ? phoneNumber_ : @"";
-        self.sellsTickets = sellsTickets_;
-        self.movieTitles = movieTitles_;
-        self.originatingPostalCode = originatingPostalCode_;
+        self.identifier = [Utilities nonNilString:identifier_];
+        self.name = [[Utilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.address = [[Utilities nonNilString:address_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.phoneNumber = [Utilities nonNilString:phoneNumber_];
+        self.sellsTickets = [Utilities nonNilString:sellsTickets_];
+        self.movieTitles = [Utilities nonNilArray:movieTitles_];
+        self.originatingPostalCode = [Utilities nonNilString:originatingPostalCode_];
     }
 
     return self;

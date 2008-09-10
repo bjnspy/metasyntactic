@@ -212,6 +212,11 @@ static NSString* titles_key = @"Titles";
 }
 
 
+- (NSString*) imdbFile:(Movie*) movie {
+    return [[[Application upcomingIMDbFolder] stringByAppendingPathComponent:[Application sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
 - (NSString*) posterFile:(Movie*) movie {
     NSString* fileName = [Application sanitizeFileName:movie.canonicalTitle];
     fileName = [fileName stringByAppendingPathExtension:@"jpg"];
@@ -226,6 +231,21 @@ static NSString* titles_key = @"Titles";
 
 - (NSString*) trailersFile:(Movie*) movie {
     return [[[Application upcomingTrailersFolder] stringByAppendingPathComponent:[Application sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
+- (void) updateIMDb:(Movie*) movie {
+    NSString* imdbFile = [self imdbFile:movie];
+    if ([[NSFileManager defaultManager] fileExistsAtPath:imdbFile]) {
+        return;
+    }
+    
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+    NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    
+    if (![Utilities isNilOrEmpty:imdbAddress]) {
+        [Utilities writeObject:imdbAddress toFile:imdbFile];
+    }
 }
 
 
@@ -294,6 +314,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (void) updateDetails:(Movie*) movie studio:(NSString*) studio title:(NSString*) title {
+    [self updateIMDb:movie];
     [self updatePoster:movie];
     [self updateSynopsis:movie studio:studio title:title];
     [self updateTrailers:movie studio:studio title:title];
@@ -388,14 +409,17 @@ static NSString* titles_key = @"Titles";
 - (NSArray*) castForMovie:(Movie*) movie {
     [self createMovieMap];
     return [[movieMap objectForKey:movie.canonicalTitle] cast];
-
 }
 
 
 - (NSArray*) genresForMovie:(Movie*) movie {
     [self createMovieMap];
     return [[movieMap objectForKey:movie.canonicalTitle] genres];
+}
 
+
+- (NSString*) imdbAddressForMovie:(Movie*) movie {
+    return [Utilities readObject:[self imdbFile:movie]];
 }
 
 

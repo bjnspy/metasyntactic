@@ -24,6 +24,7 @@
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
 #import "ExtraMovieInformation.h"
+#import "IMDbCache.h"
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
@@ -73,6 +74,7 @@ static NSString* persistenceVersion = @"25";
 @synthesize favoriteTheatersData;
 
 @synthesize addressLocationCache;
+@synthesize imdbCache;
 @synthesize numbersCache;
 @synthesize posterCache;
 @synthesize ratingsCache;
@@ -88,6 +90,7 @@ static NSString* persistenceVersion = @"25";
     self.favoriteTheatersData = nil;
 
     self.addressLocationCache = nil;
+    self.imdbCache = nil;
     self.numbersCache = nil;
     self.posterCache = nil;
     self.ratingsCache = nil;
@@ -101,6 +104,11 @@ static NSString* persistenceVersion = @"25";
 
 + (NSString*) version {
     return currentVersion;
+}
+
+
+- (void) updateIMDbCache {
+    [imdbCache update:self.movies];
 }
 
 
@@ -194,6 +202,7 @@ static NSString* persistenceVersion = @"25";
         [self loadData];
 
         self.addressLocationCache = [AddressLocationCache cache];
+        self.imdbCache = [IMDbCache cache];
         self.numbersCache = [NumbersCache cache];
         self.posterCache = [PosterCache cache];
         self.reviewCache = [ReviewCache cacheWithModel:self];
@@ -228,6 +237,8 @@ static NSString* persistenceVersion = @"25";
         [self updateTrailerCache];
     } else if (value == 6) {
         [self updateUpcomingCache];
+    } else if (value == 7) {
+        [self updateIMDbCache];
     } else {
         return;
     }
@@ -478,6 +489,7 @@ static NSString* persistenceVersion = @"25";
 
 - (void) onProviderUpdated {
     self.movieMap = nil;
+    [self updateIMDbCache];
     [self updatePosterCache];
     [self updateTrailerCache];
     [self updateAddressLocationCache];
@@ -562,6 +574,16 @@ static NSString* persistenceVersion = @"25";
     }
 
     return [upcomingCache genresForMovie:movie];
+}
+
+
+- (NSString*) imdbAddressForMovie:(Movie*) movie {
+    NSString* result = [imdbCache imdbAddressForMovie:movie];
+    if (result.length > 0) {
+        return result;
+    }
+    
+    return [upcomingCache imdbAddressForMovie:movie];
 }
 
 

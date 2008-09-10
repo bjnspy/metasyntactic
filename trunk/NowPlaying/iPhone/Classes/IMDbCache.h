@@ -14,32 +14,16 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface UpcomingCache : NSObject {
+@interface IMDbCache : NSObject {
     NSLock* gate;
-    NSDictionary* index;
-
-    NSArray* recentMovies;
-    NSDictionary* movieMap;
 }
 
 @property (retain) NSLock* gate;
-@property (retain) NSDictionary* index;
-@property (retain) NSArray* recentMovies;
-@property (retain) NSDictionary* movieMap;
 
-+ (UpcomingCache*) cache;
++ (IMDbCache*) cache;
 
-- (void) updateMoviesList;
-- (void) updateMovieDetails;
+- (void) update:(NSArray*) movies;
 
-- (NSArray*) upcomingMovies;
-
-- (UIImage*) posterForMovie:(Movie*) movie;
-- (NSString*) synopsisForMovie:(Movie*) movie;
-- (NSArray*) trailersForMovie:(Movie*) movie;
-- (NSArray*) directorsForMovie:(Movie*) movie;
-- (NSArray*) castForMovie:(Movie*) movie;
-- (NSArray*) genresForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
 
 @end
