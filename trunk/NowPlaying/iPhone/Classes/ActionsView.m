@@ -19,54 +19,68 @@
 
 @implementation ActionsView
 
-@synthesize invocations;
+@synthesize target;
+@synthesize selectors;
 @synthesize titles;
 @synthesize buttons;
 
 - (void) dealloc {
-    self.invocations = nil;
+    self.target = nil;
+    self.selectors = nil;
     self.titles = nil;
     self.buttons = nil;
-
+    
     [super dealloc];
 }
 
 
-- (id) initWithInvocations:(NSArray*) invocations_
-                    titles:(NSArray*) titles_ {
+- (id) initWithTarget:(id) target_
+            selectors:(NSArray*) selectors_
+               titles:(NSArray*) titles_ {
     if (self = [super initWithFrame:CGRectZero]) {
-        self.invocations = invocations_;
+        self.target = target_;
+        self.selectors = selectors_;
         self.titles = titles_;
         self.backgroundColor = [UIColor groupTableViewBackgroundColor];
-
+        
         NSMutableArray* array = [NSMutableArray array];
         for (NSString* title in titles) {
             UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [button setTitle:title forState:UIControlStateNormal];
             [button sizeToFit];
             [button addTarget:self action:@selector(onButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
-
+            
             [array addObject:button];
             [self addSubview:button];
         }
-
+        
         self.buttons = array;
+        
+        {
+            int lastRow = (buttons.count - 1) / 2;
+            
+            UIButton* button = [buttons lastObject];
+            CGRect frame = button.frame;
+            height = (8 + frame.size.height) * (lastRow + 1);   
+        }
     }
-
+    
     return self;
 }
 
 
-+ (ActionsView*) viewWithInvocations:(NSArray*) invocations
-                              titles:(NSArray*) titles {
-    return [[[ActionsView alloc] initWithInvocations:invocations
-                                              titles:titles] autorelease];
++ (ActionsView*) viewWithTarget:(id) target
+                      selectors:(NSArray*) selectors
+                         titles:(NSArray*) titles {
+    return [[[ActionsView alloc] initWithTarget:(id) target
+                                      selectors:selectors
+                                         titles:titles] autorelease];
 }
 
 
 - (void) onButtonPressed:(UIButton*) button {
-    Invocation* invocation = [invocations objectAtIndex:[buttons indexOfObject:button]];
-    [invocation run];
+    SEL selector = [[selectors objectAtIndex:[buttons indexOfObject:button]] pointerValue];
+    [target performSelector:selector];
 }
 
 
@@ -74,35 +88,31 @@
     if (buttons.count == 0) {
         return CGSizeZero;
     }
-
+    
     double width;
     if (UIDeviceOrientationIsLandscape([UIDevice currentDevice].orientation)) {
         width = [UIScreen mainScreen].bounds.size.height;
     } else {
         width = [UIScreen mainScreen].bounds.size.width;
     }
-
-    double height = [self height];
+    
     return CGSizeMake(width, height);
 }
 
 
 - (CGFloat) height {
-    int lastRow = (buttons.count - 1) / 2;
-    
-    UIButton* button = [buttons lastObject];
-    CGRect frame = button.frame;
-    return (8 + frame.size.height) * (lastRow + 1);}
+    return height;
+}
 
 
 - (void) layoutSubviews {
     [super layoutSubviews];
-
+    
     for (int i = 0; i < buttons.count; i++) {
         UIButton* button = [buttons objectAtIndex:i];
         NSInteger column = i % 2;
         NSInteger row = i / 2;
-
+        
         CGRect frame = button.frame;
         frame.size.width = (self.frame.size.width / 2) - 14;
         frame.origin.x = (column == 0 ? 10 : (self.frame.size.width / 2) + 4);

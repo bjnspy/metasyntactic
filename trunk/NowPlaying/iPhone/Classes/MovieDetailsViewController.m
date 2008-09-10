@@ -43,8 +43,6 @@
 @synthesize trailersArray;
 @synthesize reviewsArray;
 @synthesize imdbAddress;
-@synthesize actions;
-@synthesize actionTitles;
 @synthesize actionsView;
 @synthesize hiddenTheaterCount;
 
@@ -56,8 +54,6 @@
     self.trailersArray = nil;
     self.reviewsArray = nil;
     self.imdbAddress = nil;
-    self.actions = nil;
-    self.actionTitles = nil;
     self.actionsView = nil;
     self.hiddenTheaterCount = 0;
 
@@ -97,6 +93,34 @@
     return navigationController.model;
 }
 
+- (void) setupActionsView {
+    NSMutableArray* selectors = [NSMutableArray array];
+    NSMutableArray* titles = [NSMutableArray array];
+    
+    if (trailersArray.count > 0) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
+        [titles addObject:NSLocalizedString(@"Play trailer", nil)];
+    }
+    
+    if (reviewsArray.count > 0) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(readReviews)]];
+        [titles addObject:NSLocalizedString(@"Read reviews", nil)];
+    }
+    
+    if (theatersArray.count > 0) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
+        [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
+    }
+    
+    if (imdbAddress.length > 0) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(visitIMDb)]];
+        [titles addObject:NSLocalizedString(@"Visit IMDb", nil)];
+    }
+    
+    self.actionsView = [ActionsView viewWithTarget:self selectors:selectors titles:titles];
+    [actionsView sizeToFit];
+}
+
 
 - (void) initializeData {
     NSArray* theatersShowingMovie = [self.model theatersShowingMovie:movie];
@@ -119,36 +143,7 @@
 
     self.imdbAddress = [self.model imdbAddressForMovie:movie];
 
-    {
-        NSMutableArray* actionsArray = [NSMutableArray array];
-        NSMutableArray* actionTitlesArray = [NSMutableArray array];
-
-        if (trailersArray.count > 0) {
-            [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(playTrailer) argument:nil]];
-            [actionTitlesArray addObject:NSLocalizedString(@"Play trailer", nil)];
-        }
-
-        if (reviewsArray.count > 0) {
-            [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(readReviews) argument:nil]];
-            [actionTitlesArray addObject:NSLocalizedString(@"Read reviews", nil)];
-        }
-
-        if (theatersArray.count > 0) {
-            [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(emailListings) argument:nil]];
-            [actionTitlesArray addObject:NSLocalizedString(@"E-mail listings", nil)];
-        }
-
-        if (imdbAddress.length > 0) {
-            [actionsArray addObject:[Invocation invocationWithTarget:self selector:@selector(visitIMDb) argument:nil]];
-            [actionTitlesArray addObject:NSLocalizedString(@"Visit IMDb", nil)];
-        }
-
-        self.actions = actionsArray;
-        self.actionTitles = actionTitlesArray;
-        
-        self.actionsView = [ActionsView viewWithInvocations:actions titles:actionTitles];
-        [actionsView sizeToFit];
-    }
+    [self setupActionsView];
 }
 
 

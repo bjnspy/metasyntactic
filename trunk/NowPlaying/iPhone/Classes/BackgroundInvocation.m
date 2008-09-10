@@ -20,16 +20,10 @@
 
 @implementation BackgroundInvocation
 
-@synthesize selector;
-@synthesize target;
-@synthesize argument;
 @synthesize gate;
 @synthesize visible;
 
 - (void) dealloc {
-    self.selector = nil;
-    self.target = nil;
-    self.argument = nil;
     self.gate = nil;
     self.visible = NO;
 
@@ -42,10 +36,7 @@
              argument:(id) argument_
                  gate:(NSLock*) gate_
               visible:(BOOL) visible_ {
-    if (self = [super init]) {
-        self.target = target_;
-        self.selector = selector_;
-        self.argument = argument_;
+    if (self = [super initWithTarget:target_ selector:selector_ argument:argument_]) {
         self.gate = gate_;
         self.visible = visible_;
     }

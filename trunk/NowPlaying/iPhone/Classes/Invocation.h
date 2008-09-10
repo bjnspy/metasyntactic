@@ -29,4 +29,8 @@
                             selector:(SEL) selector
                             argument:(id) argument;
 
+- (id) initWithTarget:(id) target
+             selector:(SEL) selector
+             argument:(id) argument;
+
 @end

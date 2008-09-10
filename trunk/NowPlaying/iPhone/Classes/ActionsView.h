@@ -15,18 +15,23 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ActionsView : UIView {
-    NSArray* invocations;
+    id target;
+    NSArray* selectors;
     NSArray* titles;
 
     NSArray* buttons;
+    
+    CGFloat height;
 }
 
-@property (retain) NSArray* invocations;
+@property (assign) id target;
+@property (retain) NSArray* selectors;
 @property (retain) NSArray* titles;
 @property (retain) NSArray* buttons;
 
-+ (ActionsView*) viewWithInvocations:(NSArray*) invocations
-                              titles:(NSArray*) titles;
++ (ActionsView*) viewWithTarget:(id) target
+                      selectors:(NSArray*) selectors
+                         titles:(NSArray*) titles;
 
 - (CGFloat) height;
 
