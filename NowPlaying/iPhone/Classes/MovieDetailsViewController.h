@@ -28,7 +28,8 @@
 
     NSArray* actions;
     NSArray* actionTitles;
-    
+    ActionsView* actionsView;
+
     BOOL filterTheatersByDistance;
     BOOL expandedDetails;
 }
@@ -42,6 +43,7 @@
 @property (retain) NSString* imdbAddress;
 @property (retain) NSArray* actions;
 @property (retain) NSArray* actionTitles;
+@property (retain) UIView* actionsView;
 @property NSInteger hiddenTheaterCount;
 
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController

@@ -18,6 +18,7 @@
 
 @class AbstractDataProvider;
 @class AbstractNavigationController;
+@class ActionsView;
 @class ActivityIndicator;
 @class AddressLocationCache;
 @class AllMoviesViewController;

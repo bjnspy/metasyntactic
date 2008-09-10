@@ -64,7 +64,7 @@
 
     for (UILabel* label in [NSArray arrayWithObjects:nameLabel, addressLabel, nil]) {
         CGRect frame = label.frame;
-        frame.size.width = self.contentView.frame.size.width - frame.origin.x;
+        frame.size.width = MIN(frame.size.width, self.contentView.frame.size.width - frame.origin.x);
         label.frame = frame;
     }
 }
@@ -78,6 +78,9 @@
     }
 
     addressLabel.text = [model simpleAddressForTheater:theater];
+    
+    [nameLabel sizeToFit];
+    [addressLabel sizeToFit];
 }
 
 

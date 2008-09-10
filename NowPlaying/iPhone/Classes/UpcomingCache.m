@@ -239,10 +239,10 @@ static NSString* titles_key = @"Titles";
     if ([[NSFileManager defaultManager] fileExistsAtPath:imdbFile]) {
         return;
     }
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
-    
+
     if (![Utilities isNilOrEmpty:imdbAddress]) {
         [Utilities writeObject:imdbAddress toFile:imdbFile];
     }
