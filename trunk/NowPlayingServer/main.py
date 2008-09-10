@@ -4,6 +4,7 @@ import wsgiref.handlers
 import LookupLocation
 import LookupMovieListings
 import LookupMovieReviews
+import LookupIMDbListings
 import LookupNumbersListings
 import LookupPosterListings
 import LookupTheaterListings
@@ -22,6 +23,7 @@ def main():
   application = webapp.WSGIApplication([
       ('/DeleteLocation', DeleteLocation.DeleteLocationHandler),
       ('/LookupLocation', LookupLocation.LookupLocationHandler),
+      ('/LookupIMDbListings', LookupIMDbListings.LookupIMDbListingsHandler),
       ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
       ('/LookupMovieReviews', LookupMovieReviews.LookupMovieReviewsHandler),
       ('/LookupNumbersListings', LookupNumbersListings.LookupNumbersListingsHandler),
