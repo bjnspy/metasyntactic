@@ -48,8 +48,11 @@
 
 
 - (void) update:(NSArray*) movies {
-    [self performSelectorInBackground:@selector(backgroundEntryPoint:)
-                           withObject:[NSArray arrayWithArray:movies]];
+    [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:[NSArray arrayWithArray:movies]
+                                   gate:gate
+                                visible:NO];
 }
 
 
@@ -122,18 +125,9 @@
 }
 
 
-- (void) updateInBackground:(NSArray*) movies {
+- (void) backgroundEntryPoint:(NSArray*) movies {
     [self deleteObsoletePosters:movies];
     [self downloadPosters:movies];
-}
-
-
-- (void) backgroundEntryPoint:(NSArray*) movies {
-    [ThreadingUtilities performSelector:@selector(updateInBackground:)
-                               onObject:self
-               inBackgroundWithArgument:movies
-                                   gate:gate
-                                visible:NO];
 }
 
 

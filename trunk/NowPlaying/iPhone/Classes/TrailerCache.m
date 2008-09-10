@@ -110,8 +110,11 @@
 
     NSArray* orderedMovies = [self getOrderedMovies:movies];
 
-    [self performSelectorInBackground:@selector(backgroundEntryPoint:)
-                           withObject:orderedMovies];
+    [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:orderedMovies
+                                   gate:gate
+                                visible:NO];
 }
 
 
@@ -171,7 +174,7 @@
 }
 
 
-- (void) backgroundEntryPointWorker:(NSArray*) arguments {
+- (void) backgroundEntryPoint:(NSArray*) arguments {
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
     NSString* index = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (index == nil) {
@@ -181,15 +184,6 @@
     for (NSArray* movies in arguments) {
         [self downloadTrailers:movies index:index];
     }
-}
-
-
-- (void) backgroundEntryPoint:(NSArray*) arguments {
-    [ThreadingUtilities performSelector:@selector(backgroundEntryPointWorker:)
-                               onObject:self
-               inBackgroundWithArgument:arguments
-                                   gate:gate
-                                visible:NO];
 }
 
 

@@ -57,8 +57,11 @@
 - (void) updateAddresses:(NSArray*) addresses {
     self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
 
-    [self performSelectorInBackground:@selector(backgroundEntryPoint:)
-                           withObject:[NSArray arrayWithArray:addresses]];
+    [ThreadingUtilities performSelector:@selector(downloadAddressLocationsBackgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:[NSArray arrayWithArray:addresses]
+                                   gate:gate
+                                visible:NO];
 }
 
 
@@ -161,7 +164,7 @@
 }
 
 
-- (Location*) downloadAddressLocation:(NSString*) address {
+- (Location*) downloadAddressLocationBackgroundEntryPoint:(NSString*) address {
     NSAssert(![NSThread isMainThread], @"Only call this from the background");
     Location* location = [self locationForAddress:address];
 
@@ -175,32 +178,14 @@
 }
 
 
-- (void) downloadAddressLocations:(NSArray*) addresses {
+- (void) downloadAddressLocationsBackgroundEntryPoint:(NSArray*) addresses {
     for (NSString* address in addresses) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
 
-        [self downloadAddressLocation:address];
+        [self downloadAddressLocationBackgroundEntryPoint:address];
 
         [autoreleasePool release];
     }
-}
-
-
-- (void) backgroundEntryPoint:(NSArray*) addresses {
-    [ThreadingUtilities performSelector:@selector(downloadAddressLocations:)
-                               onObject:self
-               inBackgroundWithArgument:addresses
-                                   gate:gate
-                                visible:NO];
-}
-
-
-- (void) updatePostalCodeBackgroundEntryPoint:(NSString*) postalCode {
-    [ThreadingUtilities performSelector:@selector(downloadAddressLocation:)
-                               onObject:self
-               inBackgroundWithArgument:postalCode
-                                   gate:nil
-                                visible:NO];
 }
 
 
@@ -215,8 +200,11 @@
         return;
     }
 
-    [self performSelectorInBackground:@selector(updatePostalCodeBackgroundEntryPoint:)
-                           withObject:postalCode];
+    [ThreadingUtilities performSelector:@selector(downloadAddressLocationBackgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:postalCode
+                                   gate:nil
+                                visible:NO];
 }
 
 

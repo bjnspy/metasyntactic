@@ -204,7 +204,11 @@ static NSString* titles_key = @"Titles";
     NSAssert([NSThread isMainThread], @"");
     [self deleteObsoleteData];
 
-    [self performSelectorInBackground:@selector(updateMovieDetailsInBackground:) withObject:self.index];
+    [ThreadingUtilities performSelector:@selector(updateMovieDetailsInBackgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:self.index
+                                   gate:gate
+                                visible:NO];
 }
 
 
@@ -296,7 +300,7 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (void) updateMovieDetailsInBackgroundWorker:(NSDictionary*) index_ {
+- (void) updateMovieDetailsInBackgroundEntryPoint:(NSDictionary*) index_ {
     NSArray* movies = [index_ objectForKey:movies_key];
     NSDictionary* studios = [index_ objectForKey:studios_key];
     NSDictionary* titles = [index_ objectForKey:titles_key];
@@ -310,15 +314,6 @@ static NSString* titles_key = @"Titles";
         
         [autoreleasePool release];
     }
-}
-
-
-- (void) updateMovieDetailsInBackground:(NSDictionary*) index_ {
-    [ThreadingUtilities performSelector:@selector(updateMovieDetailsInBackgroundWorker:)
-                               onObject:self
-               inBackgroundWithArgument:index_
-                                   gate:gate
-                                visible:NO];
 }
 
 

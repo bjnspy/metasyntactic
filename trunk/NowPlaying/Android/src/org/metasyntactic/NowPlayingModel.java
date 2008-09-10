@@ -2,6 +2,7 @@ package org.metasyntactic;
 
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
+import org.metasyntactic.providers.DataProvider;
 
 import java.util.List;
 import java.util.prefs.Preferences;
@@ -15,16 +16,14 @@ public class NowPlayingModel {
 
   private final Preferences preferences = Preferences.userNodeForPackage(NowPlayingModel.class);
 
-  public void update() {
-    new Thread(new Runnable() {
-      public void run() {
-        updateBackgroundEntryPoint();
-      }
-    });
+  private final DataProvider dataProvider = new DataProvider(this);
+
+  public NowPlayingModel() {
+
   }
 
-  private void updateBackgroundEntryPoint() {
-
+  public void update() {
+    dataProvider.update();
   }
 
   public int getSelectedTabIndex() {
@@ -60,10 +59,10 @@ public class NowPlayingModel {
   }
 
   public List<Movie> getMovies() {
-    return null;
+    return dataProvider.getMovies();
   }
 
   public List<Theater> getTheaters() {
-    return null;
+    return dataProvider.getTheaters();
   }
 }

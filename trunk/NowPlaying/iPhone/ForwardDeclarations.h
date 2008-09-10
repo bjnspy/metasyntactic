@@ -42,6 +42,7 @@
 @class FontCache;
 @class ImageCache;
 @class ImdbPosterDownloader;
+@class Invocation;
 @class Location;
 @class LocationUtilities;
 @class LookupResult;

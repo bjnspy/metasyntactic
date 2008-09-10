@@ -267,7 +267,7 @@
 - (LookupResult*) lookupLocation:(NSString*) location
                     theaterNames:(NSArray*) theaterNames {
     if (![Utilities isNilOrEmpty:location]) {
-        Location* actualLocation = [self.model.addressLocationCache downloadAddressLocation:location];
+        Location* actualLocation = [self.model.addressLocationCache downloadAddressLocationBackgroundEntryPoint:location];
         if (actualLocation.postalCode == nil) {
             [self reportUnknownLocation];
         }

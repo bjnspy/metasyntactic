@@ -83,9 +83,14 @@ static NSString* hash_key = @"Hash";
 }
 
 
-- (void) update:(NSDictionary*) supplementaryInformation ratingsProvider:(NSInteger) ratingsProvider {
-    [self performSelectorInBackground:@selector(updateInBackground:)
-                           withObject:[NSArray arrayWithObjects:supplementaryInformation, [NSNumber numberWithInt:ratingsProvider], nil]];
+- (void)       update:(NSDictionary*) supplementaryInformation
+      ratingsProvider:(NSInteger) ratingsProvider {
+    NSArray* arguments = [NSArray arrayWithObjects:supplementaryInformation, [NSNumber numberWithInt:ratingsProvider], nil];
+    [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
+                               onTarget:self
+               inBackgroundWithArgument:arguments
+                                   gate:gate
+                                visible:NO];
 }
 
 
@@ -189,7 +194,7 @@ static NSString* hash_key = @"Hash";
 }
 
 
-- (void) updateInBackgroundWorker:(NSArray*) arguments {
+- (void) backgroundEntryPoint:(NSArray*) arguments {
     NSDictionary* supplementaryInformation = [arguments objectAtIndex:0];
     NSInteger ratingsProvider = [[arguments objectAtIndex:1] intValue];
     
@@ -212,15 +217,6 @@ static NSString* hash_key = @"Hash";
     
     [self downloadReviews:infoWithoutReviews ratingsProvider:ratingsProvider];
     [self downloadReviews:infoWithReviews    ratingsProvider:ratingsProvider];
-}
-
-
-- (void) updateInBackground:(NSArray*) arguments {
-    [ThreadingUtilities performSelector:@selector(updateInBackgroundWorker:)
-                               onObject:self
-               inBackgroundWithArgument:arguments
-                                   gate:gate
-                                visible:NO];
 }
 
 
