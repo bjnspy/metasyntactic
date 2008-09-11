@@ -89,6 +89,7 @@
 - (void) processFandangoTheaterElement:(XmlElement*) theaterElement
                               theaters:(NSMutableArray*) theaters
                           performances:(NSMutableDictionary*) performances
+                  synchronizationData:(NSMutableDictionary*) synchronizationData
                  originatingPostalCode:(NSString*) originatingPostalCode
                           theaterNames:(NSArray*) theaterNames
                      movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
@@ -116,7 +117,8 @@
     XmlElement* moviesElement = [theaterElement element:@"movies"];
     NSMutableDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement
                                                             movieIdToMovieMap:movieIdToMovieMap];
-
+    
+    [synchronizationData setObject:[DateUtilities today] forKey:name];
     if (movieToShowtimesMap.count == 0) {
         // no showtime information available.  fallback to anything we've
         // stored (but warn the user).
@@ -126,6 +128,7 @@
 
         if (oldPerformances.count > 0) {
             movieToShowtimesMap = [NSMutableDictionary dictionaryWithDictionary:oldPerformances];
+            [synchronizationData setObject:[self synchronizationDateForTheater:name] forKey:name];
         }
     }
 
@@ -146,17 +149,19 @@
                    movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
+    NSMutableDictionary* synchronizationData = [NSMutableDictionary dictionary];
 
     for (XmlElement* theaterElement in theatersElement.children) {
         [self processFandangoTheaterElement:theaterElement
                                    theaters:theaters
                                performances:performances
+                       synchronizationData:synchronizationData
                       originatingPostalCode:postalCode
                                theaterNames:theaterNames
                           movieIdToMovieMap:movieIdToMovieMap];
     }
 
-    return [NSArray arrayWithObjects:theaters, performances, nil];
+    return [NSArray arrayWithObjects:theaters, performances, synchronizationData, nil];
 }
 
 
@@ -228,10 +233,12 @@
     NSMutableArray* movies = [NSMutableArray arrayWithArray:movieIdToMovieMap.allValues];
     NSMutableArray* theaters = [theatersAndPerformances objectAtIndex:0];
     NSMutableDictionary* performances = [theatersAndPerformances objectAtIndex:1];
+    NSMutableDictionary* synchronizationData = [theatersAndPerformances objectAtIndex:2];
 
     return [LookupResult resultWithMovies:movies
                                  theaters:theaters
-                             performances:performances];
+                             performances:performances
+                     synchronizationData:synchronizationData];
 }
 
 

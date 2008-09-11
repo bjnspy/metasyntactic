@@ -27,18 +27,18 @@
 
 @implementation AbstractDataProvider
 
-static NSString* synchronization_date_key = @"SynchronizationDate";
-
 @synthesize model;
 @synthesize moviesData;
 @synthesize theatersData;
 @synthesize performancesData;
+@synthesize synchronizationInformationData;
 
 - (void) dealloc {
     self.model = nil;
     self.moviesData = nil;
     self.theatersData = nil;
     self.performancesData = nil;
+    self.synchronizationInformationData = nil;
 
     [super dealloc];
 }
@@ -67,6 +67,11 @@ static NSString* synchronization_date_key = @"SynchronizationDate";
 
 - (NSString*) theatersFile {
     return [[self providerFolder] stringByAppendingPathComponent:@"Theaters.plist"];
+}
+
+
+- (NSString*) synchronizationFile {
+    return [[self providerFolder] stringByAppendingPathComponent:@"Synchronization.plist"];
 }
 
 
@@ -119,6 +124,15 @@ static NSString* synchronization_date_key = @"SynchronizationDate";
 }
 
 
+- (NSDictionary*) synchronizationData {
+    if (synchronizationInformationData == nil) {
+        self.synchronizationInformationData = [Utilities readObject:self.synchronizationFile];
+    }
+    
+    return synchronizationInformationData;
+}
+
+
 - (void) saveArray:(NSArray*) array to:(NSString*) file {
     NSMutableArray* encoded = [NSMutableArray array];
 
@@ -144,13 +158,14 @@ static NSString* synchronization_date_key = @"SynchronizationDate";
     if (result.movies.count > 0 || result.theaters.count > 0) {
         [self saveArray:result.movies to:self.moviesFile];
         [self saveArray:result.theaters to:self.theatersFile];
+        [Utilities writeObject:result.synchronizationData toFile:self.synchronizationFile];
 
         NSString* tempFolder = [Application uniqueTemporaryFolder];
         for (NSString* theaterName in result.performances) {
             NSMutableDictionary* value = [result.performances objectForKey:theaterName];
-            if ([value objectForKey:synchronization_date_key] == nil) {
-                [value setObject:[DateUtilities today] forKey:synchronization_date_key];
-            }
+//            if ([value objectForKey:synchronization_date_key] == nil) {
+//                [value setObject:[DateUtilities today] forKey:synchronization_date_key];
+//            }
 
             [Utilities writeObject:value toFile:[self performancesFile:theaterName parentFolder:tempFolder]];
         }
@@ -260,8 +275,8 @@ static NSString* synchronization_date_key = @"SynchronizationDate";
 }
 
 
-- (NSDate*) synchronizationDateForTheater:(Theater*) theater {
-    return [[self lookupTheaterPerformances:theater] objectForKey:synchronization_date_key];
+- (NSDate*) synchronizationDateForTheater:(NSString*) theaterName {
+    return [self.synchronizationData objectForKey:theaterName];
 }
 
 

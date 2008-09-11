@@ -18,16 +18,21 @@
     NSMutableArray* movies;
     NSMutableArray* theaters;
 
-    // theaterId -> movieId -> [ { showtime, showid } ]
+    // theater name -> movie name -> [ { showtime, showid } ]
     NSMutableDictionary* performances;
+    
+    // theater name -> date
+    NSMutableDictionary* synchronizationData;
 }
 
 @property (retain) NSMutableArray* movies;
 @property (retain) NSMutableArray* theaters;
 @property (retain) NSMutableDictionary* performances;
+@property (retain) NSMutableDictionary* synchronizationData;
 
 + (LookupResult*) resultWithMovies:(NSMutableArray*) movies
                           theaters:(NSMutableArray*) theaters
-                      performances:(NSMutableDictionary*) performances;
+                      performances:(NSMutableDictionary*) performances
+              synchronizationData:(NSMutableDictionary*) synchronizationData;
 
 @end

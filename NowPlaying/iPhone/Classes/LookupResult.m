@@ -21,11 +21,13 @@
 @synthesize movies;
 @synthesize theaters;
 @synthesize performances;
+@synthesize synchronizationData;
 
 - (void) dealloc {
     self.movies = nil;
     self.theaters = nil;
     self.performances = nil;
+    self.synchronizationData = nil;
 
     [super dealloc];
 }
@@ -33,11 +35,13 @@
 
 - (id) initWithMovies:(NSMutableArray*) movies_
              theaters:(NSMutableArray*) theaters_
-         performances:(NSMutableDictionary*) performances_ {
+         performances:(NSMutableDictionary*) performances_ 
+ synchronizationData:(NSMutableDictionary*) synchronizationData_ {
     if (self = [super init]) {
         self.movies = movies_;
         self.theaters = theaters_;
         self.performances = performances_;
+        self.synchronizationData = synchronizationData_;
     }
 
     return self;
@@ -46,10 +50,12 @@
 
 + (LookupResult*) resultWithMovies:(NSMutableArray*) movies
                           theaters:(NSMutableArray*) theaters
-                      performances:(NSMutableDictionary*) performances {
+                      performances:(NSMutableDictionary*) performances
+              synchronizationData:(NSMutableDictionary*) synchronizationData {
     return [[[LookupResult alloc] initWithMovies:movies
                                         theaters:theaters
-                                    performances:performances] autorelease];
+                                    performances:performances
+                            synchronizationData:synchronizationData] autorelease];
 }
 
 
