@@ -78,7 +78,7 @@
     }
 
     addressLabel.text = [model simpleAddressForTheater:theater];
-    
+
     [nameLabel sizeToFit];
     [addressLabel sizeToFit];
 }
