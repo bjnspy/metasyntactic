@@ -27,9 +27,11 @@
 @implementation IMDbCache
 
 @synthesize gate;
+@synthesize movieToAddressData;
 
 - (void) dealloc {
     self.gate = nil;
+    self.movieToAddressData = nil;
 
     [super dealloc];
 }
@@ -49,18 +51,32 @@
 }
 
 
-- (NSString*) movieFileName:(NSString*) title {
-    return [[Application sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
-}
-
-
-- (NSString*) movieFilePath:(Movie*) movie {
-    return [[Application imdbFolder] stringByAppendingPathComponent:[self movieFileName:movie.canonicalTitle]];
-}
-
-
 - (void) deleteObsoleteAddresses:(NSArray*) movies {
 
+}
+
+
+- (NSString*) dataFile {
+    return [[Application imdbFolder] stringByAppendingPathComponent:@"Data.plist"];
+}
+
+
+- (NSDictionary*) loadMovieToAddress {
+    NSDictionary* result = [Utilities readObject:self.dataFile];
+    if (result == nil) {
+        return [NSDictionary dictionary];
+    }
+    
+    return result;
+}
+
+
+- (NSDictionary*) movieToAddress {
+    if (movieToAddressData == nil) {
+        self.movieToAddressData = [self loadMovieToAddress];
+    }
+    
+    return movieToAddressData;
 }
 
 
@@ -69,31 +85,44 @@
 
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
-               inBackgroundWithArgument:movies
+               inBackgroundWithArgument:[NSArray arrayWithObjects:movies, self.movieToAddress, nil]
                                    gate:gate
                                 visible:NO];
 }
 
 
-- (void) backgroundEntryPoint:(NSArray*) movies {
+- (void) backgroundEntryPoint:(NSArray*) arguments {
+    NSArray* movies = [arguments objectAtIndex:0];
+    NSDictionary* data = [arguments objectAtIndex:1];
+    
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    
     for (Movie* movie in movies) {
-        NSString* path = [self movieFilePath:movie];
-        if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
-            continue;
+        NSString* imdbAddress = [data objectForKey:movie.canonicalTitle];
+        if (imdbAddress.length == 0) {
+            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
+            imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
         }
-
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
-        NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
-
+        
         if (imdbAddress.length > 0) {
-            [Utilities writeObject:imdbAddress toFile:path];
+            [result setObject:imdbAddress forKey:movie.canonicalTitle];
         }
+    }
+    
+    if (result.count > 0) {
+        [Utilities writeObject:result toFile:self.dataFile];
+        [self performSelectorOnMainThread:@selector(reportResult:) withObject:result waitUntilDone:NO];
     }
 }
 
 
+- (void) reportResult:(NSDictionary*) dictionary {
+    self.movieToAddressData = dictionary;
+}
+
+
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
-    return [Utilities readObject:[self movieFilePath:movie]];
+    return [self.movieToAddress objectForKey:movie.canonicalTitle];
 }
 
 
