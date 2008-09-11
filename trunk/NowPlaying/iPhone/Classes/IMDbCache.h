@@ -16,11 +16,9 @@
 
 @interface IMDbCache : NSObject {
     NSLock* gate;
-    NSDictionary* movieToAddressData;
 }
 
 @property (retain) NSLock* gate;
-@property (retain) NSDictionary* movieToAddressData;
 
 + (IMDbCache*) cache;
 
