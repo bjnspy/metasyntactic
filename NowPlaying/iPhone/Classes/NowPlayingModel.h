@@ -33,6 +33,7 @@ enum ViewControllerType {
 
     NSInteger searchRadius;
 
+    NSLock* movieMapLock;
     NSDictionary* movieMap;
 
     NSMutableArray* favoriteTheatersData;
@@ -49,7 +50,9 @@ enum ViewControllerType {
 @property (retain) TrailerCache* trailerCache;
 @property (retain) UpcomingCache* upcomingCache;
 
+@property (retain) NSLock* movieMapLock;
 @property (retain) NSDictionary* movieMap;
+
 @property (retain) NSMutableArray* favoriteTheatersData;
 @property (retain) id<DataProvider> dataProvider;
 
