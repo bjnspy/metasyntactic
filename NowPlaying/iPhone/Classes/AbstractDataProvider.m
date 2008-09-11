@@ -124,11 +124,19 @@
 }
 
 
+- (NSDictionary*) loadSynchronizationData {
+    NSDictionary* result = [Utilities readObject:self.synchronizationFile];
+    if (result.count == 0) {
+        return [NSDictionary dictionary];
+    }
+    return result;
+}
+
+
 - (NSDictionary*) synchronizationData {
     if (synchronizationInformationData == nil) {
         self.synchronizationInformationData = [Utilities readObject:self.synchronizationFile];
     }
-    
     return synchronizationInformationData;
 }
 
@@ -163,9 +171,6 @@
         NSString* tempFolder = [Application uniqueTemporaryFolder];
         for (NSString* theaterName in result.performances) {
             NSMutableDictionary* value = [result.performances objectForKey:theaterName];
-//            if ([value objectForKey:synchronization_date_key] == nil) {
-//                [value setObject:[DateUtilities today] forKey:synchronization_date_key];
-//            }
 
             [Utilities writeObject:value toFile:[self performancesFile:theaterName parentFolder:tempFolder]];
         }
@@ -189,7 +194,8 @@
 }
 
 
-- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
+- (NSArray*) moviePerformances:(Movie*) movie
+                    forTheater:(Theater*) theater {
     NSMutableDictionary* theaterPerformances = [self lookupTheaterPerformances:theater];
 
     NSArray* unsureArray = [theaterPerformances objectForKey:movie.canonicalTitle];
@@ -269,6 +275,7 @@
     if (result.movies.count > 0 || result.theaters.count > 0) {
         self.moviesData = result.movies;
         self.theatersData = result.theaters;
+        self.synchronizationInformationData = result.synchronizationData;
         self.performancesData = [NSMutableDictionary dictionary];
         [self.model onProviderUpdated];
     }

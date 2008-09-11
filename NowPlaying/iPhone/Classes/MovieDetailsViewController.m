@@ -410,10 +410,30 @@
 
 
 - (void) didSelectShowHiddenTheaters {
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:NO];
+    NSIndexPath* startPath = self.tableView.indexPathForSelectedRow;
+    [self.tableView deselectRowAtIndexPath:startPath animated:YES];
 
+    NSInteger currentTheaterCount = self.theatersArray.count;
+    
     filterTheatersByDistance = NO;
-    [self refresh];
+    [self initializeData];
+    
+    NSInteger newTheaterCount = self.theatersArray.count;
+    
+    [self.tableView beginUpdates];
+    {   
+        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:startPath] withRowAnimation:UITableViewRowAnimationBottom];
+        NSInteger startSection = startPath.section;
+        
+        for (int i = 0; i < (newTheaterCount - currentTheaterCount); i++) {
+            NSArray* paths = [NSArray arrayWithObjects:
+                              [NSIndexPath indexPathForRow:0 inSection:startSection + i],
+                              [NSIndexPath indexPathForRow:1 inSection:startSection + i], nil];
+            
+            [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationBottom];
+        }
+    }
+    [self.tableView endUpdates];
 }
 
 
@@ -502,11 +522,11 @@
         expandedDetails = !expandedDetails;
 
         [tableView beginUpdates];
-
-        NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]];
-        [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
-        [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
-
+        {
+            NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]];
+            [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+            [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
+        }
         [tableView endUpdates];
 
         // hack: when shrinking the details pane, the 'actions view' can
