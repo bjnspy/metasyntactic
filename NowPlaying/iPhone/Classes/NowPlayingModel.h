@@ -37,7 +37,7 @@ enum ViewControllerType {
 
     NSMutableArray* favoriteTheatersData;
 
-    NSArray* dataProviders;
+    id<DataProvider> dataProvider;
 }
 
 @property (retain) AddressLocationCache* addressLocationCache;
@@ -51,17 +51,11 @@ enum ViewControllerType {
 
 @property (retain) NSDictionary* movieMap;
 @property (retain) NSMutableArray* favoriteTheatersData;
-@property (retain) NSArray* dataProviders;
+@property (retain) id<DataProvider> dataProvider;
 
 + (NowPlayingModel*) model;
 
 + (NSString*) version;
-
-- (id<DataProvider>) currentDataProvider;
-- (NSInteger) dataProviderIndex;
-- (void) setDataProviderIndex:(NSInteger) index;
-- (BOOL) northAmericaDataProvider;
-- (BOOL) unitedKingdomDataProvider;
 
 - (NSInteger) ratingsProviderIndex;
 - (void) setRatingsProviderIndex:(NSInteger) index;

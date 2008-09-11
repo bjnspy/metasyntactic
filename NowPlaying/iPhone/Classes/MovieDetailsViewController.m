@@ -413,7 +413,6 @@
     NSIndexPath* startPath = self.tableView.indexPathForSelectedRow;
     [self.tableView deselectRowAtIndexPath:startPath animated:NO];
 
-
     filterTheatersByDistance = NO;
     [self refresh];
 
@@ -426,21 +425,28 @@
 
     NSInteger newTheaterCount = self.theatersArray.count;
 
+    if (currentTheaterCount >= newTheaterCount) {
+        return;
+    }
+    
+    NSInteger startSection = startPath.section;
     [self.tableView beginUpdates];
     {
-        [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:startPath] withRowAnimation:UITableViewRowAnimationBottom];
-        NSMutableArray* pathsToAdd = [NSMutableArray array];
+        [self.tableView deleteSections:[NSIndexSet indexSetWithIndex:startSection] withRowAnimation:UITableViewRowAnimationBottom];
 
-        NSInteger startSection = startPath.section;
+        NSMutableIndexSet* sectionsToAdd = [NSMutableIndexSet indexSet];
 
         for (int i = 0; i < (newTheaterCount - currentTheaterCount); i++) {
-            [pathsToAdd addObject:[NSIndexPath indexPathForRow:0 inSection:startSection + i]];
-            [pathsToAdd addObject:[NSIndexPath indexPathForRow:1 inSection:startSection + i]];
+            [sectionsToAdd addIndex:startSection + i];
         }
 
-        [self.tableView insertRowsAtIndexPaths:pathsToAdd withRowAnimation:UITableViewRowAnimationFade];
+        [self.tableView insertSections:sectionsToAdd withRowAnimation:UITableViewRowAnimationBottom];
     }
     [self.tableView endUpdates];
+    
+    [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
+                          atScrollPosition:UITableViewScrollPositionMiddle
+                                  animated:YES];
      */
 }
 
@@ -529,14 +535,16 @@
     if (row == 1) {
         expandedDetails = !expandedDetails;
 
+        NSIndexPath* path = [NSIndexPath indexPathForRow:1 inSection:0];
         [tableView beginUpdates];
         {
-            NSArray* paths = [NSArray arrayWithObject:[NSIndexPath indexPathForRow:1 inSection:0]];
+            NSArray* paths = [NSArray arrayWithObject:path];
             [tableView deleteRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
             [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
         }
         [tableView endUpdates];
-
+        
+        //[tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         // hack: when shrinking the details pane, the 'actions view' can
         // sometimes go missing.  To prevent that, we refresh explicitly.
         if (!expandedDetails) {

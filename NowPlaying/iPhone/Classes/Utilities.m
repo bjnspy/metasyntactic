@@ -215,7 +215,7 @@
             [Utilities isNilOrEmpty:performance.identifier]) {
             [body appendString:performance.time];
         } else {
-            NSString* url = [model.currentDataProvider ticketingUrlForTheater:theater
+            NSString* url = [model.dataProvider ticketingUrlForTheater:theater
                                                                         movie:movie
                                                                   performance:performance
                                                                          date:model.searchDate];

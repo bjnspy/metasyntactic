@@ -32,7 +32,6 @@
 - (void) setSearchDate:(NSDate*) searchDate;
 - (void) setUserLocation:(NSString*) userLocation;
 - (void) setSearchRadius:(NSInteger) radius;
-- (void) setDataProviderIndex:(NSInteger) index;
 - (void) setRatingsProviderIndex:(NSInteger) index;
 
 + (NowPlayingController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
