@@ -27,4 +27,6 @@
 @property (retain) NowPlayingModel* model;
 @property (retain) ApplicationTabBarController* tabBarController;
 
++ (void) refresh;
+
 @end

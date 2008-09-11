@@ -21,11 +21,10 @@
 
 @implementation GlobalActivityIndicator
 
-static NSLock* gate;
+static NSLock* gate = nil;
 static UIActivityIndicatorView* activityIndicatorView = nil;
 static UIView* activityView = nil;
-static NowPlayingAppDelegate* appDelegate;
-static GlobalActivityIndicator* indicator;
+static GlobalActivityIndicator* indicator = nil;
 
 static NSInteger totalBackgroundTaskCount = 0;
 static NSInteger visibleBackgroundTaskCount = 0;
@@ -43,11 +42,6 @@ static NSInteger visibleBackgroundTaskCount = 0;
 
         indicator = [[GlobalActivityIndicator alloc] init];
     }
-}
-
-
-+ (void) setAppDelegate:(NowPlayingAppDelegate*) appDelegate_ {
-    appDelegate = appDelegate_;
 }
 
 
@@ -77,7 +71,7 @@ static NSInteger visibleBackgroundTaskCount = 0;
 
 
 - (void) refresh {
-    [appDelegate.tabBarController refresh];
+    [NowPlayingAppDelegate refresh];
 }
 
 
