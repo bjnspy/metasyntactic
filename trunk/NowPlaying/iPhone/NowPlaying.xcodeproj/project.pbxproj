@@ -83,8 +83,6 @@
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
-		74CBBFC80E3E803A00747156 /* UnitedKingdomDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CBBFC70E3E803A00747156 /* UnitedKingdomDataProvider.m */; };
-		74CBBFF80E3E8C6000747156 /* DataProviderViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */; };
 		74CDF0CA0E64A2EE005699E9 /* UpcomingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */; };
 		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
@@ -312,10 +310,6 @@
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
 		74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerEditorViewController.m; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
-		74CBBFC60E3E803A00747156 /* UnitedKingdomDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnitedKingdomDataProvider.h; sourceTree = "<group>"; };
-		74CBBFC70E3E803A00747156 /* UnitedKingdomDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnitedKingdomDataProvider.m; sourceTree = "<group>"; };
-		74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProviderViewController.h; sourceTree = "<group>"; };
-		74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProviderViewController.m; sourceTree = "<group>"; };
 		74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingCache.h; sourceTree = "<group>"; };
 		74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingCache.m; sourceTree = "<group>"; };
 		74D6F2B50DCC144D0097A984 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
@@ -811,8 +805,6 @@
 				74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */,
 				74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */,
 				74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */,
-				74CBBFF60E3E8C6000747156 /* DataProviderViewController.h */,
-				74CBBFF70E3E8C6000747156 /* DataProviderViewController.m */,
 			);
 			name = Settings;
 			sourceTree = "<group>";
@@ -858,8 +850,6 @@
 				74F3B2590E3CE80300DD25DA /* NorthAmericaDataProvider.m */,
 				74F3B2E50E3CF02400DD25DA /* LookupResult.h */,
 				74F3B2E60E3CF02400DD25DA /* LookupResult.m */,
-				74CBBFC60E3E803A00747156 /* UnitedKingdomDataProvider.h */,
-				74CBBFC70E3E803A00747156 /* UnitedKingdomDataProvider.m */,
 			);
 			name = DataProviders;
 			sourceTree = "<group>";
@@ -1045,8 +1035,6 @@
 				74F3B25A0E3CE80300DD25DA /* NorthAmericaDataProvider.m in Sources */,
 				74F3B2DA0E3CEF6000DD25DA /* AbstractDataProvider.m in Sources */,
 				74F3B2E70E3CF02400DD25DA /* LookupResult.m in Sources */,
-				74CBBFC80E3E803A00747156 /* UnitedKingdomDataProvider.m in Sources */,
-				74CBBFF80E3E8C6000747156 /* DataProviderViewController.m in Sources */,
 				74085B8C0E423F010069F0F5 /* RatingsCache.m in Sources */,
 				740AFF360E54E87F004EC5EE /* NumbersNavigationController.m in Sources */,
 				740AFFBB0E54F971004EC5EE /* NumbersViewController.m in Sources */,

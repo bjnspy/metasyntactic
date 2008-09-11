@@ -81,12 +81,12 @@
         return;
     }
 
-    if ([self tooSoon:[self.model.currentDataProvider lastLookupDate]]) {
+    if ([self tooSoon:[self.model.dataProvider lastLookupDate]]) {
         return;
     }
 
     [ThreadingUtilities performSelector:@selector(lookup)
-                               onTarget:self.model.currentDataProvider
+                               onTarget:self.model.dataProvider
                inBackgroundWithArgument:nil
                                    gate:dataProviderLock
                                 visible:YES];
@@ -206,17 +206,6 @@
 
     [self.model setRatingsProviderIndex:index];
     [self spawnRatingsLookupThread];
-    [appDelegate.tabBarController refresh];
-}
-
-
-- (void) setDataProviderIndex:(NSInteger) index {
-    if (index == self.model.dataProviderIndex) {
-        return;
-    }
-
-    [self.model setDataProviderIndex:index];
-    [self spawnDataProviderLookupThread];
     [appDelegate.tabBarController refresh];
 }
 

@@ -39,7 +39,6 @@
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
 #import "TrailerCache.h"
-#import "UnitedKingdomDataProvider.h"
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
 #import "Utilities.h"
@@ -54,7 +53,6 @@ static NSString* VERSION = @"version";
 static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSegmentIndex";
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
-static NSString* DATA_PROVIDER_INDEX                    = @"dataProviderIndex";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
 static NSString* HIDE_EMPTY_THEATERS                    = @"hideEmptyTheaters";
 static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
@@ -74,7 +72,6 @@ static NSString** KEYS[] = {
     &ALL_MOVIES_SELECTED_SEGMENT_INDEX,
     &ALL_THEATERS_SELECTED_SEGMENT_INDEX,
     &AUTO_UPDATE_LOCATION,
-    &DATA_PROVIDER_INDEX,
     &FAVORITE_THEATERS,
     &HIDE_EMPTY_THEATERS,
     &NAVIGATION_STACK_TYPES,
@@ -90,7 +87,7 @@ static NSString** KEYS[] = {
 };
 
 
-@synthesize dataProviders;
+@synthesize dataProvider;
 @synthesize movieMap;
 @synthesize favoriteTheatersData;
 
@@ -104,7 +101,7 @@ static NSString** KEYS[] = {
 @synthesize upcomingCache;
 
 - (void) dealloc {
-    self.dataProviders = nil;
+    self.dataProvider = nil;
     self.movieMap = nil;
     self.favoriteTheatersData = nil;
 
@@ -237,9 +234,7 @@ static NSString** KEYS[] = {
 
 
 - (void) loadData {
-    self.dataProviders = [NSArray arrayWithObjects:
-                          [NorthAmericaDataProvider providerWithModel:self],
-                          [UnitedKingdomDataProvider providerWithModel:self], nil];
+    self.dataProvider = [NorthAmericaDataProvider providerWithModel:self];
 
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
 
@@ -260,9 +255,7 @@ static NSString** KEYS[] = {
 
         [Application deleteFolders];
 
-        for (id<DataProvider> provider in self.dataProviders) {
-            [provider invalidateDiskCache];
-        }
+        [dataProvider invalidateDiskCache];
 
         [self restorePreviousValues:previousUserLocation
                        searchRadius:previousSearchRadius
@@ -330,29 +323,8 @@ static NSString** KEYS[] = {
 }
 
 
-- (NSInteger) dataProviderIndex {
-    return [[NSUserDefaults standardUserDefaults] integerForKey:DATA_PROVIDER_INDEX];
-}
-
-
-- (void) setDataProviderIndex:(NSInteger) index {
-    self.movieMap = nil;
-    [[NSUserDefaults standardUserDefaults] setInteger:index forKey:DATA_PROVIDER_INDEX];
-}
-
-
-- (id<DataProvider>) currentDataProvider {
-    return [dataProviders objectAtIndex:[self dataProviderIndex]];
-}
-
-
-- (BOOL) northAmericaDataProvider {
-    return self.dataProviderIndex == 0;
-}
-
-
-- (BOOL) unitedKingdomDataProvider {
-    return self.dataProviderIndex == 1;
+- (id<DataProvider>) dataProvider {
+    return dataProvider;
 }
 
 
@@ -536,26 +508,24 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) markDataProvidersOutOfDate {
-    for (id<DataProvider> provider in self.dataProviders) {
-        [provider setStale];
-    }
+- (void) markDataProviderOutOfDate {
+    [dataProvider setStale];
 }
 
 
 - (void) setSearchDate:(NSDate*) date {
-    [self markDataProvidersOutOfDate];
+    [self markDataProviderOutOfDate];
     [[NSUserDefaults standardUserDefaults] setObject:date forKey:SEARCH_DATE];
 }
 
 
 - (NSArray*) movies {
-    return [self.currentDataProvider movies];
+    return [dataProvider movies];
 }
 
 
 - (NSArray*) theaters {
-    return [self.currentDataProvider theaters];
+    return [dataProvider theaters];
 }
 
 
@@ -713,17 +683,17 @@ static NSString** KEYS[] = {
 
 
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater {
-    return [self.currentDataProvider moviePerformances:movie forTheater:theater];
+    return [dataProvider moviePerformances:movie forTheater:theater];
 }
 
 
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater {
-    return [self.currentDataProvider synchronizationDateForTheater:theater.name];
+    return [dataProvider synchronizationDateForTheater:theater.name];
 }
 
 
 - (BOOL) isStale:(Theater*) theater {
-    NSDate* globalSyncDate = [self.currentDataProvider lastLookupDate];
+    NSDate* globalSyncDate = [dataProvider lastLookupDate];
     NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
 
     return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
@@ -738,7 +708,7 @@ static NSString** KEYS[] = {
                 NSLocalizedString(@"Theater last reported show times on\n%@.", nil),
                 [DateUtilities formatLongDate:theaterSyncDate]];
     } else {
-        NSDate* globalSyncDate = [self.currentDataProvider lastLookupDate];
+        NSDate* globalSyncDate = [dataProvider lastLookupDate];
         return [NSString stringWithFormat:
                 NSLocalizedString(@"Show times retrieved on %@.", nil),
                 [DateUtilities formatLongDate:globalSyncDate]];
@@ -867,7 +837,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (void) setUserLocation:(NSString*) userLocation {
-    [self markDataProvidersOutOfDate];
+    [self markDataProviderOutOfDate];
 
     [[NSUserDefaults standardUserDefaults] setObject:userLocation forKey:USER_LOCATION];
 
