@@ -89,7 +89,8 @@
                                onTarget:self.model.dataProvider
                inBackgroundWithArgument:nil
                                    gate:dataProviderLock
-                                visible:YES];
+                                visible:YES
+                            lowPriority:NO];
 }
 
 
