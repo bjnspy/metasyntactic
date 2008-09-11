@@ -18,7 +18,6 @@
 
 }
 
-+ (void) setAppDelegate:(NowPlayingAppDelegate*) appDelegate;
 + (UIView*) activityView;
 
 + (void) addBackgroundTask:(BOOL) isVisible;

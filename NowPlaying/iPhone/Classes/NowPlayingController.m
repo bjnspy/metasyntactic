@@ -177,7 +177,7 @@
     [self.model setSearchDate:searchDate];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController popNavigationControllersToRoot];
-    [appDelegate.tabBarController refresh];
+    [NowPlayingAppDelegate refresh];
 }
 
 
@@ -189,13 +189,13 @@
     [self.model setUserLocation:userLocation];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController popNavigationControllersToRoot];
-    [appDelegate.tabBarController refresh];
+    [NowPlayingAppDelegate refresh];
 }
 
 
 - (void) setSearchRadius:(NSInteger) radius {
     [self.model setSearchRadius:radius];
-    [appDelegate.tabBarController refresh];
+    [NowPlayingAppDelegate refresh];
 }
 
 
@@ -206,7 +206,7 @@
 
     [self.model setRatingsProviderIndex:index];
     [self spawnRatingsLookupThread];
-    [appDelegate.tabBarController refresh];
+    [NowPlayingAppDelegate refresh];
 }
 
 

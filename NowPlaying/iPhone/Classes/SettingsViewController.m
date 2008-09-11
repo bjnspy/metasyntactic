@@ -26,6 +26,7 @@
 #import "Location.h"
 #import "LocationUtilities.h"
 #import "NetworkUtilities.h"
+#import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "RatingsProviderViewController.h"
 #import "SearchDatePickerViewController.h"
@@ -310,13 +311,13 @@
 - (void) onUseSmallFontsChanged:(id) sender {
     BOOL useSmallFonts = !self.model.useSmallFonts;
     [self.model setUseSmallFonts:useSmallFonts];
-    [navigationController.tabBarController refresh];
+    [NowPlayingAppDelegate refresh];
 }
 
 
 - (void) onHideEmptyTheatersChanged:(id) sender {
     [self.model setHideEmptyTheaters:!self.model.hideEmptyTheaters];
-    [navigationController.tabBarController refresh];
+    [NowPlayingAppDelegate refresh];
 }
 
 

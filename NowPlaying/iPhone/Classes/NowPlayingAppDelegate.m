@@ -23,6 +23,10 @@
 
 @implementation NowPlayingAppDelegate
 
+
+static NowPlayingAppDelegate* appDelegate = nil;
+
+
 @synthesize window;
 @synthesize controller;
 @synthesize model;
@@ -39,7 +43,7 @@
 
 
 - (void) applicationDidFinishLaunching:(UIApplication*) app {
-    [GlobalActivityIndicator setAppDelegate:self];
+    appDelegate = self;
 
     self.model = [NowPlayingModel model];
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
@@ -48,12 +52,17 @@
     [window makeKeyAndVisible];
 
     self.controller = [NowPlayingController controllerWithAppDelegate:self];
-    [tabBarController refresh];
+    [NowPlayingAppDelegate refresh];
 }
 
 
 - (void) applicationWillTerminate:(UIApplication*) application {
     [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
+
++ (void) refresh {
+    [appDelegate.tabBarController refresh];
 }
 
 
