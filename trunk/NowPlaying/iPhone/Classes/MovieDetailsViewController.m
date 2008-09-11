@@ -107,14 +107,14 @@
         [titles addObject:NSLocalizedString(@"Read reviews", nil)];
     }
 
-    if (theatersArray.count > 0) {
-        [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
-        [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
-    }
-
     if (imdbAddress.length > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(visitIMDb)]];
         [titles addObject:NSLocalizedString(@"Visit IMDb", nil)];
+    }
+    
+    if (theatersArray.count > 0) {
+        [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
+        [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
     }
 
     self.actionsView = [ActionsView viewWithTarget:self selectors:selectors titles:titles];
