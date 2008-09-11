@@ -183,9 +183,9 @@ static NSString** KEYS[] = {
     for (FavoriteTheater* theater in favoriteTheaters) {
         [result addObject:theater.dictionary];
     }
-    
+
     [[NSUserDefaults standardUserDefaults] setObject:result forKey:FAVORITE_THEATERS];
-    
+
 }
 
 
@@ -198,26 +198,26 @@ static NSString** KEYS[] = {
     if ([previousUserLocation isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserLocation forKey:USER_LOCATION];
     }
-    
+
     if ([previousSearchRadius isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setInteger:[previousSearchRadius intValue] forKey:SEARCH_RADIUS];
     }
-    
+
     if ([previousAutoUpdateLocation isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setBool:[previousAutoUpdateLocation boolValue] forKey:AUTO_UPDATE_LOCATION];   
+        [[NSUserDefaults standardUserDefaults] setBool:[previousAutoUpdateLocation boolValue] forKey:AUTO_UPDATE_LOCATION];
     }
 
     if ([previousHideEmptyTheaters isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousHideEmptyTheaters boolValue] forKey:HIDE_EMPTY_THEATERS];
     }
-    
+
     if ([previousUseNormalFonts isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousUseNormalFonts boolValue] forKey:USE_NORMAL_FONTS];
     }
-    
+
     if ([previousFavoriteTheaters isKindOfClass:[NSArray class]]) {
         NSMutableArray* favoriteTheaters = [NSMutableArray array];
-        
+
         for (id previousTheater in previousFavoriteTheaters) {
             if (![previousTheater isKindOfClass:[NSDictionary class]]) {
                 continue;
@@ -226,7 +226,7 @@ static NSString** KEYS[] = {
             if (![FavoriteTheater canReadDictionary:previousTheater]) {
                 continue;
             }
-            
+
             FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:previousTheater];
             [favoriteTheaters addObject:theater];
         }
@@ -252,7 +252,7 @@ static NSString** KEYS[] = {
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
 
-        self.movieMap = nil;        
+        self.movieMap = nil;
         for (int i = 0; i < ArrayLength(KEYS); i++) {
             NSString** key = KEYS[i];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];
@@ -263,14 +263,14 @@ static NSString** KEYS[] = {
         for (id<DataProvider> provider in self.dataProviders) {
             [provider invalidateDiskCache];
         }
-        
+
         [self restorePreviousValues:previousUserLocation
                        searchRadius:previousSearchRadius
                  autoUpdateLocation:previousAutoUpdateLocation
                   hideEmptyTheaters:previousHideEmptyTheaters
                      useNormalFonts:previousUseNormalFonts
                    favoriteTheaters:previousFavoriteTheaters];
-        
+
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
 }
@@ -288,7 +288,7 @@ static NSString** KEYS[] = {
         self.ratingsCache = [RatingsCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cache];
         self.upcomingCache = [UpcomingCache cache];
-        
+
         searchRadius = -1;
 
         [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:0] afterDelay:2];
@@ -620,7 +620,7 @@ static NSString** KEYS[] = {
             return YES;
         }
     }
-    
+
     return NO;
 }
 
@@ -628,7 +628,7 @@ static NSString** KEYS[] = {
 - (void) removeFavoriteTheater:(Theater*) theater {
     FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
                                                   originatingPostalCode:theater.originatingPostalCode];
-    
+
     [self.favoriteTheaters removeObject:favoriteTheater];
     [self saveFavoriteTheaters];
 }

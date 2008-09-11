@@ -96,27 +96,27 @@
 - (void) setupActionsView {
     NSMutableArray* selectors = [NSMutableArray array];
     NSMutableArray* titles = [NSMutableArray array];
-    
+
     if (trailersArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(playTrailer)]];
         [titles addObject:NSLocalizedString(@"Play trailer", nil)];
     }
-    
+
     if (reviewsArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(readReviews)]];
         [titles addObject:NSLocalizedString(@"Read reviews", nil)];
     }
-    
+
     if (theatersArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
         [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
     }
-    
+
     if (imdbAddress.length > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(visitIMDb)]];
         [titles addObject:NSLocalizedString(@"Visit IMDb", nil)];
     }
-    
+
     self.actionsView = [ActionsView viewWithTarget:self selectors:selectors titles:titles];
     [actionsView sizeToFit];
 }
@@ -330,7 +330,7 @@
 
         [cell setShowtimes:[showtimesArray objectAtIndex:theaterIndex]
              useSmallFonts:self.model.useSmallFonts];
-        
+
         return cell;
     }
 }
@@ -350,7 +350,7 @@
       heightForFooterInSection:(NSInteger)section {
     if (section == 0) {
         CGFloat height = [actionsView height];
-        
+
         if (theatersArray.count == 0) {
             return height + 8;
         } else {
@@ -508,9 +508,9 @@
         [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
 
         [tableView endUpdates];
-        
-        // hack: when shrinking the details pane, the 'actions view' can 
-        // sometimes go missing.  To prevent that, we refresh explicitly. 
+
+        // hack: when shrinking the details pane, the 'actions view' can
+        // sometimes go missing.  To prevent that, we refresh explicitly.
         if (!expandedDetails) {
             [self.tableView reloadData];
         }

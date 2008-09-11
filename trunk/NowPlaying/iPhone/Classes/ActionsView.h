@@ -20,7 +20,7 @@
     NSArray* titles;
 
     NSArray* buttons;
-    
+
     CGFloat height;
 }
 

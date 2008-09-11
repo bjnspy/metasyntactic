@@ -31,7 +31,7 @@ property_definition(score);
     self.link = nil;
     self.synopsis = nil;
     self.score = nil;
-
+    
     [super dealloc];
 }
 

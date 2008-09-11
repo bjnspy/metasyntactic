@@ -17,7 +17,7 @@ property_definition(originatingPostalCode);
 - (void) dealloc {
     self.name = nil;
     self.originatingPostalCode = nil;
-    
+
     [super dealloc];
 }
 
@@ -28,7 +28,7 @@ property_definition(originatingPostalCode);
         self.name = name_;
         self.originatingPostalCode = originatingPostalCode_;
     }
-    
+
     return self;
 }
 
