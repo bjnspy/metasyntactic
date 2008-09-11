@@ -117,7 +117,7 @@
     XmlElement* moviesElement = [theaterElement element:@"movies"];
     NSMutableDictionary* movieToShowtimesMap = [self processFandangoShowtimes:moviesElement
                                                             movieIdToMovieMap:movieIdToMovieMap];
-    
+
     [synchronizationData setObject:[DateUtilities today] forKey:name];
     if (movieToShowtimesMap.count == 0) {
         // no showtime information available.  fallback to anything we've

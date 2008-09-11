@@ -35,7 +35,7 @@
 
 - (id) initWithMovies:(NSMutableArray*) movies_
              theaters:(NSMutableArray*) theaters_
-         performances:(NSMutableDictionary*) performances_ 
+         performances:(NSMutableDictionary*) performances_
  synchronizationData:(NSMutableDictionary*) synchronizationData_ {
     if (self = [super init]) {
         self.movies = movies_;
