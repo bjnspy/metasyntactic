@@ -30,6 +30,7 @@
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
 #import "NorthAmericaDataProvider.h"
+#import "NowPlayingAppDelegate.h"
 #import "NumbersCache.h"
 #import "PosterCache.h"
 #import "RatingsCache.h"
@@ -37,6 +38,7 @@
 #import "ReviewsViewController.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
+#import "ThreadingUtilities.h"
 #import "TicketsViewController.h"
 #import "TrailerCache.h"
 #import "UpcomingCache.h"
@@ -46,7 +48,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"1.7.0";
-static NSString* persistenceVersion = @"31";
+static NSString* persistenceVersion = @"33";
 
 static NSString* VERSION = @"version";
 
@@ -89,6 +91,7 @@ static NSString** KEYS[] = {
 
 @synthesize dataProvider;
 @synthesize movieMap;
+@synthesize movieMapLock;
 @synthesize favoriteTheatersData;
 
 @synthesize addressLocationCache;
@@ -102,8 +105,10 @@ static NSString** KEYS[] = {
 
 - (void) dealloc {
     self.dataProvider = nil;
-    self.movieMap = nil;
     self.favoriteTheatersData = nil;
+    
+    self.movieMap = nil;
+    self.movieMapLock = nil;
 
     self.addressLocationCache = nil;
     self.imdbCache = nil;
@@ -269,6 +274,55 @@ static NSString** KEYS[] = {
 }
 
 
+- (void) regenerateMovieMap {
+    NSArray* arguments = [NSArray arrayWithObjects:self.ratings, self.movies, nil];
+    [ThreadingUtilities performSelector:@selector(createMovieMap:)
+                               onTarget:self
+               inBackgroundWithArgument:arguments
+                                   gate:movieMapLock
+                                visible:NO
+                            lowPriority:NO];
+}
+
+
+- (void) createMovieMap:(NSArray*) arguments {
+    NSDictionary* ratings = [arguments objectAtIndex:0];
+    NSArray* movies = [arguments objectAtIndex:1];
+    
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    
+    NSArray* keys = ratings.allKeys;
+    NSMutableArray* lowercaseKeys = [NSMutableArray array];
+    for (NSString* key in keys) {
+        [lowercaseKeys addObject:key.lowercaseString];
+    }
+    
+    DifferenceEngine* engine = [DifferenceEngine engine];
+    
+    for (Movie* movie in movies) {
+        NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
+        NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
+        if (index == NSNotFound) {
+            index = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
+        }
+        
+        if (index != NSNotFound) {
+            NSString* key = [keys objectAtIndex:index];
+            [result setObject:key forKey:movie.canonicalTitle];
+        }
+    }
+    
+    [Utilities writeObject:result toFile:[Application movieMapFile]];
+    [self performSelectorOnMainThread:@selector(reportMovieMap:) withObject:result waitUntilDone:NO];
+}
+
+
+- (void) reportMovieMap:(NSDictionary*) result {
+    self.movieMap = result;
+    [NowPlayingAppDelegate refresh];
+}
+
+
 - (id) init {
     if (self = [super init]) {
         [self loadData];
@@ -281,9 +335,11 @@ static NSString** KEYS[] = {
         self.ratingsCache = [RatingsCache cacheWithModel:self];
         self.trailerCache = [TrailerCache cache];
         self.upcomingCache = [UpcomingCache cache];
+        self.movieMapLock = [[[NSLock alloc] init] autorelease];
 
         searchRadius = -1;
 
+        [self regenerateMovieMap];
         [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:0] afterDelay:2];
     }
 
@@ -334,7 +390,7 @@ static NSString** KEYS[] = {
 
 
 - (void) setRatingsProviderIndex:(NSInteger) index {
-    self.movieMap = nil;
+    [self regenerateMovieMap];
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:RATINGS_PROVIDER_INDEX];
     [ratingsCache onRatingsProviderChanged];
     [self updateReviewCache];
@@ -530,13 +586,13 @@ static NSString** KEYS[] = {
 
 
 - (void) onRatingsUpdated {
-    self.movieMap = nil;
+    [self regenerateMovieMap];
     [self updateReviewCache];
 }
 
 
 - (void) onProviderUpdated {
-    self.movieMap = nil;
+    [self regenerateMovieMap];
     [self updateIMDbCache];
     [self updatePosterCache];
     [self updateTrailerCache];
@@ -845,38 +901,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 
-- (void) createMovieMap {
-    if (movieMap == nil) {
-        NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-
-        NSArray* keys = self.ratings.allKeys;
-        NSMutableArray* lowercaseKeys = [NSMutableArray array];
-        for (NSString* key in keys) {
-            [lowercaseKeys addObject:key.lowercaseString];
-        }
-
-        for (Movie* movie in self.movies) {
-            NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
-            NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
-            if (index == NSNotFound) {
-                index = [[Application differenceEngine] findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
-            }
-
-            if (index != NSNotFound) {
-                NSString* key = [keys objectAtIndex:index];
-                [dictionary setObject:key forKey:movie.canonicalTitle];
-            }
-        }
-
-        self.movieMap = dictionary;
-        [Utilities writeObject:dictionary toFile:[Application movieMapFile]];
-    }
-}
-
-
 - (ExtraMovieInformation*) extraInformationForMovie:(Movie*) movie {
-    [self createMovieMap];
-
     NSString* key = [movieMap objectForKey:movie.canonicalTitle];
     if (key == nil) {
         return nil;
