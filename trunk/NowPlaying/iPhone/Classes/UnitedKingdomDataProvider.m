@@ -99,7 +99,8 @@
 
     return [LookupResult resultWithMovies:movies_
                                  theaters:theaters_
-                             performances:performances_];
+                             performances:performances_
+                     synchronizationData:nil];
 }
 
 

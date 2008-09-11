@@ -47,7 +47,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"1.7.0";
-static NSString* persistenceVersion = @"28";
+static NSString* persistenceVersion = @"29";
 
 static NSString* VERSION = @"version";
 
@@ -718,7 +718,7 @@ static NSString** KEYS[] = {
 
 
 - (NSDate*) synchronizationDateForTheater:(Theater*) theater {
-    return [self.currentDataProvider synchronizationDateForTheater:theater];
+    return [self.currentDataProvider synchronizationDateForTheater:theater.name];
 }
 
 
