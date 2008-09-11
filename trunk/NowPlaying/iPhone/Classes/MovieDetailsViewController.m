@@ -423,15 +423,16 @@
     [self.tableView beginUpdates];
     {   
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:startPath] withRowAnimation:UITableViewRowAnimationBottom];
+        NSMutableArray* pathsToAdd = [NSMutableArray array];
+        
         NSInteger startSection = startPath.section;
         
         for (int i = 0; i < (newTheaterCount - currentTheaterCount); i++) {
-            NSArray* paths = [NSArray arrayWithObjects:
-                              [NSIndexPath indexPathForRow:0 inSection:startSection + i],
-                              [NSIndexPath indexPathForRow:1 inSection:startSection + i], nil];
-            
-            [self.tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationBottom];
+            [pathsToAdd addObject:[NSIndexPath indexPathForRow:0 inSection:startSection + i]];
+            [pathsToAdd addObject:[NSIndexPath indexPathForRow:1 inSection:startSection + i]];
         }
+        
+        [self.tableView insertRowsAtIndexPaths:pathsToAdd withRowAnimation:UITableViewRowAnimationBottom];
     }
     [self.tableView endUpdates];
 }
