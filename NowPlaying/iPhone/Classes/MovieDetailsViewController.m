@@ -411,15 +411,21 @@
 
 - (void) didSelectShowHiddenTheaters {
     NSIndexPath* startPath = self.tableView.indexPathForSelectedRow;
-    [self.tableView deselectRowAtIndexPath:startPath animated:YES];
-
-    NSInteger currentTheaterCount = self.theatersArray.count;
+    [self.tableView deselectRowAtIndexPath:startPath animated:NO];
+    
     
     filterTheatersByDistance = NO;
+    [self refresh];
+    
+    // this animates showing the theaters.  but it's unfortunately too slow
+    /*
+    NSInteger currentTheaterCount = self.theatersArray.count;
+    filterTheatersByDistance = NO;
+    
     [self initializeData];
-    
+        
     NSInteger newTheaterCount = self.theatersArray.count;
-    
+
     [self.tableView beginUpdates];
     {   
         [self.tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:startPath] withRowAnimation:UITableViewRowAnimationBottom];
@@ -432,9 +438,10 @@
             [pathsToAdd addObject:[NSIndexPath indexPathForRow:1 inSection:startSection + i]];
         }
         
-        [self.tableView insertRowsAtIndexPaths:pathsToAdd withRowAnimation:UITableViewRowAnimationBottom];
+        [self.tableView insertRowsAtIndexPaths:pathsToAdd withRowAnimation:UITableViewRowAnimationFade];
     }
     [self.tableView endUpdates];
+     */
 }
 
 
