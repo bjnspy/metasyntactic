@@ -33,7 +33,7 @@
     if (self = [super init]) {
         self.gate = [[[NSCondition alloc] init] autorelease];
 
-        highTaskRunning = NO;
+        highTaskRunningCount = 0;
     }
 
     return self;
@@ -48,7 +48,7 @@
 - (void) lockHigh {
     [gate lock];
     {
-        highTaskRunning = YES;
+        highTaskRunningCount++;
     }
     [gate unlock];
 }
@@ -57,8 +57,11 @@
 - (void) unlockHigh {
     [gate lock];
     {
-        highTaskRunning = NO;
-        [gate broadcast];
+        highTaskRunningCount--;
+        if (highTaskRunningCount == 0) {
+            // wake up all the low pri threads that have been waiting
+            [gate broadcast];
+        }
     }
     [gate unlock];
 }
@@ -67,7 +70,7 @@
 - (void) lockLow {
     [gate lock];
     {
-        while (highTaskRunning) {
+        while (highTaskRunningCount > 0) {
             [gate wait];
         }
     }
