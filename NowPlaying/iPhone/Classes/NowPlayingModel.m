@@ -49,7 +49,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"1.7.0";
-static NSString* persistenceVersion = @"33";
+static NSString* persistenceVersion = @"34";
 
 static NSString* VERSION = @"version";
 
@@ -107,7 +107,7 @@ static NSString** KEYS[] = {
 - (void) dealloc {
     self.dataProvider = nil;
     self.favoriteTheatersData = nil;
-    
+
     self.movieMap = nil;
     self.movieMapLock = nil;
 
@@ -289,30 +289,30 @@ static NSString** KEYS[] = {
 - (void) createMovieMap:(NSArray*) arguments {
     NSDictionary* ratings = [arguments objectAtIndex:0];
     NSArray* movies = [arguments objectAtIndex:1];
-    
+
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    
+
     NSArray* keys = ratings.allKeys;
     NSMutableArray* lowercaseKeys = [NSMutableArray array];
     for (NSString* key in keys) {
         [lowercaseKeys addObject:key.lowercaseString];
     }
-    
+
     DifferenceEngine* engine = [DifferenceEngine engine];
-    
+
     for (Movie* movie in movies) {
         NSString* lowercaseTitle = movie.canonicalTitle.lowercaseString;
         NSInteger index = [lowercaseKeys indexOfObject:lowercaseTitle];
         if (index == NSNotFound) {
             index = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:lowercaseKeys];
         }
-        
+
         if (index != NSNotFound) {
             NSString* key = [keys objectAtIndex:index];
             [result setObject:key forKey:movie.canonicalTitle];
         }
     }
-    
+
     [FileUtilities writeObject:result toFile:[Application movieMapFile]];
     [self performSelectorOnMainThread:@selector(reportMovieMap:) withObject:result waitUntilDone:NO];
 }
