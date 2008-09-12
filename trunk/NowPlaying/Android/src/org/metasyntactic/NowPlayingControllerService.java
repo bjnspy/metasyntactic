@@ -11,7 +11,7 @@ import java.util.List;
 
 public class NowPlayingControllerService extends Service {
   private final NowPlayingModel model = new NowPlayingModel(this);
-
+  private final Object lock = new Object();
 
   @Override
   public void onCreate() {
@@ -31,7 +31,9 @@ public class NowPlayingControllerService extends Service {
 
 
   private void updateBackgroundEntryPoint() {
-    model.update();
+    synchronized (lock) {
+      model.update();
+    }
   }
 
 
@@ -42,6 +44,11 @@ public class NowPlayingControllerService extends Service {
 
 
   private final INowPlayingController.Stub binder = new INowPlayingController.Stub() {
+    public String getUserLocation() throws RemoteException {
+      return NowPlayingControllerService.this.getUserLocation();
+    }
+
+
     public void setUserLocation(String userLocation) throws RemoteException {
       NowPlayingControllerService.this.setUserLocation(userLocation);
     }
@@ -98,56 +105,63 @@ public class NowPlayingControllerService extends Service {
   };
 
 
-  public void setUserLocation(String userLocation) throws RemoteException {
+  public String getUserLocation() {
+    return model.getUserLocation();
   }
 
 
-  public int getSelectedTabIndex() throws RemoteException {
+  public void setUserLocation(String userLocation) {
+    model.setUserLocation(userLocation);
+    update();
+  }
+
+
+  public int getSelectedTabIndex() {
     return model.getSelectedTabIndex();
   }
 
 
-  public void setSelectedTabIndex(int index) throws RemoteException {
+  public void setSelectedTabIndex(int index) {
     model.setSelectedTabIndex(index);
   }
 
 
-  public int getAllMoviesSelectedSortIndex() throws RemoteException {
+  public int getAllMoviesSelectedSortIndex() {
     return model.getAllMoviesSelecetedSortIndex();
   }
 
 
-  public void setAllMoviesSelectedSortIndex(int index) throws RemoteException {
+  public void setAllMoviesSelectedSortIndex(int index) {
     model.setAllMoviesSelectedSortIndex(index);
   }
 
 
-  public int getAllTheatersSelectedSortIndex() throws RemoteException {
+  public int getAllTheatersSelectedSortIndex() {
     return model.getAllTheatersSelectedSortIndex();
   }
 
 
-  public void setAllTheatersSelectedSortIndex(int index) throws RemoteException {
+  public void setAllTheatersSelectedSortIndex(int index) {
     model.setAllTheatersSelectedSortIndex(index);
   }
 
 
-  public int getUpcomingMoviesSelectedSortIndex() throws RemoteException {
+  public int getUpcomingMoviesSelectedSortIndex() {
     return model.getUpcomingMovieSelectedSortIndex();
   }
 
 
-  public void setUpcomingMoviesSelectedSortIndex(int index) throws RemoteException {
+  public void setUpcomingMoviesSelectedSortIndex(int index) {
     model.setUpcomingMovieSelectedSortIndex(index);
   }
 
 
-  public List<Movie> getMovies() throws RemoteException {
+  public List<Movie> getMovies() {
     return model.getMovies();
   }
 
 
-  public List<Theater> getTheaters() throws RemoteException {
+  public List<Theater> getTheaters() {
     return model.getTheaters();
   }
 }

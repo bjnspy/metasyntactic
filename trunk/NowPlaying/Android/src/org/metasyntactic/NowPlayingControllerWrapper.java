@@ -19,6 +19,15 @@ public class NowPlayingControllerWrapper {
   }
 
 
+  public String getUserLocation() {
+    try {
+      return controller.getUserLocation();
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
   public void setUserLocation(String userLocation) {
     try {
       controller.setUserLocation(userLocation);
