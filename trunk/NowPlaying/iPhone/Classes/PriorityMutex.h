@@ -18,8 +18,6 @@
     NSCondition* gate;
 
     BOOL highTaskRunning;
-    BOOL lowTaskRunning;
-    NSInteger highTaskWaitCount;
 }
 
 @property (retain) NSCondition* gate;

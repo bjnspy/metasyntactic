@@ -106,6 +106,7 @@ static PriorityMutex* mutex = nil;
 
     NSMutableURLRequest* request = [NSMutableURLRequest requestWithURL:url];
     request.timeoutInterval = 120;
+    request.cachePolicy = NSURLRequestReloadIgnoringLocalCacheData;
     [request setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
     [request setValue:@"gzip" forHTTPHeaderField:@"User-Agent"];
 

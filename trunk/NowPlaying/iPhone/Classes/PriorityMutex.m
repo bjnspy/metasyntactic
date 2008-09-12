@@ -34,8 +34,6 @@
         self.gate = [[[NSCondition alloc] init] autorelease];
 
         highTaskRunning = NO;
-        lowTaskRunning = NO;
-        highTaskWaitCount = 0;
     }
 
     return self;
@@ -50,11 +48,6 @@
 - (void) lockHigh {
     [gate lock];
     {
-        highTaskWaitCount++;
-        while (highTaskRunning || lowTaskRunning) {
-            [gate wait];
-        }
-        highTaskWaitCount--;
         highTaskRunning = YES;
     }
     [gate unlock];
@@ -74,22 +67,15 @@
 - (void) lockLow {
     [gate lock];
     {
-        while (lowTaskRunning || highTaskRunning || highTaskWaitCount > 0) {
+        while (highTaskRunning) {
             [gate wait];
         }
-        lowTaskRunning = YES;
     }
     [gate unlock];
 }
 
 
 - (void) unlockLow {
-    [gate lock];
-    {
-        lowTaskRunning = NO;
-        [gate broadcast];
-    }
-    [gate unlock];
 }
 
 

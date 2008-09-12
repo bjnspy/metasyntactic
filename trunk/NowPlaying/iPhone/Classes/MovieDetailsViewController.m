@@ -111,7 +111,7 @@
         [selectors addObject:[NSValue valueWithPointer:@selector(visitIMDb)]];
         [titles addObject:NSLocalizedString(@"Visit IMDb", nil)];
     }
-    
+
     if (theatersArray.count > 0) {
         [selectors addObject:[NSValue valueWithPointer:@selector(emailListings)]];
         [titles addObject:NSLocalizedString(@"E-mail listings", nil)];
@@ -428,7 +428,7 @@
     if (currentTheaterCount >= newTheaterCount) {
         return;
     }
-    
+
     NSInteger startSection = startPath.section;
     [self.tableView beginUpdates];
     {
@@ -443,7 +443,7 @@
         [self.tableView insertSections:sectionsToAdd withRowAnimation:UITableViewRowAnimationBottom];
     }
     [self.tableView endUpdates];
-    
+
     [self.tableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:startSection]
                           atScrollPosition:UITableViewScrollPositionMiddle
                                   animated:YES];
@@ -543,7 +543,7 @@
             [tableView insertRowsAtIndexPaths:paths withRowAnimation:UITableViewRowAnimationFade];
         }
         [tableView endUpdates];
-        
+
         //[tableView scrollToRowAtIndexPath:path atScrollPosition:UITableViewScrollPositionBottom animated:YES];
         // hack: when shrinking the details pane, the 'actions view' can
         // sometimes go missing.  To prevent that, we refresh explicitly.

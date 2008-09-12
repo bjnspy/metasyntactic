@@ -35,7 +35,7 @@
                       onTarget:(id) target
       inBackgroundWithArgument:(id) argument
                           gate:(NSLock*) gate
-                       visible:(BOOL) visible 
+                       visible:(BOOL) visible
                    lowPriority:(BOOL) lowPriority {
     BackgroundInvocation* invocation = [BackgroundInvocation invocationWithTarget:target
                                                                          selector:selector
