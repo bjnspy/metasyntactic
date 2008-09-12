@@ -50,6 +50,14 @@ case INTERFACE_TRANSACTION:
 reply.writeString(DESCRIPTOR);
 return true;
 }
+case TRANSACTION_getUserLocation:
+{
+data.enforceInterface(DESCRIPTOR);
+java.lang.String _result = this.getUserLocation();
+reply.writeNoException();
+reply.writeString(_result);
+return true;
+}
 case TRANSACTION_setUserLocation:
 {
 data.enforceInterface(DESCRIPTOR);
@@ -160,6 +168,23 @@ return mRemote;
 public java.lang.String getInterfaceDescriptor()
 {
 return DESCRIPTOR;
+}
+public java.lang.String getUserLocation() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+java.lang.String _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getUserLocation, _data, _reply, 0);
+_reply.readException();
+_result = _reply.readString();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
 }
 public void setUserLocation(java.lang.String userLocation) throws android.os.RemoteException
 {
@@ -339,18 +364,20 @@ _data.recycle();
 return _result;
 }
 }
-static final int TRANSACTION_setUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 0);
-static final int TRANSACTION_getSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 1);
-static final int TRANSACTION_setSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 2);
-static final int TRANSACTION_getAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 3);
-static final int TRANSACTION_setAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 4);
-static final int TRANSACTION_getAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 5);
-static final int TRANSACTION_setAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 6);
-static final int TRANSACTION_getUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 7);
-static final int TRANSACTION_setUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 8);
-static final int TRANSACTION_getMovies = (IBinder.FIRST_CALL_TRANSACTION + 9);
-static final int TRANSACTION_getTheaters = (IBinder.FIRST_CALL_TRANSACTION + 10);
+static final int TRANSACTION_getUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 0);
+static final int TRANSACTION_setUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 1);
+static final int TRANSACTION_getSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 2);
+static final int TRANSACTION_setSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 3);
+static final int TRANSACTION_getAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 4);
+static final int TRANSACTION_setAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 5);
+static final int TRANSACTION_getAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 6);
+static final int TRANSACTION_setAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 7);
+static final int TRANSACTION_getUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 8);
+static final int TRANSACTION_setUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 9);
+static final int TRANSACTION_getMovies = (IBinder.FIRST_CALL_TRANSACTION + 10);
+static final int TRANSACTION_getTheaters = (IBinder.FIRST_CALL_TRANSACTION + 11);
 }
+public java.lang.String getUserLocation() throws android.os.RemoteException;
 public void setUserLocation(java.lang.String userLocation) throws android.os.RemoteException;
 public int getSelectedTabIndex() throws android.os.RemoteException;
 public void setSelectedTabIndex(int index) throws android.os.RemoteException;

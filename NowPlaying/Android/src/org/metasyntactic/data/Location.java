@@ -27,6 +27,42 @@ public class Location implements Parcelable, Serializable {
     this.country = country;
   }
 
+
+  public double getLatitude() {
+    return latitude;
+  }
+
+
+  public double getLongitude() {
+    return longitude;
+  }
+
+
+  public String getAddress() {
+    return address;
+  }
+
+
+  public String getCity() {
+    return city;
+  }
+
+
+  public String getState() {
+    return state;
+  }
+
+
+  public String getPostalCode() {
+    return postalCode;
+  }
+
+
+  public String getCountry() {
+    return country;
+  }
+
+
   public int describeContents() {
     return 0;
   }

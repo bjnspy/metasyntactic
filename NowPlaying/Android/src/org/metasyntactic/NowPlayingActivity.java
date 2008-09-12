@@ -45,8 +45,6 @@ public class NowPlayingActivity extends Activity {
 
 
   private void onControllerConnected() {
-    final TabHost tabs = getTabHost();
-
     int selectedTab = controller.getSelectedTabIndex();
     getTabHost().setCurrentTab(selectedTab);
   }

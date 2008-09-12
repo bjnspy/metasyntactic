@@ -4,8 +4,9 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
 
 interface INowPlayingController {
+  String getUserLocation();
   void setUserLocation(String userLocation);
-
+  
   int getSelectedTabIndex();
   void setSelectedTabIndex(int index);
 
