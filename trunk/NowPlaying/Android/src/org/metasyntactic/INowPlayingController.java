@@ -3,7 +3,14 @@
  * Original file: /Projects/metasyntactic/trunk/NowPlaying/Android/src/org/metasyntactic/INowPlayingController.aidl
  */
 package org.metasyntactic;
+import java.lang.String;
+import android.os.RemoteException;
 import android.os.IBinder;
+import android.os.IInterface;
+import android.os.Binder;
+import android.os.Parcel;
+import java.util.List;
+import java.util.List;
 public interface INowPlayingController extends android.os.IInterface
 {
 /** Local-side IPC implementation stub class. */

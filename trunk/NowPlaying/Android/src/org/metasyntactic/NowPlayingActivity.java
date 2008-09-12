@@ -1,20 +1,29 @@
 package org.metasyntactic;
 
 import android.app.Activity;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.ServiceConnection;
+import android.content.*;
 import android.os.Bundle;
 import android.os.IBinder;
-import android.os.RemoteException;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TabHost;
 import org.metasyntactic.views.AllMoviesView;
+import org.metasyntactic.views.AllTheatersView;
+import org.metasyntactic.views.UpcomingMoviesView;
 
 public class NowPlayingActivity extends Activity {
-  private INowPlayingController controller;
+  private NowPlayingControllerWrapper controller;
+  private AllMoviesView allMoviesView;
+  private AllTheatersView allTheatersView;
+  private UpcomingMoviesView upcomingMoviesView;
+
+  private final BroadcastReceiver broadcastReceiver =
+      new BroadcastReceiver() {
+        @Override
+				public void onReceive(Context context, Intent intent) {
+          refresh();
+        }
+      };
+
 
   private final ServiceConnection serviceConnection =
       new ServiceConnection() {
@@ -24,18 +33,28 @@ public class NowPlayingActivity extends Activity {
           // interact with the service.  We are communicating with our
           // service through an IDL interface, so get a client-side
           // representation of that from the raw service object.
-          controller = INowPlayingController.Stub.asInterface(service);
-          try {
-            controller.setUserLocation("10009");
-          } catch (RemoteException e) {
-            throw new RuntimeException(e);
-          }
+          controller = new NowPlayingControllerWrapper(INowPlayingController.Stub.asInterface(service));
+          onControllerConnected();
         }
+
 
         public void onServiceDisconnected(ComponentName className) {
           controller = null;
         }
       };
+
+
+  private void onControllerConnected() {
+    final TabHost tabs = getTabHost();
+
+    int selectedTab = controller.getSelectedTabIndex();
+    getTabHost().setCurrentTab(selectedTab);
+  }
+
+
+  private TabHost getTabHost() {
+    return (TabHost) findViewById(R.id.tab_host);
+  }
 
 
   /** Called when the activity is first created. */
@@ -53,43 +72,66 @@ public class NowPlayingActivity extends Activity {
       throw new RuntimeException("Failed to bind to service!");
     }
 
-    final TabHost tabs = (TabHost) this.findViewById(R.id.tab_host);
+    final TabHost tabs = getTabHost();
     tabs.setup();
 
-    final View[] views = new View[]{
-        new AllMoviesView(this),
-        new Button(this),
-        new Button(this)
-    };
+    allMoviesView = new AllMoviesView(this);
+    allTheatersView = new AllTheatersView(this);
+    upcomingMoviesView = new UpcomingMoviesView(this);
 
     tabs.addTab(tabs.newTabSpec("movies_tab").setIndicator("Movies").setContent(
         new TabHost.TabContentFactory() {
           public View createTabContent(String s) {
-            return views[0];
+            return allMoviesView;
           }
         }));
 
     tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator("Theaters").setContent(
         new TabHost.TabContentFactory() {
           public View createTabContent(String s) {
-            return views[1];
+            return allTheatersView;
           }
         }));
 
     tabs.addTab(tabs.newTabSpec("upcoming_tab").setIndicator("Upcoming").setContent(
         new TabHost.TabContentFactory() {
           public View createTabContent(String s) {
-            return views[2];
+            return upcomingMoviesView;
           }
         }));
 
     tabs.setOnTabChangedListener(
         new TabHost.OnTabChangeListener() {
           public void onTabChanged(String s) {
-            views[tabs.getCurrentTab()].invalidate();
+            int currentTab = getTabHost().getCurrentTab();
+            controller.setSelectedTabIndex(currentTab);
           }
         });
+  }
 
-    tabs.setCurrentTab(0);
+
+  @Override
+  protected void onDestroy() {
+    unbindService(serviceConnection);
+    super.onDestroy();
+  }
+
+
+  @Override
+	protected void onResume() {
+    super.onResume();
+    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingModel.NOW_PLAYING_MODEL_CHANGED_INTENT));
+  }
+
+
+  @Override
+	protected void onPause() {
+    unregisterReceiver(broadcastReceiver);
+    super.onPause();
+  }
+
+
+  private void refresh() {
+    System.out.println();
   }
 }

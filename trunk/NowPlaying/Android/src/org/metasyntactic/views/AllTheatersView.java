@@ -12,12 +12,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class AllMoviesView extends ListView implements ListAdapter {
+public class AllTheatersView extends ListView implements ListAdapter {
   private final NowPlayingActivity activity;
   private final List<String> movies = new ArrayList<String>();
 
 
-  public AllMoviesView(NowPlayingActivity activity) {
+  public AllTheatersView(NowPlayingActivity activity) {
     super(activity);
     this.activity = activity;
     setAdapter(this);
