@@ -17,6 +17,7 @@
 #import "NumbersCache.h"
 
 #import "Application.h"
+#import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "MovieNumbers.h"
 #import "NetworkUtilities.h"
@@ -149,7 +150,7 @@
     [dictionary setObject:encodedDaily forKey:@"Daily"];
     [dictionary setObject:budget forKey:@"Budget"];
 
-    [Utilities writeObject:dictionary toFile:file];
+    [FileUtilities writeObject:dictionary toFile:file];
 }
 
 
@@ -220,7 +221,7 @@
 
 
 - (NSString*) movieDetailsFile:(MovieNumbers*) numbers {
-    NSString* name = [[Application sanitizeFileName:numbers.canonicalTitle] stringByAppendingPathExtension:@"plist"];
+    NSString* name = [[FileUtilities sanitizeFileName:numbers.canonicalTitle] stringByAppendingPathExtension:@"plist"];
     return [[Application numbersDetailsFolder] stringByAppendingPathComponent:name];
 }
 

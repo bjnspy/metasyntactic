@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "ExtraMovieInformation.h"
+#import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
@@ -58,7 +59,7 @@ static NSString* hash_key = @"Hash";
 
 
 - (NSString*) reviewFilePath:(NSString*) title ratingsProvider:(NSInteger) ratingsProvider {
-    NSString* sanitizedTitle = [Application sanitizeFileName:title];
+    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:title];
     NSString* reviewsFolder = [Application providerReviewsFolder:[self.model.ratingsProviders objectAtIndex:ratingsProvider]];
     return [[reviewsFolder stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"plist"];
 }
@@ -139,7 +140,7 @@ static NSString* hash_key = @"Hash";
     [dictionary setObject:encodedReviews forKey:reviews_key];
     [dictionary setObject:hash forKey:hash_key];
 
-    [Utilities writeObject:dictionary toFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
+    [FileUtilities writeObject:dictionary toFile:[self reviewFilePath:title ratingsProvider:ratingsProvider]];
 }
 
 

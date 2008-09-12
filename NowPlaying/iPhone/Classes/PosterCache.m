@@ -17,6 +17,7 @@
 #import "PosterCache.h"
 
 #import "Application.h"
+#import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "PosterDownloader.h"
@@ -57,7 +58,7 @@
 
 
 - (NSString*) posterFilePath:(Movie*) movie {
-    NSString* sanitizedTitle = [Application sanitizeFileName:movie.canonicalTitle];
+    NSString* sanitizedTitle = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     return [[[Application postersFolder] stringByAppendingPathComponent:sanitizedTitle] stringByAppendingPathExtension:@"jpg"];
 }
 

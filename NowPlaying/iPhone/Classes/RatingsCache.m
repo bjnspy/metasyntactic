@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "ExtraMovieInformation.h"
+#import "FileUtilities.h"
 #import "MetacriticDownloader.h"
 #import "NowPlayingModel.h"
 #import "RottenTomatoesDownloader.h"
@@ -106,7 +107,7 @@ static NSString* hash_key = @"Hash";
     [result setObject:hash forKey:hash_key];
 
     //[Application ratingsFile:[self currentRatingsProvider]]
-    [Utilities writeObject:result toFile:self.ratingsFile];
+    [FileUtilities writeObject:result toFile:self.ratingsFile];
 }
 
 

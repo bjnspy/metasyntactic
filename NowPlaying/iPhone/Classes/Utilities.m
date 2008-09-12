@@ -160,29 +160,6 @@
 }
 
 
-+ (void) writeObject:(id) object toFile:(NSString*) file {
-    NSData* plistData = [NSPropertyListSerialization dataFromPropertyList:object
-                                                                   format:NSPropertyListBinaryFormat_v1_0
-                                                         errorDescription:NULL];
-    if(plistData) {
-        [plistData writeToFile:file atomically:YES];
-    }
-}
-
-
-+ (id) readObject:(NSString*) file {
-    NSData* data = [NSData dataWithContentsOfFile:file];
-    if (data == nil) {
-        return nil;
-    }
-
-    return [NSPropertyListSerialization propertyListFromData:data
-                                            mutabilityOption:NSPropertyListImmutable
-                                                      format:NULL
-                                            errorDescription:NULL];
-}
-
-
 + (NSString*)                      string:(NSString*) string
       byAddingPercentEscapesUsingEncoding:(NSStringEncoding) encoding {
     string = [string stringByAddingPercentEscapesUsingEncoding:encoding];

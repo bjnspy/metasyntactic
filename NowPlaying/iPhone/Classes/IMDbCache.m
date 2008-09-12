@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "DifferenceEngine.h"
+#import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
@@ -50,7 +51,7 @@
 
 
 - (NSString*) movieFileName:(NSString*) title {
-    return [[Application sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
+    return [[FileUtilities sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -86,14 +87,14 @@
         NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
 
         if (imdbAddress.length > 0) {
-            [Utilities writeObject:imdbAddress toFile:path];
+            [FileUtilities writeObject:imdbAddress toFile:path];
         }
     }
 }
 
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
-    return [Utilities readObject:[self movieFilePath:movie]];
+    return [FileUtilities readObject:[self movieFilePath:movie]];
 }
 
 
