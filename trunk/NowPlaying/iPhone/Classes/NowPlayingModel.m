@@ -25,6 +25,7 @@
 #import "DifferenceEngine.h"
 #import "ExtraMovieInformation.h"
 #import "FavoriteTheater.h"
+#import "FileUtilities.h"
 #import "IMDbCache.h"
 #import "Location.h"
 #import "Movie.h"
@@ -312,7 +313,7 @@ static NSString** KEYS[] = {
         }
     }
     
-    [Utilities writeObject:result toFile:[Application movieMapFile]];
+    [FileUtilities writeObject:result toFile:[Application movieMapFile]];
     [self performSelectorOnMainThread:@selector(reportMovieMap:) withObject:result waitUntilDone:NO];
 }
 

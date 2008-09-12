@@ -17,6 +17,7 @@
 #import "AddressLocationCache.h"
 
 #import "Application.h"
+#import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Location.h"
 #import "LocationUtilities.h"
@@ -131,7 +132,7 @@
 
 
 - (NSString*) locationFile:(NSString*) address {
-    return [[[Application locationsFolder] stringByAppendingPathComponent:[Application sanitizeFileName:address]]
+    return [[[Application locationsFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]]
             stringByAppendingPathExtension:@"plist"];
 }
 
@@ -154,7 +155,7 @@
         return;
     }
 
-    [Utilities writeObject:location.dictionary toFile:[self locationFile:address]];
+    [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
     [self performSelectorOnMainThread:@selector(invalidateCachedData) withObject:nil waitUntilDone:NO];
 }
 

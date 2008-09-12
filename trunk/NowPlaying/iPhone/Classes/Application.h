@@ -58,9 +58,6 @@
 + (unichar) starCharacter;
 + (NSString*) starString;
 
-+ (void) createDirectory:(NSString*) path;
-+ (NSString*) sanitizeFileName:(NSString*) name;
-
 + (BOOL) useKilometers;
 
 @end

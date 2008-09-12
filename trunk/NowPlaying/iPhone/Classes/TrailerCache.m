@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "DifferenceEngine.h"
+#import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
@@ -50,7 +51,7 @@
 
 
 - (NSString*) trailerFileName:(NSString*) title {
-    return [[Application sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
+    return [[FileUtilities sanitizeFileName:title] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -144,7 +145,7 @@
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
 
     if (trailers.count) {
-        [Utilities writeObject:trailers toFile:[self trailerFilePath:movieTitle]];
+        [FileUtilities writeObject:trailers toFile:[self trailerFilePath:movieTitle]];
     }
 }
 

@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
+#import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
@@ -74,7 +75,7 @@ static NSString* titles_key = @"Titles";
 
     [result setObject:encodedMovies forKey:movies_key];
 
-    [Utilities writeObject:result toFile:[Application upcomingMoviesIndexFile]];
+    [FileUtilities writeObject:result toFile:[Application upcomingMoviesIndexFile]];
 }
 
 
@@ -213,24 +214,24 @@ static NSString* titles_key = @"Titles";
 
 
 - (NSString*) imdbFile:(Movie*) movie {
-    return [[[Application upcomingIMDbFolder] stringByAppendingPathComponent:[Application sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+    return [[[Application upcomingIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) posterFile:(Movie*) movie {
-    NSString* fileName = [Application sanitizeFileName:movie.canonicalTitle];
+    NSString* fileName = [FileUtilities sanitizeFileName:movie.canonicalTitle];
     fileName = [fileName stringByAppendingPathExtension:@"jpg"];
     return [[Application upcomingPostersFolder] stringByAppendingPathComponent:fileName];
 }
 
 
 - (NSString*) synopsisFile:(Movie*) movie {
-    return [[[Application upcomingSynopsesFolder] stringByAppendingPathComponent:[Application sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+    return [[[Application upcomingSynopsesFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
 - (NSString*) trailersFile:(Movie*) movie {
-    return [[[Application upcomingTrailersFolder] stringByAppendingPathComponent:[Application sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+    return [[[Application upcomingTrailersFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -244,7 +245,7 @@ static NSString* titles_key = @"Titles";
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
 
     if (![Utilities isNilOrEmpty:imdbAddress]) {
-        [Utilities writeObject:imdbAddress toFile:imdbFile];
+        [FileUtilities writeObject:imdbAddress toFile:imdbFile];
     }
 }
 
@@ -284,7 +285,7 @@ static NSString* titles_key = @"Titles";
     NSString* synopsis = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
 
     if (![Utilities isNilOrEmpty:synopsis]) {
-        [Utilities writeObject:synopsis toFile:synopsisFile];
+        [FileUtilities writeObject:synopsis toFile:synopsisFile];
     }
 }
 
@@ -308,7 +309,7 @@ static NSString* titles_key = @"Titles";
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
 
     if (trailers.count) {
-        [Utilities writeObject:trailers toFile:trailersFile];
+        [FileUtilities writeObject:trailers toFile:trailersFile];
     }
 }
 
@@ -419,7 +420,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
-    return [Utilities readObject:[self imdbFile:movie]];
+    return [FileUtilities readObject:[self imdbFile:movie]];
 }
 
 
@@ -434,7 +435,7 @@ static NSString* titles_key = @"Titles";
 
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
-    return [Utilities readObject:[self synopsisFile:movie]];
+    return [FileUtilities readObject:[self synopsisFile:movie]];
 }
 
 

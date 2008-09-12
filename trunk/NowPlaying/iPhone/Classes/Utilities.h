@@ -43,9 +43,6 @@
 + (NSArray*) nonNilArray:(NSArray*) array;
 + (NSString*) nonNilString:(NSString*) string;
 
-+ (void) writeObject:(id) object toFile:(NSString*) file;
-+ (id) readObject:(NSString*) file;
-
 + (NSString*) stringByAddingPercentEscapes:(NSString*) string;
 
 + (NSString*) generateShowtimeLinks:(NowPlayingModel*) model

@@ -17,6 +17,7 @@
 #import "Application.h"
 
 #import "DifferenceEngine.h"
+#import "FileUtilities.h"
 #import "Utilities.h"
 
 @implementation Application
@@ -57,13 +58,6 @@ static NSString* starString = nil;
         differenceEngine = [[DifferenceEngine engine] retain];
 
         providerReviewsFolder = [[NSMutableDictionary dictionary] retain];
-    }
-}
-
-
-+ (void) createDirectory:(NSString*) folder {
-    if (![[NSFileManager defaultManager] fileExistsAtPath:folder]) {
-        [[NSFileManager defaultManager] createDirectoryAtPath:folder withIntermediateDirectories:YES attributes:nil error:NULL];
     }
 }
 
@@ -118,7 +112,7 @@ static NSString* starString = nil;
             NSArray* paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, /*expandTilde:*/YES);
             NSString* folder = [paths objectAtIndex:0];
 
-            [Application createDirectory:folder];
+            [FileUtilities createDirectory:folder];
 
             documentsFolder = [folder retain];
         }
@@ -138,7 +132,7 @@ static NSString* starString = nil;
             NSString* executableName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleExecutable"];
             NSString* folder = [[paths objectAtIndex:0] stringByAppendingPathComponent:executableName];
 
-            [Application createDirectory:folder];
+            [FileUtilities createDirectory:folder];
 
             supportFolder = [folder retain];
         }
@@ -166,7 +160,7 @@ static NSString* starString = nil;
     {
         if (*folder == nil) {
             NSString* result = [parent stringByAppendingPathComponent:child];
-            [Application createDirectory:result];
+            [FileUtilities createDirectory:result];
             *folder = [result retain];
         }
     }
@@ -255,7 +249,7 @@ static NSString* starString = nil;
         if (folder == nil) {
             folder = [[Application reviewsFolder] stringByAppendingPathComponent:ratingsProvider];
 
-            [Application createDirectory:folder];
+            [FileUtilities createDirectory:folder];
 
             [providerReviewsFolder setObject:folder forKey:ratingsProvider];
         }
@@ -288,7 +282,7 @@ static NSString* starString = nil;
             finalDir = [tempDir stringByAppendingPathComponent:random];
         } while ([manager fileExistsAtPath:finalDir]);
 
-        [Application createDirectory:finalDir];
+        [FileUtilities createDirectory:finalDir];
     }
     [gate unlock];
 
@@ -369,12 +363,6 @@ static NSString* starString = nil;
     }
 
     return starString;
-}
-
-
-+ (NSString*) sanitizeFileName:(NSString*) name {
-    return [[name stringByReplacingOccurrencesOfString:@"/" withString:@"-slash-"]
-                  stringByReplacingOccurrencesOfString:@":" withString:@"-colon-"];
 }
 
 

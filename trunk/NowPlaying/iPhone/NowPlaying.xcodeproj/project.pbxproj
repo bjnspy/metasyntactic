@@ -80,6 +80,7 @@
 		74A865440E64FCAD003A2249 /* UpcomingMoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865430E64FCAD003A2249 /* UpcomingMoviesViewController.m */; };
 		74A865470E64FCC6003A2249 /* UpcomingMoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */; };
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
+		74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
@@ -305,6 +306,8 @@
 		74A865460E64FCC6003A2249 /* UpcomingMoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingMoviesNavigationController.m; sourceTree = "<group>"; };
 		74B3BCA60E2D98C700DCE835 /* ReviewsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewsViewController.h; sourceTree = "<group>"; };
 		74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
+		74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
+		74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
@@ -585,6 +588,8 @@
 				74F94A9F0E6B9ECB00075068 /* NetworkUtilities.m */,
 				74F94C8B0E6BB34800075068 /* LocationUtilities.h */,
 				74F94C8C0E6BB34800075068 /* LocationUtilities.m */,
+				74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */,
+				74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1066,6 +1071,7 @@
 				740246620E785A9000ECE1B4 /* BackgroundInvocation.m in Sources */,
 				740246790E785B0000ECE1B4 /* Invocation.m in Sources */,
 				743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */,
+				74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

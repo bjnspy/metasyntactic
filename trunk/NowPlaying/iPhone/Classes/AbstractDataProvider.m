@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
+#import "FileUtilities.h"
 #import "LookupResult.h"
 #import "Movie.h"
 #import "NowPlayingModel.h"
@@ -47,7 +48,7 @@
 - (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.model = model_;
-        [Application createDirectory:[self providerFolder]];
+        [FileUtilities createDirectory:[self providerFolder]];
         self.performancesData = [NSMutableDictionary dictionary];
     }
 
@@ -89,7 +90,7 @@
 
 
 - (void) setLastLookupDate {
-    [Utilities writeObject:@"" toFile:[self lastLookupDateFile]];
+    [FileUtilities writeObject:@"" toFile:[self lastLookupDateFile]];
 }
 
 
@@ -125,7 +126,7 @@
 
 
 - (NSDictionary*) loadSynchronizationData {
-    NSDictionary* result = [Utilities readObject:self.synchronizationFile];
+    NSDictionary* result = [FileUtilities readObject:self.synchronizationFile];
     if (result.count == 0) {
         return [NSDictionary dictionary];
     }
@@ -135,7 +136,7 @@
 
 - (NSDictionary*) synchronizationData {
     if (synchronizationInformationData == nil) {
-        self.synchronizationInformationData = [Utilities readObject:self.synchronizationFile];
+        self.synchronizationInformationData = [self loadSynchronizationData];
     }
     return synchronizationInformationData;
 }
@@ -148,12 +149,12 @@
         [encoded addObject:[object dictionary]];
     }
 
-    [Utilities writeObject:encoded toFile:file];
+    [FileUtilities writeObject:encoded toFile:file];
 }
 
 
 - (NSString*) performancesFile:(NSString*) theaterName parentFolder:(NSString*) folder {
-    return [[folder stringByAppendingPathComponent:[Application sanitizeFileName:theaterName]] stringByAppendingPathExtension:@"plist"];
+    return [[folder stringByAppendingPathComponent:[FileUtilities sanitizeFileName:theaterName]] stringByAppendingPathExtension:@"plist"];
 }
 
 
@@ -166,13 +167,13 @@
     if (result.movies.count > 0 || result.theaters.count > 0) {
         [self saveArray:result.movies to:self.moviesFile];
         [self saveArray:result.theaters to:self.theatersFile];
-        [Utilities writeObject:result.synchronizationData toFile:self.synchronizationFile];
+        [FileUtilities writeObject:result.synchronizationData toFile:self.synchronizationFile];
 
         NSString* tempFolder = [Application uniqueTemporaryFolder];
         for (NSString* theaterName in result.performances) {
             NSMutableDictionary* value = [result.performances objectForKey:theaterName];
 
-            [Utilities writeObject:value toFile:[self performancesFile:theaterName parentFolder:tempFolder]];
+            [FileUtilities writeObject:value toFile:[self performancesFile:theaterName parentFolder:tempFolder]];
         }
 
         [[NSFileManager defaultManager] removeItemAtPath:self.performancesFolder error:NULL];
@@ -256,7 +257,7 @@
 
 - (void) invalidateDiskCache {
     [[NSFileManager defaultManager] removeItemAtPath:self.providerFolder error:NULL];
-    [Application createDirectory:self.providerFolder];
+    [FileUtilities createDirectory:self.providerFolder];
 }
 
 
