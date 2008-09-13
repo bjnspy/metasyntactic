@@ -184,11 +184,11 @@
     if ([owner sortingByTitle]) {
         NSString* releaseDate = [DateUtilities formatShortDate:movie.releaseDate];
 
-        if (movie.isUnrated) {
-            ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
-        } else {
-            ratedLabel.text   = [NSString stringWithFormat:NSLocalizedString(@"%@ - Release: %@", nil), rating, releaseDate];
+        if (!movie.isUnrated) {
+            releaseDate = [NSString stringWithFormat:NSLocalizedString(@"Release: %@", nil), releaseDate];
         }
+
+        ratedLabel.text   = [NSString stringWithFormat:@"%@ - %@", rating, releaseDate];
     } else {
         ratedLabel.text = rating;
     }
