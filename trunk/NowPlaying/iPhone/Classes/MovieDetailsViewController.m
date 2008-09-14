@@ -585,10 +585,6 @@
         return UITableViewCellAccessoryNone;
     }
 
-    if (section == 1) {
-        return UITableViewCellAccessoryNone;
-    }
-
     if ([self isTheaterSection:section]) {
         // theater section
         return UITableViewCellAccessoryDisclosureIndicator;

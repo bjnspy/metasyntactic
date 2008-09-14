@@ -245,8 +245,8 @@ static NSMutableDictionary* weeksAgoMap;
 
 
 + (NSDate*) dateWithNaturalLanguageString:(NSString*) string {
-    //return nil;
-    return [NSDate dateWithNaturalLanguageString:string];
+    return nil;
+    //return [NSDate dateWithNaturalLanguageString:string];
 }
 
 
