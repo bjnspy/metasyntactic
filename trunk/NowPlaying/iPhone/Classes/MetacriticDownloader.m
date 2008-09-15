@@ -47,7 +47,7 @@
 }
 
 
-- (NSString*) lookupServerHash {
++ (NSString*) lookupServerHash {
     NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&format=xml&hash=true", [Application host]];
     NSString* value = [NetworkUtilities stringWithContentsOfAddress:address
                                                           important:YES];

@@ -391,9 +391,9 @@ static NSString** KEYS[] = {
 
 
 - (void) setRatingsProviderIndex:(NSInteger) index {
-    [self regenerateMovieMap];
     [[NSUserDefaults standardUserDefaults] setInteger:index forKey:RATINGS_PROVIDER_INDEX];
     [ratingsCache onRatingsProviderChanged];
+    [self regenerateMovieMap];
     [self updateReviewCache];
 
     if (self.noRatings && self.allMoviesSortingByScore) {
@@ -418,7 +418,10 @@ static NSString** KEYS[] = {
 
 
 - (NSArray*) ratingsProviders {
-    return [NSArray arrayWithObjects:@"RottenTomatoes", @"Metacritic", @"None", nil];
+    return [NSArray arrayWithObjects:
+            @"RottenTomatoes",
+            @"Metacritic",
+            NSLocalizedString(@"None", nil), nil];
 }
 
 
