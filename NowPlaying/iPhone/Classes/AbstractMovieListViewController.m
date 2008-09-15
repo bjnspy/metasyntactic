@@ -112,15 +112,31 @@
 }
 
 
-- (void) sortMoviesByTitle {
+- (unichar) firstCharacter:(NSString*) string {
+    unichar c1 = toupper([string characterAtIndex:0]);
+    if (c1 < 'A' || c1 > 'Z') {
+        // remove an accent if it exists.
+        NSString* asciiString = [[[NSString alloc] initWithData:[string dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES]
+                                                       encoding:NSASCIIStringEncoding] autorelease];
+        unichar c2 = toupper([asciiString characterAtIndex:0]);
+        if (c2 >= 'A' && c2 <= 'Z') {
+            return c2;
+        }
+    }
+    
+    return c1;
+}
+
+
+- (void) sortMoviesByTitle {    
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
 
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
 
     for (Movie* movie in sortedMovies) {
-        unichar firstChar = [movie.displayTitle characterAtIndex:0];
-        firstChar = toupper(firstChar);
-
+        NSString* title = movie.displayTitle;
+        unichar firstChar = [self firstCharacter:title];
+        
         if (firstChar >= 'A' && firstChar <= 'Z') {
             NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
             [sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
