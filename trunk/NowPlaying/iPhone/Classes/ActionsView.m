@@ -48,7 +48,7 @@
             UIButton* button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
             [button setTitle:title forState:UIControlStateNormal];
             [button sizeToFit];
-            
+
             [button addTarget:self action:@selector(onButtonPressed:) forControlEvents:UIControlEventTouchUpInside];
 
             [array addObject:button];
