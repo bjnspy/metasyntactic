@@ -118,9 +118,9 @@ static NSString* hash_key = @"Hash";
 
 - (NSString*) lookupServerHash {
     if (self.model.rottenTomatoesRatings) {
-        return [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupServerHash];
+        return [RottenTomatoesDownloader lookupServerHash];
     } else if (self.model.metacriticRatings) {
-        return [[MetacriticDownloader downloaderWithModel:self.model] lookupServerHash];
+        return [MetacriticDownloader lookupServerHash];
     }
 
     return nil;
@@ -133,6 +133,10 @@ static NSString* hash_key = @"Hash";
 
     if (serverHash.length == 0) {
         serverHash = @"0";
+    }
+    
+    if ([@"0" isEqual:serverHash]) {
+        return nil;
     }
 
     if (localHash != nil &&

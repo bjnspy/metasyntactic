@@ -22,7 +22,7 @@
 
 + (RottenTomatoesDownloader*) downloaderWithModel:(NowPlayingModel*) model;
 
-- (NSString*) lookupServerHash;
++ (NSString*) lookupServerHash;
 - (NSDictionary*) lookupMovieListings;
 
 @end
