@@ -126,6 +126,10 @@ property_definition(originatingPostalCode);
         return [NSString stringWithFormat:@"%@am", [showtime substringToIndex:showtime.length - 3]];
     }
 
+    if (![showtime hasSuffix:@"am"] && ![showtime hasSuffix:@"pm"]) {
+        return [NSString stringWithFormat:@"%@pm", showtime];
+    }
+    
     return showtime;
 }
 

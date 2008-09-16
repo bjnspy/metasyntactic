@@ -33,11 +33,7 @@
 
 @implementation NorthAmericaDataProvider
 
-@synthesize model;
-
 - (void) dealloc {
-    self.model = nil;
-
     [super dealloc];
 }
 
@@ -66,15 +62,13 @@
 
         for (XmlElement* performanceElement in performancesElement.children) {
             NSString* showId = [performanceElement attributeValue:@"showid"];
-            if (![Utilities isNilOrEmpty:showId]) {
-                showId = [NSString stringWithFormat:@"F-%@", showId];
-            }
 
             NSString* time = [performanceElement attributeValue:@"showtime"];
             time = [Theater processShowtime:time];
 
             Performance* performance = [Performance performanceWithIdentifier:showId
-                                                                         time:time];
+                                                                         time:time
+                                                                          url:@""];
 
             [performances addObject:performance.dictionary];
         }
@@ -254,30 +248,13 @@
 }
 
 
-- (void) reportUnknownLocation {
-    if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(reportUnknownLocation)
-                               withObject:nil
-                            waitUntilDone:NO];
-        return;
-    }
-
-    UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                     message:NSLocalizedString(@"Could not find location.", nil)
-                                                    delegate:nil
-                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                           otherButtonTitles:nil] autorelease];
-
-    [alert show];
-}
-
-
 - (LookupResult*) lookupLocation:(NSString*) location
                     theaterNames:(NSArray*) theaterNames {
     if (![Utilities isNilOrEmpty:location]) {
         Location* actualLocation = [self.model.addressLocationCache downloadAddressLocationBackgroundEntryPoint:location];
         if (actualLocation.postalCode == nil) {
             [self reportUnknownLocation];
+            return nil;
         }
 
         NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
@@ -305,76 +282,6 @@
 }
 
 
-- (BOOL)        results:(LookupResult*) lookupResult
-      containsFavorite:(FavoriteTheater*) favorite {
-    for (Theater* theater in lookupResult.theaters) {
-        if ([theater.name isEqual:favorite.name]) {
-            return YES;
-        }
-    }
-
-    return NO;
-}
-
-
-- (void) lookupMissingFavorites:(LookupResult*) lookupResult {
-    if (lookupResult == nil) {
-        return;
-    }
-
-    NSArray* favoriteTheaters = self.model.favoriteTheaters;
-    if (favoriteTheaters.count == 0) {
-        return;
-    }
-
-    MultiDictionary* postalCodeToMissingTheaterNames = [MultiDictionary dictionary];
-
-    for (FavoriteTheater* favorite in favoriteTheaters) {
-        if (![self results:lookupResult containsFavorite:favorite]) {
-            [postalCodeToMissingTheaterNames addObject:favorite.name forKey:favorite.originatingPostalCode];
-        }
-    }
-
-    NSMutableSet* movieTitles = [NSMutableSet set];
-    for (Movie* movie in lookupResult.movies) {
-        [movieTitles addObject:movie.canonicalTitle];
-    }
-
-    for (NSString* postalCode in postalCodeToMissingTheaterNames.allKeys) {
-        NSArray* theaterNames = [postalCodeToMissingTheaterNames objectsForKey:postalCode];
-
-        LookupResult* favoritesLookupResult = [self lookupLocation:postalCode
-                                                      theaterNames:theaterNames];
-
-        [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
-        [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
-
-        // the theater may refer to movies that we don't know about.
-        for (NSString* theaterName in favoritesLookupResult.performances.allKeys) {
-            for (NSString* movieTitle in [[favoritesLookupResult.performances objectForKey:theaterName] allKeys]) {
-                if (![movieTitles containsObject:movieTitle]) {
-                    [movieTitles addObject:movieTitle];
-
-                    for (Movie* movie in favoritesLookupResult.movies) {
-                        if ([movie.canonicalTitle isEqual:movieTitle]) {
-                            [lookupResult.movies addObject:movie];
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-    }
-}
-
-
-- (LookupResult*) lookupWorker {
-    LookupResult* result = [self lookupLocation:self.model.userLocation theaterNames:nil];
-    [self lookupMissingFavorites:result];
-    return result;
-}
-
-
 - (NSString*) displayName {
     return @"North America";
 }
@@ -384,27 +291,23 @@
                                movie:(Movie*) movie
                          performance:(Performance*) performance
                                 date:(NSDate*) date {
-    if ([performance.identifier hasPrefix:@"F-"]) {
-        NSDateComponents* dateComponents =
-        [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                        fromDate:self.model.searchDate];
-        NSDateComponents* timeComponents =
-        [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
-                                        fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
-
-        NSString* url = [NSString stringWithFormat:@"https://iphone.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
-                         movie.identifier,
-                         theater.identifier,
-                         dateComponents.year,
-                         dateComponents.month,
-                         dateComponents.day,
-                         timeComponents.hour,
-                         timeComponents.minute];
-
-        return url;
-    }
-
-    return nil;
+    NSDateComponents* dateComponents =
+    [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                    fromDate:self.model.searchDate];
+    NSDateComponents* timeComponents =
+    [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
+                                    fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
+    
+    NSString* url = [NSString stringWithFormat:@"https://iphone.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
+                     movie.identifier,
+                     theater.identifier,
+                     dateComponents.year,
+                     dateComponents.month,
+                     dateComponents.day,
+                     timeComponents.hour,
+                     timeComponents.minute];
+    
+    return url;
 }
 
 

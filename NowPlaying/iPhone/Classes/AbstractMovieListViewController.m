@@ -165,11 +165,13 @@
 
     for (Movie* movie in sortedMovies) {
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
-        if (movie.releaseDate != nil) {
-            if ([movie.releaseDate compare:today] == NSOrderedDescending) {
-                title = [DateUtilities formatFullDate:movie.releaseDate];
+        NSDate* releaseDate = [self.model releaseDateForMovie:movie];
+        
+        if (releaseDate != nil) {
+            if ([releaseDate compare:today] == NSOrderedDescending) {
+                title = [DateUtilities formatFullDate:releaseDate];
             } else {
-                title = [DateUtilities timeSinceNow:movie.releaseDate];
+                title = [DateUtilities timeSinceNow:releaseDate];
             }
         }
 

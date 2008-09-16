@@ -17,14 +17,17 @@
 @interface Performance : NSObject {
     NSString* identifier;
     NSString* time;
+    NSString* url;
 }
 
 @property (copy) NSString* identifier;
 @property (copy) NSString* time;
+@property (copy) NSString* url;
 
 + (Performance*) performanceWithDictionary:(NSDictionary*) dictionary;
 + (Performance*) performanceWithIdentifier:(NSString*) identifier
-                                      time:(NSString*) time;
+                                      time:(NSString*) time
+                                       url:(NSString*) url;
 
 - (NSDictionary*) dictionary;
 

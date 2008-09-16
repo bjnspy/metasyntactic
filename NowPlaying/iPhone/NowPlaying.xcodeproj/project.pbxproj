@@ -52,6 +52,7 @@
 		744592040E6CA017002D05C3 /* WarningView.m in Sources */ = {isa = PBXBuildFile; fileRef = 744592030E6CA017002D05C3 /* WarningView.m */; };
 		744592070E6CA06C002D05C3 /* Warning-32x32.png in Resources */ = {isa = PBXBuildFile; fileRef = 744592060E6CA06C002D05C3 /* Warning-32x32.png */; };
 		74489FCB0DDD5A5400F565B1 /* ViewControllerUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */; };
+		745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */; };
 		7457FE920E21A41A00929D3E /* Performance.m in Sources */ = {isa = PBXBuildFile; fileRef = 7457FE910E21A41A00929D3E /* Performance.m */; };
 		745E203C0E58858A00105751 /* AutoResizingCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E203B0E58858A00105751 /* AutoResizingCell.m */; };
 		746A01430DC819270079D89B /* Movie.m in Sources */ = {isa = PBXBuildFile; fileRef = 746A01420DC819270079D89B /* Movie.m */; };
@@ -236,6 +237,8 @@
 		744592060E6CA06C002D05C3 /* Warning-32x32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Warning-32x32.png"; path = "Resources/Warning-32x32.png"; sourceTree = "<group>"; };
 		74489FC90DDD5A5400F565B1 /* ViewControllerUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewControllerUtilities.h; sourceTree = "<group>"; };
 		74489FCA0DDD5A5400F565B1 /* ViewControllerUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewControllerUtilities.m; sourceTree = "<group>"; };
+		745236AB0E7F28EB0047F544 /* GoogleDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoogleDataProvider.h; sourceTree = "<group>"; };
+		745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoogleDataProvider.m; sourceTree = "<group>"; };
 		7457FE900E21A41A00929D3E /* Performance.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Performance.h; sourceTree = "<group>"; };
 		7457FE910E21A41A00929D3E /* Performance.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Performance.m; sourceTree = "<group>"; };
 		745C91270E4BE502006C5EB8 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
@@ -855,6 +858,8 @@
 				74F3B2590E3CE80300DD25DA /* NorthAmericaDataProvider.m */,
 				74F3B2E50E3CF02400DD25DA /* LookupResult.h */,
 				74F3B2E60E3CF02400DD25DA /* LookupResult.m */,
+				745236AB0E7F28EB0047F544 /* GoogleDataProvider.h */,
+				745236AC0E7F28EB0047F544 /* GoogleDataProvider.m */,
 			);
 			name = DataProviders;
 			sourceTree = "<group>";
@@ -1072,6 +1077,7 @@
 				740246790E785B0000ECE1B4 /* Invocation.m in Sources */,
 				743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */,
 				74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */,
+				745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

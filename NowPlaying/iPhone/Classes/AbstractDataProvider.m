@@ -18,9 +18,11 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
+#import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "LookupResult.h"
 #import "Movie.h"
+#import "MultiDictionary.h"
 #import "NowPlayingModel.h"
 #import "Performance.h"
 #import "Theater.h"
@@ -249,20 +251,89 @@
 }
 
 
-- (LookupResult*) lookupWorker {
-    NSAssert(false, @"Someone improperly subclassed!");
-    return nil;
-}
-
-
 - (void) invalidateDiskCache {
     [[NSFileManager defaultManager] removeItemAtPath:self.providerFolder error:NULL];
     [FileUtilities createDirectory:self.providerFolder];
 }
 
 
+- (LookupResult*) lookupLocation:(NSString*) location
+                    theaterNames:(NSArray*) theaterNames {
+    NSAssert(false, @"Someone improperly subclassed!");
+    return nil;
+}
+
+
+- (BOOL)        results:(LookupResult*) lookupResult
+       containsFavorite:(FavoriteTheater*) favorite {
+    for (Theater* theater in lookupResult.theaters) {
+        if ([theater.name isEqual:favorite.name]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+
+- (void) lookupMissingFavorites:(LookupResult*) lookupResult {
+    if (lookupResult == nil) {
+        return;
+    }
+    
+    NSArray* favoriteTheaters = self.model.favoriteTheaters;
+    if (favoriteTheaters.count == 0) {
+        return;
+    }
+    
+    MultiDictionary* postalCodeToMissingTheaterNames = [MultiDictionary dictionary];
+    
+    for (FavoriteTheater* favorite in favoriteTheaters) {
+        if (![self results:lookupResult containsFavorite:favorite]) {
+            [postalCodeToMissingTheaterNames addObject:favorite.name forKey:favorite.originatingPostalCode];
+        }
+    }
+    
+    NSMutableSet* movieTitles = [NSMutableSet set];
+    for (Movie* movie in lookupResult.movies) {
+        [movieTitles addObject:movie.canonicalTitle];
+    }
+    
+    for (NSString* postalCode in postalCodeToMissingTheaterNames.allKeys) {
+        NSArray* theaterNames = [postalCodeToMissingTheaterNames objectsForKey:postalCode];
+        
+        LookupResult* favoritesLookupResult = [self lookupLocation:postalCode
+                                                      theaterNames:theaterNames];
+        
+        if (favoritesLookupResult == nil) {
+            continue;
+        }
+        
+        [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
+        [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
+        
+        // the theater may refer to movies that we don't know about.
+        for (NSString* theaterName in favoritesLookupResult.performances.allKeys) {
+            for (NSString* movieTitle in [[favoritesLookupResult.performances objectForKey:theaterName] allKeys]) {
+                if (![movieTitles containsObject:movieTitle]) {
+                    [movieTitles addObject:movieTitle];
+                    
+                    for (Movie* movie in favoritesLookupResult.movies) {
+                        if ([movie.canonicalTitle isEqual:movieTitle]) {
+                            [lookupResult.movies addObject:movie];
+                            break;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+
 - (void) lookup {
-    LookupResult* result = [self lookupWorker];
+    LookupResult* result = [self lookupLocation:self.model.userLocation theaterNames:nil];
+    [self lookupMissingFavorites:result];
 
     [self saveResult:result];
 
@@ -285,6 +356,23 @@
 
 - (NSDate*) synchronizationDateForTheater:(NSString*) theaterName {
     return [self.synchronizationData objectForKey:theaterName];
+}
+
+
+- (void) reportUnknownLocation {
+    if ([NSThread isMainThread]) {
+        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
+                                                         message:NSLocalizedString(@"Could not find location.", nil)
+                                                        delegate:nil
+                                               cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                               otherButtonTitles:nil] autorelease];
+        
+        [alert show];
+    } else {
+        [self performSelectorOnMainThread:@selector(reportUnknownLocation)
+                               withObject:nil
+                            waitUntilDone:NO];
+    }
 }
 
 
