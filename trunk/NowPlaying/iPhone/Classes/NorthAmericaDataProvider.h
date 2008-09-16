@@ -23,7 +23,6 @@
 + (NorthAmericaDataProvider*) providerWithModel:(NowPlayingModel*) model;
 
 
-
 - (NSString*) ticketingUrlForTheater:(Theater*) theater
                                movie:(Movie*) movie
                          performance:(Performance*) performance

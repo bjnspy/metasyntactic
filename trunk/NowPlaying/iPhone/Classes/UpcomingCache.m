@@ -401,6 +401,12 @@ static NSString* titles_key = @"Titles";
 }
 
 
+- (NSDate*) releaseDateForMovie:(Movie*) movie {
+    [self createMovieMap];
+    return [[movieMap objectForKey:movie.canonicalTitle] releaseDate];
+}
+
+
 - (NSArray*) directorsForMovie:(Movie*) movie {
     [self createMovieMap];
     return [[movieMap objectForKey:movie.canonicalTitle] directors];

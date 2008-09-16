@@ -26,6 +26,7 @@
 #import "ExtraMovieInformation.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
+#import "GoogleDataProvider.h"
 #import "IMDbCache.h"
 #import "Location.h"
 #import "Movie.h"
@@ -48,8 +49,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"1.7.0";
-static NSString* persistenceVersion = @"35";
+static NSString* currentVersion = @"2.0.0";
+static NSString* persistenceVersion = @"36";
 
 static NSString* VERSION = @"version";
 
@@ -240,7 +241,7 @@ static NSString** KEYS[] = {
 
 
 - (void) loadData {
-    self.dataProvider = [NorthAmericaDataProvider providerWithModel:self];
+    self.dataProvider = [GoogleDataProvider providerWithModel:self];
 
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
 
@@ -664,6 +665,15 @@ static NSString** KEYS[] = {
 }
 
 
+- (NSDate*) releaseDateForMovie:(Movie*) movie {
+    if (movie.releaseDate != nil) {
+        return movie.releaseDate;
+    }
+    
+    return [upcomingCache releaseDateForMovie:movie];
+}
+
+
 - (NSArray*) directorsForMovie:(Movie*) movie {
     if (movie.directors.count > 0) {
         return movie.directors;
@@ -836,11 +846,12 @@ NSInteger compareMoviesByScore(id t1, id t2, void *context) {
 
 
 NSInteger compareMoviesByReleaseDateDescending(id t1, id t2, void *context) {
+    NowPlayingModel* model = context;
     Movie* movie1 = t1;
     Movie* movie2 = t2;
 
-    NSDate* releaseDate1 = movie1.releaseDate;
-    NSDate* releaseDate2 = movie2.releaseDate;
+    NSDate* releaseDate1 = [model releaseDateForMovie:movie1];
+    NSDate* releaseDate2 = [model releaseDateForMovie:movie2];
 
     if (releaseDate1 == nil) {
         if (releaseDate2 == nil) {

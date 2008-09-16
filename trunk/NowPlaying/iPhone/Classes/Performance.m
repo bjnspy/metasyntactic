@@ -16,24 +16,30 @@
 
 #import "Performance.h"
 
+#import "Utilities.h"
+
 @implementation Performance
 
 property_definition(identifier);
 property_definition(time);
+property_definition(url);
 
 - (void) dealloc {
     self.identifier = nil;
     self.time = nil;
+    self.url = nil;
 
     [super dealloc];
 }
 
 
 - (id) initWithIdentifier:(NSString*) identifier_
-                     time:(NSString*) time_ {
+                     time:(NSString*) time_ 
+                      url:(NSString*) url_ {
     if (self = [super init]) {
-        self.identifier = identifier_;
-        self.time = time_;
+        self.identifier = [Utilities nonNilString:identifier_];
+        self.time = [Utilities nonNilString:time_];
+        self.url = [Utilities nonNilString:url_];
     }
 
     return self;
@@ -41,14 +47,18 @@ property_definition(time);
 
 
 + (Performance*) performanceWithIdentifier:(NSString*) identifier
-                                      time:(NSString*) time {
-    return [[[Performance alloc] initWithIdentifier:identifier time:time] autorelease];
+                                      time:(NSString*) time 
+                                       url:(NSString*) url {
+    return [[[Performance alloc] initWithIdentifier:identifier
+                                               time:time
+                                                url:url] autorelease];
 }
 
 
 + (Performance*) performanceWithDictionary:(NSDictionary*) dictionary {
     return [Performance performanceWithIdentifier:[dictionary valueForKey:identifier_key]
-                                             time:[dictionary valueForKey:time_key]];
+                                             time:[dictionary valueForKey:time_key]
+                                              url:[dictionary valueForKey:url_key]];
 }
 
 
@@ -57,6 +67,7 @@ property_definition(time);
 
     [dictionary setObject:identifier forKey:identifier_key];
     [dictionary setObject:time forKey:time_key];
+    [dictionary setObject:url forKey:url_key];
 
     return dictionary;
 }

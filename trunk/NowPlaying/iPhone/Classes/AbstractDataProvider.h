@@ -43,9 +43,9 @@
 - (NSDate*) lastLookupDate;
 
 - (void) lookup;
-- (LookupResult*) lookupWorker;
 
 /* @protected */
 - (NSString*) performancesFile:(NSString*) theaterName;
+- (void) reportUnknownLocation;
 
 @end

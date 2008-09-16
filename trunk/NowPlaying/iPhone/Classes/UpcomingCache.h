@@ -41,5 +41,6 @@
 - (NSArray*) castForMovie:(Movie*) movie;
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (NSString*) imdbAddressForMovie:(Movie*) movie;
+- (NSDate*) releaseDateForMovie:(Movie*) movie;
 
 @end
