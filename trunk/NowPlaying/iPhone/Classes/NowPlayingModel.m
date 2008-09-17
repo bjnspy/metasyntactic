@@ -193,58 +193,58 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) restorePreviousValues:(id) previousUserLocation
-                  searchRadius:(id) previousSearchRadius
-            autoUpdateLocation:(id) previousAutoUpdateLocation
-             hideEmptyTheaters:(id) previousHideEmptyTheaters
-                useNormalFonts:(id) previousUseNormalFonts
-              favoriteTheaters:(id) previousFavoriteTheaters {
+- (void) restorePreviousUserLocation:(id) previousUserLocation
+                        searchRadius:(id) previousSearchRadius
+                  autoUpdateLocation:(id) previousAutoUpdateLocation
+                   hideEmptyTheaters:(id) previousHideEmptyTheaters
+                      useNormalFonts:(id) previousUseNormalFonts
+                    favoriteTheaters:(id) previousFavoriteTheaters {
     if ([previousUserLocation isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserLocation forKey:USER_LOCATION];
     }
-
+    
     if ([previousSearchRadius isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setInteger:[previousSearchRadius intValue] forKey:SEARCH_RADIUS];
     }
-
+    
     if ([previousAutoUpdateLocation isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousAutoUpdateLocation boolValue] forKey:AUTO_UPDATE_LOCATION];
     }
-
+    
     if ([previousHideEmptyTheaters isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousHideEmptyTheaters boolValue] forKey:HIDE_EMPTY_THEATERS];
     }
-
+    
     if ([previousUseNormalFonts isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousUseNormalFonts boolValue] forKey:USE_NORMAL_FONTS];
     }
-
+    
     if ([previousFavoriteTheaters isKindOfClass:[NSArray class]]) {
         NSMutableArray* favoriteTheaters = [NSMutableArray array];
-
+        
         for (id previousTheater in previousFavoriteTheaters) {
             if (![previousTheater isKindOfClass:[NSDictionary class]]) {
                 continue;
             }
-
+            
             if (![FavoriteTheater canReadDictionary:previousTheater]) {
                 continue;
             }
-
+            
             FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:previousTheater];
             [favoriteTheaters addObject:theater];
         }
-
+        
         [NowPlayingModel saveFavoriteTheaters:favoriteTheaters];
     }
 }
 
 
 - (void) loadData {
-    self.dataProvider = [GoogleDataProvider providerWithModel:self];
-
+    self.dataProvider = [NorthAmericaDataProvider providerWithModel:self];
+    
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
-
+    
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
     if (version == nil || ![persistenceVersion isEqual:version]) {
         id previousUserLocation = [[NSUserDefaults standardUserDefaults] objectForKey:USER_LOCATION];
@@ -253,24 +253,24 @@ static NSString** KEYS[] = {
         id previousHideEmptyTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:HIDE_EMPTY_THEATERS];
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
-
+        
         self.movieMap = nil;
         for (int i = 0; i < ArrayLength(KEYS); i++) {
             NSString** key = KEYS[i];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];
         }
-
+        
         [Application deleteFolders];
-
+        
         [dataProvider invalidateDiskCache];
-
-        [self restorePreviousValues:previousUserLocation
-                       searchRadius:previousSearchRadius
-                 autoUpdateLocation:previousAutoUpdateLocation
-                  hideEmptyTheaters:previousHideEmptyTheaters
-                     useNormalFonts:previousUseNormalFonts
-                   favoriteTheaters:previousFavoriteTheaters];
-
+        
+        [self restorePreviousUserLocation:previousUserLocation
+                             searchRadius:previousSearchRadius
+                       autoUpdateLocation:previousAutoUpdateLocation
+                        hideEmptyTheaters:previousHideEmptyTheaters
+                           useNormalFonts:previousUseNormalFonts
+                         favoriteTheaters:previousFavoriteTheaters];
+        
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
 }
