@@ -52,13 +52,14 @@
 
         NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
         [dictionary setObject:@"Allan Lund Jensen"  forKey:@"da"];
-        [dictionary setObject:@"André van Haren"    forKey:@"nl"];
-        [dictionary setObject:@"Jonathan Grenier"   forKey:@"fr"];
-        [dictionary setObject:@"Leo Yamamoto"       forKey:@"ja"];
-        [dictionary setObject:@"Pedro Pinhão"       forKey:@"pt"];
         [dictionary setObject:@"Jorge Herskovic"    forKey:@"es"];
-        [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
         [dictionary setObject:@"J-P. Helisten"      forKey:@"fi"];
+        [dictionary setObject:@"Jonathan Grenier"   forKey:@"fr"];
+        [dictionary setObject:@"Santiago Navonne"   forKey:@"it"];
+        [dictionary setObject:@"Leo Yamamoto"       forKey:@"ja"];
+        [dictionary setObject:@"André van Haren"    forKey:@"nl"];
+        [dictionary setObject:@"Pedro Pinhão"       forKey:@"pt"];
+        [dictionary setObject:@"Oğuz Taş"           forKey:@"tr"];
         self.localizers = dictionary;
     }
 
