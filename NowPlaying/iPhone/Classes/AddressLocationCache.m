@@ -110,20 +110,20 @@
     }
 
     Location* result = [self downloadAddressLocationFromWebServiceWorker:address];
-    if (result != nil &&
-        [Utilities isNilOrEmpty:result.postalCode] &&
-        result.latitude != 0 && result.longitude != 0) {
-
-        CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
-        NSString* postalCode = [LocationUtilities findPostalCode:location];
-        if (![Utilities isNilOrEmpty:postalCode]) {
-            return [Location locationWithLatitude:result.latitude
-                                        longitude:result.longitude
-                                          address:result.address
-                                             city:result.city
-                                            state:result.state
-                                       postalCode:postalCode
-                                          country:result.country];
+    if (result != nil && result.latitude != 0 && result.longitude != 0) {
+        if ([Utilities isNilOrEmpty:result.postalCode]) {
+            
+            CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
+            NSString* postalCode = [LocationUtilities findPostalCode:location];
+            if (![Utilities isNilOrEmpty:postalCode]) {
+                return [Location locationWithLatitude:result.latitude
+                                            longitude:result.longitude
+                                              address:result.address
+                                                 city:result.city
+                                                state:result.state
+                                           postalCode:postalCode
+                                              country:result.country];
+            }
         }
     }
 

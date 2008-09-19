@@ -257,6 +257,10 @@
             return nil;
         }
         
+        NSString* country = actualLocation.country.length == 0 ? [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
+                                                               : actualLocation.country;
+        
+        
         NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                      fromDate:[DateUtilities today]
                                                                        toDate:self.model.searchDate
@@ -265,13 +269,13 @@
         day = MIN(MAX(day, 0), 7);
         
         NSString* address = [NSString stringWithFormat:
-                              @"http://metaboxoffice6.appspot.com/LookupTheaterListings?country=%@&language=%@&postalcode=%@&day=%d&format=xml&latitude=%d&longitude=%d",
-                              [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode],
-                              [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
-                              actualLocation.postalCode,
-                              day,
-                              (int)(actualLocation.latitude * 1000000),
-                              (int)(actualLocation.longitude * 1000000)];
+                             @"http://metaboxoffice6.appspot.com/LookupTheaterListings?country=%@&language=%@&postalcode=%@&day=%d&format=xml&latitude=%d&longitude=%d",
+                             country, 
+                             [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
+                             [Utilities stringByAddingPercentEscapes:actualLocation.postalCode],
+                             day,
+                             (int)(actualLocation.latitude * 1000000),
+                             (int)(actualLocation.longitude * 1000000)];
 
         XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
                                                                important:YES];
