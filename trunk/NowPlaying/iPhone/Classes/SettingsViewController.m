@@ -366,7 +366,11 @@
                 if (location.postalCode == nil) {
                     message = NSLocalizedString(@"Could not find location.", nil);
                 } else {
-                    message = [NSString stringWithFormat:@"%@, %@ %@, %@", location.city, location.state, location.postalCode, location.country];
+//#ifdef DEBUG
+                    message = [NSString stringWithFormat:@"%@, %@ %@, %@.\n%f %f", location.city, location.state, location.postalCode, location.country, location.latitude, location.longitude];                    
+//#else
+//                    message = [NSString stringWithFormat:@"%@, %@ %@, %@", location.city, location.state, location.postalCode, location.country];
+//#endif
                 }
             }
 

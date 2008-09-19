@@ -63,7 +63,7 @@
         NSString* identifier = [movieElement attributeValue:@"identifier"];
         NSString* poster = @"";
         NSString* title = [movieElement attributeValue:@"title"];
-        NSString* rating = [movieElement attributeValue:@"rawRating"];
+        NSString* rating = [movieElement attributeValue:@"rawRatings"];
         NSString* length = [movieElement attributeValue:@"length"];
         NSString* synopsis = [movieElement attributeValue:@"description"];
         NSArray* genres = [[[movieElement attributeValue:@"genre"] stringByReplacingOccurrencesOfString:@"_" withString:@" "] componentsSeparatedByString:@"/"];

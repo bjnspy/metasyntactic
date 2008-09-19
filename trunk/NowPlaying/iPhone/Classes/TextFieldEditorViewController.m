@@ -54,6 +54,7 @@
         self.messageLabel = [[[UILabel alloc] initWithFrame:CGRectZero] autorelease];
         messageLabel.backgroundColor = [UIColor clearColor];
         messageLabel.text = message;
+        messageLabel.numberOfLines = 0;
         messageLabel.textColor = [UIColor grayColor];
         [messageLabel sizeToFit];
 
