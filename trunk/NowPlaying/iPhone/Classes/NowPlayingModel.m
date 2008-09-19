@@ -234,14 +234,14 @@ static NSString** KEYS[] = {
             FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:previousTheater];
             [favoriteTheaters addObject:theater];
         }
-        
+
         [NowPlayingModel saveFavoriteTheaters:favoriteTheaters];
     }
 }
 
 
 - (void) loadData {
-    self.dataProvider = [GoogleDataProvider providerWithModel:self];
+    self.dataProvider = [NorthAmericaDataProvider providerWithModel:self];
     
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
     
