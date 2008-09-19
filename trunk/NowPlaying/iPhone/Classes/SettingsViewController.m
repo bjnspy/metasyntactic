@@ -192,7 +192,7 @@
     if (section == 0) {
         return 1;
     } else if (section == 1) {
-        return 7;
+        return 6;
     } else {
         return 1;
     }
@@ -250,7 +250,7 @@
             [cell setKey:key value:value];
 
             return cell;
-        } else if (indexPath.row >= 4 && indexPath.row <= 6) {
+        } else if (indexPath.row >= 4 && indexPath.row <= 5) {
             UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
             cell.selectionStyle = UITableViewCellSelectionStyleNone;
 
@@ -267,10 +267,6 @@
                 text = NSLocalizedString(@"Use Small Fonts", @"This string has to be small enough to be visible with a picker switch next to it");
                 on = self.model.useSmallFonts;
                 [picker addTarget:self action:@selector(onUseSmallFontsChanged:) forControlEvents:UIControlEventValueChanged];
-            } else if (indexPath.row == 6) {
-                text = NSLocalizedString(@"Hide empty theaters", @"This string has to be small enough to be visible with a picker switch next to it");
-                on = self.model.hideEmptyTheaters;
-                [picker addTarget:self action:@selector(onHideEmptyTheatersChanged:) forControlEvents:UIControlEventValueChanged];
             }
 
             picker.on = on;
@@ -288,20 +284,6 @@
 }
 
 
-- (NSString*)       tableView:(UITableView*) tableView
-      titleForFooterInSection:(NSInteger) section {
-    if (section == 1) {
-        if (self.model.hideEmptyTheaters) {
-            return NSLocalizedString(@"Theaters without show time data will be hidden. When show time data is available, the theater will automatically be shown.", nil);
-        } else {
-            return NSLocalizedString(@"Theaters will be shown even if no show time data is available for them.", nil);
-        }
-    }
-
-    return nil;
-}
-
-
 - (void) onAutoUpdateChanged:(id) sender {
     [self.model setAutoUpdateLocation:!self.model.autoUpdateLocation];
     [self autoUpdateLocation:nil];
@@ -311,12 +293,6 @@
 - (void) onUseSmallFontsChanged:(id) sender {
     BOOL useSmallFonts = !self.model.useSmallFonts;
     [self.model setUseSmallFonts:useSmallFonts];
-    [NowPlayingAppDelegate refresh];
-}
-
-
-- (void) onHideEmptyTheatersChanged:(id) sender {
-    [self.model setHideEmptyTheaters:!self.model.hideEmptyTheaters];
     [NowPlayingAppDelegate refresh];
 }
 

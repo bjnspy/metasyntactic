@@ -93,10 +93,6 @@
             continue;
         }
 
-        if (theater.movieTitles.count == 0 && self.model.hideEmptyTheaters) {
-            continue;
-        }
-
         unichar firstChar = [theater.name characterAtIndex:0];
         firstChar = toupper(firstChar);
 
@@ -152,10 +148,6 @@
     for (Theater* theater in [self.model theatersInRange:sortedTheaters]) {
         if ([self.model isFavoriteTheater:theater]) {
             [sectionTitleToContentsMap addObject:theater forKey:favorites];
-            continue;
-        }
-
-        if (theater.movieTitles.count == 0 && self.model.hideEmptyTheaters) {
             continue;
         }
 
