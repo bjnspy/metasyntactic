@@ -17,71 +17,56 @@
 #import "ImdbPosterDownloader.h"
 
 #import "Movie.h"
+#import "NetworkUtilities.h"
 #import "XmlElement.h"
 #import "XmlParser.h"
 
 @implementation ImdbPosterDownloader
 
-- (NSString*) imdbId {
++ (NSString*) imdbId:(Movie*) movie {
     NSString* escapedTitle = [movie.canonicalTitle stringByAddingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
     if (escapedTitle != nil) {
         NSString* urlString = [@"http://www.trynt.com/movie-imdb-api/v2/?t=" stringByAppendingString:escapedTitle];
-        NSURL* url = [NSURL URLWithString:urlString];
+        XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:urlString important:NO];
 
-        NSData* imdbData = [NSData dataWithContentsOfURL:url];
-        if (imdbData != nil) {
-            XmlElement* tryntElement = [XmlParser parse:imdbData];
-            XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
-            XmlElement* matchedIdElement = [movieImdbElement element:@"matched-id"];
-
-            return matchedIdElement.text;
-        }
+        XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
+        XmlElement* matchedIdElement = [movieImdbElement element:@"matched-id"];
+        
+        return matchedIdElement.text;
     }
 
     return nil;
 }
 
 
-- (NSString*) imageUrl:(NSString*) imdbId {
++ (NSString*) imageUrl:(NSString*) imdbId {
     if (imdbId == nil) {
         return nil;
     }
 
-    NSString* urlString = [@"http://www.trynt.com/movie-imdb-api/v2/?i=" stringByAppendingString:imdbId];
-    NSURL* url = [NSURL URLWithString:urlString];
+    NSString* address = [@"http://www.trynt.com/movie-imdb-api/v2/?i=" stringByAppendingString:imdbId];
 
-    NSData* imdbData = [NSData dataWithContentsOfURL:url];
-    if (imdbData != nil) {
-        XmlElement* tryntElement = [XmlParser parse:imdbData];
-        XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
-        XmlElement* pictureUrlElement = [movieImdbElement element:@"picture-url"];
+    XmlElement* tryntElement = [NetworkUtilities xmlWithContentsOfAddress:address important:NO];
+    XmlElement* movieImdbElement = [tryntElement element:@"movie-imdb"];
+    XmlElement* pictureUrlElement = [movieImdbElement element:@"picture-url"];
 
-        return pictureUrlElement.text;
-    }
-
-    return nil;
+    return pictureUrlElement.text;
 }
 
 
-- (NSData*) downloadImage:(NSString*) imageUrl {
++ (NSData*) downloadImage:(NSString*) imageUrl {
     if (imageUrl == nil) {
         return nil;
     }
 
-    return [NSData dataWithContentsOfURL:[NSURL URLWithString:imageUrl]];
-}
-
-
-- (NSData*) go {
-    NSString* imdbId = [self imdbId];
-    NSString* imageUrl = [self imageUrl:imdbId];
-    return [self downloadImage:imageUrl];
+    return [NetworkUtilities dataWithContentsOfAddress:imageUrl important:NO];
 }
 
 
 + (NSData*) download:(Movie*) movie {
-    ImdbPosterDownloader* downloader = [[[ImdbPosterDownloader alloc] initWithMovie:movie] autorelease];
-    return [downloader go];
+    NSString* imdbId = [self imdbId:movie];
+    NSString* imageUrl = [self imageUrl:imdbId];
+    return [self downloadImage:imageUrl];
 }
 
 

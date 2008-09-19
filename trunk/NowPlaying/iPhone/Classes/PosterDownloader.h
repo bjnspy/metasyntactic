@@ -15,13 +15,8 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface PosterDownloader : NSObject {
-    Movie* movie;
 }
 
-@property (retain) Movie* movie;
-
-+ (NSData*) download:(Movie*) movie;
-
-- (id) initWithMovie:(Movie*) movie;
++ (NSData*) download:(Movie*) movie postalCode:(NSString*) postalCode;
 
 @end

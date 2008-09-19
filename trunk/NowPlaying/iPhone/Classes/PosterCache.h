@@ -16,11 +16,13 @@
 
 @interface PosterCache : NSObject {
     NSLock* gate;
+    NowPlayingModel* model;
 }
 
 @property (retain) NSLock* gate;
+@property (retain) NowPlayingModel* model;
 
-+ (PosterCache*) cache;
++ (PosterCache*) cacheWithModel:(NowPlayingModel*) model;
 
 - (void) update:(NSArray*) movies;
 
