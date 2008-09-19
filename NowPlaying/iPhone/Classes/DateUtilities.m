@@ -35,6 +35,9 @@ static NSMutableDictionary* yearsAgoMap;
 static NSMutableDictionary* monthsAgoMap;
 static NSMutableDictionary* weeksAgoMap;
 
+
+static BOOL use24HourTime;
+
 + (void) initialize {
     if (self == [DateUtilities class]) {
         gate = [[NSRecursiveLock alloc] init];
@@ -78,6 +81,11 @@ static NSMutableDictionary* weeksAgoMap;
             shortTimeFormatter = [[NSDateFormatter alloc] init];
             [shortTimeFormatter setDateStyle:NSDateFormatterNoStyle];
             [shortTimeFormatter setTimeStyle:NSDateFormatterShortStyle];
+        }
+        
+        {
+            NSDateFormatter *formatter = [[[NSDateFormatter alloc] init] autorelease];
+            use24HourTime = [[formatter dateFormat] rangeOfString:@"H"].length != 0;   
         }
     }
 }
@@ -247,6 +255,11 @@ static NSMutableDictionary* weeksAgoMap;
 + (NSDate*) dateWithNaturalLanguageString:(NSString*) string {
     //return nil;
     return [NSDate dateWithNaturalLanguageString:string];
+}
+
+
++ (BOOL) use24HourTime {
+    return use24HourTime;
 }
 
 
