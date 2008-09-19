@@ -16,10 +16,13 @@
 
 #import "PosterCache.h"
 
+#import "AddressLocationCache.h"
 #import "Application.h"
 #import "FileUtilities.h"
 #import "GlobalActivityIndicator.h"
+#import "Location.h"
 #import "Movie.h"
+#import "NowPlayingModel.h"
 #import "PosterDownloader.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
@@ -27,24 +30,28 @@
 @implementation PosterCache
 
 @synthesize gate;
+@synthesize model;
 
 - (void) dealloc {
     self.gate = nil;
+    self.model = nil;
+
     [super dealloc];
 }
 
 
-- (id) init {
+- (id) initWithModel:(NowPlayingModel*) model_ {
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
+        self.model = model_;
     }
 
     return self;
 }
 
 
-+ (PosterCache*) cache {
-    return [[[PosterCache alloc] init] autorelease];
++ (PosterCache*) cacheWithModel:(NowPlayingModel*) model {
+    return [[[PosterCache alloc] initWithModel:model] autorelease];
 }
 
 
@@ -89,12 +96,13 @@
 }
 
 
-- (void) downloadPoster:(Movie*) movie {
+- (void) downloadPoster:(Movie*) movie
+             postalCode:(NSString*) postalCode {
     if ([[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]]) {
         return;
     }
 
-    NSData* data = [PosterDownloader download:movie];
+    NSData* data = [PosterDownloader download:movie postalCode:postalCode];
     NSString* path = [self posterFilePath:movie];
     [data writeToFile:path atomically:YES];
 }
@@ -112,13 +120,15 @@
             [moviesWithPosterLinks addObject:movie];
         }
     }
+    
+    Location* location = [model.addressLocationCache downloadAddressLocationBackgroundEntryPoint:model.userLocation];
 
     NSArray* arguments = [NSArray arrayWithObjects:moviesWithPosterLinks, moviesWithoutPosterLinks, nil];
     for (NSArray* list in arguments) {
         for (Movie* movie in list) {
             NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
 
-            [self downloadPoster:movie];
+            [self downloadPoster:movie postalCode:location.postalCode];
 
             [autoreleasePool release];
         }

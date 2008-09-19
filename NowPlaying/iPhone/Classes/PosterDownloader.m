@@ -17,6 +17,7 @@
 #import "PosterDownloader.h"
 
 #import "ApplePosterDownloader.h"
+#import "FandangoPosterDownloader.h"
 #import "ImdbPosterDownloader.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
@@ -24,46 +25,28 @@
 
 @implementation PosterDownloader
 
-@synthesize movie;
-
-- (void) dealloc {
-    self.movie = nil;
-    [super dealloc];
-}
-
-
-- (id) initWithMovie:(Movie*) movie_ {
-    if (self = [super init]) {
-        self.movie = movie_;
-    }
-
-    return self;
-}
-
-
-- (NSData*) go {
++ (NSData*) download:(Movie*) movie postalCode:(NSString*) postalCode {
     NSData* data = [NetworkUtilities dataWithContentsOfAddress:movie.poster important:NO];
     if (data != nil) {
         return data;
     }
-
+    
     data = [ApplePosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-
+    
+    data = [FandangoPosterDownloader download:movie postalCode:postalCode];
+    if (data != nil) {
+        return data;
+    }
+    
     data = [ImdbPosterDownloader download:movie];
     if (data != nil) {
         return data;
     }
-
+    
     return nil;
-}
-
-
-+ (NSData*) download:(Movie*) movie {
-    PosterDownloader* downloader = [[[PosterDownloader alloc] initWithMovie:movie] autorelease];
-    return [downloader go];
 }
 
 

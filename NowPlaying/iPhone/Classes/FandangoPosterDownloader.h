@@ -14,9 +14,9 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface ApplePosterDownloader : NSObject {
+@interface FandangoPosterDownloader : NSObject {
 }
 
-+ (NSData*) download:(Movie*) movie;
++ (NSData*) download:(Movie*) movie postalCode:(NSString*) postalCode;
 
 @end

@@ -16,7 +16,7 @@
 
 #import "PosterDownloader.h"
 
-@interface ImdbPosterDownloader : PosterDownloader {
+@interface ImdbPosterDownloader : NSObject {
 }
 
 + (NSData*) download:(Movie*) movie;
