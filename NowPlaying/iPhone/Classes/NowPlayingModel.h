@@ -159,7 +159,4 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context);
 - (BOOL) useSmallFonts;
 - (void) setUseSmallFonts:(BOOL) useSmallFonts;
 
-- (BOOL) hideEmptyTheaters;
-- (void) setHideEmptyTheaters:(BOOL) hideEmptyTheaters;
-
 @end

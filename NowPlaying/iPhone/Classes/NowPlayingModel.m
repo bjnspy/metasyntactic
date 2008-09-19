@@ -58,7 +58,6 @@ static NSString* ALL_MOVIES_SELECTED_SEGMENT_INDEX      = @"allMoviesSelectedSeg
 static NSString* ALL_THEATERS_SELECTED_SEGMENT_INDEX    = @"allTheatersSelectedSegmentIndex";
 static NSString* AUTO_UPDATE_LOCATION                   = @"autoUpdateLocation";
 static NSString* FAVORITE_THEATERS                      = @"favoriteTheaters";
-static NSString* HIDE_EMPTY_THEATERS                    = @"hideEmptyTheaters";
 static NSString* NAVIGATION_STACK_TYPES                 = @"navigationStackTypes";
 static NSString* NAVIGATION_STACK_VALUES                = @"navigationStackValues";
 static NSString* NUMBERS_SELECTED_SEGMENT_INDEX         = @"numbersSelectedSegmentIndex";
@@ -77,7 +76,6 @@ static NSString** KEYS[] = {
     &ALL_THEATERS_SELECTED_SEGMENT_INDEX,
     &AUTO_UPDATE_LOCATION,
     &FAVORITE_THEATERS,
-    &HIDE_EMPTY_THEATERS,
     &NAVIGATION_STACK_TYPES,
     &NAVIGATION_STACK_VALUES,
     &NUMBERS_SELECTED_SEGMENT_INDEX,
@@ -196,7 +194,6 @@ static NSString** KEYS[] = {
 - (void) restorePreviousUserLocation:(id) previousUserLocation
                         searchRadius:(id) previousSearchRadius
                   autoUpdateLocation:(id) previousAutoUpdateLocation
-                   hideEmptyTheaters:(id) previousHideEmptyTheaters
                       useNormalFonts:(id) previousUseNormalFonts
                     favoriteTheaters:(id) previousFavoriteTheaters {
     if ([previousUserLocation isKindOfClass:[NSString class]]) {
@@ -210,11 +207,7 @@ static NSString** KEYS[] = {
     if ([previousAutoUpdateLocation isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousAutoUpdateLocation boolValue] forKey:AUTO_UPDATE_LOCATION];
     }
-    
-    if ([previousHideEmptyTheaters isKindOfClass:[NSNumber class]]) {
-        [[NSUserDefaults standardUserDefaults] setBool:[previousHideEmptyTheaters boolValue] forKey:HIDE_EMPTY_THEATERS];
-    }
-    
+        
     if ([previousUseNormalFonts isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousUseNormalFonts boolValue] forKey:USE_NORMAL_FONTS];
     }
@@ -250,7 +243,6 @@ static NSString** KEYS[] = {
         id previousUserLocation = [[NSUserDefaults standardUserDefaults] objectForKey:USER_LOCATION];
         id previousSearchRadius = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_RADIUS];
         id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
-        id previousHideEmptyTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:HIDE_EMPTY_THEATERS];
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
         
@@ -267,7 +259,6 @@ static NSString** KEYS[] = {
         [self restorePreviousUserLocation:previousUserLocation
                              searchRadius:previousSearchRadius
                        autoUpdateLocation:previousAutoUpdateLocation
-                        hideEmptyTheaters:previousHideEmptyTheaters
                            useNormalFonts:previousUseNormalFonts
                          favoriteTheaters:previousFavoriteTheaters];
         
@@ -993,16 +984,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (void) setUseSmallFonts:(BOOL) useSmallFonts {
     [[NSUserDefaults standardUserDefaults] setBool:!useSmallFonts forKey:USE_NORMAL_FONTS];
-}
-
-
-- (BOOL) hideEmptyTheaters {
-    return [[NSUserDefaults standardUserDefaults] boolForKey:HIDE_EMPTY_THEATERS];
-}
-
-
-- (void) setHideEmptyTheaters:(BOOL) hideEmptyTheaters {
-    [[NSUserDefaults standardUserDefaults] setBool:hideEmptyTheaters forKey:HIDE_EMPTY_THEATERS];
 }
 
 
