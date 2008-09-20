@@ -788,7 +788,8 @@ static NSString** KEYS[] = {
 
 
 - (NSDictionary*) theaterDistanceMap {
-    return [addressLocationCache theaterDistanceMap:self.userLocation
+    Location* location = [addressLocationCache locationForAddress:self.userLocation];
+    return [addressLocationCache theaterDistanceMap:location
                                            theaters:self.theaters];
 }
 

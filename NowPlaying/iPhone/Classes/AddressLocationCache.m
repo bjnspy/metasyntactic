@@ -209,10 +209,9 @@
 }
 
 
-- (NSDictionary*) theaterDistanceMap:(NSString*) userPostalCode
+- (NSDictionary*) theaterDistanceMap:(Location*) userLocation
                             theaters:(NSArray*) theaters {
-    Location* userLocation = [self locationForAddress:userPostalCode];
-
+    NSString* userPostalCode = [Utilities nonNilString:userLocation.postalCode];
     NSMutableDictionary* theaterDistanceMap = [cachedTheaterDistanceMap objectForKey:userPostalCode];
     if (theaterDistanceMap == nil) {
         theaterDistanceMap = [NSMutableDictionary dictionary];

@@ -30,7 +30,7 @@
 
 - (Location*) locationForAddress:(NSString*) address;
 
-- (NSDictionary*) theaterDistanceMap:(NSString*) userPostalCode
+- (NSDictionary*) theaterDistanceMap:(Location*) userLocation
                             theaters:(NSArray*) theaters;
 
 // only call on the background
