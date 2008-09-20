@@ -354,15 +354,15 @@
                                location.city,
                                location.state,
                                location.postalCode,
-                               country];                   
-#else             
+                               country];
+#else
                     message = [NSString stringWithFormat:@"%@, %@ %@\n%@\n%f %f",
                                location.city,
                                location.state,
                                location.postalCode,
                                country,
                                location.latitude,
-                               location.longitude];     
+                               location.longitude];
 #endif
                 }
             }
@@ -371,7 +371,7 @@
             [[[TextFieldEditorViewController alloc] initWithController:navigationController
                                                                  title:NSLocalizedString(@"Location", nil)
                                                                 object:self
-                                                              selector:@selector(onUserLocationChanged:)
+                                                              selector:@selector(onUserAddressChanged:)
                                                                   text:self.model.userAddress
                                                                message:message
                                                            placeHolder:NSLocalizedString(@"Postal Code or City/State", nil)

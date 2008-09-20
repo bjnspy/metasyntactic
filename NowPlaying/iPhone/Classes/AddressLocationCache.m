@@ -81,7 +81,7 @@
     if (location == nil || [Utilities isNilOrEmpty:address]) {
         return;
     }
-    
+
     [self saveLocation:location forAddress:address];
     [self performSelectorOnMainThread:@selector(invalidateCachedData) withObject:nil waitUntilDone:NO];
 }

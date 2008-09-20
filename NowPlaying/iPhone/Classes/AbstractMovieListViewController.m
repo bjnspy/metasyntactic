@@ -123,12 +123,12 @@
             return c2;
         }
     }
-    
+
     return c1;
 }
 
 
-- (void) sortMoviesByTitle {    
+- (void) sortMoviesByTitle {
     self.sortedMovies = [self.movies sortedArrayUsingFunction:compareMoviesByTitle context:nil];
 
     self.sectionTitles = [NSMutableArray arrayWithArray:self.alphabeticSectionTitles];
@@ -136,7 +136,7 @@
     for (Movie* movie in sortedMovies) {
         NSString* title = movie.displayTitle;
         unichar firstChar = [self firstCharacter:title];
-        
+
         if (firstChar >= 'A' && firstChar <= 'Z') {
             NSString* sectionTitle = [NSString stringWithFormat:@"%c", firstChar];
             [sectionTitleToContentsMap addObject:movie forKey:sectionTitle];
@@ -166,7 +166,7 @@
     for (Movie* movie in sortedMovies) {
         NSString* title = NSLocalizedString(@"Unknown release date", nil);
         NSDate* releaseDate = [self.model releaseDateForMovie:movie];
-        
+
         if (releaseDate != nil) {
             if ([releaseDate compare:today] == NSOrderedDescending) {
                 title = [DateUtilities formatFullDate:releaseDate];

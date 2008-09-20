@@ -35,7 +35,7 @@
 - (id) init {
     if (self = [super init]) {
     }
-    
+
     return self;
 }
 
@@ -49,7 +49,7 @@
         NSString* state =       [resultElement attributeValue:@"state"];
         NSString* country =     [resultElement attributeValue:@"country"];
         NSString* postalCode =  [resultElement attributeValue:@"zipcode"];
-        
+
         if (![Utilities isNilOrEmpty:latitude] && ![Utilities isNilOrEmpty:longitude]) {
             return [Location locationWithLatitude:latitude.doubleValue
                                         longitude:longitude.doubleValue
@@ -60,7 +60,7 @@
                                           country:country];
         }
     }
-    
+
     return nil;
 }
 
@@ -69,11 +69,11 @@
     NSString* escapedAddress = [Utilities stringByAddingPercentEscapes:address];
     if (escapedAddress != nil) {
         NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
-        
+
         XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
         return [self processResult:element];
     }
-    
+
     return nil;
 }
 
@@ -82,11 +82,11 @@
     if ([Utilities isNilOrEmpty:address]) {
         return nil;
     }
-    
+
     Location* result = [self downloadAddressLocationFromWebServiceWorker:address];
     if (result != nil && result.latitude != 0 && result.longitude != 0) {
         if ([Utilities isNilOrEmpty:result.postalCode]) {
-            
+
             CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
             NSString* postalCode = [LocationUtilities findPostalCode:location];
             if (![Utilities isNilOrEmpty:postalCode]) {
@@ -100,7 +100,7 @@
             }
         }
     }
-    
+
     return result;
 }
 
@@ -124,7 +124,7 @@
             return [Location locationWithDictionary:dict];
         }
     }
-    
+
     return nil;
 }
 
@@ -134,7 +134,7 @@
     if (location == nil || [Utilities isNilOrEmpty:address]) {
         return;
     }
-    
+
     [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
 }
 

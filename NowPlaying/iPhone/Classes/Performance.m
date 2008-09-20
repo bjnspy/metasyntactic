@@ -34,7 +34,7 @@ property_definition(url);
 
 
 - (id) initWithIdentifier:(NSString*) identifier_
-                     time:(NSString*) time_ 
+                     time:(NSString*) time_
                       url:(NSString*) url_ {
     if (self = [super init]) {
         self.identifier = [Utilities nonNilString:identifier_];
@@ -47,7 +47,7 @@ property_definition(url);
 
 
 + (Performance*) performanceWithIdentifier:(NSString*) identifier
-                                      time:(NSString*) time 
+                                      time:(NSString*) time
                                        url:(NSString*) url {
     return [[[Performance alloc] initWithIdentifier:identifier
                                                time:time

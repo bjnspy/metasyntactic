@@ -254,10 +254,10 @@
         [self reportUnknownLocation];
         return nil;
     }
-    
+
     NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                    fromDate:self.model.searchDate];
-    
+
     NSString* url = [NSString stringWithFormat:
                      @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                      [Application host],
@@ -265,10 +265,10 @@
                      components.year,
                      components.month,
                      components.day];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url
                                                            important:YES];
-    
+
     if (element != nil) {
         return [self processFandangoElement:element
                                  postalCode:location.postalCode
@@ -294,7 +294,7 @@
     NSDateComponents* timeComponents =
     [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
                                     fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
-    
+
     NSString* url = [NSString stringWithFormat:@"https://iphone.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
                      movie.identifier,
                      theater.identifier,
@@ -303,7 +303,7 @@
                      dateComponents.day,
                      timeComponents.hour,
                      timeComponents.minute];
-    
+
     return url;
 }
 
