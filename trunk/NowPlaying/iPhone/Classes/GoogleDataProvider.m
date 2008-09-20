@@ -52,7 +52,7 @@
     if (element == nil) {
         return [NSArray array];
     }
-    
+
     NSMutableArray* cast = [NSMutableArray array];
     for (XmlElement* child in element.children) {
         NSString* value = [child attributeValue:@"value"];
@@ -66,7 +66,7 @@
 
 - (NSDictionary*) processMoviesElement:(XmlElement*) moviesElement {
     NSMutableDictionary* movieIdToMovieMap = [NSMutableDictionary dictionary];
-    
+
     for (XmlElement* movieElement in moviesElement.children) {
         NSString* identifier = [movieElement attributeValue:@"identifier"];
         NSString* poster = @"";
@@ -77,9 +77,9 @@
         NSArray* genres = [[[movieElement attributeValue:@"genre"] stringByReplacingOccurrencesOfString:@"_" withString:@" "] componentsSeparatedByString:@"/"];
         NSArray* directors = [self processXmlArray:[movieElement element:@"Directors"]];
         NSArray* cast = [self processXmlArray:[movieElement element:@"Cast"]];
-    
-        
-        
+
+
+
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
                                            rating:rating
@@ -91,10 +91,10 @@
                                         directors:directors
                                              cast:cast
                                            genres:genres];
-        
+
         [movieIdToMovieMap setObject:movie forKey:identifier];
     }
-    
+
     return movieIdToMovieMap;
 }
 
@@ -103,47 +103,47 @@
  - <Movies>
  - <Movie identifier="0xcf14c60de331541L">
  - <Showtimes vendor="f">
- <Showtime time="2:45" /> 
- <Showtime mobileUrl="http://mobile.fandango.com/tms.asp?a=11586&m=66653&t=AABQG&d=2008-09-15+17:15" time="5:15" url="http://www.google.com/url?q=http://www.fandango.com/redirect.aspx%3Ftid%3DAABQG%26tmid%3D66653%26date%3D2008-09-15%2B17:15%26a%3D11584%26source%3Dgoogle&sa=X&oi=moviesf&ii=6" /> 
- <Showtime mobileUrl="http://mobile.fandango.com/tms.asp?a=11586&m=66653&t=AABQG&d=2008-09-15+19:45" time="7:45" url="http://www.google.com/url?q=http://www.fandango.com/redirect.aspx%3Ftid%3DAABQG%26tmid%3D66653%26date%3D2008-09-15%2B19:45%26a%3D11584%26source%3Dgoogle&sa=X&oi=moviesf&ii=6" /> 
- <Showtime mobileUrl="http://mobile.fandango.com/tms.asp?a=11586&m=66653&t=AABQG&d=2008-09-15+22:10" time="10:10pm" url="http://www.google.com/url?q=http://www.fandango.com/redirect.aspx%3Ftid%3DAABQG%26tmid%3D66653%26date%3D2008-09-15%2B22:10%26a%3D11584%26source%3Dgoogle&sa=X&oi=moviesf&ii=6" /> 
+ <Showtime time="2:45" />
+ <Showtime mobileUrl="http://mobile.fandango.com/tms.asp?a=11586&m=66653&t=AABQG&d=2008-09-15+17:15" time="5:15" url="http://www.google.com/url?q=http://www.fandango.com/redirect.aspx%3Ftid%3DAABQG%26tmid%3D66653%26date%3D2008-09-15%2B17:15%26a%3D11584%26source%3Dgoogle&sa=X&oi=moviesf&ii=6" />
+ <Showtime mobileUrl="http://mobile.fandango.com/tms.asp?a=11586&m=66653&t=AABQG&d=2008-09-15+19:45" time="7:45" url="http://www.google.com/url?q=http://www.fandango.com/redirect.aspx%3Ftid%3DAABQG%26tmid%3D66653%26date%3D2008-09-15%2B19:45%26a%3D11584%26source%3Dgoogle&sa=X&oi=moviesf&ii=6" />
+ <Showtime mobileUrl="http://mobile.fandango.com/tms.asp?a=11586&m=66653&t=AABQG&d=2008-09-15+22:10" time="10:10pm" url="http://www.google.com/url?q=http://www.fandango.com/redirect.aspx%3Ftid%3DAABQG%26tmid%3D66653%26date%3D2008-09-15%2B22:10%26a%3D11584%26source%3Dgoogle&sa=X&oi=moviesf&ii=6" />
  </Showtimes>
  </Movie>
- 
+
  */
 
 - (NSMutableDictionary*) processMovieShowtimes:(XmlElement*) moviesElement
                              movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    
+
     for (XmlElement* movieElement in moviesElement.children) {
         NSString* movieId = [movieElement attributeValue:@"identifier"];
         NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
-        
+
         XmlElement* showtimesElement = [movieElement element:@"Showtimes"];
         NSString* vendor = [Utilities nonNilString:[showtimesElement attributeValue:@"vendor"]];
-        
+
         NSMutableArray* performances = [NSMutableArray array];
-        
+
         for (XmlElement* showtimeElement in showtimesElement.children) {
             NSString* time = [showtimeElement attributeValue:@"time"];
             time = [Theater processShowtime:time];
-            
+
             NSString* url = [showtimeElement attributeValue:@"mobileUrl"];
             if (url.length > 0) {
                 url = [showtimeElement attributeValue:@"url"];
             }
-            
+
             Performance* performance = [Performance performanceWithIdentifier:vendor
                                                                          time:time
                                                                           url:url];
-            
+
             [performances addObject:performance.dictionary];
         }
-        
+
         [dictionary setObject:performances forKey:movieTitle];
     }
-    
+
     return dictionary;
 }
 
@@ -163,39 +163,39 @@
     if (theaterNames != nil && ![theaterNames containsObject:name]) {
         return;
     }
-    
+
     NSString* identifier = [Utilities nonNilString:[theaterElement attributeValue:@"identifier"]];
     NSString* address =    [Utilities nonNilString:[theaterElement attributeValue:@"streetAddress"]];
     NSString* city =       [Utilities nonNilString:[theaterElement attributeValue:@"city"]];
     NSString* state =      [Utilities nonNilString:[theaterElement attributeValue:@"state"]];
     NSString* postalCode = [Utilities nonNilString:[theaterElement attributeValue:@"postalCode"]];
     NSString* phone =      [Utilities nonNilString:[theaterElement attributeValue:@"phone"]];
-    
+
     NSString* fullAddress;
     if ([address hasSuffix:@"."]) {
         fullAddress = [NSString stringWithFormat:@"%@ %@, %@ %@", address, city, state, postalCode];
     } else {
         fullAddress = [NSString stringWithFormat:@"%@. %@, %@ %@", address, city, state, postalCode];
     }
-    
+
     XmlElement* moviesElement = [theaterElement element:@"Movies"];
     NSMutableDictionary* movieToShowtimesMap = [self processMovieShowtimes:moviesElement
                                                          movieIdToMovieMap:movieIdToMovieMap];
-    
+
     [synchronizationData setObject:[DateUtilities today] forKey:name];
     if (movieToShowtimesMap.count == 0) {
         // no showtime information available.  fallback to anything we've
         // stored (but warn the user).
-        
+
         NSString* performancesFile = [self performancesFile:name];
         NSDictionary* oldPerformances = [NSDictionary dictionaryWithContentsOfFile:performancesFile];
-        
+
         if (oldPerformances.count > 0) {
             movieToShowtimesMap = [NSMutableDictionary dictionaryWithDictionary:oldPerformances];
             [synchronizationData setObject:[self synchronizationDateForTheater:name] forKey:name];
         }
     }
-    
+
     [performances setObject:movieToShowtimesMap forKey:name];
     [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                   name:name
@@ -214,7 +214,7 @@
     NSMutableArray* theaters = [NSMutableArray array];
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
     NSMutableDictionary* synchronizationData = [NSMutableDictionary dictionary];
-    
+
     for (XmlElement* theaterElement in theaterElements) {
         [self processTheaterElement:theaterElement
                            theaters:theaters
@@ -224,7 +224,7 @@
                        theaterNames:theaterNames
                   movieIdToMovieMap:movieIdToMovieMap];
     }
-    
+
     return [NSArray arrayWithObjects:theaters, performances, synchronizationData, nil];
 }
 
@@ -234,19 +234,19 @@
                                    theaterNames:(NSArray*) theaterNames {
     XmlElement* moviesElement = [element element:@"Movies"];
     NSArray* theaterElements = [element elements:@"Theater"];
-    
+
     NSDictionary* movieIdToMovieMap = [self processMoviesElement:moviesElement];
-    
+
     NSArray* theatersAndPerformances = [self processTheaterElements:theaterElements
                                                          postalCode:postalCode
                                                        theaterNames:theaterNames
                                                   movieIdToMovieMap:movieIdToMovieMap];
-    
+
     NSMutableArray* movies = [NSMutableArray arrayWithArray:movieIdToMovieMap.allValues];
     NSMutableArray* theaters = [theatersAndPerformances objectAtIndex:0];
     NSMutableDictionary* performances = [theatersAndPerformances objectAtIndex:1];
     NSMutableDictionary* synchronizationData = [theatersAndPerformances objectAtIndex:2];
-    
+
     return [LookupResult resultWithMovies:movies
                                  theaters:theaters
                              performances:performances
@@ -262,36 +262,36 @@
         [self reportUnknownLocation];
         return nil;
     }
-    
+
     NSString* country = location.country.length == 0 ? [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
     : location.country;
-    
-    
+
+
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                    fromDate:[DateUtilities today]
                                                                      toDate:self.model.searchDate
                                                                     options:0];
     NSInteger day = components.day;
     day = MIN(MAX(day, 0), 7);
-    
+
     NSString* address = [NSString stringWithFormat:
                          @"http://metaboxoffice6.appspot.com/LookupTheaterListings?country=%@&language=%@&postalcode=%@&day=%d&format=xml&latitude=%d&longitude=%d",
-                         country, 
+                         country,
                          [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
                          [Utilities stringByAddingPercentEscapes:location.postalCode],
                          day,
                          (int)(location.latitude * 1000000),
                          (int)(location.longitude * 1000000)];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
                                                            important:YES];
-    
+
     if (element != nil) {
         return [self processTheaterListingsElement:element
                                         postalCode:location.postalCode
                                       theaterNames:theaterNames];
     }
-    
+
     return nil;
 }
 
@@ -311,7 +311,7 @@
     NSDateComponents* timeComponents =
     [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
                                     fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
-    
+
     NSString* url = [NSString stringWithFormat:@"https://iphone.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
                      movie.identifier,
                      theater.identifier,
@@ -320,7 +320,7 @@
                      dateComponents.day,
                      timeComponents.hour,
                      timeComponents.minute];
-    
+
     return url;
 }
 

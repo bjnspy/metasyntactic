@@ -29,7 +29,7 @@
 
 - (void) dealloc {
     self.gate = nil;
-    
+
     [super dealloc];
 }
 
@@ -38,7 +38,7 @@
     if (self = [super init]) {
         self.gate = [[[NSLock alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
@@ -57,12 +57,33 @@
 }
 
 
+- (NSString*) addressWithCountry:(NSString*) userAddress {
+    NSLocale* locale = [NSLocale currentLocale];
+    NSString* isoCode = [locale objectForKey:NSLocaleCountryCode];
+    NSString* country = [locale displayNameForKey:NSLocaleCountryCode value:isoCode];
+    if (country == nil) {
+        return nil;
+    }
+
+    return [NSString stringWithFormat:@"%@. %@", userAddress, country];
+}
+
+
 - (NSString*) locationFolder {
     return [Application userLocationsFolder];
 }
 
 
 - (Location*) locationForUserAddress:(NSString*) userAddress {
+    if ([Utilities isNilOrEmpty:userAddress]) {
+        return nil;
+    }
+
+    Location* location = [self loadLocation:[self addressWithCountry:userAddress]];
+    if (location != nil) {
+        return location;
+    }
+
     return [self loadLocation:userAddress];
 }
 
@@ -74,15 +95,22 @@
 
 
 - (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress {
-    NSAssert(![NSThread isMainThread], @"Only call this from the background");
-    Location* location = [self locationForUserAddress:userAddress];
-    
-    if (location == nil) {
-        location = [self downloadAddressLocationFromWebService:userAddress];
-        
-        [self setLocation:location forAddress:userAddress];
+    if ([Utilities isNilOrEmpty:userAddress]) {
+        return nil;
     }
     
+    NSAssert(![NSThread isMainThread], @"Only call this from the background");
+    Location* location = [self locationForUserAddress:userAddress];
+
+    if (location == nil) {
+        location = [self downloadAddressLocationFromWebService:[self addressWithCountry:userAddress]];
+        if (location == nil) {
+            location = [self downloadAddressLocationFromWebService:userAddress];
+        }
+
+        [self setLocation:location forAddress:userAddress];
+    }
+
     return location;
 }
 

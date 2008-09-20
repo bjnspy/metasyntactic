@@ -368,7 +368,7 @@ static NSString* starString = nil;
         unichar c = [Application starCharacter];
         starString = [NSString stringWithCharacters:&c length:1];
     }
-    
+
     return starString;
 }
 

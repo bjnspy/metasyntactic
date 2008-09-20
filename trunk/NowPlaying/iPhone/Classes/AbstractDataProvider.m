@@ -273,7 +273,7 @@
         [self reportUnknownLocation];
         return nil;
     }
-    
+
     return [self lookupLocationWorker:location theaterNames:theaterNames];
 }
 
@@ -284,7 +284,7 @@
             return YES;
         }
     }
-    
+
     return NO;
 }
 
@@ -293,45 +293,45 @@
     if (lookupResult == nil) {
         return;
     }
-    
+
     NSArray* favoriteTheaters = self.model.favoriteTheaters;
     if (favoriteTheaters.count == 0) {
         return;
     }
-    
+
     MultiDictionary* postalCodeToMissingTheaterNames = [MultiDictionary dictionary];
-    
+
     for (FavoriteTheater* favorite in favoriteTheaters) {
         if (![self results:lookupResult containsFavorite:favorite]) {
             [postalCodeToMissingTheaterNames addObject:favorite.name forKey:favorite.originatingPostalCode];
         }
     }
-    
+
     NSMutableSet* movieTitles = [NSMutableSet set];
     for (Movie* movie in lookupResult.movies) {
         [movieTitles addObject:movie.canonicalTitle];
     }
-    
+
     for (NSString* postalCode in postalCodeToMissingTheaterNames.allKeys) {
         NSArray* theaterNames = [postalCodeToMissingTheaterNames objectsForKey:postalCode];
 
         Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:postalCode];
         LookupResult* favoritesLookupResult = [self lookupLocation:location
                                                       theaterNames:theaterNames];
-        
+
         if (favoritesLookupResult == nil) {
             continue;
         }
-        
+
         [lookupResult.theaters addObjectsFromArray:favoritesLookupResult.theaters];
         [lookupResult.performances addEntriesFromDictionary:favoritesLookupResult.performances];
-        
+
         // the theater may refer to movies that we don't know about.
         for (NSString* theaterName in favoritesLookupResult.performances.allKeys) {
             for (NSString* movieTitle in [[favoritesLookupResult.performances objectForKey:theaterName] allKeys]) {
                 if (![movieTitles containsObject:movieTitle]) {
                     [movieTitles addObject:movieTitle];
-                    
+
                     for (Movie* movie in favoritesLookupResult.movies) {
                         if ([movie.canonicalTitle isEqual:movieTitle]) {
                             [lookupResult.movies addObject:movie];
@@ -381,7 +381,7 @@
                                                         delegate:nil
                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                otherButtonTitles:nil] autorelease];
-        
+
         [alert show];
     } else {
         [self performSelectorOnMainThread:@selector(reportUnknownLocation)

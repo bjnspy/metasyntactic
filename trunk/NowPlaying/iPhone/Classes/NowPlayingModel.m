@@ -202,31 +202,31 @@ static NSString** KEYS[] = {
     if ([previousUserAddress isKindOfClass:[NSString class]]) {
         [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
     }
-    
+
     if ([previousSearchRadius isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setInteger:[previousSearchRadius intValue] forKey:SEARCH_RADIUS];
     }
-    
+
     if ([previousAutoUpdateLocation isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousAutoUpdateLocation boolValue] forKey:AUTO_UPDATE_LOCATION];
     }
-        
+
     if ([previousUseNormalFonts isKindOfClass:[NSNumber class]]) {
         [[NSUserDefaults standardUserDefaults] setBool:[previousUseNormalFonts boolValue] forKey:USE_NORMAL_FONTS];
     }
-    
+
     if ([previousFavoriteTheaters isKindOfClass:[NSArray class]]) {
         NSMutableArray* favoriteTheaters = [NSMutableArray array];
-        
+
         for (id previousTheater in previousFavoriteTheaters) {
             if (![previousTheater isKindOfClass:[NSDictionary class]]) {
                 continue;
             }
-            
+
             if (![FavoriteTheater canReadDictionary:previousTheater]) {
                 continue;
             }
-            
+
             FavoriteTheater* theater = [FavoriteTheater theaterWithDictionary:previousTheater];
             [favoriteTheaters addObject:theater];
         }
@@ -238,9 +238,9 @@ static NSString** KEYS[] = {
 
 - (void) loadData {
     self.dataProvider = [GoogleDataProvider providerWithModel:self];
-    
+
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
-    
+
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
     if (version == nil || ![persistenceVersion isEqual:version]) {
         id previousUserAddress = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ADDRESS];
@@ -248,23 +248,23 @@ static NSString** KEYS[] = {
         id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
         id previousFavoriteTheaters = [[NSUserDefaults standardUserDefaults] objectForKey:FAVORITE_THEATERS];
-        
+
         self.movieMap = nil;
         for (int i = 0; i < ArrayLength(KEYS); i++) {
             NSString** key = KEYS[i];
             [[NSUserDefaults standardUserDefaults] removeObjectForKey:*key];
         }
-        
+
         [Application deleteFolders];
-        
+
         [dataProvider invalidateDiskCache];
-        
+
         [self restorePreviousUserAddress:previousUserAddress
                             searchRadius:previousSearchRadius
                       autoUpdateLocation:previousAutoUpdateLocation
                           useNormalFonts:previousUseNormalFonts
                         favoriteTheaters:previousFavoriteTheaters];
-        
+
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
 }
@@ -324,6 +324,7 @@ static NSString** KEYS[] = {
         [self loadData];
 
         self.addressLocationCache = [AddressLocationCache cache];
+        self.userLocationCache = [UserLocationCache cache];
         self.imdbCache = [IMDbCache cache];
         self.numbersCache = [NumbersCache cache];
         self.posterCache = [PosterCache cacheWithModel:self];
@@ -663,7 +664,7 @@ static NSString** KEYS[] = {
     if (movie.releaseDate != nil) {
         return movie.releaseDate;
     }
-    
+
     return [upcomingCache releaseDateForMovie:movie];
 }
 

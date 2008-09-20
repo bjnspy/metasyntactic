@@ -31,31 +31,31 @@ static NSDictionary* movieNameToPosterMap = nil;
 
 + (NSDictionary*) processFandangoElement:(XmlElement*) element {
     NSMutableDictionary* map = [NSMutableDictionary dictionary];
-    
+
     XmlElement* dataElement = [element element:@"data"];
     XmlElement* moviesElement = [dataElement element:@"movies"];
 
     for (XmlElement* movieElement in moviesElement.children) {
         NSString* poster = [movieElement attributeValue:@"posterhref"];
         NSString* title = [movieElement element:@"title"].text;
-        
+
         if (poster.length == 0 || title.length == 0) {
             continue;
         }
-        
+
         title = [Movie makeCanonical:title];
-        
+
         [map setObject:poster forKey:title];
     }
-    
+
     if (map.count == 0) {
         return nil;
     }
-    
+
     [movieNameToPosterMap release];
     movieNameToPosterMap = map;
     [movieNameToPosterMap retain];
-    
+
     return map;
 }
 
@@ -76,14 +76,14 @@ static NSDictionary* movieNameToPosterMap = nil;
     if (postalCode.length == 0) {
         return;
     }
-    
+
     if([postalCode isEqual:lastPostalCode]) {
         return;
     }
-    
+
     NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
                                                                    fromDate:[DateUtilities today]];
-    
+
     NSString* url = [NSString stringWithFormat:
                      @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
                      [Application host],
@@ -91,12 +91,12 @@ static NSDictionary* movieNameToPosterMap = nil;
                      components.year,
                      components.month,
                      components.day];
-    
+
     XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url
                                                            important:YES];
-    
+
     NSDictionary* result = [self processFandangoElement:element];
-    
+
     if (result.count > 0) {
         [lastPostalCode release];
         lastPostalCode = [[NSString stringWithString:postalCode] retain];
@@ -106,16 +106,16 @@ static NSDictionary* movieNameToPosterMap = nil;
 + (NSData*) download:(Movie*) movie
         postalCode:(NSString*) postalCode {
     [self createMovieMap:postalCode];
-    
+
     if (movieNameToPosterMap == nil) {
         return nil;
     }
-    
+
     NSString* key = [[DifferenceEngine engine] findClosestMatch:movie.canonicalTitle inArray:movieNameToPosterMap.allKeys];
     if (key == nil) {
         return nil;
     }
-    
+
     NSString* posterUrl = [movieNameToPosterMap objectForKey:key];
     return [NetworkUtilities dataWithContentsOfAddress:posterUrl important:NO];
 }

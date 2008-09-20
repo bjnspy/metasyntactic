@@ -134,7 +134,7 @@ static NSString* hash_key = @"Hash";
     if (serverHash.length == 0) {
         serverHash = @"0";
     }
-    
+
     if ([@"0" isEqual:serverHash]) {
         return nil;
     }
