@@ -17,6 +17,7 @@
 #import "Location.h"
 
 #import "Application.h"
+#import "Utilities.h"
 
 @implementation Location
 
@@ -51,11 +52,11 @@ property_definition(country);
     if (self = [super init]) {
         latitude        = latitude_;
         longitude       = longitude_;
-        self.address    = (address_ == nil    ? @"" : address_);
-        self.city       = (city_ == nil       ? @"" : city_);
-        self.state      = (state_ == nil      ? @"" : state_);
-        self.postalCode = (postalCode_ == nil ? @"" : postalCode_);
-        self.country    = (country_ == nil    ? @"" : country_);
+        self.address    = [Utilities nonNilString:address_];
+        self.city       = [Utilities nonNilString:city_];
+        self.state      = [Utilities nonNilString:state_];
+        self.postalCode = [Utilities nonNilString:postalCode_];
+        self.country    = [Utilities nonNilString:country_];
 
         if ([country isEqual:@"US"] && [postalCode rangeOfString:@"-"].length > 0) {
             NSRange range = [postalCode rangeOfString:@"-"];

@@ -69,12 +69,12 @@
     [super loadView];
 
     [self.view addSubview:textField];
-    textField.frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);;
+    textField.frame = CGRectMake(20, 50, self.view.frame.size.width - 40, 30);
 
     [self.view addSubview:messageLabel];
     CGRect frame = messageLabel.frame;
-    frame.origin.x = 20;
-    frame.origin.y = 90;
+    frame.origin.x = textField.frame.origin.x;
+    frame.origin.y = textField.frame.origin.y + 40;
     messageLabel.frame = frame;
 
     [textField becomeFirstResponder];
