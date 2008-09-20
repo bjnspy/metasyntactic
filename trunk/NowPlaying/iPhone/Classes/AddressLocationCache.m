@@ -66,21 +66,13 @@
 }
 
 
-- (NSString*) locationFile:(NSString*) address {
-    return [[[Application locationsFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]]
-            stringByAppendingPathExtension:@"plist"];
+- (NSString*) locationFolder {
+    return [Application locationsFolder];
 }
 
 
 - (Location*) locationForAddress:(NSString*) address {
-    if (![Utilities isNilOrEmpty:address]) {
-        NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self locationFile:address]];
-        if (dict != nil) {
-            return [Location locationWithDictionary:dict];
-        }
-    }
-
-    return nil;
+    return [self loadLocation:address];
 }
 
 
@@ -89,8 +81,8 @@
     if (location == nil || [Utilities isNilOrEmpty:address]) {
         return;
     }
-
-    [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
+    
+    [self saveLocation:location forAddress:address];
     [self performSelectorOnMainThread:@selector(invalidateCachedData) withObject:nil waitUntilDone:NO];
 }
 
@@ -122,25 +114,6 @@
 
         [autoreleasePool release];
     }
-}
-
-
-- (void) updatePostalCode:(NSString*) postalCode {
-    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
-
-    if ([Utilities isNilOrEmpty:postalCode]) {
-        return;
-    }
-
-    if ([self locationForAddress:postalCode] != nil) {
-        return;
-    }
-
-    [ThreadingUtilities performSelector:@selector(downloadAddressLocationBackgroundEntryPoint:)
-                               onTarget:self
-               inBackgroundWithArgument:postalCode
-                                   gate:nil
-                                visible:NO];
 }
 
 

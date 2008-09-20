@@ -57,31 +57,19 @@
 }
 
 
-- (NSString*) locationFile:(NSString*) address {
-    return [[[Application userLocationsFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]]
-            stringByAppendingPathExtension:@"plist"];
+- (NSString*) locationFolder {
+    return [Application userLocationsFolder];
 }
 
 
 - (Location*) locationForUserAddress:(NSString*) userAddress {
-    if (![Utilities isNilOrEmpty:userAddress]) {
-        NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self locationFile:userAddress]];
-        if (dict != nil) {
-            return [Location locationWithDictionary:dict];
-        }
-    }
-    
-    return nil;
+    return [self loadLocation:userAddress];
 }
 
 
 - (void) setLocation:(Location*) location
           forAddress:(NSString*) address {
-    if (location == nil || [Utilities isNilOrEmpty:address]) {
-        return;
-    }
-    
-    [FileUtilities writeObject:location.dictionary toFile:[self locationFile:address]];
+    [self saveLocation:location forAddress:address];
 }
 
 
