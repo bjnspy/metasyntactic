@@ -234,7 +234,7 @@ static NSString** KEYS[] = {
 
 
 - (void) loadData {
-    self.dataProvider = [NorthAmericaDataProvider providerWithModel:self];
+    self.dataProvider = [GoogleDataProvider providerWithModel:self];
     
     self.movieMap = [NSDictionary dictionaryWithContentsOfFile:[Application movieMapFile]];
     
