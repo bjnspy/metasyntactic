@@ -14,26 +14,20 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface NowPlayingController : NSObject {
-    NowPlayingAppDelegate* appDelegate;
+#import "LocationCache.h"
 
-    NSLock* dataProviderLock;
-    NSLock* ratingsLookupLock;
-    NSLock* upcomingMoviesLookupLock;
+@interface UserLocationCache : LocationCache {
+    NSLock* gate;
 }
 
-@property (assign) NowPlayingAppDelegate* appDelegate;
-@property (retain) NSLock* dataProviderLock;
-@property (retain) NSLock* ratingsLookupLock;
-@property (retain) NSLock* upcomingMoviesLookupLock;
+@property (retain) NSLock* gate;
 
-- (NowPlayingModel*) model;
++ (UserLocationCache*) cache;
 
-- (void) setSearchDate:(NSDate*) searchDate;
-- (void) setUserAddress:(NSString*) userAddress;
-- (void) setSearchRadius:(NSInteger) radius;
-- (void) setRatingsProviderIndex:(NSInteger) index;
+- (void) updateUserAddressLocation:(NSString*) userAddress;
 
-+ (NowPlayingController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
+- (Location*) locationForUserAddress:(NSString*) userAddress;
 
+// only call on the background
+- (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress;
 @end

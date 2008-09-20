@@ -248,43 +248,40 @@
 }
 
 
-- (LookupResult*) lookupLocation:(NSString*) location
+- (LookupResult*) lookupLocationWorker:(Location*) location
                     theaterNames:(NSArray*) theaterNames {
-    if (![Utilities isNilOrEmpty:location]) {
-        Location* actualLocation = [self.model.addressLocationCache downloadAddressLocationBackgroundEntryPoint:location];
-        if (actualLocation.postalCode == nil) {
-            [self reportUnknownLocation];
-            return nil;
-        }
-        
-        NSString* country = actualLocation.country.length == 0 ? [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
-                                                               : actualLocation.country;
-        
-        
-        NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
-                                                                     fromDate:[DateUtilities today]
-                                                                       toDate:self.model.searchDate
-                                                                      options:0];
-        NSInteger day = components.day;
-        day = MIN(MAX(day, 0), 7);
-        
-        NSString* address = [NSString stringWithFormat:
-                             @"http://metaboxoffice6.appspot.com/LookupTheaterListings?country=%@&language=%@&postalcode=%@&day=%d&format=xml&latitude=%d&longitude=%d",
-                             country, 
-                             [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
-                             [Utilities stringByAddingPercentEscapes:actualLocation.postalCode],
-                             day,
-                             (int)(actualLocation.latitude * 1000000),
-                             (int)(actualLocation.longitude * 1000000)];
-
-        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                               important:YES];
-        
-        if (element != nil) {
-            return [self processTheaterListingsElement:element
-                                            postalCode:actualLocation.postalCode
-                                          theaterNames:theaterNames];
-        }
+    if (location.postalCode == nil) {
+        [self reportUnknownLocation];
+        return nil;
+    }
+    
+    NSString* country = location.country.length == 0 ? [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
+    : location.country;
+    
+    
+    NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
+                                                                   fromDate:[DateUtilities today]
+                                                                     toDate:self.model.searchDate
+                                                                    options:0];
+    NSInteger day = components.day;
+    day = MIN(MAX(day, 0), 7);
+    
+    NSString* address = [NSString stringWithFormat:
+                         @"http://metaboxoffice6.appspot.com/LookupTheaterListings?country=%@&language=%@&postalcode=%@&day=%d&format=xml&latitude=%d&longitude=%d",
+                         country, 
+                         [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
+                         [Utilities stringByAddingPercentEscapes:location.postalCode],
+                         day,
+                         (int)(location.latitude * 1000000),
+                         (int)(location.longitude * 1000000)];
+    
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:address
+                                                           important:YES];
+    
+    if (element != nil) {
+        return [self processTheaterListingsElement:element
+                                        postalCode:location.postalCode
+                                      theaterNames:theaterNames];
     }
     
     return nil;

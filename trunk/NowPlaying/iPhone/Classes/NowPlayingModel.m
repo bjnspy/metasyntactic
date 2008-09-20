@@ -45,6 +45,7 @@
 #import "TrailerCache.h"
 #import "UpcomingCache.h"
 #import "UpcomingMoviesViewController.h"
+#import "UserLocationCache.h"
 #import "Utilities.h"
 
 @implementation NowPlayingModel
@@ -66,7 +67,7 @@ static NSString* SEARCH_DATE                            = @"searchDate";
 static NSString* SEARCH_RADIUS                          = @"searchRadius";
 static NSString* SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX = @"selectedTabBarViewControllerIndex";
 static NSString* UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX = @"upcomingMoviesSelectedSegmentIndex";
-static NSString* USER_LOCATION                          = @"userLocation";
+static NSString* USER_ADDRESS                           = @"userLocation";
 static NSString* USE_NORMAL_FONTS                       = @"useNormalFonts";
 
 
@@ -84,7 +85,7 @@ static NSString** KEYS[] = {
     &SEARCH_RADIUS,
     &SELECTED_TAB_BAR_VIEW_CONTROLLER_INDEX,
     &UPCOMING_MOVIES_SELECTED_SEGMENT_INDEX,
-    &USER_LOCATION,
+    &USER_ADDRESS,
     &USE_NORMAL_FONTS,
 };
 
@@ -95,6 +96,7 @@ static NSString** KEYS[] = {
 @synthesize favoriteTheatersData;
 
 @synthesize addressLocationCache;
+@synthesize userLocationCache;
 @synthesize imdbCache;
 @synthesize numbersCache;
 @synthesize posterCache;
@@ -111,6 +113,7 @@ static NSString** KEYS[] = {
     self.movieMapLock = nil;
 
     self.addressLocationCache = nil;
+    self.userLocationCache = nil;
     self.imdbCache = nil;
     self.numbersCache = nil;
     self.posterCache = nil;
@@ -176,7 +179,7 @@ static NSString** KEYS[] = {
 
 
 - (void) updateUserAddressLocation {
-    [addressLocationCache updatePostalCode:self.userLocation];
+    [userLocationCache updateUserAddressLocation:self.userAddress];
 }
 
 
@@ -191,13 +194,13 @@ static NSString** KEYS[] = {
 }
 
 
-- (void) restorePreviousUserLocation:(id) previousUserLocation
-                        searchRadius:(id) previousSearchRadius
-                  autoUpdateLocation:(id) previousAutoUpdateLocation
-                      useNormalFonts:(id) previousUseNormalFonts
-                    favoriteTheaters:(id) previousFavoriteTheaters {
-    if ([previousUserLocation isKindOfClass:[NSString class]]) {
-        [[NSUserDefaults standardUserDefaults] setObject:previousUserLocation forKey:USER_LOCATION];
+- (void) restorePreviousUserAddress:(id) previousUserAddress
+                       searchRadius:(id) previousSearchRadius
+                 autoUpdateLocation:(id) previousAutoUpdateLocation
+                     useNormalFonts:(id) previousUseNormalFonts
+                   favoriteTheaters:(id) previousFavoriteTheaters {
+    if ([previousUserAddress isKindOfClass:[NSString class]]) {
+        [[NSUserDefaults standardUserDefaults] setObject:previousUserAddress forKey:USER_ADDRESS];
     }
     
     if ([previousSearchRadius isKindOfClass:[NSNumber class]]) {
@@ -240,7 +243,7 @@ static NSString** KEYS[] = {
     
     NSString* version = [[NSUserDefaults standardUserDefaults] objectForKey:VERSION];
     if (version == nil || ![persistenceVersion isEqual:version]) {
-        id previousUserLocation = [[NSUserDefaults standardUserDefaults] objectForKey:USER_LOCATION];
+        id previousUserAddress = [[NSUserDefaults standardUserDefaults] objectForKey:USER_ADDRESS];
         id previousSearchRadius = [[NSUserDefaults standardUserDefaults] objectForKey:SEARCH_RADIUS];
         id previousAutoUpdateLocation = [[NSUserDefaults standardUserDefaults] objectForKey:AUTO_UPDATE_LOCATION];
         id previousUseNormalFonts = [[NSUserDefaults standardUserDefaults] objectForKey:USE_NORMAL_FONTS];
@@ -256,11 +259,11 @@ static NSString** KEYS[] = {
         
         [dataProvider invalidateDiskCache];
         
-        [self restorePreviousUserLocation:previousUserLocation
-                             searchRadius:previousSearchRadius
-                       autoUpdateLocation:previousAutoUpdateLocation
-                           useNormalFonts:previousUseNormalFonts
-                         favoriteTheaters:previousFavoriteTheaters];
+        [self restorePreviousUserAddress:previousUserAddress
+                            searchRadius:previousSearchRadius
+                      autoUpdateLocation:previousAutoUpdateLocation
+                          useNormalFonts:previousUseNormalFonts
+                        favoriteTheaters:previousFavoriteTheaters];
         
         [[NSUserDefaults standardUserDefaults] setObject:persistenceVersion forKey:VERSION];
     }
@@ -344,13 +347,13 @@ static NSString** KEYS[] = {
     int value = number.intValue;
 
     if (value == 0) {
-        [self updateAddressLocationCache];
-    } else if (value == 1) {
-        [self updateNumbersCache];
-    } else if (value == 2) {
-        [self updatePosterCache];
-    } else if (value == 3) {
         [self updateUserAddressLocation];
+    } else if (value == 1) {
+        [self updateAddressLocationCache];
+    } else if (value == 2) {
+        [self updateNumbersCache];
+    } else if (value == 3) {
+        [self updatePosterCache];
     } else if (value == 4) {
         [self updateReviewCache];
     } else if (value == 5) {
@@ -521,8 +524,8 @@ static NSString** KEYS[] = {
 }
 
 
-- (NSString*) userLocation {
-    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:USER_LOCATION];
+- (NSString*) userAddress {
+    NSString* result = [[NSUserDefaults standardUserDefaults] stringForKey:USER_ADDRESS];
     if (result == nil) {
         result =  @"";
     }
@@ -788,7 +791,7 @@ static NSString** KEYS[] = {
 
 
 - (NSDictionary*) theaterDistanceMap {
-    Location* location = [addressLocationCache locationForAddress:self.userLocation];
+    Location* location = [userLocationCache locationForUserAddress:self.userAddress];
     return [addressLocationCache theaterDistanceMap:location
                                            theaters:self.theaters];
 }
@@ -899,10 +902,10 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 
-- (void) setUserLocation:(NSString*) userLocation {
+- (void) setUserAddress:(NSString*) userAddress {
     [self markDataProviderOutOfDate];
 
-    [[NSUserDefaults standardUserDefaults] setObject:userLocation forKey:USER_LOCATION];
+    [[NSUserDefaults standardUserDefaults] setObject:userAddress forKey:USER_ADDRESS];
 
     [self updateUserAddressLocation];
 }
@@ -970,7 +973,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSString*) noLocationInformationFound {
-    if ([Utilities isNilOrEmpty:self.userLocation]) {
+    if ([Utilities isNilOrEmpty:self.userAddress]) {
         return NSLocalizedString(@"Please enter your location", nil);
     } else {
         return NSLocalizedString(@"No information found", nil);

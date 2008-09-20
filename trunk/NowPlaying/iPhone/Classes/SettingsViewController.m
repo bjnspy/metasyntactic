@@ -34,6 +34,7 @@
 #import "SettingsNavigationController.h"
 #import "TextFieldEditorViewController.h"
 #import "ThreadingUtilities.h"
+#import "UserLocationCache.h"
 #import "Utilities.h"
 #import "XmlElement.h"
 
@@ -146,7 +147,7 @@
 - (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
     NSString* postalCode = [LocationUtilities findPostalCode:location];
 
-    [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:postalCode waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(reportFoundUserAddress:) withObject:postalCode waitUntilDone:NO];
 }
 
 
@@ -217,9 +218,9 @@
             NSString* value;
             if (indexPath.row == 0) {
                 key = NSLocalizedString(@"Location", nil);
-                Location* location = [self.model.addressLocationCache locationForAddress:self.model.userLocation];
+                Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
                 if (location.postalCode == nil) {
-                    value = self.model.userLocation;
+                    value = self.model.userAddress;
                 } else {
                     value = location.postalCode;
                 }
@@ -335,10 +336,10 @@
         if (row == 0) {
             NSString* message;
 
-            if ([Utilities isNilOrEmpty:self.model.userLocation]) {
+            if ([Utilities isNilOrEmpty:self.model.userAddress]) {
                 message = @"";
             } else {
-                Location* location = [self.model.addressLocationCache locationForAddress:self.model.userLocation];
+                Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];
                 if (location.postalCode == nil) {
                     message = NSLocalizedString(@"Could not find location.", nil);
                 } else {
@@ -371,7 +372,7 @@
                                                                  title:NSLocalizedString(@"Location", nil)
                                                                 object:self
                                                               selector:@selector(onUserLocationChanged:)
-                                                                  text:self.model.userLocation
+                                                                  text:self.model.userAddress
                                                                message:message
                                                            placeHolder:NSLocalizedString(@"Postal Code or City/State", nil)
                                                                   type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
@@ -393,24 +394,24 @@
 }
 
 
-- (void) onUserLocationChanged:(NSString*) userLocation {
-    userLocation = [userLocation stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+- (void) onUserAddressChanged:(NSString*) userAddress {
+    userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
 
-    [self.controller setUserLocation:userLocation];
+    [self.controller setUserAddress:userAddress];
     [self.tableView reloadData];
 }
 
 
-- (void) reportFoundUserLocation:(NSString*) location {
+- (void) reportFoundUserAddress:(NSString*) userAddress {
     [self stopActivityIndicator];
 
-    if ([Utilities isNilOrEmpty:location]) {
+    if ([Utilities isNilOrEmpty:userAddress]) {
         [self enqueueUpdateRequest:ONE_MINUTE];
     } else {
         [self enqueueUpdateRequest:5 * ONE_MINUTE];
     }
 
-    [self onUserLocationChanged:location];
+    [self onUserAddressChanged:userAddress];
 }
 
 

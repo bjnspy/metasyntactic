@@ -25,6 +25,7 @@
 #import "NowPlayingModel.h"
 #import "PosterDownloader.h"
 #import "ThreadingUtilities.h"
+#import "UserLocationCache.h"
 #import "Utilities.h"
 
 @implementation PosterCache
@@ -121,14 +122,18 @@
         }
     }
     
-    Location* location = [model.addressLocationCache downloadAddressLocationBackgroundEntryPoint:model.userLocation];
+    Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
+    NSString* postalCode = location.postalCode;
+    if (postalCode == nil) {
+        postalCode = @"10009";
+    }
 
     NSArray* arguments = [NSArray arrayWithObjects:moviesWithPosterLinks, moviesWithoutPosterLinks, nil];
     for (NSArray* list in arguments) {
         for (Movie* movie in list) {
             NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
 
-            [self downloadPoster:movie postalCode:location.postalCode];
+            [self downloadPoster:movie postalCode:postalCode];
 
             [autoreleasePool release];
         }

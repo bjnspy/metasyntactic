@@ -248,34 +248,31 @@
 }
 
 
-- (LookupResult*) lookupLocation:(NSString*) location
+- (LookupResult*) lookupLocationWorker:(Location*) location
                     theaterNames:(NSArray*) theaterNames {
-    if (![Utilities isNilOrEmpty:location]) {
-        Location* actualLocation = [self.model.addressLocationCache downloadAddressLocationBackgroundEntryPoint:location];
-        if (actualLocation.postalCode == nil) {
-            [self reportUnknownLocation];
-            return nil;
-        }
-
-        NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                                                       fromDate:self.model.searchDate];
-
-        NSString* url = [NSString stringWithFormat:
-                               @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
-                               [Application host],
-                               [self trimPostalCode:actualLocation.postalCode],
-                               components.year,
-                               components.month,
-                               components.day];
-
-        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url
-                                                        important:YES];
-
-        if (element != nil) {
-            return [self processFandangoElement:element
-                                     postalCode:actualLocation.postalCode
-                                   theaterNames:theaterNames];
-        }
+    if (location.postalCode == nil) {
+        [self reportUnknownLocation];
+        return nil;
+    }
+    
+    NSDateComponents* components = [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
+                                                                   fromDate:self.model.searchDate];
+    
+    NSString* url = [NSString stringWithFormat:
+                     @"http://%@.appspot.com/LookupTheaterListings?q=%@&date=%d-%d-%d&provider=Fandango",
+                     [Application host],
+                     [self trimPostalCode:location.postalCode],
+                     components.year,
+                     components.month,
+                     components.day];
+    
+    XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url
+                                                           important:YES];
+    
+    if (element != nil) {
+        return [self processFandangoElement:element
+                                 postalCode:location.postalCode
+                               theaterNames:theaterNames];
     }
 
     return nil;

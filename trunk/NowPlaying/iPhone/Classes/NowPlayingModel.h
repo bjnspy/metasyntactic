@@ -23,6 +23,7 @@ enum ViewControllerType {
 
 @interface NowPlayingModel : NSObject {
     AddressLocationCache* addressLocationCache;
+    UserLocationCache* userLocationCache;
     IMDbCache* imdbCache;
     NumbersCache* numbersCache;
     PosterCache* posterCache;
@@ -42,6 +43,7 @@ enum ViewControllerType {
 }
 
 @property (retain) AddressLocationCache* addressLocationCache;
+@property (retain) UserLocationCache* userLocationCache;
 @property (retain) IMDbCache* imdbCache;
 @property (retain) NumbersCache* numbersCache;
 @property (retain) PosterCache* posterCache;
@@ -101,8 +103,8 @@ enum ViewControllerType {
 - (BOOL) autoUpdateLocation;
 - (void) setAutoUpdateLocation:(BOOL) value;
 
-- (NSString*) userLocation;
-- (void) setUserLocation:(NSString*) userLocation;
+- (NSString*) userAddress;
+- (void) setUserAddress:(NSString*) userAddress;
 
 - (NSInteger) searchRadius;
 - (void) setSearchRadius:(NSInteger) searchRadius;

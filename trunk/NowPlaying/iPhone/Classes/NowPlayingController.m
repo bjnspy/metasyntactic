@@ -77,7 +77,7 @@
 
 
 - (void) spawnDataProviderLookupThread {
-    if ([Utilities isNilOrEmpty:self.model.userLocation]) {
+    if ([Utilities isNilOrEmpty:self.model.userAddress]) {
         return;
     }
 
@@ -182,12 +182,12 @@
 }
 
 
-- (void) setUserLocation:(NSString*) userLocation {
-    if ([userLocation isEqual:self.model.userLocation]) {
+- (void) setUserAddress:(NSString*) userAddress {
+    if ([userAddress isEqual:self.model.userAddress]) {
         return;
     }
 
-    [self.model setUserLocation:userLocation];
+    [self.model setUserAddress:userAddress];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController popNavigationControllersToRoot];
     [NowPlayingAppDelegate refresh];

@@ -21,6 +21,7 @@
 + (NSString*) documentsFolder;
 + (NSString*) imdbFolder;
 + (NSString*) locationsFolder;
++ (NSString*) userLocationsFolder;
 + (NSString*) postersFolder;
 + (NSString*) ratingsFolder;
 + (NSString*) reviewsFolder;
