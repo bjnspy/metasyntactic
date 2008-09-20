@@ -16,16 +16,19 @@
 
 #import "AbstractDataProvider.h"
 
+#import "AddressLocationCache.h"
 #import "Application.h"
 #import "DateUtilities.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
+#import "Location.h"
 #import "LookupResult.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
 #import "NowPlayingModel.h"
 #import "Performance.h"
 #import "Theater.h"
+#import "UserLocationCache.h"
 #import "Utilities.h"
 
 @implementation AbstractDataProvider
@@ -257,12 +260,22 @@
 }
 
 
-- (LookupResult*) lookupLocation:(NSString*) location
+- (LookupResult*) lookupLocationWorker:(Location*) location
                     theaterNames:(NSArray*) theaterNames {
     NSAssert(false, @"Someone improperly subclassed!");
     return nil;
 }
 
+
+- (LookupResult*) lookupLocation:(Location*) location
+                    theaterNames:(NSArray*) theaterNames {
+    if (location.postalCode == nil) {
+        [self reportUnknownLocation];
+        return nil;
+    }
+    
+    return [self lookupLocationWorker:location theaterNames:theaterNames];
+}
 
 - (BOOL)        results:(LookupResult*) lookupResult
        containsFavorite:(FavoriteTheater*) favorite {
@@ -301,8 +314,9 @@
     
     for (NSString* postalCode in postalCodeToMissingTheaterNames.allKeys) {
         NSArray* theaterNames = [postalCodeToMissingTheaterNames objectsForKey:postalCode];
-        
-        LookupResult* favoritesLookupResult = [self lookupLocation:postalCode
+
+        Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:postalCode];
+        LookupResult* favoritesLookupResult = [self lookupLocation:location
                                                       theaterNames:theaterNames];
         
         if (favoritesLookupResult == nil) {
@@ -332,7 +346,8 @@
 
 
 - (void) lookup {
-    LookupResult* result = [self lookupLocation:self.model.userLocation theaterNames:nil];
+    Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+    LookupResult* result = [self lookupLocation:location theaterNames:nil];
     [self lookupMissingFavorites:result];
 
     [self saveResult:result];

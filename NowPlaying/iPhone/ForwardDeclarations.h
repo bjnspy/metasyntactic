@@ -35,7 +35,6 @@
 @class ColorCache;
 @class CollapsedMovieDetailsCell;
 @class CreditsViewController;
-@class DataProviderViewController;
 @class DateUtilities;
 @class DifferenceEngine;
 @class EditorViewController;
@@ -88,11 +87,11 @@
 @class TheatersNavigationController;
 @class TicketsViewController;
 @class TrailerCache;
-@class UnitedKingdomDataProvider;
 @class UpcomingCache;
 @class UpcomingMovieCell;
 @class UpcomingMoviesNavigationController;
 @class UpcomingMoviesViewController;
+@class UserLocationCache;
 @class Utilities;
 @class ViewControllerUtilities;
 @class XmlDocument;

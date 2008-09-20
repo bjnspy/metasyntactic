@@ -14,7 +14,9 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface AddressLocationCache : NSObject {
+#import "LocationCache.h"
+
+@interface AddressLocationCache : LocationCache {
     NSLock* gate;
 
     NSMutableDictionary* cachedTheaterDistanceMap;
@@ -26,11 +28,10 @@
 + (AddressLocationCache*) cache;
 
 - (void) updateAddresses:(NSArray*) addresses;
-- (void) updatePostalCode:(NSString*) postalCode;
 
 - (Location*) locationForAddress:(NSString*) address;
 
-- (NSDictionary*) theaterDistanceMap:(Location*) userLocation
+- (NSDictionary*) theaterDistanceMap:(Location*) location
                             theaters:(NSArray*) theaters;
 
 // only call on the background

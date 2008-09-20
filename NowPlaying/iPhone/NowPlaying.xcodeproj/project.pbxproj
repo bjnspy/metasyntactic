@@ -66,6 +66,8 @@
 		747C56970E67583600BD69DA /* NowPlayingAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56920E67583600BD69DA /* NowPlayingAppDelegate.m */; };
 		747C56980E67583600BD69DA /* NowPlayingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56940E67583600BD69DA /* NowPlayingController.m */; };
 		747C56990E67583600BD69DA /* NowPlayingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C56960E67583600BD69DA /* NowPlayingModel.m */; };
+		747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA13A0E8591B600A09E89 /* UserLocationCache.m */; };
+		747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 747CA1C00E8594C300A09E89 /* LocationCache.m */; };
 		748217D70E2163760054759E /* ExtraMovieInformation.m in Sources */ = {isa = PBXBuildFile; fileRef = 748217D60E2163760054759E /* ExtraMovieInformation.m */; };
 		748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 748379CA0DD0169E00DC3B80 /* EditorViewController.m */; };
 		748B23580E843AFE00322E25 /* Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = 748B23570E843AFE00322E25 /* Entitlements.plist */; };
@@ -282,6 +284,10 @@
 		747C56940E67583600BD69DA /* NowPlayingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingController.m; sourceTree = "<group>"; };
 		747C56950E67583600BD69DA /* NowPlayingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NowPlayingModel.h; sourceTree = "<group>"; };
 		747C56960E67583600BD69DA /* NowPlayingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NowPlayingModel.m; sourceTree = "<group>"; };
+		747CA1390E8591B600A09E89 /* UserLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLocationCache.h; sourceTree = "<group>"; };
+		747CA13A0E8591B600A09E89 /* UserLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLocationCache.m; sourceTree = "<group>"; };
+		747CA1BF0E8594C300A09E89 /* LocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationCache.h; sourceTree = "<group>"; };
+		747CA1C00E8594C300A09E89 /* LocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationCache.m; sourceTree = "<group>"; };
 		748217D50E2163760054759E /* ExtraMovieInformation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtraMovieInformation.h; sourceTree = "<group>"; };
 		748217D60E2163760054759E /* ExtraMovieInformation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtraMovieInformation.m; sourceTree = "<group>"; };
 		748379C90DD0169E00DC3B80 /* EditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditorViewController.h; sourceTree = "<group>"; };
@@ -729,8 +735,12 @@
 		7474FE910E6359BC00BAA43D /* Caches */ = {
 			isa = PBXGroup;
 			children = (
+				747CA1BF0E8594C300A09E89 /* LocationCache.h */,
+				747CA1C00E8594C300A09E89 /* LocationCache.m */,
 				74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */,
 				74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */,
+				747CA1390E8591B600A09E89 /* UserLocationCache.h */,
+				747CA13A0E8591B600A09E89 /* UserLocationCache.m */,
 				740C9FE60E3A838E00D7A56B /* ColorCache.h */,
 				740C9FE70E3A838E00D7A56B /* ColorCache.m */,
 				74EFE5340E35637200B6E103 /* FontCache.h */,
@@ -1088,6 +1098,8 @@
 				74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */,
 				745236AD0E7F28EB0047F544 /* GoogleDataProvider.m in Sources */,
 				74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */,
+				747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */,
+				747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

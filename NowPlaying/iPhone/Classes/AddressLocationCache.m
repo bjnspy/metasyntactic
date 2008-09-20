@@ -66,71 +66,6 @@
 }
 
 
-- (Location*) processResult:(XmlElement*) resultElement {
-    if (resultElement != nil) {
-        NSString* latitude =    [resultElement attributeValue:@"latitude"];
-        NSString* longitude =   [resultElement attributeValue:@"longitude"];
-        NSString* address =     [resultElement attributeValue:@"address"];
-        NSString* city =        [resultElement attributeValue:@"city"];
-        NSString* state =       [resultElement attributeValue:@"state"];
-        NSString* country =     [resultElement attributeValue:@"country"];
-        NSString* postalCode =  [resultElement attributeValue:@"zipcode"];
-
-        if (![Utilities isNilOrEmpty:latitude] && ![Utilities isNilOrEmpty:longitude]) {
-            return [Location locationWithLatitude:latitude.doubleValue
-                                        longitude:longitude.doubleValue
-                                          address:address
-                                             city:city
-                                            state:state
-                                       postalCode:postalCode
-                                          country:country];
-        }
-    }
-
-    return nil;
-}
-
-
-- (Location*) downloadAddressLocationFromWebServiceWorker:(NSString*) address {
-    NSString* escapedAddress = [Utilities stringByAddingPercentEscapes:address];
-    if (escapedAddress != nil) {
-        NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupLocation?q=%@", [Application host], escapedAddress];
-
-        XmlElement* element = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
-        return [self processResult:element];
-    }
-
-    return nil;
-}
-
-
-- (Location*) downloadAddressLocationFromWebService:(NSString*) address {
-    if ([Utilities isNilOrEmpty:address]) {
-        return nil;
-    }
-
-    Location* result = [self downloadAddressLocationFromWebServiceWorker:address];
-    if (result != nil && result.latitude != 0 && result.longitude != 0) {
-        if ([Utilities isNilOrEmpty:result.postalCode]) {
-            
-            CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
-            NSString* postalCode = [LocationUtilities findPostalCode:location];
-            if (![Utilities isNilOrEmpty:postalCode]) {
-                return [Location locationWithLatitude:result.latitude
-                                            longitude:result.longitude
-                                              address:result.address
-                                                 city:result.city
-                                                state:result.state
-                                           postalCode:postalCode
-                                              country:result.country];
-            }
-        }
-    }
-
-    return result;
-}
-
-
 - (NSString*) locationFile:(NSString*) address {
     return [[[Application locationsFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:address]]
             stringByAppendingPathExtension:@"plist"];
@@ -209,17 +144,17 @@
 }
 
 
-- (NSDictionary*) theaterDistanceMap:(Location*) userLocation
+- (NSDictionary*) theaterDistanceMap:(Location*) location
                             theaters:(NSArray*) theaters {
-    NSString* userPostalCode = [Utilities nonNilString:userLocation.postalCode];
+    NSString* userPostalCode = [Utilities nonNilString:location.postalCode];
     NSMutableDictionary* theaterDistanceMap = [cachedTheaterDistanceMap objectForKey:userPostalCode];
     if (theaterDistanceMap == nil) {
         theaterDistanceMap = [NSMutableDictionary dictionary];
 
         for (Theater* theater in theaters) {
             double d;
-            if (userLocation != nil) {
-                d = [userLocation distanceTo:[self locationForAddress:theater.address]];
+            if (location != nil) {
+                d = [location distanceTo:[self locationForAddress:theater.address]];
             } else {
                 d = UNKNOWN_DISTANCE;
             }

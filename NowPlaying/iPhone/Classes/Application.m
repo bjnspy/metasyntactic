@@ -29,6 +29,7 @@ static NSString* documentsFolder = nil;
 static NSString* tempFolder = nil;
 static NSString* imdbFolder = nil;
 static NSString* locationsFolder = nil;
+static NSString* userLocationsFolder = nil;
 static NSString* ratingsFolder = nil;
 static NSString* reviewsFolder = nil;
 static NSString* trailersFolder = nil;
@@ -71,6 +72,7 @@ static NSString* starString = nil;
             &tempFolder,
             &imdbFolder,
             &locationsFolder,
+            &userLocationsFolder,
             &numbersFolder,
             &numbersBudgetsFolder,
             &numbersDailyFolder,
@@ -182,6 +184,11 @@ static NSString* starString = nil;
 
 + (NSString*) locationsFolder {
     return [self findOrCreateFolder:&locationsFolder parent:[Application supportFolder] name:@"Locations"];
+}
+
+
++ (NSString*) userLocationsFolder {
+    return [self findOrCreateFolder:&userLocationsFolder parent:[Application supportFolder] name:@"UserLocations"];
 }
 
 
