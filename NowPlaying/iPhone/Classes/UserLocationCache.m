@@ -57,15 +57,37 @@
 }
 
 
-- (NSString*) addressWithCountry:(NSString*) userAddress {
-    NSLocale* locale = [NSLocale currentLocale];
-    NSString* isoCode = [locale objectForKey:NSLocaleCountryCode];
-    NSString* country = [locale displayNameForKey:NSLocaleCountryCode value:isoCode];
-    if (country == nil) {
-        return nil;
+- (BOOL) containsNumber:(NSString*) string {
+    for (int i = 0; i < string.length; i++) {
+        unichar c = [string characterAtIndex:i];
+        if (c >= '0' && c <= '9') {
+            return YES;
+        }
     }
+    
+    return NO;
+}
 
-    return [NSString stringWithFormat:@"%@. %@", userAddress, country];
+
+- (NSString*) userCountryISO {
+    return [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode];
+}
+
+
+- (NSString*) massageAddress:(NSString*) userAddress {
+    userAddress = [userAddress stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+    if (userAddress.length <= 7 &&
+        [self containsNumber:userAddress]) {
+        // possibly a postal code.  append the country to help make it unique
+        
+        NSString* isoCode = [self userCountryISO];
+        NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:isoCode];
+        if (country != nil) {
+            return [NSString stringWithFormat:@"%@. %@", userAddress, country];
+        }
+    }
+    
+    return nil;
 }
 
 
@@ -79,8 +101,8 @@
         return nil;
     }
 
-    Location* location = [self loadLocation:[self addressWithCountry:userAddress]];
-    if (location != nil) {
+    Location* location = [self loadLocation:[self massageAddress:userAddress]];
+    if ([location.country isEqual:[self userCountryISO]]) {
         return location;
     }
 
@@ -103,7 +125,7 @@
     Location* location = [self locationForUserAddress:userAddress];
 
     if (location == nil) {
-        location = [self downloadAddressLocationFromWebService:[self addressWithCountry:userAddress]];
+        location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
         if (location == nil) {
             location = [self downloadAddressLocationFromWebService:userAddress];
         }
