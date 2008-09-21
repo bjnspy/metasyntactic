@@ -107,10 +107,9 @@ static NSString** KEYS[] = {
 
 - (void) dealloc {
     self.dataProvider = nil;
-    self.favoriteTheatersData = nil;
-
     self.movieMap = nil;
     self.movieMapLock = nil;
+    self.favoriteTheatersData = nil;
 
     self.addressLocationCache = nil;
     self.userLocationCache = nil;
