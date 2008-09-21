@@ -79,7 +79,8 @@
         // possibly a postal code.  append the country to help make it unique
 
         NSString* isoCode = [self userCountryISO];
-        NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:isoCode];
+        NSLocale* englishLocale = [[[NSLocale alloc] initWithLocaleIdentifier:@"en"] autorelease];
+        NSString* country = [englishLocale displayNameForKey:NSLocaleCountryCode value:isoCode];
         if (country != nil) {
             return [NSString stringWithFormat:@"%@. %@", userAddress, country];
         }
@@ -100,7 +101,7 @@
     }
 
     Location* location = [self loadLocation:[self massageAddress:userAddress]];
-    if ([location.country isEqual:[self userCountryISO]]) {
+    if (location != nil) {
         return location;
     }
 
@@ -124,7 +125,7 @@
 
     if (location == nil) {
         location = [self downloadAddressLocationFromWebService:[self massageAddress:userAddress]];
-        if (location == nil) {
+        if (![location.country isEqual:[self userCountryISO]]) {
             location = [self downloadAddressLocationFromWebService:userAddress];
         }
 

@@ -51,8 +51,7 @@
         NSString* postalCode =  [resultElement attributeValue:@"zipcode"];
 
         if (![Utilities isNilOrEmpty:latitude] &&
-            ![Utilities isNilOrEmpty:longitude] &&
-            ![Utilities isNilOrEmpty:city]) {
+            ![Utilities isNilOrEmpty:longitude]) {
             return [Location locationWithLatitude:latitude.doubleValue
                                         longitude:longitude.doubleValue
                                           address:address
