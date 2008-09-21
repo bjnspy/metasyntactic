@@ -283,7 +283,8 @@ static NSString* titles_key = @"Titles";
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@", [Application host], studio, title];
     NSString* synopsis = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
 
-    if (![Utilities isNilOrEmpty:synopsis]) {
+    if (![Utilities isNilOrEmpty:synopsis] &&
+        ![synopsis hasPrefix:@"No synopsis"]) {
         [FileUtilities writeObject:synopsis toFile:synopsisFile];
     }
 }
