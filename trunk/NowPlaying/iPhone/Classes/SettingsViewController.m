@@ -17,7 +17,6 @@
 #import "SettingsViewController.h"
 
 #import "ActivityIndicator.h"
-#import "AddressLocationCache.h"
 #import "Application.h"
 #import "ColorCache.h"
 #import "CreditsViewController.h"
@@ -25,7 +24,6 @@
 #import "GlobalActivityIndicator.h"
 #import "Location.h"
 #import "LocationUtilities.h"
-#import "NetworkUtilities.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "RatingsProviderViewController.h"
@@ -36,7 +34,6 @@
 #import "ThreadingUtilities.h"
 #import "UserLocationCache.h"
 #import "Utilities.h"
-#import "XmlElement.h"
 
 @implementation SettingsViewController
 

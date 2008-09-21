@@ -19,12 +19,10 @@
 #import "Application.h"
 #import "ExtraMovieInformation.h"
 #import "FileUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "Review.h"
 #import "ThreadingUtilities.h"
-#import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation ReviewCache

@@ -22,7 +22,6 @@
 #import "MetacriticDownloader.h"
 #import "NowPlayingModel.h"
 #import "RottenTomatoesDownloader.h"
-#import "Utilities.h"
 
 @implementation RatingsCache
 

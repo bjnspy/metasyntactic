@@ -17,7 +17,6 @@
 #import "NowPlayingAppDelegate.h"
 
 #import "ApplicationTabBarController.h"
-#import "GlobalActivityIndicator.h"
 #import "NowPlayingController.h"
 #import "NowPlayingModel.h"
 

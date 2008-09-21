@@ -18,15 +18,12 @@
 
 #import "Application.h"
 #import "ApplicationTabBarController.h"
-#import "DataProvider.h"
 #import "DateUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "NorthAmericaDataProvider.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "RatingsCache.h"
 #import "ThreadingUtilities.h"
-#import "UpcomingCache.h"
 #import "Utilities.h"
 
 @implementation NowPlayingController

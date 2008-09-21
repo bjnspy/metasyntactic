@@ -16,7 +16,6 @@
 
 #import "MovieShowtimesCell.h"
 
-#import "ColorCache.h"
 #import "FontCache.h"
 #import "ImageCache.h"
 #import "Performance.h"

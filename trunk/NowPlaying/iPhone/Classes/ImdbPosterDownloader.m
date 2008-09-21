@@ -19,7 +19,6 @@
 #import "Movie.h"
 #import "NetworkUtilities.h"
 #import "XmlElement.h"
-#import "XmlParser.h"
 
 @implementation ImdbPosterDownloader
 

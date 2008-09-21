@@ -17,7 +17,6 @@
 #import "ThreadingUtilities.h"
 
 #import "BackgroundInvocation.h"
-#import "GlobalActivityIndicator.h"
 
 @implementation ThreadingUtilities
 

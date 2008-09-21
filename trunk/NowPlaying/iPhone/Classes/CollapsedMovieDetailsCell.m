@@ -16,7 +16,6 @@
 
 #import "CollapsedMovieDetailsCell.h"
 
-#import "ColorCache.h"
 #import "Movie.h"
 
 @implementation CollapsedMovieDetailsCell

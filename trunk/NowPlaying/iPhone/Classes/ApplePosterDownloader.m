@@ -20,7 +20,6 @@
 #import "DifferenceEngine.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "Utilities.h"
 
 @implementation ApplePosterDownloader
 
