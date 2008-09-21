@@ -21,7 +21,6 @@
 #import "ImdbPosterDownloader.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
-#import "Utilities.h"
 
 @implementation PosterDownloader
 

@@ -20,7 +20,6 @@
 #import "ExtraMovieInformation.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
-#import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation MetacriticDownloader

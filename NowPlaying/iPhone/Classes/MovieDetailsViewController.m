@@ -23,7 +23,6 @@
 #import "DateUtilities.h"
 #import "ExpandedMovieDetailsCell.h"
 #import "GlobalActivityIndicator.h"
-#import "Invocation.h"
 #import "Movie.h"
 #import "MovieOverviewCell.h"
 #import "MovieShowtimesCell.h"

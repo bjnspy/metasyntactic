@@ -17,11 +17,9 @@
 #import "UserLocationCache.h"
 
 #import "Application.h"
-#import "FileUtilities.h"
 #import "Location.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
-#import "XmlElement.h"
 
 @implementation UserLocationCache
 
@@ -64,7 +62,7 @@
             return YES;
         }
     }
-    
+
     return NO;
 }
 
@@ -79,14 +77,14 @@
     if (userAddress.length <= 7 &&
         [self containsNumber:userAddress]) {
         // possibly a postal code.  append the country to help make it unique
-        
+
         NSString* isoCode = [self userCountryISO];
         NSString* country = [[NSLocale currentLocale] displayNameForKey:NSLocaleCountryCode value:isoCode];
         if (country != nil) {
             return [NSString stringWithFormat:@"%@. %@", userAddress, country];
         }
     }
-    
+
     return nil;
 }
 
@@ -120,7 +118,7 @@
     if ([Utilities isNilOrEmpty:userAddress]) {
         return nil;
     }
-    
+
     NSAssert(![NSThread isMainThread], @"Only call this from the background");
     Location* location = [self locationForUserAddress:userAddress];
 

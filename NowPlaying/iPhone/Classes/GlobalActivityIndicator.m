@@ -16,7 +16,6 @@
 
 #import "GlobalActivityIndicator.h"
 
-#import "ApplicationTabBarController.h"
 #import "NowPlayingAppDelegate.h"
 
 @implementation GlobalActivityIndicator

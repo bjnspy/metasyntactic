@@ -16,7 +16,6 @@
 
 #import "XmlParser.h"
 
-#import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation XmlParser

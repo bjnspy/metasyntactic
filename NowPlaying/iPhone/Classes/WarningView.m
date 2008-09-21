@@ -17,10 +17,8 @@
 #import "WarningView.h"
 
 #import "ColorCache.h"
-#import "DateUtilities.h"
 #import "FontCache.h"
 #import "ImageCache.h"
-#import "Utilities.h"
 
 @implementation WarningView
 

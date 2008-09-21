@@ -16,14 +16,11 @@
 
 #import "GoogleDataProvider.h"
 
-#import "AddressLocationCache.h"
 #import "Application.h"
 #import "DateUtilities.h"
-#import "FavoriteTheater.h"
 #import "Location.h"
 #import "LookupResult.h"
 #import "Movie.h"
-#import "MultiDictionary.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "Performance.h"

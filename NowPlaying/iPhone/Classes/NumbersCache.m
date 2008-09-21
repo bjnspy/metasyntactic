@@ -18,7 +18,6 @@
 
 #import "Application.h"
 #import "FileUtilities.h"
-#import "GlobalActivityIndicator.h"
 #import "MovieNumbers.h"
 #import "NetworkUtilities.h"
 #import "ThreadingUtilities.h"

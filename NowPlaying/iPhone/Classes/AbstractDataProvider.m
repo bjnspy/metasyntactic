@@ -16,9 +16,7 @@
 
 #import "AbstractDataProvider.h"
 
-#import "AddressLocationCache.h"
 #import "Application.h"
-#import "DateUtilities.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "Location.h"
@@ -29,7 +27,6 @@
 #import "Performance.h"
 #import "Theater.h"
 #import "UserLocationCache.h"
-#import "Utilities.h"
 
 @implementation AbstractDataProvider
 

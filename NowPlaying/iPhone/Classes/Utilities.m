@@ -17,7 +17,6 @@
 #import "Utilities.h"
 
 #import "DataProvider.h"
-#import "DateUtilities.h"
 #import "NowPlayingModel.h"
 #import "Performance.h"
 #import "Theater.h"

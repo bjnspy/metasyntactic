@@ -31,7 +31,7 @@
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
-#import "NorthAmericaDataProvider.h"
+//#import "NorthAmericaDataProvider.h"
 #import "NowPlayingAppDelegate.h"
 #import "NumbersCache.h"
 #import "PosterCache.h"
