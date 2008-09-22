@@ -110,8 +110,8 @@
 
 
 - (void) setLocation:(Location*) location
-          forAddress:(NSString*) address {
-    [self saveLocation:location forAddress:address];
+      forUserAddress:(NSString*) userAddress {
+    [self saveLocation:location forAddress:userAddress];
 }
 
 
@@ -129,7 +129,7 @@
             location = [self downloadAddressLocationFromWebService:userAddress];
         }
 
-        [self setLocation:location forAddress:userAddress];
+        [self setLocation:location forUserAddress:userAddress];
     }
 
     return location;

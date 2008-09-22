@@ -170,4 +170,23 @@ property_definition(country);
 }
 
 
+- (NSString*) fullDisplayString {
+    //TODO: switch on Locale here
+    
+    if (city.length || state.length || postalCode.length) {
+        if (city.length) {
+            if (state.length || postalCode.length) {
+                return [NSString stringWithFormat:@"%@, %@ %@", city, state, postalCode];
+            } else {
+                return city;
+            }
+        } else {
+            return [NSString stringWithFormat:@"%@ %@", state, postalCode];
+        }
+    }
+    
+    return nil;
+}
+
+
 @end

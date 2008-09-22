@@ -89,14 +89,14 @@
         if ([Utilities isNilOrEmpty:result.postalCode]) {
 
             CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
-            NSString* postalCode = [LocationUtilities findPostalCode:location];
-            if (![Utilities isNilOrEmpty:postalCode]) {
+            Location* resultLocation = [LocationUtilities findLocation:location];
+            if (![Utilities isNilOrEmpty:resultLocation.postalCode]) {
                 return [Location locationWithLatitude:result.latitude
                                             longitude:result.longitude
                                               address:result.address
                                                  city:result.city
                                                 state:result.state
-                                           postalCode:postalCode
+                                           postalCode:resultLocation.postalCode
                                               country:result.country];
             }
         }

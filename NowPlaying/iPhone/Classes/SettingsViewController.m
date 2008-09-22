@@ -142,9 +142,9 @@
 
 
 - (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
-    NSString* postalCode = [LocationUtilities findPostalCode:location];
+    Location* userLocation = [LocationUtilities findLocation:location];
 
-    [self performSelectorOnMainThread:@selector(reportFoundUserAddress:) withObject:postalCode waitUntilDone:NO];
+    [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:userLocation waitUntilDone:NO];
 }
 
 
@@ -399,16 +399,18 @@
 }
 
 
-- (void) reportFoundUserAddress:(NSString*) userAddress {
+- (void) reportFoundUserLocation:(Location*) userLocation {
     [self stopActivityIndicator];
 
-    if ([Utilities isNilOrEmpty:userAddress]) {
+    if (userLocation == nil) {
         [self enqueueUpdateRequest:ONE_MINUTE];
     } else {
         [self enqueueUpdateRequest:5 * ONE_MINUTE];
     }
 
-    [self onUserAddressChanged:userAddress];
+    NSString* displayString = userLocation.fullDisplayString;
+    [self.model.userLocationCache setLocation:userLocation forUserAddress:displayString]; 
+    [self onUserAddressChanged:displayString];
 }
 
 
