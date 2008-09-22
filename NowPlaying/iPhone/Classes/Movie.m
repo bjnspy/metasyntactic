@@ -26,6 +26,7 @@ property_definition(displayTitle);
 property_definition(rating);
 property_definition(length);
 property_definition(releaseDate);
+property_definition(imdbUrl);
 property_definition(poster);
 property_definition(synopsis);
 property_definition(studio);
@@ -39,6 +40,7 @@ property_definition(genres);
     self.rating = nil;
     self.length = nil;
     self.releaseDate = nil;
+    self.imdbUrl = nil;
     self.poster = nil;
     self.synopsis = nil;
     self.displayTitle = nil;
@@ -94,6 +96,7 @@ static NSString* articles[] = {
                    rating:(NSString*) rating_
                    length:(NSString*) length_
               releaseDate:(NSDate*) releaseDate_
+                  imdbUrl:(NSString*) imdbUrl_
                    poster:(NSString*) poster_
                  synopsis:(NSString*) synopsis_
                    studio:(NSString*) studio_
@@ -101,15 +104,16 @@ static NSString* articles[] = {
                      cast:(NSArray*) cast_
                    genres:(NSArray*) genres_ {
     if (self = [self init]) {
-        self.identifier = identifier_;
-        self.canonicalTitle = canonicalTitle_;
-        self.displayTitle = displayTitle_;
-        self.rating = rating_;
+        self.identifier = [Utilities nonNilString:identifier_];
+        self.canonicalTitle = [Utilities nonNilString:canonicalTitle_];
+        self.displayTitle = [Utilities nonNilString:displayTitle_];
+        self.rating = [Utilities nonNilString:rating_];
         self.length = length_;
         self.releaseDate = releaseDate_;
-        self.poster = poster_;
-        self.synopsis = synopsis_;
-        self.studio = studio_;
+        self.imdbUrl = [Utilities nonNilString:imdbUrl_];
+        self.poster = [Utilities nonNilString:poster_];
+        self.synopsis = [Utilities nonNilString:synopsis_];
+        self.studio = [Utilities nonNilString:studio_];
         self.directors = directors_;
         self.cast = cast_;
         self.genres = genres_;
@@ -124,6 +128,7 @@ static NSString* articles[] = {
                         rating:(NSString*) rating
                         length:(NSString*) length
                    releaseDate:(NSDate*) releaseDate
+                       imdbUrl:(NSString*) imdbUrl
                         poster:(NSString*) poster
                       synopsis:(NSString*) synopsis
                         studio:(NSString*) studio
@@ -141,6 +146,7 @@ static NSString* articles[] = {
                                        rating:rating
                                        length:length
                                   releaseDate:releaseDate
+                                      imdbUrl:imdbUrl
                                        poster:poster
                                      synopsis:[Utilities stripHtmlCodes:synopsis]
                                        studio:studio
@@ -157,6 +163,7 @@ static NSString* articles[] = {
                                        rating:[dictionary objectForKey:rating_key]
                                        length:[dictionary objectForKey:length_key]
                                   releaseDate:[dictionary objectForKey:releaseDate_key]
+                                      imdbUrl:[dictionary objectForKey:imdbUrl_key]
                                        poster:[dictionary objectForKey:poster_key]
                                      synopsis:[dictionary objectForKey:synopsis_key]
                                        studio:[dictionary objectForKey:studio_key]
@@ -174,6 +181,7 @@ static NSString* articles[] = {
     [dictionary setValue:rating         forKey:rating_key];
     [dictionary setValue:length         forKey:length_key];
     [dictionary setValue:releaseDate    forKey:releaseDate_key];
+    [dictionary setValue:imdbUrl        forKey:imdbUrl_key];
     [dictionary setValue:poster         forKey:poster_key];
     [dictionary setValue:synopsis       forKey:synopsis_key];
     [dictionary setValue:studio         forKey:studio_key];
