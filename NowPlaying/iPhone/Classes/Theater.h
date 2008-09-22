@@ -22,7 +22,6 @@
     double latitude;
     double longitude;
 
-    NSString* sellsTickets;
     NSArray* movieTitles;
 
     NSString* originatingPostalCode;
@@ -34,7 +33,6 @@
 @property (copy) NSString* phoneNumber;
 @property double latitude;
 @property double longitude;
-@property (copy) NSString* sellsTickets;
 @property (copy) NSString* originatingPostalCode;
 @property (retain) NSArray* movieTitles;
 
@@ -44,7 +42,6 @@
                        phoneNumber:(NSString*) phoneNumber
                           latitude:(double) latitude
                          longitude:(double) longitude
-                      sellsTickets:(NSString*) sellsTickets
                        movieTitles:(NSArray*) movieTitles
              originatingPostalCode:(NSString*) originatingPostalCode;
 

@@ -183,17 +183,11 @@
 
         Performance* performance = [performances objectAtIndex:i];
 
-        if (![theater.sellsTickets isEqual:@"True"] ||
-            performance.identifier.length == 0) {
+        if (performance.url.length == 0) {
             [body appendString:performance.time];
         } else {
-            NSString* url = [model.dataProvider ticketingUrlForTheater:theater
-                                                                        movie:movie
-                                                                  performance:performance
-                                                                         date:model.searchDate];
-
             [body appendString:@"<a href=\""];
-            [body appendString:url];
+            [body appendString:performance.url];
             [body appendString:@"\">"];
             [body appendString:performance.time];
             [body appendString:@"</a>"];

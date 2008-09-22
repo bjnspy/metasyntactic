@@ -213,7 +213,6 @@
                                            phoneNumber:phone
                                               latitude:latitude
                                              longitude:longitude
-                                          sellsTickets:NO
                                            movieTitles:movieToShowtimesMap.allKeys
                                  originatingPostalCode:originatingPostalCode]];
 }
