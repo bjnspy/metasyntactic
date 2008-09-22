@@ -90,7 +90,6 @@
     }
 
     NSString* identifier = [theaterElement attributeValue:@"id"];
-    NSString* sellsTickets = [theaterElement attributeValue:@"iswired"];
     NSString* address =    [theaterElement element:@"address1"].text;
     NSString* city =       [theaterElement element:@"city"].text;
     NSString* state =      [theaterElement element:@"state"].text;
@@ -129,7 +128,6 @@
                                            phoneNumber:phone
                                               latitude:0
                                              longitude:0
-                                          sellsTickets:sellsTickets
                                            movieTitles:movieToShowtimesMap.allKeys
                                  originatingPostalCode:originatingPostalCode]];
 }

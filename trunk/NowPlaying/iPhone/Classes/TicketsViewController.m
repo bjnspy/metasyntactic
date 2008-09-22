@@ -206,8 +206,7 @@
 
     Performance* performance = [performances objectAtIndex:row];
 
-    if (![theater.sellsTickets isEqual:@"True"] ||
-        performance.identifier.length == 0) {
+    if (performance.url.length == 0) {
         cell.textColor = [UIColor blackColor];
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), performance.time];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -290,8 +289,7 @@
 - (void) didSelectShowtimeAtRow:(NSInteger) row {
     Performance* performance = [performances objectAtIndex:row];
 
-    if (![theater.sellsTickets isEqual:@"True"] ||
-        performance.identifier.length == 0) {
+    if (performance.url.length == 0) {
         return;
     }
 
