@@ -208,9 +208,9 @@ static NSString* articles[] = {
 
 - (NSString*) ratingString {
     if (self.isUnrated) {
-        return NSLocalizedString(@"Unrated.", nil);
+        return NSLocalizedString(@"Unrated", nil);
     }  else {
-        return [NSString stringWithFormat:NSLocalizedString(@"Rated %@.", nil), rating];
+        return [NSString stringWithFormat:NSLocalizedString(@"Rated %@", nil), rating];
     }
 }
 
@@ -243,7 +243,7 @@ static NSString* articles[] = {
 
 
 - (NSString*) ratingAndRuntimeString {
-    return [NSString stringWithFormat:@"%@ %@", self.ratingString, self.runtimeString];
+    return [NSString stringWithFormat:NSLocalizedString(@"%@. %@", "Rated R. 2 hours 34 minutes"), self.ratingString, self.runtimeString];
 }
 
 @end
