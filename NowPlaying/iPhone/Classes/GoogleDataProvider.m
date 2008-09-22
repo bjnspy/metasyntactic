@@ -107,19 +107,6 @@
 }
 
 
-/*
- - <Movies>
- - <Movie identifier="0xcf14c60de331541L">
- - <Showtimes vendor="f">
- <Showtime time="2:45" />
- <Showtime mobileUrl="http://mobile.fandango.com/tms.asp?a=11586&m=66653&t=AABQG&d=2008-09-15+17:15" time="5:15" url="http://www.google.com/url?q=http://www.fandango.com/redirect.aspx%3Ftid%3DAABQG%26tmid%3D66653%26date%3D2008-09-15%2B17:15%26a%3D11584%26source%3Dgoogle&sa=X&oi=moviesf&ii=6" />
- <Showtime mobileUrl="http://mobile.fandango.com/tms.asp?a=11586&m=66653&t=AABQG&d=2008-09-15+19:45" time="7:45" url="http://www.google.com/url?q=http://www.fandango.com/redirect.aspx%3Ftid%3DAABQG%26tmid%3D66653%26date%3D2008-09-15%2B19:45%26a%3D11584%26source%3Dgoogle&sa=X&oi=moviesf&ii=6" />
- <Showtime mobileUrl="http://mobile.fandango.com/tms.asp?a=11586&m=66653&t=AABQG&d=2008-09-15+22:10" time="10:10pm" url="http://www.google.com/url?q=http://www.fandango.com/redirect.aspx%3Ftid%3DAABQG%26tmid%3D66653%26date%3D2008-09-15%2B22:10%26a%3D11584%26source%3Dgoogle&sa=X&oi=moviesf&ii=6" />
- </Showtimes>
- </Movie>
-
- */
-
 - (NSMutableDictionary*) processMovieShowtimes:(XmlElement*) moviesElement
                              movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
@@ -137,10 +124,19 @@
             NSString* time = [showtimeElement attributeValue:@"time"];
             time = [Theater processShowtime:time];
 
+            static NSString* prefix = @"http://www.google.com/url?q=";
+            
+            NSString* url = [showtimeElement attributeValue:@"url"];
+            if ([url hasPrefix:prefix]) {
+                url = [url substringFromIndex:prefix.length];
+                url = [url stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+            }
+            /*
             NSString* url = [showtimeElement attributeValue:@"mobileUrl"];
             if (url.length == 0) {
                 url = [showtimeElement attributeValue:@"url"];
             }
+             */
 
             Performance* performance = [Performance performanceWithIdentifier:vendor
                                                                          time:time
