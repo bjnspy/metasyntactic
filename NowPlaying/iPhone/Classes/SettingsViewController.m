@@ -333,7 +333,7 @@
         if (row == 0) {
             NSString* message;
 
-            if ([Utilities isNilOrEmpty:self.model.userAddress]) {
+            if (self.model.userAddress.length == 0) {
                 message = @"";
             } else {
                 Location* location = [self.model.userLocationCache locationForUserAddress:self.model.userAddress];

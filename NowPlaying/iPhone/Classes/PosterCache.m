@@ -113,7 +113,7 @@
     NSMutableArray* moviesWithoutPosterLinks = [NSMutableArray array];
 
     for (Movie* movie in movies) {
-        if ([Utilities isNilOrEmpty:movie.poster]) {
+        if (movie.poster.length == 0) {
             [moviesWithoutPosterLinks addObject:movie];
         } else {
             [moviesWithPosterLinks addObject:movie];

@@ -243,14 +243,14 @@ static NSString* titles_key = @"Titles";
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupIMDbListings?q=%@", [Application host], [Utilities stringByAddingPercentEscapes:movie.canonicalTitle]];
     NSString* imdbAddress = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
 
-    if (![Utilities isNilOrEmpty:imdbAddress]) {
+    if (!imdbAddress.length == 0) {
         [FileUtilities writeObject:imdbAddress toFile:imdbFile];
     }
 }
 
 
 - (void) updatePoster:(Movie*) movie {
-    if ([Utilities isNilOrEmpty:movie.poster]) {
+    if (movie.poster.length == 0) {
         return;
     }
 
@@ -283,7 +283,7 @@ static NSString* titles_key = @"Titles";
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@", [Application host], studio, title];
     NSString* synopsis = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
 
-    if (![Utilities isNilOrEmpty:synopsis] &&
+    if (!synopsis.length == 0 &&
         ![synopsis hasPrefix:@"No synopsis"]) {
         [FileUtilities writeObject:synopsis toFile:synopsisFile];
     }

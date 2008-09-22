@@ -27,10 +27,6 @@
 
 @implementation Utilities
 
-+ (BOOL) isNilOrEmpty:(NSString*) string {
-    return string == nil || [@"" isEqual:string];
-}
-
 
 + (id) findSmallestElementInArray:(NSArray*) array
                     usingFunction:(NSInteger(*)(id, id, void *)) comparator
@@ -188,7 +184,7 @@
         Performance* performance = [performances objectAtIndex:i];
 
         if (![theater.sellsTickets isEqual:@"True"] ||
-            [Utilities isNilOrEmpty:performance.identifier]) {
+            performance.identifier.length == 0) {
             [body appendString:performance.time];
         } else {
             NSString* url = [model.dataProvider ticketingUrlForTheater:theater

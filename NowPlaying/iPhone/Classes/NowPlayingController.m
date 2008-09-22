@@ -74,7 +74,7 @@
 
 
 - (void) spawnDataProviderLookupThread {
-    if ([Utilities isNilOrEmpty:self.model.userAddress]) {
+    if (self.model.userAddress.length == 0) {
         return;
     }
 

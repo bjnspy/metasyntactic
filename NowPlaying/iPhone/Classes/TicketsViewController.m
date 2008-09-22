@@ -120,7 +120,7 @@
 - (NSInteger)       tableView:(UITableView*) tableView
         numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        if ([Utilities isNilOrEmpty:theater.phoneNumber]) {
+        if (theater.phoneNumber.length == 0) {
             return 1;
         } else {
             return 2;
@@ -207,7 +207,7 @@
     Performance* performance = [performances objectAtIndex:row];
 
     if (![theater.sellsTickets isEqual:@"True"] ||
-        [Utilities isNilOrEmpty:performance.identifier]) {
+        performance.identifier.length == 0) {
         cell.textColor = [UIColor blackColor];
         cell.text = [NSString stringWithFormat:NSLocalizedString(@"%@ (No Online Ticketing)", nil), performance.time];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
@@ -291,7 +291,7 @@
     Performance* performance = [performances objectAtIndex:row];
 
     if (![theater.sellsTickets isEqual:@"True"] ||
-        [Utilities isNilOrEmpty:performance.identifier]) {
+        performance.identifier.length == 0) {
         return;
     }
 

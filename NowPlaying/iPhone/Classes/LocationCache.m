@@ -50,8 +50,8 @@
         NSString* country =     [resultElement attributeValue:@"country"];
         NSString* postalCode =  [resultElement attributeValue:@"zipcode"];
 
-        if (![Utilities isNilOrEmpty:latitude] &&
-            ![Utilities isNilOrEmpty:longitude]) {
+        if (!latitude.length == 0 &&
+            !longitude.length == 0) {
             return [Location locationWithLatitude:latitude.doubleValue
                                         longitude:longitude.doubleValue
                                           address:address
@@ -80,17 +80,17 @@
 
 
 - (Location*) downloadAddressLocationFromWebService:(NSString*) address {
-    if ([Utilities isNilOrEmpty:address]) {
+    if (address.length == 0) {
         return nil;
     }
 
     Location* result = [self downloadAddressLocationFromWebServiceWorker:address];
     if (result != nil && result.latitude != 0 && result.longitude != 0) {
-        if ([Utilities isNilOrEmpty:result.postalCode]) {
+        if (result.postalCode.length == 0) {
 
             CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
             Location* resultLocation = [LocationUtilities findLocation:location];
-            if (![Utilities isNilOrEmpty:resultLocation.postalCode]) {
+            if (!resultLocation.postalCode.length == 0) {
                 return [Location locationWithLatitude:result.latitude
                                             longitude:result.longitude
                                               address:result.address
@@ -119,7 +119,7 @@
 
 
 - (Location*) loadLocation:(NSString*) address {
-    if (![Utilities isNilOrEmpty:address]) {
+    if (!address.length == 0) {
         NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self locationFile:address]];
         if (dict != nil) {
             return [Location locationWithDictionary:dict];
@@ -132,7 +132,7 @@
 
 - (void) saveLocation:(Location*) location
           forAddress:(NSString*) address {
-    if (location == nil || [Utilities isNilOrEmpty:address]) {
+    if (location == nil || address.length == 0) {
         return;
     }
 

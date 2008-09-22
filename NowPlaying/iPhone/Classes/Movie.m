@@ -131,7 +131,7 @@ static NSString* articles[] = {
                           cast:(NSArray*) cast
                         genres:(NSArray*) genres {
     rating = [rating stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-    if ([Utilities isNilOrEmpty:rating]) {
+    if (rating.length == 0) {
         rating = @"NR";
     }
 
@@ -202,7 +202,7 @@ static NSString* articles[] = {
 
 
 - (BOOL) isUnrated {
-    return [Utilities isNilOrEmpty:rating] || [rating isEqual:@"NR"];
+    return rating.length == 0 || [rating isEqual:@"NR"];
 }
 
 

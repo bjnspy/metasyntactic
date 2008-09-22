@@ -782,7 +782,7 @@ static NSString** KEYS[] = {
 
 - (NSString*) simpleAddressForTheater:(Theater*) theater {
     Location* location = [self locationForAddress:theater.address];
-    if (![Utilities isNilOrEmpty:location.address] && ![Utilities isNilOrEmpty:location.city]) {
+    if (!location.address.length == 0 && !location.city.length == 0) {
         return [NSString stringWithFormat:@"%@, %@", location.address, location.city];
     } else {
         return theater.address;
@@ -934,17 +934,17 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
     NSString* synopsis = movie.synopsis;
-    if (![Utilities isNilOrEmpty:synopsis]) {
+    if (!synopsis.length == 0) {
         return synopsis;
     }
 
     synopsis = [self extraInformationForMovie:movie].synopsis;
-    if (![Utilities isNilOrEmpty:synopsis]) {
+    if (!synopsis.length == 0) {
         return synopsis;
     }
 
     synopsis = [upcomingCache synopsisForMovie:movie];
-    if (![Utilities isNilOrEmpty:synopsis]) {
+    if (!synopsis.length == 0) {
         return synopsis;
     }
 
@@ -973,7 +973,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSString*) noLocationInformationFound {
-    if ([Utilities isNilOrEmpty:self.userAddress]) {
+    if (self.userAddress.length == 0) {
         return NSLocalizedString(@"Please enter your location", nil);
     } else {
         return NSLocalizedString(@"No information found", nil);

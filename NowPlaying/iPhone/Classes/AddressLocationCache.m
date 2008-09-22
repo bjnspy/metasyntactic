@@ -73,7 +73,7 @@
 
 - (void) setLocation:(Location*) location
           forAddress:(NSString*) address {
-    if (location == nil || [Utilities isNilOrEmpty:address]) {
+    if (location == nil || address.length == 0) {
         return;
     }
 

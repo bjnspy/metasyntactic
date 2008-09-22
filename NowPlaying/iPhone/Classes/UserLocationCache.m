@@ -96,7 +96,7 @@
 
 
 - (Location*) locationForUserAddress:(NSString*) userAddress {
-    if ([Utilities isNilOrEmpty:userAddress]) {
+    if (userAddress.length == 0) {
         return nil;
     }
 
@@ -116,7 +116,7 @@
 
 
 - (Location*) downloadUserAddressLocationBackgroundEntryPoint:(NSString*) userAddress {
-    if ([Utilities isNilOrEmpty:userAddress]) {
+    if (userAddress.length == 0) {
         return nil;
     }
 

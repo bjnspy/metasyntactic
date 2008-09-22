@@ -236,7 +236,7 @@
         }
     }
 
-    if ([Utilities isNilOrEmpty:numbers.identifier] ||
+    if (numbers.identifier.length == 0 ||
         [@"0" isEqual:numbers.identifier]) {
         return;
     }
