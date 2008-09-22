@@ -34,7 +34,7 @@
     NSString* postalCode = [codeElement element:@"postalcode"].text;
     NSString* country = [codeElement element:@"countryCode"].text;
 
-    if ([Utilities isNilOrEmpty:postalCode]) {
+    if (postalCode.length == 0) {
         return nil;
     }
     
@@ -64,7 +64,7 @@
     XmlElement* geodataElement = [NetworkUtilities xmlWithContentsOfAddress:url
                                                                   important:YES];
     NSString* postalCode = [geodataElement element:@"postal"].text;
-    if ([Utilities isNilOrEmpty:postalCode]) {
+    if (postalCode.length == 0) {
         return nil;
     }
     

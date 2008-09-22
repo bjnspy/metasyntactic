@@ -313,7 +313,7 @@ static NSString* starString = nil;
 
 
 + (void) openBrowser:(NSString*) address {
-    if ([Utilities isNilOrEmpty:address]) {
+    if (address.length == 0) {
         return;
     }
 

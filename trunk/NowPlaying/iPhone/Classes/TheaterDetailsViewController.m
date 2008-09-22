@@ -159,7 +159,7 @@
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
         // theater address and possibly phone number
-        return 1 + ([Utilities isNilOrEmpty:theater.phoneNumber] ? 0 : 1);
+        return 1 + (theater.phoneNumber.length == 0 ? 0 : 1);
     } else if (section == 1) {
         return 1;
     } else {
