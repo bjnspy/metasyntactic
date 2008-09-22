@@ -112,6 +112,15 @@
 }
 
 
+- (Location*) locationForTheater:(Theater*) theater {
+    if (theater.latitude != 0 && theater.longitude != 0) {
+        return [Location locationWithLatitude:theater.latitude longitude:theater.longitude];
+    } else {
+        return [self locationForAddress:theater.address];
+    }
+}
+
+
 - (NSDictionary*) theaterDistanceMap:(Location*) location
                             theaters:(NSArray*) theaters {
     NSString* userPostalCode = [Utilities nonNilString:location.postalCode];
@@ -122,7 +131,8 @@
         for (Theater* theater in theaters) {
             double d;
             if (location != nil) {
-                d = [location distanceTo:[self locationForAddress:theater.address]];
+                
+                d = [location distanceTo:[self locationForTheater:theater]];
             } else {
                 d = UNKNOWN_DISTANCE;
             }

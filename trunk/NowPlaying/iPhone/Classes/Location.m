@@ -96,6 +96,12 @@ property_definition(country);
 }
 
 
++ (Location*) locationWithLatitude:(double) latitude
+                         longitude:(double) longitude {
+    return [Location locationWithLatitude:latitude longitude:longitude address:nil city:nil state:nil postalCode:nil country:nil];
+}
+
+
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dict = [NSMutableDictionary dictionary];
     [dict setObject:[NSNumber numberWithDouble:latitude]    forKey:latitude_key];

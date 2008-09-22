@@ -74,14 +74,23 @@
         NSArray* genres = [[[movieElement attributeValue:@"genre"] stringByReplacingOccurrencesOfString:@"_" withString:@" "] componentsSeparatedByString:@"/"];
         NSArray* directors = [self processXmlArray:[movieElement element:@"Directors"]];
         NSArray* cast = [self processXmlArray:[movieElement element:@"Cast"]];
-
+        NSString* releaseDateString = [movieElement attributeValue:@"releaseDate"];
+        NSDate* releaseDate = nil;
+        if (releaseDateString.length == 10) {
+            NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
+            components.year = [[releaseDateString substringWithRange:NSMakeRange(0, 4)] intValue];
+            components.month = [[releaseDateString substringWithRange:NSMakeRange(5, 2)] intValue];
+            components.day = [[releaseDateString substringWithRange:NSMakeRange(8, 2)] intValue];
+            
+            releaseDate = [[NSCalendar currentCalendar] dateFromComponents:components];
+        }
 
 
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
                                            rating:rating
                                            length:length
-                                      releaseDate:nil
+                                      releaseDate:releaseDate
                                            poster:poster
                                          synopsis:synopsis
                                            studio:@""
@@ -167,6 +176,8 @@
     NSString* state =      [Utilities nonNilString:[theaterElement attributeValue:@"state"]];
     NSString* postalCode = [Utilities nonNilString:[theaterElement attributeValue:@"postalCode"]];
     NSString* phone =      [Utilities nonNilString:[theaterElement attributeValue:@"phone"]];
+    double latitude = [[theaterElement attributeValue:@"latitude"] doubleValue];
+    double longitude = [[theaterElement attributeValue:@"longitude"] doubleValue];
 
     NSString* fullAddress;
     if ([address hasSuffix:@"."]) {
@@ -198,6 +209,8 @@
                                                   name:name
                                                address:fullAddress
                                            phoneNumber:phone
+                                              latitude:latitude
+                                             longitude:longitude
                                           sellsTickets:NO
                                            movieTitles:movieToShowtimesMap.allKeys
                                  originatingPostalCode:originatingPostalCode]];

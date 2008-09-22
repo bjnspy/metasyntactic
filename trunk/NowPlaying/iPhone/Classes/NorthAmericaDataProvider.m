@@ -127,6 +127,8 @@
                                                   name:name
                                                address:fullAddress
                                            phoneNumber:phone
+                                              latitude:0
+                                             longitude:0
                                           sellsTickets:sellsTickets
                                            movieTitles:movieToShowtimesMap.allKeys
                                  originatingPostalCode:originatingPostalCode]];
