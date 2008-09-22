@@ -136,7 +136,7 @@
             time = [Theater processShowtime:time];
 
             NSString* url = [showtimeElement attributeValue:@"mobileUrl"];
-            if (url.length > 0) {
+            if (url.length == 0) {
                 url = [showtimeElement attributeValue:@"url"];
             }
 

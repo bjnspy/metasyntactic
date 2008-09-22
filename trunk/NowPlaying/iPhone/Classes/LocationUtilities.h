@@ -18,6 +18,6 @@
 
 }
 
-+ (NSString*) findPostalCode:(CLLocation*) location;
++ (Location*) findLocation:(CLLocation*) location;
 
 @end

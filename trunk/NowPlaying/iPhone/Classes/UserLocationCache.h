@@ -26,6 +26,7 @@
 
 - (void) updateUserAddressLocation:(NSString*) userAddress;
 
+- (void) setLocation:(Location*) location forUserAddress:(NSString*) userAddress;
 - (Location*) locationForUserAddress:(NSString*) userAddress;
 
 // only call on the background

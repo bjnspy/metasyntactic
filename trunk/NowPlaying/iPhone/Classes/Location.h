@@ -49,4 +49,6 @@
 
 - (double) distanceTo:(Location*) to;
 
+- (NSString*) fullDisplayString;
+
 @end

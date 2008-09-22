@@ -16,12 +16,14 @@
 
 #import "LocationUtilities.h"
 
+#import "Location.h"
 #import "NetworkUtilities.h"
+#import "Utilities.h"
 #import "XmlElement.h"
 
 @implementation LocationUtilities
 
-+ (NSString*) findUSPostalCode:(CLLocation*) location {
++ (Location*) findLocationWithGeonames:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = location.coordinate;
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
@@ -29,18 +31,31 @@
 
     XmlElement* geonamesElement = [NetworkUtilities xmlWithContentsOfAddress:url important:YES];
     XmlElement* codeElement = [geonamesElement element:@"code"];
-    XmlElement* postalElement = [codeElement element:@"postalcode"];
-    XmlElement* countryElement = [codeElement element:@"countryCode"];
+    NSString* postalCode = [codeElement element:@"postalcode"].text;
+    NSString* country = [codeElement element:@"countryCode"].text;
 
-    if ([@"CA" isEqual:countryElement.text]) {
+    if ([Utilities isNilOrEmpty:postalCode]) {
+        return nil;
+    }
+    
+    if ([@"CA" isEqual:country]) {
         return nil;
     }
 
-    return postalElement.text;
+    NSString* city = [codeElement element:@"adminName1"].text;
+    NSString* state = [codeElement element:@"adminCode1"].text;
+    
+    return [Location locationWithLatitude:latitude
+                                longitude:longitude
+                                  address:@""
+                                     city:city
+                                    state:state
+                               postalCode:postalCode
+                                  country:country];
 }
 
 
-+ (NSString*) findCAPostalCode:(CLLocation*) location {
++ (Location*) findLocationWithGeocoder:(CLLocation*) location {
     CLLocationCoordinate2D coordinates = location.coordinate;
     double latitude = coordinates.latitude;
     double longitude = coordinates.longitude;
@@ -48,17 +63,30 @@
 
     XmlElement* geodataElement = [NetworkUtilities xmlWithContentsOfAddress:url
                                                                   important:YES];
-    XmlElement* postalElement = [geodataElement element:@"postal"];
-    return postalElement.text;
+    NSString* postalCode = [geodataElement element:@"postal"].text;
+    if ([Utilities isNilOrEmpty:postalCode]) {
+        return nil;
+    }
+    
+    NSString* city = [geodataElement element:@"city"].text;
+    NSString* state = [geodataElement element:@"prov"].text;
+    
+    return [Location locationWithLatitude:latitude
+                                longitude:longitude
+                                  address:@""
+                                     city:city
+                                    state:state
+                               postalCode:postalCode
+                                  country:@"CA"];
 }
 
 
-+ (NSString*) findPostalCode:(CLLocation*) location {
-    NSString* postalCode = [self findUSPostalCode:location];
-    if (postalCode == nil) {
-        postalCode = [self findCAPostalCode:location];
++ (Location*) findLocation:(CLLocation*) location {
+    Location* result = [self findLocationWithGeonames:location];
+    if (result == nil) {
+        result = [self findLocationWithGeocoder:location];
     }
-    return postalCode;
+    return result;
 }
 
 @end
