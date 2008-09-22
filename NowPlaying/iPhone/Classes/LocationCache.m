@@ -50,8 +50,8 @@
         NSString* country =     [resultElement attributeValue:@"country"];
         NSString* postalCode =  [resultElement attributeValue:@"zipcode"];
 
-        if (!latitude.length == 0 &&
-            !longitude.length == 0) {
+        if (latitude.length != 0 &&
+            longitude.length != 0) {
             return [Location locationWithLatitude:latitude.doubleValue
                                         longitude:longitude.doubleValue
                                           address:address
@@ -90,7 +90,7 @@
 
             CLLocation* location = [[[CLLocation alloc] initWithLatitude:result.latitude longitude:result.longitude] autorelease];
             Location* resultLocation = [LocationUtilities findLocation:location];
-            if (!resultLocation.postalCode.length == 0) {
+            if (resultLocation.postalCode.length != 0) {
                 return [Location locationWithLatitude:result.latitude
                                             longitude:result.longitude
                                               address:result.address
@@ -119,7 +119,7 @@
 
 
 - (Location*) loadLocation:(NSString*) address {
-    if (!address.length == 0) {
+    if (address.length != 0) {
         NSDictionary* dict = [NSDictionary dictionaryWithContentsOfFile:[self locationFile:address]];
         if (dict != nil) {
             return [Location locationWithDictionary:dict];

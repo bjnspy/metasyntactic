@@ -782,7 +782,7 @@ static NSString** KEYS[] = {
 
 - (NSString*) simpleAddressForTheater:(Theater*) theater {
     Location* location = [self locationForAddress:theater.address];
-    if (!location.address.length == 0 && !location.city.length == 0) {
+    if (location.address.length != 0 && location.city.length != 0) {
         return [NSString stringWithFormat:@"%@, %@", location.address, location.city];
     } else {
         return theater.address;
@@ -934,17 +934,17 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
     NSString* synopsis = movie.synopsis;
-    if (!synopsis.length == 0) {
+    if (synopsis.length != 0) {
         return synopsis;
     }
 
     synopsis = [self extraInformationForMovie:movie].synopsis;
-    if (!synopsis.length == 0) {
+    if (synopsis.length != 0) {
         return synopsis;
     }
 
     synopsis = [upcomingCache synopsisForMovie:movie];
-    if (!synopsis.length == 0) {
+    if (synopsis.length != 0) {
         return synopsis;
     }
 
