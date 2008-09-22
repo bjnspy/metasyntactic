@@ -195,6 +195,7 @@
                                            rating:rating
                                            length:length
                                       releaseDate:releaseDate
+                                          imdbUrl:@""
                                            poster:poster
                                          synopsis:synopsis
                                            studio:@""

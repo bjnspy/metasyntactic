@@ -66,6 +66,7 @@
 
     for (XmlElement* movieElement in moviesElement.children) {
         NSString* identifier = [movieElement attributeValue:@"identifier"];
+        NSString* imdbUrl = [movieElement attributeValue:@"imdbUrl"];
         NSString* poster = @"";
         NSString* title = [movieElement attributeValue:@"title"];
         NSString* rating = [movieElement attributeValue:@"rawRatings"];
@@ -91,6 +92,7 @@
                                            rating:rating
                                            length:length
                                       releaseDate:releaseDate
+                                          imdbUrl:imdbUrl
                                            poster:poster
                                          synopsis:synopsis
                                            studio:@""
