@@ -312,28 +312,4 @@
 }
 
 
-- (NSString*) ticketingUrlForTheater:(Theater*) theater
-                               movie:(Movie*) movie
-                         performance:(Performance*) performance
-                                date:(NSDate*) date {
-    NSDateComponents* dateComponents =
-    [[NSCalendar currentCalendar] components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit)
-                                    fromDate:self.model.searchDate];
-    NSDateComponents* timeComponents =
-    [[NSCalendar currentCalendar] components:(NSHourCalendarUnit | NSMinuteCalendarUnit)
-                                    fromDate:[DateUtilities dateWithNaturalLanguageString:performance.time]];
-
-    NSString* url = [NSString stringWithFormat:@"https://iphone.fandango.com/tickets.jsp?mk=%@&tk=%@&showtime=%d:%d:%d:%d:%02d",
-                     movie.identifier,
-                     theater.identifier,
-                     dateComponents.year,
-                     dateComponents.month,
-                     dateComponents.day,
-                     timeComponents.hour,
-                     timeComponents.minute];
-
-    return url;
-}
-
-
 @end
