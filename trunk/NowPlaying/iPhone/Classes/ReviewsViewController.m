@@ -185,7 +185,7 @@
     if (indexPath.section < reviews.count) {
         if (indexPath.row == 1) {
             Review* review = [reviews objectAtIndex:indexPath.section];
-            if (!review.link.length == 0) {
+            if (review.link.length != 0) {
                 return UITableViewCellAccessoryDetailDisclosureButton;
             }
         }

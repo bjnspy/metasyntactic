@@ -56,7 +56,7 @@
 
     double width = self.frame.size.width;
     width -= 40;
-    if (!review.link.length == 0) {
+    if (review.link.length != 0) {
         width -= 25;
     }
 
@@ -73,7 +73,7 @@
         width = [UIScreen mainScreen].bounds.size.width;
     }
     width -= 40;
-    if (!review.link.length == 0) {
+    if (review.link.length != 0) {
         width -= 25;
     }
 
