@@ -173,7 +173,9 @@
     NSString* city =       [Utilities nonNilString:[theaterElement attributeValue:@"city"]];
     NSString* state =      [Utilities nonNilString:[theaterElement attributeValue:@"state"]];
     NSString* postalCode = [Utilities nonNilString:[theaterElement attributeValue:@"postalCode"]];
+    NSString* country =    [Utilities nonNilString:[theaterElement attributeValue:@"country"]];
     NSString* phone =      [Utilities nonNilString:[theaterElement attributeValue:@"phone"]];
+    NSString* mapUrl =     [Utilities nonNilString:[theaterElement attributeValue:@"mapUrl"]];
     double latitude = [[theaterElement attributeValue:@"latitude"] doubleValue];
     double longitude = [[theaterElement attributeValue:@"longitude"] doubleValue];
 
@@ -201,14 +203,21 @@
             [synchronizationData setObject:[self synchronizationDateForTheater:name] forKey:name];
         }
     }
+    
+    Location* location = [Location locationWithLatitude:latitude
+                                              longitude:longitude
+                                                address:address
+                                                   city:city
+                                                  state:state
+                                             postalCode:postalCode
+                                                country:country];
 
     [performances setObject:movieToShowtimesMap forKey:name];
     [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                   name:name
-                                               address:fullAddress
+                                              location:location
+                                                mapUrl:mapUrl
                                            phoneNumber:phone
-                                              latitude:latitude
-                                             longitude:longitude
                                            movieTitles:movieToShowtimesMap.allKeys
                                  originatingPostalCode:originatingPostalCode]];
 }

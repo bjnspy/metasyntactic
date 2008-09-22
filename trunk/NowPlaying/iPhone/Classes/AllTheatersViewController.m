@@ -151,7 +151,7 @@
             continue;
         }
 
-        double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
+        double distance = [[theaterDistanceMap objectForKey:theater.name] doubleValue];
 
         if (distance <= 0.5) {
             [sectionTitleToContentsMap addObject:theater forKey:reallyCloseBy];

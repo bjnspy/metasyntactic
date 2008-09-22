@@ -78,6 +78,7 @@
 		749147000E766F4500CC42A8 /* ThreadingUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 749146FF0E766F4500CC42A8 /* ThreadingUtilities.m */; };
 		7495695B0E2D6248007BFF21 /* Review.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495695A0E2D6248007BFF21 /* Review.m */; };
 		7495695E0E2D6354007BFF21 /* ReviewCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 7495695D0E2D6354007BFF21 /* ReviewCache.m */; };
+		749A52D40E88522500C05A34 /* AddressLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 749A52D30E88522500C05A34 /* AddressLocationCache.m */; };
 		749DF3260DC9838F00A551D9 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF3250DC9838F00A551D9 /* CFNetwork.framework */; };
 		749DF3400DC983BC00A551D9 /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */; };
 		74A3F0500E686A7D007ED6DC /* MovieNumbers.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A3F04F0E686A7D007ED6DC /* MovieNumbers.m */; };
@@ -96,7 +97,6 @@
 		74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */; };
 		74E6F01D0E723FB700A4C2BE /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */; };
 		74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */; };
-		74EC04F20DD2B44E006953A4 /* AddressLocationCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */; };
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
 		74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC069F0DD2D69B006953A4 /* Utilities.m */; };
 		74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC08720DD3EEBB006953A4 /* MultiDictionary.m */; };
@@ -109,7 +109,6 @@
 		74F187220E2710A400AB5E1E /* TrailerCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F187210E2710A400AB5E1E /* TrailerCache.m */; };
 		74F189A80E273A1C00AB5E1E /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */; };
 		74F3B22D0E3CE71A00DD25DA /* DataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B22C0E3CE71A00DD25DA /* DataProvider.m */; };
-		74F3B25A0E3CE80300DD25DA /* NorthAmericaDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B2590E3CE80300DD25DA /* NorthAmericaDataProvider.m */; };
 		74F3B2DA0E3CEF6000DD25DA /* AbstractDataProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B2D90E3CEF6000DD25DA /* AbstractDataProvider.m */; };
 		74F3B2E70E3CF02400DD25DA /* LookupResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F3B2E60E3CF02400DD25DA /* LookupResult.m */; };
 		74F65B320DCE47BC0085A39C /* ImdbPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F65B310DCE47BC0085A39C /* ImdbPosterDownloader.m */; };
@@ -308,6 +307,8 @@
 		7495695A0E2D6248007BFF21 /* Review.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Review.m; sourceTree = "<group>"; };
 		7495695C0E2D6354007BFF21 /* ReviewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ReviewCache.h; sourceTree = "<group>"; };
 		7495695D0E2D6354007BFF21 /* ReviewCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewCache.m; sourceTree = "<group>"; };
+		749A52D20E88522500C05A34 /* AddressLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressLocationCache.h; sourceTree = "<group>"; };
+		749A52D30E88522500C05A34 /* AddressLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressLocationCache.m; sourceTree = "<group>"; };
 		749DF3250DC9838F00A551D9 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		749DF33F0DC983BC00A551D9 /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		74A3F04E0E686A7D007ED6DC /* MovieNumbers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieNumbers.h; sourceTree = "<group>"; };
@@ -342,8 +343,6 @@
 		74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
 		74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
 		74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DifferenceEngine.m; sourceTree = "<group>"; };
-		74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddressLocationCache.h; sourceTree = "<group>"; };
-		74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddressLocationCache.m; sourceTree = "<group>"; };
 		74EC04F30DD2B704006953A4 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		74EC04F40DD2B704006953A4 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		74EC069E0DD2D69B006953A4 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
@@ -367,8 +366,6 @@
 		74F189A70E273A1C00AB5E1E /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		74F3B22B0E3CE71A00DD25DA /* DataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataProvider.h; sourceTree = "<group>"; };
 		74F3B22C0E3CE71A00DD25DA /* DataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataProvider.m; sourceTree = "<group>"; };
-		74F3B2580E3CE80300DD25DA /* NorthAmericaDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NorthAmericaDataProvider.h; sourceTree = "<group>"; };
-		74F3B2590E3CE80300DD25DA /* NorthAmericaDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NorthAmericaDataProvider.m; sourceTree = "<group>"; };
 		74F3B2D80E3CEF6000DD25DA /* AbstractDataProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractDataProvider.h; sourceTree = "<group>"; };
 		74F3B2D90E3CEF6000DD25DA /* AbstractDataProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractDataProvider.m; sourceTree = "<group>"; };
 		74F3B2E50E3CF02400DD25DA /* LookupResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LookupResult.h; sourceTree = "<group>"; };
@@ -736,10 +733,10 @@
 		7474FE910E6359BC00BAA43D /* Caches */ = {
 			isa = PBXGroup;
 			children = (
+				749A52D20E88522500C05A34 /* AddressLocationCache.h */,
+				749A52D30E88522500C05A34 /* AddressLocationCache.m */,
 				747CA1BF0E8594C300A09E89 /* LocationCache.h */,
 				747CA1C00E8594C300A09E89 /* LocationCache.m */,
-				74EC04F00DD2B44E006953A4 /* AddressLocationCache.h */,
-				74EC04F10DD2B44E006953A4 /* AddressLocationCache.m */,
 				747CA1390E8591B600A09E89 /* UserLocationCache.h */,
 				747CA13A0E8591B600A09E89 /* UserLocationCache.m */,
 				740C9FE60E3A838E00D7A56B /* ColorCache.h */,
@@ -873,8 +870,6 @@
 				74F3B22C0E3CE71A00DD25DA /* DataProvider.m */,
 				74F3B2D80E3CEF6000DD25DA /* AbstractDataProvider.h */,
 				74F3B2D90E3CEF6000DD25DA /* AbstractDataProvider.m */,
-				74F3B2580E3CE80300DD25DA /* NorthAmericaDataProvider.h */,
-				74F3B2590E3CE80300DD25DA /* NorthAmericaDataProvider.m */,
 				74F3B2E50E3CF02400DD25DA /* LookupResult.h */,
 				74F3B2E60E3CF02400DD25DA /* LookupResult.m */,
 				745236AB0E7F28EB0047F544 /* GoogleDataProvider.h */,
@@ -1035,7 +1030,6 @@
 				748379CB0DD0169E00DC3B80 /* EditorViewController.m in Sources */,
 				74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */,
 				74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */,
-				74EC04F20DD2B44E006953A4 /* AddressLocationCache.m in Sources */,
 				74EC04F50DD2B704006953A4 /* Location.m in Sources */,
 				74EC06A00DD2D69B006953A4 /* Utilities.m in Sources */,
 				74EC08730DD3EEBB006953A4 /* MultiDictionary.m in Sources */,
@@ -1063,7 +1057,6 @@
 				74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */,
 				740C9FE80E3A838E00D7A56B /* ColorCache.m in Sources */,
 				74F3B22D0E3CE71A00DD25DA /* DataProvider.m in Sources */,
-				74F3B25A0E3CE80300DD25DA /* NorthAmericaDataProvider.m in Sources */,
 				74F3B2DA0E3CEF6000DD25DA /* AbstractDataProvider.m in Sources */,
 				74F3B2E70E3CF02400DD25DA /* LookupResult.m in Sources */,
 				74085B8C0E423F010069F0F5 /* RatingsCache.m in Sources */,
@@ -1102,6 +1095,7 @@
 				74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */,
 				747CA13B0E8591B600A09E89 /* UserLocationCache.m in Sources */,
 				747CA1C10E8594C300A09E89 /* LocationCache.m in Sources */,
+				749A52D40E88522500C05A34 /* AddressLocationCache.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

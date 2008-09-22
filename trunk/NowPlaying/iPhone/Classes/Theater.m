@@ -17,26 +17,25 @@
 #import "Theater.h"
 
 #import "DateUtilities.h"
+#import "Location.h"
 #import "Utilities.h"
 
 @implementation Theater
 
 property_definition(identifier);
 property_definition(name);
-property_definition(address);
+property_definition(location);
+property_definition(mapUrl);
 property_definition(phoneNumber);
-property_definition(latitude);
-property_definition(longitude);
 property_definition(movieTitles);
 property_definition(originatingPostalCode);
 
 - (void) dealloc {
     self.identifier = nil;
     self.name = nil;
-    self.address = nil;
+    self.location = nil;
+    self.mapUrl = nil;
     self.phoneNumber = nil;
-    self.latitude = 0;
-    self.longitude = 0;
     self.movieTitles = nil;
     self.originatingPostalCode = nil;
 
@@ -47,10 +46,9 @@ property_definition(originatingPostalCode);
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary {
     return [Theater theaterWithIdentifier:[dictionary objectForKey:identifier_key]
                                      name:[dictionary objectForKey:name_key]
-                                  address:[dictionary objectForKey:address_key]
+                                  location:[Location locationWithDictionary:[dictionary objectForKey:location_key]]
+                                   mapUrl:[dictionary objectForKey:mapUrl_key]
                               phoneNumber:[dictionary objectForKey:phoneNumber_key]
-                                 latitude:[[dictionary objectForKey:latitude_key] doubleValue]
-                                longitude:[[dictionary objectForKey:longitude_key] doubleValue]\
                               movieTitles:[dictionary objectForKey:movieTitles_key]
                     originatingPostalCode:[dictionary objectForKey:originatingPostalCode_key]];
 }
@@ -58,19 +56,17 @@ property_definition(originatingPostalCode);
 
 - (id)      initWithIdentifier:(NSString*) identifier_
                           name:(NSString*) name_
-                       address:(NSString*) address_
+                       location:(Location*) location_
+                        mapUrl:(NSString*) mapUrl_
                    phoneNumber:(NSString*) phoneNumber_
-                      latitude:(double) latitude_
-                     longitude:(double) longitude_
                    movieTitles:(NSArray*) movieTitles_
          originatingPostalCode:(NSString*) originatingPostalCode_ {
     if (self = [self init]) {
         self.identifier = [Utilities nonNilString:identifier_];
         self.name = [[Utilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.address = [[Utilities nonNilString:address_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
+        self.location = location_;
+        self.mapUrl = [Utilities nonNilString:mapUrl_];
         self.phoneNumber = [Utilities nonNilString:phoneNumber_];
-        self.latitude = latitude_;
-        self.longitude = longitude_;
         self.movieTitles = [Utilities nonNilArray:movieTitles_];
         self.originatingPostalCode = [Utilities nonNilString:originatingPostalCode_];
     }
@@ -81,18 +77,16 @@ property_definition(originatingPostalCode);
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
-                           address:(NSString*) address
+                           location:(Location*) location
+                            mapUrl:(NSString*) mapUrl
                        phoneNumber:(NSString*) phoneNumber
-                          latitude:(double) latitude
-                         longitude:(double) longitude
                        movieTitles:(NSArray*) movieTitles
              originatingPostalCode:(NSString*) originatingPostalCode {
     return [[[Theater alloc] initWithIdentifier:identifier
                                            name:name
-                                        address:address
+                                        location:location
+                                         mapUrl:mapUrl
                                     phoneNumber:phoneNumber
-                                       latitude:latitude
-                                      longitude:longitude
                                     movieTitles:movieTitles
                           originatingPostalCode:originatingPostalCode] autorelease];
 }
@@ -102,9 +96,8 @@ property_definition(originatingPostalCode);
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:identifier                            forKey:identifier_key];
     [dictionary setObject:name                                  forKey:name_key];
-    [dictionary setObject:address                               forKey:address_key];
-    [dictionary setObject:[NSNumber numberWithDouble:latitude]  forKey:latitude_key];
-    [dictionary setObject:[NSNumber numberWithDouble:longitude] forKey:longitude_key];
+    [dictionary setObject:location.dictionary                   forKey:location_key];
+    [dictionary setObject:mapUrl                                forKey:mapUrl_key];
     [dictionary setObject:phoneNumber                           forKey:phoneNumber_key];
     [dictionary setObject:movieTitles                           forKey:movieTitles_key];
     [dictionary setObject:originatingPostalCode                 forKey:originatingPostalCode_key];

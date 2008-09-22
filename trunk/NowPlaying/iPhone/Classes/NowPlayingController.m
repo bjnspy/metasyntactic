@@ -19,7 +19,7 @@
 #import "Application.h"
 #import "ApplicationTabBarController.h"
 #import "DateUtilities.h"
-#import "NorthAmericaDataProvider.h"
+#import "DataProvider.h"
 #import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "RatingsCache.h"

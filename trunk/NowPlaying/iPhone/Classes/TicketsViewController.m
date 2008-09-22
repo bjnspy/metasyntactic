@@ -279,7 +279,7 @@
 
 - (void) didSelectCommandAtRow:(NSInteger) row {
     if (row == 0) {
-        [Application openMap:theater.address];
+        [Application openMap:theater.mapUrl];
     } else if (row == 1) {
         [Application makeCall:theater.phoneNumber];
     }
@@ -305,8 +305,8 @@
 
     [body appendString:theater.name];
     [body appendString:@"\n"];
-    [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
-    [body appendString:theater.address];
+    [body appendString:@"<a href=\""];
+    [body appendString:theater.mapUrl];
     [body appendString:@"\">"];
     [body appendString:[self.model simpleAddressForTheater:theater]];
     [body appendString:@"</a>"];
