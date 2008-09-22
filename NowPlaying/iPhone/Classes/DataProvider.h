@@ -26,10 +26,5 @@
 - (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
 - (NSDate*) synchronizationDateForTheater:(NSString*) theaterName;
 
-- (NSString*) ticketingUrlForTheater:(Theater*) theater
-                               movie:(Movie*) movie
-                         performance:(Performance*) performance
-                                date:(NSDate*) date;
-
 - (NSString*) displayName;
 @end
