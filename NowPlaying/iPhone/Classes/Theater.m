@@ -25,6 +25,8 @@ property_definition(identifier);
 property_definition(name);
 property_definition(address);
 property_definition(phoneNumber);
+property_definition(latitude);
+property_definition(longitude);
 property_definition(sellsTickets);
 property_definition(movieTitles);
 property_definition(originatingPostalCode);
@@ -34,6 +36,8 @@ property_definition(originatingPostalCode);
     self.name = nil;
     self.address = nil;
     self.phoneNumber = nil;
+    self.latitude = 0;
+    self.longitude = 0;
     self.sellsTickets = nil;
     self.movieTitles = nil;
     self.originatingPostalCode = nil;
@@ -47,6 +51,8 @@ property_definition(originatingPostalCode);
                                      name:[dictionary objectForKey:name_key]
                                   address:[dictionary objectForKey:address_key]
                               phoneNumber:[dictionary objectForKey:phoneNumber_key]
+                                 latitude:[[dictionary objectForKey:latitude_key] doubleValue]
+                                longitude:[[dictionary objectForKey:longitude_key] doubleValue]
                              sellsTickets:[dictionary objectForKey:sellsTickets_key]
                               movieTitles:[dictionary objectForKey:movieTitles_key]
                     originatingPostalCode:[dictionary objectForKey:originatingPostalCode_key]];
@@ -57,6 +63,8 @@ property_definition(originatingPostalCode);
                           name:(NSString*) name_
                        address:(NSString*) address_
                    phoneNumber:(NSString*) phoneNumber_
+                      latitude:(double) latitude_
+                     longitude:(double) longitude_
                   sellsTickets:(NSString*) sellsTickets_
                    movieTitles:(NSArray*) movieTitles_
          originatingPostalCode:(NSString*) originatingPostalCode_ {
@@ -65,6 +73,8 @@ property_definition(originatingPostalCode);
         self.name = [[Utilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.address = [[Utilities nonNilString:address_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
         self.phoneNumber = [Utilities nonNilString:phoneNumber_];
+        self.latitude = latitude_;
+        self.longitude = longitude_;
         self.sellsTickets = [Utilities nonNilString:sellsTickets_];
         self.movieTitles = [Utilities nonNilArray:movieTitles_];
         self.originatingPostalCode = [Utilities nonNilString:originatingPostalCode_];
@@ -78,6 +88,8 @@ property_definition(originatingPostalCode);
                               name:(NSString*) name
                            address:(NSString*) address
                        phoneNumber:(NSString*) phoneNumber
+                          latitude:(double) latitude
+                         longitude:(double) longitude
                       sellsTickets:(NSString*) sellsTickets
                        movieTitles:(NSArray*) movieTitles
              originatingPostalCode:(NSString*) originatingPostalCode {
@@ -85,6 +97,8 @@ property_definition(originatingPostalCode);
                                            name:name
                                         address:address
                                     phoneNumber:phoneNumber
+                                       latitude:latitude
+                                      longitude:longitude
                                    sellsTickets:sellsTickets
                                     movieTitles:movieTitles
                           originatingPostalCode:originatingPostalCode] autorelease];
@@ -93,13 +107,15 @@ property_definition(originatingPostalCode);
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:identifier            forKey:identifier_key];
-    [dictionary setObject:name                  forKey:name_key];
-    [dictionary setObject:address               forKey:address_key];
-    [dictionary setObject:phoneNumber           forKey:phoneNumber_key];
-    [dictionary setObject:sellsTickets          forKey:sellsTickets_key];
-    [dictionary setObject:movieTitles           forKey:movieTitles_key];
-    [dictionary setObject:originatingPostalCode forKey:originatingPostalCode_key];
+    [dictionary setObject:identifier                            forKey:identifier_key];
+    [dictionary setObject:name                                  forKey:name_key];
+    [dictionary setObject:address                               forKey:address_key];
+    [dictionary setObject:[NSNumber numberWithDouble:latitude]  forKey:latitude_key];
+    [dictionary setObject:[NSNumber numberWithDouble:longitude] forKey:longitude_key];
+    [dictionary setObject:phoneNumber                           forKey:phoneNumber_key];
+    [dictionary setObject:sellsTickets                          forKey:sellsTickets_key];
+    [dictionary setObject:movieTitles                           forKey:movieTitles_key];
+    [dictionary setObject:originatingPostalCode                 forKey:originatingPostalCode_key];
     return dictionary;
 }
 

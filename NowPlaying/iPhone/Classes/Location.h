@@ -36,6 +36,8 @@
 
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary;
 + (Location*) locationWithLatitude:(double) latitude
+                         longitude:(double) longitude;
++ (Location*) locationWithLatitude:(double) latitude
                          longitude:(double) longitude
                            address:(NSString*) address
                               city:(NSString*) city
