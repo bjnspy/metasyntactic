@@ -24,11 +24,9 @@
 
 @implementation AddressLocationCache
 
-@synthesize gate;
 @synthesize cachedTheaterDistanceMap;
 
 - (void) dealloc {
-    self.gate = nil;
     self.cachedTheaterDistanceMap = nil;
 
     [super dealloc];
@@ -37,7 +35,6 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.gate = [[[NSLock alloc] init] autorelease];
         self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
     }
 
@@ -50,100 +47,28 @@
 }
 
 
-- (void) updateAddresses:(NSArray*) addresses {
-    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
-
-    [ThreadingUtilities performSelector:@selector(downloadAddressLocationsBackgroundEntryPoint:)
-                               onTarget:self
-               inBackgroundWithArgument:[NSArray arrayWithArray:addresses]
-                                   gate:gate
-                                visible:NO];
-}
-
-
-- (NSString*) locationFolder {
-    return [Application locationsFolder];
-}
-
-
-- (Location*) locationForAddress:(NSString*) address {
-    return [self loadLocation:address];
-}
-
-
-- (void) setLocation:(Location*) location
-          forAddress:(NSString*) address {
-    if (location == nil || address.length == 0) {
-        return;
-    }
-
-    [self saveLocation:location forAddress:address];
-    [self performSelectorOnMainThread:@selector(invalidateCachedData) withObject:nil waitUntilDone:NO];
-}
-
-
-- (void) invalidateCachedData {
-    self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
-}
-
-
-- (Location*) downloadAddressLocationBackgroundEntryPoint:(NSString*) address {
-    NSAssert(![NSThread isMainThread], @"Only call this from the background");
-    Location* location = [self locationForAddress:address];
-
-    if (location == nil) {
-        location = [self downloadAddressLocationFromWebService:address];
-
-        [self setLocation:location forAddress:address];
-    }
-
-    return location;
-}
-
-
-- (void) downloadAddressLocationsBackgroundEntryPoint:(NSArray*) addresses {
-    for (NSString* address in addresses) {
-        NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-
-        [self downloadAddressLocationBackgroundEntryPoint:address];
-
-        [autoreleasePool release];
-    }
-}
-
-
-- (Location*) locationForTheater:(Theater*) theater {
-    if (theater.latitude != 0 && theater.longitude != 0) {
-        return [Location locationWithLatitude:theater.latitude longitude:theater.longitude];
-    } else {
-        return [self locationForAddress:theater.address];
-    }
-}
-
-
 - (NSDictionary*) theaterDistanceMap:(Location*) location
                             theaters:(NSArray*) theaters {
-    NSString* userPostalCode = [Utilities nonNilString:location.postalCode];
-    NSMutableDictionary* theaterDistanceMap = [cachedTheaterDistanceMap objectForKey:userPostalCode];
+    NSString* mapKey = [Utilities nonNilString:location.description];
+    NSMutableDictionary* theaterDistanceMap = [cachedTheaterDistanceMap objectForKey:mapKey];
     if (theaterDistanceMap == nil) {
         theaterDistanceMap = [NSMutableDictionary dictionary];
 
         for (Theater* theater in theaters) {
             double d;
             if (location != nil) {
-                
-                d = [location distanceTo:[self locationForTheater:theater]];
+                d = [location distanceTo:theater.location];
             } else {
                 d = UNKNOWN_DISTANCE;
             }
 
             NSNumber* value = [NSNumber numberWithDouble:d];
-            NSString* key = theater.address;
+            NSString* key = theater.name;
             [theaterDistanceMap setObject:value forKey:key];
         }
 
         [cachedTheaterDistanceMap setObject:theaterDistanceMap
-                                     forKey:userPostalCode];
+                                     forKey:mapKey];
     }
 
     return theaterDistanceMap;

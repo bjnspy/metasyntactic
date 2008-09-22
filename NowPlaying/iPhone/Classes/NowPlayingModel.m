@@ -16,8 +16,8 @@
 
 #import "NowPlayingModel.h"
 
-#import "AbstractNavigationController.h"
 #import "AddressLocationCache.h"
+#import "AbstractNavigationController.h"
 #import "AllMoviesViewController.h"
 #import "AllTheatersViewController.h"
 #import "Application.h"
@@ -31,7 +31,6 @@
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
-//#import "NorthAmericaDataProvider.h"
 #import "NowPlayingAppDelegate.h"
 #import "NumbersCache.h"
 #import "PosterCache.h"
@@ -51,7 +50,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"2.0.4.0";
-static NSString* persistenceVersion = @"39";
+static NSString* persistenceVersion = @"40";
 
 static NSString* VERSION = @"version";
 
@@ -163,17 +162,6 @@ static NSString** KEYS[] = {
 
 - (void) updateUpcomingCache {
     [upcomingCache updateMovieDetails];
-}
-
-
-- (void) updateAddressLocationCache {
-    NSMutableArray* addresses = [NSMutableArray array];
-
-    for (Theater* theater in self.theaters) {
-        [addresses addObject:theater.address];
-    }
-
-    [addressLocationCache updateAddresses:addresses];
 }
 
 
@@ -349,18 +337,16 @@ static NSString** KEYS[] = {
     if (value == 0) {
         [self updateUserAddressLocation];
     } else if (value == 1) {
-        [self updateAddressLocationCache];
-    } else if (value == 2) {
         [self updateNumbersCache];
-    } else if (value == 3) {
+    } else if (value == 2) {
         [self updatePosterCache];
-    } else if (value == 4) {
+    } else if (value == 3) {
         [self updateReviewCache];
-    } else if (value == 5) {
+    } else if (value == 4) {
         [self updateTrailerCache];
-    } else if (value == 6) {
+    } else if (value == 5) {
         [self updateUpcomingCache];
-    } else if (value == 7) {
+    } else if (value == 6) {
         [self updateIMDbCache];
     } else {
         return;
@@ -595,7 +581,6 @@ static NSString** KEYS[] = {
     [self updateIMDbCache];
     [self updatePosterCache];
     [self updateTrailerCache];
-    [self updateAddressLocationCache];
 }
 
 
@@ -719,11 +704,6 @@ static NSString** KEYS[] = {
 }
 
 
-- (Location*) locationForAddress:(NSString*) address {
-    return [addressLocationCache locationForAddress:address];
-}
-
-
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie {
     NSMutableArray* array = [NSMutableArray array];
 
@@ -785,11 +765,11 @@ static NSString** KEYS[] = {
 
 
 - (NSString*) simpleAddressForTheater:(Theater*) theater {
-    Location* location = [self locationForAddress:theater.address];
+    Location* location = theater.location;
     if (location.address.length != 0 && location.city.length != 0) {
         return [NSString stringWithFormat:@"%@, %@", location.address, location.city];
     } else {
-        return theater.address;
+        return location.address;
     }
 }
 
@@ -815,7 +795,7 @@ static NSString** KEYS[] = {
     NSMutableArray* result = [NSMutableArray array];
 
     for (Theater* theater in theaters) {
-        double distance = [[theaterDistanceMap objectForKey:theater.address] doubleValue];
+        double distance = [[theaterDistanceMap objectForKey:theater.name] doubleValue];
 
         if ([self isFavoriteTheater:theater] || ![self tooFarAway:distance]) {
             [result addObject:theater];
@@ -893,8 +873,8 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     Theater* theater1 = t1;
     Theater* theater2 = t2;
 
-    double distance1 = [[theaterDistanceMap objectForKey:theater1.address] doubleValue];
-    double distance2 = [[theaterDistanceMap objectForKey:theater2.address] doubleValue];
+    double distance1 = [[theaterDistanceMap objectForKey:theater1.name] doubleValue];
+    double distance2 = [[theaterDistanceMap objectForKey:theater2.name] doubleValue];
 
     if (distance1 < distance2) {
         return NSOrderedAscending;

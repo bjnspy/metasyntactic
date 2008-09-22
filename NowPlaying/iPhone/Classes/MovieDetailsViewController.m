@@ -499,8 +499,8 @@
 
         [body appendString:theater.name];
         [body appendString:@"\n"];
-        [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
-        [body appendString:theater.address];
+        [body appendString:@"<a href=\""];
+        [body appendString:theater.mapUrl];
         [body appendString:@"\">"];
         [body appendString:[self.model simpleAddressForTheater:theater]];
         [body appendString:@"</a>"];

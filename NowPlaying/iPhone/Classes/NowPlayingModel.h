@@ -124,7 +124,6 @@ enum ViewControllerType {
 - (NSArray*) genresForMovie:(Movie*) movie;
 - (UIImage*) posterForMovie:(Movie*) movie;
 - (NSDate*) releaseDateForMovie:(Movie*) movie;
-- (Location*) locationForAddress:(NSString*) address;
 
 - (NSMutableArray*) theatersShowingMovie:(Movie*) movie;
 - (NSArray*) moviesAtTheater:(Theater*) theater;

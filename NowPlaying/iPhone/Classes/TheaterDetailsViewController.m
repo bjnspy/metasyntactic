@@ -293,8 +293,8 @@
                                 [DateUtilities formatFullDate:self.model.searchDate]];
     NSMutableString* body = [NSMutableString string];
 
-    [body appendString:@"<a href=\"http://maps.google.com/maps?q="];
-    [body appendString:theater.address];
+    [body appendString:@"<a href=\""];
+    [body appendString:theater.mapUrl];
     [body appendString:@"\">"];
     [body appendString:[self.model simpleAddressForTheater:theater]];
     [body appendString:@"</a>"];
@@ -337,7 +337,7 @@
 
     if (section == 0) {
         if (row == 0) {
-            [Application openMap:theater.address];
+            [Application openMap:theater.mapUrl];
         } else {
             [Application makeCall:theater.phoneNumber];
         }

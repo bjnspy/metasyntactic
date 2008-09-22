@@ -323,11 +323,14 @@ static NSString* starString = nil;
 
 
 + (void) openMap:(NSString*) address {
+    /*
     NSString* urlString =
     [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",
      [Utilities stringByAddingPercentEscapes:address]];
-
-    [self openBrowser:urlString];
+     [self openBrowser:urlString];
+*/
+    
+    [self openBrowser:address];
 }
 
 
