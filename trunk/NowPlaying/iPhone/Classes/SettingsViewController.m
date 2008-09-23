@@ -371,7 +371,7 @@
                                                               selector:@selector(onUserAddressChanged:)
                                                                   text:self.model.userAddress
                                                                message:message
-                                                           placeHolder:NSLocalizedString(@"Postal Code or City/State", nil)
+                                                           placeHolder:NSLocalizedString(@"City/State or Postal Code", nil)
                                                                   type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
 
             [navigationController pushViewController:controller animated:YES];

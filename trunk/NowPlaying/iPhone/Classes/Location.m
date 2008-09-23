@@ -199,7 +199,7 @@ property_definition(country);
         }
     }
     
-    return nil;
+    return @"";
 }
 
 
