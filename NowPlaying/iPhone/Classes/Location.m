@@ -203,4 +203,9 @@ property_definition(country);
 }
 
 
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
+}
+
+
 @end
