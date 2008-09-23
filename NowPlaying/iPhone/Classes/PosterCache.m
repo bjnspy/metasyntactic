@@ -122,7 +122,7 @@
 
     Location* location = [model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:model.userAddress];
     NSString* postalCode = location.postalCode;
-    if (postalCode == nil) {
+    if (postalCode == nil || ![@"US" isEqual:location.country]) {
         postalCode = @"10009";
     }
 
