@@ -16,13 +16,15 @@
 
 @interface NowPlayingController : NSObject {
     NowPlayingAppDelegate* appDelegate;
-
+    
+    NSLock* determineLocationLock;
     NSLock* dataProviderLock;
     NSLock* ratingsLookupLock;
     NSLock* upcomingMoviesLookupLock;
 }
 
 @property (assign) NowPlayingAppDelegate* appDelegate;
+@property (retain) NSLock* determineLocationLock;
 @property (retain) NSLock* dataProviderLock;
 @property (retain) NSLock* ratingsLookupLock;
 @property (retain) NSLock* upcomingMoviesLookupLock;

@@ -15,14 +15,9 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface AddressLocationCache : NSObject {
-    NSMutableDictionary* cachedTheaterDistanceMap;
 }
 
-@property (retain) NSMutableDictionary* cachedTheaterDistanceMap;
-
-+ (AddressLocationCache*) cache;
-
-- (NSDictionary*) theaterDistanceMap:(Location*) location
++ (NSDictionary*) theaterDistanceMap:(Location*) location
                             theaters:(NSArray*) theaters;
 
 @end

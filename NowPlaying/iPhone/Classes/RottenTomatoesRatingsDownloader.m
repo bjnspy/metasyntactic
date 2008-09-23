@@ -14,7 +14,7 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "RottenTomatoesDownloader.h"
+#import "RottenTomatoesRatingsDownloader.h"
 
 #import "Application.h"
 #import "ExtraMovieInformation.h"
@@ -22,7 +22,7 @@
 #import "NowPlayingModel.h"
 #import "XmlElement.h"
 
-@implementation RottenTomatoesDownloader
+@implementation RottenTomatoesRatingsDownloader
 
 @synthesize model;
 
@@ -41,8 +41,8 @@
 }
 
 
-+ (RottenTomatoesDownloader*) downloaderWithModel:(NowPlayingModel*) model {
-    return [[[RottenTomatoesDownloader alloc] initWithModel:model] autorelease];
++ (RottenTomatoesRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model {
+    return [[[RottenTomatoesRatingsDownloader alloc] initWithModel:model] autorelease];
 }
 
 
@@ -67,9 +67,10 @@
             NSString* score =    [movieElement attributeValue:@"score"];
 
             ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
-                                                                               link:link
                                                                            synopsis:synopsis
-                                                                              score:score];
+                                                                              score:score
+                                                                           provider:@"rottentomatoes"
+                                                                         identifier:link];
 
 
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];

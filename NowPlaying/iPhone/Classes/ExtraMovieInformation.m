@@ -22,29 +22,33 @@
 @implementation ExtraMovieInformation
 
 property_definition(canonicalTitle);
-property_definition(link);
 property_definition(synopsis);
 property_definition(score);
+property_definition(provider);
+property_definition(identifier);
 
 - (void) dealloc {
     self.canonicalTitle = nil;
-    self.link = nil;
     self.synopsis = nil;
     self.score = nil;
+    self.provider = nil;
+    self.identifier = nil;
 
     [super dealloc];
 }
 
 
 - (id) initWithCanonicalTitle:(NSString*) canonicalTitle_
-                         link:(NSString*) link_
                      synopsis:(NSString*) synopsis_
-                        score:(NSString*) score_ {
+                        score:(NSString*) score_
+                     provider:(NSString*) provider_
+                   identifier:(NSString*) identifier_ {
     if (self = [super init]) {
-        self.canonicalTitle = canonicalTitle_;
-        self.link = link_;
-        self.score = score_;
-        self.synopsis = synopsis_;
+        self.canonicalTitle = [Utilities nonNilString:canonicalTitle_];
+        self.score = [Utilities nonNilString:score_];
+        self.synopsis = [Utilities nonNilString:synopsis_];
+        self.provider = provider_;
+        self.identifier = [Utilities nonNilString:identifier_];
     }
 
     return self;
@@ -52,30 +56,34 @@ property_definition(score);
 
 
 + (ExtraMovieInformation*) infoWithTitle:(NSString*) title
-                                    link:(NSString*) link
                                 synopsis:(NSString*) synopsis
-                                   score:(NSString*) score {
+                                   score:(NSString*) score
+                                provider:(NSString*) provider
+                              identifier:(NSString*) identifier {
     return [[[ExtraMovieInformation alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
-                                                             link:link
                                                          synopsis:[Utilities stripHtmlCodes:synopsis]
-                                                            score:score] autorelease];
+                                                            score:score
+                                                         provider:provider
+                                                       identifier:identifier] autorelease];
 }
 
 
 + (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary {
     return [[[ExtraMovieInformation alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
-                                                             link:[dictionary objectForKey:link_key]
                                                          synopsis:[dictionary objectForKey:synopsis_key]
-                                                            score:[dictionary objectForKey:score_key]] autorelease];
+                                                            score:[dictionary objectForKey:score_key]
+                                                         provider:[dictionary objectForKey:provider_key]
+                                                       identifier:[dictionary objectForKey:identifier_key]] autorelease];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
     [dictionary setObject:canonicalTitle    forKey:canonicalTitle_key];
-    [dictionary setObject:link              forKey:link_key];
     [dictionary setObject:synopsis          forKey:synopsis_key];
     [dictionary setObject:score             forKey:score_key];
+    [dictionary setObject:provider          forKey:provider_key];
+    [dictionary setObject:identifier        forKey:identifier_key];
     return dictionary;
 }
 

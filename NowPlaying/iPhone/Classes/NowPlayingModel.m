@@ -49,8 +49,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"2.0.4.0";
-static NSString* persistenceVersion = @"40";
+static NSString* currentVersion = @"2.0.5.0";
+static NSString* persistenceVersion = @"42";
 
 static NSString* VERSION = @"version";
 
@@ -94,7 +94,6 @@ static NSString** KEYS[] = {
 @synthesize movieMapLock;
 @synthesize favoriteTheatersData;
 
-@synthesize addressLocationCache;
 @synthesize userLocationCache;
 @synthesize imdbCache;
 @synthesize numbersCache;
@@ -110,7 +109,6 @@ static NSString** KEYS[] = {
     self.movieMapLock = nil;
     self.favoriteTheatersData = nil;
 
-    self.addressLocationCache = nil;
     self.userLocationCache = nil;
     self.imdbCache = nil;
     self.numbersCache = nil;
@@ -162,11 +160,6 @@ static NSString** KEYS[] = {
 
 - (void) updateUpcomingCache {
     [upcomingCache updateMovieDetails];
-}
-
-
-- (void) updateUserAddressLocation {
-    [userLocationCache updateUserAddressLocation:self.userAddress];
 }
 
 
@@ -310,7 +303,6 @@ static NSString** KEYS[] = {
     if (self = [super init]) {
         [self loadData];
 
-        self.addressLocationCache = [AddressLocationCache cache];
         self.userLocationCache = [UserLocationCache cache];
         self.imdbCache = [IMDbCache cache];
         self.numbersCache = [NumbersCache cache];
@@ -334,24 +326,20 @@ static NSString** KEYS[] = {
 - (void) updateCaches:(NSNumber*) number {
     int value = number.intValue;
 
-    if (value == 0) {
-        [self updateUserAddressLocation];
-    } else if (value == 1) {
-        [self updateNumbersCache];
-    } else if (value == 2) {
-        [self updatePosterCache];
-    } else if (value == 3) {
-        [self updateReviewCache];
-    } else if (value == 4) {
-        [self updateTrailerCache];
-    } else if (value == 5) {
-        [self updateUpcomingCache];
-    } else if (value == 6) {
-        [self updateIMDbCache];
-    } else {
+    SEL selectors[] = {
+        @selector(updateNumbersCache),
+        @selector(updatePosterCache),
+        @selector(updateReviewCache),
+        @selector(updateTrailerCache),
+        @selector(updateUpcomingCache),
+        @selector(updateIMDbCache)
+    };
+
+    if (value >= ArrayLength(selectors)) {
         return;
     }
-
+    
+    [self performSelector:selectors[value]];
     [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:value + 1] afterDelay:1];
 }
 
@@ -393,8 +381,13 @@ static NSString** KEYS[] = {
 }
 
 
-- (BOOL) noRatings {
+- (BOOL) googleRatings {
     return self.ratingsProviderIndex == 2;
+}
+
+
+- (BOOL) noRatings {
+    return self.ratingsProviderIndex == 3;
 }
 
 
@@ -402,6 +395,7 @@ static NSString** KEYS[] = {
     return [NSArray arrayWithObjects:
             @"RottenTomatoes",
             @"Metacritic",
+            @"Google",
             NSLocalizedString(@"None", nil), nil];
 }
 
@@ -776,7 +770,7 @@ static NSString** KEYS[] = {
 
 - (NSDictionary*) theaterDistanceMap {
     Location* location = [userLocationCache locationForUserAddress:self.userAddress];
-    return [addressLocationCache theaterDistanceMap:location
+    return [AddressLocationCache theaterDistanceMap:location
                                            theaters:self.theaters];
 }
 
@@ -890,8 +884,6 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     [self markDataProviderOutOfDate];
 
     [[NSUserDefaults standardUserDefaults] setObject:userAddress forKey:USER_ADDRESS];
-
-    [self updateUserAddressLocation];
 }
 
 
@@ -917,22 +909,34 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSString*) synopsisForMovie:(Movie*) movie {
+    NSMutableArray* options = [NSMutableArray array];
     NSString* synopsis = movie.synopsis;
-    if (synopsis.length != 0) {
-        return synopsis;
+    if (synopsis.length > 0) {
+        [options addObject:synopsis];
     }
 
     synopsis = [self extraInformationForMovie:movie].synopsis;
-    if (synopsis.length != 0) {
-        return synopsis;
+    if (synopsis.length > 0) {
+        [options addObject:synopsis];
     }
 
     synopsis = [upcomingCache synopsisForMovie:movie];
-    if (synopsis.length != 0) {
-        return synopsis;
+    if (synopsis.length > 0) {
+        [options addObject:synopsis];
     }
-
-    return NSLocalizedString(@"No synopsis available.", nil);
+    
+    if (options.count == 0) {
+        return NSLocalizedString(@"No synopsis available.", nil);
+    }
+    
+    NSString* bestOption = @"";
+    for (NSString* option in options) {
+        if (option.length > bestOption.length) {
+            bestOption = option;
+        }
+    }
+    
+    return bestOption;
 }
 
 

@@ -257,22 +257,13 @@
 }
 
 
-- (LookupResult*) lookupLocationWorker:(Location*) location
+- (LookupResult*) lookupLocation:(Location*) location
                     theaterNames:(NSArray*) theaterNames {
     NSAssert(false, @"Someone improperly subclassed!");
     return nil;
+    
 }
 
-
-- (LookupResult*) lookupLocation:(Location*) location
-                    theaterNames:(NSArray*) theaterNames {
-    if (location.postalCode == nil) {
-        [self reportUnknownLocation];
-        return nil;
-    }
-
-    return [self lookupLocationWorker:location theaterNames:theaterNames];
-}
 
 - (BOOL)        results:(LookupResult*) lookupResult
        containsFavorite:(FavoriteTheater*) favorite {
@@ -368,23 +359,6 @@
 
 - (NSDate*) synchronizationDateForTheater:(NSString*) theaterName {
     return [self.synchronizationData objectForKey:theaterName];
-}
-
-
-- (void) reportUnknownLocation {
-    if ([NSThread isMainThread]) {
-        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
-                                                         message:NSLocalizedString(@"Could not find location.", nil)
-                                                        delegate:nil
-                                               cancelButtonTitle:NSLocalizedString(@"OK", nil)
-                                               otherButtonTitles:nil] autorelease];
-
-        [alert show];
-    } else {
-        [self performSelectorOnMainThread:@selector(reportUnknownLocation)
-                               withObject:nil
-                            waitUntilDone:NO];
-    }
 }
 
 

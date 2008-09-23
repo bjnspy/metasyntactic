@@ -14,37 +14,15 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface AbstractDataProvider : NSObject {
+@interface GoogleRatingsDownloader : NSObject {
     NowPlayingModel* model;
-    NSArray* moviesData;
-    NSArray* theatersData;
-    NSDictionary* synchronizationInformationData;
-
-    NSMutableDictionary* performancesData;
 }
 
 @property (retain) NowPlayingModel* model;
-@property (retain) NSArray* moviesData;
-@property (retain) NSArray* theatersData;
-@property (retain) NSDictionary* synchronizationInformationData;
-@property (retain) NSMutableDictionary* performancesData;
 
-- (id) initWithModel:(NowPlayingModel*) model;
++ (GoogleRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model;
 
-- (NSString*) providerFolder;
-- (void) invalidateDiskCache;
-
-- (NSArray*) movies;
-- (NSArray*) theaters;
-- (NSArray*) moviePerformances:(Movie*) movie forTheater:(Theater*) theater;
-- (NSDate*) synchronizationDateForTheater:(NSString*) theaterName;
-
-- (void) setStale;
-- (NSDate*) lastLookupDate;
-
-- (void) lookup;
-
-/* @protected */
-- (NSString*) performancesFile:(NSString*) theaterName;
++ (NSString*) lookupServerHash:(NowPlayingModel*) model;
+- (NSDictionary*) lookupMovieListings;
 
 @end

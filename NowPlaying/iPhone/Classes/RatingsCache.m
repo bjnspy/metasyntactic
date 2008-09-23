@@ -19,9 +19,10 @@
 #import "Application.h"
 #import "ExtraMovieInformation.h"
 #import "FileUtilities.h"
-#import "MetacriticDownloader.h"
+#import "GoogleRatingsDownloader.h"
+#import "MetacriticRatingsDownloader.h"
 #import "NowPlayingModel.h"
-#import "RottenTomatoesDownloader.h"
+#import "RottenTomatoesRatingsDownloader.h"
 
 @implementation RatingsCache
 
@@ -117,9 +118,11 @@ static NSString* hash_key = @"Hash";
 
 - (NSString*) lookupServerHash {
     if (self.model.rottenTomatoesRatings) {
-        return [RottenTomatoesDownloader lookupServerHash];
+        return [RottenTomatoesRatingsDownloader lookupServerHash];
     } else if (self.model.metacriticRatings) {
-        return [MetacriticDownloader lookupServerHash];
+        return [MetacriticRatingsDownloader lookupServerHash];
+    } else if (self.model.googleRatings) {
+        return [GoogleRatingsDownloader lookupServerHash:model];
     }
 
     return nil;
@@ -145,9 +148,11 @@ static NSString* hash_key = @"Hash";
 
     NSDictionary* ratings = nil;
     if (self.model.rottenTomatoesRatings) {
-        ratings = [[RottenTomatoesDownloader downloaderWithModel:self.model] lookupMovieListings];
+        ratings = [[RottenTomatoesRatingsDownloader downloaderWithModel:self.model] lookupMovieListings];
     } else if (self.model.metacriticRatings) {
-        ratings = [[MetacriticDownloader downloaderWithModel:self.model] lookupMovieListings];
+        ratings = [[MetacriticRatingsDownloader downloaderWithModel:self.model] lookupMovieListings];
+    } else if (self.model.googleRatings) {
+        ratings = [[GoogleRatingsDownloader downloaderWithModel:self.model] lookupMovieListings];
     }
 
     if (ratings.count > 0) {

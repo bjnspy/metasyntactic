@@ -131,7 +131,7 @@
         if (ABS(newLocation.timestamp.timeIntervalSinceNow) < 10) {
             [locationManager stopUpdatingLocation];
 
-            [ThreadingUtilities performSelector:@selector(findPostalCodeBackgroundEntryPoint:)
+            [ThreadingUtilities performSelector:@selector(findLocationBackgroundEntryPoint:)
                                        onTarget:self
                        inBackgroundWithArgument:newLocation
                                            gate:gate
@@ -141,7 +141,7 @@
 }
 
 
-- (void) findPostalCodeBackgroundEntryPoint:(CLLocation*) location {
+- (void) findLocationBackgroundEntryPoint:(CLLocation*) location {
     Location* userLocation = [LocationUtilities findLocation:location];
 
     [self performSelectorOnMainThread:@selector(reportFoundUserLocation:) withObject:userLocation waitUntilDone:NO];

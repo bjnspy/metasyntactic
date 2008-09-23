@@ -34,7 +34,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.gate = [[[NSLock alloc] init] autorelease];
+        self.gate = [[[NSRecursiveLock alloc] init] autorelease];
     }
 
     return self;

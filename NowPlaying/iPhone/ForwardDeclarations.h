@@ -49,7 +49,7 @@
 @class Location;
 @class LocationUtilities;
 @class LookupResult;
-@class MetacriticDownloader;
+@class MetacriticRatingsDownloader;
 @class Movie;
 @class MovieDetailsViewController;
 @class MovieOverviewCell;
@@ -75,7 +75,7 @@
 @class ReviewCache;
 @class ReviewTitleCell;
 @class ReviewsViewController;
-@class RottenTomatoesDownloader;
+@class RottenTomatoesRatingsDownloader;
 @class SearchDatePickerViewController;
 @class SettingCell;
 @class SettingsNavigationController;

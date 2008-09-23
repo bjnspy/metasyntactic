@@ -19,6 +19,7 @@
     Movie* movie;
 
     UIImage* posterImage;
+
     NSString* synopsis;
     NSInteger synopsisSplit;
     NSInteger synopsisMax;

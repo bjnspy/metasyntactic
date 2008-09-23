@@ -272,10 +272,9 @@
 }
 
 
-- (LookupResult*) lookupLocationWorker:(Location*) location
+- (LookupResult*) lookupLocation:(Location*) location
                     theaterNames:(NSArray*) theaterNames {
     if (location.postalCode == nil) {
-        [self reportUnknownLocation];
         return nil;
     }
 

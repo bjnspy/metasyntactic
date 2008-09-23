@@ -24,17 +24,20 @@
 #import "NowPlayingModel.h"
 #import "RatingsCache.h"
 #import "ThreadingUtilities.h"
+#import "UserLocationCache.h"
 #import "Utilities.h"
 
 @implementation NowPlayingController
 
 @synthesize appDelegate;
+@synthesize determineLocationLock;
 @synthesize dataProviderLock;
 @synthesize ratingsLookupLock;
 @synthesize upcomingMoviesLookupLock;
 
 - (void) dealloc {
     self.appDelegate = nil;
+    self.determineLocationLock = nil;
     self.dataProviderLock = nil;
     self.ratingsLookupLock = nil;
     self.upcomingMoviesLookupLock = nil;
@@ -121,6 +124,14 @@
                                 visible:YES];
 }
 
+- (void) spawnDetermineLocationThread {
+    [ThreadingUtilities performSelector:@selector(determineLocation)
+                               onTarget:self
+               inBackgroundWithArgument:nil
+                                   gate:determineLocationLock
+                                visible:YES];
+}
+
 
 - (void) spawnBackgroundThreads {
     [self spawnRatingsLookupThread];
@@ -136,7 +147,7 @@
         self.ratingsLookupLock = [[[NSLock alloc] init] autorelease];
         self.upcomingMoviesLookupLock = [[[NSLock alloc] init] autorelease];
 
-        [self spawnBackgroundThreads];
+        [self spawnDetermineLocationThread];
     }
 
     return self;
@@ -167,6 +178,33 @@
 }
 
 
+- (void) determineLocation {
+    if (self.model.userAddress.length > 0) {
+        Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:self.model.userAddress];
+
+        [self performSelectorOnMainThread:@selector(reportUserLocation:) withObject:location waitUntilDone:NO];
+    }
+}
+
+
+- (void) reportUserLocation:(Location*) location {
+    if (location == nil) {
+        UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
+                                                         message:NSLocalizedString(@"Could not find location.", nil)
+                                                        delegate:nil
+                                               cancelButtonTitle:NSLocalizedString(@"OK", nil)
+                                               otherButtonTitles:nil] autorelease];
+        
+        [alert show];
+        return;
+    }
+    
+    [self spawnBackgroundThreads];
+    [appDelegate.tabBarController popNavigationControllersToRoot];
+    [NowPlayingAppDelegate refresh];
+}
+
+
 - (void) setSearchDate:(NSDate*) searchDate {
     if ([searchDate isEqual:self.model.searchDate]) {
         return;
@@ -185,9 +223,7 @@
     }
 
     [self.model setUserAddress:userAddress];
-    [self spawnBackgroundThreads];
-    [appDelegate.tabBarController popNavigationControllersToRoot];
-    [NowPlayingAppDelegate refresh];
+    [self spawnDetermineLocationThread];
 }
 
 

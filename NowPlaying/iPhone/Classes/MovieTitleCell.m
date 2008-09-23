@@ -121,7 +121,7 @@
 }
 
 
-- (void) setMetacriticScore:(Movie*) movie {
+- (void) setBasicSquareScore:(Movie*) movie {
     int score = [model scoreForMovie:movie];
 
     if (score >= 0 && score <= 100) {
@@ -178,7 +178,9 @@
     if (model.rottenTomatoesRatings) {
         [self setRottenTomatoesScore:movie];
     } else if (model.metacriticRatings) {
-        [self setMetacriticScore:movie];
+        [self setBasicSquareScore:movie];
+    } else if (model.googleRatings) {
+        [self setBasicSquareScore:movie];
     } else if (model.noRatings) {
         self.image = nil;
         scoreLabel.text = nil;

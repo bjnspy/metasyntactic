@@ -24,10 +24,7 @@
 
 @implementation AddressLocationCache
 
-@synthesize cachedTheaterDistanceMap;
-
 - (void) dealloc {
-    self.cachedTheaterDistanceMap = nil;
 
     [super dealloc];
 }
@@ -35,42 +32,29 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.cachedTheaterDistanceMap = [NSMutableDictionary dictionary];
     }
 
     return self;
 }
 
 
-+ (AddressLocationCache*) cache {
-    return [[[AddressLocationCache alloc] init] autorelease];
-}
-
-
-- (NSDictionary*) theaterDistanceMap:(Location*) location
++ (NSDictionary*) theaterDistanceMap:(Location*) location
                             theaters:(NSArray*) theaters {
-    NSString* mapKey = [Utilities nonNilString:location.description];
-    NSMutableDictionary* theaterDistanceMap = [cachedTheaterDistanceMap objectForKey:mapKey];
-    if (theaterDistanceMap == nil) {
-        theaterDistanceMap = [NSMutableDictionary dictionary];
-
-        for (Theater* theater in theaters) {
-            double d;
-            if (location != nil) {
-                d = [location distanceTo:theater.location];
-            } else {
-                d = UNKNOWN_DISTANCE;
-            }
-
-            NSNumber* value = [NSNumber numberWithDouble:d];
-            NSString* key = theater.name;
-            [theaterDistanceMap setObject:value forKey:key];
+    NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
+    
+    for (Theater* theater in theaters) {
+        double d;
+        if (location != nil) {
+            d = [location distanceTo:theater.location];
+        } else {
+            d = UNKNOWN_DISTANCE;
         }
-
-        [cachedTheaterDistanceMap setObject:theaterDistanceMap
-                                     forKey:mapKey];
+        
+        NSNumber* value = [NSNumber numberWithDouble:d];
+        NSString* key = theater.name;
+        [theaterDistanceMap setObject:value forKey:key];
     }
-
+    
     return theaterDistanceMap;
 }
 
