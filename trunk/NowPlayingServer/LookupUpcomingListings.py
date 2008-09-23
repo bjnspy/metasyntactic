@@ -165,6 +165,8 @@ class LookupUpcomingListingsHandler(webapp.RequestHandler):
         movieElement.appendChild(genresElement)
 
         for genre in entity["genre"]:
+          if genre is None:
+            continue
           genreElement = document.createElement("genre")
           genresElement.appendChild(genreElement)
           genreElement.setAttribute("value", genre)
@@ -174,6 +176,8 @@ class LookupUpcomingListingsHandler(webapp.RequestHandler):
         movieElement.appendChild(actorsElement)
 
         for actor in entity["actors"]:
+          if actor is None:
+            continue
           actorElement = document.createElement("actor")
           actorsElement.appendChild(actorElement)
           actorElement.setAttribute("value", self.removeEncodings(actor))
