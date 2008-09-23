@@ -83,7 +83,7 @@
 }
 
 
-- (void) setMetacriticImage:(NSInteger) score {
+- (void) setBasicSquareImage:(NSInteger) score {
     if (score >= 0 && score <= 40) {
         self.image = [ImageCache redRatingImage];
     } else if (score > 40 && score <= 60) {
@@ -116,8 +116,10 @@
 
     if (model.rottenTomatoesRatings) {
         [self setRottenTomatoesImage:score];
-    } else {
-        [self setMetacriticImage:score];
+    } else if (model.metacriticRatings) {
+        [self setBasicSquareImage:score];
+    } else if (model.googleRatings) {
+        [self setBasicSquareImage:score];
     }
 }
 

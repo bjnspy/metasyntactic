@@ -118,6 +118,8 @@
             cell.text = @"RottenTomatoes.com";
         } else if (self.model.metacriticRatings) {
             cell.text = @"Metacritic.com";
+        } else if (self.model.googleRatings) {
+            cell.text = @"Google.com";
         }
         return cell;
     }
@@ -146,6 +148,8 @@
             [Application openBrowser:@"http://www.rottentomatoes.com"];
         } else if (self.model.metacriticRatings) {
             [Application openBrowser:@"http://www.metacritic.com"];
+        } else if (self.model.googleRatings) {
+            [Application openBrowser:@"http://www.google.com/movies"];
         }
     }
 }

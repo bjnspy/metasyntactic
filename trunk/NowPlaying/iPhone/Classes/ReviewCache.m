@@ -19,10 +19,12 @@
 #import "Application.h"
 #import "ExtraMovieInformation.h"
 #import "FileUtilities.h"
+#import "Location.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "Review.h"
 #import "ThreadingUtilities.h"
+#import "UserLocationCache.h"
 #import "XmlElement.h"
 
 @implementation ReviewCache
@@ -116,8 +118,28 @@ static NSString* hash_key = @"Hash";
 }
 
 
-- (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&format=xml", [Application host], info.link];
+- (NSString*) serverAddress:(ExtraMovieInformation*) info {
+    Location* location = [model.userLocationCache locationForUserAddress:model.userAddress];
+    
+    NSString* country = location.country.length == 0 ? [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
+    : location.country;
+    
+    NSString* url =
+    [NSString stringWithFormat:@"http://metaboxoffice6.appspot.com/LookupMovieReviews?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
+     country,
+     [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
+     info.identifier,
+     info.provider,
+     (int)(location.latitude * 1000000),
+     (int)(location.longitude * 1000000)];
+    
+    return url;
+}
+
+
+- (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {    
+    NSString* url = [self serverAddress:info];
+    
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
 
     if (resultElement != nil) {
@@ -166,10 +188,10 @@ static NSString* hash_key = @"Hash";
         }
 
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-
-        ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
-        if (info.link.length > 0) {
-            NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews?q=%@&format=xml&hash=true", [Application host], info.link];
+        {
+            ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
+            NSString* url = [[self serverAddress:info] stringByAppendingString:@"&hash=true"];
+        
             NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
             if (serverHash == nil) {
                 serverHash = @"0";
@@ -187,7 +209,6 @@ static NSString* hash_key = @"Hash";
                 [self saveMovie:movieId reviews:reviews hash:serverHash ratingsProvider:ratingsProvider];
             }
         }
-
         [autoreleasePool release];
     }
 }

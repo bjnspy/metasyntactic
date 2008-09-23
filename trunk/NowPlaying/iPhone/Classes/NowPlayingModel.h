@@ -22,7 +22,6 @@ enum ViewControllerType {
 };
 
 @interface NowPlayingModel : NSObject {
-    AddressLocationCache* addressLocationCache;
     UserLocationCache* userLocationCache;
     IMDbCache* imdbCache;
     NumbersCache* numbersCache;
@@ -42,7 +41,6 @@ enum ViewControllerType {
     id<DataProvider> dataProvider;
 }
 
-@property (retain) AddressLocationCache* addressLocationCache;
 @property (retain) UserLocationCache* userLocationCache;
 @property (retain) IMDbCache* imdbCache;
 @property (retain) NumbersCache* numbersCache;
@@ -66,6 +64,7 @@ enum ViewControllerType {
 - (void) setRatingsProviderIndex:(NSInteger) index;
 - (BOOL) rottenTomatoesRatings;
 - (BOOL) metacriticRatings;
+- (BOOL) googleRatings;
 - (BOOL) noRatings;
 - (NSString*) currentRatingsProvider;
 - (NSArray*) ratingsProviders;

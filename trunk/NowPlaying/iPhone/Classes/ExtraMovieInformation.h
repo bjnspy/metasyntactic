@@ -17,20 +17,23 @@
 @interface ExtraMovieInformation : NSObject {
     NSString* canonicalTitle;
     NSString* synopsis;
-    NSString* link;
     NSString* score;
+    NSString* provider;
+    NSString* identifier;
 }
 
 @property (copy) NSString* canonicalTitle;
 @property (copy) NSString* synopsis;
-@property (copy) NSString* link;
 @property (copy) NSString* score;
+@property (copy) NSString* provider;
+@property (copy) NSString* identifier;
 
 + (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary;
 + (ExtraMovieInformation*) infoWithTitle:(NSString*) title
-                                    link:(NSString*) link
                                 synopsis:(NSString*) synopsis
-                                   score:(NSString*) score;
+                                   score:(NSString*) score
+                                provider:(NSString*) provider
+                              identifier:(NSString*) identifier;
 
 - (NSDictionary*) dictionary;
 

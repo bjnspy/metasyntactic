@@ -14,13 +14,13 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface MetacriticDownloader : NSObject {
+@interface RottenTomatoesRatingsDownloader : NSObject {
     NowPlayingModel* model;
 }
 
 @property (retain) NowPlayingModel* model;
 
-+ (MetacriticDownloader*) downloaderWithModel:(NowPlayingModel*) model;
++ (RottenTomatoesRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model;
 
 + (NSString*) lookupServerHash;
 - (NSDictionary*) lookupMovieListings;

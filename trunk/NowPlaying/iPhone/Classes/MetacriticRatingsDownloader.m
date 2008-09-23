@@ -14,7 +14,7 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "MetacriticDownloader.h"
+#import "MetacriticRatingsDownloader.h"
 
 #import "Application.h"
 #import "ExtraMovieInformation.h"
@@ -22,7 +22,7 @@
 #import "NowPlayingModel.h"
 #import "XmlElement.h"
 
-@implementation MetacriticDownloader
+@implementation MetacriticRatingsDownloader
 
 @synthesize model;
 
@@ -41,8 +41,8 @@
 }
 
 
-+ (MetacriticDownloader*) downloaderWithModel:(NowPlayingModel*) model {
-    return [[[MetacriticDownloader alloc] initWithModel:model] autorelease];
++ (MetacriticRatingsDownloader*) downloaderWithModel:(NowPlayingModel*) model {
+    return [[[MetacriticRatingsDownloader alloc] initWithModel:model] autorelease];
 }
 
 
@@ -73,10 +73,10 @@
             }
 
             ExtraMovieInformation* extraInfo = [ExtraMovieInformation infoWithTitle:title
-                                                                               link:link
                                                                            synopsis:synopsis
-                                                                              score:score];
-
+                                                                              score:score
+                                                                           provider:@"metacritic"
+                                                                         identifier:link];
 
             [ratings setObject:extraInfo forKey:extraInfo.canonicalTitle];
         }
