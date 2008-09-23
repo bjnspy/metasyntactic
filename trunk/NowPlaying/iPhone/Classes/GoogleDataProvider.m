@@ -166,7 +166,7 @@
                       theaters:(NSMutableArray*) theaters
                   performances:(NSMutableDictionary*) performances
            synchronizationData:(NSMutableDictionary*) synchronizationData
-         originatingPostalCode:(NSString*) originatingPostalCode
+           originatingLocation:(Location*) originatingLocation
                   theaterNames:(NSArray*) theaterNames
              movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSString* name = [theaterElement attributeValue:@"name"];
@@ -225,16 +225,16 @@
     [performances setObject:movieToShowtimesMap forKey:name];
     [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                   name:name
-                                              location:location
                                                 mapUrl:mapUrl
                                            phoneNumber:phone
-                                           movieTitles:movieToShowtimesMap.allKeys
-                                 originatingPostalCode:originatingPostalCode]];
+                                              location:location
+                                   originatingLocation:originatingLocation
+                                           movieTitles:movieToShowtimesMap.allKeys]];
 }
 
 
 - (NSArray*) processTheaterElements:(NSArray*) theaterElements
-                         postalCode:(NSString*) postalCode
+                originatingLocation:(Location*) originatingLocation
                        theaterNames:(NSArray*) theaterNames
                   movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableArray* theaters = [NSMutableArray array];
@@ -246,7 +246,7 @@
                            theaters:theaters
                        performances:performances
                 synchronizationData:synchronizationData
-              originatingPostalCode:postalCode
+                originatingLocation:originatingLocation
                        theaterNames:theaterNames
                   movieIdToMovieMap:movieIdToMovieMap];
     }
@@ -256,7 +256,7 @@
 
 
 - (LookupResult*) processTheaterListingsElement:(XmlElement*) element
-                                     postalCode:(NSString*) postalCode
+                            originatingLocation:(Location*) originatingLocation
                                    theaterNames:(NSArray*) theaterNames {
     XmlElement* moviesElement = [element element:@"Movies"];
     NSArray* theaterElements = [element elements:@"Theater"];
@@ -264,7 +264,7 @@
     NSDictionary* movieIdToMovieMap = [self processMoviesElement:moviesElement];
 
     NSArray* theatersAndPerformances = [self processTheaterElements:theaterElements
-                                                         postalCode:postalCode
+                                                originatingLocation:originatingLocation
                                                        theaterNames:theaterNames
                                                   movieIdToMovieMap:movieIdToMovieMap];
 
@@ -314,7 +314,7 @@
 
     if (element != nil) {
         return [self processTheaterListingsElement:element
-                                        postalCode:location.postalCode
+                               originatingLocation:location
                                       theaterNames:theaterNames];
     }
 

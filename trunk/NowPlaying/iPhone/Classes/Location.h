@@ -34,6 +34,7 @@
 @property (copy) NSString* postalCode;
 @property (copy) NSString* country;
 
+
 + (Location*) locationWithDictionary:(NSDictionary*) dictionary;
 + (Location*) locationWithLatitude:(double) latitude
                          longitude:(double) longitude;
@@ -45,6 +46,7 @@
                         postalCode:(NSString*) postalCode
                            country:(NSString*) country;
 
++ (BOOL) canReadDictionary:(NSDictionary*) dictionary;
 - (NSDictionary*) dictionary;
 
 - (double) distanceTo:(Location*) to;

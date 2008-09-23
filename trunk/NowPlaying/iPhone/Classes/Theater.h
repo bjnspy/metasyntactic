@@ -17,30 +17,30 @@
 @interface Theater : NSObject {
     NSString* identifier;
     NSString* name;
-    Location* location;
     NSString* mapUrl;
     NSString* phoneNumber;
     
-    NSArray* movieTitles;
+    Location* location;
+    Location* originatingLocation;
     
-    NSString* originatingPostalCode;
+    NSArray* movieTitles;
 }
 
 @property (copy) NSString* identifier;
 @property (copy) NSString* name;
-@property (retain) Location* location;
 @property (copy) NSString* mapUrl;
 @property (copy) NSString* phoneNumber;
-@property (copy) NSString* originatingPostalCode;
+@property (retain) Location* location;
+@property (retain) Location* originatingLocation;
 @property (retain) NSArray* movieTitles;
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
-                          location:(Location*) location
                             mapUrl:(NSString*) mapUrl
                        phoneNumber:(NSString*) phoneNumber
-                       movieTitles:(NSArray*) movieTitles
-             originatingPostalCode:(NSString*) originatingPostalCode;
+                          location:(Location*) location
+               originatingLocation:(Location*) originatingLocation
+                       movieTitles:(NSArray*) movieTitles;
 
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
 

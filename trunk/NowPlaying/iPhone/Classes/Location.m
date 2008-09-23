@@ -114,6 +114,20 @@ property_definition(country);
     return dict;
 }
 
+
++ (BOOL) canReadDictionary:(NSDictionary*) dictionary {
+    return
+    [[dictionary objectForKey:latitude_key] isKindOfClass:[NSNumber class]] &&
+    [[dictionary objectForKey:longitude_key] isKindOfClass:[NSNumber class]] &&
+    [[dictionary objectForKey:address_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:city_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:state_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:postalCode_key] isKindOfClass:[NSString class]] &&
+    [[dictionary objectForKey:country_key] isKindOfClass:[NSString class]];
+}
+
+
+
 - (double) distanceTo:(Location*) to {
     const double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
     const double GREAT_CIRCLE_RADIUS_MILES = 3438.461;

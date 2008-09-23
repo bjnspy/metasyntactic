@@ -49,8 +49,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"2.0.5.0";
-static NSString* persistenceVersion = @"46";
+static NSString* currentVersion = @"2.0.6.0";
+static NSString* persistenceVersion = @"48";
 
 static NSString* VERSION = @"version";
 
@@ -609,7 +609,7 @@ static NSString** KEYS[] = {
 
 - (void) addFavoriteTheater:(Theater*) theater {
     FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
-                                                  originatingPostalCode:theater.originatingPostalCode];
+                                                    originatingLocation:theater.originatingLocation];
     if (![self.favoriteTheaters containsObject:favoriteTheater]) {
         [self.favoriteTheaters addObject:favoriteTheater];
     }
@@ -631,7 +631,7 @@ static NSString** KEYS[] = {
 
 - (void) removeFavoriteTheater:(Theater*) theater {
     FavoriteTheater* favoriteTheater = [FavoriteTheater theaterWithName:theater.name
-                                                  originatingPostalCode:theater.originatingPostalCode];
+                                                    originatingLocation:theater.originatingLocation];
 
     [self.favoriteTheaters removeObject:favoriteTheater];
     [self saveFavoriteTheaters];

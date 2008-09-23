@@ -16,25 +16,26 @@
 
 #import "FavoriteTheater.h"
 
+#import "Location.h"
 
 @implementation FavoriteTheater
 
 property_definition(name);
-property_definition(originatingPostalCode);
+property_definition(originatingLocation);
 
 - (void) dealloc {
     self.name = nil;
-    self.originatingPostalCode = nil;
+    self.originatingLocation = nil;
 
     [super dealloc];
 }
 
 
 - (id)         initWithName:(NSString*) name_
-      originatingPostalCode:(NSString*) originatingPostalCode_ {
+        originatingLocation:(Location*) originatingLocation_ {
     if (self = [super init]) {
         self.name = name_;
-        self.originatingPostalCode = originatingPostalCode_;
+        self.originatingLocation = originatingLocation_;
     }
 
     return self;
@@ -42,29 +43,30 @@ property_definition(originatingPostalCode);
 
 
 + (FavoriteTheater*) theaterWithName:(NSString*) name
-               originatingPostalCode:(NSString*) originatingPostalCode {
+                 originatingLocation:(Location*) originatingLocation {
     return [[[FavoriteTheater alloc] initWithName:name
-                            originatingPostalCode:originatingPostalCode] autorelease];
+                              originatingLocation:originatingLocation] autorelease];
 }
 
 
 + (FavoriteTheater*) theaterWithDictionary:(NSDictionary*) dictionary {
     return [FavoriteTheater theaterWithName:[dictionary objectForKey:name_key]
-                      originatingPostalCode:[dictionary objectForKey:originatingPostalCode_key]];
+                        originatingLocation:[Location locationWithDictionary:[dictionary objectForKey:originatingLocation_key]]];
 }
 
 
 + (BOOL) canReadDictionary:(NSDictionary*) dictionary {
     return
     [[dictionary objectForKey:name_key] isKindOfClass:[NSString class]] &&
-    [[dictionary objectForKey:originatingPostalCode_key] isKindOfClass:[NSString class]];
+    [[dictionary objectForKey:originatingLocation_key] isKindOfClass:[NSDictionary class]] &&
+    [Location canReadDictionary:[dictionary objectForKey:originatingLocation_key]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
-    [result setObject:name                  forKey:name_key];
-    [result setObject:originatingPostalCode forKey:originatingPostalCode_key];
+    [result setObject:name                              forKey:name_key];
+    [result setObject:originatingLocation.dictionary    forKey:originatingLocation_key];
     return result;
 }
 
