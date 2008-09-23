@@ -65,7 +65,7 @@ class LookupLocationHandler(webapp.RequestHandler):
     return ""
 
   def get_location_from_webservice(self, q):
-    keys = [ "TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_", "JTVP_y3V34H93_TVoJpPPS.yd37hCbVj2kbRW5BdY4pu0ueVrk6.r6BWhOfaP1SHjrF8hWk-" ] 
+    keys = [ "TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_", "JTVP_y3V34H93_TVoJpPPS.yd37hCbVj2kbRW5BdY4pu0ueVrk6.r6BWhOfaP1SHjrF8hWk-", "1" ] 
     index = random.randint(0, len(keys) - 1)
     key = keys[index]
 
