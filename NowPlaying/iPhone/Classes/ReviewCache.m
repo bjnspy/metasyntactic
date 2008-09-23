@@ -17,7 +17,7 @@
 #import "ReviewCache.h"
 
 #import "Application.h"
-#import "ExtraMovieInformation.h"
+#import "MovieRating.h"
 #import "FileUtilities.h"
 #import "Location.h"
 #import "NetworkUtilities.h"
@@ -105,6 +105,10 @@ static NSString* hash_key = @"Hash";
         NSString* author = [reviewElement attributeValue:@"author"];
         NSString* source = [reviewElement attributeValue:@"source"];
 
+        if ([author rangeOfString:@"HREF"].length > 0) {
+            continue;
+        }
+        
         NSInteger scoreValue = score.intValue;
 
         [result addObject:[Review reviewWithText:text
@@ -118,7 +122,7 @@ static NSString* hash_key = @"Hash";
 }
 
 
-- (NSString*) serverAddress:(ExtraMovieInformation*) info {
+- (NSString*) serverAddress:(MovieRating*) info {
     Location* location = [model.userLocationCache locationForUserAddress:model.userAddress];
     
     NSString* country = location.country.length == 0 ? [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
@@ -138,7 +142,7 @@ static NSString* hash_key = @"Hash";
 }
 
 
-- (NSArray*) downloadInfoReviews:(ExtraMovieInformation*) info {    
+- (NSArray*) downloadInfoReviews:(MovieRating*) info {    
     NSString* url = [self serverAddress:info];
     
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
@@ -190,7 +194,7 @@ static NSString* hash_key = @"Hash";
 
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
-            ExtraMovieInformation* info = [supplementaryInformation objectForKey:movieId];
+            MovieRating* info = [supplementaryInformation objectForKey:movieId];
             NSString* url = [[self serverAddress:info] stringByAppendingString:@"&hash=true"];
         
             NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:url important:NO];

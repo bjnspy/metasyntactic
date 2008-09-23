@@ -10,7 +10,7 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
-#import "ExtraMovieInformation.h"
+#import "MovieRating.h"
 #import "Location.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
@@ -100,7 +100,7 @@
                 score = @"-1";
             }
             
-            ExtraMovieInformation* info = [ExtraMovieInformation infoWithTitle:title
+            MovieRating* info = [MovieRating ratingWithTitle:title
                                                                       synopsis:@""
                                                                          score:score
                                                                       provider:@"google"

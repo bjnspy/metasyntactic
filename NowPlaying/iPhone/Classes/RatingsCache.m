@@ -17,7 +17,7 @@
 #import "RatingsCache.h"
 
 #import "Application.h"
-#import "ExtraMovieInformation.h"
+#import "MovieRating.h"
 #import "FileUtilities.h"
 #import "GoogleRatingsDownloader.h"
 #import "MetacriticRatingsDownloader.h"
@@ -56,7 +56,7 @@ static NSString* hash_key = @"Hash";
 
     NSMutableDictionary* decodedRatings = [NSMutableDictionary dictionary];
     for (NSString* key in encodedRatings) {
-        [decodedRatings setObject:[ExtraMovieInformation infoWithDictionary:[encodedRatings objectForKey:key]] forKey:key];
+        [decodedRatings setObject:[MovieRating ratingWithDictionary:[encodedRatings objectForKey:key]] forKey:key];
     }
 
     NSMutableDictionary* result = [NSMutableDictionary dictionary];

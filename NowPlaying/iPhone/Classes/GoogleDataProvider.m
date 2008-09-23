@@ -86,6 +86,16 @@
             releaseDate = [[NSCalendar currentCalendar] dateFromComponents:components];
         }
 
+        static NSString* prefix = @"http://www.google.com/url?q=";
+        if ([imdbUrl hasPrefix:prefix]) {
+            imdbUrl = [imdbUrl substringFromIndex:prefix.length];
+            NSRange ampIndex = [imdbUrl rangeOfString:@"&"];
+            if (ampIndex.length > 0) {
+                imdbUrl = [imdbUrl substringToIndex:ampIndex.location];
+            }
+            
+            imdbUrl = [imdbUrl stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+        }
 
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title

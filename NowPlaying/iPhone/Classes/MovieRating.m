@@ -14,12 +14,12 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-#import "ExtraMovieInformation.h"
+#import "MovieRating.h"
 
 #import "Movie.h"
 #import "Utilities.h"
 
-@implementation ExtraMovieInformation
+@implementation MovieRating
 
 property_definition(canonicalTitle);
 property_definition(synopsis);
@@ -55,12 +55,12 @@ property_definition(identifier);
 }
 
 
-+ (ExtraMovieInformation*) infoWithTitle:(NSString*) title
++ (MovieRating*) ratingWithTitle:(NSString*) title
                                 synopsis:(NSString*) synopsis
                                    score:(NSString*) score
                                 provider:(NSString*) provider
                               identifier:(NSString*) identifier {
-    return [[[ExtraMovieInformation alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
+    return [[[MovieRating alloc] initWithCanonicalTitle:[Movie makeCanonical:title]
                                                          synopsis:[Utilities stripHtmlCodes:synopsis]
                                                             score:score
                                                          provider:provider
@@ -68,8 +68,8 @@ property_definition(identifier);
 }
 
 
-+ (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary {
-    return [[[ExtraMovieInformation alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
++ (MovieRating*) ratingWithDictionary:(NSDictionary*) dictionary {
+    return [[[MovieRating alloc] initWithCanonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                                          synopsis:[dictionary objectForKey:synopsis_key]
                                                             score:[dictionary objectForKey:score_key]
                                                          provider:[dictionary objectForKey:provider_key]
