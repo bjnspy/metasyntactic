@@ -200,7 +200,6 @@
     }
     
     [self spawnBackgroundThreads];
-    [appDelegate.tabBarController popNavigationControllersToRoot];
     [NowPlayingAppDelegate refresh];
 }
 
@@ -223,6 +222,7 @@
     }
 
     [self.model setUserAddress:userAddress];
+    [appDelegate.tabBarController popNavigationControllersToRoot];
     [self spawnDetermineLocationThread];
 }
 

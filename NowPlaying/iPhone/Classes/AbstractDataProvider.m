@@ -287,11 +287,11 @@
         return;
     }
 
-    MultiDictionary* postalCodeToMissingTheaterNames = [MultiDictionary dictionary];
+    MultiDictionary* locationToMissingTheaterNames = [MultiDictionary dictionary];
 
     for (FavoriteTheater* favorite in favoriteTheaters) {
         if (![self results:lookupResult containsFavorite:favorite]) {
-            [postalCodeToMissingTheaterNames addObject:favorite.name forKey:favorite.originatingPostalCode];
+            [locationToMissingTheaterNames addObject:favorite.name forKey:favorite.originatingLocation];
         }
     }
 
@@ -300,10 +300,8 @@
         [movieTitles addObject:movie.canonicalTitle];
     }
 
-    for (NSString* postalCode in postalCodeToMissingTheaterNames.allKeys) {
-        NSArray* theaterNames = [postalCodeToMissingTheaterNames objectsForKey:postalCode];
-
-        Location* location = [self.model.userLocationCache downloadUserAddressLocationBackgroundEntryPoint:postalCode];
+    for (Location* location in locationToMissingTheaterNames.allKeys) {
+        NSArray* theaterNames = [locationToMissingTheaterNames objectsForKey:location];
         LookupResult* favoritesLookupResult = [self lookupLocation:location
                                                       theaterNames:theaterNames];
 

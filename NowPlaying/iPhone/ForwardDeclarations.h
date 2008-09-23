@@ -39,7 +39,7 @@
 @class DifferenceEngine;
 @class EditorViewController;
 @class ExpandedMovieDetailsCell;
-@class ExtraMovieInformation;
+@class MovieRating;
 @class FavoriteTheater;
 @class FontCache;
 @class ImageCache;

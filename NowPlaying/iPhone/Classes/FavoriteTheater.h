@@ -16,15 +16,15 @@
 
 @interface FavoriteTheater : NSObject {
     NSString* name;
-    NSString* originatingPostalCode;
+    Location* originatingLocation;
 }
 
 @property (copy) NSString* name;
-@property (copy) NSString* originatingPostalCode;
+@property (retain) Location* originatingLocation;
 
 + (FavoriteTheater*) theaterWithDictionary:(NSDictionary*) dictionary;
 + (FavoriteTheater*) theaterWithName:(NSString*) name
-       originatingPostalCode:(NSString*) originatingPostalCode;
+                 originatingLocation:(Location*) originatingLocation;
 
 + (BOOL) canReadDictionary:(NSDictionary*) dictionary;
 
