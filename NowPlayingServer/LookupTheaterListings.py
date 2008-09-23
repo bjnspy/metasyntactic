@@ -20,7 +20,30 @@ from google.appengine.api import memcache
 from google.appengine.api import urlfetch
 
 class LookupTheaterListingsHandler(webapp.RequestHandler):
+  def out_of_date(self):
+    self.response.out.write('''<?xml version="1.0" encoding="UTF-8" standalone="yes"?><performancesbypostalcodesearchresponse><data>
+<theaters totalcount="3" pagenum="1" itemcount="3">
+<theater id="10" tmsid="" purchaseid="" tz="" dst="" iswired="False"><name>This version is out of date</name><address1></address1><city></city><state></state><postalcode></postalcode><phonenumber></phonenumber><movies totalcount="3"><movie id="1"><performances totalcount="1"><performance showdate="9/14/2008" showtime="12:00 PM" showid="100" /></performances></movie><movie id="2"><performances totalcount="1"><performance showdate="9/14/2008" showtime="12:00 PM" showid="100" /></performances></movie><movie id="3"><performances totalcount="1"><performance showdate="9/14/2008" showtime="12:00 PM" showid="100" /></performances></movie></movies></theater>
+
+<theater id="20" tmsid="" purchaseid="" tz="" dst="" iswired="False"><name>Please upgrade</name><address1></address1><city></city><state></state><postalcode></postalcode><phonenumber></phonenumber><movies totalcount="3"><movie id="1"><performances totalcount="1"><performance showdate="9/14/2008" showtime="12:00 PM" showid="100" /></performances></movie><movie id="2"><performances totalcount="1"><performance showdate="9/14/2008" showtime="12:00 PM" showid="100" /></performances></movie><movie id="3"><performances totalcount="1"><performance showdate="9/14/2008" showtime="12:00 PM" showid="100" /></performances></movie></movies></theater>
+
+<theater id="30" tmsid="" purchaseid="" tz="" dst="" iswired="False"><name>Check the Appstore for updates</name><address1></address1><city></city><state></state><postalcode></postalcode><phonenumber></phonenumber><movies totalcount="3"><movie id="1"><performances totalcount="1"><performance showdate="9/14/2008" showtime="12:00 PM" showid="100" /></performances></movie><movie id="2"><performances totalcount="1"><performance showdate="9/14/2008" showtime="12:00 PM" showid="100" /></performances></movie><movie id="3"><performances totalcount="1"><performance showdate="9/14/2008" showtime="12:00 PM" showid="100" /></performances></movie></movies></theater>
+</theaters>
+
+<movies totalcount="3">
+<movie id="1" tmsid="" posterhref=""><title>This version is out of date</title><rating>NR</rating><runtime>0</runtime><synopsis type="short"><![CDATA[This version of BoxOffice/NowPlaying is out of date.  Please update to the latest version by using iTunes or the iPhone appstore.]]></synopsis></movie>
+
+<movie id="2" tmsid="" posterhref=""><title>Please upgrade</title><rating>NR</rating><runtime>0</runtime><synopsis type="short"><![CDATA[This version of BoxOffice/NowPlaying is out of date.  Please update to the latest version by using iTunes or the iPhone appstore.]]></synopsis></movie>
+
+<movie id="3" tmsid="" posterhref=""><title>Check the appstore for updates</title><rating>NR</rating><runtime>0</runtime><synopsis type="short"><![CDATA[This version of BoxOffice/NowPlaying is out of date.  Please update to the latest version by using iTunes or the iPhone appstore.]]></synopsis></movie>
+</movies></data></performancesbypostalcodesearchresponse>''')
+
+    return
+
   def get(self):
+#    self.out_of_date()
+#    return
+
 #    memcache.flush_all()
     q = self.request.get("q")
     date = self.request.get("date")
