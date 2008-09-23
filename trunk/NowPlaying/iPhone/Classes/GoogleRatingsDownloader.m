@@ -61,7 +61,8 @@
     day = MIN(MAX(day, 0), 7);
     
     NSString* address = [NSString stringWithFormat:
-                         @"http://metaboxoffice6.appspot.com/LookupTheaterListings?country=%@&language=%@&postalcode=%@&day=%d&format=xml&latitude=%d&longitude=%d",
+                         @"http://%@.appspot.com/LookupTheaterListings2?country=%@&language=%@&postalcode=%@&day=%d&format=xml&latitude=%d&longitude=%d",
+                         [Application host],
                          country,
                          [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
                          [Utilities stringByAddingPercentEscapes:location.postalCode],

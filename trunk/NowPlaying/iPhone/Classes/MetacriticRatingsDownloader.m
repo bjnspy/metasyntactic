@@ -47,7 +47,7 @@
 
 
 + (NSString*) lookupServerHash {
-    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&format=xml&hash=true", [Application host]];
+    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true", [Application host]];
     NSString* value = [NetworkUtilities stringWithContentsOfAddress:address
                                                           important:YES];
     return value;
@@ -55,7 +55,7 @@
 
 
 - (NSDictionary*) lookupMovieListings {
-    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieListings?q=Metacritic&format=xml", [Application host]];
+    NSString* address = [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieRatings?q=metacritic&format=xml", [Application host]];
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address
                                                                  important:YES];
 

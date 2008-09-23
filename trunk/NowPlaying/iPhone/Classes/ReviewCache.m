@@ -125,7 +125,8 @@ static NSString* hash_key = @"Hash";
     : location.country;
     
     NSString* url =
-    [NSString stringWithFormat:@"http://metaboxoffice6.appspot.com/LookupMovieReviews?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
+    [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews2?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
+     [Application host],
      country,
      [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
      info.identifier,
