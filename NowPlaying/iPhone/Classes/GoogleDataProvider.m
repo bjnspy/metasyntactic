@@ -54,7 +54,7 @@
     for (XmlElement* child in element.children) {
         NSString* value = [child attributeValue:@"value"];
         if (value.length > 0) {
-            [cast addObject:child.text];
+            [cast addObject:value];
         }
     }
     return cast;
