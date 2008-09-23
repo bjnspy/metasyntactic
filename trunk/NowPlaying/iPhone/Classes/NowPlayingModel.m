@@ -23,7 +23,7 @@
 #import "Application.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
-#import "ExtraMovieInformation.h"
+#import "MovieRating.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "GoogleDataProvider.h"
@@ -50,7 +50,7 @@
 @implementation NowPlayingModel
 
 static NSString* currentVersion = @"2.0.5.0";
-static NSString* persistenceVersion = @"44";
+static NSString* persistenceVersion = @"46";
 
 static NSString* VERSION = @"version";
 
@@ -737,6 +737,9 @@ static NSString** KEYS[] = {
 - (BOOL) isStale:(Theater*) theater {
     NSDate* globalSyncDate = [dataProvider lastLookupDate];
     NSDate* theaterSyncDate = [self synchronizationDateForTheater:theater];
+    if (globalSyncDate == nil || theaterSyncDate == nil) {
+        return NO;
+    }
 
     return ![DateUtilities isSameDay:globalSyncDate date:theaterSyncDate];
 }
@@ -887,7 +890,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 }
 
 
-- (ExtraMovieInformation*) extraInformationForMovie:(Movie*) movie {
+- (MovieRating*) extraInformationForMovie:(Movie*) movie {
     NSString* key = [movieMap objectForKey:movie.canonicalTitle];
     if (key == nil) {
         return nil;
@@ -898,7 +901,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSInteger) scoreForMovie:(Movie*) movie {
-    ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
+    MovieRating* extraInfo = [self extraInformationForMovie:movie];
 
     if (extraInfo == nil) {
         return -1;
@@ -951,7 +954,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
 
 
 - (NSArray*) reviewsForMovie:(Movie*) movie {
-    ExtraMovieInformation* extraInfo = [self extraInformationForMovie:movie];
+    MovieRating* extraInfo = [self extraInformationForMovie:movie];
     if (extraInfo == nil) {
         return [NSArray array];
     }

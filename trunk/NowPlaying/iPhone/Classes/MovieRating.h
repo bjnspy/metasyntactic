@@ -14,7 +14,7 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface ExtraMovieInformation : NSObject {
+@interface MovieRating : NSObject {
     NSString* canonicalTitle;
     NSString* synopsis;
     NSString* score;
@@ -28,8 +28,8 @@
 @property (copy) NSString* provider;
 @property (copy) NSString* identifier;
 
-+ (ExtraMovieInformation*) infoWithDictionary:(NSDictionary*) dictionary;
-+ (ExtraMovieInformation*) infoWithTitle:(NSString*) title
++ (MovieRating*) ratingWithDictionary:(NSDictionary*) dictionary;
++ (MovieRating*) ratingWithTitle:(NSString*) title
                                 synopsis:(NSString*) synopsis
                                    score:(NSString*) score
                                 provider:(NSString*) provider
