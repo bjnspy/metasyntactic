@@ -49,8 +49,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"2.0.6.0";
-static NSString* persistenceVersion = @"48";
+static NSString* currentVersion = @"2.0.7";
+static NSString* persistenceVersion = @"49";
 
 static NSString* VERSION = @"version";
 
@@ -754,6 +754,10 @@ static NSString** KEYS[] = {
                 [DateUtilities formatLongDate:theaterSyncDate]];
     } else {
         NSDate* globalSyncDate = [dataProvider lastLookupDate];
+        if (globalSyncDate == nil) {
+            return @"";
+        }
+
         return [NSString stringWithFormat:
                 NSLocalizedString(@"Show times retrieved on %@.", nil),
                 [DateUtilities formatLongDate:globalSyncDate]];
