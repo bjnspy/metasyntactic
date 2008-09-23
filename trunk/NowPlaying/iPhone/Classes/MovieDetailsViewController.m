@@ -464,12 +464,11 @@
 
 
 - (void) movieFinishedPlaying:(NSNotification*) notification {
+    [self removeNotifications];
+
     MPMoviePlayerController* moviePlayer = notification.object;
     [moviePlayer stop];
     [moviePlayer autorelease];
-
-    [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:YES];
-    [self removeNotifications];
 }
 
 
