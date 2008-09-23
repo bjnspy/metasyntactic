@@ -4,17 +4,5 @@ runtime: python
 api_version: 1
 
 handlers:
-- url: /LookupLocation
+- url: /.*
   script: main.py
-
-- url: /LookupMovieListings
-  script: main.py
-
-- url: /LookupTrailerListings
-  script: main.py
-
-- url: /LookupShowtimes
-  script: main.py
-
-#- url: .*
-#  script: main.py

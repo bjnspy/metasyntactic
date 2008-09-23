@@ -61,7 +61,11 @@ class LookupIMDbListingsHandler(webapp.RequestHandler):
     if root.tagName != "ResultSet":
       return None
 
-    resultElement = root.getElementsByTagName("Result")[0]
+    elements = root.getElementsByTagName("Result")
+    if elements is None or len(elements) == 0:
+      return None
+
+    resultElement = elements[0]
     if resultElement.tagName != "Result":
       return None
 
