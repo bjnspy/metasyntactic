@@ -66,45 +66,36 @@
 
 
 - (void) loadView {
-    CGRect rect = CGRectZero;
-    rect.size = [UIScreen mainScreen].applicationFrame.size;
+    [super loadView];
+    CGRect rect = self.view.frame;
+    rect.origin.y = 0;
 
-    self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
-    self.view.autoresizesSubviews = YES;
+//    self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
+//    self.view.autoresizesSubviews = YES;
 
-    UINavigationItem* item = [[[UINavigationItem alloc] init] autorelease];
-
-    self.searchBar = [[[UISearchBar alloc] initWithFrame:CGRectZero] autorelease];
+    self.searchBar = [[[UISearchBar alloc] initWithFrame:rect] autorelease];
     searchBar.delegate = self;
+    searchBar.showsCancelButton = YES;
     searchBar.autocorrectionType = UITextAutocorrectionTypeNo;
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
+    searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [searchBar sizeToFit];
-    item.titleView = searchBar;
-
-    item.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone
-                                                                             target:self
-                                                                             action:@selector(onDoneTapped:)] autorelease];
-
-
-    UINavigationBar* navigationBar = [[[UINavigationBar alloc] initWithFrame:CGRectZero] autorelease];
-    navigationBar.items = [NSArray arrayWithObject:item];
-    [navigationBar sizeToFit];
-
-
-    CGRect navigationBarRect = [navigationBar frame];
-    CGRectDivide(rect, &navigationBarRect, &rect, navigationBarRect.size.height, CGRectMinYEdge);
+    
+    CGRect searchBarRect = searchBar.frame;
+    CGRectDivide(rect, &searchBarRect, &rect, searchBarRect.size.height, CGRectMinYEdge);
 
     self.tableView = [[[UITableView alloc] initWithFrame:rect
                                                    style:UITableViewStylePlain] autorelease];
     tableView.delegate = self;
     tableView.dataSource = self;
+    tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 
-    [self.view addSubview:navigationBar];
+    [self.view addSubview:searchBar];
     [self.view addSubview:tableView];
 }
 
 
-- (void) onDoneTapped:(id) sender {
+- (void) searchBarCancelButtonClicked:(UISearchBar*) searchBar_ {
     [searchBar resignFirstResponder];
     [navigationController hideSearchView];
 }

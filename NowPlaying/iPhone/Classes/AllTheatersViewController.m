@@ -197,22 +197,20 @@
 
 
 - (void) initializeSearchButton {
-    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {
-        UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        UIImage* image = [ImageCache searchImage];
-        [searchButton setImage:image forState:UIControlStateNormal];
-        [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
-
-        CGRect frame = searchButton.frame;
-        frame.size = image.size;
-        frame.size.width += 10;
-        frame.size.height += 10;
-        searchButton.frame = frame;
-
-        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
-    } else {
-        self.navigationItem.leftBarButtonItem = nil;
-    }
+    UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage* image = [ImageCache searchImage];
+    [searchButton setImage:image forState:UIControlStateNormal];
+    [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
+    
+    CGRect frame = searchButton.frame;
+    frame.size = image.size;
+    frame.size.width += 8;
+    frame.size.height += 8;
+    searchButton.frame = frame;
+    
+    
+    UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
+    self.navigationItem.leftBarButtonItem = item;
 }
 
 
@@ -368,8 +366,7 @@
 
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
-    
-    [self initializeSearchButton];
+
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self refresh];
@@ -388,7 +385,6 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
-    [self initializeSearchButton];
     [self refresh];
 }
 
