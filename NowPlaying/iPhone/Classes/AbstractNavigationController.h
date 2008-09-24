@@ -17,6 +17,7 @@
 @interface AbstractNavigationController : UINavigationController {
     ApplicationTabBarController* tabBarController;
     SearchViewController* searchViewController;
+    BOOL showingSearch;
 }
 
 @property (assign) ApplicationTabBarController* tabBarController;

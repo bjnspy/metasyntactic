@@ -209,14 +209,19 @@
 
 
 - (void) reportResult:(SearchResult*) result {
+    BOOL abort = NO;
     [gate lock];
     {
         if (result.requestId != currentRequestId) {
-            return;
+            abort = YES;
         }
     }
     [gate unlock];
 
+    if (abort) {
+        return;
+    }
+    
     [delegate reportResult:result];
 }
 

@@ -256,6 +256,7 @@
 - (void) viewWillAppear:(BOOL) animated {
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
 
+    [self initializeSearchButton];
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self refresh];
@@ -268,7 +269,6 @@
 
 
 - (void) refresh {
-    [self initializeSearchButton];
     [self sortMovies];
     [self.tableView reloadData];
 }
@@ -390,6 +390,7 @@
 
 
 - (void) didRotateFromInterfaceOrientation:(UIInterfaceOrientation) fromInterfaceOrientation {
+    [self initializeSearchButton];
     [self refresh];
 }
 
