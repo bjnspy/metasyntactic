@@ -37,7 +37,7 @@
         [navigationItem setLeftBarButtonItem:[[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                                style:UIBarButtonItemStyleDone
                                                                               target:self
-                                                                              action:@selector(onButtonClicked:)] autorelease]
+                                                                              action:@selector(onButtonTapped:)] autorelease]
                                     animated:YES];
 
 
@@ -79,7 +79,7 @@
 }
 
 
-- (void) onButtonClicked:(id) sender {
+- (void) onButtonTapped:(id) sender {
     [self stop];
 }
 
