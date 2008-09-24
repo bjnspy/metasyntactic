@@ -106,6 +106,7 @@
 
 - (void) pushMovieDetails:(Movie*) movie
                  animated:(BOOL) animated {
+    [self hideSearchView];
     UIViewController* viewController = [[[MovieDetailsViewController alloc] initWithNavigationController:self
                                                                                                    movie:movie] autorelease];
 
@@ -114,6 +115,7 @@
 
 
 - (void) pushTheaterDetails:(Theater*) theater animated:(BOOL) animated {
+    [self hideSearchView];
     UIViewController* viewController = [[[TheaterDetailsViewController alloc] initWithNavigationController:self
                                                                                                    theater:theater] autorelease];
 
@@ -147,23 +149,27 @@
     if (searchViewController == nil) {
         self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
         [self.view addSubview:searchViewController.view];
-        //searchViewController.view.alpha = 0;
         
-        
+        //*
+        searchViewController.view.alpha = 0;
+        /*/
         CGRect frame = searchViewController.view.frame;
         frame.origin.y = self.view.frame.size.height;
         searchViewController.view.frame = frame;
+         */
     }
     
     [self.view bringSubviewToFront:searchViewController.view];
 
     [UIView beginAnimations:nil context:NULL];
     {
-        //searchViewController.view.alpha = 1;
-        
+        //*
+        searchViewController.view.alpha = 1;
+        /*/
         CGRect frame = searchViewController.view.frame;
         frame.origin.y = 0;
         searchViewController.view.frame = frame;
+         */
     }
     [UIView commitAnimations];
     
@@ -174,12 +180,17 @@
 - (void) hideSearchView {
     [UIView beginAnimations:nil context:NULL];
     {
-        //searchViewController.view.alpha = 0;
+        //*
+        searchViewController.view.alpha = 0;
+        /*/
         CGRect frame = searchViewController.view.frame;
         frame.origin.y = self.view.frame.size.height;
         searchViewController.view.frame = frame;
+         */
     }
     [UIView commitAnimations];
+    
+    [searchViewController onHide];
 }
 
 

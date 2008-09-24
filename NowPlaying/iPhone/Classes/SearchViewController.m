@@ -210,8 +210,49 @@
 }
 
 
+- (void) didSelectMovieRow:(NSInteger) row {
+    Movie* movie = [searchResult.movies objectAtIndex:row];
+    
+    [navigationController pushMovieDetails:movie animated:YES];
+}
+
+
+- (void) didSelectTheaterRow:(NSInteger) row {
+    Theater* theater = [searchResult.theaters objectAtIndex:row];
+    
+    [navigationController pushTheaterDetails:theater animated:YES];
+}
+
+
+- (void) didSelectUpcomingMovieRow:(NSInteger) row {
+    Movie* movie = [searchResult.upcomingMovies objectAtIndex:row];
+    
+    [navigationController pushMovieDetails:movie animated:YES];
+}
+
+
+- (void)            tableView:(UITableView*) tableView_
+      didSelectRowAtIndexPath:(NSIndexPath*) indexPath {
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
+
+    if (indexPath.section == 0) {
+        return [self didSelectMovieRow:indexPath.row];
+    } else if (indexPath.section == 1) {
+        return [self didSelectTheaterRow:indexPath.row];
+    } else {
+        return [self didSelectUpcomingMovieRow:indexPath.row];
+    }
+}
+
+
 - (void) onShow {
+    [searchBar resignFirstResponder];
     [searchBar becomeFirstResponder];
+}
+
+
+- (void) onHide {
+    [searchBar resignFirstResponder];
 }
 
 

@@ -18,6 +18,7 @@
 
 #import "DateUtilities.h"
 #import "GlobalActivityIndicator.h"
+#import "ImageCache.h"
 #import "Movie.h"
 #import "MovieTitleCell.h"
 #import "MoviesNavigationController.h"
@@ -207,6 +208,31 @@
 }
 
 
+- (void) initializeSearchButton {
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {    
+        UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage* image = [ImageCache searchImage];
+        [searchButton setImage:image forState:UIControlStateNormal];
+        [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
+        
+        CGRect frame = searchButton.frame;
+        frame.size = image.size;
+        frame.size.width += 10;
+        frame.size.height += 10;
+        searchButton.frame = frame;
+        
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
+    } else {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
+}
+
+
+- (void) search:(id) sender {
+    [navigationController showSearchView];
+}
+
+
 - (id) initWithNavigationController:(AbstractNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
@@ -214,6 +240,7 @@
         self.sortedMovies = [NSArray array];
 
         [self setupSegmentedControl];
+        [self initializeSearchButton];
 
         self.alphabeticSectionTitles =
         [NSArray arrayWithObjects:
@@ -241,6 +268,7 @@
 
 
 - (void) refresh {
+    [self initializeSearchButton];
     [self sortMovies];
     [self.tableView reloadData];
 }
