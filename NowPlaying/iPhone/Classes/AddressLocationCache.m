@@ -41,7 +41,7 @@
 + (NSDictionary*) theaterDistanceMap:(Location*) location
                             theaters:(NSArray*) theaters {
     NSMutableDictionary* theaterDistanceMap = [NSMutableDictionary dictionary];
-    
+
     for (Theater* theater in theaters) {
         double d;
         if (location != nil) {
@@ -49,12 +49,12 @@
         } else {
             d = UNKNOWN_DISTANCE;
         }
-        
+
         NSNumber* value = [NSNumber numberWithDouble:d];
         NSString* key = theater.name;
         [theaterDistanceMap setObject:value forKey:key];
     }
-    
+
     return theaterDistanceMap;
 }
 

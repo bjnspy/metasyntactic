@@ -14,30 +14,28 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface ImageCache : NSObject {
+#import "SearchEngineDelegate.h"
 
+@interface SearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,SearchEngineDelegate,UISearchBarDelegate> {
+    AbstractNavigationController* navigationController;
+    
+    SearchEngine* searchEngine;
+    SearchResult* searchResult;
+    
+    UISearchBar* searchBar;
+    UITableView* tableView;
 }
 
-+ (UIImage*) freshImage;
-+ (UIImage*) rottenFadedImage;
-+ (UIImage*) rottenFullImage;
+@property (assign)  AbstractNavigationController* navigationController;
 
-+ (UIImage*) emptyStarImage;
-+ (UIImage*) filledStarImage;
-+ (UIImage*) searchImage;
+@property (retain) SearchEngine* searchEngine;
+@property (retain) SearchResult* searchResult;
+@property (retain) UISearchBar* searchBar;
+@property (retain) UITableView* tableView;
 
-+ (UIImage*) redRatingImage;
-+ (UIImage*) yellowRatingImage;
-+ (UIImage*) greenRatingImage;
-+ (UIImage*) unknownRatingImage;
 
-+ (UIImage*) imageNotAvailable;
+- (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
-+ (UIImage*) upArrow;
-+ (UIImage*) downArrow;
-+ (UIImage*) neutralSquare;
-
-+ (UIImage*) warning16x16;
-+ (UIImage*) warning32x32;
+- (void) onShow;
 
 @end

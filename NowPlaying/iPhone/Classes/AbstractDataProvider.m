@@ -261,7 +261,7 @@
                     theaterNames:(NSArray*) theaterNames {
     NSAssert(false, @"Someone improperly subclassed!");
     return nil;
-    
+
 }
 
 

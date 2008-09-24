@@ -59,7 +59,6 @@
 @class MoviesNavigationController;
 @class MultiDictionary;
 @class NetworkUtilities;
-@class NorthAmericaDataProvider;
 @class NumbersCache;
 @class NumbersNavigationController;
 @class NumbersViewController;
@@ -77,6 +76,11 @@
 @class ReviewsViewController;
 @class RottenTomatoesRatingsDownloader;
 @class SearchDatePickerViewController;
+@class SearchEngine;
+@class SearchEngineDelegate;
+@class SearchRequest;
+@class SearchResult;
+@class SearchViewController;
 @class SettingCell;
 @class SettingsNavigationController;
 @class SettingsViewController;

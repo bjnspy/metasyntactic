@@ -23,6 +23,7 @@
 #import "MoviesNavigationController.h"
 #import "MultiDictionary.h"
 #import "NowPlayingModel.h"
+#import "Utilities.h"
 
 @implementation AbstractMovieListViewController
 
@@ -116,8 +117,7 @@
     unichar c1 = toupper([string characterAtIndex:0]);
     if (c1 < 'A' || c1 > 'Z') {
         // remove an accent if it exists.
-        NSString* asciiString = [[[NSString alloc] initWithData:[string dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES]
-                                                       encoding:NSASCIIStringEncoding] autorelease];
+        NSString* asciiString = [Utilities asciiString:string];
         unichar c2 = toupper([asciiString characterAtIndex:0]);
         if (c2 >= 'A' && c2 <= 'Z') {
             return c2;

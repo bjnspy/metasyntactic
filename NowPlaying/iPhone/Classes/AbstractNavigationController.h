@@ -16,9 +16,11 @@
 
 @interface AbstractNavigationController : UINavigationController {
     ApplicationTabBarController* tabBarController;
+    SearchViewController* searchViewController;
 }
 
 @property (assign) ApplicationTabBarController* tabBarController;
+@property (retain) SearchViewController* searchViewController;
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) tabBarController;
 
@@ -37,5 +39,8 @@
 - (void) pushReviewsView:(Movie*) movie animated:(BOOL) animated;
 
 - (void) navigateToLastViewedPage;
+
+- (void) showSearchView;
+- (void) hideSearchView;
 
 @end

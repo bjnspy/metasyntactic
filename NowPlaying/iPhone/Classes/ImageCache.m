@@ -21,8 +21,10 @@
 static UIImage* freshImage = nil;
 static UIImage* rottenFadedImage = nil;
 static UIImage* rottenFullImage = nil;
+
 static UIImage* emptyStarImage = nil;
 static UIImage* filledStarImage = nil;
+static UIImage* searchImage = nil;
 
 static UIImage* redRatingImage = nil;
 static UIImage* yellowRatingImage = nil;
@@ -43,8 +45,10 @@ static UIImage* warning32x32 = nil;
         freshImage          = [[UIImage imageNamed:@"Fresh.png"] retain];
         rottenFadedImage    = [[UIImage imageNamed:@"Rotten-Faded.png"] retain];
         rottenFullImage     = [[UIImage imageNamed:@"Rotten-Full.png"] retain];
+
         emptyStarImage      = [[UIImage imageNamed:@"Empty Star.png"] retain];
         filledStarImage     = [[UIImage imageNamed:@"Filled Star.png"] retain];
+        searchImage         = [[UIImage imageNamed:@"Search.png"] retain];
 
         redRatingImage      = [[UIImage imageNamed:@"Rating-Red.png"] retain];
         yellowRatingImage   = [[UIImage imageNamed:@"Rating-Yellow.png"] retain];
@@ -105,6 +109,11 @@ static UIImage* warning32x32 = nil;
 
 + (UIImage*) filledStarImage {
     return filledStarImage;
+}
+
+
++ (UIImage*) searchImage {
+    return searchImage;
 }
 
 

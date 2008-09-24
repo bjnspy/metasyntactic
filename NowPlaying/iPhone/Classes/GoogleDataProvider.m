@@ -82,7 +82,7 @@
             components.year = [[releaseDateString substringWithRange:NSMakeRange(0, 4)] intValue];
             components.month = [[releaseDateString substringWithRange:NSMakeRange(5, 2)] intValue];
             components.day = [[releaseDateString substringWithRange:NSMakeRange(8, 2)] intValue];
-            
+
             releaseDate = [[NSCalendar currentCalendar] dateFromComponents:components];
         }
 
@@ -120,7 +120,7 @@
             NSArray* array = [timeAndUrl componentsSeparatedByString:@","];
             NSString* time = [array objectAtIndex:0];
             NSString* url = [array objectAtIndex:1];
-            
+
             time = [Theater processShowtime:time];
 
             url = [url stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
@@ -182,7 +182,7 @@
             [synchronizationData setObject:[self synchronizationDateForTheater:name] forKey:name];
         }
     }
-    
+
     Location* location = [Location locationWithLatitude:latitude
                                               longitude:longitude
                                                 address:address

@@ -108,7 +108,7 @@ static NSString* hash_key = @"Hash";
         if ([author rangeOfString:@"HREF"].length > 0) {
             continue;
         }
-        
+
         NSInteger scoreValue = score.intValue;
 
         [result addObject:[Review reviewWithText:text
@@ -124,10 +124,10 @@ static NSString* hash_key = @"Hash";
 
 - (NSString*) serverAddress:(MovieRating*) info {
     Location* location = [model.userLocationCache locationForUserAddress:model.userAddress];
-    
+
     NSString* country = location.country.length == 0 ? [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
     : location.country;
-    
+
     NSString* url =
     [NSString stringWithFormat:@"http://%@.appspot.com/LookupMovieReviews2?country=%@&language=%@&id=%@&provider=%@&latitude=%d&longitude=%d",
      [Application host],
@@ -137,14 +137,14 @@ static NSString* hash_key = @"Hash";
      info.provider,
      (int)(location.latitude * 1000000),
      (int)(location.longitude * 1000000)];
-    
+
     return url;
 }
 
 
-- (NSArray*) downloadInfoReviews:(MovieRating*) info {    
+- (NSArray*) downloadInfoReviews:(MovieRating*) info {
     NSString* url = [self serverAddress:info];
-    
+
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
 
     if (resultElement != nil) {
@@ -196,7 +196,7 @@ static NSString* hash_key = @"Hash";
         {
             MovieRating* info = [supplementaryInformation objectForKey:movieId];
             NSString* url = [[self serverAddress:info] stringByAppendingString:@"&hash=true"];
-        
+
             NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
             if (serverHash == nil) {
                 serverHash = @"0";

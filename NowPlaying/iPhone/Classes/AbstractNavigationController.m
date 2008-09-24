@@ -21,6 +21,7 @@
 #import "MovieDetailsViewController.h"
 #import "NowPlayingModel.h"
 #import "ReviewsViewController.h"
+#import "SearchViewController.h"
 #import "Theater.h"
 #import "TheaterDetailsViewController.h"
 #import "TicketsViewController.h"
@@ -28,9 +29,11 @@
 @implementation AbstractNavigationController
 
 @synthesize tabBarController;
+@synthesize searchViewController;
 
 - (void) dealloc {
     self.tabBarController = nil;
+    self.searchViewController = nil;
 
     [super dealloc];
 }
@@ -133,6 +136,39 @@
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
     return YES;
+}
+
+
+- (void) showSearchView {
+    if (searchViewController == nil) {
+        self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
+        [self.view addSubview:searchViewController.view];
+        
+        CGRect frame = searchViewController.view.frame;
+        frame.origin.y = self.view.frame.size.height;
+        searchViewController.view.frame = frame;
+    }
+
+    [UIView beginAnimations:nil context:NULL];
+    {
+        CGRect frame = searchViewController.view.frame;
+        frame.origin.y = 0;
+        searchViewController.view.frame = frame;
+    }
+    [UIView commitAnimations];
+    
+    [searchViewController onShow];
+}
+
+
+- (void) hideSearchView {
+    [UIView beginAnimations:nil context:NULL];
+    {
+        CGRect frame = searchViewController.view.frame;
+        frame.origin.y = self.view.frame.size.height;
+        searchViewController.view.frame = frame;
+    }
+    [UIView commitAnimations];
 }
 
 

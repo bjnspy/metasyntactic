@@ -35,6 +35,7 @@
 		740E7F970DCFF5B80066FCE5 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 740E7F960DCFF5B80066FCE5 /* CoreLocation.framework */; };
 		741111540DFCF61900B94FB5 /* CreditsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 741111530DFCF61900B94FB5 /* CreditsViewController.m */; };
 		7413718A0E88E79C00CF4900 /* MovieRating.m in Sources */ = {isa = PBXBuildFile; fileRef = 741371890E88E79C00CF4900 /* MovieRating.m */; };
+		741373F30E89CF1B00CF4900 /* Search.png in Resources */ = {isa = PBXBuildFile; fileRef = 741373F20E89CF1B00CF4900 /* Search.png */; };
 		741377B10E64765000404519 /* TheaterNameCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 741377B00E64765000404519 /* TheaterNameCell.m */; };
 		742445A70E2D2F9800C98F84 /* AttributeCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 742445A60E2D2F9800C98F84 /* AttributeCell.m */; };
 		74286B310E83581A00A1E26A /* FandangoPosterDownloader.m in Sources */ = {isa = PBXBuildFile; fileRef = 74286B300E83581A00A1E26A /* FandangoPosterDownloader.m */; };
@@ -43,6 +44,10 @@
 		743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
 		743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
 		743F7D1E0E7883FD00809EAB /* FavoriteTheater.m in Sources */ = {isa = PBXBuildFile; fileRef = 743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */; };
+		744245B90E89DA0500ACDBCF /* SearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 744245B80E89DA0500ACDBCF /* SearchViewController.m */; };
+		744247010E89F7A700ACDBCF /* SearchEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247000E89F7A700ACDBCF /* SearchEngine.m */; };
+		744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247030E89F7B500ACDBCF /* SearchRequest.m */; };
+		744247070E89F7C300ACDBCF /* SearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = 744247060E89F7C300ACDBCF /* SearchResult.m */; };
 		74447C340DC83C2000CC146C /* MoviesNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C330DC83C2000CC146C /* MoviesNavigationController.m */; };
 		74447C370DC83D0900CC146C /* ApplicationTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C360DC83D0900CC146C /* ApplicationTabBarController.m */; };
 		74447C3B0DC83E7400CC146C /* TheatersNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74447C3A0DC83E7400CC146C /* TheatersNavigationController.m */; };
@@ -208,6 +213,7 @@
 		741111530DFCF61900B94FB5 /* CreditsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CreditsViewController.m; sourceTree = "<group>"; };
 		741371880E88E79C00CF4900 /* MovieRating.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MovieRating.h; sourceTree = "<group>"; };
 		741371890E88E79C00CF4900 /* MovieRating.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieRating.m; sourceTree = "<group>"; };
+		741373F20E89CF1B00CF4900 /* Search.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Search.png; path = Resources/Search.png; sourceTree = "<group>"; };
 		741377AF0E64765000404519 /* TheaterNameCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TheaterNameCell.h; sourceTree = "<group>"; };
 		741377B00E64765000404519 /* TheaterNameCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TheaterNameCell.m; sourceTree = "<group>"; };
 		742445A50E2D2F9800C98F84 /* AttributeCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AttributeCell.h; sourceTree = "<group>"; };
@@ -223,6 +229,15 @@
 		743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieShowtimesCell.m; sourceTree = "<group>"; };
 		743F7D1C0E7883FD00809EAB /* FavoriteTheater.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FavoriteTheater.h; sourceTree = "<group>"; };
 		743F7D1D0E7883FD00809EAB /* FavoriteTheater.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FavoriteTheater.m; sourceTree = "<group>"; };
+		744245B70E89DA0500ACDBCF /* SearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchViewController.h; sourceTree = "<group>"; };
+		744245B80E89DA0500ACDBCF /* SearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchViewController.m; sourceTree = "<group>"; };
+		744246FF0E89F7A700ACDBCF /* SearchEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngine.h; sourceTree = "<group>"; };
+		744247000E89F7A700ACDBCF /* SearchEngine.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchEngine.m; sourceTree = "<group>"; };
+		744247020E89F7B500ACDBCF /* SearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchRequest.h; sourceTree = "<group>"; };
+		744247030E89F7B500ACDBCF /* SearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchRequest.m; sourceTree = "<group>"; };
+		744247050E89F7C300ACDBCF /* SearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchResult.h; sourceTree = "<group>"; };
+		744247060E89F7C300ACDBCF /* SearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchResult.m; sourceTree = "<group>"; };
+		744247400E89FCE900ACDBCF /* SearchEngineDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchEngineDelegate.h; sourceTree = "<group>"; };
 		74447C320DC83C2000CC146C /* MoviesNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesNavigationController.h; sourceTree = "<group>"; };
 		74447C330DC83C2000CC146C /* MoviesNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesNavigationController.m; sourceTree = "<group>"; };
 		74447C350DC83D0900CC146C /* ApplicationTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ApplicationTabBarController.h; sourceTree = "<group>"; };
@@ -450,6 +465,7 @@
 				7474FE8F0E63595400BAA43D /* Posters */,
 				7491444F0E764D0E00CC42A8 /* Ratings */,
 				7474FE900E63599200BAA43D /* Reviews */,
+				744246FE0E89F79000ACDBCF /* Search */,
 				74E6F0190E723FA200A4C2BE /* Threading */,
 				740DE12F0DCC3D5400B4E69A /* Utilities */,
 				74D6F2B40DCC14420097A984 /* Xml */,
@@ -542,6 +558,7 @@
 				74F94FB70E6BC98800075068 /* Rotten-Faded.png */,
 				74F94FB80E6BC98800075068 /* Rotten-Full.png */,
 				74F94FB90E6BC98800075068 /* RottenTomatoesLogo.png */,
+				741373F20E89CF1B00CF4900 /* Search.png */,
 				74F94FBA0E6BC98800075068 /* Spinner0.png */,
 				74F94FBB0E6BC98800075068 /* Spinner1.png */,
 				74F94FBC0E6BC98800075068 /* Spinner2.png */,
@@ -610,6 +627,29 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		744245BA0E89DA0F00ACDBCF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				744245B70E89DA0500ACDBCF /* SearchViewController.h */,
+				744245B80E89DA0500ACDBCF /* SearchViewController.m */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
+		744246FE0E89F79000ACDBCF /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				744246FF0E89F7A700ACDBCF /* SearchEngine.h */,
+				744247000E89F7A700ACDBCF /* SearchEngine.m */,
+				744247020E89F7B500ACDBCF /* SearchRequest.h */,
+				744247030E89F7B500ACDBCF /* SearchRequest.m */,
+				744247050E89F7C300ACDBCF /* SearchResult.h */,
+				744247060E89F7C300ACDBCF /* SearchResult.m */,
+				744247400E89FCE900ACDBCF /* SearchEngineDelegate.h */,
+			);
+			name = Search;
+			sourceTree = "<group>";
+		};
 		74447D550DC8474A00CC146C /* UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -661,6 +701,7 @@
 				74A863EF0E64F243003A2249 /* Theaters */,
 				74A863F00E64F247003A2249 /* Upcoming */,
 				74A863F10E64F24E003A2249 /* Numbers */,
+				744245BA0E89DA0F00ACDBCF /* Search */,
 				74A863F20E64F255003A2249 /* Settings */,
 				74A863EB0E64F22A003A2249 /* AbstractMovieListViewController.h */,
 				74A863EC0E64F22A003A2249 /* AbstractMovieListViewController.m */,
@@ -999,6 +1040,7 @@
 				740244300E77926C00ECE1B4 /* DownDisclosureTriangle.png in Resources */,
 				740244310E77926C00ECE1B4 /* RightDisclosureTriangle.png in Resources */,
 				748B23580E843AFE00322E25 /* Entitlements.plist in Resources */,
+				741373F30E89CF1B00CF4900 /* Search.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1102,6 +1144,10 @@
 				749A55D70E88974400C05A34 /* RottenTomatoesRatingsDownloader.m in Sources */,
 				749A55DF0E88988F00C05A34 /* GoogleRatingsDownloader.m in Sources */,
 				7413718A0E88E79C00CF4900 /* MovieRating.m in Sources */,
+				744245B90E89DA0500ACDBCF /* SearchViewController.m in Sources */,
+				744247010E89F7A700ACDBCF /* SearchEngine.m in Sources */,
+				744247040E89F7B500ACDBCF /* SearchRequest.m in Sources */,
+				744247070E89F7C300ACDBCF /* SearchResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

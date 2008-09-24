@@ -14,30 +14,26 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface ImageCache : NSObject {
-
+@interface SearchRequest : NSObject {
+    NSInteger requestId;
+    NSString* value;
+    NSString* lowercaseValue;
+    
+    NSArray* movies;
+    NSArray* theaters;
+    NSArray* upcomingMovies;
 }
 
-+ (UIImage*) freshImage;
-+ (UIImage*) rottenFadedImage;
-+ (UIImage*) rottenFullImage;
+@property NSInteger requestId;
+@property (copy) NSString* value;
+@property (copy) NSString* lowercaseValue;
+@property (retain) NSArray* movies;
+@property (retain) NSArray* theaters;
+@property (retain) NSArray* upcomingMovies;
 
-+ (UIImage*) emptyStarImage;
-+ (UIImage*) filledStarImage;
-+ (UIImage*) searchImage;
++ (SearchRequest*) requestWithId:(NSInteger) requestId
+                           value:(NSString*) value
+                           model:(NowPlayingModel*) model;
 
-+ (UIImage*) redRatingImage;
-+ (UIImage*) yellowRatingImage;
-+ (UIImage*) greenRatingImage;
-+ (UIImage*) unknownRatingImage;
-
-+ (UIImage*) imageNotAvailable;
-
-+ (UIImage*) upArrow;
-+ (UIImage*) downArrow;
-+ (UIImage*) neutralSquare;
-
-+ (UIImage*) warning16x16;
-+ (UIImage*) warning32x32;
 
 @end
