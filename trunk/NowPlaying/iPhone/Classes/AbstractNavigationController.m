@@ -138,40 +138,23 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
-    return !showingSearch;
+    return YES;
 }
 
 
 - (void) showSearchView {
     if (searchViewController == nil) {
         self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
-        [self.view addSubview:searchViewController.view];
-
-        searchViewController.view.alpha = 0;
     }
     
-    [self.view bringSubviewToFront:searchViewController.view];
+    [self presentModalViewController:searchViewController animated:YES];
     [searchViewController onShow];
-    showingSearch = YES;
-
-    [UIView beginAnimations:nil context:NULL];
-    {
-        searchViewController.view.alpha = 1;
-    }
-    [UIView commitAnimations];
 }
 
 
 - (void) hideSearchView {
-    [UIView beginAnimations:nil context:NULL];
-    {
-        searchViewController.view.alpha = 0;
-    }
-    [UIView commitAnimations];
-
-    showingSearch = NO;
     [searchViewController onHide];
-    [self.view sendSubviewToBack:searchViewController.view];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 
