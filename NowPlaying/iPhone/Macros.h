@@ -16,9 +16,11 @@
 
 #define ArrayLength(x) (sizeof(x)/sizeof(*(x)))
 
-#define ONE_MINUTE (60)
-#define ONE_HOUR   (60 * ONE_MINUTE)
-#define ONE_DAY    (24 * ONE_HOUR)
-#define ONE_WEEK   (7 * ONE_DAY)
+#define ONE_MINUTE (60.0)
+#define ONE_HOUR   (60.0 * ONE_MINUTE)
+#define ONE_DAY    (24.0 * ONE_HOUR)
+#define ONE_WEEK   (7.0 * ONE_DAY)
+#define ONE_MONTH  (30.5 * ONE_DAY)
+#define ONE_YEAR   (365.0 * ONE_DAY)
 
 #define property_definition(x) static NSString* x ## _key = @#x; @synthesize x

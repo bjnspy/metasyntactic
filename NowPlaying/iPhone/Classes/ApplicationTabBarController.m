@@ -33,6 +33,7 @@
 @synthesize numbersNavigationController;
 @synthesize settingsNavigationController;
 @synthesize appDelegate;
+@synthesize lastRefreshDate;
 
 - (void) dealloc {
     self.moviesNavigationController = nil;
@@ -41,6 +42,7 @@
     self.numbersNavigationController = nil;
     self.settingsNavigationController = nil;
     self.appDelegate = nil;
+    self.lastRefreshDate = nil;
 
     [super dealloc];
 }
@@ -49,6 +51,8 @@
 - (id) initWithAppDelegate:(NowPlayingAppDelegate*) appDel {
     if (self = [super init]) {
         self.appDelegate = appDel;
+        self.lastRefreshDate = nil;
+        
         self.moviesNavigationController   = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
@@ -105,10 +109,30 @@
 }
 
 
-- (void) refresh {
+- (void) refresh:(NSDate*) date {
+    if (lastRefreshDate != nil) {
+        if ([date compare:lastRefreshDate] == NSOrderedAscending) {
+            // were freshed already since this request was issued.  ignore it
+            return;
+        }
+        
+        if (ABS([lastRefreshDate timeIntervalSinceDate:date]) < 3) {
+            // it's too soon since the last refresh.  wait a while
+            [self performSelector:@selector(refresh:) withObject:date afterDelay:3];
+            return;
+        }
+    }
+    
+    self.lastRefreshDate = [NSDate date];
+
     for (id viewController in self.viewControllers) {
         [viewController refresh];
     }
+}
+
+
+- (void) refresh {
+    [self refresh:[NSDate date]];
 }
 
 

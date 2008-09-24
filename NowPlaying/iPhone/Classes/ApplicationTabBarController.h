@@ -21,6 +21,8 @@
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
     NumbersNavigationController* numbersNavigationController;
     SettingsNavigationController* settingsNavigationController;
+    
+    NSDate* lastRefreshDate;
 }
 
 @property (assign) NowPlayingAppDelegate* appDelegate;
@@ -29,6 +31,7 @@
 @property (retain) UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
 @property (retain) NumbersNavigationController* numbersNavigationController;
 @property (retain) SettingsNavigationController* settingsNavigationController;
+@property (retain) NSDate* lastRefreshDate;
 
 + (ApplicationTabBarController*) controllerWithAppDelegate:(NowPlayingAppDelegate*) appDelegate;
 
