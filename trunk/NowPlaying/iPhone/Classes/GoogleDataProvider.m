@@ -123,8 +123,9 @@
 
             time = [Theater processShowtime:time];
 
-            url = [url stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
-            url = [NSString stringWithFormat:@"http://www.fandango.com/redirect.aspx?%@", url];
+            if ([url hasPrefix:@"m="]) {
+                url = [NSString stringWithFormat:@"http://iphone.fandango.com/tms.asp?a=11586&%@", url];
+            }
 
             Performance* performance = [Performance performanceWithTime:time
                                                                     url:url];
