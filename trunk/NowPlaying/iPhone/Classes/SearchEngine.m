@@ -40,7 +40,7 @@
     self.currentlyExecutingRequest = nil;
     self.nextSearchRequest = nil;
     self.gate = nil;
-    
+
     [super dealloc];
 }
 
@@ -52,10 +52,10 @@
         self.currentRequestId = 0;
         self.delegate = delegate_;
         self.gate = [[[NSCondition alloc] init] autorelease];
-        
+
         [self performSelectorInBackground:@selector(searchThreadEntryPoint) withObject:nil];
     }
-    
+
     return self;
 }
 
@@ -73,7 +73,7 @@
             return YES;
         }
     }
-    
+
     return NO;
 }
 
@@ -145,14 +145,14 @@
 - (void) search {
     NSArray* movies = [self findMovies];
     if ([self abortEarly]) { return; }
-    
+
     NSArray* theaters = [self findTheaters];
     if ([self abortEarly]) { return; }
-    
+
     NSArray* upcomingMovies = [self findUpcomingMovies];
     if ([self abortEarly]) { return; }
     //...
-    
+
     SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
                                                movies:movies
                                              theaters:theaters
@@ -170,14 +170,14 @@
                 while (nextSearchRequest == nil) {
                     [gate wait];
                 }
-                
+
                 self.currentlyExecutingRequest = nextSearchRequest;
                 self.nextSearchRequest = nil;
             }
             [gate unlock];
-            
+
             [self search];
-            
+
             self.currentlyExecutingRequest = nil;
         }
         [autoreleasePool release];
@@ -189,7 +189,7 @@
     NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
     {
         [NSThread setThreadPriority:0.0];
-        
+
         [self searchLoop];
     }
     [autoreleasePool release];
@@ -201,7 +201,7 @@
     {
         currentRequestId++;
         self.nextSearchRequest = [SearchRequest requestWithId:currentRequestId value:string model:model];
-        
+
         [gate broadcast];
     }
     [gate unlock];
@@ -216,7 +216,7 @@
         }
     }
     [gate unlock];
-    
+
     [delegate reportResult:result];
 }
 

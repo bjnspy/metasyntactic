@@ -18,7 +18,7 @@
     NSInteger requestId;
     NSString* value;
     NSString* lowercaseValue;
-    
+
     NSArray* movies;
     NSArray* theaters;
     NSArray* upcomingMovies;

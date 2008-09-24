@@ -36,13 +36,13 @@
     self.movies = nil;
     self.theaters = nil;
     self.upcomingMovies = nil;
-    
+
     [super dealloc];
 }
 
 
 - (id) initWithId:(NSInteger) requestId_
-            value:(NSString*) value_ 
+            value:(NSString*) value_
             model:(NowPlayingModel*) model {
     if (self = [super init]) {
         self.requestId = requestId_;
@@ -51,9 +51,9 @@
         self.theaters = model.theaters;
         self.upcomingMovies = model.upcomingCache.upcomingMovies;
 
-        self.lowercaseValue = [[Utilities asciiString:value] lowercaseString]; 
+        self.lowercaseValue = [[Utilities asciiString:value] lowercaseString];
     }
-    
+
     return self;
 }
 

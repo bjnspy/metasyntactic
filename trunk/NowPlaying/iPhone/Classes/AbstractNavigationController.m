@@ -140,7 +140,7 @@
     if (searchViewController != nil && searchViewController.view.frame.origin.y == 0) {
         return NO;
     }
-    
+
     return YES;
 }
 
@@ -149,7 +149,7 @@
     if (searchViewController == nil) {
         self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
         [self.view addSubview:searchViewController.view];
-        
+
         //*
         searchViewController.view.alpha = 0;
         /*/
@@ -158,7 +158,7 @@
         searchViewController.view.frame = frame;
          */
     }
-    
+
     [self.view bringSubviewToFront:searchViewController.view];
 
     [UIView beginAnimations:nil context:NULL];
@@ -172,7 +172,7 @@
          */
     }
     [UIView commitAnimations];
-    
+
     [searchViewController onShow];
 }
 
@@ -189,7 +189,7 @@
          */
     }
     [UIView commitAnimations];
-    
+
     [searchViewController onHide];
 }
 
