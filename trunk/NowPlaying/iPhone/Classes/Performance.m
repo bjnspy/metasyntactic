@@ -20,12 +20,10 @@
 
 @implementation Performance
 
-property_definition(identifier);
 property_definition(time);
 property_definition(url);
 
 - (void) dealloc {
-    self.identifier = nil;
     self.time = nil;
     self.url = nil;
 
@@ -33,11 +31,9 @@ property_definition(url);
 }
 
 
-- (id) initWithIdentifier:(NSString*) identifier_
-                     time:(NSString*) time_
-                      url:(NSString*) url_ {
+- (id) initWithTime:(NSString*) time_
+                url:(NSString*) url_ {
     if (self = [super init]) {
-        self.identifier = [Utilities nonNilString:identifier_];
         self.time = [Utilities nonNilString:time_];
         self.url = [Utilities nonNilString:url_];
     }
@@ -46,26 +42,22 @@ property_definition(url);
 }
 
 
-+ (Performance*) performanceWithIdentifier:(NSString*) identifier
-                                      time:(NSString*) time
-                                       url:(NSString*) url {
-    return [[[Performance alloc] initWithIdentifier:identifier
-                                               time:time
-                                                url:url] autorelease];
++ (Performance*) performanceWithTime:(NSString*) time
+                                 url:(NSString*) url {
+    return [[[Performance alloc] initWithTime:time
+                                          url:url] autorelease];
 }
 
 
 + (Performance*) performanceWithDictionary:(NSDictionary*) dictionary {
-    return [Performance performanceWithIdentifier:[dictionary valueForKey:identifier_key]
-                                             time:[dictionary valueForKey:time_key]
-                                              url:[dictionary valueForKey:url_key]];
+    return [Performance performanceWithTime:[dictionary valueForKey:time_key]
+                                        url:[dictionary valueForKey:url_key]];
 }
 
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
-    [dictionary setObject:identifier forKey:identifier_key];
     [dictionary setObject:time forKey:time_key];
     [dictionary setObject:url forKey:url_key];
 

@@ -208,4 +208,15 @@ property_definition(country);
 }
 
 
+- (NSString*) mapUrl {
+    NSString* arguments = [NSString stringWithFormat:@"%@, %@, %@ %@",
+            address,
+            city,
+            state,
+            postalCode];
+    
+    return [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",
+            [Utilities stringByAddingPercentEscapes:arguments]];
+}
+
 @end

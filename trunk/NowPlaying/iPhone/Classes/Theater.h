@@ -17,7 +17,6 @@
 @interface Theater : NSObject {
     NSString* identifier;
     NSString* name;
-    NSString* mapUrl;
     NSString* phoneNumber;
     
     Location* location;
@@ -28,7 +27,6 @@
 
 @property (copy) NSString* identifier;
 @property (copy) NSString* name;
-@property (copy) NSString* mapUrl;
 @property (copy) NSString* phoneNumber;
 @property (retain) Location* location;
 @property (retain) Location* originatingLocation;
@@ -36,7 +34,6 @@
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
-                            mapUrl:(NSString*) mapUrl
                        phoneNumber:(NSString*) phoneNumber
                           location:(Location*) location
                originatingLocation:(Location*) originatingLocation
@@ -45,6 +42,7 @@
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary;
 
 - (NSDictionary*) dictionary;
+- (NSString*) mapUrl;
 
 + (NSString*) processShowtime:(NSString*) showtime;
 

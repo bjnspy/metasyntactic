@@ -24,7 +24,6 @@
 
 property_definition(identifier);
 property_definition(name);
-property_definition(mapUrl);
 property_definition(phoneNumber);
 property_definition(location);
 property_definition(originatingLocation);
@@ -33,7 +32,6 @@ property_definition(movieTitles);
 - (void) dealloc {
     self.identifier = nil;
     self.name = nil;
-    self.mapUrl = nil;
     self.phoneNumber = nil;
     self.location = nil;
     self.originatingLocation = nil;
@@ -46,7 +44,6 @@ property_definition(movieTitles);
 + (Theater*) theaterWithDictionary:(NSDictionary*) dictionary {
     return [Theater theaterWithIdentifier:[dictionary objectForKey:identifier_key]
                                      name:[dictionary objectForKey:name_key]
-                                   mapUrl:[dictionary objectForKey:mapUrl_key]
                               phoneNumber:[dictionary objectForKey:phoneNumber_key]
                                  location:[Location locationWithDictionary:[dictionary objectForKey:location_key]]
                       originatingLocation:[Location locationWithDictionary:[dictionary objectForKey:originatingLocation_key]]
@@ -56,7 +53,6 @@ property_definition(movieTitles);
 
 - (id)      initWithIdentifier:(NSString*) identifier_
                           name:(NSString*) name_
-                        mapUrl:(NSString*) mapUrl_
                    phoneNumber:(NSString*) phoneNumber_
                       location:(Location*) location_
            originatingLocation:(Location*) originatingLocation_
@@ -64,7 +60,6 @@ property_definition(movieTitles);
     if (self = [self init]) {
         self.identifier = [Utilities nonNilString:identifier_];
         self.name = [[Utilities nonNilString:name_] stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]];
-        self.mapUrl = [Utilities nonNilString:mapUrl_];
         self.phoneNumber = [Utilities nonNilString:phoneNumber_];
         self.location = location_;
         self.originatingLocation = originatingLocation_;
@@ -77,14 +72,12 @@ property_definition(movieTitles);
 
 + (Theater*) theaterWithIdentifier:(NSString*) identifier
                               name:(NSString*) name
-                            mapUrl:(NSString*) mapUrl
                        phoneNumber:(NSString*) phoneNumber
                           location:(Location*) location
                originatingLocation:(Location*) originatingLocation
                        movieTitles:(NSArray*) movieTitles {
     return [[[Theater alloc] initWithIdentifier:identifier
                                            name:name
-                                         mapUrl:mapUrl
                                     phoneNumber:phoneNumber
                                        location:location
                             originatingLocation:originatingLocation
@@ -94,13 +87,12 @@ property_definition(movieTitles);
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setObject:identifier                            forKey:identifier_key];
-    [dictionary setObject:name                                  forKey:name_key];
-    [dictionary setObject:mapUrl                                forKey:mapUrl_key];
-    [dictionary setObject:phoneNumber                           forKey:phoneNumber_key];
-    [dictionary setObject:location.dictionary                   forKey:location_key];
-    [dictionary setObject:originatingLocation.dictionary        forKey:originatingLocation_key];
-    [dictionary setObject:movieTitles                           forKey:movieTitles_key];
+    [dictionary setObject:identifier                        forKey:identifier_key];
+    [dictionary setObject:name                              forKey:name_key];
+    [dictionary setObject:phoneNumber                       forKey:phoneNumber_key];
+    [dictionary setObject:location.dictionary               forKey:location_key];
+    [dictionary setObject:originatingLocation.dictionary    forKey:originatingLocation_key];
+    [dictionary setObject:movieTitles                       forKey:movieTitles_key];
     return dictionary;
 }
 
@@ -118,6 +110,11 @@ property_definition(movieTitles);
 
 - (NSUInteger) hash {
     return name.hash;
+}
+
+
+- (NSString*) mapUrl {
+    return [location mapUrl];
 }
 
 

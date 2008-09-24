@@ -65,17 +65,17 @@
     NSMutableDictionary* movieIdToMovieMap = [NSMutableDictionary dictionary];
 
     for (XmlElement* movieElement in moviesElement.children) {
-        NSString* identifier = [movieElement attributeValue:@"identifier"];
-        NSString* imdbUrl = [movieElement attributeValue:@"imdbUrl"];
+        NSString* identifier = [movieElement attributeValue:@"id"];
+        NSString* imdbId = [movieElement attributeValue:@"imdb"];
         NSString* poster = @"";
         NSString* title = [movieElement attributeValue:@"title"];
-        NSString* rating = [movieElement attributeValue:@"rawRatings"];
-        NSString* length = [movieElement attributeValue:@"length"];
-        NSString* synopsis = [movieElement attributeValue:@"description"];
+        NSString* rating = [movieElement attributeValue:@"rating"];
+        NSString* length = [movieElement attributeValue:@"len"];
+        NSString* synopsis = [movieElement attributeValue:@"desc"];
         NSArray* genres = [[[movieElement attributeValue:@"genre"] stringByReplacingOccurrencesOfString:@"_" withString:@" "] componentsSeparatedByString:@"/"];
-        NSArray* directors = [self processXmlArray:[movieElement element:@"Directors"]];
-        NSArray* cast = [self processXmlArray:[movieElement element:@"Cast"]];
-        NSString* releaseDateString = [movieElement attributeValue:@"releaseDate"];
+        NSArray* directors = [[movieElement attributeValue:@"directors"] componentsSeparatedByString:@"|"];
+        NSArray* cast = [[movieElement attributeValue:@"cast"] componentsSeparatedByString:@"|"];
+        NSString* releaseDateString = [movieElement attributeValue:@"date"];
         NSDate* releaseDate = nil;
         if (releaseDateString.length == 10) {
             NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
@@ -86,23 +86,12 @@
             releaseDate = [[NSCalendar currentCalendar] dateFromComponents:components];
         }
 
-        static NSString* prefix = @"http://www.google.com/url?q=";
-        if ([imdbUrl hasPrefix:prefix]) {
-            imdbUrl = [imdbUrl substringFromIndex:prefix.length];
-            NSRange ampIndex = [imdbUrl rangeOfString:@"&"];
-            if (ampIndex.length > 0) {
-                imdbUrl = [imdbUrl substringToIndex:ampIndex.location];
-            }
-            
-            imdbUrl = [imdbUrl stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
-        }
-
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
                                            rating:rating
                                            length:length
                                       releaseDate:releaseDate
-                                          imdbUrl:imdbUrl
+                                           imdbId:imdbId
                                            poster:poster
                                          synopsis:synopsis
                                            studio:@""
@@ -122,35 +111,23 @@
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
     for (XmlElement* movieElement in moviesElement.children) {
-        NSString* movieId = [movieElement attributeValue:@"identifier"];
+        NSString* movieId = [movieElement attributeValue:@"id"];
         NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
-
-        XmlElement* showtimesElement = [movieElement element:@"Showtimes"];
-        NSString* vendor = [Utilities nonNilString:[showtimesElement attributeValue:@"vendor"]];
 
         NSMutableArray* performances = [NSMutableArray array];
 
-        for (XmlElement* showtimeElement in showtimesElement.children) {
-            NSString* time = [showtimeElement attributeValue:@"time"];
+        for (NSString* timeAndUrl in [[movieElement attributeValue:@"shows"] componentsSeparatedByString:@"|"]) {
+            NSArray* array = [timeAndUrl componentsSeparatedByString:@","];
+            NSString* time = [array objectAtIndex:0];
+            NSString* url = [array objectAtIndex:1];
+            
             time = [Theater processShowtime:time];
 
-            static NSString* prefix = @"http://www.google.com/url?q=";
-            
-            NSString* url = [showtimeElement attributeValue:@"url"];
-            if ([url hasPrefix:prefix]) {
-                url = [url substringFromIndex:prefix.length];
-                url = [url stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
-            }
-            /*
-            NSString* url = [showtimeElement attributeValue:@"mobileUrl"];
-            if (url.length == 0) {
-                url = [showtimeElement attributeValue:@"url"];
-            }
-             */
+            url = [url stringByReplacingPercentEscapesUsingEncoding:NSISOLatin1StringEncoding];
+            url = [NSString stringWithFormat:@"http://www.fandango.com/redirect.aspx?%@", url];
 
-            Performance* performance = [Performance performanceWithIdentifier:vendor
-                                                                         time:time
-                                                                          url:url];
+            Performance* performance = [Performance performanceWithTime:time
+                                                                    url:url];
 
             [performances addObject:performance.dictionary];
         }
@@ -178,23 +155,15 @@
         return;
     }
 
-    NSString* identifier = [Utilities nonNilString:[theaterElement attributeValue:@"identifier"]];
-    NSString* address =    [Utilities nonNilString:[theaterElement attributeValue:@"streetAddress"]];
+    NSString* identifier = [Utilities nonNilString:[theaterElement attributeValue:@"id"]];
+    NSString* address =    [Utilities nonNilString:[theaterElement attributeValue:@"address"]];
     NSString* city =       [Utilities nonNilString:[theaterElement attributeValue:@"city"]];
     NSString* state =      [Utilities nonNilString:[theaterElement attributeValue:@"state"]];
-    NSString* postalCode = [Utilities nonNilString:[theaterElement attributeValue:@"postalCode"]];
+    NSString* postalCode = [Utilities nonNilString:[theaterElement attributeValue:@"postal"]];
     NSString* country =    [Utilities nonNilString:[theaterElement attributeValue:@"country"]];
     NSString* phone =      [Utilities nonNilString:[theaterElement attributeValue:@"phone"]];
-    NSString* mapUrl =     [Utilities nonNilString:[theaterElement attributeValue:@"mapUrl"]];
-    double latitude = [[theaterElement attributeValue:@"latitude"] doubleValue];
-    double longitude = [[theaterElement attributeValue:@"longitude"] doubleValue];
-
-    NSString* fullAddress;
-    if ([address hasSuffix:@"."]) {
-        fullAddress = [NSString stringWithFormat:@"%@ %@, %@ %@", address, city, state, postalCode];
-    } else {
-        fullAddress = [NSString stringWithFormat:@"%@. %@, %@ %@", address, city, state, postalCode];
-    }
+    double latitude = [[theaterElement attributeValue:@"lat"] doubleValue];
+    double longitude = [[theaterElement attributeValue:@"long"] doubleValue];
 
     XmlElement* moviesElement = [theaterElement element:@"Movies"];
     NSMutableDictionary* movieToShowtimesMap = [self processMovieShowtimes:moviesElement
@@ -225,7 +194,6 @@
     [performances setObject:movieToShowtimesMap forKey:name];
     [theaters addObject:[Theater theaterWithIdentifier:identifier
                                                   name:name
-                                                mapUrl:mapUrl
                                            phoneNumber:phone
                                               location:location
                                    originatingLocation:originatingLocation
