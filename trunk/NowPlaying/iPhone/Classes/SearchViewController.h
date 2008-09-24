@@ -37,5 +37,6 @@
 - (id) initWithNavigationController:(AbstractNavigationController*) navigationController;
 
 - (void) onShow;
+- (void) onHide;
 
 @end
