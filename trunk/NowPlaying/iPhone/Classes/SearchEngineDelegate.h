@@ -14,30 +14,6 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface ImageCache : NSObject {
-
-}
-
-+ (UIImage*) freshImage;
-+ (UIImage*) rottenFadedImage;
-+ (UIImage*) rottenFullImage;
-
-+ (UIImage*) emptyStarImage;
-+ (UIImage*) filledStarImage;
-+ (UIImage*) searchImage;
-
-+ (UIImage*) redRatingImage;
-+ (UIImage*) yellowRatingImage;
-+ (UIImage*) greenRatingImage;
-+ (UIImage*) unknownRatingImage;
-
-+ (UIImage*) imageNotAvailable;
-
-+ (UIImage*) upArrow;
-+ (UIImage*) downArrow;
-+ (UIImage*) neutralSquare;
-
-+ (UIImage*) warning16x16;
-+ (UIImage*) warning32x32;
-
+@protocol SearchEngineDelegate
+- (void) reportResult:(SearchResult*) result;
 @end

@@ -18,6 +18,7 @@
 
 #import "Application.h"
 #import "GlobalActivityIndicator.h"
+#import "ImageCache.h"
 #import "Location.h"
 #import "MultiDictionary.h"
 #import "NowPlayingModel.h"
@@ -195,23 +196,50 @@
 }
 
 
+- (void) initializeSearchButton {
+    UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    UIImage* image = [ImageCache searchImage];
+    [searchButton setImage:image forState:UIControlStateNormal];
+    [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
+
+    CGRect frame = searchButton.frame;
+    frame.size = image.size;
+    frame.size.width += 10;
+    frame.size.height += 10;
+    searchButton.frame = frame;
+
+    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
+}
+
+
+- (void) search:(id) sender {
+    [navigationController showSearchView];
+}
+
+
+- (void) initializeSegmentedControl {
+    self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
+                              [NSArray arrayWithObjects:NSLocalizedString(@"Name", nil), NSLocalizedString(@"Distance", nil), nil]] autorelease];
+
+    segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
+    segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;
+    [segmentedControl addTarget:self
+                         action:@selector(onSortOrderChanged:)
+               forControlEvents:UIControlEventValueChanged];
+
+    CGRect rect = segmentedControl.frame;
+    rect.size.width = 240;
+    segmentedControl.frame = rect;
+}
+
+
 - (id) initWithNavigationController:(TheatersNavigationController*) controller {
     if (self = [super initWithStyle:UITableViewStylePlain]) {
         self.navigationController = controller;
         self.sortedTheaters = [NSArray array];
 
-        self.segmentedControl = [[[UISegmentedControl alloc] initWithItems:
-                                  [NSArray arrayWithObjects:NSLocalizedString(@"Name", nil), NSLocalizedString(@"Distance", nil), nil]] autorelease];
-
-        segmentedControl.segmentedControlStyle = UISegmentedControlStyleBar;
-        segmentedControl.selectedSegmentIndex = self.model.allTheatersSelectedSegmentIndex;
-        [segmentedControl addTarget:self
-                             action:@selector(onSortOrderChanged:)
-                   forControlEvents:UIControlEventValueChanged];
-
-        CGRect rect = segmentedControl.frame;
-        rect.size.width = 240;
-        segmentedControl.frame = rect;
+        [self initializeSegmentedControl];
+        [self initializeSearchButton];
 
         self.navigationItem.titleView = segmentedControl;
 
@@ -225,6 +253,7 @@
         }
 
         self.title = NSLocalizedString(@"Theaters", nil);
+
     }
 
     return self;

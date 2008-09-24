@@ -40,7 +40,7 @@
     if (self = [super init]) {
         self.model = model_;
     }
-    
+
     return self;
 }
 
@@ -52,22 +52,22 @@
 
 + (NSString*) serverUrl:(NowPlayingModel*) model {
     Location* location = [model.userLocationCache locationForUserAddress:model.userAddress];
-    
+
     if (location.postalCode == nil) {
         return nil;
     }
-    
+
     NSString* country = location.country.length == 0 ? [[NSLocale currentLocale] objectForKey:NSLocaleCountryCode]
                                                      : location.country;
-    
-    
+
+
     NSDateComponents* components = [[NSCalendar currentCalendar] components:NSDayCalendarUnit
                                                                    fromDate:[DateUtilities today]
                                                                      toDate:model.searchDate
                                                                     options:0];
     NSInteger day = components.day;
     day = MIN(MAX(day, 0), 7);
-    
+
     NSString* address = [NSString stringWithFormat:
                          @"http://%@.appspot.com/LookupTheaterListings2?country=%@&language=%@&postalcode=%@&day=%d&format=xml&latitude=%d&longitude=%d",
                          [Application host],
@@ -77,7 +77,7 @@
                          day,
                          (int)(location.latitude * 1000000),
                          (int)(location.longitude * 1000000)];
-    
+
     return address;
 }
 
@@ -96,7 +96,7 @@
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address
                                                                  important:YES];
     XmlElement* moviesElement = [resultElement element:@"Movies"];
-    
+
     if (moviesElement != nil) {
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
 
@@ -107,19 +107,19 @@
             if (score.length == 0) {
                 score = @"-1";
             }
-            
+
             MovieRating* info = [MovieRating ratingWithTitle:title
                                                     synopsis:@""
                                                        score:score
                                                     provider:@"google"
                                                   identifier:identifier];
-            
+
             [ratings setObject:info forKey:info.canonicalTitle];
         }
-        
+
         return ratings;
     }
-    
+
     return nil;
 }
 

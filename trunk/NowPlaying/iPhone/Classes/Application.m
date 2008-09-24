@@ -329,7 +329,7 @@ static NSString* starString = nil;
      [Utilities stringByAddingPercentEscapes:address]];
      [self openBrowser:urlString];
 */
-    
+
     [self openBrowser:address];
 }
 

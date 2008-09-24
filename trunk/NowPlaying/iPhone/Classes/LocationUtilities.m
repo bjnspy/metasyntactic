@@ -37,14 +37,14 @@
     if (postalCode.length == 0) {
         return nil;
     }
-    
+
     if ([@"CA" isEqual:country]) {
         return nil;
     }
 
     NSString* city = [codeElement element:@"adminName1"].text;
     NSString* state = [codeElement element:@"adminCode1"].text;
-    
+
     return [Location locationWithLatitude:latitude
                                 longitude:longitude
                                   address:@""
@@ -67,10 +67,10 @@
     if (postalCode.length == 0) {
         return nil;
     }
-    
+
     NSString* city = [geodataElement element:@"city"].text;
     NSString* state = [geodataElement element:@"prov"].text;
-    
+
     return [Location locationWithLatitude:latitude
                                 longitude:longitude
                                   address:@""

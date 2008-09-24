@@ -186,7 +186,7 @@ property_definition(country);
 
 - (NSString*) fullDisplayString {
     //TODO: switch on Locale here
-    
+
     if (city.length || state.length || postalCode.length) {
         if (city.length) {
             if (state.length || postalCode.length) {
@@ -198,7 +198,7 @@ property_definition(country);
             return [NSString stringWithFormat:@"%@ %@", state, postalCode];
         }
     }
-    
+
     return @"";
 }
 
@@ -214,7 +214,7 @@ property_definition(country);
             city,
             state,
             postalCode];
-    
+
     return [NSString stringWithFormat:@"http://maps.google.com/maps?q=%@",
             [Utilities stringByAddingPercentEscapes:arguments]];
 }

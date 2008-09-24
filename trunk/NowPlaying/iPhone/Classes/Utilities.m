@@ -214,4 +214,11 @@
 }
 
 
++ (NSString*) asciiString:(NSString*) string {
+    NSString* asciiString = [[[NSString alloc] initWithData:[string dataUsingEncoding:NSASCIIStringEncoding allowLossyConversion:YES]
+                                                   encoding:NSASCIIStringEncoding] autorelease];
+    return asciiString;
+}
+
+
 @end

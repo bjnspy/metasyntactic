@@ -194,11 +194,11 @@
                                                         delegate:nil
                                                cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                                otherButtonTitles:nil] autorelease];
-        
+
         [alert show];
         return;
     }
-    
+
     [self spawnBackgroundThreads];
     [NowPlayingAppDelegate refresh];
 }

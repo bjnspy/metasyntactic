@@ -409,7 +409,7 @@
     }
 
     NSString* displayString = userLocation.fullDisplayString;
-    [self.model.userLocationCache setLocation:userLocation forUserAddress:displayString]; 
+    [self.model.userLocationCache setLocation:userLocation forUserAddress:displayString];
     [self onUserAddressChanged:displayString];
 }
 

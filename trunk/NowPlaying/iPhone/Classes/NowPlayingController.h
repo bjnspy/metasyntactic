@@ -16,7 +16,7 @@
 
 @interface NowPlayingController : NSObject {
     NowPlayingAppDelegate* appDelegate;
-    
+
     NSLock* determineLocationLock;
     NSLock* dataProviderLock;
     NSLock* ratingsLookupLock;

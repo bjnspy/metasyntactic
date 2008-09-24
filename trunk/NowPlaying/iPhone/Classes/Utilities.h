@@ -49,5 +49,6 @@
                        performances:(NSArray*) performances;
 
 + (NSString*) stripHtmlCodes:(NSString*) string;
++ (NSString*) asciiString:(NSString*) string;
 
 @end
