@@ -135,6 +135,10 @@
 
 
 - (BOOL) shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation) interfaceOrientation {
+    if (searchViewController != nil && searchViewController.view.frame.origin.y == 0) {
+        return NO;
+    }
+    
     return YES;
 }
 
@@ -143,14 +147,20 @@
     if (searchViewController == nil) {
         self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
         [self.view addSubview:searchViewController.view];
+        //searchViewController.view.alpha = 0;
+        
         
         CGRect frame = searchViewController.view.frame;
         frame.origin.y = self.view.frame.size.height;
         searchViewController.view.frame = frame;
     }
+    
+    [self.view bringSubviewToFront:searchViewController.view];
 
     [UIView beginAnimations:nil context:NULL];
     {
+        //searchViewController.view.alpha = 1;
+        
         CGRect frame = searchViewController.view.frame;
         frame.origin.y = 0;
         searchViewController.view.frame = frame;
@@ -164,6 +174,7 @@
 - (void) hideSearchView {
     [UIView beginAnimations:nil context:NULL];
     {
+        //searchViewController.view.alpha = 0;
         CGRect frame = searchViewController.view.frame;
         frame.origin.y = self.view.frame.size.height;
         searchViewController.view.frame = frame;

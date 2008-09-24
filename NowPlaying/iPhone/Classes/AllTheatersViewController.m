@@ -197,18 +197,22 @@
 
 
 - (void) initializeSearchButton {
-    UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage* image = [ImageCache searchImage];
-    [searchButton setImage:image forState:UIControlStateNormal];
-    [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
-
-    CGRect frame = searchButton.frame;
-    frame.size = image.size;
-    frame.size.width += 10;
-    frame.size.height += 10;
-    searchButton.frame = frame;
-
-    self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
+    if (UIInterfaceOrientationIsPortrait(self.interfaceOrientation)) {    
+        UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage* image = [ImageCache searchImage];
+        [searchButton setImage:image forState:UIControlStateNormal];
+        [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
+        
+        CGRect frame = searchButton.frame;
+        frame.size = image.size;
+        frame.size.width += 10;
+        frame.size.height += 10;
+        searchButton.frame = frame;
+        
+        self.navigationItem.leftBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
+    } else {
+        self.navigationItem.leftBarButtonItem = nil;
+    }
 }
 
 
@@ -377,6 +381,7 @@
 
 
 - (void) refresh {
+    [self initializeSearchButton];
     [self sortTheaters];
     [self.tableView reloadData];
 }
