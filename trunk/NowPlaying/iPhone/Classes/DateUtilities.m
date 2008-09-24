@@ -135,19 +135,22 @@ static BOOL use24HourTime;
 
 
 + (NSString*) timeSinceNowWorker:(NSDate*) date {
+    NSTimeInterval interval = [today timeIntervalSinceDate:date];
+    if (interval > ONE_YEAR) {
+        return [self yearsAgoString:(int)(interval / ONE_YEAR)];
+    } else if (interval > ONE_MONTH) {
+        return [self monthsAgoString:(int)(interval / ONE_MONTH)];
+    } else if (interval > ONE_WEEK) {
+        return [self weeksAgoString:(int)(interval / ONE_WEEK)];
+    }
+
     NSCalendar* calendar = [NSCalendar currentCalendar];
     NSDateComponents* components = [calendar components:(NSYearCalendarUnit | NSMonthCalendarUnit | NSWeekCalendarUnit | NSDayCalendarUnit)
                                                fromDate:date
                                                  toDate:today
                                                 options:0];
 
-    if (components.year >= 1) {
-        return [self yearsAgoString:components.year];
-    } else if (components.month >= 1) {
-        return [self monthsAgoString:components.month];
-    } else if (components.week >= 1) {
-        return [self weeksAgoString:components.week];
-    } else if (components.day == 0) {
+    if (components.day == 0) {
         return NSLocalizedString(@"Today", nil);
     } else if (components.day == 1) {
         return NSLocalizedString(@"Yesterday", nil);

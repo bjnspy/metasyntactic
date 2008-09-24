@@ -315,7 +315,9 @@ static NSString** KEYS[] = {
 
         searchRadius = -1;
 
-        [self regenerateMovieMap];
+        if(movieMap == nil) {
+            [self regenerateMovieMap];
+        }
         [self performSelector:@selector(updateCaches:) withObject:[NSNumber numberWithInt:0] afterDelay:2];
     }
 
