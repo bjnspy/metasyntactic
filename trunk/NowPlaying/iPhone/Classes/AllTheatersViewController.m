@@ -204,9 +204,10 @@
     [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
     
     CGRect frame = searchButton.frame;
+    frame.origin.x += 0.5;
     frame.size = image.size;
-    frame.size.width += 4;
-    frame.size.height += 4;
+    frame.size.width += 7;
+    frame.size.height += 7;
     searchButton.frame = frame;
     
     UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
