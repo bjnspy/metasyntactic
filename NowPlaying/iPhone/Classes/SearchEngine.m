@@ -154,6 +154,7 @@
     //...
 
     SearchResult* result = [SearchResult resultWithId:currentlyExecutingRequest.requestId
+                                                value:currentlyExecutingRequest.value
                                                movies:movies
                                              theaters:theaters
                                        upcomingMovies:upcomingMovies];

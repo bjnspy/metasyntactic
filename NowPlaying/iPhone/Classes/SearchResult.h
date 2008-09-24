@@ -16,17 +16,20 @@
 
 @interface SearchResult : NSObject {
     NSInteger requestId;
+    NSString* value;
     NSArray* movies;
     NSArray* theaters;
     NSArray* upcomingMovies;
 }
 
 @property NSInteger requestId;
+@property (copy) NSString* value;
 @property (retain) NSArray* movies;
 @property (retain) NSArray* theaters;
 @property (retain) NSArray* upcomingMovies;
 
 + (SearchResult*) resultWithId:(NSInteger) requestId
+                         value:(NSString*) value
                         movies:(NSArray*) movies
                       theaters:(NSArray*) theaters
                 upcomingMovies:(NSArray*) upcomingMovies;

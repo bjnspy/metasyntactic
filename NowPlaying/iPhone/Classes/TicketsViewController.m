@@ -246,8 +246,7 @@
 
 
 - (UITableViewCell*) infoCellForRow:(NSInteger) row {
-    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame
-                                                    reuseIdentifier:nil] autorelease];
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
     cell.textAlignment = UITextAlignmentCenter;
     cell.font = [UIFont boldSystemFontOfSize:14];

@@ -106,18 +106,35 @@
 }
 
 
+- (BOOL) noResults {
+    return
+    searchResult != nil &&
+    searchResult.movies.count == 0 &&
+    searchResult.theaters.count == 0 &&
+    searchResult.upcomingMovies.count == 0;
+}
+
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     if (searchResult == nil) {
         return 1;
-    } else {
-        return 3;
     }
+    
+    if ([self noResults]) {
+        return 1;
+    }
+    
+    return 3;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (searchResult == nil) {
+        return 0;
+    }
+    
+    if ([self noResults]) {
         return 0;
     }
 
@@ -187,8 +204,19 @@
 }
 
 
+- (UITableViewCell*) noResultsCell {
+    UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:CGRectZero] autorelease];
+    cell.text = [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), searchResult.value];
+    return cell;
+}
+
+
 - (UITableViewCell*) tableView:(UITableView*) tableView_
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
+    if ([self noResults]) {
+        return [self noResultsCell];
+    }
+    
     if (indexPath.section == 0) {
         return [self movieCellForRow:indexPath.row];
     } else if (indexPath.section == 1) {
@@ -325,26 +353,26 @@
     if (searchResult == nil) {
         return nil;
     }
+    
+    if ([self noResults]) {
+        return [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), searchResult.value];
+    }
 
     if (section == 0) {
-        if (searchResult.movies.count == 0) {
-            return nil;
-        } else {
+        if (searchResult.movies.count != 0) {
             return NSLocalizedString(@"Movies", nil);
         }
     } else if (section == 1) {
-        if (searchResult.theaters.count == 0) {
-            return nil;
-        } else {
+        if (searchResult.theaters.count != 0) {
             return NSLocalizedString(@"Theaters", nil);
         }
-    } else {
-        if (searchResult.upcomingMovies.count == 0) {
-            return nil;
-        } else {
+    } else if (section == 2) {
+        if (searchResult.upcomingMovies.count != 0) {
             return NSLocalizedString(@"Upcoming", nil);
         }
     }
+    
+    return nil;
 }
 
 
