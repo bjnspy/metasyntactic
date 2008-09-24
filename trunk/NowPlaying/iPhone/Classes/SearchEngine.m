@@ -18,6 +18,7 @@
 
 #import "Location.h"
 #import "Movie.h"
+#import "NowPlayingModel.h"
 #import "SearchRequest.h"
 #import "SearchResult.h"
 #import "Theater.h"
@@ -103,6 +104,7 @@
             [result addObject:movie];
         }
     }
+    [result sortUsingFunction:compareMoviesByTitle context:nil];
     return result;
 }
 
@@ -114,6 +116,7 @@
             [result addObject:theater];
         }
     }
+    [result sortUsingFunction:compareTheatersByName context:nil];
     return result;
 }
 
@@ -125,6 +128,7 @@
             [result addObject:movie];
         }
     }
+    [result sortUsingFunction:compareMoviesByTitle context:nil];
     return result;
 }
 
