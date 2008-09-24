@@ -115,6 +115,14 @@
 }
 
 
+- (BOOL) searching {
+    NSString* searchText = searchBar.text;
+    searchText = [searchText stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]];
+
+    return searchText.length > 0 && ![searchText isEqual:searchResult.value];
+}
+
+
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
     if (searchResult == nil) {
         return 1;
@@ -130,8 +138,7 @@
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
-    if (searchResult == nil) {
-        return 0;
+    if (searchResult == nil) {        return 0;
     }
     
     if ([self noResults]) {
@@ -331,10 +338,12 @@
 
     if (searchText.length == 0) {
         [searchEngine invalidateExistingRequests];
-        [self reportResult:nil];
+        self.searchResult = nil;
     } else {
         [searchEngine submitRequest:searchText];
     }
+    
+    [self.tableView reloadData];
 }
 
 
@@ -355,7 +364,7 @@
     }
     
     if ([self noResults]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"No results found for '%@'", nil), searchResult.value];
+        return [NSString stringWithFormat:NSLocalizedString(@"No results for '%@'", nil), searchResult.value];
     }
 
     if (section == 0) {
