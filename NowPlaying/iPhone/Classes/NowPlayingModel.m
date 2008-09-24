@@ -49,8 +49,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"2.0.7";
-static NSString* persistenceVersion = @"49";
+static NSString* currentVersion = @"2.0.8";
+static NSString* persistenceVersion = @"51";
 
 static NSString* VERSION = @"version";
 
@@ -675,8 +675,8 @@ static NSString** KEYS[] = {
 
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
-    if (movie.imdbUrl.length > 0) {
-        return movie.imdbUrl;
+    if (movie.imdbId.length > 0) {
+        return [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movie.imdbId];
     }
     
     NSString* result = [imdbCache imdbAddressForMovie:movie];

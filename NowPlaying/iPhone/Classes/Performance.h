@@ -15,19 +15,16 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface Performance : NSObject {
-    NSString* identifier;
     NSString* time;
     NSString* url;
 }
 
-@property (copy) NSString* identifier;
 @property (copy) NSString* time;
 @property (copy) NSString* url;
 
 + (Performance*) performanceWithDictionary:(NSDictionary*) dictionary;
-+ (Performance*) performanceWithIdentifier:(NSString*) identifier
-                                      time:(NSString*) time
-                                       url:(NSString*) url;
++ (Performance*) performanceWithTime:(NSString*) time
+                                 url:(NSString*) url;
 
 - (NSDictionary*) dictionary;
 

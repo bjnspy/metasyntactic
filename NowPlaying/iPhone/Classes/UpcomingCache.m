@@ -109,7 +109,7 @@ static NSString* titles_key = @"Titles";
                                        rating:rating
                                        length:@""
                                   releaseDate:releaseDate
-                                      imdbUrl:@""
+                                       imdbId:@""
                                        poster:poster
                                      synopsis:@""
                                        studio:studio

@@ -49,6 +49,8 @@
 + (BOOL) canReadDictionary:(NSDictionary*) dictionary;
 - (NSDictionary*) dictionary;
 
+- (NSString*) mapUrl;
+
 - (double) distanceTo:(Location*) to;
 
 - (NSString*) fullDisplayString;

@@ -101,7 +101,7 @@
         NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
 
         for (XmlElement* movieElement in moviesElement.children) {
-            NSString* identifier = [movieElement attributeValue:@"identifier"];
+            NSString* identifier = [movieElement attributeValue:@"id"];
             NSString* title = [movieElement attributeValue:@"title"];
             NSString* score = [movieElement attributeValue:@"score"];
             if (score.length == 0) {
@@ -109,10 +109,10 @@
             }
             
             MovieRating* info = [MovieRating ratingWithTitle:title
-                                                                      synopsis:@""
-                                                                         score:score
-                                                                      provider:@"google"
-                                                                    identifier:identifier];
+                                                    synopsis:@""
+                                                       score:score
+                                                    provider:@"google"
+                                                  identifier:identifier];
             
             [ratings setObject:info forKey:info.canonicalTitle];
         }
