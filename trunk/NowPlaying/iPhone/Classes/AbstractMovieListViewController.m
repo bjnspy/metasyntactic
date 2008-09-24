@@ -210,16 +210,16 @@
 
 - (void) initializeSearchButton {
     UIButton* searchButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    searchButton.showsTouchWhenHighlighted = YES;
     UIImage* image = [ImageCache searchImage];
     [searchButton setImage:image forState:UIControlStateNormal];
     [searchButton addTarget:self action:@selector(search:) forControlEvents:UIControlEventTouchUpInside];
     
     CGRect frame = searchButton.frame;
     frame.size = image.size;
-    frame.size.width += 8;
-    frame.size.height += 8;
+    frame.size.width += 4;
+    frame.size.height += 4;
     searchButton.frame = frame;
-    
     
     UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithCustomView:searchButton] autorelease];
     self.navigationItem.leftBarButtonItem = item;

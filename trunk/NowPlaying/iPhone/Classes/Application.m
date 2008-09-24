@@ -353,10 +353,13 @@ static NSString* starString = nil;
 
 
 + (NSString*) host {
-    //*
+#ifdef DISTRIBUTION
+    return @"metaboxoffice2";
+#endif
+    /*
     return @"metaboxoffice6";
     /*/
-    return @"metaboxoffice2";
+     return @"metaboxoffice2";
     //*/
 }
 
