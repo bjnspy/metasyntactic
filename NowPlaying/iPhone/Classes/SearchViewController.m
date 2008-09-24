@@ -364,7 +364,7 @@
     }
     
     if ([self noResults]) {
-        return [NSString stringWithFormat:NSLocalizedString(@"No results for '%@'", nil), searchResult.value];
+        return NSLocalizedString(@"No information found", nil);
     }
 
     if (section == 0) {
