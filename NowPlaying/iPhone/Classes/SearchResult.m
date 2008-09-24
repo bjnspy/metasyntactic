@@ -28,7 +28,7 @@
     self.movies = nil;
     self.theaters = nil;
     self.upcomingMovies = nil;
-    
+
     [super dealloc];
 }
 
@@ -43,7 +43,7 @@
         self.theaters = theaters_;
         self.upcomingMovies = upcomingMovies_;
     }
-    
+
     return self;
 }
 

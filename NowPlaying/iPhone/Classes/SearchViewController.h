@@ -18,10 +18,10 @@
 
 @interface SearchViewController : UIViewController<UITableViewDelegate,UITableViewDataSource,SearchEngineDelegate,UISearchBarDelegate> {
     AbstractNavigationController* navigationController;
-    
+
     SearchEngine* searchEngine;
     SearchResult* searchResult;
-    
+
     UISearchBar* searchBar;
     UITableView* tableView;
 }
