@@ -21,11 +21,9 @@
 @implementation CollapsedMovieDetailsCell
 
 @synthesize ratingAndRuntimeLabel;
-//@synthesize clickToExpandLabel;
 
 - (void) dealloc {
     self.ratingAndRuntimeLabel = nil;
-    //self.clickToExpandLabel = nil;
 
     [super dealloc];
 }
