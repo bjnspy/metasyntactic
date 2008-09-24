@@ -274,6 +274,8 @@
 
     [UIView beginAnimations:nil context:NULL];
     {
+        [UIView setAnimationDuration:0.3];
+        
         CGRect tableViewFrame = tableView.frame;
         tableViewFrame.size.height -= rect.size.height;
         tableView.frame = tableViewFrame;
@@ -288,6 +290,8 @@
 
     [UIView beginAnimations:nil context:NULL];
     {
+        [UIView setAnimationDuration:0.3];
+        
         CGRect tableViewFrame = tableView.frame;
         tableViewFrame.size.height += rect.size.height;
         tableView.frame = tableViewFrame;
