@@ -52,7 +52,7 @@
 }
 
 
-- (void) onCurrentLocationClicked:(id) sender {
+- (void) onCurrentLocationTapped:(id) sender {
     self.activityIndicator = [[[ActivityIndicator alloc] initWithNavigationItem:self.navigationItem] autorelease];
     [activityIndicator start];
     [locationManager startUpdatingLocation];
@@ -64,7 +64,7 @@
     //   a) the user wants it
     //   b) we're not currently searching
     if (self.model.autoUpdateLocation && activityIndicator == nil) {
-        [self onCurrentLocationClicked:nil];
+        [self onCurrentLocationTapped:nil];
     }
 }
 
@@ -88,7 +88,7 @@
         UIBarButtonItem* item = [[[UIBarButtonItem alloc] initWithImage:[UIImage imageNamed:@"CurrentPosition.png"]
                                                                   style:UIBarButtonItemStylePlain
                                                                  target:self
-                                                                 action:@selector(onCurrentLocationClicked:)] autorelease];
+                                                                 action:@selector(onCurrentLocationTapped:)] autorelease];
 
         self.navigationItem.leftBarButtonItem = item;
 
