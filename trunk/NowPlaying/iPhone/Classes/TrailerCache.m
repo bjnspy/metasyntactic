@@ -108,7 +108,12 @@
     [self deleteObsoleteTrailers:movies];
 
     NSArray* orderedMovies = [self getOrderedMovies:movies];
-
+    NSArray* moviesWithoutTrailers = [orderedMovies objectAtIndex:0];
+    NSArray* moviesWithTrailers = [orderedMovies objectAtIndex:1];
+    if (moviesWithoutTrailers.count == 0 && moviesWithTrailers.count == 0) {
+        return;
+    }
+    
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:orderedMovies
@@ -117,71 +122,86 @@
 }
 
 
-- (void)        processRow:(NSString*) row
-              moviesTitles:(NSArray*) movieTitles
-      lowercaseMovieTitles:(NSArray*) lowercaseMovieTitles
-                    engine:(DifferenceEngine*) engine {
-    NSArray* values = [row componentsSeparatedByString:@"\t"];
-    if (values.count != 3) {
+- (void) downloadMovieTrailer:(Movie*) movie
+                        index:(NSDictionary*) index
+                    indexKeys:(NSArray*) indexKeys
+                       engine:(DifferenceEngine*) engine {
+    NSInteger arrayIndex = [engine findClosestMatchIndex:movie.canonicalTitle.lowercaseString inArray:indexKeys];
+    if (arrayIndex == NSNotFound) {
+        // no trailer for this movie.  record that fact.  we'll try again later
+        [FileUtilities writeObject:[NSArray array] toFile:[self trailerFilePath:movie.canonicalTitle]];
         return;
     }
-
-    NSString* fullTitle = [values objectAtIndex:0];
-    NSString* studio = [values objectAtIndex:1];
-    NSString* location = [values objectAtIndex:2];
-
-    NSInteger index = [engine findClosestMatchIndex:fullTitle.lowercaseString inArray:lowercaseMovieTitles];
-    if (index == NSNotFound) {
-        return;
-    }
-
-    NSString* movieTitle = [movieTitles objectAtIndex:index];
-
+    
+    NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
+    NSString* studio = [studioAndLocation objectAtIndex:0];
+    NSString* location = [studioAndLocation objectAtIndex:1];
+    
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
     NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url
-                                                            important:NO];
-    NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
-
-    if (trailers.count) {
-        [FileUtilities writeObject:trailers toFile:[self trailerFilePath:movieTitle]];
+                                                                   important:NO];
+    if (trailersString == nil) {
+        // didn't get any data.  ignore this for now.
+        return;
     }
+    
+    NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
+    [FileUtilities writeObject:trailers toFile:[self trailerFilePath:movie.canonicalTitle]];
 }
 
 
-- (void) downloadTrailers:(NSArray*) movies index:(NSString*) index {
-    NSMutableArray* movieTitles = [NSMutableArray array];
-    NSMutableArray* lowercaseMovieTitles = [NSMutableArray array];
-
-    for (Movie* movie in movies) {
-        [movieTitles addObject:movie.canonicalTitle];
-        [lowercaseMovieTitles addObject:movie.canonicalTitle.lowercaseString];
-    }
-
+- (void) downloadTrailers:(NSArray*) movies
+                    index:(NSDictionary*) index 
+                indexKeys:(NSArray*) indexKeys {
     DifferenceEngine* engine = [DifferenceEngine engine];
-
-    NSArray* rows = [index componentsSeparatedByString:@"\n"];
-    for (NSString* row in rows) {
+    
+    for (Movie* movie in movies) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
-            [self processRow:row
-                moviesTitles:movieTitles
-        lowercaseMovieTitles:lowercaseMovieTitles
-                      engine:engine];
+            [self downloadMovieTrailer:movie
+                                 index:index
+                             indexKeys:indexKeys
+                                engine:engine];
         }
         [autoreleasePool release];
     }
 }
 
 
+- (NSDictionary*) generateIndex:(NSString*) indexText {
+    NSMutableDictionary* index = [NSMutableDictionary dictionary];
+    
+    NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
+    for (NSString* row in rows) {
+        NSArray* values = [row componentsSeparatedByString:@"\t"];
+        if (values.count != 3) {
+            continue;
+        }
+        
+        NSString* fullTitle = [values objectAtIndex:0];
+        NSString* studio = [values objectAtIndex:1];
+        NSString* location = [values objectAtIndex:2];
+        
+        [index setObject:[NSArray arrayWithObjects:studio, location, nil]
+                  forKey:fullTitle.lowercaseString];
+    }
+
+    return index;
+}
+
+
 - (void) backgroundEntryPoint:(NSArray*) arguments {
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?q=index", [Application host]];
-    NSString* index = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
-    if (index == nil) {
+    NSString* indexText = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    if (indexText == nil) {
         return;
     }
 
+    NSDictionary* index = [self generateIndex:indexText];
+    NSArray* indexKeys = index.allKeys;
+    
     for (NSArray* movies in arguments) {
-        [self downloadTrailers:movies index:index];
+        [self downloadTrailers:movies index:index indexKeys:indexKeys];
     }
 }
 
@@ -191,7 +211,6 @@
     if (trailers == nil) {
         return [NSArray array];
     }
-
     return trailers;
 }
 
