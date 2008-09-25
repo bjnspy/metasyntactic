@@ -372,7 +372,7 @@
                                                                   text:self.model.userAddress
                                                                message:message
                                                            placeHolder:NSLocalizedString(@"City/State or Postal Code", nil)
-                                                                  type:UIKeyboardTypeNumbersAndPunctuation] autorelease];
+                                                                  type:UIKeyboardTypeDefault] autorelease];
 
             [navigationController pushViewController:controller animated:YES];
         } else if (row == 1) {
