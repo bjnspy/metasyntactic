@@ -21,7 +21,7 @@
     UpcomingMoviesNavigationController* upcomingMoviesNavigationController;
     NumbersNavigationController* numbersNavigationController;
     SettingsNavigationController* settingsNavigationController;
-    
+
     NSDate* lastRefreshDate;
 }
 

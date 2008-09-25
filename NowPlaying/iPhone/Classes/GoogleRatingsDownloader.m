@@ -18,8 +18,8 @@
 
 #import "Application.h"
 #import "DateUtilities.h"
-#import "MovieRating.h"
 #import "Location.h"
+#import "MovieRating.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "UserLocationCache.h"

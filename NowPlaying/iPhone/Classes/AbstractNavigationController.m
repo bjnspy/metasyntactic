@@ -146,7 +146,7 @@
     if (searchViewController == nil) {
         self.searchViewController = [[[SearchViewController alloc] initWithNavigationController:self] autorelease];
     }
-    
+
     [self presentModalViewController:searchViewController animated:YES];
     [searchViewController onShow];
 }

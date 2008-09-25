@@ -16,14 +16,13 @@
 
 #import "NowPlayingModel.h"
 
-#import "AddressLocationCache.h"
 #import "AbstractNavigationController.h"
+#import "AddressLocationCache.h"
 #import "AllMoviesViewController.h"
 #import "AllTheatersViewController.h"
 #import "Application.h"
 #import "DateUtilities.h"
 #import "DifferenceEngine.h"
-#import "MovieRating.h"
 #import "FavoriteTheater.h"
 #import "FileUtilities.h"
 #import "GoogleDataProvider.h"
@@ -31,6 +30,7 @@
 #import "Location.h"
 #import "Movie.h"
 #import "MovieDetailsViewController.h"
+#import "MovieRating.h"
 #import "NowPlayingAppDelegate.h"
 #import "NumbersCache.h"
 #import "PosterCache.h"

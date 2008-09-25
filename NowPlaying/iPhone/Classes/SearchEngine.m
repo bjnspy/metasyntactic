@@ -226,7 +226,7 @@
     if (abort) {
         return;
     }
-    
+
     [delegate reportResult:result];
 }
 

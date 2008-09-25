@@ -113,7 +113,7 @@
     if (moviesWithoutTrailers.count == 0 && moviesWithTrailers.count == 0) {
         return;
     }
-    
+
     [ThreadingUtilities performSelector:@selector(backgroundEntryPoint:)
                                onTarget:self
                inBackgroundWithArgument:orderedMovies
@@ -132,11 +132,11 @@
         [FileUtilities writeObject:[NSArray array] toFile:[self trailerFilePath:movie.canonicalTitle]];
         return;
     }
-    
+
     NSArray* studioAndLocation = [index objectForKey:[indexKeys objectAtIndex:arrayIndex]];
     NSString* studio = [studioAndLocation objectAtIndex:0];
     NSString* location = [studioAndLocation objectAtIndex:1];
-    
+
     NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupTrailerListings?studio=%@&name=%@", [Application host], studio, location];
     NSString* trailersString = [NetworkUtilities stringWithContentsOfAddress:url
                                                                    important:NO];
@@ -144,17 +144,17 @@
         // didn't get any data.  ignore this for now.
         return;
     }
-    
+
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
     [FileUtilities writeObject:trailers toFile:[self trailerFilePath:movie.canonicalTitle]];
 }
 
 
 - (void) downloadTrailers:(NSArray*) movies
-                    index:(NSDictionary*) index 
+                    index:(NSDictionary*) index
                 indexKeys:(NSArray*) indexKeys {
     DifferenceEngine* engine = [DifferenceEngine engine];
-    
+
     for (Movie* movie in movies) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
@@ -170,18 +170,18 @@
 
 - (NSDictionary*) generateIndex:(NSString*) indexText {
     NSMutableDictionary* index = [NSMutableDictionary dictionary];
-    
+
     NSArray* rows = [indexText componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSArray* values = [row componentsSeparatedByString:@"\t"];
         if (values.count != 3) {
             continue;
         }
-        
+
         NSString* fullTitle = [values objectAtIndex:0];
         NSString* studio = [values objectAtIndex:1];
         NSString* location = [values objectAtIndex:2];
-        
+
         [index setObject:[NSArray arrayWithObjects:studio, location, nil]
                   forKey:fullTitle.lowercaseString];
     }
@@ -199,7 +199,7 @@
 
     NSDictionary* index = [self generateIndex:indexText];
     NSArray* indexKeys = index.allKeys;
-    
+
     for (NSArray* movies in arguments) {
         [self downloadTrailers:movies index:index indexKeys:indexKeys];
     }
