@@ -261,9 +261,9 @@
 - (void) updateDetailsBackgroundEntryPoint:(NSDictionary*) numbers {
     for (MovieNumbers* movie in [numbers objectForKey:@"Weekend"]) {
         NSAutoreleasePool* autoreleasePool = [[NSAutoreleasePool alloc] init];
-
-        [self downloadDetails:movie];
-
+        {
+            [self downloadDetails:movie];
+        }
         [autoreleasePool release];
     }
 }

@@ -130,9 +130,9 @@
     for (NSArray* list in arguments) {
         for (Movie* movie in list) {
             NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-
-            [self downloadPoster:movie postalCode:postalCode];
-
+            {
+                [self downloadPoster:movie postalCode:postalCode];
+            }
             [autoreleasePool release];
         }
     }

@@ -147,11 +147,11 @@ static NSString* hash_key = @"Hash";
 
     XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:url important:NO];
 
-    if (resultElement != nil) {
-        return [self extractReviews:resultElement];
+    if (resultElement == nil) {
+        return nil;
     }
 
-    return nil;
+    return [self extractReviews:resultElement];
 }
 
 
@@ -186,30 +186,55 @@ static NSString* hash_key = @"Hash";
 
 
 - (void) downloadReviews:(NSDictionary*) supplementaryInformation
+              ratingsProvider:(NSInteger) ratingsProvider
+                forMovie:(NSString*) movieTitle {
+    MovieRating* info = [supplementaryInformation objectForKey:movieTitle];
+    NSString* url = [[self serverAddress:info] stringByAppendingString:@"&hash=true"];
+    
+    NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    if (serverHash == nil) {
+        serverHash = @"0";
+    }
+    
+    NSString* localHash = [self reviewsHashForMovie:movieTitle];
+    
+    if ([serverHash isEqual:localHash]) {
+        return;
+    }
+    
+    NSArray* reviews = [self downloadInfoReviews:info];
+    if (reviews == nil) {
+        // didn't download.  just ignore it.
+        return;
+    }
+    
+    if (reviews.count == 0) {
+        // we got no reviews.  only save that fact if we don't currently have
+        // any reviews.  This way we don't end up checking every single time
+        // for movies that don't have reviews yet
+        NSArray* existingReviews = [self reviewsForMovie:movieTitle];
+        if (existingReviews.count > 0) {
+            // we have reviews already.  don't wipe it out.
+            return;
+        }
+    }
+
+    [self saveMovie:movieTitle reviews:reviews hash:serverHash ratingsProvider:ratingsProvider];
+}
+
+
+- (void) downloadReviews:(NSDictionary*) supplementaryInformation
          ratingsProvider:(NSInteger) ratingsProvider {
-    for (NSString* movieId in supplementaryInformation) {
+    for (NSString* movieTitle in supplementaryInformation) {
         if (self.model.ratingsProviderIndex != ratingsProvider) {
             break;
         }
 
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
         {
-            MovieRating* info = [supplementaryInformation objectForKey:movieId];
-            NSString* url = [[self serverAddress:info] stringByAppendingString:@"&hash=true"];
-
-            NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
-            if (serverHash == nil) {
-                serverHash = @"0";
-            }
-
-            NSString* localHash = [self reviewsHashForMovie:movieId];
-
-            if (localHash == nil || ![localHash isEqual:serverHash]) {
-                NSArray* reviews = [self downloadInfoReviews:info];
-                if (reviews.count > 0) {
-                    [self saveMovie:movieId reviews:reviews hash:serverHash ratingsProvider:ratingsProvider];
-                }
-            }
+            [self downloadReviews:supplementaryInformation
+                  ratingsProvider:ratingsProvider
+                         forMovie:movieTitle];
         }
         [autoreleasePool release];
     }
