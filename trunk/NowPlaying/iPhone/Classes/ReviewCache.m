@@ -204,14 +204,11 @@ static NSString* hash_key = @"Hash";
 
             NSString* localHash = [self reviewsHashForMovie:movieId];
 
-            if (localHash != nil &&
-                [localHash isEqual:serverHash]) {
-                continue;
-            }
-
-            NSArray* reviews = [self downloadInfoReviews:info];
-            if (reviews.count > 0) {
-                [self saveMovie:movieId reviews:reviews hash:serverHash ratingsProvider:ratingsProvider];
+            if (localHash == nil || ![localHash isEqual:serverHash]) {
+                NSArray* reviews = [self downloadInfoReviews:info];
+                if (reviews.count > 0) {
+                    [self saveMovie:movieId reviews:reviews hash:serverHash ratingsProvider:ratingsProvider];
+                }
             }
         }
         [autoreleasePool release];
