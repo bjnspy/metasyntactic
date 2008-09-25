@@ -113,8 +113,10 @@
     NSDate* lastLookupDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[Application upcomingMoviesIndexFile]
                                                                                error:NULL] objectForKey:NSFileModificationDate];
 
-    if ([self tooSoon:lastLookupDate]) {
-        return;
+    if (lastLookupDate != nil) {
+        if (ABS([lastLookupDate timeIntervalSinceNow]) > (3 * ONE_DAY)) {
+            return;
+        }
     }
 
     [ThreadingUtilities performSelector:@selector(updateMoviesList)
