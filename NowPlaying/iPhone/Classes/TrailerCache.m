@@ -162,12 +162,12 @@
     NSArray* rows = [index componentsSeparatedByString:@"\n"];
     for (NSString* row in rows) {
         NSAutoreleasePool* autoreleasePool= [[NSAutoreleasePool alloc] init];
-
-        [self processRow:row
-            moviesTitles:movieTitles
-    lowercaseMovieTitles:lowercaseMovieTitles
-                  engine:engine];
-
+        {
+            [self processRow:row
+                moviesTitles:movieTitles
+        lowercaseMovieTitles:lowercaseMovieTitles
+                      engine:engine];
+        }
         [autoreleasePool release];
     }
 }
