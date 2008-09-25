@@ -17,9 +17,9 @@
 #import "ReviewCache.h"
 
 #import "Application.h"
-#import "MovieRating.h"
 #import "FileUtilities.h"
 #import "Location.h"
+#import "MovieRating.h"
 #import "NetworkUtilities.h"
 #import "NowPlayingModel.h"
 #import "Review.h"
@@ -190,24 +190,24 @@ static NSString* hash_key = @"Hash";
                 forMovie:(NSString*) movieTitle {
     MovieRating* info = [supplementaryInformation objectForKey:movieTitle];
     NSString* url = [[self serverAddress:info] stringByAppendingString:@"&hash=true"];
-    
+
     NSString* serverHash = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
     if (serverHash == nil) {
         serverHash = @"0";
     }
-    
+
     NSString* localHash = [self reviewsHashForMovie:movieTitle];
-    
+
     if ([serverHash isEqual:localHash]) {
         return;
     }
-    
+
     NSArray* reviews = [self downloadInfoReviews:info];
     if (reviews == nil) {
         // didn't download.  just ignore it.
         return;
     }
-    
+
     if (reviews.count == 0) {
         // we got no reviews.  only save that fact if we don't currently have
         // any reviews.  This way we don't end up checking every single time

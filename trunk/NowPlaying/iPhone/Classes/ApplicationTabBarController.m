@@ -52,7 +52,7 @@
     if (self = [super init]) {
         self.appDelegate = appDel;
         self.lastRefreshDate = nil;
-        
+
         self.moviesNavigationController   = [[[MoviesNavigationController alloc] initWithTabBarController:self] autorelease];
         self.theatersNavigationController = [[[TheatersNavigationController alloc] initWithTabBarController:self] autorelease];
         self.upcomingMoviesNavigationController = [[[UpcomingMoviesNavigationController alloc] initWithTabBarController:self] autorelease];
@@ -115,14 +115,14 @@
             // were freshed already since this request was issued.  ignore it
             return;
         }
-        
+
         if (ABS([lastRefreshDate timeIntervalSinceDate:date]) < 3) {
             // it's too soon since the last refresh.  wait a while
             [self performSelector:@selector(refresh:) withObject:date afterDelay:3];
             return;
         }
     }
-    
+
     self.lastRefreshDate = [NSDate date];
 
     for (id viewController in self.viewControllers) {

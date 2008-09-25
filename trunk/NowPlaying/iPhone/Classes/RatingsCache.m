@@ -17,10 +17,10 @@
 #import "RatingsCache.h"
 
 #import "Application.h"
-#import "MovieRating.h"
 #import "FileUtilities.h"
 #import "GoogleRatingsDownloader.h"
 #import "MetacriticRatingsDownloader.h"
+#import "MovieRating.h"
 #import "NowPlayingModel.h"
 #import "RottenTomatoesRatingsDownloader.h"
 

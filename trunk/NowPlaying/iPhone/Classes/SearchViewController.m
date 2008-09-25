@@ -80,7 +80,7 @@
     searchBar.autocapitalizationType = UITextAutocapitalizationTypeNone;
     searchBar.autoresizingMask = UIViewAutoresizingFlexibleWidth;
     [searchBar sizeToFit];
-    
+
     CGRect searchBarRect = searchBar.frame;
     CGRectDivide(rect, &searchBarRect, &rect, searchBarRect.size.height, CGRectMinYEdge);
 
@@ -127,11 +127,11 @@
     if (searchResult == nil) {
         return 1;
     }
-    
+
     if ([self noResults]) {
         return 1;
     }
-    
+
     return 3;
 }
 
@@ -140,7 +140,7 @@
       numberOfRowsInSection:(NSInteger) section {
     if (searchResult == nil) {        return 0;
     }
-    
+
     if ([self noResults]) {
         return 0;
     }
@@ -223,7 +223,7 @@
     if ([self noResults]) {
         return [self noResultsCell];
     }
-    
+
     if (indexPath.section == 0) {
         return [self movieCellForRow:indexPath.row];
     } else if (indexPath.section == 1) {
@@ -301,7 +301,7 @@
     [UIView beginAnimations:nil context:NULL];
     {
         [UIView setAnimationDuration:0.3];
-        
+
         CGRect tableViewFrame = tableView.frame;
         tableViewFrame.size.height -= rect.size.height;
         tableView.frame = tableViewFrame;
@@ -317,7 +317,7 @@
     [UIView beginAnimations:nil context:NULL];
     {
         [UIView setAnimationDuration:0.3];
-        
+
         CGRect tableViewFrame = tableView.frame;
         tableViewFrame.size.height += rect.size.height;
         tableView.frame = tableViewFrame;
@@ -342,7 +342,7 @@
     } else {
         [searchEngine submitRequest:searchText];
     }
-    
+
     [self.tableView reloadData];
 }
 
@@ -362,7 +362,7 @@
     if (searchResult == nil) {
         return nil;
     }
-    
+
     if ([self noResults]) {
         return NSLocalizedString(@"No information found", nil);
     }
@@ -380,7 +380,7 @@
             return NSLocalizedString(@"Upcoming", nil);
         }
     }
-    
+
     return nil;
 }
 
