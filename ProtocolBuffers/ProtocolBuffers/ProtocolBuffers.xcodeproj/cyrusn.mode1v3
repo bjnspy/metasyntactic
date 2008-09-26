@@ -324,7 +324,7 @@
 							<key>PBXSmartGroupTreeModuleOutlineStateSelectionKey</key>
 							<array>
 								<array>
-									<integer>20</integer>
+									<integer>22</integer>
 									<integer>1</integer>
 									<integer>0</integer>
 								</array>
@@ -367,7 +367,7 @@
 								<key>PBXProjectModuleGUID</key>
 								<string>1CE0B20306471E060097A5F4</string>
 								<key>PBXProjectModuleLabel</key>
-								<string>ExtensionRegistry.h</string>
+								<string>ExtensionRegistry_DescriptorIntPair.h</string>
 								<key>PBXSplitModuleInNavigatorKey</key>
 								<dict>
 									<key>Split0</key>
@@ -375,11 +375,11 @@
 										<key>PBXProjectModuleGUID</key>
 										<string>1CE0B20406471E060097A5F4</string>
 										<key>PBXProjectModuleLabel</key>
-										<string>ExtensionRegistry.h</string>
+										<string>ExtensionRegistry_DescriptorIntPair.h</string>
 										<key>_historyCapacity</key>
 										<integer>0</integer>
 										<key>bookmark</key>
-										<string>74F74A3D0E8CC314009EFA0C</string>
+										<string>74F74A480E8CC469009EFA0C</string>
 										<key>history</key>
 										<array>
 											<string>74F7481D0E8CAEE4009EFA0C</string>
@@ -423,12 +423,10 @@
 											<string>74F74A270E8CC179009EFA0C</string>
 											<string>74F74A340E8CC314009EFA0C</string>
 											<string>74F74A350E8CC314009EFA0C</string>
-											<string>74F74A360E8CC314009EFA0C</string>
-											<string>74F74A370E8CC314009EFA0C</string>
-										</array>
-										<key>nextStack</key>
-										<array>
-											<string>74F74A3C0E8CC314009EFA0C</string>
+											<string>74F74A420E8CC469009EFA0C</string>
+											<string>74F74A430E8CC469009EFA0C</string>
+											<string>74F74A440E8CC469009EFA0C</string>
+											<string>74F74A450E8CC469009EFA0C</string>
 										</array>
 										<key>prevStack</key>
 										<array>
@@ -547,9 +545,8 @@
 											<string>74F74A2D0E8CC179009EFA0C</string>
 											<string>74F74A2E0E8CC179009EFA0C</string>
 											<string>74F74A380E8CC314009EFA0C</string>
-											<string>74F74A390E8CC314009EFA0C</string>
-											<string>74F74A3A0E8CC314009EFA0C</string>
 											<string>74F74A3B0E8CC314009EFA0C</string>
+											<string>74F74A460E8CC469009EFA0C</string>
 										</array>
 									</dict>
 									<key>SplitCount</key>
@@ -728,7 +725,7 @@
 	<key>StatusbarIsVisible</key>
 	<true/>
 	<key>TimeStamp</key>
-	<real>244106004.25299001</real>
+	<real>244106345.726722</real>
 	<key>ToolbarDisplayMode</key>
 	<integer>2</integer>
 	<key>ToolbarIsVisible</key>

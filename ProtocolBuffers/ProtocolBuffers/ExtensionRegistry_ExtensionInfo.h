@@ -19,7 +19,7 @@
     id<Message> defaultInstance;
 }
 
-+ (ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor;
-+ (ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor defaultInstance:(id<Message>) defaultInstance;
++ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor;
++ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor defaultInstance:(id<Message>) defaultInstance;
 
 @end
