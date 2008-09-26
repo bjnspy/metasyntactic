@@ -18,6 +18,7 @@
 
 }
 
+#if 0
 public static final class FileDescriptor {
     /** Convert the descriptor to its protocol message representation. */
     public FileDescriptorProto toProto() { return proto; }
@@ -274,5 +275,5 @@ public static final class FileDescriptor {
         }
     }
 }
-
+#endif
 @end
