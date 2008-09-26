@@ -19,6 +19,8 @@
 
 }
 
++ (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
+
 #if 0
 + (UnknownFieldSet_Builder*) newBuilder;
 + (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;

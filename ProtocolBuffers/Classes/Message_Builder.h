@@ -45,4 +45,4 @@
 - (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 - (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input;
 - (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
-    @end
+@end

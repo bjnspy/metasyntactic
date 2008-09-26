@@ -19,4 +19,13 @@
 
 @implementation UnknownFieldSet_Builder
 
+- (UnknownFieldSet*) build {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (UnknownFieldSet_Builder*) mergeFrom:(UnknownFieldSet*) other {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
 @end

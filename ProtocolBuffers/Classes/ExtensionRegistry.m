@@ -19,4 +19,8 @@
 
 @implementation ExtensionRegistry
 
++ (ExtensionRegistry*) getEmptyRegistry {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
 @end
