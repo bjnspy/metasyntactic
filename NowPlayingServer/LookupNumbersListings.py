@@ -10,8 +10,6 @@ import time
 from xml.dom.minidom import getDOMImplementation, parseString
 
 from Location import Location
-from MovieListings import MovieListings
-from TrailerListings import TrailerListings
 
 from google.appengine.ext import webapp
 from google.appengine.ext import db
@@ -20,7 +18,7 @@ from google.appengine.api import urlfetch
 
 class LookupNumbersListingsHandler(webapp.RequestHandler):
   def get(self):
-    #memcache.flush_all()    
+    #memcache.flush_all()
     q = self.request.get("q")
     id = self.request.get("id")
     hash = self.request.get("hash")

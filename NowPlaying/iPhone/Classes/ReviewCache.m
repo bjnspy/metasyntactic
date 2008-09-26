@@ -249,7 +249,8 @@ static NSString* hash_key = @"Hash";
     NSMutableDictionary* infoWithoutReviews = [NSMutableDictionary dictionary];
 
     for (NSString* title in supplementaryInformation) {
-        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:[self reviewFilePath:title ratingsProvider:ratingsProvider]
+        NSString* path = [self reviewFilePath:title ratingsProvider:ratingsProvider];
+        NSDate* downloadDate = [[[NSFileManager defaultManager] attributesOfItemAtPath:path
                                                                                  error:NULL] objectForKey:NSFileModificationDate];
 
         if (downloadDate == nil) {

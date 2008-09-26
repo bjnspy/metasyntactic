@@ -1,8 +1,13 @@
-#!/usr/bin/env python
+from google.appengine.ext import webapp
+from google.appengine.ext.webapp.util import run_wsgi_app
 
-import wsgiref.handlers
+import CacheStatistics
+import DeleteLocation
+import LookupMovieReviews2
+import LookupTheaterListings2
 import LookupLocation
 import LookupMovieListings
+import LookupMovieRatings
 import LookupMovieReviews
 import LookupIMDbListings
 import LookupNumbersListings
@@ -10,32 +15,32 @@ import LookupPosterListings
 import LookupTheaterListings
 import LookupTrailerListings
 import LookupUpcomingListings
-import CacheStatistics
-import DeleteLocation
 
-from google.appengine.ext import webapp
+import import_fixer
+import_fixer.FixImports('apphosting.api', 'onebox.showtimes.rpc', 'net.proto')
 
-class MainHandler(webapp.RequestHandler):
-  def get(self):
-    self.response.out.write('Hello world')
+from google3.onebox.showtimes.rpc import showtimes_onebox_service_pb
+
+application = webapp.WSGIApplication([
+    ('/LookupMovieReviews2', LookupMovieReviews2.LookupMovieReviews2Handler),
+    ('/LookupTheaterListings2', LookupTheaterListings2.LookupTheaterListings2Handler),
+    ('/CacheStatistics', CacheStatistics.CacheStatisticsHandler),
+    ('/DeleteLocation', DeleteLocation.DeleteLocationHandler),
+    ('/LookupLocation', LookupLocation.LookupLocationHandler),
+    ('/LookupIMDbListings', LookupIMDbListings.LookupIMDbListingsHandler),
+    ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
+    ('/LookupMovieRatings', LookupMovieRatings.LookupMovieRatingsHandler),
+    ('/LookupMovieReviews', LookupMovieReviews.LookupMovieReviewsHandler),
+    ('/LookupNumbersListings', LookupNumbersListings.LookupNumbersListingsHandler),
+    ('/LookupPosterListings', LookupPosterListings.LookupPosterListingsHandler),
+    ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler),
+    ('/LookupTrailerListings', LookupTrailerListings.LookupTrailerListingsHandler),
+    ('/LookupUpcomingListings', LookupUpcomingListings.LookupUpcomingListingsHandler),
+    ],
+    debug=True)
 
 def main():
-  application = webapp.WSGIApplication([
-      ('/DeleteLocation', DeleteLocation.DeleteLocationHandler),
-      ('/LookupLocation', LookupLocation.LookupLocationHandler),
-      ('/LookupIMDbListings', LookupIMDbListings.LookupIMDbListingsHandler),
-      ('/LookupMovieListings', LookupMovieListings.LookupMovieListingsHandler),
-      ('/LookupMovieReviews', LookupMovieReviews.LookupMovieReviewsHandler),
-      ('/LookupNumbersListings', LookupNumbersListings.LookupNumbersListingsHandler),
-      ('/LookupPosterListings', LookupPosterListings.LookupPosterListingsHandler),
-      ('/LookupTheaterListings', LookupTheaterListings.LookupTheaterListingsHandler),
-      ('/LookupTrailerListings', LookupTrailerListings.LookupTrailerListingsHandler),
-      ('/LookupUpcomingListings', LookupUpcomingListings.LookupUpcomingListingsHandler),
-      ('/CacheStatistics', CacheStatistics.CacheStatisticsHandler)
-      ],
-      debug=True)
-  wsgiref.handlers.CGIHandler().run(application)
+  run_wsgi_app(application)
 
-
-if __name__ == '__main__':
+if __name__ == "__main__":
   main()

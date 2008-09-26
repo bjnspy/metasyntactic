@@ -16,9 +16,8 @@ from google.appengine.api import urlfetch
 
 class LookupIMDbListingsHandler(webapp.RequestHandler):
   def get(self):
-    q = self.request.get("q")
-
     #memcache.flush_all()
+    q = self.request.get("q")
 
     location = self.get_listings_from_cache(urllib.quote(q))
     if location is None:
@@ -43,16 +42,16 @@ class LookupIMDbListingsHandler(webapp.RequestHandler):
     nodes = element.getElementsByTagName(name)[0].childNodes
     if len(nodes) > 0:
       return nodes[0].nodeValue
-    
+
     return ""
-    
+
 
   def get_listings_from_webservice(self, q):
-    keys = [ "TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_", "JTVP_y3V34H93_TVoJpPPS.yd37hCbVj2kbRW5BdY4pu0ueVrk6.r6BWhOfaP1SHjrF8hWk-" ] 
+    keys = [ "TVq1wv_V34E9W2rK45TyIi1nj1BcnTpf2D00jo6zc4_HyqgVpu8QHRfaGLsbRja4RVO25sb_", "JTVP_y3V34H93_TVoJpPPS.yd37hCbVj2kbRW5BdY4pu0ueVrk6.r6BWhOfaP1SHjrF8hWk-" ]
     index = random.randint(0, len(keys) - 1)
     key = keys[index]
 
-    url = "http://search.yahooapis.com/WebSearchService/V1/webSearch?appid=" + key + "&query=" + q + "&results=1&site=www.imdb.com" 
+    url = "http://search.yahooapis.com/WebSearchService/V1/webSearch?appid=" + key + "&query=" + q + "&results=1&site=www.imdb.com"
     content = urlfetch.fetch(url).content
 
     document = parseString(content)
@@ -71,4 +70,3 @@ class LookupIMDbListingsHandler(webapp.RequestHandler):
 
     url = self.get_value(resultElement, "Url")
     return url
-  

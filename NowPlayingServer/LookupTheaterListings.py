@@ -11,7 +11,6 @@ import LookupMovieTicketsTheaterListings
 from xml.dom.minidom import getDOMImplementation, parseString
 
 from Location import Location
-from MovieListings import MovieListings
 from TheaterListings import TheaterListings
 
 from google.appengine.ext import webapp
@@ -44,7 +43,7 @@ class LookupTheaterListingsHandler(webapp.RequestHandler):
 #    self.out_of_date()
 #    return
 
-#    memcache.flush_all()
+    #memcache.flush_all()
     q = self.request.get("q")
     date = self.request.get("date")
     provider = self.request.get("provider")

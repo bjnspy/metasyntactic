@@ -1,0 +1,440 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 45;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		74F7480A0E8CAA17009EFA0C /* AbstractMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F748080E8CAA17009EFA0C /* AbstractMessage.h */; };
+		74F7480B0E8CAA17009EFA0C /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F748090E8CAA17009EFA0C /* AbstractMessage.m */; };
+		74F7480F0E8CAA7C009EFA0C /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F7480D0E8CAA7C009EFA0C /* ForwardDeclarations.h */; };
+		74F748170E8CABC9009EFA0C /* WireFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F748150E8CABC9009EFA0C /* WireFormat.h */; };
+		74F748180E8CABC9009EFA0C /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F748160E8CABC9009EFA0C /* WireFormat.m */; };
+		74F7483F0E8CAEF8009EFA0C /* CodedInputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F7483D0E8CAEF8009EFA0C /* CodedInputStream.h */; };
+		74F748400E8CAEF8009EFA0C /* CodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F7483E0E8CAEF8009EFA0C /* CodedInputStream.m */; };
+		74F748470E8CAF0C009EFA0C /* CodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F748450E8CAF0C009EFA0C /* CodedOutputStream.h */; };
+		74F748480E8CAF0C009EFA0C /* CodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F748460E8CAF0C009EFA0C /* CodedOutputStream.m */; };
+		74F7484B0E8CAF16009EFA0C /* Descriptors.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F748490E8CAF16009EFA0C /* Descriptors.h */; };
+		74F7484C0E8CAF16009EFA0C /* Descriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F7484A0E8CAF16009EFA0C /* Descriptors.m */; };
+		74F7484F0E8CAF2C009EFA0C /* DynamicMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F7484D0E8CAF2C009EFA0C /* DynamicMessage.h */; };
+		74F748500E8CAF2C009EFA0C /* DynamicMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F7484E0E8CAF2C009EFA0C /* DynamicMessage.m */; };
+		74F748530E8CAF41009EFA0C /* ExtensionRegistry.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F748510E8CAF41009EFA0C /* ExtensionRegistry.h */; };
+		74F748540E8CAF41009EFA0C /* ExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F748520E8CAF41009EFA0C /* ExtensionRegistry.m */; };
+		74F748570E8CAF73009EFA0C /* FieldSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F748550E8CAF73009EFA0C /* FieldSet.h */; };
+		74F748580E8CAF73009EFA0C /* FieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F748560E8CAF73009EFA0C /* FieldSet.m */; };
+		74F7485B0E8CAF81009EFA0C /* GeneratedMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F748590E8CAF81009EFA0C /* GeneratedMessage.h */; };
+		74F7485C0E8CAF81009EFA0C /* GeneratedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F7485A0E8CAF81009EFA0C /* GeneratedMessage.m */; };
+		74F7485F0E8CAFAA009EFA0C /* Message.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F7485D0E8CAFAA009EFA0C /* Message.h */; };
+		74F748630E8CB009009EFA0C /* Service.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F748610E8CB009009EFA0C /* Service.h */; };
+		74F748670E8CB04F009EFA0C /* UnknownFieldSet.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F748650E8CB04F009EFA0C /* UnknownFieldSet.h */; };
+		74F748680E8CB04F009EFA0C /* UnknownFieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F748660E8CB04F009EFA0C /* UnknownFieldSet.m */; };
+		74F749470E8CB2B8009EFA0C /* UnknownFieldSet_Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F749450E8CB2B8009EFA0C /* UnknownFieldSet_Builder.h */; };
+		74F749480E8CB2B8009EFA0C /* UnknownFieldSet_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F749460E8CB2B8009EFA0C /* UnknownFieldSet_Builder.m */; };
+		74F7494B0E8CB2F5009EFA0C /* Field_Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F749490E8CB2F5009EFA0C /* Field_Builder.h */; };
+		74F7494C0E8CB2F5009EFA0C /* Field_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F7494A0E8CB2F5009EFA0C /* Field_Builder.m */; };
+		74F7494F0E8CB40C009EFA0C /* UnknownFieldSet_Field.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F7494D0E8CB40C009EFA0C /* UnknownFieldSet_Field.h */; };
+		74F749500E8CB40C009EFA0C /* UnknownFieldSet_Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F7494E0E8CB40C009EFA0C /* UnknownFieldSet_Field.m */; };
+		74F749530E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F749510E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.h */; };
+		74F749540E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F749520E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.m */; };
+		74F7499A0E8CB726009EFA0C /* AbstractMessage_Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F749980E8CB726009EFA0C /* AbstractMessage_Builder.h */; };
+		74F7499B0E8CB726009EFA0C /* AbstractMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F749990E8CB726009EFA0C /* AbstractMessage_Builder.m */; };
+		74F7499E0E8CB765009EFA0C /* Message_Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F7499C0E8CB765009EFA0C /* Message_Builder.h */; };
+		74F749F20E8CBDF9009EFA0C /* DynamicMessage_Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F749F00E8CBDF9009EFA0C /* DynamicMessage_Builder.h */; };
+		74F749F30E8CBDF9009EFA0C /* DynamicMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F749F10E8CBDF9009EFA0C /* DynamicMessage_Builder.m */; };
+		74F74A320E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F74A300E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.h */; };
+		74F74A330E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F74A310E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.m */; };
+		74F74A400E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.h in Headers */ = {isa = PBXBuildFile; fileRef = 74F74A3E0E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.h */; };
+		74F74A410E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74F74A3F0E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.m */; };
+		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
+		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0867D69BFE84028FC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
+		0867D6A5FE840307C02AAC07 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
+		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
+		32DBCF5E0370ADEE00C91783 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
+		74F748080E8CAA17009EFA0C /* AbstractMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage.h; sourceTree = "<group>"; };
+		74F748090E8CAA17009EFA0C /* AbstractMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMessage.m; sourceTree = "<group>"; };
+		74F7480D0E8CAA7C009EFA0C /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
+		74F748150E8CABC9009EFA0C /* WireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireFormat.h; sourceTree = "<group>"; };
+		74F748160E8CABC9009EFA0C /* WireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WireFormat.m; sourceTree = "<group>"; };
+		74F7483D0E8CAEF8009EFA0C /* CodedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodedInputStream.h; sourceTree = "<group>"; };
+		74F7483E0E8CAEF8009EFA0C /* CodedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedInputStream.m; sourceTree = "<group>"; };
+		74F748450E8CAF0C009EFA0C /* CodedOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodedOutputStream.h; sourceTree = "<group>"; };
+		74F748460E8CAF0C009EFA0C /* CodedOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedOutputStream.m; sourceTree = "<group>"; };
+		74F748490E8CAF16009EFA0C /* Descriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptors.h; sourceTree = "<group>"; };
+		74F7484A0E8CAF16009EFA0C /* Descriptors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptors.m; sourceTree = "<group>"; };
+		74F7484D0E8CAF2C009EFA0C /* DynamicMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicMessage.h; sourceTree = "<group>"; };
+		74F7484E0E8CAF2C009EFA0C /* DynamicMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicMessage.m; sourceTree = "<group>"; };
+		74F748510E8CAF41009EFA0C /* ExtensionRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry.h; sourceTree = "<group>"; };
+		74F748520E8CAF41009EFA0C /* ExtensionRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry.m; sourceTree = "<group>"; };
+		74F748550E8CAF73009EFA0C /* FieldSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldSet.h; sourceTree = "<group>"; };
+		74F748560E8CAF73009EFA0C /* FieldSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldSet.m; sourceTree = "<group>"; };
+		74F748590E8CAF81009EFA0C /* GeneratedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage.h; sourceTree = "<group>"; };
+		74F7485A0E8CAF81009EFA0C /* GeneratedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage.m; sourceTree = "<group>"; };
+		74F7485D0E8CAFAA009EFA0C /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		74F748610E8CB009009EFA0C /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
+		74F748650E8CB04F009EFA0C /* UnknownFieldSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownFieldSet.h; sourceTree = "<group>"; };
+		74F748660E8CB04F009EFA0C /* UnknownFieldSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownFieldSet.m; sourceTree = "<group>"; };
+		74F749450E8CB2B8009EFA0C /* UnknownFieldSet_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownFieldSet_Builder.h; sourceTree = "<group>"; };
+		74F749460E8CB2B8009EFA0C /* UnknownFieldSet_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownFieldSet_Builder.m; sourceTree = "<group>"; };
+		74F749490E8CB2F5009EFA0C /* Field_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field_Builder.h; sourceTree = "<group>"; };
+		74F7494A0E8CB2F5009EFA0C /* Field_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field_Builder.m; sourceTree = "<group>"; };
+		74F7494D0E8CB40C009EFA0C /* UnknownFieldSet_Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownFieldSet_Field.h; sourceTree = "<group>"; };
+		74F7494E0E8CB40C009EFA0C /* UnknownFieldSet_Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownFieldSet_Field.m; sourceTree = "<group>"; };
+		74F749510E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownFieldSet_Field_Builder.h; sourceTree = "<group>"; };
+		74F749520E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownFieldSet_Field_Builder.m; sourceTree = "<group>"; };
+		74F749980E8CB726009EFA0C /* AbstractMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage_Builder.h; sourceTree = "<group>"; };
+		74F749990E8CB726009EFA0C /* AbstractMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMessage_Builder.m; sourceTree = "<group>"; };
+		74F7499C0E8CB765009EFA0C /* Message_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message_Builder.h; sourceTree = "<group>"; };
+		74F749F00E8CBDF9009EFA0C /* DynamicMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicMessage_Builder.h; sourceTree = "<group>"; };
+		74F749F10E8CBDF9009EFA0C /* DynamicMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicMessage_Builder.m; sourceTree = "<group>"; };
+		74F74A300E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry_ExtensionInfo.h; sourceTree = "<group>"; };
+		74F74A310E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry_ExtensionInfo.m; sourceTree = "<group>"; };
+		74F74A3E0E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry_DescriptorIntPair.h; sourceTree = "<group>"; };
+		74F74A3F0E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry_DescriptorIntPair.m; sourceTree = "<group>"; };
+		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8DC2EF5B0486A6940098B216 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtocolBuffers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8DC2EF560486A6940098B216 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		034768DFFF38A50411DB9C8B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5B0486A6940098B216 /* ProtocolBuffers.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		0867D691FE84028FC02AAC07 /* ProtocolBuffers */ = {
+			isa = PBXGroup;
+			children = (
+				08FB77AEFE84172EC02AAC07 /* Classes */,
+				32C88DFF0371C24200C91783 /* Other Sources */,
+				089C1665FE841158C02AAC07 /* Resources */,
+				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
+				034768DFFF38A50411DB9C8B /* Products */,
+			);
+			name = ProtocolBuffers;
+			sourceTree = "<group>";
+		};
+		0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */,
+				1058C7B2FEA5585E11CA2CBB /* Other Frameworks */,
+			);
+			name = "External Frameworks and Libraries";
+			sourceTree = "<group>";
+		};
+		089C1665FE841158C02AAC07 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				8DC2EF5A0486A6940098B216 /* Info.plist */,
+				089C1666FE841158C02AAC07 /* InfoPlist.strings */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		08FB77AEFE84172EC02AAC07 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				74F748080E8CAA17009EFA0C /* AbstractMessage.h */,
+				74F748090E8CAA17009EFA0C /* AbstractMessage.m */,
+				74F749980E8CB726009EFA0C /* AbstractMessage_Builder.h */,
+				74F749990E8CB726009EFA0C /* AbstractMessage_Builder.m */,
+				74F7483D0E8CAEF8009EFA0C /* CodedInputStream.h */,
+				74F7483E0E8CAEF8009EFA0C /* CodedInputStream.m */,
+				74F748150E8CABC9009EFA0C /* WireFormat.h */,
+				74F748160E8CABC9009EFA0C /* WireFormat.m */,
+				74F748450E8CAF0C009EFA0C /* CodedOutputStream.h */,
+				74F748460E8CAF0C009EFA0C /* CodedOutputStream.m */,
+				74F748490E8CAF16009EFA0C /* Descriptors.h */,
+				74F7484A0E8CAF16009EFA0C /* Descriptors.m */,
+				74F7484D0E8CAF2C009EFA0C /* DynamicMessage.h */,
+				74F7484E0E8CAF2C009EFA0C /* DynamicMessage.m */,
+				74F749F00E8CBDF9009EFA0C /* DynamicMessage_Builder.h */,
+				74F749F10E8CBDF9009EFA0C /* DynamicMessage_Builder.m */,
+				74F748510E8CAF41009EFA0C /* ExtensionRegistry.h */,
+				74F748520E8CAF41009EFA0C /* ExtensionRegistry.m */,
+				74F74A300E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.h */,
+				74F74A310E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.m */,
+				74F74A3E0E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.h */,
+				74F74A3F0E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.m */,
+				74F748550E8CAF73009EFA0C /* FieldSet.h */,
+				74F748560E8CAF73009EFA0C /* FieldSet.m */,
+				74F748590E8CAF81009EFA0C /* GeneratedMessage.h */,
+				74F7485A0E8CAF81009EFA0C /* GeneratedMessage.m */,
+				74F7485D0E8CAFAA009EFA0C /* Message.h */,
+				74F7499C0E8CB765009EFA0C /* Message_Builder.h */,
+				74F748610E8CB009009EFA0C /* Service.h */,
+				74F748650E8CB04F009EFA0C /* UnknownFieldSet.h */,
+				74F748660E8CB04F009EFA0C /* UnknownFieldSet.m */,
+				74F749450E8CB2B8009EFA0C /* UnknownFieldSet_Builder.h */,
+				74F749460E8CB2B8009EFA0C /* UnknownFieldSet_Builder.m */,
+				74F7494D0E8CB40C009EFA0C /* UnknownFieldSet_Field.h */,
+				74F7494E0E8CB40C009EFA0C /* UnknownFieldSet_Field.m */,
+				74F749510E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.h */,
+				74F749520E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.m */,
+				74F749490E8CB2F5009EFA0C /* Field_Builder.h */,
+				74F7494A0E8CB2F5009EFA0C /* Field_Builder.m */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		1058C7B0FEA5585E11CA2CBB /* Linked Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */,
+			);
+			name = "Linked Frameworks";
+			sourceTree = "<group>";
+		};
+		1058C7B2FEA5585E11CA2CBB /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0867D6A5FE840307C02AAC07 /* AppKit.framework */,
+				D2F7E79907B2D74100F64583 /* CoreData.framework */,
+				0867D69BFE84028FC02AAC07 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		32C88DFF0371C24200C91783 /* Other Sources */ = {
+			isa = PBXGroup;
+			children = (
+				32DBCF5E0370ADEE00C91783 /* ProtocolBuffers_Prefix.pch */,
+				74F7480D0E8CAA7C009EFA0C /* ForwardDeclarations.h */,
+			);
+			name = "Other Sources";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		8DC2EF500486A6940098B216 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74F7480A0E8CAA17009EFA0C /* AbstractMessage.h in Headers */,
+				74F7480F0E8CAA7C009EFA0C /* ForwardDeclarations.h in Headers */,
+				74F748170E8CABC9009EFA0C /* WireFormat.h in Headers */,
+				74F7483F0E8CAEF8009EFA0C /* CodedInputStream.h in Headers */,
+				74F748470E8CAF0C009EFA0C /* CodedOutputStream.h in Headers */,
+				74F7484B0E8CAF16009EFA0C /* Descriptors.h in Headers */,
+				74F7484F0E8CAF2C009EFA0C /* DynamicMessage.h in Headers */,
+				74F748530E8CAF41009EFA0C /* ExtensionRegistry.h in Headers */,
+				74F748570E8CAF73009EFA0C /* FieldSet.h in Headers */,
+				74F7485B0E8CAF81009EFA0C /* GeneratedMessage.h in Headers */,
+				74F7485F0E8CAFAA009EFA0C /* Message.h in Headers */,
+				74F748630E8CB009009EFA0C /* Service.h in Headers */,
+				74F748670E8CB04F009EFA0C /* UnknownFieldSet.h in Headers */,
+				74F749470E8CB2B8009EFA0C /* UnknownFieldSet_Builder.h in Headers */,
+				74F7494B0E8CB2F5009EFA0C /* Field_Builder.h in Headers */,
+				74F7494F0E8CB40C009EFA0C /* UnknownFieldSet_Field.h in Headers */,
+				74F749530E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.h in Headers */,
+				74F7499A0E8CB726009EFA0C /* AbstractMessage_Builder.h in Headers */,
+				74F7499E0E8CB765009EFA0C /* Message_Builder.h in Headers */,
+				74F749F20E8CBDF9009EFA0C /* DynamicMessage_Builder.h in Headers */,
+				74F74A320E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.h in Headers */,
+				74F74A400E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		8DC2EF4F0486A6940098B216 /* ProtocolBuffers */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "ProtocolBuffers" */;
+			buildPhases = (
+				8DC2EF500486A6940098B216 /* Headers */,
+				8DC2EF520486A6940098B216 /* Resources */,
+				8DC2EF540486A6940098B216 /* Sources */,
+				8DC2EF560486A6940098B216 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ProtocolBuffers;
+			productInstallPath = "$(HOME)/Library/Frameworks";
+			productName = ProtocolBuffers;
+			productReference = 8DC2EF5B0486A6940098B216 /* ProtocolBuffers.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0867D690FE84028FC02AAC07 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = 1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "ProtocolBuffers" */;
+			compatibilityVersion = "Xcode 3.1";
+			hasScannedForEncodings = 1;
+			mainGroup = 0867D691FE84028FC02AAC07 /* ProtocolBuffers */;
+			productRefGroup = 034768DFFF38A50411DB9C8B /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8DC2EF4F0486A6940098B216 /* ProtocolBuffers */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8DC2EF520486A6940098B216 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8DC2EF540486A6940098B216 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74F7480B0E8CAA17009EFA0C /* AbstractMessage.m in Sources */,
+				74F748180E8CABC9009EFA0C /* WireFormat.m in Sources */,
+				74F748400E8CAEF8009EFA0C /* CodedInputStream.m in Sources */,
+				74F748480E8CAF0C009EFA0C /* CodedOutputStream.m in Sources */,
+				74F7484C0E8CAF16009EFA0C /* Descriptors.m in Sources */,
+				74F748500E8CAF2C009EFA0C /* DynamicMessage.m in Sources */,
+				74F748540E8CAF41009EFA0C /* ExtensionRegistry.m in Sources */,
+				74F748580E8CAF73009EFA0C /* FieldSet.m in Sources */,
+				74F7485C0E8CAF81009EFA0C /* GeneratedMessage.m in Sources */,
+				74F748680E8CB04F009EFA0C /* UnknownFieldSet.m in Sources */,
+				74F749480E8CB2B8009EFA0C /* UnknownFieldSet_Builder.m in Sources */,
+				74F7494C0E8CB2F5009EFA0C /* Field_Builder.m in Sources */,
+				74F749500E8CB40C009EFA0C /* UnknownFieldSet_Field.m in Sources */,
+				74F749540E8CB56E009EFA0C /* UnknownFieldSet_Field_Builder.m in Sources */,
+				74F7499B0E8CB726009EFA0C /* AbstractMessage_Builder.m in Sources */,
+				74F749F30E8CBDF9009EFA0C /* DynamicMessage_Builder.m in Sources */,
+				74F74A330E8CC1DD009EFA0C /* ExtensionRegistry_ExtensionInfo.m in Sources */,
+				74F74A410E8CC35B009EFA0C /* ExtensionRegistry_DescriptorIntPair.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		089C1666FE841158C02AAC07 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				089C1667FE841158C02AAC07 /* English */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		1DEB91AE08733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				COPY_PHASE_STRIP = NO;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_FIX_AND_CONTINUE = YES;
+				GCC_MODEL_TUNING = G5;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ProtocolBuffers_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				PRODUCT_NAME = ProtocolBuffers;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Debug;
+		};
+		1DEB91AF08733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				FRAMEWORK_VERSION = A;
+				GCC_MODEL_TUNING = G5;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = ProtocolBuffers_Prefix.pch;
+				INFOPLIST_FILE = Info.plist;
+				INSTALL_PATH = "$(HOME)/Library/Frameworks";
+				PRODUCT_NAME = ProtocolBuffers;
+				WRAPPER_EXTENSION = framework;
+			};
+			name = Release;
+		};
+		1DEB91B208733DA50010E9CD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Debug;
+		};
+		1DEB91B308733DA50010E9CD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				GCC_C_LANGUAGE_STANDARD = c99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				PREBINDING = NO;
+				SDKROOT = macosx10.5;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1DEB91AD08733DA50010E9CD /* Build configuration list for PBXNativeTarget "ProtocolBuffers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91AE08733DA50010E9CD /* Debug */,
+				1DEB91AF08733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1DEB91B108733DA50010E9CD /* Build configuration list for PBXProject "ProtocolBuffers" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1DEB91B208733DA50010E9CD /* Debug */,
+				1DEB91B308733DA50010E9CD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0867D690FE84028FC02AAC07 /* Project object */;
+}

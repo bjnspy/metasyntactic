@@ -11,7 +11,6 @@ import LookupRottenTomatoesReviews
 from xml.dom.minidom import getDOMImplementation, parseString
 
 from Location import Location
-from MovieListings import MovieListings
 from TheaterListings import TheaterListings
 
 from google.appengine.ext import webapp

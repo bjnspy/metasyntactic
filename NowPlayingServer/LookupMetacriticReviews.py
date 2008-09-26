@@ -11,7 +11,6 @@ import LookupRottenTomatoesReviews
 from xml.dom.minidom import getDOMImplementation, parseString
 
 from Location import Location
-from MovieListings import MovieListings
 from TheaterListings import TheaterListings
 
 from google.appengine.ext import webapp
@@ -31,7 +30,7 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
           (text, score, link, author, source) = review
           result += text + "\t" + score + "\t" + link + "\t" + author + "\t" + source
           result += u"\n"
-    
+
       return result
     else:
       document = getDOMImplementation().createDocument(None, "result", None)
@@ -52,35 +51,34 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
           reviewElement.setAttribute("source", source)
 
       return document.toxml()
-      
-    
+
   def extract_review(self, section):
     text = self.extract_text(section)
     if text is None:
         return None
-    
+
     score = self.extract_score(section)
     author = self.extract_author(section)
     source = self.extract_source(section)
     link = self.extract_link(section)
-    
+
     text = self.replace_lines(text)
     link = self.replace_lines(link)
     author = self.replace_lines(author)
     source = self.replace_lines(source)
-    
+
     return (text, score, link, author, source)
 
-  
+
   def extract_score(self, section):
     scoreStart = section.find("<div class=\"criticscore\">")
     if scoreStart < 0:
         return u""
-        
+
     scoreEnd = section.find("</div>", scoreStart)
     if scoreEnd < 0:
         return u""
-        
+
     return section[scoreStart + len("<div class=\"criticscore\">"):scoreEnd]
 
 
@@ -88,14 +86,14 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
     startLocation = section.find(anchor)
     if startLocation < 0:
         return u""
-                
+
     endLocation = section.find("</span>", startLocation)
     if endLocation < 0:
         return u""
-        
+
     result = section[(startLocation + len(anchor)):endLocation]
     result = result.replace("&amp;", "&")
-    
+
     return result;
 
 
@@ -111,11 +109,11 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
     startLocation = section.find("<a href=\"")
     if startLocation < 0:
         return u""
-        
+
     quoteLocation = section.find("\"", startLocation + len("<a href=\""))
     if quoteLocation < 0:
         return u""
-        
+
     address = section[(startLocation + len("<a href=\"")):quoteLocation]
     return address
 
@@ -124,16 +122,16 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
     startLocation = section.find("<div class=\"quote\">")
     if startLocation < 0:
         return None
-        
+
     endLocation = section.find("<br>", startLocation)
     if endLocation < 0:
         return None
-    
+
     result = section[(startLocation + len("<div class=\"quote\">")):endLocation].strip()
-        
+
     return result
-    
-    
+
+
   def replace_lines(self, string):
     string = string.replace("\r\n", " ")
     string = string.replace("\r", " ")
@@ -141,7 +139,7 @@ class LookupMetacriticReviewsHandler(webapp.RequestHandler):
     string = string.replace("\t", " ")
     return string
 
-    
+
   def extract_review_sections(self, content):
-    sections = content.split("<div class=\"scoreandreview\">")    
+    sections = content.split("<div class=\"scoreandreview\">")
     return sections[1:]
