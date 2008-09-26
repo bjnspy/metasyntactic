@@ -18,7 +18,7 @@ class LookupLocationHandler(webapp.RequestHandler):
   def get(self):
     q = self.request.get("q")
 
-#    memcache.flush_all()
+    #memcache.flush_all()
 
     location = self.get_location_from_cache(urllib.quote(q))
     if location is None:

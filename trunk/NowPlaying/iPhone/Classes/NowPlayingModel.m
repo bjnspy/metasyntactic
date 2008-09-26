@@ -924,19 +924,22 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         [options addObject:synopsis];
     }
 
-    synopsis = [self extraInformationForMovie:movie].synopsis;
-    if (synopsis.length > 0) {
-        [options addObject:synopsis];
-    }
-
-    synopsis = [upcomingCache synopsisForMovie:movie];
-    if (synopsis.length > 0) {
-        [options addObject:synopsis];
+    if (options.count == 0 || [[[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode] hasPrefix:@"en"]) {
+        synopsis = [self extraInformationForMovie:movie].synopsis;
+        if (synopsis.length > 0) {
+            [options addObject:synopsis];
+        }
+        
+        synopsis = [upcomingCache synopsisForMovie:movie];
+        if (synopsis.length > 0) {
+            [options addObject:synopsis];
+        }
     }
 
     if (options.count == 0) {
         return NSLocalizedString(@"No synopsis available.", nil);
     }
+        
 
     NSString* bestOption = @"";
     for (NSString* option in options) {

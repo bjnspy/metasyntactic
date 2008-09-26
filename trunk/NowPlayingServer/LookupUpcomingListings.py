@@ -9,8 +9,6 @@ import json
 from xml.dom.minidom import getDOMImplementation, parseString
 
 from Location import Location
-from MovieListings import MovieListings
-from TrailerListings import TrailerListings
 
 from google.appengine.ext import webapp
 from google.appengine.ext import db
@@ -19,7 +17,7 @@ from google.appengine.api import urlfetch
 
 class LookupUpcomingListingsHandler(webapp.RequestHandler):
   def get(self):
-    #memcache.flush_all()    
+    #memcache.flush_all()
     q = self.request.get("q")
     hash = self.request.get("hash")
     studio = self.request.get("studio")
@@ -137,7 +135,7 @@ class LookupUpcomingListingsHandler(webapp.RequestHandler):
       if len(parts) < 4:
         continue
 
-      if (not entity.has_key("releasedate") or 
+      if (not entity.has_key("releasedate") or
           not entity.has_key("title")):
         continue
 

@@ -9,8 +9,6 @@ import json
 from xml.dom.minidom import getDOMImplementation, parseString
 
 from Location import Location
-from MovieListings import MovieListings
-from TrailerListings import TrailerListings
 
 from google.appengine.ext import webapp
 from google.appengine.ext import db
@@ -19,7 +17,7 @@ from google.appengine.api import urlfetch
 
 class LookupTrailerListingsHandler(webapp.RequestHandler):
   def get(self):
-    #memcache.flush_all()    
+    #memcache.flush_all()
     q = self.request.get("q")
     studio = self.request.get("studio")
     name = self.request.get("name")
@@ -44,7 +42,7 @@ class LookupTrailerListingsHandler(webapp.RequestHandler):
       memcache.Client().set("TrailerListings_Index", listings, 8 * 60 * 60)
 
     return listings
-    
+
 
   def get_trailers_from_cache(self, studio, name):
     key = "TrailerListings_" + studio + "_" + name
