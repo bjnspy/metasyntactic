@@ -19,6 +19,7 @@
 
 }
 
+#if 0
 + (UnknownFieldSet_Builder*) newBuilder;
 + (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
 + (UnknownFieldSet*) defaultInstance;
@@ -36,5 +37,6 @@
 - (int32_t) serializedSize;
 - (void) writeAsMessageSetTo:(CodedOutputStream*) output;
 - (int32_t) serializedSizeAsMessageSet;
+#endif
 
 @end

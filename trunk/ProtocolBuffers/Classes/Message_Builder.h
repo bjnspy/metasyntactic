@@ -21,19 +21,19 @@
 - (id<Message>) buildPartial;
 - (id<Message_Builder>) clone;
 - (BOOL) isInitialized;
-- (Descriptors_Descriptor*) descriptorForType;
-- (id<Message>) defaultInstanceForType;
-- (NSDictionary*) allFields;
-- (id<Message_Builder>) newBuilderForField(Descriptors_FieldDescriptor*) field;
+- (Descriptor*) getDescriptorForType;
+- (id<Message>) getDefaultInstanceForType;
+- (NSDictionary*) getAllFields;
+- (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field;
 
-- (BOOL) hasField:(Descriptors_FieldDescriptor*) field;
-- (id) getField:(Descriptors_FieldDescriptor*) field;
-- (id<Message_Builder>) setField:(Descriptors_FieldDescriptor*) field value:(id) value;
-- (id<Message_Builder>) clearField:(Descriptors_FieldDescriptor*) field;
-- (int32_t) getRepeatedFieldCount:(Descriptors_FieldDescriptor*) field;
-- (id) getRepeatedField:(Descriptors_FieldDescriptor*) field index:(int32_t) index;
-- (id<Message_Builder>) setRepeatedField:(Descriptors_FieldDescriptor*) field index:(int32_t) index value:(id) value;
-- (id<Message_Builder>) addRepeatedField:(Descriptors_FieldDescriptor*) field value:(id) value;
+- (BOOL) hasField:(FieldDescriptor*) field;
+- (id) getField:(FieldDescriptor*) field;
+- (id<Message_Builder>) setField:(FieldDescriptor*) field value:(id) value;
+- (id<Message_Builder>) clearField:(FieldDescriptor*) field;
+- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field;
+- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index;
+- (id<Message_Builder>) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (id<Message_Builder>) addRepeatedField:(FieldDescriptor*) field value:(id) value;
 
 - (UnknownFieldSet*) unknownFields;
 - (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields;
@@ -43,6 +43,6 @@
 - (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 - (id<Message_Builder>) mergeFromData:(NSData*) data;
 - (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
-- (id<Message_Builder>) mergeFromInputStream:(NSInputStream) input;
-- (id<Message_Builder>) mergeFromInputStream:(NSInputStream) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input;
+- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
     @end

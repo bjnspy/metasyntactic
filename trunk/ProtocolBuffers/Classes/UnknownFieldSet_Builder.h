@@ -15,6 +15,8 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface UnknownFieldSet_Builder : NSObject {
+}
+#if 0
     NSDictionary* fields;
     int32_t lastFieldNumbers;
     UnknownFieldSet_Field_Builder* lastField;
@@ -34,6 +36,7 @@
 - (BOOL) mergeFieldFrom:(int32_t) tag input:(CodedInputStream*) input;
 - (UnknownFieldSet_Builder*) mergeFromData:(NSData*) data;
 - (UnknownFieldSet_Builder*) mergeFromInputStream:(NSInputStream*) input;
+#endif
 
 
 @end

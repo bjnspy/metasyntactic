@@ -17,6 +17,8 @@
 #import "AbstractMessage_Builder.h"
 
 @interface DynamicMessage_Builder : AbstractMessage_Builder {
+}
+#if 0
     Descriptors_Descriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
@@ -60,5 +62,6 @@
 - (UnknownFieldSet*) unknownFields;
 - (DynamicMessage_Builder*) setUnknownFields:(UnknownFieldSet*) unknownFields;
 - (DynamicMessage_Builder*) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
+#endif
 
 @end

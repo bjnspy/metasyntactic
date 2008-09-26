@@ -18,6 +18,7 @@
 
 }
 
+#if 0
 + (CodedInputStream*) createFromInputStream:(NSInputStream*) input;
 + (CodedInputStream*) createFromData:(NSData*) data;
                                 
@@ -58,5 +59,6 @@
 - (NSData*) readData;
 
 - (id) readPrimitiveField:(Descriptors_FieldDescriptor_Type*) type;
+#endif
 
 @end

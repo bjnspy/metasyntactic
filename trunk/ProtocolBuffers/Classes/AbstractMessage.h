@@ -14,7 +14,11 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface AbstractMessage : NSObject {
+#import "Message.h"
+
+@interface AbstractMessage : NSObject<Message> {
+}
+#if 0
     int32_t memoizedSize;
 }
 
@@ -24,5 +28,21 @@
 - (void) writeToOutputStream:(NSOutputStream*) output;
 
 - (int32_t) serializedSize;
+#endif
+
+- (Descriptor*) getDescriptorForType;
+- (id<Message>) getDefaultInstanceForType;
+- (NSDictionary*) getAllFields;
+- (BOOL) hasField:(FieldDescriptor*) field;
+- (id) getField:(FieldDescriptor*) field;
+- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field;
+- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index;
+- (UnknownFieldSet*) getUnknownFields;
+- (BOOL) isInitialized;
+- (int32_t) getSerializedSize;
+- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
+- (void) writeToOuputStream:(NSOutputStream*) output;
+- (NSData*) toData;
+- (id<Message_Builder>) newBuilderForType;
 
 @end

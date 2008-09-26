@@ -6,6 +6,9 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
+enum FieldDescriptorType;
+enum ObjectiveCType;
+
 @protocol Message;
 @protocol Message_Builder;
 @protocol RpcChannel;
@@ -16,9 +19,12 @@
 @class CodedInputStream;
 @class CodedOutputStream;
 @class Descriptors;
-@class Descriptors_Descriptor;
-@class Descriptors_FieldDescriptor;
-@class Descriptors_FieldDescriptor_Type;
+@class Descriptor;
+@class FieldDescriptor;
+@class FieldDescriptor_Type;
+@class FileDescriptor;
+@class MethodDescriptor;
+@class ServiceDescriptor;
 @class DynamicMessage;
 @class DynamicMessage_Builder;
 @class ExtensionRegistry;

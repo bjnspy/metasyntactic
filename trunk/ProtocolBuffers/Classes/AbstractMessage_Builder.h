@@ -16,10 +16,11 @@
 
 #import "Message_Builder.h"
 
-@interface AbstractMessage_Builder : NSObject<Message_Builder> {
+@interface AbstractMessage_Builder : NSObject/*<Message_Builder>*/ {
 
 }
 
+#if 0
 - (AbstractMessage_Builder*) clone;
 - (AbstractMessage_Builder*) clear;
 - (AbstractMessage_Builder*) mergeFrom:(id<Message>) other; 
@@ -30,5 +31,6 @@
 - (AbstractMessage_Builder*) mergeFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;    
 - (AbstractMessage_Builder*) mergeFromInputStream:(NSInputStream*) input;
 - (AbstractMessage_Builder*) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;    
+#endif
 
 @end
