@@ -14,14 +14,11 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-
-@protocol Service
-- (Descriptors_ServiceDescriptor*) descriptorForType;
+@protocol RpcChannel
 - (void) callMethod:(Descriptors_MethodDescriptor*) method
-         controller:(id<RpcController>) controller
+         controller:(RpcController*) controller
             request:(id<Message>) request
+  responsePrototype:(id<Message>) responsePrototype
              target:(id) target
-           selector:(SEL) selector;
-- (id<Message>) getRequestPrototype:(Descriptors_MethodDescriptor*) method;
-- (id<Message>) getResponsePrototype:(Descriptors_MethodDescriptor*) method;
+           selector:(SEL) selector;;
 @end

@@ -14,14 +14,12 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-
-@protocol Service
-- (Descriptors_ServiceDescriptor*) descriptorForType;
-- (void) callMethod:(Descriptors_MethodDescriptor*) method
-         controller:(id<RpcController>) controller
-            request:(id<Message>) request
-             target:(id) target
-           selector:(SEL) selector;
-- (id<Message>) getRequestPrototype:(Descriptors_MethodDescriptor*) method;
-- (id<Message>) getResponsePrototype:(Descriptors_MethodDescriptor*) method;
+@protocol RpcController
+- (void) reset;
+- (BOOL) failed;
+- (NSString*) errorText;
+- (void) startCancel;
+- (void) setFailed(NSString*) reason;
+- (BOOL) isCanceled;
+- (void) notifyOnCancel:(id) target selector:(SEL) selector;
 @end
