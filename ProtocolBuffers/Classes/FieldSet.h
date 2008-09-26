@@ -16,6 +16,8 @@
 
 
 @interface FieldSet : NSObject {
+}
+#if 0
     // Use a TreeMap because fields need to be in canonical order when
     // serializing.
     NSDictionary* fields;
@@ -66,5 +68,6 @@
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output;
 - (void) writeField:(Descriptors_FieldDescriptor*) field value:(id) value ouput:(CodedInputStream*) output;
 - (int32_t) serializedSize;
+#endif
 
 @end

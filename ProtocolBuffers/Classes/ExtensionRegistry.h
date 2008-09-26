@@ -15,6 +15,8 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ExtensionRegistry : NSObject {
+}
+#if 0
     NSDictionary* extensionsByName;
     NSDictionary* extensionsByNumber;
 }
@@ -37,5 +39,6 @@
 - (void) add:(FieldDescriptor*) type defaultInstance:(Message*) defaultInstance;
 
 + (ExtensionRegistry*) registryWithExtensionsByName:(NSDictionary*) extensionsByName extensionsByNumber:(NSDictionary*) extensionsByNumber;
+#endif
 
 @end

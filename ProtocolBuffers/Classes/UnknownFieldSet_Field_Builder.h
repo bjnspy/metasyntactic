@@ -15,6 +15,8 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface UnknownFieldSet_Field_Builder : NSObject {
+}
+#if 0
     UnknownFieldSet_Field* result;
 }
 
@@ -28,5 +30,6 @@
 - (UnknownFieldSet_Field_Builder*) addFixed64:(int64_t) value;
 - (UnknownFieldSet_Field_Builder*) addData:(NSData*) data;
 - (UnknownFieldSet_Field_Builder*) addGroup:(UnknownFieldSet*) value;
+#endif
 
 @end

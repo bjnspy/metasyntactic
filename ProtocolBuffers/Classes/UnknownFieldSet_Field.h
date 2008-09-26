@@ -16,6 +16,8 @@
 
 
 @interface UnknownFieldSet_Field : NSObject {
+}
+#if 0
     NSArray* varint;
     NSArray* fixed32;
     NSArray* fixed64;
@@ -45,6 +47,7 @@
 
 - (void) writeAsMessageSetExtensionTo:(int32_t) fieldNumber output:(CodedOutputStream*) output;
 - (int32_t) serializedSizeAsMessageSetExtension:(int32_t) fieldNumber;
+#endif
 
 
 @end

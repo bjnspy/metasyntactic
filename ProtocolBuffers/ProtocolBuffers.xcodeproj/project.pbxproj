@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		741A74520E8CC69300F16FD4 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74510E8CC69300F16FD4 /* ForwardDeclarations.h */; };
-		741A74590E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74570E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.h */; };
-		741A745A0E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74580E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.m */; };
-		741A746B0E8CC8D000F16FD4 /* Descriptors_Descriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74690E8CC8D000F16FD4 /* Descriptors_Descriptor.h */; };
-		741A746C0E8CC8D000F16FD4 /* Descriptors_Descriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A746A0E8CC8D000F16FD4 /* Descriptors_Descriptor.m */; };
 		741A747C0E8CCC7C00F16FD4 /* RpcChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A747A0E8CCC7C00F16FD4 /* RpcChannel.h */; };
 		741A74800E8CCD1E00F16FD4 /* RpcController.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A747E0E8CCD1E00F16FD4 /* RpcController.h */; };
 		741A74D30E8CCF0E00F16FD4 /* AbstractMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74AB0E8CCF0E00F16FD4 /* AbstractMessage.h */; };
@@ -22,8 +18,6 @@
 		741A74D80E8CCF0E00F16FD4 /* CodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74B00E8CCF0E00F16FD4 /* CodedInputStream.m */; };
 		741A74D90E8CCF0E00F16FD4 /* CodedOutputStream.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74B10E8CCF0E00F16FD4 /* CodedOutputStream.h */; };
 		741A74DA0E8CCF0E00F16FD4 /* CodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74B20E8CCF0E00F16FD4 /* CodedOutputStream.m */; };
-		741A74DB0E8CCF0E00F16FD4 /* Descriptors.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74B30E8CCF0E00F16FD4 /* Descriptors.h */; };
-		741A74DC0E8CCF0E00F16FD4 /* Descriptors.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74B40E8CCF0E00F16FD4 /* Descriptors.m */; };
 		741A74DD0E8CCF0E00F16FD4 /* DynamicMessage.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74B50E8CCF0E00F16FD4 /* DynamicMessage.h */; };
 		741A74DE0E8CCF0E00F16FD4 /* DynamicMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74B60E8CCF0E00F16FD4 /* DynamicMessage.m */; };
 		741A74DF0E8CCF0E00F16FD4 /* DynamicMessage_Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74B70E8CCF0E00F16FD4 /* DynamicMessage_Builder.h */; };
@@ -54,6 +48,19 @@
 		741A74F80E8CCF0E00F16FD4 /* UnknownFieldSet_Field_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74D00E8CCF0E00F16FD4 /* UnknownFieldSet_Field_Builder.m */; };
 		741A74F90E8CCF0E00F16FD4 /* WireFormat.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74D10E8CCF0E00F16FD4 /* WireFormat.h */; };
 		741A74FA0E8CCF0E00F16FD4 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74D20E8CCF0E00F16FD4 /* WireFormat.m */; };
+		741A758F0E8CE18200F16FD4 /* Descriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A758B0E8CE18200F16FD4 /* Descriptor.h */; };
+		741A75900E8CE18200F16FD4 /* Descriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A758C0E8CE18200F16FD4 /* Descriptor.m */; };
+		741A75910E8CE18200F16FD4 /* FieldDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A758D0E8CE18200F16FD4 /* FieldDescriptor.h */; };
+		741A75920E8CE18200F16FD4 /* FieldDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A758E0E8CE18200F16FD4 /* FieldDescriptor.m */; };
+		741A75950E8CE38500F16FD4 /* GenericDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A75930E8CE38500F16FD4 /* GenericDescriptor.h */; };
+		741A75990E8CE3DA00F16FD4 /* FileDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A75970E8CE3DA00F16FD4 /* FileDescriptor.h */; };
+		741A759A0E8CE3DA00F16FD4 /* FileDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A75980E8CE3DA00F16FD4 /* FileDescriptor.m */; };
+		74E79B170E8D73C600EFD26E /* ObjectiveCType.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79B150E8D73C600EFD26E /* ObjectiveCType.h */; };
+		74E79BBB0E8D75E800EFD26E /* ObjectiveCType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */; };
+		74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */; };
+		74E79C310E8D82B500EFD26E /* FieldDescriptorType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79C2F0E8D82B500EFD26E /* FieldDescriptorType.m */; };
+		74E79DC70E8D989100EFD26E /* EnumValueDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79DC50E8D989100EFD26E /* EnumValueDescriptor.h */; };
+		74E79DC80E8D989100EFD26E /* EnumValueDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79DC60E8D989100EFD26E /* EnumValueDescriptor.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -65,10 +72,6 @@
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF5E0370ADEE00C91783 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
 		741A74510E8CC69300F16FD4 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
-		741A74570E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptors_FieldDescriptor.h; sourceTree = "<group>"; };
-		741A74580E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptors_FieldDescriptor.m; sourceTree = "<group>"; };
-		741A74690E8CC8D000F16FD4 /* Descriptors_Descriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptors_Descriptor.h; sourceTree = "<group>"; };
-		741A746A0E8CC8D000F16FD4 /* Descriptors_Descriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptors_Descriptor.m; sourceTree = "<group>"; };
 		741A747A0E8CCC7C00F16FD4 /* RpcChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RpcChannel.h; sourceTree = "<group>"; };
 		741A747E0E8CCD1E00F16FD4 /* RpcController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RpcController.h; sourceTree = "<group>"; };
 		741A74AB0E8CCF0E00F16FD4 /* AbstractMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage.h; sourceTree = "<group>"; };
@@ -79,8 +82,6 @@
 		741A74B00E8CCF0E00F16FD4 /* CodedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedInputStream.m; sourceTree = "<group>"; };
 		741A74B10E8CCF0E00F16FD4 /* CodedOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodedOutputStream.h; sourceTree = "<group>"; };
 		741A74B20E8CCF0E00F16FD4 /* CodedOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedOutputStream.m; sourceTree = "<group>"; };
-		741A74B30E8CCF0E00F16FD4 /* Descriptors.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptors.h; sourceTree = "<group>"; };
-		741A74B40E8CCF0E00F16FD4 /* Descriptors.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptors.m; sourceTree = "<group>"; };
 		741A74B50E8CCF0E00F16FD4 /* DynamicMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicMessage.h; sourceTree = "<group>"; };
 		741A74B60E8CCF0E00F16FD4 /* DynamicMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicMessage.m; sourceTree = "<group>"; };
 		741A74B70E8CCF0E00F16FD4 /* DynamicMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicMessage_Builder.h; sourceTree = "<group>"; };
@@ -111,6 +112,19 @@
 		741A74D00E8CCF0E00F16FD4 /* UnknownFieldSet_Field_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownFieldSet_Field_Builder.m; sourceTree = "<group>"; };
 		741A74D10E8CCF0E00F16FD4 /* WireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireFormat.h; sourceTree = "<group>"; };
 		741A74D20E8CCF0E00F16FD4 /* WireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WireFormat.m; sourceTree = "<group>"; };
+		741A758B0E8CE18200F16FD4 /* Descriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptor.h; sourceTree = "<group>"; };
+		741A758C0E8CE18200F16FD4 /* Descriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptor.m; sourceTree = "<group>"; };
+		741A758D0E8CE18200F16FD4 /* FieldDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDescriptor.h; sourceTree = "<group>"; };
+		741A758E0E8CE18200F16FD4 /* FieldDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldDescriptor.m; sourceTree = "<group>"; };
+		741A75930E8CE38500F16FD4 /* GenericDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericDescriptor.h; sourceTree = "<group>"; };
+		741A75970E8CE3DA00F16FD4 /* FileDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDescriptor.h; sourceTree = "<group>"; };
+		741A75980E8CE3DA00F16FD4 /* FileDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDescriptor.m; sourceTree = "<group>"; };
+		74E79B150E8D73C600EFD26E /* ObjectiveCType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCType.h; sourceTree = "<group>"; };
+		74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCType.m; sourceTree = "<group>"; };
+		74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDescriptorType.h; sourceTree = "<group>"; };
+		74E79C2F0E8D82B500EFD26E /* FieldDescriptorType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldDescriptorType.m; sourceTree = "<group>"; };
+		74E79DC50E8D989100EFD26E /* EnumValueDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumValueDescriptor.h; sourceTree = "<group>"; };
+		74E79DC60E8D989100EFD26E /* EnumValueDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumValueDescriptor.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtocolBuffers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -169,6 +183,7 @@
 		08FB77AEFE84172EC02AAC07 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				741A75780E8CE0FB00F16FD4 /* Descriptors */,
 				741A74820E8CCD8600F16FD4 /* RPC */,
 				741A74AB0E8CCF0E00F16FD4 /* AbstractMessage.h */,
 				741A74AC0E8CCF0E00F16FD4 /* AbstractMessage.m */,
@@ -178,8 +193,6 @@
 				741A74B00E8CCF0E00F16FD4 /* CodedInputStream.m */,
 				741A74B10E8CCF0E00F16FD4 /* CodedOutputStream.h */,
 				741A74B20E8CCF0E00F16FD4 /* CodedOutputStream.m */,
-				741A74B30E8CCF0E00F16FD4 /* Descriptors.h */,
-				741A74B40E8CCF0E00F16FD4 /* Descriptors.m */,
 				741A74B50E8CCF0E00F16FD4 /* DynamicMessage.h */,
 				741A74B60E8CCF0E00F16FD4 /* DynamicMessage.m */,
 				741A74B70E8CCF0E00F16FD4 /* DynamicMessage_Builder.h */,
@@ -210,10 +223,8 @@
 				741A74D00E8CCF0E00F16FD4 /* UnknownFieldSet_Field_Builder.m */,
 				741A74D10E8CCF0E00F16FD4 /* WireFormat.h */,
 				741A74D20E8CCF0E00F16FD4 /* WireFormat.m */,
-				741A74690E8CC8D000F16FD4 /* Descriptors_Descriptor.h */,
-				741A746A0E8CC8D000F16FD4 /* Descriptors_Descriptor.m */,
-				741A74570E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.h */,
-				741A74580E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.m */,
+				74E79B150E8D73C600EFD26E /* ObjectiveCType.h */,
+				74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -254,6 +265,24 @@
 			name = RPC;
 			sourceTree = "<group>";
 		};
+		741A75780E8CE0FB00F16FD4 /* Descriptors */ = {
+			isa = PBXGroup;
+			children = (
+				741A758B0E8CE18200F16FD4 /* Descriptor.h */,
+				741A758C0E8CE18200F16FD4 /* Descriptor.m */,
+				741A758D0E8CE18200F16FD4 /* FieldDescriptor.h */,
+				741A758E0E8CE18200F16FD4 /* FieldDescriptor.m */,
+				741A75930E8CE38500F16FD4 /* GenericDescriptor.h */,
+				741A75970E8CE3DA00F16FD4 /* FileDescriptor.h */,
+				741A75980E8CE3DA00F16FD4 /* FileDescriptor.m */,
+				74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */,
+				74E79C2F0E8D82B500EFD26E /* FieldDescriptorType.m */,
+				74E79DC50E8D989100EFD26E /* EnumValueDescriptor.h */,
+				74E79DC60E8D989100EFD26E /* EnumValueDescriptor.m */,
+			);
+			name = Descriptors;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -262,15 +291,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				741A74520E8CC69300F16FD4 /* ForwardDeclarations.h in Headers */,
-				741A74590E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.h in Headers */,
-				741A746B0E8CC8D000F16FD4 /* Descriptors_Descriptor.h in Headers */,
 				741A747C0E8CCC7C00F16FD4 /* RpcChannel.h in Headers */,
 				741A74800E8CCD1E00F16FD4 /* RpcController.h in Headers */,
 				741A74D30E8CCF0E00F16FD4 /* AbstractMessage.h in Headers */,
 				741A74D50E8CCF0E00F16FD4 /* AbstractMessage_Builder.h in Headers */,
 				741A74D70E8CCF0E00F16FD4 /* CodedInputStream.h in Headers */,
 				741A74D90E8CCF0E00F16FD4 /* CodedOutputStream.h in Headers */,
-				741A74DB0E8CCF0E00F16FD4 /* Descriptors.h in Headers */,
 				741A74DD0E8CCF0E00F16FD4 /* DynamicMessage.h in Headers */,
 				741A74DF0E8CCF0E00F16FD4 /* DynamicMessage_Builder.h in Headers */,
 				741A74E10E8CCF0E00F16FD4 /* ExtensionRegistry.h in Headers */,
@@ -288,6 +314,13 @@
 				741A74F50E8CCF0E00F16FD4 /* UnknownFieldSet_Field.h in Headers */,
 				741A74F70E8CCF0E00F16FD4 /* UnknownFieldSet_Field_Builder.h in Headers */,
 				741A74F90E8CCF0E00F16FD4 /* WireFormat.h in Headers */,
+				741A758F0E8CE18200F16FD4 /* Descriptor.h in Headers */,
+				741A75910E8CE18200F16FD4 /* FieldDescriptor.h in Headers */,
+				741A75950E8CE38500F16FD4 /* GenericDescriptor.h in Headers */,
+				741A75990E8CE3DA00F16FD4 /* FileDescriptor.h in Headers */,
+				74E79B170E8D73C600EFD26E /* ObjectiveCType.h in Headers */,
+				74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Headers */,
+				74E79DC70E8D989100EFD26E /* EnumValueDescriptor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -347,13 +380,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				741A745A0E8CC7E800F16FD4 /* Descriptors_FieldDescriptor.m in Sources */,
-				741A746C0E8CC8D000F16FD4 /* Descriptors_Descriptor.m in Sources */,
 				741A74D40E8CCF0E00F16FD4 /* AbstractMessage.m in Sources */,
 				741A74D60E8CCF0E00F16FD4 /* AbstractMessage_Builder.m in Sources */,
 				741A74D80E8CCF0E00F16FD4 /* CodedInputStream.m in Sources */,
 				741A74DA0E8CCF0E00F16FD4 /* CodedOutputStream.m in Sources */,
-				741A74DC0E8CCF0E00F16FD4 /* Descriptors.m in Sources */,
 				741A74DE0E8CCF0E00F16FD4 /* DynamicMessage.m in Sources */,
 				741A74E00E8CCF0E00F16FD4 /* DynamicMessage_Builder.m in Sources */,
 				741A74E20E8CCF0E00F16FD4 /* ExtensionRegistry.m in Sources */,
@@ -367,6 +397,12 @@
 				741A74F60E8CCF0E00F16FD4 /* UnknownFieldSet_Field.m in Sources */,
 				741A74F80E8CCF0E00F16FD4 /* UnknownFieldSet_Field_Builder.m in Sources */,
 				741A74FA0E8CCF0E00F16FD4 /* WireFormat.m in Sources */,
+				741A75900E8CE18200F16FD4 /* Descriptor.m in Sources */,
+				741A75920E8CE18200F16FD4 /* FieldDescriptor.m in Sources */,
+				741A759A0E8CE3DA00F16FD4 /* FileDescriptor.m in Sources */,
+				74E79BBB0E8D75E800EFD26E /* ObjectiveCType.m in Sources */,
+				74E79C310E8D82B500EFD26E /* FieldDescriptorType.m in Sources */,
+				74E79DC80E8D989100EFD26E /* EnumValueDescriptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

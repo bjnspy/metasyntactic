@@ -16,12 +16,12 @@
 
 
 @protocol Service
-- (Descriptors_ServiceDescriptor*) descriptorForType;
-- (void) callMethod:(Descriptors_MethodDescriptor*) method
+- (ServiceDescriptor*) getDescriptorForType;
+- (void) callMethod:(MethodDescriptor*) method
          controller:(id<RpcController>) controller
             request:(id<Message>) request
              target:(id) target
            selector:(SEL) selector;
-- (id<Message>) getRequestPrototype:(Descriptors_MethodDescriptor*) method;
-- (id<Message>) getResponsePrototype:(Descriptors_MethodDescriptor*) method;
+- (id<Message>) getRequestPrototype:(MethodDescriptor*) method;
+- (id<Message>) getResponsePrototype:(MethodDescriptor*) method;
 @end

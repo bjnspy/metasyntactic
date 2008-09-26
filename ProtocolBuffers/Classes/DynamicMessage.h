@@ -17,6 +17,8 @@
 #import "AbstractMessage.h"
 
 @interface DynamicMessage : AbstractMessage {
+}
+#if 0
     Descriptors_Descriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
@@ -57,5 +59,6 @@
 
 - (int32_t) serializedSize;
 - (DynamicMessage_Builder*) newBuilderForType;
+#endif
 
 @end

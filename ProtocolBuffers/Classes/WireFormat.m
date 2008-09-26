@@ -17,6 +17,6 @@
 #import "WireFormat.h"
 
 
-@implementation WireFormat
-
-@end
+int32_t WireFormatMakeTag(int32_t fieldNumber, int32_t wireType) {
+    return (fieldNumber << TAG_TYPE_BITS) | wireType;
+}

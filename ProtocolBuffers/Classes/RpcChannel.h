@@ -15,7 +15,7 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @protocol RpcChannel
-- (void) callMethod:(Descriptors_MethodDescriptor*) method
+- (void) callMethod:(MethodDescriptor*) method
          controller:(RpcController*) controller
             request:(id<Message>) request
   responsePrototype:(id<Message>) responsePrototype

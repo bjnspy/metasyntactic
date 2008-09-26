@@ -14,17 +14,20 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-const int32_t WIRETYPE_VARINT = 0;
-const int32_t WIRETYPE_FIXED64 = 1;
-const int32_t WIRETYPE_LENGTH_DELIMITED = 2;
-const int32_t WIRETYPE_START_GROUP = 3;
-const int32_t WIRETYPE_END_GROUP = 4;
-const int32_t WIRETYPE_FIXED32 = 5;
-
-const int32_t TAG_TYPE_BITS = 3;
-const int32_t TAG_TYPE_MASK = 7 /* = (1 << TAG_TYPE_BITS) - 1*/;
-
-@interface WireFormat : NSObject {
-}
-
-@end
+typedef enum {
+    WireFormatVarint = 0,
+    WireFormatFixed64 = 1,
+    WireFormatLengthDelimited = 2,
+    WireFormatStartGroup = 3,
+    WireFormatEndGroup = 4,
+    WireFormatFixed32 = 5,
+    
+    TAG_TYPE_BITS = 3,
+    TAG_TYPE_MASK = 7 /* = (1 << TAG_TYPE_BITS) - 1*/,
+    
+    WireFormatMessageSetItem = 1,
+    WireFormatMessageSetTypeId = 2,
+    WireFormatMessageSetMessage = 3
+} WireFormat;
+    
+int32_t WireFormatMakeTag(int32_t fieldNumber, int32_t wireType);
