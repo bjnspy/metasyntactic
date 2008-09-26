@@ -1,4 +1,0 @@
-In file included from /Projects/metasyntactic/trunk/ProtocolBuffers/ProtocolBuffers/UnknownFieldSet_Builder.m:17:
-/Projects/metasyntactic/trunk/ProtocolBuffers/ProtocolBuffers/UnknownFieldSet_Builder.h:20: error: syntax error before 'Field_Builder'
-/Projects/metasyntactic/trunk/ProtocolBuffers/ProtocolBuffers/UnknownFieldSet_Builder.m:22: warning: property 'fields' requires method '-fields' to be defined - use @synthesize, @dynamic or provide a method implementation
-/Projects/metasyntactic/trunk/ProtocolBuffers/ProtocolBuffers/UnknownFieldSet_Builder.m:22: warning: property 'fields' requires the method 'setFields:' to be defined - use @synthesize, @dynamic or provide a method implementation
