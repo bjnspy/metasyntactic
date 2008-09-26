@@ -16,7 +16,55 @@
 
 
 @interface FieldSet : NSObject {
-
+    // Use a TreeMap because fields need to be in canonical order when
+    // serializing.
+    NSDictionary* fields;
 }
+
+@property (retain) NSDictionary* fields;
+
++ (FieldSet*) setWithFields:(NSDictionary*) fields;
++ (FieldSet*) set;
++ (FieldSet*) emptySet;
+
+- (void) makeImmutable; 
+- (void) clear;
+
+- (NSDictionary*) allFields;
+- (BOOL) hasField:(Descriptors_FieldDescriptor*) field;
+- (id) getField:(Descriptors_FieldDescriptor*) field;
+- (void) setField:(Descriptors_FieldDescriptor*) field value:(id) value;
+- (void) clearField:(Descriptors_FieldDescriptor*) field;
+
+- (int32_t) getRepeatedFieldCount:(Descriptors_FieldDescriptor*) field;
+
+- (id) getRepeatedField:(Descriptors_FieldDescriptor*) field index:(int32_t) index;
+- (void) setRepeatedField:(Descriptors_FieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (void) addRepeatedField:(Descriptors_FieldDescriptor*) field value:(id) value;
+
+- (BOOL) isInitialized;
+- (BOOL) isInitialized:(Descriptors_Descriptor*) type;
+
+- (void) mergeFrom:(id<Message>) other;
+- (void) mergeFrom:(FieldSet*) other;
+- (void) mergeFromCodedInputStream:(CodedInputStream*) input
+                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                 extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                           builder:(id<Message_Builder>) builder;
+
+- (BOOL) mergeFieldFromCodedInputStream:(CodedInputStream*) input
+                          unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                      extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                                builder:(id<Message_Builder>) builder
+                                    tag:(int32_t) tag;
+
+- (void) mergeMessageSetExtensionFromCodedInputStream:(CodedInputStream*) input
+                                        unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                                    extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                                              builder:(id<Message_Builder>) builder;
+
+- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
+- (void) writeField:(Descriptors_FieldDescriptor*) field value:(id) value ouput:(CodedInputStream*) output;
+- (int32_t) serializedSize;
 
 @end

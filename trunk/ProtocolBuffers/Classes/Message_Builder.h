@@ -15,5 +15,34 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @protocol Message_Builder
+- (id<Message_Builder>) clear;
+- (id<Message_Builder>) mergeFrom:(id<Message>) other;
+- (id<Message>) build;
+- (id<Message>) buildPartial;
+- (id<Message_Builder>) clone;
+- (BOOL) isInitialized;
+- (Descriptors_Descriptor*) descriptorForType;
+- (id<Message>) defaultInstanceForType;
+- (NSDictionary*) allFields;
+- (id<Message_Builder>) newBuilderForField(Descriptors_FieldDescriptor*) field;
 
-@end
+- (BOOL) hasField:(Descriptors_FieldDescriptor*) field;
+- (id) getField:(Descriptors_FieldDescriptor*) field;
+- (id<Message_Builder>) setField:(Descriptors_FieldDescriptor*) field value:(id) value;
+- (id<Message_Builder>) clearField:(Descriptors_FieldDescriptor*) field;
+- (int32_t) getRepeatedFieldCount:(Descriptors_FieldDescriptor*) field;
+- (id) getRepeatedField:(Descriptors_FieldDescriptor*) field index:(int32_t) index;
+- (id<Message_Builder>) setRepeatedField:(Descriptors_FieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (id<Message_Builder>) addRepeatedField:(Descriptors_FieldDescriptor*) field value:(id) value;
+
+- (UnknownFieldSet*) unknownFields;
+- (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields;
+- (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields; 
+
+- (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input;
+- (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (id<Message_Builder>) mergeFromData:(NSData*) data;
+- (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (id<Message_Builder>) mergeFromInputStream:(NSInputStream) input;
+- (id<Message_Builder>) mergeFromInputStream:(NSInputStream) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+    @end

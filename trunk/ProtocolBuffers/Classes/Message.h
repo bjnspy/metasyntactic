@@ -15,5 +15,18 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @protocol Message
-
+- (Descriptors_Descriptor*) descriptorForType;
+- (id<Message>) defaultInstanceForType;
+- (NSDictionary*) allFields;
+- (BOOL) hasField:(Descriptors_FieldDescriptor*) field;
+- (id) getField:(Descriptors_FieldDescriptor*) field;
+- (int) getRepeatedFieldCount:(Descriptors_FieldDescriptor*) field;
+- (id) getRepeatedField:(Descriptors_FieldDescriptor*) field index:(int32_t) index;
+- (UnknownFieldSet*) unknownFields;
+- (BOOL) isInitialized;
+- (int32_t) serializedSize;
+- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
+- (void) writeToOuputStream:(NSOutputStream*) output;
+- (NSData*) toData;
+- (id<Message_Builder>) newBuilderForType;
 @end

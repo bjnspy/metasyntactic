@@ -8,12 +8,16 @@
 
 @protocol Message;
 @protocol Message_Builder;
+@protocol RpcChannel;
+@protocol RpcController;
+@protocol Service;
 
 @class AbstractMessage;
 @class CodedInputStream;
 @class CodedOutputStream;
 @class Descriptors;
 @class Descriptors_Descriptor;
+@class Descriptors_FieldDescriptor;
 @class Descriptors_FieldDescriptor_Type;
 @class DynamicMessage;
 @class DynamicMessage_Builder;
