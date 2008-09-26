@@ -19,4 +19,8 @@
 
 @implementation CodedInputStream
 
+- (int32_t) readTag {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
 @end

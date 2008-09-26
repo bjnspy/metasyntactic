@@ -17,6 +17,16 @@
 
 @interface FieldSet : NSObject {
 }
+
++ (void) mergeFromCodedInputStream:(CodedInputStream*) input
+                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                 extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                           builder:(id<Message_Builder>) builder;
++ (BOOL) mergeFieldFromCodedInputStream:(CodedInputStream*) input
+                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                 extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                           builder:(id<Message_Builder>) builder
+                               tag:(int32_t) tag;
 #if 0
     // Use a TreeMap because fields need to be in canonical order when
     // serializing.

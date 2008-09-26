@@ -16,7 +16,40 @@
 
 #import "FieldSet.h"
 
+#import "CodedInputStream.h"
+
 
 @implementation FieldSet
+
++ (void) mergeFromCodedInputStream:(CodedInputStream*) input
+                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                 extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                           builder:(id<Message_Builder>) builder {
+    while (true) {
+        int32_t tag = [input readTag];
+        if (tag == 0) {
+            break;
+        }
+        
+        if (![self mergeFieldFromCodedInputStream:input
+                                    unknownFields:unknownFields
+                                extensionRegistry:extensionRegistry
+                                          builder:builder
+                                              tag:tag]) {
+            // end group tag
+            break;
+        }
+    }
+}
+
+
+
++ (BOOL) mergeFieldFromCodedInputStream:(CodedInputStream*) input
+                          unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                      extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                                builder:(id<Message_Builder>) builder
+                                    tag:(int32_t) tag {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
 
 @end

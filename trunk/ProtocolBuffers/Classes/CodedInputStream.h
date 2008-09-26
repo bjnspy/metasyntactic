@@ -18,11 +18,12 @@
 
 }
 
+- (int32_t) readTag;
+
 #if 0
 + (CodedInputStream*) createFromInputStream:(NSInputStream*) input;
 + (CodedInputStream*) createFromData:(NSData*) data;
-                                
-- (int32_t) readTag;
+                    
 - (void) checkLastTagWas:(int32_t) value;
 
 - (BOOL) skipField:(int32_t) tag;

@@ -19,4 +19,8 @@
 
 @implementation UnknownFieldSet
 
++ (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
 @end

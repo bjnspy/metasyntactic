@@ -16,6 +16,9 @@
 
 @interface ExtensionRegistry : NSObject {
 }
+
++ (ExtensionRegistry*) getEmptyRegistry;
+
 #if 0
     NSDictionary* extensionsByName;
     NSDictionary* extensionsByNumber;

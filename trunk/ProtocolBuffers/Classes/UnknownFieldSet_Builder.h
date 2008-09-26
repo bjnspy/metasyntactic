@@ -16,6 +16,10 @@
 
 @interface UnknownFieldSet_Builder : NSObject {
 }
+
+- (UnknownFieldSet*) build;
+- (UnknownFieldSet_Builder*) mergeFrom:(UnknownFieldSet*) other;
+
 #if 0
     NSDictionary* fields;
     int32_t lastFieldNumbers;
@@ -24,7 +28,6 @@
 
 @property (retain) NSDictionary* fields;
 
-- (UnknownFieldSet*) build;
 - (UnknownFieldSet_Builder*) clear;
 - (UnknownFieldSet_Builder*) mergeFrom:(UnknownFieldSet*) other;
 - (UnknownFieldSet_Builder*) mergeField:(int32_t) number field:(UnknownFieldSet_Field*) field;

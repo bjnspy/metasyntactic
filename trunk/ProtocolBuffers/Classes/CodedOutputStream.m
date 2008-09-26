@@ -16,6 +16,7 @@
 
 #import "CodedOutputStream.h"
 
+#import "EnumValueDescriptor.h"
 #import "FieldDescriptorType.h"
 #import "Message.h"
 #import "WireFormat.h"

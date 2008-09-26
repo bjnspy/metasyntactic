@@ -83,6 +83,31 @@
     [codedOutput flush];
 }
 
+
+- (BOOL) isEqual:(id) other {
+    if (other == self) {
+        return YES;
+    }
+    
+    if (![other conformsToProtocol:@protocol(Message)]) {
+        return NO;
+    }
+    
+    if (self.getDescriptorForType != [other getDescriptorForType]) {
+        return NO;
+    }
+    
+    return [self.getAllFields isEqual:[other getAllFields]];
+}
+
+
+- (NSUInteger) hash {
+    NSUInteger hash = 41;
+    hash = (19 * hash) + self.getDescriptorForType.hash;
+    hash = (53 * hash) + self.getAllFields.hash;
+    return hash;
+}
+
 #if 0
 
 public ByteString toByteString() {
@@ -128,197 +153,7 @@ public int getSerializedSize() {
     memoizedSize = size;
     return size;
 }
-
-@Override
-public boolean equals(Object other) {
-    if (other == this) {
-        return true;
-    }
-    if (!(other instanceof Message)) {
-        return false;
-    }
-    Message otherMessage = (Message) other;
-    if (getDescriptorForType() != otherMessage.getDescriptorForType()) {
-        return false;
-    }
-    return getAllFields().equals(otherMessage.getAllFields());
-}
-
-@Override
-public int hashCode() {
-    int hash = 41;
-    hash = (19 * hash) + getDescriptorForType().hashCode();
-    hash = (53 * hash) + getAllFields().hashCode();
-    return hash;
-}
-
 // =================================================================
-
-/**
- * A partial implementation of the {@link Message.Builder} interface which
- * implements as many methods of that interface as possible in terms of
- * other methods.
- */
-@SuppressWarnings("unchecked")
-public static abstract class Builder<BuilderType extends Builder>
-implements Message.Builder {
-    // The compiler produces an error if this is not declared explicitly.
-    public abstract BuilderType clone();
-    
-    public BuilderType clear() {
-        for (Map.Entry<FieldDescriptor, Object> entry :
-             getAllFields().entrySet()) {
-            clearField(entry.getKey());
-        }
-        return (BuilderType) this;
-    }
-    
-    public BuilderType mergeFrom(Message other) {
-        if (other.getDescriptorForType() != getDescriptorForType()) {
-            throw new IllegalArgumentException(
-                                               "mergeFrom(Message) can only merge messages of the same type.");
-        }
-        
-        // Note:  We don't attempt to verify that other's fields have valid
-        //   types.  Doing so would be a losing battle.  We'd have to verify
-        //   all sub-messages as well, and we'd have to make copies of all of
-        //   them to insure that they don't change after verification (since
-        //   the Message interface itself cannot enforce immutability of
-        //   implementations).
-        // TODO(kenton):  Provide a function somewhere called makeDeepCopy()
-        //   which allows people to make secure deep copies of messages.
-        
-        for (Map.Entry<FieldDescriptor, Object> entry :
-             other.getAllFields().entrySet()) {
-            FieldDescriptor field = entry.getKey();
-            if (field.isRepeated()) {
-                for (Object element : (List)entry.getValue()) {
-                    addRepeatedField(field, element);
-                }
-            } else if (field.getJavaType() == FieldDescriptor.JavaType.MESSAGE) {
-                Message existingValue = (Message)getField(field);
-                if (existingValue == existingValue.getDefaultInstanceForType()) {
-                    setField(field, entry.getValue());
-                } else {
-                    setField(field,
-                             existingValue.newBuilderForType()
-                             .mergeFrom(existingValue)
-                             .mergeFrom((Message)entry.getValue())
-                             .build());
-                }
-            } else {
-                setField(field, entry.getValue());
-            }
-        }
-        
-        return (BuilderType) this;
-    }
-    
-    public BuilderType mergeFrom(CodedInputStream input) throws IOException {
-        return mergeFrom(input, ExtensionRegistry.getEmptyRegistry());
-    }
-    
-    public BuilderType mergeFrom(CodedInputStream input,
-                                 ExtensionRegistry extensionRegistry)
-    throws IOException {
-        UnknownFieldSet.Builder unknownFields =
-        UnknownFieldSet.newBuilder(getUnknownFields());
-        FieldSet.mergeFrom(input, unknownFields, extensionRegistry, this);
-        setUnknownFields(unknownFields.build());
-        return (BuilderType) this;
-    }
-    
-    public BuilderType mergeUnknownFields(UnknownFieldSet unknownFields) {
-        setUnknownFields(
-                         UnknownFieldSet.newBuilder(getUnknownFields())
-                         .mergeFrom(unknownFields)
-                         .build());
-        return (BuilderType) this;
-    }
-    
-    public BuilderType mergeFrom(ByteString data)
-    throws InvalidProtocolBufferException {
-        try {
-            CodedInputStream input = data.newCodedInput();
-            mergeFrom(input);
-            input.checkLastTagWas(0);
-            return (BuilderType) this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a ByteString threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-    
-    public BuilderType mergeFrom(ByteString data,
-                                 ExtensionRegistry extensionRegistry)
-    throws InvalidProtocolBufferException {
-        try {
-            CodedInputStream input = data.newCodedInput();
-            mergeFrom(input, extensionRegistry);
-            input.checkLastTagWas(0);
-            return (BuilderType) this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a ByteString threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-    
-    public BuilderType mergeFrom(byte[] data)
-    throws InvalidProtocolBufferException {
-        try {
-            CodedInputStream input = CodedInputStream.newInstance(data);
-            mergeFrom(input);
-            input.checkLastTagWas(0);
-            return (BuilderType) this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a byte array threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-    
-    public BuilderType mergeFrom(
-                                 byte[] data, ExtensionRegistry extensionRegistry)
-    throws InvalidProtocolBufferException {
-        try {
-            CodedInputStream input = CodedInputStream.newInstance(data);
-            mergeFrom(input, extensionRegistry);
-            input.checkLastTagWas(0);
-            return (BuilderType) this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a byte array threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-    
-    public BuilderType mergeFrom(InputStream input) throws IOException {
-        CodedInputStream codedInput = CodedInputStream.newInstance(input);
-        mergeFrom(codedInput);
-        codedInput.checkLastTagWas(0);
-        return (BuilderType) this;
-    }
-    
-    public BuilderType mergeFrom(InputStream input,
-                                 ExtensionRegistry extensionRegistry)
-    throws IOException {
-        CodedInputStream codedInput = CodedInputStream.newInstance(input);
-        mergeFrom(codedInput, extensionRegistry);
-        codedInput.checkLastTagWas(0);
-        return (BuilderType) this;
-    }
-}
-}
 #endif
 
 - (Descriptor*) getDescriptorForType {

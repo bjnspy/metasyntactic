@@ -22,6 +22,7 @@ enum ObjectiveCType;
 @class Descriptor;
 @class FieldDescriptor;
 @class FieldDescriptor_Type;
+@class FieldSet;
 @class FileDescriptor;
 @class MethodDescriptor;
 @class ServiceDescriptor;
