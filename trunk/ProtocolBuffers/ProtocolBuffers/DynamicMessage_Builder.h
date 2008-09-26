@@ -17,16 +17,16 @@
 #import "AbstractMessage_Builder.h"
 
 @interface DynamicMessage_Builder : AbstractMessage_Builder {
-    Descriptor* type;
+    Descriptors_Descriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
 }
 
-@property (retain) Descriptor* type;
+@property (retain) Descriptors_Descriptor* type;
 @property (retain) FieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 
-+ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type;
++ (DynamicMessage_Builder*) builderWithType:(Descriptors_Descriptor*) type;
 
 - (DynamicMessage_Builder*) clear;
 - (DynamicMessage_Builder*) mergeFrom:(id<Message>) other;
@@ -41,7 +41,7 @@
 
 - (DynamicMessage_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
     
-- (Descriptor*) descriptorForType;
+- (Descriptors_Descriptor*) descriptorForType;
 - (DynamicMessage*) defaultInstanceForType;
 - (NSDictionary*) allFields;
 - (DynamicMessage_Builder*) builderForField:(FieldDescriptor*) field;
