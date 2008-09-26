@@ -1,8 +1,0 @@
-//
-// Prefix header for all source files of the 'ProtocolBuffers' target in the 'ProtocolBuffers' project.
-//
-
-#ifdef __OBJC__
-    #import "ForwardDeclarations.h"
-    #import <Cocoa/Cocoa.h>
-#endif
