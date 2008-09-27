@@ -142,7 +142,7 @@ static UnknownFieldSet* defaultInstance = nil;
  * {@code MessageSet} wire format.
  */
 - (int32_t) getSerializedSizeAsMessageSet {
-    int result = 0;
+    int32_t result = 0;
     for (NSNumber* number in fields) {
         result += [[fields objectForKey:number] getSerializedSizeAsMessageSetExtension:number.intValue];
     }

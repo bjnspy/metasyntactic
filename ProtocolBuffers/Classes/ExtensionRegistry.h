@@ -28,6 +28,8 @@
 - (id) initWithExtensionsByName:(NSMutableDictionary*) extensionsByName
              extensionsByNumber:(NSMutableDictionary*) extensionsByNumber;
 
+- (void) addExtensionInfo:(ExtensionRegistry_ExtensionInfo*) extension;
+
 #if 0
 
 

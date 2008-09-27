@@ -24,17 +24,21 @@
 
 - (BOOL) isRequired; 
 - (BOOL) isRepeated;
-- (BOOL) isExtension;      
+- (BOOL) isExtension;  
+- (BOOL) isOptional;    
 - (ObjectiveCType) getObjectiveCType;
 - (FieldDescriptorType) getType;
 
 - (Descriptor*) getContainingType;
+- (Descriptor*) getExtensionScope;
 - (Descriptor*) getMessageType;
 - (EnumDescriptor*) getEnumType;
 
-
 - (id) getDefaultValue;
 - (int32_t) getNumber;
+
+- (NSString*) getFullName;
+
 
 #if 0
     int32_t index;
@@ -54,7 +58,6 @@
 
 - (NSString*) name;
    
-- (BOOL) isOptional;
 - (BOOL) hasDefaultValue;
 - (FieldOptions*) options;  
 

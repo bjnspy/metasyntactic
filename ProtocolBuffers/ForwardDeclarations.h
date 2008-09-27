@@ -22,6 +22,8 @@ enum ObjectiveCType;
 @class Descriptor;
 @class EnumDescriptor;
 @class EnumValueDescriptor;
+@class ExtensionRegistry_ExtensionInfo;
+@class ExtensionRegistry_DescriptorIntPair;
 @class Field;
 @class Field_Builder;
 @class FieldDescriptor;

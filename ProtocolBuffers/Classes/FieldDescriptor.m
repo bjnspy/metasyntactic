@@ -34,12 +34,22 @@
 }
 
 
+- (BOOL) isOptional {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
 - (ObjectiveCType) getObjectiveCType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
 - (Descriptor*) getContainingType {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (Descriptor*) getExtensionScope {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
@@ -65,6 +75,10 @@
 
 
 - (FieldDescriptorType) getType {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+- (NSString*) getFullName {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

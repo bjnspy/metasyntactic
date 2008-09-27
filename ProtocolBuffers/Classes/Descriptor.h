@@ -22,6 +22,8 @@
 - (NSArray*) getFields;
 - (MessageOptions*) getOptions;
 
+- (NSString*) getFullName;
+
 #if 0
 NSArray* fields;
     int32_t index;

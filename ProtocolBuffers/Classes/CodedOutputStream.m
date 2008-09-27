@@ -24,9 +24,9 @@
 
 @implementation CodedOutputStream
 
-const int DEFAULT_BUFFER_SIZE = 4096;
-const int LITTLE_ENDIAN_32_SIZE = 4;
-const int LITTLE_ENDIAN_64_SIZE = 8;
+const int32_t DEFAULT_BUFFER_SIZE = 4096;
+const int32_t LITTLE_ENDIAN_32_SIZE = 4;
+const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 
 @synthesize output;
 @synthesize buffer;
