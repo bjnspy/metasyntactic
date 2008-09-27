@@ -19,6 +19,7 @@
 - (id<Message_Builder>) mergeFrom:(id<Message>) other;
 - (id<Message>) build;
 - (id<Message>) buildPartial;
+- (id<Message>) buildParsed;
 - (id<Message_Builder>) clone;
 - (BOOL) isInitialized;
 - (Descriptor*) getDescriptorForType;

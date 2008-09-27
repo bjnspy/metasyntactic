@@ -17,24 +17,25 @@
 #import "AbstractMessage_Builder.h"
 
 @interface DynamicMessage_Builder : AbstractMessage_Builder {
-}
-#if 0
-    Descriptors_Descriptor* type;
+    Descriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
 }
 
-@property (retain) Descriptors_Descriptor* type;
+@property (retain) Descriptor* type;
 @property (retain) FieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 
-+ (DynamicMessage_Builder*) builderWithType:(Descriptors_Descriptor*) type;
++ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type;
 
-- (DynamicMessage_Builder*) clear;
+- (id<Message>) buildParsed;
 - (DynamicMessage_Builder*) mergeFrom:(id<Message>) other;
 
+#if 0
+
+- (DynamicMessage_Builder*) clear;
+
 - (DynamicMessage*) build; 
-- (DynamicMessage*) buildParsed;
 - (DynamicMessage*) buildPartial; 
 
 - (DynamicMessage_Builder*) clone;

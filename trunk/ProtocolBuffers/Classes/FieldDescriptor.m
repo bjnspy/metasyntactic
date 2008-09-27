@@ -29,7 +29,42 @@
 }
 
 
+- (BOOL) isExtension {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
 - (ObjectiveCType) getObjectiveCType {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (Descriptor*) getContainingType {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (Descriptor*) getMessageType {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (EnumDescriptor*) getEnumType {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (id) getDefaultValue {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (int32_t) getNumber {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (FieldDescriptorType) getType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

@@ -34,4 +34,9 @@
 - (void) writeTo:(int32_t) fieldNumber
           output:(CodedOutputStream*) output;
 
+- (int32_t) getSerializedSize:(int32_t) fieldNumber;
+- (void) writeAsMessageSetExtensionTo:(int32_t) fieldNumber
+                               output:(CodedOutputStream*) output;
+- (int32_t) getSerializedSizeAsMessageSetExtension:(int32_t) fieldNumber;
+
 @end
