@@ -14,15 +14,24 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-
-@interface Field_Builder : NSObject {
-    Field* result;
+@interface Field : NSObject {
+    NSMutableArray* varint;
+    NSMutableArray* fixed32;
+    NSMutableArray* fixed64;
+    NSMutableArray* lengthDelimited;
+    NSMutableArray* group;
 }
 
-@property (retain) Field* result;
+@property (retain) NSMutableArray* varint;
+@property (retain) NSMutableArray* fixed32;
+@property (retain) NSMutableArray* fixed64;
+@property (retain) NSMutableArray* lengthDelimited;
+@property (retain) NSMutableArray* group;
 
-- (Field*) build;
++ (Field*) getDefaultInstance;
++ (Field_Builder*) newBuilder;
 
-- (Field_Builder*) mergeFrom:(Field*) other;
+- (void) writeTo:(int32_t) fieldNumber
+          output:(CodedOutputStream*) output;
 
 @end

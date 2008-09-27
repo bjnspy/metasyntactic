@@ -78,4 +78,24 @@ int32_t computeRawVarint64Size(int64_t value);
 
 - (void) writeData:(int32_t) fieldNumber value:(NSData*) value;
 
+
+- (void) writeUInt64:(int32_t) fieldNumber value:(int64_t) value;
+- (void) writeInt64:(int32_t) fieldNumber value:(int64_t) value;
+- (void) writeInt32:(int32_t) fieldNumber value:(int32_t) value;
+- (void) writeFixed64:(int32_t) fieldNumber value:(int64_t) value;
+- (void) writeFixed32:(int32_t) fieldNumber value:(int32_t) value;
+- (void) writeBool:(int32_t) fieldNumber value:(BOOL) value;
+- (void) writeString:(int32_t) fieldNumber value:(NSString*) value;
+- (void) writeGroup:(int32_t) fieldNumber value:(id<Message>) value;
+- (void) writeUnknownGroup:(int32_t) fieldNumber value:(UnknownFieldSet*) value;
+- (void) writeMessage:(int32_t) fieldNumber value:(id<Message>) value;
+- (void) writeUInt32:(int32_t) fieldNumber value:(int32_t) value;
+- (void) writeEnum:(int32_t) fieldNumber value:(int32_t) value;
+- (void) writeSFixed32:(int32_t) fieldNumber value:(int32_t) value;
+- (void) writeSFixed64:(int32_t) fieldNumber value:(int64_t) value;
+- (void) writeSInt32:(int32_t) fieldNumber value:(int32_t) value;
+- (void) writeSInt64:(int32_t) fieldNumber value:(int64_t) value;
+- (void) writeMessageSetExtension:(int32_t) fieldNumber value:(id<Message>) value;
+- (void) writeRawMessageSetExtension:(int32_t) fieldNumber value:(NSData*) value;
+
 @end

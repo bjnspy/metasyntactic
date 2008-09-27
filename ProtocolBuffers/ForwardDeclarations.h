@@ -20,6 +20,8 @@ enum ObjectiveCType;
 @class CodedOutputStream;
 @class Descriptors;
 @class Descriptor;
+@class Field;
+@class Field_Builder;
 @class FieldDescriptor;
 @class FieldDescriptor_Type;
 @class FieldSet;
