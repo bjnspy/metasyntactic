@@ -15,14 +15,14 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ExtensionRegistry_ExtensionInfo : NSObject {
-}
-#if 0
     FieldDescriptor* descriptor;
     id<Message> defaultInstance;
 }
 
+@property (retain) FieldDescriptor* descriptor;
+@property (retain) id<Message> defaultInstance;
+
 + (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor;
 + (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor defaultInstance:(id<Message>) defaultInstance;
-#endif
 
 @end

@@ -19,6 +19,7 @@
 #import "EnumValueDescriptor.h"
 #import "FieldDescriptorType.h"
 #import "Message.h"
+#import "Utilities.h"
 #import "WireFormat.h"
 
 @implementation CodedOutputStream
@@ -69,14 +70,14 @@ const int LITTLE_ENDIAN_64_SIZE = 8;
 - (void) writeDouble:(int32_t) fieldNumber
                value:(Float64) value {
     [self writeTag:fieldNumber format:WireFormatFixed64];
-    [self writeRawLittleEndian64:*(int64_t*)&value];
+    [self writeRawLittleEndian64:convertFloat64ToInt64(value)];
 }
 
 
 - (void) writeFloat:(int32_t) fieldNumber
               value:(Float32) value {
     [self writeTag:fieldNumber format:WireFormatFixed32];
-    [self writeRawLittleEndian32:*(int32_t*)&value];
+    [self writeRawLittleEndian32:convertFloat32ToInt32(value)];
 }
 
 
@@ -498,8 +499,7 @@ int32_t computeTagSize(int32_t fieldNumber) {
             return;
         } else {
             [self writeRawByte:((value & 0x7F) | 0x80)];
-            uint32_t temp = (*(uint32_t*)&value) >> 7;
-            value = *(int32_t*)&temp;
+            value = logicalRightShift32(value, 7);
         }
     }
 }
@@ -521,8 +521,7 @@ int32_t computeRawVarint32Size(int32_t value) {
             return;
         } else {
             [self writeRawByte:(((int32_t)value & 0x7F) | 0x80)];
-            uint32_t temp = (*(uint32_t*)&value) >> 7;
-            value = *(int32_t*)&temp;
+            value = logicalRightShift64(value, 7);
         }
     }
 }

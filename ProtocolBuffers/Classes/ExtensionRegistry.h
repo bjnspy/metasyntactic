@@ -15,18 +15,20 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ExtensionRegistry : NSObject {
+    NSMutableDictionary* extensionsByName;
+    NSMutableDictionary* extensionsByNumber;
 }
+
+
+@property (retain) NSMutableDictionary* extensionsByName;
+@property (retain) NSMutableDictionary* extensionsByNumber;
 
 + (ExtensionRegistry*) getEmptyRegistry;
 
+- (id) initWithExtensionsByName:(NSMutableDictionary*) extensionsByName
+             extensionsByNumber:(NSMutableDictionary*) extensionsByNumber;
+
 #if 0
-    NSDictionary* extensionsByName;
-    NSDictionary* extensionsByNumber;
-}
-
-
-@property (retain) NSDictionary* extensionsByName;
-@property (retain) NSDictionary* extensionsByNumber;
 
 
 + (ExtensionRegistry*) newInstance;
