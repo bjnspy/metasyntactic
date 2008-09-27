@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7411FA760E8E1A84002552B1 /* MessageOptions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7411FA740E8E1A84002552B1 /* MessageOptions.h */; };
+		7411FA770E8E1A84002552B1 /* MessageOptions.m in Sources */ = {isa = PBXBuildFile; fileRef = 7411FA750E8E1A84002552B1 /* MessageOptions.m */; };
 		741A74520E8CC69300F16FD4 /* ForwardDeclarations.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A74510E8CC69300F16FD4 /* ForwardDeclarations.h */; };
 		741A747C0E8CCC7C00F16FD4 /* RpcChannel.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A747A0E8CCC7C00F16FD4 /* RpcChannel.h */; };
 		741A74800E8CCD1E00F16FD4 /* RpcController.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A747E0E8CCD1E00F16FD4 /* RpcController.h */; };
@@ -73,6 +75,8 @@
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = /System/Library/Frameworks/Cocoa.framework; sourceTree = "<absolute>"; };
 		32DBCF5E0370ADEE00C91783 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
+		7411FA740E8E1A84002552B1 /* MessageOptions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageOptions.h; sourceTree = "<group>"; };
+		7411FA750E8E1A84002552B1 /* MessageOptions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageOptions.m; sourceTree = "<group>"; };
 		741A74510E8CC69300F16FD4 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForwardDeclarations.h; sourceTree = "<group>"; };
 		741A747A0E8CCC7C00F16FD4 /* RpcChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RpcChannel.h; sourceTree = "<group>"; };
 		741A747E0E8CCD1E00F16FD4 /* RpcController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RpcController.h; sourceTree = "<group>"; };
@@ -162,6 +166,8 @@
 				089C1665FE841158C02AAC07 /* Resources */,
 				0867D69AFE84028FC02AAC07 /* External Frameworks and Libraries */,
 				034768DFFF38A50411DB9C8B /* Products */,
+				7411FA740E8E1A84002552B1 /* MessageOptions.h */,
+				7411FA750E8E1A84002552B1 /* MessageOptions.m */,
 			);
 			name = ProtocolBuffers;
 			sourceTree = "<group>";
@@ -328,6 +334,7 @@
 				74E79EFA0E8DA83400EFD26E /* Field.h in Headers */,
 				74E7A2ED0E8E11B100EFD26E /* ProtocolBufferType.h in Headers */,
 				74E7A3420E8E155C00EFD26E /* EnumDescriptor.h in Headers */,
+				7411FA760E8E1A84002552B1 /* MessageOptions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,6 +418,7 @@
 				74E79EFB0E8DA83400EFD26E /* Field.m in Sources */,
 				74E7A2EE0E8E11B100EFD26E /* ProtocolBufferType.m in Sources */,
 				74E7A3430E8E155C00EFD26E /* EnumDescriptor.m in Sources */,
+				7411FA770E8E1A84002552B1 /* MessageOptions.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

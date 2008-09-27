@@ -28,6 +28,7 @@ enum ObjectiveCType;
 @class FieldDescriptor_Type;
 @class FieldSet;
 @class FileDescriptor;
+@class MessageOptions;
 @class MethodDescriptor;
 @class ServiceDescriptor;
 @class DynamicMessage;

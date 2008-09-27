@@ -16,10 +16,12 @@
 
 #import "DynamicMessage.h"
 
+#import "Descriptor.h"
 #import "DynamicMessage_Builder.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"
 #import "Message.h"
+#import "MessageOptions.h"
 #import "UnknownFieldSet.h"
 
 @implementation DynamicMessage
@@ -52,6 +54,13 @@
     }
     
     return self;
+}
+
+
++ (DynamicMessage*) messageWithType:(Descriptor*) type
+                             fields:(FieldSet*) fields
+                      unknownFields:(UnknownFieldSet*) unknownFields {
+    return [[[DynamicMessage alloc] initWithType:type fields:fields unknownFields:unknownFields] autorelease];
 }
 
 

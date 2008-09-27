@@ -23,4 +23,9 @@
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
 
+
+- (MessageOptions*) getOptions {
+    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+}
+
 @end

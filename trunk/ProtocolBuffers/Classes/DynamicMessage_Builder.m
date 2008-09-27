@@ -16,6 +16,7 @@
 
 #import "DynamicMessage_Builder.h"
 
+#import "DynamicMessage.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"
 #import "Message.h"
@@ -48,6 +49,13 @@
     }
     
     return self;
+}
+
+
++ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type {
+    return [[[DynamicMessage_Builder alloc] initWithType:type
+                                                  fields:[FieldSet set]
+                                           unknownFields:[UnknownFieldSet getDefaultInstance]] autorelease];
 }
 
 
@@ -111,7 +119,7 @@
 
 
 - (DynamicMessage*) getDefaultInstanceForType {
-    return [self getDefaultInstance:type];
+    return [DynamicMessage getDefaultInstance:type];
 }
 
 
@@ -148,7 +156,7 @@
     [self verifyContainingType:field];
     id result = [fields getField:field];
     if (result == nil) {
-        result = [self getDefaultInstance:field.getMessageType];
+        result = [DynamicMessage getDefaultInstance:field.getMessageType];
     }
     return result;
 }
