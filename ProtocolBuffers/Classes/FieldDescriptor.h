@@ -16,6 +16,7 @@
 
 #import "GenericDescriptor.h"
 
+#import "FieldDescriptorType.h"
 #import "ObjectiveCType.h"
 
 @interface FieldDescriptor : NSObject/*<GenericDescriptor>*/ {
@@ -23,8 +24,17 @@
 
 - (BOOL) isRequired; 
 - (BOOL) isRepeated;
+- (BOOL) isExtension;      
 - (ObjectiveCType) getObjectiveCType;
-//- (Type*) getType;
+- (FieldDescriptorType) getType;
+
+- (Descriptor*) getContainingType;
+- (Descriptor*) getMessageType;
+- (EnumDescriptor*) getEnumType;
+
+
+- (id) getDefaultValue;
+- (int32_t) getNumber;
 
 #if 0
     int32_t index;
@@ -43,17 +53,13 @@
 @property (retain) Descriptor* containingType;
 
 - (NSString*) name;
-- (int32_t) number;
    
 - (BOOL) isOptional;
 - (BOOL) hasDefaultValue;
-- (id) defaultValue;
-- (FieldOptions*) options;
-- (BOOL) isExtension;        
+- (FieldOptions*) options;  
 
 - (Descriptor*) extensionScope;
 - (Descriptor*) messageType;
-- (EnumDescriptor*) enumType;
 #endif
 
 @end

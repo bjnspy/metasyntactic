@@ -98,4 +98,8 @@ int32_t computeRawVarint64Size(int64_t value);
 - (void) writeMessageSetExtension:(int32_t) fieldNumber value:(id<Message>) value;
 - (void) writeRawMessageSetExtension:(int32_t) fieldNumber value:(NSData*) value;
 
+- (void) writeField:(FieldDescriptorType) type
+             number:(int32_t) number
+              value:(id) value;
+
 @end

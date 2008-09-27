@@ -17,20 +17,26 @@
 #import "AbstractMessage.h"
 
 @interface DynamicMessage : AbstractMessage {
-}
-#if 0
-    Descriptors_Descriptor* type;
+    Descriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
+    int32_t memoizedSize;
 }
 
-@property (retain) Descriptors_Descriptor* type;
+@property (retain) Descriptor* type;
 @property (retain) FieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 @property int32_t memoizedSize;
 
++ (DynamicMessage*) messageWithType:(Descriptor*) type fields:(FieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
++ (DynamicMessage*) getDefaultInstance:(Descriptor*) type;
+
++ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type;
+
+
+#if 0
 + (DynamicMessage*) messageWithType:(Descriptors_Descriptor*) type;
-+ (DynamicMessage*) messageWithType:(Descriptors_Descriptor*) type fields:(FieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
+
 
 + (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(CodedInputStream*) codedInputStream;
 + (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(CodedInputStream*) codedInputStream extensionRegistry:(ExtensionRegistry*) extensionRegistry;

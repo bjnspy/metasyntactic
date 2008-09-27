@@ -117,6 +117,38 @@ static UnknownFieldSet* defaultInstance = nil;
 }
 
 
+/** Get the number of bytes required to encode this set. */
+- (int32_t) getSerializedSize {
+    int32_t result = 0;
+    for (NSNumber* number in fields) {
+        result += [[fields objectForKey:number] getSerializedSize:number.intValue];
+    }
+    return result;
+}
+
+/**
+ * Serializes the set and writes it to {@code output} using
+ * {@code MessageSet} wire format.
+ */
+- (void) writeAsMessageSetTo:(CodedOutputStream*) output {
+    for (NSNumber* number in fields) {
+        [[fields objectForKey:number] writeAsMessageSetExtensionTo:number.intValue output:output];
+    }
+}
+
+
+/**
+ * Get the number of bytes required to encode this set using
+ * {@code MessageSet} wire format.
+ */
+- (int32_t) getSerializedSizeAsMessageSet {
+    int result = 0;
+    for (NSNumber* number in fields) {
+        result += [[fields objectForKey:number] getSerializedSizeAsMessageSetExtension:number.intValue];
+    }
+    return result;
+}
+
 #if 0
 
 
@@ -153,39 +185,7 @@ public final ByteString toByteString() {
  */
 
 
-/** Get the number of bytes required to encode this set. */
-public int getSerializedSize() {
-    int result = 0;
-    for (Map.Entry<Integer, Field> entry : fields.entrySet()) {
-        result += entry.getValue().getSerializedSize(entry.getKey());
-    }
-    return result;
-}
 
-/**
- * Serializes the set and writes it to {@code output} using
- * {@code MessageSet} wire format.
- */
-public void writeAsMessageSetTo(CodedOutputStream output)
-throws IOException {
-    for (Map.Entry<Integer, Field> entry : fields.entrySet()) {
-        entry.getValue().writeAsMessageSetExtensionTo(
-                                                      entry.getKey(), output);
-    }
-}
-
-/**
- * Get the number of bytes required to encode this set using
- * {@code MessageSet} wire format.
- */
-public int getSerializedSizeAsMessageSet() {
-    int result = 0;
-    for (Map.Entry<Integer, Field> entry : fields.entrySet()) {
-        result += entry.getValue().getSerializedSizeAsMessageSetExtension(
-                                                                          entry.getKey());
-    }
-    return result;
-}
 }
 #endif
 @end

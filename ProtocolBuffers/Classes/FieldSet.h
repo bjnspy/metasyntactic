@@ -16,7 +16,12 @@
 
 
 @interface FieldSet : NSObject {
+    NSMutableDictionary* fields;
 }
+
+
+@property (retain) NSMutableDictionary* fields;
+
 
 + (void) mergeFromCodedInputStream:(CodedInputStream*) input
                      unknownFields:(UnknownFieldSet_Builder*) unknownFields
@@ -27,6 +32,38 @@
                  extensionRegistry:(ExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder
                                tag:(int32_t) tag;
+
++ (FieldSet*) emptySet;
+
+
+- (id) initWithFields:(NSMutableDictionary*) fields;
+
+- (void) clear;
+- (NSDictionary*) getAllFields;
+
+- (BOOL) hasField:(FieldDescriptor*) field;
+- (id) getField:(FieldDescriptor*) field;
+- (void) setField:(FieldDescriptor*) field value:(id) value;
+- (void) clearField:(FieldDescriptor*) field;
+
+- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field;
+- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index;
+- (void) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (void) addRepeatedField:(FieldDescriptor*) field value:(id) value;
+
+
+- (BOOL) isInitialized:(Descriptor*) type;
+
+- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
+
+- (int32_t) getSerializedSize;
+
+- (void) mergeFromMessage:(id<Message>) other;
+- (void) mergeFromFieldSet:(FieldSet*) other;
+
+- (void) writeField:(FieldDescriptor*) field value:(id) value output:(CodedOutputStream*) output;
+
+
 #if 0
     // Use a TreeMap because fields need to be in canonical order when
     // serializing.
@@ -37,25 +74,10 @@
 
 + (FieldSet*) setWithFields:(NSDictionary*) fields;
 + (FieldSet*) set;
-+ (FieldSet*) emptySet;
 
 - (void) makeImmutable; 
-- (void) clear;
-
-- (NSDictionary*) allFields;
-- (BOOL) hasField:(Descriptors_FieldDescriptor*) field;
-- (id) getField:(Descriptors_FieldDescriptor*) field;
-- (void) setField:(Descriptors_FieldDescriptor*) field value:(id) value;
-- (void) clearField:(Descriptors_FieldDescriptor*) field;
-
-- (int32_t) getRepeatedFieldCount:(Descriptors_FieldDescriptor*) field;
-
-- (id) getRepeatedField:(Descriptors_FieldDescriptor*) field index:(int32_t) index;
-- (void) setRepeatedField:(Descriptors_FieldDescriptor*) field index:(int32_t) index value:(id) value;
-- (void) addRepeatedField:(Descriptors_FieldDescriptor*) field value:(id) value;
 
 - (BOOL) isInitialized;
-- (BOOL) isInitialized:(Descriptors_Descriptor*) type;
 
 - (void) mergeFrom:(id<Message>) other;
 - (void) mergeFrom:(FieldSet*) other;
@@ -75,9 +97,7 @@
                                     extensionRegistry:(ExtensionRegistry*) extensionRegistry
                                               builder:(id<Message_Builder>) builder;
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
 - (void) writeField:(Descriptors_FieldDescriptor*) field value:(id) value ouput:(CodedInputStream*) output;
-- (int32_t) serializedSize;
 #endif
 
 @end

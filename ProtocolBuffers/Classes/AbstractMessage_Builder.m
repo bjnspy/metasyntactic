@@ -46,6 +46,14 @@
 }
 
 
+- (id<Message>) buildParsed {
+    if (![self isInitialized]) {
+        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+    }
+    return [self buildPartial];
+}
+
+
 - (id<Message_Builder>) mergeFrom:(id<Message>) other {
     if ([other getDescriptorForType] != self.getDescriptorForType) {
         @throw [NSException exceptionWithName:@"IllegalArgumentException" reason:@"" userInfo:nil];

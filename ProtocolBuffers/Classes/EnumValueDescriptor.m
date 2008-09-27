@@ -11,8 +11,29 @@
 
 @implementation EnumValueDescriptor
 
+@synthesize index;
+@synthesize fullName;
+@synthesize file;
+@synthesize type;
+
+- (void) dealloc {
+    self.index = 0;
+    self.fullName = nil;
+    self.file = nil;
+    self.type = nil;
+
+    [super dealloc];
+}
+
+
 - (int32_t) getNumber {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
+
+
+- (EnumDescriptor*) getType {
+    return type;
+}
+
 
 @end

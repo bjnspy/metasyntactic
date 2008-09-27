@@ -24,10 +24,17 @@
 + (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
 + (UnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
 
++ (UnknownFieldSet*) getDefaultInstance;
+
+- (void) writeAsMessageSetTo:(CodedOutputStream*) output;
+- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
+
+- (int32_t) getSerializedSize;
+- (int32_t) getSerializedSizeAsMessageSet;
+
 #if 0
 + (UnknownFieldSet_Builder*) newBuilder;
 + (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
-+ (UnknownFieldSet*) defaultInstance;
 
 + (UnknownFieldSet*) parseFromCodedInputStream:(CodedInputStream*) input;
 + (UnknownFieldSet*) parseFromData:(NSData*) data;
@@ -36,12 +43,8 @@
 - (NSDictionary*) toDictionary;
 - (BOOL) hasField:(int32_t) number;
 - (UnknownFieldSet_Field*) getField:(int32_t) number;
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
 - (void) writeToOutputStream:(NSOutputStream*) output;
 - (NSData*) toData;
-- (int32_t) serializedSize;
-- (void) writeAsMessageSetTo:(CodedOutputStream*) output;
-- (int32_t) serializedSizeAsMessageSet;
 #endif
 
 @end
