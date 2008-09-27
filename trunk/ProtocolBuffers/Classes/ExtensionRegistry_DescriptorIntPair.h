@@ -15,16 +15,13 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 @interface ExtensionRegistry_DescriptorIntPair : NSObject {
-}
-#if 0
-    Descriptors_Descriptor* descriptor;
+    Descriptor* descriptor;
     int32_t number;
 }
 
-@property (retain) Descriptors_Descriptor* descriptor;
+@property (retain) Descriptor* descriptor;
 @property int32_t number;
 
-+ (DescriptorIntPair*) pairWithDescriptor:(Descriptors_Descriptor*) descriptor number:(int32_t) number;
-#endif
++ (ExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(Descriptor*) descriptor number:(int32_t) number;
 
 @end

@@ -16,7 +16,51 @@
 
 #import "ExtensionRegistry_DescriptorIntPair.h"
 
+#import "Descriptor.h"
 
 @implementation ExtensionRegistry_DescriptorIntPair
+
+@synthesize descriptor;
+@synthesize number;
+
+
+- (void) dealloc {
+    self.descriptor = nil;
+    self.number = 0;
+
+    [super dealloc];
+}
+
+
+- (id) initWithDescriptor:(Descriptor*) descriptor_
+                   number:(int32_t) number_ {
+    if (self = [super init]) {
+        self.descriptor = descriptor_;
+        self.number = number_;
+    }
+    
+    return self;
+}
+
+
++ (ExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(Descriptor*) descriptor
+                                                     number:(int32_t) number {
+    return [[[ExtensionRegistry_DescriptorIntPair alloc] initWithDescriptor:descriptor number:number] autorelease];
+}
+
+
+- (NSUInteger) hash {
+    return descriptor.hash * ((1 << 16) - 1) + number;
+}
+
+
+- (BOOL) isEqual:(id) obj {
+    if (![obj isKindOfClass:[ExtensionRegistry_DescriptorIntPair class]]) {
+        return false;
+    }
+    
+    ExtensionRegistry_DescriptorIntPair* other = obj;
+    return descriptor == other.descriptor && number == other.number;
+}
 
 @end

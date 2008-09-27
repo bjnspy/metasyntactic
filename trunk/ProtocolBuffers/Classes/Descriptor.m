@@ -28,4 +28,9 @@
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
 
+
+- (NSString*) getFullName {
+    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+}
+
 @end
