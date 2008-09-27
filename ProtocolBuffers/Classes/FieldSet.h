@@ -33,6 +33,8 @@
                            builder:(id<Message_Builder>) builder
                                tag:(int32_t) tag;
 
+
++ (FieldSet*) set;
 + (FieldSet*) emptySet;
 
 

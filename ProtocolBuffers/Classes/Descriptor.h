@@ -20,6 +20,7 @@
 }
 
 - (NSArray*) getFields;
+- (MessageOptions*) getOptions;
 
 #if 0
 NSArray* fields;
@@ -43,7 +44,6 @@ NSArray* fields;
 @property (retain) NSArray* fields;
 
 - (NSString*) name;
-- (MessageOptions*) options;
 
 - (BOOL) isExtensionNumber:(int32_t) number;    
 - (FieldDescriptor*) findFieldByName:(NSString*) name;

@@ -26,6 +26,8 @@
 
 - (UnknownFieldSet*) getUnknownFields;
 
+- (id<Message>) buildParsed;
+
 #if 0
 - (AbstractMessage_Builder*) clone;
 - (AbstractMessage_Builder*) clear;

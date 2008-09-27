@@ -23,6 +23,7 @@
 #import "Field.h"
 #import "FieldDescriptor.h"
 #import "Message.h"
+#import "MessageOptions.h"
 #import "Message_Builder.h"
 
 @implementation FieldSet
@@ -78,6 +79,20 @@ static FieldSet* DEFAULT_INSTANCE = nil;
     }
     
     return self;
+}
+
+
+- (id) init {
+    if (self = [super init]) {
+        self.fields = [NSMutableDictionary dictionary];
+    }
+    
+    return fields;
+}
+
+
++ (FieldSet*) set {
+    return [[[FieldSet alloc] init] autorelease];
 }
 
 
