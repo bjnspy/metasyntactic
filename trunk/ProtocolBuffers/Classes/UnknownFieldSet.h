@@ -16,10 +16,13 @@
 
 
 @interface UnknownFieldSet : NSObject {
-
+    NSMutableDictionary* fields;
 }
 
+@property (retain) NSMutableDictionary* fields;
+
 + (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
++ (UnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
 
 #if 0
 + (UnknownFieldSet_Builder*) newBuilder;

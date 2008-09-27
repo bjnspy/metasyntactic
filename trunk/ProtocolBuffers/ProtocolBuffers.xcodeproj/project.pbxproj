@@ -61,6 +61,8 @@
 		74E79C310E8D82B500EFD26E /* FieldDescriptorType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79C2F0E8D82B500EFD26E /* FieldDescriptorType.m */; };
 		74E79DC70E8D989100EFD26E /* EnumValueDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79DC50E8D989100EFD26E /* EnumValueDescriptor.h */; };
 		74E79DC80E8D989100EFD26E /* EnumValueDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79DC60E8D989100EFD26E /* EnumValueDescriptor.m */; };
+		74E79EFA0E8DA83400EFD26E /* Field.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79EF80E8DA83400EFD26E /* Field.h */; };
+		74E79EFB0E8DA83400EFD26E /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79EF90E8DA83400EFD26E /* Field.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 /* End PBXBuildFile section */
@@ -125,6 +127,8 @@
 		74E79C2F0E8D82B500EFD26E /* FieldDescriptorType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldDescriptorType.m; sourceTree = "<group>"; };
 		74E79DC50E8D989100EFD26E /* EnumValueDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumValueDescriptor.h; sourceTree = "<group>"; };
 		74E79DC60E8D989100EFD26E /* EnumValueDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumValueDescriptor.m; sourceTree = "<group>"; };
+		74E79EF80E8DA83400EFD26E /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
+		74E79EF90E8DA83400EFD26E /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8DC2EF5B0486A6940098B216 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtocolBuffers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -203,8 +207,6 @@
 				741A74BC0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.m */,
 				741A74BD0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.h */,
 				741A74BE0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.m */,
-				741A74BF0E8CCF0E00F16FD4 /* Field_Builder.h */,
-				741A74C00E8CCF0E00F16FD4 /* Field_Builder.m */,
 				741A74C10E8CCF0E00F16FD4 /* FieldSet.h */,
 				741A74C20E8CCF0E00F16FD4 /* FieldSet.m */,
 				741A74C30E8CCF0E00F16FD4 /* GeneratedMessage.h */,
@@ -225,6 +227,10 @@
 				741A74D20E8CCF0E00F16FD4 /* WireFormat.m */,
 				74E79B150E8D73C600EFD26E /* ObjectiveCType.h */,
 				74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */,
+				74E79EF80E8DA83400EFD26E /* Field.h */,
+				74E79EF90E8DA83400EFD26E /* Field.m */,
+				741A74BF0E8CCF0E00F16FD4 /* Field_Builder.h */,
+				741A74C00E8CCF0E00F16FD4 /* Field_Builder.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -321,6 +327,7 @@
 				74E79B170E8D73C600EFD26E /* ObjectiveCType.h in Headers */,
 				74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Headers */,
 				74E79DC70E8D989100EFD26E /* EnumValueDescriptor.h in Headers */,
+				74E79EFA0E8DA83400EFD26E /* Field.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,6 +410,7 @@
 				74E79BBB0E8D75E800EFD26E /* ObjectiveCType.m in Sources */,
 				74E79C310E8D82B500EFD26E /* FieldDescriptorType.m in Sources */,
 				74E79DC80E8D989100EFD26E /* EnumValueDescriptor.m in Sources */,
+				74E79EFB0E8DA83400EFD26E /* Field.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
