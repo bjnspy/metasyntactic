@@ -23,6 +23,20 @@ int32_t convertFloat32ToInt32(Float32 v) {
 }
 
 
+Float64 convertInt64ToFloat64(int64_t v) {
+    union { Float64 f; int64_t i; } u;
+    u.i = v;
+    return u.f;
+}
+
+
+Float32 convertInt32ToFloat32(int32_t v) {
+    union { Float32 f; int32_t i; } u;
+    u.i = v;
+    return u.f;
+}
+
+
 uint64_t convertInt64ToUInt64(int64_t v) {
     union { int64_t i; uint64_t u; } u;
     u.i = v;

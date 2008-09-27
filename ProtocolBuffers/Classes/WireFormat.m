@@ -16,7 +16,18 @@
 
 #import "WireFormat.h"
 
+#import "Utilities.h"
 
 int32_t WireFormatMakeTag(int32_t fieldNumber, int32_t wireType) {
     return (fieldNumber << TAG_TYPE_BITS) | wireType;
+}
+
+
+int32_t WireFormatGetTagWireType(int32_t tag) {
+    return tag & TAG_TYPE_MASK;
+}
+
+
+int32_t WireFormatGetTagFieldNumber(int32_t tag) {
+    return logicalRightShift32(tag, TAG_TYPE_BITS);
 }

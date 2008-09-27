@@ -31,3 +31,5 @@ typedef enum {
 } WireFormat;
     
 int32_t WireFormatMakeTag(int32_t fieldNumber, int32_t wireType);
+int32_t WireFormatGetTagWireType(int32_t tag);
+int32_t WireFormatGetTagFieldNumber(int32_t tag);
