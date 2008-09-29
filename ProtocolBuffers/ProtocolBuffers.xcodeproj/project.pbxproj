@@ -74,6 +74,8 @@
 		745170C10E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 745170BF0E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.m */; };
 		745170C50E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 745170C30E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h */; };
 		745170C60E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 745170C40E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.m */; };
+		7451724E0E9086E300D4E0C5 /* DescriptorPool.h in Headers */ = {isa = PBXBuildFile; fileRef = 7451724C0E9086E300D4E0C5 /* DescriptorPool.h */; };
+		7451724F0E9086E300D4E0C5 /* DescriptorPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7451724D0E9086E300D4E0C5 /* DescriptorPool.m */; };
 		74E79B170E8D73C600EFD26E /* ObjectiveCType.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79B150E8D73C600EFD26E /* ObjectiveCType.h */; };
 		74E79BBB0E8D75E800EFD26E /* ObjectiveCType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */; };
 		74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */; };
@@ -163,6 +165,8 @@
 		745170BF0E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_SingularEnumFieldAccessor.m; sourceTree = "<group>"; };
 		745170C30E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_SingularFieldAccessor.h; sourceTree = "<group>"; };
 		745170C40E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_SingularFieldAccessor.m; sourceTree = "<group>"; };
+		7451724C0E9086E300D4E0C5 /* DescriptorPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorPool.h; sourceTree = "<group>"; };
+		7451724D0E9086E300D4E0C5 /* DescriptorPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorPool.m; sourceTree = "<group>"; };
 		74E79B150E8D73C600EFD26E /* ObjectiveCType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCType.h; sourceTree = "<group>"; };
 		74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCType.m; sourceTree = "<group>"; };
 		74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDescriptorType.h; sourceTree = "<group>"; };
@@ -321,6 +325,8 @@
 		741A75780E8CE0FB00F16FD4 /* Descriptors */ = {
 			isa = PBXGroup;
 			children = (
+				74516F350E905F9600D4E0C5 /* Descriptor.pb.h */,
+				74516F360E905F9600D4E0C5 /* Descriptor.pb.m */,
 				741A758B0E8CE18200F16FD4 /* Descriptor.h */,
 				741A758C0E8CE18200F16FD4 /* Descriptor.m */,
 				741A758D0E8CE18200F16FD4 /* FieldDescriptor.h */,
@@ -334,8 +340,8 @@
 				74E79DC60E8D989100EFD26E /* EnumValueDescriptor.m */,
 				74E7A3400E8E155C00EFD26E /* EnumDescriptor.h */,
 				74E7A3410E8E155C00EFD26E /* EnumDescriptor.m */,
-				74516F350E905F9600D4E0C5 /* Descriptor.pb.h */,
-				74516F360E905F9600D4E0C5 /* Descriptor.pb.m */,
+				7451724C0E9086E300D4E0C5 /* DescriptorPool.h */,
+				7451724D0E9086E300D4E0C5 /* DescriptorPool.m */,
 			);
 			name = Descriptors;
 			sourceTree = "<group>";
@@ -417,6 +423,7 @@
 				745170B70E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.h in Headers */,
 				745170C00E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.h in Headers */,
 				745170C50E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h in Headers */,
+				7451724E0E9086E300D4E0C5 /* DescriptorPool.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,6 +518,7 @@
 				745170B80E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.m in Sources */,
 				745170C10E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.m in Sources */,
 				745170C60E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.m in Sources */,
+				7451724F0E9086E300D4E0C5 /* DescriptorPool.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

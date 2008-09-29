@@ -33,4 +33,9 @@
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
 
+
+- (NSArray*) getEnumTypes {
+    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+}
+
 @end

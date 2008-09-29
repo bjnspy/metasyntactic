@@ -16,7 +16,7 @@
 
 @protocol Message_Builder
 - (id<Message_Builder>) clear;
-- (id<Message_Builder>) mergeFrom:(id<Message>) other;
+- (id<Message_Builder>) mergeFromMessage:(id<Message>) other;
 - (id<Message>) build;
 - (id<Message>) buildPartial;
 - (id<Message>) buildParsed;

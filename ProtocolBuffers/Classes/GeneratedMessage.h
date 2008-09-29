@@ -18,7 +18,11 @@
 
 
 @interface GeneratedMessage : AbstractMessage {
-
+    UnknownFieldSet* unknownFields;
 }
+
+@property (retain) UnknownFieldSet* unknownFields;
+
+- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 @end

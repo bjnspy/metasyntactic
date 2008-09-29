@@ -29,5 +29,6 @@
 
 - (EnumDescriptor*) getType;
 - (int32_t) getNumber;
+- (int32_t) getIndex;
 
 @end

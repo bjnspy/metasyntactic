@@ -24,6 +24,8 @@
 
 - (NSString*) getFullName;
 
+- (NSArray*) getEnumTypes;
+
 #if 0
 NSArray* fields;
     int32_t index;

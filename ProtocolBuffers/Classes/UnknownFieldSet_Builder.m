@@ -43,7 +43,7 @@
 }
 
 
-- (UnknownFieldSet_Builder*) mergeFrom:(UnknownFieldSet*) other {
+- (UnknownFieldSet_Builder*) mergeFromUnknownFieldSet:(UnknownFieldSet*) other {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

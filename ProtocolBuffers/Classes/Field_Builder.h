@@ -22,6 +22,6 @@
 
 - (Field*) build;
 
-- (Field_Builder*) mergeFrom:(Field*) other;
+- (Field_Builder*) mergeFromField:(Field*) other;
 
 @end
