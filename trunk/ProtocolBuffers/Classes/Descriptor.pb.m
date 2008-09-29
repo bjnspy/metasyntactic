@@ -2,18 +2,6 @@
 
 #import "Descriptor.pb.h"
 
-#import "CodedInputStream.h"
-#import "CodedOutputStream.h"
-#import "Descriptor.h"
-#import "DescriptorPool.h"
-#import "EnumDescriptor.h"
-#import "EnumValueDescriptor.h"
-#import "ExtensionRegistry.h"
-#import "FileDescriptor.h"
-#import "Message.h"
-#import "UnknownFieldSet.h"
-#import "UnknownFieldSet_Builder.h"
-
 @implementation Descriptor
 static FileDescriptor* descriptor = nil;
 + (void) initialize {
@@ -262,7 +250,6 @@ static FileDescriptorSet* defaultFileDescriptorSetInstance = nil;
   return [Descriptor internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable];
 }
 
-// repeated .google.protobuf.FileDescriptorProto file = 1;
 - (NSArray*) getFileList {
   return file_;
 }
@@ -327,6 +314,12 @@ static FileDescriptorSet* defaultFileDescriptorSetInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[FileDescriptorSet alloc] init] autorelease];
+  }
+  return self;
 }
 - (FileDescriptorSet*) internalGetResult {
   return result;
@@ -421,7 +414,6 @@ static FileDescriptorSet* defaultFileDescriptorSetInstance = nil;
 }
 
 
-// repeated .google.protobuf.FileDescriptorProto file = 1;
 - (NSArray*) getFileList {
   if (result.file_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.file_];
@@ -524,15 +516,12 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return [Descriptor internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable];
 }
 
-// optional string name = 1;
 - (BOOL) hasName { return hasName; }
 - (NSString*) getName { return name_; }
 
-// optional string package = 2;
 - (BOOL) hasPackage { return hasPackage; }
 - (NSString*) getPackage { return package_; }
 
-// repeated string dependency = 3;
 - (NSArray*) getDependencyList {
   return dependency_;
 }
@@ -541,7 +530,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return [dependency_ objectAtIndex:index];
 }
 
-// repeated .google.protobuf.DescriptorProto message_type = 4;
 - (NSArray*) getMessageTypeList {
   return messageType_;
 }
@@ -550,7 +538,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return [messageType_ objectAtIndex:index];
 }
 
-// repeated .google.protobuf.EnumDescriptorProto enum_type = 5;
 - (NSArray*) getEnumTypeList {
   return enumType_;
 }
@@ -559,7 +546,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return [enumType_ objectAtIndex:index];
 }
 
-// repeated .google.protobuf.ServiceDescriptorProto service = 6;
 - (NSArray*) getServiceList {
   return service_;
 }
@@ -568,7 +554,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return [service_ objectAtIndex:index];
 }
 
-// repeated .google.protobuf.FieldDescriptorProto extension = 7;
 - (NSArray*) getExtensionList {
   return extension_;
 }
@@ -577,7 +562,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return [extension_ objectAtIndex:index];
 }
 
-// optional .google.protobuf.FileOptions options = 8;
 - (BOOL) hasOptions { return hasOptions; }
 - (FileOptions*) getOptions { return options_; }
 
@@ -679,6 +663,12 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[FileDescriptorProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (FileDescriptorProto*) internalGetResult {
   return result;
@@ -845,7 +835,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
 }
 
 
-// optional string name = 1;
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -863,7 +852,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return self;
 }
 
-// optional string package = 2;
 - (BOOL) hasPackage {
   return result.hasPackage;
 }
@@ -881,7 +869,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return self;
 }
 
-// repeated string dependency = 3;
 - (NSArray*) getDependencyList {
   if (result.dependency_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithArray:result.dependency_];
@@ -915,7 +902,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.DescriptorProto message_type = 4;
 - (NSArray*) getMessageTypeList {
   if (result.messageType_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.messageType_];
@@ -960,7 +946,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.EnumDescriptorProto enum_type = 5;
 - (NSArray*) getEnumTypeList {
   if (result.enumType_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.enumType_];
@@ -1005,7 +990,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.ServiceDescriptorProto service = 6;
 - (NSArray*) getServiceList {
   if (result.service_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.service_];
@@ -1050,7 +1034,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.FieldDescriptorProto extension = 7;
 - (NSArray*) getExtensionList {
   if (result.extension_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.extension_];
@@ -1095,7 +1078,6 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return self;
 }
 
-// optional .google.protobuf.FileOptions options = 8;
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -1182,11 +1164,9 @@ static DescriptorProto* defaultDescriptorProtoInstance = nil;
   return [Descriptor internal_static_google_protobuf_DescriptorProto_fieldAccessorTable];
 }
 
-// optional string name = 1;
 - (BOOL) hasName { return hasName; }
 - (NSString*) getName { return name_; }
 
-// repeated .google.protobuf.FieldDescriptorProto field = 2;
 - (NSArray*) getFieldList {
   return field_;
 }
@@ -1195,7 +1175,6 @@ static DescriptorProto* defaultDescriptorProtoInstance = nil;
   return [field_ objectAtIndex:index];
 }
 
-// repeated .google.protobuf.FieldDescriptorProto extension = 6;
 - (NSArray*) getExtensionList {
   return extension_;
 }
@@ -1204,7 +1183,6 @@ static DescriptorProto* defaultDescriptorProtoInstance = nil;
   return [extension_ objectAtIndex:index];
 }
 
-// repeated .google.protobuf.DescriptorProto nested_type = 3;
 - (NSArray*) getNestedTypeList {
   return nestedType_;
 }
@@ -1213,7 +1191,6 @@ static DescriptorProto* defaultDescriptorProtoInstance = nil;
   return [nestedType_ objectAtIndex:index];
 }
 
-// repeated .google.protobuf.EnumDescriptorProto enum_type = 4;
 - (NSArray*) getEnumTypeList {
   return enumType_;
 }
@@ -1222,7 +1199,6 @@ static DescriptorProto* defaultDescriptorProtoInstance = nil;
   return [enumType_ objectAtIndex:index];
 }
 
-// repeated .google.protobuf.DescriptorProto.ExtensionRange extension_range = 5;
 - (NSArray*) getExtensionRangeList {
   return extensionRange_;
 }
@@ -1231,7 +1207,6 @@ static DescriptorProto* defaultDescriptorProtoInstance = nil;
   return [extensionRange_ objectAtIndex:index];
 }
 
-// optional .google.protobuf.MessageOptions options = 7;
 - (BOOL) hasOptions { return hasOptions; }
 - (MessageOptions*) getOptions { return options_; }
 
@@ -1365,11 +1340,9 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return [Descriptor internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable];
 }
 
-// optional int32 start = 1;
 - (BOOL) hasStart { return hasStart; }
 - (int32_t) getStart { return start_; }
 
-// optional int32 end = 2;
 - (BOOL) hasEnd { return hasEnd; }
 - (int32_t) getEnd { return end_; }
 
@@ -1435,6 +1408,12 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[ExtensionRange alloc] init] autorelease];
+  }
+  return self;
 }
 - (ExtensionRange*) internalGetResult {
   return result;
@@ -1531,7 +1510,6 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
 }
 
 
-// optional int32 start = 1;
 - (BOOL) hasStart {
   return result.hasStart;
 }
@@ -1549,7 +1527,6 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return self;
 }
 
-// optional int32 end = 2;
 - (BOOL) hasEnd {
   return result.hasEnd;
 }
@@ -1573,6 +1550,12 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[DescriptorProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (DescriptorProto*) internalGetResult {
   return result;
@@ -1734,7 +1717,6 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
 }
 
 
-// optional string name = 1;
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -1752,7 +1734,6 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.FieldDescriptorProto field = 2;
 - (NSArray*) getFieldList {
   if (result.field_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.field_];
@@ -1797,7 +1778,6 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.FieldDescriptorProto extension = 6;
 - (NSArray*) getExtensionList {
   if (result.extension_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.extension_];
@@ -1842,7 +1822,6 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.DescriptorProto nested_type = 3;
 - (NSArray*) getNestedTypeList {
   if (result.nestedType_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.nestedType_];
@@ -1887,7 +1866,6 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.EnumDescriptorProto enum_type = 4;
 - (NSArray*) getEnumTypeList {
   if (result.enumType_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.enumType_];
@@ -1932,7 +1910,6 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.DescriptorProto.ExtensionRange extension_range = 5;
 - (NSArray*) getExtensionRangeList {
   if (result.extensionRange_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.extensionRange_];
@@ -1977,7 +1954,6 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return self;
 }
 
-// optional .google.protobuf.MessageOptions options = 7;
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -2084,35 +2060,27 @@ static FieldDescriptorProto* defaultFieldDescriptorProtoInstance = nil;
   return [Descriptor internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable];
 }
 
-// optional string name = 1;
 - (BOOL) hasName { return hasName; }
 - (NSString*) getName { return name_; }
 
-// optional int32 number = 3;
 - (BOOL) hasNumber { return hasNumber; }
 - (int32_t) getNumber { return number_; }
 
-// optional .google.protobuf.FieldDescriptorProto.Label label = 4;
 - (BOOL) hasLabel { return hasLabel; }
 - (Label*) getLabel { return label_; }
 
-// optional .google.protobuf.FieldDescriptorProto.Type type = 5;
 - (BOOL) hasType { return hasType; }
 - (Type*) getType { return type_; }
 
-// optional string type_name = 6;
 - (BOOL) hasTypeName { return hasTypeName; }
 - (NSString*) getTypeName { return typeName_; }
 
-// optional string extendee = 2;
 - (BOOL) hasExtendee { return hasExtendee; }
 - (NSString*) getExtendee { return extendee_; }
 
-// optional string default_value = 7;
 - (BOOL) hasDefaultValue { return hasDefaultValue; }
 - (NSString*) getDefaultValue { return defaultValue_; }
 
-// optional .google.protobuf.FieldOptions options = 8;
 - (BOOL) hasOptions { return hasOptions; }
 - (FieldOptions*) getOptions { return options_; }
 
@@ -2410,6 +2378,12 @@ static Label* LABEL_REPEATED = nil;
   self.result = nil;
   [super dealloc];
 }
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[FieldDescriptorProto alloc] init] autorelease];
+  }
+  return self;
+}
 - (FieldDescriptorProto*) internalGetResult {
   return result;
 }
@@ -2564,7 +2538,6 @@ static Label* LABEL_REPEATED = nil;
 }
 
 
-// optional string name = 1;
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -2582,7 +2555,6 @@ static Label* LABEL_REPEATED = nil;
   return self;
 }
 
-// optional int32 number = 3;
 - (BOOL) hasNumber {
   return result.hasNumber;
 }
@@ -2600,7 +2572,6 @@ static Label* LABEL_REPEATED = nil;
   return self;
 }
 
-// optional .google.protobuf.FieldDescriptorProto.Label label = 4;
 - (BOOL) hasLabel {
   return result.hasLabel;
 }
@@ -2618,7 +2589,6 @@ static Label* LABEL_REPEATED = nil;
   return self;
 }
 
-// optional .google.protobuf.FieldDescriptorProto.Type type = 5;
 - (BOOL) hasType {
   return result.hasType;
 }
@@ -2636,7 +2606,6 @@ static Label* LABEL_REPEATED = nil;
   return self;
 }
 
-// optional string type_name = 6;
 - (BOOL) hasTypeName {
   return result.hasTypeName;
 }
@@ -2654,7 +2623,6 @@ static Label* LABEL_REPEATED = nil;
   return self;
 }
 
-// optional string extendee = 2;
 - (BOOL) hasExtendee {
   return result.hasExtendee;
 }
@@ -2672,7 +2640,6 @@ static Label* LABEL_REPEATED = nil;
   return self;
 }
 
-// optional string default_value = 7;
 - (BOOL) hasDefaultValue {
   return result.hasDefaultValue;
 }
@@ -2690,7 +2657,6 @@ static Label* LABEL_REPEATED = nil;
   return self;
 }
 
-// optional .google.protobuf.FieldOptions options = 8;
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -2769,11 +2735,9 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
   return [Descriptor internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable];
 }
 
-// optional string name = 1;
 - (BOOL) hasName { return hasName; }
 - (NSString*) getName { return name_; }
 
-// repeated .google.protobuf.EnumValueDescriptorProto value = 2;
 - (NSArray*) getValueList {
   return value_;
 }
@@ -2782,7 +2746,6 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
   return [value_ objectAtIndex:index];
 }
 
-// optional .google.protobuf.EnumOptions options = 3;
 - (BOOL) hasOptions { return hasOptions; }
 - (EnumOptions*) getOptions { return options_; }
 
@@ -2854,6 +2817,12 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[EnumDescriptorProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (EnumDescriptorProto*) internalGetResult {
   return result;
@@ -2967,7 +2936,6 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
 }
 
 
-// optional string name = 1;
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -2985,7 +2953,6 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.EnumValueDescriptorProto value = 2;
 - (NSArray*) getValueList {
   if (result.value_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.value_];
@@ -3030,7 +2997,6 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
   return self;
 }
 
-// optional .google.protobuf.EnumOptions options = 3;
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -3112,15 +3078,12 @@ static EnumValueDescriptorProto* defaultEnumValueDescriptorProtoInstance = nil;
   return [Descriptor internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable];
 }
 
-// optional string name = 1;
 - (BOOL) hasName { return hasName; }
 - (NSString*) getName { return name_; }
 
-// optional int32 number = 2;
 - (BOOL) hasNumber { return hasNumber; }
 - (int32_t) getNumber { return number_; }
 
-// optional .google.protobuf.EnumValueOptions options = 3;
 - (BOOL) hasOptions { return hasOptions; }
 - (EnumValueOptions*) getOptions { return options_; }
 
@@ -3192,6 +3155,12 @@ static EnumValueDescriptorProto* defaultEnumValueDescriptorProtoInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[EnumValueDescriptorProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (EnumValueDescriptorProto*) internalGetResult {
   return result;
@@ -3300,7 +3269,6 @@ static EnumValueDescriptorProto* defaultEnumValueDescriptorProtoInstance = nil;
 }
 
 
-// optional string name = 1;
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -3318,7 +3286,6 @@ static EnumValueDescriptorProto* defaultEnumValueDescriptorProtoInstance = nil;
   return self;
 }
 
-// optional int32 number = 2;
 - (BOOL) hasNumber {
   return result.hasNumber;
 }
@@ -3336,7 +3303,6 @@ static EnumValueDescriptorProto* defaultEnumValueDescriptorProtoInstance = nil;
   return self;
 }
 
-// optional .google.protobuf.EnumValueOptions options = 3;
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -3415,11 +3381,9 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
   return [Descriptor internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable];
 }
 
-// optional string name = 1;
 - (BOOL) hasName { return hasName; }
 - (NSString*) getName { return name_; }
 
-// repeated .google.protobuf.MethodDescriptorProto method = 2;
 - (NSArray*) getMethodList {
   return method_;
 }
@@ -3428,7 +3392,6 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
   return [method_ objectAtIndex:index];
 }
 
-// optional .google.protobuf.ServiceOptions options = 3;
 - (BOOL) hasOptions { return hasOptions; }
 - (ServiceOptions*) getOptions { return options_; }
 
@@ -3500,6 +3463,12 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[ServiceDescriptorProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (ServiceDescriptorProto*) internalGetResult {
   return result;
@@ -3613,7 +3582,6 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
 }
 
 
-// optional string name = 1;
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -3631,7 +3599,6 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
   return self;
 }
 
-// repeated .google.protobuf.MethodDescriptorProto method = 2;
 - (NSArray*) getMethodList {
   if (result.method_ == nil) { return [NSArray array]; }
   return [NSArray arrayWithObjects:result.method_];
@@ -3676,7 +3643,6 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
   return self;
 }
 
-// optional .google.protobuf.ServiceOptions options = 3;
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -3763,19 +3729,15 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
   return [Descriptor internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable];
 }
 
-// optional string name = 1;
 - (BOOL) hasName { return hasName; }
 - (NSString*) getName { return name_; }
 
-// optional string input_type = 2;
 - (BOOL) hasInputType { return hasInputType; }
 - (NSString*) getInputType { return inputType_; }
 
-// optional string output_type = 3;
 - (BOOL) hasOutputType { return hasOutputType; }
 - (NSString*) getOutputType { return outputType_; }
 
-// optional .google.protobuf.MethodOptions options = 4;
 - (BOOL) hasOptions { return hasOptions; }
 - (MethodOptions*) getOptions { return options_; }
 
@@ -3853,6 +3815,12 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[MethodDescriptorProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (MethodDescriptorProto*) internalGetResult {
   return result;
@@ -3968,7 +3936,6 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
 }
 
 
-// optional string name = 1;
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -3986,7 +3953,6 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
   return self;
 }
 
-// optional string input_type = 2;
 - (BOOL) hasInputType {
   return result.hasInputType;
 }
@@ -4004,7 +3970,6 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
   return self;
 }
 
-// optional string output_type = 3;
 - (BOOL) hasOutputType {
   return result.hasOutputType;
 }
@@ -4022,7 +3987,6 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
   return self;
 }
 
-// optional .google.protobuf.MethodOptions options = 4;
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -4115,23 +4079,18 @@ static FileOptions* defaultFileOptionsInstance = nil;
   return [Descriptor internal_static_google_protobuf_FileOptions_fieldAccessorTable];
 }
 
-// optional string java_package = 1;
 - (BOOL) hasJavaPackage { return hasJavaPackage; }
 - (NSString*) getJavaPackage { return javaPackage_; }
 
-// optional string java_outer_classname = 8;
 - (BOOL) hasJavaOuterClassname { return hasJavaOuterClassname; }
 - (NSString*) getJavaOuterClassname { return javaOuterClassname_; }
 
-// optional bool java_multiple_files = 10 [default = false];
 - (BOOL) hasJavaMultipleFiles { return hasJavaMultipleFiles; }
 - (BOOL) getJavaMultipleFiles { return javaMultipleFiles_; }
 
-// optional .google.protobuf.FileOptions.OptimizeMode optimize_for = 9 [default = CODE_SIZE];
 - (BOOL) hasOptimizeFor { return hasOptimizeFor; }
 - (OptimizeMode*) getOptimizeFor { return optimizeFor_; }
 
-// optional string objectivec_namespace = 11;
 - (BOOL) hasObjectivecNamespace { return hasObjectivecNamespace; }
 - (NSString*) getObjectivecNamespace { return objectivecNamespace_; }
 
@@ -4271,6 +4230,12 @@ static OptimizeMode* CODE_SIZE = nil;
   self.result = nil;
   [super dealloc];
 }
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[FileOptions alloc] init] autorelease];
+  }
+  return self;
+}
 - (FileOptions*) internalGetResult {
   return result;
 }
@@ -4393,7 +4358,6 @@ static OptimizeMode* CODE_SIZE = nil;
 }
 
 
-// optional string java_package = 1;
 - (BOOL) hasJavaPackage {
   return result.hasJavaPackage;
 }
@@ -4411,7 +4375,6 @@ static OptimizeMode* CODE_SIZE = nil;
   return self;
 }
 
-// optional string java_outer_classname = 8;
 - (BOOL) hasJavaOuterClassname {
   return result.hasJavaOuterClassname;
 }
@@ -4429,7 +4392,6 @@ static OptimizeMode* CODE_SIZE = nil;
   return self;
 }
 
-// optional bool java_multiple_files = 10 [default = false];
 - (BOOL) hasJavaMultipleFiles {
   return result.hasJavaMultipleFiles;
 }
@@ -4447,7 +4409,6 @@ static OptimizeMode* CODE_SIZE = nil;
   return self;
 }
 
-// optional .google.protobuf.FileOptions.OptimizeMode optimize_for = 9 [default = CODE_SIZE];
 - (BOOL) hasOptimizeFor {
   return result.hasOptimizeFor;
 }
@@ -4465,7 +4426,6 @@ static OptimizeMode* CODE_SIZE = nil;
   return self;
 }
 
-// optional string objectivec_namespace = 11;
 - (BOOL) hasObjectivecNamespace {
   return result.hasObjectivecNamespace;
 }
@@ -4522,7 +4482,6 @@ static MessageOptions* defaultMessageOptionsInstance = nil;
   return [Descriptor internal_static_google_protobuf_MessageOptions_fieldAccessorTable];
 }
 
-// optional bool message_set_wire_format = 1 [default = false];
 - (BOOL) hasMessageSetWireFormat { return hasMessageSetWireFormat; }
 - (BOOL) getMessageSetWireFormat { return messageSetWireFormat_; }
 
@@ -4582,6 +4541,12 @@ static MessageOptions* defaultMessageOptionsInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[MessageOptions alloc] init] autorelease];
+  }
+  return self;
 }
 - (MessageOptions*) internalGetResult {
   return result;
@@ -4671,7 +4636,6 @@ static MessageOptions* defaultMessageOptionsInstance = nil;
 }
 
 
-// optional bool message_set_wire_format = 1 [default = false];
 - (BOOL) hasMessageSetWireFormat {
   return result.hasMessageSetWireFormat;
 }
@@ -4733,11 +4697,9 @@ static FieldOptions* defaultFieldOptionsInstance = nil;
   return [Descriptor internal_static_google_protobuf_FieldOptions_fieldAccessorTable];
 }
 
-// optional .google.protobuf.FieldOptions.CType ctype = 1;
 - (BOOL) hasCtype { return hasCtype; }
 - (CType*) getCtype { return ctype_; }
 
-// optional string experimental_map_key = 9;
 - (BOOL) hasExperimentalMapKey { return hasExperimentalMapKey; }
 - (NSString*) getExperimentalMapKey { return experimentalMapKey_; }
 
@@ -4859,6 +4821,12 @@ static CType* STRING_PIECE = nil;
   self.result = nil;
   [super dealloc];
 }
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[FieldOptions alloc] init] autorelease];
+  }
+  return self;
+}
 - (FieldOptions*) internalGetResult {
   return result;
 }
@@ -4960,7 +4928,6 @@ static CType* STRING_PIECE = nil;
 }
 
 
-// optional .google.protobuf.FieldOptions.CType ctype = 1;
 - (BOOL) hasCtype {
   return result.hasCtype;
 }
@@ -4978,7 +4945,6 @@ static CType* STRING_PIECE = nil;
   return self;
 }
 
-// optional string experimental_map_key = 9;
 - (BOOL) hasExperimentalMapKey {
   return result.hasExperimentalMapKey;
 }
@@ -5080,6 +5046,12 @@ static EnumOptions* defaultEnumOptionsInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[EnumOptions alloc] init] autorelease];
+  }
+  return self;
 }
 - (EnumOptions*) internalGetResult {
   return result;
@@ -5247,6 +5219,12 @@ static EnumValueOptions* defaultEnumValueOptionsInstance = nil;
   self.result = nil;
   [super dealloc];
 }
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[EnumValueOptions alloc] init] autorelease];
+  }
+  return self;
+}
 - (EnumValueOptions*) internalGetResult {
   return result;
 }
@@ -5413,6 +5391,12 @@ static ServiceOptions* defaultServiceOptionsInstance = nil;
   self.result = nil;
   [super dealloc];
 }
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[ServiceOptions alloc] init] autorelease];
+  }
+  return self;
+}
 - (ServiceOptions*) internalGetResult {
   return result;
 }
@@ -5578,6 +5562,12 @@ static MethodOptions* defaultMethodOptionsInstance = nil;
 - (void) dealloc {
   self.result = nil;
   [super dealloc];
+}
+- (id) init {
+  if (self = [super init]) {
+    self.result = [[[MethodOptions alloc] init] autorelease];
+  }
+  return self;
 }
 - (MethodOptions*) internalGetResult {
   return result;

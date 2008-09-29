@@ -42,7 +42,7 @@ static UnknownFieldSet* defaultInstance = nil;
 
 
 + (UnknownFieldSet_Builder*) newBuilder {
-    return [[[UnknownFieldSet_Builder alloc] init] autorelease];
+    return [UnknownFieldSet_Builder newBuilder];
 }
 
 
@@ -70,7 +70,7 @@ static UnknownFieldSet* defaultInstance = nil;
 }
 
 
-- (NSMutableDictionary*) asMap {
+- (NSDictionary*) asMap {
     return fields;
 }
 

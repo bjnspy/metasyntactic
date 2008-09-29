@@ -74,6 +74,7 @@
 		7451724F0E9086E300D4E0C5 /* DescriptorPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 7451724D0E9086E300D4E0C5 /* DescriptorPool.m */; };
 		74517E710E90CDED00D4E0C5 /* Message.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74517E700E90CDED00D4E0C5 /* Message.h */; };
 		7451800F0E916F3D00D4E0C5 /* ProtocolBuffers.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 745180080E916ED800D4E0C5 /* ProtocolBuffers.h */; };
+		7451810A0E91787C00D4E0C5 /* Bootstrap.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 745181060E91783700D4E0C5 /* Bootstrap.h */; };
 		74E79B170E8D73C600EFD26E /* ObjectiveCType.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74E79B150E8D73C600EFD26E /* ObjectiveCType.h */; };
 		74E79BBB0E8D75E800EFD26E /* ObjectiveCType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */; };
 		74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */; };
@@ -99,6 +100,8 @@
 			files = (
 				741A74520E8CC69300F16FD4 /* ForwardDeclarations.h in Copy Headers */,
 				741A747C0E8CCC7C00F16FD4 /* RpcChannel.h in Copy Headers */,
+				7451800F0E916F3D00D4E0C5 /* ProtocolBuffers.h in Copy Headers */,
+				7451810A0E91787C00D4E0C5 /* Bootstrap.h in Copy Headers */,
 				741A74800E8CCD1E00F16FD4 /* RpcController.h in Copy Headers */,
 				741A74D30E8CCF0E00F16FD4 /* AbstractMessage.h in Copy Headers */,
 				741A74D50E8CCF0E00F16FD4 /* AbstractMessage_Builder.h in Copy Headers */,
@@ -140,7 +143,6 @@
 				745170C50E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h in Copy Headers */,
 				7451724E0E9086E300D4E0C5 /* DescriptorPool.h in Copy Headers */,
 				74517E710E90CDED00D4E0C5 /* Message.h in Copy Headers */,
-				7451800F0E916F3D00D4E0C5 /* ProtocolBuffers.h in Copy Headers */,
 			);
 			name = "Copy Headers";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,7 +221,8 @@
 		7451724C0E9086E300D4E0C5 /* DescriptorPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorPool.h; sourceTree = "<group>"; };
 		7451724D0E9086E300D4E0C5 /* DescriptorPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorPool.m; sourceTree = "<group>"; };
 		74517E700E90CDED00D4E0C5 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
-		745180080E916ED800D4E0C5 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers.h; sourceTree = "<group>"; };
+		745180080E916ED800D4E0C5 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = Classes/ProtocolBuffers.h; sourceTree = "<group>"; };
+		745181060E91783700D4E0C5 /* Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bootstrap.h; sourceTree = "<group>"; };
 		74E79B150E8D73C600EFD26E /* ObjectiveCType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCType.h; sourceTree = "<group>"; };
 		74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCType.m; sourceTree = "<group>"; };
 		74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDescriptorType.h; sourceTree = "<group>"; };
@@ -332,7 +335,6 @@
 				74E7A2EC0E8E11B100EFD26E /* ProtocolBufferType.m */,
 				7411FB630E8E3856002552B1 /* Utilities.h */,
 				7411FB640E8E3856002552B1 /* Utilities.m */,
-				745180080E916ED800D4E0C5 /* ProtocolBuffers.h */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -358,8 +360,10 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				745180080E916ED800D4E0C5 /* ProtocolBuffers.h */,
 				741A74510E8CC69300F16FD4 /* ForwardDeclarations.h */,
 				32DBCF5E0370ADEE00C91783 /* ProtocolBuffers_Prefix.pch */,
+				745181060E91783700D4E0C5 /* Bootstrap.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";

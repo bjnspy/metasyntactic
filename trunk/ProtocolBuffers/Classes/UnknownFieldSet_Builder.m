@@ -16,6 +16,11 @@
 
 #import "UnknownFieldSet_Builder.h"
 
+#import "CodedInputStream.h"
+#import "Field.h"
+#import "Field_Builder.h"
+#import "UnknownFieldSet.h"
+#import "WireFormat.h"
 
 @implementation UnknownFieldSet_Builder
 
@@ -33,18 +38,115 @@
 }
 
 
+- (id) init {
+    if (self = [super init]) {
+        self.fields = [NSMutableDictionary dictionary];
+    }
+    return self;
+}
+
+
 + (UnknownFieldSet_Builder*) newBuilder {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    return [[[UnknownFieldSet_Builder alloc] init] autorelease];
+}
+
+
+/**
+ * Add a field to the {@code UnknownFieldSet}.  If a field with the same
+ * number already exists, it is removed.
+ */
+- (UnknownFieldSet_Builder*) addField:(Field*) field forNumber:(int32_t) number {
+    if (number == 0) {
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+    }
+    if (lastField != nil && lastFieldNumber == number) {
+        // Discard this.
+        self.lastField = nil;
+        lastFieldNumber = 0;
+    }
+    [fields setObject:field forKey:[NSNumber numberWithInt:number]];
+    return self;
+}
+
+
+/**
+ * Get a field builder for the given field number which includes any
+ * values that already exist.
+ */
+- (Field_Builder*) getFieldBuilder:(int32_t) number {
+    if (lastField != nil) {
+        if (number == lastFieldNumber) {
+            return lastField;
+        }
+        // Note:  addField() will reset lastField and lastFieldNumber.
+        [self addField:[lastField build] forNumber:lastFieldNumber];
+    }
+    if (number == 0) {
+        return nil;
+    } else {
+        Field* existing = [fields objectForKey:[NSNumber numberWithInt:number]];
+        lastFieldNumber = number;
+        self.lastField = [Field newBuilder];
+        if (existing != nil) {
+            [lastField mergeFromField:existing];
+        }
+        return lastField;
+    }
 }
 
 
 - (UnknownFieldSet*) build {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    [self getFieldBuilder:0];  // Force lastField to be built.
+    UnknownFieldSet* result;
+    if (fields.count == 0) {
+        result = [UnknownFieldSet getDefaultInstance];
+    } else {
+        result = [UnknownFieldSet setWithFields:fields];
+    }
+    self.fields = nil;
+    return result;
+}
+
+
+/** Check if the given field number is present in the set. */
+- (BOOL) hasField:(int32_t) number {
+    if (number == 0) {
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+    }
+    
+    return number == lastFieldNumber || ([fields objectForKey:[NSNumber numberWithInt:number]] != nil);
+}
+
+
+/**
+ * Add a field to the {@code UnknownFieldSet}.  If a field with the same
+ * number already exists, the two are merged.
+ */
+- (UnknownFieldSet_Builder*) mergeField:(Field*) field forNumber:(int32_t) number {
+    if (number == 0) {
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+    }
+    if ([self hasField:number]) {
+        [[self getFieldBuilder:number] mergeFromField:field];
+    } else {
+        // Optimization:  We could call getFieldBuilder(number).mergeFrom(field)
+        // in this case, but that would create a copy of the Field object.
+        // We'd rather reuse the one passed to us, so call addField() instead.
+        [self addField:field forNumber:number];
+    }
+    
+    return self;
 }
 
 
 - (UnknownFieldSet_Builder*) mergeUnknownFields:(UnknownFieldSet*) other {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    if (other != [UnknownFieldSet getDefaultInstance]) {
+        for (NSNumber* number in other.fields) {
+            Field* field = [other.fields objectForKey:number];
+            [self mergeField:field forNumber:[number intValue]];
+        }
+    }
+    return self;
 }
 
 
@@ -68,9 +170,40 @@
 }
 
 
+/**
+ * Parse a single field from {@code input} and merge it into this set.
+ * @param tag The field's tag number, which was already parsed.
+ * @return {@code false} if the tag is an engroup tag.
+ */
 - (BOOL) mergeFieldFrom:(int32_t) tag input:(CodedInputStream*) input {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    int number = WireFormatGetTagFieldNumber(tag);
+    switch (WireFormatGetTagWireType(tag)) {
+        case WireFormatVarint:
+            [[self getFieldBuilder:number] addVarint:[input readInt64]];
+            return true;
+        case WireFormatFixed64:
+            [[self getFieldBuilder:number] addFixed64:[input readFixed64]];
+            return true;
+        case WireFormatLengthDelimited:
+            [[self getFieldBuilder:number] addLengthDelimited:[input readData]];
+            return true;
+        case WireFormatStartGroup: {
+            UnknownFieldSet_Builder* subBuilder = [UnknownFieldSet newBuilder];
+            [input readUnknownGroup:number builder:subBuilder];
+            [[self getFieldBuilder:number] addGroup:[subBuilder build]];
+            return true;
+        }
+        case WireFormatEndGroup:
+            return false;
+        case WireFormatFixed32:
+            [[self getFieldBuilder:number] addFixed32:[input readFixed32]];
+            return true;
+        default:
+            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+    }
 }
+
+
 
 #if 0
 
@@ -92,49 +225,8 @@ public static final class Builder {
     
 
     
-    /**
-     * Get a field builder for the given field number which includes any
-     * values that already exist.
-     */
-    private Field.Builder getFieldBuilder(int number) {
-        if (lastField != null) {
-            if (number == lastFieldNumber) {
-                return lastField;
-            }
-            // Note:  addField() will reset lastField and lastFieldNumber.
-            addField(lastFieldNumber, lastField.build());
-        }
-        if (number == 0) {
-            return null;
-        } else {
-            Field existing = fields.get(number);
-            lastFieldNumber = number;
-            lastField = Field.newBuilder();
-            if (existing != null) {
-                lastField.mergeFrom(existing);
-            }
-            return lastField;
-        }
-    }
     
-    /**
-     * Build the {@link UnknownFieldSet} and return it.
-     *
-     * <p>Once {@code build()} has been called, the {@code Builder} will no
-     * longer be usable.  Calling any method after {@code build()} will throw
-     * {@code NullPointerException}.
-     */
-    public UnknownFieldSet build() {
-        getFieldBuilder(0);  // Force lastField to be built.
-        UnknownFieldSet result;
-        if (fields.isEmpty()) {
-            result = getDefaultInstance();
-        } else {
-            result = new UnknownFieldSet(Collections.unmodifiableMap(fields));
-        }
-        fields = null;
-        return result;
-    }
+
     
     /** Reset the builder to an empty set. */
     public Builder clear() {
@@ -157,26 +249,7 @@ public static final class Builder {
         }
         return this;
     }
-    
-    /**
-     * Add a field to the {@code UnknownFieldSet}.  If a field with the same
-     * number already exists, the two are merged.
-     */
-    public Builder mergeField(int number, Field field) {
-        if (number == 0) {
-            throw new IllegalArgumentException("Zero is not a valid field number.");
-        }
-        if (hasField(number)) {
-            getFieldBuilder(number).mergeFrom(field);
-        } else {
-            // Optimization:  We could call getFieldBuilder(number).mergeFrom(field)
-            // in this case, but that would create a copy of the Field object.
-            // We'd rather reuse the one passed to us, so call addField() instead.
-            addField(number, field);
-        }
-        return this;
-    }
-    
+        
     /**
      * Convenience method for merging a new field containing a single varint
      * value.  This is used in particular when an unknown enum value is
@@ -190,30 +263,7 @@ public static final class Builder {
         return this;
     }
     
-    /** Check if the given field number is present in the set. */
-    public boolean hasField(int number) {
-        if (number == 0) {
-            throw new IllegalArgumentException("Zero is not a valid field number.");
-        }
-        return number == lastFieldNumber || fields.containsKey(number);
-    }
-    
-    /**
-     * Add a field to the {@code UnknownFieldSet}.  If a field with the same
-     * number already exists, it is removed.
-     */
-    public Builder addField(int number, Field field) {
-        if (number == 0) {
-            throw new IllegalArgumentException("Zero is not a valid field number.");
-        }
-        if (lastField != null && lastFieldNumber == number) {
-            // Discard this.
-            lastField = null;
-            lastFieldNumber = 0;
-        }
-        fields.put(number, field);
-        return this;
-    }
+
     
     /**
      * Get all present {@code Field}s as an immutable {@code Map}.  If more
@@ -238,39 +288,6 @@ public static final class Builder {
         return this;
     }
     
-    /**
-     * Parse a single field from {@code input} and merge it into this set.
-     * @param tag The field's tag number, which was already parsed.
-     * @return {@code false} if the tag is an engroup tag.
-     */
-    public boolean mergeFieldFrom(int tag, CodedInputStream input)
-    throws IOException {
-        int number = WireFormat.getTagFieldNumber(tag);
-        switch (WireFormat.getTagWireType(tag)) {
-            case WireFormat.WIRETYPE_VARINT:
-                getFieldBuilder(number).addVarint(input.readInt64());
-                return true;
-            case WireFormat.WIRETYPE_FIXED64:
-                getFieldBuilder(number).addFixed64(input.readFixed64());
-                return true;
-            case WireFormat.WIRETYPE_LENGTH_DELIMITED:
-                getFieldBuilder(number).addLengthDelimited(input.readBytes());
-                return true;
-            case WireFormat.WIRETYPE_START_GROUP: {
-                UnknownFieldSet.Builder subBuilder = UnknownFieldSet.newBuilder();
-                input.readUnknownGroup(number, subBuilder);
-                getFieldBuilder(number).addGroup(subBuilder.build());
-                return true;
-            }
-            case WireFormat.WIRETYPE_END_GROUP:
-                return false;
-            case WireFormat.WIRETYPE_FIXED32:
-                getFieldBuilder(number).addFixed32(input.readFixed32());
-                return true;
-            default:
-                throw InvalidProtocolBufferException.invalidWireType();
-        }
-    }
     
     /**
      * Parse {@code data} as an {@code UnknownFieldSet} and merge it with the

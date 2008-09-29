@@ -15,6 +15,6 @@
 // limitations under the License.
 
 #ifdef __OBJC__
-    #import "ForwardDeclarations.h"
-    #import <Cocoa/Cocoa.h>
+#import <Cocoa/Cocoa.h>
+#import "Bootstrap.h"
 #endif

@@ -24,4 +24,12 @@
 
 - (Field_Builder*) mergeFromField:(Field*) other;
 
+- (Field_Builder*) clear;
+- (Field_Builder*) mergeFromField:(Field*) other;
+- (Field_Builder*) addVarint:(int64_t) value;
+- (Field_Builder*) addFixed32:(int32_t) value;
+- (Field_Builder*) addFixed64:(int64_t) value;
+- (Field_Builder*) addLengthDelimited:(NSData*) value;
+- (Field_Builder*) addGroup:(UnknownFieldSet*) value;
+
 @end

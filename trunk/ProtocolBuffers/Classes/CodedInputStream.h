@@ -44,6 +44,7 @@
 @property (retain) NSMutableData* buffer;
 @property (retain) NSInputStream* input;
 
++ (CodedInputStream*) streamWithData:(NSData*) data;
 
 - (int32_t) readTag;
 - (BOOL) refillBuffer:(BOOL) mustSucceed;
@@ -83,12 +84,16 @@ int64_t decodeZigZag64(int64_t n);
 
 - (BOOL) readBool;
 - (NSString*) readString;
+- (NSData*) readData;
+
+- (void) readGroup:(int32_t) fieldNumber builder:(id<Message_Builder>) builder extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (void) readUnknownGroup:(int32_t) fieldNumber builder:(UnknownFieldSet_Builder*) builder;
+
+- (void) checkLastTagWas:(int32_t) value;
 
 #if 0
 + (CodedInputStream*) createFromInputStream:(NSInputStream*) input;
-+ (CodedInputStream*) createFromData:(NSData*) data;
                     
-- (void) checkLastTagWas:(int32_t) value;
 
 - (BOOL) skipField:(int32_t) tag;
 
@@ -97,11 +102,6 @@ int64_t decodeZigZag64(int64_t n);
 + (int32_t) decodeZigZag32:(int32_t) n;
 + (int64_t) decodeZigZag64:(int64_t) n;
 
-
-- (void) readGroup:(int32_t) fieldNumber builder:(id<Message_Builder>) builder extensionRegistry:(ExtensionRegistry*) extensionRegistry;
-- (void) readUnknownGroup:(int32_t) fieldNumber builder:(UnknownFieldSet_Builder*) builder;
-
-- (NSData*) readData;
 
 - (id) readPrimitiveField:(Descriptors_FieldDescriptor_Type*) type;
 #endif

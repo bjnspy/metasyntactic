@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "ForwardDeclarations.h"
+#import "Bootstrap.h"
 
 #import "AbstractMessage.h"
 #import "AbstractMessage_Builder.h"

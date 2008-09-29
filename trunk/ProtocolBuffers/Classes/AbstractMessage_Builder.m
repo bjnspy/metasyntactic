@@ -253,9 +253,16 @@
 - (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
+
+
 - (id<Message_Builder>) mergeFromData:(NSData*) data {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    CodedInputStream* input = [CodedInputStream streamWithData:data];
+    [self mergeFromCodedInputStream:input];
+    [input checkLastTagWas:0];
+    return self;
 }
+
+
 - (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
