@@ -23,7 +23,7 @@
 
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 - (id<Message_Builder>) mergeFromMessage:(id<Message>) other;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (NSDictionary*) getAllFields;
 - (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field;
 - (BOOL) hasField:(FieldDescriptor*) field;
@@ -38,10 +38,6 @@
 - (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields;
 - (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
-
-- (BOOL) parseUnknownField:(CodedInputStream*) input
-             unknownFields:(UnknownFieldSet_Builder*) unknownFields
-         extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 
 - (BOOL) parseUnknownField:(CodedInputStream*) input
              unknownFields:(UnknownFieldSet_Builder*) unknownFields

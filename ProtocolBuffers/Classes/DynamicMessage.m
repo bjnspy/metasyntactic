@@ -16,12 +16,12 @@
 
 #import "DynamicMessage.h"
 
+#import "Descriptor.pb.h"
 #import "Descriptor.h"
 #import "DynamicMessage_Builder.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"
 #import "Message.h"
-#import "MessageOptions.h"
 #import "UnknownFieldSet.h"
 
 @implementation DynamicMessage
@@ -43,7 +43,7 @@
 
 
 
-- (id) initWithType:(Descriptor*) type_
+- (id) initWithType:(ProtocolBufferDescriptor*) type_
              fields:(FieldSet*) fields_
       unknownFields:(UnknownFieldSet*) unknownFields_ {
     if (self = [super init]) {
@@ -57,60 +57,60 @@
 }
 
 
-+ (DynamicMessage*) messageWithType:(Descriptor*) type
++ (DynamicMessage*) messageWithType:(ProtocolBufferDescriptor*) type
                              fields:(FieldSet*) fields
                       unknownFields:(UnknownFieldSet*) unknownFields {
     return [[[DynamicMessage alloc] initWithType:type fields:fields unknownFields:unknownFields] autorelease];
 }
 
 
-+ (DynamicMessage*) getDefaultInstance:(Descriptor*) type {
++ (DynamicMessage*) getDefaultInstance:(ProtocolBufferDescriptor*) type {
     return [[[DynamicMessage alloc] initWithType:type
                                           fields:[FieldSet emptySet]
                                    unknownFields:[UnknownFieldSet getDefaultInstance]] autorelease];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
-             codedInputStream:(CodedInputStream*) input {
++ (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
+         codedInputStream:(CodedInputStream*) input {
     return [[[DynamicMessage builderWithType:type] mergeFromCodedInputStream:input] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
              codedInputStream:(CodedInputStream*) input
             extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
                          data:(NSData*) data {
     return [[[DynamicMessage builderWithType:type] mergeFromData:data] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
                          data:(NSData*) data
             extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
                   inputStream:(NSInputStream*) input {
     return [[[DynamicMessage builderWithType:type] mergeFromInputStream:input] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
                   inputStream:(NSInputStream*) input
             extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
-+ (DynamicMessage_Builder*) bulderWithType:(Descriptor*) type {
++ (DynamicMessage_Builder*) bulderWithType:(ProtocolBufferDescriptor*) type {
     return [DynamicMessage_Builder builderWithType:type];
 }
 
@@ -120,7 +120,7 @@
 }
 
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
     return type;
 }
 
@@ -212,7 +212,7 @@
 }
 
 
-+ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type {
++ (DynamicMessage_Builder*) builderWithType:(ProtocolBufferDescriptor*) type {
     return [DynamicMessage_Builder builderWithType:type];
 }
 

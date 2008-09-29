@@ -20,7 +20,10 @@
 #import "GeneratedMessage.h"
 #import "GeneratedMessage_FieldAccessor.h"
 #import "GeneratedMessage_FieldAccessorTable.h"
+#import "Message.h"
+#import "Message_Builder.h"
 #import "UnknownFieldSet.h"
+#import "UnknownFieldSet_Builder.h"
 
 @implementation GeneratedMessage_Builder
 
@@ -57,12 +60,12 @@
             for (id element in newValue) {
                 [self addRepeatedField:field value:element];
             }
-        } else if (field.getJavaType == FieldDescriptorTypeMessage &&
+        } else if (field.getObjectiveCType == FieldDescriptorTypeMessage &&
                    [self hasField:field]) {
             // Merge singular embedded messages.
             id<Message> oldValue = [self getField:field];
-            [self setField:field,
-             [[[[oldValue newBuilderForType] mergeFromMessage:oldValue] mergeFromMessage:newValue] buildPartial]];
+            [self setField:field
+                     value:[[[[oldValue newBuilderForType] mergeFromMessage:oldValue] mergeFromMessage:newValue] buildPartial]];
         } else {
             // Just overwrite.
             [self setField:field value:newValue];
@@ -73,7 +76,7 @@
 }
 
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
     return self.internalGetFieldAccessorTable.descriptor;
 }
 
@@ -83,7 +86,7 @@
 }
 
 
-- (id<Message.Builder>) newBuilderForField:(FieldDescriptor*) field {
+- (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field {
     return [[self.internalGetFieldAccessorTable getField:field] newBuilder];
 }
 
@@ -99,7 +102,7 @@
 
 
 - (id<Message_Builder>) setField:(FieldDescriptor*) field value:(id) value {
-    [[self.internalGetFieldAccessorTable getField:field] set:this value:value];
+    [[self.internalGetFieldAccessorTable getField:field] set:self value:value];
     return self;
 }
 
@@ -127,7 +130,7 @@
 
 
 - (id<Message_Builder>) addRepeatedField:(FieldDescriptor*) field value:(id) value {
-    [self.internalGetFieldAccessorTable getField:field] addRepeated:self value:value];
+    [[self.internalGetFieldAccessorTable getField:field] addRepeated:self value:value];
     return self;
 }
 
@@ -145,7 +148,7 @@
 
 - (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields {
     GeneratedMessage* result = self.internalGetResult;
-    result.unknownFields = [[[UnknownFieldSet newBuilder:result.unknownFields] mergeFromUnknownFieldSet:unknownFields] build];
+    result.unknownFields = [[[UnknownFieldSet newBuilder:result.unknownFields] mergeUnknownFields:unknownFields] build];
     return self;
 }
 

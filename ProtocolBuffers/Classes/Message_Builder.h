@@ -22,7 +22,7 @@
 - (id<Message>) buildParsed;
 - (id<Message_Builder>) clone;
 - (BOOL) isInitialized;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (id<Message>) getDefaultInstanceForType;
 - (NSDictionary*) getAllFields;
 - (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field;

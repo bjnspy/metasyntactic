@@ -38,7 +38,7 @@
 }
 
 
-- (id) initWithDescriptor:(Descriptor*) descriptor_
+- (id) initWithDescriptor:(ProtocolBufferDescriptor*) descriptor_
                     names:(NSArray*) names
              messageClass:(Class) messageClass
              builderClass:(Class) builderClass {
@@ -76,7 +76,7 @@
 }
 
 
-+ (GeneratedMessage_FieldAccessorTable*) tableWithDescriptor:(Descriptor*) descriptor
++ (GeneratedMessage_FieldAccessorTable*) tableWithDescriptor:(ProtocolBufferDescriptor*) descriptor
                                                        names:(NSArray*) names
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass {

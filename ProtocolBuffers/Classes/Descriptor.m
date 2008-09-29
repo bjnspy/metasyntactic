@@ -17,7 +17,7 @@
 #import "Descriptor.h"
 
 
-@implementation Descriptor
+@implementation ProtocolBufferDescriptor
 
 - (NSArray*) getFields {
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];

@@ -47,7 +47,7 @@ static UnknownFieldSet* defaultInstance = nil;
 
 
 + (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom {
-    return [[UnknownFieldSet_Builder newBuilder] mergeFromUnknownFieldSet:copyFrom];
+    return [[UnknownFieldSet_Builder newBuilder] mergeUnknownFields:copyFrom];
 }
 
 

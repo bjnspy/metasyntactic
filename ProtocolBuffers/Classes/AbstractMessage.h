@@ -30,7 +30,7 @@
 - (int32_t) serializedSize;
 #endif
 
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (id<Message>) getDefaultInstanceForType;
 - (NSDictionary*) getAllFields;
 - (BOOL) hasField:(FieldDescriptor*) field;

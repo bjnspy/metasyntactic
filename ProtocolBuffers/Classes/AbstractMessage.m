@@ -156,7 +156,7 @@ public int getSerializedSize() {
 // =================================================================
 #endif
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
 - (id<Message>) getDefaultInstanceForType {

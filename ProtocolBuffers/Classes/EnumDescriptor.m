@@ -19,4 +19,8 @@
 
 @implementation EnumDescriptor
 
+- (NSArray*) getValues {
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+}
+
 @end

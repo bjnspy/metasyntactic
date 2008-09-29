@@ -17,21 +17,21 @@
 #import "AbstractMessage.h"
 
 @interface DynamicMessage : AbstractMessage {
-    Descriptor* type;
+    ProtocolBufferDescriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
     int32_t memoizedSize;
 }
 
-@property (retain) Descriptor* type;
+@property (retain) ProtocolBufferDescriptor* type;
 @property (retain) FieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 @property int32_t memoizedSize;
 
-+ (DynamicMessage*) messageWithType:(Descriptor*) type fields:(FieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
-+ (DynamicMessage*) getDefaultInstance:(Descriptor*) type;
++ (DynamicMessage*) messageWithType:(ProtocolBufferDescriptor*) type fields:(FieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
++ (DynamicMessage*) getDefaultInstance:(ProtocolBufferDescriptor*) type;
 
-+ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type;
++ (DynamicMessage_Builder*) builderWithType:(ProtocolBufferDescriptor*) type;
 
 
 #if 0
