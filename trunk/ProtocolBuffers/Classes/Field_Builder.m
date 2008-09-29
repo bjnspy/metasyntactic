@@ -67,7 +67,7 @@
 }
 
 
-- (Field_Builder*) mergeFrom:(Field*) other {
+- (Field_Builder*) mergeFromField:(Field*) other {
     if (other.varint.count > 0) {
         if (result.varint == nil) {
             result.varint = [NSMutableArray array];

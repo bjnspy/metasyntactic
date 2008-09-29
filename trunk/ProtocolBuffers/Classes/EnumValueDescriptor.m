@@ -44,4 +44,9 @@
 }
 
 
+- (int32_t) getIndex {
+    return self.index;
+}
+
+
 @end

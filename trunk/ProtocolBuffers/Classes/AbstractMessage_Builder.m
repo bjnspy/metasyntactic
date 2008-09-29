@@ -54,7 +54,7 @@
 }
 
 
-- (id<Message_Builder>) mergeFrom:(id<Message>) other {
+- (id<Message_Builder>) mergeFromMessage:(id<Message>) other {
     if ([other getDescriptorForType] != self.getDescriptorForType) {
         @throw [NSException exceptionWithName:@"IllegalArgumentException" reason:@"" userInfo:nil];
     }
@@ -69,7 +69,7 @@
     //   which allows people to make secure deep copies of messages.
     NSDictionary* allFields = self.getAllFields;
     for (FieldDescriptor* field in allFields) {
-        id value = [allFields objectForKey:field];
+        id<Message> value = [allFields objectForKey:field];
 
         if (field.isRepeated) {
             for (id element in value) {
@@ -81,7 +81,7 @@
             if (existingValue == [existingValue getDefaultInstanceForType]) {
                 [self setField:field value:value];
             } else {
-                id value1 = [[[[existingValue newBuilderForType] mergeFrom:existingValue] mergeFrom:value] build];
+                id value1 = [[[[existingValue newBuilderForType] mergeFromMessage:existingValue] mergeFromMessage:value] build];
                 [self setField:field value:value1];
             }
         } else {
@@ -94,11 +94,11 @@
 
 
 - (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFrom:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
 
-- (id<Message_Builder>) mergeFrom:(CodedInputStream*) input
+- (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input
                      extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
     [FieldSet mergeFromCodedInputStream:input unknownFields:unknownFields extensionRegistry:extensionRegistry builder:self];
@@ -109,7 +109,7 @@
 
 
 - (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields {
-    UnknownFieldSet* merged = [[[UnknownFieldSet newBuilder:self.getUnknownFields] mergeFrom:unknownFields] build];
+    UnknownFieldSet* merged = [[[UnknownFieldSet newBuilder:self.getUnknownFields] mergeFromUnknownFieldSet:unknownFields] build];
     [self setUnknownFields:merged];
     
     return self;
@@ -251,9 +251,6 @@
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 - (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 - (id<Message_Builder>) mergeFromData:(NSData*) data {

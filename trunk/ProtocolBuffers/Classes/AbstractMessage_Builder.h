@@ -20,25 +20,23 @@
 
 }
 
-
-- (id<Message_Builder>) mergeFrom:(CodedInputStream*) input
-                extensionRegistry:(ExtensionRegistry*) extensionRegistry;
-
 - (UnknownFieldSet*) getUnknownFields;
 
 - (id<Message>) buildParsed;
 
+- (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input;
+- (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields;    
+- (id<Message_Builder>) mergeFromData:(NSData*) data;    
+- (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;    
+- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input;
+- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+
+- (id<Message_Builder>) mergeFromMessage:(id<Message>) other; 
+
 #if 0
 - (AbstractMessage_Builder*) clone;
 - (AbstractMessage_Builder*) clear;
-- (AbstractMessage_Builder*) mergeFrom:(id<Message>) other; 
-- (AbstractMessage_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input;
-- (AbstractMessage_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
-- (AbstractMessage_Builder*) mergeUnknownFields:(UnknownFieldSet*) unknownFields;    
-- (AbstractMessage_Builder*) mergeFromData:(NSData*) data;    
-- (AbstractMessage_Builder*) mergeFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;    
-- (AbstractMessage_Builder*) mergeFromInputStream:(NSInputStream*) input;
-- (AbstractMessage_Builder*) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;    
 #endif
 
 @end

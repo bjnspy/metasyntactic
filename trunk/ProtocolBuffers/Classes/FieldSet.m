@@ -349,7 +349,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
                 [self setField:field value:otherValue];
             } else {
                 [self setField:field
-                         value:[[[[existingValue newBuilderForType] mergeFrom:existingValue] mergeFrom:otherValue] build]];
+                         value:[[[[existingValue newBuilderForType] mergeFromMessage:existingValue] mergeFromMessage:otherValue] build]];
             }
         } else {
             [self setField:field value:otherValue];
@@ -363,7 +363,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
  */
 - (void) mergeFromFieldSet:(FieldSet*) other {
     for (FieldDescriptor* field in other.fields) {
-        id value = [other.fields objectForKey:field];
+        id<Message> value = [other.fields objectForKey:field];
         
         if (field.isRepeated) {
             NSMutableArray* existingValue = [fields objectForKey:field];
@@ -378,7 +378,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
                 [self setField:field value:value];
             } else {
                 [self setField:field
-                         value:[[[[existingValue newBuilderForType] mergeFrom:existingValue] mergeFrom:value] build]];
+                         value:[[[[existingValue newBuilderForType] mergeFromMessage:existingValue] mergeFromMessage:value] build]];
             }
         } else {
             [self setField:field value:value];

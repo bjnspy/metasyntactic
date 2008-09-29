@@ -65,7 +65,7 @@
 }
 
 
-- (DynamicMessage_Builder*) mergeFrom:(id<Message>) other {
+- (DynamicMessage_Builder*) mergeFromMessage:(id<Message>) other {
     if ([other getDescriptorForType] != type) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
@@ -206,7 +206,7 @@
 
 
 - (DynamicMessage_Builder*) mergeUnknownFields:(UnknownFieldSet*) unknownFields_ {
-    self.unknownFields = [[[UnknownFieldSet newBuilder:unknownFields] mergeFrom:unknownFields_] build];
+    self.unknownFields = [[[UnknownFieldSet newBuilder:unknownFields] mergeFromUnknownFieldSet:unknownFields_] build];
     return self;
 }
 

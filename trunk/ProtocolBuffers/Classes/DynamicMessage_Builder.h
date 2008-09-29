@@ -28,7 +28,7 @@
 
 + (DynamicMessage_Builder*) builderWithType:(Descriptor*) type;
 
-- (DynamicMessage_Builder*) mergeFrom:(id<Message>) other;
+- (DynamicMessage_Builder*) mergeFromMessage:(id<Message>) other;
 
 #if 0
 

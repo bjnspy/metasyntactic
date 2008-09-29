@@ -16,6 +16,12 @@
 
 @interface FileDescriptor : NSObject {
 }
+
++ (FileDescriptor*) buildFrom:(FileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
++ (FileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;
+
+
+
 #if 0
     FileDescriptorProto* proto;
     NSArray* messageTypes;
@@ -52,9 +58,6 @@
 - (EnumDescriptor*) findEnumTypeByName:(NSString*) name;
 - (ServiceDescriptor*) findServiceByName:(NSString*) name;
 - (FieldDescriptor*) findExtensionByName:(NSString*) name;
-
-+ (FileDescriptor*) buildFrom:(FileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
-+ (FileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;
 #endif
 
 @end

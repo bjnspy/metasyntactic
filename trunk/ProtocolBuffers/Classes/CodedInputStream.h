@@ -79,6 +79,10 @@
 int32_t decodeZigZag32(int32_t n);
 int64_t decodeZigZag64(int64_t n);
 
+- (void) readMessage:(id<Message_Builder>) builder extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+
+- (NSString*) readString;
+
 #if 0
 + (CodedInputStream*) createFromInputStream:(NSInputStream*) input;
 + (CodedInputStream*) createFromData:(NSData*) data;
@@ -93,12 +97,10 @@ int64_t decodeZigZag64(int64_t n);
 + (int64_t) decodeZigZag64:(int64_t) n;
 
 - (BOOL) readBool;
-- (NSString*) readString;
 
 - (void) readGroup:(int32_t) fieldNumber builder:(id<Message_Builder>) builder extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 - (void) readUnknownGroup:(int32_t) fieldNumber builder:(UnknownFieldSet_Builder*) builder;
 
-- (void) readMessage:(id<Message_Builder>) builder extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 - (NSData*) readData;
 
 - (id) readPrimitiveField:(Descriptors_FieldDescriptor_Type*) type;

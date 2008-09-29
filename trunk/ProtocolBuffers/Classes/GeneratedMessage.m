@@ -16,7 +16,29 @@
 
 #import "GeneratedMessage.h"
 
+#import "UnknownFieldSet.h"
 
 @implementation GeneratedMessage
+
+@synthesize unknownFields;
+
+- (void) dealloc {
+    self.unknownFields = nil;
+    [super dealloc];
+}
+
+
+- (id) init {
+    if (self = [super init]) {
+        self.unknownFields = [UnknownFieldSet getDefaultInstance];
+    }
+    
+    return self;
+}
+
+
+- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
+    @throw [NSException exceptionWithName:@"InvalidSubclassing" reason:@"" userInfo:nil];
+}
 
 @end

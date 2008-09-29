@@ -54,7 +54,7 @@ static Field* defaultInstance = nil;
 
 
 + (Field_Builder*) newBuilder:(Field*) copyFrom {
-    return [[Field newBuilder] mergeFrom:copyFrom];
+    return [[Field newBuilder] mergeFromField:copyFrom];
 }
 
 

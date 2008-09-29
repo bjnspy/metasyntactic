@@ -32,7 +32,7 @@
 + (UnknownFieldSet_Builder*) newBuilder;
 
 - (UnknownFieldSet*) build;
-- (UnknownFieldSet_Builder*) mergeFrom:(UnknownFieldSet*) other;
+- (UnknownFieldSet_Builder*) mergeFromUnknownFieldSet:(UnknownFieldSet*) other;
 
 - (UnknownFieldSet_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input;
 - (UnknownFieldSet_Builder*) mergeFromData:(NSData*) data;
@@ -46,7 +46,7 @@
 @property (retain) NSDictionary* fields;
 
 - (UnknownFieldSet_Builder*) clear;
-- (UnknownFieldSet_Builder*) mergeFrom:(UnknownFieldSet*) other;
+- (UnknownFieldSet_Builder*) mergeFromUnknownFieldSet:(UnknownFieldSet*) other;
 - (UnknownFieldSet_Builder*) mergeField:(int32_t) number field:(UnknownFieldSet_Field*) field;
 - (UnknownFieldSet_Builder*) mergeVariantField:(int32_t) number value:(int32_t) value;
 - (BOOL) hasField:(int32_t) number;

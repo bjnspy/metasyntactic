@@ -16,7 +16,155 @@
 
 #import "GeneratedMessage_Builder.h"
 
+#import "FieldDescriptor.h"
+#import "GeneratedMessage.h"
+#import "GeneratedMessage_FieldAccessor.h"
+#import "GeneratedMessage_FieldAccessorTable.h"
+#import "UnknownFieldSet.h"
 
 @implementation GeneratedMessage_Builder
+
+/**
+ * Get the message being built.  We don't just pass this to the
+ * constructor because it becomes null when build() is called.
+ */
+- (GeneratedMessage*) internalGetResult {
+    @throw [NSException exceptionWithName:@"IncorrectSubclassing" reason:@"" userInfo:nil];
+}
+
+/**
+ * Get the FieldAccessorTable for this type.  We can't have the message
+ * class pass this in to the constructor because of bootstrapping trouble
+ * with DescriptorProtos.
+ */
+- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
+    return self.internalGetResult.internalGetFieldAccessorTable;
+}
+
+
+- (id<Message_Builder>) mergeFromMessage:(id<Message>) other {
+    if ([other getDescriptorForType] !=
+        self.internalGetFieldAccessorTable.descriptor) {
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+    }
+    
+    NSDictionary* allFields = [other getAllFields];
+    for (FieldDescriptor* field in allFields) {
+        id newValue = [allFields objectForKey:field];
+
+        if (field.isRepeated) {
+            // Concatenate repeated fields.
+            for (id element in newValue) {
+                [self addRepeatedField:field value:element];
+            }
+        } else if (field.getJavaType == FieldDescriptorTypeMessage &&
+                   [self hasField:field]) {
+            // Merge singular embedded messages.
+            id<Message> oldValue = [self getField:field];
+            [self setField:field,
+             [[[[oldValue newBuilderForType] mergeFromMessage:oldValue] mergeFromMessage:newValue] buildPartial]];
+        } else {
+            // Just overwrite.
+            [self setField:field value:newValue];
+        }
+    }
+
+    return self;
+}
+
+
+- (Descriptor*) getDescriptorForType {
+    return self.internalGetFieldAccessorTable.descriptor;
+}
+
+
+- (NSDictionary*) getAllFields {
+    return self.internalGetResult.getAllFields;
+}
+
+
+- (id<Message.Builder>) newBuilderForField:(FieldDescriptor*) field {
+    return [[self.internalGetFieldAccessorTable getField:field] newBuilder];
+}
+
+
+- (BOOL) hasField:(FieldDescriptor*) field {
+    return [self.internalGetResult hasField:field];
+}
+
+
+- (id) getField:(FieldDescriptor*) field {
+    return [self.internalGetResult getField:field];
+}
+
+
+- (id<Message_Builder>) setField:(FieldDescriptor*) field value:(id) value {
+    [[self.internalGetFieldAccessorTable getField:field] set:this value:value];
+    return self;
+}
+
+
+- (id<Message_Builder>) clearField:(FieldDescriptor*) field {
+    [[self.internalGetFieldAccessorTable getField:field] clear:self];
+    return self;
+}
+
+
+- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
+    return [self.internalGetResult getRepeatedFieldCount:field];
+}
+
+
+- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
+    return [self.internalGetResult getRepeatedField:field index:index];
+}
+
+
+- (id<Message_Builder>) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value {
+    [[self.internalGetFieldAccessorTable getField:field] setRepeated:self index:index value:value];
+    return self;
+}
+
+
+- (id<Message_Builder>) addRepeatedField:(FieldDescriptor*) field value:(id) value {
+    [self.internalGetFieldAccessorTable getField:field] addRepeated:self value:value];
+    return self;
+}
+
+
+- (UnknownFieldSet*) getUnknownFields {
+    return self.internalGetResult.unknownFields;
+}
+
+
+- (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields {
+    self.internalGetResult.unknownFields = unknownFields;
+    return self;
+}
+
+
+- (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields {
+    GeneratedMessage* result = self.internalGetResult;
+    result.unknownFields = [[[UnknownFieldSet newBuilder:result.unknownFields] mergeFromUnknownFieldSet:unknownFields] build];
+    return self;
+}
+
+
+- (BOOL) isInitialized {
+    return self.internalGetResult.isInitialized;
+}
+
+
+/**
+ * Called by subclasses to parse an unknown field.
+ * @return {@code true} unless the tag is an end-group tag.
+ */
+- (BOOL) parseUnknownField:(CodedInputStream*) input
+             unknownFields:(UnknownFieldSet_Builder*) unknownFields
+         extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                       tag:(int32_t) tag {
+    return [unknownFields mergeFieldFrom:tag input:input];
+}
+
 
 @end

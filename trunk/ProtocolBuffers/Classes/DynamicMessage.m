@@ -116,7 +116,7 @@
 
 
 + (DynamicMessage_Builder*) builderWithMessage:(id<Message>) prototype {
-    return [[DynamicMessage_Builder builderWithType:[prototype getDescriptorForType]] mergeFrom:prototype];
+    return [[DynamicMessage_Builder builderWithType:[prototype getDescriptorForType]] mergeFromMessage:prototype];
 }
 
 
