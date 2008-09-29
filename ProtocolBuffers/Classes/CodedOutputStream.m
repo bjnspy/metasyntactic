@@ -67,6 +67,11 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 }
 
 
++ (CodedOutputStream*) streamWithData:(NSMutableData*) data {
+    return [[[CodedOutputStream alloc] initWithOutputStream:nil data:data] autorelease];
+}
+
+
 - (void) writeDouble:(int32_t) fieldNumber
                value:(Float64) value {
     [self writeTag:fieldNumber format:WireFormatFixed64];

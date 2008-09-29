@@ -224,6 +224,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -488,6 +489,7 @@ static FileDescriptorSet* defaultFileDescriptorSetInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.name_ = @"";
     self.package_ = @"";
   }
@@ -1137,6 +1139,7 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.name_ = @"";
   }
   return self;
@@ -1312,6 +1315,7 @@ static DescriptorProto* defaultDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.start_ = 0;
     self.end_ = 0;
   }
@@ -2027,6 +2031,7 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.name_ = @"";
     self.number_ = 0;
     self.label_ = [Label LABEL_OPTIONAL];
@@ -2708,6 +2713,7 @@ static Label* LABEL_REPEATED = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.name_ = @"";
   }
   return self;
@@ -3050,6 +3056,7 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.name_ = @"";
     self.number_ = 0;
   }
@@ -3354,6 +3361,7 @@ static EnumValueDescriptorProto* defaultEnumValueDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.name_ = @"";
   }
   return self;
@@ -3700,6 +3708,7 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.name_ = @"";
     self.inputType_ = @"";
     self.outputType_ = @"";
@@ -4048,6 +4057,7 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.javaPackage_ = @"";
     self.javaOuterClassname_ = @"";
     self.javaMultipleFiles_ = NO;
@@ -4455,6 +4465,7 @@ static OptimizeMode* CODE_SIZE = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.messageSetWireFormat_ = NO;
   }
   return self;
@@ -4669,6 +4680,7 @@ static MessageOptions* defaultMessageOptionsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
     self.ctype_ = [CType CORD];
     self.experimentalMapKey_ = @"";
   }
@@ -4970,6 +4982,7 @@ static CType* STRING_PIECE = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -5142,6 +5155,7 @@ static EnumOptions* defaultEnumOptionsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -5314,6 +5328,7 @@ static EnumValueOptions* defaultEnumValueOptionsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -5486,6 +5501,7 @@ static ServiceOptions* defaultServiceOptionsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    memoizedSerializedSize = -1;
   }
   return self;
 }

@@ -108,14 +108,23 @@
     return hash;
 }
 
+
+- (NSData*) toData {
+    NSMutableData* data = [NSMutableData dataWithLength:self.getSerializedSize];
+    CodedOutputStream* stream = [CodedOutputStream streamWithData:data];
+    [self writeToCodedOutputStream:stream];
+    return data;
+}
+
+- (UnknownFieldSet*) getUnknownFields {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
 #if 0
 
 public ByteString toByteString() {
     try {
-        ByteString.CodedBuilder out =
-        ByteString.newCodedBuilder(getSerializedSize());
-        writeTo(out.getCodedOutput());
-        return out.build();
+
     } catch (IOException e) {
         throw new RuntimeException(
                                    "Serializing to a ByteString threw an IOException (should " +
@@ -177,9 +186,6 @@ public int getSerializedSize() {
 - (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
-- (UnknownFieldSet*) getUnknownFields {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
 - (int32_t) getSerializedSize {
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
@@ -187,9 +193,6 @@ public int getSerializedSize() {
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (NSData*) toData {
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
 - (id<Message_Builder>) newBuilderForType {
