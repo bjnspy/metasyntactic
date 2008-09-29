@@ -19,7 +19,7 @@
 - (BOOL) failed;
 - (NSString*) errorText;
 - (void) startCancel;
-- (void) setFailed(NSString*) reason;
+- (void) setFailed:(NSString*) reason;
 - (BOOL) isCanceled;
 - (void) notifyOnCancel:(id) target selector:(SEL) selector;
 @end

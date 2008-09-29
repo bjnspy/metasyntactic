@@ -16,9 +16,9 @@
 
 @protocol RpcChannel
 - (void) callMethod:(MethodDescriptor*) method
-         controller:(RpcController*) controller
+         controller:(id<RpcController>) controller
             request:(id<Message>) request
   responsePrototype:(id<Message>) responsePrototype
              target:(id) target
-           selector:(SEL) selector;;
+           selector:(SEL) selector;
 @end
