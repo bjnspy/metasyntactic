@@ -69,6 +69,11 @@
 }
 
 
+- (int32_t) getIndex {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
 - (int32_t) getNumber {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
@@ -77,6 +82,7 @@
 - (FieldDescriptorType) getType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
+
 
 - (NSString*) getFullName {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];

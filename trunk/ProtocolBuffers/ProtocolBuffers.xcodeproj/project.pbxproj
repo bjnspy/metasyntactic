@@ -55,6 +55,25 @@
 		741A75950E8CE38500F16FD4 /* GenericDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A75930E8CE38500F16FD4 /* GenericDescriptor.h */; };
 		741A75990E8CE3DA00F16FD4 /* FileDescriptor.h in Headers */ = {isa = PBXBuildFile; fileRef = 741A75970E8CE3DA00F16FD4 /* FileDescriptor.h */; };
 		741A759A0E8CE3DA00F16FD4 /* FileDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A75980E8CE3DA00F16FD4 /* FileDescriptor.m */; };
+		74516F370E905F9600D4E0C5 /* Descriptor.pb.h in Headers */ = {isa = PBXBuildFile; fileRef = 74516F350E905F9600D4E0C5 /* Descriptor.pb.h */; };
+		74516F380E905F9600D4E0C5 /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74516F360E905F9600D4E0C5 /* Descriptor.pb.m */; };
+		74516F5A0E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.h in Headers */ = {isa = PBXBuildFile; fileRef = 74516F580E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.h */; };
+		74516F5B0E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 74516F590E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.m */; };
+		74516F760E9063B600D4E0C5 /* GeneratedMessage_Builder.h in Headers */ = {isa = PBXBuildFile; fileRef = 74516F740E9063B600D4E0C5 /* GeneratedMessage_Builder.h */; };
+		74516F770E9063B600D4E0C5 /* GeneratedMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74516F750E9063B600D4E0C5 /* GeneratedMessage_Builder.m */; };
+		7451707B0E90700500D4E0C5 /* GeneratedMessage_FieldAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 745170790E90700500D4E0C5 /* GeneratedMessage_FieldAccessor.h */; };
+		745170A10E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 7451709F0E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.h */; };
+		745170A20E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 745170A00E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.m */; };
+		745170A50E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 745170A30E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.h */; };
+		745170A60E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 745170A40E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.m */; };
+		745170B30E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 745170B10E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.h */; };
+		745170B40E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 745170B20E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.m */; };
+		745170B70E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 745170B50E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.h */; };
+		745170B80E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 745170B60E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.m */; };
+		745170C00E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 745170BE0E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.h */; };
+		745170C10E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 745170BF0E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.m */; };
+		745170C50E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h in Headers */ = {isa = PBXBuildFile; fileRef = 745170C30E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h */; };
+		745170C60E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 745170C40E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.m */; };
 		74E79B170E8D73C600EFD26E /* ObjectiveCType.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79B150E8D73C600EFD26E /* ObjectiveCType.h */; };
 		74E79BBB0E8D75E800EFD26E /* ObjectiveCType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */; };
 		74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Headers */ = {isa = PBXBuildFile; fileRef = 74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */; };
@@ -125,6 +144,25 @@
 		741A75930E8CE38500F16FD4 /* GenericDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericDescriptor.h; sourceTree = "<group>"; };
 		741A75970E8CE3DA00F16FD4 /* FileDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDescriptor.h; sourceTree = "<group>"; };
 		741A75980E8CE3DA00F16FD4 /* FileDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDescriptor.m; sourceTree = "<group>"; };
+		74516F350E905F9600D4E0C5 /* Descriptor.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptor.pb.h; sourceTree = "<group>"; };
+		74516F360E905F9600D4E0C5 /* Descriptor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptor.pb.m; sourceTree = "<group>"; };
+		74516F580E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_FieldAccessorTable.h; sourceTree = "<group>"; };
+		74516F590E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_FieldAccessorTable.m; sourceTree = "<group>"; };
+		74516F740E9063B600D4E0C5 /* GeneratedMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_Builder.h; sourceTree = "<group>"; };
+		74516F750E9063B600D4E0C5 /* GeneratedMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_Builder.m; sourceTree = "<group>"; };
+		745170790E90700500D4E0C5 /* GeneratedMessage_FieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_FieldAccessor.h; sourceTree = "<group>"; };
+		7451709F0E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_RepeatedEnumFieldAccessor.h; sourceTree = "<group>"; };
+		745170A00E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_RepeatedEnumFieldAccessor.m; sourceTree = "<group>"; };
+		745170A30E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_RepeatedFieldAccessor.h; sourceTree = "<group>"; };
+		745170A40E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_RepeatedFieldAccessor.m; sourceTree = "<group>"; };
+		745170B10E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_SingularMessageFieldAccessor.h; sourceTree = "<group>"; };
+		745170B20E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_SingularMessageFieldAccessor.m; sourceTree = "<group>"; };
+		745170B50E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_RepeatedMessageFieldAccessor.h; sourceTree = "<group>"; };
+		745170B60E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_RepeatedMessageFieldAccessor.m; sourceTree = "<group>"; };
+		745170BE0E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_SingularEnumFieldAccessor.h; sourceTree = "<group>"; };
+		745170BF0E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_SingularEnumFieldAccessor.m; sourceTree = "<group>"; };
+		745170C30E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_SingularFieldAccessor.h; sourceTree = "<group>"; };
+		745170C40E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_SingularFieldAccessor.m; sourceTree = "<group>"; };
 		74E79B150E8D73C600EFD26E /* ObjectiveCType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCType.h; sourceTree = "<group>"; };
 		74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCType.m; sourceTree = "<group>"; };
 		74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDescriptorType.h; sourceTree = "<group>"; };
@@ -198,6 +236,7 @@
 			isa = PBXGroup;
 			children = (
 				741A75780E8CE0FB00F16FD4 /* Descriptors */,
+				745170C20E90745800D4E0C5 /* GeneratedMessage */,
 				741A74820E8CCD8600F16FD4 /* RPC */,
 				741A74AB0E8CCF0E00F16FD4 /* AbstractMessage.h */,
 				741A74AC0E8CCF0E00F16FD4 /* AbstractMessage.m */,
@@ -219,8 +258,6 @@
 				741A74BE0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.m */,
 				741A74C10E8CCF0E00F16FD4 /* FieldSet.h */,
 				741A74C20E8CCF0E00F16FD4 /* FieldSet.m */,
-				741A74C30E8CCF0E00F16FD4 /* GeneratedMessage.h */,
-				741A74C40E8CCF0E00F16FD4 /* GeneratedMessage.m */,
 				741A74C50E8CCF0E00F16FD4 /* Message.h */,
 				741A74C60E8CCF0E00F16FD4 /* Message_Builder.h */,
 				741A74C70E8CCF0E00F16FD4 /* ProtocolBuffers_Prefix.pch */,
@@ -297,8 +334,36 @@
 				74E79DC60E8D989100EFD26E /* EnumValueDescriptor.m */,
 				74E7A3400E8E155C00EFD26E /* EnumDescriptor.h */,
 				74E7A3410E8E155C00EFD26E /* EnumDescriptor.m */,
+				74516F350E905F9600D4E0C5 /* Descriptor.pb.h */,
+				74516F360E905F9600D4E0C5 /* Descriptor.pb.m */,
 			);
 			name = Descriptors;
+			sourceTree = "<group>";
+		};
+		745170C20E90745800D4E0C5 /* GeneratedMessage */ = {
+			isa = PBXGroup;
+			children = (
+				741A74C30E8CCF0E00F16FD4 /* GeneratedMessage.h */,
+				741A74C40E8CCF0E00F16FD4 /* GeneratedMessage.m */,
+				745170790E90700500D4E0C5 /* GeneratedMessage_FieldAccessor.h */,
+				74516F580E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.h */,
+				74516F590E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.m */,
+				74516F740E9063B600D4E0C5 /* GeneratedMessage_Builder.h */,
+				74516F750E9063B600D4E0C5 /* GeneratedMessage_Builder.m */,
+				7451709F0E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.h */,
+				745170A00E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.m */,
+				745170A30E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.h */,
+				745170A40E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.m */,
+				745170B50E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.h */,
+				745170B60E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.m */,
+				745170B10E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.h */,
+				745170B20E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.m */,
+				745170BE0E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.h */,
+				745170BF0E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.m */,
+				745170C30E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h */,
+				745170C40E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.m */,
+			);
+			name = GeneratedMessage;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -342,6 +407,16 @@
 				74E7A3420E8E155C00EFD26E /* EnumDescriptor.h in Headers */,
 				7411FA760E8E1A84002552B1 /* MessageOptions.h in Headers */,
 				7411FB650E8E3856002552B1 /* Utilities.h in Headers */,
+				74516F370E905F9600D4E0C5 /* Descriptor.pb.h in Headers */,
+				74516F5A0E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.h in Headers */,
+				74516F760E9063B600D4E0C5 /* GeneratedMessage_Builder.h in Headers */,
+				7451707B0E90700500D4E0C5 /* GeneratedMessage_FieldAccessor.h in Headers */,
+				745170A10E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.h in Headers */,
+				745170A50E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.h in Headers */,
+				745170B30E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.h in Headers */,
+				745170B70E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.h in Headers */,
+				745170C00E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.h in Headers */,
+				745170C50E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -427,6 +502,15 @@
 				74E7A3430E8E155C00EFD26E /* EnumDescriptor.m in Sources */,
 				7411FA770E8E1A84002552B1 /* MessageOptions.m in Sources */,
 				7411FB660E8E3856002552B1 /* Utilities.m in Sources */,
+				74516F380E905F9600D4E0C5 /* Descriptor.pb.m in Sources */,
+				74516F5B0E90612D00D4E0C5 /* GeneratedMessage_FieldAccessorTable.m in Sources */,
+				74516F770E9063B600D4E0C5 /* GeneratedMessage_Builder.m in Sources */,
+				745170A20E9072AB00D4E0C5 /* GeneratedMessage_RepeatedEnumFieldAccessor.m in Sources */,
+				745170A60E90732A00D4E0C5 /* GeneratedMessage_RepeatedFieldAccessor.m in Sources */,
+				745170B40E90737C00D4E0C5 /* GeneratedMessage_SingularMessageFieldAccessor.m in Sources */,
+				745170B80E9073BA00D4E0C5 /* GeneratedMessage_RepeatedMessageFieldAccessor.m in Sources */,
+				745170C10E90741E00D4E0C5 /* GeneratedMessage_SingularEnumFieldAccessor.m in Sources */,
+				745170C60E90747C00D4E0C5 /* GeneratedMessage_SingularFieldAccessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
