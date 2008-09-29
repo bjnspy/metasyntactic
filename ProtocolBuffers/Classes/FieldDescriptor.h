@@ -35,6 +35,7 @@
 - (EnumDescriptor*) getEnumType;
 
 - (id) getDefaultValue;
+- (int32_t) getIndex;
 - (int32_t) getNumber;
 
 - (NSString*) getFullName;
