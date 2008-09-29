@@ -29,9 +29,9 @@
 - (ObjectiveCType) getObjectiveCType;
 - (FieldDescriptorType) getType;
 
-- (Descriptor*) getContainingType;
-- (Descriptor*) getExtensionScope;
-- (Descriptor*) getMessageType;
+- (ProtocolBufferDescriptor*) getContainingType;
+- (ProtocolBufferDescriptor*) getExtensionScope;
+- (ProtocolBufferDescriptor*) getMessageType;
 - (EnumDescriptor*) getEnumType;
 
 - (id) getDefaultValue;
@@ -47,7 +47,7 @@
     NSString* fullName;
     FileDescriptor* file;
     Type* type;
-    Descriptor* containingType;
+    ProtocolBufferDescriptor* containingType;
 }
 
 @property int32_t index;
@@ -55,15 +55,15 @@
 @property (retain) NSString* fullName;
 @property (retain) FileDescriptor* file;
 @property (retain) Type* type;
-@property (retain) Descriptor* containingType;
+@property (retain) ProtocolBufferDescriptor* containingType;
 
 - (NSString*) name;
    
 - (BOOL) hasDefaultValue;
 - (FieldOptions*) options;  
 
-- (Descriptor*) extensionScope;
-- (Descriptor*) messageType;
+- (ProtocolBufferDescriptor*) extensionScope;
+- (ProtocolBufferDescriptor*) messageType;
 #endif
 
 @end

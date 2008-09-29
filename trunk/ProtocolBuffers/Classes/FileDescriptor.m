@@ -18,8 +18,30 @@
 
 #import "Descriptor.pb.h"
 #import "DescriptorPool.h"
+#import "FileDescriptor.h"
 
 @implementation FileDescriptor
+
+- (id) initWithProto:(FileDescriptorProto*) proto
+                           dependencies:(NSArray*) dependencies
+                                   pool:(DescriptorPool*) pool {
+    if (self = [super init]) {
+        @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    }
+    
+    return self;
+}
+
+
++ (FileDescriptor*) descriptorWithProto:(FileDescriptorProto*) proto
+                           dependencies:(NSArray*) dependencies
+                                   pool:(DescriptorPool*) pool {
+    return [[[FileDescriptor alloc] initWithProto:proto
+                                     dependencies:dependencies
+                                             pool:pool] autorelease];
+}
+
+
 
 + (FileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies {
     FileDescriptorProto* proto = [FileDescriptorProto parseFromData:[descriptorData dataUsingEncoding:NSISOLatin1StringEncoding]];
@@ -53,13 +75,18 @@
     }
 
     for (int i = 0; i < proto.getDependencyCount; i++) {
-        if (![[dependencies objectAtIndex:i].getName isEqual:[proto getDependency:i]]) {
+        if (![[[dependencies objectAtIndex:i] getName] isEqual:[proto getDependency:i]]) {
             @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
         }
     }
     
     [result crossLink];
     return result;
+}
+
+
+- (void) crossLink {
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 @end

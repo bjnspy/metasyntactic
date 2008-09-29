@@ -44,17 +44,17 @@
 }
 
 
-- (Descriptor*) getContainingType {
+- (ProtocolBufferDescriptor*) getContainingType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (Descriptor*) getExtensionScope {
+- (ProtocolBufferDescriptor*) getExtensionScope {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (Descriptor*) getMessageType {
+- (ProtocolBufferDescriptor*) getMessageType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

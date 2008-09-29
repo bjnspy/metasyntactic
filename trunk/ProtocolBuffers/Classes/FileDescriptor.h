@@ -20,6 +20,7 @@
 + (FileDescriptor*) buildFrom:(FileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
 + (FileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;
 
+- (void) crossLink;
 
 
 #if 0
@@ -54,7 +55,7 @@
 - (NSArray*) extensions;
 - (NSArray*) dependencies;
 
-- (Descriptor*) findMessageTypeByName:(NSString*) name;
+- (ProtocolBufferDescriptor*) findMessageTypeByName:(NSString*) name;
 - (EnumDescriptor*) findEnumTypeByName:(NSString*) name;
 - (ServiceDescriptor*) findServiceByName:(NSString*) name;
 - (FieldDescriptor*) findExtensionByName:(NSString*) name;

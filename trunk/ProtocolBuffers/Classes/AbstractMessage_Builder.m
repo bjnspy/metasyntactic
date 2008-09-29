@@ -16,10 +16,10 @@
 
 #import "AbstractMessage_Builder.h"
 
+#import "Descriptor.pb.h"
 #import "ExtensionRegistry.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"
-#import "Message.h"
 #import "UnknownFieldSet.h"
 #import "UnknownFieldSet_Builder.h"
 
@@ -69,7 +69,7 @@
     //   which allows people to make secure deep copies of messages.
     NSDictionary* allFields = self.getAllFields;
     for (FieldDescriptor* field in allFields) {
-        id<Message> value = [allFields objectForKey:field];
+        id value = [allFields objectForKey:field];
 
         if (field.isRepeated) {
             for (id element in value) {
@@ -109,7 +109,7 @@
 
 
 - (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields {
-    UnknownFieldSet* merged = [[[UnknownFieldSet newBuilder:self.getUnknownFields] mergeFromUnknownFieldSet:unknownFields] build];
+    UnknownFieldSet* merged = [[[UnknownFieldSet newBuilder:self.getUnknownFields] mergeUnknownFields:unknownFields] build];
     [self setUnknownFields:merged];
     
     return self;
@@ -211,7 +211,7 @@
 - (BOOL) isInitialized {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 - (id<Message>) getDefaultInstanceForType {

@@ -32,11 +32,15 @@
 + (UnknownFieldSet_Builder*) newBuilder;
 
 - (UnknownFieldSet*) build;
-- (UnknownFieldSet_Builder*) mergeFromUnknownFieldSet:(UnknownFieldSet*) other;
+- (UnknownFieldSet_Builder*) mergeUnknownFields:(UnknownFieldSet*) other;
 
 - (UnknownFieldSet_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input;
 - (UnknownFieldSet_Builder*) mergeFromData:(NSData*) data;
 - (UnknownFieldSet_Builder*) mergeFromInputStream:(NSInputStream*) input;
+
+- (UnknownFieldSet_Builder*) mergeVarintField:(int32_t) number value:(int32_t) value;
+
+- (BOOL) mergeFieldFrom:(int32_t) tag input:(CodedInputStream*) input;
 
 #if 0
     int32_t lastFieldNumbers;
@@ -46,13 +50,11 @@
 @property (retain) NSDictionary* fields;
 
 - (UnknownFieldSet_Builder*) clear;
-- (UnknownFieldSet_Builder*) mergeFromUnknownFieldSet:(UnknownFieldSet*) other;
+- (UnknownFieldSet_Builder*) mergeUnknownFields:(UnknownFieldSet*) other;
 - (UnknownFieldSet_Builder*) mergeField:(int32_t) number field:(UnknownFieldSet_Field*) field;
-- (UnknownFieldSet_Builder*) mergeVariantField:(int32_t) number value:(int32_t) value;
 - (BOOL) hasField:(int32_t) number;
 - (UnknownFieldSet_Builder*) addField:(int32_t) number field:(UnknownFieldSet_Field*) field;
 - (NSDictionary*) dictionary;
-- (BOOL) mergeFieldFrom:(int32_t) tag input:(CodedInputStream*) input;
 #endif
 
 

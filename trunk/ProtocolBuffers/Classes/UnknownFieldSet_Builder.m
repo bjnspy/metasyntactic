@@ -43,7 +43,7 @@
 }
 
 
-- (UnknownFieldSet_Builder*) mergeFromUnknownFieldSet:(UnknownFieldSet*) other {
+- (UnknownFieldSet_Builder*) mergeUnknownFields:(UnknownFieldSet*) other {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
@@ -59,6 +59,16 @@
 
 
 - (UnknownFieldSet_Builder*) mergeFromInputStream:(NSInputStream*) input {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (UnknownFieldSet_Builder*) mergeVarintField:(int32_t) number value:(int32_t) value {
+    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+}
+
+
+- (BOOL) mergeFieldFrom:(int32_t) tag input:(CodedInputStream*) input {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

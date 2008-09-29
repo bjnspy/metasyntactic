@@ -16,11 +16,11 @@
 
 #import "ExtensionRegistry.h"
 
+#import "Descriptor.pb.h"
 #import "Descriptor.h"
 #import "ExtensionRegistry_DescriptorIntPair.h"
 #import "ExtensionRegistry_ExtensionInfo.h"
 #import "FieldDescriptor.h"
-#import "MessageOptions.h"
 
 @implementation ExtensionRegistry
 
@@ -75,7 +75,7 @@ static ExtensionRegistry* EMPTY = nil;
 }
 
 
-- (ExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(Descriptor*) containingType
+- (ExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(ProtocolBufferDescriptor*) containingType
                                                fieldNumber:(int32_t) fieldNumber {
     return [extensionsByNumber objectForKey:[ExtensionRegistry_DescriptorIntPair pairWithDescriptor:containingType number:fieldNumber]];
 }

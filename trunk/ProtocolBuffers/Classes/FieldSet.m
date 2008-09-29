@@ -16,6 +16,7 @@
 
 #import "FieldSet.h"
 
+#import "Descriptor.pb.h"
 #import "CodedInputStream.h"
 #import "CodedOutputStream.h"
 #import "Descriptor.h"
@@ -23,7 +24,6 @@
 #import "Field.h"
 #import "FieldDescriptor.h"
 #import "Message.h"
-#import "MessageOptions.h"
 #import "Message_Builder.h"
 
 @implementation FieldSet
@@ -306,7 +306,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
  * Like {@link #isInitialized()}, but also checks for the presence of
  * all required fields in the given type.
  */
-- (BOOL) isInitialized:(Descriptor*) type {
+- (BOOL) isInitialized:(ProtocolBufferDescriptor*) type {
     // Check that all required fields are present.
     for (FieldDescriptor* field in type.getFields) {
         if (field.isRequired) {
@@ -363,7 +363,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
  */
 - (void) mergeFromFieldSet:(FieldSet*) other {
     for (FieldDescriptor* field in other.fields) {
-        id<Message> value = [other.fields objectForKey:field];
+        id value = [other.fields objectForKey:field];
         
         if (field.isRepeated) {
             NSMutableArray* existingValue = [fields objectForKey:field];
@@ -403,7 +403,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
                                     tag:(int32_t) tag {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
     /*
-    Descriptor* type = builder.getDescriptorForType;
+    ProtocolBufferDescriptor* type = builder.getDescriptorForType;
     
     if (type.getOptions.getMessageSetWireFormat &&
         tag == WireFormatMessageSetItemTag) {
@@ -500,7 +500,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
                                          builder:(id<Message_Builder>) builder {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
     /*
-    Descriptor type = builder.getDescriptorForType();
+    ProtocolBufferDescriptor type = builder.getDescriptorForType();
     
     // The wire format for MessageSet is:
     //   message MessageSet {

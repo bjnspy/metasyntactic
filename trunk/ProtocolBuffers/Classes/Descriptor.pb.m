@@ -6,6 +6,7 @@
 #import "CodedOutputStream.h"
 #import "Descriptor.h"
 #import "DescriptorPool.h"
+#import "EnumDescriptor.h"
 #import "EnumValueDescriptor.h"
 #import "ExtensionRegistry.h"
 #import "FileDescriptor.h"
@@ -96,6 +97,134 @@ static FileDescriptor* descriptor = nil;
            nil];
   return [FileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
+static ProtocolBufferDescriptor* internal_static_google_protobuf_FileDescriptorSet_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FileDescriptorSet_descriptor {
+  return internal_static_google_protobuf_FileDescriptorSet_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable {
+  return internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_FileDescriptorProto_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FileDescriptorProto_descriptor {
+  return internal_static_google_protobuf_FileDescriptorProto_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable {
+  return internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_DescriptorProto_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_DescriptorProto_descriptor {
+  return internal_static_google_protobuf_DescriptorProto_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_fieldAccessorTable {
+  return internal_static_google_protobuf_DescriptorProto_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor {
+  return internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable {
+  return internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_FieldDescriptorProto_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FieldDescriptorProto_descriptor {
+  return internal_static_google_protobuf_FieldDescriptorProto_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable {
+  return internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_EnumDescriptorProto_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_EnumDescriptorProto_descriptor {
+  return internal_static_google_protobuf_EnumDescriptorProto_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable {
+  return internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_EnumValueDescriptorProto_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_EnumValueDescriptorProto_descriptor {
+  return internal_static_google_protobuf_EnumValueDescriptorProto_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable {
+  return internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_ServiceDescriptorProto_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_ServiceDescriptorProto_descriptor {
+  return internal_static_google_protobuf_ServiceDescriptorProto_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable {
+  return internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_MethodDescriptorProto_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_MethodDescriptorProto_descriptor {
+  return internal_static_google_protobuf_MethodDescriptorProto_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable {
+  return internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_FileOptions_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_FileOptions_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FileOptions_descriptor {
+  return internal_static_google_protobuf_FileOptions_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FileOptions_fieldAccessorTable {
+  return internal_static_google_protobuf_FileOptions_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_MessageOptions_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_MessageOptions_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_MessageOptions_descriptor {
+  return internal_static_google_protobuf_MessageOptions_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_MessageOptions_fieldAccessorTable {
+  return internal_static_google_protobuf_MessageOptions_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_FieldOptions_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_FieldOptions_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FieldOptions_descriptor {
+  return internal_static_google_protobuf_FieldOptions_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FieldOptions_fieldAccessorTable {
+  return internal_static_google_protobuf_FieldOptions_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_EnumOptions_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_EnumOptions_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_EnumOptions_descriptor {
+  return internal_static_google_protobuf_EnumOptions_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_EnumOptions_fieldAccessorTable {
+  return internal_static_google_protobuf_EnumOptions_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_EnumValueOptions_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_EnumValueOptions_descriptor {
+  return internal_static_google_protobuf_EnumValueOptions_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable {
+  return internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_ServiceOptions_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_ServiceOptions_descriptor {
+  return internal_static_google_protobuf_ServiceOptions_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_ServiceOptions_fieldAccessorTable {
+  return internal_static_google_protobuf_ServiceOptions_fieldAccessorTable;
+}
+static ProtocolBufferDescriptor* internal_static_google_protobuf_MethodOptions_descriptor = nil;
+static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAccessorTable = nil;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_MethodOptions_descriptor {
+  return internal_static_google_protobuf_MethodOptions_descriptor;
+}
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_MethodOptions_fieldAccessorTable {
+  return internal_static_google_protobuf_MethodOptions_fieldAccessorTable;
+}
 @end
 
 @implementation FileDescriptorSet
@@ -125,7 +254,7 @@ static FileDescriptorSet* defaultFileDescriptorSetInstance = nil;
   return defaultFileDescriptorSetInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_FileDescriptorSet_descriptor];
 }
 
@@ -212,7 +341,7 @@ static FileDescriptorSet* defaultFileDescriptorSetInstance = nil;
   return (FileDescriptorSet_Builder*)[[[[FileDescriptorSet_Builder alloc] init] autorelease] mergeFromFileDescriptorSet:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [FileDescriptorSet getDescriptor];
 }
 
@@ -387,7 +516,7 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return defaultFileDescriptorProtoInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_FileDescriptorProto_descriptor];
 }
 
@@ -564,7 +693,7 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   return (FileDescriptorProto_Builder*)[[[[FileDescriptorProto_Builder alloc] init] autorelease] mergeFromFileDescriptorProto:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [FileDescriptorProto getDescriptor];
 }
 
@@ -778,7 +907,7 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
   if (result.dependency_ == nil) {
     result.dependency_ = [NSMutableArray array];
   }
-  [super addAll:values values:result.dependency_];
+  [result.dependency_ addObjectsFromArray:values];
   return self;
 }
 - (FileDescriptorProto_Builder*) clearDependency {
@@ -973,28 +1102,28 @@ static FileDescriptorProto* defaultFileDescriptorProtoInstance = nil;
 - (FileOptions*) getOptions {
   return result.getOptions;
 }
-- (FileDescriptorProto_Builder*) setOptions:(FileOptions*) value {
+- (id<Message_Builder>) setOptions:(FileOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (FileDescriptorProto_Builder*) setOptionsBuilder:(FileOptions_Builder*) builderForValue {
+- (id<Message_Builder>) setOptionsBuilder:(FileOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (FileDescriptorProto_Builder*) mergeOptions:(FileOptions*) value {
+- (id<Message_Builder>) mergeOptions:(FileOptions*) value {
   if (result.hasOptions &&
       result.options_ != [FileOptions getDefaultInstance]) {
     result.options_ =
-      [[[FileOptions newBuilderWithFileOptions:result.options_] mergeFromFileDescriptorProto:value] buildPartial];
+      [[[FileOptions newBuilderWithFileOptions:result.options_] mergeFromFileOptions:value] buildPartial];
   } else {
     result.options_ = value;
   }
   result.hasOptions = YES;
   return self;
 }
-- (FileDescriptorProto_Builder*) clearOptions {
+- (id<Message_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [FileOptions getDefaultInstance];
   return self;
@@ -1045,7 +1174,7 @@ static DescriptorProto* defaultDescriptorProtoInstance = nil;
   return defaultDescriptorProtoInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_DescriptorProto_descriptor];
 }
 
@@ -1228,7 +1357,7 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return defaultExtensionRangeInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor];
 }
 
@@ -1320,7 +1449,7 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return (ExtensionRange_Builder*)[[[[ExtensionRange_Builder alloc] init] autorelease] mergeFromExtensionRange:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [ExtensionRange getDescriptor];
 }
 
@@ -1458,7 +1587,7 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
   return (DescriptorProto_Builder*)[[[[DescriptorProto_Builder alloc] init] autorelease] mergeFromDescriptorProto:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [DescriptorProto getDescriptor];
 }
 
@@ -1855,28 +1984,28 @@ static ExtensionRange* defaultExtensionRangeInstance = nil;
 - (MessageOptions*) getOptions {
   return result.getOptions;
 }
-- (DescriptorProto_Builder*) setOptions:(MessageOptions*) value {
+- (id<Message_Builder>) setOptions:(MessageOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (DescriptorProto_Builder*) setOptionsBuilder:(MessageOptions_Builder*) builderForValue {
+- (id<Message_Builder>) setOptionsBuilder:(MessageOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (DescriptorProto_Builder*) mergeOptions:(MessageOptions*) value {
+- (id<Message_Builder>) mergeOptions:(MessageOptions*) value {
   if (result.hasOptions &&
       result.options_ != [MessageOptions getDefaultInstance]) {
     result.options_ =
-      [[[MessageOptions newBuilderWithMessageOptions:result.options_] mergeFromDescriptorProto:value] buildPartial];
+      [[[MessageOptions newBuilderWithMessageOptions:result.options_] mergeFromMessageOptions:value] buildPartial];
   } else {
     result.options_ = value;
   }
   result.hasOptions = YES;
   return self;
 }
-- (DescriptorProto_Builder*) clearOptions {
+- (id<Message_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [MessageOptions getDefaultInstance];
   return self;
@@ -1947,7 +2076,7 @@ static FieldDescriptorProto* defaultFieldDescriptorProtoInstance = nil;
   return defaultFieldDescriptorProtoInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_FieldDescriptorProto_descriptor];
 }
 
@@ -2108,7 +2237,7 @@ static Type* TYPE_SINT64 = nil;
   }
   return self;
 }
-+ (Label*) newWithIndex:(int32_t) index value:(int32_t) value {
++ (Type*) newWithIndex:(int32_t) index value:(int32_t) value {
   return [[[Label alloc] initWithIndex:index value:value] autorelease];
 }
 + (void) initialize {
@@ -2294,7 +2423,7 @@ static Label* LABEL_REPEATED = nil;
   return (FieldDescriptorProto_Builder*)[[[[FieldDescriptorProto_Builder alloc] init] autorelease] mergeFromFieldDescriptorProto:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [FieldDescriptorProto getDescriptor];
 }
 
@@ -2568,28 +2697,28 @@ static Label* LABEL_REPEATED = nil;
 - (FieldOptions*) getOptions {
   return result.getOptions;
 }
-- (FieldDescriptorProto_Builder*) setOptions:(FieldOptions*) value {
+- (id<Message_Builder>) setOptions:(FieldOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (FieldDescriptorProto_Builder*) setOptionsBuilder:(FieldOptions_Builder*) builderForValue {
+- (id<Message_Builder>) setOptionsBuilder:(FieldOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (FieldDescriptorProto_Builder*) mergeOptions:(FieldOptions*) value {
+- (id<Message_Builder>) mergeOptions:(FieldOptions*) value {
   if (result.hasOptions &&
       result.options_ != [FieldOptions getDefaultInstance]) {
     result.options_ =
-      [[[FieldOptions newBuilderWithFieldOptions:result.options_] mergeFromFieldDescriptorProto:value] buildPartial];
+      [[[FieldOptions newBuilderWithFieldOptions:result.options_] mergeFromFieldOptions:value] buildPartial];
   } else {
     result.options_ = value;
   }
   result.hasOptions = YES;
   return self;
 }
-- (FieldDescriptorProto_Builder*) clearOptions {
+- (id<Message_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [FieldOptions getDefaultInstance];
   return self;
@@ -2632,7 +2761,7 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
   return defaultEnumDescriptorProtoInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_EnumDescriptorProto_descriptor];
 }
 
@@ -2739,7 +2868,7 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
   return (EnumDescriptorProto_Builder*)[[[[EnumDescriptorProto_Builder alloc] init] autorelease] mergeFromEnumDescriptorProto:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [EnumDescriptorProto getDescriptor];
 }
 
@@ -2908,28 +3037,28 @@ static EnumDescriptorProto* defaultEnumDescriptorProtoInstance = nil;
 - (EnumOptions*) getOptions {
   return result.getOptions;
 }
-- (EnumDescriptorProto_Builder*) setOptions:(EnumOptions*) value {
+- (id<Message_Builder>) setOptions:(EnumOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (EnumDescriptorProto_Builder*) setOptionsBuilder:(EnumOptions_Builder*) builderForValue {
+- (id<Message_Builder>) setOptionsBuilder:(EnumOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (EnumDescriptorProto_Builder*) mergeOptions:(EnumOptions*) value {
+- (id<Message_Builder>) mergeOptions:(EnumOptions*) value {
   if (result.hasOptions &&
       result.options_ != [EnumOptions getDefaultInstance]) {
     result.options_ =
-      [[[EnumOptions newBuilderWithEnumOptions:result.options_] mergeFromEnumDescriptorProto:value] buildPartial];
+      [[[EnumOptions newBuilderWithEnumOptions:result.options_] mergeFromEnumOptions:value] buildPartial];
   } else {
     result.options_ = value;
   }
   result.hasOptions = YES;
   return self;
 }
-- (EnumDescriptorProto_Builder*) clearOptions {
+- (id<Message_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [EnumOptions getDefaultInstance];
   return self;
@@ -2975,7 +3104,7 @@ static EnumValueDescriptorProto* defaultEnumValueDescriptorProtoInstance = nil;
   return defaultEnumValueDescriptorProtoInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_EnumValueDescriptorProto_descriptor];
 }
 
@@ -3077,7 +3206,7 @@ static EnumValueDescriptorProto* defaultEnumValueDescriptorProtoInstance = nil;
   return (EnumValueDescriptorProto_Builder*)[[[[EnumValueDescriptorProto_Builder alloc] init] autorelease] mergeFromEnumValueDescriptorProto:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [EnumValueDescriptorProto getDescriptor];
 }
 
@@ -3214,28 +3343,28 @@ static EnumValueDescriptorProto* defaultEnumValueDescriptorProtoInstance = nil;
 - (EnumValueOptions*) getOptions {
   return result.getOptions;
 }
-- (EnumValueDescriptorProto_Builder*) setOptions:(EnumValueOptions*) value {
+- (id<Message_Builder>) setOptions:(EnumValueOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (EnumValueDescriptorProto_Builder*) setOptionsBuilder:(EnumValueOptions_Builder*) builderForValue {
+- (id<Message_Builder>) setOptionsBuilder:(EnumValueOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (EnumValueDescriptorProto_Builder*) mergeOptions:(EnumValueOptions*) value {
+- (id<Message_Builder>) mergeOptions:(EnumValueOptions*) value {
   if (result.hasOptions &&
       result.options_ != [EnumValueOptions getDefaultInstance]) {
     result.options_ =
-      [[[EnumValueOptions newBuilderWithEnumValueOptions:result.options_] mergeFromEnumValueDescriptorProto:value] buildPartial];
+      [[[EnumValueOptions newBuilderWithEnumValueOptions:result.options_] mergeFromEnumValueOptions:value] buildPartial];
   } else {
     result.options_ = value;
   }
   result.hasOptions = YES;
   return self;
 }
-- (EnumValueDescriptorProto_Builder*) clearOptions {
+- (id<Message_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [EnumValueOptions getDefaultInstance];
   return self;
@@ -3278,7 +3407,7 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
   return defaultServiceDescriptorProtoInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_ServiceDescriptorProto_descriptor];
 }
 
@@ -3385,7 +3514,7 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
   return (ServiceDescriptorProto_Builder*)[[[[ServiceDescriptorProto_Builder alloc] init] autorelease] mergeFromServiceDescriptorProto:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [ServiceDescriptorProto getDescriptor];
 }
 
@@ -3554,28 +3683,28 @@ static ServiceDescriptorProto* defaultServiceDescriptorProtoInstance = nil;
 - (ServiceOptions*) getOptions {
   return result.getOptions;
 }
-- (ServiceDescriptorProto_Builder*) setOptions:(ServiceOptions*) value {
+- (id<Message_Builder>) setOptions:(ServiceOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (ServiceDescriptorProto_Builder*) setOptionsBuilder:(ServiceOptions_Builder*) builderForValue {
+- (id<Message_Builder>) setOptionsBuilder:(ServiceOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (ServiceDescriptorProto_Builder*) mergeOptions:(ServiceOptions*) value {
+- (id<Message_Builder>) mergeOptions:(ServiceOptions*) value {
   if (result.hasOptions &&
       result.options_ != [ServiceOptions getDefaultInstance]) {
     result.options_ =
-      [[[ServiceOptions newBuilderWithServiceOptions:result.options_] mergeFromServiceDescriptorProto:value] buildPartial];
+      [[[ServiceOptions newBuilderWithServiceOptions:result.options_] mergeFromServiceOptions:value] buildPartial];
   } else {
     result.options_ = value;
   }
   result.hasOptions = YES;
   return self;
 }
-- (ServiceDescriptorProto_Builder*) clearOptions {
+- (id<Message_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [ServiceOptions getDefaultInstance];
   return self;
@@ -3626,7 +3755,7 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
   return defaultMethodDescriptorProtoInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_MethodDescriptorProto_descriptor];
 }
 
@@ -3738,7 +3867,7 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
   return (MethodDescriptorProto_Builder*)[[[[MethodDescriptorProto_Builder alloc] init] autorelease] mergeFromMethodDescriptorProto:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [MethodDescriptorProto getDescriptor];
 }
 
@@ -3900,28 +4029,28 @@ static MethodDescriptorProto* defaultMethodDescriptorProtoInstance = nil;
 - (MethodOptions*) getOptions {
   return result.getOptions;
 }
-- (MethodDescriptorProto_Builder*) setOptions:(MethodOptions*) value {
+- (id<Message_Builder>) setOptions:(MethodOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (MethodDescriptorProto_Builder*) setOptionsBuilder:(MethodOptions_Builder*) builderForValue {
+- (id<Message_Builder>) setOptionsBuilder:(MethodOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (MethodDescriptorProto_Builder*) mergeOptions:(MethodOptions*) value {
+- (id<Message_Builder>) mergeOptions:(MethodOptions*) value {
   if (result.hasOptions &&
       result.options_ != [MethodOptions getDefaultInstance]) {
     result.options_ =
-      [[[MethodOptions newBuilderWithMethodOptions:result.options_] mergeFromMethodDescriptorProto:value] buildPartial];
+      [[[MethodOptions newBuilderWithMethodOptions:result.options_] mergeFromMethodOptions:value] buildPartial];
   } else {
     result.options_ = value;
   }
   result.hasOptions = YES;
   return self;
 }
-- (MethodDescriptorProto_Builder*) clearOptions {
+- (id<Message_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [MethodOptions getDefaultInstance];
   return self;
@@ -3978,7 +4107,7 @@ static FileOptions* defaultFileOptionsInstance = nil;
   return defaultFileOptionsInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_FileOptions_descriptor];
 }
 
@@ -4093,7 +4222,7 @@ static OptimizeMode* CODE_SIZE = nil;
   }
   return self;
 }
-+ (Label*) newWithIndex:(int32_t) index value:(int32_t) value {
++ (OptimizeMode*) newWithIndex:(int32_t) index value:(int32_t) value {
   return [[[Label alloc] initWithIndex:index value:value] autorelease];
 }
 + (void) initialize {
@@ -4155,7 +4284,7 @@ static OptimizeMode* CODE_SIZE = nil;
   return (FileOptions_Builder*)[[[[FileOptions_Builder alloc] init] autorelease] mergeFromFileOptions:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [FileOptions getDescriptor];
 }
 
@@ -4385,7 +4514,7 @@ static MessageOptions* defaultMessageOptionsInstance = nil;
   return defaultMessageOptionsInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_MessageOptions_descriptor];
 }
 
@@ -4467,7 +4596,7 @@ static MessageOptions* defaultMessageOptionsInstance = nil;
   return (MessageOptions_Builder*)[[[[MessageOptions_Builder alloc] init] autorelease] mergeFromMessageOptions:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [MessageOptions getDescriptor];
 }
 
@@ -4596,7 +4725,7 @@ static FieldOptions* defaultFieldOptionsInstance = nil;
   return defaultFieldOptionsInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_FieldOptions_descriptor];
 }
 
@@ -4681,7 +4810,7 @@ static CType* STRING_PIECE = nil;
   }
   return self;
 }
-+ (Label*) newWithIndex:(int32_t) index value:(int32_t) value {
++ (CType*) newWithIndex:(int32_t) index value:(int32_t) value {
   return [[[Label alloc] initWithIndex:index value:value] autorelease];
 }
 + (void) initialize {
@@ -4743,7 +4872,7 @@ static CType* STRING_PIECE = nil;
   return (FieldOptions_Builder*)[[[[FieldOptions_Builder alloc] init] autorelease] mergeFromFieldOptions:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [FieldOptions getDescriptor];
 }
 
@@ -4893,7 +5022,7 @@ static EnumOptions* defaultEnumOptionsInstance = nil;
   return defaultEnumOptionsInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_EnumOptions_descriptor];
 }
 
@@ -4965,7 +5094,7 @@ static EnumOptions* defaultEnumOptionsInstance = nil;
   return (EnumOptions_Builder*)[[[[EnumOptions_Builder alloc] init] autorelease] mergeFromEnumOptions:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [EnumOptions getDescriptor];
 }
 
@@ -5059,7 +5188,7 @@ static EnumValueOptions* defaultEnumValueOptionsInstance = nil;
   return defaultEnumValueOptionsInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_EnumValueOptions_descriptor];
 }
 
@@ -5131,7 +5260,7 @@ static EnumValueOptions* defaultEnumValueOptionsInstance = nil;
   return (EnumValueOptions_Builder*)[[[[EnumValueOptions_Builder alloc] init] autorelease] mergeFromEnumValueOptions:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [EnumValueOptions getDescriptor];
 }
 
@@ -5225,7 +5354,7 @@ static ServiceOptions* defaultServiceOptionsInstance = nil;
   return defaultServiceOptionsInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_ServiceOptions_descriptor];
 }
 
@@ -5297,7 +5426,7 @@ static ServiceOptions* defaultServiceOptionsInstance = nil;
   return (ServiceOptions_Builder*)[[[[ServiceOptions_Builder alloc] init] autorelease] mergeFromServiceOptions:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [ServiceOptions getDescriptor];
 }
 
@@ -5391,7 +5520,7 @@ static MethodOptions* defaultMethodOptionsInstance = nil;
   return defaultMethodOptionsInstance;
 }
 
-+ (Descriptor*) getDescriptor {
++ (ProtocolBufferDescriptor*) getDescriptor {
   return [Descriptor internal_static_google_protobuf_MethodOptions_descriptor];
 }
 
@@ -5463,7 +5592,7 @@ static MethodOptions* defaultMethodOptionsInstance = nil;
   return (MethodOptions_Builder*)[[[[MethodOptions_Builder alloc] init] autorelease] mergeFromMethodOptions:result];
 }
 
-- (Descriptor*) getDescriptorForType {
+- (ProtocolBufferDescriptor*) getDescriptorForType {
   return [MethodOptions getDescriptor];
 }
 

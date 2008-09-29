@@ -46,6 +46,38 @@
 }
 + (FileDescriptor*) getDescriptor;
 + (FileDescriptor*) buildDescriptor;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FileDescriptorSet_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FileDescriptorProto_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_DescriptorProto_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FieldDescriptorProto_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_EnumDescriptorProto_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_EnumValueDescriptorProto_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_ServiceDescriptorProto_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_MethodDescriptorProto_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FileOptions_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FileOptions_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_MessageOptions_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_MessageOptions_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_FieldOptions_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_FieldOptions_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_EnumOptions_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_EnumOptions_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_EnumValueOptions_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_ServiceOptions_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_ServiceOptions_fieldAccessorTable;
++ (ProtocolBufferDescriptor*) internal_static_google_protobuf_MethodOptions_descriptor;
++ (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_MethodOptions_fieldAccessorTable;
 @end
 
 @interface FileDescriptorSet : GeneratedMessage {
@@ -61,7 +93,7 @@
 - (FileDescriptorProto*) getFile:(int32_t) index;
 + (FileDescriptorSet*) getDefaultInstance;
 - (FileDescriptorSet*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -85,7 +117,7 @@
 - (FileDescriptorSet*) internalGetResult;
 - (FileDescriptorSet_Builder*) clear;
 - (FileDescriptorSet_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (FileDescriptorSet*) getDefaultInstanceForType;
 - (FileDescriptorSet*) build;
 - (FileDescriptorSet*) buildParsed;
@@ -178,7 +210,7 @@
 - (FileOptions*) getOptions;
 + (FileDescriptorProto*) getDefaultInstance;
 - (FileDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -202,7 +234,7 @@
 - (FileDescriptorProto*) internalGetResult;
 - (FileDescriptorProto_Builder*) clear;
 - (FileDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (FileDescriptorProto*) getDefaultInstanceForType;
 - (FileDescriptorProto*) build;
 - (FileDescriptorProto*) buildParsed;
@@ -280,10 +312,10 @@
 // optional .google.protobuf.FileOptions options = 8;
 - (BOOL) hasOptions;
 - (FileOptions*) getOptions;
-- (FileDescriptorProto_Builder*) setOptions:(FileOptions*) value;
-- (FileDescriptorProto_Builder*) setOptionsBuilder:(FileOptions_Builder*) builderForValue;
-- (FileDescriptorProto_Builder*) mergeOptions:(FileOptions*) value;
-- (FileDescriptorProto_Builder*) clearOptions;
+- (id<Message_Builder>) setOptions:(FileOptions*) value;
+- (id<Message_Builder>) setOptionsBuilder:(FileOptions_Builder*) builderForValue;
+- (id<Message_Builder>) mergeOptions:(FileOptions*) value;
+- (id<Message_Builder>) clearOptions;
 @end
 
 @interface DescriptorProto : GeneratedMessage {
@@ -348,7 +380,7 @@
 - (MessageOptions*) getOptions;
 + (DescriptorProto*) getDefaultInstance;
 - (DescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -387,7 +419,7 @@
 - (int32_t) getEnd;
 + (ExtensionRange*) getDefaultInstance;
 - (ExtensionRange*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -411,7 +443,7 @@
 - (ExtensionRange*) internalGetResult;
 - (ExtensionRange_Builder*) clear;
 - (ExtensionRange_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (ExtensionRange*) getDefaultInstanceForType;
 - (ExtensionRange*) build;
 - (ExtensionRange*) buildParsed;
@@ -442,7 +474,7 @@
 - (DescriptorProto*) internalGetResult;
 - (DescriptorProto_Builder*) clear;
 - (DescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (DescriptorProto*) getDefaultInstanceForType;
 - (DescriptorProto*) build;
 - (DescriptorProto*) buildParsed;
@@ -516,10 +548,10 @@
 // optional .google.protobuf.MessageOptions options = 7;
 - (BOOL) hasOptions;
 - (MessageOptions*) getOptions;
-- (DescriptorProto_Builder*) setOptions:(MessageOptions*) value;
-- (DescriptorProto_Builder*) setOptionsBuilder:(MessageOptions_Builder*) builderForValue;
-- (DescriptorProto_Builder*) mergeOptions:(MessageOptions*) value;
-- (DescriptorProto_Builder*) clearOptions;
+- (id<Message_Builder>) setOptions:(MessageOptions*) value;
+- (id<Message_Builder>) setOptionsBuilder:(MessageOptions_Builder*) builderForValue;
+- (id<Message_Builder>) mergeOptions:(MessageOptions*) value;
+- (id<Message_Builder>) clearOptions;
 @end
 
 @interface FieldDescriptorProto : GeneratedMessage {
@@ -598,7 +630,7 @@
 - (FieldOptions*) getOptions;
 + (FieldDescriptorProto*) getDefaultInstance;
 - (FieldDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -614,7 +646,7 @@
 + (FieldDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 @end
 
-@interface Type {
+@interface Type : NSObject {
     int32_t index;
     int32_t value;
 }
@@ -649,7 +681,7 @@
 + (Type*) valueOfDescriptor:(EnumValueDescriptor*) desc;
 @end
 
-@interface Label {
+@interface Label : NSObject {
     int32_t index;
     int32_t value;
 }
@@ -677,7 +709,7 @@
 - (FieldDescriptorProto*) internalGetResult;
 - (FieldDescriptorProto_Builder*) clear;
 - (FieldDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (FieldDescriptorProto*) getDefaultInstanceForType;
 - (FieldDescriptorProto*) build;
 - (FieldDescriptorProto*) buildParsed;
@@ -732,10 +764,10 @@
 // optional .google.protobuf.FieldOptions options = 8;
 - (BOOL) hasOptions;
 - (FieldOptions*) getOptions;
-- (FieldDescriptorProto_Builder*) setOptions:(FieldOptions*) value;
-- (FieldDescriptorProto_Builder*) setOptionsBuilder:(FieldOptions_Builder*) builderForValue;
-- (FieldDescriptorProto_Builder*) mergeOptions:(FieldOptions*) value;
-- (FieldDescriptorProto_Builder*) clearOptions;
+- (id<Message_Builder>) setOptions:(FieldOptions*) value;
+- (id<Message_Builder>) setOptionsBuilder:(FieldOptions_Builder*) builderForValue;
+- (id<Message_Builder>) mergeOptions:(FieldOptions*) value;
+- (id<Message_Builder>) clearOptions;
 @end
 
 @interface EnumDescriptorProto : GeneratedMessage {
@@ -768,7 +800,7 @@
 - (EnumOptions*) getOptions;
 + (EnumDescriptorProto*) getDefaultInstance;
 - (EnumDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -792,7 +824,7 @@
 - (EnumDescriptorProto*) internalGetResult;
 - (EnumDescriptorProto_Builder*) clear;
 - (EnumDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (EnumDescriptorProto*) getDefaultInstanceForType;
 - (EnumDescriptorProto*) build;
 - (EnumDescriptorProto*) buildParsed;
@@ -822,10 +854,10 @@
 // optional .google.protobuf.EnumOptions options = 3;
 - (BOOL) hasOptions;
 - (EnumOptions*) getOptions;
-- (EnumDescriptorProto_Builder*) setOptions:(EnumOptions*) value;
-- (EnumDescriptorProto_Builder*) setOptionsBuilder:(EnumOptions_Builder*) builderForValue;
-- (EnumDescriptorProto_Builder*) mergeOptions:(EnumOptions*) value;
-- (EnumDescriptorProto_Builder*) clearOptions;
+- (id<Message_Builder>) setOptions:(EnumOptions*) value;
+- (id<Message_Builder>) setOptionsBuilder:(EnumOptions_Builder*) builderForValue;
+- (id<Message_Builder>) mergeOptions:(EnumOptions*) value;
+- (id<Message_Builder>) clearOptions;
 @end
 
 @interface EnumValueDescriptorProto : GeneratedMessage {
@@ -859,7 +891,7 @@
 - (EnumValueOptions*) getOptions;
 + (EnumValueDescriptorProto*) getDefaultInstance;
 - (EnumValueDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -883,7 +915,7 @@
 - (EnumValueDescriptorProto*) internalGetResult;
 - (EnumValueDescriptorProto_Builder*) clear;
 - (EnumValueDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (EnumValueDescriptorProto*) getDefaultInstanceForType;
 - (EnumValueDescriptorProto*) build;
 - (EnumValueDescriptorProto*) buildParsed;
@@ -908,10 +940,10 @@
 // optional .google.protobuf.EnumValueOptions options = 3;
 - (BOOL) hasOptions;
 - (EnumValueOptions*) getOptions;
-- (EnumValueDescriptorProto_Builder*) setOptions:(EnumValueOptions*) value;
-- (EnumValueDescriptorProto_Builder*) setOptionsBuilder:(EnumValueOptions_Builder*) builderForValue;
-- (EnumValueDescriptorProto_Builder*) mergeOptions:(EnumValueOptions*) value;
-- (EnumValueDescriptorProto_Builder*) clearOptions;
+- (id<Message_Builder>) setOptions:(EnumValueOptions*) value;
+- (id<Message_Builder>) setOptionsBuilder:(EnumValueOptions_Builder*) builderForValue;
+- (id<Message_Builder>) mergeOptions:(EnumValueOptions*) value;
+- (id<Message_Builder>) clearOptions;
 @end
 
 @interface ServiceDescriptorProto : GeneratedMessage {
@@ -944,7 +976,7 @@
 - (ServiceOptions*) getOptions;
 + (ServiceDescriptorProto*) getDefaultInstance;
 - (ServiceDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -968,7 +1000,7 @@
 - (ServiceDescriptorProto*) internalGetResult;
 - (ServiceDescriptorProto_Builder*) clear;
 - (ServiceDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (ServiceDescriptorProto*) getDefaultInstanceForType;
 - (ServiceDescriptorProto*) build;
 - (ServiceDescriptorProto*) buildParsed;
@@ -998,10 +1030,10 @@
 // optional .google.protobuf.ServiceOptions options = 3;
 - (BOOL) hasOptions;
 - (ServiceOptions*) getOptions;
-- (ServiceDescriptorProto_Builder*) setOptions:(ServiceOptions*) value;
-- (ServiceDescriptorProto_Builder*) setOptionsBuilder:(ServiceOptions_Builder*) builderForValue;
-- (ServiceDescriptorProto_Builder*) mergeOptions:(ServiceOptions*) value;
-- (ServiceDescriptorProto_Builder*) clearOptions;
+- (id<Message_Builder>) setOptions:(ServiceOptions*) value;
+- (id<Message_Builder>) setOptionsBuilder:(ServiceOptions_Builder*) builderForValue;
+- (id<Message_Builder>) mergeOptions:(ServiceOptions*) value;
+- (id<Message_Builder>) clearOptions;
 @end
 
 @interface MethodDescriptorProto : GeneratedMessage {
@@ -1044,7 +1076,7 @@
 - (MethodOptions*) getOptions;
 + (MethodDescriptorProto*) getDefaultInstance;
 - (MethodDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1068,7 +1100,7 @@
 - (MethodDescriptorProto*) internalGetResult;
 - (MethodDescriptorProto_Builder*) clear;
 - (MethodDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (MethodDescriptorProto*) getDefaultInstanceForType;
 - (MethodDescriptorProto*) build;
 - (MethodDescriptorProto*) buildParsed;
@@ -1099,10 +1131,10 @@
 // optional .google.protobuf.MethodOptions options = 4;
 - (BOOL) hasOptions;
 - (MethodOptions*) getOptions;
-- (MethodDescriptorProto_Builder*) setOptions:(MethodOptions*) value;
-- (MethodDescriptorProto_Builder*) setOptionsBuilder:(MethodOptions_Builder*) builderForValue;
-- (MethodDescriptorProto_Builder*) mergeOptions:(MethodOptions*) value;
-- (MethodDescriptorProto_Builder*) clearOptions;
+- (id<Message_Builder>) setOptions:(MethodOptions*) value;
+- (id<Message_Builder>) setOptionsBuilder:(MethodOptions_Builder*) builderForValue;
+- (id<Message_Builder>) mergeOptions:(MethodOptions*) value;
+- (id<Message_Builder>) clearOptions;
 @end
 
 @interface FileOptions : GeneratedMessage {
@@ -1155,7 +1187,7 @@
 - (NSString*) getObjectivecNamespace;
 + (FileOptions*) getDefaultInstance;
 - (FileOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1171,7 +1203,7 @@
 + (FileOptions*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 @end
 
-@interface OptimizeMode {
+@interface OptimizeMode : NSObject {
     int32_t index;
     int32_t value;
 }
@@ -1198,7 +1230,7 @@
 - (FileOptions*) internalGetResult;
 - (FileOptions_Builder*) clear;
 - (FileOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (FileOptions*) getDefaultInstanceForType;
 - (FileOptions*) build;
 - (FileOptions*) buildParsed;
@@ -1253,7 +1285,7 @@
 - (BOOL) getMessageSetWireFormat;
 + (MessageOptions*) getDefaultInstance;
 - (MessageOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1277,7 +1309,7 @@
 - (MessageOptions*) internalGetResult;
 - (MessageOptions_Builder*) clear;
 - (MessageOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (MessageOptions*) getDefaultInstanceForType;
 - (MessageOptions*) build;
 - (MessageOptions*) buildParsed;
@@ -1317,7 +1349,7 @@
 - (NSString*) getExperimentalMapKey;
 + (FieldOptions*) getDefaultInstance;
 - (FieldOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1333,7 +1365,7 @@
 + (FieldOptions*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 @end
 
-@interface CType {
+@interface CType : NSObject {
     int32_t index;
     int32_t value;
 }
@@ -1360,7 +1392,7 @@
 - (FieldOptions*) internalGetResult;
 - (FieldOptions_Builder*) clear;
 - (FieldOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (FieldOptions*) getDefaultInstanceForType;
 - (FieldOptions*) build;
 - (FieldOptions*) buildParsed;
@@ -1388,7 +1420,7 @@
 }
 + (EnumOptions*) getDefaultInstance;
 - (EnumOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1412,7 +1444,7 @@
 - (EnumOptions*) internalGetResult;
 - (EnumOptions_Builder*) clear;
 - (EnumOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (EnumOptions*) getDefaultInstanceForType;
 - (EnumOptions*) build;
 - (EnumOptions*) buildParsed;
@@ -1428,7 +1460,7 @@
 }
 + (EnumValueOptions*) getDefaultInstance;
 - (EnumValueOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1452,7 +1484,7 @@
 - (EnumValueOptions*) internalGetResult;
 - (EnumValueOptions_Builder*) clear;
 - (EnumValueOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (EnumValueOptions*) getDefaultInstanceForType;
 - (EnumValueOptions*) build;
 - (EnumValueOptions*) buildParsed;
@@ -1468,7 +1500,7 @@
 }
 + (ServiceOptions*) getDefaultInstance;
 - (ServiceOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1492,7 +1524,7 @@
 - (ServiceOptions*) internalGetResult;
 - (ServiceOptions_Builder*) clear;
 - (ServiceOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (ServiceOptions*) getDefaultInstanceForType;
 - (ServiceOptions*) build;
 - (ServiceOptions*) buildParsed;
@@ -1508,7 +1540,7 @@
 }
 + (MethodOptions*) getDefaultInstance;
 - (MethodOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (ProtocolBufferDescriptor*) getDescriptor;
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1532,7 +1564,7 @@
 - (MethodOptions*) internalGetResult;
 - (MethodOptions_Builder*) clear;
 - (MethodOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (ProtocolBufferDescriptor*) getDescriptorForType;
 - (MethodOptions*) getDefaultInstanceForType;
 - (MethodOptions*) build;
 - (MethodOptions*) buildParsed;
