@@ -32,7 +32,7 @@
  * constructor because it becomes null when build() is called.
  */
 - (GeneratedMessage*) internalGetResult {
-    @throw [NSException exceptionWithName:@"IncorrectSubclassing" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 /**

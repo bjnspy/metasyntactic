@@ -27,6 +27,7 @@
 @property (retain) NSOutputStream* output;
 
 + (CodedOutputStream*) newInstance:(NSOutputStream*) output;
++ (CodedOutputStream*) streamWithData:(NSMutableData*) data;
 
 int32_t encodeZigZag32(int32_t n);
 int64_t encodeZigZag64(int64_t n);

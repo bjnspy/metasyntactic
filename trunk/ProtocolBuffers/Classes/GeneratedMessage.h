@@ -18,6 +18,7 @@
 
 
 @interface GeneratedMessage : AbstractMessage {
+@private
     UnknownFieldSet* unknownFields;
 }
 

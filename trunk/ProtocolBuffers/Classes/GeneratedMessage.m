@@ -38,7 +38,12 @@
 
 
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    @throw [NSException exceptionWithName:@"InvalidSubclassing" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (UnknownFieldSet*) getUnknownFields {
+    return unknownFields;
 }
 
 @end
