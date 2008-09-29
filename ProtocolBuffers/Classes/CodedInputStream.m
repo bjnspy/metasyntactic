@@ -41,14 +41,27 @@ const int32_t BUFFER_SIZE = 4096;
 }
 
 
-- (id) init {
+- (void) commonInit {
+    currentLimit = INT_MAX;
+    recursionLimit = DEFAULT_RECURSION_LIMIT;
+    sizeLimit = DEFAULT_SIZE_LIMIT;
+}
+
+
+- (id) initWithData:(NSData*) data {
     if (self = [super init]) {
-        currentLimit = INT_MAX;
-        recursionLimit = DEFAULT_RECURSION_LIMIT;
-        sizeLimit = DEFAULT_SIZE_LIMIT;
+        self.buffer = [NSMutableData dataWithData:data];
+        bufferSize = buffer.length;
+        self.input = nil;
+        [self commonInit];
     }
     
     return self;
+}
+
+
++ (CodedInputStream*) streamWithData:(NSData*) data {
+    return [[[CodedInputStream alloc] initWithData:data] autorelease];
 }
 
 

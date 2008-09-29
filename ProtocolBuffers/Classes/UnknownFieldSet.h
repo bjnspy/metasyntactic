@@ -15,15 +15,16 @@
 // limitations under the License.
 
 @interface UnknownFieldSet : NSObject {
-    NSMutableDictionary* fields;
+    NSDictionary* fields;
 }
 
-@property (retain) NSMutableDictionary* fields;
+@property (retain) NSDictionary* fields;
 
 + (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
 + (UnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
 
 + (UnknownFieldSet*) getDefaultInstance;
++ (UnknownFieldSet_Builder*) newBuilder;
 
 - (void) writeAsMessageSetTo:(CodedOutputStream*) output;
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output;
@@ -32,7 +33,6 @@
 - (int32_t) getSerializedSizeAsMessageSet;
 
 #if 0
-+ (UnknownFieldSet_Builder*) newBuilder;
 + (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
 
 + (UnknownFieldSet*) parseFromCodedInputStream:(CodedInputStream*) input;

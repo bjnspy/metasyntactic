@@ -78,7 +78,8 @@ int32_t computeRawVarint64Size(int64_t value);
 
 - (void) writeData:(int32_t) fieldNumber value:(NSData*) value;
 
-
+- (void) writeDouble:(int32_t) fieldNumber value:(Float64) value;
+- (void) writeFloat:(int32_t) fieldNumber value:(Float32) value;
 - (void) writeUInt64:(int32_t) fieldNumber value:(int64_t) value;
 - (void) writeInt64:(int32_t) fieldNumber value:(int64_t) value;
 - (void) writeInt32:(int32_t) fieldNumber value:(int32_t) value;
