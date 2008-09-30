@@ -17,7 +17,7 @@
 #import "Message_Builder.h"
 
 @interface AbstractMessage_Builder : NSObject<Message_Builder> {
-
+@private
 }
 
 - (UnknownFieldSet*) getUnknownFields;
@@ -33,10 +33,5 @@
 - (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 
 - (id<Message_Builder>) mergeFromMessage:(id<Message>) other; 
-
-#if 0
-- (AbstractMessage_Builder*) clone;
-- (AbstractMessage_Builder*) clear;
-#endif
 
 @end

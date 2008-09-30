@@ -17,6 +17,8 @@
 #import "AbstractMessage_Builder.h"
 
 #import "Descriptor.pb.h"
+
+#import "CodedInputStream.h"
 #import "ExtensionRegistry.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"
@@ -27,13 +29,8 @@
 @implementation AbstractMessage_Builder
 
 
-- (UnknownFieldSet*) getUnknownFields {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-
-
 - (id<Message_Builder>) clone {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
@@ -46,19 +43,11 @@
 }
 
 
-- (id<Message>) buildParsed {
-    if (![self isInitialized]) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
-}
-
-
 - (id<Message_Builder>) mergeFromMessage:(id<Message>) other {
     if ([other getDescriptorForType] != self.getDescriptorForType) {
-        @throw [NSException exceptionWithName:@"IllegalArgumentException" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage:(id<Message>) can only merge messages of the same type." userInfo:nil];
     }
-        
+    
     // Note:  We don't attempt to verify that other's fields have valid
     //   types.  Doing so would be a losing battle.  We'd have to verify
     //   all sub-messages as well, and we'd have to make copies of all of
@@ -70,7 +59,7 @@
     NSDictionary* allFields = self.getAllFields;
     for (FieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
-
+        
         if (field.isRepeated) {
             for (id element in value) {
                 [self addRepeatedField:field value:element];
@@ -99,11 +88,11 @@
 
 
 - (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input
-                     extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+                                extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
     [FieldSet mergeFromCodedInputStream:input unknownFields:unknownFields extensionRegistry:extensionRegistry builder:self];
     [self setUnknownFields:[unknownFields build]];
-
+    
     return self;
 }
 
@@ -115,145 +104,6 @@
     return self;
 }
 
-/*
-    
-    public BuilderType mergeFrom(ByteString data)
-    throws InvalidProtocolBufferException {
-        try {
-            CodedInputStream input = data.newCodedInput();
-            mergeFrom(input);
-            input.checkLastTagWas(0);
-            return (BuilderType) this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a ByteString threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-    
-    public BuilderType mergeFrom(ByteString data,
-                                 ExtensionRegistry extensionRegistry)
-    throws InvalidProtocolBufferException {
-        try {
-            CodedInputStream input = data.newCodedInput();
-            mergeFrom(input, extensionRegistry);
-            input.checkLastTagWas(0);
-            return (BuilderType) this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a ByteString threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-    
-    public BuilderType mergeFrom(byte[] data)
-    throws InvalidProtocolBufferException {
-        try {
-            CodedInputStream input = CodedInputStream.newInstance(data);
-            mergeFrom(input);
-            input.checkLastTagWas(0);
-            return (BuilderType) this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a byte array threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-    
-    public BuilderType mergeFrom(
-                                 byte[] data, ExtensionRegistry extensionRegistry)
-    throws InvalidProtocolBufferException {
-        try {
-            CodedInputStream input = CodedInputStream.newInstance(data);
-            mergeFrom(input, extensionRegistry);
-            input.checkLastTagWas(0);
-            return (BuilderType) this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a byte array threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-    
-    public BuilderType mergeFrom(InputStream input) throws IOException {
-        CodedInputStream codedInput = CodedInputStream.newInstance(input);
-        mergeFrom(codedInput);
-        codedInput.checkLastTagWas(0);
-        return (BuilderType) this;
-    }
-    
-    public BuilderType mergeFrom(InputStream input,
-                                 ExtensionRegistry extensionRegistry)
-    throws IOException {
-        CodedInputStream codedInput = CodedInputStream.newInstance(input);
-        mergeFrom(codedInput, extensionRegistry);
-        codedInput.checkLastTagWas(0);
-        return (BuilderType) this;
-    }
-}
-}
-#endif
-*/
-- (id<Message>) build {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id<Message>) buildPartial {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (BOOL) isInitialized {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id<Message>) getDefaultInstanceForType {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (NSDictionary*) getAllFields {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (BOOL) hasField:(FieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id) getField:(FieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id<Message_Builder>) setField:(FieldDescriptor*) field value:(id) value {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id<Message_Builder>) clearField:(FieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id<Message_Builder>) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id<Message_Builder>) addRepeatedField:(FieldDescriptor*) field value:(id) value {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (UnknownFieldSet*) unknownFields {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-- (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-
 
 - (id<Message_Builder>) mergeFromData:(NSData*) data {
     CodedInputStream* input = [CodedInputStream streamWithData:data];
@@ -263,14 +113,128 @@
 }
 
 
-- (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+- (id<Message_Builder>) mergeFromData:(NSData*) data
+                    extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+    CodedInputStream* input = [CodedInputStream streamWithData:data];
+    [self mergeFromCodedInputStream:input extensionRegistry:extensionRegistry];
+    [input checkLastTagWas:0];
+    return self;
 }
+
+
 - (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input {
+    CodedInputStream* codedInput = [CodedInputStream streamWithInputStream:input];
+    [self mergeFromCodedInputStream:codedInput];
+    [codedInput checkLastTagWas:0];
+    return self;
+}
+
+
+- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input
+                           extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+    CodedInputStream* codedInput = [CodedInputStream streamWithInputStream:input];
+    [self mergeFromCodedInputStream:codedInput extensionRegistry:extensionRegistry];
+    [codedInput checkLastTagWas:0];
+    return self;
+}
+
+
+- (id<Message>) buildParsed {
+    if (![self isInitialized]) {
+        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+    }
+    return [self buildPartial];
+}
+
+
+- (id<Message>) build {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id<Message>) buildPartial {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (BOOL) isInitialized {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (ProtocolBufferDescriptor*) getDescriptorForType {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id<Message>) getDefaultInstanceForType {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (NSDictionary*) getAllFields {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (BOOL) hasField:(FieldDescriptor*) field {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id) getField:(FieldDescriptor*) field {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id<Message_Builder>) setField:(FieldDescriptor*) field value:(id) value {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id<Message_Builder>) clearField:(FieldDescriptor*) field {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
-- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+
+
+- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
+
+
+- (id<Message_Builder>) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id<Message_Builder>) addRepeatedField:(FieldDescriptor*) field value:(id) value {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (UnknownFieldSet*) unknownFields {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (UnknownFieldSet*) getUnknownFields {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
 
 @end
