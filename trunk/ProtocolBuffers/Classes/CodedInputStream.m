@@ -147,6 +147,7 @@ const int32_t BUFFER_SIZE = 4096;
     }
 }
 
+
 /**
  * Reads and discards an entire message.  This will read either until EOF
  * or until an endgroup tag, whichever comes first.
@@ -160,7 +161,6 @@ const int32_t BUFFER_SIZE = 4096;
     }
 }
 
-// -----------------------------------------------------------------
 
 /** Read a {@code double} field value from the stream. */
 - (Float64) readDouble {
@@ -231,9 +231,9 @@ const int32_t BUFFER_SIZE = 4096;
 
 
 /** Read a {@code group} field value from the stream. */
-- (void) readGroup:(int32_t) fieldNumber
-           builder:(id<Message_Builder>) builder
- extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (void)      readGroup:(int32_t) fieldNumber
+                builder:(id<Message_Builder>) builder
+      extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     if (recursionDepth >= recursionLimit) {
         @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
     }
@@ -343,32 +343,32 @@ const int32_t BUFFER_SIZE = 4096;
  */
 - (id) readPrimitiveField:(FieldDescriptorType) type {
     switch (type) {
-        case FieldDescriptorTypeDouble  : return [NSNumber numberWithDouble:[self readDouble]];
-        case FieldDescriptorTypeFloat   : return [NSNumber numberWithFloat:[self readFloat]];
-        case FieldDescriptorTypeInt64   : return [NSNumber numberWithLongLong:[self readInt64]];
-        case FieldDescriptorTypeUInt64  : return [NSNumber numberWithLongLong:[self readUInt64]];
-        case FieldDescriptorTypeInt32   : return [NSNumber numberWithInt:[self readInt32]];
-        case FieldDescriptorTypeFixed64 : return [NSNumber numberWithLongLong:[self readFixed64]];
-        case FieldDescriptorTypeFixed32 : return [NSNumber numberWithInt:[self readFixed32]];
-        case FieldDescriptorTypeBool    : return [NSNumber numberWithBool:[self readBool]];
+        case FieldDescriptorTypeDouble  : return [NSNumber numberWithDouble:    [self readDouble]];
+        case FieldDescriptorTypeFloat   : return [NSNumber numberWithFloat:     [self readFloat]];
+        case FieldDescriptorTypeInt64   : return [NSNumber numberWithLongLong:  [self readInt64]];
+        case FieldDescriptorTypeUInt64  : return [NSNumber numberWithLongLong:  [self readUInt64]];
+        case FieldDescriptorTypeInt32   : return [NSNumber numberWithInt:       [self readInt32]];
+        case FieldDescriptorTypeFixed64 : return [NSNumber numberWithLongLong:  [self readFixed64]];
+        case FieldDescriptorTypeFixed32 : return [NSNumber numberWithInt:       [self readFixed32]];
+        case FieldDescriptorTypeBool    : return [NSNumber numberWithBool:      [self readBool]];
         case FieldDescriptorTypeString  : return [self readString];
         case FieldDescriptorTypeData    : return [self readData];
-        case FieldDescriptorTypeUInt32  : return [NSNumber numberWithInt:[self readUInt32]];
-        case FieldDescriptorTypeSFixed32: return [NSNumber numberWithInt:[self readSFixed32]];
-        case FieldDescriptorTypeSFixed64: return [NSNumber numberWithLongLong:[self readSFixed64]];
-        case FieldDescriptorTypeSInt32  : return [NSNumber numberWithInt:[self readSInt32]];
-        case FieldDescriptorTypeSInt64  : return [NSNumber numberWithLongLong:[self readSInt64]];
+        case FieldDescriptorTypeUInt32  : return [NSNumber numberWithInt:       [self readUInt32]];
+        case FieldDescriptorTypeSFixed32: return [NSNumber numberWithInt:       [self readSFixed32]];
+        case FieldDescriptorTypeSFixed64: return [NSNumber numberWithLongLong:  [self readSFixed64]];
+        case FieldDescriptorTypeSInt32  : return [NSNumber numberWithInt:       [self readSInt32]];
+        case FieldDescriptorTypeSInt64  : return [NSNumber numberWithLongLong:  [self readSInt64]];
             
         case FieldDescriptorTypeGroup:
-            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField() cannot handle nested groups." userInfo:nil];
             
         case FieldDescriptorTypeMessage:
-            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField() cannot handle embedded messages." userInfo:nil];
             
         case FieldDescriptorTypeEnum:
             // We don't hanlde enums because we don't know what to do if the
             // value is not recognized.
-            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField() cannot handle enums." userInfo:nil];
     }
     
     @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
@@ -407,7 +407,7 @@ const int32_t BUFFER_SIZE = 4096;
                             return result;
                         }
                     }
-                    @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+                    @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"malformedVarint" userInfo:nil];
                 }
             }
         }
@@ -422,13 +422,13 @@ const int32_t BUFFER_SIZE = 4096;
     int64_t result = 0;
     while (shift < 64) {
         int8_t b = [self readRawByte];
-        result |= (int32_t)(b & 0x7F) << shift;
+        result |= (int64_t)(b & 0x7F) << shift;
         if ((b & 0x80) == 0) {
             return result;
         }
         shift += 7;
     }
-    @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"malformedVarint" userInfo:nil];
 }
 
 
@@ -467,6 +467,7 @@ const int32_t BUFFER_SIZE = 4096;
     (((int64_t)b8 & 0xff) << 56);
 }
 
+
 /**
  * Decode a ZigZag-encoded 32-bit value.  ZigZag encodes signed integers
  * into values that can be efficiently encoded with varint.  (Otherwise,
@@ -480,6 +481,7 @@ const int32_t BUFFER_SIZE = 4096;
 int32_t decodeZigZag32(int32_t n) {
     return logicalRightShift32(n, 1) ^ -(n & 1);
 }
+
 
 /**
  * Decode a ZigZag-encoded 64-bit value.  ZigZag encodes signed integers
@@ -495,22 +497,7 @@ int64_t decodeZigZag64(int64_t n) {
     return logicalRightShift64(n, 1) ^ -(n & 1);
 }
 
-// -----------------------------------------------------------------
-#if 0
 
-
-private CodedInputStream(byte[] buffer) {
-    this.buffer = buffer;
-    this.bufferSize = buffer.length;
-    this.input = null;
-}
-
-private CodedInputStream(InputStream input) {
-    this.buffer = new byte[BUFFER_SIZE];
-    this.bufferSize = 0;
-    this.input = input;
-}
-#endif
 /**
  * Set the maximum message recursion depth.  In order to prevent malicious
  * messages from causing stack overflows, {@code CodedInputStream} limits
@@ -520,7 +507,7 @@ private CodedInputStream(InputStream input) {
  */
 - (int32_t) setRecursionLimit:(int32_t) limit {
     if (limit < 0) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Recursion limit cannot be negative" userInfo:nil];
     }
     int32_t oldLimit = recursionLimit;
     recursionLimit = limit;
@@ -542,7 +529,7 @@ private CodedInputStream(InputStream input) {
  */
 - (int32_t) setSizeLimit:(int32_t) limit {
     if (limit < 0) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Size limit cannot be negative:" userInfo:nil];
     }
     int32_t oldLimit = sizeLimit;
     sizeLimit = limit;
@@ -558,12 +545,12 @@ private CodedInputStream(InputStream input) {
  */
 - (int32_t) pushLimit:(int32_t) byteLimit {
     if (byteLimit < 0) {
-        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"negativeSize" userInfo:nil];
     }
     byteLimit += totalBytesRetired + bufferPos;
     int oldLimit = currentLimit;
     if (byteLimit > oldLimit) {
-        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
     }
     currentLimit = byteLimit;
     
@@ -606,13 +593,13 @@ private CodedInputStream(InputStream input) {
  */
 - (BOOL) refillBuffer:(BOOL) mustSucceed {
     if (bufferPos < bufferSize) {
-        @throw [NSException exceptionWithName:@"IllegalState" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalState" reason:@"refillBuffer() called when buffer wasn't empty." userInfo:nil];
     }
     
     if (totalBytesRetired + bufferSize == currentLimit) {
         // Oops, we hit a limit.
         if (mustSucceed) {
-            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
         } else {
             return NO;
         }
@@ -620,21 +607,22 @@ private CodedInputStream(InputStream input) {
     
     totalBytesRetired += bufferSize;
     
+    // TODO(cyrusn): does NSInputStream behave the same as java.io.InputStream
+    // when there is no more data?
     bufferPos = 0;
     bufferSize = (input == nil) ? -1 : [input read:buffer.mutableBytes maxLength:buffer.length];
     if (bufferSize == -1) {
         bufferSize = 0;
         if (mustSucceed) {
-            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
         } else {
             return NO;
         }
     } else {
         [self recomputeBufferSizeAfterLimit];
-        int totalBytesRead =
-        totalBytesRetired + bufferSize + bufferSizeAfterLimit;
+        int totalBytesRead = totalBytesRetired + bufferSize + bufferSizeAfterLimit;
         if (totalBytesRead > sizeLimit || totalBytesRead < 0) {
-            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"sizeLimitExceeded" userInfo:nil];
         }
         return YES;
     }
@@ -664,14 +652,14 @@ private CodedInputStream(InputStream input) {
  */
 - (NSData*) readRawData:(int32_t) size {
     if (size < 0) {
-        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"negativeSize" userInfo:nil];
     }
     
     if (totalBytesRetired + bufferPos + size > currentLimit) {
         // Read to the end of the stream anyway.
         [self skipRawBytes:currentLimit - totalBytesRetired - bufferPos];
         // Then fail.
-        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
     }
     
     if (size <= bufferSize - bufferPos) {
@@ -725,18 +713,18 @@ private CodedInputStream(InputStream input) {
         bufferSize = 0;
         
         // Read all the rest of the bytes we need.
-        int sizeLeft = size - (originalBufferSize - originalBufferPos);
+        int32_t sizeLeft = size - (originalBufferSize - originalBufferPos);
         NSMutableArray* chunks = [NSMutableArray array];
         
         while (sizeLeft > 0) {
             NSMutableData* chunk = [NSMutableData dataWithLength:MIN(sizeLeft, BUFFER_SIZE)];
 
-            int pos = 0;
+            int32_t pos = 0;
             while (pos < chunk.length) {
-                int n = (input == nil) ? -1 :
+                int32_t n = (input == nil) ? -1 :
                 [input read:(((uint8_t*)chunk.mutableBytes) + pos) maxLength:chunk.length - pos];
                 if (n == -1) {
-                    @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+                    @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
                 }
                 totalBytesRetired += n;
                 pos += n;
@@ -763,6 +751,7 @@ private CodedInputStream(InputStream input) {
     }
 }
 
+
 /**
  * Reads and discards {@code size} bytes.
  *
@@ -771,14 +760,14 @@ private CodedInputStream(InputStream input) {
  */
 - (void) skipRawBytes:(int32_t) size {
     if (size < 0) {
-        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"negativeSize" userInfo:nil];
     }
     
     if (totalBytesRetired + bufferPos + size > currentLimit) {
         // Read to the end of the stream anyway.
         [self skipRawBytes:currentLimit - totalBytesRetired - bufferPos];
         // Then fail.
-        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
     }
     
     if (size < bufferSize - bufferPos) {
@@ -786,7 +775,7 @@ private CodedInputStream(InputStream input) {
         bufferPos += size;
     } else {
         // Skipping more bytes than are in the buffer.  First skip what we have.
-        int pos = bufferSize - bufferPos;
+        int32_t pos = bufferSize - bufferPos;
         totalBytesRetired += pos;
         bufferPos = 0;
         bufferSize = 0;
@@ -796,7 +785,7 @@ private CodedInputStream(InputStream input) {
             NSMutableData* data = [NSMutableData dataWithLength:(size - pos)];
             int32_t n = (input == nil) ? -1 : (int32_t)[input read:data.mutableBytes maxLength:(size - pos)];
             if (n <= 0) {
-                @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+                @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
             }
             pos += n;
             totalBytesRetired += n;
