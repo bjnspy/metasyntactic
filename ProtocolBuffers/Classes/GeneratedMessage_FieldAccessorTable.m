@@ -39,7 +39,7 @@
 
 
 - (id) initWithDescriptor:(ProtocolBufferDescriptor*) descriptor_
-                    names:(NSArray*) names
+               fieldNames:(NSArray*) fieldNames
              messageClass:(Class) messageClass
              builderClass:(Class) builderClass {
     if (self = [super init]) {
@@ -47,8 +47,8 @@
         
         NSMutableArray* array = [NSMutableArray array];
 
-        for (int i = 0; i < names.count; i++) {
-            NSString* name = [names objectAtIndex:i];
+        for (int i = 0; i < fieldNames.count; i++) {
+            NSString* name = [fieldNames objectAtIndex:i];
             FieldDescriptor* field = [descriptor.getFields objectAtIndex:i];
             if (field.isRepeated) {
                 if (field.getObjectiveCType == FieldDescriptorTypeMessage) {
@@ -77,10 +77,13 @@
 
 
 + (GeneratedMessage_FieldAccessorTable*) tableWithDescriptor:(ProtocolBufferDescriptor*) descriptor
-                                                       names:(NSArray*) names
+                                                  fieldNames:(NSArray*) fieldNames
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass {
-    return [[[GeneratedMessage_FieldAccessorTable alloc] initWithDescriptor:descriptor names:names messageClass:messageClass builderClass:builderClass] autorelease];
+    return [[[GeneratedMessage_FieldAccessorTable alloc] initWithDescriptor:descriptor
+                                                                 fieldNames:fieldNames
+                                                               messageClass:messageClass
+                                                               builderClass:builderClass] autorelease];
 }
 
 

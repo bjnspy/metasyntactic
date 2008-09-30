@@ -15,10 +15,15 @@
 // limitations under the License.
 
 @interface FileDescriptor : NSObject {
+    NSArray* messageTypes;
 }
+
+@property (retain) NSArray* messageTypes;
 
 + (FileDescriptor*) buildFrom:(FileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
 + (FileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;
+
+- (NSArray*) getMessageTypes;
 
 - (void) crossLink;
 
@@ -34,7 +39,6 @@
 }
 
 @property (retain) FileDescriptorProto* proto;
-@property (retain) NSArray* messageTypes;
 @property (retain) NSArray* enumTypes;
 @property (retain) NSArray* services;
 @property (retain) NSArray* extensions;
