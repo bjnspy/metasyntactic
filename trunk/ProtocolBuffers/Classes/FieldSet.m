@@ -635,7 +635,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
  * the resulting size if desired.
  */
 - (int32_t) getSerializedSize {
-    int size = 0;
+    int32_t size = 0;
     for (FieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
 

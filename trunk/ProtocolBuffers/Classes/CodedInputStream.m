@@ -154,7 +154,7 @@ const int32_t BUFFER_SIZE = 4096;
  */
 - (void) skipMessage {
     while (true) {
-        int tag = [self readTag];
+        int32_t tag = [self readTag];
         if (tag == 0 || ![self skipField:tag]) {
             return;
         }
@@ -548,7 +548,7 @@ int64_t decodeZigZag64(int64_t n) {
         @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"negativeSize" userInfo:nil];
     }
     byteLimit += totalBytesRetired + bufferPos;
-    int oldLimit = currentLimit;
+    int32_t oldLimit = currentLimit;
     if (byteLimit > oldLimit) {
         @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
     }
@@ -562,7 +562,7 @@ int64_t decodeZigZag64(int64_t n) {
 
 - (void) recomputeBufferSizeAfterLimit {
     bufferSize += bufferSizeAfterLimit;
-    int bufferEnd = totalBytesRetired + bufferSize;
+    int32_t bufferEnd = totalBytesRetired + bufferSize;
     if (bufferEnd > currentLimit) {
         // Limit is in current buffer.
         bufferSizeAfterLimit = bufferEnd - currentLimit;
@@ -620,7 +620,7 @@ int64_t decodeZigZag64(int64_t n) {
         }
     } else {
         [self recomputeBufferSizeAfterLimit];
-        int totalBytesRead = totalBytesRetired + bufferSize + bufferSizeAfterLimit;
+        int32_t totalBytesRead = totalBytesRetired + bufferSize + bufferSizeAfterLimit;
         if (totalBytesRead > sizeLimit || totalBytesRead < 0) {
             @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"sizeLimitExceeded" userInfo:nil];
         }
@@ -673,7 +673,7 @@ int64_t decodeZigZag64(int64_t n) {
 
         // First copy what we have.
         NSMutableData* bytes = [NSMutableData dataWithLength:size];
-        int pos = bufferSize - bufferPos;
+        int32_t pos = bufferSize - bufferPos;
         memcpy(bytes.mutableBytes, ((int8_t*)buffer.bytes) + bufferPos, pos);
         bufferPos = bufferSize;
 
@@ -704,8 +704,8 @@ int64_t decodeZigZag64(int64_t n) {
 
         // Remember the buffer markers since we'll have to copy the bytes out of
         // it later.
-        int originalBufferPos = bufferPos;
-        int originalBufferSize = bufferSize;
+        int32_t originalBufferPos = bufferPos;
+        int32_t originalBufferSize = bufferSize;
 
         // Mark the current buffer consumed.
         totalBytesRetired += bufferSize;
@@ -737,7 +737,7 @@ int64_t decodeZigZag64(int64_t n) {
         NSMutableData* bytes = [NSMutableData dataWithLength:size];
 
         // Start by copying the leftover bytes from this.buffer.
-        int pos = originalBufferSize - originalBufferPos;
+        int32_t pos = originalBufferSize - originalBufferPos;
         memcpy(bytes.mutableBytes, ((int8_t*)buffer.bytes) + originalBufferPos, pos);
 
         // And now all the chunks.

@@ -190,7 +190,7 @@
 
 
 - (int32_t) getSerializedSize {
-    int size = dm_memoizedSize;
+    int32_t size = dm_memoizedSize;
     if (size != -1) {
         return size;
     }

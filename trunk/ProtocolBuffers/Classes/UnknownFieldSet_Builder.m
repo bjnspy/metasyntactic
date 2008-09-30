@@ -176,7 +176,7 @@
  * @return {@code false} if the tag is an engroup tag.
  */
 - (BOOL) mergeFieldFrom:(int32_t) tag input:(CodedInputStream*) input {
-    int number = WireFormatGetTagFieldNumber(tag);
+    int32_t number = WireFormatGetTagFieldNumber(tag);
     switch (WireFormatGetTagWireType(tag)) {
         case WireFormatVarint:
             [[self getFieldBuilder:number] addVarint:[input readInt64]];
@@ -255,7 +255,7 @@ public static final class Builder {
      * value.  This is used in particular when an unknown enum value is
      * encountered.
      */
-    public Builder mergeVarintField(int number, int value) {
+    public Builder mergeVarintField(int number, int32_t value) {
         if (number == 0) {
             throw new IllegalArgumentException("Zero is not a valid field number.");
         }
@@ -280,7 +280,7 @@ public static final class Builder {
      */
     public Builder mergeFrom(CodedInputStream input) throws IOException {
         while (true) {
-            int tag = input.readTag();
+            int32_t tag = input.readTag();
             if (tag == 0 || !mergeFieldFrom(tag, input)) {
                 break;
             }
