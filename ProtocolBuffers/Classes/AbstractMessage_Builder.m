@@ -38,7 +38,7 @@
     for (FieldDescriptor* key in self.getAllFields) {
         [self clearField:key];
     }
-    
+
     return self;
 }
 
@@ -47,7 +47,7 @@
     if ([other getDescriptorForType] != self.getDescriptorForType) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage:(id<Message>) can only merge messages of the same type." userInfo:nil];
     }
-    
+
     // Note:  We don't attempt to verify that other's fields have valid
     //   types.  Doing so would be a losing battle.  We'd have to verify
     //   all sub-messages as well, and we'd have to make copies of all of
@@ -59,14 +59,14 @@
     NSDictionary* allFields = self.getAllFields;
     for (FieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
-        
+
         if (field.isRepeated) {
             for (id element in value) {
                 [self addRepeatedField:field value:element];
             }
         } else if (field.getObjectiveCType == ObjectiveCTypeMessage) {
             id<Message> existingValue = [self getField:field];
-            
+
             if (existingValue == [existingValue getDefaultInstanceForType]) {
                 [self setField:field value:value];
             } else {
@@ -77,7 +77,7 @@
             [self setField:field value:value];
         }
     }
-    
+
     return self;
 }
 
@@ -92,7 +92,7 @@
     UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
     [FieldSet mergeFromCodedInputStream:input unknownFields:unknownFields extensionRegistry:extensionRegistry builder:self];
     [self setUnknownFields:[unknownFields build]];
-    
+
     return self;
 }
 
@@ -100,7 +100,7 @@
 - (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields {
     UnknownFieldSet* merged = [[[UnknownFieldSet newBuilder:self.getUnknownFields] mergeUnknownFields:unknownFields] build];
     [self setUnknownFields:merged];
-    
+
     return self;
 }
 

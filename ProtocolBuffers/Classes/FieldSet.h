@@ -76,7 +76,7 @@
 + (FieldSet*) setWithFields:(NSDictionary*) fields;
 + (FieldSet*) set;
 
-- (void) makeImmutable; 
+- (void) makeImmutable;
 
 - (BOOL) isInitialized;
 

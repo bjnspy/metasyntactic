@@ -38,7 +38,7 @@
 
 - (UnknownFieldSet*) unknownFields;
 - (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields;
-- (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields; 
+- (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
 
 - (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input;
 - (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;

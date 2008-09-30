@@ -20,11 +20,15 @@
 #import "CodedInputStream.h"
 #import "CodedOutputStream.h"
 #import "Descriptor.h"
+#import "EnumDescriptor.h"
 #import "EnumValueDescriptor.h"
+#import "ExtensionRegistry.h"
+#import "ExtensionRegistry_ExtensionInfo.h"
 #import "Field.h"
 #import "FieldDescriptor.h"
 #import "Message.h"
 #import "Message_Builder.h"
+#import "WireFormat.h"
 
 @implementation FieldSet
 
@@ -51,33 +55,11 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-+ (void) mergeFromCodedInputStream:(CodedInputStream*) input
-                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
-                 extensionRegistry:(ExtensionRegistry*) extensionRegistry
-                           builder:(id<Message_Builder>) builder {
-    while (true) {
-        int32_t tag = [input readTag];
-        if (tag == 0) {
-            break;
-        }
-        
-        if (![self mergeFieldFromCodedInputStream:input
-                                    unknownFields:unknownFields
-                                extensionRegistry:extensionRegistry
-                                          builder:builder
-                                              tag:tag]) {
-            // end group tag
-            break;
-        }
-    }
-}
-
-
 - (id) initWithFields:(NSMutableDictionary*) fields_ {
     if (self = [super init]) {
         self.fields = fields_;
     }
-    
+
     return self;
 }
 
@@ -86,7 +68,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
     if (self = [super init]) {
         self.fields = [NSMutableDictionary dictionary];
     }
-    
+
     return fields;
 }
 
@@ -103,18 +85,20 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 
 /** See {@link Message#getAllFields()}. */
 - (NSDictionary*) getAllFields {
-    return [NSDictionary dictionaryWithDictionary:fields];
+    return fields;
 }
 
 
 /** See {@link Message#hasField(Descriptors.FieldDescriptor)}. */
 - (BOOL) hasField:(FieldDescriptor*) field {
     if (field.isRepeated) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"hasField() can only be called on non-repeated fields." userInfo:nil];
     }
-    
+
     return [fields objectForKey:field] != nil;
 }
+
 
 /**
  * See {@link Message#getField(Descriptors.FieldDescriptor)}.  This method
@@ -139,6 +123,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
     }
 }
 
+
 /**
  * Verifies that the given object is of the correct type to be a valid
  * value for the given field.  (For repeated fields, this checks if the
@@ -158,14 +143,14 @@ static FieldSet* DEFAULT_INSTANCE = nil;
         case ObjectiveCTypeData:    isValid = [value isKindOfClass:[NSData class]]; break;
         case ObjectiveCTypeEnum:
             isValid = [value isKindOfClass:[EnumValueDescriptor class]] &&
-            ((EnumValueDescriptor*)value).getType == field.getEnumType;
+            [value getType] == field.getEnumType;
             break;
         case ObjectiveCTypeMessage:
             isValid = [value conformsToProtocol:@protocol(Message)] &&
             [value getDescriptorForType] == field.getMessageType;
             break;
     }
-    
+
     if (!isValid) {
         // When chaining calls to setField(), it can be hard to tell from
         // the stack trace which exact call failed, since the whole chain is
@@ -189,13 +174,13 @@ static FieldSet* DEFAULT_INSTANCE = nil;
             value:(id) value {
     if (field.isRepeated) {
         if (![value isKindOfClass:[NSArray class]]) {
-            @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+            @throw [NSException exceptionWithName:@"IllegalArgument"
+                                           reason:@"Wrong object type used with protocol message reflection." userInfo:nil];
         }
-        
+
         // Wrap the contents in a new list so that the caller cannot change
         // the list's contents after setting it.
-        NSMutableArray* newList = [NSMutableArray array];
-        [newList addObjectsFromArray:value];
+        NSMutableArray* newList = [NSMutableArray arrayWithArray:value];
         for (id element in newList) {
             [self verifyType:field value:element];
         }
@@ -203,12 +188,12 @@ static FieldSet* DEFAULT_INSTANCE = nil;
     } else {
         [self verifyType:field value:value];
     }
-    
+
     [fields setObject:value forKey:field];
 }
 
-/** See {@link Message.Builder#clearField(Descriptors.FieldDescriptor)}. */
 
+/** See {@link Message.Builder#clearField(Descriptors.FieldDescriptor)}. */
 - (void) clearField:(FieldDescriptor*) field {
     [fields removeObjectForKey:field];
 }
@@ -217,9 +202,10 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 /** See {@link Message#getRepeatedFieldCount(Descriptors.FieldDescriptor)}. */
 - (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
     if (!field.isRepeated) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"getRepeatedFieldCount() can only be called on repeated fields." userInfo:nil];
     }
-    
+
     return [[self getField:field] count];
 }
 
@@ -228,9 +214,10 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 - (id) getRepeatedField:(FieldDescriptor*) field
                   index:(int32_t) index {
     if (!field.isRepeated) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"getRepeatedField() can only be called on repeated fields." userInfo:nil];
     }
-    
+
     return [[self getField:field] objectAtIndex:index];
 }
 
@@ -240,12 +227,13 @@ static FieldSet* DEFAULT_INSTANCE = nil;
                     index:(int32_t) index
                     value:(id) value {
     if (!field.isRepeated) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"setRepeatedField() can only be called on repeated fields." userInfo:nil];
     }
-    
+
     [self verifyType:field value:value];
-    
-    
+
+
     NSMutableArray* list = [fields objectForKey:field];
     if (list == nil) {
         @throw [NSException exceptionWithName:@"IndexOutOfBounds" reason:@"" userInfo:nil];
@@ -254,13 +242,15 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
+/** See {@link Message.Builder#addRepeatedField(Descriptors.FieldDescriptor,Object)}. */
 - (void) addRepeatedField:(FieldDescriptor*) field value:(id) value {
     if (!field.isRepeated) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"addRepeatedField() can only be called on repeated fields." userInfo:nil];
     }
-    
+
     [self verifyType:field value:value];
-    
+
     NSMutableArray* list = [fields objectForKey:field];
     if (list == nil) {
         list = [NSMutableArray array];
@@ -282,7 +272,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 - (BOOL) isInitialized {
     for (FieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
-        
+
         if (field.getObjectiveCType == ObjectiveCTypeMessage) {
             if (field.isRepeated) {
                 for (id<Message> element in value) {
@@ -297,7 +287,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
             }
         }
     }
-    
+
     return YES;
 }
 
@@ -315,7 +305,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
             }
         }
     }
-    
+
     // Check that embedded messages are initialized.
     return [self isInitialized];
 }
@@ -331,11 +321,11 @@ static FieldSet* DEFAULT_INSTANCE = nil;
     //   implementations).
     // TODO(kenton):  Provide a function somewhere called makeDeepCopy()
     //   which allows people to make secure deep copies of messages.
-    
+
     NSDictionary* otherAllFields = [other getAllFields];
     for (FieldDescriptor* field in otherAllFields) {
         id otherValue = [otherAllFields objectForKey:field];
-        
+
         if (field.isRepeated) {
             NSMutableArray* existingValue = [fields objectForKey:field];
             if (existingValue == nil) {
@@ -364,7 +354,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 - (void) mergeFromFieldSet:(FieldSet*) other {
     for (FieldDescriptor* field in other.fields) {
         id value = [other.fields objectForKey:field];
-        
+
         if (field.isRepeated) {
             NSMutableArray* existingValue = [fields objectForKey:field];
             if (existingValue == nil) {
@@ -386,112 +376,32 @@ static FieldSet* DEFAULT_INSTANCE = nil;
     }
 }
 
+
 // TODO(kenton):  Move parsing code into AbstractMessage, since it no longer
 //   uses any special knowledge from FieldSet.
 
 
-/**
- * Like {@link #mergeFrom(CodedInputStream, UnknownFieldSet.Builder,
- * ExtensionRegistry, Message.Builder)}, but parses a single field.
- * @param tag The tag, which should have already been read.
- * @return {@code true} unless the tag is an end-group tag.
- */
-+ (BOOL) mergeFieldFromCodedInputStream:(CodedInputStream*) input 
-                          unknownFields:(UnknownFieldSet_Builder*) unknownFields
-                      extensionRegistry:(ExtensionRegistry*) extensionRegistry
-                                builder:(id<Message_Builder>) builder
-                                    tag:(int32_t) tag {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-    /*
-    ProtocolBufferDescriptor* type = builder.getDescriptorForType;
-    
-    if (type.getOptions.getMessageSetWireFormat &&
-        tag == WireFormatMessageSetItemTag) {
-        mergeMessageSetExtensionFromCodedStream(
-                                                input, unknownFields, extensionRegistry, builder);
-        return true;
-    }
-    
-    int wireType = WireFormat.getTagWireType(tag);
-    int fieldNumber = WireFormat.getTagFieldNumber(tag);
-    
-    FieldDescriptor field;
-    Message defaultInstance = null;
-    
-    if (type.isExtensionNumber(fieldNumber)) {
-        ExtensionRegistry.ExtensionInfo extension =
-        extensionRegistry.findExtensionByNumber(type, fieldNumber);
-        if (extension == null) {
-            field = null;
-        } else {
-            field = extension.descriptor;
-            defaultInstance = extension.defaultInstance;
-        }
-    } else {
-        field = type.findFieldByNumber(fieldNumber);
-    }
-    
-    if (field == null ||
-        wireType != WireFormat.getWireFormatForFieldType(field.getType())) {
-        // Unknown field or wrong wire type.  Skip.
-        return unknownFields.mergeFieldFrom(tag, input);
-    } else {
-        Object value;
-        switch (field.getType()) {
-            case GROUP: {
-                Message.Builder subBuilder;
-                if (defaultInstance != null) {
-                    subBuilder = defaultInstance.newBuilderForType();
-                } else {
-                    subBuilder = builder.newBuilderForField(field);
-                }
-                if (!field.isRepeated()) {
-                    subBuilder.mergeFrom((Message) builder.getField(field));
-                }
-                input.readGroup(field.getNumber(), subBuilder, extensionRegistry);
-                value = subBuilder.build();
-                break;
-            }
-            case MESSAGE: {
-                Message.Builder subBuilder;
-                if (defaultInstance != null) {
-                    subBuilder = defaultInstance.newBuilderForType();
-                } else {
-                    subBuilder = builder.newBuilderForField(field);
-                }
-                if (!field.isRepeated()) {
-                    subBuilder.mergeFrom((Message) builder.getField(field));
-                }
-                input.readMessage(subBuilder, extensionRegistry);
-                value = subBuilder.build();
-                break;
-            }
-            case ENUM: {
-                int rawValue = input.readEnum();
-                value = field.getEnumType().findValueByNumber(rawValue);
-                // If the number isn't recognized as a valid value for this enum,
-                // drop it.
-                if (value == null) {
-                    unknownFields.mergeVarintField(fieldNumber, rawValue);
-                    return true;
-                }
-                break;
-            }
-            default:
-                value = input.readPrimitiveField(field.getType());
-                break;
++ (void) mergeFromCodedInputStream:(CodedInputStream*) input
+                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                 extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                           builder:(id<Message_Builder>) builder {
+    while (true) {
+        int32_t tag = [input readTag];
+        if (tag == 0) {
+            break;
         }
         
-        if (field.isRepeated()) {
-            builder.addRepeatedField(field, value);
-        } else {
-            builder.setField(field, value);
+        if (![self mergeFieldFromCodedInputStream:input
+                                    unknownFields:unknownFields
+                                extensionRegistry:extensionRegistry
+                                          builder:builder
+                                              tag:tag]) {
+            // end group tag
+            break;
         }
     }
-    
-    return true;
-     */
 }
+
 
 /** Called by {@code #mergeFieldFrom()} to parse a MessageSet extension. */
 + (void) mergeMessageSetExtensionFromCodedStream:(CodedInputStream*) input
@@ -500,97 +410,200 @@ static FieldSet* DEFAULT_INSTANCE = nil;
                                          builder:(id<Message_Builder>) builder {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
     /*
-    ProtocolBufferDescriptor type = builder.getDescriptorForType();
-    
-    // The wire format for MessageSet is:
-    //   message MessageSet {
-    //     repeated group Item = 1 {
-    //       required int32 typeId = 2;
-    //       required bytes message = 3;
-    //     }
-    //   }
-    // "typeId" is the extension's field number.  The extension can only be
-    // a message type, where "message" contains the encoded bytes of that
-    // message.
-    //
-    // In practice, we will probably never see a MessageSet item in which
-    // the message appears before the type ID, or where either field does not
-    // appear exactly once.  However, in theory such cases are valid, so we
-    // should be prepared to accept them.
-    
-    int typeId = 0;
-    ByteString rawBytes = null;  // If we encounter "message" before "typeId"
-    Message.Builder subBuilder = null;
-    FieldDescriptor field = null;
-    
-    while (true) {
-        int tag = input.readTag();
-        if (tag == 0) {
-            break;
-        }
-        
-        if (tag == WireFormat.MESSAGE_SET_TYPE_ID_TAG) {
-            typeId = input.readUInt32();
-            // Zero is not a valid type ID.
-            if (typeId != 0) {
-                ExtensionRegistry.ExtensionInfo extension =
-                extensionRegistry.findExtensionByNumber(type, typeId);
-                if (extension != null) {
-                    field = extension.descriptor;
-                    subBuilder = extension.defaultInstance.newBuilderForType();
-                    Message originalMessage = (Message)builder.getField(field);
-                    if (originalMessage != null) {
-                        subBuilder.mergeFrom(originalMessage);
-                    }
-                    if (rawBytes != null) {
-                        // We already encountered the message.  Parse it now.
-                        subBuilder.mergeFrom(
-                                             CodedInputStream.newInstance(rawBytes.newInput()));
-                        rawBytes = null;
-                    }
-                } else {
-                    // Unknown extension number.  If we already saw data, put it
-                    // in rawBytes.
-                    if (rawBytes != null) {
-                        unknownFields.mergeField(typeId,
-                                                 UnknownFieldSet.Field.newBuilder()
-                                                 .addLengthDelimited(rawBytes)
-                                                 .build());
-                        rawBytes = null;
-                    }
-                }
-            }
-        } else if (tag == WireFormat.MESSAGE_SET_MESSAGE_TAG) {
-            if (typeId == 0) {
-                // We haven't seen a type ID yet, so we have to store the raw bytes
-                // for now.
-                rawBytes = input.readBytes();
-            } else if (subBuilder == null) {
-                // We don't know how to parse this.  Ignore it.
-                unknownFields.mergeField(typeId,
-                                         UnknownFieldSet.Field.newBuilder()
-                                         .addLengthDelimited(input.readBytes())
-                                         .build());
-            } else {
-                // We already know the type, so we can parse directly from the input
-                // with no copying.  Hooray!
-                input.readMessage(subBuilder, extensionRegistry);
-            }
-        } else {
-            // Unknown tag.  Skip it.
-            if (!input.skipField(tag)) {
-                break;  // end of group
-            }
-        }
-    }
-    
-    input.checkLastTagWas(WireFormat.MESSAGE_SET_ITEM_END_TAG);
-    
-    if (subBuilder != null) {
-        builder.setField(field, subBuilder.build());
-    }
+     ProtocolBufferDescriptor type = builder.getDescriptorForType();
+     
+     // The wire format for MessageSet is:
+     //   message MessageSet {
+     //     repeated group Item = 1 {
+     //       required int32 typeId = 2;
+     //       required bytes message = 3;
+     //     }
+     //   }
+     // "typeId" is the extension's field number.  The extension can only be
+     // a message type, where "message" contains the encoded bytes of that
+     // message.
+     //
+     // In practice, we will probably never see a MessageSet item in which
+     // the message appears before the type ID, or where either field does not
+     // appear exactly once.  However, in theory such cases are valid, so we
+     // should be prepared to accept them.
+     
+     int typeId = 0;
+     ByteString rawBytes = null;  // If we encounter "message" before "typeId"
+     Message.Builder subBuilder = null;
+     FieldDescriptor field = null;
+     
+     while (true) {
+     int tag = input.readTag();
+     if (tag == 0) {
+     break;
+     }
+     
+     if (tag == WireFormat.MESSAGE_SET_TYPE_ID_TAG) {
+     typeId = input.readUInt32();
+     // Zero is not a valid type ID.
+     if (typeId != 0) {
+     ExtensionRegistry.ExtensionInfo extension =
+     extensionRegistry.findExtensionByNumber(type, typeId);
+     if (extension != null) {
+     field = extension.descriptor;
+     subBuilder = extension.defaultInstance.newBuilderForType();
+     Message originalMessage = (Message)builder.getField(field);
+     if (originalMessage != null) {
+     subBuilder.mergeFrom(originalMessage);
+     }
+     if (rawBytes != null) {
+     // We already encountered the message.  Parse it now.
+     subBuilder.mergeFrom(
+     CodedInputStream.newInstance(rawBytes.newInput()));
+     rawBytes = null;
+     }
+     } else {
+     // Unknown extension number.  If we already saw data, put it
+     // in rawBytes.
+     if (rawBytes != null) {
+     unknownFields.mergeField(typeId,
+     UnknownFieldSet.Field.newBuilder()
+     .addLengthDelimited(rawBytes)
+     .build());
+     rawBytes = null;
+     }
+     }
+     }
+     } else if (tag == WireFormat.MESSAGE_SET_MESSAGE_TAG) {
+     if (typeId == 0) {
+     // We haven't seen a type ID yet, so we have to store the raw bytes
+     // for now.
+     rawBytes = input.readBytes();
+     } else if (subBuilder == null) {
+     // We don't know how to parse this.  Ignore it.
+     unknownFields.mergeField(typeId,
+     UnknownFieldSet.Field.newBuilder()
+     .addLengthDelimited(input.readBytes())
+     .build());
+     } else {
+     // We already know the type, so we can parse directly from the input
+     // with no copying.  Hooray!
+     input.readMessage(subBuilder, extensionRegistry);
+     }
+     } else {
+     // Unknown tag.  Skip it.
+     if (!input.skipField(tag)) {
+     break;  // end of group
+     }
+     }
+     }
+     
+     input.checkLastTagWas(WireFormat.MESSAGE_SET_ITEM_END_TAG);
+     
+     if (subBuilder != null) {
+     builder.setField(field, subBuilder.build());
+     }
      */
 }
+
+
+/**
+ * Like {@link #mergeFrom(CodedInputStream, UnknownFieldSet.Builder,
+ * ExtensionRegistry, Message.Builder)}, but parses a single field.
+ * @param tag The tag, which should have already been read.
+ * @return {@code true} unless the tag is an end-group tag.
+ */
++ (BOOL) mergeFieldFromCodedInputStream:(CodedInputStream*) input
+                          unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                      extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                                builder:(id<Message_Builder>) builder
+                                    tag:(int32_t) tag {
+    ProtocolBufferDescriptor* type = [builder getDescriptorForType];
+
+    if (type.getOptions.getMessageSetWireFormat &&
+        tag == WireFormatMessageSetItemTag) {
+        [self mergeMessageSetExtensionFromCodedStream:input
+                                        unknownFields:unknownFields
+                                    extensionRegistry:extensionRegistry
+                                              builder:builder];
+        return true;
+    }
+
+    int32_t wireType = WireFormatGetTagWireType(tag);
+    int32_t fieldNumber = WireFormatGetTagFieldNumber(tag);
+
+    FieldDescriptor* field;
+   id<Message> defaultInstance = nil;
+
+    if ([type isExtensionNumber:fieldNumber]) {
+        ExtensionRegistry_ExtensionInfo* extension = [extensionRegistry findExtensionByNumber:type fieldNumber:fieldNumber];
+        if (extension == nil) {
+            field = nil;
+        } else {
+            field = extension.descriptor;
+            defaultInstance = extension.defaultInstance;
+        }
+    } else {
+        field = [type findFieldByNumber:fieldNumber];
+    }
+
+    if (field == nil ||
+        wireType != WireFormatGetWireFormatForFieldType(field.getType)) {
+        // Unknown field or wrong wire type.  Skip.
+        return [unknownFields mergeFieldFrom:tag input:input];
+    } else {
+        id value;
+        switch (field.getType) {
+            case FieldDescriptorTypeGroup: {
+                id<Message_Builder> subBuilder;
+                if (defaultInstance != nil) {
+                    subBuilder = [defaultInstance newBuilderForType];
+                } else {
+                    subBuilder = [builder newBuilderForField:field];
+                }
+                if (!field.isRepeated) {
+                    [subBuilder mergeFromMessage:[builder getField:field]];
+                }
+                [input readGroup:field.getNumber builder:subBuilder extensionRegistry:extensionRegistry];
+                value = [subBuilder build];
+                break;
+            }
+            case FieldDescriptorTypeMessage: {
+                id<Message_Builder> subBuilder;
+                if (defaultInstance != nil) {
+                    subBuilder = [defaultInstance newBuilderForType];
+                } else {
+                    subBuilder = [builder newBuilderForField:field];
+                }
+                if (!field.isRepeated) {
+                    [subBuilder mergeFromMessage:[builder getField:field]];
+                }
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+                value = [subBuilder build];
+                break;
+            }
+            case FieldDescriptorTypeEnum: {
+                int32_t rawValue = [input readEnum];
+                value = [field.getEnumType findValueByNumber:rawValue];
+                // If the number isn't recognized as a valid value for this enum,
+                // drop it.
+                if (value == nil) {
+                    [unknownFields mergeVarintField:fieldNumber value:rawValue];
+                    return true;
+                }
+                break;
+            }
+            default:
+                value = [input readPrimitiveField:field.getType];
+                break;
+        }
+
+        if (field.isRepeated) {
+            [builder addRepeatedField:field value:value];
+        } else {
+            [builder setField:field value:value];
+        }
+    }
+
+    return true;
+}
+
 
 /** See {@link Message#writeTo(CodedOutputStream)}. */
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output {
@@ -625,7 +638,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
     int size = 0;
     for (FieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
-        
+
         if (field.isExtension &&
             field.getContainingType.getOptions.getMessageSetWireFormat) {
             size += computeMessageSetExtensionSize(field.getNumber, value);

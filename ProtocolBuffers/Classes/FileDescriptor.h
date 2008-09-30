@@ -52,7 +52,7 @@
 - (FieldDescriptorProto*) toProto;
 - (NSString*) name;
 - (NSString*) package;
-- (FileOptions*) options; 
+- (FileOptions*) options;
 - (NSArray*) messageTypes;
 - (NSArray*) enumTypes;
 - (NSArray*) services;

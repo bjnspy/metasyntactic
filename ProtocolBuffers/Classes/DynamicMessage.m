@@ -35,7 +35,7 @@
     self.type = nil;
     self.fields = nil;
     self.unknownFields = nil;
-    
+
     [super dealloc];
 }
 
@@ -45,12 +45,12 @@
              fields:(FieldSet*) fields_
       unknownFields:(UnknownFieldSet*) unknownFields_ {
     if (self = [super init]) {
-        self.type = type;
-        self.fields = fields;
+        self.type = type_;
+        self.fields = fields_;
         self.unknownFields = unknownFields_;
         dm_memoizedSize = -1;
     }
-    
+
     return self;
 }
 
@@ -76,34 +76,34 @@
 
 
 + (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
-             codedInputStream:(CodedInputStream*) input
-            extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+         codedInputStream:(CodedInputStream*) input
+        extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
 + (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
-                         data:(NSData*) data {
+                     data:(NSData*) data {
     return [[[DynamicMessage builderWithType:type] mergeFromData:data] buildParsed];
 }
 
 
 + (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
-                         data:(NSData*) data
-            extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+                     data:(NSData*) data
+        extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
 + (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
-                  inputStream:(NSInputStream*) input {
+              inputStream:(NSInputStream*) input {
     return [[[DynamicMessage builderWithType:type] mergeFromInputStream:input] buildParsed];
 }
 
 
 + (id<Message>) parseFrom:(ProtocolBufferDescriptor*) type
-                  inputStream:(NSInputStream*) input
-            extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+              inputStream:(NSInputStream*) input
+        extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -135,7 +135,7 @@
 
 - (void) verifyContainingType:(FieldDescriptor*) field {
     if (field.getContainingType != type) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"FieldDescriptor does not match message type." userInfo:nil];
     }
 }
 
@@ -180,7 +180,7 @@
 
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output {
     [fields writeToCodedOutputStream:output];
-    
+
     if (type.getOptions.getMessageSetWireFormat) {
         [unknownFields writeAsMessageSetTo:output];
     } else {
@@ -194,14 +194,14 @@
     if (size != -1) {
         return size;
     }
-    
+
     size = fields.getSerializedSize;
     if (type.getOptions.getMessageSetWireFormat) {
         size += unknownFields.getSerializedSizeAsMessageSet;
     } else {
         size += unknownFields.getSerializedSize;
     }
-    
+
     dm_memoizedSize = size;
     return size;
 }

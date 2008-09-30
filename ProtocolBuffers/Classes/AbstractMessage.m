@@ -29,7 +29,7 @@
     if (self = [super init]) {
         am_memoizedSize = -1;
     }
-    
+
     return self;
 }
 
@@ -42,7 +42,7 @@
             }
         }
     }
-    
+
     NSDictionary* allFields = self.getAllFields;
     for (FieldDescriptor* field in allFields) {
         if (field.getObjectiveCType == ObjectiveCTypeMessage) {
@@ -61,7 +61,7 @@
             }
         }
     }
-    
+
     return YES;
 }
 
@@ -78,7 +78,7 @@
             [output writeField:field.getType number:field.getNumber value:value];
         }
     }
-    
+
     UnknownFieldSet* unknownFields = self.getUnknownFields;
     if (self.getDescriptorForType.getOptions.getMessageSetWireFormat) {
         [unknownFields writeAsMessageSetTo:output];
@@ -108,12 +108,12 @@
     if (size != -1) {
         return size;
     }
-    
+
     size = 0;
     NSDictionary* allFields = self.getAllFields;
     for (FieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
-        
+
         if (field.isRepeated) {
             for (id element in value) {
                 size += computeFieldSize(field.getType, field.getNumber, element);
@@ -122,14 +122,14 @@
             size += computeFieldSize(field.getType, field.getNumber, value);
         }
     }
-    
+
     UnknownFieldSet* unknownFields = self.getUnknownFields;
     if (self.getDescriptorForType.getOptions.getMessageSetWireFormat) {
         size += unknownFields.getSerializedSizeAsMessageSet;
     } else {
         size += unknownFields.getSerializedSize;
     }
-    
+
     am_memoizedSize = size;
     return size;
 }
@@ -139,15 +139,15 @@
     if (other == self) {
         return YES;
     }
-    
+
     if (![other conformsToProtocol:@protocol(Message)]) {
         return NO;
     }
-    
+
     if (self.getDescriptorForType != [other getDescriptorForType]) {
         return NO;
     }
-    
+
     return [self.getAllFields isEqual:[other getAllFields]];
 }
 

@@ -21,15 +21,22 @@ typedef enum {
     WireFormatStartGroup = 3,
     WireFormatEndGroup = 4,
     WireFormatFixed32 = 5,
-    
+
     TAG_TYPE_BITS = 3,
     TAG_TYPE_MASK = 7 /* = (1 << TAG_TYPE_BITS) - 1*/,
-    
+
     WireFormatMessageSetItem = 1,
     WireFormatMessageSetTypeId = 2,
     WireFormatMessageSetMessage = 3
 } WireFormat;
-    
+
 int32_t WireFormatMakeTag(int32_t fieldNumber, int32_t wireType);
 int32_t WireFormatGetTagWireType(int32_t tag);
 int32_t WireFormatGetTagFieldNumber(int32_t tag);
+
+int32_t WireFormatGetWireFormatForFieldType(FieldDescriptorType type);
+
+#define WireFormatMessageSetItemTag (WireFormatMakeTag(WireFormatMessageSetItem, WireFormatStartGroup))
+#define WireFormatMessageSetItemEndTag (WireFormatMakeTag(WireFormatMessageSetItem, WireFormatEndGroup))
+#define WireFormatMessageSetTypeIdTag (WireFormatMakeTag(WireFormatMessageSetTypeId, WireFormatVarint))
+#define WireFormatMessageSetMessageTag (WireFormatMakeTag(WireFormatMessageSetMessage, WireFormatLengthDelimited))

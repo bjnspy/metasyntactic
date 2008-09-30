@@ -113,7 +113,7 @@
     if (number == 0) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
-    
+
     return number == lastFieldNumber || ([fields objectForKey:[NSNumber numberWithInt:number]] != nil);
 }
 
@@ -134,7 +134,7 @@
         // We'd rather reuse the one passed to us, so call addField() instead.
         [self addField:field forNumber:number];
     }
-    
+
     return self;
 }
 
@@ -222,12 +222,12 @@
  */
 public static final class Builder {
     private Builder() {}
-    
 
-    
-    
 
-    
+
+
+
+
     /** Reset the builder to an empty set. */
     public Builder clear() {
         fields = new TreeMap<Integer, Field>();
@@ -235,7 +235,7 @@ public static final class Builder {
         lastField = null;
         return this;
     }
-    
+
     /**
      * Merge the fields from {@code other} into this set.  If a field number
      * exists in both sets, {@code other}'s values for that field will be
@@ -249,7 +249,7 @@ public static final class Builder {
         }
         return this;
     }
-        
+
     /**
      * Convenience method for merging a new field containing a single varint
      * value.  This is used in particular when an unknown enum value is
@@ -262,9 +262,9 @@ public static final class Builder {
         getFieldBuilder(number).addVarint(value);
         return this;
     }
-    
 
-    
+
+
     /**
      * Get all present {@code Field}s as an immutable {@code Map}.  If more
      * fields are added, the changes may or may not be reflected in this map.
@@ -273,7 +273,7 @@ public static final class Builder {
         getFieldBuilder(0);  // Force lastField to be built.
         return Collections.unmodifiableMap(fields);
     }
-    
+
     /**
      * Parse an entire message from {@code input} and merge its fields into
      * this set.
@@ -287,8 +287,8 @@ public static final class Builder {
         }
         return this;
     }
-    
-    
+
+
     /**
      * Parse {@code data} as an {@code UnknownFieldSet} and merge it with the
      * set being built.  This is just a small wrapper around
@@ -309,7 +309,7 @@ public static final class Builder {
                                        "never happen).", e);
         }
     }
-    
+
     /**
      * Parse {@code data} as an {@code UnknownFieldSet} and merge it with the
      * set being built.  This is just a small wrapper around
@@ -330,7 +330,7 @@ public static final class Builder {
                                        "never happen).", e);
         }
     }
-    
+
     /**
      * Parse an {@code UnknownFieldSet} from {@code input} and merge it with the
      * set being built.  This is just a small wrapper around

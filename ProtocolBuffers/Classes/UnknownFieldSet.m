@@ -60,7 +60,7 @@ static UnknownFieldSet* defaultInstance = nil;
     if (self = [super init]) {
         self.fields = fields_;
     }
-    
+
     return self;
 }
 

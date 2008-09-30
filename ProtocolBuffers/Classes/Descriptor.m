@@ -50,4 +50,14 @@
     return nestedTypes;
 }
 
+
+- (BOOL) isExtensionNumber:(int32_t) number {
+    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+}
+
+
+- (FieldDescriptor*) findFieldByNumber:(int32_t) number {
+    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+}
+
 @end

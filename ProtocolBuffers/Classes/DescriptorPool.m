@@ -35,12 +35,12 @@
 
 - (id) initWithDependencies:(NSArray*) fileDescriptorDependencies {
     if (self = [super init]) {
-        self.descriptorsByName = [NSMutableDictionary dictionary]; 
+        self.descriptorsByName = [NSMutableDictionary dictionary];
         self.fieldsByNumber = [NSMutableDictionary dictionary];
         self.enumValuesByNumber = [NSMutableDictionary dictionary];
-        
+
     }
-    
+
     return self;
 }
 
@@ -53,11 +53,11 @@
 private static final class DescriptorPool {
     DescriptorPool(FileDescriptor[] dependencies) {
         this.dependencies = new DescriptorPool[dependencies.length];
-        
+
         for (int i = 0; i < dependencies.length; i++)  {
             this.dependencies[i] = dependencies[i].pool;
         }
-        
+
         for (int i = 0; i < dependencies.length; i++)  {
             try {
                 addPackage(dependencies[i].getPackage(), dependencies[i]);
@@ -70,20 +70,20 @@ private static final class DescriptorPool {
         }
     }
 
-    
+
     /** Find a generic descriptor by fully-qualified name. */
     GenericDescriptor findSymbol(String fullName) {
         GenericDescriptor result = descriptorsByName.get(fullName);
         if (result != null) return result;
-        
+
         for (int i = 0; i < dependencies.length; i++) {
             result = dependencies[i].descriptorsByName.get(fullName);
             if (result != null) return result;
         }
-        
+
         return null;
     }
-    
+
     /**
      * Look up a descriptor by name, relative to some other descriptor.
      * The name may be fully-qualified (with a leading '.'),
@@ -94,7 +94,7 @@ private static final class DescriptorPool {
                                    GenericDescriptor relativeTo)
     throws DescriptorValidationException {
         // TODO(kenton):  This could be optimized in a number of ways.
-        
+
         GenericDescriptor result;
         if (name.startsWith(".")) {
             // Fully-qualified name.
@@ -109,11 +109,11 @@ private static final class DescriptorPool {
             } else {
                 firstPart = name.substring(0, firstPartLength);
             }
-            
+
             // We will search each parent scope of "relativeTo" looking for the
             // symbol.
             StringBuilder scopeToTry = new StringBuilder(relativeTo.getFullName());
-            
+
             while (true) {
                 // Chop off the last component of the scope.
                 int dotpos = scopeToTry.lastIndexOf(".");
@@ -122,11 +122,11 @@ private static final class DescriptorPool {
                     break;
                 } else {
                     scopeToTry.setLength(dotpos + 1);
-                    
+
                     // Append firstPart and try to find.
                     scopeToTry.append(firstPart);
                     result = findSymbol(scopeToTry.toString());
-                    
+
                     if (result != null) {
                         if (firstPartLength != -1) {
                             // We only found the first part of the symbol.  Now look for
@@ -138,13 +138,13 @@ private static final class DescriptorPool {
                         }
                         break;
                     }
-                    
+
                     // Not found.  Remove the name so we can try again.
                     scopeToTry.setLength(dotpos);
                 }
             }
         }
-        
+
         if (result == null) {
             throw new DescriptorValidationException(relativeTo,
                                                     "\"" + name + "\" is not defined.");
@@ -152,7 +152,7 @@ private static final class DescriptorPool {
             return result;
         }
     }
-    
+
     /**
      * Adds a symbol to the symbol table.  If a symbol with the same name
      * already exists, throws an error.
@@ -160,14 +160,14 @@ private static final class DescriptorPool {
     void addSymbol(GenericDescriptor descriptor)
     throws DescriptorValidationException {
         validateSymbolName(descriptor);
-        
+
         String fullName = descriptor.getFullName();
         int dotpos = fullName.lastIndexOf('.');
-        
+
         GenericDescriptor old = descriptorsByName.put(fullName, descriptor);
         if (old != null) {
             descriptorsByName.put(fullName, old);
-            
+
             if (descriptor.getFile() == old.getFile()) {
                 if (dotpos == -1) {
                     throw new DescriptorValidationException(descriptor,

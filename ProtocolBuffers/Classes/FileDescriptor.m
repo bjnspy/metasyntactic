@@ -36,7 +36,7 @@
     if (self = [super init]) {
         @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
     }
-    
+
     return self;
 }
 
@@ -77,7 +77,7 @@
     // types in the linking step.
     DescriptorPool* pool = [DescriptorPool poolWithDependencies:dependencies];
     FileDescriptor* result = [FileDescriptor descriptorWithProto:proto dependencies:dependencies pool:pool];
-    
+
     if (dependencies.count != proto.getDependencyCount) {
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
     }
@@ -87,7 +87,7 @@
             @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
         }
     }
-    
+
     [result crossLink];
     return result;
 }

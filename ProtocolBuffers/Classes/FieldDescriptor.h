@@ -22,10 +22,10 @@
 @interface FieldDescriptor : NSObject/*<GenericDescriptor>*/ {
 }
 
-- (BOOL) isRequired; 
+- (BOOL) isRequired;
 - (BOOL) isRepeated;
-- (BOOL) isExtension;  
-- (BOOL) isOptional;    
+- (BOOL) isExtension;
+- (BOOL) isOptional;
 - (ObjectiveCType) getObjectiveCType;
 - (FieldDescriptorType) getType;
 
@@ -58,9 +58,9 @@
 @property (retain) ProtocolBufferDescriptor* containingType;
 
 - (NSString*) name;
-   
+
 - (BOOL) hasDefaultValue;
-- (FieldOptions*) options;  
+- (FieldOptions*) options;
 
 - (ProtocolBufferDescriptor*) extensionScope;
 - (ProtocolBufferDescriptor*) messageType;

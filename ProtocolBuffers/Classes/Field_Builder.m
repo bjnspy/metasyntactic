@@ -33,7 +33,7 @@
     if (self = [super init]) {
         self.result = [[[Field alloc] init] autorelease];
     }
-    
+
     return self;
 }
 
@@ -54,7 +54,7 @@
     if (result.group == nil) {
         result.group = [NSMutableArray array];
     }
-    
+
     Field* temp = [[result retain] autorelease];
     self.result = nil;
     return temp;
@@ -74,35 +74,35 @@
         }
         [result.varint addObjectsFromArray:other.varint];
     }
-    
+
     if (other.fixed32.count > 0) {
         if (result.fixed32 == nil) {
             result.fixed32 = [NSMutableArray array];
         }
         [result.fixed32 addObjectsFromArray:other.fixed32];
     }
-    
+
     if (other.fixed64.count > 0) {
         if (result.fixed64 == nil) {
             result.fixed64 = [NSMutableArray array];
         }
         [result.fixed64 addObjectsFromArray:other.fixed64];
     }
-    
+
     if (other.lengthDelimited.count > 0) {
         if (result.lengthDelimited == nil) {
             result.lengthDelimited = [NSMutableArray array];
         }
         [result.lengthDelimited addObjectsFromArray:other.lengthDelimited];
     }
-    
+
     if (other.group.count > 0) {
         if (result.group == nil) {
             result.group = [NSMutableArray array];
         }
         [result.group addObjectsFromArray:other.group];
     }
-    
+
     return self;
 }
 

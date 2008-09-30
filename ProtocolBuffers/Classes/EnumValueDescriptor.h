@@ -17,7 +17,7 @@
 @interface EnumValueDescriptor : NSObject/*<GenericDescriptor>*/ {
     FileDescriptor* file;
     EnumDescriptor* type;
-    
+
     int32_t index;
     //EnumValueDescriptorProto proto;
     NSString* fullName;

@@ -32,7 +32,7 @@
     if (self = [super init]) {
         self.unknownFields = [UnknownFieldSet getDefaultInstance];
     }
-    
+
     return self;
 }
 

@@ -34,7 +34,7 @@
     self.type = nil;
     self.fields = nil;
     self.unknownFields = nil;
-    
+
     [super dealloc];
 }
 
@@ -47,7 +47,7 @@
         self.fields = fields_;
         self.unknownFields = unknownFields_;
     }
-    
+
     return self;
 }
 
@@ -67,9 +67,9 @@
 
 - (DynamicMessage_Builder*) mergeFromMessage:(id<Message>) other {
     if ([other getDescriptorForType] != type) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage can only merge messages of the same type." userInfo:nil];
     }
-    
+
     [fields mergeFromMessage:other];
     return self;
 }
@@ -130,18 +130,20 @@
 
 - (void) verifyContainingType:(FieldDescriptor*) field {
     if (field.getContainingType != type) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"FieldDescriptor does not match message type." userInfo:nil];
     }
 }
 
 
 - (DynamicMessage_Builder*) newBuilderForField:(FieldDescriptor*) field {
     [self verifyContainingType:field];
-    
+
     if (field.getObjectiveCType != ObjectiveCTypeMessage) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"newBuilderForField is only valid for fields with message type."
+                                     userInfo:nil];
     }
-    
+
     return [DynamicMessage_Builder builderWithType:field.getMessageType];
 }
 
@@ -169,7 +171,7 @@
 }
 
 
-- (DynamicMessage_Builder*) clearField:(FieldDescriptor*) field { 
+- (DynamicMessage_Builder*) clearField:(FieldDescriptor*) field {
     [self verifyContainingType:field];
     [fields clearField:field];
     return self;

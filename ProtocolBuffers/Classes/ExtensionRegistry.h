@@ -30,6 +30,9 @@
 
 - (void) addExtensionInfo:(ExtensionRegistry_ExtensionInfo*) extension;
 
+- (ExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(ProtocolBufferDescriptor*) containingType
+                                               fieldNumber:(int32_t) fieldNumber;
+
 #if 0
 
 

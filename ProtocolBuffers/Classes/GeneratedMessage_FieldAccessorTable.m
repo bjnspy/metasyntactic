@@ -33,7 +33,7 @@
 - (void) dealloc {
     self.descriptor = nil;
     self.fields = nil;
-    
+
     [super dealloc];
 }
 
@@ -44,7 +44,7 @@
              builderClass:(Class) builderClass {
     if (self = [super init]) {
         self.descriptor = descriptor_;
-        
+
         NSMutableArray* array = [NSMutableArray array];
 
         for (int i = 0; i < fieldNames.count; i++) {
@@ -68,10 +68,10 @@
                 }
             }
         }
-        
+
         self.fields = array;
     }
-    
+
     return self;
 }
 
@@ -95,7 +95,7 @@
         // which overrides the reflection interface to handle extensions.
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
-    
+
     return [fields objectAtIndex:field.getIndex];
 }
 
