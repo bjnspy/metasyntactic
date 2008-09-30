@@ -36,6 +36,9 @@ static NSString* trailersFolder = nil;
 static NSString* postersFolder = nil;
 static NSString* supportFolder = nil;
 
+static NSString* dvdFolder = nil;
+static NSString* dvdPostersFolder = nil;
+
 static NSString* numbersFolder = nil;
 static NSString* numbersBudgetsFolder = nil;
 static NSString* numbersDailyFolder = nil;
@@ -73,6 +76,8 @@ static NSString* starString = nil;
             &imdbFolder,
             &locationsFolder,
             &userLocationsFolder,
+            &dvdFolder,
+            &dvdPostersFolder,
             &numbersFolder,
             &numbersBudgetsFolder,
             &numbersDailyFolder,
@@ -219,6 +224,16 @@ static NSString* starString = nil;
 
 + (NSString*) trailersFolder {
     return [self findOrCreateFolder:&trailersFolder parent:[Application supportFolder] name:@"Trailers"];
+}
+
+
++ (NSString*) dvdFolder {
+    return [self findOrCreateFolder:&dvdFolder parent:[Application supportFolder] name:@"DVD"];
+}
+
+
++ (NSString*) dvdPostersFolder {
+    return [self findOrCreateFolder:&dvdPostersFolder parent:[Application dvdFolder] name:@"Posters"];
 }
 
 
