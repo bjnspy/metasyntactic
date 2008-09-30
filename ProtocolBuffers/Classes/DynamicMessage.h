@@ -17,6 +17,7 @@
 #import "AbstractMessage.h"
 
 @interface DynamicMessage : AbstractMessage {
+@private    
     ProtocolBufferDescriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;

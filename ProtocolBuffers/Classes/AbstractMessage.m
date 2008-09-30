@@ -16,12 +16,23 @@
 
 #import "AbstractMessage.h"
 
+#import "Descriptor.pb.h"
 #import "CodedOutputStream.h"
 #import "Descriptor.h"
 #import "FieldDescriptor.h"
 #import "ObjectiveCType.h"
 
 @implementation AbstractMessage
+
+
+- (id) init {
+    if (self = [super init]) {
+        am_memoizedSize = -1;
+    }
+    
+    return self;
+}
+
 
 - (BOOL) isInitialized {
     for (FieldDescriptor* field in self.getDescriptorForType.getFields) {
@@ -54,7 +65,7 @@
     return YES;
 }
 
-/*
+
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output {
     NSDictionary* allFields = self.getAllFields;
     for (FieldDescriptor* field in allFields) {
@@ -72,15 +83,55 @@
     if (self.getDescriptorForType.getOptions.getMessageSetWireFormat) {
         [unknownFields writeAsMessageSetTo:output];
     } else {
-        [unknownFields writeTo:output];
+        [unknownFields writeToCodedOutputStream:output];
     }
 }
- */
 
-- (void) writeTo:(NSOutputStream*) output {
+
+- (NSData*) toData {
+    NSMutableData* data = [NSMutableData dataWithLength:self.getSerializedSize];
+    CodedOutputStream* stream = [CodedOutputStream streamWithData:data];
+    [self writeToCodedOutputStream:stream];
+    return data;
+}
+
+
+- (void) writeToOutputStream:(NSOutputStream*) output {
     CodedOutputStream* codedOutput = [CodedOutputStream newInstance:output];
     [self writeToCodedOutputStream:codedOutput];
     [codedOutput flush];
+}
+
+
+- (int32_t) getSerializedSize {
+    int32_t size = am_memoizedSize;
+    if (size != -1) {
+        return size;
+    }
+    
+    size = 0;
+    NSDictionary* allFields = self.getAllFields;
+    for (FieldDescriptor* field in allFields) {
+        id value = [allFields objectForKey:field];
+        
+        if (field.isRepeated) {
+            for (id element in value) {
+                size += computeFieldSize(field.getType, field.getNumber, element);
+            }
+        } else {
+            size += computeFieldSize(field.getType, field.getNumber, value);
+        }
+    }
+    
+    UnknownFieldSet* unknownFields = self.getUnknownFields;
+    if (self.getDescriptorForType.getOptions.getMessageSetWireFormat) {
+        size += unknownFields.getSerializedSizeAsMessageSet;
+    } else {
+        size += unknownFields.getSerializedSize;
+    }
+    
+    am_memoizedSize = size;
+    return size;
 }
 
 
@@ -109,94 +160,48 @@
 }
 
 
-- (NSData*) toData {
-    NSMutableData* data = [NSMutableData dataWithLength:self.getSerializedSize];
-    CodedOutputStream* stream = [CodedOutputStream streamWithData:data];
-    [self writeToCodedOutputStream:stream];
-    return data;
+- (ProtocolBufferDescriptor*) getDescriptorForType {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
+
+
+- (id<Message>) getDefaultInstanceForType {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (NSDictionary*) getAllFields {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (BOOL) hasField:(FieldDescriptor*) field {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id) getField:(FieldDescriptor*) field {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
 
 - (UnknownFieldSet*) getUnknownFields {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
-#if 0
 
-public ByteString toByteString() {
-    try {
-
-    } catch (IOException e) {
-        throw new RuntimeException(
-                                   "Serializing to a ByteString threw an IOException (should " +
-                                   "never happen).", e);
-    }
-}
-
-private int memoizedSize = -1;
-
-public int getSerializedSize() {
-    int size = memoizedSize;
-    if (size != -1) return size;
-    
-    size = 0;
-    for (Map.Entry<FieldDescriptor, Object> entry : getAllFields().entrySet()) {
-        FieldDescriptor field = entry.getKey();
-        if (field.isRepeated()) {
-            for (Object element : (List) entry.getValue()) {
-                size += CodedOutputStream.computeFieldSize(
-                                                           field.getType(), field.getNumber(), element);
-            }
-        } else {
-            size += CodedOutputStream.computeFieldSize(
-                                                       field.getType(), field.getNumber(), entry.getValue());
-        }
-    }
-    
-    UnknownFieldSet unknownFields = getUnknownFields();
-    if (getDescriptorForType().getOptions().getMessageSetWireFormat()) {
-        size += unknownFields.getSerializedSizeAsMessageSet();
-    } else {
-        size += unknownFields.getSerializedSize();
-    }
-    
-    memoizedSize = size;
-    return size;
-}
-// =================================================================
-#endif
-
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (id<Message>) getDefaultInstanceForType {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (NSDictionary*) getAllFields {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (BOOL) hasField:(FieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (id) getField:(FieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (int32_t) getSerializedSize {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (void) writeToOuputStream:(NSOutputStream*) output {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
-}
 - (id<Message_Builder>) newBuilderForType {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 

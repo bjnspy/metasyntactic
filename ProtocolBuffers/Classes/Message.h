@@ -26,7 +26,7 @@
 - (BOOL) isInitialized;
 - (int32_t) getSerializedSize;
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output;
-- (void) writeToOuputStream:(NSOutputStream*) output;
+- (void) writeToOutputStream:(NSOutputStream*) output;
 - (NSData*) toData;
 - (id<Message_Builder>) newBuilderForType;
 @end
