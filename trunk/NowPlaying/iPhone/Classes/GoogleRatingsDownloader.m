@@ -16,6 +16,7 @@
 
 #import "GoogleRatingsDownloader.h"
 
+#import "BoxOffice.pb.h"
 #import "Application.h"
 #import "DateUtilities.h"
 #import "Location.h"
@@ -69,7 +70,7 @@
     day = MIN(MAX(day, 0), 7);
 
     NSString* address = [NSString stringWithFormat:
-                         @"http://%@.appspot.com/LookupTheaterListings2?country=%@&language=%@&postalcode=%@&day=%d&format=xml&latitude=%d&longitude=%d",
+                         @"http://%@.appspot.com/LookupTheaterListings2?country=%@&language=%@&postalcode=%@&day=%d&format=pb&latitude=%d&longitude=%d",
                          [Application host],
                          country,
                          [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode],
@@ -93,31 +94,35 @@
 
 - (NSDictionary*) lookupMovieListings {
     NSString* address = [GoogleRatingsDownloader serverUrl:self.model];
-    XmlElement* resultElement = [NetworkUtilities xmlWithContentsOfAddress:address
-                                                                 important:YES];
-    XmlElement* moviesElement = [resultElement element:@"Movies"];
+    NSData* data = [NetworkUtilities dataWithContentsOfAddress:address
+                                                     important:YES];
+    if (data != nil) {
+        @try {
+            TheaterListingsProto* theaterListings = [TheaterListingsProto parseFromData:data];
+            NSArray* movieProtos = theaterListings.getMoviesList;
 
-    if (moviesElement != nil) {
-        NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
+            NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
 
-        for (XmlElement* movieElement in moviesElement.children) {
-            NSString* identifier = [movieElement attributeValue:@"id"];
-            NSString* title = [movieElement attributeValue:@"title"];
-            NSString* score = [movieElement attributeValue:@"score"];
-            if (score.length == 0) {
-                score = @"-1";
+            for (MovieProto* movieProto in movieProtos) {
+                NSString* identifier = movieProto.getIdentifier;
+                NSString* title = movieProto.getTitle;
+                NSInteger score = -1;
+                if (movieProto.hasScore) {
+                    score = movieProto.getScore;
+                }
+
+                MovieRating* info = [MovieRating ratingWithTitle:title
+                                                        synopsis:@""
+                                                           score:[NSString stringWithFormat:@"%d", score]
+                                                        provider:@"google"
+                                                      identifier:identifier];
+
+                [ratings setObject:info forKey:info.canonicalTitle];
             }
 
-            MovieRating* info = [MovieRating ratingWithTitle:title
-                                                    synopsis:@""
-                                                       score:score
-                                                    provider:@"google"
-                                                  identifier:identifier];
-
-            [ratings setObject:info forKey:info.canonicalTitle];
+            return ratings;
+        } @catch (NSException* e) {
         }
-
-        return ratings;
     }
 
     return nil;

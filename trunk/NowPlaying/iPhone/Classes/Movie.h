@@ -20,7 +20,7 @@
     NSString* rating;
     NSInteger length; // minutes;
     NSDate* releaseDate;
-    NSString* imdbId;
+    NSString* imdbAddress;
     NSString* poster;
     NSString* synopsis;
     NSString* studio;
@@ -35,7 +35,7 @@
 @property (copy) NSString* canonicalTitle;
 @property (copy) NSString* rating;
 @property NSInteger length;
-@property (copy) NSString* imdbId;
+@property (copy) NSString* imdbAddress;
 @property (copy) NSString* poster;
 @property (copy) NSString* synopsis;
 @property (copy) NSString* displayTitle;
@@ -51,7 +51,7 @@
                         rating:(NSString*) rating
                         length:(NSInteger) length
                    releaseDate:(NSDate*) releaseDate
-                        imdbId:(NSString*) imdbId
+                   imdbAddress:(NSString*) imdbAddress
                         poster:(NSString*) poster
                       synopsis:(NSString*) synopsis
                         studio:(NSString*) studio
