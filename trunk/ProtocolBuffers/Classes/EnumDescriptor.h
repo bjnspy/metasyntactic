@@ -20,4 +20,6 @@
 
 - (NSArray*) getValues;
 
+- (EnumValueDescriptor*) findValueByNumber:(int32_t) number;
+
 @end

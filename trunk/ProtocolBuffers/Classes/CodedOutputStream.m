@@ -49,7 +49,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
         self.buffer = data_;
         self.position = 0;
     }
-    
+
     return self;
 }
 
@@ -62,7 +62,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 }
 
 
-+ (CodedOutputStream*) newInstance:(NSOutputStream*) output {    
++ (CodedOutputStream*) newInstance:(NSOutputStream*) output {
     return [CodedOutputStream newInstance:output bufferSize:DEFAULT_BUFFER_SIZE];
 }
 
@@ -92,7 +92,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 - (void) writeUInt64:(int32_t) fieldNumber
                value:(int64_t) value {
     [self writeTag:fieldNumber format:WireFormatVarint];
-    [self writeRawVarint64:value];  
+    [self writeRawVarint64:value];
 }
 
 
@@ -100,7 +100,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 - (void) writeInt64:(int32_t) fieldNumber
                value:(int64_t) value {
     [self writeTag:fieldNumber format:WireFormatVarint];
-    [self writeRawVarint64:value];  
+    [self writeRawVarint64:value];
 }
 
 
@@ -547,7 +547,7 @@ int32_t computeFieldSize(FieldDescriptorType type,
         case FieldDescriptorTypeSInt64  : return computeSInt64Size  (number, [value longLongValue]);
         case FieldDescriptorTypeEnum:     return computeEnumSize    (number, [value getNumber]);
     }
-    
+
     @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
 }
 
@@ -561,8 +561,8 @@ int32_t computeFieldSize(FieldDescriptorType type,
         // We're writing to a single buffer.
         @throw [NSException exceptionWithName:@"OutOfSpace" reason:@"" userInfo:nil];
     }
-    
-    
+
+
     [output write:buffer.bytes maxLength:position];
     position = 0;
 }
@@ -613,7 +613,7 @@ int32_t computeFieldSize(FieldDescriptorType type,
     if (position == buffer.length) {
         [self refreshBuffer];
     }
-    
+
     ((uint8_t*)buffer.mutableBytes)[position++] = value;
 }
 
@@ -637,7 +637,7 @@ int32_t computeFieldSize(FieldDescriptorType type,
         length -= bytesWritten;
         position = buffer.length;
         [self refreshBuffer];
-        
+
         // Now deal with the rest.
         // Since we have an output stream, this is our buffer
         // and buffer offset == 0

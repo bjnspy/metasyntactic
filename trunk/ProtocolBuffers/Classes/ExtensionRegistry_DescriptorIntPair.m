@@ -38,7 +38,7 @@
         self.descriptor = descriptor_;
         self.number = number_;
     }
-    
+
     return self;
 }
 
@@ -58,7 +58,7 @@
     if (![obj isKindOfClass:[ExtensionRegistry_DescriptorIntPair class]]) {
         return false;
     }
-    
+
     ExtensionRegistry_DescriptorIntPair* other = obj;
     return descriptor == other.descriptor && number == other.number;
 }

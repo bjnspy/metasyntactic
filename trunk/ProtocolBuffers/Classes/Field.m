@@ -43,12 +43,12 @@ static Field* defaultInstance = nil;
     self.fixed64 = nil;
     self.lengthDelimited = nil;
     self.group = nil;
-    
+
     [super dealloc];
 }
 
 
-+ (Field_Builder*) newBuilder { 
++ (Field_Builder*) newBuilder {
     return [[[Field_Builder alloc] init] autorelease];
 }
 
@@ -62,7 +62,7 @@ static Field* defaultInstance = nil;
     return defaultInstance;
 }
 
-    
+
 - (void) writeTo:(int32_t) fieldNumber
           output:(CodedOutputStream*) output {
     for (NSNumber* value in varint) {
@@ -100,7 +100,7 @@ static Field* defaultInstance = nil;
     for (UnknownFieldSet* value in group) {
         result += computeUnknownGroupSize(fieldNumber, value);
     }
-    return result; 
+    return result;
 }
 
 
@@ -119,6 +119,6 @@ static Field* defaultInstance = nil;
     }
     return result;
 }
-    
+
 
 @end

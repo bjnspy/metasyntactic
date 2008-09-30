@@ -65,7 +65,7 @@ static ExtensionRegistry* EMPTY = nil;
         self.extensionsByName = extensionsByName_;
         self.extensionsByNumber = extensionsByNumber_;
     }
-    
+
     return self;
 }
 
@@ -80,7 +80,7 @@ static ExtensionRegistry* EMPTY = nil;
     return [extensionsByNumber objectForKey:[ExtensionRegistry_DescriptorIntPair pairWithDescriptor:containingType number:fieldNumber]];
 }
 
-/*
+#if 0
 - (void) addExtension:(GeneratedMessage_GeneratedExtension*) extension {
     if (extension.getDescriptor.getObjectiveCType == FieldDescriptorTypeMessage) {
         [self addExtensionInfo:[ExtensionRegistry_ExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:extension.getMessageDefaultInstance]];
@@ -88,40 +88,46 @@ static ExtensionRegistry* EMPTY = nil;
         [self addExtensionInfo:[ExtensionRegistry_ExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:nil]];
     }
 }
- */
+#endif
 
 
 - (void) addFieldDescriptor:(FieldDescriptor*) type {
     if (type.getObjectiveCType == FieldDescriptorTypeMessage) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"ExtensionRegistry.add() must be provided a default instance when adding an embedded message extension." userInfo:nil];
     }
-    
+
     [self addExtensionInfo:[ExtensionRegistry_ExtensionInfo infoWithDescriptor:type defaultInstance:nil]];
 }
 
 
-- (void) addFieldDescriptor:(FieldDescriptor*) type defaultInstance:(id<Message>) defaultInstance {
+- (void) addFieldDescriptor:(FieldDescriptor*) type
+            defaultInstance:(id<Message>) defaultInstance {
     if (type.getObjectiveCType != FieldDescriptorTypeMessage) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"ExtensionRegistry.add() provided a default instance for a non-message extension."
+                                     userInfo:nil];
     }
-    
+
     [self addExtensionInfo:[ExtensionRegistry_ExtensionInfo infoWithDescriptor:type defaultInstance:defaultInstance]];
 }
 
 
 - (void) addExtensionInfo:(ExtensionRegistry_ExtensionInfo*) extension {
     if (!extension.descriptor.isExtension) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"ExtensionRegistry.add() was given a FieldDescriptor for a regular (non-extension) field."
+                                     userInfo:nil];
     }
-    
+
     [extensionsByName setObject:extension
                          forKey:extension.descriptor.getFullName];
     [extensionsByNumber setObject:extension
                            forKey:[ExtensionRegistry_DescriptorIntPair pairWithDescriptor:extension.descriptor.getContainingType
                                                                                    number:extension.descriptor.getNumber]];
-    
+
     FieldDescriptor* field = extension.descriptor;
-    
+
     if (field.getContainingType.getOptions.getMessageSetWireFormat &&
         field.getType == FieldDescriptorTypeMessage &&
         field.isOptional &&

@@ -14,6 +14,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "FieldDescriptorType.h"
+
 @interface CodedInputStream : NSObject {
     NSMutableData* buffer;
     int32_t bufferSize;
@@ -21,21 +23,21 @@
     int32_t bufferPos;
     NSInputStream* input;
     int32_t lastTag;
-    
+
     /**
      * The total number of bytes read before the current buffer.  The total
      * bytes read up to the current position can be computed as
      * {@code totalBytesRetired + bufferPos}.
      */
     int32_t totalBytesRetired;
-    
+
     /** The absolute position of the end of the current message. */
     int32_t currentLimit;
-    
+
     /** See setRecursionLimit() */
     int32_t recursionDepth;
     int32_t recursionLimit;
-    
+
     /** See setSizeLimit() */
     int32_t sizeLimit;
 }
@@ -92,9 +94,11 @@ int64_t decodeZigZag64(int64_t n);
 
 - (void) checkLastTagWas:(int32_t) value;
 
+- (id) readPrimitiveField:(FieldDescriptorType) type;
+
 #if 0
 + (CodedInputStream*) createFromInputStream:(NSInputStream*) input;
-                    
+
 
 - (BOOL) skipField:(int32_t) tag;
 
@@ -104,7 +108,6 @@ int64_t decodeZigZag64(int64_t n);
 + (int64_t) decodeZigZag64:(int64_t) n;
 
 
-- (id) readPrimitiveField:(Descriptors_FieldDescriptor_Type*) type;
 #endif
 
 @end

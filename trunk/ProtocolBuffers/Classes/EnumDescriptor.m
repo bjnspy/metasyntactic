@@ -23,4 +23,9 @@
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
+
+- (EnumValueDescriptor*) findValueByNumber:(int32_t) number {
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+}
+
 @end

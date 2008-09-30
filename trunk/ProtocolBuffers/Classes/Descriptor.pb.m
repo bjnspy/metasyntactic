@@ -140,7 +140,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"File",
       nil];
-      internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = 
+      internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorSet_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[FileDescriptorSet class]
@@ -158,7 +158,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"Extension",
       @"Options",
       nil];
-      internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = 
+      internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[FileDescriptorProto class]
@@ -175,7 +175,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"ExtensionRange",
       @"Options",
       nil];
-      internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = 
+      internal_static_google_protobuf_DescriptorProto_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[DescriptorProto class]
@@ -187,7 +187,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"Start",
       @"End",
       nil];
-      internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = 
+      internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[ExtensionRange class]
@@ -205,7 +205,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"DefaultValue",
       @"Options",
       nil];
-      internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = 
+      internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[FieldDescriptorProto class]
@@ -218,7 +218,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"Value",
       @"Options",
       nil];
-      internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = 
+      internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[EnumDescriptorProto class]
@@ -231,7 +231,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"Number",
       @"Options",
       nil];
-      internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = 
+      internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[EnumValueDescriptorProto class]
@@ -244,7 +244,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"Method",
       @"Options",
       nil];
-      internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = 
+      internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[ServiceDescriptorProto class]
@@ -258,7 +258,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"OutputType",
       @"Options",
       nil];
-      internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = 
+      internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[MethodDescriptorProto class]
@@ -273,7 +273,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"OptimizeFor",
       @"ObjectivecNamespace",
       nil];
-      internal_static_google_protobuf_FileOptions_fieldAccessorTable = 
+      internal_static_google_protobuf_FileOptions_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[FileOptions class]
@@ -284,7 +284,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"MessageSetWireFormat",
       nil];
-      internal_static_google_protobuf_MessageOptions_fieldAccessorTable = 
+      internal_static_google_protobuf_MessageOptions_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MessageOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[MessageOptions class]
@@ -296,7 +296,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
       @"Ctype",
       @"ExperimentalMapKey",
       nil];
-      internal_static_google_protobuf_FieldOptions_fieldAccessorTable = 
+      internal_static_google_protobuf_FieldOptions_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[FieldOptions class]
@@ -306,7 +306,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
-      internal_static_google_protobuf_EnumOptions_fieldAccessorTable = 
+      internal_static_google_protobuf_EnumOptions_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[EnumOptions class]
@@ -316,7 +316,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
-      internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = 
+      internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[EnumValueOptions class]
@@ -326,7 +326,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
-      internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = 
+      internal_static_google_protobuf_ServiceOptions_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[ServiceOptions class]
@@ -336,7 +336,7 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
-      internal_static_google_protobuf_MethodOptions_fieldAccessorTable = 
+      internal_static_google_protobuf_MethodOptions_fieldAccessorTable =
         [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[MethodOptions class]

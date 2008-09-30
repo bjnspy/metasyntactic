@@ -17,7 +17,7 @@
 #import "GeneratedMessage_FieldAccessor.h"
 
 @interface GeneratedMessage_SingularEnumFieldAccessor : NSObject<GeneratedMessage_FieldAccessor> {
-    
+
 }
 
 + (GeneratedMessage_SingularEnumFieldAccessor*) accessorWithField:(FieldDescriptor*) field

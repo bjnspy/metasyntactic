@@ -44,6 +44,7 @@ enum ObjectiveCType;
 @class GeneratedMessage_Builder;
 @class GeneratedMessage_FieldAccessor;
 @class GeneratedMessage_FieldAccessorTable;
+@class GeneratedMessage_GeneratedExtension;
 @class MessageOptions;
 @class MethodDescriptor;
 @class ServiceDescriptor;

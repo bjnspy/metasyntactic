@@ -36,7 +36,7 @@
         self.descriptor = descriptor_;
         self.defaultInstance = defaultInstance_;
     }
-    
+
     return self;
 }
 

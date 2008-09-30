@@ -31,3 +31,29 @@ int32_t WireFormatGetTagWireType(int32_t tag) {
 int32_t WireFormatGetTagFieldNumber(int32_t tag) {
     return logicalRightShift32(tag, TAG_TYPE_BITS);
 }
+
+
+int32_t WireFormatGetWireFormatForFieldType(FieldDescriptorType type) {
+    switch (type) {
+        case FieldDescriptorTypeDouble  : return WireFormatFixed64;
+        case FieldDescriptorTypeFloat   : return WireFormatFixed32;
+        case FieldDescriptorTypeInt64   : return WireFormatVarint;
+        case FieldDescriptorTypeUInt64  : return WireFormatVarint;
+        case FieldDescriptorTypeInt32   : return WireFormatVarint;
+        case FieldDescriptorTypeFixed64 : return WireFormatFixed64;
+        case FieldDescriptorTypeFixed32 : return WireFormatFixed32;
+        case FieldDescriptorTypeBool    : return WireFormatVarint;
+        case FieldDescriptorTypeString  : return WireFormatLengthDelimited;
+        case FieldDescriptorTypeGroup   : return WireFormatStartGroup;
+        case FieldDescriptorTypeMessage : return WireFormatLengthDelimited;
+        case FieldDescriptorTypeData    : return WireFormatLengthDelimited;
+        case FieldDescriptorTypeUInt32  : return WireFormatVarint;
+        case FieldDescriptorTypeEnum    : return WireFormatVarint;
+        case FieldDescriptorTypeSFixed32: return WireFormatFixed32;
+        case FieldDescriptorTypeSFixed64: return WireFormatFixed64;
+        case FieldDescriptorTypeSInt32  : return WireFormatVarint;
+        case FieldDescriptorTypeSInt64  : return WireFormatVarint;
+    }
+    
+    @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
+}

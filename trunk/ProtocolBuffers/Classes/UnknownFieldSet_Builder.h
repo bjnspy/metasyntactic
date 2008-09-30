@@ -16,12 +16,12 @@
 
 @interface UnknownFieldSet_Builder : NSObject {
     NSMutableDictionary* fields;
-    
+
     // Optimization:  We keep around a builder for the last field that was
     //   modified so that we can efficiently add to it multiple times in a
     //   row (important when parsing an unknown repeated field).
     int32_t lastFieldNumber;
-    
+
     Field_Builder* lastField;
 }
 

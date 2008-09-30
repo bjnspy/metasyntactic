@@ -50,7 +50,7 @@
         self.internalGetFieldAccessorTable.descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
-    
+
     NSDictionary* allFields = [other getAllFields];
     for (FieldDescriptor* field in allFields) {
         id newValue = [allFields objectForKey:field];

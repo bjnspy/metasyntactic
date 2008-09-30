@@ -17,6 +17,7 @@
 #import "AbstractMessage_Builder.h"
 
 @interface DynamicMessage_Builder : AbstractMessage_Builder {
+@private
     ProtocolBufferDescriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
@@ -34,15 +35,15 @@
 
 - (DynamicMessage_Builder*) clear;
 
-- (DynamicMessage*) build; 
-- (DynamicMessage*) buildPartial; 
+- (DynamicMessage*) build;
+- (DynamicMessage*) buildPartial;
 
 - (DynamicMessage_Builder*) clone;
-    
+
 - (BOOL) isInitialized;
 
 - (DynamicMessage_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
-    
+
 - (Descriptors_Descriptor*) descriptorForType;
 - (DynamicMessage*) defaultInstanceForType;
 - (NSDictionary*) allFields;
@@ -57,7 +58,7 @@
 - (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index;
 
 - (DynamicMessage_Builder*) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value;
-- (DynamicMessage_Builder*) addRepeatedField:(FieldDescriptor*) field value:(id) value; 
+- (DynamicMessage_Builder*) addRepeatedField:(FieldDescriptor*) field value:(id) value;
 
 - (UnknownFieldSet*) unknownFields;
 - (DynamicMessage_Builder*) setUnknownFields:(UnknownFieldSet*) unknownFields;
