@@ -44,7 +44,7 @@ int32_t computeStringSize(int32_t fieldNumber, NSString* value);
 int32_t computeGroupSize(int32_t fieldNumber, id<Message> value);
 int32_t computeUnknownGroupSize(int32_t fieldNumber, UnknownFieldSet* value);
 int32_t computeMessageSize(int32_t fieldNumber, id<Message> value);
-int32_t computeBytesSize(int32_t fieldNumber, NSData* value);
+int32_t computeDataSize(int32_t fieldNumber, NSData* value);
 int32_t computeUInt32Size(int32_t fieldNumber, int32_t value);
 int32_t computeEnumSize(int32_t fieldNumber, int32_t value);
 int32_t computeSFixed32Size(int32_t fieldNumber, int32_t value);

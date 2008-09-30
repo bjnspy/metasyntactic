@@ -95,7 +95,7 @@ static Field* defaultInstance = nil;
         result += computeFixed64Size(fieldNumber, value.longLongValue);
     }
     for (NSData* value in lengthDelimited) {
-        result += computeBytesSize(fieldNumber, value);
+        result += computeDataSize(fieldNumber, value);
     }
     for (UnknownFieldSet* value in group) {
         result += computeUnknownGroupSize(fieldNumber, value);
