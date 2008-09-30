@@ -49,8 +49,8 @@
 
 @implementation NowPlayingModel
 
-static NSString* currentVersion = @"2.0.8";
-static NSString* persistenceVersion = @"62";
+static NSString* currentVersion = @"2.0";
+static NSString* persistenceVersion = @"65";
 
 static NSString* VERSION = @"version";
 
@@ -677,8 +677,8 @@ static NSString** KEYS[] = {
 
 
 - (NSString*) imdbAddressForMovie:(Movie*) movie {
-    if (movie.imdbId.length > 0) {
-        return [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movie.imdbId];
+    if (movie.imdbAddress.length > 0) {
+        return movie.imdbAddress;
     }
 
     NSString* result = [imdbCache imdbAddressForMovie:movie];
@@ -929,7 +929,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
         if (synopsis.length > 0) {
             [options addObject:synopsis];
         }
-        
+
         synopsis = [upcomingCache synopsisForMovie:movie];
         if (synopsis.length > 0) {
             [options addObject:synopsis];
@@ -939,7 +939,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     if (options.count == 0) {
         return NSLocalizedString(@"No synopsis available.", nil);
     }
-        
+
 
     NSString* bestOption = @"";
     for (NSString* option in options) {

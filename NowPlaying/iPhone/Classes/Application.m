@@ -356,7 +356,7 @@ static NSString* starString = nil;
 #ifdef DISTRIBUTION
     return @"metaboxoffice2";
 #endif
-    //*
+    /*
     return @"metaboxoffice6";
     /*/
      return @"metaboxoffice2";

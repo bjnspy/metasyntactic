@@ -68,10 +68,10 @@
 - (void) loadView {
     [super loadView];
     CGRect rect = self.view.frame;
+    //rect.size.width -= ABS(rect.origin.x);
+    //rect.size.height -= ABS(rect.origin.y);
+    rect.origin.x = 0;
     rect.origin.y = 0;
-
-//    self.view = [[[UIView alloc] initWithFrame:rect] autorelease];
-//    self.view.autoresizesSubviews = YES;
 
     self.searchBar = [[[UISearchBar alloc] initWithFrame:rect] autorelease];
     searchBar.delegate = self;
