@@ -384,6 +384,10 @@
 			74AD65540E92A23B00A01FD5 /* PBXTextBookmark */ = 74AD65540E92A23B00A01FD5 /* PBXTextBookmark */;
 			74AD65550E92A23B00A01FD5 /* PBXTextBookmark */ = 74AD65550E92A23B00A01FD5 /* PBXTextBookmark */;
 			74AD65560E92A23B00A01FD5 /* PBXTextBookmark */ = 74AD65560E92A23B00A01FD5 /* PBXTextBookmark */;
+			74AD65580E92A32100A01FD5 /* PBXTextBookmark */ = 74AD65580E92A32100A01FD5 /* PBXTextBookmark */;
+			74AD65590E92A32100A01FD5 /* PBXTextBookmark */ = 74AD65590E92A32100A01FD5 /* PBXTextBookmark */;
+			74AD655A0E92A32100A01FD5 /* PBXTextBookmark */ = 74AD655A0E92A32100A01FD5 /* PBXTextBookmark */;
+			74AD655B0E92A32100A01FD5 /* PBXTextBookmark */ = 74AD655B0E92A32100A01FD5 /* PBXTextBookmark */;
 			74E79B0E0E8D739400EFD26E = 74E79B0E0E8D739400EFD26E /* PBXTextBookmark */;
 			74E79BE50E8D764000EFD26E = 74E79BE50E8D764000EFD26E /* PBXTextBookmark */;
 			74E79C1B0E8D789900EFD26E = 74E79C1B0E8D789900EFD26E /* PBXTextBookmark */;
@@ -528,6 +532,11 @@
 		name = CodedInputStream.m;
 		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/CodedInputStream.m;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {816, 11200}}";
+			sepNavSelRange = "{24908, 0}";
+			sepNavVisRange = "{24198, 1224}";
+		};
 	};
 	7411FCFB0E8E5820002552B1 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -1530,6 +1539,11 @@
 		name = DescriptorPool.m;
 		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/DescriptorPool.m;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {988, 2646}}";
+			sepNavSelRange = "{3571, 5}";
+			sepNavVisRange = "{3267, 738}";
+		};
 	};
 	745172770E908A0900D4E0C5 /* GeneratedMessage.m */ = {
 		isa = PBXFileReference;
@@ -2318,7 +2332,7 @@
 		fRef = 745182410E9186F600D4E0C5 /* UnknownFieldSet_Builder.m */;
 		name = "UnknownFieldSet_Builder.m: 188";
 		rLen = 81;
-		rLoc = 5679;
+		rLoc = 5683;
 		rType = 0;
 		vrLen = 1547;
 		vrLoc = 4848;
@@ -2888,9 +2902,9 @@
 		fRef = 7411FCF10E8E57B4002552B1 /* CodedInputStream.m */;
 		name = "CodedInputStream.m: 788";
 		rLen = 0;
-		rLoc = 26851;
+		rLoc = 26858;
 		rType = 0;
-		vrLen = 611;
+		vrLen = 418;
 		vrLoc = 26408;
 	};
 	74609B930E923E46009640C4 /* PBXTextBookmark */ = {
@@ -2898,9 +2912,9 @@
 		fRef = 7411FCF10E8E57B4002552B1 /* CodedInputStream.m */;
 		name = "CodedInputStream.m: 788";
 		rLen = 0;
-		rLoc = 26851;
+		rLoc = 26858;
 		rType = 0;
-		vrLen = 611;
+		vrLen = 418;
 		vrLoc = 26408;
 	};
 	74609BDB0E924519009640C4 /* CodedOutputStream.m */ = {
@@ -3038,7 +3052,7 @@
 		rLen = 0;
 		rLoc = 4401;
 		rType = 0;
-		vrLen = 305;
+		vrLen = 285;
 		vrLoc = 5906;
 	};
 	74609C150E924B5F009640C4 /* PBXTextBookmark */ = {
@@ -3088,7 +3102,7 @@
 		rLen = 0;
 		rLoc = 4401;
 		rType = 0;
-		vrLen = 305;
+		vrLen = 285;
 		vrLoc = 5906;
 	};
 	74609C1C0E924B5F009640C4 /* PBXTextBookmark */ = {
@@ -3343,7 +3357,7 @@
 		fRef = 74E7A2CB0E8E10AE00EFD26E /* FieldSet.m */;
 		name = "FieldSet.m: 643";
 		rLen = 0;
-		rLoc = 22795;
+		rLoc = 22799;
 		rType = 0;
 		vrLen = 972;
 		vrLoc = 1463;
@@ -4311,9 +4325,9 @@
 		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/FieldSet.m;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {988, 8890}}";
-			sepNavSelRange = "{13588, 0}";
-			sepNavVisRange = "{13551, 715}";
+			sepNavIntBoundsRect = "{{0, 0}, {1093, 8848}}";
+			sepNavSelRange = "{20313, 0}";
+			sepNavVisRange = "{15866, 373}";
 		};
 	};
 	74AD654A0E92A23B00A01FD5 /* PBXTextBookmark */ = {
@@ -4442,6 +4456,43 @@
 		rType = 0;
 		vrLen = 715;
 		vrLoc = 13551;
+	};
+	74AD65580E92A32100A01FD5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74AD65480E92A20600A01FD5 /* FieldSet.m */;
+		name = "FieldSet.m: 622";
+		rLen = 0;
+		rLoc = 21705;
+		rType = 0;
+		vrLen = 688;
+		vrLoc = 21424;
+	};
+	74AD65590E92A32100A01FD5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7451724D0E9086E300D4E0C5 /* DescriptorPool.m */;
+		rLen = 5;
+		rLoc = 3571;
+		rType = 0;
+	};
+	74AD655A0E92A32100A01FD5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74AD65480E92A20600A01FD5 /* FieldSet.m */;
+		name = "FieldSet.m: 622";
+		rLen = 0;
+		rLoc = 21705;
+		rType = 0;
+		vrLen = 688;
+		vrLoc = 21424;
+	};
+	74AD655B0E92A32100A01FD5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 7451725C0E90895200D4E0C5 /* DescriptorPool.m */;
+		name = "DescriptorPool.m: 105";
+		rLen = 5;
+		rLoc = 3571;
+		rType = 0;
+		vrLen = 738;
+		vrLoc = 3267;
 	};
 	74E79B0E0E8D739400EFD26E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -4664,6 +4715,11 @@
 		name = UnknownFieldSet_Builder.m;
 		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/UnknownFieldSet_Builder.m;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {681, 4886}}";
+			sepNavSelRange = "{8725, 0}";
+			sepNavVisRange = "{358, 833}";
+		};
 	};
 	74E79EF80E8DA83400EFD26E /* Field.h */ = {
 		uiCtxt = {
@@ -4787,6 +4843,11 @@
 		name = DynamicMessage.m;
 		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/DynamicMessage.m;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {816, 3332}}";
+			sepNavSelRange = "{5597, 0}";
+			sepNavVisRange = "{5061, 773}";
+		};
 	};
 	74E7A2560E8E0F2B00EFD26E /* FieldDescriptor.m */ = {
 		isa = PBXFileReference;
