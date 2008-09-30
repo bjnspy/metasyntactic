@@ -896,6 +896,18 @@
 			74609BE30E924540009640C4 /* PBXTextBookmark */ = 74609BE30E924540009640C4 /* PBXTextBookmark */;
 			74609BE50E92455C009640C4 /* PBXTextBookmark */ = 74609BE50E92455C009640C4 /* PBXTextBookmark */;
 			74609BE60E92455C009640C4 /* PBXTextBookmark */ = 74609BE60E92455C009640C4 /* PBXTextBookmark */;
+			74609BF60E9245F9009640C4 /* PBXTextBookmark */ = 74609BF60E9245F9009640C4 /* PBXTextBookmark */;
+			74609BF70E9245F9009640C4 /* PBXTextBookmark */ = 74609BF70E9245F9009640C4 /* PBXTextBookmark */;
+			74609BF80E9245F9009640C4 /* PBXTextBookmark */ = 74609BF80E9245F9009640C4 /* PBXTextBookmark */;
+			74609BF90E9245F9009640C4 /* PBXTextBookmark */ = 74609BF90E9245F9009640C4 /* PBXTextBookmark */;
+			74609BFA0E9245F9009640C4 /* PBXTextBookmark */ = 74609BFA0E9245F9009640C4 /* PBXTextBookmark */;
+			74609BFB0E9245F9009640C4 /* PBXTextBookmark */ = 74609BFB0E9245F9009640C4 /* PBXTextBookmark */;
+			74609BFC0E9245F9009640C4 /* PBXTextBookmark */ = 74609BFC0E9245F9009640C4 /* PBXTextBookmark */;
+			74609BFD0E9245F9009640C4 /* PBXTextBookmark */ = 74609BFD0E9245F9009640C4 /* PBXTextBookmark */;
+			74609BFE0E9245F9009640C4 /* PBXTextBookmark */ = 74609BFE0E9245F9009640C4 /* PBXTextBookmark */;
+			74609BFF0E9245F9009640C4 /* PBXTextBookmark */ = 74609BFF0E9245F9009640C4 /* PBXTextBookmark */;
+			74609C000E9245F9009640C4 /* PBXTextBookmark */ = 74609C000E9245F9009640C4 /* PBXTextBookmark */;
+			74609C010E9245F9009640C4 /* PBXTextBookmark */ = 74609C010E9245F9009640C4 /* PBXTextBookmark */;
 			74E79B0E0E8D739400EFD26E = 74E79B0E0E8D739400EFD26E /* PBXTextBookmark */;
 			74E79BE50E8D764000EFD26E = 74E79BE50E8D764000EFD26E /* PBXTextBookmark */;
 			74E79C1B0E8D789900EFD26E = 74E79C1B0E8D789900EFD26E /* PBXTextBookmark */;
@@ -2875,6 +2887,11 @@
 		name = FileDescriptor.h;
 		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/FileDescriptor.h;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {985, 980}}";
+			sepNavSelRange = "{826, 19}";
+			sepNavVisRange = "{501, 561}";
+		};
 	};
 	745172440E90869A00D4E0C5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -3883,6 +3900,11 @@
 		name = Descriptor.pb.h;
 		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/Descriptor.pb.h;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {985, 21098}}";
+			sepNavSelRange = "{10528, 19}";
+			sepNavVisRange = "{7338, 566}";
+		};
 	};
 	74517D060E90C1BC00D4E0C5 /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
@@ -6483,6 +6505,11 @@
 		name = Descriptor.pb.m;
 		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/Descriptor.pb.m;
 		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {985, 82054}}";
+			sepNavSelRange = "{34463, 19}";
+			sepNavVisRange = "{34227, 343}";
+		};
 	};
 	745183B30E91A43200D4E0C5 /* Descriptor.pb.m */ = {
 		isa = PBXFileReference;
@@ -8464,13 +8491,14 @@
 	};
 	74609ACE0E922F94009640C4 /* DynamicMessage.h */ = {
 		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.h;
 		name = DynamicMessage.h;
 		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/DynamicMessage.h;
 		sourceTree = "<absolute>";
 		uiCtxt = {
-			sepNavIntBoundsRect = "{{0, 0}, {1093, 1036}}";
-			sepNavSelRange = "{766, 0}";
-			sepNavVisRange = "{577, 317}";
+			sepNavIntBoundsRect = "{{0, 0}, {985, 1008}}";
+			sepNavSelRange = "{877, 15}";
+			sepNavVisRange = "{648, 532}";
 		};
 	};
 	74609ADA0E922FD1009640C4 /* AbstractMessage.m */ = {
@@ -8577,7 +8605,7 @@
 		isa = PBXTextBookmark;
 		fRef = 74609ACE0E922F94009640C4 /* DynamicMessage.h */;
 		name = "DynamicMessage.h: 24";
-		rLen = 26;
+		rLen = 29;
 		rLoc = 865;
 		rType = 0;
 		vrLen = 488;
@@ -8664,7 +8692,7 @@
 		isa = PBXTextBookmark;
 		fRef = 74609ACE0E922F94009640C4 /* DynamicMessage.h */;
 		name = "DynamicMessage.h: 24";
-		rLen = 26;
+		rLen = 29;
 		rLoc = 865;
 		rType = 0;
 		vrLen = 488;
@@ -10386,6 +10414,141 @@
 		vrLen = 512;
 		vrLoc = 14055;
 	};
+	74609BF30E9245EC009640C4 /* DynamicMessage.m */ = {
+		isa = PBXFileReference;
+		name = DynamicMessage.m;
+		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/DynamicMessage.m;
+		sourceTree = "<absolute>";
+	};
+	74609BF40E9245EC009640C4 /* DynamicMessage.m */ = {
+		isa = PBXFileReference;
+		lastKnownFileType = sourcecode.c.objc;
+		name = DynamicMessage.m;
+		path = /Projects/metasyntactic/trunk/ProtocolBuffers/Classes/DynamicMessage.m;
+		sourceTree = "<absolute>";
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {985, 3248}}";
+			sepNavSelRange = "{5911, 0}";
+			sepNavVisRange = "{5616, 431}";
+		};
+	};
+	74609BF60E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74609BDB0E924519009640C4 /* CodedOutputStream.m */;
+		name = "CodedOutputStream.m: 415";
+		rLen = 0;
+		rLoc = 14223;
+		rType = 0;
+		vrLen = 512;
+		vrLoc = 14055;
+	};
+	74609BF70E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745172380E90867E00D4E0C5 /* FileDescriptor.h */;
+		name = "FileDescriptor.h: 23";
+		rLen = 19;
+		rLoc = 826;
+		rType = 0;
+		vrLen = 561;
+		vrLoc = 501;
+	};
+	74609BF80E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745183AE0E91A3A100D4E0C5 /* Descriptor.pb.m */;
+		name = "Descriptor.pb.m: 670";
+		rLen = 19;
+		rLoc = 34463;
+		rType = 0;
+		vrLen = 343;
+		vrLoc = 34227;
+	};
+	74609BF90E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74517D030E90C1A600D4E0C5 /* Descriptor.pb.h */;
+		name = "Descriptor.pb.h: 212";
+		rLen = 19;
+		rLoc = 10528;
+		rType = 0;
+		vrLen = 566;
+		vrLoc = 7338;
+	};
+	74609BFA0E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74609ACE0E922F94009640C4 /* DynamicMessage.h */;
+		name = "DynamicMessage.h: 24";
+		rLen = 15;
+		rLoc = 877;
+		rType = 0;
+		vrLen = 532;
+		vrLoc = 648;
+	};
+	74609BFB0E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74609BF30E9245EC009640C4 /* DynamicMessage.m */;
+		rLen = 1;
+		rLoc = 196;
+		rType = 1;
+	};
+	74609BFC0E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74609BDB0E924519009640C4 /* CodedOutputStream.m */;
+		name = "CodedOutputStream.m: 415";
+		rLen = 0;
+		rLoc = 14223;
+		rType = 0;
+		vrLen = 512;
+		vrLoc = 14055;
+	};
+	74609BFD0E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745172380E90867E00D4E0C5 /* FileDescriptor.h */;
+		name = "FileDescriptor.h: 23";
+		rLen = 19;
+		rLoc = 826;
+		rType = 0;
+		vrLen = 561;
+		vrLoc = 501;
+	};
+	74609BFE0E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 745183AE0E91A3A100D4E0C5 /* Descriptor.pb.m */;
+		name = "Descriptor.pb.m: 670";
+		rLen = 19;
+		rLoc = 34463;
+		rType = 0;
+		vrLen = 343;
+		vrLoc = 34227;
+	};
+	74609BFF0E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74517D030E90C1A600D4E0C5 /* Descriptor.pb.h */;
+		name = "Descriptor.pb.h: 212";
+		rLen = 19;
+		rLoc = 10528;
+		rType = 0;
+		vrLen = 566;
+		vrLoc = 7338;
+	};
+	74609C000E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74609ACE0E922F94009640C4 /* DynamicMessage.h */;
+		name = "DynamicMessage.h: 24";
+		rLen = 15;
+		rLoc = 877;
+		rType = 0;
+		vrLen = 532;
+		vrLoc = 648;
+	};
+	74609C010E9245F9009640C4 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 74609BF40E9245EC009640C4 /* DynamicMessage.m */;
+		name = "DynamicMessage.m: 205";
+		rLen = 0;
+		rLoc = 5911;
+		rType = 0;
+		vrLen = 431;
+		vrLoc = 5616;
+	};
 	74E79B0E0E8D739400EFD26E /* PBXTextBookmark */ = {
 		isa = PBXTextBookmark;
 		fRef = 741A74AB0E8CCF0E00F16FD4 /* AbstractMessage.h */;
@@ -10780,7 +10943,7 @@
 		fRef = 74E7A1FA0E8E0D1200EFD26E /* DynamicMessage.m */;
 		name = "DynamicMessage.m: 67";
 		rLen = 25;
-		rLoc = 2291;
+		rLoc = 2236;
 		rType = 0;
 		vrLen = 1159;
 		vrLoc = 1277;

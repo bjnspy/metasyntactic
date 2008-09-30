@@ -30,13 +30,11 @@
 @synthesize type;
 @synthesize fields;
 @synthesize unknownFields;
-@synthesize memoizedSize;
 
 - (void) dealloc {
     self.type = nil;
     self.fields = nil;
     self.unknownFields = nil;
-    self.memoizedSize = 0;
     
     [super dealloc];
 }
@@ -50,7 +48,7 @@
         self.type = type;
         self.fields = fields;
         self.unknownFields = unknownFields_;
-        self.memoizedSize = -1;
+        dm_memoizedSize = -1;
     }
     
     return self;
@@ -192,8 +190,10 @@
 
 
 - (int32_t) getSerializedSize {
-    int size = memoizedSize;
-    if (size != -1) return size;
+    int size = dm_memoizedSize;
+    if (size != -1) {
+        return size;
+    }
     
     size = fields.getSerializedSize;
     if (type.getOptions.getMessageSetWireFormat) {
@@ -202,7 +202,7 @@
         size += unknownFields.getSerializedSize;
     }
     
-    memoizedSize = size;
+    dm_memoizedSize = size;
     return size;
 }
 
