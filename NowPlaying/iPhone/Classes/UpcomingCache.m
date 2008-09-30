@@ -107,7 +107,7 @@ static NSString* titles_key = @"Titles";
     Movie* movie = [Movie movieWithIdentifier:[NSString stringWithFormat:@"%d", movieElement]
                                         title:title
                                        rating:rating
-                                       length:@""
+                                       length:0
                                   releaseDate:releaseDate
                                        imdbId:@""
                                        poster:poster
