@@ -15,17 +15,20 @@
 // limitations under the License.
 
 @interface EnumValueDescriptor : NSObject/*<GenericDescriptor>*/ {
+    FileDescriptor* file;
+    EnumDescriptor* type;
+    
     int32_t index;
     //EnumValueDescriptorProto proto;
     NSString* fullName;
-    FileDescriptor* file;
-    EnumDescriptor* type;
 }
+
+// don't retain our backreferences.
+@property (assign) FileDescriptor* file;
+@property (assign) EnumDescriptor* type;
 
 @property int32_t index;
 @property (retain) NSString* fullName;
-@property (retain) FileDescriptor* file;
-@property (retain) EnumDescriptor* type;
 
 - (EnumDescriptor*) getType;
 - (int32_t) getNumber;

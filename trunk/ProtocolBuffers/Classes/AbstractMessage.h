@@ -17,18 +17,9 @@
 #import "Message.h"
 
 @interface AbstractMessage : NSObject<Message> {
+@private
+    int32_t am_memoizedSize;
 }
-#if 0
-    int32_t memoizedSize;
-}
-
-- (BOOL) isInitialized;
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
-- (NSData*) toData;
-- (void) writeToOutputStream:(NSOutputStream*) output;
-
-- (int32_t) serializedSize;
-#endif
 
 - (ProtocolBufferDescriptor*) getDescriptorForType;
 - (id<Message>) getDefaultInstanceForType;
@@ -41,7 +32,7 @@
 - (BOOL) isInitialized;
 - (int32_t) getSerializedSize;
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output;
-- (void) writeToOuputStream:(NSOutputStream*) output;
+- (void) writeToOutputStream:(NSOutputStream*) output;
 - (NSData*) toData;
 - (id<Message_Builder>) newBuilderForType;
 
