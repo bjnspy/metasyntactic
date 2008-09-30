@@ -1,7 +1,7 @@
 // !$*UTF8*$!
 {
 	0867D690FE84028FC02AAC07 /* Project object */ = {
-		activeBuildConfigurationName = Debug;
+		activeBuildConfigurationName = Release;
 		activeTarget = 8DC2EF4F0486A6940098B216 /* ProtocolBuffers */;
 		addToTargets = (
 			8DC2EF4F0486A6940098B216 /* ProtocolBuffers */,
