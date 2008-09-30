@@ -45,6 +45,7 @@
 @property (retain) NSInputStream* input;
 
 + (CodedInputStream*) streamWithData:(NSData*) data;
++ (CodedInputStream*) streamWithInputStream:(NSInputStream*) input;
 
 - (int32_t) readTag;
 - (BOOL) refillBuffer:(BOOL) mustSucceed;

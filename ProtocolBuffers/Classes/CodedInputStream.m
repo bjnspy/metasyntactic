@@ -60,8 +60,25 @@ const int32_t BUFFER_SIZE = 4096;
 }
 
 
+- (id) initWithInputStream:(NSInputStream*) input_ {
+    if (self = [super init]) {
+        self.buffer = [NSMutableData dataWithLength:BUFFER_SIZE];
+        bufferSize = 0;
+        self.input = input;
+        [self commonInit];
+    }
+    
+    return self;
+}
+
+
 + (CodedInputStream*) streamWithData:(NSData*) data {
     return [[[CodedInputStream alloc] initWithData:data] autorelease];
+}
+
+
++ (CodedInputStream*) streamWithInputStream:(NSInputStream*) input {
+    return [[[CodedInputStream alloc] initWithInputStream:input] autorelease];
 }
 
 
