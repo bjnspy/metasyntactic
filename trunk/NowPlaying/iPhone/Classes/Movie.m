@@ -38,7 +38,7 @@ property_definition(genres);
     self.identifier = nil;
     self.canonicalTitle = nil;
     self.rating = nil;
-    self.length = nil;
+    self.length = 0;
     self.releaseDate = nil;
     self.imdbId = nil;
     self.poster = nil;
@@ -94,7 +94,7 @@ static NSString* articles[] = {
            canonicalTitle:(NSString*) canonicalTitle_
              displayTitle:(NSString*) displayTitle_
                    rating:(NSString*) rating_
-                   length:(NSString*) length_
+                   length:(NSInteger) length_
               releaseDate:(NSDate*) releaseDate_
                    imdbId:(NSString*) imdbId_
                    poster:(NSString*) poster_
@@ -114,9 +114,9 @@ static NSString* articles[] = {
         self.poster = [Utilities nonNilString:poster_];
         self.synopsis = [Utilities nonNilString:synopsis_];
         self.studio = [Utilities nonNilString:studio_];
-        self.directors = directors_;
-        self.cast = cast_;
-        self.genres = genres_;
+        self.directors = [Utilities nonNilArray:directors_];
+        self.cast = [Utilities nonNilArray:cast_];
+        self.genres = [Utilities nonNilArray:genres_];
     }
 
     return self;
@@ -126,7 +126,7 @@ static NSString* articles[] = {
 + (Movie*) movieWithIdentifier:(NSString*) identifier
                          title:(NSString*) title
                         rating:(NSString*) rating
-                        length:(NSString*) length
+                        length:(NSInteger) length
                    releaseDate:(NSDate*) releaseDate
                         imdbId:(NSString*) imdbId
                         poster:(NSString*) poster
@@ -161,7 +161,7 @@ static NSString* articles[] = {
                                canonicalTitle:[dictionary objectForKey:canonicalTitle_key]
                                  displayTitle:[dictionary objectForKey:displayTitle_key]
                                        rating:[dictionary objectForKey:rating_key]
-                                       length:[dictionary objectForKey:length_key]
+                                       length:[[dictionary objectForKey:length_key] intValue]
                                   releaseDate:[dictionary objectForKey:releaseDate_key]
                                        imdbId:[dictionary objectForKey:imdbId_key]
                                        poster:[dictionary objectForKey:poster_key]
@@ -175,19 +175,19 @@ static NSString* articles[] = {
 
 - (NSDictionary*) dictionary {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
-    [dictionary setValue:identifier     forKey:identifier_key];
-    [dictionary setValue:canonicalTitle forKey:canonicalTitle_key];
-    [dictionary setValue:displayTitle   forKey:displayTitle_key];
-    [dictionary setValue:rating         forKey:rating_key];
-    [dictionary setValue:length         forKey:length_key];
-    [dictionary setValue:releaseDate    forKey:releaseDate_key];
-    [dictionary setValue:imdbId         forKey:imdbId_key];
-    [dictionary setValue:poster         forKey:poster_key];
-    [dictionary setValue:synopsis       forKey:synopsis_key];
-    [dictionary setValue:studio         forKey:studio_key];
-    [dictionary setValue:directors      forKey:directors_key];
-    [dictionary setValue:cast           forKey:cast_key];
-    [dictionary setValue:genres         forKey:genres_key];
+    [dictionary setValue:identifier                         forKey:identifier_key];
+    [dictionary setValue:canonicalTitle                     forKey:canonicalTitle_key];
+    [dictionary setValue:displayTitle                       forKey:displayTitle_key];
+    [dictionary setValue:rating                             forKey:rating_key];
+    [dictionary setValue:[NSNumber numberWithInt:length]    forKey:length_key];
+    [dictionary setValue:releaseDate                        forKey:releaseDate_key];
+    [dictionary setValue:imdbId                             forKey:imdbId_key];
+    [dictionary setValue:poster                             forKey:poster_key];
+    [dictionary setValue:synopsis                           forKey:synopsis_key];
+    [dictionary setValue:studio                             forKey:studio_key];
+    [dictionary setValue:directors                          forKey:directors_key];
+    [dictionary setValue:cast                               forKey:cast_key];
+    [dictionary setValue:genres                             forKey:genres_key];
     return dictionary;
 }
 
@@ -224,14 +224,12 @@ static NSString* articles[] = {
 
 
 - (NSString*) runtimeString {
-    NSInteger movieLength = length.intValue;
-
     NSString* hoursString = @"";
     NSString* minutesString = @"";
 
-    if (movieLength > 0) {
-        NSInteger hours = movieLength / 60;
-        NSInteger minutes = movieLength % 60;
+    if (length > 0) {
+        NSInteger hours = length / 60;
+        NSInteger minutes = length % 60;
 
         if (hours == 1) {
             hoursString = NSLocalizedString(@"1 hour", nil);

@@ -295,8 +295,10 @@
 
 
 - (void) keyboardWillShow:(NSNotification*) notification {
+    NSValue* value = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
+
     CGRect rect;
-    [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&rect];
+    [value getValue:&rect];
 
     [UIView beginAnimations:nil context:NULL];
     {
@@ -311,8 +313,10 @@
 
 
 - (void) keyboardWillHide:(NSNotification*) notification {
+    NSValue* value = [notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey];
+
     CGRect rect;
-    [[notification.userInfo objectForKey:UIKeyboardBoundsUserInfoKey] getValue:&rect];
+    [value getValue:&rect];
 
     [UIView beginAnimations:nil context:NULL];
     {
