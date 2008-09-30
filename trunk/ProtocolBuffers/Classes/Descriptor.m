@@ -19,6 +19,13 @@
 
 @implementation ProtocolBufferDescriptor
 
+@synthesize nestedTypes;
+
+- (void) dealloc {
+    self.nestedTypes = nil;
+    [super dealloc];
+}
+
 - (NSArray*) getFields {
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
@@ -36,6 +43,11 @@
 
 - (NSArray*) getEnumTypes {
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+}
+
+
+- (NSArray*) getNestedTypes {
+    return nestedTypes;
 }
 
 @end

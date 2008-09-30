@@ -17,7 +17,10 @@
 #import "GenericDescriptor.h"
 
 @interface ProtocolBufferDescriptor : NSObject/*<GenericDescriptor>*/ {
+    NSArray* nestedTypes;
 }
+
+@property (retain) NSArray* nestedTypes;
 
 - (NSArray*) getFields;
 - (MessageOptions*) getOptions;
@@ -25,6 +28,7 @@
 - (NSString*) getFullName;
 
 - (NSArray*) getEnumTypes;
+- (NSArray*) getNestedTypes;
 
 #if 0
 NSArray* fields;

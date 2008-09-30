@@ -22,6 +22,14 @@
 
 @implementation FileDescriptor
 
+@synthesize messageTypes;
+
+- (void) dealloc {
+    self.messageTypes = nil;
+
+    [super dealloc];
+}
+
 - (id) initWithProto:(FileDescriptorProto*) proto
                            dependencies:(NSArray*) dependencies
                                    pool:(DescriptorPool*) pool {
@@ -82,6 +90,11 @@
     
     [result crossLink];
     return result;
+}
+
+
+- (NSArray*) getMessageTypes {
+    return messageTypes;
 }
 
 

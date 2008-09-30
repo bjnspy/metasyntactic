@@ -4,87 +4,6 @@
 
 @implementation Descriptor
 static FileDescriptor* descriptor = nil;
-+ (void) initialize {
-  if (self == [Descriptor class]) {
-    descriptor = [[Descriptor buildDescriptor] retain];
-  }
-}
-+ (FileDescriptor*) getDescriptor {
-  return descriptor;
-}
-+ (FileDescriptor*) buildDescriptor {
-  NSString* descriptorData = [NSString stringWithCString:
-    "\n\020descriptor.proto\022\017google.protobuf\"G\n\021F"
-    "ileDescriptorSet\0222\n\004file\030\001 \003(\0132$.google."
-    "protobuf.FileDescriptorProto\"\334\002\n\023FileDes"
-    "criptorProto\022\014\n\004name\030\001 \001(\t\022\017\n\007package\030\002 "
-    "\001(\t\022\022\n\ndependency\030\003 \003(\t\0226\n\014message_type\030"
-    "\004 \003(\0132 .google.protobuf.DescriptorProto\022"
-    "7\n\tenum_type\030\005 \003(\0132$.google.protobuf.Enu"
-    "mDescriptorProto\0228\n\007service\030\006 \003(\0132\'.goog"
-    "le.protobuf.ServiceDescriptorProto\0228\n\tex"
-    "tension\030\007 \003(\0132%.google.protobuf.FieldDes"
-    "criptorProto\022-\n\007options\030\010 \001(\0132\034.google.p"
-    "rotobuf.FileOptions\"\251\003\n\017DescriptorProto\022"
-    "\014\n\004name\030\001 \001(\t\0224\n\005field\030\002 \003(\0132%.google.pr"
-    "otobuf.FieldDescriptorProto\0228\n\textension"
-    "\030\006 \003(\0132%.google.protobuf.FieldDescriptor"
-    "Proto\0225\n\013nested_type\030\003 \003(\0132 .google.prot"
-    "obuf.DescriptorProto\0227\n\tenum_type\030\004 \003(\0132"
-    "$.google.protobuf.EnumDescriptorProto\022H\n"
-    "\017extension_range\030\005 \003(\0132/.google.protobuf"
-    ".DescriptorProto.ExtensionRange\0220\n\007optio"
-    "ns\030\007 \001(\0132\037.google.protobuf.MessageOption"
-    "s\032,\n\016ExtensionRange\022\r\n\005start\030\001 \001(\005\022\013\n\003en"
-    "d\030\002 \001(\005\"\224\005\n\024FieldDescriptorProto\022\014\n\004name"
-    "\030\001 \001(\t\022\016\n\006number\030\003 \001(\005\022:\n\005label\030\004 \001(\0162+."
-    "google.protobuf.FieldDescriptorProto.Lab"
-    "el\0228\n\004type\030\005 \001(\0162*.google.protobuf.Field"
-    "DescriptorProto.Type\022\021\n\ttype_name\030\006 \001(\t\022"
-    "\020\n\010extendee\030\002 \001(\t\022\025\n\rdefault_value\030\007 \001(\t"
-    "\022.\n\007options\030\010 \001(\0132\035.google.protobuf.Fiel"
-    "dOptions\"\266\002\n\004Type\022\017\n\013TYPE_DOUBLE\020\001\022\016\n\nTY"
-    "PE_FLOAT\020\002\022\016\n\nTYPE_INT64\020\003\022\017\n\013TYPE_UINT6"
-    "4\020\004\022\016\n\nTYPE_INT32\020\005\022\020\n\014TYPE_FIXED64\020\006\022\020\n"
-    "\014TYPE_FIXED32\020\007\022\r\n\tTYPE_BOOL\020\010\022\017\n\013TYPE_S"
-    "TRING\020\t\022\016\n\nTYPE_GROUP\020\n\022\020\n\014TYPE_MESSAGE\020"
-    "\013\022\016\n\nTYPE_BYTES\020\014\022\017\n\013TYPE_UINT32\020\r\022\r\n\tTY"
-    "PE_ENUM\020\016\022\021\n\rTYPE_SFIXED32\020\017\022\021\n\rTYPE_SFI"
-    "XED64\020\020\022\017\n\013TYPE_SINT32\020\021\022\017\n\013TYPE_SINT64\020"
-    "\022\"C\n\005Label\022\022\n\016LABEL_OPTIONAL\020\001\022\022\n\016LABEL_"
-    "REQUIRED\020\002\022\022\n\016LABEL_REPEATED\020\003\"\214\001\n\023EnumD"
-    "escriptorProto\022\014\n\004name\030\001 \001(\t\0228\n\005value\030\002 "
-    "\003(\0132).google.protobuf.EnumValueDescripto"
-    "rProto\022-\n\007options\030\003 \001(\0132\034.google.protobu"
-    "f.EnumOptions\"l\n\030EnumValueDescriptorProt"
-    "o\022\014\n\004name\030\001 \001(\t\022\016\n\006number\030\002 \001(\005\0222\n\007optio"
-    "ns\030\003 \001(\0132!.google.protobuf.EnumValueOpti"
-    "ons\"\220\001\n\026ServiceDescriptorProto\022\014\n\004name\030\001"
-    " \001(\t\0226\n\006method\030\002 \003(\0132&.google.protobuf.M"
-    "ethodDescriptorProto\0220\n\007options\030\003 \001(\0132\037."
-    "google.protobuf.ServiceOptions\"\177\n\025Method"
-    "DescriptorProto\022\014\n\004name\030\001 \001(\t\022\022\n\ninput_t"
-    "ype\030\002 \001(\t\022\023\n\013output_type\030\003 \001(\t\022/\n\007option"
-    "s\030\004 \001(\0132\036.google.protobuf.MethodOptions\""
-    "\371\001\n\013FileOptions\022\024\n\014java_package\030\001 \001(\t\022\034\n"
-    "\024java_outer_classname\030\010 \001(\t\022\"\n\023java_mult"
-    "iple_files\030\n \001(\010:\005false\022J\n\014optimize_for\030"
-    "\t \001(\0162).google.protobuf.FileOptions.Opti"
-    "mizeMode:\tCODE_SIZE\022\034\n\024objectivec_namesp"
-    "ace\030\013 \001(\t\"(\n\014OptimizeMode\022\t\n\005SPEED\020\001\022\r\n\t"
-    "CODE_SIZE\020\002\"8\n\016MessageOptions\022&\n\027message"
-    "_set_wire_format\030\001 \001(\010:\005false\"\205\001\n\014FieldO"
-    "ptions\0222\n\005ctype\030\001 \001(\0162#.google.protobuf."
-    "FieldOptions.CType\022\034\n\024experimental_map_k"
-    "ey\030\t \001(\t\"#\n\005CType\022\010\n\004CORD\020\001\022\020\n\014STRING_PI"
-    "ECE\020\002\"\r\n\013EnumOptions\"\022\n\020EnumValueOptions"
-    "\"\020\n\016ServiceOptions\"\017\n\rMethodOptionsB)\n\023c"
-    "om.google.protobufB\020DescriptorProtosH\001"
-    ];
-  NSArray* dependencies = [NSArray arrayWithObjects:
-           nil];
-  return [FileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
-}
 static ProtocolBufferDescriptor* internal_static_google_protobuf_FileDescriptorSet_descriptor = nil;
 static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = nil;
 + (ProtocolBufferDescriptor*) internal_static_google_protobuf_FileDescriptorSet_descriptor {
@@ -212,6 +131,294 @@ static GeneratedMessage_FieldAccessorTable* internal_static_google_protobuf_Meth
 }
 + (GeneratedMessage_FieldAccessorTable*) internal_static_google_protobuf_MethodOptions_fieldAccessorTable {
   return internal_static_google_protobuf_MethodOptions_fieldAccessorTable;
+}
++ (void) initialize {
+  if (self == [Descriptor class]) {
+    descriptor = [[Descriptor buildDescriptor] retain];
+    internal_static_google_protobuf_FileDescriptorSet_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:0] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"File",
+      nil];
+      internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorSet_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[FileDescriptorSet class]
+                                                     builderClass:[FileDescriptorSet_Builder class]] retain];
+    }
+    internal_static_google_protobuf_FileDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:1] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Name",
+      @"Package",
+      @"Dependency",
+      @"MessageType",
+      @"EnumType",
+      @"Service",
+      @"Extension",
+      @"Options",
+      nil];
+      internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorProto_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[FileDescriptorProto class]
+                                                     builderClass:[FileDescriptorProto_Builder class]] retain];
+    }
+    internal_static_google_protobuf_DescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:2] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Name",
+      @"Field",
+      @"Extension",
+      @"NestedType",
+      @"EnumType",
+      @"ExtensionRange",
+      @"Options",
+      nil];
+      internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[DescriptorProto class]
+                                                     builderClass:[DescriptorProto_Builder class]] retain];
+    }
+    internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor = [[[internal_static_google_protobuf_DescriptorProto_descriptor getNestedTypes] objectAtIndex:0] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Start",
+      @"End",
+      nil];
+      internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[ExtensionRange class]
+                                                     builderClass:[ExtensionRange_Builder class]] retain];
+    }
+    internal_static_google_protobuf_FieldDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:3] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Name",
+      @"Number",
+      @"Label",
+      @"Type",
+      @"TypeName",
+      @"Extendee",
+      @"DefaultValue",
+      @"Options",
+      nil];
+      internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldDescriptorProto_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[FieldDescriptorProto class]
+                                                     builderClass:[FieldDescriptorProto_Builder class]] retain];
+    }
+    internal_static_google_protobuf_EnumDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:4] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Name",
+      @"Value",
+      @"Options",
+      nil];
+      internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumDescriptorProto_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[EnumDescriptorProto class]
+                                                     builderClass:[EnumDescriptorProto_Builder class]] retain];
+    }
+    internal_static_google_protobuf_EnumValueDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:5] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Name",
+      @"Number",
+      @"Options",
+      nil];
+      internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueDescriptorProto_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[EnumValueDescriptorProto class]
+                                                     builderClass:[EnumValueDescriptorProto_Builder class]] retain];
+    }
+    internal_static_google_protobuf_ServiceDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:6] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Name",
+      @"Method",
+      @"Options",
+      nil];
+      internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceDescriptorProto_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[ServiceDescriptorProto class]
+                                                     builderClass:[ServiceDescriptorProto_Builder class]] retain];
+    }
+    internal_static_google_protobuf_MethodDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:7] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Name",
+      @"InputType",
+      @"OutputType",
+      @"Options",
+      nil];
+      internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodDescriptorProto_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[MethodDescriptorProto class]
+                                                     builderClass:[MethodDescriptorProto_Builder class]] retain];
+    }
+    internal_static_google_protobuf_FileOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:8] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"JavaPackage",
+      @"JavaOuterClassname",
+      @"JavaMultipleFiles",
+      @"OptimizeFor",
+      @"ObjectivecNamespace",
+      nil];
+      internal_static_google_protobuf_FileOptions_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileOptions_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[FileOptions class]
+                                                     builderClass:[FileOptions_Builder class]] retain];
+    }
+    internal_static_google_protobuf_MessageOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:9] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"MessageSetWireFormat",
+      nil];
+      internal_static_google_protobuf_MessageOptions_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MessageOptions_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[MessageOptions class]
+                                                     builderClass:[MessageOptions_Builder class]] retain];
+    }
+    internal_static_google_protobuf_FieldOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:10] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Ctype",
+      @"ExperimentalMapKey",
+      nil];
+      internal_static_google_protobuf_FieldOptions_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldOptions_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[FieldOptions class]
+                                                     builderClass:[FieldOptions_Builder class]] retain];
+    }
+    internal_static_google_protobuf_EnumOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:11] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      nil];
+      internal_static_google_protobuf_EnumOptions_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumOptions_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[EnumOptions class]
+                                                     builderClass:[EnumOptions_Builder class]] retain];
+    }
+    internal_static_google_protobuf_EnumValueOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:12] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      nil];
+      internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueOptions_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[EnumValueOptions class]
+                                                     builderClass:[EnumValueOptions_Builder class]] retain];
+    }
+    internal_static_google_protobuf_ServiceOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:13] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      nil];
+      internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceOptions_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[ServiceOptions class]
+                                                     builderClass:[ServiceOptions_Builder class]] retain];
+    }
+    internal_static_google_protobuf_MethodOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:14] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      nil];
+      internal_static_google_protobuf_MethodOptions_fieldAccessorTable = 
+        [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodOptions_descriptor
+                                                       fieldNames:fieldNames
+                                                     messageClass:[MethodOptions class]
+                                                     builderClass:[MethodOptions_Builder class]] retain];
+    }
+  }
+}
++ (FileDescriptor*) getDescriptor {
+  return descriptor;
+}
++ (FileDescriptor*) buildDescriptor {
+  NSString* descriptorData = [NSString stringWithCString:
+    "\n\020descriptor.proto\022\017google.protobuf\"G\n\021F"
+    "ileDescriptorSet\0222\n\004file\030\001 \003(\0132$.google."
+    "protobuf.FileDescriptorProto\"\334\002\n\023FileDes"
+    "criptorProto\022\014\n\004name\030\001 \001(\t\022\017\n\007package\030\002 "
+    "\001(\t\022\022\n\ndependency\030\003 \003(\t\0226\n\014message_type\030"
+    "\004 \003(\0132 .google.protobuf.DescriptorProto\022"
+    "7\n\tenum_type\030\005 \003(\0132$.google.protobuf.Enu"
+    "mDescriptorProto\0228\n\007service\030\006 \003(\0132\'.goog"
+    "le.protobuf.ServiceDescriptorProto\0228\n\tex"
+    "tension\030\007 \003(\0132%.google.protobuf.FieldDes"
+    "criptorProto\022-\n\007options\030\010 \001(\0132\034.google.p"
+    "rotobuf.FileOptions\"\251\003\n\017DescriptorProto\022"
+    "\014\n\004name\030\001 \001(\t\0224\n\005field\030\002 \003(\0132%.google.pr"
+    "otobuf.FieldDescriptorProto\0228\n\textension"
+    "\030\006 \003(\0132%.google.protobuf.FieldDescriptor"
+    "Proto\0225\n\013nested_type\030\003 \003(\0132 .google.prot"
+    "obuf.DescriptorProto\0227\n\tenum_type\030\004 \003(\0132"
+    "$.google.protobuf.EnumDescriptorProto\022H\n"
+    "\017extension_range\030\005 \003(\0132/.google.protobuf"
+    ".DescriptorProto.ExtensionRange\0220\n\007optio"
+    "ns\030\007 \001(\0132\037.google.protobuf.MessageOption"
+    "s\032,\n\016ExtensionRange\022\r\n\005start\030\001 \001(\005\022\013\n\003en"
+    "d\030\002 \001(\005\"\224\005\n\024FieldDescriptorProto\022\014\n\004name"
+    "\030\001 \001(\t\022\016\n\006number\030\003 \001(\005\022:\n\005label\030\004 \001(\0162+."
+    "google.protobuf.FieldDescriptorProto.Lab"
+    "el\0228\n\004type\030\005 \001(\0162*.google.protobuf.Field"
+    "DescriptorProto.Type\022\021\n\ttype_name\030\006 \001(\t\022"
+    "\020\n\010extendee\030\002 \001(\t\022\025\n\rdefault_value\030\007 \001(\t"
+    "\022.\n\007options\030\010 \001(\0132\035.google.protobuf.Fiel"
+    "dOptions\"\266\002\n\004Type\022\017\n\013TYPE_DOUBLE\020\001\022\016\n\nTY"
+    "PE_FLOAT\020\002\022\016\n\nTYPE_INT64\020\003\022\017\n\013TYPE_UINT6"
+    "4\020\004\022\016\n\nTYPE_INT32\020\005\022\020\n\014TYPE_FIXED64\020\006\022\020\n"
+    "\014TYPE_FIXED32\020\007\022\r\n\tTYPE_BOOL\020\010\022\017\n\013TYPE_S"
+    "TRING\020\t\022\016\n\nTYPE_GROUP\020\n\022\020\n\014TYPE_MESSAGE\020"
+    "\013\022\016\n\nTYPE_BYTES\020\014\022\017\n\013TYPE_UINT32\020\r\022\r\n\tTY"
+    "PE_ENUM\020\016\022\021\n\rTYPE_SFIXED32\020\017\022\021\n\rTYPE_SFI"
+    "XED64\020\020\022\017\n\013TYPE_SINT32\020\021\022\017\n\013TYPE_SINT64\020"
+    "\022\"C\n\005Label\022\022\n\016LABEL_OPTIONAL\020\001\022\022\n\016LABEL_"
+    "REQUIRED\020\002\022\022\n\016LABEL_REPEATED\020\003\"\214\001\n\023EnumD"
+    "escriptorProto\022\014\n\004name\030\001 \001(\t\0228\n\005value\030\002 "
+    "\003(\0132).google.protobuf.EnumValueDescripto"
+    "rProto\022-\n\007options\030\003 \001(\0132\034.google.protobu"
+    "f.EnumOptions\"l\n\030EnumValueDescriptorProt"
+    "o\022\014\n\004name\030\001 \001(\t\022\016\n\006number\030\002 \001(\005\0222\n\007optio"
+    "ns\030\003 \001(\0132!.google.protobuf.EnumValueOpti"
+    "ons\"\220\001\n\026ServiceDescriptorProto\022\014\n\004name\030\001"
+    " \001(\t\0226\n\006method\030\002 \003(\0132&.google.protobuf.M"
+    "ethodDescriptorProto\0220\n\007options\030\003 \001(\0132\037."
+    "google.protobuf.ServiceOptions\"\177\n\025Method"
+    "DescriptorProto\022\014\n\004name\030\001 \001(\t\022\022\n\ninput_t"
+    "ype\030\002 \001(\t\022\023\n\013output_type\030\003 \001(\t\022/\n\007option"
+    "s\030\004 \001(\0132\036.google.protobuf.MethodOptions\""
+    "\371\001\n\013FileOptions\022\024\n\014java_package\030\001 \001(\t\022\034\n"
+    "\024java_outer_classname\030\010 \001(\t\022\"\n\023java_mult"
+    "iple_files\030\n \001(\010:\005false\022J\n\014optimize_for\030"
+    "\t \001(\0162).google.protobuf.FileOptions.Opti"
+    "mizeMode:\tCODE_SIZE\022\034\n\024objectivec_namesp"
+    "ace\030\013 \001(\t\"(\n\014OptimizeMode\022\t\n\005SPEED\020\001\022\r\n\t"
+    "CODE_SIZE\020\002\"8\n\016MessageOptions\022&\n\027message"
+    "_set_wire_format\030\001 \001(\010:\005false\"\205\001\n\014FieldO"
+    "ptions\0222\n\005ctype\030\001 \001(\0162#.google.protobuf."
+    "FieldOptions.CType\022\034\n\024experimental_map_k"
+    "ey\030\t \001(\t\"#\n\005CType\022\010\n\004CORD\020\001\022\020\n\014STRING_PI"
+    "ECE\020\002\"\r\n\013EnumOptions\"\022\n\020EnumValueOptions"
+    "\"\020\n\016ServiceOptions\"\017\n\rMethodOptionsB)\n\023c"
+    "om.google.protobufB\020DescriptorProtosH\001"
+    ];
+  NSArray* dependencies = [NSArray arrayWithObjects:
+           nil];
+  return [FileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
 @end
 

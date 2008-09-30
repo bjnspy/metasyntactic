@@ -23,7 +23,7 @@
 @property (retain) NSArray* fields;
 
 + (GeneratedMessage_FieldAccessorTable*) tableWithDescriptor:(ProtocolBufferDescriptor*) descriptor
-                                                       names:(NSArray*) names
+                                                  fieldNames:(NSArray*) fieldNames
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass;
 
