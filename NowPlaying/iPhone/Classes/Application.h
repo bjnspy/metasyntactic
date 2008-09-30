@@ -32,6 +32,9 @@
 + (NSString*) numbersFolder;
 + (NSString*) numbersDetailsFolder;
 
++ (NSString*) dvdFolder;
++ (NSString*) dvdPostersFolder;
+
 + (NSString*) upcomingFolder;
 + (NSString*) upcomingIMDbFolder;
 + (NSString*) upcomingPostersFolder;
