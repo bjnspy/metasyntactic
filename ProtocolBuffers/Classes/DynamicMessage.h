@@ -21,13 +21,12 @@
     ProtocolBufferDescriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
-    int32_t memoizedSize;
+    int32_t dm_memoizedSize;
 }
 
 @property (retain) ProtocolBufferDescriptor* type;
 @property (retain) FieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
-@property int32_t memoizedSize;
 
 + (DynamicMessage*) messageWithType:(ProtocolBufferDescriptor*) type fields:(FieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
 + (DynamicMessage*) getDefaultInstance:(ProtocolBufferDescriptor*) type;
