@@ -16,11 +16,11 @@
 
 #import "FieldAccessor.h"
 
-@interface SingularEnumFieldAccessor : NSObject<PBFieldAccessor> {
+@interface PBSingularEnumFieldAccessor : NSObject<PBFieldAccessor> {
 
 }
 
-+ (SingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
++ (PBSingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                                 name:(NSString*) name
                                                         messageClass:(Class) messageClass
                                                         builderClass:(Class) builderClass;

@@ -90,7 +90,7 @@ int64_t decodeZigZag64(int64_t n);
 - (NSData*) readData;
 
 - (void) readGroup:(int32_t) fieldNumber builder:(id<Message_Builder>) builder extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-- (void) readUnknownGroup:(int32_t) fieldNumber builder:(UnknownFieldSet_Builder*) builder;
+- (void) readUnknownGroup:(int32_t) fieldNumber builder:(PBUnknownFieldSet_Builder*) builder;
 
 - (void) checkLastTagWas:(int32_t) value;
 

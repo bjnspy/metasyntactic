@@ -77,7 +77,7 @@ static PBField* defaultInstance = nil;
     for (NSData* value in lengthDelimited) {
         [output writeData:fieldNumber value:value];
     }
-    for (UnknownFieldSet* value in group) {
+    for (PBUnknownFieldSet* value in group) {
         [output writeUnknownGroup:fieldNumber value:value];
     }
 }
@@ -97,7 +97,7 @@ static PBField* defaultInstance = nil;
     for (NSData* value in lengthDelimited) {
         result += computeDataSize(fieldNumber, value);
     }
-    for (UnknownFieldSet* value in group) {
+    for (PBUnknownFieldSet* value in group) {
         result += computeUnknownGroupSize(fieldNumber, value);
     }
     return result;

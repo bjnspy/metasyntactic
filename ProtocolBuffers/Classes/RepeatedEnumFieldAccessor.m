@@ -17,9 +17,9 @@
 #import "RepeatedEnumFieldAccessor.h"
 
 
-@implementation RepeatedEnumFieldAccessor
+@implementation PBRepeatedEnumFieldAccessor
 
-+ (RepeatedEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
++ (PBRepeatedEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

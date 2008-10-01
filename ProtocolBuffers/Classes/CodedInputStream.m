@@ -246,10 +246,10 @@ const int32_t BUFFER_SIZE = 4096;
 
 /**
  * Reads a {@code group} field value from the stream and merges it into the
- * given {@link UnknownFieldSet}.
+ * given {@link PBUnknownFieldSet}.
  */
 - (void) readUnknownGroup:(int32_t) fieldNumber
-                  builder:(UnknownFieldSet_Builder*) builder {
+                  builder:(PBUnknownFieldSet_Builder*) builder {
     if (recursionDepth >= recursionLimit) {
         @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
     }

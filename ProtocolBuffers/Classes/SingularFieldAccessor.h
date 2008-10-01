@@ -16,11 +16,11 @@
 
 #import "FieldAccessor.h"
 
-@interface SingularFieldAccessor : NSObject<PBFieldAccessor> {
+@interface PBSingularFieldAccessor : NSObject<PBFieldAccessor> {
 
 }
 
-+ (SingularFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
++ (PBSingularFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass;

@@ -20,15 +20,15 @@
 @private
     PBDescriptor* type;
     PBFieldSet* fields;
-    UnknownFieldSet* unknownFields;
+    PBUnknownFieldSet* unknownFields;
     int32_t dm_memoizedSize;
 }
 
 @property (retain) PBDescriptor* type;
 @property (retain) PBFieldSet* fields;
-@property (retain) UnknownFieldSet* unknownFields;
+@property (retain) PBUnknownFieldSet* unknownFields;
 
-+ (PBDynamicMessage*) messageWithType:(PBDescriptor*) type fields:(PBFieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
++ (PBDynamicMessage*) messageWithType:(PBDescriptor*) type fields:(PBFieldSet*) fields unknownFields:(PBUnknownFieldSet*) unknownFields;
 + (PBDynamicMessage*) getDefaultInstance:(PBDescriptor*) type;
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
@@ -58,7 +58,7 @@
 - (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
 
-- (UnknownFieldSet*) unknownFields;
+- (PBUnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;

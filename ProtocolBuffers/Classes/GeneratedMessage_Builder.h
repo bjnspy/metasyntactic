@@ -34,13 +34,13 @@
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
 - (id<Message_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
 - (id<Message_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
-- (UnknownFieldSet*) getUnknownFields;
-- (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields;
-- (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
+- (PBUnknownFieldSet*) getUnknownFields;
+- (id<Message_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (id<Message_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
 
 - (BOOL) parseUnknownField:(PBCodedInputStream*) input
-             unknownFields:(UnknownFieldSet_Builder*) unknownFields
+             unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
          extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                        tag:(int32_t) tag;
 @end

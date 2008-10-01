@@ -18,10 +18,10 @@
 
 @interface PBGeneratedMessage : PBAbstractMessage {
 @private
-    UnknownFieldSet* unknownFields;
+    PBUnknownFieldSet* unknownFields;
 }
 
-@property (retain) UnknownFieldSet* unknownFields;
+@property (retain) PBUnknownFieldSet* unknownFields;
 
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 

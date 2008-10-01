@@ -16,9 +16,9 @@
 
 #import "SingularEnumFieldAccessor.h"
 
-@implementation SingularEnumFieldAccessor
+@implementation PBSingularEnumFieldAccessor
 
-+ (SingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
++ (PBSingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

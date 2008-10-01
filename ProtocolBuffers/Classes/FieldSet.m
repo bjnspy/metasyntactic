@@ -382,7 +382,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 
 + (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
-                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                     unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder {
     while (true) {
@@ -405,7 +405,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 /** Called by {@code #mergeFieldFrom()} to parse a MessageSet extension. */
 + (void) mergeMessageSetExtensionFromCodedStream:(PBCodedInputStream*) input
-                                   unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                                   unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                                extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                          builder:(id<Message_Builder>) builder {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
@@ -510,7 +510,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  * @return {@code true} unless the tag is an end-group tag.
  */
 + (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
-                          unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                          unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                       extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                 builder:(id<Message_Builder>) builder
                                     tag:(int32_t) tag {

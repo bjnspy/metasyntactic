@@ -52,19 +52,19 @@
             PBFieldDescriptor* field = [descriptor.getFields objectAtIndex:i];
             if (field.isRepeated) {
                 if (field.getObjectiveCType == FieldDescriptorTypeMessage) {
-                    [array addObject:[RepeatedMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[PBRepeatedMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else if (field.getObjectiveCType == FieldDescriptorTypeEnum) {
-                    [array addObject:[RepeatedEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[PBRepeatedEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else {
-                    [array addObject:[RepeatedFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[PBRepeatedFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 }
             } else {
                 if (field.getObjectiveCType == FieldDescriptorTypeMessage) {
-                    [array addObject:[SingularMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[PBSingularMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else if (field.getObjectiveCType == FieldDescriptorTypeEnum) {
-                    [array addObject:[SingularEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[PBSingularEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else {
-                    [array addObject:[SingularFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[PBSingularFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 }
             }
         }
