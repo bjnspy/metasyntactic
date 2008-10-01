@@ -24,6 +24,9 @@ enum ObjectiveCType;
 @protocol Service;
 @protocol GeneratedMessage_FieldAccessor;
 
+@class PBFileDescriptorProto;
+@class PBMessageOptions;
+
 @class AbstractMessage;
 @class CodedInputStream;
 @class CodedOutputStream;
@@ -39,13 +42,11 @@ enum ObjectiveCType;
 @class FieldDescriptor_Type;
 @class FieldSet;
 @class FileDescriptor;
-@class FileDescriptorProto;
 @class GeneratedMessage;
 @class GeneratedMessage_Builder;
 @class GeneratedMessage_FieldAccessor;
 @class GeneratedMessage_FieldAccessorTable;
 @class GeneratedMessage_GeneratedExtension;
-@class MessageOptions;
 @class MethodDescriptor;
 @class ServiceDescriptor;
 @class DynamicMessage;
