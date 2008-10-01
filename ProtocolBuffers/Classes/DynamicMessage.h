@@ -29,7 +29,7 @@
 @property (retain) PBUnknownFieldSet* unknownFields;
 
 + (PBDynamicMessage*) messageWithType:(PBDescriptor*) type fields:(PBFieldSet*) fields unknownFields:(PBUnknownFieldSet*) unknownFields;
-+ (PBDynamicMessage*) getDefaultInstance:(PBDescriptor*) type;
++ (PBDynamicMessage*) defaultInstance:(PBDescriptor*) type;
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
 

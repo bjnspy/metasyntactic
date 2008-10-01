@@ -28,7 +28,7 @@
 @property (retain) NSMutableArray* lengthDelimited;
 @property (retain) NSMutableArray* group;
 
-+ (PBField*) getDefaultInstance;
++ (PBField*) defaultInstance;
 + (PBField_Builder*) newBuilder;
 
 - (void) writeTo:(int32_t) fieldNumber

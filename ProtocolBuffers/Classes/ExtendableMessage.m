@@ -117,7 +117,7 @@
         if (value == nil) {
             // Lacking an PBExtensionRegistry, we have no way to determine the
             // extension's real type, so we return a DynamicMessage.
-            return [PBDynamicMessage getDefaultInstance:field.getMessageType];
+            return [PBDynamicMessage defaultInstance:field.getMessageType];
         } else {
             return value;
         }

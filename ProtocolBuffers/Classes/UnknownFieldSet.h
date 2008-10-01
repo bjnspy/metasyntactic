@@ -23,7 +23,7 @@
 + (PBUnknownFieldSet_Builder*) newBuilder:(PBUnknownFieldSet*) copyFrom;
 + (PBUnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
 
-+ (PBUnknownFieldSet*) getDefaultInstance;
++ (PBUnknownFieldSet*) defaultInstance;
 + (PBUnknownFieldSet_Builder*) newBuilder;
 
 - (void) writeAsMessageSetTo:(PBCodedOutputStream*) output;

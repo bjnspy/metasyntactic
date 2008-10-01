@@ -58,7 +58,7 @@ static PBField* defaultInstance = nil;
 }
 
 
-+ (PBField*) getDefaultInstance {
++ (PBField*) defaultInstance {
     return defaultInstance;
 }
 

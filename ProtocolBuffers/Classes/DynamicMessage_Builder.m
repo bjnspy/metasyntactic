@@ -55,7 +55,7 @@
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type {
     return [[[PBDynamicMessage_Builder alloc] initWithType:type
                                                   fields:[PBFieldSet set]
-                                           unknownFields:[PBUnknownFieldSet getDefaultInstance]] autorelease];
+                                           unknownFields:[PBUnknownFieldSet defaultInstance]] autorelease];
 }
 
 
@@ -119,7 +119,7 @@
 
 
 - (PBDynamicMessage*) getDefaultInstanceForType {
-    return [PBDynamicMessage getDefaultInstance:type];
+    return [PBDynamicMessage defaultInstance:type];
 }
 
 
@@ -158,7 +158,7 @@
     [self verifyContainingType:field];
     id result = [fields getField:field];
     if (result == nil) {
-        result = [PBDynamicMessage getDefaultInstance:field.getMessageType];
+        result = [PBDynamicMessage defaultInstance:field.getMessageType];
     }
     return result;
 }

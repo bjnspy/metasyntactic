@@ -99,7 +99,7 @@
     [self getFieldBuilder:0];  // Force lastField to be built.
     PBUnknownFieldSet* result;
     if (fields.count == 0) {
-        result = [PBUnknownFieldSet getDefaultInstance];
+        result = [PBUnknownFieldSet defaultInstance];
     } else {
         result = [PBUnknownFieldSet setWithFields:fields];
     }
@@ -140,7 +140,7 @@
 
 
 - (PBUnknownFieldSet_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) other {
-    if (other != [PBUnknownFieldSet getDefaultInstance]) {
+    if (other != [PBUnknownFieldSet defaultInstance]) {
         for (NSNumber* number in other.fields) {
             PBField* field = [other.fields objectForKey:number];
             [self mergeField:field forNumber:[number intValue]];
@@ -242,7 +242,7 @@ public static final class Builder {
      * appended to the values in this set.
      */
     public Builder mergeFrom(PBUnknownFieldSet other) {
-        if (other != getDefaultInstance()) {
+        if (other != defaultInstance()) {
             for (Map.Entry<Integer, PBField> entry : other.fields.entrySet()) {
                 mergeField(entry.getKey(), entry.getValue());
             }
