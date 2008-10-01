@@ -70,13 +70,13 @@
 
 
 + (id<Message>) parseFrom:(PBDescriptor*) type
-         codedInputStream:(CodedInputStream*) input {
+         codedInputStream:(PBCodedInputStream*) input {
     return [[[DynamicMessage builderWithType:type] mergeFromCodedInputStream:input] buildParsed];
 }
 
 
 + (id<Message>) parseFrom:(PBDescriptor*) type
-         codedInputStream:(CodedInputStream*) input
+         codedInputStream:(PBCodedInputStream*) input
         extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
@@ -178,7 +178,7 @@
 }
 
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
     [fields writeToCodedOutputStream:output];
 
     if (type.getOptions.getMessageSetWireFormat) {

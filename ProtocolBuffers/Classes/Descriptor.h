@@ -58,7 +58,7 @@ NSArray* fields;
 
 - (FieldDescriptor*) findFieldByName:(NSString*) name;
 - (PBDescriptor*) findNestedTypeByName:(NSString*) name;
-- (EnumDescriptor*) findEnumTypeByName:(NSString*) name;
+- (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
 
 + (PBDescriptor*) descriptorWithProto:(DescriptorProto*) proto
                                file:(FileDescriptor*) file

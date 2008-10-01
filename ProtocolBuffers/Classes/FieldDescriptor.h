@@ -32,7 +32,7 @@
 - (PBDescriptor*) getContainingType;
 - (PBDescriptor*) getExtensionScope;
 - (PBDescriptor*) getMessageType;
-- (EnumDescriptor*) getEnumType;
+- (PBEnumDescriptor*) getEnumType;
 
 - (id) getDefaultValue;
 - (int32_t) getIndex;

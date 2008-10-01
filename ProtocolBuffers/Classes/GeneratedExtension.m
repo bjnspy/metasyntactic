@@ -59,7 +59,7 @@ ContainingType extends Message, Type> {
                 break;
             case ENUM:
                 enumValueOf = getMethodOrDie(type, "valueOf",
-                                             EnumValueDescriptor.class);
+                                             PBEnumValueDescriptor.class);
                 enumGetValueDescriptor = getMethodOrDie(type, "getValueDescriptor");
                 messageDefaultInstance = null;
                 break;
@@ -127,7 +127,7 @@ ContainingType extends Message, Type> {
                     .mergeFrom((Message)value).build();
                 }
             case ENUM:
-                return invokeOrDie(enumValueOf, null, (EnumValueDescriptor)value);
+                return invokeOrDie(enumValueOf, null, (PBEnumValueDescriptor)value);
             default:
                 return value;
         }

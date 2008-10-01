@@ -34,13 +34,13 @@
 - (UnknownFieldSet*) build;
 - (UnknownFieldSet_Builder*) mergeUnknownFields:(UnknownFieldSet*) other;
 
-- (UnknownFieldSet_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input;
+- (UnknownFieldSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (UnknownFieldSet_Builder*) mergeFromData:(NSData*) data;
 - (UnknownFieldSet_Builder*) mergeFromInputStream:(NSInputStream*) input;
 
 - (UnknownFieldSet_Builder*) mergeVarintField:(int32_t) number value:(int32_t) value;
 
-- (BOOL) mergeFieldFrom:(int32_t) tag input:(CodedInputStream*) input;
+- (BOOL) mergeFieldFrom:(int32_t) tag input:(PBCodedInputStream*) input;
 
 #if 0
     int32_t lastFieldNumbers;

@@ -42,7 +42,7 @@
 
 - (BOOL) isInitialized;
 
-- (DynamicMessage_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (DynamicMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 
 - (Descriptors_Descriptor*) descriptorForType;
 - (DynamicMessage*) defaultInstanceForType;

@@ -22,7 +22,7 @@
 #import "Utilities.h"
 #import "WireFormat.h"
 
-@implementation CodedOutputStream
+@implementation PBCodedOutputStream
 
 const int32_t DEFAULT_BUFFER_SIZE = 4096;
 const int32_t LITTLE_ENDIAN_32_SIZE = 4;
@@ -54,21 +54,21 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 }
 
 
-+ (CodedOutputStream*) newInstance:(NSOutputStream*) output
++ (PBCodedOutputStream*) newInstance:(NSOutputStream*) output
                         bufferSize:(int32_t) bufferSize {
     NSMutableData* data = [NSMutableData dataWithLength:bufferSize];
-    return [[[CodedOutputStream alloc] initWithOutputStream:output
+    return [[[PBCodedOutputStream alloc] initWithOutputStream:output
                                                        data:data] autorelease];
 }
 
 
-+ (CodedOutputStream*) newInstance:(NSOutputStream*) output {
-    return [CodedOutputStream newInstance:output bufferSize:DEFAULT_BUFFER_SIZE];
++ (PBCodedOutputStream*) newInstance:(NSOutputStream*) output {
+    return [PBCodedOutputStream newInstance:output bufferSize:DEFAULT_BUFFER_SIZE];
 }
 
 
-+ (CodedOutputStream*) streamWithData:(NSMutableData*) data {
-    return [[[CodedOutputStream alloc] initWithOutputStream:nil data:data] autorelease];
++ (PBCodedOutputStream*) streamWithData:(NSMutableData*) data {
+    return [[[PBCodedOutputStream alloc] initWithOutputStream:nil data:data] autorelease];
 }
 
 
@@ -597,7 +597,7 @@ int32_t computeFieldSize(FieldDescriptorType type,
 /**
  * Verifies that {@link #spaceLeft()} returns zero.  It's common to create
  * a byte array that is exactly big enough to hold a message, then write to
- * it with a {@code CodedOutputStream}.  Calling {@code checkNoSpaceLeft()}
+ * it with a {@code PBCodedOutputStream}.  Calling {@code checkNoSpaceLeft()}
  * after writing verifies that the message was actually as big as expected,
  * which can help catch bugs.
  */

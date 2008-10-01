@@ -142,7 +142,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
         case ObjectiveCTypeString:  isValid = [value isKindOfClass:[NSString class]]; break;
         case ObjectiveCTypeData:    isValid = [value isKindOfClass:[NSData class]]; break;
         case ObjectiveCTypeEnum:
-            isValid = [value isKindOfClass:[EnumValueDescriptor class]] &&
+            isValid = [value isKindOfClass:[PBEnumValueDescriptor class]] &&
             [value getType] == field.getEnumType;
             break;
         case ObjectiveCTypeMessage:
@@ -377,11 +377,11 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-// TODO(kenton):  Move parsing code into AbstractMessage, since it no longer
+// TODO(kenton):  Move parsing code into PBAbstractMessage, since it no longer
 //   uses any special knowledge from FieldSet.
 
 
-+ (void) mergeFromCodedInputStream:(CodedInputStream*) input
++ (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(UnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(ExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder {
@@ -404,7 +404,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 
 
 /** Called by {@code #mergeFieldFrom()} to parse a MessageSet extension. */
-+ (void) mergeMessageSetExtensionFromCodedStream:(CodedInputStream*) input
++ (void) mergeMessageSetExtensionFromCodedStream:(PBCodedInputStream*) input
                                    unknownFields:(UnknownFieldSet_Builder*) unknownFields
                                extensionRegistry:(ExtensionRegistry*) extensionRegistry
                                          builder:(id<Message_Builder>) builder {
@@ -455,7 +455,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
      if (rawBytes != null) {
      // We already encountered the message.  Parse it now.
      subBuilder.mergeFrom(
-     CodedInputStream.newInstance(rawBytes.newInput()));
+     PBCodedInputStream.newInstance(rawBytes.newInput()));
      rawBytes = null;
      }
      } else {
@@ -463,7 +463,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
      // in rawBytes.
      if (rawBytes != null) {
      unknownFields.mergeField(typeId,
-     UnknownFieldSet.Field.newBuilder()
+     UnknownFieldSet.PBField.newBuilder()
      .addLengthDelimited(rawBytes)
      .build());
      rawBytes = null;
@@ -478,7 +478,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
      } else if (subBuilder == null) {
      // We don't know how to parse this.  Ignore it.
      unknownFields.mergeField(typeId,
-     UnknownFieldSet.Field.newBuilder()
+     UnknownFieldSet.PBField.newBuilder()
      .addLengthDelimited(input.readBytes())
      .build());
      } else {
@@ -504,12 +504,12 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 
 
 /**
- * Like {@link #mergeFrom(CodedInputStream, UnknownFieldSet.Builder,
+ * Like {@link #mergeFrom(PBCodedInputStream, UnknownFieldSet.Builder,
  * ExtensionRegistry, Message.Builder)}, but parses a single field.
  * @param tag The tag, which should have already been read.
  * @return {@code true} unless the tag is an end-group tag.
  */
-+ (BOOL) mergeFieldFromCodedInputStream:(CodedInputStream*) input
++ (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
                           unknownFields:(UnknownFieldSet_Builder*) unknownFields
                       extensionRegistry:(ExtensionRegistry*) extensionRegistry
                                 builder:(id<Message_Builder>) builder
@@ -605,8 +605,8 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message#writeTo(CodedOutputStream)}. */
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+/** See {@link Message#writeTo(PBCodedOutputStream)}. */
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
     for (FieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
         [self writeField:field value:value output:output];
@@ -615,7 +615,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 
 
 /** Write a single field. */
-- (void) writeField:(FieldDescriptor*) field value:(id) value output:(CodedOutputStream*) output {
+- (void) writeField:(FieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output {
     if (field.isExtension &&
         field.getContainingType.getOptions.getMessageSetWireFormat) {
         [output writeMessageSetExtension:field.getNumber value:value];

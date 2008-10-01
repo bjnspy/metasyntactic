@@ -19,13 +19,13 @@
 #import "CodedOutputStream.h"
 #import "Field_Builder.h"
 
-@implementation Field
+@implementation PBField
 
-static Field* defaultInstance = nil;
+static PBField* defaultInstance = nil;
 
 + (void) initialize {
-    if (self == [Field class]) {
-        defaultInstance = [[Field newBuilder] build];
+    if (self == [PBField class]) {
+        defaultInstance = [[PBField newBuilder] build];
     }
 }
 
@@ -53,18 +53,18 @@ static Field* defaultInstance = nil;
 }
 
 
-+ (Field_Builder*) newBuilder:(Field*) copyFrom {
-    return [[Field newBuilder] mergeFromField:copyFrom];
++ (Field_Builder*) newBuilder:(PBField*) copyFrom {
+    return [[PBField newBuilder] mergeFromField:copyFrom];
 }
 
 
-+ (Field*) getDefaultInstance {
++ (PBField*) getDefaultInstance {
     return defaultInstance;
 }
 
 
 - (void) writeTo:(int32_t) fieldNumber
-          output:(CodedOutputStream*) output {
+          output:(PBCodedOutputStream*) output {
     for (NSNumber* value in varint) {
         [output writeUInt64:fieldNumber value:value.longLongValue];
     }
@@ -105,7 +105,7 @@ static Field* defaultInstance = nil;
 
 
 - (void) writeAsMessageSetExtensionTo:(int32_t) fieldNumber
-                               output:(CodedOutputStream*) output {
+                               output:(PBCodedOutputStream*) output {
     for (NSData* value in lengthDelimited) {
         [output writeRawMessageSetExtension:fieldNumber value:value];
     }

@@ -17,7 +17,7 @@
 #import "EnumValueDescriptor.h"
 
 
-@implementation EnumValueDescriptor
+@implementation PBEnumValueDescriptor
 
 @synthesize index;
 @synthesize fullName;
@@ -39,7 +39,7 @@
 }
 
 
-- (EnumDescriptor*) getType {
+- (PBEnumDescriptor*) getType {
     return type;
 }
 

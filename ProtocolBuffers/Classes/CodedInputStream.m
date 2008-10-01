@@ -21,7 +21,7 @@
 #import "Utilities.h"
 #import "WireFormat.h"
 
-@implementation CodedInputStream
+@implementation PBCodedInputStream
 
 
 const int32_t DEFAULT_RECURSION_LIMIT = 64;
@@ -72,13 +72,13 @@ const int32_t BUFFER_SIZE = 4096;
 }
 
 
-+ (CodedInputStream*) streamWithData:(NSData*) data {
-    return [[[CodedInputStream alloc] initWithData:data] autorelease];
++ (PBCodedInputStream*) streamWithData:(NSData*) data {
+    return [[[PBCodedInputStream alloc] initWithData:data] autorelease];
 }
 
 
-+ (CodedInputStream*) streamWithInputStream:(NSInputStream*) input {
-    return [[[CodedInputStream alloc] initWithInputStream:input] autorelease];
++ (PBCodedInputStream*) streamWithInputStream:(NSInputStream*) input {
+    return [[[PBCodedInputStream alloc] initWithInputStream:input] autorelease];
 }
 
 
@@ -500,7 +500,7 @@ int64_t decodeZigZag64(int64_t n) {
 
 /**
  * Set the maximum message recursion depth.  In order to prevent malicious
- * messages from causing stack overflows, {@code CodedInputStream} limits
+ * messages from causing stack overflows, {@code PBCodedInputStream} limits
  * how deeply messages may be nested.  The default limit is 64.
  *
  * @return the old limit.
@@ -518,7 +518,7 @@ int64_t decodeZigZag64(int64_t n) {
 /**
  * Set the maximum message size.  In order to prevent malicious
  * messages from exhausting memory or causing integer overflows,
- * {@code CodedInputStream} limits how large a message may be.
+ * {@code PBCodedInputStream} limits how large a message may be.
  * The default limit is 64MB.  You should set this limit as small
  * as you can without harming your app's functionality.  Note that
  * size limits only apply when reading from an {@code InputStream}, not

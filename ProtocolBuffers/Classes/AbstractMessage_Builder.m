@@ -82,12 +82,12 @@
 }
 
 
-- (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input {
     return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
 
-- (id<Message_Builder>) mergeFromCodedInputStream:(CodedInputStream*) input
+- (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input
                                 extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
     [FieldSet mergeFromCodedInputStream:input unknownFields:unknownFields extensionRegistry:extensionRegistry builder:self];
@@ -106,7 +106,7 @@
 
 
 - (id<Message_Builder>) mergeFromData:(NSData*) data {
-    CodedInputStream* input = [CodedInputStream streamWithData:data];
+    PBCodedInputStream* input = [PBCodedInputStream streamWithData:data];
     [self mergeFromCodedInputStream:input];
     [input checkLastTagWas:0];
     return self;
@@ -115,7 +115,7 @@
 
 - (id<Message_Builder>) mergeFromData:(NSData*) data
                     extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    CodedInputStream* input = [CodedInputStream streamWithData:data];
+    PBCodedInputStream* input = [PBCodedInputStream streamWithData:data];
     [self mergeFromCodedInputStream:input extensionRegistry:extensionRegistry];
     [input checkLastTagWas:0];
     return self;
@@ -123,7 +123,7 @@
 
 
 - (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input {
-    CodedInputStream* codedInput = [CodedInputStream streamWithInputStream:input];
+    PBCodedInputStream* codedInput = [PBCodedInputStream streamWithInputStream:input];
     [self mergeFromCodedInputStream:codedInput];
     [codedInput checkLastTagWas:0];
     return self;
@@ -132,7 +132,7 @@
 
 - (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input
                            extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    CodedInputStream* codedInput = [CodedInputStream streamWithInputStream:input];
+    PBCodedInputStream* codedInput = [PBCodedInputStream streamWithInputStream:input];
     [self mergeFromCodedInputStream:codedInput extensionRegistry:extensionRegistry];
     [codedInput checkLastTagWas:0];
     return self;

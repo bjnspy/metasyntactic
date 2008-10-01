@@ -26,8 +26,8 @@
 + (UnknownFieldSet*) getDefaultInstance;
 + (UnknownFieldSet_Builder*) newBuilder;
 
-- (void) writeAsMessageSetTo:(CodedOutputStream*) output;
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
+- (void) writeAsMessageSetTo:(PBCodedOutputStream*) output;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 
 - (int32_t) getSerializedSize;
 - (int32_t) getSerializedSizeAsMessageSet;
@@ -35,7 +35,7 @@
 #if 0
 + (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
 
-+ (UnknownFieldSet*) parseFromCodedInputStream:(CodedInputStream*) input;
++ (UnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input;
 + (UnknownFieldSet*) parseFromData:(NSData*) data;
 + (UnknownFieldSet*) parserFromInputStream:(NSInputStream*) input;
 

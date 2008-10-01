@@ -22,11 +22,11 @@
 @property (retain) NSMutableDictionary* fields;
 
 
-+ (void) mergeFromCodedInputStream:(CodedInputStream*) input
++ (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(UnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(ExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder;
-+ (BOOL) mergeFieldFromCodedInputStream:(CodedInputStream*) input
++ (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(UnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(ExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder
@@ -55,14 +55,14 @@
 - (BOOL) isInitialized;
 - (BOOL) isInitialized:(PBDescriptor*) type;
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 
 - (int32_t) getSerializedSize;
 
 - (void) mergeFromMessage:(id<Message>) other;
 - (void) mergeFromFieldSet:(FieldSet*) other;
 
-- (void) writeField:(FieldDescriptor*) field value:(id) value output:(CodedOutputStream*) output;
+- (void) writeField:(FieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output;
 
 
 #if 0
@@ -82,23 +82,23 @@
 
 - (void) mergeFrom:(id<Message>) other;
 - (void) mergeFrom:(FieldSet*) other;
-- (void) mergeFromCodedInputStream:(CodedInputStream*) input
+- (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(UnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(ExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder;
 
-- (BOOL) mergeFieldFromCodedInputStream:(CodedInputStream*) input
+- (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
                           unknownFields:(UnknownFieldSet_Builder*) unknownFields
                       extensionRegistry:(ExtensionRegistry*) extensionRegistry
                                 builder:(id<Message_Builder>) builder
                                     tag:(int32_t) tag;
 
-- (void) mergeMessageSetExtensionFromCodedInputStream:(CodedInputStream*) input
+- (void) mergeMessageSetExtensionFromCodedInputStream:(PBCodedInputStream*) input
                                         unknownFields:(UnknownFieldSet_Builder*) unknownFields
                                     extensionRegistry:(ExtensionRegistry*) extensionRegistry
                                               builder:(id<Message_Builder>) builder;
 
-- (void) writeField:(Descriptors_FieldDescriptor*) field value:(id) value ouput:(CodedInputStream*) output;
+- (void) writeField:(Descriptors_FieldDescriptor*) field value:(id) value ouput:(PBCodedInputStream*) output;
 #endif
 
 @end

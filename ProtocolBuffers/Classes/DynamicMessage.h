@@ -16,7 +16,7 @@
 
 #import "AbstractMessage.h"
 
-@interface DynamicMessage : AbstractMessage {
+@interface DynamicMessage : PBAbstractMessage {
 @private
     PBDescriptor* type;
     FieldSet* fields;
@@ -38,8 +38,8 @@
 + (DynamicMessage*) messageWithType:(Descriptors_Descriptor*) type;
 
 
-+ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(CodedInputStream*) codedInputStream;
-+ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(CodedInputStream*) codedInputStream extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(PBCodedInputStream*) codedInputStream;
++ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(PBCodedInputStream*) codedInputStream extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 + (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type data:(NSData*) data;
 + (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type data:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
 + (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type inputStream:(NSInputStream*) inputStream;
@@ -61,7 +61,7 @@
 - (UnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 
 - (int32_t) serializedSize;
 - (DynamicMessage_Builder*) newBuilderForType;

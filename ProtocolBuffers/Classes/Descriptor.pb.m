@@ -168,7 +168,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Name",
-      @"Field",
+      @"PBField",
       @"Extension",
       @"NestedType",
       @"EnumType",
@@ -389,7 +389,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
     "32\020\017\022\021\n\rTYPE_SFIXED64\020\020\022\017\n\013TYPE_SINT32\020\021"
     "\022\017\n\013TYPE_SINT64\020\022\"C\n\005Label\022\022\n\016LABEL_OPTI"
     "ONAL\020\001\022\022\n\016LABEL_REQUIRED\020\002\022\022\n\016LABEL_REPE"
-    "ATED\020\003\"\214\001\n\023EnumDescriptorProto\022\014\n\004name\030\001"
+    "ATED\020\003\"\214\001\n\023PBEnumDescriptorProto\022\014\n\004name\030\001"
     " \001(\t\0228\n\005value\030\002 \003(\0132).google.protobuf.En"
     "umValueDescriptorProto\022-\n\007options\030\003 \001(\0132"
     "\034.google.protobuf.EnumOptions\"l\n\030EnumVal"
@@ -473,7 +473,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   for (PBFileDescriptorProto* element in self.getFileList) {
     [output writeMessage:1 value:element];
   }
@@ -505,10 +505,10 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 + (PBFileDescriptorSet*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFileDescriptorSet*)[[[PBFileDescriptorSet newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBFileDescriptorSet*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBFileDescriptorSet*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBFileDescriptorSet*)[[[PBFileDescriptorSet newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBFileDescriptorSet*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBFileDescriptorSet*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFileDescriptorSet*)[[[PBFileDescriptorSet newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -595,11 +595,11 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   return self;
 }
 
-- (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -781,7 +781,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.getName];
   }
@@ -855,10 +855,10 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 + (PBFileDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFileDescriptorProto*)[[[PBFileDescriptorProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBFileDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBFileDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBFileDescriptorProto*)[[[PBFileDescriptorProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBFileDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBFileDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFileDescriptorProto*)[[[PBFileDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -978,11 +978,11 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return self;
 }
 
-- (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -1427,7 +1427,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.getName];
   }
@@ -1495,10 +1495,10 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 + (PBDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBDescriptorProto*)[[[PBDescriptorProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBDescriptorProto*)[[[PBDescriptorProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBDescriptorProto*)[[[PBDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -1564,7 +1564,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasStart) {
     [output writeInt32:1 value:self.getStart];
   }
@@ -1602,10 +1602,10 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 + (PBExtensionRange*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBExtensionRange*)[[[PBExtensionRange newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBExtensionRange*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBExtensionRange*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBExtensionRange*)[[[PBExtensionRange newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBExtensionRange*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBExtensionRange*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBExtensionRange*)[[[PBExtensionRange newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -1692,11 +1692,11 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return self;
 }
 
-- (PBExtensionRange_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBExtensionRange_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -1864,11 +1864,11 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return self;
 }
 
-- (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -2303,7 +2303,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.getName];
   }
@@ -2377,10 +2377,10 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
 + (PBFieldDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFieldDescriptorProto*)[[[PBFieldDescriptorProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBFieldDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBFieldDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBFieldDescriptorProto*)[[[PBFieldDescriptorProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBFieldDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBFieldDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFieldDescriptorProto*)[[[PBFieldDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -2488,18 +2488,18 @@ static PBType* TYPE_SINT64 = nil;
   }
 }
 
-- (EnumValueDescriptor*) getValueDescriptor {
+- (PBEnumValueDescriptor*) getValueDescriptor {
   return [[PBType getDescriptor].getValues objectAtIndex:index];
 }
-- (EnumDescriptor*) getDescriptorForType {
+- (PBEnumDescriptor*) getDescriptorForType {
   return [PBType getDescriptor];
 }
-+ (EnumDescriptor*) getDescriptor {
++ (PBEnumDescriptor*) getDescriptor {
   return [[PBFieldDescriptorProto getDescriptor].getEnumTypes objectAtIndex:0];
 }
 
 
-+ (PBType*) valueOfDescriptor:(EnumValueDescriptor*) desc {
++ (PBType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.getType != [PBType getDescriptor]) {
     [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
   }
@@ -2563,18 +2563,18 @@ static PBLabel* LABEL_REPEATED = nil;
   }
 }
 
-- (EnumValueDescriptor*) getValueDescriptor {
+- (PBEnumValueDescriptor*) getValueDescriptor {
   return [[PBLabel getDescriptor].getValues objectAtIndex:index];
 }
-- (EnumDescriptor*) getDescriptorForType {
+- (PBEnumDescriptor*) getDescriptorForType {
   return [PBLabel getDescriptor];
 }
-+ (EnumDescriptor*) getDescriptor {
++ (PBEnumDescriptor*) getDescriptor {
   return [[PBFieldDescriptorProto getDescriptor].getEnumTypes objectAtIndex:1];
 }
 
 
-+ (PBLabel*) valueOfDescriptor:(EnumValueDescriptor*) desc {
++ (PBLabel*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.getType != [PBLabel getDescriptor]) {
     [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
   }
@@ -2680,11 +2680,11 @@ static PBLabel* LABEL_REPEATED = nil;
   return self;
 }
 
-- (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -2969,7 +2969,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.getName];
   }
@@ -3013,10 +3013,10 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 + (PBEnumDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBEnumDescriptorProto*)[[[PBEnumDescriptorProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBEnumDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBEnumDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBEnumDescriptorProto*)[[[PBEnumDescriptorProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBEnumDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBEnumDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBEnumDescriptorProto*)[[[PBEnumDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -3109,11 +3109,11 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   return self;
 }
 
-- (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -3308,7 +3308,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.getName];
   }
@@ -3352,10 +3352,10 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 + (PBEnumValueDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBEnumValueDescriptorProto*)[[[PBEnumValueDescriptorProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBEnumValueDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBEnumValueDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBEnumValueDescriptorProto*)[[[PBEnumValueDescriptorProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBEnumValueDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBEnumValueDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBEnumValueDescriptorProto*)[[[PBEnumValueDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -3445,11 +3445,11 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   return self;
 }
 
-- (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -3617,7 +3617,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.getName];
   }
@@ -3661,10 +3661,10 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 + (PBServiceDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBServiceDescriptorProto*)[[[PBServiceDescriptorProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBServiceDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBServiceDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBServiceDescriptorProto*)[[[PBServiceDescriptorProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBServiceDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBServiceDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBServiceDescriptorProto*)[[[PBServiceDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -3757,11 +3757,11 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   return self;
 }
 
-- (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -3964,7 +3964,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.getName];
   }
@@ -4014,10 +4014,10 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 + (PBMethodDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBMethodDescriptorProto*)[[[PBMethodDescriptorProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBMethodDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBMethodDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBMethodDescriptorProto*)[[[PBMethodDescriptorProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBMethodDescriptorProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBMethodDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBMethodDescriptorProto*)[[[PBMethodDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -4110,11 +4110,11 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   return self;
 }
 
-- (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -4326,7 +4326,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasJavaPackage) {
     [output writeString:1 value:self.getJavaPackage];
   }
@@ -4388,10 +4388,10 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
 + (PBFileOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFileOptions*)[[[PBFileOptions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBFileOptions*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBFileOptions*)[[[PBFileOptions newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBFileOptions*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFileOptions*)[[[PBFileOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -4435,18 +4435,18 @@ static PBOptimizeMode* CODE_SIZE = nil;
   }
 }
 
-- (EnumValueDescriptor*) getValueDescriptor {
+- (PBEnumValueDescriptor*) getValueDescriptor {
   return [[PBOptimizeMode getDescriptor].getValues objectAtIndex:index];
 }
-- (EnumDescriptor*) getDescriptorForType {
+- (PBEnumDescriptor*) getDescriptorForType {
   return [PBOptimizeMode getDescriptor];
 }
-+ (EnumDescriptor*) getDescriptor {
++ (PBEnumDescriptor*) getDescriptor {
   return [[PBFileOptions getDescriptor].getEnumTypes objectAtIndex:0];
 }
 
 
-+ (PBOptimizeMode*) valueOfDescriptor:(EnumValueDescriptor*) desc {
++ (PBOptimizeMode*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.getType != [PBOptimizeMode getDescriptor]) {
     [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
   }
@@ -4545,11 +4545,11 @@ static PBOptimizeMode* CODE_SIZE = nil;
   return self;
 }
 
-- (PBFileOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBFileOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -4748,7 +4748,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasMessageSetWireFormat) {
     [output writeBool:1 value:self.getMessageSetWireFormat];
   }
@@ -4780,10 +4780,10 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 + (PBMessageOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBMessageOptions*)[[[PBMessageOptions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBMessageOptions*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBMessageOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBMessageOptions*)[[[PBMessageOptions newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBMessageOptions*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBMessageOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBMessageOptions*)[[[PBMessageOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -4867,11 +4867,11 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   return self;
 }
 
-- (PBMessageOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBMessageOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -4967,7 +4967,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasCtype) {
     [output writeEnum:1 value:self.getCtype.getNumber];
   }
@@ -5005,10 +5005,10 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 + (PBFieldOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFieldOptions*)[[[PBFieldOptions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBFieldOptions*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBFieldOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBFieldOptions*)[[[PBFieldOptions newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBFieldOptions*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBFieldOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBFieldOptions*)[[[PBFieldOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -5052,18 +5052,18 @@ static PBCType* STRING_PIECE = nil;
   }
 }
 
-- (EnumValueDescriptor*) getValueDescriptor {
+- (PBEnumValueDescriptor*) getValueDescriptor {
   return [[PBCType getDescriptor].getValues objectAtIndex:index];
 }
-- (EnumDescriptor*) getDescriptorForType {
+- (PBEnumDescriptor*) getDescriptorForType {
   return [PBCType getDescriptor];
 }
-+ (EnumDescriptor*) getDescriptor {
++ (PBEnumDescriptor*) getDescriptor {
   return [[PBFieldOptions getDescriptor].getEnumTypes objectAtIndex:0];
 }
 
 
-+ (PBCType*) valueOfDescriptor:(EnumValueDescriptor*) desc {
++ (PBCType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.getType != [PBCType getDescriptor]) {
     [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
   }
@@ -5150,11 +5150,11 @@ static PBCType* STRING_PIECE = nil;
   return self;
 }
 
-- (PBFieldOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBFieldOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -5261,7 +5261,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
@@ -5287,10 +5287,10 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 + (PBEnumOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBEnumOptions*)[[[PBEnumOptions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBEnumOptions*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBEnumOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBEnumOptions*)[[[PBEnumOptions newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBEnumOptions*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBEnumOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBEnumOptions*)[[[PBEnumOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -5371,11 +5371,11 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   return self;
 }
 
-- (PBEnumOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBEnumOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -5434,7 +5434,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
@@ -5460,10 +5460,10 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 + (PBEnumValueOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBEnumValueOptions*)[[[PBEnumValueOptions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBEnumValueOptions*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBEnumValueOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBEnumValueOptions*)[[[PBEnumValueOptions newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBEnumValueOptions*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBEnumValueOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBEnumValueOptions*)[[[PBEnumValueOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -5544,11 +5544,11 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   return self;
 }
 
-- (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -5607,7 +5607,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
@@ -5633,10 +5633,10 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 + (PBServiceOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBServiceOptions*)[[[PBServiceOptions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBServiceOptions*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBServiceOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBServiceOptions*)[[[PBServiceOptions newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBServiceOptions*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBServiceOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBServiceOptions*)[[[PBServiceOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -5717,11 +5717,11 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   return self;
 }
 
-- (PBServiceOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBServiceOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];
@@ -5780,7 +5780,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
@@ -5806,10 +5806,10 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 + (PBMethodOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBMethodOptions*)[[[PBMethodOptions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (PBMethodOptions*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (PBMethodOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
   return (PBMethodOptions*)[[[PBMethodOptions newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (PBMethodOptions*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
++ (PBMethodOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   return (PBMethodOptions*)[[[PBMethodOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
@@ -5890,11 +5890,11 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   return self;
 }
 
-- (PBMethodOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
 }
 
-- (PBMethodOptions_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
   UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
   while (true) {
     int32_t tag = [input readTag];

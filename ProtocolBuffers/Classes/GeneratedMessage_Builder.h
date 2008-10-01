@@ -39,7 +39,7 @@
 - (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
 
-- (BOOL) parseUnknownField:(CodedInputStream*) input
+- (BOOL) parseUnknownField:(PBCodedInputStream*) input
              unknownFields:(UnknownFieldSet_Builder*) unknownFields
          extensionRegistry:(ExtensionRegistry*) extensionRegistry
                        tag:(int32_t) tag;

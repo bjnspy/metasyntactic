@@ -14,12 +14,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface EnumDescriptor : NSObject {
+@interface PBEnumDescriptor : NSObject {
 
 }
 
 - (NSArray*) getValues;
 
-- (EnumValueDescriptor*) findValueByNumber:(int32_t) number;
+- (PBEnumValueDescriptor*) findValueByNumber:(int32_t) number;
 
 @end

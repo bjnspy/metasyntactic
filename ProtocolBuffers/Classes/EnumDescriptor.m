@@ -17,14 +17,14 @@
 #import "EnumDescriptor.h"
 
 
-@implementation EnumDescriptor
+@implementation PBEnumDescriptor
 
 - (NSArray*) getValues {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (EnumValueDescriptor*) findValueByNumber:(int32_t) number {
+- (PBEnumValueDescriptor*) findValueByNumber:(int32_t) number {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

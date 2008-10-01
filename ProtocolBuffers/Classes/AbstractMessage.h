@@ -16,7 +16,7 @@
 
 #import "Message.h"
 
-@interface AbstractMessage : NSObject<Message> {
+@interface PBAbstractMessage : NSObject<Message> {
 @private
     int32_t am_memoizedSize;
 }
@@ -31,7 +31,7 @@
 - (UnknownFieldSet*) getUnknownFields;
 - (BOOL) isInitialized;
 - (int32_t) getSerializedSize;
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output;
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (void) writeToOutputStream:(NSOutputStream*) output;
 - (NSData*) toData;
 - (id<Message_Builder>) newBuilderForType;

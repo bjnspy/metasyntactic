@@ -16,8 +16,7 @@
 
 #import "AbstractMessage.h"
 
-
-@interface GeneratedMessage : AbstractMessage {
+@interface GeneratedMessage : PBAbstractMessage {
 @private
     UnknownFieldSet* unknownFields;
 }
