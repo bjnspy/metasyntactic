@@ -32,14 +32,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   ServiceGenerator::~ServiceGenerator() {}
 
   void ServiceGenerator::DetermineDependencies(set<string>* dependencies) {
-    dependencies->insert(descriptor_->name());
+    dependencies->insert(ClassName(descriptor_));
   }
 
   void ServiceGenerator::GenerateHeader(io::Printer* printer) {
     printer->Print(
       "@interface $classname$ : NSObject<Service> {\n"
       "}\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
 
     // Generate abstract method declarations.
     for (int i = 0; i < descriptor_->method_count(); i++) {
@@ -76,7 +76,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     bool is_own_file = true;//descriptor_->file()->options().objectivec_multiple_files();
     printer->Print(
       "@implementation $classname$\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
 
     // Generate abstract method declarations.
     for (int i = 0; i < descriptor_->method_count(); i++) {

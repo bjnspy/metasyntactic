@@ -51,7 +51,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void EnumGenerator::DetermineDependencies(set<string>* dependencies) {
-    dependencies->insert(descriptor_->name());
+    dependencies->insert(ClassName(descriptor_));
   }
 
   void EnumGenerator::GenerateHeader(io::Printer* printer) {
@@ -64,18 +64,18 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "@property int32_t index;\n"
       "@property int32_t value;\n"
       "+ ($classname$*) newWithIndex:(int32_t) index value:(int32_t) value;\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
 
     for (int i = 0; i < canonical_values_.size(); i++) {
       printer->Print(
         "+ ($classname$*) $name$;\n",
-        "classname", descriptor_->name(),
+        "classname", ClassName(descriptor_),
         "name", SafeName(canonical_values_[i]->name()));
     }
 
     for (int i = 0; i < aliases_.size(); i++) {
       map<string, string> vars;
-      vars["classname"] = descriptor_->name();
+      vars["classname"] = ClassName(descriptor_);
       vars["name"] = aliases_[i].value->name();
       printer->Print(vars,
         "+ ($classname$*) $name$;\n");
@@ -85,7 +85,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "\n"
       "- (int32_t) getNumber;\n"
       "+ ($classname$*) valueOf:(int32_t) value;\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
 
     // -----------------------------------------------------------------
     // Reflection
@@ -98,7 +98,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "\n"
       "+ ($classname$*) valueOfDescriptor:(EnumValueDescriptor*) desc;\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
 
     // -----------------------------------------------------------------
 
@@ -111,12 +111,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "@implementation $classname$\n"
       "@synthesize index;\n"
       "@synthesize value;\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
 
     for (int i = 0; i < canonical_values_.size(); i++) {
       printer->Print(
         "static $classname$* $name$ = nil;\n",
-        "classname", descriptor_->name(),
+        "classname", ClassName(descriptor_),
         "name", SafeName(canonical_values_[i]->name()));
     }
 
@@ -129,17 +129,17 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return self;\n"
       "}\n"
       "+ ($classname$*) newWithIndex:(int32_t) index value:(int32_t) value {\n"
-      "  return [[[Label alloc] initWithIndex:index value:value] autorelease];\n"
+      "  return [[[$classname$ alloc] initWithIndex:index value:value] autorelease];\n"
       "}\n"
       "+ (void) initialize {\n"
       "  if (self == [$classname$ class]) {\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
     printer->Indent();
     printer->Indent();
 
     for (int i = 0; i < canonical_values_.size(); i++) {
       map<string, string> vars;
-      vars["classname"] = descriptor_->name();
+      vars["classname"] = ClassName(descriptor_);
       vars["name"] = SafeName(canonical_values_[i]->name());
       vars["index"] = SimpleItoa(canonical_values_[i]->index());
       vars["number"] = SimpleItoa(canonical_values_[i]->number());
@@ -155,7 +155,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     for (int i = 0; i < canonical_values_.size(); i++) {
       map<string, string> vars;
-      vars["classname"] = descriptor_->name();
+      vars["classname"] = ClassName(descriptor_);
       vars["name"] = SafeName(canonical_values_[i]->name());
       printer->Print(vars,
         "+ ($classname$*) $name$ { return $name$; }\n");
@@ -165,7 +165,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     for (int i = 0; i < aliases_.size(); i++) {
       map<string, string> vars;
-      vars["classname"] = descriptor_->name();
+      vars["classname"] = ClassName(descriptor_);
       vars["name"] = aliases_[i].value->name();
       vars["canonical_name"] = aliases_[i].canonical_value->name();
       printer->Print(vars,
@@ -178,7 +178,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- (int32_t) getNumber { return value; }\n"
       "+ ($classname$*) valueOf:(int32_t) value {\n"
       "  switch (value) {\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
     printer->Indent();
     printer->Indent();
 
@@ -208,7 +208,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return [$classname$ getDescriptor];\n"
       "}\n"
       "+ (EnumDescriptor*) getDescriptor {\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
 
     // TODO(kenton):  Cache statically?  Note that we can't access descriptors
     //   at module init time because it wouldn't work with descriptor.proto, but
@@ -236,7 +236,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "    [NSException exceptionWithName:@\"\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
       "  $classname$* VALUES[] = {\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
 
     printer->Indent();
     printer->Indent();
