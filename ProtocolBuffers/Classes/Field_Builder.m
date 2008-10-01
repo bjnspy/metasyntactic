@@ -18,7 +18,7 @@
 
 #import "Field.h"
 
-@implementation Field_Builder
+@implementation PBField_Builder
 
 @synthesize result;
 
@@ -61,13 +61,13 @@
 }
 
 
-- (Field_Builder*) clear {
+- (PBField_Builder*) clear {
     self.result = [[[PBField alloc] init] autorelease];
     return self;
 }
 
 
-- (Field_Builder*) mergeFromField:(PBField*) other {
+- (PBField_Builder*) mergeFromField:(PBField*) other {
     if (other.varint.count > 0) {
         if (result.varint == nil) {
             result.varint = [NSMutableArray array];
@@ -107,7 +107,7 @@
 }
 
 
-- (Field_Builder*) addVarint:(int64_t) value {
+- (PBField_Builder*) addVarint:(int64_t) value {
     if (result.varint == nil) {
         result.varint = [NSMutableArray array];
     }
@@ -116,7 +116,7 @@
 }
 
 
-- (Field_Builder*) addFixed32:(int32_t) value {
+- (PBField_Builder*) addFixed32:(int32_t) value {
     if (result.fixed32 == nil) {
         result.fixed32 = [NSMutableArray array];
     }
@@ -125,7 +125,7 @@
 }
 
 
-- (Field_Builder*) addFixed64:(int64_t) value {
+- (PBField_Builder*) addFixed64:(int64_t) value {
     if (result.fixed64 == nil) {
         result.fixed64 = [NSMutableArray array];
     }
@@ -134,7 +134,7 @@
 }
 
 
-- (Field_Builder*) addLengthDelimited:(NSData*) value {
+- (PBField_Builder*) addLengthDelimited:(NSData*) value {
     if (result.lengthDelimited == nil) {
         result.lengthDelimited = [NSMutableArray array];
     }
@@ -143,7 +143,7 @@
 }
 
 
-- (Field_Builder*) addGroup:(UnknownFieldSet*) value {
+- (PBField_Builder*) addGroup:(UnknownFieldSet*) value {
     if (result.group == nil) {
         result.group = [NSMutableArray array];
     }

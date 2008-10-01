@@ -19,16 +19,16 @@
 @interface DynamicMessage : PBAbstractMessage {
 @private
     PBDescriptor* type;
-    FieldSet* fields;
+    PBFieldSet* fields;
     UnknownFieldSet* unknownFields;
     int32_t dm_memoizedSize;
 }
 
 @property (retain) PBDescriptor* type;
-@property (retain) FieldSet* fields;
+@property (retain) PBFieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 
-+ (DynamicMessage*) messageWithType:(PBDescriptor*) type fields:(FieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
++ (DynamicMessage*) messageWithType:(PBDescriptor*) type fields:(PBFieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
 + (DynamicMessage*) getDefaultInstance:(PBDescriptor*) type;
 
 + (DynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;

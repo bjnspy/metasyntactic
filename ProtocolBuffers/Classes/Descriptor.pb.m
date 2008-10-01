@@ -3,7 +3,7 @@
 #import "Descriptor.pb.h"
 
 @implementation DescriptorProtoRoot
-static FileDescriptor* descriptor = nil;
+static PBFileDescriptor* descriptor = nil;
 static PBDescriptor* internal_static_google_protobuf_FileDescriptorSet_descriptor = nil;
 static FieldAccessorTable* internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_FileDescriptorSet_descriptor {
@@ -345,10 +345,10 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
     }
   }
 }
-+ (FileDescriptor*) getDescriptor {
++ (PBFileDescriptor*) getDescriptor {
   return descriptor;
 }
-+ (FileDescriptor*) buildDescriptor {
++ (PBFileDescriptor*) buildDescriptor {
   NSString* descriptorData = [NSString stringWithCString:
     "\n google/protobuf/descriptor.proto\022\017goog"
     "le.protobuf\"G\n\021FileDescriptorSet\0222\n\004file"
@@ -421,7 +421,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
     ];
   NSArray* dependencies = [NSArray arrayWithObjects:
            nil];
-  return [FileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
+  return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
 @end
 

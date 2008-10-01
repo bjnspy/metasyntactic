@@ -16,7 +16,7 @@
 
 #import "AbstractMessage_Builder.h"
 
-@interface GeneratedMessage_Builder : AbstractMessage_Builder {
+@interface PBGeneratedMessage_Builder : AbstractMessage_Builder {
 
 }
 

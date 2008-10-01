@@ -18,5 +18,5 @@
 - (id<Message>) toProto;
 - (NSString*) getName;
 - (NSString*) getFullName;
-- (FileDescriptor*) getFile;
+- (PBFileDescriptor*) getFile;
 @end

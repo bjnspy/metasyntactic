@@ -27,7 +27,7 @@
 
 - (id) init {
     if (self == [super init]) {
-        self.extensions = [FieldSet set];
+        self.extensions = [PBFieldSet set];
     }
     
     return self;

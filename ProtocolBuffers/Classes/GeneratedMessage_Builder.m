@@ -25,13 +25,13 @@
 #import "UnknownFieldSet.h"
 #import "UnknownFieldSet_Builder.h"
 
-@implementation GeneratedMessage_Builder
+@implementation PBGeneratedMessage_Builder
 
 /**
  * Get the message being built.  We don't just pass this to the
  * constructor because it becomes null when build() is called.
  */
-- (GeneratedMessage*) internalGetResult {
+- (PBGeneratedMessage*) internalGetResult {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
@@ -147,7 +147,7 @@
 
 
 - (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields {
-    GeneratedMessage* result = self.internalGetResult;
+    PBGeneratedMessage* result = self.internalGetResult;
     result.unknownFields = [[[UnknownFieldSet newBuilder:result.unknownFields] mergeUnknownFields:unknownFields] build];
     return self;
 }

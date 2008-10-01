@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Field_Builder : NSObject {
+@interface PBField_Builder : NSObject {
     PBField* result;
 }
 
@@ -22,14 +22,14 @@
 
 - (PBField*) build;
 
-- (Field_Builder*) mergeFromField:(PBField*) other;
+- (PBField_Builder*) mergeFromField:(PBField*) other;
 
-- (Field_Builder*) clear;
-- (Field_Builder*) mergeFromField:(PBField*) other;
-- (Field_Builder*) addVarint:(int64_t) value;
-- (Field_Builder*) addFixed32:(int32_t) value;
-- (Field_Builder*) addFixed64:(int64_t) value;
-- (Field_Builder*) addLengthDelimited:(NSData*) value;
-- (Field_Builder*) addGroup:(UnknownFieldSet*) value;
+- (PBField_Builder*) clear;
+- (PBField_Builder*) mergeFromField:(PBField*) other;
+- (PBField_Builder*) addVarint:(int64_t) value;
+- (PBField_Builder*) addFixed32:(int32_t) value;
+- (PBField_Builder*) addFixed64:(int64_t) value;
+- (PBField_Builder*) addLengthDelimited:(NSData*) value;
+- (PBField_Builder*) addGroup:(UnknownFieldSet*) value;
 
 @end

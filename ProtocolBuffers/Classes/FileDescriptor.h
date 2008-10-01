@@ -14,14 +14,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface FileDescriptor : NSObject {
+@interface PBFileDescriptor : NSObject {
     NSArray* messageTypes;
 }
 
 @property (retain) NSArray* messageTypes;
 
-+ (FileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
-+ (FileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;
++ (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
++ (PBFileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;
 
 - (NSArray*) getMessageTypes;
 
@@ -45,7 +45,7 @@
 @property (retain) NSArray* dependencies;
 @property (retain) NSArray* DescriptorPool* pool;
 
-+ (FileDescriptor*) descriptorWithProto:(FileDescriptorProto*) proto
++ (PBFileDescriptor*) descriptorWithProto:(FileDescriptorProto*) proto
                            dependencies:(NSArray*) dependencies
                                    pool:(DescriptorPool*) pool;
 

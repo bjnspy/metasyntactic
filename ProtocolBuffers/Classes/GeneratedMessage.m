@@ -19,7 +19,7 @@
 #import "FieldDescriptor.h"
 #import "UnknownFieldSet.h"
 
-@implementation GeneratedMessage
+@implementation PBGeneratedMessage
 
 @synthesize unknownFields;
 

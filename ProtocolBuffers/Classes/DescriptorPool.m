@@ -51,7 +51,7 @@
 
 #if 0
 private static final class DescriptorPool {
-    DescriptorPool(FileDescriptor[] dependencies) {
+    DescriptorPool(PBFileDescriptor[] dependencies) {
         this.dependencies = new DescriptorPool[dependencies.length];
 
         for (int i = 0; i < dependencies.length; i++)  {

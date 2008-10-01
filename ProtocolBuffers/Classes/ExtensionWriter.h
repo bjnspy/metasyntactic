@@ -15,17 +15,17 @@
 // limitations under the License.
 
 @interface ExtensionWriter : NSObject {
-    FieldSet* extensions;
+    PBFieldSet* extensions;
     NSEnumerator* enumerator;
     FieldDescriptor* nextKey;
     id nextValue;
 }
 
-@property (retain) FieldSet* extensions;
+@property (retain) PBFieldSet* extensions;
 @property (retain) NSEnumerator* enumerator;
 @property (retain) FieldDescriptor* nextKey;
 @property (retain) id nextValue;
 
-+ (ExtensionWriter*) writerWithExtensions:(FieldSet*) extensions;
++ (ExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions;
 
 @end

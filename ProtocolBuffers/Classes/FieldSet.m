@@ -30,13 +30,13 @@
 #import "Message_Builder.h"
 #import "WireFormat.h"
 
-@implementation FieldSet
+@implementation PBFieldSet
 
-static FieldSet* DEFAULT_INSTANCE = nil;
+static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 + (void) initialize {
-    if (self == [FieldSet class]) {
-        DEFAULT_INSTANCE = [[FieldSet alloc] initWithFields:[NSMutableDictionary dictionary]];
+    if (self == [PBFieldSet class]) {
+        DEFAULT_INSTANCE = [[PBFieldSet alloc] initWithFields:[NSMutableDictionary dictionary]];
     }
 }
 
@@ -50,7 +50,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-+ (FieldSet*) emptySet {
++ (PBFieldSet*) emptySet {
     return DEFAULT_INSTANCE;
 }
 
@@ -73,8 +73,8 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-+ (FieldSet*) set {
-    return [[[FieldSet alloc] init] autorelease];
++ (PBFieldSet*) set {
+    return [[[PBFieldSet alloc] init] autorelease];
 }
 
 
@@ -264,7 +264,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 // Parsing and serialization
 
 /**
- * See {@link Message#isInitialized()}.  Note:  Since {@code FieldSet}
+ * See {@link Message#isInitialized()}.  Note:  Since {@code PBFieldSet}
  * itself does not have any way of knowing about required fields that
  * aren't actually present in the set, it is up to the caller to check
  * that all required fields are present.
@@ -349,9 +349,9 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 
 
 /**
- * Like {@link #mergeFrom(Message)}, but merges from another {@link FieldSet}.
+ * Like {@link #mergeFrom(Message)}, but merges from another {@link PBFieldSet}.
  */
-- (void) mergeFromFieldSet:(FieldSet*) other {
+- (void) mergeFromFieldSet:(PBFieldSet*) other {
     for (FieldDescriptor* field in other.fields) {
         id value = [other.fields objectForKey:field];
 
@@ -378,7 +378,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
 
 
 // TODO(kenton):  Move parsing code into PBAbstractMessage, since it no longer
-//   uses any special knowledge from FieldSet.
+//   uses any special knowledge from PBFieldSet.
 
 
 + (void) mergeFromCodedInputStream:(PBCodedInputStream*) input

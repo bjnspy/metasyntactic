@@ -15,7 +15,7 @@
 // limitations under the License.
 
 @interface PBEnumValueDescriptor : NSObject/*<GenericDescriptor>*/ {
-    FileDescriptor* file;
+    PBFileDescriptor* file;
     PBEnumDescriptor* type;
 
     int32_t index;
@@ -24,7 +24,7 @@
 }
 
 // don't retain our backreferences.
-@property (assign) FileDescriptor* file;
+@property (assign) PBFileDescriptor* file;
 @property (assign) PBEnumDescriptor* type;
 
 @property int32_t index;
