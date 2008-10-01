@@ -18,8 +18,8 @@
 
 #import "Descriptor.pb.h"
 #import "Descriptor.h"
-#import "ExtensionRegistry_DescriptorIntPair.h"
-#import "ExtensionRegistry_ExtensionInfo.h"
+#import "DescriptorIntPair.h"
+#import "ExtensionInfo.h"
 #import "FieldDescriptor.h"
 
 @implementation PBExtensionRegistry
@@ -70,22 +70,22 @@ static PBExtensionRegistry* EMPTY = nil;
 }
 
 
-- (PBExtensionRegistry_ExtensionInfo*) findExtensionByName:(NSString*) fullName {
+- (PBExtensionInfo*) findExtensionByName:(NSString*) fullName {
     return [extensionsByName objectForKey:fullName];
 }
 
 
-- (PBExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
+- (PBExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
                                                fieldNumber:(int32_t) fieldNumber {
-    return [extensionsByNumber objectForKey:[PBExtensionRegistry_DescriptorIntPair pairWithDescriptor:containingType number:fieldNumber]];
+    return [extensionsByNumber objectForKey:[PBDescriptorIntPair pairWithDescriptor:containingType number:fieldNumber]];
 }
 
 #if 0
 - (void) addExtension:(PBGeneratedExtension*) extension {
     if (extension.getDescriptor.getObjectiveCType == PBFieldDescriptorTypeMessage) {
-        [self addExtensionInfo:[PBExtensionRegistry_ExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:extension.getMessageDefaultInstance]];
+        [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:extension.getMessageDefaultInstance]];
     } else {
-        [self addExtensionInfo:[PBExtensionRegistry_ExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:nil]];
+        [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:nil]];
     }
 }
 #endif
@@ -97,7 +97,7 @@ static PBExtensionRegistry* EMPTY = nil;
                                        reason:@"ExtensionRegistry.add() must be provided a default instance when adding an embedded message extension." userInfo:nil];
     }
 
-    [self addExtensionInfo:[PBExtensionRegistry_ExtensionInfo infoWithDescriptor:type defaultInstance:nil]];
+    [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:type defaultInstance:nil]];
 }
 
 
@@ -109,11 +109,11 @@ static PBExtensionRegistry* EMPTY = nil;
                                      userInfo:nil];
     }
 
-    [self addExtensionInfo:[PBExtensionRegistry_ExtensionInfo infoWithDescriptor:type defaultInstance:defaultInstance]];
+    [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:type defaultInstance:defaultInstance]];
 }
 
 
-- (void) addExtensionInfo:(PBExtensionRegistry_ExtensionInfo*) extension {
+- (void) addExtensionInfo:(PBExtensionInfo*) extension {
     if (!extension.descriptor.isExtension) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"ExtensionRegistry.add() was given a PBFieldDescriptor for a regular (non-extension) field."
@@ -123,7 +123,7 @@ static PBExtensionRegistry* EMPTY = nil;
     [extensionsByName setObject:extension
                          forKey:extension.descriptor.getFullName];
     [extensionsByNumber setObject:extension
-                           forKey:[PBExtensionRegistry_DescriptorIntPair pairWithDescriptor:extension.descriptor.getContainingType
+                           forKey:[PBDescriptorIntPair pairWithDescriptor:extension.descriptor.getContainingType
                                                                                    number:extension.descriptor.getNumber]];
 
     PBFieldDescriptor* field = extension.descriptor;
