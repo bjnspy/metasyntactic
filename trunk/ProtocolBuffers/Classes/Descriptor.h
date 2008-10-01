@@ -16,7 +16,7 @@
 
 #import "GenericDescriptor.h"
 
-@interface PBDescriptor : NSObject/*<GenericDescriptor>*/ {
+@interface PBDescriptor : NSObject/*<PBGenericDescriptor>*/ {
     NSArray* nestedTypes;
 }
 

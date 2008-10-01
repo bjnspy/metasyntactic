@@ -72,8 +72,8 @@ private static final class DescriptorPool {
 
 
     /** Find a generic descriptor by fully-qualified name. */
-    GenericDescriptor findSymbol(String fullName) {
-        GenericDescriptor result = descriptorsByName.get(fullName);
+    PBGenericDescriptor findSymbol(String fullName) {
+        PBGenericDescriptor result = descriptorsByName.get(fullName);
         if (result != null) return result;
 
         for (int i = 0; i < dependencies.length; i++) {
@@ -90,12 +90,12 @@ private static final class DescriptorPool {
      * partially-qualified, or unqualified.  C++-like name lookup semantics
      * are used to search for the matching descriptor.
      */
-    GenericDescriptor lookupSymbol(String name,
-                                   GenericDescriptor relativeTo)
+    PBGenericDescriptor lookupSymbol(String name,
+                                   PBGenericDescriptor relativeTo)
     throws DescriptorValidationException {
         // TODO(kenton):  This could be optimized in a number of ways.
 
-        GenericDescriptor result;
+        PBGenericDescriptor result;
         if (name.startsWith(".")) {
             // Fully-qualified name.
             result = findSymbol(name.substring(1));
@@ -157,14 +157,14 @@ private static final class DescriptorPool {
      * Adds a symbol to the symbol table.  If a symbol with the same name
      * already exists, throws an error.
      */
-    void addSymbol(GenericDescriptor descriptor)
+    void addSymbol(PBGenericDescriptor descriptor)
     throws DescriptorValidationException {
         validateSymbolName(descriptor);
 
         String fullName = descriptor.getFullName();
         int dotpos = fullName.lastIndexOf('.');
 
-        GenericDescriptor old = descriptorsByName.put(fullName, descriptor);
+        PBGenericDescriptor old = descriptorsByName.put(fullName, descriptor);
         if (old != null) {
             descriptorsByName.put(fullName, old);
 
