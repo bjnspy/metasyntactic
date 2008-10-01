@@ -15,28 +15,28 @@
 // limitations under the License.
 
 typedef enum {
-    WireFormatVarint = 0,
-    WireFormatFixed64 = 1,
-    WireFormatLengthDelimited = 2,
-    WireFormatStartGroup = 3,
-    WireFormatEndGroup = 4,
-    WireFormatFixed32 = 5,
+    PBWireFormatVarint = 0,
+    PBWireFormatFixed64 = 1,
+    PBWireFormatLengthDelimited = 2,
+    PBWireFormatStartGroup = 3,
+    PBWireFormatEndGroup = 4,
+    PBWireFormatFixed32 = 5,
 
-    TAG_TYPE_BITS = 3,
-    TAG_TYPE_MASK = 7 /* = (1 << TAG_TYPE_BITS) - 1*/,
+    PBWireFormatTagTypeBits = 3,
+    PBWireFormatTagTypeMask = 7 /* = (1 << PBWireFormatTagTypeBits) - 1*/,
 
-    WireFormatMessageSetItem = 1,
-    WireFormatMessageSetTypeId = 2,
-    WireFormatMessageSetMessage = 3
+    PBWireFormatMessageSetItem = 1,
+    PBWireFormatMessageSetTypeId = 2,
+    PBWireFormatMessageSetMessage = 3
 } PBWireFormat;
 
-int32_t WireFormatMakeTag(int32_t fieldNumber, int32_t wireType);
-int32_t WireFormatGetTagWireType(int32_t tag);
-int32_t WireFormatGetTagFieldNumber(int32_t tag);
+int32_t PBWireFormatMakeTag(int32_t fieldNumber, int32_t wireType);
+int32_t PBWireFormatGetTagWireType(int32_t tag);
+int32_t PBWireFormatGetTagFieldNumber(int32_t tag);
 
-int32_t WireFormatGetWireFormatForFieldType(PBFieldDescriptorType type);
+int32_t PBWireFormatGetWireFormatForFieldType(PBFieldDescriptorType type);
 
-#define WireFormatMessageSetItemTag (WireFormatMakeTag(WireFormatMessageSetItem, WireFormatStartGroup))
-#define WireFormatMessageSetItemEndTag (WireFormatMakeTag(WireFormatMessageSetItem, WireFormatEndGroup))
-#define WireFormatMessageSetTypeIdTag (WireFormatMakeTag(WireFormatMessageSetTypeId, WireFormatVarint))
-#define WireFormatMessageSetMessageTag (WireFormatMakeTag(WireFormatMessageSetMessage, WireFormatLengthDelimited))
+#define PBWireFormatMessageSetItemTag (PBWireFormatMakeTag(PBWireFormatMessageSetItem, PBWireFormatStartGroup))
+#define PBWireFormatMessageSetItemEndTag (PBWireFormatMakeTag(PBWireFormatMessageSetItem, PBWireFormatEndGroup))
+#define PBWireFormatMessageSetTypeIdTag (PBWireFormatMakeTag(PBWireFormatMessageSetTypeId, PBWireFormatVarint))
+#define PBWireFormatMessageSetMessageTag (PBWireFormatMakeTag(PBWireFormatMessageSetMessage, PBWireFormatLengthDelimited))

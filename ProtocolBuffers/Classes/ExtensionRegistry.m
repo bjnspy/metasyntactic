@@ -82,7 +82,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 #if 0
 - (void) addExtension:(PBGeneratedExtension*) extension {
-    if (extension.getDescriptor.getObjectiveCType == FieldDescriptorTypeMessage) {
+    if (extension.getDescriptor.getObjectiveCType == PBFieldDescriptorTypeMessage) {
         [self addExtensionInfo:[PBExtensionRegistry_ExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:extension.getMessageDefaultInstance]];
     } else {
         [self addExtensionInfo:[PBExtensionRegistry_ExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:nil]];
@@ -92,7 +92,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 
 - (void) addFieldDescriptor:(PBFieldDescriptor*) type {
-    if (type.getObjectiveCType == FieldDescriptorTypeMessage) {
+    if (type.getObjectiveCType == PBFieldDescriptorTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"ExtensionRegistry.add() must be provided a default instance when adding an embedded message extension." userInfo:nil];
     }
@@ -103,7 +103,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 - (void) addFieldDescriptor:(PBFieldDescriptor*) type
             defaultInstance:(id<PBMessage>) defaultInstance {
-    if (type.getObjectiveCType != FieldDescriptorTypeMessage) {
+    if (type.getObjectiveCType != PBFieldDescriptorTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"ExtensionRegistry.add() provided a default instance for a non-message extension."
                                      userInfo:nil];
@@ -129,7 +129,7 @@ static PBExtensionRegistry* EMPTY = nil;
     PBFieldDescriptor* field = extension.descriptor;
 
     if (field.getContainingType.getOptions.getMessageSetWireFormat &&
-        field.getType == FieldDescriptorTypeMessage &&
+        field.getType == PBFieldDescriptorTypeMessage &&
         field.isOptional &&
         field.getExtensionScope == field.getMessageType) {
         // This is an extension of a MessageSet type defined within the extension

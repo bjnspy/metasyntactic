@@ -45,7 +45,7 @@
 
     NSDictionary* allFields = self.getAllFields;
     for (PBFieldDescriptor* field in allFields) {
-        if (field.getObjectiveCType == ObjectiveCTypeMessage) {
+        if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
             id value = [allFields objectForKey:field];
 
             if (field.isRepeated) {

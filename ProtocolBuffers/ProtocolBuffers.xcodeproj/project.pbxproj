@@ -294,6 +294,7 @@
 			isa = PBXGroup;
 			children = (
 				741A75780E8CE0FB00F16FD4 /* Descriptors */,
+				745E97CF0E941793007FD139 /* ExtensionRegistry */,
 				745170C20E90745800D4E0C5 /* GeneratedMessage */,
 				741A74820E8CCD8600F16FD4 /* RPC */,
 				741A74AB0E8CCF0E00F16FD4 /* AbstractMessage.h */,
@@ -429,6 +430,13 @@
 				749E63F30E94071100F78C70 /* GeneratedExtension.m */,
 			);
 			name = GeneratedMessage;
+			sourceTree = "<group>";
+		};
+		745E97CF0E941793007FD139 /* ExtensionRegistry */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = ExtensionRegistry;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
