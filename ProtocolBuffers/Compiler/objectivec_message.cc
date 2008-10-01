@@ -30,530 +30,527 @@
 #include <google/protobuf/wire_format.h>
 #include <google/protobuf/descriptor.pb.h>
 
-namespace google {
-namespace protobuf {
-namespace compiler {
-namespace objectivec {
+namespace google { namespace protobuf { namespace compiler { namespace objectivec {
 
-using internal::WireFormat;
+  using internal::WireFormat;
 
-namespace {
+  namespace {
 
-void PrintFieldComment(io::Printer* printer, const FieldDescriptor* field) {
-  // Print the field's proto-syntax definition as a comment.  We don't want to
-  // print group bodies so we cut off after the first line.
-  string def = field->DebugString();
-  printer->Print("// $def$\n",
-    "def", def.substr(0, def.find_first_of('\n')));
-}
-
-struct FieldOrderingByNumber {
-  inline bool operator()(const FieldDescriptor* a,
-                         const FieldDescriptor* b) const {
-    return a->number() < b->number();
-  }
-};
-
-struct ExtensionRangeOrdering {
-  bool operator()(const Descriptor::ExtensionRange* a,
-                  const Descriptor::ExtensionRange* b) const {
-    return a->start < b->start;
-  }
-};
-
-// Sort the fields of the given Descriptor by number into a new[]'d array
-// and return it.
-const FieldDescriptor** SortFieldsByNumber(const Descriptor* descriptor) {
-  const FieldDescriptor** fields =
-    new const FieldDescriptor*[descriptor->field_count()];
-  for (int i = 0; i < descriptor->field_count(); i++) {
-    fields[i] = descriptor->field(i);
-  }
-  sort(fields, fields + descriptor->field_count(),
-       FieldOrderingByNumber());
-  return fields;
-}
-
-// Get an identifier that uniquely identifies this type within the file.
-// This is used to declare static variables related to this type at the
-// outermost file scope.
-string UniqueFileScopeIdentifier(const Descriptor* descriptor) {
-  return "static_" + StringReplace(descriptor->full_name(), ".", "_", true);
-}
-
-// Returns true if the message type has any required fields.  If it doesn't,
-// we can optimize out calls to its isInitialized() method.
-//
-// already_seen is used to avoid checking the same type multiple times
-// (and also to protect against recursion).
-static bool HasRequiredFields(
-    const Descriptor* type,
-    hash_set<const Descriptor*>* already_seen) {
-  if (already_seen->count(type) > 0) {
-    // The type is already in cache.  This means that either:
-    // a. The type has no required fields.
-    // b. We are in the midst of checking if the type has required fields,
-    //    somewhere up the stack.  In this case, we know that if the type
-    //    has any required fields, they'll be found when we return to it,
-    //    and the whole call to HasRequiredFields() will return true.
-    //    Therefore, we don't have to check if this type has required fields
-    //    here.
-    return false;
-  }
-  already_seen->insert(type);
-
-  // If the type has extensions, an extension with message type could contain
-  // required fields, so we have to be conservative and assume such an
-  // extension exists.
-  if (type->extension_range_count() > 0) return true;
-
-  for (int i = 0; i < type->field_count(); i++) {
-    const FieldDescriptor* field = type->field(i);
-    if (field->is_required()) {
-      return true;
+    void PrintFieldComment(io::Printer* printer, const FieldDescriptor* field) {
+      // Print the field's proto-syntax definition as a comment.  We don't want to
+      // print group bodies so we cut off after the first line.
+      string def = field->DebugString();
+      printer->Print("// $def$\n",
+        "def", def.substr(0, def.find_first_of('\n')));
     }
-    if (field->cpp_type() == FieldDescriptor::CPPTYPE_MESSAGE) {
-      if (HasRequiredFields(field->message_type(), already_seen)) {
-        return true;
+
+    struct FieldOrderingByNumber {
+      inline bool operator()(const FieldDescriptor* a,
+        const FieldDescriptor* b) const {
+          return a->number() < b->number();
       }
+    };
+
+    struct ExtensionRangeOrdering {
+      bool operator()(const Descriptor::ExtensionRange* a,
+        const Descriptor::ExtensionRange* b) const {
+          return a->start < b->start;
+      }
+    };
+
+    // Sort the fields of the given Descriptor by number into a new[]'d array
+    // and return it.
+    const FieldDescriptor** SortFieldsByNumber(const Descriptor* descriptor) {
+      const FieldDescriptor** fields =
+        new const FieldDescriptor*[descriptor->field_count()];
+      for (int i = 0; i < descriptor->field_count(); i++) {
+        fields[i] = descriptor->field(i);
+      }
+      sort(fields, fields + descriptor->field_count(),
+        FieldOrderingByNumber());
+      return fields;
     }
-  }
 
-  return false;
-}
+    // Get an identifier that uniquely identifies this type within the file.
+    // This is used to declare static variables related to this type at the
+    // outermost file scope.
+    string UniqueFileScopeIdentifier(const Descriptor* descriptor) {
+      return "static_" + StringReplace(descriptor->full_name(), ".", "_", true);
+    }
 
-static bool HasRequiredFields(const Descriptor* type) {
-  hash_set<const Descriptor*> already_seen;
-  return HasRequiredFields(type, &already_seen);
-}
+    // Returns true if the message type has any required fields.  If it doesn't,
+    // we can optimize out calls to its isInitialized() method.
+    //
+    // already_seen is used to avoid checking the same type multiple times
+    // (and also to protect against recursion).
+    static bool HasRequiredFields(
+      const Descriptor* type,
+      hash_set<const Descriptor*>* already_seen) {
+        if (already_seen->count(type) > 0) {
+          // The type is already in cache.  This means that either:
+          // a. The type has no required fields.
+          // b. We are in the midst of checking if the type has required fields,
+          //    somewhere up the stack.  In this case, we know that if the type
+          //    has any required fields, they'll be found when we return to it,
+          //    and the whole call to HasRequiredFields() will return true.
+          //    Therefore, we don't have to check if this type has required fields
+          //    here.
+          return false;
+        }
+        already_seen->insert(type);
 
-}  // namespace
+        // If the type has extensions, an extension with message type could contain
+        // required fields, so we have to be conservative and assume such an
+        // extension exists.
+        if (type->extension_range_count() > 0) return true;
 
-// ===================================================================
+        for (int i = 0; i < type->field_count(); i++) {
+          const FieldDescriptor* field = type->field(i);
+          if (field->is_required()) {
+            return true;
+          }
+          if (field->cpp_type() == FieldDescriptor::CPPTYPE_MESSAGE) {
+            if (HasRequiredFields(field->message_type(), already_seen)) {
+              return true;
+            }
+          }
+        }
 
-MessageGenerator::MessageGenerator(const Descriptor* descriptor)
-  : descriptor_(descriptor),
+        return false;
+    }
+
+    static bool HasRequiredFields(const Descriptor* type) {
+      hash_set<const Descriptor*> already_seen;
+      return HasRequiredFields(type, &already_seen);
+    }
+
+  }  // namespace
+
+  // ===================================================================
+
+  MessageGenerator::MessageGenerator(const Descriptor* descriptor)
+    : descriptor_(descriptor),
     field_generators_(descriptor) {
-}
-
-MessageGenerator::~MessageGenerator() {}
-
-void MessageGenerator::GenerateStaticVariablesHeader(io::Printer* printer) {
-  // Because descriptor.proto (com.google.protobuf.DescriptorProtos) is
-  // used in the construction of descriptors, we have a tricky bootstrapping
-  // problem.  To help control static initialization order, we make sure all
-  // descriptors and other static data that depends on them are members of
-  // the outermost class in the file.  This way, they will be initialized in
-  // a deterministic order.
-
-  map<string, string> vars;
-  vars["identifier"] = UniqueFileScopeIdentifier(descriptor_);
-  vars["index"] = SimpleItoa(descriptor_->index());
-  vars["classname"] = ClassName(descriptor_);
-  if (descriptor_->containing_type() != NULL) {
-    vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
   }
 
-  // The descriptor for this type.
-  printer->Print(vars,
+  MessageGenerator::~MessageGenerator() {}
+
+  void MessageGenerator::GenerateStaticVariablesHeader(io::Printer* printer) {
+    // Because descriptor.proto (com.google.protobuf.DescriptorProtos) is
+    // used in the construction of descriptors, we have a tricky bootstrapping
+    // problem.  To help control static initialization order, we make sure all
+    // descriptors and other static data that depends on them are members of
+    // the outermost class in the file.  This way, they will be initialized in
+    // a deterministic order.
+
+    map<string, string> vars;
+    vars["identifier"] = UniqueFileScopeIdentifier(descriptor_);
+    vars["index"] = SimpleItoa(descriptor_->index());
+    vars["classname"] = ClassName(descriptor_);
+    if (descriptor_->containing_type() != NULL) {
+      vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
+    }
+
+    // The descriptor for this type.
+    printer->Print(vars,
       "+ (Descriptor*) internal_$identifier$_descriptor;\n");
 
-  // And the FieldAccessorTable.
-  printer->Print(vars,
-    "+ (GeneratedMessage_FieldAccessorTable*) internal_$identifier$_fieldAccessorTable;\n");
-
-  
-  // Generate static members for all nested types.
-  for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-    // TODO(kenton):  Reuse MessageGenerator objects?
-    MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesHeader(printer);
-  }
-  
-}
-
-void MessageGenerator::GenerateStaticVariablesInitialization(io::Printer* printer) {
-  map<string, string> vars;
-  vars["identifier"] = UniqueFileScopeIdentifier(descriptor_);
-  vars["index"] = SimpleItoa(descriptor_->index());
-  vars["classname"] = ClassName(descriptor_);
-  if (descriptor_->containing_type() != NULL) {
-    vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
-  }
-
-  if (descriptor_->containing_type() == NULL) {
+    // And the FieldAccessorTable.
     printer->Print(vars,
-      "internal_$identifier$_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:$index$] retain];\n");
-  } else {
-    printer->Print(vars,
-      "internal_$identifier$_descriptor = [[[internal_$parent$_descriptor getNestedTypes] objectAtIndex:$index$] retain];\n");
-  }
+      "+ (GeneratedMessage_FieldAccessorTable*) internal_$identifier$_fieldAccessorTable;\n");
 
-  // And the FieldAccessorTable.
-  printer->Print(vars,
-    "{\n"
-    "  NSArray* fieldNames = [NSArray arrayWithObjects:\n");
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    printer->Print(
-      "  @\"$field_name$\",\n",
-      "field_name", UnderscoresToCapitalizedCamelCase(descriptor_->field(i)));
-  }
-  printer->Print("  nil];\n");
 
-  printer->Print(vars,
-    "  internal_$identifier$_fieldAccessorTable = \n"
-    "    [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_$identifier$_descriptor\n"
-    "                                                   fieldNames:fieldNames\n"
-    "                                                 messageClass:[$classname$ class]\n"
-    "                                                 builderClass:[$classname$_Builder class]] retain];\n"
-    "}\n");
-  
     // Generate static members for all nested types.
-  for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-    // TODO(kenton):  Reuse MessageGenerator objects?
-    MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesInitialization(printer);
-  }
-}
+    for (int i = 0; i < descriptor_->nested_type_count(); i++) {
+      // TODO(kenton):  Reuse MessageGenerator objects?
+      MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesHeader(printer);
+    }
 
-void MessageGenerator::GenerateStaticVariablesSource(io::Printer* printer) {
-  // Because descriptor.proto (com.google.protobuf.DescriptorProtos) is
-  // used in the construction of descriptors, we have a tricky bootstrapping
-  // problem.  To help control static initialization order, we make sure all
-  // descriptors and other static data that depends on them are members of
-  // the outermost class in the file.  This way, they will be initialized in
-  // a deterministic order.
-
-  map<string, string> vars;
-  vars["identifier"] = UniqueFileScopeIdentifier(descriptor_);
-  vars["index"] = SimpleItoa(descriptor_->index());
-  vars["classname"] = ClassName(descriptor_);
-  if (descriptor_->containing_type() != NULL) {
-    vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
   }
 
-  // The descriptor for this type.
-  printer->Print(vars,
+  void MessageGenerator::GenerateStaticVariablesInitialization(io::Printer* printer) {
+    map<string, string> vars;
+    vars["identifier"] = UniqueFileScopeIdentifier(descriptor_);
+    vars["index"] = SimpleItoa(descriptor_->index());
+    vars["classname"] = ClassName(descriptor_);
+    if (descriptor_->containing_type() != NULL) {
+      vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
+    }
+
+    if (descriptor_->containing_type() == NULL) {
+      printer->Print(vars,
+        "internal_$identifier$_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:$index$] retain];\n");
+    } else {
+      printer->Print(vars,
+        "internal_$identifier$_descriptor = [[[internal_$parent$_descriptor getNestedTypes] objectAtIndex:$index$] retain];\n");
+    }
+
+    // And the FieldAccessorTable.
+    printer->Print(vars,
+      "{\n"
+      "  NSArray* fieldNames = [NSArray arrayWithObjects:\n");
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      printer->Print(
+        "  @\"$field_name$\",\n",
+        "field_name", UnderscoresToCapitalizedCamelCase(descriptor_->field(i)));
+    }
+    printer->Print("  nil];\n");
+
+    printer->Print(vars,
+      "  internal_$identifier$_fieldAccessorTable = \n"
+      "    [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_$identifier$_descriptor\n"
+      "                                                   fieldNames:fieldNames\n"
+      "                                                 messageClass:[$classname$ class]\n"
+      "                                                 builderClass:[$classname$_Builder class]] retain];\n"
+      "}\n");
+
+    // Generate static members for all nested types.
+    for (int i = 0; i < descriptor_->nested_type_count(); i++) {
+      // TODO(kenton):  Reuse MessageGenerator objects?
+      MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesInitialization(printer);
+    }
+  }
+
+  void MessageGenerator::GenerateStaticVariablesSource(io::Printer* printer) {
+    // Because descriptor.proto (com.google.protobuf.DescriptorProtos) is
+    // used in the construction of descriptors, we have a tricky bootstrapping
+    // problem.  To help control static initialization order, we make sure all
+    // descriptors and other static data that depends on them are members of
+    // the outermost class in the file.  This way, they will be initialized in
+    // a deterministic order.
+
+    map<string, string> vars;
+    vars["identifier"] = UniqueFileScopeIdentifier(descriptor_);
+    vars["index"] = SimpleItoa(descriptor_->index());
+    vars["classname"] = ClassName(descriptor_);
+    if (descriptor_->containing_type() != NULL) {
+      vars["parent"] = UniqueFileScopeIdentifier(descriptor_->containing_type());
+    }
+
+    // The descriptor for this type.
+    printer->Print(vars,
       "static Descriptor* internal_$identifier$_descriptor = nil;\n"
       "static GeneratedMessage_FieldAccessorTable* internal_$identifier$_fieldAccessorTable = nil;\n");
 
-  printer->Print(vars,
-    "+ (Descriptor*) internal_$identifier$_descriptor {\n"
-    "  return internal_$identifier$_descriptor;\n"
-    "}\n"
-    "+ (GeneratedMessage_FieldAccessorTable*) internal_$identifier$_fieldAccessorTable {\n"
-    "  return internal_$identifier$_fieldAccessorTable;\n"
-    "}\n");
+    printer->Print(vars,
+      "+ (Descriptor*) internal_$identifier$_descriptor {\n"
+      "  return internal_$identifier$_descriptor;\n"
+      "}\n"
+      "+ (GeneratedMessage_FieldAccessorTable*) internal_$identifier$_fieldAccessorTable {\n"
+      "  return internal_$identifier$_fieldAccessorTable;\n"
+      "}\n");
 
     // Generate static members for all nested types.
-  for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-    // TODO(kenton):  Reuse MessageGenerator objects?
-    MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesSource(printer);
+    for (int i = 0; i < descriptor_->nested_type_count(); i++) {
+      // TODO(kenton):  Reuse MessageGenerator objects?
+      MessageGenerator(descriptor_->nested_type(i)).GenerateStaticVariablesSource(printer);
+    }
   }
-}
 
-void MessageGenerator::DetermineDependencies(set<string>* dependencies) {
-  dependencies->insert(descriptor_->name());
-  dependencies->insert(descriptor_->name() + "_Builder");
+  void MessageGenerator::DetermineDependencies(set<string>* dependencies) {
+    dependencies->insert(descriptor_->name());
+    dependencies->insert(descriptor_->name() + "_Builder");
 
     // Nested types and extensions
-  for (int i = 0; i < descriptor_->enum_type_count(); i++) {
-    EnumGenerator(descriptor_->enum_type(i)).DetermineDependencies(dependencies);
-  }
-  for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-    MessageGenerator(descriptor_->nested_type(i)).DetermineDependencies(dependencies);
-  }
-}
-
-void MessageGenerator::GenerateHeader(io::Printer* printer) {
-  if (descriptor_->extension_range_count() > 0) {
-    printer->Print(
-      "@interface $classname$ : GeneratedMessage_ExtendableMessage {\n",
-      "classname", descriptor_->name());
-  } else {
-    printer->Print(
-      "@interface $classname$ : GeneratedMessage {\n",
-      "classname", descriptor_->name());
+    for (int i = 0; i < descriptor_->enum_type_count(); i++) {
+      EnumGenerator(descriptor_->enum_type(i)).DetermineDependencies(dependencies);
+    }
+    for (int i = 0; i < descriptor_->nested_type_count(); i++) {
+      MessageGenerator(descriptor_->nested_type(i)).DetermineDependencies(dependencies);
+    }
   }
 
-  printer->Print(
+  void MessageGenerator::GenerateHeader(io::Printer* printer) {
+    if (descriptor_->extension_range_count() > 0) {
+      printer->Print(
+        "@interface $classname$ : GeneratedMessage_ExtendableMessage {\n",
+        "classname", descriptor_->name());
+    } else {
+      printer->Print(
+        "@interface $classname$ : GeneratedMessage {\n",
+        "classname", descriptor_->name());
+    }
+
+    printer->Print(
       " @private\n"
       "  int32_t memoizedSerializedSize;\n");
 
-  printer->Indent();
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    PrintFieldComment(printer, descriptor_->field(i));
-    field_generators_.get(descriptor_->field(i)).GenerateFieldsHeader(printer);
-  }
-  printer->Outdent();
+    printer->Indent();
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      PrintFieldComment(printer, descriptor_->field(i));
+      field_generators_.get(descriptor_->field(i)).GenerateFieldsHeader(printer);
+    }
+    printer->Outdent();
 
-  printer->Print("}\n");
+    printer->Print("}\n");
 
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(descriptor_->field(i)).GeneratePropertiesHeader(printer);
-  }
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GeneratePropertiesHeader(printer);
+    }
 
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(descriptor_->field(i)).GenerateMembersHeader(printer);
-  }
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GenerateMembersHeader(printer);
+    }
 
-  printer->Print(
-    "+ ($classname$*) getDefaultInstance;\n"
-    "- ($classname$*) getDefaultInstanceForType;\n",
-    "classname", descriptor_->name());
-  printer->Print(
-    "+ (Descriptor*) getDescriptor;\n"
-    "- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;\n"
-    "\n",
-    "fileclass", FileClassName(descriptor_->file()),
-    "identifier", UniqueFileScopeIdentifier(descriptor_));
+    printer->Print(
+      "+ ($classname$*) getDefaultInstance;\n"
+      "- ($classname$*) getDefaultInstanceForType;\n",
+      "classname", descriptor_->name());
+    printer->Print(
+      "+ (Descriptor*) getDescriptor;\n"
+      "- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;\n"
+      "\n",
+      "fileclass", FileClassName(descriptor_->file()),
+      "identifier", UniqueFileScopeIdentifier(descriptor_));
 
-  //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
+    //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     GenerateIsInitializedHeader(printer);
     GenerateMessageSerializationMethodsHeader(printer);
-  //}
+    //}
 
-  printer->Print(
-    "+ ($classname$_Builder*) newBuilder;\n"
-    "- ($classname$_Builder*) newBuilderForType;\n"
-    "+ ($classname$_Builder*) newBuilderWith$classname$:($classname$*) prototype;\n",
-    "classname", ClassName(descriptor_));
+    printer->Print(
+      "+ ($classname$_Builder*) newBuilder;\n"
+      "- ($classname$_Builder*) newBuilderForType;\n"
+      "+ ($classname$_Builder*) newBuilderWith$classname$:($classname$*) prototype;\n",
+      "classname", ClassName(descriptor_));
 
-  GenerateParseFromMethodsHeader(printer);
+    GenerateParseFromMethodsHeader(printer);
 
-  printer->Print("@end\n\n");
+    printer->Print("@end\n\n");
 
-  // Nested types and extensions
-  for (int i = 0; i < descriptor_->enum_type_count(); i++) {
-    EnumGenerator(descriptor_->enum_type(i)).GenerateHeader(printer);
-  }
-  for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-    MessageGenerator(descriptor_->nested_type(i)).GenerateHeader(printer);
-  }
+    // Nested types and extensions
+    for (int i = 0; i < descriptor_->enum_type_count(); i++) {
+      EnumGenerator(descriptor_->enum_type(i)).GenerateHeader(printer);
+    }
+    for (int i = 0; i < descriptor_->nested_type_count(); i++) {
+      MessageGenerator(descriptor_->nested_type(i)).GenerateHeader(printer);
+    }
 
-  GenerateBuilderHeader(printer);
-}
-
-
-void MessageGenerator::GenerateSource(io::Printer* printer) {
-  bool is_own_file =
-    descriptor_->containing_type() == NULL;
-
-  printer->Print("@implementation $classname$\n\n",
-    "classname", descriptor_->name());
-
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(descriptor_->field(i)).GenerateSynthesizeSource(printer);
+    GenerateBuilderHeader(printer);
   }
 
-  printer->Print("- (void) dealloc {\n");
-  printer->Indent();
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(descriptor_->field(i)).GenerateDeallocSource(printer);
-  }
-  printer->Outdent();
-  printer->Print(
-    "  [super dealloc];\n"
-    "}\n");
 
-  printer->Print(
-    "- (id) init {\n"
-    "  if (self = [super init]) {\n"
-    "    memoizedSerializedSize = -1;\n");
-  printer->Indent();
-  printer->Indent();
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(descriptor_->field(i)).GenerateInitializationSource(printer);
-  }
-  printer->Outdent();
-  printer->Outdent();
-  printer->Print(
-    "  }\n"
-    "  return self;\n"
-    "}\n");
+  void MessageGenerator::GenerateSource(io::Printer* printer) {
+    bool is_own_file =
+      descriptor_->containing_type() == NULL;
 
-  printer->Print(
-    "static $classname$* default$classname$Instance = nil;\n"
-    "+ (void) initialize {\n"
-    "  if (self == [$classname$ class]) {\n"
-    "    default$classname$Instance = [[$classname$ alloc] init];\n"
-    "  }\n"
-    "}\n"
-    "\n"
-    "+ ($classname$*) getDefaultInstance {\n"
-    "  return default$classname$Instance;\n"
-    "}\n"
-    "\n"
-    "- ($classname$*) getDefaultInstanceForType {\n"
-    "  return default$classname$Instance;\n"
-    "}\n"
-    "\n",
-    "classname", descriptor_->name());
-  printer->Print(
-    "+ (Descriptor*) getDescriptor {\n"
-    "  return [$fileclass$ internal_$identifier$_descriptor];\n"
-    "}\n"
-    "\n"
-    "- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {\n"
-    "  return [$fileclass$ internal_$identifier$_fieldAccessorTable];\n"
-    "}\n"
-    "\n",
-    "fileclass", FileClassName(descriptor_->file()),
-    "identifier", UniqueFileScopeIdentifier(descriptor_));
+    printer->Print("@implementation $classname$\n\n",
+      "classname", descriptor_->name());
 
-  // Fields
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(descriptor_->field(i)).GenerateMembersSource(printer);
-    printer->Print("\n");
-  }
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GenerateSynthesizeSource(printer);
+    }
 
-  //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
+    printer->Print("- (void) dealloc {\n");
+    printer->Indent();
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GenerateDeallocSource(printer);
+    }
+    printer->Outdent();
+    printer->Print(
+      "  [super dealloc];\n"
+      "}\n");
+
+    printer->Print(
+      "- (id) init {\n"
+      "  if (self = [super init]) {\n"
+      "    memoizedSerializedSize = -1;\n");
+    printer->Indent();
+    printer->Indent();
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GenerateInitializationSource(printer);
+    }
+    printer->Outdent();
+    printer->Outdent();
+    printer->Print(
+      "  }\n"
+      "  return self;\n"
+      "}\n");
+
+    printer->Print(
+      "static $classname$* default$classname$Instance = nil;\n"
+      "+ (void) initialize {\n"
+      "  if (self == [$classname$ class]) {\n"
+      "    default$classname$Instance = [[$classname$ alloc] init];\n"
+      "  }\n"
+      "}\n"
+      "\n"
+      "+ ($classname$*) getDefaultInstance {\n"
+      "  return default$classname$Instance;\n"
+      "}\n"
+      "\n"
+      "- ($classname$*) getDefaultInstanceForType {\n"
+      "  return default$classname$Instance;\n"
+      "}\n"
+      "\n",
+      "classname", descriptor_->name());
+    printer->Print(
+      "+ (Descriptor*) getDescriptor {\n"
+      "  return [$fileclass$ internal_$identifier$_descriptor];\n"
+      "}\n"
+      "\n"
+      "- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {\n"
+      "  return [$fileclass$ internal_$identifier$_fieldAccessorTable];\n"
+      "}\n"
+      "\n",
+      "fileclass", FileClassName(descriptor_->file()),
+      "identifier", UniqueFileScopeIdentifier(descriptor_));
+
+    // Fields
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GenerateMembersSource(printer);
+      printer->Print("\n");
+    }
+
+    //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     GenerateIsInitializedSource(printer);
     GenerateMessageSerializationMethodsSource(printer);
-  //}
+    //}
 
-  GenerateParseFromMethodsSource(printer);
+    GenerateParseFromMethodsSource(printer);
 
-  printer->Print(
-    "+ ($classname$_Builder*) newBuilder { return [[[$classname$_Builder alloc] init] autorelease]; }\n"
-    "- ($classname$_Builder*) newBuilderForType { return [$classname$ newBuilder]; }\n"
-    "+ ($classname$_Builder*) newBuilderWith$classname$:($classname$*) prototype {\n"
-    "  return [[$classname$ newBuilder] mergeFrom$classname$:prototype];\n"
-    "}\n"
-    "\n",
-    "classname", ClassName(descriptor_));
+    printer->Print(
+      "+ ($classname$_Builder*) newBuilder { return [[[$classname$_Builder alloc] init] autorelease]; }\n"
+      "- ($classname$_Builder*) newBuilderForType { return [$classname$ newBuilder]; }\n"
+      "+ ($classname$_Builder*) newBuilderWith$classname$:($classname$*) prototype {\n"
+      "  return [[$classname$ newBuilder] mergeFrom$classname$:prototype];\n"
+      "}\n"
+      "\n",
+      "classname", ClassName(descriptor_));
 
-  //GenerateStaticVariablesSource(printer);
+    //GenerateStaticVariablesSource(printer);
 
-  printer->Print("@end\n\n");
+    printer->Print("@end\n\n");
 
-  // Nested types and extensions
-  for (int i = 0; i < descriptor_->enum_type_count(); i++) {
-    EnumGenerator(descriptor_->enum_type(i)).GenerateSource(printer);
+    // Nested types and extensions
+    for (int i = 0; i < descriptor_->enum_type_count(); i++) {
+      EnumGenerator(descriptor_->enum_type(i)).GenerateSource(printer);
+    }
+
+    for (int i = 0; i < descriptor_->nested_type_count(); i++) {
+      MessageGenerator(descriptor_->nested_type(i)).GenerateSource(printer);
+    }
+
+    for (int i = 0; i < descriptor_->extension_count(); i++) {
+      ExtensionGenerator(descriptor_->extension(i)).GenerateFieldsSource(printer);
+    }
+
+    for (int i = 0; i < descriptor_->extension_count(); i++) {
+      ExtensionGenerator(descriptor_->extension(i)).GenerateInitializationSource(printer);
+    }
+
+    GenerateBuilderSource(printer);
   }
 
-  for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-    MessageGenerator(descriptor_->nested_type(i)).GenerateSource(printer);
+
+  // ===================================================================
+
+  void MessageGenerator::GenerateMessageSerializationMethodsHeader(io::Printer* printer) {
+    scoped_array<const FieldDescriptor*> sorted_fields(
+      SortFieldsByNumber(descriptor_));
+
+    vector<const Descriptor::ExtensionRange*> sorted_extensions;
+    for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
+      sorted_extensions.push_back(descriptor_->extension_range(i));
+    }
+    sort(sorted_extensions.begin(), sorted_extensions.end(),
+      ExtensionRangeOrdering());
+
+    printer->Print(
+      "- (void) writeToCodedOutputStream:(CodedOutputStream*) output;\n");
   }
 
-  for (int i = 0; i < descriptor_->extension_count(); i++) {
-    ExtensionGenerator(descriptor_->extension(i)).GenerateFieldsSource(printer);
+  void MessageGenerator::GenerateParseFromMethodsHeader(io::Printer* printer) {
+    // Note:  These are separate from GenerateMessageSerializationMethods()
+    //   because they need to be generated even for messages that are optimized
+    //   for code size.
+    printer->Print(
+      "+ ($classname$*) parseFromData:(NSData*) data;\n"
+      "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n"
+      "+ ($classname$*) parseFromInputStream:(NSInputStream*) input;\n"
+      "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n"
+      "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input;\n"
+      "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n",
+      "classname", ClassName(descriptor_));
   }
 
-  for (int i = 0; i < descriptor_->extension_count(); i++) {
-    ExtensionGenerator(descriptor_->extension(i)).GenerateInitializationSource(printer);
-  }
-
-  GenerateBuilderSource(printer);
-}
-
-
-// ===================================================================
-
-void MessageGenerator::GenerateMessageSerializationMethodsHeader(io::Printer* printer) {
-  scoped_array<const FieldDescriptor*> sorted_fields(
-    SortFieldsByNumber(descriptor_));
-
-  vector<const Descriptor::ExtensionRange*> sorted_extensions;
-  for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
-    sorted_extensions.push_back(descriptor_->extension_range(i));
-  }
-  sort(sorted_extensions.begin(), sorted_extensions.end(),
-       ExtensionRangeOrdering());
-
-  printer->Print(
-    "- (void) writeToCodedOutputStream:(CodedOutputStream*) output;\n");
-}
-
-void MessageGenerator::GenerateParseFromMethodsHeader(io::Printer* printer) {
-  // Note:  These are separate from GenerateMessageSerializationMethods()
-  //   because they need to be generated even for messages that are optimized
-  //   for code size.
-  printer->Print(
-    "+ ($classname$*) parseFromData:(NSData*) data;\n"
-    "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n"
-    "+ ($classname$*) parseFromInputStream:(NSInputStream*) input;\n"
-    "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n"
-    "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input;\n"
-    "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n",
-    "classname", ClassName(descriptor_));
-}
-
-void MessageGenerator::GenerateSerializeOneFieldHeader(
+  void MessageGenerator::GenerateSerializeOneFieldHeader(
     io::Printer* printer, const FieldDescriptor* field) {
-  field_generators_.get(field).GenerateSerializationCodeHeader(printer);
-}
+      field_generators_.get(field).GenerateSerializationCodeHeader(printer);
+  }
 
-void MessageGenerator::GenerateSerializeOneExtensionRangeHeader(
+  void MessageGenerator::GenerateSerializeOneExtensionRangeHeader(
     io::Printer* printer, const Descriptor::ExtensionRange* range) {
-}
-
-// ===================================================================
-
-void MessageGenerator::GenerateBuilderHeader(io::Printer* printer) {
-  if (descriptor_->extension_range_count() > 0) {
-    printer->Print(
-      "@interface $classname$_Builder : GeneratedMessage_ExtendableBuilder {\n",
-      "classname", ClassName(descriptor_));
-  } else {
-    printer->Print(
-      "@interface $classname$_Builder : GeneratedMessage_Builder {\n",
-      "classname", ClassName(descriptor_));
   }
 
-  printer->Print(
-    " @private\n"
-    "  $classname$* result;\n"
-    "}\n",
-    "classname", ClassName(descriptor_));
+  // ===================================================================
 
-  printer->Print(
-    "@property (retain) $classname$* result;\n",
-    "classname", ClassName(descriptor_));
+  void MessageGenerator::GenerateBuilderHeader(io::Printer* printer) {
+    if (descriptor_->extension_range_count() > 0) {
+      printer->Print(
+        "@interface $classname$_Builder : GeneratedMessage_ExtendableBuilder {\n",
+        "classname", ClassName(descriptor_));
+    } else {
+      printer->Print(
+        "@interface $classname$_Builder : GeneratedMessage_Builder {\n",
+        "classname", ClassName(descriptor_));
+    }
 
-  GenerateCommonBuilderMethodsHeader(printer);
+    printer->Print(
+      " @private\n"
+      "  $classname$* result;\n"
+      "}\n",
+      "classname", ClassName(descriptor_));
 
-  //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
+    printer->Print(
+      "@property (retain) $classname$* result;\n",
+      "classname", ClassName(descriptor_));
+
+    GenerateCommonBuilderMethodsHeader(printer);
+
+    //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     GenerateBuilderParsingMethodsHeader(printer);
-  //}
+    //}
 
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    printer->Print("\n");
-    PrintFieldComment(printer, descriptor_->field(i));
-    field_generators_.get(descriptor_->field(i)).GenerateBuilderMembersHeader(printer);
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      printer->Print("\n");
+      PrintFieldComment(printer, descriptor_->field(i));
+      field_generators_.get(descriptor_->field(i)).GenerateBuilderMembersHeader(printer);
+    }
+
+    printer->Print("@end\n\n");
   }
 
-  printer->Print("@end\n\n");
-}
+  // ===================================================================
 
-// ===================================================================
+  void MessageGenerator::GenerateCommonBuilderMethodsHeader(io::Printer* printer) {
+    printer->Print(
+      "// Construct using $classname$.newBuilder()\n"
+      //"- ($classname$*) internalGetResult;\n"
+      "- ($classname$_Builder*) clear;\n"
+      "- ($classname$_Builder*) clone;\n"
+      "- (Descriptor*) getDescriptorForType;\n"
+      "- ($classname$*) getDefaultInstanceForType;\n",
+      "classname", ClassName(descriptor_));
 
-void MessageGenerator::GenerateCommonBuilderMethodsHeader(io::Printer* printer) {
-  printer->Print(
-    "// Construct using $classname$.newBuilder()\n"
-    //"- ($classname$*) internalGetResult;\n"
-    "- ($classname$_Builder*) clear;\n"
-    "- ($classname$_Builder*) clone;\n"
-    "- (Descriptor*) getDescriptorForType;\n"
-    "- ($classname$*) getDefaultInstanceForType;\n",
-    "classname", ClassName(descriptor_));
+    // -----------------------------------------------------------------
 
-  // -----------------------------------------------------------------
+    printer->Print(
+      "- ($classname$*) build;\n"
+      "- ($classname$*) buildParsed;\n"
+      "- ($classname$*) buildPartial;\n",
+      "classname", ClassName(descriptor_));
+    printer->Indent();
 
-  printer->Print(
-    "- ($classname$*) build;\n"
-    "- ($classname$*) buildParsed;\n"
-    "- ($classname$*) buildPartial;\n",
-    "classname", ClassName(descriptor_));
-  printer->Indent();
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GenerateBuildingCodeHeader(printer);
+    }
 
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(descriptor_->field(i)).GenerateBuildingCodeHeader(printer);
-  }
+    printer->Outdent();
 
-  printer->Outdent();
+    // -----------------------------------------------------------------
 
-  // -----------------------------------------------------------------
-
-  //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
+    //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     printer->Print(
       "- ($classname$_Builder*) mergeFromMessage:(id<Message>) other;\n"
       "- ($classname$_Builder*) mergeFrom$classname$:($classname$*) other;\n",
@@ -565,150 +562,150 @@ void MessageGenerator::GenerateCommonBuilderMethodsHeader(io::Printer* printer) 
     }
 
     printer->Outdent();
-  //}
-}
-
-// ===================================================================
-
-void MessageGenerator::GenerateBuilderParsingMethodsHeader(io::Printer* printer) {
-  scoped_array<const FieldDescriptor*> sorted_fields(
-    SortFieldsByNumber(descriptor_));
-
-  printer->Print(
-    "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input;\n"
-    "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n",
-    "classname", ClassName(descriptor_));
-}
-
-// ===================================================================
-
-void MessageGenerator::GenerateIsInitializedHeader(io::Printer* printer) {
-  printer->Print(
-    "- (BOOL) isInitialized;\n");
-}
-
-
-void MessageGenerator::GenerateMessageSerializationMethodsSource(io::Printer* printer) {
-  scoped_array<const FieldDescriptor*> sorted_fields(
-    SortFieldsByNumber(descriptor_));
-
-  vector<const Descriptor::ExtensionRange*> sorted_extensions;
-  for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
-    sorted_extensions.push_back(descriptor_->extension_range(i));
+    //}
   }
-  sort(sorted_extensions.begin(), sorted_extensions.end(),
-       ExtensionRangeOrdering());
 
-  printer->Print(
-    "- (void) writeToCodedOutputStream:(CodedOutputStream*) output {\n");
-  printer->Indent();
+  // ===================================================================
 
-  if (descriptor_->extension_range_count() > 0) {
+  void MessageGenerator::GenerateBuilderParsingMethodsHeader(io::Printer* printer) {
+    scoped_array<const FieldDescriptor*> sorted_fields(
+      SortFieldsByNumber(descriptor_));
+
     printer->Print(
-      "ExtendableMessage_ExtensionWriter* extensionWriter = [self newExtensionWriter];\n");
+      "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input;\n"
+      "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n",
+      "classname", ClassName(descriptor_));
   }
 
-  // Merge the fields and the extension ranges, both sorted by field number.
-  for (int i = 0, j = 0;
-       i < descriptor_->field_count() || j < sorted_extensions.size();
-       ) {
-    if (i == descriptor_->field_count()) {
-      GenerateSerializeOneExtensionRangeSource(printer, sorted_extensions[j++]);
-    } else if (j == sorted_extensions.size()) {
-      GenerateSerializeOneFieldSource(printer, sorted_fields[i++]);
-    } else if (sorted_fields[i]->number() < sorted_extensions[j]->start) {
-      GenerateSerializeOneFieldSource(printer, sorted_fields[i++]);
-    } else {
-      GenerateSerializeOneExtensionRangeSource(printer, sorted_extensions[j++]);
+  // ===================================================================
+
+  void MessageGenerator::GenerateIsInitializedHeader(io::Printer* printer) {
+    printer->Print(
+      "- (BOOL) isInitialized;\n");
+  }
+
+
+  void MessageGenerator::GenerateMessageSerializationMethodsSource(io::Printer* printer) {
+    scoped_array<const FieldDescriptor*> sorted_fields(
+      SortFieldsByNumber(descriptor_));
+
+    vector<const Descriptor::ExtensionRange*> sorted_extensions;
+    for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
+      sorted_extensions.push_back(descriptor_->extension_range(i));
     }
+    sort(sorted_extensions.begin(), sorted_extensions.end(),
+      ExtensionRangeOrdering());
+
+    printer->Print(
+      "- (void) writeToCodedOutputStream:(CodedOutputStream*) output {\n");
+    printer->Indent();
+
+    if (descriptor_->extension_range_count() > 0) {
+      printer->Print(
+        "ExtendableMessage_ExtensionWriter* extensionWriter = [self newExtensionWriter];\n");
+    }
+
+    // Merge the fields and the extension ranges, both sorted by field number.
+    for (int i = 0, j = 0;
+      i < descriptor_->field_count() || j < sorted_extensions.size();
+      ) {
+        if (i == descriptor_->field_count()) {
+          GenerateSerializeOneExtensionRangeSource(printer, sorted_extensions[j++]);
+        } else if (j == sorted_extensions.size()) {
+          GenerateSerializeOneFieldSource(printer, sorted_fields[i++]);
+        } else if (sorted_fields[i]->number() < sorted_extensions[j]->start) {
+          GenerateSerializeOneFieldSource(printer, sorted_fields[i++]);
+        } else {
+          GenerateSerializeOneExtensionRangeSource(printer, sorted_extensions[j++]);
+        }
+    }
+
+    if (descriptor_->options().message_set_wire_format()) {
+      printer->Print(
+        "[self.getUnknownFields writeAsMessageSetTo:output];\n");
+    } else {
+      printer->Print(
+        "[self.getUnknownFields writeToCodedOutputStream:output];\n");
+    }
+
+    printer->Outdent();
+    printer->Print(
+      "}\n"
+      "\n"
+      "- (int32_t) getSerializedSize {\n"
+      "  int32_t size = memoizedSerializedSize;\n"
+      "  if (size != -1) return size;\n"
+      "\n"
+      "  size = 0;\n");
+    printer->Indent();
+
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(sorted_fields[i]).GenerateSerializedSizeCodeSource(printer);
+    }
+
+    if (descriptor_->extension_range_count() > 0) {
+      printer->Print(
+        "size += [self extensionsSerializedSize];\n");
+    }
+
+    if (descriptor_->options().message_set_wire_format()) {
+      printer->Print(
+        "size += self.getUnknownFields.getSerializedSizeAsMessageSet;\n");
+    } else {
+      printer->Print(
+        "size += self.getUnknownFields.getSerializedSize;\n");
+    }
+
+    printer->Outdent();
+    printer->Print(
+      "  memoizedSerializedSize = size;\n"
+      "  return size;\n"
+      "}\n"
+      "\n");
   }
 
-  if (descriptor_->options().message_set_wire_format()) {
+  void MessageGenerator::GenerateParseFromMethodsSource(io::Printer* printer) {
+    // Note:  These are separate from GenerateMessageSerializationMethods()
+    //   because they need to be generated even for messages that are optimized
+    //   for code size.
     printer->Print(
-      "[self.getUnknownFields writeAsMessageSetTo:output];\n");
-  } else {
-    printer->Print(
-      "[self.getUnknownFields writeToCodedOutputStream:output];\n");
+      "+ ($classname$*) parseFromData:(NSData*) data {\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data] buildParsed];\n"
+      "}\n"
+      "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];\n"
+      "}\n"
+      "+ ($classname$*) parseFromInputStream:(NSInputStream*) input {\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input] buildParsed];\n"
+      "}\n"
+      "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];\n"
+      "}\n"
+      "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input {\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input] buildParsed];\n"
+      "}\n"
+      "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];\n"
+      "}\n"
+      "\n",
+      "classname", ClassName(descriptor_));
   }
 
-  printer->Outdent();
-  printer->Print(
-    "}\n"
-    "\n"
-    "- (int32_t) getSerializedSize {\n"
-    "  int32_t size = memoizedSerializedSize;\n"
-    "  if (size != -1) return size;\n"
-    "\n"
-    "  size = 0;\n");
-  printer->Indent();
-
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(sorted_fields[i]).GenerateSerializedSizeCodeSource(printer);
-  }
-
-  if (descriptor_->extension_range_count() > 0) {
-    printer->Print(
-      "size += [self extensionsSerializedSize];\n");
-  }
-
-  if (descriptor_->options().message_set_wire_format()) {
-    printer->Print(
-      "size += self.getUnknownFields.getSerializedSizeAsMessageSet;\n");
-  } else {
-    printer->Print(
-      "size += self.getUnknownFields.getSerializedSize;\n");
-  }
-
-  printer->Outdent();
-  printer->Print(
-    "  memoizedSerializedSize = size;\n"
-    "  return size;\n"
-    "}\n"
-    "\n");
-}
-
-void MessageGenerator::GenerateParseFromMethodsSource(io::Printer* printer) {
-  // Note:  These are separate from GenerateMessageSerializationMethods()
-  //   because they need to be generated even for messages that are optimized
-  //   for code size.
-  printer->Print(
-    "+ ($classname$*) parseFromData:(NSData*) data {\n"
-    "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data] buildParsed];\n"
-    "}\n"
-    "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n"
-    "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];\n"
-    "}\n"
-    "+ ($classname$*) parseFromInputStream:(NSInputStream*) input {\n"
-    "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input] buildParsed];\n"
-    "}\n"
-    "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n"
-    "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];\n"
-    "}\n"
-    "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input {\n"
-    "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input] buildParsed];\n"
-    "}\n"
-    "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n"
-    "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];\n"
-    "}\n"
-    "\n",
-    "classname", ClassName(descriptor_));
-}
-
-void MessageGenerator::GenerateSerializeOneFieldSource(
+  void MessageGenerator::GenerateSerializeOneFieldSource(
     io::Printer* printer, const FieldDescriptor* field) {
-  field_generators_.get(field).GenerateSerializationCodeSource(printer);
-}
+      field_generators_.get(field).GenerateSerializationCodeSource(printer);
+  }
 
-void MessageGenerator::GenerateSerializeOneExtensionRangeSource(
+  void MessageGenerator::GenerateSerializeOneExtensionRangeSource(
     io::Printer* printer, const Descriptor::ExtensionRange* range) {
-  printer->Print(
-    "[extensionWriter writeUntil:$end$ output:output];\n",
-    "end", SimpleItoa(range->end));
-}
+      printer->Print(
+        "[extensionWriter writeUntil:$end$ output:output];\n",
+        "end", SimpleItoa(range->end));
+  }
 
-// ===================================================================
+  // ===================================================================
 
-void MessageGenerator::GenerateBuilderSource(io::Printer* printer) {
+  void MessageGenerator::GenerateBuilderSource(io::Printer* printer) {
     printer->Print(
       "@implementation $classname$_Builder\n"
       "@synthesize result;\n"
@@ -727,85 +724,85 @@ void MessageGenerator::GenerateBuilderSource(io::Printer* printer) {
       "}\n",
       "classname", ClassName(descriptor_));
 
-  GenerateCommonBuilderMethodsSource(printer);
+    GenerateCommonBuilderMethodsSource(printer);
 
-  //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
+    //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     GenerateBuilderParsingMethodsSource(printer);
-  //}
+    //}
 
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    printer->Print("\n");
-    //PrintFieldComment(printer, descriptor_->field(i));
-    field_generators_.get(descriptor_->field(i)).GenerateBuilderMembersSource(printer);
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      printer->Print("\n");
+      //PrintFieldComment(printer, descriptor_->field(i));
+      field_generators_.get(descriptor_->field(i)).GenerateBuilderMembersSource(printer);
+    }
+
+    printer->Print("@end\n\n");
   }
 
-  printer->Print("@end\n\n");
-}
+  // ===================================================================
 
-// ===================================================================
+  void MessageGenerator::GenerateCommonBuilderMethodsSource(io::Printer* printer) {
+    printer->Print(
+      "- ($classname$*) internalGetResult {\n"
+      "  return result;\n"
+      "}\n"
+      "\n"
+      "- ($classname$_Builder*) clear {\n"
+      "  self.result = [[[$classname$ alloc] init] autorelease];\n"
+      "  return self;\n"
+      "}\n"
+      "\n"
+      "- ($classname$_Builder*) clone {\n"
+      "  return ($classname$_Builder*)[[[[$classname$_Builder alloc] init] autorelease] mergeFrom$classname$:result];\n"
+      "}\n"
+      "\n"
+      "- (Descriptor*) getDescriptorForType {\n"
+      "  return [$classname$ getDescriptor];\n"
+      "}\n"
+      "\n"
+      "- ($classname$*) getDefaultInstanceForType {\n"
+      "  return [$classname$ getDefaultInstance];\n"
+      "}\n"
+      "\n",
+      "classname", ClassName(descriptor_));
 
-void MessageGenerator::GenerateCommonBuilderMethodsSource(io::Printer* printer) {
-  printer->Print(
-    "- ($classname$*) internalGetResult {\n"
-    "  return result;\n"
-    "}\n"
-    "\n"
-    "- ($classname$_Builder*) clear {\n"
-    "  self.result = [[[$classname$ alloc] init] autorelease];\n"
-    "  return self;\n"
-    "}\n"
-    "\n"
-    "- ($classname$_Builder*) clone {\n"
-    "  return ($classname$_Builder*)[[[[$classname$_Builder alloc] init] autorelease] mergeFrom$classname$:result];\n"
-    "}\n"
-    "\n"
-    "- (Descriptor*) getDescriptorForType {\n"
-    "  return [$classname$ getDescriptor];\n"
-    "}\n"
-    "\n"
-    "- ($classname$*) getDefaultInstanceForType {\n"
-    "  return [$classname$ getDefaultInstance];\n"
-    "}\n"
-    "\n",
-    "classname", ClassName(descriptor_));
+    // -----------------------------------------------------------------
 
-  // -----------------------------------------------------------------
+    printer->Print(
+      "- ($classname$*) build {\n"
+      "  if (!self.isInitialized) {\n"
+      "    @throw [NSException exceptionWithName:@\"UninitializedMessage\" reason:@\"\" userInfo:nil];\n"
+      "  }\n"
+      "  return [self buildPartial];\n"
+      "}\n"
+      "\n"
+      "- ($classname$*) buildParsed {\n"
+      "  if (!self.isInitialized) {\n"
+      "    @throw [NSException exceptionWithName:@\"UninitializedMessage\" reason:@\"\" userInfo:nil];\n"
+      "  }\n"
+      "  return [self buildPartial];\n"
+      "}\n"
+      "\n"
+      "- ($classname$*) buildPartial {\n",
+      "classname", ClassName(descriptor_));
+    printer->Indent();
 
-  printer->Print(
-    "- ($classname$*) build {\n"
-    "  if (!self.isInitialized) {\n"
-    "    @throw [NSException exceptionWithName:@\"UninitializedMessage\" reason:@\"\" userInfo:nil];\n"
-    "  }\n"
-    "  return [self buildPartial];\n"
-    "}\n"
-    "\n"
-    "- ($classname$*) buildParsed {\n"
-    "  if (!self.isInitialized) {\n"
-    "    @throw [NSException exceptionWithName:@\"UninitializedMessage\" reason:@\"\" userInfo:nil];\n"
-    "  }\n"
-    "  return [self buildPartial];\n"
-    "}\n"
-    "\n"
-    "- ($classname$*) buildPartial {\n",
-    "classname", ClassName(descriptor_));
-  printer->Indent();
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GenerateBuildingCodeSource(printer);
+    }
 
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    field_generators_.get(descriptor_->field(i)).GenerateBuildingCodeSource(printer);
-  }
+    printer->Outdent();
+    printer->Print(
+      "  $classname$* returnMe = [[result retain] autorelease];\n"
+      "  self.result = nil;\n"
+      "  return returnMe;\n"
+      "}\n"
+      "\n",
+      "classname", ClassName(descriptor_));
 
-  printer->Outdent();
-  printer->Print(
-    "  $classname$* returnMe = [[result retain] autorelease];\n"
-    "  self.result = nil;\n"
-    "  return returnMe;\n"
-    "}\n"
-    "\n",
-    "classname", ClassName(descriptor_));
+    // -----------------------------------------------------------------
 
-  // -----------------------------------------------------------------
-
-  //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
+    //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     printer->Print(
       "- ($classname$_Builder*) mergeFromMessage:(id<Message>) other {\n"
       "  id o = other;\n"
@@ -834,100 +831,100 @@ void MessageGenerator::GenerateCommonBuilderMethodsSource(io::Printer* printer) 
       "  return self;\n"
       "}\n"
       "\n");
-  //}
-}
+    //}
+  }
 
-// ===================================================================
+  // ===================================================================
 
-void MessageGenerator::GenerateBuilderParsingMethodsSource(io::Printer* printer) {
-  scoped_array<const FieldDescriptor*> sorted_fields(
-    SortFieldsByNumber(descriptor_));
-
-  printer->Print(
-    "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {\n"
-    "  return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];\n"
-    "}\n"
-    "\n"
-    "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n",
-      "classname", ClassName(descriptor_));
-  printer->Indent();
-
-  printer->Print(
-    "UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];\n"
-    "while (true) {\n");
-  printer->Indent();
-
-  printer->Print(
-    "int32_t tag = [input readTag];\n"
-    "switch (tag) {\n");
-  printer->Indent();
-
-  printer->Print(
-    "case 0:\n"          // zero signals EOF / limit reached
-    "  [self setUnknownFields:[unknownFields build]];\n"
-    "  return self;\n"
-    "default: {\n"
-    "  if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {\n"
-    "    [self setUnknownFields:[unknownFields build]];\n"
-    "    return self;\n"   // it's an endgroup tag
-    "  }\n"
-    "  break;\n"
-    "}\n");
-
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    const FieldDescriptor* field = sorted_fields[i];
-    uint32 tag = WireFormat::MakeTag(field->number(),
-      WireFormat::WireTypeForFieldType(field->type()));
+  void MessageGenerator::GenerateBuilderParsingMethodsSource(io::Printer* printer) {
+    scoped_array<const FieldDescriptor*> sorted_fields(
+      SortFieldsByNumber(descriptor_));
 
     printer->Print(
-      "case $tag$: {\n",
-      "tag", SimpleItoa(tag));
+      "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {\n"
+      "  return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];\n"
+      "}\n"
+      "\n"
+      "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n",
+      "classname", ClassName(descriptor_));
     printer->Indent();
 
-    field_generators_.get(field).GenerateParsingCodeSource(printer);
-
-    printer->Outdent();
     printer->Print(
+      "UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];\n"
+      "while (true) {\n");
+    printer->Indent();
+
+    printer->Print(
+      "int32_t tag = [input readTag];\n"
+      "switch (tag) {\n");
+    printer->Indent();
+
+    printer->Print(
+      "case 0:\n"          // zero signals EOF / limit reached
+      "  [self setUnknownFields:[unknownFields build]];\n"
+      "  return self;\n"
+      "default: {\n"
+      "  if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {\n"
+      "    [self setUnknownFields:[unknownFields build]];\n"
+      "    return self;\n"   // it's an endgroup tag
+      "  }\n"
       "  break;\n"
       "}\n");
-  }
 
-  printer->Outdent();
-  printer->Outdent();
-  printer->Outdent();
-  printer->Print(
-    "    }\n"     // switch (tag)
-    "  }\n"       // while (true)
-    "}\n"
-    "\n");
-}
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      const FieldDescriptor* field = sorted_fields[i];
+      uint32 tag = WireFormat::MakeTag(field->number(),
+        WireFormat::WireTypeForFieldType(field->type()));
 
-// ===================================================================
-
-void MessageGenerator::GenerateIsInitializedSource(io::Printer* printer) {
-  printer->Print(
-    "- (BOOL) isInitialized {\n");
-  printer->Indent();
-
-  // Check that all required fields in this message are set.
-  // TODO(kenton):  We can optimize this when we switch to putting all the
-  //   "has" fields into a single bitfield.
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    const FieldDescriptor* field = descriptor_->field(i);
-
-    if (field->is_required()) {
       printer->Print(
-        "if (!self.has$name$) return false;\n",
-        "name", UnderscoresToCapitalizedCamelCase(field));
+        "case $tag$: {\n",
+        "tag", SimpleItoa(tag));
+      printer->Indent();
+
+      field_generators_.get(field).GenerateParsingCodeSource(printer);
+
+      printer->Outdent();
+      printer->Print(
+        "  break;\n"
+        "}\n");
     }
+
+    printer->Outdent();
+    printer->Outdent();
+    printer->Outdent();
+    printer->Print(
+      "    }\n"     // switch (tag)
+      "  }\n"       // while (true)
+      "}\n"
+      "\n");
   }
 
-  // Now check that all embedded messages are initialized.
-  for (int i = 0; i < descriptor_->field_count(); i++) {
-    const FieldDescriptor* field = descriptor_->field(i);
-    if (field->cpp_type() == FieldDescriptor::CPPTYPE_MESSAGE &&
+  // ===================================================================
+
+  void MessageGenerator::GenerateIsInitializedSource(io::Printer* printer) {
+    printer->Print(
+      "- (BOOL) isInitialized {\n");
+    printer->Indent();
+
+    // Check that all required fields in this message are set.
+    // TODO(kenton):  We can optimize this when we switch to putting all the
+    //   "has" fields into a single bitfield.
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      const FieldDescriptor* field = descriptor_->field(i);
+
+      if (field->is_required()) {
+        printer->Print(
+          "if (!self.has$name$) return false;\n",
+          "name", UnderscoresToCapitalizedCamelCase(field));
+      }
+    }
+
+    // Now check that all embedded messages are initialized.
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      const FieldDescriptor* field = descriptor_->field(i);
+      if (field->cpp_type() == FieldDescriptor::CPPTYPE_MESSAGE &&
         HasRequiredFields(field->message_type())) {
-      switch (field->label()) {
+          switch (field->label()) {
         case FieldDescriptor::LABEL_REQUIRED:
           printer->Print(
             "if (!self.get$name$.isInitialized) return false;\n",
@@ -950,21 +947,21 @@ void MessageGenerator::GenerateIsInitializedSource(io::Printer* printer) {
             "type", ClassName(field->message_type()),
             "name", UnderscoresToCapitalizedCamelCase(field));
           break;
+          }
       }
     }
-  }
 
-  if (descriptor_->extension_range_count() > 0) {
+    if (descriptor_->extension_range_count() > 0) {
+      printer->Print(
+        "if (!self.extensionsAreInitialized) return false;\n");
+    }
+
+    printer->Outdent();
     printer->Print(
-      "if (!self.extensionsAreInitialized) return false;\n");
+      "  return true;\n"
+      "}\n"
+      "\n");
   }
-
-  printer->Outdent();
-  printer->Print(
-    "  return true;\n"
-    "}\n"
-    "\n");
-}
 
 }  // namespace objectivec
 }  // namespace compiler
