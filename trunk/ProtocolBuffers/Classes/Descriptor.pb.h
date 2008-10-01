@@ -43,37 +43,37 @@
 }
 + (FileDescriptor*) getDescriptor;
 + (FileDescriptor*) buildDescriptor;
-+ (Descriptor*) internal_static_google_protobuf_FileDescriptorSet_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_FileDescriptorSet_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_FileDescriptorProto_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_FileDescriptorProto_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_DescriptorProto_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_DescriptorProto_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_FieldDescriptorProto_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_FieldDescriptorProto_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_EnumDescriptorProto_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_EnumDescriptorProto_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_EnumValueDescriptorProto_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_EnumValueDescriptorProto_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_ServiceDescriptorProto_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_ServiceDescriptorProto_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_MethodDescriptorProto_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_MethodDescriptorProto_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_FileOptions_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_FileOptions_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_FileOptions_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_MessageOptions_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_MessageOptions_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_MessageOptions_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_FieldOptions_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_FieldOptions_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_FieldOptions_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_EnumOptions_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_EnumOptions_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_EnumOptions_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_EnumValueOptions_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_EnumValueOptions_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_ServiceOptions_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_ServiceOptions_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_ServiceOptions_fieldAccessorTable;
-+ (Descriptor*) internal_static_google_protobuf_MethodOptions_descriptor;
++ (PBDescriptor*) internal_static_google_protobuf_MethodOptions_descriptor;
 + (FieldAccessorTable*) internal_static_google_protobuf_MethodOptions_fieldAccessorTable;
 @end
 
@@ -89,7 +89,7 @@
 - (PBFileDescriptorProto*) getFile:(int32_t) index;
 + (PBFileDescriptorSet*) getDefaultInstance;
 - (PBFileDescriptorSet*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -113,7 +113,7 @@
 // Construct using PBFileDescriptorSet.newBuilder()
 - (PBFileDescriptorSet_Builder*) clear;
 - (PBFileDescriptorSet_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBFileDescriptorSet*) getDefaultInstanceForType;
 - (PBFileDescriptorSet*) build;
 - (PBFileDescriptorSet*) buildParsed;
@@ -191,7 +191,7 @@
 - (PBFileOptions*) getOptions;
 + (PBFileDescriptorProto*) getDefaultInstance;
 - (PBFileDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -215,7 +215,7 @@
 // Construct using PBFileDescriptorProto.newBuilder()
 - (PBFileDescriptorProto_Builder*) clear;
 - (PBFileDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBFileDescriptorProto*) getDefaultInstanceForType;
 - (PBFileDescriptorProto*) build;
 - (PBFileDescriptorProto*) buildParsed;
@@ -348,7 +348,7 @@
 - (PBMessageOptions*) getOptions;
 + (PBDescriptorProto*) getDefaultInstance;
 - (PBDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -384,7 +384,7 @@
 - (int32_t) getEnd;
 + (PBExtensionRange*) getDefaultInstance;
 - (PBExtensionRange*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -408,7 +408,7 @@
 // Construct using PBExtensionRange.newBuilder()
 - (PBExtensionRange_Builder*) clear;
 - (PBExtensionRange_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBExtensionRange*) getDefaultInstanceForType;
 - (PBExtensionRange*) build;
 - (PBExtensionRange*) buildParsed;
@@ -439,7 +439,7 @@
 // Construct using PBDescriptorProto.newBuilder()
 - (PBDescriptorProto_Builder*) clear;
 - (PBDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBDescriptorProto*) getDefaultInstanceForType;
 - (PBDescriptorProto*) build;
 - (PBDescriptorProto*) buildParsed;
@@ -580,7 +580,7 @@
 - (PBFieldOptions*) getOptions;
 + (PBFieldDescriptorProto*) getDefaultInstance;
 - (PBFieldDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -661,7 +661,7 @@
 // Construct using PBFieldDescriptorProto.newBuilder()
 - (PBFieldDescriptorProto_Builder*) clear;
 - (PBFieldDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBFieldDescriptorProto*) getDefaultInstanceForType;
 - (PBFieldDescriptorProto*) build;
 - (PBFieldDescriptorProto*) buildParsed;
@@ -747,7 +747,7 @@
 - (PBEnumOptions*) getOptions;
 + (PBEnumDescriptorProto*) getDefaultInstance;
 - (PBEnumDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -771,7 +771,7 @@
 // Construct using PBEnumDescriptorProto.newBuilder()
 - (PBEnumDescriptorProto_Builder*) clear;
 - (PBEnumDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBEnumDescriptorProto*) getDefaultInstanceForType;
 - (PBEnumDescriptorProto*) build;
 - (PBEnumDescriptorProto*) buildParsed;
@@ -833,7 +833,7 @@
 - (PBEnumValueOptions*) getOptions;
 + (PBEnumValueDescriptorProto*) getDefaultInstance;
 - (PBEnumValueDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -857,7 +857,7 @@
 // Construct using PBEnumValueDescriptorProto.newBuilder()
 - (PBEnumValueDescriptorProto_Builder*) clear;
 - (PBEnumValueDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBEnumValueDescriptorProto*) getDefaultInstanceForType;
 - (PBEnumValueDescriptorProto*) build;
 - (PBEnumValueDescriptorProto*) buildParsed;
@@ -913,7 +913,7 @@
 - (PBServiceOptions*) getOptions;
 + (PBServiceDescriptorProto*) getDefaultInstance;
 - (PBServiceDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -937,7 +937,7 @@
 // Construct using PBServiceDescriptorProto.newBuilder()
 - (PBServiceDescriptorProto_Builder*) clear;
 - (PBServiceDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBServiceDescriptorProto*) getDefaultInstanceForType;
 - (PBServiceDescriptorProto*) build;
 - (PBServiceDescriptorProto*) buildParsed;
@@ -1006,7 +1006,7 @@
 - (PBMethodOptions*) getOptions;
 + (PBMethodDescriptorProto*) getDefaultInstance;
 - (PBMethodDescriptorProto*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1030,7 +1030,7 @@
 // Construct using PBMethodDescriptorProto.newBuilder()
 - (PBMethodDescriptorProto_Builder*) clear;
 - (PBMethodDescriptorProto_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBMethodDescriptorProto*) getDefaultInstanceForType;
 - (PBMethodDescriptorProto*) build;
 - (PBMethodDescriptorProto*) buildParsed;
@@ -1115,7 +1115,7 @@
 - (NSString*) getObjectivecClassPrefix;
 + (PBFileOptions*) getDefaultInstance;
 - (PBFileOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1159,7 +1159,7 @@
 // Construct using PBFileOptions.newBuilder()
 - (PBFileOptions_Builder*) clear;
 - (PBFileOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBFileOptions*) getDefaultInstanceForType;
 - (PBFileOptions*) build;
 - (PBFileOptions*) buildParsed;
@@ -1219,7 +1219,7 @@
 - (BOOL) getMessageSetWireFormat;
 + (PBMessageOptions*) getDefaultInstance;
 - (PBMessageOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1243,7 +1243,7 @@
 // Construct using PBMessageOptions.newBuilder()
 - (PBMessageOptions_Builder*) clear;
 - (PBMessageOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBMessageOptions*) getDefaultInstanceForType;
 - (PBMessageOptions*) build;
 - (PBMessageOptions*) buildParsed;
@@ -1280,7 +1280,7 @@
 - (NSString*) getExperimentalMapKey;
 + (PBFieldOptions*) getDefaultInstance;
 - (PBFieldOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1324,7 +1324,7 @@
 // Construct using PBFieldOptions.newBuilder()
 - (PBFieldOptions_Builder*) clear;
 - (PBFieldOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBFieldOptions*) getDefaultInstanceForType;
 - (PBFieldOptions*) build;
 - (PBFieldOptions*) buildParsed;
@@ -1353,7 +1353,7 @@
 }
 + (PBEnumOptions*) getDefaultInstance;
 - (PBEnumOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1377,7 +1377,7 @@
 // Construct using PBEnumOptions.newBuilder()
 - (PBEnumOptions_Builder*) clear;
 - (PBEnumOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBEnumOptions*) getDefaultInstanceForType;
 - (PBEnumOptions*) build;
 - (PBEnumOptions*) buildParsed;
@@ -1394,7 +1394,7 @@
 }
 + (PBEnumValueOptions*) getDefaultInstance;
 - (PBEnumValueOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1418,7 +1418,7 @@
 // Construct using PBEnumValueOptions.newBuilder()
 - (PBEnumValueOptions_Builder*) clear;
 - (PBEnumValueOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBEnumValueOptions*) getDefaultInstanceForType;
 - (PBEnumValueOptions*) build;
 - (PBEnumValueOptions*) buildParsed;
@@ -1435,7 +1435,7 @@
 }
 + (PBServiceOptions*) getDefaultInstance;
 - (PBServiceOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1459,7 +1459,7 @@
 // Construct using PBServiceOptions.newBuilder()
 - (PBServiceOptions_Builder*) clear;
 - (PBServiceOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBServiceOptions*) getDefaultInstanceForType;
 - (PBServiceOptions*) build;
 - (PBServiceOptions*) buildParsed;
@@ -1476,7 +1476,7 @@
 }
 + (PBMethodOptions*) getDefaultInstance;
 - (PBMethodOptions*) getDefaultInstanceForType;
-+ (Descriptor*) getDescriptor;
++ (PBDescriptor*) getDescriptor;
 - (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1500,7 +1500,7 @@
 // Construct using PBMethodOptions.newBuilder()
 - (PBMethodOptions_Builder*) clear;
 - (PBMethodOptions_Builder*) clone;
-- (Descriptor*) getDescriptorForType;
+- (PBDescriptor*) getDescriptorForType;
 - (PBMethodOptions*) getDefaultInstanceForType;
 - (PBMethodOptions*) build;
 - (PBMethodOptions*) buildParsed;

@@ -51,7 +51,7 @@
 - (NSMutableDictionary*) getAllFieldsMutable {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     
-    Descriptor* descriptor = [self internalGetFieldAccessorTable].descriptor;
+    PBDescriptor* descriptor = [self internalGetFieldAccessorTable].descriptor;
     for (FieldDescriptor* field in descriptor.getFields) {
         if (field.isRepeated) {
             id value = [self getField:field];

@@ -162,7 +162,7 @@
 }
 
 
-- (Descriptor*) getDescriptorForType {
+- (PBDescriptor*) getDescriptorForType {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

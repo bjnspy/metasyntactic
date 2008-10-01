@@ -75,7 +75,7 @@ static ExtensionRegistry* EMPTY = nil;
 }
 
 
-- (ExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(Descriptor*) containingType
+- (ExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
                                                fieldNumber:(int32_t) fieldNumber {
     return [extensionsByNumber objectForKey:[ExtensionRegistry_DescriptorIntPair pairWithDescriptor:containingType number:fieldNumber]];
 }
