@@ -104,7 +104,7 @@
 }
 
 
-- (DynamicMessage_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input
+- (DynamicMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input
                                     extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     UnknownFieldSet_Builder* unknownFieldsBuilder = [UnknownFieldSet newBuilder:unknownFields];
     [FieldSet mergeFromCodedInputStream:input unknownFields:unknownFieldsBuilder extensionRegistry:extensionRegistry builder:self];

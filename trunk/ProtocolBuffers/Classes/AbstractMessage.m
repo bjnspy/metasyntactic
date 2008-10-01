@@ -22,7 +22,7 @@
 #import "FieldDescriptor.h"
 #import "ObjectiveCType.h"
 
-@implementation AbstractMessage
+@implementation PBAbstractMessage
 
 
 - (id) init {
@@ -66,7 +66,7 @@
 }
 
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
     NSDictionary* allFields = self.getAllFields;
     for (FieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
@@ -90,14 +90,14 @@
 
 - (NSData*) toData {
     NSMutableData* data = [NSMutableData dataWithLength:self.getSerializedSize];
-    CodedOutputStream* stream = [CodedOutputStream streamWithData:data];
+    PBCodedOutputStream* stream = [PBCodedOutputStream streamWithData:data];
     [self writeToCodedOutputStream:stream];
     return data;
 }
 
 
 - (void) writeToOutputStream:(NSOutputStream*) output {
-    CodedOutputStream* codedOutput = [CodedOutputStream newInstance:output];
+    PBCodedOutputStream* codedOutput = [PBCodedOutputStream newInstance:output];
     [self writeToCodedOutputStream:codedOutput];
     [codedOutput flush];
 }

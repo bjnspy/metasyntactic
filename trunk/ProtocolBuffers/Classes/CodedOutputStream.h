@@ -16,7 +16,7 @@
 
 #import "FieldDescriptorType.h"
 
-@interface CodedOutputStream : NSObject {
+@interface PBCodedOutputStream : NSObject {
     NSMutableData* buffer;
     int32_t position;
     NSOutputStream* output;
@@ -26,8 +26,8 @@
 @property int32_t position;
 @property (retain) NSOutputStream* output;
 
-+ (CodedOutputStream*) newInstance:(NSOutputStream*) output;
-+ (CodedOutputStream*) streamWithData:(NSMutableData*) data;
++ (PBCodedOutputStream*) newInstance:(NSOutputStream*) output;
++ (PBCodedOutputStream*) streamWithData:(NSMutableData*) data;
 
 int32_t encodeZigZag32(int32_t n);
 int64_t encodeZigZag64(int64_t n);

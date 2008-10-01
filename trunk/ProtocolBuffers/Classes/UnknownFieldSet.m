@@ -80,29 +80,29 @@ static UnknownFieldSet* defaultInstance = nil;
 }
 
 
-- (Field*) getField:(int32_t) number {
-    Field* result = [fields objectForKey:[NSNumber numberWithInt:number]];
-    return (result == nil) ? [Field getDefaultInstance] : result;
+- (PBField*) getField:(int32_t) number {
+    PBField* result = [fields objectForKey:[NSNumber numberWithInt:number]];
+    return (result == nil) ? [PBField getDefaultInstance] : result;
 }
 
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
     NSArray* sortedKeys = [fields.allKeys sortedArrayUsingSelector:@selector(compare:)];
     for (NSNumber* number in sortedKeys) {
-        Field* value = [fields objectForKey:number];
+        PBField* value = [fields objectForKey:number];
         [value writeTo:number.intValue output:output];
     }
 }
 
 
 - (void) writeToOutputStream:(NSOutputStream*) output {
-    CodedOutputStream* codedOutput = [CodedOutputStream newInstance:output];
+    PBCodedOutputStream* codedOutput = [PBCodedOutputStream newInstance:output];
     [self writeToCodedOutputStream:codedOutput];
     [codedOutput flush];
 }
 
 
-+ (UnknownFieldSet*) parseFromCodedInputStream:(CodedInputStream*) input {
++ (UnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input {
     return [[[UnknownFieldSet newBuilder] mergeFromCodedInputStream:input] build];
 }
 
@@ -130,7 +130,7 @@ static UnknownFieldSet* defaultInstance = nil;
  * Serializes the set and writes it to {@code output} using
  * {@code MessageSet} wire format.
  */
-- (void) writeAsMessageSetTo:(CodedOutputStream*) output {
+- (void) writeAsMessageSetTo:(PBCodedOutputStream*) output {
     for (NSNumber* number in fields) {
         [[fields objectForKey:number] writeAsMessageSetExtensionTo:number.intValue output:output];
     }
@@ -163,7 +163,7 @@ public final String toString() {
 
 /**
  * Serializes the message to a {@code ByteString} and returns it. This is
- * just a trivial wrapper around {@link #writeTo(CodedOutputStream)}.
+ * just a trivial wrapper around {@link #writeTo(PBCodedOutputStream)}.
  */
 public final ByteString toByteString() {
     try {
@@ -181,7 +181,7 @@ public final ByteString toByteString() {
 
 /**
  * Serializes the message and writes it to {@code output}.  This is just a
- * trivial wrapper around {@link #writeTo(CodedOutputStream)}.
+ * trivial wrapper around {@link #writeTo(PBCodedOutputStream)}.
  */
 
 

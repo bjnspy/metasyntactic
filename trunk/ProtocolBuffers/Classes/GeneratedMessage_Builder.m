@@ -162,7 +162,7 @@
  * Called by subclasses to parse an unknown field.
  * @return {@code true} unless the tag is an end-group tag.
  */
-- (BOOL) parseUnknownField:(CodedInputStream*) input
+- (BOOL) parseUnknownField:(PBCodedInputStream*) input
              unknownFields:(UnknownFieldSet_Builder*) unknownFields
          extensionRegistry:(ExtensionRegistry*) extensionRegistry
                        tag:(int32_t) tag {

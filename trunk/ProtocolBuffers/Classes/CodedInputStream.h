@@ -16,7 +16,7 @@
 
 #import "FieldDescriptorType.h"
 
-@interface CodedInputStream : NSObject {
+@interface PBCodedInputStream : NSObject {
     NSMutableData* buffer;
     int32_t bufferSize;
     int32_t bufferSizeAfterLimit;
@@ -46,8 +46,8 @@
 @property (retain) NSMutableData* buffer;
 @property (retain) NSInputStream* input;
 
-+ (CodedInputStream*) streamWithData:(NSData*) data;
-+ (CodedInputStream*) streamWithInputStream:(NSInputStream*) input;
++ (PBCodedInputStream*) streamWithData:(NSData*) data;
++ (PBCodedInputStream*) streamWithInputStream:(NSInputStream*) input;
 
 - (int32_t) readTag;
 - (BOOL) refillBuffer:(BOOL) mustSucceed;
@@ -97,7 +97,7 @@ int64_t decodeZigZag64(int64_t n);
 - (id) readPrimitiveField:(FieldDescriptorType) type;
 
 #if 0
-+ (CodedInputStream*) createFromInputStream:(NSInputStream*) input;
++ (PBCodedInputStream*) createFromInputStream:(NSInputStream*) input;
 
 
 - (BOOL) skipField:(int32_t) tag;

@@ -55,7 +55,7 @@
  * Add a field to the {@code UnknownFieldSet}.  If a field with the same
  * number already exists, it is removed.
  */
-- (UnknownFieldSet_Builder*) addField:(Field*) field forNumber:(int32_t) number {
+- (UnknownFieldSet_Builder*) addField:(PBField*) field forNumber:(int32_t) number {
     if (number == 0) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
@@ -84,9 +84,9 @@
     if (number == 0) {
         return nil;
     } else {
-        Field* existing = [fields objectForKey:[NSNumber numberWithInt:number]];
+        PBField* existing = [fields objectForKey:[NSNumber numberWithInt:number]];
         lastFieldNumber = number;
-        self.lastField = [Field newBuilder];
+        self.lastField = [PBField newBuilder];
         if (existing != nil) {
             [lastField mergeFromField:existing];
         }
@@ -122,7 +122,7 @@
  * Add a field to the {@code UnknownFieldSet}.  If a field with the same
  * number already exists, the two are merged.
  */
-- (UnknownFieldSet_Builder*) mergeField:(Field*) field forNumber:(int32_t) number {
+- (UnknownFieldSet_Builder*) mergeField:(PBField*) field forNumber:(int32_t) number {
     if (number == 0) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
@@ -130,7 +130,7 @@
         [[self getFieldBuilder:number] mergeFromField:field];
     } else {
         // Optimization:  We could call getFieldBuilder(number).mergeFrom(field)
-        // in this case, but that would create a copy of the Field object.
+        // in this case, but that would create a copy of the PBField object.
         // We'd rather reuse the one passed to us, so call addField() instead.
         [self addField:field forNumber:number];
     }
@@ -142,7 +142,7 @@
 - (UnknownFieldSet_Builder*) mergeUnknownFields:(UnknownFieldSet*) other {
     if (other != [UnknownFieldSet getDefaultInstance]) {
         for (NSNumber* number in other.fields) {
-            Field* field = [other.fields objectForKey:number];
+            PBField* field = [other.fields objectForKey:number];
             [self mergeField:field forNumber:[number intValue]];
         }
     }
@@ -150,7 +150,7 @@
 }
 
 
-- (UnknownFieldSet_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
+- (UnknownFieldSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
@@ -175,7 +175,7 @@
  * @param tag The field's tag number, which was already parsed.
  * @return {@code false} if the tag is an engroup tag.
  */
-- (BOOL) mergeFieldFrom:(int32_t) tag input:(CodedInputStream*) input {
+- (BOOL) mergeFieldFrom:(int32_t) tag input:(PBCodedInputStream*) input {
     int32_t number = WireFormatGetTagFieldNumber(tag);
     switch (WireFormatGetTagWireType(tag)) {
         case WireFormatVarint:
@@ -211,12 +211,12 @@
 /**
  * Builder for {@link UnknownFieldSet}s.
  *
- * <p>Note that this class maintains {@link Field.Builder}s for all fields
- * in the set.  Thus, adding one element to an existing {@link Field} does not
+ * <p>Note that this class maintains {@link PBField.Builder}s for all fields
+ * in the set.  Thus, adding one element to an existing {@link PBField} does not
  * require making a copy.  This is important for efficient parsing of
- * unknown repeated fields.  However, it implies that {@link Field}s cannot
+ * unknown repeated fields.  However, it implies that {@link PBField}s cannot
  * be constructed independently, nor can two {@link UnknownFieldSet}s share
- * the same {@code Field} object.
+ * the same {@code PBField} object.
  *
  * <p>Use {@link UnknownFieldSet#newBuilder()} to construct a {@code Builder}.
  */
@@ -230,7 +230,7 @@ public static final class Builder {
 
     /** Reset the builder to an empty set. */
     public Builder clear() {
-        fields = new TreeMap<Integer, Field>();
+        fields = new TreeMap<Integer, PBField>();
         lastFieldNumber = 0;
         lastField = null;
         return this;
@@ -243,7 +243,7 @@ public static final class Builder {
      */
     public Builder mergeFrom(UnknownFieldSet other) {
         if (other != getDefaultInstance()) {
-            for (Map.Entry<Integer, Field> entry : other.fields.entrySet()) {
+            for (Map.Entry<Integer, PBField> entry : other.fields.entrySet()) {
                 mergeField(entry.getKey(), entry.getValue());
             }
         }
@@ -266,10 +266,10 @@ public static final class Builder {
 
 
     /**
-     * Get all present {@code Field}s as an immutable {@code Map}.  If more
+     * Get all present {@code PBField}s as an immutable {@code Map}.  If more
      * fields are added, the changes may or may not be reflected in this map.
      */
-    public Map<Integer, Field> asMap() {
+    public Map<Integer, PBField> asMap() {
         getFieldBuilder(0);  // Force lastField to be built.
         return Collections.unmodifiableMap(fields);
     }
@@ -278,7 +278,7 @@ public static final class Builder {
      * Parse an entire message from {@code input} and merge its fields into
      * this set.
      */
-    public Builder mergeFrom(CodedInputStream input) throws IOException {
+    public Builder mergeFrom(PBCodedInputStream input) throws IOException {
         while (true) {
             int32_t tag = input.readTag();
             if (tag == 0 || !mergeFieldFrom(tag, input)) {
@@ -292,12 +292,12 @@ public static final class Builder {
     /**
      * Parse {@code data} as an {@code UnknownFieldSet} and merge it with the
      * set being built.  This is just a small wrapper around
-     * {@link #mergeFrom(CodedInputStream)}.
+     * {@link #mergeFrom(PBCodedInputStream)}.
      */
     public Builder mergeFrom(ByteString data)
     throws InvalidProtocolBufferException {
         try {
-            CodedInputStream input = data.newCodedInput();
+            PBCodedInputStream input = data.newCodedInput();
             mergeFrom(input);
             input.checkLastTagWas(0);
             return this;
@@ -313,12 +313,12 @@ public static final class Builder {
     /**
      * Parse {@code data} as an {@code UnknownFieldSet} and merge it with the
      * set being built.  This is just a small wrapper around
-     * {@link #mergeFrom(CodedInputStream)}.
+     * {@link #mergeFrom(PBCodedInputStream)}.
      */
     public Builder mergeFrom(byte[] data)
     throws InvalidProtocolBufferException {
         try {
-            CodedInputStream input = CodedInputStream.newInstance(data);
+            PBCodedInputStream input = PBCodedInputStream.newInstance(data);
             mergeFrom(input);
             input.checkLastTagWas(0);
             return this;
@@ -334,10 +334,10 @@ public static final class Builder {
     /**
      * Parse an {@code UnknownFieldSet} from {@code input} and merge it with the
      * set being built.  This is just a small wrapper around
-     * {@link #mergeFrom(CodedInputStream)}.
+     * {@link #mergeFrom(PBCodedInputStream)}.
      */
     public Builder mergeFrom(InputStream input) throws IOException {
-        CodedInputStream codedInput = CodedInputStream.newInstance(input);
+        PBCodedInputStream codedInput = PBCodedInputStream.newInstance(input);
         mergeFrom(codedInput);
         codedInput.checkLastTagWas(0);
         return this;

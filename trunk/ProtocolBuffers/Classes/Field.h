@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface Field : NSObject {
+@interface PBField : NSObject {
     NSMutableArray* varint;
     NSMutableArray* fixed32;
     NSMutableArray* fixed64;
@@ -28,15 +28,15 @@
 @property (retain) NSMutableArray* lengthDelimited;
 @property (retain) NSMutableArray* group;
 
-+ (Field*) getDefaultInstance;
++ (PBField*) getDefaultInstance;
 + (Field_Builder*) newBuilder;
 
 - (void) writeTo:(int32_t) fieldNumber
-          output:(CodedOutputStream*) output;
+          output:(PBCodedOutputStream*) output;
 
 - (int32_t) getSerializedSize:(int32_t) fieldNumber;
 - (void) writeAsMessageSetExtensionTo:(int32_t) fieldNumber
-                               output:(CodedOutputStream*) output;
+                               output:(PBCodedOutputStream*) output;
 - (int32_t) getSerializedSizeAsMessageSetExtension:(int32_t) fieldNumber;
 
 @end

@@ -15,17 +15,17 @@
 // limitations under the License.
 
 @interface Field_Builder : NSObject {
-    Field* result;
+    PBField* result;
 }
 
-@property (retain) Field* result;
+@property (retain) PBField* result;
 
-- (Field*) build;
+- (PBField*) build;
 
-- (Field_Builder*) mergeFromField:(Field*) other;
+- (Field_Builder*) mergeFromField:(PBField*) other;
 
 - (Field_Builder*) clear;
-- (Field_Builder*) mergeFromField:(Field*) other;
+- (Field_Builder*) mergeFromField:(PBField*) other;
 - (Field_Builder*) addVarint:(int64_t) value;
 - (Field_Builder*) addFixed32:(int32_t) value;
 - (Field_Builder*) addFixed64:(int64_t) value;

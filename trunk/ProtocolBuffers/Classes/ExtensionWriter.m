@@ -66,7 +66,7 @@
  * (sorted by field number) order.  ExtensionWriter helps us write
  * individual ranges of extensions at once.
  */
-- (void) writeUntil:(int32_t) end output:(CodedOutputStream*) output {
+- (void) writeUntil:(int32_t) end output:(PBCodedOutputStream*) output {
     while (nextKey != nil && [nextValue getNumber] < end) {
         [extensions writeField:nextKey value:nextValue output:output];
         [self moveNext];

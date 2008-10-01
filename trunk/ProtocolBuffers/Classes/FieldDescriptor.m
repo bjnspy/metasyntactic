@@ -59,7 +59,7 @@
 }
 
 
-- (EnumDescriptor*) getEnumType {
+- (PBEnumDescriptor*) getEnumType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

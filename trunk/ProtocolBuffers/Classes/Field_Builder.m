@@ -31,14 +31,14 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.result = [[[Field alloc] init] autorelease];
+        self.result = [[[PBField alloc] init] autorelease];
     }
 
     return self;
 }
 
 
-- (Field*) build {
+- (PBField*) build {
     if (result.varint == nil) {
         result.varint = [NSMutableArray array];
     }
@@ -55,19 +55,19 @@
         result.group = [NSMutableArray array];
     }
 
-    Field* temp = [[result retain] autorelease];
+    PBField* temp = [[result retain] autorelease];
     self.result = nil;
     return temp;
 }
 
 
 - (Field_Builder*) clear {
-    self.result = [[[Field alloc] init] autorelease];
+    self.result = [[[PBField alloc] init] autorelease];
     return self;
 }
 
 
-- (Field_Builder*) mergeFromField:(Field*) other {
+- (Field_Builder*) mergeFromField:(PBField*) other {
     if (other.varint.count > 0) {
         if (result.varint == nil) {
             result.varint = [NSMutableArray array];
