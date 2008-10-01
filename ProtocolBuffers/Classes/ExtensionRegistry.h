@@ -44,7 +44,7 @@
 - (ExtensionRegistry_ExtensionInfo*) findExtensionByName:(NSString*) fullName;
 - (ExtensionRegistry_ExtensionInfo*) findExtensionByContainingType:(Descriptors_Descriptor*) containingType fieldNumber:(int32_t) fieldNumber;
 
-- (void) add:(GeneratedMessage_GeneratedExtension*) extension;
+- (void) add:(GeneratedExtension*) extension;
 - (void) add:(FieldDescriptor*) type;
 - (void) add:(FieldDescriptor*) type defaultInstance:(Message*) defaultInstance;
 

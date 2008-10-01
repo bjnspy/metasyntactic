@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface GeneratedMessage_ExtendableMessage_ExtensionWriter : NSObject {
+@interface ExtensionWriter : NSObject {
     FieldSet* extensions;
     NSEnumerator* enumerator;
     FieldDescriptor* nextKey;
@@ -26,6 +26,6 @@
 @property (retain) FieldDescriptor* nextKey;
 @property (retain) id nextValue;
 
-+ (GeneratedMessage_ExtendableMessage_ExtensionWriter*) writerWithExtensions:(FieldSet*) extensions;
++ (ExtensionWriter*) writerWithExtensions:(FieldSet*) extensions;
 
 @end

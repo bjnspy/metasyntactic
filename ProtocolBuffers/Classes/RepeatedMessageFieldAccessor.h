@@ -16,11 +16,11 @@
 
 #import "FieldAccessor.h"
 
-@interface GeneratedMessage_RepeatedMessageFieldAccessor : NSObject<GeneratedMessage_FieldAccessor> {
+@interface RepeatedMessageFieldAccessor : NSObject<GeneratedMessage_FieldAccessor> {
 
 }
 
-+ (GeneratedMessage_RepeatedMessageFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (RepeatedMessageFieldAccessor*) accessorWithField:(FieldDescriptor*) field
                                                                 name:(NSString*) name
                                                         messageClass:(Class) messageClass
                                                         builderClass:(Class) builderClass;

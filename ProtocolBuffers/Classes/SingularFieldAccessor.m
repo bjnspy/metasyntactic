@@ -14,12 +14,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GeneratedMessage_SingularFieldAccessor.h"
+#import "SingularFieldAccessor.h"
 
 
-@implementation GeneratedMessage_SingularFieldAccessor
+@implementation SingularFieldAccessor
 
-+ (GeneratedMessage_SingularFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (SingularFieldAccessor*) accessorWithField:(FieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

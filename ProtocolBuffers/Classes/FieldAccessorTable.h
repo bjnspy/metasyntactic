@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface GeneratedMessage_FieldAccessorTable : NSObject {
+@interface FieldAccessorTable : NSObject {
     Descriptor* descriptor;
     NSArray* fields;
 }
@@ -22,7 +22,7 @@
 @property (retain) Descriptor* descriptor;
 @property (retain) NSArray* fields;
 
-+ (GeneratedMessage_FieldAccessorTable*) tableWithDescriptor:(Descriptor*) descriptor
++ (FieldAccessorTable*) tableWithDescriptor:(Descriptor*) descriptor
                                                   fieldNames:(NSArray*) fieldNames
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass;

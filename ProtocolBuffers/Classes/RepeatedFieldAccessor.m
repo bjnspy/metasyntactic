@@ -14,12 +14,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GeneratedMessage_RepeatedFieldAccessor.h"
+#import "RepeatedFieldAccessor.h"
 
 
-@implementation GeneratedMessage_RepeatedFieldAccessor
+@implementation RepeatedFieldAccessor
 
-+ (GeneratedMessage_RepeatedFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (RepeatedFieldAccessor*) accessorWithField:(FieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

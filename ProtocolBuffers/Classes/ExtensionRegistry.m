@@ -81,7 +81,7 @@ static ExtensionRegistry* EMPTY = nil;
 }
 
 #if 0
-- (void) addExtension:(GeneratedMessage_GeneratedExtension*) extension {
+- (void) addExtension:(GeneratedExtension*) extension {
     if (extension.getDescriptor.getObjectiveCType == FieldDescriptorTypeMessage) {
         [self addExtensionInfo:[ExtensionRegistry_ExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:extension.getMessageDefaultInstance]];
     } else {

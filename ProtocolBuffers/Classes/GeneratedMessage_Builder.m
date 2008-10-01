@@ -19,7 +19,7 @@
 #import "FieldDescriptor.h"
 #import "GeneratedMessage.h"
 #import "FieldAccessor.h"
-#import "GeneratedMessage_FieldAccessorTable.h"
+#import "FieldAccessorTable.h"
 #import "Message.h"
 #import "Message_Builder.h"
 #import "UnknownFieldSet.h"
@@ -40,7 +40,7 @@
  * class pass this in to the constructor because of bootstrapping trouble
  * with DescriptorProtos.
  */
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
+- (FieldAccessorTable*) internalGetFieldAccessorTable {
     return self.internalGetResult.internalGetFieldAccessorTable;
 }
 

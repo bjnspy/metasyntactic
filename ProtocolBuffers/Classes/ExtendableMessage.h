@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface GeneratedMessage_ExtendableMessage : GeneratedMessage {
+@interface ExtendableMessage : GeneratedMessage {
   @private
     FieldSet* extensions;
 }

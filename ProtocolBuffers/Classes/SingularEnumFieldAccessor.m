@@ -14,11 +14,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GeneratedMessage_SingularEnumFieldAccessor.h"
+#import "SingularEnumFieldAccessor.h"
 
-@implementation GeneratedMessage_SingularEnumFieldAccessor
+@implementation SingularEnumFieldAccessor
 
-+ (GeneratedMessage_SingularEnumFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (SingularEnumFieldAccessor*) accessorWithField:(FieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {
