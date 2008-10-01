@@ -46,17 +46,17 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
 
     bool found_conflict = false;
     for (int i = 0; i < file_->enum_type_count() && !found_conflict; i++) {
-      if (file_->enum_type(i)->name() == classname_) {
+      if (ClassName(file_->enum_type(i)) == classname_) {
         found_conflict = true;
       }
     }
     for (int i = 0; i < file_->message_type_count() && !found_conflict; i++) {
-      if (file_->message_type(i)->name() == classname_) {
+      if (ClassName(file_->message_type(i)) == classname_) {
         found_conflict = true;
       }
     }
     for (int i = 0; i < file_->service_count() && !found_conflict; i++) {
-      if (file_->service(i)->name() == classname_) {
+      if (ClassName(file_->service(i)) == classname_) {
         found_conflict = true;
       }
     }

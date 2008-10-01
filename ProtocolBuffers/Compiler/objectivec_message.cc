@@ -248,8 +248,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
   void MessageGenerator::DetermineDependencies(set<string>* dependencies) {
-    dependencies->insert(descriptor_->name());
-    dependencies->insert(descriptor_->name() + "_Builder");
+    dependencies->insert(ClassName(descriptor_));
+    dependencies->insert(ClassName(descriptor_) + "_Builder");
 
     // Nested types and extensions
     for (int i = 0; i < descriptor_->enum_type_count(); i++) {
@@ -264,11 +264,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     if (descriptor_->extension_range_count() > 0) {
       printer->Print(
         "@interface $classname$ : GeneratedMessage_ExtendableMessage {\n",
-        "classname", descriptor_->name());
+        "classname", ClassName(descriptor_));
     } else {
       printer->Print(
         "@interface $classname$ : GeneratedMessage {\n",
-        "classname", descriptor_->name());
+        "classname", ClassName(descriptor_));
     }
 
     printer->Print(
@@ -295,7 +295,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "+ ($classname$*) getDefaultInstance;\n"
       "- ($classname$*) getDefaultInstanceForType;\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
     printer->Print(
       "+ (Descriptor*) getDescriptor;\n"
       "- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;\n"
@@ -335,7 +335,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       descriptor_->containing_type() == NULL;
 
     printer->Print("@implementation $classname$\n\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
       field_generators_.get(descriptor_->field(i)).GenerateSynthesizeSource(printer);
@@ -383,7 +383,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return default$classname$Instance;\n"
       "}\n"
       "\n",
-      "classname", descriptor_->name());
+      "classname", ClassName(descriptor_));
     printer->Print(
       "+ (Descriptor*) getDescriptor {\n"
       "  return [$fileclass$ internal_$identifier$_descriptor];\n"

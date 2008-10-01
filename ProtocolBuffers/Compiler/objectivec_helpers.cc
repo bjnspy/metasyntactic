@@ -120,7 +120,7 @@ string FileClassName(const FileDescriptor* file) {
 
 string ToObjectiveCName(const string& full_name, const FileDescriptor* file) {
   string result;
-  //result += file->options().objectivec_class_prefix();
+  result += file->options().objectivec_class_prefix();
   result += full_name;
   return result;
 }
