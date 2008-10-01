@@ -98,8 +98,8 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     }
 
     printer->Print(
-      "@class GeneratedMessage_FieldAccessorTable;\n"
-      "@class GeneratedMessage_Builder;\n");
+      "@class PBFieldAccessorTable;\n"
+      "@class PBGeneratedMessage_Builder;\n");
 
     set<string> dependencies;
     DetermineDependencies(&dependencies);
@@ -134,8 +134,8 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     file_proto.SerializeToString(&file_data);
 
     printer->Print(
-      "+ (FileDescriptor*) getDescriptor;\n"
-      "+ (FileDescriptor*) buildDescriptor;\n");
+      "+ (PBFileDescriptor*) getDescriptor;\n"
+      "+ (PBFileDescriptor*) buildDescriptor;\n");
 
     // Static variables.
     for (int i = 0; i < file_->message_type_count(); i++) {
@@ -197,21 +197,6 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
       "#import \"$header_file$\"\n\n",
       "header_file", header_file);
 
-    /*
-
-    "#import \"CodedInputStream.h\"\n"
-    "#import \"CodedOutputStream.h\"\n"
-    "#import \"Descriptor.h\"\n"
-    "#import \"DescriptorPool.h\"\n"
-    "#import \"EnumDescriptor.h\"\n"
-    "#import \"EnumValueDescriptor.h\"\n"
-    "#import \"ExtensionRegistry.h\"\n"
-    "#import \"FileDescriptor.h\"\n"
-    "#import \"Message.h\"\n"
-    "#import \"UnknownFieldSet.h\"\n"
-    "#import \"UnknownFieldSet_Builder.h\"\n"
-    */
-
     printer->Print(
       "@implementation $classname$\n",
       "classname", classname_);
@@ -235,7 +220,7 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     file_proto.SerializeToString(&file_data);
 
     printer->Print(
-      "static FileDescriptor* descriptor = nil;\n");
+      "static PBFileDescriptor* descriptor = nil;\n");
 
     for (int i = 0; i < file_->extension_count(); i++) {
       ExtensionGenerator(file_->extension(i)).GenerateFieldsSource(printer);
@@ -272,10 +257,10 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     printer->Print(
       "  }\n"
       "}\n"
-      "+ (FileDescriptor*) getDescriptor {\n"
+      "+ (PBFileDescriptor*) getDescriptor {\n"
       "  return descriptor;\n"
       "}\n"
-      "+ (FileDescriptor*) buildDescriptor {\n"
+      "+ (PBFileDescriptor*) buildDescriptor {\n"
       "  NSString* descriptorData = [NSString stringWithCString:\n",
       "classname", classname_);
 
@@ -301,7 +286,7 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     }
     printer->Print(
       "         nil];\n"
-      "return [FileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];\n");
+      "return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];\n");
 
     printer->Outdent();
 

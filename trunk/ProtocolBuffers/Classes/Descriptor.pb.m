@@ -142,9 +142,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorSet_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBFileDescriptorSet class]
-                                                     builderClass:[PBFileDescriptorSet_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBFileDescriptorSet class]
+                                      builderClass:[PBFileDescriptorSet_Builder class]] retain];
     }
     internal_static_google_protobuf_FileDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:1] retain];
     {
@@ -154,21 +154,21 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       @"Dependency",
       @"MessageType",
       @"EnumType",
-      @"PBService",
+      @"Service",
       @"Extension",
       @"Options",
       nil];
       internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorProto_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBFileDescriptorProto class]
-                                                     builderClass:[PBFileDescriptorProto_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBFileDescriptorProto class]
+                                      builderClass:[PBFileDescriptorProto_Builder class]] retain];
     }
     internal_static_google_protobuf_DescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:2] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Name",
-      @"PBField",
+      @"Field",
       @"Extension",
       @"NestedType",
       @"EnumType",
@@ -177,9 +177,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBDescriptorProto class]
-                                                     builderClass:[PBDescriptorProto_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBDescriptorProto class]
+                                      builderClass:[PBDescriptorProto_Builder class]] retain];
     }
     internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor = [[[internal_static_google_protobuf_DescriptorProto_descriptor getNestedTypes] objectAtIndex:0] retain];
     {
@@ -189,9 +189,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBExtensionRange class]
-                                                     builderClass:[PBExtensionRange_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBExtensionRange class]
+                                      builderClass:[PBExtensionRange_Builder class]] retain];
     }
     internal_static_google_protobuf_FieldDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:3] retain];
     {
@@ -207,9 +207,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldDescriptorProto_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBFieldDescriptorProto class]
-                                                     builderClass:[PBFieldDescriptorProto_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBFieldDescriptorProto class]
+                                      builderClass:[PBFieldDescriptorProto_Builder class]] retain];
     }
     internal_static_google_protobuf_EnumDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:4] retain];
     {
@@ -220,9 +220,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumDescriptorProto_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBEnumDescriptorProto class]
-                                                     builderClass:[PBEnumDescriptorProto_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBEnumDescriptorProto class]
+                                      builderClass:[PBEnumDescriptorProto_Builder class]] retain];
     }
     internal_static_google_protobuf_EnumValueDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:5] retain];
     {
@@ -233,9 +233,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueDescriptorProto_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBEnumValueDescriptorProto class]
-                                                     builderClass:[PBEnumValueDescriptorProto_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBEnumValueDescriptorProto class]
+                                      builderClass:[PBEnumValueDescriptorProto_Builder class]] retain];
     }
     internal_static_google_protobuf_ServiceDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:6] retain];
     {
@@ -246,9 +246,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceDescriptorProto_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBServiceDescriptorProto class]
-                                                     builderClass:[PBServiceDescriptorProto_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBServiceDescriptorProto class]
+                                      builderClass:[PBServiceDescriptorProto_Builder class]] retain];
     }
     internal_static_google_protobuf_MethodDescriptorProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:7] retain];
     {
@@ -260,9 +260,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodDescriptorProto_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBMethodDescriptorProto class]
-                                                     builderClass:[PBMethodDescriptorProto_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBMethodDescriptorProto class]
+                                      builderClass:[PBMethodDescriptorProto_Builder class]] retain];
     }
     internal_static_google_protobuf_FileOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:8] retain];
     {
@@ -276,9 +276,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_FileOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileOptions_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBFileOptions class]
-                                                     builderClass:[PBFileOptions_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBFileOptions class]
+                                      builderClass:[PBFileOptions_Builder class]] retain];
     }
     internal_static_google_protobuf_MessageOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:9] retain];
     {
@@ -287,9 +287,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_MessageOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MessageOptions_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBMessageOptions class]
-                                                     builderClass:[PBMessageOptions_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBMessageOptions class]
+                                      builderClass:[PBMessageOptions_Builder class]] retain];
     }
     internal_static_google_protobuf_FieldOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:10] retain];
     {
@@ -299,9 +299,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_FieldOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldOptions_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBFieldOptions class]
-                                                     builderClass:[PBFieldOptions_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBFieldOptions class]
+                                      builderClass:[PBFieldOptions_Builder class]] retain];
     }
     internal_static_google_protobuf_EnumOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:11] retain];
     {
@@ -309,9 +309,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_EnumOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumOptions_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBEnumOptions class]
-                                                     builderClass:[PBEnumOptions_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBEnumOptions class]
+                                      builderClass:[PBEnumOptions_Builder class]] retain];
     }
     internal_static_google_protobuf_EnumValueOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:12] retain];
     {
@@ -319,9 +319,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueOptions_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBEnumValueOptions class]
-                                                     builderClass:[PBEnumValueOptions_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBEnumValueOptions class]
+                                      builderClass:[PBEnumValueOptions_Builder class]] retain];
     }
     internal_static_google_protobuf_ServiceOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:13] retain];
     {
@@ -329,9 +329,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceOptions_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBServiceOptions class]
-                                                     builderClass:[PBServiceOptions_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBServiceOptions class]
+                                      builderClass:[PBServiceOptions_Builder class]] retain];
     }
     internal_static_google_protobuf_MethodOptions_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:14] retain];
     {
@@ -339,9 +339,9 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       nil];
       internal_static_google_protobuf_MethodOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodOptions_descriptor
-                                                       fieldNames:fieldNames
-                                                     messageClass:[PBMethodOptions class]
-                                                     builderClass:[PBMethodOptions_Builder class]] retain];
+                                        fieldNames:fieldNames
+                                      messageClass:[PBMethodOptions class]
+                                      builderClass:[PBMethodOptions_Builder class]] retain];
     }
   }
 }
@@ -389,7 +389,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     "32\020\017\022\021\n\rTYPE_SFIXED64\020\020\022\017\n\013TYPE_SINT32\020\021"
     "\022\017\n\013TYPE_SINT64\020\022\"C\n\005Label\022\022\n\016LABEL_OPTI"
     "ONAL\020\001\022\022\n\016LABEL_REQUIRED\020\002\022\022\n\016LABEL_REPE"
-    "ATED\020\003\"\214\001\n\023PBEnumDescriptorProto\022\014\n\004name\030\001"
+    "ATED\020\003\"\214\001\n\023EnumDescriptorProto\022\014\n\004name\030\001"
     " \001(\t\0228\n\005value\030\002 \003(\0132).google.protobuf.En"
     "umValueDescriptorProto\022-\n\007options\030\003 \001(\0132"
     "\034.google.protobuf.EnumOptions\"l\n\030EnumVal"

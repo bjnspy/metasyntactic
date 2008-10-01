@@ -153,11 +153,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     // The descriptor for this type.
     printer->Print(vars,
-      "+ (Descriptor*) internal_$identifier$_descriptor;\n");
+      "+ (PBDescriptor*) internal_$identifier$_descriptor;\n");
 
     // And the FieldAccessorTable.
     printer->Print(vars,
-      "+ (GeneratedMessage_FieldAccessorTable*) internal_$identifier$_fieldAccessorTable;\n");
+      "+ (PBFieldAccessorTable*) internal_$identifier$_fieldAccessorTable;\n");
 
 
     // Generate static members for all nested types.
@@ -198,10 +198,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(vars,
       "  internal_$identifier$_fieldAccessorTable = \n"
-      "    [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_$identifier$_descriptor\n"
-      "                                                   fieldNames:fieldNames\n"
-      "                                                 messageClass:[$classname$ class]\n"
-      "                                                 builderClass:[$classname$_Builder class]] retain];\n"
+      "    [[PBFieldAccessorTable tableWithDescriptor:internal_$identifier$_descriptor\n"
+      "                                    fieldNames:fieldNames\n"
+      "                                  messageClass:[$classname$ class]\n"
+      "                                  builderClass:[$classname$_Builder class]] retain];\n"
       "}\n");
 
     // Generate static members for all nested types.
@@ -229,14 +229,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     // The descriptor for this type.
     printer->Print(vars,
-      "static Descriptor* internal_$identifier$_descriptor = nil;\n"
-      "static GeneratedMessage_FieldAccessorTable* internal_$identifier$_fieldAccessorTable = nil;\n");
+      "static PBDescriptor* internal_$identifier$_descriptor = nil;\n"
+      "static PBFieldAccessorTable* internal_$identifier$_fieldAccessorTable = nil;\n");
 
     printer->Print(vars,
-      "+ (Descriptor*) internal_$identifier$_descriptor {\n"
+      "+ (PBDescriptor*) internal_$identifier$_descriptor {\n"
       "  return internal_$identifier$_descriptor;\n"
       "}\n"
-      "+ (GeneratedMessage_FieldAccessorTable*) internal_$identifier$_fieldAccessorTable {\n"
+      "+ (PBFieldAccessorTable*) internal_$identifier$_fieldAccessorTable {\n"
       "  return internal_$identifier$_fieldAccessorTable;\n"
       "}\n");
 
@@ -263,11 +263,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void MessageGenerator::GenerateHeader(io::Printer* printer) {
     if (descriptor_->extension_range_count() > 0) {
       printer->Print(
-        "@interface $classname$ : GeneratedMessage_ExtendableMessage {\n",
+        "@interface $classname$ : PBGeneratedMessage_ExtendableMessage {\n",
         "classname", ClassName(descriptor_));
     } else {
       printer->Print(
-        "@interface $classname$ : GeneratedMessage {\n",
+        "@interface $classname$ : PBGeneratedMessage {\n",
         "classname", ClassName(descriptor_));
     }
 
@@ -297,8 +297,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- ($classname$*) getDefaultInstanceForType;\n",
       "classname", ClassName(descriptor_));
     printer->Print(
-      "+ (Descriptor*) getDescriptor;\n"
-      "- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;\n"
+      "+ (PBDescriptor*) getDescriptor;\n"
+      "- (PBFieldAccessorTable*) internalGetFieldAccessorTable;\n"
       "\n",
       "fileclass", FileClassName(descriptor_->file()),
       "identifier", UniqueFileScopeIdentifier(descriptor_));
@@ -385,11 +385,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "\n",
       "classname", ClassName(descriptor_));
     printer->Print(
-      "+ (Descriptor*) getDescriptor {\n"
+      "+ (PBDescriptor*) getDescriptor {\n"
       "  return [$fileclass$ internal_$identifier$_descriptor];\n"
       "}\n"
       "\n"
-      "- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {\n"
+      "- (PBFieldAccessorTable*) internalGetFieldAccessorTable {\n"
       "  return [$fileclass$ internal_$identifier$_fieldAccessorTable];\n"
       "}\n"
       "\n",
@@ -457,7 +457,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       ExtensionRangeOrdering());
 
     printer->Print(
-      "- (void) writeToCodedOutputStream:(CodedOutputStream*) output;\n");
+      "- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;\n");
   }
 
   void MessageGenerator::GenerateParseFromMethodsHeader(io::Printer* printer) {
@@ -466,11 +466,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     //   for code size.
     printer->Print(
       "+ ($classname$*) parseFromData:(NSData*) data;\n"
-      "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n"
+      "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;\n"
       "+ ($classname$*) parseFromInputStream:(NSInputStream*) input;\n"
-      "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n"
-      "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input;\n"
-      "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n",
+      "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;\n"
+      "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input;\n"
+      "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;\n",
       "classname", ClassName(descriptor_));
   }
 
@@ -488,11 +488,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void MessageGenerator::GenerateBuilderHeader(io::Printer* printer) {
     if (descriptor_->extension_range_count() > 0) {
       printer->Print(
-        "@interface $classname$_Builder : GeneratedMessage_ExtendableBuilder {\n",
+        "@interface $classname$_Builder : PBExtendableBuilder {\n",
         "classname", ClassName(descriptor_));
     } else {
       printer->Print(
-        "@interface $classname$_Builder : GeneratedMessage_Builder {\n",
+        "@interface $classname$_Builder : PBGeneratedMessage_Builder {\n",
         "classname", ClassName(descriptor_));
     }
 
@@ -529,7 +529,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       //"- ($classname$*) internalGetResult;\n"
       "- ($classname$_Builder*) clear;\n"
       "- ($classname$_Builder*) clone;\n"
-      "- (Descriptor*) getDescriptorForType;\n"
+      "- (PBDescriptor*) getDescriptorForType;\n"
       "- ($classname$*) getDefaultInstanceForType;\n",
       "classname", ClassName(descriptor_));
 
@@ -552,7 +552,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     printer->Print(
-      "- ($classname$_Builder*) mergeFromMessage:(id<Message>) other;\n"
+      "- ($classname$_Builder*) mergeFromMessage:(id<PBMessage>) other;\n"
       "- ($classname$_Builder*) mergeFrom$classname$:($classname$*) other;\n",
       "classname", ClassName(descriptor_));
     printer->Indent();
@@ -572,8 +572,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       SortFieldsByNumber(descriptor_));
 
     printer->Print(
-      "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input;\n"
-      "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;\n",
+      "- ($classname$_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;\n"
+      "- ($classname$_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;\n",
       "classname", ClassName(descriptor_));
   }
 
@@ -597,7 +597,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       ExtensionRangeOrdering());
 
     printer->Print(
-      "- (void) writeToCodedOutputStream:(CodedOutputStream*) output {\n");
+      "- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {\n");
     printer->Indent();
 
     if (descriptor_->extension_range_count() > 0) {
@@ -672,19 +672,19 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "+ ($classname$*) parseFromData:(NSData*) data {\n"
       "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data] buildParsed];\n"
       "}\n"
-      "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n"
+      "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
       "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];\n"
       "}\n"
       "+ ($classname$*) parseFromInputStream:(NSInputStream*) input {\n"
       "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input] buildParsed];\n"
       "}\n"
-      "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n"
+      "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
       "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];\n"
       "}\n"
-      "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input {\n"
+      "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input {\n"
       "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input] buildParsed];\n"
       "}\n"
-      "+ ($classname$*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n"
+      "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
       "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];\n"
       "}\n"
       "\n",
@@ -756,7 +756,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return ($classname$_Builder*)[[[[$classname$_Builder alloc] init] autorelease] mergeFrom$classname$:result];\n"
       "}\n"
       "\n"
-      "- (Descriptor*) getDescriptorForType {\n"
+      "- (PBDescriptor*) getDescriptorForType {\n"
       "  return [$classname$ getDescriptor];\n"
       "}\n"
       "\n"
@@ -804,7 +804,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     printer->Print(
-      "- ($classname$_Builder*) mergeFromMessage:(id<Message>) other {\n"
+      "- ($classname$_Builder*) mergeFromMessage:(id<PBMessage>) other {\n"
       "  id o = other;\n"
       "  if ([o isKindOfClass:[$classname$ class]]) {\n"
       "    return [self mergeFrom$classname$:o];\n"
@@ -841,16 +841,16 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       SortFieldsByNumber(descriptor_));
 
     printer->Print(
-      "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {\n"
-      "  return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];\n"
+      "- ($classname$_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {\n"
+      "  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry getEmptyRegistry]];\n"
       "}\n"
       "\n"
-      "- ($classname$_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {\n",
+      "- ($classname$_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n",
       "classname", ClassName(descriptor_));
     printer->Indent();
 
     printer->Print(
-      "UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];\n"
+      "PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];\n"
       "while (true) {\n");
     printer->Indent();
 

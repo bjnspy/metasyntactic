@@ -120,9 +120,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void ServiceGenerator::GenerateCallMethodHeader(io::Printer* printer) {
     printer->Print(
       "\n"
-      "- (void) callMethod:(MethodDescriptor*) method\n"
-      "         controller:(id<RpcController>) controller\n"
-      "            request:(id<Message>) request\n"
+      "- (void) callMethod:(PBMethodDescriptor*) method\n"
+      "         controller:(id<PBRpcController>) controller\n"
+      "            request:(id<PBMessage>) request\n"
       "             target:(id) target\n"
       "           selector:(SEL) selector;\n");
   }
@@ -131,9 +131,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void ServiceGenerator::GenerateCallMethodSource(io::Printer* printer) {
     printer->Print(
       "\n"
-      "- (void) callMethod:(MethodDescriptor*) method\n"
-      "         controller:(id<RpcController>) controller\n"
-      "            request:(id<Message>) request\n"
+      "- (void) callMethod:(PBMethodDescriptor*) method\n"
+      "         controller:(id<PBRpcController>) controller\n"
+      "            request:(id<PBMessage>) request\n"
       "             target:(id) target\n"
       "           selector:(SEL) selector {\n"
       "  if (method.getService != self.getDescriptor) {\n"
@@ -172,7 +172,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void ServiceGenerator::GenerateGetPrototypeHeader(RequestOrResponse which,
     io::Printer* printer) {
       printer->Print(
-        "- (id<Message>) get$request_or_response$Prototype:(MethodDescriptor*) method;\n",
+        "- (id<PBMessage>) get$request_or_response$Prototype:(PBMethodDescriptor*) method;\n",
         "request_or_response", (which == REQUEST) ? "Request" : "Response");
   }
 
@@ -180,7 +180,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void ServiceGenerator::GenerateGetPrototypeSource(RequestOrResponse which,
     io::Printer* printer) {
       printer->Print(
-        "- (id<Message>) get$request_or_response$Prototype:(MethodDescriptor*) method {\n"
+        "- (id<PBMessage>) get$request_or_response$Prototype:(PBMethodDescriptor*) method {\n"
         "  if (method.getService != getDescriptor) {\n"
         "    [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"\" userInfo:nil];\n"
         "  }\n"
