@@ -156,7 +156,7 @@ void MessageGenerator::GenerateStaticVariablesHeader(io::Printer* printer) {
 
   // The descriptor for this type.
   printer->Print(vars,
-      "+ (ProtocolBufferDescriptor*) internal_$identifier$_descriptor;\n");
+      "+ (Descriptor*) internal_$identifier$_descriptor;\n");
 
   // And the FieldAccessorTable.
   printer->Print(vars,
@@ -232,11 +232,11 @@ void MessageGenerator::GenerateStaticVariablesSource(io::Printer* printer) {
 
   // The descriptor for this type.
   printer->Print(vars,
-      "static ProtocolBufferDescriptor* internal_$identifier$_descriptor = nil;\n"
+      "static Descriptor* internal_$identifier$_descriptor = nil;\n"
       "static GeneratedMessage_FieldAccessorTable* internal_$identifier$_fieldAccessorTable = nil;\n");
 
   printer->Print(vars,
-    "+ (ProtocolBufferDescriptor*) internal_$identifier$_descriptor {\n"
+    "+ (Descriptor*) internal_$identifier$_descriptor {\n"
     "  return internal_$identifier$_descriptor;\n"
     "}\n"
     "+ (GeneratedMessage_FieldAccessorTable*) internal_$identifier$_fieldAccessorTable {\n"
@@ -250,18 +250,16 @@ void MessageGenerator::GenerateStaticVariablesSource(io::Printer* printer) {
   }
 }
 
-void MessageGenerator::GenerateForwardDeclarations(io::Printer* printer) {
-  printer->Print(
-    "@class $classname$;\n"
-    "@class $classname$_Builder;\n",
-      "classname", descriptor_->name());
+void MessageGenerator::DetermineDependencies(set<string>* dependencies) {
+  dependencies->insert(descriptor_->name());
+  dependencies->insert(descriptor_->name() + "_Builder");
 
     // Nested types and extensions
   for (int i = 0; i < descriptor_->enum_type_count(); i++) {
-    EnumGenerator(descriptor_->enum_type(i)).GenerateForwardDeclarations(printer);
+    EnumGenerator(descriptor_->enum_type(i)).DetermineDependencies(dependencies);
   }
   for (int i = 0; i < descriptor_->nested_type_count(); i++) {
-    MessageGenerator(descriptor_->nested_type(i)).GenerateForwardDeclarations(printer);
+    MessageGenerator(descriptor_->nested_type(i)).DetermineDependencies(dependencies);
   }
 }
 
@@ -302,10 +300,10 @@ void MessageGenerator::GenerateHeader(io::Printer* printer) {
     "- ($classname$*) getDefaultInstanceForType;\n",
     "classname", descriptor_->name());
   printer->Print(
-    "+ (ProtocolBufferDescriptor*) getDescriptor;\n"
+    "+ (Descriptor*) getDescriptor;\n"
     "- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;\n"
     "\n",
-    "fileclass", ClassName(descriptor_->file()),
+    "fileclass", FileClassName(descriptor_->file()),
     "identifier", UniqueFileScopeIdentifier(descriptor_));
 
   //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
@@ -390,7 +388,7 @@ void MessageGenerator::GenerateSource(io::Printer* printer) {
     "\n",
     "classname", descriptor_->name());
   printer->Print(
-    "+ (ProtocolBufferDescriptor*) getDescriptor {\n"
+    "+ (Descriptor*) getDescriptor {\n"
     "  return [$fileclass$ internal_$identifier$_descriptor];\n"
     "}\n"
     "\n"
@@ -398,7 +396,7 @@ void MessageGenerator::GenerateSource(io::Printer* printer) {
     "  return [$fileclass$ internal_$identifier$_fieldAccessorTable];\n"
     "}\n"
     "\n",
-    "fileclass", ClassName(descriptor_->file()),
+    "fileclass", FileClassName(descriptor_->file()),
     "identifier", UniqueFileScopeIdentifier(descriptor_));
 
   // Fields
@@ -534,7 +532,7 @@ void MessageGenerator::GenerateCommonBuilderMethodsHeader(io::Printer* printer) 
     //"- ($classname$*) internalGetResult;\n"
     "- ($classname$_Builder*) clear;\n"
     "- ($classname$_Builder*) clone;\n"
-    "- (ProtocolBufferDescriptor*) getDescriptorForType;\n"
+    "- (Descriptor*) getDescriptorForType;\n"
     "- ($classname$*) getDefaultInstanceForType;\n",
     "classname", ClassName(descriptor_));
 
@@ -761,7 +759,7 @@ void MessageGenerator::GenerateCommonBuilderMethodsSource(io::Printer* printer) 
     "  return ($classname$_Builder*)[[[[$classname$_Builder alloc] init] autorelease] mergeFrom$classname$:result];\n"
     "}\n"
     "\n"
-    "- (ProtocolBufferDescriptor*) getDescriptorForType {\n"
+    "- (Descriptor*) getDescriptorForType {\n"
     "  return [$classname$ getDescriptor];\n"
     "}\n"
     "\n"

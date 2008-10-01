@@ -22,6 +22,7 @@
 #define GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_MESSAGE_H__
 
 #include <string>
+#include <set>
 #include <google/protobuf/stubs/common.h>
 #include <google/protobuf/compiler/objectivec/objectivec_field.h>
 
@@ -51,7 +52,7 @@ class MessageGenerator {
   // Generate the class itself.
   void GenerateHeader(io::Printer* printer);
   void GenerateSource(io::Printer* printer);
-  void GenerateForwardDeclarations(io::Printer* printer);
+  void DetermineDependencies(set<string>* dependencies);
 
  private:
   void GenerateMessageSerializationMethodsHeader(io::Printer* printer);

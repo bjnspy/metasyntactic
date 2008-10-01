@@ -22,6 +22,7 @@
 #define GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_ENUM_H__
 
 #include <string>
+#include <set>
 #include <vector>
 #include <google/protobuf/descriptor.h>
 
@@ -43,7 +44,7 @@ class EnumGenerator {
 
   void GenerateHeader(io::Printer* printer);
   void GenerateSource(io::Printer* printer);
-  void GenerateForwardDeclarations(io::Printer* printer);
+  void DetermineDependencies(set<string>* dependencies);
 
  private:
   const EnumDescriptor* descriptor_;

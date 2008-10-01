@@ -22,6 +22,7 @@
 #define GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_SERVICE_H__
 
 #include <map>
+#include <set>
 #include <google/protobuf/descriptor.h>
 
 namespace google {
@@ -42,7 +43,7 @@ class ServiceGenerator {
 
   void GenerateHeader(io::Printer* printer);
   void GenerateSource(io::Printer* printer);
-  void GenerateForwardDeclarations(io::Printer* printer);
+  void DetermineDependencies(set<string>* dependencies);
 
  private:
   // Generate the implementation of Service.callMethod().

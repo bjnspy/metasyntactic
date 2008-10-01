@@ -29,11 +29,6 @@ namespace protobuf {
 namespace compiler {
 namespace objectivec {
 
-// Commonly-used separator comments.  Thick is a line of '=', thin is a line
-// of '-'.
-extern const char kThickSeparator[];
-extern const char kThinSeparator[];
-
 // Converts the field's name to camel-case, e.g. "foo_bar_baz" becomes
 // "fooBarBaz" or "FooBarBaz", respectively.
 string UnderscoresToCamelCase(const FieldDescriptor* field);
@@ -46,12 +41,13 @@ string UnderscoresToCamelCase(const MethodDescriptor* method);
 // Strips ".proto" or ".protodevel" from the end of a filename.
 string StripProto(const string& filename);
 
-// Gets the unqualified class name for the file.  Each .proto file becomes a
-// single ObjectiveC class, with all its contents nested in that class.
-string FileClassName(const FileDescriptor* file);
+// Gets the name of the file we're going to generate (sans the .pb.h extension)
+string FileName(const FileDescriptor* file);
 
-// Returns the file's ObjectiveC package name.
-string FileObjectiveCPackage(const FileDescriptor* file);
+// Gets the name of the root class we'll generate in the file.  This class
+// is not meant for external consumption, but instead contains helpers that
+// the rest of the the classes need
+string FileClassName(const FileDescriptor* file);
 
 // Converts the given fully-qualified name in the proto namespace to its
 // fully-qualified name in the ObjectiveC namespace, given that it is in the given
@@ -69,8 +65,6 @@ inline string ClassName(const EnumDescriptor* descriptor) {
 inline string ClassName(const ServiceDescriptor* descriptor) {
   return ToObjectiveCName(descriptor->name(), descriptor->file());
 }
-string ClassName(const FileDescriptor* descriptor);
-
 
 string SafeName(const string& name);
 
@@ -93,7 +87,7 @@ inline ObjectiveCType GetObjectiveCType(const FieldDescriptor* field) {
 }
 
 // Get the fully-qualified class name for a boxed primitive type, e.g.
-// "objectivec.lang.Integer" for OBJECTIVECTYPE_INT.  Returns NULL for enum and message
+// "NSNumber" for OBJECTIVECTYPE_INT.  Returns NULL for enum and message
 // types.
 const char* BoxedPrimitiveTypeName(ObjectiveCType type);
 

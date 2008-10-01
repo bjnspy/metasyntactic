@@ -103,12 +103,8 @@ string StripProto(const string& filename) {
   }
 }
 
-string FileClassName(const FileDescriptor* file) {
-  
-  //if (file->options().has_objectivec_outer_classname()) {
-  //  return file->options().objectivec_outer_classname();
-  //} else {
-    string basename;
+string FileName(const FileDescriptor* file) {
+      string basename;
     string::size_type last_slash = file->name().find_last_of('/');
     if (last_slash == string::npos) {
       basename = file->name();
@@ -116,48 +112,16 @@ string FileClassName(const FileDescriptor* file) {
       basename = file->name().substr(last_slash + 1);
     }
     return UnderscoresToCamelCaseImpl(StripProto(basename), true);
-  //}
 }
 
-string FileObjectiveCPackage(const FileDescriptor* file) {
-  //if (file->options().has_
-  //if (file->options().has_objectivec_package()) {
-  //  return file->options().objectivec_package();
-  //} else {
-    //string result = kDefaultPackage;
-    //if (!file->package().empty()) {
-    //  if (!result.empty()) result += '_';
-    //  result += UnderscoresToCamelCaseImpl(StringReplace(file->package(), ".", "_", true), true);
-    //}
-    //return result;
-  //}
-  return "";
+string FileClassName(const FileDescriptor* file) {
+  return FileName(file) + "ProtoRoot";
 }
 
 string ToObjectiveCName(const string& full_name, const FileDescriptor* file) {
   string result;
-  //if (file->options().objectivec_multiple_files()) {
-    result = FileObjectiveCPackage(file);
-  //} else {
-  //  result = ClassName(file);
-  //}
-  //if (!result.empty()) {
-  //  result += '_';
- // }
-  //if (file->package().empty()) {
-    result += full_name;
-  //} else {
-    // Strip the proto package from full_name since we've replaced it with
-    // the ObjectiveC package.
-  //  result += full_name.substr(file->package().size() + 1);
-  //}
-  return result;
-}
-
-string ClassName(const FileDescriptor* descriptor) {
-  string result = FileObjectiveCPackage(descriptor);
-  //if (!result.empty()) result += '_';
-  result += FileClassName(descriptor);
+  //result += file->options().objectivec_class_prefix();
+  result += full_name;
   return result;
 }
 

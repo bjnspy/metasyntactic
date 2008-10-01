@@ -92,7 +92,7 @@ bool ObjectiveCGenerator::Generate(const FileDescriptor* file,
     return false;
   }
 
-  string objectivec_filename = file_generator.classname();
+  string objectivec_filename = FileName(file);
 
   // Generate header.
   {
