@@ -160,7 +160,7 @@
 }
 
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
+- (Descriptor*) getDescriptorForType {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

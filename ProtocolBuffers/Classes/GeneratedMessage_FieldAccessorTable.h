@@ -15,14 +15,14 @@
 // limitations under the License.
 
 @interface GeneratedMessage_FieldAccessorTable : NSObject {
-    ProtocolBufferDescriptor* descriptor;
+    Descriptor* descriptor;
     NSArray* fields;
 }
 
-@property (retain) ProtocolBufferDescriptor* descriptor;
+@property (retain) Descriptor* descriptor;
 @property (retain) NSArray* fields;
 
-+ (GeneratedMessage_FieldAccessorTable*) tableWithDescriptor:(ProtocolBufferDescriptor*) descriptor
++ (GeneratedMessage_FieldAccessorTable*) tableWithDescriptor:(Descriptor*) descriptor
                                                   fieldNames:(NSArray*) fieldNames
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass;

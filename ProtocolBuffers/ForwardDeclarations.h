@@ -56,7 +56,7 @@ enum ObjectiveCType;
 @class UnknownFieldSet_Field;
 @class UnknownFieldSet_Field_Builder;
 @class WireFormat;
-@class ProtocolBufferDescriptor;
+@class Descriptor;
 @class RepeatedMessageFieldAccessor;
 @class RepeatedEnumFieldAccessor;
 @class RepeatedFieldAccessor;

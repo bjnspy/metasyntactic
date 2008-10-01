@@ -21,7 +21,7 @@
     int32_t am_memoizedSize;
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType;
+- (Descriptor*) getDescriptorForType;
 - (id<Message>) getDefaultInstanceForType;
 - (NSDictionary*) getAllFields;
 - (BOOL) hasField:(FieldDescriptor*) field;
