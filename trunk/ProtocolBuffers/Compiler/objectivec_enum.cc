@@ -52,10 +52,9 @@ EnumGenerator::EnumGenerator(const EnumDescriptor* descriptor)
 
 EnumGenerator::~EnumGenerator() {}
 
-void EnumGenerator::GenerateForwardDeclarations(io::Printer* printer) {
-  printer->Print(
-    "@class $classname$;\n",
-      "classname", descriptor_->name());
+
+void EnumGenerator::DetermineDependencies(set<string>* dependencies) {
+  dependencies->insert(descriptor_->name());
 }
 
 void EnumGenerator::GenerateHeader(io::Printer* printer) {
@@ -220,7 +219,7 @@ void EnumGenerator::GenerateSource(io::Printer* printer) {
   if (descriptor_->containing_type() == NULL) {
     printer->Print(
       "  return [[$file$ getDescriptor].getEnumTypes objectAtIndex:$index$];\n",
-      "file", ClassName(descriptor_->file()),
+      "file", FileClassName(descriptor_->file()),
       "index", SimpleItoa(descriptor_->index()));
   } else {
     printer->Print(

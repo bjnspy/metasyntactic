@@ -22,6 +22,7 @@
 #define GOOGLE_PROTOBUF_COMPILER_OBJECTIVEC_FILE_H__
 
 #include <string>
+#include <set>
 #include <vector>
 #include <google/protobuf/stubs/common.h>
 
@@ -52,14 +53,12 @@ class FileGenerator {
 
   void GenerateSource(io::Printer* printer);
   void GenerateHeader(io::Printer* printer);
-  void GenerateForwardDeclarations(io::Printer* printer);
+  void DetermineDependencies(set<string>* dependencies);
 
-  const string& objectivec_package() { return objectivec_package_; }
   const string& classname()    { return classname_;    }
 
  private:
   const FileDescriptor* file_;
-  string objectivec_package_;
   string classname_;
 
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(FileGenerator);

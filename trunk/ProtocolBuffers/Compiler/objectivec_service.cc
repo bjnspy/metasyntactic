@@ -34,10 +34,8 @@ ServiceGenerator::ServiceGenerator(const ServiceDescriptor* descriptor)
 
 ServiceGenerator::~ServiceGenerator() {}
 
-void ServiceGenerator::GenerateForwardDeclarations(io::Printer* printer) {
-  printer->Print(
-    "@class $classname$;\n",
-      "classname", descriptor_->name());
+void ServiceGenerator::DetermineDependencies(set<string>* dependencies) {
+  dependencies->insert(descriptor_->name());
 }
 
 void ServiceGenerator::GenerateHeader(io::Printer* printer) {
@@ -104,12 +102,12 @@ void ServiceGenerator::GenerateSource(io::Printer* printer) {
   printer->Print(
     "\n"
     "+ (ServiceDescriptor*) getDescriptor {\n"
-    "  [return $file$.getDescriptor.getServices objectAtIndex:$index$];\n"
+    "  return [[$file$ getDescriptor].getServices objectAtIndex:$index$];\n"
     "}\n"
     "- (ServiceDescriptor*) getDescriptorForType {\n"
     "  return [self getDescriptor];\n"
     "}\n",
-    "file", ClassName(descriptor_->file()),
+    "file", FileClassName(descriptor_->file()),
     "index", SimpleItoa(descriptor_->index()));
 
   // Generate more stuff.
