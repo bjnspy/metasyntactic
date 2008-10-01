@@ -16,25 +16,25 @@
 
 #import "ObjectiveCType.h"
 
-id ObjectiveCTypeDefault(PBObjectiveCType type) {
+id PBObjectiveCTypeDefault(PBObjectiveCType type) {
     switch (type) {
-        case ObjectiveCTypeInt32:
+        case PBObjectiveCTypeInt32:
             return [NSNumber numberWithInt:0];
-        case ObjectiveCTypeInt64:
+        case PBObjectiveCTypeInt64:
             return [NSNumber numberWithLongLong:0];
-        case ObjectiveCTypeFloat32:
+        case PBObjectiveCTypeFloat32:
             return [NSNumber numberWithFloat:0];
-        case ObjectiveCTypeFloat64:
+        case PBObjectiveCTypeFloat64:
             return [NSNumber numberWithDouble:0];
-        case ObjectiveCTypeBool:
+        case PBObjectiveCTypeBool:
             return [NSNumber numberWithBool:NO];
-        case ObjectiveCTypeString:
+        case PBObjectiveCTypeString:
             return @"";
-        case ObjectiveCTypeData:
+        case PBObjectiveCTypeData:
             return [NSData data];
-        case ObjectiveCTypeEnum:
+        case PBObjectiveCTypeEnum:
             return nil;
-        case ObjectiveCTypeMessage:
+        case PBObjectiveCTypeMessage:
             return nil;
         default:
             @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];

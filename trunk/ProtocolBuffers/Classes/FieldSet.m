@@ -109,7 +109,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 - (id) getField:(PBFieldDescriptor*) field {
     id result = [fields objectForKey:field];
     if (result == nil) {
-        if (field.getObjectiveCType == ObjectiveCTypeMessage) {
+        if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
             if (field.isRepeated) {
                 return [NSArray array];
             } else {
@@ -134,18 +134,18 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 - (void) verifyType:(PBFieldDescriptor*) field value:(id) value {
     BOOL isValid = NO;
     switch (field.getObjectiveCType) {
-        case ObjectiveCTypeInt32:   isValid = [value isKindOfClass:[NSNumber class]]; break;
-        case ObjectiveCTypeInt64:   isValid = [value isKindOfClass:[NSNumber class]]; break;
-        case ObjectiveCTypeFloat32: isValid = [value isKindOfClass:[NSNumber class]]; break;
-        case ObjectiveCTypeFloat64: isValid = [value isKindOfClass:[NSNumber class]]; break;
-        case ObjectiveCTypeBool:    isValid = [value isKindOfClass:[NSNumber class]]; break;
-        case ObjectiveCTypeString:  isValid = [value isKindOfClass:[NSString class]]; break;
-        case ObjectiveCTypeData:    isValid = [value isKindOfClass:[NSData class]]; break;
-        case ObjectiveCTypeEnum:
+        case PBObjectiveCTypeInt32:   isValid = [value isKindOfClass:[NSNumber class]]; break;
+        case PBObjectiveCTypeInt64:   isValid = [value isKindOfClass:[NSNumber class]]; break;
+        case PBObjectiveCTypeFloat32: isValid = [value isKindOfClass:[NSNumber class]]; break;
+        case PBObjectiveCTypeFloat64: isValid = [value isKindOfClass:[NSNumber class]]; break;
+        case PBObjectiveCTypeBool:    isValid = [value isKindOfClass:[NSNumber class]]; break;
+        case PBObjectiveCTypeString:  isValid = [value isKindOfClass:[NSString class]]; break;
+        case PBObjectiveCTypeData:    isValid = [value isKindOfClass:[NSData class]]; break;
+        case PBObjectiveCTypeEnum:
             isValid = [value isKindOfClass:[PBEnumValueDescriptor class]] &&
             [value getType] == field.getEnumType;
             break;
-        case ObjectiveCTypeMessage:
+        case PBObjectiveCTypeMessage:
             isValid = [value conformsToProtocol:@protocol(PBMessage)] &&
             [value getDescriptorForType] == field.getMessageType;
             break;
@@ -273,7 +273,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     for (PBFieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
 
-        if (field.getObjectiveCType == ObjectiveCTypeMessage) {
+        if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
             if (field.isRepeated) {
                 for (id<PBMessage> element in value) {
                     if (![element isInitialized]) {
@@ -333,7 +333,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 [fields setObject:existingValue forKey:field];
             }
             [existingValue addObjectsFromArray:otherValue];
-        } else if (field.getObjectiveCType == ObjectiveCTypeMessage) {
+        } else if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
             id<PBMessage> existingValue = [fields objectForKey:field];
             if (existingValue == nil) {
                 [self setField:field value:otherValue];
@@ -362,7 +362,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 [fields setObject:existingValue forKey:field];
             }
             [existingValue addObjectsFromArray:value];
-        } else if (field.getObjectiveCType == ObjectiveCTypeMessage) {
+        } else if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
             id<PBMessage> existingValue = [fields objectForKey:field];
             if (existingValue == nil) {
                 [self setField:field value:value];
@@ -439,7 +439,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
      break;
      }
      
-     if (tag == WireFormat.MESSAGE_SET_TYPE_ID_TAG) {
+     if (tag == PBWireFormat.MESSAGE_SET_TYPE_ID_TAG) {
      typeId = input.readUInt32();
      // Zero is not a valid type ID.
      if (typeId != 0) {
@@ -470,7 +470,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
      }
      }
      }
-     } else if (tag == WireFormat.MESSAGE_SET_MESSAGE_TAG) {
+     } else if (tag == PBWireFormat.MESSAGE_SET_MESSAGE_TAG) {
      if (typeId == 0) {
      // We haven't seen a type ID yet, so we have to store the raw bytes
      // for now.
@@ -494,7 +494,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
      }
      }
      
-     input.checkLastTagWas(WireFormat.MESSAGE_SET_ITEM_END_TAG);
+     input.checkLastTagWas(PBWireFormat.MESSAGE_SET_ITEM_END_TAG);
      
      if (subBuilder != null) {
      builder.setField(field, subBuilder.build());
@@ -517,7 +517,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     PBDescriptor* type = [builder getDescriptorForType];
 
     if (type.getOptions.getMessageSetWireFormat &&
-        tag == WireFormatMessageSetItemTag) {
+        tag == PBWireFormatMessageSetItemTag) {
         [self mergeMessageSetExtensionFromCodedStream:input
                                         unknownFields:unknownFields
                                     extensionRegistry:extensionRegistry
@@ -525,8 +525,8 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         return true;
     }
 
-    int32_t wireType = WireFormatGetTagWireType(tag);
-    int32_t fieldNumber = WireFormatGetTagFieldNumber(tag);
+    int32_t wireType = PBWireFormatGetTagWireType(tag);
+    int32_t fieldNumber = PBWireFormatGetTagFieldNumber(tag);
 
     PBFieldDescriptor* field;
    id<PBMessage> defaultInstance = nil;
@@ -544,13 +544,13 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     }
 
     if (field == nil ||
-        wireType != WireFormatGetWireFormatForFieldType(field.getType)) {
+        wireType != PBWireFormatGetWireFormatForFieldType(field.getType)) {
         // Unknown field or wrong wire type.  Skip.
         return [unknownFields mergeFieldFrom:tag input:input];
     } else {
         id value;
         switch (field.getType) {
-            case FieldDescriptorTypeGroup: {
+            case PBFieldDescriptorTypeGroup: {
                 id<PBMessage_Builder> subBuilder;
                 if (defaultInstance != nil) {
                     subBuilder = [defaultInstance newBuilderForType];
@@ -564,7 +564,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 value = [subBuilder build];
                 break;
             }
-            case FieldDescriptorTypeMessage: {
+            case PBFieldDescriptorTypeMessage: {
                 id<PBMessage_Builder> subBuilder;
                 if (defaultInstance != nil) {
                     subBuilder = [defaultInstance newBuilderForType];
@@ -578,7 +578,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 value = [subBuilder build];
                 break;
             }
-            case FieldDescriptorTypeEnum: {
+            case PBFieldDescriptorTypeEnum: {
                 int32_t rawValue = [input readEnum];
                 value = [field.getEnumType findValueByNumber:rawValue];
                 // If the number isn't recognized as a valid value for this enum,

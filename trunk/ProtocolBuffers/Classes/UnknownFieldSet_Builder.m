@@ -176,26 +176,26 @@
  * @return {@code false} if the tag is an engroup tag.
  */
 - (BOOL) mergeFieldFrom:(int32_t) tag input:(PBCodedInputStream*) input {
-    int32_t number = WireFormatGetTagFieldNumber(tag);
-    switch (WireFormatGetTagWireType(tag)) {
-        case WireFormatVarint:
+    int32_t number = PBWireFormatGetTagFieldNumber(tag);
+    switch (PBWireFormatGetTagWireType(tag)) {
+        case PBWireFormatVarint:
             [[self getFieldBuilder:number] addVarint:[input readInt64]];
             return true;
-        case WireFormatFixed64:
+        case PBWireFormatFixed64:
             [[self getFieldBuilder:number] addFixed64:[input readFixed64]];
             return true;
-        case WireFormatLengthDelimited:
+        case PBWireFormatLengthDelimited:
             [[self getFieldBuilder:number] addLengthDelimited:[input readData]];
             return true;
-        case WireFormatStartGroup: {
+        case PBWireFormatStartGroup: {
             PBUnknownFieldSet_Builder* subBuilder = [PBUnknownFieldSet newBuilder];
             [input readUnknownGroup:number builder:subBuilder];
             [[self getFieldBuilder:number] addGroup:[subBuilder build]];
             return true;
         }
-        case WireFormatEndGroup:
+        case PBWireFormatEndGroup:
             return false;
-        case WireFormatFixed32:
+        case PBWireFormatFixed32:
             [[self getFieldBuilder:number] addFixed32:[input readFixed32]];
             return true;
         default:

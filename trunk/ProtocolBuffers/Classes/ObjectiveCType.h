@@ -15,15 +15,15 @@
 // limitations under the License.
 
 typedef enum {
-    ObjectiveCTypeInt32,
-    ObjectiveCTypeInt64,
-    ObjectiveCTypeFloat32,
-    ObjectiveCTypeFloat64,
-    ObjectiveCTypeBool,
-    ObjectiveCTypeString,
-    ObjectiveCTypeData,
-    ObjectiveCTypeEnum,
-    ObjectiveCTypeMessage
+    PBObjectiveCTypeInt32,
+    PBObjectiveCTypeInt64,
+    PBObjectiveCTypeFloat32,
+    PBObjectiveCTypeFloat64,
+    PBObjectiveCTypeBool,
+    PBObjectiveCTypeString,
+    PBObjectiveCTypeData,
+    PBObjectiveCTypeEnum,
+    PBObjectiveCTypeMessage
 } PBObjectiveCType;
 
-id ObjectiveCTypeDefault(PBObjectiveCType type);
+id PBObjectiveCTypeDefault(PBObjectiveCType type);

@@ -75,7 +75,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write a {@code double} field, including tag, to the stream. */
 - (void) writeDouble:(int32_t) fieldNumber
                value:(Float64) value {
-    [self writeTag:fieldNumber format:WireFormatFixed64];
+    [self writeTag:fieldNumber format:PBWireFormatFixed64];
     [self writeRawLittleEndian64:convertFloat64ToInt64(value)];
 }
 
@@ -83,7 +83,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write a {@code float} field, including tag, to the stream. */
 - (void) writeFloat:(int32_t) fieldNumber
               value:(Float32) value {
-    [self writeTag:fieldNumber format:WireFormatFixed32];
+    [self writeTag:fieldNumber format:PBWireFormatFixed32];
     [self writeRawLittleEndian32:convertFloat32ToInt32(value)];
 }
 
@@ -91,7 +91,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write a {@code uint64} field, including tag, to the stream. */
 - (void) writeUInt64:(int32_t) fieldNumber
                value:(int64_t) value {
-    [self writeTag:fieldNumber format:WireFormatVarint];
+    [self writeTag:fieldNumber format:PBWireFormatVarint];
     [self writeRawVarint64:value];
 }
 
@@ -99,7 +99,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write an {@code int64} field, including tag, to the stream. */
 - (void) writeInt64:(int32_t) fieldNumber
                value:(int64_t) value {
-    [self writeTag:fieldNumber format:WireFormatVarint];
+    [self writeTag:fieldNumber format:PBWireFormatVarint];
     [self writeRawVarint64:value];
 }
 
@@ -107,7 +107,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write an {@code int32} field, including tag, to the stream. */
 - (void) writeInt32:(int32_t) fieldNumber
               value:(int32_t) value {
-    [self writeTag:fieldNumber format:WireFormatVarint];
+    [self writeTag:fieldNumber format:PBWireFormatVarint];
     if (value >= 0) {
         [self writeRawVarint32:value];
     } else {
@@ -120,7 +120,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write a {@code fixed64} field, including tag, to the stream. */
 - (void) writeFixed64:(int32_t) fieldNumber
                 value:(int64_t) value {
-    [self writeTag:fieldNumber format:WireFormatFixed64];
+    [self writeTag:fieldNumber format:PBWireFormatFixed64];
     [self writeRawLittleEndian64:value];
 }
 
@@ -128,7 +128,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write a {@code fixed32} field, including tag, to the stream. */
 - (void) writeFixed32:(int32_t) fieldNumber
                 value:(int32_t) value {
-    [self writeTag:fieldNumber format:WireFormatFixed32];
+    [self writeTag:fieldNumber format:PBWireFormatFixed32];
     [self writeRawLittleEndian32:value];
 }
 
@@ -136,7 +136,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write a {@code bool} field, including tag, to the stream. */
 - (void) writeBool:(int32_t) fieldNumber
              value:(BOOL) value {
-    [self writeTag:fieldNumber format:WireFormatVarint];
+    [self writeTag:fieldNumber format:PBWireFormatVarint];
     [self writeRawByte:(value ? 1 : 0)];
 }
 
@@ -147,7 +147,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
     // TODO(cyrusn): we could probably use:
     // NSString:getBytes:maxLength:usedLength:encoding:options:range:remainingRange:
     // to write directly into our buffer.
-    [self writeTag:fieldNumber format:WireFormatLengthDelimited];
+    [self writeTag:fieldNumber format:PBWireFormatLengthDelimited];
     NSData* data = [value dataUsingEncoding:NSUTF8StringEncoding];
     [self writeRawVarint32:data.length];
     [self writeRawData:data];
@@ -157,25 +157,25 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write a {@code group} field, including tag, to the stream. */
 - (void) writeGroup:(int32_t) fieldNumber
               value:(id<PBMessage>) value {
-    [self writeTag:fieldNumber format:WireFormatStartGroup];
+    [self writeTag:fieldNumber format:PBWireFormatStartGroup];
     [value writeToCodedOutputStream:self];
-    [self writeTag:fieldNumber format:WireFormatEndGroup];
+    [self writeTag:fieldNumber format:PBWireFormatEndGroup];
 }
 
 
 /** Write a group represented by an {@link PBUnknownFieldSet}. */
 - (void) writeUnknownGroup:(int32_t) fieldNumber
                      value:(PBUnknownFieldSet*) value {
-    [self writeTag:fieldNumber format:WireFormatStartGroup];
+    [self writeTag:fieldNumber format:PBWireFormatStartGroup];
     [value writeToCodedOutputStream:self];
-    [self writeTag:fieldNumber format:WireFormatEndGroup];
+    [self writeTag:fieldNumber format:PBWireFormatEndGroup];
 }
 
 
 /** Write an embedded message field, including tag, to the stream. */
 - (void) writeMessage:(int32_t) fieldNumber
                 value:(id<PBMessage>) value {
-    [self writeTag:fieldNumber format:WireFormatLengthDelimited];
+    [self writeTag:fieldNumber format:PBWireFormatLengthDelimited];
     [self writeRawVarint32:[value getSerializedSize]];
     [value writeToCodedOutputStream:self];
 }
@@ -183,7 +183,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 
 /** Write a {@code bytes} field, including tag, to the stream. */
 - (void) writeData:(int32_t) fieldNumber value:(NSData*) value {
-    [self writeTag:fieldNumber format:WireFormatLengthDelimited];
+    [self writeTag:fieldNumber format:PBWireFormatLengthDelimited];
     [self writeRawVarint32:value.length];
     [self writeRawData:value];
 }
@@ -192,7 +192,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write a {@code uint32} field, including tag, to the stream. */
 - (void) writeUInt32:(int32_t) fieldNumber
                value:(int32_t) value {
-    [self writeTag:fieldNumber format:WireFormatVarint];
+    [self writeTag:fieldNumber format:PBWireFormatVarint];
     [self writeRawVarint32:value];
 }
 
@@ -203,7 +203,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
  */
 - (void) writeEnum:(int32_t) fieldNumber
              value:(int32_t) value {
-    [self writeTag:fieldNumber format:WireFormatVarint];
+    [self writeTag:fieldNumber format:PBWireFormatVarint];
     [self writeRawVarint32:value];
 }
 
@@ -211,7 +211,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write an {@code sfixed32} field, including tag, to the stream. */
 - (void) writeSFixed32:(int32_t) fieldNumber
                  value:(int32_t) value {
-    [self writeTag:fieldNumber format:WireFormatFixed32];
+    [self writeTag:fieldNumber format:PBWireFormatFixed32];
     [self writeRawLittleEndian32:value];
 }
 
@@ -219,7 +219,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write an {@code sfixed64} field, including tag, to the stream. */
 - (void) writeSFixed64:(int32_t) fieldNumber
                  value:(int64_t) value {
-    [self writeTag:fieldNumber format:WireFormatFixed64];
+    [self writeTag:fieldNumber format:PBWireFormatFixed64];
     [self writeRawLittleEndian64:value];
 }
 
@@ -227,7 +227,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write an {@code sint32} field, including tag, to the stream. */
 - (void) writeSInt32:(int32_t) fieldNumber
                value:(int32_t) value {
-    [self writeTag:fieldNumber format:WireFormatVarint];
+    [self writeTag:fieldNumber format:PBWireFormatVarint];
     [self writeRawVarint32:encodeZigZag32(value)];
 }
 
@@ -235,7 +235,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 /** Write an {@code sint64} field, including tag, to the stream. */
 - (void) writeSInt64:(int32_t) fieldNumber
                value:(int64_t) value {
-    [self writeTag:fieldNumber format:WireFormatVarint];
+    [self writeTag:fieldNumber format:PBWireFormatVarint];
     [self writeRawVarint64:encodeZigZag64(value)];
 }
 
@@ -246,10 +246,10 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
  */
 - (void) writeMessageSetExtension:(int32_t) fieldNumber
                             value:(id<PBMessage>) value {
-    [self writeTag:WireFormatMessageSetItem format:WireFormatStartGroup];
-    [self writeUInt32:WireFormatMessageSetTypeId value:fieldNumber];
-    [self writeMessage:WireFormatMessageSetMessage value:value];
-    [self writeTag:WireFormatMessageSetItem format:WireFormatEndGroup];
+    [self writeTag:PBWireFormatMessageSetItem format:PBWireFormatStartGroup];
+    [self writeUInt32:PBWireFormatMessageSetTypeId value:fieldNumber];
+    [self writeMessage:PBWireFormatMessageSetMessage value:value];
+    [self writeTag:PBWireFormatMessageSetItem format:PBWireFormatEndGroup];
 }
 
 
@@ -259,10 +259,10 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
  */
 - (void) writeRawMessageSetExtension:(int32_t) fieldNumber
                                value:(NSData*) value {
-    [self writeTag:WireFormatMessageSetItem format:WireFormatStartGroup];
-    [self writeUInt32:WireFormatMessageSetTypeId value:fieldNumber];
-    [self writeData:WireFormatMessageSetMessage value:value];
-    [self writeTag:WireFormatMessageSetItem format:WireFormatEndGroup];
+    [self writeTag:PBWireFormatMessageSetItem format:PBWireFormatStartGroup];
+    [self writeUInt32:PBWireFormatMessageSetTypeId value:fieldNumber];
+    [self writeData:PBWireFormatMessageSetMessage value:value];
+    [self writeTag:PBWireFormatMessageSetItem format:PBWireFormatEndGroup];
 }
 
 
@@ -280,24 +280,24 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
              number:(int32_t) number
               value:(id) value {
     switch (type) {
-        case FieldDescriptorTypeDouble:   [self writeDouble:number      value:[value doubleValue]]; break;
-        case FieldDescriptorTypeFloat:    [self writeFloat:number       value:[value floatValue]]; break;
-        case FieldDescriptorTypeInt64:    [self writeInt64:number       value:[value longLongValue]]; break;
-        case FieldDescriptorTypeUInt64:   [self writeUInt64:number      value:[value longLongValue]]; break;
-        case FieldDescriptorTypeInt32:    [self writeInt32:number       value:[value intValue]]; break;
-        case FieldDescriptorTypeFixed64:  [self writeFixed64:number     value:[value longLongValue]]; break;
-        case FieldDescriptorTypeFixed32:  [self writeFixed32:number     value:[value intValue]]; break;
-        case FieldDescriptorTypeBool:     [self writeBool:number        value:[value boolValue]]; break;
-        case FieldDescriptorTypeString:   [self writeString:number      value:value]; break;
-        case FieldDescriptorTypeGroup:    [self writeGroup:number       value:value]; break;
-        case FieldDescriptorTypeMessage:  [self writeGroup:number       value:value]; break;
-        case FieldDescriptorTypeData:     [self writeData:number        value:value]; break;
-        case FieldDescriptorTypeUInt32:   [self writeUInt32:number      value:[value intValue]]; break;
-        case FieldDescriptorTypeSFixed32: [self writeSFixed32:number    value:[value intValue]]; break;
-        case FieldDescriptorTypeSFixed64: [self writeSFixed64:number    value:[value longLongValue]]; break;
-        case FieldDescriptorTypeSInt32:   [self writeSInt32:number      value:[value intValue]]; break;
-        case FieldDescriptorTypeSInt64:   [self writeSInt64:number      value:[value longLongValue]]; break;
-        case FieldDescriptorTypeEnum:     [self writeEnum:number        value:[value getNumber]]; break;
+        case PBFieldDescriptorTypeDouble:   [self writeDouble:number      value:[value doubleValue]]; break;
+        case PBFieldDescriptorTypeFloat:    [self writeFloat:number       value:[value floatValue]]; break;
+        case PBFieldDescriptorTypeInt64:    [self writeInt64:number       value:[value longLongValue]]; break;
+        case PBFieldDescriptorTypeUInt64:   [self writeUInt64:number      value:[value longLongValue]]; break;
+        case PBFieldDescriptorTypeInt32:    [self writeInt32:number       value:[value intValue]]; break;
+        case PBFieldDescriptorTypeFixed64:  [self writeFixed64:number     value:[value longLongValue]]; break;
+        case PBFieldDescriptorTypeFixed32:  [self writeFixed32:number     value:[value intValue]]; break;
+        case PBFieldDescriptorTypeBool:     [self writeBool:number        value:[value boolValue]]; break;
+        case PBFieldDescriptorTypeString:   [self writeString:number      value:value]; break;
+        case PBFieldDescriptorTypeGroup:    [self writeGroup:number       value:value]; break;
+        case PBFieldDescriptorTypeMessage:  [self writeGroup:number       value:value]; break;
+        case PBFieldDescriptorTypeData:     [self writeData:number        value:value]; break;
+        case PBFieldDescriptorTypeUInt32:   [self writeUInt32:number      value:[value intValue]]; break;
+        case PBFieldDescriptorTypeSFixed32: [self writeSFixed32:number    value:[value intValue]]; break;
+        case PBFieldDescriptorTypeSFixed64: [self writeSFixed64:number    value:[value longLongValue]]; break;
+        case PBFieldDescriptorTypeSInt32:   [self writeSInt32:number      value:[value intValue]]; break;
+        case PBFieldDescriptorTypeSInt64:   [self writeSInt64:number      value:[value longLongValue]]; break;
+        case PBFieldDescriptorTypeEnum:     [self writeEnum:number        value:[value getNumber]]; break;
         default:
             @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
@@ -495,9 +495,9 @@ int32_t computeSInt64Size(int32_t fieldNumber, int64_t value) {
  * the wire format differs from normal fields.
  */
 int32_t computeMessageSetExtensionSize(int32_t fieldNumber, id<PBMessage> value) {
-    return computeTagSize(WireFormatMessageSetItem) * 2 +
-    computeUInt32Size(WireFormatMessageSetTypeId, fieldNumber) +
-    computeMessageSize(WireFormatMessageSetMessage, value);
+    return computeTagSize(PBWireFormatMessageSetItem) * 2 +
+    computeUInt32Size(PBWireFormatMessageSetTypeId, fieldNumber) +
+    computeMessageSize(PBWireFormatMessageSetMessage, value);
 }
 
 
@@ -507,9 +507,9 @@ int32_t computeMessageSetExtensionSize(int32_t fieldNumber, id<PBMessage> value)
  * historical reasons, the wire format differs from normal fields.
  */
 int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value) {
-    return computeTagSize(WireFormatMessageSetItem) * 2 +
-    computeUInt32Size(WireFormatMessageSetTypeId, fieldNumber) +
-    computeDataSize(WireFormatMessageSetMessage, value);
+    return computeTagSize(PBWireFormatMessageSetItem) * 2 +
+    computeUInt32Size(PBWireFormatMessageSetTypeId, fieldNumber) +
+    computeDataSize(PBWireFormatMessageSetMessage, value);
 }
 
 
@@ -528,24 +528,24 @@ int32_t computeFieldSize(PBFieldDescriptorType type,
                          int32_t number,
                          id value) {
     switch (type) {
-        case FieldDescriptorTypeDouble  : return computeDoubleSize  (number, [value doubleValue]);
-        case FieldDescriptorTypeFloat   : return computeFloatSize   (number, [value floatValue]);
-        case FieldDescriptorTypeInt64   : return computeInt64Size   (number, [value longLongValue]);
-        case FieldDescriptorTypeUInt64  : return computeUInt64Size  (number, [value longLongValue]);
-        case FieldDescriptorTypeInt32   : return computeInt32Size   (number, [value intValue]);
-        case FieldDescriptorTypeFixed64 : return computeFixed64Size (number, [value longLongValue]);
-        case FieldDescriptorTypeFixed32 : return computeFixed32Size (number, [value intValue]);
-        case FieldDescriptorTypeBool    : return computeBoolSize    (number, [value boolValue]);
-        case FieldDescriptorTypeString  : return computeStringSize  (number, value);
-        case FieldDescriptorTypeGroup   : return computeGroupSize   (number, value);
-        case FieldDescriptorTypeMessage : return computeMessageSize (number, value);
-        case FieldDescriptorTypeData    : return computeDataSize    (number, value);
-        case FieldDescriptorTypeUInt32  : return computeUInt32Size  (number, [value intValue]);
-        case FieldDescriptorTypeSFixed32: return computeSFixed32Size(number, [value intValue]);
-        case FieldDescriptorTypeSFixed64: return computeSFixed64Size(number, [value longLongValue]);
-        case FieldDescriptorTypeSInt32  : return computeSInt32Size  (number, [value intValue]);
-        case FieldDescriptorTypeSInt64  : return computeSInt64Size  (number, [value longLongValue]);
-        case FieldDescriptorTypeEnum:     return computeEnumSize    (number, [value getNumber]);
+        case PBFieldDescriptorTypeDouble  : return computeDoubleSize  (number, [value doubleValue]);
+        case PBFieldDescriptorTypeFloat   : return computeFloatSize   (number, [value floatValue]);
+        case PBFieldDescriptorTypeInt64   : return computeInt64Size   (number, [value longLongValue]);
+        case PBFieldDescriptorTypeUInt64  : return computeUInt64Size  (number, [value longLongValue]);
+        case PBFieldDescriptorTypeInt32   : return computeInt32Size   (number, [value intValue]);
+        case PBFieldDescriptorTypeFixed64 : return computeFixed64Size (number, [value longLongValue]);
+        case PBFieldDescriptorTypeFixed32 : return computeFixed32Size (number, [value intValue]);
+        case PBFieldDescriptorTypeBool    : return computeBoolSize    (number, [value boolValue]);
+        case PBFieldDescriptorTypeString  : return computeStringSize  (number, value);
+        case PBFieldDescriptorTypeGroup   : return computeGroupSize   (number, value);
+        case PBFieldDescriptorTypeMessage : return computeMessageSize (number, value);
+        case PBFieldDescriptorTypeData    : return computeDataSize    (number, value);
+        case PBFieldDescriptorTypeUInt32  : return computeUInt32Size  (number, [value intValue]);
+        case PBFieldDescriptorTypeSFixed32: return computeSFixed32Size(number, [value intValue]);
+        case PBFieldDescriptorTypeSFixed64: return computeSFixed64Size(number, [value longLongValue]);
+        case PBFieldDescriptorTypeSInt32  : return computeSInt32Size  (number, [value intValue]);
+        case PBFieldDescriptorTypeSInt64  : return computeSInt64Size  (number, [value longLongValue]);
+        case PBFieldDescriptorTypeEnum:     return computeEnumSize    (number, [value getNumber]);
     }
 
     @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
@@ -656,13 +656,13 @@ int32_t computeFieldSize(PBFieldDescriptorType type,
 /** Encode and write a tag. */
 - (void) writeTag:(int32_t) fieldNumber
            format:(int32_t) format {
-    [self writeRawVarint32:WireFormatMakeTag(fieldNumber, format)];
+    [self writeRawVarint32:PBWireFormatMakeTag(fieldNumber, format)];
 }
 
 
 /** Compute the number of bytes that would be needed to encode a tag. */
 int32_t computeTagSize(int32_t fieldNumber) {
-    return computeRawVarint32Size(WireFormatMakeTag(fieldNumber, 0));
+    return computeRawVarint32Size(PBWireFormatMakeTag(fieldNumber, 0));
 }
 
 

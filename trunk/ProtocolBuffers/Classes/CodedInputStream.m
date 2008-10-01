@@ -121,25 +121,25 @@ const int32_t BUFFER_SIZE = 4096;
  *         nothing is skipped.  Otherwise, returns {@code true}.
  */
 - (BOOL) skipField:(int32_t) tag {
-    switch (WireFormatGetTagWireType(tag)) {
-        case WireFormatVarint:
+    switch (PBWireFormatGetTagWireType(tag)) {
+        case PBWireFormatVarint:
             [self readInt32];
             return true;
-        case WireFormatFixed64:
+        case PBWireFormatFixed64:
             [self readRawLittleEndian64];
             return true;
-        case WireFormatLengthDelimited:
+        case PBWireFormatLengthDelimited:
             [self skipRawBytes:[self readRawVarint32]];
             return true;
-        case WireFormatStartGroup:
+        case PBWireFormatStartGroup:
             [self skipMessage];
             [self checkLastTagWas:
-                            WireFormatMakeTag(WireFormatGetTagFieldNumber(tag),
-                                              WireFormatEndGroup)];
+                            PBWireFormatMakeTag(PBWireFormatGetTagFieldNumber(tag),
+                                              PBWireFormatEndGroup)];
             return true;
-        case WireFormatEndGroup:
+        case PBWireFormatEndGroup:
             return false;
-        case WireFormatFixed32:
+        case PBWireFormatFixed32:
             [self readRawLittleEndian32];
             return true;
         default:
@@ -239,7 +239,7 @@ const int32_t BUFFER_SIZE = 4096;
     }
     ++recursionDepth;
     [builder mergeFromCodedInputStream:self extensionRegistry:extensionRegistry];
-    [self checkLastTagWas:WireFormatMakeTag(fieldNumber, WireFormatEndGroup)];
+    [self checkLastTagWas:PBWireFormatMakeTag(fieldNumber, PBWireFormatEndGroup)];
     --recursionDepth;
 }
 
@@ -255,7 +255,7 @@ const int32_t BUFFER_SIZE = 4096;
     }
     ++recursionDepth;
     [builder mergeFromCodedInputStream:self];
-    [self checkLastTagWas:WireFormatMakeTag(fieldNumber, WireFormatEndGroup)];
+    [self checkLastTagWas:PBWireFormatMakeTag(fieldNumber, PBWireFormatEndGroup)];
     --recursionDepth;
 }
 
@@ -343,29 +343,29 @@ const int32_t BUFFER_SIZE = 4096;
  */
 - (id) readPrimitiveField:(PBFieldDescriptorType) type {
     switch (type) {
-        case FieldDescriptorTypeDouble  : return [NSNumber numberWithDouble:    [self readDouble]];
-        case FieldDescriptorTypeFloat   : return [NSNumber numberWithFloat:     [self readFloat]];
-        case FieldDescriptorTypeInt64   : return [NSNumber numberWithLongLong:  [self readInt64]];
-        case FieldDescriptorTypeUInt64  : return [NSNumber numberWithLongLong:  [self readUInt64]];
-        case FieldDescriptorTypeInt32   : return [NSNumber numberWithInt:       [self readInt32]];
-        case FieldDescriptorTypeFixed64 : return [NSNumber numberWithLongLong:  [self readFixed64]];
-        case FieldDescriptorTypeFixed32 : return [NSNumber numberWithInt:       [self readFixed32]];
-        case FieldDescriptorTypeBool    : return [NSNumber numberWithBool:      [self readBool]];
-        case FieldDescriptorTypeString  : return [self readString];
-        case FieldDescriptorTypeData    : return [self readData];
-        case FieldDescriptorTypeUInt32  : return [NSNumber numberWithInt:       [self readUInt32]];
-        case FieldDescriptorTypeSFixed32: return [NSNumber numberWithInt:       [self readSFixed32]];
-        case FieldDescriptorTypeSFixed64: return [NSNumber numberWithLongLong:  [self readSFixed64]];
-        case FieldDescriptorTypeSInt32  : return [NSNumber numberWithInt:       [self readSInt32]];
-        case FieldDescriptorTypeSInt64  : return [NSNumber numberWithLongLong:  [self readSInt64]];
+        case PBFieldDescriptorTypeDouble  : return [NSNumber numberWithDouble:    [self readDouble]];
+        case PBFieldDescriptorTypeFloat   : return [NSNumber numberWithFloat:     [self readFloat]];
+        case PBFieldDescriptorTypeInt64   : return [NSNumber numberWithLongLong:  [self readInt64]];
+        case PBFieldDescriptorTypeUInt64  : return [NSNumber numberWithLongLong:  [self readUInt64]];
+        case PBFieldDescriptorTypeInt32   : return [NSNumber numberWithInt:       [self readInt32]];
+        case PBFieldDescriptorTypeFixed64 : return [NSNumber numberWithLongLong:  [self readFixed64]];
+        case PBFieldDescriptorTypeFixed32 : return [NSNumber numberWithInt:       [self readFixed32]];
+        case PBFieldDescriptorTypeBool    : return [NSNumber numberWithBool:      [self readBool]];
+        case PBFieldDescriptorTypeString  : return [self readString];
+        case PBFieldDescriptorTypeData    : return [self readData];
+        case PBFieldDescriptorTypeUInt32  : return [NSNumber numberWithInt:       [self readUInt32]];
+        case PBFieldDescriptorTypeSFixed32: return [NSNumber numberWithInt:       [self readSFixed32]];
+        case PBFieldDescriptorTypeSFixed64: return [NSNumber numberWithLongLong:  [self readSFixed64]];
+        case PBFieldDescriptorTypeSInt32  : return [NSNumber numberWithInt:       [self readSInt32]];
+        case PBFieldDescriptorTypeSInt64  : return [NSNumber numberWithLongLong:  [self readSInt64]];
 
-        case FieldDescriptorTypeGroup:
+        case PBFieldDescriptorTypeGroup:
             @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField() cannot handle nested groups." userInfo:nil];
 
-        case FieldDescriptorTypeMessage:
+        case PBFieldDescriptorTypeMessage:
             @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField() cannot handle embedded messages." userInfo:nil];
 
-        case FieldDescriptorTypeEnum:
+        case PBFieldDescriptorTypeEnum:
             // We don't hanlde enums because we don't know what to do if the
             // value is not recognized.
             @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"readPrimitiveField() cannot handle enums." userInfo:nil];
