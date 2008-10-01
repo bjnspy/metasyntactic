@@ -14,36 +14,36 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol Message_Builder
-- (id<Message_Builder>) clear;
-- (id<Message_Builder>) mergeFromMessage:(id<Message>) other;
+@protocol PBMessage_Builder
+- (id<PBMessage_Builder>) clear;
+- (id<PBMessage_Builder>) mergeFromMessage:(id<Message>) other;
 - (id<Message>) build;
 - (id<Message>) buildPartial;
 - (id<Message>) buildParsed;
-- (id<Message_Builder>) clone;
+- (id<PBMessage_Builder>) clone;
 - (BOOL) isInitialized;
 - (PBDescriptor*) getDescriptorForType;
 - (id<Message>) getDefaultInstanceForType;
 - (NSDictionary*) getAllFields;
-- (id<Message_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
+- (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
 
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
-- (id<Message_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
-- (id<Message_Builder>) clearField:(PBFieldDescriptor*) field;
+- (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
+- (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field;
 - (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
-- (id<Message_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
-- (id<Message_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
+- (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 
 - (PBUnknownFieldSet*) unknownFields;
-- (id<Message_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
-- (id<Message_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (id<PBMessage_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
 
-- (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-- (id<Message_Builder>) mergeFromData:(NSData*) data;
-- (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input;
-- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (id<PBMessage_Builder>) mergeFromData:(NSData*) data;
+- (id<PBMessage_Builder>) mergeFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (id<PBMessage_Builder>) mergeFromInputStream:(NSInputStream*) input;
+- (id<PBMessage_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end

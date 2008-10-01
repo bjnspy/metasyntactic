@@ -24,6 +24,6 @@ typedef enum {
     ObjectiveCTypeData,
     ObjectiveCTypeEnum,
     ObjectiveCTypeMessage
-} ObjectiveCType;
+} PBObjectiveCType;
 
-id ObjectiveCTypeDefault(ObjectiveCType type);
+id ObjectiveCTypeDefault(PBObjectiveCType type);

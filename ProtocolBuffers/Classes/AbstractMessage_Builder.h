@@ -16,7 +16,7 @@
 
 #import "Message_Builder.h"
 
-@interface AbstractMessage_Builder : NSObject<Message_Builder> {
+@interface AbstractMessage_Builder : NSObject<PBMessage_Builder> {
 @private
 }
 
@@ -24,14 +24,14 @@
 
 - (id<Message>) buildParsed;
 
-- (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-- (id<Message_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
-- (id<Message_Builder>) mergeFromData:(NSData*) data;
-- (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input;
-- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (id<PBMessage_Builder>) mergeFromData:(NSData*) data;
+- (id<PBMessage_Builder>) mergeFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+- (id<PBMessage_Builder>) mergeFromInputStream:(NSInputStream*) input;
+- (id<PBMessage_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (id<Message_Builder>) mergeFromMessage:(id<Message>) other;
+- (id<PBMessage_Builder>) mergeFromMessage:(id<Message>) other;
 
 @end

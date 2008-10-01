@@ -293,10 +293,10 @@
 // optional .google.protobuf.FileOptions options = 8;
 - (BOOL) hasOptions;
 - (PBFileOptions*) getOptions;
-- (id<Message_Builder>) setOptions:(PBFileOptions*) value;
-- (id<Message_Builder>) setOptionsBuilder:(PBFileOptions_Builder*) builderForValue;
-- (id<Message_Builder>) mergeOptions:(PBFileOptions*) value;
-- (id<Message_Builder>) clearOptions;
+- (id<PBMessage_Builder>) setOptions:(PBFileOptions*) value;
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBFileOptions_Builder*) builderForValue;
+- (id<PBMessage_Builder>) mergeOptions:(PBFileOptions*) value;
+- (id<PBMessage_Builder>) clearOptions;
 @end
 
 @interface PBDescriptorProto : PBGeneratedMessage {
@@ -513,10 +513,10 @@
 // optional .google.protobuf.MessageOptions options = 7;
 - (BOOL) hasOptions;
 - (PBMessageOptions*) getOptions;
-- (id<Message_Builder>) setOptions:(PBMessageOptions*) value;
-- (id<Message_Builder>) setOptionsBuilder:(PBMessageOptions_Builder*) builderForValue;
-- (id<Message_Builder>) mergeOptions:(PBMessageOptions*) value;
-- (id<Message_Builder>) clearOptions;
+- (id<PBMessage_Builder>) setOptions:(PBMessageOptions*) value;
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBMessageOptions_Builder*) builderForValue;
+- (id<PBMessage_Builder>) mergeOptions:(PBMessageOptions*) value;
+- (id<PBMessage_Builder>) clearOptions;
 @end
 
 @interface PBFieldDescriptorProto : PBGeneratedMessage {
@@ -716,10 +716,10 @@
 // optional .google.protobuf.FieldOptions options = 8;
 - (BOOL) hasOptions;
 - (PBFieldOptions*) getOptions;
-- (id<Message_Builder>) setOptions:(PBFieldOptions*) value;
-- (id<Message_Builder>) setOptionsBuilder:(PBFieldOptions_Builder*) builderForValue;
-- (id<Message_Builder>) mergeOptions:(PBFieldOptions*) value;
-- (id<Message_Builder>) clearOptions;
+- (id<PBMessage_Builder>) setOptions:(PBFieldOptions*) value;
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBFieldOptions_Builder*) builderForValue;
+- (id<PBMessage_Builder>) mergeOptions:(PBFieldOptions*) value;
+- (id<PBMessage_Builder>) clearOptions;
 @end
 
 @interface PBEnumDescriptorProto : PBGeneratedMessage {
@@ -801,10 +801,10 @@
 // optional .google.protobuf.EnumOptions options = 3;
 - (BOOL) hasOptions;
 - (PBEnumOptions*) getOptions;
-- (id<Message_Builder>) setOptions:(PBEnumOptions*) value;
-- (id<Message_Builder>) setOptionsBuilder:(PBEnumOptions_Builder*) builderForValue;
-- (id<Message_Builder>) mergeOptions:(PBEnumOptions*) value;
-- (id<Message_Builder>) clearOptions;
+- (id<PBMessage_Builder>) setOptions:(PBEnumOptions*) value;
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBEnumOptions_Builder*) builderForValue;
+- (id<PBMessage_Builder>) mergeOptions:(PBEnumOptions*) value;
+- (id<PBMessage_Builder>) clearOptions;
 @end
 
 @interface PBEnumValueDescriptorProto : PBGeneratedMessage {
@@ -882,10 +882,10 @@
 // optional .google.protobuf.EnumValueOptions options = 3;
 - (BOOL) hasOptions;
 - (PBEnumValueOptions*) getOptions;
-- (id<Message_Builder>) setOptions:(PBEnumValueOptions*) value;
-- (id<Message_Builder>) setOptionsBuilder:(PBEnumValueOptions_Builder*) builderForValue;
-- (id<Message_Builder>) mergeOptions:(PBEnumValueOptions*) value;
-- (id<Message_Builder>) clearOptions;
+- (id<PBMessage_Builder>) setOptions:(PBEnumValueOptions*) value;
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBEnumValueOptions_Builder*) builderForValue;
+- (id<PBMessage_Builder>) mergeOptions:(PBEnumValueOptions*) value;
+- (id<PBMessage_Builder>) clearOptions;
 @end
 
 @interface PBServiceDescriptorProto : PBGeneratedMessage {
@@ -967,10 +967,10 @@
 // optional .google.protobuf.ServiceOptions options = 3;
 - (BOOL) hasOptions;
 - (PBServiceOptions*) getOptions;
-- (id<Message_Builder>) setOptions:(PBServiceOptions*) value;
-- (id<Message_Builder>) setOptionsBuilder:(PBServiceOptions_Builder*) builderForValue;
-- (id<Message_Builder>) mergeOptions:(PBServiceOptions*) value;
-- (id<Message_Builder>) clearOptions;
+- (id<PBMessage_Builder>) setOptions:(PBServiceOptions*) value;
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBServiceOptions_Builder*) builderForValue;
+- (id<PBMessage_Builder>) mergeOptions:(PBServiceOptions*) value;
+- (id<PBMessage_Builder>) clearOptions;
 @end
 
 @interface PBMethodDescriptorProto : PBGeneratedMessage {
@@ -1061,10 +1061,10 @@
 // optional .google.protobuf.MethodOptions options = 4;
 - (BOOL) hasOptions;
 - (PBMethodOptions*) getOptions;
-- (id<Message_Builder>) setOptions:(PBMethodOptions*) value;
-- (id<Message_Builder>) setOptionsBuilder:(PBMethodOptions_Builder*) builderForValue;
-- (id<Message_Builder>) mergeOptions:(PBMethodOptions*) value;
-- (id<Message_Builder>) clearOptions;
+- (id<PBMessage_Builder>) setOptions:(PBMethodOptions*) value;
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBMethodOptions_Builder*) builderForValue;
+- (id<PBMessage_Builder>) mergeOptions:(PBMethodOptions*) value;
+- (id<PBMessage_Builder>) clearOptions;
 @end
 
 @interface PBFileOptions : PBGeneratedMessage {

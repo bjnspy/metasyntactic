@@ -25,11 +25,11 @@
 + (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
-                           builder:(id<Message_Builder>) builder;
+                           builder:(id<PBMessage_Builder>) builder;
 + (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
-                           builder:(id<Message_Builder>) builder
+                           builder:(id<PBMessage_Builder>) builder
                                tag:(int32_t) tag;
 
 
@@ -85,18 +85,18 @@
 - (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
-                           builder:(id<Message_Builder>) builder;
+                           builder:(id<PBMessage_Builder>) builder;
 
 - (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
                           unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                       extensionRegistry:(PBExtensionRegistry*) extensionRegistry
-                                builder:(id<Message_Builder>) builder
+                                builder:(id<PBMessage_Builder>) builder
                                     tag:(int32_t) tag;
 
 - (void) mergeMessageSetExtensionFromCodedInputStream:(PBCodedInputStream*) input
                                         unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                                     extensionRegistry:(PBExtensionRegistry*) extensionRegistry
-                                              builder:(id<Message_Builder>) builder;
+                                              builder:(id<PBMessage_Builder>) builder;
 
 - (void) writeField:(Descriptors_PBFieldDescriptor*) field value:(id) value ouput:(PBCodedInputStream*) output;
 #endif

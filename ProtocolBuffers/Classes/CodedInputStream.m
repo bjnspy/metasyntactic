@@ -232,7 +232,7 @@ const int32_t BUFFER_SIZE = 4096;
 
 /** Read a {@code group} field value from the stream. */
 - (void)      readGroup:(int32_t) fieldNumber
-                builder:(id<Message_Builder>) builder
+                builder:(id<PBMessage_Builder>) builder
       extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     if (recursionDepth >= recursionLimit) {
         @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
@@ -261,7 +261,7 @@ const int32_t BUFFER_SIZE = 4096;
 
 
 /** Read an embedded message field value from the stream. */
-- (void) readMessage:(id<Message_Builder>) builder
+- (void) readMessage:(id<PBMessage_Builder>) builder
    extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     int32_t length = [self readRawVarint32];
     if (recursionDepth >= recursionLimit) {

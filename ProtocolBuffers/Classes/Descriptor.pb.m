@@ -154,7 +154,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
       @"Dependency",
       @"MessageType",
       @"EnumType",
-      @"Service",
+      @"PBService",
       @"Extension",
       @"Options",
       nil];
@@ -1296,17 +1296,17 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (PBFileOptions*) getOptions {
   return result.getOptions;
 }
-- (id<Message_Builder>) setOptions:(PBFileOptions*) value {
+- (id<PBMessage_Builder>) setOptions:(PBFileOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (id<Message_Builder>) setOptionsBuilder:(PBFileOptions_Builder*) builderForValue {
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBFileOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (id<Message_Builder>) mergeOptions:(PBFileOptions*) value {
+- (id<PBMessage_Builder>) mergeOptions:(PBFileOptions*) value {
   if (result.hasOptions &&
       result.options_ != [PBFileOptions getDefaultInstance]) {
     result.options_ =
@@ -1317,7 +1317,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   result.hasOptions = YES;
   return self;
 }
-- (id<Message_Builder>) clearOptions {
+- (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [PBFileOptions getDefaultInstance];
   return self;
@@ -2174,17 +2174,17 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 - (PBMessageOptions*) getOptions {
   return result.getOptions;
 }
-- (id<Message_Builder>) setOptions:(PBMessageOptions*) value {
+- (id<PBMessage_Builder>) setOptions:(PBMessageOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (id<Message_Builder>) setOptionsBuilder:(PBMessageOptions_Builder*) builderForValue {
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBMessageOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (id<Message_Builder>) mergeOptions:(PBMessageOptions*) value {
+- (id<PBMessage_Builder>) mergeOptions:(PBMessageOptions*) value {
   if (result.hasOptions &&
       result.options_ != [PBMessageOptions getDefaultInstance]) {
     result.options_ =
@@ -2195,7 +2195,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   result.hasOptions = YES;
   return self;
 }
-- (id<Message_Builder>) clearOptions {
+- (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [PBMessageOptions getDefaultInstance];
   return self;
@@ -2878,17 +2878,17 @@ static PBLabel* LABEL_REPEATED = nil;
 - (PBFieldOptions*) getOptions {
   return result.getOptions;
 }
-- (id<Message_Builder>) setOptions:(PBFieldOptions*) value {
+- (id<PBMessage_Builder>) setOptions:(PBFieldOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (id<Message_Builder>) setOptionsBuilder:(PBFieldOptions_Builder*) builderForValue {
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBFieldOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (id<Message_Builder>) mergeOptions:(PBFieldOptions*) value {
+- (id<PBMessage_Builder>) mergeOptions:(PBFieldOptions*) value {
   if (result.hasOptions &&
       result.options_ != [PBFieldOptions getDefaultInstance]) {
     result.options_ =
@@ -2899,7 +2899,7 @@ static PBLabel* LABEL_REPEATED = nil;
   result.hasOptions = YES;
   return self;
 }
-- (id<Message_Builder>) clearOptions {
+- (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [PBFieldOptions getDefaultInstance];
   return self;
@@ -3219,17 +3219,17 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 - (PBEnumOptions*) getOptions {
   return result.getOptions;
 }
-- (id<Message_Builder>) setOptions:(PBEnumOptions*) value {
+- (id<PBMessage_Builder>) setOptions:(PBEnumOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (id<Message_Builder>) setOptionsBuilder:(PBEnumOptions_Builder*) builderForValue {
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBEnumOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (id<Message_Builder>) mergeOptions:(PBEnumOptions*) value {
+- (id<PBMessage_Builder>) mergeOptions:(PBEnumOptions*) value {
   if (result.hasOptions &&
       result.options_ != [PBEnumOptions getDefaultInstance]) {
     result.options_ =
@@ -3240,7 +3240,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   result.hasOptions = YES;
   return self;
 }
-- (id<Message_Builder>) clearOptions {
+- (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [PBEnumOptions getDefaultInstance];
   return self;
@@ -3526,17 +3526,17 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 - (PBEnumValueOptions*) getOptions {
   return result.getOptions;
 }
-- (id<Message_Builder>) setOptions:(PBEnumValueOptions*) value {
+- (id<PBMessage_Builder>) setOptions:(PBEnumValueOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (id<Message_Builder>) setOptionsBuilder:(PBEnumValueOptions_Builder*) builderForValue {
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBEnumValueOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (id<Message_Builder>) mergeOptions:(PBEnumValueOptions*) value {
+- (id<PBMessage_Builder>) mergeOptions:(PBEnumValueOptions*) value {
   if (result.hasOptions &&
       result.options_ != [PBEnumValueOptions getDefaultInstance]) {
     result.options_ =
@@ -3547,7 +3547,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   result.hasOptions = YES;
   return self;
 }
-- (id<Message_Builder>) clearOptions {
+- (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [PBEnumValueOptions getDefaultInstance];
   return self;
@@ -3867,17 +3867,17 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 - (PBServiceOptions*) getOptions {
   return result.getOptions;
 }
-- (id<Message_Builder>) setOptions:(PBServiceOptions*) value {
+- (id<PBMessage_Builder>) setOptions:(PBServiceOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (id<Message_Builder>) setOptionsBuilder:(PBServiceOptions_Builder*) builderForValue {
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBServiceOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (id<Message_Builder>) mergeOptions:(PBServiceOptions*) value {
+- (id<PBMessage_Builder>) mergeOptions:(PBServiceOptions*) value {
   if (result.hasOptions &&
       result.options_ != [PBServiceOptions getDefaultInstance]) {
     result.options_ =
@@ -3888,7 +3888,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   result.hasOptions = YES;
   return self;
 }
-- (id<Message_Builder>) clearOptions {
+- (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [PBServiceOptions getDefaultInstance];
   return self;
@@ -4212,17 +4212,17 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 - (PBMethodOptions*) getOptions {
   return result.getOptions;
 }
-- (id<Message_Builder>) setOptions:(PBMethodOptions*) value {
+- (id<PBMessage_Builder>) setOptions:(PBMethodOptions*) value {
   result.hasOptions = YES;
   result.options_ = value;
   return self;
 }
-- (id<Message_Builder>) setOptionsBuilder:(PBMethodOptions_Builder*) builderForValue {
+- (id<PBMessage_Builder>) setOptionsBuilder:(PBMethodOptions_Builder*) builderForValue {
   result.hasOptions = YES;
   result.options_ = [builderForValue build];
   return self;
 }
-- (id<Message_Builder>) mergeOptions:(PBMethodOptions*) value {
+- (id<PBMessage_Builder>) mergeOptions:(PBMethodOptions*) value {
   if (result.hasOptions &&
       result.options_ != [PBMethodOptions getDefaultInstance]) {
     result.options_ =
@@ -4233,7 +4233,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   result.hasOptions = YES;
   return self;
 }
-- (id<Message_Builder>) clearOptions {
+- (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
   result.options_ = [PBMethodOptions getDefaultInstance];
   return self;

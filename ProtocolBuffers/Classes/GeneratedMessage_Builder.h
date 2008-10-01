@@ -22,21 +22,21 @@
 
 
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
-- (id<Message_Builder>) mergeFromMessage:(id<Message>) other;
+- (id<PBMessage_Builder>) mergeFromMessage:(id<Message>) other;
 - (PBDescriptor*) getDescriptorForType;
 - (NSDictionary*) getAllFields;
-- (id<Message_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
+- (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
-- (id<Message_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
-- (id<Message_Builder>) clearField:(PBFieldDescriptor*) field;
+- (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
+- (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field;
 - (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
-- (id<Message_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
-- (id<Message_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
+- (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 - (PBUnknownFieldSet*) getUnknownFields;
-- (id<Message_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
-- (id<Message_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (id<PBMessage_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
 
 - (BOOL) parseUnknownField:(PBCodedInputStream*) input

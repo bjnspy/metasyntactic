@@ -384,7 +384,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 + (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
-                           builder:(id<Message_Builder>) builder {
+                           builder:(id<PBMessage_Builder>) builder {
     while (true) {
         int32_t tag = [input readTag];
         if (tag == 0) {
@@ -407,7 +407,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 + (void) mergeMessageSetExtensionFromCodedStream:(PBCodedInputStream*) input
                                    unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                                extensionRegistry:(PBExtensionRegistry*) extensionRegistry
-                                         builder:(id<Message_Builder>) builder {
+                                         builder:(id<PBMessage_Builder>) builder {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
     /*
      PBDescriptor type = builder.getDescriptorForType();
@@ -512,7 +512,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 + (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
                           unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                       extensionRegistry:(PBExtensionRegistry*) extensionRegistry
-                                builder:(id<Message_Builder>) builder
+                                builder:(id<PBMessage_Builder>) builder
                                     tag:(int32_t) tag {
     PBDescriptor* type = [builder getDescriptorForType];
 
@@ -551,7 +551,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         id value;
         switch (field.getType) {
             case FieldDescriptorTypeGroup: {
-                id<Message_Builder> subBuilder;
+                id<PBMessage_Builder> subBuilder;
                 if (defaultInstance != nil) {
                     subBuilder = [defaultInstance newBuilderForType];
                 } else {
@@ -565,7 +565,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 break;
             }
             case FieldDescriptorTypeMessage: {
-                id<Message_Builder> subBuilder;
+                id<PBMessage_Builder> subBuilder;
                 if (defaultInstance != nil) {
                     subBuilder = [defaultInstance newBuilderForType];
                 } else {

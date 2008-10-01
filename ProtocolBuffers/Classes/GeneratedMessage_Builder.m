@@ -45,7 +45,7 @@
 }
 
 
-- (id<Message_Builder>) mergeFromMessage:(id<Message>) other {
+- (id<PBMessage_Builder>) mergeFromMessage:(id<Message>) other {
     if ([other getDescriptorForType] !=
         self.internalGetFieldAccessorTable.descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
@@ -86,7 +86,7 @@
 }
 
 
-- (id<Message_Builder>) newBuilderForField:(PBFieldDescriptor*) field {
+- (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field {
     return [[self.internalGetFieldAccessorTable getField:field] newBuilder];
 }
 
@@ -101,13 +101,13 @@
 }
 
 
-- (id<Message_Builder>) setField:(PBFieldDescriptor*) field value:(id) value {
+- (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value {
     [[self.internalGetFieldAccessorTable getField:field] set:self value:value];
     return self;
 }
 
 
-- (id<Message_Builder>) clearField:(PBFieldDescriptor*) field {
+- (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field {
     [[self.internalGetFieldAccessorTable getField:field] clear:self];
     return self;
 }
@@ -123,13 +123,13 @@
 }
 
 
-- (id<Message_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value {
+- (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value {
     [[self.internalGetFieldAccessorTable getField:field] setRepeated:self index:index value:value];
     return self;
 }
 
 
-- (id<Message_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value {
+- (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value {
     [[self.internalGetFieldAccessorTable getField:field] addRepeated:self value:value];
     return self;
 }
@@ -140,13 +140,13 @@
 }
 
 
-- (id<Message_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields {
+- (id<PBMessage_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields {
     self.internalGetResult.unknownFields = unknownFields;
     return self;
 }
 
 
-- (id<Message_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields {
+- (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields {
     PBGeneratedMessage* result = self.internalGetResult;
     result.unknownFields = [[[PBUnknownFieldSet newBuilder:result.unknownFields] mergeUnknownFields:unknownFields] build];
     return self;
