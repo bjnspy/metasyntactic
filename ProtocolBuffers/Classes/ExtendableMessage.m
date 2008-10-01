@@ -93,14 +93,14 @@
 }
 
 
-- (void) verifyContainingType:(FieldDescriptor*) field {
+- (void) verifyContainingType:(PBFieldDescriptor*) field {
     if (field.getContainingType != [self getDescriptorForType]) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"FieldDescriptor does not match message type." userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"PBFieldDescriptor does not match message type." userInfo:nil];
     }
 }
 
 
-- (BOOL) hasField:(FieldDescriptor*) field {
+- (BOOL) hasField:(PBFieldDescriptor*) field {
     if (field.isExtension) {
         [self verifyContainingType:field];
         return [extensions hasField:field];
@@ -110,7 +110,7 @@
 }
 
 
-- (id) getField:(FieldDescriptor*) field {
+- (id) getField:(PBFieldDescriptor*) field {
     if (field.isExtension) {
         [self verifyContainingType:field];
         id value = [extensions getField:field];
@@ -127,7 +127,7 @@
 }
 
 
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
     if (field.isExtension) {
         [self verifyContainingType:field];
         return [extensions getRepeatedFieldCount:field];
@@ -137,7 +137,7 @@
 }
 
 
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
     if (field.isExtension) {
         [self verifyContainingType:field];
         return [extensions getRepeatedField:field index:index];

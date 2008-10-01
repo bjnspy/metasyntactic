@@ -31,7 +31,7 @@
 - (NSArray*) getNestedTypes;
 
 - (BOOL) isExtensionNumber:(int32_t) number;
-- (FieldDescriptor*) findFieldByNumber:(int32_t) number;
+- (PBFieldDescriptor*) findFieldByNumber:(int32_t) number;
 
 #if 0
 NSArray* fields;
@@ -56,7 +56,7 @@ NSArray* fields;
 
 - (NSString*) name;
 
-- (FieldDescriptor*) findFieldByName:(NSString*) name;
+- (PBFieldDescriptor*) findFieldByName:(NSString*) name;
 - (PBDescriptor*) findNestedTypeByName:(NSString*) name;
 - (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
 

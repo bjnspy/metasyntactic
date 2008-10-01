@@ -30,7 +30,7 @@
 }
 
 
-- (id) initWithDescriptor:(FieldDescriptor*) descriptor_
+- (id) initWithDescriptor:(PBFieldDescriptor*) descriptor_
           defaultInstance:(id<Message>) defaultInstance_ {
     if (self = [super init]) {
         self.descriptor = descriptor_;
@@ -41,12 +41,12 @@
 }
 
 
-+ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor {
++ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor {
     return [ExtensionRegistry_ExtensionInfo infoWithDescriptor:descriptor defaultInstance:nil];
 }
 
 
-+ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor
++ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor
                                         defaultInstance:(id<Message>) defaultInstance {
     return [[[ExtensionRegistry_ExtensionInfo alloc] initWithDescriptor:descriptor defaultInstance:defaultInstance] autorelease];
 }

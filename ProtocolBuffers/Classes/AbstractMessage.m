@@ -35,7 +35,7 @@
 
 
 - (BOOL) isInitialized {
-    for (FieldDescriptor* field in self.getDescriptorForType.getFields) {
+    for (PBFieldDescriptor* field in self.getDescriptorForType.getFields) {
         if (field.isRequired) {
             if (![self hasField:field]) {
                 return NO;
@@ -44,7 +44,7 @@
     }
 
     NSDictionary* allFields = self.getAllFields;
-    for (FieldDescriptor* field in allFields) {
+    for (PBFieldDescriptor* field in allFields) {
         if (field.getObjectiveCType == ObjectiveCTypeMessage) {
             id value = [allFields objectForKey:field];
 
@@ -68,7 +68,7 @@
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
     NSDictionary* allFields = self.getAllFields;
-    for (FieldDescriptor* field in allFields) {
+    for (PBFieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
         if (field.isRepeated) {
             for (id element in value) {
@@ -111,7 +111,7 @@
 
     size = 0;
     NSDictionary* allFields = self.getAllFields;
-    for (FieldDescriptor* field in allFields) {
+    for (PBFieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
 
         if (field.isRepeated) {
@@ -175,22 +175,22 @@
 }
 
 
-- (BOOL) hasField:(FieldDescriptor*) field {
+- (BOOL) hasField:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id) getField:(FieldDescriptor*) field {
+- (id) getField:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

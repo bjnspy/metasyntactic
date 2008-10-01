@@ -16,7 +16,7 @@
 
 @interface GeneratedExtension : NSObject {
 @private
-    FieldDescriptor* descriptor;
+    PBFieldDescriptor* descriptor;
     Class type;
     /*
      private final Method enumValueOf;
@@ -25,9 +25,9 @@
      */
 }
 
-@property (retain) FieldDescriptor* descriptor;
+@property (retain) PBFieldDescriptor* descriptor;
 @property (retain) Class type;
 
-- (FieldDescriptor*) getDescriptor;
+- (PBFieldDescriptor*) getDescriptor;
 
 @end

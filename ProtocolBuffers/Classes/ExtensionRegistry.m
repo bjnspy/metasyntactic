@@ -91,7 +91,7 @@ static ExtensionRegistry* EMPTY = nil;
 #endif
 
 
-- (void) addFieldDescriptor:(FieldDescriptor*) type {
+- (void) addFieldDescriptor:(PBFieldDescriptor*) type {
     if (type.getObjectiveCType == FieldDescriptorTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"ExtensionRegistry.add() must be provided a default instance when adding an embedded message extension." userInfo:nil];
@@ -101,7 +101,7 @@ static ExtensionRegistry* EMPTY = nil;
 }
 
 
-- (void) addFieldDescriptor:(FieldDescriptor*) type
+- (void) addFieldDescriptor:(PBFieldDescriptor*) type
             defaultInstance:(id<Message>) defaultInstance {
     if (type.getObjectiveCType != FieldDescriptorTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
@@ -116,7 +116,7 @@ static ExtensionRegistry* EMPTY = nil;
 - (void) addExtensionInfo:(ExtensionRegistry_ExtensionInfo*) extension {
     if (!extension.descriptor.isExtension) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
-                                       reason:@"ExtensionRegistry.add() was given a FieldDescriptor for a regular (non-extension) field."
+                                       reason:@"ExtensionRegistry.add() was given a PBFieldDescriptor for a regular (non-extension) field."
                                      userInfo:nil];
     }
 
@@ -126,7 +126,7 @@ static ExtensionRegistry* EMPTY = nil;
                            forKey:[ExtensionRegistry_DescriptorIntPair pairWithDescriptor:extension.descriptor.getContainingType
                                                                                    number:extension.descriptor.getNumber]];
 
-    FieldDescriptor* field = extension.descriptor;
+    PBFieldDescriptor* field = extension.descriptor;
 
     if (field.getContainingType.getOptions.getMessageSetWireFormat &&
         field.getType == FieldDescriptorTypeMessage &&

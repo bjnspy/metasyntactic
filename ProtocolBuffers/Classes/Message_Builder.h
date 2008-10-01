@@ -25,16 +25,16 @@
 - (PBDescriptor*) getDescriptorForType;
 - (id<Message>) getDefaultInstanceForType;
 - (NSDictionary*) getAllFields;
-- (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field;
+- (id<Message_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
 
-- (BOOL) hasField:(FieldDescriptor*) field;
-- (id) getField:(FieldDescriptor*) field;
-- (id<Message_Builder>) setField:(FieldDescriptor*) field value:(id) value;
-- (id<Message_Builder>) clearField:(FieldDescriptor*) field;
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field;
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index;
-- (id<Message_Builder>) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value;
-- (id<Message_Builder>) addRepeatedField:(FieldDescriptor*) field value:(id) value;
+- (BOOL) hasField:(PBFieldDescriptor*) field;
+- (id) getField:(PBFieldDescriptor*) field;
+- (id<Message_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
+- (id<Message_Builder>) clearField:(PBFieldDescriptor*) field;
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
+- (id<Message_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (id<Message_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 
 - (UnknownFieldSet*) unknownFields;
 - (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields;

@@ -37,7 +37,7 @@ enum ObjectiveCType;
 @class ExtensionRegistry_DescriptorIntPair;
 @class PBField;
 @class PBField_Builder;
-@class FieldDescriptor;
+@class PBFieldDescriptor;
 @class PBFieldSet;
 @class PBFileDescriptor;
 @class PBGeneratedMessage;

@@ -56,7 +56,7 @@
 }
 
 
-- (FieldDescriptor*) findFieldByNumber:(int32_t) number {
+- (PBFieldDescriptor*) findFieldByNumber:(int32_t) number {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

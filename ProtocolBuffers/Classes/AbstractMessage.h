@@ -24,10 +24,10 @@
 - (PBDescriptor*) getDescriptorForType;
 - (id<Message>) getDefaultInstanceForType;
 - (NSDictionary*) getAllFields;
-- (BOOL) hasField:(FieldDescriptor*) field;
-- (id) getField:(FieldDescriptor*) field;
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field;
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index;
+- (BOOL) hasField:(PBFieldDescriptor*) field;
+- (id) getField:(PBFieldDescriptor*) field;
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
 - (UnknownFieldSet*) getUnknownFields;
 - (BOOL) isInitialized;
 - (int32_t) getSerializedSize;

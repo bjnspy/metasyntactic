@@ -42,15 +42,15 @@
 - (void) clear;
 - (NSDictionary*) getAllFields;
 
-- (BOOL) hasField:(FieldDescriptor*) field;
-- (id) getField:(FieldDescriptor*) field;
-- (void) setField:(FieldDescriptor*) field value:(id) value;
-- (void) clearField:(FieldDescriptor*) field;
+- (BOOL) hasField:(PBFieldDescriptor*) field;
+- (id) getField:(PBFieldDescriptor*) field;
+- (void) setField:(PBFieldDescriptor*) field value:(id) value;
+- (void) clearField:(PBFieldDescriptor*) field;
 
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field;
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index;
-- (void) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value;
-- (void) addRepeatedField:(FieldDescriptor*) field value:(id) value;
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
+- (void) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (void) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 
 - (BOOL) isInitialized;
 - (BOOL) isInitialized:(PBDescriptor*) type;
@@ -62,7 +62,7 @@
 - (void) mergeFromMessage:(id<Message>) other;
 - (void) mergeFromFieldSet:(PBFieldSet*) other;
 
-- (void) writeField:(FieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output;
+- (void) writeField:(PBFieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output;
 
 
 #if 0
@@ -98,7 +98,7 @@
                                     extensionRegistry:(ExtensionRegistry*) extensionRegistry
                                               builder:(id<Message_Builder>) builder;
 
-- (void) writeField:(Descriptors_FieldDescriptor*) field value:(id) value ouput:(PBCodedInputStream*) output;
+- (void) writeField:(Descriptors_PBFieldDescriptor*) field value:(id) value ouput:(PBCodedInputStream*) output;
 #endif
 
 @end

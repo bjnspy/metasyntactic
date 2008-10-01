@@ -49,7 +49,7 @@
 
         for (int i = 0; i < fieldNames.count; i++) {
             NSString* name = [fieldNames objectAtIndex:i];
-            FieldDescriptor* field = [descriptor.getFields objectAtIndex:i];
+            PBFieldDescriptor* field = [descriptor.getFields objectAtIndex:i];
             if (field.isRepeated) {
                 if (field.getObjectiveCType == FieldDescriptorTypeMessage) {
                     [array addObject:[RepeatedMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
@@ -87,7 +87,7 @@
 }
 
 
-- (id<PBFieldAccessor>) getField:(FieldDescriptor*) field {
+- (id<PBFieldAccessor>) getField:(PBFieldDescriptor*) field {
     if (field.getContainingType != descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     } else if (field.isExtension) {

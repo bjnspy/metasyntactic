@@ -52,7 +52,7 @@
     }
 
     NSDictionary* allFields = [other getAllFields];
-    for (FieldDescriptor* field in allFields) {
+    for (PBFieldDescriptor* field in allFields) {
         id newValue = [allFields objectForKey:field];
 
         if (field.isRepeated) {
@@ -86,50 +86,50 @@
 }
 
 
-- (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field {
+- (id<Message_Builder>) newBuilderForField:(PBFieldDescriptor*) field {
     return [[self.internalGetFieldAccessorTable getField:field] newBuilder];
 }
 
 
-- (BOOL) hasField:(FieldDescriptor*) field {
+- (BOOL) hasField:(PBFieldDescriptor*) field {
     return [self.internalGetResult hasField:field];
 }
 
 
-- (id) getField:(FieldDescriptor*) field {
+- (id) getField:(PBFieldDescriptor*) field {
     return [self.internalGetResult getField:field];
 }
 
 
-- (id<Message_Builder>) setField:(FieldDescriptor*) field value:(id) value {
+- (id<Message_Builder>) setField:(PBFieldDescriptor*) field value:(id) value {
     [[self.internalGetFieldAccessorTable getField:field] set:self value:value];
     return self;
 }
 
 
-- (id<Message_Builder>) clearField:(FieldDescriptor*) field {
+- (id<Message_Builder>) clearField:(PBFieldDescriptor*) field {
     [[self.internalGetFieldAccessorTable getField:field] clear:self];
     return self;
 }
 
 
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
     return [self.internalGetResult getRepeatedFieldCount:field];
 }
 
 
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
     return [self.internalGetResult getRepeatedField:field index:index];
 }
 
 
-- (id<Message_Builder>) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value {
+- (id<Message_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value {
     [[self.internalGetFieldAccessorTable getField:field] setRepeated:self index:index value:value];
     return self;
 }
 
 
-- (id<Message_Builder>) addRepeatedField:(FieldDescriptor*) field value:(id) value {
+- (id<Message_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value {
     [[self.internalGetFieldAccessorTable getField:field] addRepeated:self value:value];
     return self;
 }

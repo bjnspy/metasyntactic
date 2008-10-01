@@ -18,7 +18,7 @@
 
 @implementation SingularEnumFieldAccessor
 
-+ (SingularEnumFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (SingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

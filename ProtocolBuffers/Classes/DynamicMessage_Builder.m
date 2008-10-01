@@ -128,14 +128,14 @@
 }
 
 
-- (void) verifyContainingType:(FieldDescriptor*) field {
+- (void) verifyContainingType:(PBFieldDescriptor*) field {
     if (field.getContainingType != type) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"FieldDescriptor does not match message type." userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"PBFieldDescriptor does not match message type." userInfo:nil];
     }
 }
 
 
-- (DynamicMessage_Builder*) newBuilderForField:(FieldDescriptor*) field {
+- (DynamicMessage_Builder*) newBuilderForField:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
 
     if (field.getObjectiveCType != ObjectiveCTypeMessage) {
@@ -148,13 +148,13 @@
 }
 
 
-- (BOOL) hasField:(FieldDescriptor*) field {
+- (BOOL) hasField:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
     return [fields hasField:field];
 }
 
 
-- (id) getField:(FieldDescriptor*) field {
+- (id) getField:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
     id result = [fields getField:field];
     if (result == nil) {
@@ -164,33 +164,33 @@
 }
 
 
-- (DynamicMessage_Builder*) setField:(FieldDescriptor*) field value:(id) value {
+- (DynamicMessage_Builder*) setField:(PBFieldDescriptor*) field value:(id) value {
     [self verifyContainingType:field];
     [fields setField:field value:value];
     return self;
 }
 
 
-- (DynamicMessage_Builder*) clearField:(FieldDescriptor*) field {
+- (DynamicMessage_Builder*) clearField:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
     [fields clearField:field];
     return self;
 }
 
 
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
     return [fields getRepeatedFieldCount:field];
 }
 
 
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
     [self verifyContainingType:field];
     return [fields getRepeatedField:field index:index];
 }
 
 
-- (DynamicMessage_Builder*) setRepeatedField:(FieldDescriptor*) field
+- (DynamicMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field
                                        index:(int32_t) index
                                        value:(id) value {
     [self verifyContainingType:field];
@@ -199,7 +199,7 @@
 }
 
 
-- (DynamicMessage_Builder*) addRepeatedField:(FieldDescriptor*) field
+- (DynamicMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field
                                        value:(id) value {
     [self verifyContainingType:field];
     [fields addRepeatedField:field value:value];

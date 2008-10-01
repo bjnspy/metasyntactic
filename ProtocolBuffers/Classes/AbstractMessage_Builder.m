@@ -35,7 +35,7 @@
 
 
 - (id<Message_Builder>) clear {
-    for (FieldDescriptor* key in self.getAllFields) {
+    for (PBFieldDescriptor* key in self.getAllFields) {
         [self clearField:key];
     }
 
@@ -57,7 +57,7 @@
     // TODO(kenton):  Provide a function somewhere called makeDeepCopy()
     //   which allows people to make secure deep copies of messages.
     NSDictionary* allFields = self.getAllFields;
-    for (FieldDescriptor* field in allFields) {
+    for (PBFieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
 
         if (field.isRepeated) {
@@ -177,47 +177,47 @@
 }
 
 
-- (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field {
+- (id<Message_Builder>) newBuilderForField:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (BOOL) hasField:(FieldDescriptor*) field {
+- (BOOL) hasField:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id) getField:(FieldDescriptor*) field {
+- (id) getField:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id<Message_Builder>) setField:(FieldDescriptor*) field value:(id) value {
+- (id<Message_Builder>) setField:(PBFieldDescriptor*) field value:(id) value {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id<Message_Builder>) clearField:(FieldDescriptor*) field {
+- (id<Message_Builder>) clearField:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index {
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id<Message_Builder>) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value {
+- (id<Message_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id<Message_Builder>) addRepeatedField:(FieldDescriptor*) field value:(id) value {
+- (id<Message_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

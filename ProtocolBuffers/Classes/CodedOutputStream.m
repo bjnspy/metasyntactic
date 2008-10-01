@@ -273,7 +273,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
  * @param number The field's number.
  * @param value  Object representing the field's value.  Must be of the exact
  *               type which would be returned by
- *               {@link Message#getField(Descriptors.FieldDescriptor)} for
+ *               {@link Message#getField(Descriptors.PBFieldDescriptor)} for
  *               this field.
  */
 - (void) writeField:(FieldDescriptorType) type
@@ -521,7 +521,7 @@ int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value) {
  * @param number The field's number.
  * @param value  Object representing the field's value.  Must be of the exact
  *               type which would be returned by
- *               {@link Message#getField(Descriptors.FieldDescriptor)} for
+ *               {@link Message#getField(Descriptors.PBFieldDescriptor)} for
  *               this field.
  */
 int32_t computeFieldSize(FieldDescriptorType type,
