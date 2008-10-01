@@ -51,7 +51,7 @@ static PBUnknownFieldSet* defaultInstance = nil;
 }
 
 
-+ (PBUnknownFieldSet*) getDefaultInstance {
++ (PBUnknownFieldSet*) defaultInstance {
     return defaultInstance;
 }
 
@@ -82,7 +82,7 @@ static PBUnknownFieldSet* defaultInstance = nil;
 
 - (PBField*) getField:(int32_t) number {
     PBField* result = [fields objectForKey:[NSNumber numberWithInt:number]];
-    return (result == nil) ? [PBField getDefaultInstance] : result;
+    return (result == nil) ? [PBField defaultInstance] : result;
 }
 
 

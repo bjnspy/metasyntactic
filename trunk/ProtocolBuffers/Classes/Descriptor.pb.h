@@ -87,7 +87,7 @@
 - (NSArray*) getFileList;
 - (int32_t) getFileCount;
 - (PBFileDescriptorProto*) getFile:(int32_t) index;
-+ (PBFileDescriptorSet*) getDefaultInstance;
++ (PBFileDescriptorSet*) defaultInstance;
 - (PBFileDescriptorSet*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -189,7 +189,7 @@
 - (int32_t) getExtensionCount;
 - (PBFieldDescriptorProto*) getExtension:(int32_t) index;
 - (PBFileOptions*) getOptions;
-+ (PBFileDescriptorProto*) getDefaultInstance;
++ (PBFileDescriptorProto*) defaultInstance;
 - (PBFileDescriptorProto*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -346,7 +346,7 @@
 - (int32_t) getExtensionRangeCount;
 - (PBExtensionRange*) getExtensionRange:(int32_t) index;
 - (PBMessageOptions*) getOptions;
-+ (PBDescriptorProto*) getDefaultInstance;
++ (PBDescriptorProto*) defaultInstance;
 - (PBDescriptorProto*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -382,7 +382,7 @@
 - (int32_t) getStart;
 - (BOOL) hasEnd;
 - (int32_t) getEnd;
-+ (PBExtensionRange*) getDefaultInstance;
++ (PBExtensionRange*) defaultInstance;
 - (PBExtensionRange*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -578,7 +578,7 @@
 - (BOOL) hasDefaultValue;
 - (NSString*) getDefaultValue;
 - (PBFieldOptions*) getOptions;
-+ (PBFieldDescriptorProto*) getDefaultInstance;
++ (PBFieldDescriptorProto*) defaultInstance;
 - (PBFieldDescriptorProto*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -745,7 +745,7 @@
 - (int32_t) getValueCount;
 - (PBEnumValueDescriptorProto*) getValue:(int32_t) index;
 - (PBEnumOptions*) getOptions;
-+ (PBEnumDescriptorProto*) getDefaultInstance;
++ (PBEnumDescriptorProto*) defaultInstance;
 - (PBEnumDescriptorProto*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -831,7 +831,7 @@
 - (BOOL) hasNumber;
 - (int32_t) getNumber;
 - (PBEnumValueOptions*) getOptions;
-+ (PBEnumValueDescriptorProto*) getDefaultInstance;
++ (PBEnumValueDescriptorProto*) defaultInstance;
 - (PBEnumValueDescriptorProto*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -911,7 +911,7 @@
 - (int32_t) getMethodCount;
 - (PBMethodDescriptorProto*) getMethod:(int32_t) index;
 - (PBServiceOptions*) getOptions;
-+ (PBServiceDescriptorProto*) getDefaultInstance;
++ (PBServiceDescriptorProto*) defaultInstance;
 - (PBServiceDescriptorProto*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1004,7 +1004,7 @@
 - (BOOL) hasOutputType;
 - (NSString*) getOutputType;
 - (PBMethodOptions*) getOptions;
-+ (PBMethodDescriptorProto*) getDefaultInstance;
++ (PBMethodDescriptorProto*) defaultInstance;
 - (PBMethodDescriptorProto*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1113,7 +1113,7 @@
 - (NSString*) getObjectivecPackage;
 - (BOOL) hasObjectivecClassPrefix;
 - (NSString*) getObjectivecClassPrefix;
-+ (PBFileOptions*) getDefaultInstance;
++ (PBFileOptions*) defaultInstance;
 - (PBFileOptions*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1217,7 +1217,7 @@
 @property BOOL messageSetWireFormat_;
 - (BOOL) hasMessageSetWireFormat;
 - (BOOL) getMessageSetWireFormat;
-+ (PBMessageOptions*) getDefaultInstance;
++ (PBMessageOptions*) defaultInstance;
 - (PBMessageOptions*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1278,7 +1278,7 @@
 - (PBCType*) getCtype;
 - (BOOL) hasExperimentalMapKey;
 - (NSString*) getExperimentalMapKey;
-+ (PBFieldOptions*) getDefaultInstance;
++ (PBFieldOptions*) defaultInstance;
 - (PBFieldOptions*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1351,7 +1351,7 @@
 @private
     int32_t memoizedSerializedSize;
 }
-+ (PBEnumOptions*) getDefaultInstance;
++ (PBEnumOptions*) defaultInstance;
 - (PBEnumOptions*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1392,7 +1392,7 @@
 @private
     int32_t memoizedSerializedSize;
 }
-+ (PBEnumValueOptions*) getDefaultInstance;
++ (PBEnumValueOptions*) defaultInstance;
 - (PBEnumValueOptions*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1433,7 +1433,7 @@
 @private
     int32_t memoizedSerializedSize;
 }
-+ (PBServiceOptions*) getDefaultInstance;
++ (PBServiceOptions*) defaultInstance;
 - (PBServiceOptions*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1474,7 +1474,7 @@
 @private
     int32_t memoizedSerializedSize;
 }
-+ (PBMethodOptions*) getDefaultInstance;
++ (PBMethodOptions*) defaultInstance;
 - (PBMethodOptions*) getDefaultInstanceForType;
 + (PBDescriptor*) getDescriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;

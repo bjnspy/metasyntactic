@@ -54,7 +54,7 @@ ContainingType extends PBMessage, Type> {
                 enumValueOf = null;
                 enumGetValueDescriptor = null;
                 messageDefaultInstance =
-                (PBMessage)invokeOrDie(getMethodOrDie(type, "getDefaultInstance"),
+                (PBMessage)invokeOrDie(getMethodOrDie(type, "defaultInstance"),
                                      null);
                 break;
             case ENUM:
