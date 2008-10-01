@@ -71,6 +71,11 @@
 		74517E710E90CDED00D4E0C5 /* Message.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74517E700E90CDED00D4E0C5 /* Message.h */; };
 		7451800F0E916F3D00D4E0C5 /* ProtocolBuffers.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 745180080E916ED800D4E0C5 /* ProtocolBuffers.h */; };
 		7451810A0E91787C00D4E0C5 /* Bootstrap.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 745181060E91783700D4E0C5 /* Bootstrap.h */; };
+		745E98660E941F0E007FD139 /* Descriptor.pb.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74AD66580E93D0C700A01FD5 /* Descriptor.pb.h */; };
+		745E98670E941F0E007FD139 /* GeneratedMessage_Builder.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 749E64C40E940A4400F78C70 /* GeneratedMessage_Builder.h */; };
+		745E98680E941F0E007FD139 /* ExtendableMessage.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 749E63940E93F81600F78C70 /* ExtendableMessage.h */; };
+		745E98690E941F0E007FD139 /* ExtensionWriter.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 749E63A10E93FD6000F78C70 /* ExtensionWriter.h */; };
+		745E986A0E941F0E007FD139 /* GeneratedExtension.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 749E63F20E94071100F78C70 /* GeneratedExtension.h */; };
 		749E63960E93F81600F78C70 /* ExtendableMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63950E93F81600F78C70 /* ExtendableMessage.m */; };
 		749E63A30E93FD6000F78C70 /* ExtensionWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63A20E93FD6000F78C70 /* ExtensionWriter.m */; };
 		749E63F40E94071100F78C70 /* GeneratedExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63F30E94071100F78C70 /* GeneratedExtension.m */; };
@@ -97,10 +102,29 @@
 			dstPath = Headers;
 			dstSubfolderSpec = 1;
 			files = (
-				741A74520E8CC69300F16FD4 /* ForwardDeclarations.h in Copy Headers */,
+				745E98660E941F0E007FD139 /* Descriptor.pb.h in Copy Headers */,
+				741A758F0E8CE18200F16FD4 /* Descriptor.h in Copy Headers */,
+				741A75910E8CE18200F16FD4 /* FieldDescriptor.h in Copy Headers */,
+				741A75950E8CE38500F16FD4 /* GenericDescriptor.h in Copy Headers */,
+				741A75990E8CE3DA00F16FD4 /* FileDescriptor.h in Copy Headers */,
+				74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Copy Headers */,
+				74E79DC70E8D989100EFD26E /* EnumValueDescriptor.h in Copy Headers */,
+				74E7A3420E8E155C00EFD26E /* EnumDescriptor.h in Copy Headers */,
+				7451724E0E9086E300D4E0C5 /* DescriptorPool.h in Copy Headers */,
+				741A74EB0E8CCF0E00F16FD4 /* GeneratedMessage.h in Copy Headers */,
+				745E98670E941F0E007FD139 /* GeneratedMessage_Builder.h in Copy Headers */,
+				7451707B0E90700500D4E0C5 /* FieldAccessor.h in Copy Headers */,
+				74516F5A0E90612D00D4E0C5 /* FieldAccessorTable.h in Copy Headers */,
+				745170A10E9072AB00D4E0C5 /* RepeatedEnumFieldAccessor.h in Copy Headers */,
+				745170A50E90732A00D4E0C5 /* RepeatedFieldAccessor.h in Copy Headers */,
+				745170B70E9073BA00D4E0C5 /* RepeatedMessageFieldAccessor.h in Copy Headers */,
+				745170B30E90737C00D4E0C5 /* SingularMessageFieldAccessor.h in Copy Headers */,
+				745170C00E90741E00D4E0C5 /* SingularEnumFieldAccessor.h in Copy Headers */,
+				745170C50E90747C00D4E0C5 /* SingularFieldAccessor.h in Copy Headers */,
+				745E98680E941F0E007FD139 /* ExtendableMessage.h in Copy Headers */,
+				745E98690E941F0E007FD139 /* ExtensionWriter.h in Copy Headers */,
+				745E986A0E941F0E007FD139 /* GeneratedExtension.h in Copy Headers */,
 				741A747C0E8CCC7C00F16FD4 /* RpcChannel.h in Copy Headers */,
-				7451800F0E916F3D00D4E0C5 /* ProtocolBuffers.h in Copy Headers */,
-				7451810A0E91787C00D4E0C5 /* Bootstrap.h in Copy Headers */,
 				741A74800E8CCD1E00F16FD4 /* RpcController.h in Copy Headers */,
 				741A74D30E8CCF0E00F16FD4 /* AbstractMessage.h in Copy Headers */,
 				741A74D50E8CCF0E00F16FD4 /* AbstractMessage_Builder.h in Copy Headers */,
@@ -111,34 +135,20 @@
 				741A74E10E8CCF0E00F16FD4 /* ExtensionRegistry.h in Copy Headers */,
 				741A74E30E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.h in Copy Headers */,
 				741A74E50E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.h in Copy Headers */,
-				741A74E70E8CCF0E00F16FD4 /* Field_Builder.h in Copy Headers */,
 				741A74E90E8CCF0E00F16FD4 /* FieldSet.h in Copy Headers */,
-				741A74EB0E8CCF0E00F16FD4 /* GeneratedMessage.h in Copy Headers */,
+				74517E710E90CDED00D4E0C5 /* Message.h in Copy Headers */,
 				741A74EE0E8CCF0E00F16FD4 /* Message_Builder.h in Copy Headers */,
 				741A74F00E8CCF0E00F16FD4 /* Service.h in Copy Headers */,
 				741A74F10E8CCF0E00F16FD4 /* UnknownFieldSet.h in Copy Headers */,
 				741A74F30E8CCF0E00F16FD4 /* UnknownFieldSet_Builder.h in Copy Headers */,
 				741A74F90E8CCF0E00F16FD4 /* WireFormat.h in Copy Headers */,
-				741A758F0E8CE18200F16FD4 /* Descriptor.h in Copy Headers */,
-				741A75910E8CE18200F16FD4 /* FieldDescriptor.h in Copy Headers */,
-				741A75950E8CE38500F16FD4 /* GenericDescriptor.h in Copy Headers */,
-				741A75990E8CE3DA00F16FD4 /* FileDescriptor.h in Copy Headers */,
 				74E79B170E8D73C600EFD26E /* ObjectiveCType.h in Copy Headers */,
-				74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Copy Headers */,
-				74E79DC70E8D989100EFD26E /* EnumValueDescriptor.h in Copy Headers */,
 				74E79EFA0E8DA83400EFD26E /* Field.h in Copy Headers */,
-				74E7A3420E8E155C00EFD26E /* EnumDescriptor.h in Copy Headers */,
+				741A74E70E8CCF0E00F16FD4 /* Field_Builder.h in Copy Headers */,
+				741A74520E8CC69300F16FD4 /* ForwardDeclarations.h in Copy Headers */,
+				7451800F0E916F3D00D4E0C5 /* ProtocolBuffers.h in Copy Headers */,
+				7451810A0E91787C00D4E0C5 /* Bootstrap.h in Copy Headers */,
 				7411FB650E8E3856002552B1 /* Utilities.h in Copy Headers */,
-				74516F5A0E90612D00D4E0C5 /* FieldAccessorTable.h in Copy Headers */,
-				7451707B0E90700500D4E0C5 /* FieldAccessor.h in Copy Headers */,
-				745170A10E9072AB00D4E0C5 /* RepeatedEnumFieldAccessor.h in Copy Headers */,
-				745170A50E90732A00D4E0C5 /* RepeatedFieldAccessor.h in Copy Headers */,
-				745170B30E90737C00D4E0C5 /* SingularMessageFieldAccessor.h in Copy Headers */,
-				745170B70E9073BA00D4E0C5 /* RepeatedMessageFieldAccessor.h in Copy Headers */,
-				745170C00E90741E00D4E0C5 /* SingularEnumFieldAccessor.h in Copy Headers */,
-				745170C50E90747C00D4E0C5 /* SingularFieldAccessor.h in Copy Headers */,
-				7451724E0E9086E300D4E0C5 /* DescriptorPool.h in Copy Headers */,
-				74517E710E90CDED00D4E0C5 /* Message.h in Copy Headers */,
 			);
 			name = "Copy Headers";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -309,12 +319,6 @@
 				741A74B60E8CCF0E00F16FD4 /* DynamicMessage.m */,
 				741A74B70E8CCF0E00F16FD4 /* DynamicMessage_Builder.h */,
 				741A74B80E8CCF0E00F16FD4 /* DynamicMessage_Builder.m */,
-				741A74B90E8CCF0E00F16FD4 /* ExtensionRegistry.h */,
-				741A74BA0E8CCF0E00F16FD4 /* ExtensionRegistry.m */,
-				741A74BB0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.h */,
-				741A74BC0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.m */,
-				741A74BD0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.h */,
-				741A74BE0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.m */,
 				741A74C10E8CCF0E00F16FD4 /* FieldSet.h */,
 				741A74C20E8CCF0E00F16FD4 /* FieldSet.m */,
 				74517E700E90CDED00D4E0C5 /* Message.h */,
@@ -435,6 +439,12 @@
 		745E97CF0E941793007FD139 /* ExtensionRegistry */ = {
 			isa = PBXGroup;
 			children = (
+				741A74B90E8CCF0E00F16FD4 /* ExtensionRegistry.h */,
+				741A74BA0E8CCF0E00F16FD4 /* ExtensionRegistry.m */,
+				741A74BB0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.h */,
+				741A74BC0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.m */,
+				741A74BD0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.h */,
+				741A74BE0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.m */,
 			);
 			name = ExtensionRegistry;
 			sourceTree = "<group>";
