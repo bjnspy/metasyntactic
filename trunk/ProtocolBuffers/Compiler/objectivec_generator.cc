@@ -26,92 +26,87 @@
 #include <google/protobuf/descriptor.pb.h>
 #include <google/protobuf/stubs/strutil.h>
 
-namespace google {
-namespace protobuf {
-namespace compiler {
-namespace objectivec {
+namespace google { namespace protobuf { namespace compiler { namespace objectivec {
+  namespace {
 
-namespace {
+    // Parses a set of comma-delimited name/value pairs, e.g.:
+    //   "foo=bar,baz,qux=corge"
+    // parses to the pairs:
+    //   ("foo", "bar"), ("baz", ""), ("qux", "corge")
+    void ParseOptions(const string& text, vector<pair<string, string> >* output) {
+      vector<string> parts;
+      SplitStringUsing(text, ",", &parts);
 
-// Parses a set of comma-delimited name/value pairs, e.g.:
-//   "foo=bar,baz,qux=corge"
-// parses to the pairs:
-//   ("foo", "bar"), ("baz", ""), ("qux", "corge")
-void ParseOptions(const string& text, vector<pair<string, string> >* output) {
-  vector<string> parts;
-  SplitStringUsing(text, ",", &parts);
-
-  for (int i = 0; i < parts.size(); i++) {
-    string::size_type equals_pos = parts[i].find_first_of('=');
-    pair<string, string> value;
-    if (equals_pos == string::npos) {
-      value.first = parts[i];
-      value.second = "";
-    } else {
-      value.first = parts[i].substr(0, equals_pos);
-      value.second = parts[i].substr(equals_pos + 1);
+      for (int i = 0; i < parts.size(); i++) {
+        string::size_type equals_pos = parts[i].find_first_of('=');
+        pair<string, string> value;
+        if (equals_pos == string::npos) {
+          value.first = parts[i];
+          value.second = "";
+        } else {
+          value.first = parts[i].substr(0, equals_pos);
+          value.second = parts[i].substr(equals_pos + 1);
+        }
+        output->push_back(value);
+      }
     }
-    output->push_back(value);
+  }  // namespace
+
+  ObjectiveCGenerator::ObjectiveCGenerator() {}
+  ObjectiveCGenerator::~ObjectiveCGenerator() {}
+
+  bool ObjectiveCGenerator::Generate(const FileDescriptor* file,
+    const string& parameter,
+    OutputDirectory* output_directory,
+    string* error) const {
+      vector<pair<string, string> > options;
+      ParseOptions(parameter, &options);
+
+      // -----------------------------------------------------------------
+      // parse generator options
+
+      // Name a file where we will write a list of generated file names, one
+      // per line.
+      string output_list_file;
+
+      for (int i = 0; i < options.size(); i++) {
+        if (options[i].first == "output_list_file") {
+          output_list_file = options[i].second;
+        } else {
+          *error = "Unknown generator option: " + options[i].first;
+          return false;
+        }
+      }
+
+
+      // -----------------------------------------------------------------
+
+
+      FileGenerator file_generator(file);
+      if (!file_generator.Validate(error)) {
+        return false;
+      }
+
+      string objectivec_filename = FileName(file);
+
+      // Generate header.
+      {
+        scoped_ptr<io::ZeroCopyOutputStream> output(
+          output_directory->Open(objectivec_filename + ".pb.h"));
+        io::Printer printer(output.get(), '$');
+        file_generator.GenerateHeader(&printer);
+      }
+
+      // Generate m file.
+      {
+        scoped_ptr<io::ZeroCopyOutputStream> output(
+          output_directory->Open(objectivec_filename + ".pb.m"));
+        io::Printer printer(output.get(), '$');
+        file_generator.GenerateSource(&printer);
+      }
+
+      return true;
   }
-}
-
-}  // namespace
-
-ObjectiveCGenerator::ObjectiveCGenerator() {}
-ObjectiveCGenerator::~ObjectiveCGenerator() {}
-
-bool ObjectiveCGenerator::Generate(const FileDescriptor* file,
-                             const string& parameter,
-                             OutputDirectory* output_directory,
-                             string* error) const {
-  vector<pair<string, string> > options;
-  ParseOptions(parameter, &options);
-
-  // -----------------------------------------------------------------
-  // parse generator options
-
-  // Name a file where we will write a list of generated file names, one
-  // per line.
-  string output_list_file;
-
-  for (int i = 0; i < options.size(); i++) {
-    if (options[i].first == "output_list_file") {
-      output_list_file = options[i].second;
-    } else {
-      *error = "Unknown generator option: " + options[i].first;
-      return false;
-    }
-  }
-
-
-  // -----------------------------------------------------------------
-
-
-  FileGenerator file_generator(file);
-  if (!file_generator.Validate(error)) {
-    return false;
-  }
-
-  string objectivec_filename = FileName(file);
-
-  // Generate header.
-  {
-    scoped_ptr<io::ZeroCopyOutputStream> output(
-      output_directory->Open(objectivec_filename + ".pb.h"));
-    io::Printer printer(output.get(), '$');
-    file_generator.GenerateHeader(&printer);
-  }
-
-  // Generate m file.
-  {
-    scoped_ptr<io::ZeroCopyOutputStream> output(
-      output_directory->Open(objectivec_filename + ".pb.m"));
-    io::Printer printer(output.get(), '$');
-    file_generator.GenerateSource(&printer);
-  }
-
-  return true;
-}
 
 }  // namespace objectivec
 }  // namespace compiler
