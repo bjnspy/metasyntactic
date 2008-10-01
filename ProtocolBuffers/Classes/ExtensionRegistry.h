@@ -30,7 +30,7 @@
 
 - (void) addExtensionInfo:(ExtensionRegistry_ExtensionInfo*) extension;
 
-- (ExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(Descriptor*) containingType
+- (ExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
                                                fieldNumber:(int32_t) fieldNumber;
 
 #if 0

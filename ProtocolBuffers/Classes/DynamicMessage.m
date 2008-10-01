@@ -41,7 +41,7 @@
 
 
 
-- (id) initWithType:(Descriptor*) type_
+- (id) initWithType:(PBDescriptor*) type_
              fields:(FieldSet*) fields_
       unknownFields:(UnknownFieldSet*) unknownFields_ {
     if (self = [super init]) {
@@ -55,60 +55,60 @@
 }
 
 
-+ (DynamicMessage*) messageWithType:(Descriptor*) type
++ (DynamicMessage*) messageWithType:(PBDescriptor*) type
                              fields:(FieldSet*) fields
                       unknownFields:(UnknownFieldSet*) unknownFields {
     return [[[DynamicMessage alloc] initWithType:type fields:fields unknownFields:unknownFields] autorelease];
 }
 
 
-+ (DynamicMessage*) getDefaultInstance:(Descriptor*) type {
++ (DynamicMessage*) getDefaultInstance:(PBDescriptor*) type {
     return [[[DynamicMessage alloc] initWithType:type
                                           fields:[FieldSet emptySet]
                                    unknownFields:[UnknownFieldSet getDefaultInstance]] autorelease];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(PBDescriptor*) type
          codedInputStream:(CodedInputStream*) input {
     return [[[DynamicMessage builderWithType:type] mergeFromCodedInputStream:input] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(PBDescriptor*) type
          codedInputStream:(CodedInputStream*) input
         extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(PBDescriptor*) type
                      data:(NSData*) data {
     return [[[DynamicMessage builderWithType:type] mergeFromData:data] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(PBDescriptor*) type
                      data:(NSData*) data
         extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(PBDescriptor*) type
               inputStream:(NSInputStream*) input {
     return [[[DynamicMessage builderWithType:type] mergeFromInputStream:input] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(Descriptor*) type
++ (id<Message>) parseFrom:(PBDescriptor*) type
               inputStream:(NSInputStream*) input
         extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     return [[[DynamicMessage builderWithType:type] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
-+ (DynamicMessage_Builder*) bulderWithType:(Descriptor*) type {
++ (DynamicMessage_Builder*) bulderWithType:(PBDescriptor*) type {
     return [DynamicMessage_Builder builderWithType:type];
 }
 
@@ -118,7 +118,7 @@
 }
 
 
-- (Descriptor*) getDescriptorForType {
+- (PBDescriptor*) getDescriptorForType {
     return type;
 }
 
@@ -212,7 +212,7 @@
 }
 
 
-+ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type {
++ (DynamicMessage_Builder*) builderWithType:(PBDescriptor*) type {
     return [DynamicMessage_Builder builderWithType:type];
 }
 

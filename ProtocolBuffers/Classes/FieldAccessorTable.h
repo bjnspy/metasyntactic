@@ -15,14 +15,14 @@
 // limitations under the License.
 
 @interface FieldAccessorTable : NSObject {
-    Descriptor* descriptor;
+    PBDescriptor* descriptor;
     NSArray* fields;
 }
 
-@property (retain) Descriptor* descriptor;
+@property (retain) PBDescriptor* descriptor;
 @property (retain) NSArray* fields;
 
-+ (FieldAccessorTable*) tableWithDescriptor:(Descriptor*) descriptor
++ (FieldAccessorTable*) tableWithDescriptor:(PBDescriptor*) descriptor
                                                   fieldNames:(NSArray*) fieldNames
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass;

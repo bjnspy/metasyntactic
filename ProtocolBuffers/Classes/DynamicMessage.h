@@ -18,20 +18,20 @@
 
 @interface DynamicMessage : AbstractMessage {
 @private
-    Descriptor* type;
+    PBDescriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
     int32_t dm_memoizedSize;
 }
 
-@property (retain) Descriptor* type;
+@property (retain) PBDescriptor* type;
 @property (retain) FieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 
-+ (DynamicMessage*) messageWithType:(Descriptor*) type fields:(FieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
-+ (DynamicMessage*) getDefaultInstance:(Descriptor*) type;
++ (DynamicMessage*) messageWithType:(PBDescriptor*) type fields:(FieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
++ (DynamicMessage*) getDefaultInstance:(PBDescriptor*) type;
 
-+ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type;
++ (DynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
 
 
 #if 0

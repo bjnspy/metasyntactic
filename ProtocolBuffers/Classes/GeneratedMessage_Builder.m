@@ -76,7 +76,7 @@
 }
 
 
-- (Descriptor*) getDescriptorForType {
+- (PBDescriptor*) getDescriptorForType {
     return self.internalGetFieldAccessorTable.descriptor;
 }
 

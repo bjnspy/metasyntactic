@@ -73,7 +73,7 @@
     // DescriptorPool's lookup tables.  In the linking step, we look up all
     // type references in the DescriptorPool, so that, for example, a
     // FieldDescriptor for an embedded message contains a pointer directly
-    // to the Descriptor for that message's type.  We also detect undefined
+    // to the PBDescriptor for that message's type.  We also detect undefined
     // types in the linking step.
     DescriptorPool* pool = [DescriptorPool poolWithDependencies:dependencies];
     FileDescriptor* result = [FileDescriptor descriptorWithProto:proto dependencies:dependencies pool:pool];

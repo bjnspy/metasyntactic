@@ -32,7 +32,7 @@
 }
 
 
-- (id) initWithDescriptor:(Descriptor*) descriptor_
+- (id) initWithDescriptor:(PBDescriptor*) descriptor_
                    number:(int32_t) number_ {
     if (self = [super init]) {
         self.descriptor = descriptor_;
@@ -43,7 +43,7 @@
 }
 
 
-+ (ExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(Descriptor*) descriptor
++ (ExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor
                                                      number:(int32_t) number {
     return [[[ExtensionRegistry_DescriptorIntPair alloc] initWithDescriptor:descriptor number:number] autorelease];
 }

@@ -59,7 +59,7 @@
 - (NSArray*) extensions;
 - (NSArray*) dependencies;
 
-- (Descriptor*) findMessageTypeByName:(NSString*) name;
+- (PBDescriptor*) findMessageTypeByName:(NSString*) name;
 - (EnumDescriptor*) findEnumTypeByName:(NSString*) name;
 - (ServiceDescriptor*) findServiceByName:(NSString*) name;
 - (FieldDescriptor*) findExtensionByName:(NSString*) name;

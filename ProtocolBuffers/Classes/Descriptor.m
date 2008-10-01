@@ -17,7 +17,7 @@
 #import "Descriptor.h"
 
 
-@implementation Descriptor
+@implementation PBDescriptor
 
 @synthesize nestedTypes;
 
