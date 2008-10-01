@@ -30,7 +30,7 @@
 }
 
 
-- (FieldDescriptor*) getDescriptor {
+- (PBFieldDescriptor*) getDescriptor {
     return descriptor;
 }
 
@@ -40,7 +40,7 @@ ContainingType extends Message, Type> {
     // TODO(kenton):  Find ways to avoid using Java reflection within this
     //   class.  Also try to avoid suppressing unchecked warnings.
     
-    private GeneratedExtension(FieldDescriptor descriptor, Class type) {
+    private GeneratedExtension(PBFieldDescriptor descriptor, Class type) {
         if (!descriptor.isExtension()) {
             throw new IllegalArgumentException(
                                                "GeneratedExtension given a regular (non-extension) field.");

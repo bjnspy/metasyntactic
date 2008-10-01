@@ -17,13 +17,13 @@
 @interface ExtensionWriter : NSObject {
     PBFieldSet* extensions;
     NSEnumerator* enumerator;
-    FieldDescriptor* nextKey;
+    PBFieldDescriptor* nextKey;
     id nextValue;
 }
 
 @property (retain) PBFieldSet* extensions;
 @property (retain) NSEnumerator* enumerator;
-@property (retain) FieldDescriptor* nextKey;
+@property (retain) PBFieldDescriptor* nextKey;
 @property (retain) id nextValue;
 
 + (ExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions;

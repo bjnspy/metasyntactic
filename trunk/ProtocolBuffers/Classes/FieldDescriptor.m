@@ -17,7 +17,7 @@
 #import "FieldDescriptor.h"
 
 
-@implementation FieldDescriptor
+@implementation PBFieldDescriptor
 
 - (BOOL) isRequired {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];

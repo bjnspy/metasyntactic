@@ -19,7 +19,7 @@
 
 @implementation SingularFieldAccessor
 
-+ (SingularFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (SingularFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

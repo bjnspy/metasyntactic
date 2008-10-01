@@ -45,8 +45,8 @@
 - (ExtensionRegistry_ExtensionInfo*) findExtensionByContainingType:(Descriptors_Descriptor*) containingType fieldNumber:(int32_t) fieldNumber;
 
 - (void) add:(GeneratedExtension*) extension;
-- (void) add:(FieldDescriptor*) type;
-- (void) add:(FieldDescriptor*) type defaultInstance:(Message*) defaultInstance;
+- (void) add:(PBFieldDescriptor*) type;
+- (void) add:(PBFieldDescriptor*) type defaultInstance:(Message*) defaultInstance;
 
 + (ExtensionRegistry*) registryWithExtensionsByName:(NSDictionary*) extensionsByName extensionsByNumber:(NSDictionary*) extensionsByNumber;
 #endif

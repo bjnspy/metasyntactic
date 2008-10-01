@@ -15,14 +15,14 @@
 // limitations under the License.
 
 @interface ExtensionRegistry_ExtensionInfo : NSObject {
-    FieldDescriptor* descriptor;
+    PBFieldDescriptor* descriptor;
     id<Message> defaultInstance;
 }
 
-@property (retain) FieldDescriptor* descriptor;
+@property (retain) PBFieldDescriptor* descriptor;
 @property (retain) id<Message> defaultInstance;
 
-+ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor;
-+ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(FieldDescriptor*) descriptor defaultInstance:(id<Message>) defaultInstance;
++ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor;
++ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor defaultInstance:(id<Message>) defaultInstance;
 
 @end

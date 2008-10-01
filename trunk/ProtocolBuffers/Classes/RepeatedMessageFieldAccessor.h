@@ -20,7 +20,7 @@
 
 }
 
-+ (RepeatedMessageFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (RepeatedMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                                 name:(NSString*) name
                                                         messageClass:(Class) messageClass
                                                         builderClass:(Class) builderClass;

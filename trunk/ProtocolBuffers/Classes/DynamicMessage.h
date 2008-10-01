@@ -52,11 +52,11 @@
 - (DynamicMessage*) defaultInstanceForType;
 - (NSDictionary*) allFields;
 
-- (BOOL) hasField:(FieldDescriptor*) field;
-- (id) getField:(FieldDescriptor*) field;
+- (BOOL) hasField:(PBFieldDescriptor*) field;
+- (id) getField:(PBFieldDescriptor*) field;
 
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field;
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index;
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
 
 - (UnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;

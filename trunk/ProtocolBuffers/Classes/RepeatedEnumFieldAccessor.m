@@ -19,7 +19,7 @@
 
 @implementation RepeatedEnumFieldAccessor
 
-+ (RepeatedEnumFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (RepeatedEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

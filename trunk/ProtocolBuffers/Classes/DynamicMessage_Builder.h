@@ -47,18 +47,18 @@
 - (Descriptors_Descriptor*) descriptorForType;
 - (DynamicMessage*) defaultInstanceForType;
 - (NSDictionary*) allFields;
-- (DynamicMessage_Builder*) builderForField:(FieldDescriptor*) field;
+- (DynamicMessage_Builder*) builderForField:(PBFieldDescriptor*) field;
 
-- (BOOL) hasField:(FieldDescriptor*) field;
-- (id) getField:(FieldDescriptor*) field;
+- (BOOL) hasField:(PBFieldDescriptor*) field;
+- (id) getField:(PBFieldDescriptor*) field;
 
-- (DynamicMessage_Builder*) setField:(FieldDescriptor*) field value:(id) value;
-- (DynamicMessage_Builder*) clearField:(FieldDescriptor*) field;
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field;
-- (id) getRepeatedField:(FieldDescriptor*) field index:(int32_t) index;
+- (DynamicMessage_Builder*) setField:(PBFieldDescriptor*) field value:(id) value;
+- (DynamicMessage_Builder*) clearField:(PBFieldDescriptor*) field;
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
 
-- (DynamicMessage_Builder*) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value;
-- (DynamicMessage_Builder*) addRepeatedField:(FieldDescriptor*) field value:(id) value;
+- (DynamicMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (DynamicMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 
 - (UnknownFieldSet*) unknownFields;
 - (DynamicMessage_Builder*) setUnknownFields:(UnknownFieldSet*) unknownFields;

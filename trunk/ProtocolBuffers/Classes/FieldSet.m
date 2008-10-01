@@ -89,8 +89,8 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message#hasField(Descriptors.FieldDescriptor)}. */
-- (BOOL) hasField:(FieldDescriptor*) field {
+/** See {@link Message#hasField(Descriptors.PBFieldDescriptor)}. */
+- (BOOL) hasField:(PBFieldDescriptor*) field {
     if (field.isRepeated) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"hasField() can only be called on non-repeated fields." userInfo:nil];
@@ -101,12 +101,12 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 
 /**
- * See {@link Message#getField(Descriptors.FieldDescriptor)}.  This method
+ * See {@link Message#getField(Descriptors.PBFieldDescriptor)}.  This method
  * returns {@code null} if the field is a singular message type and is not
  * set; in this case it is up to the caller to fetch the message's default
  * instance.
  */
-- (id) getField:(FieldDescriptor*) field {
+- (id) getField:(PBFieldDescriptor*) field {
     id result = [fields objectForKey:field];
     if (result == nil) {
         if (field.getObjectiveCType == ObjectiveCTypeMessage) {
@@ -131,7 +131,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  *
  * @throws IllegalArgumentException The value is not of the right type.
  */
-- (void) verifyType:(FieldDescriptor*) field value:(id) value {
+- (void) verifyType:(PBFieldDescriptor*) field value:(id) value {
     BOOL isValid = NO;
     switch (field.getObjectiveCType) {
         case ObjectiveCTypeInt32:   isValid = [value isKindOfClass:[NSNumber class]]; break;
@@ -169,8 +169,8 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message.Builder#setField(Descriptors.FieldDescriptor,Object)}. */
-- (void) setField:(FieldDescriptor*) field
+/** See {@link Message.Builder#setField(Descriptors.PBFieldDescriptor,Object)}. */
+- (void) setField:(PBFieldDescriptor*) field
             value:(id) value {
     if (field.isRepeated) {
         if (![value isKindOfClass:[NSArray class]]) {
@@ -193,14 +193,14 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message.Builder#clearField(Descriptors.FieldDescriptor)}. */
-- (void) clearField:(FieldDescriptor*) field {
+/** See {@link Message.Builder#clearField(Descriptors.PBFieldDescriptor)}. */
+- (void) clearField:(PBFieldDescriptor*) field {
     [fields removeObjectForKey:field];
 }
 
 
-/** See {@link Message#getRepeatedFieldCount(Descriptors.FieldDescriptor)}. */
-- (int32_t) getRepeatedFieldCount:(FieldDescriptor*) field {
+/** See {@link Message#getRepeatedFieldCount(Descriptors.PBFieldDescriptor)}. */
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
     if (!field.isRepeated) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"getRepeatedFieldCount() can only be called on repeated fields." userInfo:nil];
@@ -210,8 +210,8 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message#getRepeatedField(Descriptors.FieldDescriptor,int)}. */
-- (id) getRepeatedField:(FieldDescriptor*) field
+/** See {@link Message#getRepeatedField(Descriptors.PBFieldDescriptor,int)}. */
+- (id) getRepeatedField:(PBFieldDescriptor*) field
                   index:(int32_t) index {
     if (!field.isRepeated) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
@@ -222,8 +222,8 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message.Builder#setRepeatedField(Descriptors.FieldDescriptor,int,Object)}. */
-- (void) setRepeatedField:(FieldDescriptor*) field
+/** See {@link Message.Builder#setRepeatedField(Descriptors.PBFieldDescriptor,int,Object)}. */
+- (void) setRepeatedField:(PBFieldDescriptor*) field
                     index:(int32_t) index
                     value:(id) value {
     if (!field.isRepeated) {
@@ -242,8 +242,8 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message.Builder#addRepeatedField(Descriptors.FieldDescriptor,Object)}. */
-- (void) addRepeatedField:(FieldDescriptor*) field value:(id) value {
+/** See {@link Message.Builder#addRepeatedField(Descriptors.PBFieldDescriptor,Object)}. */
+- (void) addRepeatedField:(PBFieldDescriptor*) field value:(id) value {
     if (!field.isRepeated) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"addRepeatedField() can only be called on repeated fields." userInfo:nil];
@@ -270,7 +270,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  * that all required fields are present.
  */
 - (BOOL) isInitialized {
-    for (FieldDescriptor* field in fields) {
+    for (PBFieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
 
         if (field.getObjectiveCType == ObjectiveCTypeMessage) {
@@ -298,7 +298,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  */
 - (BOOL) isInitialized:(PBDescriptor*) type {
     // Check that all required fields are present.
-    for (FieldDescriptor* field in type.getFields) {
+    for (PBFieldDescriptor* field in type.getFields) {
         if (field.isRequired) {
             if (![self hasField:field]) {
                 return NO;
@@ -323,7 +323,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     //   which allows people to make secure deep copies of messages.
 
     NSDictionary* otherAllFields = [other getAllFields];
-    for (FieldDescriptor* field in otherAllFields) {
+    for (PBFieldDescriptor* field in otherAllFields) {
         id otherValue = [otherAllFields objectForKey:field];
 
         if (field.isRepeated) {
@@ -352,7 +352,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  * Like {@link #mergeFrom(Message)}, but merges from another {@link PBFieldSet}.
  */
 - (void) mergeFromFieldSet:(PBFieldSet*) other {
-    for (FieldDescriptor* field in other.fields) {
+    for (PBFieldDescriptor* field in other.fields) {
         id value = [other.fields objectForKey:field];
 
         if (field.isRepeated) {
@@ -431,7 +431,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
      int typeId = 0;
      ByteString rawBytes = null;  // If we encounter "message" before "typeId"
      Message.Builder subBuilder = null;
-     FieldDescriptor field = null;
+     PBFieldDescriptor field = null;
      
      while (true) {
      int tag = input.readTag();
@@ -528,7 +528,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     int32_t wireType = WireFormatGetTagWireType(tag);
     int32_t fieldNumber = WireFormatGetTagFieldNumber(tag);
 
-    FieldDescriptor* field;
+    PBFieldDescriptor* field;
    id<Message> defaultInstance = nil;
 
     if ([type isExtensionNumber:fieldNumber]) {
@@ -607,7 +607,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 /** See {@link Message#writeTo(PBCodedOutputStream)}. */
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-    for (FieldDescriptor* field in fields) {
+    for (PBFieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
         [self writeField:field value:value output:output];
     }
@@ -615,7 +615,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 
 /** Write a single field. */
-- (void) writeField:(FieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output {
+- (void) writeField:(PBFieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output {
     if (field.isExtension &&
         field.getContainingType.getOptions.getMessageSetWireFormat) {
         [output writeMessageSetExtension:field.getNumber value:value];
@@ -636,7 +636,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  */
 - (int32_t) getSerializedSize {
     int32_t size = 0;
-    for (FieldDescriptor* field in fields) {
+    for (PBFieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
 
         if (field.isExtension &&

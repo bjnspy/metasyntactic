@@ -19,7 +19,7 @@
 #import "FieldDescriptorType.h"
 #import "ObjectiveCType.h"
 
-@interface FieldDescriptor : NSObject/*<PBGenericDescriptor>*/ {
+@interface PBFieldDescriptor : NSObject/*<PBGenericDescriptor>*/ {
 }
 
 - (BOOL) isRequired;
