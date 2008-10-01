@@ -25,6 +25,6 @@
 #import "FileDescriptor.h"
 #import "GeneratedMessage.h"
 #import "GeneratedMessage_Builder.h"
-#import "GeneratedMessage_FieldAccessorTable.h"
+#import "FieldAccessorTable.h"
 #import "UnknownFieldSet.h"
 #import "UnknownFieldSet_Builder.h"
