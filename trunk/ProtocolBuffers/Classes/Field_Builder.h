@@ -30,6 +30,6 @@
 - (PBField_Builder*) addFixed32:(int32_t) value;
 - (PBField_Builder*) addFixed64:(int64_t) value;
 - (PBField_Builder*) addLengthDelimited:(NSData*) value;
-- (PBField_Builder*) addGroup:(UnknownFieldSet*) value;
+- (PBField_Builder*) addGroup:(PBUnknownFieldSet*) value;
 
 @end

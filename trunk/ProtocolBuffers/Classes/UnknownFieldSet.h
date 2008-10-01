@@ -14,17 +14,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface UnknownFieldSet : NSObject {
+@interface PBUnknownFieldSet : NSObject {
     NSDictionary* fields;
 }
 
 @property (retain) NSDictionary* fields;
 
-+ (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
-+ (UnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
++ (PBUnknownFieldSet_Builder*) newBuilder:(PBUnknownFieldSet*) copyFrom;
++ (PBUnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
 
-+ (UnknownFieldSet*) getDefaultInstance;
-+ (UnknownFieldSet_Builder*) newBuilder;
++ (PBUnknownFieldSet*) getDefaultInstance;
++ (PBUnknownFieldSet_Builder*) newBuilder;
 
 - (void) writeAsMessageSetTo:(PBCodedOutputStream*) output;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -33,11 +33,11 @@
 - (int32_t) getSerializedSizeAsMessageSet;
 
 #if 0
-+ (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom;
++ (PBUnknownFieldSet_Builder*) newBuilder:(PBUnknownFieldSet*) copyFrom;
 
-+ (UnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (UnknownFieldSet*) parseFromData:(NSData*) data;
-+ (UnknownFieldSet*) parserFromInputStream:(NSInputStream*) input;
++ (PBUnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input;
++ (PBUnknownFieldSet*) parseFromData:(NSData*) data;
++ (PBUnknownFieldSet*) parserFromInputStream:(NSInputStream*) input;
 
 - (NSDictionary*) toDictionary;
 - (BOOL) hasField:(int32_t) number;

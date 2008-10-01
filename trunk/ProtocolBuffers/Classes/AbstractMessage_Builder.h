@@ -20,13 +20,13 @@
 @private
 }
 
-- (UnknownFieldSet*) getUnknownFields;
+- (PBUnknownFieldSet*) getUnknownFields;
 
 - (id<Message>) buildParsed;
 
 - (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-- (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
+- (id<Message_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
 - (id<Message_Builder>) mergeFromData:(NSData*) data;
 - (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 - (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input;

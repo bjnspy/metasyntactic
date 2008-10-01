@@ -31,7 +31,7 @@
 
 - (id) init {
     if (self = [super init]) {
-        self.unknownFields = [UnknownFieldSet getDefaultInstance];
+        self.unknownFields = [PBUnknownFieldSet getDefaultInstance];
     }
 
     return self;
@@ -43,7 +43,7 @@
 }
 
 
-- (UnknownFieldSet*) getUnknownFields {
+- (PBUnknownFieldSet*) getUnknownFields {
     return unknownFields;
 }
 

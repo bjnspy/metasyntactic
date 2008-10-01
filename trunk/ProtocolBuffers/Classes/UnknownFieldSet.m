@@ -21,13 +21,13 @@
 #import "Field.h"
 #import "UnknownFieldSet_Builder.h"
 
-@implementation UnknownFieldSet
+@implementation PBUnknownFieldSet
 
-static UnknownFieldSet* defaultInstance = nil;
+static PBUnknownFieldSet* defaultInstance = nil;
 
 + (void) initialize {
-    if (self == [UnknownFieldSet class]) {
-        defaultInstance = [[UnknownFieldSet setWithFields:[NSMutableDictionary dictionary]] retain];
+    if (self == [PBUnknownFieldSet class]) {
+        defaultInstance = [[PBUnknownFieldSet setWithFields:[NSMutableDictionary dictionary]] retain];
     }
 }
 
@@ -41,17 +41,17 @@ static UnknownFieldSet* defaultInstance = nil;
 }
 
 
-+ (UnknownFieldSet_Builder*) newBuilder {
-    return [UnknownFieldSet_Builder newBuilder];
++ (PBUnknownFieldSet_Builder*) newBuilder {
+    return [PBUnknownFieldSet_Builder newBuilder];
 }
 
 
-+ (UnknownFieldSet_Builder*) newBuilder:(UnknownFieldSet*) copyFrom {
-    return [[UnknownFieldSet_Builder newBuilder] mergeUnknownFields:copyFrom];
++ (PBUnknownFieldSet_Builder*) newBuilder:(PBUnknownFieldSet*) copyFrom {
+    return [[PBUnknownFieldSet_Builder newBuilder] mergeUnknownFields:copyFrom];
 }
 
 
-+ (UnknownFieldSet*) getDefaultInstance {
++ (PBUnknownFieldSet*) getDefaultInstance {
     return defaultInstance;
 }
 
@@ -65,8 +65,8 @@ static UnknownFieldSet* defaultInstance = nil;
 }
 
 
-+ (UnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields {
-    return [[[UnknownFieldSet alloc] initWithFields:fields] autorelease];
++ (PBUnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields {
+    return [[[PBUnknownFieldSet alloc] initWithFields:fields] autorelease];
 }
 
 
@@ -102,18 +102,18 @@ static UnknownFieldSet* defaultInstance = nil;
 }
 
 
-+ (UnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-    return [[[UnknownFieldSet newBuilder] mergeFromCodedInputStream:input] build];
++ (PBUnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+    return [[[PBUnknownFieldSet newBuilder] mergeFromCodedInputStream:input] build];
 }
 
 
-+ (UnknownFieldSet*) parseFromData:(NSData*) data {
-    return [[[UnknownFieldSet newBuilder] mergeFromData:data] build];
++ (PBUnknownFieldSet*) parseFromData:(NSData*) data {
+    return [[[PBUnknownFieldSet newBuilder] mergeFromData:data] build];
 }
 
 
-+ (UnknownFieldSet*) parseFromInputStream:(NSInputStream*) input {
-    return [[[UnknownFieldSet newBuilder] mergeFromInputStream:input] build];
++ (PBUnknownFieldSet*) parseFromInputStream:(NSInputStream*) input {
+    return [[[PBUnknownFieldSet newBuilder] mergeFromInputStream:input] build];
 }
 
 
@@ -155,7 +155,7 @@ static UnknownFieldSet* defaultInstance = nil;
 /**
  * Converts the set to a string in protocol buffer text format. This is
  * just a trivial wrapper around
- * {@link TextFormat#printToString(UnknownFieldSet)}.
+ * {@link TextFormat#printToString(PBUnknownFieldSet)}.
  */
 public final String toString() {
     return TextFormat.printToString(this);

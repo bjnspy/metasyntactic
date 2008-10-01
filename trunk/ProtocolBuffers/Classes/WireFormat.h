@@ -28,7 +28,7 @@ typedef enum {
     WireFormatMessageSetItem = 1,
     WireFormatMessageSetTypeId = 2,
     WireFormatMessageSetMessage = 3
-} WireFormat;
+} PBWireFormat;
 
 int32_t WireFormatMakeTag(int32_t fieldNumber, int32_t wireType);
 int32_t WireFormatGetTagWireType(int32_t tag);

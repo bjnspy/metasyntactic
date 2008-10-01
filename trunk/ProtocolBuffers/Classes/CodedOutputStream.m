@@ -163,9 +163,9 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 }
 
 
-/** Write a group represented by an {@link UnknownFieldSet}. */
+/** Write a group represented by an {@link PBUnknownFieldSet}. */
 - (void) writeUnknownGroup:(int32_t) fieldNumber
-                     value:(UnknownFieldSet*) value {
+                     value:(PBUnknownFieldSet*) value {
     [self writeTag:fieldNumber format:WireFormatStartGroup];
     [value writeToCodedOutputStream:self];
     [self writeTag:fieldNumber format:WireFormatEndGroup];
@@ -402,11 +402,11 @@ int32_t computeGroupSize(int32_t fieldNumber, id<Message> value) {
 
 /**
  * Compute the number of bytes that would be needed to encode a
- * {@code group} field represented by an {@code UnknownFieldSet}, including
+ * {@code group} field represented by an {@code PBUnknownFieldSet}, including
  * tag.
  */
 int32_t computeUnknownGroupSize(int32_t fieldNumber,
-                                UnknownFieldSet* value) {
+                                PBUnknownFieldSet* value) {
     return computeTagSize(fieldNumber) * 2 + value.getSerializedSize;
 }
 

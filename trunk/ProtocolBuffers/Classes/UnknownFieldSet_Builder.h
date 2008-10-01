@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface UnknownFieldSet_Builder : NSObject {
+@interface PBUnknownFieldSet_Builder : NSObject {
     NSMutableDictionary* fields;
 
     // Optimization:  We keep around a builder for the last field that was
@@ -29,16 +29,16 @@
 @property int32_t lastFieldNumber;
 @property (retain) PBField_Builder* lastField;
 
-+ (UnknownFieldSet_Builder*) newBuilder;
++ (PBUnknownFieldSet_Builder*) newBuilder;
 
-- (UnknownFieldSet*) build;
-- (UnknownFieldSet_Builder*) mergeUnknownFields:(UnknownFieldSet*) other;
+- (PBUnknownFieldSet*) build;
+- (PBUnknownFieldSet_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) other;
 
-- (UnknownFieldSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (UnknownFieldSet_Builder*) mergeFromData:(NSData*) data;
-- (UnknownFieldSet_Builder*) mergeFromInputStream:(NSInputStream*) input;
+- (PBUnknownFieldSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
+- (PBUnknownFieldSet_Builder*) mergeFromData:(NSData*) data;
+- (PBUnknownFieldSet_Builder*) mergeFromInputStream:(NSInputStream*) input;
 
-- (UnknownFieldSet_Builder*) mergeVarintField:(int32_t) number value:(int32_t) value;
+- (PBUnknownFieldSet_Builder*) mergeVarintField:(int32_t) number value:(int32_t) value;
 
 - (BOOL) mergeFieldFrom:(int32_t) tag input:(PBCodedInputStream*) input;
 
@@ -49,11 +49,11 @@
 
 @property (retain) NSDictionary* fields;
 
-- (UnknownFieldSet_Builder*) clear;
-- (UnknownFieldSet_Builder*) mergeUnknownFields:(UnknownFieldSet*) other;
-- (UnknownFieldSet_Builder*) mergeField:(int32_t) number field:(UnknownFieldSet_Field*) field;
+- (PBUnknownFieldSet_Builder*) clear;
+- (PBUnknownFieldSet_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) other;
+- (PBUnknownFieldSet_Builder*) mergeField:(int32_t) number field:(UnknownFieldSet_Field*) field;
 - (BOOL) hasField:(int32_t) number;
-- (UnknownFieldSet_Builder*) addField:(int32_t) number field:(UnknownFieldSet_Field*) field;
+- (PBUnknownFieldSet_Builder*) addField:(int32_t) number field:(UnknownFieldSet_Field*) field;
 - (NSDictionary*) dictionary;
 #endif
 

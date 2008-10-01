@@ -143,7 +143,7 @@
 }
 
 
-- (PBField_Builder*) addGroup:(UnknownFieldSet*) value {
+- (PBField_Builder*) addGroup:(PBUnknownFieldSet*) value {
     if (result.group == nil) {
         result.group = [NSMutableArray array];
     }

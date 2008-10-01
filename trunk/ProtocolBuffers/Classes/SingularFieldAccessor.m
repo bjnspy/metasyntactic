@@ -17,9 +17,9 @@
 #import "SingularFieldAccessor.h"
 
 
-@implementation SingularFieldAccessor
+@implementation PBSingularFieldAccessor
 
-+ (SingularFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
++ (PBSingularFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

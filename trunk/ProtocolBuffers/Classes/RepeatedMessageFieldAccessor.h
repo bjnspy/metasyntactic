@@ -16,11 +16,11 @@
 
 #import "FieldAccessor.h"
 
-@interface RepeatedMessageFieldAccessor : NSObject<PBFieldAccessor> {
+@interface PBRepeatedMessageFieldAccessor : NSObject<PBFieldAccessor> {
 
 }
 
-+ (RepeatedMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
++ (PBRepeatedMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                                 name:(NSString*) name
                                                         messageClass:(Class) messageClass
                                                         builderClass:(Class) builderClass;

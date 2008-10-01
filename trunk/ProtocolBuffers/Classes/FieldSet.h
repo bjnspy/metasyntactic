@@ -23,11 +23,11 @@
 
 
 + (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
-                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                     unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder;
 + (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
-                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                     unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder
                                tag:(int32_t) tag;
@@ -83,18 +83,18 @@
 - (void) mergeFrom:(id<Message>) other;
 - (void) mergeFrom:(PBFieldSet*) other;
 - (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
-                     unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                     unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder;
 
 - (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
-                          unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                          unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                       extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                 builder:(id<Message_Builder>) builder
                                     tag:(int32_t) tag;
 
 - (void) mergeMessageSetExtensionFromCodedInputStream:(PBCodedInputStream*) input
-                                        unknownFields:(UnknownFieldSet_Builder*) unknownFields
+                                        unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                                     extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                               builder:(id<Message_Builder>) builder;
 

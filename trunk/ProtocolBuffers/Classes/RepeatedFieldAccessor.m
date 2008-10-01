@@ -17,9 +17,9 @@
 #import "RepeatedFieldAccessor.h"
 
 
-@implementation RepeatedFieldAccessor
+@implementation PBRepeatedFieldAccessor
 
-+ (RepeatedFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
++ (PBRepeatedFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

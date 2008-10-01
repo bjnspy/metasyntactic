@@ -22,7 +22,7 @@
 #import "UnknownFieldSet.h"
 #import "WireFormat.h"
 
-@implementation UnknownFieldSet_Builder
+@implementation PBUnknownFieldSet_Builder
 
 @synthesize fields;
 @synthesize lastFieldNumber;
@@ -46,16 +46,16 @@
 }
 
 
-+ (UnknownFieldSet_Builder*) newBuilder {
-    return [[[UnknownFieldSet_Builder alloc] init] autorelease];
++ (PBUnknownFieldSet_Builder*) newBuilder {
+    return [[[PBUnknownFieldSet_Builder alloc] init] autorelease];
 }
 
 
 /**
- * Add a field to the {@code UnknownFieldSet}.  If a field with the same
+ * Add a field to the {@code PBUnknownFieldSet}.  If a field with the same
  * number already exists, it is removed.
  */
-- (UnknownFieldSet_Builder*) addField:(PBField*) field forNumber:(int32_t) number {
+- (PBUnknownFieldSet_Builder*) addField:(PBField*) field forNumber:(int32_t) number {
     if (number == 0) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
@@ -95,13 +95,13 @@
 }
 
 
-- (UnknownFieldSet*) build {
+- (PBUnknownFieldSet*) build {
     [self getFieldBuilder:0];  // Force lastField to be built.
-    UnknownFieldSet* result;
+    PBUnknownFieldSet* result;
     if (fields.count == 0) {
-        result = [UnknownFieldSet getDefaultInstance];
+        result = [PBUnknownFieldSet getDefaultInstance];
     } else {
-        result = [UnknownFieldSet setWithFields:fields];
+        result = [PBUnknownFieldSet setWithFields:fields];
     }
     self.fields = nil;
     return result;
@@ -119,10 +119,10 @@
 
 
 /**
- * Add a field to the {@code UnknownFieldSet}.  If a field with the same
+ * Add a field to the {@code PBUnknownFieldSet}.  If a field with the same
  * number already exists, the two are merged.
  */
-- (UnknownFieldSet_Builder*) mergeField:(PBField*) field forNumber:(int32_t) number {
+- (PBUnknownFieldSet_Builder*) mergeField:(PBField*) field forNumber:(int32_t) number {
     if (number == 0) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
@@ -139,8 +139,8 @@
 }
 
 
-- (UnknownFieldSet_Builder*) mergeUnknownFields:(UnknownFieldSet*) other {
-    if (other != [UnknownFieldSet getDefaultInstance]) {
+- (PBUnknownFieldSet_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) other {
+    if (other != [PBUnknownFieldSet getDefaultInstance]) {
         for (NSNumber* number in other.fields) {
             PBField* field = [other.fields objectForKey:number];
             [self mergeField:field forNumber:[number intValue]];
@@ -150,22 +150,22 @@
 }
 
 
-- (UnknownFieldSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+- (PBUnknownFieldSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (UnknownFieldSet_Builder*) mergeFromData:(NSData*) data {
+- (PBUnknownFieldSet_Builder*) mergeFromData:(NSData*) data {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (UnknownFieldSet_Builder*) mergeFromInputStream:(NSInputStream*) input {
+- (PBUnknownFieldSet_Builder*) mergeFromInputStream:(NSInputStream*) input {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (UnknownFieldSet_Builder*) mergeVarintField:(int32_t) number value:(int32_t) value {
+- (PBUnknownFieldSet_Builder*) mergeVarintField:(int32_t) number value:(int32_t) value {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
@@ -188,7 +188,7 @@
             [[self getFieldBuilder:number] addLengthDelimited:[input readData]];
             return true;
         case WireFormatStartGroup: {
-            UnknownFieldSet_Builder* subBuilder = [UnknownFieldSet newBuilder];
+            PBUnknownFieldSet_Builder* subBuilder = [PBUnknownFieldSet newBuilder];
             [input readUnknownGroup:number builder:subBuilder];
             [[self getFieldBuilder:number] addGroup:[subBuilder build]];
             return true;
@@ -209,16 +209,16 @@
 
 
 /**
- * Builder for {@link UnknownFieldSet}s.
+ * Builder for {@link PBUnknownFieldSet}s.
  *
  * <p>Note that this class maintains {@link PBField.Builder}s for all fields
  * in the set.  Thus, adding one element to an existing {@link PBField} does not
  * require making a copy.  This is important for efficient parsing of
  * unknown repeated fields.  However, it implies that {@link PBField}s cannot
- * be constructed independently, nor can two {@link UnknownFieldSet}s share
+ * be constructed independently, nor can two {@link PBUnknownFieldSet}s share
  * the same {@code PBField} object.
  *
- * <p>Use {@link UnknownFieldSet#newBuilder()} to construct a {@code Builder}.
+ * <p>Use {@link PBUnknownFieldSet#newBuilder()} to construct a {@code Builder}.
  */
 public static final class Builder {
     private Builder() {}
@@ -241,7 +241,7 @@ public static final class Builder {
      * exists in both sets, {@code other}'s values for that field will be
      * appended to the values in this set.
      */
-    public Builder mergeFrom(UnknownFieldSet other) {
+    public Builder mergeFrom(PBUnknownFieldSet other) {
         if (other != getDefaultInstance()) {
             for (Map.Entry<Integer, PBField> entry : other.fields.entrySet()) {
                 mergeField(entry.getKey(), entry.getValue());
@@ -290,7 +290,7 @@ public static final class Builder {
 
 
     /**
-     * Parse {@code data} as an {@code UnknownFieldSet} and merge it with the
+     * Parse {@code data} as an {@code PBUnknownFieldSet} and merge it with the
      * set being built.  This is just a small wrapper around
      * {@link #mergeFrom(PBCodedInputStream)}.
      */
@@ -311,7 +311,7 @@ public static final class Builder {
     }
 
     /**
-     * Parse {@code data} as an {@code UnknownFieldSet} and merge it with the
+     * Parse {@code data} as an {@code PBUnknownFieldSet} and merge it with the
      * set being built.  This is just a small wrapper around
      * {@link #mergeFrom(PBCodedInputStream)}.
      */
@@ -332,7 +332,7 @@ public static final class Builder {
     }
 
     /**
-     * Parse an {@code UnknownFieldSet} from {@code input} and merge it with the
+     * Parse an {@code PBUnknownFieldSet} from {@code input} and merge it with the
      * set being built.  This is just a small wrapper around
      * {@link #mergeFrom(PBCodedInputStream)}.
      */

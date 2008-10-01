@@ -135,20 +135,20 @@
 }
 
 
-- (UnknownFieldSet*) getUnknownFields {
+- (PBUnknownFieldSet*) getUnknownFields {
     return self.internalGetResult.unknownFields;
 }
 
 
-- (id<Message_Builder>) setUnknownFields:(UnknownFieldSet*) unknownFields {
+- (id<Message_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields {
     self.internalGetResult.unknownFields = unknownFields;
     return self;
 }
 
 
-- (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields {
+- (id<Message_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields {
     PBGeneratedMessage* result = self.internalGetResult;
-    result.unknownFields = [[[UnknownFieldSet newBuilder:result.unknownFields] mergeUnknownFields:unknownFields] build];
+    result.unknownFields = [[[PBUnknownFieldSet newBuilder:result.unknownFields] mergeUnknownFields:unknownFields] build];
     return self;
 }
 
@@ -163,7 +163,7 @@
  * @return {@code true} unless the tag is an end-group tag.
  */
 - (BOOL) parseUnknownField:(PBCodedInputStream*) input
-             unknownFields:(UnknownFieldSet_Builder*) unknownFields
+             unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
          extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                        tag:(int32_t) tag {
     return [unknownFields mergeFieldFrom:tag input:input];

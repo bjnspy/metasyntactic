@@ -20,12 +20,12 @@
 @private
     PBDescriptor* type;
     PBFieldSet* fields;
-    UnknownFieldSet* unknownFields;
+    PBUnknownFieldSet* unknownFields;
 }
 
 @property (retain) PBDescriptor* type;
 @property (retain) PBFieldSet* fields;
-@property (retain) UnknownFieldSet* unknownFields;
+@property (retain) PBUnknownFieldSet* unknownFields;
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
 
@@ -60,9 +60,9 @@
 - (PBDynamicMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
 - (PBDynamicMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 
-- (UnknownFieldSet*) unknownFields;
-- (PBDynamicMessage_Builder*) setUnknownFields:(UnknownFieldSet*) unknownFields;
-- (PBDynamicMessage_Builder*) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
+- (PBUnknownFieldSet*) unknownFields;
+- (PBDynamicMessage_Builder*) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
+- (PBDynamicMessage_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
 #endif
 
 @end
