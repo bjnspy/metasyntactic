@@ -87,12 +87,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         return false;
       }
 
-      string objectivec_filename = FileName(file);
+      string filepath = FilePath(file);
 
       // Generate header.
       {
         scoped_ptr<io::ZeroCopyOutputStream> output(
-          output_directory->Open(objectivec_filename + ".pb.h"));
+          output_directory->Open(filepath + ".pb.h"));
         io::Printer printer(output.get(), '$');
         file_generator.GenerateHeader(&printer);
       }
@@ -100,7 +100,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       // Generate m file.
       {
         scoped_ptr<io::ZeroCopyOutputStream> output(
-          output_directory->Open(objectivec_filename + ".pb.m"));
+          output_directory->Open(filepath + ".pb.m"));
         io::Printer printer(output.get(), '$');
         file_generator.GenerateSource(&printer);
       }
