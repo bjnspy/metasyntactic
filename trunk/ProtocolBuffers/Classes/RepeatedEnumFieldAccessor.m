@@ -14,12 +14,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GeneratedMessage_RepeatedEnumFieldAccessor.h"
+#import "RepeatedEnumFieldAccessor.h"
 
 
-@implementation GeneratedMessage_RepeatedEnumFieldAccessor
+@implementation RepeatedEnumFieldAccessor
 
-+ (GeneratedMessage_RepeatedEnumFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (RepeatedEnumFieldAccessor*) accessorWithField:(FieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {

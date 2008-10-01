@@ -1,20 +1,20 @@
 //
-//  GeneratedMessage_ExtendableMessage.m
+//  ExtendableMessage.m
 //  ProtocolBuffers
 //
 //  Created by Cyrus Najmabadi on 10/1/08.
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "GeneratedMessage_ExtendableMessage.h"
+#import "ExtendableMessage.h"
 
 #import "DynamicMessage.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"
-#import "GeneratedMessage_ExtendableMessage_ExtensionWriter.h"
-#import "GeneratedMessage_GeneratedExtension.h"
+#import "ExtensionWriter.h"
+#import "GeneratedExtension.h"
 
-@implementation GeneratedMessage_ExtendableMessage
+@implementation ExtendableMessage
 
 @synthesize extensions;
 
@@ -34,34 +34,34 @@
 }
 
 
-- (void) verifyExtensionContainingType:(GeneratedMessage_GeneratedExtension*) extension {
+- (void) verifyExtensionContainingType:(GeneratedExtension*) extension {
     if (extension.getDescriptor.getContainingType != [self getDescriptorForType]) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 }
 
 
-- (BOOL) hasExtension:(GeneratedMessage_GeneratedExtension*) extension {
+- (BOOL) hasExtension:(GeneratedExtension*) extension {
     [self verifyExtensionContainingType:extension];
     return [extensions hasField:extension.getDescriptor];
 }
 
 
 /** Get the number of elements in a repeated extension. */
-- (int32_t) getExtensionCount:(GeneratedMessage_GeneratedExtension*) extension {
+- (int32_t) getExtensionCount:(GeneratedExtension*) extension {
     [self verifyExtensionContainingType:extension];
     return [extensions getRepeatedFieldCount:extension.getDescriptor];
 }
 
 
 /** Get the value of an extension. */
-- (id) getExtension:(GeneratedMessage_GeneratedExtension*) extension {
+- (id) getExtension:(GeneratedExtension*) extension {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 /** Get one element of a repeated extension. */
-- (id) getExtension:(GeneratedMessage_GeneratedExtension*) extension index:(int32_t) index {
+- (id) getExtension:(GeneratedExtension*) extension index:(int32_t) index {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
@@ -72,8 +72,8 @@
 }
 
 
-- (GeneratedMessage_ExtendableMessage_ExtensionWriter*) newExtensionWriter {
-    return [[[GeneratedMessage_ExtendableMessage_ExtensionWriter alloc] init] autorelease];
+- (ExtensionWriter*) newExtensionWriter {
+    return [[[ExtensionWriter alloc] init] autorelease];
 }
 
 

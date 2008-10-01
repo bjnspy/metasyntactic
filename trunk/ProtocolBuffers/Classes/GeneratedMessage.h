@@ -24,7 +24,7 @@
 
 @property (retain) UnknownFieldSet* unknownFields;
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
+- (FieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (NSDictionary*) getAllFields;
 

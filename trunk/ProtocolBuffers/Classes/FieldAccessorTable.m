@@ -14,18 +14,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GeneratedMessage_FieldAccessorTable.h"
+#import "FieldAccessorTable.h"
 
 #import "Descriptor.h"
 #import "FieldDescriptor.h"
-#import "GeneratedMessage_RepeatedMessageFieldAccessor.h";
-#import "GeneratedMessage_RepeatedEnumFieldAccessor.h";
-#import "GeneratedMessage_RepeatedFieldAccessor.h";
-#import "GeneratedMessage_SingularMessageFieldAccessor.h";
-#import "GeneratedMessage_SingularEnumFieldAccessor.h"
-#import "GeneratedMessage_SingularFieldAccessor.h"
+#import "RepeatedMessageFieldAccessor.h";
+#import "RepeatedEnumFieldAccessor.h";
+#import "RepeatedFieldAccessor.h";
+#import "SingularMessageFieldAccessor.h";
+#import "SingularEnumFieldAccessor.h"
+#import "SingularFieldAccessor.h"
 
-@implementation GeneratedMessage_FieldAccessorTable
+@implementation FieldAccessorTable
 
 @synthesize descriptor;
 @synthesize fields;
@@ -52,19 +52,19 @@
             FieldDescriptor* field = [descriptor.getFields objectAtIndex:i];
             if (field.isRepeated) {
                 if (field.getObjectiveCType == FieldDescriptorTypeMessage) {
-                    [array addObject:[GeneratedMessage_RepeatedMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[RepeatedMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else if (field.getObjectiveCType == FieldDescriptorTypeEnum) {
-                    [array addObject:[GeneratedMessage_RepeatedEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[RepeatedEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else {
-                    [array addObject:[GeneratedMessage_RepeatedFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[RepeatedFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 }
             } else {
                 if (field.getObjectiveCType == FieldDescriptorTypeMessage) {
-                    [array addObject:[GeneratedMessage_SingularMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[SingularMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else if (field.getObjectiveCType == FieldDescriptorTypeEnum) {
-                    [array addObject:[GeneratedMessage_SingularEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[SingularEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else {
-                    [array addObject:[GeneratedMessage_SingularFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
+                    [array addObject:[SingularFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 }
             }
         }
@@ -76,11 +76,11 @@
 }
 
 
-+ (GeneratedMessage_FieldAccessorTable*) tableWithDescriptor:(Descriptor*) descriptor
++ (FieldAccessorTable*) tableWithDescriptor:(Descriptor*) descriptor
                                                   fieldNames:(NSArray*) fieldNames
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass {
-    return [[[GeneratedMessage_FieldAccessorTable alloc] initWithDescriptor:descriptor
+    return [[[FieldAccessorTable alloc] initWithDescriptor:descriptor
                                                                  fieldNames:fieldNames
                                                                messageClass:messageClass
                                                                builderClass:builderClass] autorelease];

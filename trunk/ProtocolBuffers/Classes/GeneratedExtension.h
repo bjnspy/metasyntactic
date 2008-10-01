@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface GeneratedMessage_GeneratedExtension : NSObject {
+@interface GeneratedExtension : NSObject {
 @private
     FieldDescriptor* descriptor;
     Class type;

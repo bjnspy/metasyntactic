@@ -14,11 +14,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GeneratedMessage_ExtendableMessage_ExtensionWriter.h"
+#import "ExtensionWriter.h"
 
 #import "FieldSet.h"
 
-@implementation GeneratedMessage_ExtendableMessage_ExtensionWriter
+@implementation ExtensionWriter
 
 @synthesize extensions;
 @synthesize enumerator;
@@ -55,8 +55,8 @@
 }
 
 
-+ (GeneratedMessage_ExtendableMessage_ExtensionWriter*) writerWithExtensions:(FieldSet*) extensions {
-    return [[[GeneratedMessage_ExtendableMessage_ExtensionWriter alloc] initWithExtensions:extensions] autorelease];
++ (ExtensionWriter*) writerWithExtensions:(FieldSet*) extensions {
+    return [[[ExtensionWriter alloc] initWithExtensions:extensions] autorelease];
 }
 
 

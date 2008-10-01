@@ -16,11 +16,11 @@
 
 #import "FieldAccessor.h"
 
-@interface GeneratedMessage_SingularEnumFieldAccessor : NSObject<GeneratedMessage_FieldAccessor> {
+@interface SingularEnumFieldAccessor : NSObject<GeneratedMessage_FieldAccessor> {
 
 }
 
-+ (GeneratedMessage_SingularEnumFieldAccessor*) accessorWithField:(FieldDescriptor*) field
++ (SingularEnumFieldAccessor*) accessorWithField:(FieldDescriptor*) field
                                                                 name:(NSString*) name
                                                         messageClass:(Class) messageClass
                                                         builderClass:(Class) builderClass;
