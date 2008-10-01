@@ -26,10 +26,10 @@
 		741A74E00E8CCF0E00F16FD4 /* DynamicMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74B80E8CCF0E00F16FD4 /* DynamicMessage_Builder.m */; };
 		741A74E10E8CCF0E00F16FD4 /* ExtensionRegistry.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74B90E8CCF0E00F16FD4 /* ExtensionRegistry.h */; };
 		741A74E20E8CCF0E00F16FD4 /* ExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BA0E8CCF0E00F16FD4 /* ExtensionRegistry.m */; };
-		741A74E30E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BB0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.h */; };
-		741A74E40E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BC0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.m */; };
-		741A74E50E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BD0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.h */; };
-		741A74E60E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BE0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.m */; };
+		741A74E30E8CCF0E00F16FD4 /* DescriptorIntPair.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BB0E8CCF0E00F16FD4 /* DescriptorIntPair.h */; };
+		741A74E40E8CCF0E00F16FD4 /* DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BC0E8CCF0E00F16FD4 /* DescriptorIntPair.m */; };
+		741A74E50E8CCF0E00F16FD4 /* ExtensionInfo.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BD0E8CCF0E00F16FD4 /* ExtensionInfo.h */; };
+		741A74E60E8CCF0E00F16FD4 /* ExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BE0E8CCF0E00F16FD4 /* ExtensionInfo.m */; };
 		741A74E70E8CCF0E00F16FD4 /* Field_Builder.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BF0E8CCF0E00F16FD4 /* Field_Builder.h */; };
 		741A74E80E8CCF0E00F16FD4 /* Field_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74C00E8CCF0E00F16FD4 /* Field_Builder.m */; };
 		741A74E90E8CCF0E00F16FD4 /* FieldSet.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74C10E8CCF0E00F16FD4 /* FieldSet.h */; };
@@ -133,8 +133,8 @@
 				741A74DD0E8CCF0E00F16FD4 /* DynamicMessage.h in Copy Headers */,
 				741A74DF0E8CCF0E00F16FD4 /* DynamicMessage_Builder.h in Copy Headers */,
 				741A74E10E8CCF0E00F16FD4 /* ExtensionRegistry.h in Copy Headers */,
-				741A74E30E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.h in Copy Headers */,
-				741A74E50E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.h in Copy Headers */,
+				741A74E30E8CCF0E00F16FD4 /* DescriptorIntPair.h in Copy Headers */,
+				741A74E50E8CCF0E00F16FD4 /* ExtensionInfo.h in Copy Headers */,
 				741A74E90E8CCF0E00F16FD4 /* FieldSet.h in Copy Headers */,
 				74517E710E90CDED00D4E0C5 /* Message.h in Copy Headers */,
 				741A74EE0E8CCF0E00F16FD4 /* Message_Builder.h in Copy Headers */,
@@ -180,10 +180,10 @@
 		741A74B80E8CCF0E00F16FD4 /* DynamicMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicMessage_Builder.m; sourceTree = "<group>"; };
 		741A74B90E8CCF0E00F16FD4 /* ExtensionRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry.h; sourceTree = "<group>"; };
 		741A74BA0E8CCF0E00F16FD4 /* ExtensionRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry.m; sourceTree = "<group>"; };
-		741A74BB0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry_DescriptorIntPair.h; sourceTree = "<group>"; };
-		741A74BC0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry_DescriptorIntPair.m; sourceTree = "<group>"; };
-		741A74BD0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry_ExtensionInfo.h; sourceTree = "<group>"; };
-		741A74BE0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry_ExtensionInfo.m; sourceTree = "<group>"; };
+		741A74BB0E8CCF0E00F16FD4 /* DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorIntPair.h; sourceTree = "<group>"; };
+		741A74BC0E8CCF0E00F16FD4 /* DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorIntPair.m; sourceTree = "<group>"; };
+		741A74BD0E8CCF0E00F16FD4 /* ExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionInfo.h; sourceTree = "<group>"; };
+		741A74BE0E8CCF0E00F16FD4 /* ExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionInfo.m; sourceTree = "<group>"; };
 		741A74BF0E8CCF0E00F16FD4 /* Field_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field_Builder.h; sourceTree = "<group>"; };
 		741A74C00E8CCF0E00F16FD4 /* Field_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field_Builder.m; sourceTree = "<group>"; };
 		741A74C10E8CCF0E00F16FD4 /* FieldSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldSet.h; sourceTree = "<group>"; };
@@ -441,10 +441,10 @@
 			children = (
 				741A74B90E8CCF0E00F16FD4 /* ExtensionRegistry.h */,
 				741A74BA0E8CCF0E00F16FD4 /* ExtensionRegistry.m */,
-				741A74BB0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.h */,
-				741A74BC0E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.m */,
-				741A74BD0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.h */,
-				741A74BE0E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.m */,
+				741A74BB0E8CCF0E00F16FD4 /* DescriptorIntPair.h */,
+				741A74BC0E8CCF0E00F16FD4 /* DescriptorIntPair.m */,
+				741A74BD0E8CCF0E00F16FD4 /* ExtensionInfo.h */,
+				741A74BE0E8CCF0E00F16FD4 /* ExtensionInfo.m */,
 			);
 			name = ExtensionRegistry;
 			sourceTree = "<group>";
@@ -512,8 +512,8 @@
 				741A74DE0E8CCF0E00F16FD4 /* DynamicMessage.m in Sources */,
 				741A74E00E8CCF0E00F16FD4 /* DynamicMessage_Builder.m in Sources */,
 				741A74E20E8CCF0E00F16FD4 /* ExtensionRegistry.m in Sources */,
-				741A74E40E8CCF0E00F16FD4 /* ExtensionRegistry_DescriptorIntPair.m in Sources */,
-				741A74E60E8CCF0E00F16FD4 /* ExtensionRegistry_ExtensionInfo.m in Sources */,
+				741A74E40E8CCF0E00F16FD4 /* DescriptorIntPair.m in Sources */,
+				741A74E60E8CCF0E00F16FD4 /* ExtensionInfo.m in Sources */,
 				741A74E80E8CCF0E00F16FD4 /* Field_Builder.m in Sources */,
 				741A74EA0E8CCF0E00F16FD4 /* FieldSet.m in Sources */,
 				741A74EC0E8CCF0E00F16FD4 /* GeneratedMessage.m in Sources */,
