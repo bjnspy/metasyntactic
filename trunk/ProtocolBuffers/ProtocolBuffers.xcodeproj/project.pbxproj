@@ -84,8 +84,6 @@
 		74E79DC80E8D989100EFD26E /* EnumValueDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79DC60E8D989100EFD26E /* EnumValueDescriptor.m */; };
 		74E79EFA0E8DA83400EFD26E /* Field.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74E79EF80E8DA83400EFD26E /* Field.h */; };
 		74E79EFB0E8DA83400EFD26E /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79EF90E8DA83400EFD26E /* Field.m */; };
-		74E7A2ED0E8E11B100EFD26E /* ProtocolBufferType.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74E7A2EB0E8E11B100EFD26E /* ProtocolBufferType.h */; };
-		74E7A2EE0E8E11B100EFD26E /* ProtocolBufferType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E7A2EC0E8E11B100EFD26E /* ProtocolBufferType.m */; };
 		74E7A3420E8E155C00EFD26E /* EnumDescriptor.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74E7A3400E8E155C00EFD26E /* EnumDescriptor.h */; };
 		74E7A3430E8E155C00EFD26E /* EnumDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E7A3410E8E155C00EFD26E /* EnumDescriptor.m */; };
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
@@ -129,7 +127,6 @@
 				74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Copy Headers */,
 				74E79DC70E8D989100EFD26E /* EnumValueDescriptor.h in Copy Headers */,
 				74E79EFA0E8DA83400EFD26E /* Field.h in Copy Headers */,
-				74E7A2ED0E8E11B100EFD26E /* ProtocolBufferType.h in Copy Headers */,
 				74E7A3420E8E155C00EFD26E /* EnumDescriptor.h in Copy Headers */,
 				7411FB650E8E3856002552B1 /* Utilities.h in Copy Headers */,
 				74516F5A0E90612D00D4E0C5 /* FieldAccessorTable.h in Copy Headers */,
@@ -236,8 +233,6 @@
 		74E79DC60E8D989100EFD26E /* EnumValueDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumValueDescriptor.m; sourceTree = "<group>"; };
 		74E79EF80E8DA83400EFD26E /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
 		74E79EF90E8DA83400EFD26E /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field.m; sourceTree = "<group>"; };
-		74E7A2EB0E8E11B100EFD26E /* ProtocolBufferType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBufferType.h; sourceTree = "<group>"; };
-		74E7A2EC0E8E11B100EFD26E /* ProtocolBufferType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProtocolBufferType.m; sourceTree = "<group>"; };
 		74E7A3400E8E155C00EFD26E /* EnumDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumDescriptor.h; sourceTree = "<group>"; };
 		74E7A3410E8E155C00EFD26E /* EnumDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumDescriptor.m; sourceTree = "<group>"; };
 		8DC2EF5A0486A6940098B216 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -336,8 +331,6 @@
 				74E79EF90E8DA83400EFD26E /* Field.m */,
 				741A74BF0E8CCF0E00F16FD4 /* Field_Builder.h */,
 				741A74C00E8CCF0E00F16FD4 /* Field_Builder.m */,
-				74E7A2EB0E8E11B100EFD26E /* ProtocolBufferType.h */,
-				74E7A2EC0E8E11B100EFD26E /* ProtocolBufferType.m */,
 				7411FB630E8E3856002552B1 /* Utilities.h */,
 				7411FB640E8E3856002552B1 /* Utilities.m */,
 			);
@@ -516,7 +509,6 @@
 				74E79C310E8D82B500EFD26E /* FieldDescriptorType.m in Sources */,
 				74E79DC80E8D989100EFD26E /* EnumValueDescriptor.m in Sources */,
 				74E79EFB0E8DA83400EFD26E /* Field.m in Sources */,
-				74E7A2EE0E8E11B100EFD26E /* ProtocolBufferType.m in Sources */,
 				74E7A3430E8E155C00EFD26E /* EnumDescriptor.m in Sources */,
 				7411FB660E8E3856002552B1 /* Utilities.m in Sources */,
 				74516F5B0E90612D00D4E0C5 /* FieldAccessorTable.m in Sources */,

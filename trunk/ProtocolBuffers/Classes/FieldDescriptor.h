@@ -26,7 +26,7 @@
 - (BOOL) isRepeated;
 - (BOOL) isExtension;
 - (BOOL) isOptional;
-- (ObjectiveCType) getObjectiveCType;
+- (PBObjectiveCType) getObjectiveCType;
 - (FieldDescriptorType) getType;
 
 - (PBDescriptor*) getContainingType;

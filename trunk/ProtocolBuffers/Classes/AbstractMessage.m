@@ -200,7 +200,7 @@
 }
 
 
-- (id<Message_Builder>) newBuilderForType {
+- (id<PBMessage_Builder>) newBuilderForType {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

@@ -16,7 +16,7 @@
 
 #import "ObjectiveCType.h"
 
-id ObjectiveCTypeDefault(ObjectiveCType type) {
+id ObjectiveCTypeDefault(PBObjectiveCType type) {
     switch (type) {
         case ObjectiveCTypeInt32:
             return [NSNumber numberWithInt:0];

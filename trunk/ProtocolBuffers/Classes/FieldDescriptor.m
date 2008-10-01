@@ -39,7 +39,7 @@
 }
 
 
-- (ObjectiveCType) getObjectiveCType {
+- (PBObjectiveCType) getObjectiveCType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

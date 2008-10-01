@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol Service
+@protocol PBService
 - (PBServiceDescriptor*) getDescriptorForType;
 - (void) callMethod:(PBMethodDescriptor*) method
          controller:(id<RpcController>) controller

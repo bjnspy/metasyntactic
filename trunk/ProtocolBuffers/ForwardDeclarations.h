@@ -15,13 +15,13 @@
 // limitations under the License.
 
 enum FieldDescriptorType;
-enum ObjectiveCType;
+enum PBObjectiveCType;
 
 @protocol Message;
-@protocol Message_Builder;
+@protocol PBMessage_Builder;
 @protocol RpcChannel;
 @protocol RpcController;
-@protocol Service;
+@protocol PBService;
 @protocol PBFieldAccessor;
 
 @class PBFileDescriptorProto;
