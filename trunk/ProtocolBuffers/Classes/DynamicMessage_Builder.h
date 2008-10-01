@@ -16,7 +16,7 @@
 
 #import "AbstractMessage_Builder.h"
 
-@interface DynamicMessage_Builder : AbstractMessage_Builder {
+@interface PBDynamicMessage_Builder : AbstractMessage_Builder {
 @private
     PBDescriptor* type;
     PBFieldSet* fields;
@@ -27,42 +27,42 @@
 @property (retain) PBFieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 
-+ (DynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
++ (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
 
-- (DynamicMessage_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBDynamicMessage_Builder*) mergeFromMessage:(id<Message>) other;
 
 #if 0
 
-- (DynamicMessage_Builder*) clear;
+- (PBDynamicMessage_Builder*) clear;
 
-- (DynamicMessage*) build;
-- (DynamicMessage*) buildPartial;
+- (PBDynamicMessage*) build;
+- (PBDynamicMessage*) buildPartial;
 
-- (DynamicMessage_Builder*) clone;
+- (PBDynamicMessage_Builder*) clone;
 
 - (BOOL) isInitialized;
 
-- (DynamicMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBDynamicMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (Descriptors_Descriptor*) descriptorForType;
-- (DynamicMessage*) defaultInstanceForType;
+- (PBDynamicMessage*) defaultInstanceForType;
 - (NSDictionary*) allFields;
-- (DynamicMessage_Builder*) builderForField:(PBFieldDescriptor*) field;
+- (PBDynamicMessage_Builder*) builderForField:(PBFieldDescriptor*) field;
 
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
 
-- (DynamicMessage_Builder*) setField:(PBFieldDescriptor*) field value:(id) value;
-- (DynamicMessage_Builder*) clearField:(PBFieldDescriptor*) field;
+- (PBDynamicMessage_Builder*) setField:(PBFieldDescriptor*) field value:(id) value;
+- (PBDynamicMessage_Builder*) clearField:(PBFieldDescriptor*) field;
 - (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
 
-- (DynamicMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
-- (DynamicMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
+- (PBDynamicMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
+- (PBDynamicMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 
 - (UnknownFieldSet*) unknownFields;
-- (DynamicMessage_Builder*) setUnknownFields:(UnknownFieldSet*) unknownFields;
-- (DynamicMessage_Builder*) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
+- (PBDynamicMessage_Builder*) setUnknownFields:(UnknownFieldSet*) unknownFields;
+- (PBDynamicMessage_Builder*) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
 #endif
 
 @end

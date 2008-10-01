@@ -15,7 +15,7 @@
 // limitations under the License.
 
 @protocol RpcChannel
-- (void) callMethod:(MethodDescriptor*) method
+- (void) callMethod:(PBMethodDescriptor*) method
          controller:(id<RpcController>) controller
             request:(id<Message>) request
   responsePrototype:(id<Message>) responsePrototype

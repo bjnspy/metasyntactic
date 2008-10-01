@@ -83,13 +83,13 @@
 int32_t decodeZigZag32(int32_t n);
 int64_t decodeZigZag64(int64_t n);
 
-- (void) readMessage:(id<Message_Builder>) builder extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (void) readMessage:(id<Message_Builder>) builder extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) readBool;
 - (NSString*) readString;
 - (NSData*) readData;
 
-- (void) readGroup:(int32_t) fieldNumber builder:(id<Message_Builder>) builder extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (void) readGroup:(int32_t) fieldNumber builder:(id<Message_Builder>) builder extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 - (void) readUnknownGroup:(int32_t) fieldNumber builder:(UnknownFieldSet_Builder*) builder;
 
 - (void) checkLastTagWas:(int32_t) value;

@@ -383,7 +383,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 + (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(UnknownFieldSet_Builder*) unknownFields
-                 extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                 extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                            builder:(id<Message_Builder>) builder {
     while (true) {
         int32_t tag = [input readTag];
@@ -406,7 +406,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 /** Called by {@code #mergeFieldFrom()} to parse a MessageSet extension. */
 + (void) mergeMessageSetExtensionFromCodedStream:(PBCodedInputStream*) input
                                    unknownFields:(UnknownFieldSet_Builder*) unknownFields
-                               extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                               extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                          builder:(id<Message_Builder>) builder {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
     /*
@@ -505,13 +505,13 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 /**
  * Like {@link #mergeFrom(PBCodedInputStream, UnknownFieldSet.Builder,
- * ExtensionRegistry, Message.Builder)}, but parses a single field.
+ * PBExtensionRegistry, Message.Builder)}, but parses a single field.
  * @param tag The tag, which should have already been read.
  * @return {@code true} unless the tag is an end-group tag.
  */
 + (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
                           unknownFields:(UnknownFieldSet_Builder*) unknownFields
-                      extensionRegistry:(ExtensionRegistry*) extensionRegistry
+                      extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                 builder:(id<Message_Builder>) builder
                                     tag:(int32_t) tag {
     PBDescriptor* type = [builder getDescriptorForType];

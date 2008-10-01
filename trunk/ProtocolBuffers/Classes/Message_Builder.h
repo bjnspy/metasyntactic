@@ -41,9 +41,9 @@
 - (id<Message_Builder>) mergeUnknownFields:(UnknownFieldSet*) unknownFields;
 
 - (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 - (id<Message_Builder>) mergeFromData:(NSData*) data;
-- (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (id<Message_Builder>) mergeFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 - (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input;
-- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end

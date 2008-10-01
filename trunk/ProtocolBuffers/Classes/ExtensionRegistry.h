@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ExtensionRegistry : NSObject {
+@interface PBExtensionRegistry : NSObject {
     NSMutableDictionary* extensionsByName;
     NSMutableDictionary* extensionsByNumber;
 }
@@ -23,7 +23,7 @@
 @property (retain) NSMutableDictionary* extensionsByName;
 @property (retain) NSMutableDictionary* extensionsByNumber;
 
-+ (ExtensionRegistry*) getEmptyRegistry;
++ (PBExtensionRegistry*) getEmptyRegistry;
 
 - (id) initWithExtensionsByName:(NSMutableDictionary*) extensionsByName
              extensionsByNumber:(NSMutableDictionary*) extensionsByNumber;
@@ -36,10 +36,10 @@
 #if 0
 
 
-+ (ExtensionRegistry*) newInstance;
-+ (ExtensionRegistry*) emptyRegistry;
++ (PBExtensionRegistry*) newInstance;
++ (PBExtensionRegistry*) emptyRegistry;
 
-- (ExtensionRegistry*) unmodifiable;
+- (PBExtensionRegistry*) unmodifiable;
 
 - (PBExtensionRegistry_ExtensionInfo*) findExtensionByName:(NSString*) fullName;
 - (PBExtensionRegistry_ExtensionInfo*) findExtensionByContainingType:(Descriptors_Descriptor*) containingType fieldNumber:(int32_t) fieldNumber;
@@ -48,7 +48,7 @@
 - (void) add:(PBFieldDescriptor*) type;
 - (void) add:(PBFieldDescriptor*) type defaultInstance:(Message*) defaultInstance;
 
-+ (ExtensionRegistry*) registryWithExtensionsByName:(NSDictionary*) extensionsByName extensionsByNumber:(NSDictionary*) extensionsByNumber;
++ (PBExtensionRegistry*) registryWithExtensionsByName:(NSDictionary*) extensionsByName extensionsByNumber:(NSDictionary*) extensionsByNumber;
 #endif
 
 @end

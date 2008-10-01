@@ -15,12 +15,12 @@
 // limitations under the License.
 
 @protocol Service
-- (ServiceDescriptor*) getDescriptorForType;
-- (void) callMethod:(MethodDescriptor*) method
+- (PBServiceDescriptor*) getDescriptorForType;
+- (void) callMethod:(PBMethodDescriptor*) method
          controller:(id<RpcController>) controller
             request:(id<Message>) request
              target:(id) target
            selector:(SEL) selector;
-- (id<Message>) getRequestPrototype:(MethodDescriptor*) method;
-- (id<Message>) getResponsePrototype:(MethodDescriptor*) method;
+- (id<Message>) getRequestPrototype:(PBMethodDescriptor*) method;
+- (id<Message>) getResponsePrototype:(PBMethodDescriptor*) method;
 @end

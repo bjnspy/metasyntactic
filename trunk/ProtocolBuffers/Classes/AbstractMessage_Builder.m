@@ -83,12 +83,12 @@
 
 
 - (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry getEmptyRegistry]];
 }
 
 
 - (id<Message_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input
-                                extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+                                extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
     [PBFieldSet mergeFromCodedInputStream:input unknownFields:unknownFields extensionRegistry:extensionRegistry builder:self];
     [self setUnknownFields:[unknownFields build]];
@@ -114,7 +114,7 @@
 
 
 - (id<Message_Builder>) mergeFromData:(NSData*) data
-                    extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+                    extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     PBCodedInputStream* input = [PBCodedInputStream streamWithData:data];
     [self mergeFromCodedInputStream:input extensionRegistry:extensionRegistry];
     [input checkLastTagWas:0];
@@ -131,7 +131,7 @@
 
 
 - (id<Message_Builder>) mergeFromInputStream:(NSInputStream*) input
-                           extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+                           extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     PBCodedInputStream* codedInput = [PBCodedInputStream streamWithInputStream:input];
     [self mergeFromCodedInputStream:codedInput extensionRegistry:extensionRegistry];
     [codedInput checkLastTagWas:0];
