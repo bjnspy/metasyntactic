@@ -273,6 +273,7 @@
 		0867D691FE84028FC02AAC07 /* ProtocolBuffers */ = {
 			isa = PBXGroup;
 			children = (
+				745E98E30E942034007FD139 /* Tests */,
 				08FB77AEFE84172EC02AAC07 /* Classes */,
 				32C88DFF0371C24200C91783 /* Other Sources */,
 				089C1665FE841158C02AAC07 /* Resources */,
@@ -447,6 +448,13 @@
 				741A74BE0E8CCF0E00F16FD4 /* ExtensionInfo.m */,
 			);
 			name = ExtensionRegistry;
+			sourceTree = "<group>";
+		};
+		745E98E30E942034007FD139 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Tests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
