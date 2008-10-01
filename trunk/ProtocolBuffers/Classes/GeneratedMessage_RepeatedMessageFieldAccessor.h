@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "GeneratedMessage_FieldAccessor.h"
+#import "FieldAccessor.h"
 
 @interface GeneratedMessage_RepeatedMessageFieldAccessor : NSObject<GeneratedMessage_FieldAccessor> {
 

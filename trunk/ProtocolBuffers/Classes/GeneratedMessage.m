@@ -16,6 +16,7 @@
 
 #import "GeneratedMessage.h"
 
+#import "FieldDescriptor.h"
 #import "UnknownFieldSet.h"
 
 @implementation GeneratedMessage
@@ -44,6 +45,31 @@
 
 - (UnknownFieldSet*) getUnknownFields {
     return unknownFields;
+}
+
+
+- (NSMutableDictionary*) getAllFieldsMutable {
+    NSMutableDictionary* result = [NSMutableDictionary dictionary];
+    
+    Descriptor* descriptor = [self internalGetFieldAccessorTable].descriptor;
+    for (FieldDescriptor* field in descriptor.getFields) {
+        if (field.isRepeated) {
+            id value = [self getField:field];
+            if ([value count] > 0) {
+                [result setObject:value forKey:field];
+            }
+        } else {
+            if ([self hasField:field]) {
+                [result setObject:[self getField:field] forKey:field];
+            }
+        }
+    }
+    return result;
+}
+
+
+- (NSDictionary*) getAllFields {
+    return [self getAllFieldsMutable];
 }
 
 @end

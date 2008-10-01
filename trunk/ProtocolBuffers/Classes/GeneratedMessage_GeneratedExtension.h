@@ -14,21 +14,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMessage.h"
-
-
-@interface GeneratedMessage : AbstractMessage {
+@interface GeneratedMessage_GeneratedExtension : NSObject {
 @private
-    UnknownFieldSet* unknownFields;
+    FieldDescriptor* descriptor;
+    Class type;
+    /*
+     private final Method enumValueOf;
+     private final Method enumGetValueDescriptor;
+     private final Message messageDefaultInstance;
+     */
 }
 
-@property (retain) UnknownFieldSet* unknownFields;
+@property (retain) FieldDescriptor* descriptor;
+@property (retain) Class type;
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
-
-- (NSDictionary*) getAllFields;
-
-// @protected
-- (NSMutableDictionary*) getAllFieldsMutable;
+- (FieldDescriptor*) getDescriptor;
 
 @end

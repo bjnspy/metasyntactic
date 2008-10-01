@@ -52,7 +52,7 @@
 - (void) setRepeatedField:(FieldDescriptor*) field index:(int32_t) index value:(id) value;
 - (void) addRepeatedField:(FieldDescriptor*) field value:(id) value;
 
-
+- (BOOL) isInitialized;
 - (BOOL) isInitialized:(Descriptor*) type;
 
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output;
