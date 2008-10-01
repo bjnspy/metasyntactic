@@ -53,7 +53,7 @@ int32_t computeSInt32Size(int32_t fieldNumber, int32_t value);
 int32_t computeSInt64Size(int32_t fieldNumber, int64_t value);
 int32_t computeMessageSetExtensionSize(int32_t fieldNumber, id<PBMessage> value);
 int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value);
-int32_t computeFieldSize(FieldDescriptorType type, int32_t number, id value);
+int32_t computeFieldSize(PBFieldDescriptorType type, int32_t number, id value);
 int32_t computeTagSize(int32_t fieldNumber);
 int32_t computeRawVarint32Size(int32_t value);
 int32_t computeRawVarint64Size(int64_t value);
@@ -100,7 +100,7 @@ int32_t computeRawVarint64Size(int64_t value);
 - (void) writeMessageSetExtension:(int32_t) fieldNumber value:(id<PBMessage>) value;
 - (void) writeRawMessageSetExtension:(int32_t) fieldNumber value:(NSData*) value;
 
-- (void) writeField:(FieldDescriptorType) type
+- (void) writeField:(PBFieldDescriptorType) type
              number:(int32_t) number
               value:(id) value;
 

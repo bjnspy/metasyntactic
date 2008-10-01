@@ -32,7 +32,7 @@
 
 - (id) initWithProto:(PBFileDescriptorProto*) proto
                            dependencies:(NSArray*) dependencies
-                                   pool:(DescriptorPool*) pool {
+                                   pool:(PBDescriptorPool*) pool {
     if (self = [super init]) {
         @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
     }
@@ -43,7 +43,7 @@
 
 + (PBFileDescriptor*) descriptorWithProto:(PBFileDescriptorProto*) proto
                            dependencies:(NSArray*) dependencies
-                                   pool:(DescriptorPool*) pool {
+                                   pool:(PBDescriptorPool*) pool {
     return [[[PBFileDescriptor alloc] initWithProto:proto
                                      dependencies:dependencies
                                              pool:pool] autorelease];
@@ -70,12 +70,12 @@
     // In the translation step (implemented by PBFileDescriptor's
     // constructor), we build an object tree mirroring the
     // FileDescriptorProto's tree and put all of the descriptors into the
-    // DescriptorPool's lookup tables.  In the linking step, we look up all
-    // type references in the DescriptorPool, so that, for example, a
+    // PBDescriptorPool's lookup tables.  In the linking step, we look up all
+    // type references in the PBDescriptorPool, so that, for example, a
     // PBFieldDescriptor for an embedded message contains a pointer directly
     // to the PBDescriptor for that message's type.  We also detect undefined
     // types in the linking step.
-    DescriptorPool* pool = [DescriptorPool poolWithDependencies:dependencies];
+    PBDescriptorPool* pool = [PBDescriptorPool poolWithDependencies:dependencies];
     PBFileDescriptor* result = [PBFileDescriptor descriptorWithProto:proto dependencies:dependencies pool:pool];
 
     if (dependencies.count != proto.getDependencyCount) {

@@ -17,7 +17,7 @@
 #import "DescriptorPool.h"
 
 
-@implementation DescriptorPool
+@implementation PBDescriptorPool
 
 @synthesize dependencies;
 @synthesize descriptorsByName;
@@ -45,14 +45,14 @@
 }
 
 
-+ (DescriptorPool*) poolWithDependencies:(NSArray*) dependencies {
-    return [[[DescriptorPool alloc] initWithDependencies:dependencies] autorelease];
++ (PBDescriptorPool*) poolWithDependencies:(NSArray*) dependencies {
+    return [[[PBDescriptorPool alloc] initWithDependencies:dependencies] autorelease];
 }
 
 #if 0
-private static final class DescriptorPool {
-    DescriptorPool(PBFileDescriptor[] dependencies) {
-        this.dependencies = new DescriptorPool[dependencies.length];
+private static final class PBDescriptorPool {
+    PBDescriptorPool(PBFileDescriptor[] dependencies) {
+        this.dependencies = new PBDescriptorPool[dependencies.length];
 
         for (int i = 0; i < dependencies.length; i++)  {
             this.dependencies[i] = dependencies[i].pool;

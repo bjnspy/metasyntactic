@@ -33,4 +33,4 @@ typedef enum {
     FieldDescriptorTypeSInt32,
     FieldDescriptorTypeSInt64,
     FieldDescriptorTypeEnum
-} FieldDescriptorType;
+} PBFieldDescriptorType;

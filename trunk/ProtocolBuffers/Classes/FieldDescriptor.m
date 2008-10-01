@@ -79,7 +79,7 @@
 }
 
 
-- (FieldDescriptorType) getType {
+- (PBFieldDescriptorType) getType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

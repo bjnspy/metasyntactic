@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ExtendableMessage : PBGeneratedMessage {
+@interface PBExtendableMessage : PBGeneratedMessage {
   @private
     PBFieldSet* extensions;
 }

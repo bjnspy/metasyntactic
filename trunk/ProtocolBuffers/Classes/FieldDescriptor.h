@@ -27,7 +27,7 @@
 - (BOOL) isExtension;
 - (BOOL) isOptional;
 - (PBObjectiveCType) getObjectiveCType;
-- (FieldDescriptorType) getType;
+- (PBFieldDescriptorType) getType;
 
 - (PBDescriptor*) getContainingType;
 - (PBDescriptor*) getExtensionScope;

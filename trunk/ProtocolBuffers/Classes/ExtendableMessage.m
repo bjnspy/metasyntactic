@@ -14,7 +14,7 @@
 #import "ExtensionWriter.h"
 #import "GeneratedExtension.h"
 
-@implementation ExtendableMessage
+@implementation PBExtendableMessage
 
 @synthesize extensions;
 

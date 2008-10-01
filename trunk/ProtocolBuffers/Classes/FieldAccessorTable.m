@@ -91,7 +91,7 @@
     if (field.getContainingType != descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     } else if (field.isExtension) {
-        // If this type had extensions, it would subclass ExtendableMessage,
+        // If this type had extensions, it would subclass PBExtendableMessage,
         // which overrides the reflection interface to handle extensions.
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }

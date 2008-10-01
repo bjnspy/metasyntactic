@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface DescriptorPool : NSObject {
+@interface PBDescriptorPool : NSObject {
     NSMutableArray* dependencies;
     NSMutableDictionary* descriptorsByName;
     NSMutableDictionary* fieldsByNumber;
@@ -26,6 +26,6 @@
 @property (retain) NSMutableDictionary* fieldsByNumber;
 @property (retain) NSMutableDictionary* enumValuesByNumber;
 
-+ (DescriptorPool*) poolWithDependencies:(NSArray*) dependencies;
++ (PBDescriptorPool*) poolWithDependencies:(NSArray*) dependencies;
 
 @end

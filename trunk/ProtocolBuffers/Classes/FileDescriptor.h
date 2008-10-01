@@ -35,7 +35,7 @@
     NSArray* services;
     NSArray* extensions;
     NSArray* dependencies;
-    NSArray* DescriptorPool* pool;
+    NSArray* PBDescriptorPool* pool;
 }
 
 @property (retain) FileDescriptorProto* proto;
@@ -43,11 +43,11 @@
 @property (retain) NSArray* services;
 @property (retain) NSArray* extensions;
 @property (retain) NSArray* dependencies;
-@property (retain) NSArray* DescriptorPool* pool;
+@property (retain) NSArray* PBDescriptorPool* pool;
 
 + (PBFileDescriptor*) descriptorWithProto:(FileDescriptorProto*) proto
                            dependencies:(NSArray*) dependencies
-                                   pool:(DescriptorPool*) pool;
+                                   pool:(PBDescriptorPool*) pool;
 
 - (FieldDescriptorProto*) toProto;
 - (NSString*) name;

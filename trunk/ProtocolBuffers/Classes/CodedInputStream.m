@@ -341,7 +341,7 @@ const int32_t BUFFER_SIZE = 4096;
  *         {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
  *         this field.
  */
-- (id) readPrimitiveField:(FieldDescriptorType) type {
+- (id) readPrimitiveField:(PBFieldDescriptorType) type {
     switch (type) {
         case FieldDescriptorTypeDouble  : return [NSNumber numberWithDouble:    [self readDouble]];
         case FieldDescriptorTypeFloat   : return [NSNumber numberWithFloat:     [self readFloat]];
