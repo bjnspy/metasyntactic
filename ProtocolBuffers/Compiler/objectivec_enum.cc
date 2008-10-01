@@ -91,13 +91,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     // Reflection
 
     printer->Print(
-      "- (EnumValueDescriptor*) getValueDescriptor;\n"
-      "- (EnumDescriptor*) getDescriptorForType;\n"
-      "+ (EnumDescriptor*) getDescriptor;\n");
+      "- (PBEnumValueDescriptor*) getValueDescriptor;\n"
+      "- (PBEnumDescriptor*) getDescriptorForType;\n"
+      "+ (PBEnumDescriptor*) getDescriptor;\n");
 
     printer->Print(
       "\n"
-      "+ ($classname$*) valueOfDescriptor:(EnumValueDescriptor*) desc;\n",
+      "+ ($classname$*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;\n",
       "classname", ClassName(descriptor_));
 
     // -----------------------------------------------------------------
@@ -201,13 +201,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     // Reflection
 
     printer->Print(
-      "- (EnumValueDescriptor*) getValueDescriptor {\n"
+      "- (PBEnumValueDescriptor*) getValueDescriptor {\n"
       "  return [[$classname$ getDescriptor].getValues objectAtIndex:index];\n"
       "}\n"
-      "- (EnumDescriptor*) getDescriptorForType {\n"
+      "- (PBEnumDescriptor*) getDescriptorForType {\n"
       "  return [$classname$ getDescriptor];\n"
       "}\n"
-      "+ (EnumDescriptor*) getDescriptor {\n",
+      "+ (PBEnumDescriptor*) getDescriptor {\n",
       "classname", ClassName(descriptor_));
 
     // TODO(kenton):  Cache statically?  Note that we can't access descriptors
@@ -231,7 +231,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "\n"
-      "+ ($classname$*) valueOfDescriptor:(EnumValueDescriptor*) desc {\n"
+      "+ ($classname$*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {\n"
       "  if (desc.getType != [$classname$ getDescriptor]) {\n"
       "    [NSException exceptionWithName:@\"\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
