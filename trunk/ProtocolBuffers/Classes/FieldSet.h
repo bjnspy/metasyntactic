@@ -53,7 +53,7 @@
 - (void) addRepeatedField:(FieldDescriptor*) field value:(id) value;
 
 
-- (BOOL) isInitialized:(ProtocolBufferDescriptor*) type;
+- (BOOL) isInitialized:(Descriptor*) type;
 
 - (void) writeToCodedOutputStream:(CodedOutputStream*) output;
 

@@ -23,7 +23,7 @@
 
 - (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
 - (id<Message_Builder>) mergeFromMessage:(id<Message>) other;
-- (ProtocolBufferDescriptor*) getDescriptorForType;
+- (Descriptor*) getDescriptorForType;
 - (NSDictionary*) getAllFields;
 - (id<Message_Builder>) newBuilderForField:(FieldDescriptor*) field;
 - (BOOL) hasField:(FieldDescriptor*) field;

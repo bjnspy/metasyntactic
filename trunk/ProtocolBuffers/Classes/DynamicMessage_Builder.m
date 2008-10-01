@@ -39,7 +39,7 @@
 }
 
 
-- (id) initWithType:(ProtocolBufferDescriptor*) type_
+- (id) initWithType:(Descriptor*) type_
              fields:(FieldSet*) fields_
       unknownFields:(UnknownFieldSet*) unknownFields_ {
     if (self = [super init]) {
@@ -52,7 +52,7 @@
 }
 
 
-+ (DynamicMessage_Builder*) builderWithType:(ProtocolBufferDescriptor*) type {
++ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type {
     return [[[DynamicMessage_Builder alloc] initWithType:type
                                                   fields:[FieldSet set]
                                            unknownFields:[UnknownFieldSet getDefaultInstance]] autorelease];
@@ -113,7 +113,7 @@
 }
 
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
+- (Descriptor*) getDescriptorForType {
     return type;
 }
 

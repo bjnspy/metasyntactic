@@ -15,13 +15,13 @@
 // limitations under the License.
 
 @interface ExtensionRegistry_DescriptorIntPair : NSObject {
-    ProtocolBufferDescriptor* descriptor;
+    Descriptor* descriptor;
     int32_t number;
 }
 
-@property (retain) ProtocolBufferDescriptor* descriptor;
+@property (retain) Descriptor* descriptor;
 @property int32_t number;
 
-+ (ExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(ProtocolBufferDescriptor*) descriptor number:(int32_t) number;
++ (ExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(Descriptor*) descriptor number:(int32_t) number;
 
 @end

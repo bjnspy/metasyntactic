@@ -17,7 +17,7 @@
 #import "Descriptor.h"
 
 
-@implementation ProtocolBufferDescriptor
+@implementation Descriptor
 
 @synthesize nestedTypes;
 

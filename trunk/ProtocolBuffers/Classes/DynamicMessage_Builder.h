@@ -18,16 +18,16 @@
 
 @interface DynamicMessage_Builder : AbstractMessage_Builder {
 @private
-    ProtocolBufferDescriptor* type;
+    Descriptor* type;
     FieldSet* fields;
     UnknownFieldSet* unknownFields;
 }
 
-@property (retain) ProtocolBufferDescriptor* type;
+@property (retain) Descriptor* type;
 @property (retain) FieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 
-+ (DynamicMessage_Builder*) builderWithType:(ProtocolBufferDescriptor*) type;
++ (DynamicMessage_Builder*) builderWithType:(Descriptor*) type;
 
 - (DynamicMessage_Builder*) mergeFromMessage:(id<Message>) other;
 

@@ -76,7 +76,7 @@
 }
 
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
+- (Descriptor*) getDescriptorForType {
     return self.internalGetFieldAccessorTable.descriptor;
 }
 

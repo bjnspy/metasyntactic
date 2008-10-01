@@ -15,7 +15,7 @@
 // limitations under the License.
 
 @protocol Message
-- (ProtocolBufferDescriptor*) getDescriptorForType;
+- (Descriptor*) getDescriptorForType;
 - (id<Message>) getDefaultInstanceForType;
 - (NSDictionary*) getAllFields;
 - (BOOL) hasField:(FieldDescriptor*) field;

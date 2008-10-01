@@ -296,7 +296,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
  * Like {@link #isInitialized()}, but also checks for the presence of
  * all required fields in the given type.
  */
-- (BOOL) isInitialized:(ProtocolBufferDescriptor*) type {
+- (BOOL) isInitialized:(Descriptor*) type {
     // Check that all required fields are present.
     for (FieldDescriptor* field in type.getFields) {
         if (field.isRequired) {
@@ -410,7 +410,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
                                          builder:(id<Message_Builder>) builder {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
     /*
-     ProtocolBufferDescriptor type = builder.getDescriptorForType();
+     Descriptor type = builder.getDescriptorForType();
      
      // The wire format for MessageSet is:
      //   message MessageSet {
@@ -514,7 +514,7 @@ static FieldSet* DEFAULT_INSTANCE = nil;
                       extensionRegistry:(ExtensionRegistry*) extensionRegistry
                                 builder:(id<Message_Builder>) builder
                                     tag:(int32_t) tag {
-    ProtocolBufferDescriptor* type = [builder getDescriptorForType];
+    Descriptor* type = [builder getDescriptorForType];
 
     if (type.getOptions.getMessageSetWireFormat &&
         tag == WireFormatMessageSetItemTag) {

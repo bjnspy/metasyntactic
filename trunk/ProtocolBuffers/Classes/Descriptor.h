@@ -16,7 +16,7 @@
 
 #import "GenericDescriptor.h"
 
-@interface ProtocolBufferDescriptor : NSObject/*<GenericDescriptor>*/ {
+@interface Descriptor : NSObject/*<GenericDescriptor>*/ {
     NSArray* nestedTypes;
 }
 
@@ -38,7 +38,7 @@ NSArray* fields;
     int32_t index;
     DescriptorProto* proto;
     FileDescriptor* file;
-    ProtocolBufferDescriptor* containingType;
+    Descriptor* containingType;
     NSArray* nestedTypes;
     NSArray* enumTypes;
     NSArray* extensions;
@@ -48,7 +48,7 @@ NSArray* fields;
 @property (retain) DescriptorProto* proto;
 @property (retain) NSString* fullName;
 @property (retain) FileDescriptor* file;
-@property (retain) ProtocolBufferDescriptor* containingType;
+@property (retain) Descriptor* containingType;
 @property (retain) NSArray* nestedTypes;
 @property (retain) NSArray* enumTypes;
 @property (retain) NSArray* extensions;
@@ -57,12 +57,12 @@ NSArray* fields;
 - (NSString*) name;
 
 - (FieldDescriptor*) findFieldByName:(NSString*) name;
-- (ProtocolBufferDescriptor*) findNestedTypeByName:(NSString*) name;
+- (Descriptor*) findNestedTypeByName:(NSString*) name;
 - (EnumDescriptor*) findEnumTypeByName:(NSString*) name;
 
-+ (ProtocolBufferDescriptor*) descriptorWithProto:(DescriptorProto*) proto
++ (Descriptor*) descriptorWithProto:(DescriptorProto*) proto
                                file:(FileDescriptor*) file
-                             parent:(ProtocolBufferDescriptor*) parent
+                             parent:(Descriptor*) parent
                               index:(int32_t) index;
 #endif
 
