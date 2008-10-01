@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol GenericDescriptor
+@protocol PBGenericDescriptor
 - (id<Message>) toProto;
 - (NSString*) getName;
 - (NSString*) getFullName;

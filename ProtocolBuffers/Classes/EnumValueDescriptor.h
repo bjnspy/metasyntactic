@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBEnumValueDescriptor : NSObject/*<GenericDescriptor>*/ {
+@interface PBEnumValueDescriptor : NSObject/*<PBGenericDescriptor>*/ {
     PBFileDescriptor* file;
     PBEnumDescriptor* type;
 
