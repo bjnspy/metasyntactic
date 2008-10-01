@@ -19,12 +19,12 @@
 @interface DynamicMessage_Builder : AbstractMessage_Builder {
 @private
     PBDescriptor* type;
-    FieldSet* fields;
+    PBFieldSet* fields;
     UnknownFieldSet* unknownFields;
 }
 
 @property (retain) PBDescriptor* type;
-@property (retain) FieldSet* fields;
+@property (retain) PBFieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 
 + (DynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;

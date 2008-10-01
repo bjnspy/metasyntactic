@@ -37,7 +37,7 @@
 NSArray* fields;
     int32_t index;
     DescriptorProto* proto;
-    FileDescriptor* file;
+    PBFileDescriptor* file;
     PBDescriptor* containingType;
     NSArray* nestedTypes;
     NSArray* enumTypes;
@@ -47,7 +47,7 @@ NSArray* fields;
 @property int32_t index;
 @property (retain) DescriptorProto* proto;
 @property (retain) NSString* fullName;
-@property (retain) FileDescriptor* file;
+@property (retain) PBFileDescriptor* file;
 @property (retain) PBDescriptor* containingType;
 @property (retain) NSArray* nestedTypes;
 @property (retain) NSArray* enumTypes;
@@ -61,7 +61,7 @@ NSArray* fields;
 - (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
 
 + (PBDescriptor*) descriptorWithProto:(DescriptorProto*) proto
-                               file:(FileDescriptor*) file
+                               file:(PBFileDescriptor*) file
                              parent:(PBDescriptor*) parent
                               index:(int32_t) index;
 #endif

@@ -27,6 +27,6 @@
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass;
 
-- (id<GeneratedMessage_FieldAccessor>) getField:(FieldDescriptor*) field;
+- (id<PBFieldAccessor>) getField:(FieldDescriptor*) field;
 
 @end

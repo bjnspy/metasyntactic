@@ -38,7 +38,7 @@
 #import "FileDescriptor.h"
 #import "GeneratedMessage.h"
 #import "GeneratedMessage_Builder.h"
-#import "GeneratedMessage_FieldAccessor.h"
+#import "PBFieldAccessor.h"
 #import "FieldAccessorTable.h"
 #import "RepeatedEnumFieldAccessor.h"
 #import "RepeatedFieldAccessor.h"

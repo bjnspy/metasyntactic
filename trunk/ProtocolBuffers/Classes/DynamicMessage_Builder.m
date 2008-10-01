@@ -40,7 +40,7 @@
 
 
 - (id) initWithType:(PBDescriptor*) type_
-             fields:(FieldSet*) fields_
+             fields:(PBFieldSet*) fields_
       unknownFields:(UnknownFieldSet*) unknownFields_ {
     if (self = [super init]) {
         self.type = type_;
@@ -54,7 +54,7 @@
 
 + (DynamicMessage_Builder*) builderWithType:(PBDescriptor*) type {
     return [[[DynamicMessage_Builder alloc] initWithType:type
-                                                  fields:[FieldSet set]
+                                                  fields:[PBFieldSet set]
                                            unknownFields:[UnknownFieldSet getDefaultInstance]] autorelease];
 }
 
@@ -107,7 +107,7 @@
 - (DynamicMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input
                                     extensionRegistry:(ExtensionRegistry*) extensionRegistry {
     UnknownFieldSet_Builder* unknownFieldsBuilder = [UnknownFieldSet newBuilder:unknownFields];
-    [FieldSet mergeFromCodedInputStream:input unknownFields:unknownFieldsBuilder extensionRegistry:extensionRegistry builder:self];
+    [PBFieldSet mergeFromCodedInputStream:input unknownFields:unknownFieldsBuilder extensionRegistry:extensionRegistry builder:self];
     self.unknownFields = [unknownFieldsBuilder build];
     return self;
 }

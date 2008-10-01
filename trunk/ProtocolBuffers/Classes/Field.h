@@ -29,7 +29,7 @@
 @property (retain) NSMutableArray* group;
 
 + (PBField*) getDefaultInstance;
-+ (Field_Builder*) newBuilder;
++ (PBField_Builder*) newBuilder;
 
 - (void) writeTo:(int32_t) fieldNumber
           output:(PBCodedOutputStream*) output;

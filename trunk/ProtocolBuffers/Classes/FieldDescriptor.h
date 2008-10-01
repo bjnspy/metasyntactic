@@ -45,7 +45,7 @@
     int32_t index;
     FieldDescriptorProto* proto;
     NSString* fullName;
-    FileDescriptor* file;
+    PBFileDescriptor* file;
     Type* type;
     PBDescriptor* containingType;
 }
@@ -53,7 +53,7 @@
 @property int32_t index;
 @property (retain) FieldDescriptorProto* proto;
 @property (retain) NSString* fullName;
-@property (retain) FileDescriptor* file;
+@property (retain) PBFileDescriptor* file;
 @property (retain) Type* type;
 @property (retain) PBDescriptor* containingType;
 

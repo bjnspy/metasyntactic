@@ -42,7 +42,7 @@
 
 
 - (id) initWithType:(PBDescriptor*) type_
-             fields:(FieldSet*) fields_
+             fields:(PBFieldSet*) fields_
       unknownFields:(UnknownFieldSet*) unknownFields_ {
     if (self = [super init]) {
         self.type = type_;
@@ -56,7 +56,7 @@
 
 
 + (DynamicMessage*) messageWithType:(PBDescriptor*) type
-                             fields:(FieldSet*) fields
+                             fields:(PBFieldSet*) fields
                       unknownFields:(UnknownFieldSet*) unknownFields {
     return [[[DynamicMessage alloc] initWithType:type fields:fields unknownFields:unknownFields] autorelease];
 }
@@ -64,7 +64,7 @@
 
 + (DynamicMessage*) getDefaultInstance:(PBDescriptor*) type {
     return [[[DynamicMessage alloc] initWithType:type
-                                          fields:[FieldSet emptySet]
+                                          fields:[PBFieldSet emptySet]
                                    unknownFields:[UnknownFieldSet getDefaultInstance]] autorelease];
 }
 

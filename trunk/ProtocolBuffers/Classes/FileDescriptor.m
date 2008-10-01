@@ -20,7 +20,7 @@
 #import "DescriptorPool.h"
 #import "FileDescriptor.h"
 
-@implementation FileDescriptor
+@implementation PBFileDescriptor
 
 @synthesize messageTypes;
 
@@ -41,23 +41,23 @@
 }
 
 
-+ (FileDescriptor*) descriptorWithProto:(PBFileDescriptorProto*) proto
++ (PBFileDescriptor*) descriptorWithProto:(PBFileDescriptorProto*) proto
                            dependencies:(NSArray*) dependencies
                                    pool:(DescriptorPool*) pool {
-    return [[[FileDescriptor alloc] initWithProto:proto
+    return [[[PBFileDescriptor alloc] initWithProto:proto
                                      dependencies:dependencies
                                              pool:pool] autorelease];
 }
 
 
 
-+ (FileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies {
++ (PBFileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies {
     PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:[descriptorData dataUsingEncoding:NSISOLatin1StringEncoding]];
     // Hack:  We can't embed a raw byte array inside generated Java code
     //   (at least, not efficiently), but we can embed Strings.  So, the
     //   protocol compiler embeds the FileDescriptorProto as a giant
     //   string literal which is passed to this function to construct the
-    //   file's FileDescriptor.  The string literal contains only 8-bit
+    //   file's PBFileDescriptor.  The string literal contains only 8-bit
     //   characters, each one representing a byte of the FileDescriptorProto's
     //   serialized form.  So, if we convert it to bytes in ISO-8859-1, we
     //   should get the original bytes that we want.
@@ -65,9 +65,9 @@
 }
 
 
-+ (FileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies {
++ (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies {
     // Building decsriptors involves two steps:  translating and linking.
-    // In the translation step (implemented by FileDescriptor's
+    // In the translation step (implemented by PBFileDescriptor's
     // constructor), we build an object tree mirroring the
     // FileDescriptorProto's tree and put all of the descriptors into the
     // DescriptorPool's lookup tables.  In the linking step, we look up all
@@ -76,7 +76,7 @@
     // to the PBDescriptor for that message's type.  We also detect undefined
     // types in the linking step.
     DescriptorPool* pool = [DescriptorPool poolWithDependencies:dependencies];
-    FileDescriptor* result = [FileDescriptor descriptorWithProto:proto dependencies:dependencies pool:pool];
+    PBFileDescriptor* result = [PBFileDescriptor descriptorWithProto:proto dependencies:dependencies pool:pool];
 
     if (dependencies.count != proto.getDependencyCount) {
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];

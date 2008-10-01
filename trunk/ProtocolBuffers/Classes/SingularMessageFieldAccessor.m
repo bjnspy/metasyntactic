@@ -27,42 +27,42 @@
 }
 
 
-- (id) get:(GeneratedMessage*) message {
+- (id) get:(PBGeneratedMessage*) message {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (void) set:(GeneratedMessage_Builder*) builder value:(id) value {
+- (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (id) getRepeated:(GeneratedMessage*) message index:(int32_t) index {
+- (id) getRepeated:(PBGeneratedMessage*) message index:(int32_t) index {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (void) setRepeated:(GeneratedMessage_Builder*) builder index:(int32_t) index value:(id) value {
+- (void) setRepeated:(PBGeneratedMessage_Builder*) builder index:(int32_t) index value:(id) value {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (void) addRepeated:(GeneratedMessage_Builder*) builder value:(id) value {
+- (void) addRepeated:(PBGeneratedMessage_Builder*) builder value:(id) value {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (BOOL) has:(GeneratedMessage*) message {
+- (BOOL) has:(PBGeneratedMessage*) message {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (int32_t) getRepeatedCount:(GeneratedMessage*) message {
+- (int32_t) getRepeatedCount:(PBGeneratedMessage*) message {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (void) clear:(GeneratedMessage_Builder*) builder {
+- (void) clear:(PBGeneratedMessage_Builder*) builder {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

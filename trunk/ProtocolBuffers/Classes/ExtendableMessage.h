@@ -14,11 +14,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ExtendableMessage : GeneratedMessage {
+@interface ExtendableMessage : PBGeneratedMessage {
   @private
-    FieldSet* extensions;
+    PBFieldSet* extensions;
 }
 
-@property (retain) FieldSet* extensions;
+@property (retain) PBFieldSet* extensions;
 
 @end

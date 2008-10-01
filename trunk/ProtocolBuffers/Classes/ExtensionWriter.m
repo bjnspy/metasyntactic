@@ -43,7 +43,7 @@
 }
 
 
-- (id) initWithExtensions:(FieldSet*) extensions_ {
+- (id) initWithExtensions:(PBFieldSet*) extensions_ {
     if (self = [super init]) {
         self.extensions = extensions_;
         self.enumerator = extensions.fields.keyEnumerator;
@@ -55,7 +55,7 @@
 }
 
 
-+ (ExtensionWriter*) writerWithExtensions:(FieldSet*) extensions {
++ (ExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions {
     return [[[ExtensionWriter alloc] initWithExtensions:extensions] autorelease];
 }
 

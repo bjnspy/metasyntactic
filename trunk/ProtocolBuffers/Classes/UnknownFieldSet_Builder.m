@@ -73,7 +73,7 @@
  * Get a field builder for the given field number which includes any
  * values that already exist.
  */
-- (Field_Builder*) getFieldBuilder:(int32_t) number {
+- (PBField_Builder*) getFieldBuilder:(int32_t) number {
     if (lastField != nil) {
         if (number == lastFieldNumber) {
             return lastField;

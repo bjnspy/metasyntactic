@@ -87,7 +87,7 @@
 }
 
 
-- (id<GeneratedMessage_FieldAccessor>) getField:(FieldDescriptor*) field {
+- (id<PBFieldAccessor>) getField:(FieldDescriptor*) field {
     if (field.getContainingType != descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     } else if (field.isExtension) {

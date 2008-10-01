@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface FieldSet : NSObject {
+@interface PBFieldSet : NSObject {
     NSMutableDictionary* fields;
 }
 
@@ -33,8 +33,8 @@
                                tag:(int32_t) tag;
 
 
-+ (FieldSet*) set;
-+ (FieldSet*) emptySet;
++ (PBFieldSet*) set;
++ (PBFieldSet*) emptySet;
 
 
 - (id) initWithFields:(NSMutableDictionary*) fields;
@@ -60,7 +60,7 @@
 - (int32_t) getSerializedSize;
 
 - (void) mergeFromMessage:(id<Message>) other;
-- (void) mergeFromFieldSet:(FieldSet*) other;
+- (void) mergeFromFieldSet:(PBFieldSet*) other;
 
 - (void) writeField:(FieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output;
 
@@ -73,15 +73,15 @@
 
 @property (retain) NSDictionary* fields;
 
-+ (FieldSet*) setWithFields:(NSDictionary*) fields;
-+ (FieldSet*) set;
++ (PBFieldSet*) setWithFields:(NSDictionary*) fields;
++ (PBFieldSet*) set;
 
 - (void) makeImmutable;
 
 - (BOOL) isInitialized;
 
 - (void) mergeFrom:(id<Message>) other;
-- (void) mergeFrom:(FieldSet*) other;
+- (void) mergeFrom:(PBFieldSet*) other;
 - (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(UnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(ExtensionRegistry*) extensionRegistry

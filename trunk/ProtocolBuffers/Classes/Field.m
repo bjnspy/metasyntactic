@@ -48,12 +48,12 @@ static PBField* defaultInstance = nil;
 }
 
 
-+ (Field_Builder*) newBuilder {
-    return [[[Field_Builder alloc] init] autorelease];
++ (PBField_Builder*) newBuilder {
+    return [[[PBField_Builder alloc] init] autorelease];
 }
 
 
-+ (Field_Builder*) newBuilder:(PBField*) copyFrom {
++ (PBField_Builder*) newBuilder:(PBField*) copyFrom {
     return [[PBField newBuilder] mergeFromField:copyFrom];
 }
 
