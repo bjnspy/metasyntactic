@@ -573,7 +573,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   return returnMe;
 }
 
-- (PBFileDescriptorSet_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBFileDescriptorSet_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFileDescriptorSet class]]) {
     return [self mergeFromPBFileDescriptorSet:o];
@@ -923,7 +923,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return returnMe;
 }
 
-- (PBFileDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBFileDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFileDescriptorProto class]]) {
     return [self mergeFromPBFileDescriptorProto:o];
@@ -1670,7 +1670,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return returnMe;
 }
 
-- (PBExtensionRange_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBExtensionRange_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBExtensionRange class]]) {
     return [self mergeFromPBExtensionRange:o];
@@ -1812,7 +1812,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return returnMe;
 }
 
-- (PBDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBDescriptorProto class]]) {
     return [self mergeFromPBDescriptorProto:o];
@@ -2640,7 +2640,7 @@ static PBLabel* LABEL_REPEATED = nil;
   return returnMe;
 }
 
-- (PBFieldDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBFieldDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFieldDescriptorProto class]]) {
     return [self mergeFromPBFieldDescriptorProto:o];
@@ -3081,7 +3081,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   return returnMe;
 }
 
-- (PBEnumDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBEnumDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBEnumDescriptorProto class]]) {
     return [self mergeFromPBEnumDescriptorProto:o];
@@ -3420,7 +3420,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   return returnMe;
 }
 
-- (PBEnumValueDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBEnumValueDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBEnumValueDescriptorProto class]]) {
     return [self mergeFromPBEnumValueDescriptorProto:o];
@@ -3729,7 +3729,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   return returnMe;
 }
 
-- (PBServiceDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBServiceDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBServiceDescriptorProto class]]) {
     return [self mergeFromPBServiceDescriptorProto:o];
@@ -4082,7 +4082,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   return returnMe;
 }
 
-- (PBMethodDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBMethodDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBMethodDescriptorProto class]]) {
     return [self mergeFromPBMethodDescriptorProto:o];
@@ -4511,7 +4511,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
   return returnMe;
 }
 
-- (PBFileOptions_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBFileOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFileOptions class]]) {
     return [self mergeFromPBFileOptions:o];
@@ -4848,7 +4848,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   return returnMe;
 }
 
-- (PBMessageOptions_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBMessageOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBMessageOptions class]]) {
     return [self mergeFromPBMessageOptions:o];
@@ -5128,7 +5128,7 @@ static PBCType* STRING_PIECE = nil;
   return returnMe;
 }
 
-- (PBFieldOptions_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBFieldOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFieldOptions class]]) {
     return [self mergeFromPBFieldOptions:o];
@@ -5355,7 +5355,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   return returnMe;
 }
 
-- (PBEnumOptions_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBEnumOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBEnumOptions class]]) {
     return [self mergeFromPBEnumOptions:o];
@@ -5528,7 +5528,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   return returnMe;
 }
 
-- (PBEnumValueOptions_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBEnumValueOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBEnumValueOptions class]]) {
     return [self mergeFromPBEnumValueOptions:o];
@@ -5701,7 +5701,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   return returnMe;
 }
 
-- (PBServiceOptions_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBServiceOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBServiceOptions class]]) {
     return [self mergeFromPBServiceOptions:o];
@@ -5874,7 +5874,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   return returnMe;
 }
 
-- (PBMethodOptions_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBMethodOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBMethodOptions class]]) {
     return [self mergeFromPBMethodOptions:o];

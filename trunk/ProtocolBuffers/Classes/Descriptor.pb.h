@@ -118,7 +118,7 @@
 - (PBFileDescriptorSet*) build;
 - (PBFileDescriptorSet*) buildParsed;
 - (PBFileDescriptorSet*) buildPartial;
-- (PBFileDescriptorSet_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBFileDescriptorSet_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFileDescriptorSet_Builder*) mergeFromPBFileDescriptorSet:(PBFileDescriptorSet*) other;
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -220,7 +220,7 @@
 - (PBFileDescriptorProto*) build;
 - (PBFileDescriptorProto*) buildParsed;
 - (PBFileDescriptorProto*) buildPartial;
-- (PBFileDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBFileDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFileDescriptorProto_Builder*) mergeFromPBFileDescriptorProto:(PBFileDescriptorProto*) other;
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -413,7 +413,7 @@
 - (PBExtensionRange*) build;
 - (PBExtensionRange*) buildParsed;
 - (PBExtensionRange*) buildPartial;
-- (PBExtensionRange_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBExtensionRange_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBExtensionRange_Builder*) mergeFromPBExtensionRange:(PBExtensionRange*) other;
 - (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -444,7 +444,7 @@
 - (PBDescriptorProto*) build;
 - (PBDescriptorProto*) buildParsed;
 - (PBDescriptorProto*) buildPartial;
-- (PBDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBDescriptorProto_Builder*) mergeFromPBDescriptorProto:(PBDescriptorProto*) other;
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -666,7 +666,7 @@
 - (PBFieldDescriptorProto*) build;
 - (PBFieldDescriptorProto*) buildParsed;
 - (PBFieldDescriptorProto*) buildPartial;
-- (PBFieldDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBFieldDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFieldDescriptorProto_Builder*) mergeFromPBFieldDescriptorProto:(PBFieldDescriptorProto*) other;
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -776,7 +776,7 @@
 - (PBEnumDescriptorProto*) build;
 - (PBEnumDescriptorProto*) buildParsed;
 - (PBEnumDescriptorProto*) buildPartial;
-- (PBEnumDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBEnumDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBEnumDescriptorProto_Builder*) mergeFromPBEnumDescriptorProto:(PBEnumDescriptorProto*) other;
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -862,7 +862,7 @@
 - (PBEnumValueDescriptorProto*) build;
 - (PBEnumValueDescriptorProto*) buildParsed;
 - (PBEnumValueDescriptorProto*) buildPartial;
-- (PBEnumValueDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBEnumValueDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBEnumValueDescriptorProto_Builder*) mergeFromPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) other;
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -942,7 +942,7 @@
 - (PBServiceDescriptorProto*) build;
 - (PBServiceDescriptorProto*) buildParsed;
 - (PBServiceDescriptorProto*) buildPartial;
-- (PBServiceDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBServiceDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBServiceDescriptorProto_Builder*) mergeFromPBServiceDescriptorProto:(PBServiceDescriptorProto*) other;
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1035,7 +1035,7 @@
 - (PBMethodDescriptorProto*) build;
 - (PBMethodDescriptorProto*) buildParsed;
 - (PBMethodDescriptorProto*) buildPartial;
-- (PBMethodDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBMethodDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBMethodDescriptorProto_Builder*) mergeFromPBMethodDescriptorProto:(PBMethodDescriptorProto*) other;
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1164,7 +1164,7 @@
 - (PBFileOptions*) build;
 - (PBFileOptions*) buildParsed;
 - (PBFileOptions*) buildPartial;
-- (PBFileOptions_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBFileOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFileOptions_Builder*) mergeFromPBFileOptions:(PBFileOptions*) other;
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1248,7 +1248,7 @@
 - (PBMessageOptions*) build;
 - (PBMessageOptions*) buildParsed;
 - (PBMessageOptions*) buildPartial;
-- (PBMessageOptions_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBMessageOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBMessageOptions_Builder*) mergeFromPBMessageOptions:(PBMessageOptions*) other;
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1329,7 +1329,7 @@
 - (PBFieldOptions*) build;
 - (PBFieldOptions*) buildParsed;
 - (PBFieldOptions*) buildPartial;
-- (PBFieldOptions_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBFieldOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFieldOptions_Builder*) mergeFromPBFieldOptions:(PBFieldOptions*) other;
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1382,7 +1382,7 @@
 - (PBEnumOptions*) build;
 - (PBEnumOptions*) buildParsed;
 - (PBEnumOptions*) buildPartial;
-- (PBEnumOptions_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBEnumOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBEnumOptions_Builder*) mergeFromPBEnumOptions:(PBEnumOptions*) other;
 - (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1423,7 +1423,7 @@
 - (PBEnumValueOptions*) build;
 - (PBEnumValueOptions*) buildParsed;
 - (PBEnumValueOptions*) buildPartial;
-- (PBEnumValueOptions_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBEnumValueOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBEnumValueOptions_Builder*) mergeFromPBEnumValueOptions:(PBEnumValueOptions*) other;
 - (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1464,7 +1464,7 @@
 - (PBServiceOptions*) build;
 - (PBServiceOptions*) buildParsed;
 - (PBServiceOptions*) buildPartial;
-- (PBServiceOptions_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBServiceOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBServiceOptions_Builder*) mergeFromPBServiceOptions:(PBServiceOptions*) other;
 - (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1505,7 +1505,7 @@
 - (PBMethodOptions*) build;
 - (PBMethodOptions*) buildParsed;
 - (PBMethodOptions*) buildPartial;
-- (PBMethodOptions_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBMethodOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBMethodOptions_Builder*) mergeFromPBMethodOptions:(PBMethodOptions*) other;
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;

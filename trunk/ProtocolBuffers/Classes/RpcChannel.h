@@ -14,11 +14,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol RpcChannel
+@protocol PBRpcChannel
 - (void) callMethod:(PBMethodDescriptor*) method
-         controller:(id<RpcController>) controller
-            request:(id<Message>) request
-  responsePrototype:(id<Message>) responsePrototype
+         controller:(id<PBRpcController>) controller
+            request:(id<PBMessage>) request
+  responsePrototype:(id<PBMessage>) responsePrototype
              target:(id) target
            selector:(SEL) selector;
 @end

@@ -338,7 +338,7 @@ const int32_t BUFFER_SIZE = 4096;
  * @param type Declared type of the field.
  * @return An object representing the field's value, of the exact
  *         type which would be returned by
- *         {@link Message#getField(Descriptors.PBFieldDescriptor)} for
+ *         {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
  *         this field.
  */
 - (id) readPrimitiveField:(FieldDescriptorType) type {

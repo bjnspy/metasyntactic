@@ -16,13 +16,13 @@
 
 @interface PBExtensionRegistry_ExtensionInfo : NSObject {
     PBFieldDescriptor* descriptor;
-    id<Message> defaultInstance;
+    id<PBMessage> defaultInstance;
 }
 
 @property (retain) PBFieldDescriptor* descriptor;
-@property (retain) id<Message> defaultInstance;
+@property (retain) id<PBMessage> defaultInstance;
 
 + (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor;
-+ (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor defaultInstance:(id<Message>) defaultInstance;
++ (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor defaultInstance:(id<PBMessage>) defaultInstance;
 
 @end

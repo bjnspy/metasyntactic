@@ -16,13 +16,13 @@
 
 #import "Message_Builder.h"
 
-@interface AbstractMessage_Builder : NSObject<PBMessage_Builder> {
+@interface PBAbstractMessage_Builder : NSObject<PBMessage_Builder> {
 @private
 }
 
 - (PBUnknownFieldSet*) getUnknownFields;
 
-- (id<Message>) buildParsed;
+- (id<PBMessage>) buildParsed;
 
 - (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -32,6 +32,6 @@
 - (id<PBMessage_Builder>) mergeFromInputStream:(NSInputStream*) input;
 - (id<PBMessage_Builder>) mergeFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-- (id<PBMessage_Builder>) mergeFromMessage:(id<Message>) other;
+- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
 
 @end

@@ -59,7 +59,7 @@
 
 - (int32_t) getSerializedSize;
 
-- (void) mergeFromMessage:(id<Message>) other;
+- (void) mergeFromMessage:(id<PBMessage>) other;
 - (void) mergeFromFieldSet:(PBFieldSet*) other;
 
 - (void) writeField:(PBFieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output;
@@ -80,7 +80,7 @@
 
 - (BOOL) isInitialized;
 
-- (void) mergeFrom:(id<Message>) other;
+- (void) mergeFrom:(id<PBMessage>) other;
 - (void) mergeFrom:(PBFieldSet*) other;
 - (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(PBUnknownFieldSet_Builder*) unknownFields

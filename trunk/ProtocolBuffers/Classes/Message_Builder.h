@@ -16,14 +16,14 @@
 
 @protocol PBMessage_Builder
 - (id<PBMessage_Builder>) clear;
-- (id<PBMessage_Builder>) mergeFromMessage:(id<Message>) other;
-- (id<Message>) build;
-- (id<Message>) buildPartial;
-- (id<Message>) buildParsed;
+- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
+- (id<PBMessage>) build;
+- (id<PBMessage>) buildPartial;
+- (id<PBMessage>) buildParsed;
 - (id<PBMessage_Builder>) clone;
 - (BOOL) isInitialized;
 - (PBDescriptor*) getDescriptorForType;
-- (id<Message>) getDefaultInstanceForType;
+- (id<PBMessage>) getDefaultInstanceForType;
 - (NSDictionary*) getAllFields;
 - (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
 

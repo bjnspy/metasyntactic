@@ -65,7 +65,7 @@
 }
 
 
-- (PBDynamicMessage_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBDynamicMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
     if ([other getDescriptorForType] != type) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage can only merge messages of the same type." userInfo:nil];
     }
@@ -75,7 +75,7 @@
 }
 
 
-- (id<Message>) build {
+- (id<PBMessage>) build {
     if (![self isInitialized]) {
         @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
     }

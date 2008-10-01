@@ -46,7 +46,7 @@
 
 - (void) add:(PBGeneratedExtension*) extension;
 - (void) add:(PBFieldDescriptor*) type;
-- (void) add:(PBFieldDescriptor*) type defaultInstance:(Message*) defaultInstance;
+- (void) add:(PBFieldDescriptor*) type defaultInstance:(PBMessage*) defaultInstance;
 
 + (PBExtensionRegistry*) registryWithExtensionsByName:(NSDictionary*) extensionsByName extensionsByNumber:(NSDictionary*) extensionsByNumber;
 #endif

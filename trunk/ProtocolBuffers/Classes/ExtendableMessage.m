@@ -72,8 +72,8 @@
 }
 
 
-- (ExtensionWriter*) newExtensionWriter {
-    return [[[ExtensionWriter alloc] init] autorelease];
+- (PBExtensionWriter*) newExtensionWriter {
+    return [[[PBExtensionWriter alloc] init] autorelease];
 }
 
 

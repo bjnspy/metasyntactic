@@ -36,7 +36,7 @@
 
 #if 0
 public static final class PBGeneratedExtension<
-ContainingType extends Message, Type> {
+ContainingType extends PBMessage, Type> {
     // TODO(kenton):  Find ways to avoid using Java reflection within this
     //   class.  Also try to avoid suppressing unchecked warnings.
     
@@ -54,7 +54,7 @@ ContainingType extends Message, Type> {
                 enumValueOf = null;
                 enumGetValueDescriptor = null;
                 messageDefaultInstance =
-                (Message)invokeOrDie(getMethodOrDie(type, "getDefaultInstance"),
+                (PBMessage)invokeOrDie(getMethodOrDie(type, "getDefaultInstance"),
                                      null);
                 break;
             case ENUM:
@@ -78,7 +78,7 @@ ContainingType extends Message, Type> {
      * instance of the message.
      */
     @SuppressWarnings("unchecked")
-    public Message getMessageDefaultInstance() {
+    public PBMessage getMessageDefaultInstance() {
         return messageDefaultInstance;
     }
     
@@ -124,7 +124,7 @@ ContainingType extends Message, Type> {
                     // This should not happen in normal use.  But, to be nice, we'll
                     // copy the message to whatever type the caller was expecting.
                     return messageDefaultInstance.newBuilderForType()
-                    .mergeFrom((Message)value).build();
+                    .mergeFrom((PBMessage)value).build();
                 }
             case ENUM:
                 return invokeOrDie(enumValueOf, null, (PBEnumValueDescriptor)value);

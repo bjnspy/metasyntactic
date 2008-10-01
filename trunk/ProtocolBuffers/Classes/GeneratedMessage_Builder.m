@@ -45,7 +45,7 @@
 }
 
 
-- (id<PBMessage_Builder>) mergeFromMessage:(id<Message>) other {
+- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
     if ([other getDescriptorForType] !=
         self.internalGetFieldAccessorTable.descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
@@ -63,7 +63,7 @@
         } else if (field.getObjectiveCType == FieldDescriptorTypeMessage &&
                    [self hasField:field]) {
             // Merge singular embedded messages.
-            id<Message> oldValue = [self getField:field];
+            id<PBMessage> oldValue = [self getField:field];
             [self setField:field
                      value:[[[[oldValue newBuilderForType] mergeFromMessage:oldValue] mergeFromMessage:newValue] buildPartial]];
         } else {

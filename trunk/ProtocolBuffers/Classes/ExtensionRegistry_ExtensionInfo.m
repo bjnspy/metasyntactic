@@ -31,7 +31,7 @@
 
 
 - (id) initWithDescriptor:(PBFieldDescriptor*) descriptor_
-          defaultInstance:(id<Message>) defaultInstance_ {
+          defaultInstance:(id<PBMessage>) defaultInstance_ {
     if (self = [super init]) {
         self.descriptor = descriptor_;
         self.defaultInstance = defaultInstance_;
@@ -47,7 +47,7 @@
 
 
 + (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor
-                                        defaultInstance:(id<Message>) defaultInstance {
+                                        defaultInstance:(id<PBMessage>) defaultInstance {
     return [[[PBExtensionRegistry_ExtensionInfo alloc] initWithDescriptor:descriptor defaultInstance:defaultInstance] autorelease];
 }
 

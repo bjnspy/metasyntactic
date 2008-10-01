@@ -83,13 +83,13 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message#getAllFields()}. */
+/** See {@link PBMessage#getAllFields()}. */
 - (NSDictionary*) getAllFields {
     return fields;
 }
 
 
-/** See {@link Message#hasField(Descriptors.PBFieldDescriptor)}. */
+/** See {@link PBMessage#hasField(Descriptors.PBFieldDescriptor)}. */
 - (BOOL) hasField:(PBFieldDescriptor*) field {
     if (field.isRepeated) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
@@ -101,7 +101,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 
 /**
- * See {@link Message#getField(Descriptors.PBFieldDescriptor)}.  This method
+ * See {@link PBMessage#getField(Descriptors.PBFieldDescriptor)}.  This method
  * returns {@code null} if the field is a singular message type and is not
  * set; in this case it is up to the caller to fetch the message's default
  * instance.
@@ -146,7 +146,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
             [value getType] == field.getEnumType;
             break;
         case ObjectiveCTypeMessage:
-            isValid = [value conformsToProtocol:@protocol(Message)] &&
+            isValid = [value conformsToProtocol:@protocol(PBMessage)] &&
             [value getDescriptorForType] == field.getMessageType;
             break;
     }
@@ -160,7 +160,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         /*
          throw new IllegalArgumentException(
          "Wrong object type used with protocol message reflection.  " +
-         "Message type \"" + field.getContainingType().getFullName() +
+         "PBMessage type \"" + field.getContainingType().getFullName() +
          "\", field \"" +
          (field.isExtension() ? field.getFullName() : field.getName()) +
          "\", value was type \"" + value.getClass().getName() + "\".");
@@ -199,7 +199,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message#getRepeatedFieldCount(Descriptors.PBFieldDescriptor)}. */
+/** See {@link PBMessage#getRepeatedFieldCount(Descriptors.PBFieldDescriptor)}. */
 - (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
     if (!field.isRepeated) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
@@ -210,7 +210,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message#getRepeatedField(Descriptors.PBFieldDescriptor,int)}. */
+/** See {@link PBMessage#getRepeatedField(Descriptors.PBFieldDescriptor,int)}. */
 - (id) getRepeatedField:(PBFieldDescriptor*) field
                   index:(int32_t) index {
     if (!field.isRepeated) {
@@ -264,7 +264,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 // Parsing and serialization
 
 /**
- * See {@link Message#isInitialized()}.  Note:  Since {@code PBFieldSet}
+ * See {@link PBMessage#isInitialized()}.  Note:  Since {@code PBFieldSet}
  * itself does not have any way of knowing about required fields that
  * aren't actually present in the set, it is up to the caller to check
  * that all required fields are present.
@@ -275,7 +275,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
         if (field.getObjectiveCType == ObjectiveCTypeMessage) {
             if (field.isRepeated) {
-                for (id<Message> element in value) {
+                for (id<PBMessage> element in value) {
                     if (![element isInitialized]) {
                         return NO;
                     }
@@ -311,13 +311,13 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message.Builder#mergeFrom(Message)}. */
-- (void) mergeFromMessage:(id<Message>) other {
+/** See {@link Message.Builder#mergeFrom(PBMessage)}. */
+- (void) mergeFromMessage:(id<PBMessage>) other {
     // Note:  We don't attempt to verify that other's fields have valid
     //   types.  Doing so would be a losing battle.  We'd have to verify
     //   all sub-messages as well, and we'd have to make copies of all of
     //   them to insure that they don't change after verification (since
-    //   the Message interface itself cannot enforce immutability of
+    //   the PBMessage interface itself cannot enforce immutability of
     //   implementations).
     // TODO(kenton):  Provide a function somewhere called makeDeepCopy()
     //   which allows people to make secure deep copies of messages.
@@ -334,7 +334,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
             }
             [existingValue addObjectsFromArray:otherValue];
         } else if (field.getObjectiveCType == ObjectiveCTypeMessage) {
-            id<Message> existingValue = [fields objectForKey:field];
+            id<PBMessage> existingValue = [fields objectForKey:field];
             if (existingValue == nil) {
                 [self setField:field value:otherValue];
             } else {
@@ -349,7 +349,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 
 /**
- * Like {@link #mergeFrom(Message)}, but merges from another {@link PBFieldSet}.
+ * Like {@link #mergeFrom(PBMessage)}, but merges from another {@link PBFieldSet}.
  */
 - (void) mergeFromFieldSet:(PBFieldSet*) other {
     for (PBFieldDescriptor* field in other.fields) {
@@ -363,7 +363,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
             }
             [existingValue addObjectsFromArray:value];
         } else if (field.getObjectiveCType == ObjectiveCTypeMessage) {
-            id<Message> existingValue = [fields objectForKey:field];
+            id<PBMessage> existingValue = [fields objectForKey:field];
             if (existingValue == nil) {
                 [self setField:field value:value];
             } else {
@@ -448,7 +448,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
      if (extension != null) {
      field = extension.descriptor;
      subBuilder = extension.defaultInstance.newBuilderForType();
-     Message originalMessage = (Message)builder.getField(field);
+     PBMessage originalMessage = (PBMessage)builder.getField(field);
      if (originalMessage != null) {
      subBuilder.mergeFrom(originalMessage);
      }
@@ -529,7 +529,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     int32_t fieldNumber = WireFormatGetTagFieldNumber(tag);
 
     PBFieldDescriptor* field;
-   id<Message> defaultInstance = nil;
+   id<PBMessage> defaultInstance = nil;
 
     if ([type isExtensionNumber:fieldNumber]) {
         PBExtensionRegistry_ExtensionInfo* extension = [extensionRegistry findExtensionByNumber:type fieldNumber:fieldNumber];
@@ -605,7 +605,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link Message#writeTo(PBCodedOutputStream)}. */
+/** See {@link PBMessage#writeTo(PBCodedOutputStream)}. */
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
     for (PBFieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
@@ -631,7 +631,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 /**
- * See {@link Message#getSerializedSize()}.  It's up to the caller to cache
+ * See {@link PBMessage#getSerializedSize()}.  It's up to the caller to cache
  * the resulting size if desired.
  */
 - (int32_t) getSerializedSize {

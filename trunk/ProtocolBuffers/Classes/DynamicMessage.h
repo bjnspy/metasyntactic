@@ -46,7 +46,7 @@
 + (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type inputStream:(NSInputStream*) inputStream extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 + (PBDynamicMessage_Builder*) builderWithType:(Descriptors_Descriptor*) type;
-+ (PBDynamicMessage_Builder*) builderWithMessage:(id<Message>) prototype;
++ (PBDynamicMessage_Builder*) builderWithMessage:(id<PBMessage>) prototype;
 
 - (Descriptors_Descriptor*) descriptorForType;
 - (PBDynamicMessage*) defaultInstanceForType;

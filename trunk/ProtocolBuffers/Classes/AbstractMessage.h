@@ -16,13 +16,13 @@
 
 #import "Message.h"
 
-@interface PBAbstractMessage : NSObject<Message> {
+@interface PBAbstractMessage : NSObject<PBMessage> {
 @private
     int32_t am_memoizedSize;
 }
 
 - (PBDescriptor*) getDescriptorForType;
-- (id<Message>) getDefaultInstanceForType;
+- (id<PBMessage>) getDefaultInstanceForType;
 - (NSDictionary*) getAllFields;
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;

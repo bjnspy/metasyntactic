@@ -16,7 +16,7 @@
 
 #import "AbstractMessage_Builder.h"
 
-@interface PBDynamicMessage_Builder : AbstractMessage_Builder {
+@interface PBDynamicMessage_Builder : PBAbstractMessage_Builder {
 @private
     PBDescriptor* type;
     PBFieldSet* fields;
@@ -29,7 +29,7 @@
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
 
-- (PBDynamicMessage_Builder*) mergeFromMessage:(id<Message>) other;
+- (PBDynamicMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 
 #if 0
 

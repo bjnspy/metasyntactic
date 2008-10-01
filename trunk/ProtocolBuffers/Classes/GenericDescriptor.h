@@ -15,7 +15,7 @@
 // limitations under the License.
 
 @protocol PBGenericDescriptor
-- (id<Message>) toProto;
+- (id<PBMessage>) toProto;
 - (NSString*) getName;
 - (NSString*) getFullName;
 - (PBFileDescriptor*) getFile;

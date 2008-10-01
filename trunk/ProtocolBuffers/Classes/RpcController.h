@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@protocol RpcController
+@protocol PBRpcController
 - (void) reset;
 - (BOOL) failed;
 - (NSString*) errorText;
