@@ -61,7 +61,7 @@
 
 - (PBDescriptor*) findMessageTypeByName:(NSString*) name;
 - (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
-- (ServiceDescriptor*) findServiceByName:(NSString*) name;
+- (PBServiceDescriptor*) findServiceByName:(NSString*) name;
 - (PBFieldDescriptor*) findExtensionByName:(NSString*) name;
 #endif
 

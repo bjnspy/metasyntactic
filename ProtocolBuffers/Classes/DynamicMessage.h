@@ -16,7 +16,7 @@
 
 #import "AbstractMessage.h"
 
-@interface DynamicMessage : PBAbstractMessage {
+@interface PBDynamicMessage : PBAbstractMessage {
 @private
     PBDescriptor* type;
     PBFieldSet* fields;
@@ -28,28 +28,28 @@
 @property (retain) PBFieldSet* fields;
 @property (retain) UnknownFieldSet* unknownFields;
 
-+ (DynamicMessage*) messageWithType:(PBDescriptor*) type fields:(PBFieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
-+ (DynamicMessage*) getDefaultInstance:(PBDescriptor*) type;
++ (PBDynamicMessage*) messageWithType:(PBDescriptor*) type fields:(PBFieldSet*) fields unknownFields:(UnknownFieldSet*) unknownFields;
++ (PBDynamicMessage*) getDefaultInstance:(PBDescriptor*) type;
 
-+ (DynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
++ (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
 
 
 #if 0
-+ (DynamicMessage*) messageWithType:(Descriptors_Descriptor*) type;
++ (PBDynamicMessage*) messageWithType:(Descriptors_Descriptor*) type;
 
 
-+ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(PBCodedInputStream*) codedInputStream;
-+ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(PBCodedInputStream*) codedInputStream extensionRegistry:(ExtensionRegistry*) extensionRegistry;
-+ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type data:(NSData*) data;
-+ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type data:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
-+ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type inputStream:(NSInputStream*) inputStream;
-+ (DynamicMessage*) parseFrom:(Descriptors_Descriptor*) type inputStream:(NSInputStream*) inputStream extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(PBCodedInputStream*) codedInputStream;
++ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(PBCodedInputStream*) codedInputStream extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type data:(NSData*) data;
++ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type data:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
++ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type inputStream:(NSInputStream*) inputStream;
++ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type inputStream:(NSInputStream*) inputStream extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-+ (DynamicMessage_Builder*) builderWithType:(Descriptors_Descriptor*) type;
-+ (DynamicMessage_Builder*) builderWithMessage:(id<Message>) prototype;
++ (PBDynamicMessage_Builder*) builderWithType:(Descriptors_Descriptor*) type;
++ (PBDynamicMessage_Builder*) builderWithMessage:(id<Message>) prototype;
 
 - (Descriptors_Descriptor*) descriptorForType;
-- (DynamicMessage*) defaultInstanceForType;
+- (PBDynamicMessage*) defaultInstanceForType;
 - (NSDictionary*) allFields;
 
 - (BOOL) hasField:(PBFieldDescriptor*) field;
@@ -64,7 +64,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 
 - (int32_t) serializedSize;
-- (DynamicMessage_Builder*) newBuilderForType;
+- (PBDynamicMessage_Builder*) newBuilderForType;
 #endif
 
 @end

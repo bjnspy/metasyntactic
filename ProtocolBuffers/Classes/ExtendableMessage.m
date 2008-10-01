@@ -115,9 +115,9 @@
         [self verifyContainingType:field];
         id value = [extensions getField:field];
         if (value == nil) {
-            // Lacking an ExtensionRegistry, we have no way to determine the
+            // Lacking an PBExtensionRegistry, we have no way to determine the
             // extension's real type, so we return a DynamicMessage.
-            return [DynamicMessage getDefaultInstance:field.getMessageType];
+            return [PBDynamicMessage getDefaultInstance:field.getMessageType];
         } else {
             return value;
         }

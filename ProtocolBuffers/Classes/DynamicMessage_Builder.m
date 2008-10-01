@@ -24,7 +24,7 @@
 #import "UnknownFieldSet.h"
 #import "UnknownFieldSet_Builder.h"
 
-@implementation DynamicMessage_Builder
+@implementation PBDynamicMessage_Builder
 
 @synthesize type;
 @synthesize fields;
@@ -52,20 +52,20 @@
 }
 
 
-+ (DynamicMessage_Builder*) builderWithType:(PBDescriptor*) type {
-    return [[[DynamicMessage_Builder alloc] initWithType:type
++ (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type {
+    return [[[PBDynamicMessage_Builder alloc] initWithType:type
                                                   fields:[PBFieldSet set]
                                            unknownFields:[UnknownFieldSet getDefaultInstance]] autorelease];
 }
 
 
-- (DynamicMessage_Builder*) clear {
+- (PBDynamicMessage_Builder*) clear {
     [fields clear];
     return self;
 }
 
 
-- (DynamicMessage_Builder*) mergeFromMessage:(id<Message>) other {
+- (PBDynamicMessage_Builder*) mergeFromMessage:(id<Message>) other {
     if ([other getDescriptorForType] != type) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage can only merge messages of the same type." userInfo:nil];
     }
@@ -83,17 +83,17 @@
 }
 
 
-- (DynamicMessage*) buildPartial {
+- (PBDynamicMessage*) buildPartial {
     //[fields makeImmutable];
-    DynamicMessage* result = [DynamicMessage messageWithType:type fields:fields unknownFields:unknownFields];
+    PBDynamicMessage* result = [PBDynamicMessage messageWithType:type fields:fields unknownFields:unknownFields];
     self.fields = nil;
     self.unknownFields = nil;
     return result;
 }
 
 
-- (DynamicMessage_Builder*) clone {
-    DynamicMessage_Builder* result = [DynamicMessage_Builder builderWithType:type];
+- (PBDynamicMessage_Builder*) clone {
+    PBDynamicMessage_Builder* result = [PBDynamicMessage_Builder builderWithType:type];
     [result.fields mergeFromFieldSet:fields];
     return result;
 }
@@ -104,8 +104,8 @@
 }
 
 
-- (DynamicMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input
-                                    extensionRegistry:(ExtensionRegistry*) extensionRegistry {
+- (PBDynamicMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input
+                                    extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     UnknownFieldSet_Builder* unknownFieldsBuilder = [UnknownFieldSet newBuilder:unknownFields];
     [PBFieldSet mergeFromCodedInputStream:input unknownFields:unknownFieldsBuilder extensionRegistry:extensionRegistry builder:self];
     self.unknownFields = [unknownFieldsBuilder build];
@@ -118,8 +118,8 @@
 }
 
 
-- (DynamicMessage*) getDefaultInstanceForType {
-    return [DynamicMessage getDefaultInstance:type];
+- (PBDynamicMessage*) getDefaultInstanceForType {
+    return [PBDynamicMessage getDefaultInstance:type];
 }
 
 
@@ -135,7 +135,7 @@
 }
 
 
-- (DynamicMessage_Builder*) newBuilderForField:(PBFieldDescriptor*) field {
+- (PBDynamicMessage_Builder*) newBuilderForField:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
 
     if (field.getObjectiveCType != ObjectiveCTypeMessage) {
@@ -144,7 +144,7 @@
                                      userInfo:nil];
     }
 
-    return [DynamicMessage_Builder builderWithType:field.getMessageType];
+    return [PBDynamicMessage_Builder builderWithType:field.getMessageType];
 }
 
 
@@ -158,20 +158,20 @@
     [self verifyContainingType:field];
     id result = [fields getField:field];
     if (result == nil) {
-        result = [DynamicMessage getDefaultInstance:field.getMessageType];
+        result = [PBDynamicMessage getDefaultInstance:field.getMessageType];
     }
     return result;
 }
 
 
-- (DynamicMessage_Builder*) setField:(PBFieldDescriptor*) field value:(id) value {
+- (PBDynamicMessage_Builder*) setField:(PBFieldDescriptor*) field value:(id) value {
     [self verifyContainingType:field];
     [fields setField:field value:value];
     return self;
 }
 
 
-- (DynamicMessage_Builder*) clearField:(PBFieldDescriptor*) field {
+- (PBDynamicMessage_Builder*) clearField:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
     [fields clearField:field];
     return self;
@@ -190,7 +190,7 @@
 }
 
 
-- (DynamicMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field
+- (PBDynamicMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field
                                        index:(int32_t) index
                                        value:(id) value {
     [self verifyContainingType:field];
@@ -199,7 +199,7 @@
 }
 
 
-- (DynamicMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field
+- (PBDynamicMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field
                                        value:(id) value {
     [self verifyContainingType:field];
     [fields addRepeatedField:field value:value];
@@ -207,7 +207,7 @@
 }
 
 
-- (DynamicMessage_Builder*) mergeUnknownFields:(UnknownFieldSet*) unknownFields_ {
+- (PBDynamicMessage_Builder*) mergeUnknownFields:(UnknownFieldSet*) unknownFields_ {
     self.unknownFields = [[[UnknownFieldSet newBuilder:unknownFields] mergeUnknownFields:unknownFields_] build];
     return self;
 }

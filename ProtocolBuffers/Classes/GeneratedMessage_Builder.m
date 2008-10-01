@@ -164,7 +164,7 @@
  */
 - (BOOL) parseUnknownField:(PBCodedInputStream*) input
              unknownFields:(UnknownFieldSet_Builder*) unknownFields
-         extensionRegistry:(ExtensionRegistry*) extensionRegistry
+         extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                        tag:(int32_t) tag {
     return [unknownFields mergeFieldFrom:tag input:input];
 }

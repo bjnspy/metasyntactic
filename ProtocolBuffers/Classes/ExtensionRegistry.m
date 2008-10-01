@@ -22,15 +22,15 @@
 #import "ExtensionRegistry_ExtensionInfo.h"
 #import "FieldDescriptor.h"
 
-@implementation ExtensionRegistry
+@implementation PBExtensionRegistry
 
 
-static ExtensionRegistry* EMPTY = nil;
+static PBExtensionRegistry* EMPTY = nil;
 
 
 + (void) initialize {
-    if (self = [ExtensionRegistry class]) {
-        EMPTY = [[ExtensionRegistry alloc] initWithExtensionsByName:[NSMutableDictionary dictionary]
+    if (self = [PBExtensionRegistry class]) {
+        EMPTY = [[PBExtensionRegistry alloc] initWithExtensionsByName:[NSMutableDictionary dictionary]
                                                  extensionsByNumber:[NSMutableDictionary dictionary]];
     }
 }
@@ -48,13 +48,13 @@ static ExtensionRegistry* EMPTY = nil;
 }
 
 
-+ (ExtensionRegistry*) getEmptyRegistry {
++ (PBExtensionRegistry*) getEmptyRegistry {
     return EMPTY;
 }
 
 
-+ (ExtensionRegistry*) newInstance {
-    return [[[ExtensionRegistry alloc] initWithExtensionsByName:[NSMutableDictionary dictionary]
++ (PBExtensionRegistry*) newInstance {
+    return [[[PBExtensionRegistry alloc] initWithExtensionsByName:[NSMutableDictionary dictionary]
                                              extensionsByNumber:[NSMutableDictionary dictionary]] autorelease];
 }
 

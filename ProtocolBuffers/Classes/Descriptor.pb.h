@@ -98,11 +98,11 @@
 - (PBFileDescriptorSet_Builder*) newBuilderForType;
 + (PBFileDescriptorSet_Builder*) newBuilderWithPBFileDescriptorSet:(PBFileDescriptorSet*) prototype;
 + (PBFileDescriptorSet*) parseFromData:(NSData*) data;
-+ (PBFileDescriptorSet*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFileDescriptorSet*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFileDescriptorSet*) parseFromInputStream:(NSInputStream*) input;
-+ (PBFileDescriptorSet*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFileDescriptorSet*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFileDescriptorSet*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBFileDescriptorSet*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFileDescriptorSet*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBFileDescriptorSet_Builder : PBGeneratedMessage_Builder {
@@ -121,7 +121,7 @@
 - (PBFileDescriptorSet_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBFileDescriptorSet_Builder*) mergeFromPBFileDescriptorSet:(PBFileDescriptorSet*) other;
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // repeated .google.protobuf.FileDescriptorProto file = 1;
 - (NSArray*) getFileList;
@@ -200,11 +200,11 @@
 - (PBFileDescriptorProto_Builder*) newBuilderForType;
 + (PBFileDescriptorProto_Builder*) newBuilderWithPBFileDescriptorProto:(PBFileDescriptorProto*) prototype;
 + (PBFileDescriptorProto*) parseFromData:(NSData*) data;
-+ (PBFileDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFileDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFileDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
-+ (PBFileDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFileDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFileDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBFileDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFileDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBFileDescriptorProto_Builder : PBGeneratedMessage_Builder {
@@ -223,7 +223,7 @@
 - (PBFileDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBFileDescriptorProto_Builder*) mergeFromPBFileDescriptorProto:(PBFileDescriptorProto*) other;
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional string name = 1;
 - (BOOL) hasName;
@@ -357,11 +357,11 @@
 - (PBDescriptorProto_Builder*) newBuilderForType;
 + (PBDescriptorProto_Builder*) newBuilderWithPBDescriptorProto:(PBDescriptorProto*) prototype;
 + (PBDescriptorProto*) parseFromData:(NSData*) data;
-+ (PBDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
-+ (PBDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBExtensionRange : PBGeneratedMessage {
@@ -393,11 +393,11 @@
 - (PBExtensionRange_Builder*) newBuilderForType;
 + (PBExtensionRange_Builder*) newBuilderWithPBExtensionRange:(PBExtensionRange*) prototype;
 + (PBExtensionRange*) parseFromData:(NSData*) data;
-+ (PBExtensionRange*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBExtensionRange*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBExtensionRange*) parseFromInputStream:(NSInputStream*) input;
-+ (PBExtensionRange*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBExtensionRange*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBExtensionRange*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBExtensionRange*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBExtensionRange*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBExtensionRange_Builder : PBGeneratedMessage_Builder {
@@ -416,7 +416,7 @@
 - (PBExtensionRange_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBExtensionRange_Builder*) mergeFromPBExtensionRange:(PBExtensionRange*) other;
 - (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional int32 start = 1;
 - (BOOL) hasStart;
@@ -447,7 +447,7 @@
 - (PBDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBDescriptorProto_Builder*) mergeFromPBDescriptorProto:(PBDescriptorProto*) other;
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional string name = 1;
 - (BOOL) hasName;
@@ -589,11 +589,11 @@
 - (PBFieldDescriptorProto_Builder*) newBuilderForType;
 + (PBFieldDescriptorProto_Builder*) newBuilderWithPBFieldDescriptorProto:(PBFieldDescriptorProto*) prototype;
 + (PBFieldDescriptorProto*) parseFromData:(NSData*) data;
-+ (PBFieldDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFieldDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFieldDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
-+ (PBFieldDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFieldDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFieldDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBFieldDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFieldDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBType : NSObject {
@@ -669,7 +669,7 @@
 - (PBFieldDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBFieldDescriptorProto_Builder*) mergeFromPBFieldDescriptorProto:(PBFieldDescriptorProto*) other;
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional string name = 1;
 - (BOOL) hasName;
@@ -756,11 +756,11 @@
 - (PBEnumDescriptorProto_Builder*) newBuilderForType;
 + (PBEnumDescriptorProto_Builder*) newBuilderWithPBEnumDescriptorProto:(PBEnumDescriptorProto*) prototype;
 + (PBEnumDescriptorProto*) parseFromData:(NSData*) data;
-+ (PBEnumDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
-+ (PBEnumDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBEnumDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBEnumDescriptorProto_Builder : PBGeneratedMessage_Builder {
@@ -779,7 +779,7 @@
 - (PBEnumDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBEnumDescriptorProto_Builder*) mergeFromPBEnumDescriptorProto:(PBEnumDescriptorProto*) other;
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional string name = 1;
 - (BOOL) hasName;
@@ -842,11 +842,11 @@
 - (PBEnumValueDescriptorProto_Builder*) newBuilderForType;
 + (PBEnumValueDescriptorProto_Builder*) newBuilderWithPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) prototype;
 + (PBEnumValueDescriptorProto*) parseFromData:(NSData*) data;
-+ (PBEnumValueDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumValueDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumValueDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
-+ (PBEnumValueDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumValueDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumValueDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBEnumValueDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumValueDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBEnumValueDescriptorProto_Builder : PBGeneratedMessage_Builder {
@@ -865,7 +865,7 @@
 - (PBEnumValueDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBEnumValueDescriptorProto_Builder*) mergeFromPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) other;
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional string name = 1;
 - (BOOL) hasName;
@@ -922,11 +922,11 @@
 - (PBServiceDescriptorProto_Builder*) newBuilderForType;
 + (PBServiceDescriptorProto_Builder*) newBuilderWithPBServiceDescriptorProto:(PBServiceDescriptorProto*) prototype;
 + (PBServiceDescriptorProto*) parseFromData:(NSData*) data;
-+ (PBServiceDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBServiceDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBServiceDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
-+ (PBServiceDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBServiceDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBServiceDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBServiceDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBServiceDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBServiceDescriptorProto_Builder : PBGeneratedMessage_Builder {
@@ -945,7 +945,7 @@
 - (PBServiceDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBServiceDescriptorProto_Builder*) mergeFromPBServiceDescriptorProto:(PBServiceDescriptorProto*) other;
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional string name = 1;
 - (BOOL) hasName;
@@ -1015,11 +1015,11 @@
 - (PBMethodDescriptorProto_Builder*) newBuilderForType;
 + (PBMethodDescriptorProto_Builder*) newBuilderWithPBMethodDescriptorProto:(PBMethodDescriptorProto*) prototype;
 + (PBMethodDescriptorProto*) parseFromData:(NSData*) data;
-+ (PBMethodDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBMethodDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBMethodDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
-+ (PBMethodDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBMethodDescriptorProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBMethodDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBMethodDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBMethodDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBMethodDescriptorProto_Builder : PBGeneratedMessage_Builder {
@@ -1038,7 +1038,7 @@
 - (PBMethodDescriptorProto_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBMethodDescriptorProto_Builder*) mergeFromPBMethodDescriptorProto:(PBMethodDescriptorProto*) other;
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional string name = 1;
 - (BOOL) hasName;
@@ -1124,11 +1124,11 @@
 - (PBFileOptions_Builder*) newBuilderForType;
 + (PBFileOptions_Builder*) newBuilderWithPBFileOptions:(PBFileOptions*) prototype;
 + (PBFileOptions*) parseFromData:(NSData*) data;
-+ (PBFileOptions*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFileOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFileOptions*) parseFromInputStream:(NSInputStream*) input;
-+ (PBFileOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFileOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBOptimizeMode : NSObject {
@@ -1167,7 +1167,7 @@
 - (PBFileOptions_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBFileOptions_Builder*) mergeFromPBFileOptions:(PBFileOptions*) other;
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional string java_package = 1;
 - (BOOL) hasJavaPackage;
@@ -1228,11 +1228,11 @@
 - (PBMessageOptions_Builder*) newBuilderForType;
 + (PBMessageOptions_Builder*) newBuilderWithPBMessageOptions:(PBMessageOptions*) prototype;
 + (PBMessageOptions*) parseFromData:(NSData*) data;
-+ (PBMessageOptions*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBMessageOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBMessageOptions*) parseFromInputStream:(NSInputStream*) input;
-+ (PBMessageOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBMessageOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBMessageOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBMessageOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBMessageOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBMessageOptions_Builder : PBGeneratedMessage_Builder {
@@ -1251,7 +1251,7 @@
 - (PBMessageOptions_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBMessageOptions_Builder*) mergeFromPBMessageOptions:(PBMessageOptions*) other;
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional bool message_set_wire_format = 1 [default = false];
 - (BOOL) hasMessageSetWireFormat;
@@ -1289,11 +1289,11 @@
 - (PBFieldOptions_Builder*) newBuilderForType;
 + (PBFieldOptions_Builder*) newBuilderWithPBFieldOptions:(PBFieldOptions*) prototype;
 + (PBFieldOptions*) parseFromData:(NSData*) data;
-+ (PBFieldOptions*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFieldOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFieldOptions*) parseFromInputStream:(NSInputStream*) input;
-+ (PBFieldOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFieldOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFieldOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBFieldOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBFieldOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBCType : NSObject {
@@ -1332,7 +1332,7 @@
 - (PBFieldOptions_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBFieldOptions_Builder*) mergeFromPBFieldOptions:(PBFieldOptions*) other;
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 // optional .google.protobuf.FieldOptions.CType ctype = 1;
 - (BOOL) hasCtype;
@@ -1362,11 +1362,11 @@
 - (PBEnumOptions_Builder*) newBuilderForType;
 + (PBEnumOptions_Builder*) newBuilderWithPBEnumOptions:(PBEnumOptions*) prototype;
 + (PBEnumOptions*) parseFromData:(NSData*) data;
-+ (PBEnumOptions*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumOptions*) parseFromInputStream:(NSInputStream*) input;
-+ (PBEnumOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBEnumOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBEnumOptions_Builder : PBGeneratedMessage_Builder {
@@ -1385,7 +1385,7 @@
 - (PBEnumOptions_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBEnumOptions_Builder*) mergeFromPBEnumOptions:(PBEnumOptions*) other;
 - (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBEnumValueOptions : PBGeneratedMessage {
@@ -1403,11 +1403,11 @@
 - (PBEnumValueOptions_Builder*) newBuilderForType;
 + (PBEnumValueOptions_Builder*) newBuilderWithPBEnumValueOptions:(PBEnumValueOptions*) prototype;
 + (PBEnumValueOptions*) parseFromData:(NSData*) data;
-+ (PBEnumValueOptions*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumValueOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumValueOptions*) parseFromInputStream:(NSInputStream*) input;
-+ (PBEnumValueOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumValueOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumValueOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBEnumValueOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBEnumValueOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBEnumValueOptions_Builder : PBGeneratedMessage_Builder {
@@ -1426,7 +1426,7 @@
 - (PBEnumValueOptions_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBEnumValueOptions_Builder*) mergeFromPBEnumValueOptions:(PBEnumValueOptions*) other;
 - (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBServiceOptions : PBGeneratedMessage {
@@ -1444,11 +1444,11 @@
 - (PBServiceOptions_Builder*) newBuilderForType;
 + (PBServiceOptions_Builder*) newBuilderWithPBServiceOptions:(PBServiceOptions*) prototype;
 + (PBServiceOptions*) parseFromData:(NSData*) data;
-+ (PBServiceOptions*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBServiceOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBServiceOptions*) parseFromInputStream:(NSInputStream*) input;
-+ (PBServiceOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBServiceOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBServiceOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBServiceOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBServiceOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBServiceOptions_Builder : PBGeneratedMessage_Builder {
@@ -1467,7 +1467,7 @@
 - (PBServiceOptions_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBServiceOptions_Builder*) mergeFromPBServiceOptions:(PBServiceOptions*) other;
 - (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBMethodOptions : PBGeneratedMessage {
@@ -1485,11 +1485,11 @@
 - (PBMethodOptions_Builder*) newBuilderForType;
 + (PBMethodOptions_Builder*) newBuilderWithPBMethodOptions:(PBMethodOptions*) prototype;
 + (PBMethodOptions*) parseFromData:(NSData*) data;
-+ (PBMethodOptions*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBMethodOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBMethodOptions*) parseFromInputStream:(NSInputStream*) input;
-+ (PBMethodOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBMethodOptions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBMethodOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBMethodOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
++ (PBMethodOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
 @interface PBMethodOptions_Builder : PBGeneratedMessage_Builder {
@@ -1508,6 +1508,6 @@
 - (PBMethodOptions_Builder*) mergeFromMessage:(id<Message>) other;
 - (PBMethodOptions_Builder*) mergeFromPBMethodOptions:(PBMethodOptions*) other;
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
-- (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry;
+- (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 @end
 
