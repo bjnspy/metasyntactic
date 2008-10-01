@@ -31,7 +31,7 @@
 }
 
 
-- (MessageOptions*) getOptions {
+- (PBMessageOptions*) getOptions {
     @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
 }
 

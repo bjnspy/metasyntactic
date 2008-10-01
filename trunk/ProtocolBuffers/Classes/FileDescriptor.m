@@ -30,7 +30,7 @@
     [super dealloc];
 }
 
-- (id) initWithProto:(FileDescriptorProto*) proto
+- (id) initWithProto:(PBFileDescriptorProto*) proto
                            dependencies:(NSArray*) dependencies
                                    pool:(DescriptorPool*) pool {
     if (self = [super init]) {
@@ -41,7 +41,7 @@
 }
 
 
-+ (FileDescriptor*) descriptorWithProto:(FileDescriptorProto*) proto
++ (FileDescriptor*) descriptorWithProto:(PBFileDescriptorProto*) proto
                            dependencies:(NSArray*) dependencies
                                    pool:(DescriptorPool*) pool {
     return [[[FileDescriptor alloc] initWithProto:proto
@@ -52,7 +52,7 @@
 
 
 + (FileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies {
-    FileDescriptorProto* proto = [FileDescriptorProto parseFromData:[descriptorData dataUsingEncoding:NSISOLatin1StringEncoding]];
+    PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:[descriptorData dataUsingEncoding:NSISOLatin1StringEncoding]];
     // Hack:  We can't embed a raw byte array inside generated Java code
     //   (at least, not efficiently), but we can embed Strings.  So, the
     //   protocol compiler embeds the FileDescriptorProto as a giant
@@ -65,7 +65,7 @@
 }
 
 
-+ (FileDescriptor*) buildFrom:(FileDescriptorProto*) proto dependencies:(NSArray*) dependencies {
++ (FileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies {
     // Building decsriptors involves two steps:  translating and linking.
     // In the translation step (implemented by FileDescriptor's
     // constructor), we build an object tree mirroring the

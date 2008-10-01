@@ -20,7 +20,7 @@
 
 @property (retain) NSArray* messageTypes;
 
-+ (FileDescriptor*) buildFrom:(FileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
++ (FileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
 + (FileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;
 
 - (NSArray*) getMessageTypes;

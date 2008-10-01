@@ -23,7 +23,7 @@
 @property (retain) NSArray* nestedTypes;
 
 - (NSArray*) getFields;
-- (MessageOptions*) getOptions;
+- (PBMessageOptions*) getOptions;
 
 - (NSString*) getFullName;
 
