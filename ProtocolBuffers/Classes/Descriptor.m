@@ -27,22 +27,22 @@
 }
 
 - (NSArray*) getFields {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (PBMessageOptions*) getOptions {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (NSString*) getFullName {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (NSArray*) getEnumTypes {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
@@ -52,12 +52,12 @@
 
 
 - (BOOL) isExtensionNumber:(int32_t) number {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (FieldDescriptor*) findFieldByNumber:(int32_t) number {
-    @throw [NSException exceptionWithName:@"NotYetImplemented" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 @end

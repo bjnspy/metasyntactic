@@ -14,21 +14,11 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "AbstractMessage.h"
-
-
-@interface GeneratedMessage : AbstractMessage {
-@private
-    UnknownFieldSet* unknownFields;
+@interface GeneratedMessage_ExtendableMessage : GeneratedMessage {
+  @private
+    FieldSet* extensions;
 }
 
-@property (retain) UnknownFieldSet* unknownFields;
-
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable;
-
-- (NSDictionary*) getAllFields;
-
-// @protected
-- (NSMutableDictionary*) getAllFieldsMutable;
+@property (retain) FieldSet* extensions;
 
 @end
