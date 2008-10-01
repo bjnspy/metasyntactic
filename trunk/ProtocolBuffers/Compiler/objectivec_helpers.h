@@ -41,8 +41,14 @@ string UnderscoresToCamelCase(const MethodDescriptor* method);
 // Strips ".proto" or ".protodevel" from the end of a filename.
 string StripProto(const string& filename);
 
-// Gets the name of the file we're going to generate (sans the .pb.h extension)
+// Gets the name of the file we're going to generate (sans the .pb.h
+// extension).  This does not include the path to that file.
 string FileName(const FileDescriptor* file);
+
+// Gets the path of the file we're going to generate (sans the .pb.h
+// extension).  The path will be dependent on the objectivec package
+// declared in the proto package.
+string FilePath(const FileDescriptor* file);
 
 // Gets the name of the root class we'll generate in the file.  This class
 // is not meant for external consumption, but instead contains helpers that
