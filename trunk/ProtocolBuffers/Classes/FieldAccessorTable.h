@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface FieldAccessorTable : NSObject {
+@interface PBFieldAccessorTable : NSObject {
     PBDescriptor* descriptor;
     NSArray* fields;
 }
@@ -22,7 +22,7 @@
 @property (retain) PBDescriptor* descriptor;
 @property (retain) NSArray* fields;
 
-+ (FieldAccessorTable*) tableWithDescriptor:(PBDescriptor*) descriptor
++ (PBFieldAccessorTable*) tableWithDescriptor:(PBDescriptor*) descriptor
                                                   fieldNames:(NSArray*) fieldNames
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass;

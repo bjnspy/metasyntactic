@@ -17,7 +17,7 @@
 #import "GeneratedExtension.h"
 
 
-@implementation GeneratedExtension
+@implementation PBGeneratedExtension
 
 @synthesize descriptor;
 @synthesize type;
@@ -35,15 +35,15 @@
 }
 
 #if 0
-public static final class GeneratedExtension<
+public static final class PBGeneratedExtension<
 ContainingType extends Message, Type> {
     // TODO(kenton):  Find ways to avoid using Java reflection within this
     //   class.  Also try to avoid suppressing unchecked warnings.
     
-    private GeneratedExtension(PBFieldDescriptor descriptor, Class type) {
+    private PBGeneratedExtension(PBFieldDescriptor descriptor, Class type) {
         if (!descriptor.isExtension()) {
             throw new IllegalArgumentException(
-                                               "GeneratedExtension given a regular (non-extension) field.");
+                                               "PBGeneratedExtension given a regular (non-extension) field.");
         }
         
         this.descriptor = descriptor;
@@ -120,7 +120,7 @@ ContainingType extends Message, Type> {
                     // It seems the copy of the embedded message stored inside the
                     // extended message is not of the exact type the user was
                     // expecting.  This can happen if a user defines a
-                    // GeneratedExtension manually and gives it a different type.
+                    // PBGeneratedExtension manually and gives it a different type.
                     // This should not happen in normal use.  But, to be nice, we'll
                     // copy the message to whatever type the caller was expecting.
                     return messageDefaultInstance.newBuilderForType()

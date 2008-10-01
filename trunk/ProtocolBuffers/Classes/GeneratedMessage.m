@@ -38,7 +38,7 @@
 }
 
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ExtensionRegistry_ExtensionInfo : NSObject {
+@interface PBExtensionRegistry_ExtensionInfo : NSObject {
     PBFieldDescriptor* descriptor;
     id<Message> defaultInstance;
 }
@@ -22,7 +22,7 @@
 @property (retain) PBFieldDescriptor* descriptor;
 @property (retain) id<Message> defaultInstance;
 
-+ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor;
-+ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor defaultInstance:(id<Message>) defaultInstance;
++ (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor;
++ (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor defaultInstance:(id<Message>) defaultInstance;
 
 @end

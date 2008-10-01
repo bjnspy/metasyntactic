@@ -21,7 +21,7 @@
 }
 
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable;
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 - (id<Message_Builder>) mergeFromMessage:(id<Message>) other;
 - (PBDescriptor*) getDescriptorForType;
 - (NSDictionary*) getAllFields;

@@ -532,7 +532,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
    id<Message> defaultInstance = nil;
 
     if ([type isExtensionNumber:fieldNumber]) {
-        ExtensionRegistry_ExtensionInfo* extension = [extensionRegistry findExtensionByNumber:type fieldNumber:fieldNumber];
+        PBExtensionRegistry_ExtensionInfo* extension = [extensionRegistry findExtensionByNumber:type fieldNumber:fieldNumber];
         if (extension == nil) {
             field = nil;
         } else {

@@ -34,34 +34,34 @@
 }
 
 
-- (void) verifyExtensionContainingType:(GeneratedExtension*) extension {
+- (void) verifyExtensionContainingType:(PBGeneratedExtension*) extension {
     if (extension.getDescriptor.getContainingType != [self getDescriptorForType]) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 }
 
 
-- (BOOL) hasExtension:(GeneratedExtension*) extension {
+- (BOOL) hasExtension:(PBGeneratedExtension*) extension {
     [self verifyExtensionContainingType:extension];
     return [extensions hasField:extension.getDescriptor];
 }
 
 
 /** Get the number of elements in a repeated extension. */
-- (int32_t) getExtensionCount:(GeneratedExtension*) extension {
+- (int32_t) getExtensionCount:(PBGeneratedExtension*) extension {
     [self verifyExtensionContainingType:extension];
     return [extensions getRepeatedFieldCount:extension.getDescriptor];
 }
 
 
 /** Get the value of an extension. */
-- (id) getExtension:(GeneratedExtension*) extension {
+- (id) getExtension:(PBGeneratedExtension*) extension {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 /** Get one element of a repeated extension. */
-- (id) getExtension:(GeneratedExtension*) extension index:(int32_t) index {
+- (id) getExtension:(PBGeneratedExtension*) extension index:(int32_t) index {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

@@ -17,7 +17,7 @@
 #import "ExtensionRegistry_ExtensionInfo.h"
 
 
-@implementation ExtensionRegistry_ExtensionInfo
+@implementation PBExtensionRegistry_ExtensionInfo
 
 @synthesize descriptor;
 @synthesize defaultInstance;
@@ -41,14 +41,14 @@
 }
 
 
-+ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor {
-    return [ExtensionRegistry_ExtensionInfo infoWithDescriptor:descriptor defaultInstance:nil];
++ (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor {
+    return [PBExtensionRegistry_ExtensionInfo infoWithDescriptor:descriptor defaultInstance:nil];
 }
 
 
-+ (ExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor
++ (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor
                                         defaultInstance:(id<Message>) defaultInstance {
-    return [[[ExtensionRegistry_ExtensionInfo alloc] initWithDescriptor:descriptor defaultInstance:defaultInstance] autorelease];
+    return [[[PBExtensionRegistry_ExtensionInfo alloc] initWithDescriptor:descriptor defaultInstance:defaultInstance] autorelease];
 }
 
 @end
