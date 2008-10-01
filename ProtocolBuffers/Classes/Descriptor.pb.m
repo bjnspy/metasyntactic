@@ -5,131 +5,131 @@
 @implementation DescriptorProtoRoot
 static PBFileDescriptor* descriptor = nil;
 static PBDescriptor* internal_static_google_protobuf_FileDescriptorSet_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_FileDescriptorSet_descriptor {
   return internal_static_google_protobuf_FileDescriptorSet_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable {
   return internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_FileDescriptorProto_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_FileDescriptorProto_descriptor {
   return internal_static_google_protobuf_FileDescriptorProto_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable {
   return internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_DescriptorProto_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_DescriptorProto_descriptor {
   return internal_static_google_protobuf_DescriptorProto_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_fieldAccessorTable {
   return internal_static_google_protobuf_DescriptorProto_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor {
   return internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable {
   return internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_FieldDescriptorProto_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_FieldDescriptorProto_descriptor {
   return internal_static_google_protobuf_FieldDescriptorProto_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable {
   return internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_EnumDescriptorProto_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_EnumDescriptorProto_descriptor {
   return internal_static_google_protobuf_EnumDescriptorProto_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable {
   return internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_EnumValueDescriptorProto_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_EnumValueDescriptorProto_descriptor {
   return internal_static_google_protobuf_EnumValueDescriptorProto_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable {
   return internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_ServiceDescriptorProto_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_ServiceDescriptorProto_descriptor {
   return internal_static_google_protobuf_ServiceDescriptorProto_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable {
   return internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_MethodDescriptorProto_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_MethodDescriptorProto_descriptor {
   return internal_static_google_protobuf_MethodDescriptorProto_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable {
   return internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_FileOptions_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_FileOptions_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_FileOptions_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_FileOptions_descriptor {
   return internal_static_google_protobuf_FileOptions_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_FileOptions_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_FileOptions_fieldAccessorTable {
   return internal_static_google_protobuf_FileOptions_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_MessageOptions_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_MessageOptions_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_MessageOptions_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_MessageOptions_descriptor {
   return internal_static_google_protobuf_MessageOptions_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_MessageOptions_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_MessageOptions_fieldAccessorTable {
   return internal_static_google_protobuf_MessageOptions_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_FieldOptions_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_FieldOptions_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_FieldOptions_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_FieldOptions_descriptor {
   return internal_static_google_protobuf_FieldOptions_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_FieldOptions_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_FieldOptions_fieldAccessorTable {
   return internal_static_google_protobuf_FieldOptions_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_EnumOptions_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_EnumOptions_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_EnumOptions_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_EnumOptions_descriptor {
   return internal_static_google_protobuf_EnumOptions_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_EnumOptions_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_EnumOptions_fieldAccessorTable {
   return internal_static_google_protobuf_EnumOptions_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_EnumValueOptions_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_EnumValueOptions_descriptor {
   return internal_static_google_protobuf_EnumValueOptions_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable {
   return internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_ServiceOptions_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_ServiceOptions_descriptor {
   return internal_static_google_protobuf_ServiceOptions_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_ServiceOptions_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_ServiceOptions_fieldAccessorTable {
   return internal_static_google_protobuf_ServiceOptions_fieldAccessorTable;
 }
 static PBDescriptor* internal_static_google_protobuf_MethodOptions_descriptor = nil;
-static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAccessorTable = nil;
+static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_google_protobuf_MethodOptions_descriptor {
   return internal_static_google_protobuf_MethodOptions_descriptor;
 }
-+ (FieldAccessorTable*) internal_static_google_protobuf_MethodOptions_fieldAccessorTable {
++ (PBFieldAccessorTable*) internal_static_google_protobuf_MethodOptions_fieldAccessorTable {
   return internal_static_google_protobuf_MethodOptions_fieldAccessorTable;
 }
 + (void) initialize {
@@ -141,7 +141,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"File",
       nil];
       internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorSet_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorSet_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBFileDescriptorSet class]
                                                      builderClass:[PBFileDescriptorSet_Builder class]] retain];
@@ -159,7 +159,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"Options",
       nil];
       internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorProto_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBFileDescriptorProto class]
                                                      builderClass:[PBFileDescriptorProto_Builder class]] retain];
@@ -176,7 +176,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"Options",
       nil];
       internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBDescriptorProto class]
                                                      builderClass:[PBDescriptorProto_Builder class]] retain];
@@ -188,7 +188,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"End",
       nil];
       internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBExtensionRange class]
                                                      builderClass:[PBExtensionRange_Builder class]] retain];
@@ -206,7 +206,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"Options",
       nil];
       internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldDescriptorProto_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBFieldDescriptorProto class]
                                                      builderClass:[PBFieldDescriptorProto_Builder class]] retain];
@@ -219,7 +219,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"Options",
       nil];
       internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumDescriptorProto_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBEnumDescriptorProto class]
                                                      builderClass:[PBEnumDescriptorProto_Builder class]] retain];
@@ -232,7 +232,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"Options",
       nil];
       internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueDescriptorProto_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBEnumValueDescriptorProto class]
                                                      builderClass:[PBEnumValueDescriptorProto_Builder class]] retain];
@@ -245,7 +245,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"Options",
       nil];
       internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceDescriptorProto_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBServiceDescriptorProto class]
                                                      builderClass:[PBServiceDescriptorProto_Builder class]] retain];
@@ -259,7 +259,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"Options",
       nil];
       internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodDescriptorProto_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodDescriptorProto_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBMethodDescriptorProto class]
                                                      builderClass:[PBMethodDescriptorProto_Builder class]] retain];
@@ -275,7 +275,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"ObjectivecClassPrefix",
       nil];
       internal_static_google_protobuf_FileOptions_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileOptions_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBFileOptions class]
                                                      builderClass:[PBFileOptions_Builder class]] retain];
@@ -286,7 +286,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"MessageSetWireFormat",
       nil];
       internal_static_google_protobuf_MessageOptions_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MessageOptions_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MessageOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBMessageOptions class]
                                                      builderClass:[PBMessageOptions_Builder class]] retain];
@@ -298,7 +298,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       @"ExperimentalMapKey",
       nil];
       internal_static_google_protobuf_FieldOptions_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldOptions_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBFieldOptions class]
                                                      builderClass:[PBFieldOptions_Builder class]] retain];
@@ -308,7 +308,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
       internal_static_google_protobuf_EnumOptions_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumOptions_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBEnumOptions class]
                                                      builderClass:[PBEnumOptions_Builder class]] retain];
@@ -318,7 +318,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
       internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueOptions_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBEnumValueOptions class]
                                                      builderClass:[PBEnumValueOptions_Builder class]] retain];
@@ -328,7 +328,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
       internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceOptions_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBServiceOptions class]
                                                      builderClass:[PBServiceOptions_Builder class]] retain];
@@ -338,7 +338,7 @@ static FieldAccessorTable* internal_static_google_protobuf_MethodOptions_fieldAc
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
       internal_static_google_protobuf_MethodOptions_fieldAccessorTable = 
-        [[FieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodOptions_descriptor
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodOptions_descriptor
                                                        fieldNames:fieldNames
                                                      messageClass:[PBMethodOptions class]
                                                      builderClass:[PBMethodOptions_Builder class]] retain];
@@ -457,7 +457,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorSet_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable];
 }
 
@@ -724,7 +724,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorProto_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable];
 }
 
@@ -1373,7 +1373,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_fieldAccessorTable];
 }
 
@@ -1550,7 +1550,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable];
 }
 
@@ -2271,7 +2271,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldDescriptorProto_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable];
 }
 
@@ -2947,7 +2947,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumDescriptorProto_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable];
 }
 
@@ -3291,7 +3291,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueDescriptorProto_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable];
 }
 
@@ -3595,7 +3595,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceDescriptorProto_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable];
 }
 
@@ -3944,7 +3944,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodDescriptorProto_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable];
 }
 
@@ -4300,7 +4300,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FileOptions_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileOptions_fieldAccessorTable];
 }
 
@@ -4737,7 +4737,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_MessageOptions_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_MessageOptions_fieldAccessorTable];
 }
 
@@ -4953,7 +4953,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldOptions_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldOptions_fieldAccessorTable];
 }
 
@@ -5253,7 +5253,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumOptions_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumOptions_fieldAccessorTable];
 }
 
@@ -5426,7 +5426,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueOptions_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable];
 }
 
@@ -5599,7 +5599,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceOptions_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceOptions_fieldAccessorTable];
 }
 
@@ -5772,7 +5772,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodOptions_descriptor];
 }
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodOptions_fieldAccessorTable];
 }
 

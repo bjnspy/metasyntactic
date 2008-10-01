@@ -23,7 +23,7 @@
 
 @property (retain) UnknownFieldSet* unknownFields;
 
-- (FieldAccessorTable*) internalGetFieldAccessorTable;
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (NSDictionary*) getAllFields;
 

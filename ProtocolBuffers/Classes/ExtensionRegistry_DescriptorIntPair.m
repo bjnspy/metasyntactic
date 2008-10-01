@@ -18,7 +18,7 @@
 
 #import "Descriptor.h"
 
-@implementation ExtensionRegistry_DescriptorIntPair
+@implementation PBExtensionRegistry_DescriptorIntPair
 
 @synthesize descriptor;
 @synthesize number;
@@ -43,9 +43,9 @@
 }
 
 
-+ (ExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor
++ (PBExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor
                                                      number:(int32_t) number {
-    return [[[ExtensionRegistry_DescriptorIntPair alloc] initWithDescriptor:descriptor number:number] autorelease];
+    return [[[PBExtensionRegistry_DescriptorIntPair alloc] initWithDescriptor:descriptor number:number] autorelease];
 }
 
 
@@ -55,11 +55,11 @@
 
 
 - (BOOL) isEqual:(id) obj {
-    if (![obj isKindOfClass:[ExtensionRegistry_DescriptorIntPair class]]) {
+    if (![obj isKindOfClass:[PBExtensionRegistry_DescriptorIntPair class]]) {
         return false;
     }
 
-    ExtensionRegistry_DescriptorIntPair* other = obj;
+    PBExtensionRegistry_DescriptorIntPair* other = obj;
     return descriptor == other.descriptor && number == other.number;
 }
 

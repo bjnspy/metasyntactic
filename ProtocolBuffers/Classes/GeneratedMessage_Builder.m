@@ -36,11 +36,11 @@
 }
 
 /**
- * Get the FieldAccessorTable for this type.  We can't have the message
+ * Get the PBFieldAccessorTable for this type.  We can't have the message
  * class pass this in to the constructor because of bootstrapping trouble
  * with DescriptorProtos.
  */
-- (FieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
     return self.internalGetResult.internalGetFieldAccessorTable;
 }
 

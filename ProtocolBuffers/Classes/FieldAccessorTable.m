@@ -25,7 +25,7 @@
 #import "SingularEnumFieldAccessor.h"
 #import "SingularFieldAccessor.h"
 
-@implementation FieldAccessorTable
+@implementation PBFieldAccessorTable
 
 @synthesize descriptor;
 @synthesize fields;
@@ -76,11 +76,11 @@
 }
 
 
-+ (FieldAccessorTable*) tableWithDescriptor:(PBDescriptor*) descriptor
++ (PBFieldAccessorTable*) tableWithDescriptor:(PBDescriptor*) descriptor
                                                   fieldNames:(NSArray*) fieldNames
                                                 messageClass:(Class) messageClass
                                                 builderClass:(Class) builderClass {
-    return [[[FieldAccessorTable alloc] initWithDescriptor:descriptor
+    return [[[PBFieldAccessorTable alloc] initWithDescriptor:descriptor
                                                                  fieldNames:fieldNames
                                                                messageClass:messageClass
                                                                builderClass:builderClass] autorelease];

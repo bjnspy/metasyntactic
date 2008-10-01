@@ -28,9 +28,9 @@
 - (id) initWithExtensionsByName:(NSMutableDictionary*) extensionsByName
              extensionsByNumber:(NSMutableDictionary*) extensionsByNumber;
 
-- (void) addExtensionInfo:(ExtensionRegistry_ExtensionInfo*) extension;
+- (void) addExtensionInfo:(PBExtensionRegistry_ExtensionInfo*) extension;
 
-- (ExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
+- (PBExtensionRegistry_ExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
                                                fieldNumber:(int32_t) fieldNumber;
 
 #if 0
@@ -41,10 +41,10 @@
 
 - (ExtensionRegistry*) unmodifiable;
 
-- (ExtensionRegistry_ExtensionInfo*) findExtensionByName:(NSString*) fullName;
-- (ExtensionRegistry_ExtensionInfo*) findExtensionByContainingType:(Descriptors_Descriptor*) containingType fieldNumber:(int32_t) fieldNumber;
+- (PBExtensionRegistry_ExtensionInfo*) findExtensionByName:(NSString*) fullName;
+- (PBExtensionRegistry_ExtensionInfo*) findExtensionByContainingType:(Descriptors_Descriptor*) containingType fieldNumber:(int32_t) fieldNumber;
 
-- (void) add:(GeneratedExtension*) extension;
+- (void) add:(PBGeneratedExtension*) extension;
 - (void) add:(PBFieldDescriptor*) type;
 - (void) add:(PBFieldDescriptor*) type defaultInstance:(Message*) defaultInstance;
 
