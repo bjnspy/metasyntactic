@@ -33,7 +33,7 @@ int32_t WireFormatGetTagFieldNumber(int32_t tag) {
 }
 
 
-int32_t WireFormatGetWireFormatForFieldType(FieldDescriptorType type) {
+int32_t WireFormatGetWireFormatForFieldType(PBFieldDescriptorType type) {
     switch (type) {
         case FieldDescriptorTypeDouble  : return WireFormatFixed64;
         case FieldDescriptorTypeFloat   : return WireFormatFixed32;

@@ -34,7 +34,7 @@ int32_t WireFormatMakeTag(int32_t fieldNumber, int32_t wireType);
 int32_t WireFormatGetTagWireType(int32_t tag);
 int32_t WireFormatGetTagFieldNumber(int32_t tag);
 
-int32_t WireFormatGetWireFormatForFieldType(FieldDescriptorType type);
+int32_t WireFormatGetWireFormatForFieldType(PBFieldDescriptorType type);
 
 #define WireFormatMessageSetItemTag (WireFormatMakeTag(WireFormatMessageSetItem, WireFormatStartGroup))
 #define WireFormatMessageSetItemEndTag (WireFormatMakeTag(WireFormatMessageSetItem, WireFormatEndGroup))

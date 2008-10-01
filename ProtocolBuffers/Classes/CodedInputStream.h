@@ -94,7 +94,7 @@ int64_t decodeZigZag64(int64_t n);
 
 - (void) checkLastTagWas:(int32_t) value;
 
-- (id) readPrimitiveField:(FieldDescriptorType) type;
+- (id) readPrimitiveField:(PBFieldDescriptorType) type;
 
 #if 0
 + (PBCodedInputStream*) createFromInputStream:(NSInputStream*) input;

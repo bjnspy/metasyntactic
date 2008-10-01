@@ -276,7 +276,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
  *               {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
  *               this field.
  */
-- (void) writeField:(FieldDescriptorType) type
+- (void) writeField:(PBFieldDescriptorType) type
              number:(int32_t) number
               value:(id) value {
     switch (type) {
@@ -524,7 +524,7 @@ int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value) {
  *               {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
  *               this field.
  */
-int32_t computeFieldSize(FieldDescriptorType type,
+int32_t computeFieldSize(PBFieldDescriptorType type,
                          int32_t number,
                          id value) {
     switch (type) {
