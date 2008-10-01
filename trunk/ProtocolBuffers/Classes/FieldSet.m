@@ -23,7 +23,7 @@
 #import "EnumDescriptor.h"
 #import "EnumValueDescriptor.h"
 #import "ExtensionRegistry.h"
-#import "ExtensionRegistry_ExtensionInfo.h"
+#import "ExtensionInfo.h"
 #import "Field.h"
 #import "FieldDescriptor.h"
 #import "Message.h"
@@ -532,7 +532,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
    id<PBMessage> defaultInstance = nil;
 
     if ([type isExtensionNumber:fieldNumber]) {
-        PBExtensionRegistry_ExtensionInfo* extension = [extensionRegistry findExtensionByNumber:type fieldNumber:fieldNumber];
+        PBExtensionInfo* extension = [extensionRegistry findExtensionByNumber:type fieldNumber:fieldNumber];
         if (extension == nil) {
             field = nil;
         } else {

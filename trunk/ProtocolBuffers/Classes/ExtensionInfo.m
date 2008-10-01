@@ -17,7 +17,7 @@
 #import "ExtensionInfo.h"
 
 
-@implementation PBExtensionRegistry_ExtensionInfo
+@implementation PBExtensionInfo
 
 @synthesize descriptor;
 @synthesize defaultInstance;
@@ -41,14 +41,14 @@
 }
 
 
-+ (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor {
-    return [PBExtensionRegistry_ExtensionInfo infoWithDescriptor:descriptor defaultInstance:nil];
++ (PBExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor {
+    return [PBExtensionInfo infoWithDescriptor:descriptor defaultInstance:nil];
 }
 
 
-+ (PBExtensionRegistry_ExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor
++ (PBExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor
                                         defaultInstance:(id<PBMessage>) defaultInstance {
-    return [[[PBExtensionRegistry_ExtensionInfo alloc] initWithDescriptor:descriptor defaultInstance:defaultInstance] autorelease];
+    return [[[PBExtensionInfo alloc] initWithDescriptor:descriptor defaultInstance:defaultInstance] autorelease];
 }
 
 @end
