@@ -102,7 +102,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 
 - (void) addFieldDescriptor:(PBFieldDescriptor*) type
-            defaultInstance:(id<Message>) defaultInstance {
+            defaultInstance:(id<PBMessage>) defaultInstance {
     if (type.getObjectiveCType != FieldDescriptorTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"ExtensionRegistry.add() provided a default instance for a non-message extension."

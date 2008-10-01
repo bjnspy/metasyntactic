@@ -21,7 +21,7 @@
     /*
      private final Method enumValueOf;
      private final Method enumGetValueDescriptor;
-     private final Message messageDefaultInstance;
+     private final PBMessage messageDefaultInstance;
      */
 }
 

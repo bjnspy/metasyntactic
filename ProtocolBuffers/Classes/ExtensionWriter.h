@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface ExtensionWriter : NSObject {
+@interface PBExtensionWriter : NSObject {
     PBFieldSet* extensions;
     NSEnumerator* enumerator;
     PBFieldDescriptor* nextKey;
@@ -26,6 +26,6 @@
 @property (retain) PBFieldDescriptor* nextKey;
 @property (retain) id nextValue;
 
-+ (ExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions;
++ (PBExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions;
 
 @end

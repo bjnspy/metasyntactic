@@ -156,7 +156,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 
 /** Write a {@code group} field, including tag, to the stream. */
 - (void) writeGroup:(int32_t) fieldNumber
-              value:(id<Message>) value {
+              value:(id<PBMessage>) value {
     [self writeTag:fieldNumber format:WireFormatStartGroup];
     [value writeToCodedOutputStream:self];
     [self writeTag:fieldNumber format:WireFormatEndGroup];
@@ -174,7 +174,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 
 /** Write an embedded message field, including tag, to the stream. */
 - (void) writeMessage:(int32_t) fieldNumber
-                value:(id<Message>) value {
+                value:(id<PBMessage>) value {
     [self writeTag:fieldNumber format:WireFormatLengthDelimited];
     [self writeRawVarint32:[value getSerializedSize]];
     [value writeToCodedOutputStream:self];
@@ -245,7 +245,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
  * the wire format differs from normal fields.
  */
 - (void) writeMessageSetExtension:(int32_t) fieldNumber
-                            value:(id<Message>) value {
+                            value:(id<PBMessage>) value {
     [self writeTag:WireFormatMessageSetItem format:WireFormatStartGroup];
     [self writeUInt32:WireFormatMessageSetTypeId value:fieldNumber];
     [self writeMessage:WireFormatMessageSetMessage value:value];
@@ -273,7 +273,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
  * @param number The field's number.
  * @param value  Object representing the field's value.  Must be of the exact
  *               type which would be returned by
- *               {@link Message#getField(Descriptors.PBFieldDescriptor)} for
+ *               {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
  *               this field.
  */
 - (void) writeField:(FieldDescriptorType) type
@@ -395,7 +395,7 @@ int32_t computeStringSize(int32_t fieldNumber, NSString* value) {
  * Compute the number of bytes that would be needed to encode a
  * {@code group} field, including tag.
  */
-int32_t computeGroupSize(int32_t fieldNumber, id<Message> value) {
+int32_t computeGroupSize(int32_t fieldNumber, id<PBMessage> value) {
     return computeTagSize(fieldNumber) * 2 + [value getSerializedSize];
 }
 
@@ -415,7 +415,7 @@ int32_t computeUnknownGroupSize(int32_t fieldNumber,
  * Compute the number of bytes that would be needed to encode an
  * embedded message field, including tag.
  */
-int32_t computeMessageSize(int32_t fieldNumber, id<Message> value) {
+int32_t computeMessageSize(int32_t fieldNumber, id<PBMessage> value) {
     int32_t size = [value getSerializedSize];
     return computeTagSize(fieldNumber) + computeRawVarint32Size(size) + size;
 }
@@ -494,7 +494,7 @@ int32_t computeSInt64Size(int32_t fieldNumber, int64_t value) {
  * MessageSet extension to the stream.  For historical reasons,
  * the wire format differs from normal fields.
  */
-int32_t computeMessageSetExtensionSize(int32_t fieldNumber, id<Message> value) {
+int32_t computeMessageSetExtensionSize(int32_t fieldNumber, id<PBMessage> value) {
     return computeTagSize(WireFormatMessageSetItem) * 2 +
     computeUInt32Size(WireFormatMessageSetTypeId, fieldNumber) +
     computeMessageSize(WireFormatMessageSetMessage, value);
@@ -521,7 +521,7 @@ int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value) {
  * @param number The field's number.
  * @param value  Object representing the field's value.  Must be of the exact
  *               type which would be returned by
- *               {@link Message#getField(Descriptors.PBFieldDescriptor)} for
+ *               {@link PBMessage#getField(Descriptors.PBFieldDescriptor)} for
  *               this field.
  */
 int32_t computeFieldSize(FieldDescriptorType type,

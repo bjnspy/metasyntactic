@@ -18,7 +18,7 @@
 
 #import "FieldSet.h"
 
-@implementation ExtensionWriter
+@implementation PBExtensionWriter
 
 @synthesize extensions;
 @synthesize enumerator;
@@ -55,15 +55,15 @@
 }
 
 
-+ (ExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions {
-    return [[[ExtensionWriter alloc] initWithExtensions:extensions] autorelease];
++ (PBExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions {
+    return [[[PBExtensionWriter alloc] initWithExtensions:extensions] autorelease];
 }
 
 
 /**
  * Used by subclasses to serialize extensions.  Extension ranges may be
  * interleaved with field numbers, but we must write them in canonical
- * (sorted by field number) order.  ExtensionWriter helps us write
+ * (sorted by field number) order.  PBExtensionWriter helps us write
  * individual ranges of extensions at once.
  */
 - (void) writeUntil:(int32_t) end output:(PBCodedOutputStream*) output {

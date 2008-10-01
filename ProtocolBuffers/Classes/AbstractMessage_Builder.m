@@ -26,7 +26,7 @@
 #import "UnknownFieldSet_Builder.h"
 
 
-@implementation AbstractMessage_Builder
+@implementation PBAbstractMessage_Builder
 
 
 - (id<PBMessage_Builder>) clone {
@@ -43,16 +43,16 @@
 }
 
 
-- (id<PBMessage_Builder>) mergeFromMessage:(id<Message>) other {
+- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
     if ([other getDescriptorForType] != self.getDescriptorForType) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage:(id<Message>) can only merge messages of the same type." userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage:(id<PBMessage>) can only merge messages of the same type." userInfo:nil];
     }
 
     // Note:  We don't attempt to verify that other's fields have valid
     //   types.  Doing so would be a losing battle.  We'd have to verify
     //   all sub-messages as well, and we'd have to make copies of all of
     //   them to insure that they don't change after verification (since
-    //   the Message interface itself cannot enforce immutability of
+    //   the PBMessage interface itself cannot enforce immutability of
     //   implementations).
     // TODO(kenton):  Provide a function somewhere called makeDeepCopy()
     //   which allows people to make secure deep copies of messages.
@@ -65,7 +65,7 @@
                 [self addRepeatedField:field value:element];
             }
         } else if (field.getObjectiveCType == ObjectiveCTypeMessage) {
-            id<Message> existingValue = [self getField:field];
+            id<PBMessage> existingValue = [self getField:field];
 
             if (existingValue == [existingValue getDefaultInstanceForType]) {
                 [self setField:field value:value];
@@ -139,7 +139,7 @@
 }
 
 
-- (id<Message>) buildParsed {
+- (id<PBMessage>) buildParsed {
     if (![self isInitialized]) {
         @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
     }
@@ -147,12 +147,12 @@
 }
 
 
-- (id<Message>) build {
+- (id<PBMessage>) build {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id<Message>) buildPartial {
+- (id<PBMessage>) buildPartial {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
@@ -167,7 +167,7 @@
 }
 
 
-- (id<Message>) getDefaultInstanceForType {
+- (id<PBMessage>) getDefaultInstanceForType {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

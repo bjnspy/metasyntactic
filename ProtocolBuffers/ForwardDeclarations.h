@@ -17,10 +17,10 @@
 enum FieldDescriptorType;
 enum PBObjectiveCType;
 
-@protocol Message;
+@protocol PBMessage;
 @protocol PBMessage_Builder;
-@protocol RpcChannel;
-@protocol RpcController;
+@protocol PBRpcChannel;
+@protocol PBRpcController;
 @protocol PBService;
 @protocol PBFieldAccessor;
 

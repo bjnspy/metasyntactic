@@ -69,39 +69,39 @@
 }
 
 
-+ (id<Message>) parseFrom:(PBDescriptor*) type
++ (id<PBMessage>) parseFrom:(PBDescriptor*) type
          codedInputStream:(PBCodedInputStream*) input {
     return [[[PBDynamicMessage builderWithType:type] mergeFromCodedInputStream:input] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(PBDescriptor*) type
++ (id<PBMessage>) parseFrom:(PBDescriptor*) type
          codedInputStream:(PBCodedInputStream*) input
         extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     return [[[PBDynamicMessage builderWithType:type] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(PBDescriptor*) type
++ (id<PBMessage>) parseFrom:(PBDescriptor*) type
                      data:(NSData*) data {
     return [[[PBDynamicMessage builderWithType:type] mergeFromData:data] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(PBDescriptor*) type
++ (id<PBMessage>) parseFrom:(PBDescriptor*) type
                      data:(NSData*) data
         extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     return [[[PBDynamicMessage builderWithType:type] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(PBDescriptor*) type
++ (id<PBMessage>) parseFrom:(PBDescriptor*) type
               inputStream:(NSInputStream*) input {
     return [[[PBDynamicMessage builderWithType:type] mergeFromInputStream:input] buildParsed];
 }
 
 
-+ (id<Message>) parseFrom:(PBDescriptor*) type
++ (id<PBMessage>) parseFrom:(PBDescriptor*) type
               inputStream:(NSInputStream*) input
         extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
     return [[[PBDynamicMessage builderWithType:type] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
@@ -113,7 +113,7 @@
 }
 
 
-+ (PBDynamicMessage_Builder*) builderWithMessage:(id<Message>) prototype {
++ (PBDynamicMessage_Builder*) builderWithMessage:(id<PBMessage>) prototype {
     return [[PBDynamicMessage_Builder builderWithType:[prototype getDescriptorForType]] mergeFromMessage:prototype];
 }
 

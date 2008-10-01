@@ -16,13 +16,13 @@
 
 #import "AbstractMessage_Builder.h"
 
-@interface PBGeneratedMessage_Builder : AbstractMessage_Builder {
+@interface PBGeneratedMessage_Builder : PBAbstractMessage_Builder {
 
 }
 
 
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
-- (id<PBMessage_Builder>) mergeFromMessage:(id<Message>) other;
+- (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
 - (PBDescriptor*) getDescriptorForType;
 - (NSDictionary*) getAllFields;
 - (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field;

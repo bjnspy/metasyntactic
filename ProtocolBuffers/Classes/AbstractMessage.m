@@ -49,7 +49,7 @@
             id value = [allFields objectForKey:field];
 
             if (field.isRepeated) {
-                for (id<Message> element in value) {
+                for (id<PBMessage> element in value) {
                     if (![element isInitialized]) {
                         return NO;
                     }
@@ -140,7 +140,7 @@
         return YES;
     }
 
-    if (![other conformsToProtocol:@protocol(Message)]) {
+    if (![other conformsToProtocol:@protocol(PBMessage)]) {
         return NO;
     }
 
@@ -165,7 +165,7 @@
 }
 
 
-- (id<Message>) getDefaultInstanceForType {
+- (id<PBMessage>) getDefaultInstanceForType {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

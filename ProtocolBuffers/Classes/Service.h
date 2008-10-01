@@ -17,10 +17,10 @@
 @protocol PBService
 - (PBServiceDescriptor*) getDescriptorForType;
 - (void) callMethod:(PBMethodDescriptor*) method
-         controller:(id<RpcController>) controller
-            request:(id<Message>) request
+         controller:(id<PBRpcController>) controller
+            request:(id<PBMessage>) request
              target:(id) target
            selector:(SEL) selector;
-- (id<Message>) getRequestPrototype:(PBMethodDescriptor*) method;
-- (id<Message>) getResponsePrototype:(PBMethodDescriptor*) method;
+- (id<PBMessage>) getRequestPrototype:(PBMethodDescriptor*) method;
+- (id<PBMessage>) getResponsePrototype:(PBMethodDescriptor*) method;
 @end
