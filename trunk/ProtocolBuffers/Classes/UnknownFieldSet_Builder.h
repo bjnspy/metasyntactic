@@ -15,6 +15,7 @@
 // limitations under the License.
 
 @interface PBUnknownFieldSet_Builder : NSObject {
+@private
     NSMutableDictionary* fields;
 
     // Optimization:  We keep around a builder for the last field that was
@@ -25,9 +26,9 @@
     PBMutableField* lastField;
 }
 
-@property (retain) NSMutableDictionary* fields;
-@property int32_t lastFieldNumber;
-@property (retain) PBMutableField* lastField;
+@property (retain, readonly) NSMutableDictionary* fields;
+@property (readonly) int32_t lastFieldNumber;
+@property (retain, readonly) PBMutableField* lastField;
 
 + (PBUnknownFieldSet_Builder*) newBuilder;
 

@@ -165,7 +165,7 @@
 }
 
 
-- (id<PBMessage>) getDefaultInstanceForType {
+- (id<PBMessage>) defaultInstanceForType {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

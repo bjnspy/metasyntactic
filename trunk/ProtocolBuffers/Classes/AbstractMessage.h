@@ -22,7 +22,7 @@
 }
 
 - (PBDescriptor*) descriptorForType;
-- (id<PBMessage>) getDefaultInstanceForType;
+- (id<PBMessage>) defaultInstanceForType;
 - (NSDictionary*) allFields;
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
