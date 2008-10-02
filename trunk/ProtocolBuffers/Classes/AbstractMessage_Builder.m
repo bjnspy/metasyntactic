@@ -35,7 +35,7 @@
 
 
 - (id<PBMessage_Builder>) clear {
-    for (PBFieldDescriptor* key in self.getAllFields) {
+    for (PBFieldDescriptor* key in self.allFields) {
         [self clearField:key];
     }
 
@@ -44,7 +44,7 @@
 
 
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
-    if ([other getDescriptorForType] != self.getDescriptorForType) {
+    if ([other descriptorForType] != self.descriptorForType) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage:(id<PBMessage>) can only merge messages of the same type." userInfo:nil];
     }
 
@@ -56,7 +56,7 @@
     //   implementations).
     // TODO(kenton):  Provide a function somewhere called makeDeepCopy()
     //   which allows people to make secure deep copies of messages.
-    NSDictionary* allFields = self.getAllFields;
+    NSDictionary* allFields = self.allFields;
     for (PBFieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
 
@@ -162,7 +162,7 @@
 }
 
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
@@ -172,7 +172,7 @@
 }
 
 
-- (NSDictionary*) getAllFields {
+- (NSDictionary*) allFields {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

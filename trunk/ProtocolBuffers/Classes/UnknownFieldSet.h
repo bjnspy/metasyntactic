@@ -29,21 +29,7 @@
 - (void) writeAsMessageSetTo:(PBCodedOutputStream*) output;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 
-- (int32_t) getSerializedSize;
+- (int32_t) serializedSize;
 - (int32_t) getSerializedSizeAsMessageSet;
-
-#if 0
-+ (PBUnknownFieldSet_Builder*) newBuilder:(PBUnknownFieldSet*) copyFrom;
-
-+ (PBUnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input;
-+ (PBUnknownFieldSet*) parseFromData:(NSData*) data;
-+ (PBUnknownFieldSet*) parserFromInputStream:(NSInputStream*) input;
-
-- (NSDictionary*) toDictionary;
-- (BOOL) hasField:(int32_t) number;
-- (UnknownFieldSet_Field*) getField:(int32_t) number;
-- (void) writeToOutputStream:(NSOutputStream*) output;
-- (NSData*) toData;
-#endif
 
 @end

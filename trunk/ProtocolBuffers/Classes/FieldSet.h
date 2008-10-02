@@ -40,7 +40,7 @@
 - (id) initWithFields:(NSMutableDictionary*) fields;
 
 - (void) clear;
-- (NSDictionary*) getAllFields;
+- (NSDictionary*) allFields;
 
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
@@ -57,7 +57,7 @@
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 
-- (int32_t) getSerializedSize;
+- (int32_t) serializedSize;
 
 - (void) mergeFromMessage:(id<PBMessage>) other;
 - (void) mergeFromFieldSet:(PBFieldSet*) other;

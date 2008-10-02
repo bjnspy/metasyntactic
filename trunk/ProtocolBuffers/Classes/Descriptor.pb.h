@@ -113,7 +113,7 @@
 // Construct using PBFileDescriptorSet.newBuilder()
 - (PBFileDescriptorSet_Builder*) clear;
 - (PBFileDescriptorSet_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBFileDescriptorSet*) getDefaultInstanceForType;
 - (PBFileDescriptorSet*) build;
 - (PBFileDescriptorSet*) buildParsed;
@@ -215,7 +215,7 @@
 // Construct using PBFileDescriptorProto.newBuilder()
 - (PBFileDescriptorProto_Builder*) clear;
 - (PBFileDescriptorProto_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBFileDescriptorProto*) getDefaultInstanceForType;
 - (PBFileDescriptorProto*) build;
 - (PBFileDescriptorProto*) buildParsed;
@@ -408,7 +408,7 @@
 // Construct using PBExtensionRange.newBuilder()
 - (PBExtensionRange_Builder*) clear;
 - (PBExtensionRange_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBExtensionRange*) getDefaultInstanceForType;
 - (PBExtensionRange*) build;
 - (PBExtensionRange*) buildParsed;
@@ -439,7 +439,7 @@
 // Construct using PBDescriptorProto.newBuilder()
 - (PBDescriptorProto_Builder*) clear;
 - (PBDescriptorProto_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBDescriptorProto*) getDefaultInstanceForType;
 - (PBDescriptorProto*) build;
 - (PBDescriptorProto*) buildParsed;
@@ -626,7 +626,7 @@
 - (int32_t) number;
 + (PBType*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
-- (PBEnumDescriptor*) getDescriptorForType;
+- (PBEnumDescriptor*) descriptorForType;
 + (PBEnumDescriptor*) getDescriptor;
 
 + (PBType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -647,7 +647,7 @@
 - (int32_t) number;
 + (PBLabel*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
-- (PBEnumDescriptor*) getDescriptorForType;
+- (PBEnumDescriptor*) descriptorForType;
 + (PBEnumDescriptor*) getDescriptor;
 
 + (PBLabel*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -661,7 +661,7 @@
 // Construct using PBFieldDescriptorProto.newBuilder()
 - (PBFieldDescriptorProto_Builder*) clear;
 - (PBFieldDescriptorProto_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBFieldDescriptorProto*) getDefaultInstanceForType;
 - (PBFieldDescriptorProto*) build;
 - (PBFieldDescriptorProto*) buildParsed;
@@ -771,7 +771,7 @@
 // Construct using PBEnumDescriptorProto.newBuilder()
 - (PBEnumDescriptorProto_Builder*) clear;
 - (PBEnumDescriptorProto_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBEnumDescriptorProto*) getDefaultInstanceForType;
 - (PBEnumDescriptorProto*) build;
 - (PBEnumDescriptorProto*) buildParsed;
@@ -857,7 +857,7 @@
 // Construct using PBEnumValueDescriptorProto.newBuilder()
 - (PBEnumValueDescriptorProto_Builder*) clear;
 - (PBEnumValueDescriptorProto_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBEnumValueDescriptorProto*) getDefaultInstanceForType;
 - (PBEnumValueDescriptorProto*) build;
 - (PBEnumValueDescriptorProto*) buildParsed;
@@ -937,7 +937,7 @@
 // Construct using PBServiceDescriptorProto.newBuilder()
 - (PBServiceDescriptorProto_Builder*) clear;
 - (PBServiceDescriptorProto_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBServiceDescriptorProto*) getDefaultInstanceForType;
 - (PBServiceDescriptorProto*) build;
 - (PBServiceDescriptorProto*) buildParsed;
@@ -1030,7 +1030,7 @@
 // Construct using PBMethodDescriptorProto.newBuilder()
 - (PBMethodDescriptorProto_Builder*) clear;
 - (PBMethodDescriptorProto_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBMethodDescriptorProto*) getDefaultInstanceForType;
 - (PBMethodDescriptorProto*) build;
 - (PBMethodDescriptorProto*) buildParsed;
@@ -1145,7 +1145,7 @@
 - (int32_t) number;
 + (PBOptimizeMode*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
-- (PBEnumDescriptor*) getDescriptorForType;
+- (PBEnumDescriptor*) descriptorForType;
 + (PBEnumDescriptor*) getDescriptor;
 
 + (PBOptimizeMode*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -1159,7 +1159,7 @@
 // Construct using PBFileOptions.newBuilder()
 - (PBFileOptions_Builder*) clear;
 - (PBFileOptions_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBFileOptions*) getDefaultInstanceForType;
 - (PBFileOptions*) build;
 - (PBFileOptions*) buildParsed;
@@ -1243,7 +1243,7 @@
 // Construct using PBMessageOptions.newBuilder()
 - (PBMessageOptions_Builder*) clear;
 - (PBMessageOptions_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBMessageOptions*) getDefaultInstanceForType;
 - (PBMessageOptions*) build;
 - (PBMessageOptions*) buildParsed;
@@ -1310,7 +1310,7 @@
 - (int32_t) number;
 + (PBCType*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
-- (PBEnumDescriptor*) getDescriptorForType;
+- (PBEnumDescriptor*) descriptorForType;
 + (PBEnumDescriptor*) getDescriptor;
 
 + (PBCType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -1324,7 +1324,7 @@
 // Construct using PBFieldOptions.newBuilder()
 - (PBFieldOptions_Builder*) clear;
 - (PBFieldOptions_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBFieldOptions*) getDefaultInstanceForType;
 - (PBFieldOptions*) build;
 - (PBFieldOptions*) buildParsed;
@@ -1377,7 +1377,7 @@
 // Construct using PBEnumOptions.newBuilder()
 - (PBEnumOptions_Builder*) clear;
 - (PBEnumOptions_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBEnumOptions*) getDefaultInstanceForType;
 - (PBEnumOptions*) build;
 - (PBEnumOptions*) buildParsed;
@@ -1418,7 +1418,7 @@
 // Construct using PBEnumValueOptions.newBuilder()
 - (PBEnumValueOptions_Builder*) clear;
 - (PBEnumValueOptions_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBEnumValueOptions*) getDefaultInstanceForType;
 - (PBEnumValueOptions*) build;
 - (PBEnumValueOptions*) buildParsed;
@@ -1459,7 +1459,7 @@
 // Construct using PBServiceOptions.newBuilder()
 - (PBServiceOptions_Builder*) clear;
 - (PBServiceOptions_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBServiceOptions*) getDefaultInstanceForType;
 - (PBServiceOptions*) build;
 - (PBServiceOptions*) buildParsed;
@@ -1500,7 +1500,7 @@
 // Construct using PBMethodOptions.newBuilder()
 - (PBMethodOptions_Builder*) clear;
 - (PBMethodOptions_Builder*) clone;
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (PBMethodOptions*) getDefaultInstanceForType;
 - (PBMethodOptions*) build;
 - (PBMethodOptions*) buildParsed;

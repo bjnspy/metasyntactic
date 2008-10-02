@@ -114,11 +114,11 @@
 
 
 + (PBDynamicMessage_Builder*) builderWithMessage:(id<PBMessage>) prototype {
-    return [[PBDynamicMessage_Builder builderWithType:[prototype getDescriptorForType]] mergeFromMessage:prototype];
+    return [[PBDynamicMessage_Builder builderWithType:[prototype descriptorForType]] mergeFromMessage:prototype];
 }
 
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
     return type;
 }
 
@@ -128,8 +128,8 @@
 }
 
 
-- (NSDictionary*) getAllFields {
-    return fields.getAllFields;
+- (NSDictionary*) allFields {
+    return fields.allFields;
 }
 
 
@@ -189,17 +189,17 @@
 }
 
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
     int32_t size = dm_memoizedSize;
     if (size != -1) {
         return size;
     }
 
-    size = fields.getSerializedSize;
+    size = fields.serializedSize;
     if (type.options.getMessageSetWireFormat) {
         size += unknownFields.getSerializedSizeAsMessageSet;
     } else {
-        size += unknownFields.getSerializedSize;
+        size += unknownFields.serializedSize;
     }
 
     dm_memoizedSize = size;

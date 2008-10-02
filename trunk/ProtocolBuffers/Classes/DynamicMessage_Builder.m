@@ -66,7 +66,7 @@
 
 
 - (PBDynamicMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
-    if ([other getDescriptorForType] != type) {
+    if ([other descriptorForType] != type) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage can only merge messages of the same type." userInfo:nil];
     }
 
@@ -113,7 +113,7 @@
 }
 
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
     return type;
 }
 
@@ -123,8 +123,8 @@
 }
 
 
-- (NSDictionary*) getAllFields {
-    return fields.getAllFields;
+- (NSDictionary*) allFields {
+    return fields.allFields;
 }
 
 

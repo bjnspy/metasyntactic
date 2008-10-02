@@ -480,7 +480,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -488,7 +488,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   for (PBFileDescriptorProto* element in self.getFileList) {
     size += computeMessageSize(1, element);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -545,7 +545,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   return (PBFileDescriptorSet_Builder*)[[[[PBFileDescriptorSet_Builder alloc] init] autorelease] mergeFromPBFileDescriptorSet:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBFileDescriptorSet getDescriptor];
 }
 
@@ -809,7 +809,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -838,7 +838,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(8, self.getOptions);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -895,7 +895,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return (PBFileDescriptorProto_Builder*)[[[[PBFileDescriptorProto_Builder alloc] init] autorelease] mergeFromPBFileDescriptorProto:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBFileDescriptorProto getDescriptor];
 }
 
@@ -1452,7 +1452,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -1478,7 +1478,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(7, self.getOptions);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -1574,7 +1574,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -1585,7 +1585,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   if (hasEnd) {
     size += computeInt32Size(2, self.getEnd);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -1642,7 +1642,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return (PBExtensionRange_Builder*)[[[[PBExtensionRange_Builder alloc] init] autorelease] mergeFromPBExtensionRange:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBExtensionRange getDescriptor];
 }
 
@@ -1784,7 +1784,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return (PBDescriptorProto_Builder*)[[[[PBDescriptorProto_Builder alloc] init] autorelease] mergeFromPBDescriptorProto:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBDescriptorProto getDescriptor];
 }
 
@@ -2331,7 +2331,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -2360,7 +2360,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(8, self.getOptions);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -2491,7 +2491,7 @@ static PBType* TYPE_SINT64 = nil;
 - (PBEnumValueDescriptor*) getValueDescriptor {
   return [[PBType getDescriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) getDescriptorForType {
+- (PBEnumDescriptor*) descriptorForType {
   return [PBType getDescriptor];
 }
 + (PBEnumDescriptor*) getDescriptor {
@@ -2566,7 +2566,7 @@ static PBLabel* LABEL_REPEATED = nil;
 - (PBEnumValueDescriptor*) getValueDescriptor {
   return [[PBLabel getDescriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) getDescriptorForType {
+- (PBEnumDescriptor*) descriptorForType {
   return [PBLabel getDescriptor];
 }
 + (PBEnumDescriptor*) getDescriptor {
@@ -2612,7 +2612,7 @@ static PBLabel* LABEL_REPEATED = nil;
   return (PBFieldDescriptorProto_Builder*)[[[[PBFieldDescriptorProto_Builder alloc] init] autorelease] mergeFromPBFieldDescriptorProto:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBFieldDescriptorProto getDescriptor];
 }
 
@@ -2982,7 +2982,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -2996,7 +2996,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(3, self.getOptions);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -3053,7 +3053,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   return (PBEnumDescriptorProto_Builder*)[[[[PBEnumDescriptorProto_Builder alloc] init] autorelease] mergeFromPBEnumDescriptorProto:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBEnumDescriptorProto getDescriptor];
 }
 
@@ -3321,7 +3321,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -3335,7 +3335,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   if (self.hasOptions) {
     size += computeMessageSize(3, self.getOptions);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -3392,7 +3392,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   return (PBEnumValueDescriptorProto_Builder*)[[[[PBEnumValueDescriptorProto_Builder alloc] init] autorelease] mergeFromPBEnumValueDescriptorProto:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBEnumValueDescriptorProto getDescriptor];
 }
 
@@ -3630,7 +3630,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -3644,7 +3644,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(3, self.getOptions);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -3701,7 +3701,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   return (PBServiceDescriptorProto_Builder*)[[[[PBServiceDescriptorProto_Builder alloc] init] autorelease] mergeFromPBServiceDescriptorProto:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBServiceDescriptorProto getDescriptor];
 }
 
@@ -3980,7 +3980,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -3997,7 +3997,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(4, self.getOptions);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -4054,7 +4054,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   return (PBMethodDescriptorProto_Builder*)[[[[PBMethodDescriptorProto_Builder alloc] init] autorelease] mergeFromPBMethodDescriptorProto:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBMethodDescriptorProto getDescriptor];
 }
 
@@ -4348,7 +4348,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -4371,7 +4371,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   if (hasObjectivecClassPrefix) {
     size += computeStringSize(12, self.getObjectivecClassPrefix);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -4438,7 +4438,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
 - (PBEnumValueDescriptor*) getValueDescriptor {
   return [[PBOptimizeMode getDescriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) getDescriptorForType {
+- (PBEnumDescriptor*) descriptorForType {
   return [PBOptimizeMode getDescriptor];
 }
 + (PBEnumDescriptor*) getDescriptor {
@@ -4483,7 +4483,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
   return (PBFileOptions_Builder*)[[[[PBFileOptions_Builder alloc] init] autorelease] mergeFromPBFileOptions:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBFileOptions getDescriptor];
 }
 
@@ -4755,7 +4755,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -4763,7 +4763,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   if (hasMessageSetWireFormat) {
     size += computeBoolSize(1, self.getMessageSetWireFormat);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -4820,7 +4820,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   return (PBMessageOptions_Builder*)[[[[PBMessageOptions_Builder alloc] init] autorelease] mergeFromPBMessageOptions:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBMessageOptions getDescriptor];
 }
 
@@ -4977,7 +4977,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
@@ -4988,7 +4988,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   if (hasExperimentalMapKey) {
     size += computeStringSize(9, self.getExperimentalMapKey);
   }
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5055,7 +5055,7 @@ static PBCType* STRING_PIECE = nil;
 - (PBEnumValueDescriptor*) getValueDescriptor {
   return [[PBCType getDescriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) getDescriptorForType {
+- (PBEnumDescriptor*) descriptorForType {
   return [PBCType getDescriptor];
 }
 + (PBEnumDescriptor*) getDescriptor {
@@ -5100,7 +5100,7 @@ static PBCType* STRING_PIECE = nil;
   return (PBFieldOptions_Builder*)[[[[PBFieldOptions_Builder alloc] init] autorelease] mergeFromPBFieldOptions:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBFieldOptions getDescriptor];
 }
 
@@ -5265,12 +5265,12 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
   size = 0;
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5327,7 +5327,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   return (PBEnumOptions_Builder*)[[[[PBEnumOptions_Builder alloc] init] autorelease] mergeFromPBEnumOptions:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBEnumOptions getDescriptor];
 }
 
@@ -5438,12 +5438,12 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
   size = 0;
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5500,7 +5500,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   return (PBEnumValueOptions_Builder*)[[[[PBEnumValueOptions_Builder alloc] init] autorelease] mergeFromPBEnumValueOptions:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBEnumValueOptions getDescriptor];
 }
 
@@ -5611,12 +5611,12 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
   size = 0;
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5673,7 +5673,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   return (PBServiceOptions_Builder*)[[[[PBServiceOptions_Builder alloc] init] autorelease] mergeFromPBServiceOptions:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBServiceOptions getDescriptor];
 }
 
@@ -5784,12 +5784,12 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   [self.getUnknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
 
   size = 0;
-  size += self.getUnknownFields.getSerializedSize;
+  size += self.getUnknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5846,7 +5846,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   return (PBMethodOptions_Builder*)[[[[PBMethodOptions_Builder alloc] init] autorelease] mergeFromPBMethodOptions:result];
 }
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
   return [PBMethodOptions getDescriptor];
 }
 
