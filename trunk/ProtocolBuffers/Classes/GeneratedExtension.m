@@ -35,11 +35,6 @@
     [super dealloc];
 }
 
-
-- (PBFieldDescriptor*) getDescriptor {
-    return descriptor;
-}
-
 #if 0
 public static final class PBGeneratedExtension<
 ContainingType extends PBMessage, Type> {
