@@ -469,7 +469,7 @@
 
 - (int32_t) number;
 + (PBType*) valueOf:(int32_t) value;
-- (PBEnumValueDescriptor*) getValueDescriptor;
+- (PBEnumValueDescriptor*) valueDescriptor;
 - (PBEnumDescriptor*) descriptorForType;
 + (PBEnumDescriptor*) descriptor;
 
@@ -490,7 +490,7 @@
 
 - (int32_t) number;
 + (PBLabel*) valueOf:(int32_t) value;
-- (PBEnumValueDescriptor*) getValueDescriptor;
+- (PBEnumValueDescriptor*) valueDescriptor;
 - (PBEnumDescriptor*) descriptorForType;
 + (PBEnumDescriptor*) descriptor;
 
@@ -908,7 +908,7 @@
 
 - (int32_t) number;
 + (PBOptimizeMode*) valueOf:(int32_t) value;
-- (PBEnumValueDescriptor*) getValueDescriptor;
+- (PBEnumValueDescriptor*) valueDescriptor;
 - (PBEnumDescriptor*) descriptorForType;
 + (PBEnumDescriptor*) descriptor;
 
@@ -1057,7 +1057,7 @@
 
 - (int32_t) number;
 + (PBCType*) valueOf:(int32_t) value;
-- (PBEnumValueDescriptor*) getValueDescriptor;
+- (PBEnumValueDescriptor*) valueDescriptor;
 - (PBEnumDescriptor*) descriptorForType;
 + (PBEnumDescriptor*) descriptor;
 
