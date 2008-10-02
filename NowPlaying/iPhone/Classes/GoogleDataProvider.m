@@ -50,16 +50,16 @@
     NSMutableDictionary* movieIdToMovieMap = [NSMutableDictionary dictionary];
 
     for (MovieProto* movieProto in movies) {
-        NSString* identifier = movieProto.getIdentifier;
+        NSString* identifier = movieProto.identifier;
         NSString* poster = @"";
-        NSString* title = movieProto.getTitle;
-        NSString* rating = movieProto.getRawRating;
-        NSInteger length = movieProto.getLength;
-        NSString* synopsis = movieProto.getDescription;
-        NSArray* genres =  [[movieProto.getGenre stringByReplacingOccurrencesOfString:@"_" withString:@" "] componentsSeparatedByString:@"/"];
-        NSArray* directors = movieProto.getDirectorList;
-        NSArray* cast = movieProto.getCastList;
-        NSString* releaseDateString = movieProto.getReleaseDate;
+        NSString* title = movieProto.title;
+        NSString* rating = movieProto.rawRating;
+        NSInteger length = movieProto.length;
+        NSString* synopsis = movieProto.description;
+        NSArray* genres =  [[movieProto.genre stringByReplacingOccurrencesOfString:@"_" withString:@" "] componentsSeparatedByString:@"/"];
+        NSArray* directors = movieProto.directorList;
+        NSArray* cast = movieProto.castList;
+        NSString* releaseDateString = movieProto.releaseDate;
         NSDate* releaseDate = nil;
         if (releaseDateString.length == 10) {
             NSDateComponents* components = [[[NSDateComponents alloc] init] autorelease];
@@ -70,7 +70,7 @@
             releaseDate = [[NSCalendar currentCalendar] dateFromComponents:components];
         }
         
-        NSString* imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.getIMDbUrl];
+        NSString* imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.iMDbUrl];
 
         Movie* movie = [Movie movieWithIdentifier:identifier
                                             title:title
@@ -97,14 +97,14 @@
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
     for (MovieAndShowtimesProto* movieAndShowtimes in movieAndShowtimesList) {
-        NSString* movieId = movieAndShowtimes.getMovieIdentifier;
+        NSString* movieId = movieAndShowtimes.movieIdentifier;
         NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
 
         NSMutableArray* performances = [NSMutableArray array];
 
-        for (ShowtimeProto* showtime in movieAndShowtimes.getShowtimes.getShowtimesList) {
-            NSString* time = showtime.getTime;
-            NSString* url = showtime.getUrl;
+        for (ShowtimeProto* showtime in movieAndShowtimes.showtimes.showtimesList) {
+            NSString* time = showtime.time;
+            NSString* url = showtime.url;
 
             time = [Theater processShowtime:time];
 
@@ -132,8 +132,8 @@
                      originatingLocation:(Location*) originatingLocation
                             theaterNames:(NSArray*) theaterNames
                        movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
-    TheaterProto* theater = theaterAndMovieShowtimes.getTheater;
-    NSString* name = theater.getName;
+    TheaterProto* theater = theaterAndMovieShowtimes.theater;
+    NSString* name = theater.name;
     if (name.length == 0) {
         return;
     }
@@ -142,17 +142,17 @@
         return;
     }
 
-    NSString* identifier = theater.getIdentifier;
-    NSString* address =    theater.getStreetAddress;
-    NSString* city =       theater.getCity;
-    NSString* state =      theater.getState;
-    NSString* postalCode = theater.getPostalCode;
-    NSString* country =    theater.getCountry;
-    NSString* phone =      theater.getPhone;
-    double latitude =      theater.getLatitude;
-    double longitude =     theater.getLongitude;
+    NSString* identifier = theater.identifier;
+    NSString* address =    theater.streetAddress;
+    NSString* city =       theater.city;
+    NSString* state =      theater.state;
+    NSString* postalCode = theater.postalCode;
+    NSString* country =    theater.country;
+    NSString* phone =      theater.phone;
+    double latitude =      theater.latitude;
+    double longitude =     theater.longitude;
 
-    NSArray* movieAndShowtimesList = theaterAndMovieShowtimes.getMovieAndShowtimesList;
+    NSArray* movieAndShowtimesList = theaterAndMovieShowtimes.movieAndShowtimesList;
 
     NSMutableDictionary* movieToShowtimesMap = [self processMovieAndShowtimesList:movieAndShowtimesList
                                                                 movieIdToMovieMap:movieIdToMovieMap];
@@ -214,8 +214,8 @@
 - (LookupResult*) processTheaterListings:(TheaterListingsProto*) element
                      originatingLocation:(Location*) originatingLocation
                             theaterNames:(NSArray*) theaterNames {
-    NSArray* movieProtos = element.getMoviesList;
-    NSArray* theaterAndMovieShowtimes = element.getTheaterAndMovieShowtimesList;
+    NSArray* movieProtos = element.moviesList;
+    NSArray* theaterAndMovieShowtimes = element.theaterAndMovieShowtimesList;
 //    NSArray* theaterElements = [element elements:@"Theater"];
 
     NSDictionary* movieIdToMovieMap = [self processMovies:movieProtos];
