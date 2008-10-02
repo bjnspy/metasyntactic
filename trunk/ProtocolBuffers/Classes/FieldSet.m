@@ -298,7 +298,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  */
 - (BOOL) isInitialized:(PBDescriptor*) type {
     // Check that all required fields are present.
-    for (PBFieldDescriptor* field in type.getFields) {
+    for (PBFieldDescriptor* field in type.fields) {
         if (field.isRequired) {
             if (![self hasField:field]) {
                 return NO;
@@ -516,7 +516,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                                     tag:(int32_t) tag {
     PBDescriptor* type = [builder getDescriptorForType];
 
-    if (type.getOptions.getMessageSetWireFormat &&
+    if (type.options.getMessageSetWireFormat &&
         tag == PBWireFormatMessageSetItemTag) {
         [self mergeMessageSetExtensionFromCodedStream:input
                                         unknownFields:unknownFields
@@ -617,7 +617,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 /** Write a single field. */
 - (void) writeField:(PBFieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output {
     if (field.isExtension &&
-        field.getContainingType.getOptions.getMessageSetWireFormat) {
+        field.getContainingType.options.getMessageSetWireFormat) {
         [output writeMessageSetExtension:field.getNumber value:value];
     } else {
         if (field.isRepeated) {
@@ -640,7 +640,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         id value = [fields objectForKey:field];
 
         if (field.isExtension &&
-            field.getContainingType.getOptions.getMessageSetWireFormat) {
+            field.getContainingType.options.getMessageSetWireFormat) {
             size += computeMessageSetExtensionSize(field.getNumber, value);
         } else {
             if (field.isRepeated) {

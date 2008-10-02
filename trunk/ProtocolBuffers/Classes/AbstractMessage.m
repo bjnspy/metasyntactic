@@ -35,7 +35,7 @@
 
 
 - (BOOL) isInitialized {
-    for (PBFieldDescriptor* field in self.getDescriptorForType.getFields) {
+    for (PBFieldDescriptor* field in self.getDescriptorForType.fields) {
         if (field.isRequired) {
             if (![self hasField:field]) {
                 return NO;
@@ -80,7 +80,7 @@
     }
 
     PBUnknownFieldSet* unknownFields = self.getUnknownFields;
-    if (self.getDescriptorForType.getOptions.getMessageSetWireFormat) {
+    if (self.getDescriptorForType.options.getMessageSetWireFormat) {
         [unknownFields writeAsMessageSetTo:output];
     } else {
         [unknownFields writeToCodedOutputStream:output];
@@ -124,7 +124,7 @@
     }
 
     PBUnknownFieldSet* unknownFields = self.getUnknownFields;
-    if (self.getDescriptorForType.getOptions.getMessageSetWireFormat) {
+    if (self.getDescriptorForType.options.getMessageSetWireFormat) {
         size += unknownFields.getSerializedSizeAsMessageSet;
     } else {
         size += unknownFields.getSerializedSize;

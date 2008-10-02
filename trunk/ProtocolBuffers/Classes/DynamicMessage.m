@@ -181,7 +181,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
     [fields writeToCodedOutputStream:output];
 
-    if (type.getOptions.getMessageSetWireFormat) {
+    if (type.options.getMessageSetWireFormat) {
         [unknownFields writeAsMessageSetTo:output];
     } else {
         [unknownFields writeToCodedOutputStream:output];
@@ -196,7 +196,7 @@
     }
 
     size = fields.getSerializedSize;
-    if (type.getOptions.getMessageSetWireFormat) {
+    if (type.options.getMessageSetWireFormat) {
         size += unknownFields.getSerializedSizeAsMessageSet;
     } else {
         size += unknownFields.getSerializedSize;

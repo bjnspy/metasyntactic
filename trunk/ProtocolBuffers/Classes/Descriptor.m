@@ -17,6 +17,11 @@
 #import "Descriptor.h"
 
 
+@interface PBDescriptor ()
+@property (retain) NSArray* nestedTypes;
+@end
+
+
 @implementation PBDescriptor
 
 @synthesize nestedTypes;
@@ -26,28 +31,23 @@
     [super dealloc];
 }
 
-- (NSArray*) getFields {
+- (NSArray*) fields {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (PBMessageOptions*) getOptions {
+- (PBMessageOptions*) options {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (NSString*) getFullName {
+- (NSString*) fullName {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (NSArray*) getEnumTypes {
+- (NSArray*) enumTypes {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (NSArray*) getNestedTypes {
-    return nestedTypes;
 }
 
 
