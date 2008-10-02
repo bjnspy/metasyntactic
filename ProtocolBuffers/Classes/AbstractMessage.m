@@ -35,7 +35,7 @@
 
 
 - (BOOL) isInitialized {
-    for (PBFieldDescriptor* field in self.getDescriptorForType.fields) {
+    for (PBFieldDescriptor* field in self.descriptorForType.fields) {
         if (field.isRequired) {
             if (![self hasField:field]) {
                 return NO;
@@ -43,7 +43,7 @@
         }
     }
 
-    NSDictionary* allFields = self.getAllFields;
+    NSDictionary* allFields = self.allFields;
     for (PBFieldDescriptor* field in allFields) {
         if (field.objectiveCType == PBObjectiveCTypeMessage) {
             id value = [allFields objectForKey:field];
@@ -67,7 +67,7 @@
 
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-    NSDictionary* allFields = self.getAllFields;
+    NSDictionary* allFields = self.allFields;
     for (PBFieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
         if (field.isRepeated) {
@@ -80,7 +80,7 @@
     }
 
     PBUnknownFieldSet* unknownFields = self.getUnknownFields;
-    if (self.getDescriptorForType.options.getMessageSetWireFormat) {
+    if (self.descriptorForType.options.getMessageSetWireFormat) {
         [unknownFields writeAsMessageSetTo:output];
     } else {
         [unknownFields writeToCodedOutputStream:output];
@@ -89,7 +89,7 @@
 
 
 - (NSData*) toData {
-    NSMutableData* data = [NSMutableData dataWithLength:self.getSerializedSize];
+    NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
     PBCodedOutputStream* stream = [PBCodedOutputStream streamWithData:data];
     [self writeToCodedOutputStream:stream];
     return data;
@@ -103,14 +103,14 @@
 }
 
 
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
     int32_t size = am_memoizedSize;
     if (size != -1) {
         return size;
     }
 
     size = 0;
-    NSDictionary* allFields = self.getAllFields;
+    NSDictionary* allFields = self.allFields;
     for (PBFieldDescriptor* field in allFields) {
         id value = [allFields objectForKey:field];
 
@@ -124,10 +124,10 @@
     }
 
     PBUnknownFieldSet* unknownFields = self.getUnknownFields;
-    if (self.getDescriptorForType.options.getMessageSetWireFormat) {
+    if (self.descriptorForType.options.getMessageSetWireFormat) {
         size += unknownFields.getSerializedSizeAsMessageSet;
     } else {
-        size += unknownFields.getSerializedSize;
+        size += unknownFields.serializedSize;
     }
 
     am_memoizedSize = size;
@@ -144,23 +144,23 @@
         return NO;
     }
 
-    if (self.getDescriptorForType != [other getDescriptorForType]) {
+    if (self.descriptorForType != [other descriptorForType]) {
         return NO;
     }
 
-    return [self.getAllFields isEqual:[other getAllFields]];
+    return [self.allFields isEqual:[other allFields]];
 }
 
 
 - (NSUInteger) hash {
     NSUInteger hash = 41;
-    hash = (19 * hash) + self.getDescriptorForType.hash;
-    hash = (53 * hash) + self.getAllFields.hash;
+    hash = (19 * hash) + self.descriptorForType.hash;
+    hash = (53 * hash) + self.allFields.hash;
     return hash;
 }
 
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
@@ -170,7 +170,7 @@
 }
 
 
-- (NSDictionary*) getAllFields {
+- (NSDictionary*) allFields {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

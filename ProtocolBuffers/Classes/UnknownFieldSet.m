@@ -118,7 +118,7 @@ static PBUnknownFieldSet* defaultInstance = nil;
 
 
 /** Get the number of bytes required to encode this set. */
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
     int32_t result = 0;
     for (NSNumber* number in fields) {
         result += [[fields objectForKey:number] getSerializedSize:number.intValue];

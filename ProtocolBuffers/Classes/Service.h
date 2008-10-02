@@ -15,7 +15,7 @@
 // limitations under the License.
 
 @protocol PBService
-- (PBServiceDescriptor*) getDescriptorForType;
+- (PBServiceDescriptor*) descriptorForType;
 - (void) callMethod:(PBMethodDescriptor*) method
          controller:(id<PBRpcController>) controller
             request:(id<PBMessage>) request

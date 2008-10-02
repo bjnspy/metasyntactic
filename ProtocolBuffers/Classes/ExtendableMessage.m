@@ -42,7 +42,7 @@
 
 
 - (void) verifyExtensionContainingType:(PBGeneratedExtension*) extension {
-    if (extension.descriptor.containingType != [self getDescriptorForType]) {
+    if (extension.descriptor.containingType != [self descriptorForType]) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 }
@@ -86,7 +86,7 @@
 
 /** Called by subclasses to compute the size of extensions. */
 - (int32_t) extensionsSerializedSize {
-    return extensions.getSerializedSize;
+    return extensions.serializedSize;
 }
 
 
@@ -95,13 +95,13 @@
 
 - (NSMutableDictionary*) getAllFieldsMutable {
     NSMutableDictionary* result = [super allFieldsMutable];
-    [result addEntriesFromDictionary:extensions.getAllFields];
+    [result addEntriesFromDictionary:extensions.allFields];
     return result;
 }
 
 
 - (void) verifyContainingType:(PBFieldDescriptor*) field {
-    if (field.containingType != [self getDescriptorForType]) {
+    if (field.containingType != [self descriptorForType]) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"PBFieldDescriptor does not match message type." userInfo:nil];
     }
 }

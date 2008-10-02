@@ -52,12 +52,12 @@
 
 
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
-    if ([other getDescriptorForType] !=
+    if ([other descriptorForType] !=
         self.internalGetFieldAccessorTable.descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 
-    NSDictionary* allFields = [other getAllFields];
+    NSDictionary* allFields = [other allFields];
     for (PBFieldDescriptor* field in allFields) {
         id newValue = [allFields objectForKey:field];
 
@@ -82,13 +82,13 @@
 }
 
 
-- (PBDescriptor*) getDescriptorForType {
+- (PBDescriptor*) descriptorForType {
     return self.internalGetFieldAccessorTable.descriptor;
 }
 
 
-- (NSDictionary*) getAllFields {
-    return self.internalGetResult.getAllFields;
+- (NSDictionary*) allFields {
+    return self.internalGetResult.allFields;
 }
 
 

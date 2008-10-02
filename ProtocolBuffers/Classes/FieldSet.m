@@ -83,8 +83,8 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link PBMessage#getAllFields()}. */
-- (NSDictionary*) getAllFields {
+/** See {@link PBMessage#allFields()}. */
+- (NSDictionary*) allFields {
     return fields;
 }
 
@@ -149,7 +149,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
             break;
         case PBObjectiveCTypeMessage:
             isValid = [value conformsToProtocol:@protocol(PBMessage)] &&
-            [value getDescriptorForType] == field.messageType;
+            [value descriptorForType] == field.messageType;
             break;
     }
 
@@ -324,7 +324,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     // TODO(kenton):  Provide a function somewhere called makeDeepCopy()
     //   which allows people to make secure deep copies of messages.
 
-    NSDictionary* otherAllFields = [other getAllFields];
+    NSDictionary* otherAllFields = [other allFields];
     for (PBFieldDescriptor* field in otherAllFields) {
         id otherValue = [otherAllFields objectForKey:field];
 
@@ -412,7 +412,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                                          builder:(id<PBMessage_Builder>) builder {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
     /*
-     PBDescriptor type = builder.getDescriptorForType();
+     PBDescriptor type = builder.descriptorForType();
      
      // The wire format for MessageSet is:
      //   message MessageSet {
@@ -516,7 +516,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                       extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                 builder:(id<PBMessage_Builder>) builder
                                     tag:(int32_t) tag {
-    PBDescriptor* type = [builder getDescriptorForType];
+    PBDescriptor* type = [builder descriptorForType];
 
     if (type.options.getMessageSetWireFormat &&
         tag == PBWireFormatMessageSetItemTag) {
@@ -633,10 +633,10 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 /**
- * See {@link PBMessage#getSerializedSize()}.  It's up to the caller to cache
+ * See {@link PBMessage#serializedSize()}.  It's up to the caller to cache
  * the resulting size if desired.
  */
-- (int32_t) getSerializedSize {
+- (int32_t) serializedSize {
     int32_t size = 0;
     for (PBFieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];

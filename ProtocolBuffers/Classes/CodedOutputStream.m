@@ -176,7 +176,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 - (void) writeMessage:(int32_t) fieldNumber
                 value:(id<PBMessage>) value {
     [self writeTag:fieldNumber format:PBWireFormatLengthDelimited];
-    [self writeRawVarint32:[value getSerializedSize]];
+    [self writeRawVarint32:[value serializedSize]];
     [value writeToCodedOutputStream:self];
 }
 
@@ -396,7 +396,7 @@ int32_t computeStringSize(int32_t fieldNumber, NSString* value) {
  * {@code group} field, including tag.
  */
 int32_t computeGroupSize(int32_t fieldNumber, id<PBMessage> value) {
-    return computeTagSize(fieldNumber) * 2 + [value getSerializedSize];
+    return computeTagSize(fieldNumber) * 2 + [value serializedSize];
 }
 
 
@@ -407,7 +407,7 @@ int32_t computeGroupSize(int32_t fieldNumber, id<PBMessage> value) {
  */
 int32_t computeUnknownGroupSize(int32_t fieldNumber,
                                 PBUnknownFieldSet* value) {
-    return computeTagSize(fieldNumber) * 2 + value.getSerializedSize;
+    return computeTagSize(fieldNumber) * 2 + value.serializedSize;
 }
 
 
@@ -416,7 +416,7 @@ int32_t computeUnknownGroupSize(int32_t fieldNumber,
  * embedded message field, including tag.
  */
 int32_t computeMessageSize(int32_t fieldNumber, id<PBMessage> value) {
-    int32_t size = [value getSerializedSize];
+    int32_t size = [value serializedSize];
     return computeTagSize(fieldNumber) + computeRawVarint32Size(size) + size;
 }
 

@@ -21,16 +21,16 @@
     int32_t am_memoizedSize;
 }
 
-- (PBDescriptor*) getDescriptorForType;
+- (PBDescriptor*) descriptorForType;
 - (id<PBMessage>) getDefaultInstanceForType;
-- (NSDictionary*) getAllFields;
+- (NSDictionary*) allFields;
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
 - (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
 - (PBUnknownFieldSet*) getUnknownFields;
 - (BOOL) isInitialized;
-- (int32_t) getSerializedSize;
+- (int32_t) serializedSize;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (void) writeToOutputStream:(NSOutputStream*) output;
 - (NSData*) toData;
