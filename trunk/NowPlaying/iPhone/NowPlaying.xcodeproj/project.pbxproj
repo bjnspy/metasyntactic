@@ -106,43 +106,43 @@
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
 		74D739C80DDBE31300D8CCDF /* MovieTitleCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */; };
 		74DB93BC0E3855A2007D0010 /* SearchDatePickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */; };
-		74E178420E94951400F8D0D3 /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E177F10E94951400F8D0D3 /* AbstractMessage.m */; };
-		74E178430E94951400F8D0D3 /* AbstractMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E177F30E94951400F8D0D3 /* AbstractMessage_Builder.m */; };
-		74E178440E94951400F8D0D3 /* CodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E177F50E94951400F8D0D3 /* CodedInputStream.m */; };
-		74E178450E94951400F8D0D3 /* CodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E177F70E94951400F8D0D3 /* CodedOutputStream.m */; };
-		74E178460E94951400F8D0D3 /* Descriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E177F90E94951400F8D0D3 /* Descriptor.m */; };
-		74E178470E94951400F8D0D3 /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E177FB0E94951400F8D0D3 /* Descriptor.pb.m */; };
-		74E178480E94951400F8D0D3 /* DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E177FD0E94951400F8D0D3 /* DescriptorIntPair.m */; };
-		74E178490E94951400F8D0D3 /* DescriptorPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E177FF0E94951400F8D0D3 /* DescriptorPool.m */; };
-		74E1784A0E94951400F8D0D3 /* DynamicMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178010E94951400F8D0D3 /* DynamicMessage.m */; };
-		74E1784B0E94951400F8D0D3 /* DynamicMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178030E94951400F8D0D3 /* DynamicMessage_Builder.m */; };
-		74E1784C0E94951400F8D0D3 /* EnumDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178050E94951400F8D0D3 /* EnumDescriptor.m */; };
-		74E1784D0E94951400F8D0D3 /* EnumValueDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178070E94951400F8D0D3 /* EnumValueDescriptor.m */; };
-		74E1784E0E94951400F8D0D3 /* ExtendableMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178090E94951400F8D0D3 /* ExtendableMessage.m */; };
-		74E1784F0E94951400F8D0D3 /* ExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1780B0E94951400F8D0D3 /* ExtensionInfo.m */; };
-		74E178500E94951400F8D0D3 /* ExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1780D0E94951400F8D0D3 /* ExtensionRegistry.m */; };
-		74E178510E94951400F8D0D3 /* ExtensionWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1780F0E94951400F8D0D3 /* ExtensionWriter.m */; };
-		74E178520E94951400F8D0D3 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178110E94951400F8D0D3 /* Field.m */; };
-		74E178530E94951400F8D0D3 /* FieldAccessorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178140E94951400F8D0D3 /* FieldAccessorTable.m */; };
-		74E178540E94951400F8D0D3 /* FieldDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178160E94951400F8D0D3 /* FieldDescriptor.m */; };
-		74E178550E94951400F8D0D3 /* FieldDescriptorType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178180E94951400F8D0D3 /* FieldDescriptorType.m */; };
-		74E178560E94951400F8D0D3 /* FieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1781A0E94951400F8D0D3 /* FieldSet.m */; };
-		74E178570E94951400F8D0D3 /* FileDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1781C0E94951400F8D0D3 /* FileDescriptor.m */; };
-		74E178580E94951400F8D0D3 /* GeneratedExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1781E0E94951400F8D0D3 /* GeneratedExtension.m */; };
-		74E178590E94951400F8D0D3 /* GeneratedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178200E94951400F8D0D3 /* GeneratedMessage.m */; };
-		74E1785A0E94951400F8D0D3 /* GeneratedMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178220E94951400F8D0D3 /* GeneratedMessage_Builder.m */; };
-		74E1785B0E94951400F8D0D3 /* MutableField.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178270E94951400F8D0D3 /* MutableField.m */; };
-		74E1785C0E94951400F8D0D3 /* ObjectiveCType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178290E94951400F8D0D3 /* ObjectiveCType.m */; };
-		74E1785D0E94951400F8D0D3 /* RepeatedEnumFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1782C0E94951400F8D0D3 /* RepeatedEnumFieldAccessor.m */; };
-		74E1785E0E94951400F8D0D3 /* RepeatedFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1782E0E94951400F8D0D3 /* RepeatedFieldAccessor.m */; };
-		74E1785F0E94951400F8D0D3 /* RepeatedMessageFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178300E94951400F8D0D3 /* RepeatedMessageFieldAccessor.m */; };
-		74E178600E94951400F8D0D3 /* SingularEnumFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178350E94951400F8D0D3 /* SingularEnumFieldAccessor.m */; };
-		74E178610E94951400F8D0D3 /* SingularFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178370E94951400F8D0D3 /* SingularFieldAccessor.m */; };
-		74E178620E94951400F8D0D3 /* SingularMessageFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178390E94951400F8D0D3 /* SingularMessageFieldAccessor.m */; };
-		74E178630E94951400F8D0D3 /* UnknownFieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1783B0E94951400F8D0D3 /* UnknownFieldSet.m */; };
-		74E178640E94951400F8D0D3 /* UnknownFieldSet_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1783D0E94951400F8D0D3 /* UnknownFieldSet_Builder.m */; };
-		74E178650E94951400F8D0D3 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1783F0E94951400F8D0D3 /* Utilities.m */; };
-		74E178660E94951400F8D0D3 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E178410E94951400F8D0D3 /* WireFormat.m */; };
+		74E17A490E949D0A00F8D0D3 /* AbstractMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E179F80E949D0900F8D0D3 /* AbstractMessage.m */; };
+		74E17A4A0E949D0A00F8D0D3 /* AbstractMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E179FA0E949D0900F8D0D3 /* AbstractMessage_Builder.m */; };
+		74E17A4B0E949D0A00F8D0D3 /* CodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E179FC0E949D0900F8D0D3 /* CodedInputStream.m */; };
+		74E17A4C0E949D0A00F8D0D3 /* CodedOutputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E179FE0E949D0900F8D0D3 /* CodedOutputStream.m */; };
+		74E17A4D0E949D0A00F8D0D3 /* Descriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A000E949D0A00F8D0D3 /* Descriptor.m */; };
+		74E17A4E0E949D0A00F8D0D3 /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A020E949D0A00F8D0D3 /* Descriptor.pb.m */; };
+		74E17A4F0E949D0A00F8D0D3 /* DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A040E949D0A00F8D0D3 /* DescriptorIntPair.m */; };
+		74E17A500E949D0A00F8D0D3 /* DescriptorPool.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A060E949D0A00F8D0D3 /* DescriptorPool.m */; };
+		74E17A510E949D0A00F8D0D3 /* DynamicMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A080E949D0A00F8D0D3 /* DynamicMessage.m */; };
+		74E17A520E949D0A00F8D0D3 /* DynamicMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A0A0E949D0A00F8D0D3 /* DynamicMessage_Builder.m */; };
+		74E17A530E949D0A00F8D0D3 /* EnumDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A0C0E949D0A00F8D0D3 /* EnumDescriptor.m */; };
+		74E17A540E949D0A00F8D0D3 /* EnumValueDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A0E0E949D0A00F8D0D3 /* EnumValueDescriptor.m */; };
+		74E17A550E949D0A00F8D0D3 /* ExtendableMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A100E949D0A00F8D0D3 /* ExtendableMessage.m */; };
+		74E17A560E949D0A00F8D0D3 /* ExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A120E949D0A00F8D0D3 /* ExtensionInfo.m */; };
+		74E17A570E949D0A00F8D0D3 /* ExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A140E949D0A00F8D0D3 /* ExtensionRegistry.m */; };
+		74E17A580E949D0A00F8D0D3 /* ExtensionWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A160E949D0A00F8D0D3 /* ExtensionWriter.m */; };
+		74E17A590E949D0A00F8D0D3 /* Field.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A180E949D0A00F8D0D3 /* Field.m */; };
+		74E17A5A0E949D0A00F8D0D3 /* FieldAccessorTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A1B0E949D0A00F8D0D3 /* FieldAccessorTable.m */; };
+		74E17A5B0E949D0A00F8D0D3 /* FieldDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A1D0E949D0A00F8D0D3 /* FieldDescriptor.m */; };
+		74E17A5C0E949D0A00F8D0D3 /* FieldDescriptorType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A1F0E949D0A00F8D0D3 /* FieldDescriptorType.m */; };
+		74E17A5D0E949D0A00F8D0D3 /* FieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A210E949D0A00F8D0D3 /* FieldSet.m */; };
+		74E17A5E0E949D0A00F8D0D3 /* FileDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A230E949D0A00F8D0D3 /* FileDescriptor.m */; };
+		74E17A5F0E949D0A00F8D0D3 /* GeneratedExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A250E949D0A00F8D0D3 /* GeneratedExtension.m */; };
+		74E17A600E949D0A00F8D0D3 /* GeneratedMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A270E949D0A00F8D0D3 /* GeneratedMessage.m */; };
+		74E17A610E949D0A00F8D0D3 /* GeneratedMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A290E949D0A00F8D0D3 /* GeneratedMessage_Builder.m */; };
+		74E17A620E949D0A00F8D0D3 /* MutableField.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A2E0E949D0A00F8D0D3 /* MutableField.m */; };
+		74E17A630E949D0A00F8D0D3 /* ObjectiveCType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A300E949D0A00F8D0D3 /* ObjectiveCType.m */; };
+		74E17A640E949D0A00F8D0D3 /* RepeatedEnumFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A330E949D0A00F8D0D3 /* RepeatedEnumFieldAccessor.m */; };
+		74E17A650E949D0A00F8D0D3 /* RepeatedFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A350E949D0A00F8D0D3 /* RepeatedFieldAccessor.m */; };
+		74E17A660E949D0A00F8D0D3 /* RepeatedMessageFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A370E949D0A00F8D0D3 /* RepeatedMessageFieldAccessor.m */; };
+		74E17A670E949D0A00F8D0D3 /* SingularEnumFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A3C0E949D0A00F8D0D3 /* SingularEnumFieldAccessor.m */; };
+		74E17A680E949D0A00F8D0D3 /* SingularFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A3E0E949D0A00F8D0D3 /* SingularFieldAccessor.m */; };
+		74E17A690E949D0A00F8D0D3 /* SingularMessageFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A400E949D0A00F8D0D3 /* SingularMessageFieldAccessor.m */; };
+		74E17A6A0E949D0A00F8D0D3 /* UnknownFieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A420E949D0A00F8D0D3 /* UnknownFieldSet.m */; };
+		74E17A6B0E949D0A00F8D0D3 /* UnknownFieldSet_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A440E949D0A00F8D0D3 /* UnknownFieldSet_Builder.m */; };
+		74E17A6C0E949D0A00F8D0D3 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A460E949D0A00F8D0D3 /* Utilities.m */; };
+		74E17A6D0E949D0A00F8D0D3 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A480E949D0A00F8D0D3 /* WireFormat.m */; };
 		74E6F01D0E723FB700A4C2BE /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */; };
 		74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */; };
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
@@ -407,90 +407,90 @@
 		74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTitleCell.m; sourceTree = "<group>"; };
 		74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDatePickerViewController.h; sourceTree = "<group>"; };
 		74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDatePickerViewController.m; sourceTree = "<group>"; };
-		74E177F00E94951400F8D0D3 /* AbstractMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractMessage.h; path = ../../ProtocolBuffers/Classes/AbstractMessage.h; sourceTree = SOURCE_ROOT; };
-		74E177F10E94951400F8D0D3 /* AbstractMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractMessage.m; path = ../../ProtocolBuffers/Classes/AbstractMessage.m; sourceTree = SOURCE_ROOT; };
-		74E177F20E94951400F8D0D3 /* AbstractMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AbstractMessage_Builder.h; path = ../../ProtocolBuffers/Classes/AbstractMessage_Builder.h; sourceTree = SOURCE_ROOT; };
-		74E177F30E94951400F8D0D3 /* AbstractMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AbstractMessage_Builder.m; path = ../../ProtocolBuffers/Classes/AbstractMessage_Builder.m; sourceTree = SOURCE_ROOT; };
-		74E177F40E94951400F8D0D3 /* CodedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodedInputStream.h; path = ../../ProtocolBuffers/Classes/CodedInputStream.h; sourceTree = SOURCE_ROOT; };
-		74E177F50E94951400F8D0D3 /* CodedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodedInputStream.m; path = ../../ProtocolBuffers/Classes/CodedInputStream.m; sourceTree = SOURCE_ROOT; };
-		74E177F60E94951400F8D0D3 /* CodedOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CodedOutputStream.h; path = ../../ProtocolBuffers/Classes/CodedOutputStream.h; sourceTree = SOURCE_ROOT; };
-		74E177F70E94951400F8D0D3 /* CodedOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CodedOutputStream.m; path = ../../ProtocolBuffers/Classes/CodedOutputStream.m; sourceTree = SOURCE_ROOT; };
-		74E177F80E94951400F8D0D3 /* Descriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Descriptor.h; path = ../../ProtocolBuffers/Classes/Descriptor.h; sourceTree = SOURCE_ROOT; };
-		74E177F90E94951400F8D0D3 /* Descriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Descriptor.m; path = ../../ProtocolBuffers/Classes/Descriptor.m; sourceTree = SOURCE_ROOT; };
-		74E177FA0E94951400F8D0D3 /* Descriptor.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Descriptor.pb.h; path = ../../ProtocolBuffers/Classes/Descriptor.pb.h; sourceTree = SOURCE_ROOT; };
-		74E177FB0E94951400F8D0D3 /* Descriptor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Descriptor.pb.m; path = ../../ProtocolBuffers/Classes/Descriptor.pb.m; sourceTree = SOURCE_ROOT; };
-		74E177FC0E94951400F8D0D3 /* DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DescriptorIntPair.h; path = ../../ProtocolBuffers/Classes/DescriptorIntPair.h; sourceTree = SOURCE_ROOT; };
-		74E177FD0E94951400F8D0D3 /* DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DescriptorIntPair.m; path = ../../ProtocolBuffers/Classes/DescriptorIntPair.m; sourceTree = SOURCE_ROOT; };
-		74E177FE0E94951400F8D0D3 /* DescriptorPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DescriptorPool.h; path = ../../ProtocolBuffers/Classes/DescriptorPool.h; sourceTree = SOURCE_ROOT; };
-		74E177FF0E94951400F8D0D3 /* DescriptorPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DescriptorPool.m; path = ../../ProtocolBuffers/Classes/DescriptorPool.m; sourceTree = SOURCE_ROOT; };
-		74E178000E94951400F8D0D3 /* DynamicMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicMessage.h; path = ../../ProtocolBuffers/Classes/DynamicMessage.h; sourceTree = SOURCE_ROOT; };
-		74E178010E94951400F8D0D3 /* DynamicMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicMessage.m; path = ../../ProtocolBuffers/Classes/DynamicMessage.m; sourceTree = SOURCE_ROOT; };
-		74E178020E94951400F8D0D3 /* DynamicMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DynamicMessage_Builder.h; path = ../../ProtocolBuffers/Classes/DynamicMessage_Builder.h; sourceTree = SOURCE_ROOT; };
-		74E178030E94951400F8D0D3 /* DynamicMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DynamicMessage_Builder.m; path = ../../ProtocolBuffers/Classes/DynamicMessage_Builder.m; sourceTree = SOURCE_ROOT; };
-		74E178040E94951400F8D0D3 /* EnumDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnumDescriptor.h; path = ../../ProtocolBuffers/Classes/EnumDescriptor.h; sourceTree = SOURCE_ROOT; };
-		74E178050E94951400F8D0D3 /* EnumDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnumDescriptor.m; path = ../../ProtocolBuffers/Classes/EnumDescriptor.m; sourceTree = SOURCE_ROOT; };
-		74E178060E94951400F8D0D3 /* EnumValueDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnumValueDescriptor.h; path = ../../ProtocolBuffers/Classes/EnumValueDescriptor.h; sourceTree = SOURCE_ROOT; };
-		74E178070E94951400F8D0D3 /* EnumValueDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnumValueDescriptor.m; path = ../../ProtocolBuffers/Classes/EnumValueDescriptor.m; sourceTree = SOURCE_ROOT; };
-		74E178080E94951400F8D0D3 /* ExtendableMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtendableMessage.h; path = ../../ProtocolBuffers/Classes/ExtendableMessage.h; sourceTree = SOURCE_ROOT; };
-		74E178090E94951400F8D0D3 /* ExtendableMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtendableMessage.m; path = ../../ProtocolBuffers/Classes/ExtendableMessage.m; sourceTree = SOURCE_ROOT; };
-		74E1780A0E94951400F8D0D3 /* ExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtensionInfo.h; path = ../../ProtocolBuffers/Classes/ExtensionInfo.h; sourceTree = SOURCE_ROOT; };
-		74E1780B0E94951400F8D0D3 /* ExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtensionInfo.m; path = ../../ProtocolBuffers/Classes/ExtensionInfo.m; sourceTree = SOURCE_ROOT; };
-		74E1780C0E94951400F8D0D3 /* ExtensionRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtensionRegistry.h; path = ../../ProtocolBuffers/Classes/ExtensionRegistry.h; sourceTree = SOURCE_ROOT; };
-		74E1780D0E94951400F8D0D3 /* ExtensionRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtensionRegistry.m; path = ../../ProtocolBuffers/Classes/ExtensionRegistry.m; sourceTree = SOURCE_ROOT; };
-		74E1780E0E94951400F8D0D3 /* ExtensionWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtensionWriter.h; path = ../../ProtocolBuffers/Classes/ExtensionWriter.h; sourceTree = SOURCE_ROOT; };
-		74E1780F0E94951400F8D0D3 /* ExtensionWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtensionWriter.m; path = ../../ProtocolBuffers/Classes/ExtensionWriter.m; sourceTree = SOURCE_ROOT; };
-		74E178100E94951400F8D0D3 /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Field.h; path = ../../ProtocolBuffers/Classes/Field.h; sourceTree = SOURCE_ROOT; };
-		74E178110E94951400F8D0D3 /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Field.m; path = ../../ProtocolBuffers/Classes/Field.m; sourceTree = SOURCE_ROOT; };
-		74E178120E94951400F8D0D3 /* FieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldAccessor.h; path = ../../ProtocolBuffers/Classes/FieldAccessor.h; sourceTree = SOURCE_ROOT; };
-		74E178130E94951400F8D0D3 /* FieldAccessorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldAccessorTable.h; path = ../../ProtocolBuffers/Classes/FieldAccessorTable.h; sourceTree = SOURCE_ROOT; };
-		74E178140E94951400F8D0D3 /* FieldAccessorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FieldAccessorTable.m; path = ../../ProtocolBuffers/Classes/FieldAccessorTable.m; sourceTree = SOURCE_ROOT; };
-		74E178150E94951400F8D0D3 /* FieldDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldDescriptor.h; path = ../../ProtocolBuffers/Classes/FieldDescriptor.h; sourceTree = SOURCE_ROOT; };
-		74E178160E94951400F8D0D3 /* FieldDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FieldDescriptor.m; path = ../../ProtocolBuffers/Classes/FieldDescriptor.m; sourceTree = SOURCE_ROOT; };
-		74E178170E94951400F8D0D3 /* FieldDescriptorType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldDescriptorType.h; path = ../../ProtocolBuffers/Classes/FieldDescriptorType.h; sourceTree = SOURCE_ROOT; };
-		74E178180E94951400F8D0D3 /* FieldDescriptorType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FieldDescriptorType.m; path = ../../ProtocolBuffers/Classes/FieldDescriptorType.m; sourceTree = SOURCE_ROOT; };
-		74E178190E94951400F8D0D3 /* FieldSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FieldSet.h; path = ../../ProtocolBuffers/Classes/FieldSet.h; sourceTree = SOURCE_ROOT; };
-		74E1781A0E94951400F8D0D3 /* FieldSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FieldSet.m; path = ../../ProtocolBuffers/Classes/FieldSet.m; sourceTree = SOURCE_ROOT; };
-		74E1781B0E94951400F8D0D3 /* FileDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FileDescriptor.h; path = ../../ProtocolBuffers/Classes/FileDescriptor.h; sourceTree = SOURCE_ROOT; };
-		74E1781C0E94951400F8D0D3 /* FileDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FileDescriptor.m; path = ../../ProtocolBuffers/Classes/FileDescriptor.m; sourceTree = SOURCE_ROOT; };
-		74E1781D0E94951400F8D0D3 /* GeneratedExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneratedExtension.h; path = ../../ProtocolBuffers/Classes/GeneratedExtension.h; sourceTree = SOURCE_ROOT; };
-		74E1781E0E94951400F8D0D3 /* GeneratedExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneratedExtension.m; path = ../../ProtocolBuffers/Classes/GeneratedExtension.m; sourceTree = SOURCE_ROOT; };
-		74E1781F0E94951400F8D0D3 /* GeneratedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneratedMessage.h; path = ../../ProtocolBuffers/Classes/GeneratedMessage.h; sourceTree = SOURCE_ROOT; };
-		74E178200E94951400F8D0D3 /* GeneratedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneratedMessage.m; path = ../../ProtocolBuffers/Classes/GeneratedMessage.m; sourceTree = SOURCE_ROOT; };
-		74E178210E94951400F8D0D3 /* GeneratedMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GeneratedMessage_Builder.h; path = ../../ProtocolBuffers/Classes/GeneratedMessage_Builder.h; sourceTree = SOURCE_ROOT; };
-		74E178220E94951400F8D0D3 /* GeneratedMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GeneratedMessage_Builder.m; path = ../../ProtocolBuffers/Classes/GeneratedMessage_Builder.m; sourceTree = SOURCE_ROOT; };
-		74E178230E94951400F8D0D3 /* GenericDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GenericDescriptor.h; path = ../../ProtocolBuffers/Classes/GenericDescriptor.h; sourceTree = SOURCE_ROOT; };
-		74E178240E94951400F8D0D3 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message.h; path = ../../ProtocolBuffers/Classes/Message.h; sourceTree = SOURCE_ROOT; };
-		74E178250E94951400F8D0D3 /* Message_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Message_Builder.h; path = ../../ProtocolBuffers/Classes/Message_Builder.h; sourceTree = SOURCE_ROOT; };
-		74E178260E94951400F8D0D3 /* MutableField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MutableField.h; path = ../../ProtocolBuffers/Classes/MutableField.h; sourceTree = SOURCE_ROOT; };
-		74E178270E94951400F8D0D3 /* MutableField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MutableField.m; path = ../../ProtocolBuffers/Classes/MutableField.m; sourceTree = SOURCE_ROOT; };
-		74E178280E94951400F8D0D3 /* ObjectiveCType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ObjectiveCType.h; path = ../../ProtocolBuffers/Classes/ObjectiveCType.h; sourceTree = SOURCE_ROOT; };
-		74E178290E94951400F8D0D3 /* ObjectiveCType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ObjectiveCType.m; path = ../../ProtocolBuffers/Classes/ObjectiveCType.m; sourceTree = SOURCE_ROOT; };
-		74E1782A0E94951400F8D0D3 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProtocolBuffers.h; path = ../../ProtocolBuffers/Classes/ProtocolBuffers.h; sourceTree = SOURCE_ROOT; };
-		74E1782B0E94951400F8D0D3 /* RepeatedEnumFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepeatedEnumFieldAccessor.h; path = ../../ProtocolBuffers/Classes/RepeatedEnumFieldAccessor.h; sourceTree = SOURCE_ROOT; };
-		74E1782C0E94951400F8D0D3 /* RepeatedEnumFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepeatedEnumFieldAccessor.m; path = ../../ProtocolBuffers/Classes/RepeatedEnumFieldAccessor.m; sourceTree = SOURCE_ROOT; };
-		74E1782D0E94951400F8D0D3 /* RepeatedFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepeatedFieldAccessor.h; path = ../../ProtocolBuffers/Classes/RepeatedFieldAccessor.h; sourceTree = SOURCE_ROOT; };
-		74E1782E0E94951400F8D0D3 /* RepeatedFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepeatedFieldAccessor.m; path = ../../ProtocolBuffers/Classes/RepeatedFieldAccessor.m; sourceTree = SOURCE_ROOT; };
-		74E1782F0E94951400F8D0D3 /* RepeatedMessageFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RepeatedMessageFieldAccessor.h; path = ../../ProtocolBuffers/Classes/RepeatedMessageFieldAccessor.h; sourceTree = SOURCE_ROOT; };
-		74E178300E94951400F8D0D3 /* RepeatedMessageFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RepeatedMessageFieldAccessor.m; path = ../../ProtocolBuffers/Classes/RepeatedMessageFieldAccessor.m; sourceTree = SOURCE_ROOT; };
-		74E178310E94951400F8D0D3 /* RpcChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RpcChannel.h; path = ../../ProtocolBuffers/Classes/RpcChannel.h; sourceTree = SOURCE_ROOT; };
-		74E178320E94951400F8D0D3 /* RpcController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RpcController.h; path = ../../ProtocolBuffers/Classes/RpcController.h; sourceTree = SOURCE_ROOT; };
-		74E178330E94951400F8D0D3 /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Service.h; path = ../../ProtocolBuffers/Classes/Service.h; sourceTree = SOURCE_ROOT; };
-		74E178340E94951400F8D0D3 /* SingularEnumFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingularEnumFieldAccessor.h; path = ../../ProtocolBuffers/Classes/SingularEnumFieldAccessor.h; sourceTree = SOURCE_ROOT; };
-		74E178350E94951400F8D0D3 /* SingularEnumFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingularEnumFieldAccessor.m; path = ../../ProtocolBuffers/Classes/SingularEnumFieldAccessor.m; sourceTree = SOURCE_ROOT; };
-		74E178360E94951400F8D0D3 /* SingularFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingularFieldAccessor.h; path = ../../ProtocolBuffers/Classes/SingularFieldAccessor.h; sourceTree = SOURCE_ROOT; };
-		74E178370E94951400F8D0D3 /* SingularFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingularFieldAccessor.m; path = ../../ProtocolBuffers/Classes/SingularFieldAccessor.m; sourceTree = SOURCE_ROOT; };
-		74E178380E94951400F8D0D3 /* SingularMessageFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SingularMessageFieldAccessor.h; path = ../../ProtocolBuffers/Classes/SingularMessageFieldAccessor.h; sourceTree = SOURCE_ROOT; };
-		74E178390E94951400F8D0D3 /* SingularMessageFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SingularMessageFieldAccessor.m; path = ../../ProtocolBuffers/Classes/SingularMessageFieldAccessor.m; sourceTree = SOURCE_ROOT; };
-		74E1783A0E94951400F8D0D3 /* UnknownFieldSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnknownFieldSet.h; path = ../../ProtocolBuffers/Classes/UnknownFieldSet.h; sourceTree = SOURCE_ROOT; };
-		74E1783B0E94951400F8D0D3 /* UnknownFieldSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnknownFieldSet.m; path = ../../ProtocolBuffers/Classes/UnknownFieldSet.m; sourceTree = SOURCE_ROOT; };
-		74E1783C0E94951400F8D0D3 /* UnknownFieldSet_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UnknownFieldSet_Builder.h; path = ../../ProtocolBuffers/Classes/UnknownFieldSet_Builder.h; sourceTree = SOURCE_ROOT; };
-		74E1783D0E94951400F8D0D3 /* UnknownFieldSet_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UnknownFieldSet_Builder.m; path = ../../ProtocolBuffers/Classes/UnknownFieldSet_Builder.m; sourceTree = SOURCE_ROOT; };
-		74E1783E0E94951400F8D0D3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Utilities.h; path = ../../ProtocolBuffers/Classes/Utilities.h; sourceTree = SOURCE_ROOT; };
-		74E1783F0E94951400F8D0D3 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Utilities.m; path = ../../ProtocolBuffers/Classes/Utilities.m; sourceTree = SOURCE_ROOT; };
-		74E178400E94951400F8D0D3 /* WireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = WireFormat.h; path = ../../ProtocolBuffers/Classes/WireFormat.h; sourceTree = SOURCE_ROOT; };
-		74E178410E94951400F8D0D3 /* WireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = WireFormat.m; path = ../../ProtocolBuffers/Classes/WireFormat.m; sourceTree = SOURCE_ROOT; };
-		74E1786E0E94956700F8D0D3 /* Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bootstrap.h; path = ../../ProtocolBuffers/Bootstrap.h; sourceTree = SOURCE_ROOT; };
-		74E1786F0E94957C00F8D0D3 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForwardDeclarations.h; path = ../../ProtocolBuffers/ForwardDeclarations.h; sourceTree = SOURCE_ROOT; };
+		74E179F40E949CFA00F8D0D3 /* Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bootstrap.h; path = ../../ProtocolBuffers/Bootstrap.h; sourceTree = SOURCE_ROOT; };
+		74E179F50E949CFA00F8D0D3 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForwardDeclarations.h; path = ../../ProtocolBuffers/ForwardDeclarations.h; sourceTree = SOURCE_ROOT; };
+		74E179F70E949D0900F8D0D3 /* AbstractMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage.h; sourceTree = "<group>"; };
+		74E179F80E949D0900F8D0D3 /* AbstractMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMessage.m; sourceTree = "<group>"; };
+		74E179F90E949D0900F8D0D3 /* AbstractMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage_Builder.h; sourceTree = "<group>"; };
+		74E179FA0E949D0900F8D0D3 /* AbstractMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMessage_Builder.m; sourceTree = "<group>"; };
+		74E179FB0E949D0900F8D0D3 /* CodedInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodedInputStream.h; sourceTree = "<group>"; };
+		74E179FC0E949D0900F8D0D3 /* CodedInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedInputStream.m; sourceTree = "<group>"; };
+		74E179FD0E949D0900F8D0D3 /* CodedOutputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodedOutputStream.h; sourceTree = "<group>"; };
+		74E179FE0E949D0900F8D0D3 /* CodedOutputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedOutputStream.m; sourceTree = "<group>"; };
+		74E179FF0E949D0A00F8D0D3 /* Descriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptor.h; sourceTree = "<group>"; };
+		74E17A000E949D0A00F8D0D3 /* Descriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptor.m; sourceTree = "<group>"; };
+		74E17A010E949D0A00F8D0D3 /* Descriptor.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptor.pb.h; sourceTree = "<group>"; };
+		74E17A020E949D0A00F8D0D3 /* Descriptor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptor.pb.m; sourceTree = "<group>"; };
+		74E17A030E949D0A00F8D0D3 /* DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorIntPair.h; sourceTree = "<group>"; };
+		74E17A040E949D0A00F8D0D3 /* DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorIntPair.m; sourceTree = "<group>"; };
+		74E17A050E949D0A00F8D0D3 /* DescriptorPool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorPool.h; sourceTree = "<group>"; };
+		74E17A060E949D0A00F8D0D3 /* DescriptorPool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorPool.m; sourceTree = "<group>"; };
+		74E17A070E949D0A00F8D0D3 /* DynamicMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicMessage.h; sourceTree = "<group>"; };
+		74E17A080E949D0A00F8D0D3 /* DynamicMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicMessage.m; sourceTree = "<group>"; };
+		74E17A090E949D0A00F8D0D3 /* DynamicMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DynamicMessage_Builder.h; sourceTree = "<group>"; };
+		74E17A0A0E949D0A00F8D0D3 /* DynamicMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicMessage_Builder.m; sourceTree = "<group>"; };
+		74E17A0B0E949D0A00F8D0D3 /* EnumDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumDescriptor.h; sourceTree = "<group>"; };
+		74E17A0C0E949D0A00F8D0D3 /* EnumDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumDescriptor.m; sourceTree = "<group>"; };
+		74E17A0D0E949D0A00F8D0D3 /* EnumValueDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnumValueDescriptor.h; sourceTree = "<group>"; };
+		74E17A0E0E949D0A00F8D0D3 /* EnumValueDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnumValueDescriptor.m; sourceTree = "<group>"; };
+		74E17A0F0E949D0A00F8D0D3 /* ExtendableMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableMessage.h; sourceTree = "<group>"; };
+		74E17A100E949D0A00F8D0D3 /* ExtendableMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableMessage.m; sourceTree = "<group>"; };
+		74E17A110E949D0A00F8D0D3 /* ExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionInfo.h; sourceTree = "<group>"; };
+		74E17A120E949D0A00F8D0D3 /* ExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionInfo.m; sourceTree = "<group>"; };
+		74E17A130E949D0A00F8D0D3 /* ExtensionRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry.h; sourceTree = "<group>"; };
+		74E17A140E949D0A00F8D0D3 /* ExtensionRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry.m; sourceTree = "<group>"; };
+		74E17A150E949D0A00F8D0D3 /* ExtensionWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionWriter.h; sourceTree = "<group>"; };
+		74E17A160E949D0A00F8D0D3 /* ExtensionWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionWriter.m; sourceTree = "<group>"; };
+		74E17A170E949D0A00F8D0D3 /* Field.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field.h; sourceTree = "<group>"; };
+		74E17A180E949D0A00F8D0D3 /* Field.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field.m; sourceTree = "<group>"; };
+		74E17A190E949D0A00F8D0D3 /* FieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldAccessor.h; sourceTree = "<group>"; };
+		74E17A1A0E949D0A00F8D0D3 /* FieldAccessorTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldAccessorTable.h; sourceTree = "<group>"; };
+		74E17A1B0E949D0A00F8D0D3 /* FieldAccessorTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldAccessorTable.m; sourceTree = "<group>"; };
+		74E17A1C0E949D0A00F8D0D3 /* FieldDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDescriptor.h; sourceTree = "<group>"; };
+		74E17A1D0E949D0A00F8D0D3 /* FieldDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldDescriptor.m; sourceTree = "<group>"; };
+		74E17A1E0E949D0A00F8D0D3 /* FieldDescriptorType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDescriptorType.h; sourceTree = "<group>"; };
+		74E17A1F0E949D0A00F8D0D3 /* FieldDescriptorType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldDescriptorType.m; sourceTree = "<group>"; };
+		74E17A200E949D0A00F8D0D3 /* FieldSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldSet.h; sourceTree = "<group>"; };
+		74E17A210E949D0A00F8D0D3 /* FieldSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldSet.m; sourceTree = "<group>"; };
+		74E17A220E949D0A00F8D0D3 /* FileDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileDescriptor.h; sourceTree = "<group>"; };
+		74E17A230E949D0A00F8D0D3 /* FileDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileDescriptor.m; sourceTree = "<group>"; };
+		74E17A240E949D0A00F8D0D3 /* GeneratedExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedExtension.h; sourceTree = "<group>"; };
+		74E17A250E949D0A00F8D0D3 /* GeneratedExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedExtension.m; sourceTree = "<group>"; };
+		74E17A260E949D0A00F8D0D3 /* GeneratedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage.h; sourceTree = "<group>"; };
+		74E17A270E949D0A00F8D0D3 /* GeneratedMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage.m; sourceTree = "<group>"; };
+		74E17A280E949D0A00F8D0D3 /* GeneratedMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage_Builder.h; sourceTree = "<group>"; };
+		74E17A290E949D0A00F8D0D3 /* GeneratedMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GeneratedMessage_Builder.m; sourceTree = "<group>"; };
+		74E17A2A0E949D0A00F8D0D3 /* GenericDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericDescriptor.h; sourceTree = "<group>"; };
+		74E17A2B0E949D0A00F8D0D3 /* Message.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message.h; sourceTree = "<group>"; };
+		74E17A2C0E949D0A00F8D0D3 /* Message_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Message_Builder.h; sourceTree = "<group>"; };
+		74E17A2D0E949D0A00F8D0D3 /* MutableField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableField.h; sourceTree = "<group>"; };
+		74E17A2E0E949D0A00F8D0D3 /* MutableField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableField.m; sourceTree = "<group>"; };
+		74E17A2F0E949D0A00F8D0D3 /* ObjectiveCType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCType.h; sourceTree = "<group>"; };
+		74E17A300E949D0A00F8D0D3 /* ObjectiveCType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCType.m; sourceTree = "<group>"; };
+		74E17A310E949D0A00F8D0D3 /* ProtocolBuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers.h; sourceTree = "<group>"; };
+		74E17A320E949D0A00F8D0D3 /* RepeatedEnumFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatedEnumFieldAccessor.h; sourceTree = "<group>"; };
+		74E17A330E949D0A00F8D0D3 /* RepeatedEnumFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatedEnumFieldAccessor.m; sourceTree = "<group>"; };
+		74E17A340E949D0A00F8D0D3 /* RepeatedFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatedFieldAccessor.h; sourceTree = "<group>"; };
+		74E17A350E949D0A00F8D0D3 /* RepeatedFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatedFieldAccessor.m; sourceTree = "<group>"; };
+		74E17A360E949D0A00F8D0D3 /* RepeatedMessageFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RepeatedMessageFieldAccessor.h; sourceTree = "<group>"; };
+		74E17A370E949D0A00F8D0D3 /* RepeatedMessageFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RepeatedMessageFieldAccessor.m; sourceTree = "<group>"; };
+		74E17A380E949D0A00F8D0D3 /* RpcChannel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RpcChannel.h; sourceTree = "<group>"; };
+		74E17A390E949D0A00F8D0D3 /* RpcController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RpcController.h; sourceTree = "<group>"; };
+		74E17A3A0E949D0A00F8D0D3 /* Service.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Service.h; sourceTree = "<group>"; };
+		74E17A3B0E949D0A00F8D0D3 /* SingularEnumFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingularEnumFieldAccessor.h; sourceTree = "<group>"; };
+		74E17A3C0E949D0A00F8D0D3 /* SingularEnumFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingularEnumFieldAccessor.m; sourceTree = "<group>"; };
+		74E17A3D0E949D0A00F8D0D3 /* SingularFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingularFieldAccessor.h; sourceTree = "<group>"; };
+		74E17A3E0E949D0A00F8D0D3 /* SingularFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingularFieldAccessor.m; sourceTree = "<group>"; };
+		74E17A3F0E949D0A00F8D0D3 /* SingularMessageFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingularMessageFieldAccessor.h; sourceTree = "<group>"; };
+		74E17A400E949D0A00F8D0D3 /* SingularMessageFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingularMessageFieldAccessor.m; sourceTree = "<group>"; };
+		74E17A410E949D0A00F8D0D3 /* UnknownFieldSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownFieldSet.h; sourceTree = "<group>"; };
+		74E17A420E949D0A00F8D0D3 /* UnknownFieldSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownFieldSet.m; sourceTree = "<group>"; };
+		74E17A430E949D0A00F8D0D3 /* UnknownFieldSet_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownFieldSet_Builder.h; sourceTree = "<group>"; };
+		74E17A440E949D0A00F8D0D3 /* UnknownFieldSet_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownFieldSet_Builder.m; sourceTree = "<group>"; };
+		74E17A450E949D0A00F8D0D3 /* Utilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utilities.h; sourceTree = "<group>"; };
+		74E17A460E949D0A00F8D0D3 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
+		74E17A470E949D0A00F8D0D3 /* WireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireFormat.h; sourceTree = "<group>"; };
+		74E17A480E949D0A00F8D0D3 /* WireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WireFormat.m; sourceTree = "<group>"; };
 		74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityMutex.h; sourceTree = "<group>"; };
 		74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
 		74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
@@ -882,90 +882,9 @@
 		745184B40E91D8D600D4E0C5 /* ProtocolBuffers */ = {
 			isa = PBXGroup;
 			children = (
-				74E1786F0E94957C00F8D0D3 /* ForwardDeclarations.h */,
-				74E1786E0E94956700F8D0D3 /* Bootstrap.h */,
-				74E177F00E94951400F8D0D3 /* AbstractMessage.h */,
-				74E177F10E94951400F8D0D3 /* AbstractMessage.m */,
-				74E177F20E94951400F8D0D3 /* AbstractMessage_Builder.h */,
-				74E177F30E94951400F8D0D3 /* AbstractMessage_Builder.m */,
-				74E177F40E94951400F8D0D3 /* CodedInputStream.h */,
-				74E177F50E94951400F8D0D3 /* CodedInputStream.m */,
-				74E177F60E94951400F8D0D3 /* CodedOutputStream.h */,
-				74E177F70E94951400F8D0D3 /* CodedOutputStream.m */,
-				74E177F80E94951400F8D0D3 /* Descriptor.h */,
-				74E177F90E94951400F8D0D3 /* Descriptor.m */,
-				74E177FA0E94951400F8D0D3 /* Descriptor.pb.h */,
-				74E177FB0E94951400F8D0D3 /* Descriptor.pb.m */,
-				74E177FC0E94951400F8D0D3 /* DescriptorIntPair.h */,
-				74E177FD0E94951400F8D0D3 /* DescriptorIntPair.m */,
-				74E177FE0E94951400F8D0D3 /* DescriptorPool.h */,
-				74E177FF0E94951400F8D0D3 /* DescriptorPool.m */,
-				74E178000E94951400F8D0D3 /* DynamicMessage.h */,
-				74E178010E94951400F8D0D3 /* DynamicMessage.m */,
-				74E178020E94951400F8D0D3 /* DynamicMessage_Builder.h */,
-				74E178030E94951400F8D0D3 /* DynamicMessage_Builder.m */,
-				74E178040E94951400F8D0D3 /* EnumDescriptor.h */,
-				74E178050E94951400F8D0D3 /* EnumDescriptor.m */,
-				74E178060E94951400F8D0D3 /* EnumValueDescriptor.h */,
-				74E178070E94951400F8D0D3 /* EnumValueDescriptor.m */,
-				74E178080E94951400F8D0D3 /* ExtendableMessage.h */,
-				74E178090E94951400F8D0D3 /* ExtendableMessage.m */,
-				74E1780A0E94951400F8D0D3 /* ExtensionInfo.h */,
-				74E1780B0E94951400F8D0D3 /* ExtensionInfo.m */,
-				74E1780C0E94951400F8D0D3 /* ExtensionRegistry.h */,
-				74E1780D0E94951400F8D0D3 /* ExtensionRegistry.m */,
-				74E1780E0E94951400F8D0D3 /* ExtensionWriter.h */,
-				74E1780F0E94951400F8D0D3 /* ExtensionWriter.m */,
-				74E178100E94951400F8D0D3 /* Field.h */,
-				74E178110E94951400F8D0D3 /* Field.m */,
-				74E178120E94951400F8D0D3 /* FieldAccessor.h */,
-				74E178130E94951400F8D0D3 /* FieldAccessorTable.h */,
-				74E178140E94951400F8D0D3 /* FieldAccessorTable.m */,
-				74E178150E94951400F8D0D3 /* FieldDescriptor.h */,
-				74E178160E94951400F8D0D3 /* FieldDescriptor.m */,
-				74E178170E94951400F8D0D3 /* FieldDescriptorType.h */,
-				74E178180E94951400F8D0D3 /* FieldDescriptorType.m */,
-				74E178190E94951400F8D0D3 /* FieldSet.h */,
-				74E1781A0E94951400F8D0D3 /* FieldSet.m */,
-				74E1781B0E94951400F8D0D3 /* FileDescriptor.h */,
-				74E1781C0E94951400F8D0D3 /* FileDescriptor.m */,
-				74E1781D0E94951400F8D0D3 /* GeneratedExtension.h */,
-				74E1781E0E94951400F8D0D3 /* GeneratedExtension.m */,
-				74E1781F0E94951400F8D0D3 /* GeneratedMessage.h */,
-				74E178200E94951400F8D0D3 /* GeneratedMessage.m */,
-				74E178210E94951400F8D0D3 /* GeneratedMessage_Builder.h */,
-				74E178220E94951400F8D0D3 /* GeneratedMessage_Builder.m */,
-				74E178230E94951400F8D0D3 /* GenericDescriptor.h */,
-				74E178240E94951400F8D0D3 /* Message.h */,
-				74E178250E94951400F8D0D3 /* Message_Builder.h */,
-				74E178260E94951400F8D0D3 /* MutableField.h */,
-				74E178270E94951400F8D0D3 /* MutableField.m */,
-				74E178280E94951400F8D0D3 /* ObjectiveCType.h */,
-				74E178290E94951400F8D0D3 /* ObjectiveCType.m */,
-				74E1782A0E94951400F8D0D3 /* ProtocolBuffers.h */,
-				74E1782B0E94951400F8D0D3 /* RepeatedEnumFieldAccessor.h */,
-				74E1782C0E94951400F8D0D3 /* RepeatedEnumFieldAccessor.m */,
-				74E1782D0E94951400F8D0D3 /* RepeatedFieldAccessor.h */,
-				74E1782E0E94951400F8D0D3 /* RepeatedFieldAccessor.m */,
-				74E1782F0E94951400F8D0D3 /* RepeatedMessageFieldAccessor.h */,
-				74E178300E94951400F8D0D3 /* RepeatedMessageFieldAccessor.m */,
-				74E178310E94951400F8D0D3 /* RpcChannel.h */,
-				74E178320E94951400F8D0D3 /* RpcController.h */,
-				74E178330E94951400F8D0D3 /* Service.h */,
-				74E178340E94951400F8D0D3 /* SingularEnumFieldAccessor.h */,
-				74E178350E94951400F8D0D3 /* SingularEnumFieldAccessor.m */,
-				74E178360E94951400F8D0D3 /* SingularFieldAccessor.h */,
-				74E178370E94951400F8D0D3 /* SingularFieldAccessor.m */,
-				74E178380E94951400F8D0D3 /* SingularMessageFieldAccessor.h */,
-				74E178390E94951400F8D0D3 /* SingularMessageFieldAccessor.m */,
-				74E1783A0E94951400F8D0D3 /* UnknownFieldSet.h */,
-				74E1783B0E94951400F8D0D3 /* UnknownFieldSet.m */,
-				74E1783C0E94951400F8D0D3 /* UnknownFieldSet_Builder.h */,
-				74E1783D0E94951400F8D0D3 /* UnknownFieldSet_Builder.m */,
-				74E1783E0E94951400F8D0D3 /* Utilities.h */,
-				74E1783F0E94951400F8D0D3 /* Utilities.m */,
-				74E178400E94951400F8D0D3 /* WireFormat.h */,
-				74E178410E94951400F8D0D3 /* WireFormat.m */,
+				74E179F60E949D0900F8D0D3 /* Classes */,
+				74E179F40E949CFA00F8D0D3 /* Bootstrap.h */,
+				74E179F50E949CFA00F8D0D3 /* ForwardDeclarations.h */,
 			);
 			name = ProtocolBuffers;
 			sourceTree = "<group>";
@@ -1119,6 +1038,96 @@
 			);
 			name = Xml;
 			sourceTree = "<group>";
+		};
+		74E179F60E949D0900F8D0D3 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				74E179F70E949D0900F8D0D3 /* AbstractMessage.h */,
+				74E179F80E949D0900F8D0D3 /* AbstractMessage.m */,
+				74E179F90E949D0900F8D0D3 /* AbstractMessage_Builder.h */,
+				74E179FA0E949D0900F8D0D3 /* AbstractMessage_Builder.m */,
+				74E179FB0E949D0900F8D0D3 /* CodedInputStream.h */,
+				74E179FC0E949D0900F8D0D3 /* CodedInputStream.m */,
+				74E179FD0E949D0900F8D0D3 /* CodedOutputStream.h */,
+				74E179FE0E949D0900F8D0D3 /* CodedOutputStream.m */,
+				74E179FF0E949D0A00F8D0D3 /* Descriptor.h */,
+				74E17A000E949D0A00F8D0D3 /* Descriptor.m */,
+				74E17A010E949D0A00F8D0D3 /* Descriptor.pb.h */,
+				74E17A020E949D0A00F8D0D3 /* Descriptor.pb.m */,
+				74E17A030E949D0A00F8D0D3 /* DescriptorIntPair.h */,
+				74E17A040E949D0A00F8D0D3 /* DescriptorIntPair.m */,
+				74E17A050E949D0A00F8D0D3 /* DescriptorPool.h */,
+				74E17A060E949D0A00F8D0D3 /* DescriptorPool.m */,
+				74E17A070E949D0A00F8D0D3 /* DynamicMessage.h */,
+				74E17A080E949D0A00F8D0D3 /* DynamicMessage.m */,
+				74E17A090E949D0A00F8D0D3 /* DynamicMessage_Builder.h */,
+				74E17A0A0E949D0A00F8D0D3 /* DynamicMessage_Builder.m */,
+				74E17A0B0E949D0A00F8D0D3 /* EnumDescriptor.h */,
+				74E17A0C0E949D0A00F8D0D3 /* EnumDescriptor.m */,
+				74E17A0D0E949D0A00F8D0D3 /* EnumValueDescriptor.h */,
+				74E17A0E0E949D0A00F8D0D3 /* EnumValueDescriptor.m */,
+				74E17A0F0E949D0A00F8D0D3 /* ExtendableMessage.h */,
+				74E17A100E949D0A00F8D0D3 /* ExtendableMessage.m */,
+				74E17A110E949D0A00F8D0D3 /* ExtensionInfo.h */,
+				74E17A120E949D0A00F8D0D3 /* ExtensionInfo.m */,
+				74E17A130E949D0A00F8D0D3 /* ExtensionRegistry.h */,
+				74E17A140E949D0A00F8D0D3 /* ExtensionRegistry.m */,
+				74E17A150E949D0A00F8D0D3 /* ExtensionWriter.h */,
+				74E17A160E949D0A00F8D0D3 /* ExtensionWriter.m */,
+				74E17A170E949D0A00F8D0D3 /* Field.h */,
+				74E17A180E949D0A00F8D0D3 /* Field.m */,
+				74E17A190E949D0A00F8D0D3 /* FieldAccessor.h */,
+				74E17A1A0E949D0A00F8D0D3 /* FieldAccessorTable.h */,
+				74E17A1B0E949D0A00F8D0D3 /* FieldAccessorTable.m */,
+				74E17A1C0E949D0A00F8D0D3 /* FieldDescriptor.h */,
+				74E17A1D0E949D0A00F8D0D3 /* FieldDescriptor.m */,
+				74E17A1E0E949D0A00F8D0D3 /* FieldDescriptorType.h */,
+				74E17A1F0E949D0A00F8D0D3 /* FieldDescriptorType.m */,
+				74E17A200E949D0A00F8D0D3 /* FieldSet.h */,
+				74E17A210E949D0A00F8D0D3 /* FieldSet.m */,
+				74E17A220E949D0A00F8D0D3 /* FileDescriptor.h */,
+				74E17A230E949D0A00F8D0D3 /* FileDescriptor.m */,
+				74E17A240E949D0A00F8D0D3 /* GeneratedExtension.h */,
+				74E17A250E949D0A00F8D0D3 /* GeneratedExtension.m */,
+				74E17A260E949D0A00F8D0D3 /* GeneratedMessage.h */,
+				74E17A270E949D0A00F8D0D3 /* GeneratedMessage.m */,
+				74E17A280E949D0A00F8D0D3 /* GeneratedMessage_Builder.h */,
+				74E17A290E949D0A00F8D0D3 /* GeneratedMessage_Builder.m */,
+				74E17A2A0E949D0A00F8D0D3 /* GenericDescriptor.h */,
+				74E17A2B0E949D0A00F8D0D3 /* Message.h */,
+				74E17A2C0E949D0A00F8D0D3 /* Message_Builder.h */,
+				74E17A2D0E949D0A00F8D0D3 /* MutableField.h */,
+				74E17A2E0E949D0A00F8D0D3 /* MutableField.m */,
+				74E17A2F0E949D0A00F8D0D3 /* ObjectiveCType.h */,
+				74E17A300E949D0A00F8D0D3 /* ObjectiveCType.m */,
+				74E17A310E949D0A00F8D0D3 /* ProtocolBuffers.h */,
+				74E17A320E949D0A00F8D0D3 /* RepeatedEnumFieldAccessor.h */,
+				74E17A330E949D0A00F8D0D3 /* RepeatedEnumFieldAccessor.m */,
+				74E17A340E949D0A00F8D0D3 /* RepeatedFieldAccessor.h */,
+				74E17A350E949D0A00F8D0D3 /* RepeatedFieldAccessor.m */,
+				74E17A360E949D0A00F8D0D3 /* RepeatedMessageFieldAccessor.h */,
+				74E17A370E949D0A00F8D0D3 /* RepeatedMessageFieldAccessor.m */,
+				74E17A380E949D0A00F8D0D3 /* RpcChannel.h */,
+				74E17A390E949D0A00F8D0D3 /* RpcController.h */,
+				74E17A3A0E949D0A00F8D0D3 /* Service.h */,
+				74E17A3B0E949D0A00F8D0D3 /* SingularEnumFieldAccessor.h */,
+				74E17A3C0E949D0A00F8D0D3 /* SingularEnumFieldAccessor.m */,
+				74E17A3D0E949D0A00F8D0D3 /* SingularFieldAccessor.h */,
+				74E17A3E0E949D0A00F8D0D3 /* SingularFieldAccessor.m */,
+				74E17A3F0E949D0A00F8D0D3 /* SingularMessageFieldAccessor.h */,
+				74E17A400E949D0A00F8D0D3 /* SingularMessageFieldAccessor.m */,
+				74E17A410E949D0A00F8D0D3 /* UnknownFieldSet.h */,
+				74E17A420E949D0A00F8D0D3 /* UnknownFieldSet.m */,
+				74E17A430E949D0A00F8D0D3 /* UnknownFieldSet_Builder.h */,
+				74E17A440E949D0A00F8D0D3 /* UnknownFieldSet_Builder.m */,
+				74E17A450E949D0A00F8D0D3 /* Utilities.h */,
+				74E17A460E949D0A00F8D0D3 /* Utilities.m */,
+				74E17A470E949D0A00F8D0D3 /* WireFormat.h */,
+				74E17A480E949D0A00F8D0D3 /* WireFormat.m */,
+			);
+			name = Classes;
+			path = ../../ProtocolBuffers/Classes;
+			sourceTree = SOURCE_ROOT;
 		};
 		74E6F0190E723FA200A4C2BE /* Threading */ = {
 			isa = PBXGroup;
@@ -1379,43 +1388,43 @@
 				7451849E0E91D7FF00D4E0C5 /* BoxOffice.pb.m in Sources */,
 				74AD65F90E92CCFC00A01FD5 /* DVD.m in Sources */,
 				74AD66350E92D49500A01FD5 /* DVDCache.m in Sources */,
-				74E178420E94951400F8D0D3 /* AbstractMessage.m in Sources */,
-				74E178430E94951400F8D0D3 /* AbstractMessage_Builder.m in Sources */,
-				74E178440E94951400F8D0D3 /* CodedInputStream.m in Sources */,
-				74E178450E94951400F8D0D3 /* CodedOutputStream.m in Sources */,
-				74E178460E94951400F8D0D3 /* Descriptor.m in Sources */,
-				74E178470E94951400F8D0D3 /* Descriptor.pb.m in Sources */,
-				74E178480E94951400F8D0D3 /* DescriptorIntPair.m in Sources */,
-				74E178490E94951400F8D0D3 /* DescriptorPool.m in Sources */,
-				74E1784A0E94951400F8D0D3 /* DynamicMessage.m in Sources */,
-				74E1784B0E94951400F8D0D3 /* DynamicMessage_Builder.m in Sources */,
-				74E1784C0E94951400F8D0D3 /* EnumDescriptor.m in Sources */,
-				74E1784D0E94951400F8D0D3 /* EnumValueDescriptor.m in Sources */,
-				74E1784E0E94951400F8D0D3 /* ExtendableMessage.m in Sources */,
-				74E1784F0E94951400F8D0D3 /* ExtensionInfo.m in Sources */,
-				74E178500E94951400F8D0D3 /* ExtensionRegistry.m in Sources */,
-				74E178510E94951400F8D0D3 /* ExtensionWriter.m in Sources */,
-				74E178520E94951400F8D0D3 /* Field.m in Sources */,
-				74E178530E94951400F8D0D3 /* FieldAccessorTable.m in Sources */,
-				74E178540E94951400F8D0D3 /* FieldDescriptor.m in Sources */,
-				74E178550E94951400F8D0D3 /* FieldDescriptorType.m in Sources */,
-				74E178560E94951400F8D0D3 /* FieldSet.m in Sources */,
-				74E178570E94951400F8D0D3 /* FileDescriptor.m in Sources */,
-				74E178580E94951400F8D0D3 /* GeneratedExtension.m in Sources */,
-				74E178590E94951400F8D0D3 /* GeneratedMessage.m in Sources */,
-				74E1785A0E94951400F8D0D3 /* GeneratedMessage_Builder.m in Sources */,
-				74E1785B0E94951400F8D0D3 /* MutableField.m in Sources */,
-				74E1785C0E94951400F8D0D3 /* ObjectiveCType.m in Sources */,
-				74E1785D0E94951400F8D0D3 /* RepeatedEnumFieldAccessor.m in Sources */,
-				74E1785E0E94951400F8D0D3 /* RepeatedFieldAccessor.m in Sources */,
-				74E1785F0E94951400F8D0D3 /* RepeatedMessageFieldAccessor.m in Sources */,
-				74E178600E94951400F8D0D3 /* SingularEnumFieldAccessor.m in Sources */,
-				74E178610E94951400F8D0D3 /* SingularFieldAccessor.m in Sources */,
-				74E178620E94951400F8D0D3 /* SingularMessageFieldAccessor.m in Sources */,
-				74E178630E94951400F8D0D3 /* UnknownFieldSet.m in Sources */,
-				74E178640E94951400F8D0D3 /* UnknownFieldSet_Builder.m in Sources */,
-				74E178650E94951400F8D0D3 /* Utilities.m in Sources */,
-				74E178660E94951400F8D0D3 /* WireFormat.m in Sources */,
+				74E17A490E949D0A00F8D0D3 /* AbstractMessage.m in Sources */,
+				74E17A4A0E949D0A00F8D0D3 /* AbstractMessage_Builder.m in Sources */,
+				74E17A4B0E949D0A00F8D0D3 /* CodedInputStream.m in Sources */,
+				74E17A4C0E949D0A00F8D0D3 /* CodedOutputStream.m in Sources */,
+				74E17A4D0E949D0A00F8D0D3 /* Descriptor.m in Sources */,
+				74E17A4E0E949D0A00F8D0D3 /* Descriptor.pb.m in Sources */,
+				74E17A4F0E949D0A00F8D0D3 /* DescriptorIntPair.m in Sources */,
+				74E17A500E949D0A00F8D0D3 /* DescriptorPool.m in Sources */,
+				74E17A510E949D0A00F8D0D3 /* DynamicMessage.m in Sources */,
+				74E17A520E949D0A00F8D0D3 /* DynamicMessage_Builder.m in Sources */,
+				74E17A530E949D0A00F8D0D3 /* EnumDescriptor.m in Sources */,
+				74E17A540E949D0A00F8D0D3 /* EnumValueDescriptor.m in Sources */,
+				74E17A550E949D0A00F8D0D3 /* ExtendableMessage.m in Sources */,
+				74E17A560E949D0A00F8D0D3 /* ExtensionInfo.m in Sources */,
+				74E17A570E949D0A00F8D0D3 /* ExtensionRegistry.m in Sources */,
+				74E17A580E949D0A00F8D0D3 /* ExtensionWriter.m in Sources */,
+				74E17A590E949D0A00F8D0D3 /* Field.m in Sources */,
+				74E17A5A0E949D0A00F8D0D3 /* FieldAccessorTable.m in Sources */,
+				74E17A5B0E949D0A00F8D0D3 /* FieldDescriptor.m in Sources */,
+				74E17A5C0E949D0A00F8D0D3 /* FieldDescriptorType.m in Sources */,
+				74E17A5D0E949D0A00F8D0D3 /* FieldSet.m in Sources */,
+				74E17A5E0E949D0A00F8D0D3 /* FileDescriptor.m in Sources */,
+				74E17A5F0E949D0A00F8D0D3 /* GeneratedExtension.m in Sources */,
+				74E17A600E949D0A00F8D0D3 /* GeneratedMessage.m in Sources */,
+				74E17A610E949D0A00F8D0D3 /* GeneratedMessage_Builder.m in Sources */,
+				74E17A620E949D0A00F8D0D3 /* MutableField.m in Sources */,
+				74E17A630E949D0A00F8D0D3 /* ObjectiveCType.m in Sources */,
+				74E17A640E949D0A00F8D0D3 /* RepeatedEnumFieldAccessor.m in Sources */,
+				74E17A650E949D0A00F8D0D3 /* RepeatedFieldAccessor.m in Sources */,
+				74E17A660E949D0A00F8D0D3 /* RepeatedMessageFieldAccessor.m in Sources */,
+				74E17A670E949D0A00F8D0D3 /* SingularEnumFieldAccessor.m in Sources */,
+				74E17A680E949D0A00F8D0D3 /* SingularFieldAccessor.m in Sources */,
+				74E17A690E949D0A00F8D0D3 /* SingularMessageFieldAccessor.m in Sources */,
+				74E17A6A0E949D0A00F8D0D3 /* UnknownFieldSet.m in Sources */,
+				74E17A6B0E949D0A00F8D0D3 /* UnknownFieldSet_Builder.m in Sources */,
+				74E17A6C0E949D0A00F8D0D3 /* Utilities.m in Sources */,
+				74E17A6D0E949D0A00F8D0D3 /* WireFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
