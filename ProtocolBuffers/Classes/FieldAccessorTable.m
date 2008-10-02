@@ -40,7 +40,7 @@
 - (void) dealloc {
     self.descriptor = nil;
     self.fields = nil;
-
+    
     [super dealloc];
 }
 
@@ -51,9 +51,9 @@
              builderClass:(Class) builderClass {
     if (self = [super init]) {
         self.descriptor = descriptor_;
-
+        
         NSMutableArray* array = [NSMutableArray array];
-
+        
         for (int i = 0; i < fieldNames.count; i++) {
             NSString* name = [fieldNames objectAtIndex:i];
             PBFieldDescriptor* field = [descriptor.fields objectAtIndex:i];
@@ -75,22 +75,22 @@
                 }
             }
         }
-
+        
         self.fields = array;
     }
-
+    
     return self;
 }
 
 
 + (PBFieldAccessorTable*) tableWithDescriptor:(PBDescriptor*) descriptor
-                                                  fieldNames:(NSArray*) fieldNames
-                                                messageClass:(Class) messageClass
-                                                builderClass:(Class) builderClass {
+                                   fieldNames:(NSArray*) fieldNames
+                                 messageClass:(Class) messageClass
+                                 builderClass:(Class) builderClass {
     return [[[PBFieldAccessorTable alloc] initWithDescriptor:descriptor
-                                                                 fieldNames:fieldNames
-                                                               messageClass:messageClass
-                                                               builderClass:builderClass] autorelease];
+                                                  fieldNames:fieldNames
+                                                messageClass:messageClass
+                                                builderClass:builderClass] autorelease];
 }
 
 
@@ -102,7 +102,7 @@
         // which overrides the reflection interface to handle extensions.
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
-
+    
     return [fields objectAtIndex:field.index];
 }
 
