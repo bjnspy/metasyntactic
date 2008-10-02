@@ -55,11 +55,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "       selector:(SEL) selector;\n");
     }
 
-    // Generate getDescriptor() and getDescriptorForType().
+    // Generate getDescriptor() and descriptorForType().
     printer->Print(
       "\n"
       "+ (ServiceDescriptor*) getDescriptor;\n"
-      "- (ServiceDescriptor*) getDescriptorForType;\n");
+      "- (ServiceDescriptor*) descriptorForType;\n");
 
     // Generate more stuff.
     GenerateCallMethodHeader(printer);
@@ -94,13 +94,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "}\n");
     }
 
-    // Generate getDescriptor() and getDescriptorForType().
+    // Generate getDescriptor() and descriptorForType().
     printer->Print(
       "\n"
       "+ (ServiceDescriptor*) getDescriptor {\n"
       "  return [[$file$ getDescriptor].getServices objectAtIndex:$index$];\n"
       "}\n"
-      "- (ServiceDescriptor*) getDescriptorForType {\n"
+      "- (ServiceDescriptor*) descriptorForType {\n"
       "  return [self getDescriptor];\n"
       "}\n",
       "file", FileClassName(descriptor_->file()),
@@ -197,7 +197,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
           (which == REQUEST) ? method->input_type() : method->output_type());
         printer->Print(vars,
           "case $index$:\n"
-          "  return [$type$ getDefaultInstance];\n");
+          "  return [$type$ defaultInstance];\n");
       }
 
       printer->Print(
@@ -278,7 +278,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "  [channel callMethod:[self.getDescriptor.getMethods objectAtIndex:$index$]\n"
         "           controller:controller\n"
         "              request:request\n"
-        "             response:[$output$ getDefaultInstance]\n"
+        "             response:[$output$ defaultInstance]\n"
         "               target:target\n"
         "             selector:selector];\n"
         "}\n");

@@ -151,7 +151,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n"
       "- (id<PBMessage_Builder>) merge$capitalized_name$:($storage_type$) value {\n"
       "  if (result.has$capitalized_name$ &&\n"
-      "      result.$name$_ != [$type$ getDefaultInstance]) {\n"
+      "      result.$name$_ != [$type$ defaultInstance]) {\n"
       "    result.$name$_ =\n"
       "      [[[$type$ newBuilderWith$type$:result.$name$_] mergeFrom$type$:value] buildPartial];\n"
       "  } else {\n"
@@ -162,7 +162,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n"
       "- (id<PBMessage_Builder>) clear$capitalized_name$ {\n"
       "  result.has$capitalized_name$ = NO;\n"
-      "  result.$name$_ = [$type$ getDefaultInstance];\n"
+      "  result.$name$_ = [$type$ defaultInstance];\n"
       "  return self;\n"
       "}\n");
   }
