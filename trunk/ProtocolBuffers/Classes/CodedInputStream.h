@@ -16,6 +16,12 @@
 
 #import "FieldDescriptorType.h"
 
+@protocol PBMessage;
+@protocol PBMessage_Builder;
+@class PBExtensionRegistry;
+@class PBUnknownFieldSet_Builder;
+
+
 @interface PBCodedInputStream : NSObject {
 @private
     NSMutableData* buffer;

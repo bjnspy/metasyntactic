@@ -16,7 +16,7 @@
 
 #import <SenTestingKit/SenTestingKit.h>
 
-@interface CodedStreamTests : SenTestCase {
+@interface CodedInputStreamTests : SenTestCase {
 
 }
 
