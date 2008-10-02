@@ -83,7 +83,7 @@
 
 
 - (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry getEmptyRegistry]];
+    return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 
 

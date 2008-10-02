@@ -99,11 +99,6 @@
 }
 
 
-- (NSArray*) getMessageTypes {
-    return messageTypes;
-}
-
-
 - (void) crossLink {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }

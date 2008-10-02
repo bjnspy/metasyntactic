@@ -24,47 +24,13 @@
     int32_t dm_memoizedSize;
 }
 
-@property (retain) PBDescriptor* type;
-@property (retain) PBFieldSet* fields;
-@property (retain) PBUnknownFieldSet* unknownFields;
+@property (retain, readonly) PBDescriptor* type;
+@property (retain, readonly) PBFieldSet* fields;
+@property (retain, readonly) PBUnknownFieldSet* unknownFields;
 
 + (PBDynamicMessage*) messageWithType:(PBDescriptor*) type fields:(PBFieldSet*) fields unknownFields:(PBUnknownFieldSet*) unknownFields;
 + (PBDynamicMessage*) defaultInstance:(PBDescriptor*) type;
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
-
-
-#if 0
-+ (PBDynamicMessage*) messageWithType:(Descriptors_Descriptor*) type;
-
-
-+ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(PBCodedInputStream*) codedInputStream;
-+ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type codedInputStream:(PBCodedInputStream*) codedInputStream extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type data:(NSData*) data;
-+ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type data:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-+ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type inputStream:(NSInputStream*) inputStream;
-+ (PBDynamicMessage*) parseFrom:(Descriptors_Descriptor*) type inputStream:(NSInputStream*) inputStream extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
-
-+ (PBDynamicMessage_Builder*) builderWithType:(Descriptors_Descriptor*) type;
-+ (PBDynamicMessage_Builder*) builderWithMessage:(id<PBMessage>) prototype;
-
-- (Descriptors_Descriptor*) descriptorForType;
-- (PBDynamicMessage*) defaultInstanceForType;
-- (NSDictionary*) allFields;
-
-- (BOOL) hasField:(PBFieldDescriptor*) field;
-- (id) getField:(PBFieldDescriptor*) field;
-
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
-- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
-
-- (PBUnknownFieldSet*) unknownFields;
-- (BOOL) isInitialized;
-
-- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-
-- (int32_t) serializedSize;
-- (PBDynamicMessage_Builder*) newBuilderForType;
-#endif
 
 @end

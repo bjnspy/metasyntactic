@@ -24,6 +24,13 @@
 #import "UnknownFieldSet.h"
 #import "UnknownFieldSet_Builder.h"
 
+@interface PBDynamicMessage_Builder ()
+@property (retain) PBDescriptor* type;
+@property (retain) PBFieldSet* fields;
+@property (retain) PBUnknownFieldSet* unknownFields;
+@end
+
+
 @implementation PBDynamicMessage_Builder
 
 @synthesize type;
