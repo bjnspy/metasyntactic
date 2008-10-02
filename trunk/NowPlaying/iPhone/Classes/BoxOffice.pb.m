@@ -2,400 +2,403 @@
 
 #import "BoxOffice.pb.h"
 
-@implementation BoxOffice
-static FileDescriptor* descriptor = nil;
-static ProtocolBufferDescriptor* internal_static_ShowtimeProto_descriptor = nil;
-static GeneratedMessage_FieldAccessorTable* internal_static_ShowtimeProto_fieldAccessorTable = nil;
-+ (ProtocolBufferDescriptor*) internal_static_ShowtimeProto_descriptor {
-    return internal_static_ShowtimeProto_descriptor;
+@implementation BoxOfficeProtoRoot
+static PBFileDescriptor* descriptor = nil;
+static PBDescriptor* internal_static_ShowtimeProto_descriptor = nil;
+static PBFieldAccessorTable* internal_static_ShowtimeProto_fieldAccessorTable = nil;
++ (PBDescriptor*) internal_static_ShowtimeProto_descriptor {
+  return internal_static_ShowtimeProto_descriptor;
 }
-+ (GeneratedMessage_FieldAccessorTable*) internal_static_ShowtimeProto_fieldAccessorTable {
-    return internal_static_ShowtimeProto_fieldAccessorTable;
++ (PBFieldAccessorTable*) internal_static_ShowtimeProto_fieldAccessorTable {
+  return internal_static_ShowtimeProto_fieldAccessorTable;
 }
-static ProtocolBufferDescriptor* internal_static_AllShowtimesProto_descriptor = nil;
-static GeneratedMessage_FieldAccessorTable* internal_static_AllShowtimesProto_fieldAccessorTable = nil;
-+ (ProtocolBufferDescriptor*) internal_static_AllShowtimesProto_descriptor {
-    return internal_static_AllShowtimesProto_descriptor;
+static PBDescriptor* internal_static_AllShowtimesProto_descriptor = nil;
+static PBFieldAccessorTable* internal_static_AllShowtimesProto_fieldAccessorTable = nil;
++ (PBDescriptor*) internal_static_AllShowtimesProto_descriptor {
+  return internal_static_AllShowtimesProto_descriptor;
 }
-+ (GeneratedMessage_FieldAccessorTable*) internal_static_AllShowtimesProto_fieldAccessorTable {
-    return internal_static_AllShowtimesProto_fieldAccessorTable;
++ (PBFieldAccessorTable*) internal_static_AllShowtimesProto_fieldAccessorTable {
+  return internal_static_AllShowtimesProto_fieldAccessorTable;
 }
-static ProtocolBufferDescriptor* internal_static_MovieProto_descriptor = nil;
-static GeneratedMessage_FieldAccessorTable* internal_static_MovieProto_fieldAccessorTable = nil;
-+ (ProtocolBufferDescriptor*) internal_static_MovieProto_descriptor {
-    return internal_static_MovieProto_descriptor;
+static PBDescriptor* internal_static_MovieProto_descriptor = nil;
+static PBFieldAccessorTable* internal_static_MovieProto_fieldAccessorTable = nil;
++ (PBDescriptor*) internal_static_MovieProto_descriptor {
+  return internal_static_MovieProto_descriptor;
 }
-+ (GeneratedMessage_FieldAccessorTable*) internal_static_MovieProto_fieldAccessorTable {
-    return internal_static_MovieProto_fieldAccessorTable;
++ (PBFieldAccessorTable*) internal_static_MovieProto_fieldAccessorTable {
+  return internal_static_MovieProto_fieldAccessorTable;
 }
-static ProtocolBufferDescriptor* internal_static_TheaterProto_descriptor = nil;
-static GeneratedMessage_FieldAccessorTable* internal_static_TheaterProto_fieldAccessorTable = nil;
-+ (ProtocolBufferDescriptor*) internal_static_TheaterProto_descriptor {
-    return internal_static_TheaterProto_descriptor;
+static PBDescriptor* internal_static_TheaterProto_descriptor = nil;
+static PBFieldAccessorTable* internal_static_TheaterProto_fieldAccessorTable = nil;
++ (PBDescriptor*) internal_static_TheaterProto_descriptor {
+  return internal_static_TheaterProto_descriptor;
 }
-+ (GeneratedMessage_FieldAccessorTable*) internal_static_TheaterProto_fieldAccessorTable {
-    return internal_static_TheaterProto_fieldAccessorTable;
++ (PBFieldAccessorTable*) internal_static_TheaterProto_fieldAccessorTable {
+  return internal_static_TheaterProto_fieldAccessorTable;
 }
-static ProtocolBufferDescriptor* internal_static_TheaterListingsProto_descriptor = nil;
-static GeneratedMessage_FieldAccessorTable* internal_static_TheaterListingsProto_fieldAccessorTable = nil;
-+ (ProtocolBufferDescriptor*) internal_static_TheaterListingsProto_descriptor {
-    return internal_static_TheaterListingsProto_descriptor;
+static PBDescriptor* internal_static_TheaterListingsProto_descriptor = nil;
+static PBFieldAccessorTable* internal_static_TheaterListingsProto_fieldAccessorTable = nil;
++ (PBDescriptor*) internal_static_TheaterListingsProto_descriptor {
+  return internal_static_TheaterListingsProto_descriptor;
 }
-+ (GeneratedMessage_FieldAccessorTable*) internal_static_TheaterListingsProto_fieldAccessorTable {
-    return internal_static_TheaterListingsProto_fieldAccessorTable;
++ (PBFieldAccessorTable*) internal_static_TheaterListingsProto_fieldAccessorTable {
+  return internal_static_TheaterListingsProto_fieldAccessorTable;
 }
-static ProtocolBufferDescriptor* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = nil;
-static GeneratedMessage_FieldAccessorTable* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable = nil;
-+ (ProtocolBufferDescriptor*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor {
-    return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor;
+static PBDescriptor* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = nil;
+static PBFieldAccessorTable* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable = nil;
++ (PBDescriptor*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor {
+  return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor;
 }
-+ (GeneratedMessage_FieldAccessorTable*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable {
-    return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable;
++ (PBFieldAccessorTable*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable {
+  return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable;
 }
-static ProtocolBufferDescriptor* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = nil;
-static GeneratedMessage_FieldAccessorTable* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable = nil;
-+ (ProtocolBufferDescriptor*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor {
-    return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor;
+static PBDescriptor* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = nil;
+static PBFieldAccessorTable* internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable = nil;
++ (PBDescriptor*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor {
+  return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor;
 }
-+ (GeneratedMessage_FieldAccessorTable*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable {
-    return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable;
++ (PBFieldAccessorTable*) internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable {
+  return internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable;
 }
-static ProtocolBufferDescriptor* internal_static_ReviewProto_descriptor = nil;
-static GeneratedMessage_FieldAccessorTable* internal_static_ReviewProto_fieldAccessorTable = nil;
-+ (ProtocolBufferDescriptor*) internal_static_ReviewProto_descriptor {
-    return internal_static_ReviewProto_descriptor;
+static PBDescriptor* internal_static_ReviewProto_descriptor = nil;
+static PBFieldAccessorTable* internal_static_ReviewProto_fieldAccessorTable = nil;
++ (PBDescriptor*) internal_static_ReviewProto_descriptor {
+  return internal_static_ReviewProto_descriptor;
 }
-+ (GeneratedMessage_FieldAccessorTable*) internal_static_ReviewProto_fieldAccessorTable {
-    return internal_static_ReviewProto_fieldAccessorTable;
++ (PBFieldAccessorTable*) internal_static_ReviewProto_fieldAccessorTable {
+  return internal_static_ReviewProto_fieldAccessorTable;
 }
-static ProtocolBufferDescriptor* internal_static_ReviewsListProto_descriptor = nil;
-static GeneratedMessage_FieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable = nil;
-+ (ProtocolBufferDescriptor*) internal_static_ReviewsListProto_descriptor {
-    return internal_static_ReviewsListProto_descriptor;
+static PBDescriptor* internal_static_ReviewsListProto_descriptor = nil;
+static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable = nil;
++ (PBDescriptor*) internal_static_ReviewsListProto_descriptor {
+  return internal_static_ReviewsListProto_descriptor;
 }
-+ (GeneratedMessage_FieldAccessorTable*) internal_static_ReviewsListProto_fieldAccessorTable {
-    return internal_static_ReviewsListProto_fieldAccessorTable;
++ (PBFieldAccessorTable*) internal_static_ReviewsListProto_fieldAccessorTable {
+  return internal_static_ReviewsListProto_fieldAccessorTable;
 }
 + (void) initialize {
-    if (self == [BoxOffice class]) {
-        descriptor = [[BoxOffice buildDescriptor] retain];
-        internal_static_ShowtimeProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:0] retain];
-        {
-            NSArray* fieldNames = [NSArray arrayWithObjects:
-                                   @"Time",
-                                   @"Url",
-                                   @"Dubbed",
-                                   @"Subtitled",
-                                   nil];
-            internal_static_ShowtimeProto_fieldAccessorTable =
-            [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_ShowtimeProto_descriptor
-                                                           fieldNames:fieldNames
-                                                         messageClass:[ShowtimeProto class]
-                                                         builderClass:[ShowtimeProto_Builder class]] retain];
-        }
-        internal_static_AllShowtimesProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:1] retain];
-        {
-            NSArray* fieldNames = [NSArray arrayWithObjects:
-                                   @"Showtimes",
-                                   @"Vendor",
-                                   @"Captioning",
-                                   nil];
-            internal_static_AllShowtimesProto_fieldAccessorTable =
-            [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_AllShowtimesProto_descriptor
-                                                           fieldNames:fieldNames
-                                                         messageClass:[AllShowtimesProto class]
-                                                         builderClass:[AllShowtimesProto_Builder class]] retain];
-        }
-        internal_static_MovieProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:2] retain];
-        {
-            NSArray* fieldNames = [NSArray arrayWithObjects:
-                                   @"Identifier",
-                                   @"Title",
-                                   @"Length",
-                                   @"Language",
-                                   @"Genre",
-                                   @"Description",
-                                   @"RawRating",
-                                   @"Score",
-                                   @"IMDbUrl",
-                                   @"Director",
-                                   @"Cast",
-                                   @"Dubbed",
-                                   @"Subtitled",
-                                   @"ReleaseDate",
-                                   nil];
-            internal_static_MovieProto_fieldAccessorTable =
-            [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_MovieProto_descriptor
-                                                           fieldNames:fieldNames
-                                                         messageClass:[MovieProto class]
-                                                         builderClass:[MovieProto_Builder class]] retain];
-        }
-        internal_static_TheaterProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:3] retain];
-        {
-            NSArray* fieldNames = [NSArray arrayWithObjects:
-                                   @"Identifier",
-                                   @"Name",
-                                   @"StreetAddress",
-                                   @"City",
-                                   @"State",
-                                   @"PostalCode",
-                                   @"Country",
-                                   @"Phone",
-                                   @"Latitude",
-                                   @"Longitude",
-                                   nil];
-            internal_static_TheaterProto_fieldAccessorTable =
-            [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_TheaterProto_descriptor
-                                                           fieldNames:fieldNames
-                                                         messageClass:[TheaterProto class]
-                                                         builderClass:[TheaterProto_Builder class]] retain];
-        }
-        internal_static_TheaterListingsProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:4] retain];
-        {
-            NSArray* fieldNames = [NSArray arrayWithObjects:
-                                   @"Movies",
-                                   @"TheaterAndMovieShowtimes",
-                                   nil];
-            internal_static_TheaterListingsProto_fieldAccessorTable =
-            [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_descriptor
-                                                           fieldNames:fieldNames
-                                                         messageClass:[TheaterListingsProto class]
-                                                         builderClass:[TheaterListingsProto_Builder class]] retain];
-        }
-        internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = [[[internal_static_TheaterListingsProto_descriptor getNestedTypes] objectAtIndex:0] retain];
-        {
-            NSArray* fieldNames = [NSArray arrayWithObjects:
-                                   @"Theater",
-                                   @"MovieAndShowtimes",
-                                   nil];
-            internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable =
-            [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor
-                                                           fieldNames:fieldNames
-                                                         messageClass:[TheaterAndMovieShowtimesProto class]
-                                                         builderClass:[TheaterAndMovieShowtimesProto_Builder class]] retain];
-        }
-        internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = [[[internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor getNestedTypes] objectAtIndex:0] retain];
-        {
-            NSArray* fieldNames = [NSArray arrayWithObjects:
-                                   @"MovieIdentifier",
-                                   @"Showtimes",
-                                   nil];
-            internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable =
-            [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor
-                                                           fieldNames:fieldNames
-                                                         messageClass:[MovieAndShowtimesProto class]
-                                                         builderClass:[MovieAndShowtimesProto_Builder class]] retain];
-        }
-        internal_static_ReviewProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:5] retain];
-        {
-            NSArray* fieldNames = [NSArray arrayWithObjects:
-                                   @"Title",
-                                   @"Url",
-                                   @"Rating",
-                                   @"Snippet",
-                                   @"Content",
-                                   @"Publisher",
-                                   @"Author",
-                                   @"Date",
-                                   nil];
-            internal_static_ReviewProto_fieldAccessorTable =
-            [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_ReviewProto_descriptor
-                                                           fieldNames:fieldNames
-                                                         messageClass:[ReviewProto class]
-                                                         builderClass:[ReviewProto_Builder class]] retain];
-        }
-        internal_static_ReviewsListProto_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:6] retain];
-        {
-            NSArray* fieldNames = [NSArray arrayWithObjects:
-                                   @"Reviews",
-                                   nil];
-            internal_static_ReviewsListProto_fieldAccessorTable =
-            [[GeneratedMessage_FieldAccessorTable tableWithDescriptor:internal_static_ReviewsListProto_descriptor
-                                                           fieldNames:fieldNames
-                                                         messageClass:[ReviewsListProto class]
-                                                         builderClass:[ReviewsListProto_Builder class]] retain];
-        }
+  if (self == [BoxOfficeProtoRoot class]) {
+    descriptor = [[BoxOfficeProtoRoot buildDescriptor] retain];
+    internal_static_ShowtimeProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Time",
+      @"Url",
+      @"Dubbed",
+      @"Subtitled",
+      nil];
+      internal_static_ShowtimeProto_fieldAccessorTable = 
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_ShowtimeProto_descriptor
+                                        fieldNames:fieldNames
+                                      messageClass:[ShowtimeProto class]
+                                      builderClass:[ShowtimeProto_Builder class]] retain];
     }
+    internal_static_AllShowtimesProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Showtimes",
+      @"Vendor",
+      @"Captioning",
+      nil];
+      internal_static_AllShowtimesProto_fieldAccessorTable = 
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_AllShowtimesProto_descriptor
+                                        fieldNames:fieldNames
+                                      messageClass:[AllShowtimesProto class]
+                                      builderClass:[AllShowtimesProto_Builder class]] retain];
+    }
+    internal_static_MovieProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Identifier",
+      @"Title",
+      @"Length",
+      @"Language",
+      @"Genre",
+      @"Description",
+      @"RawRating",
+      @"Score",
+      @"IMDbUrl",
+      @"Director",
+      @"Cast",
+      @"Dubbed",
+      @"Subtitled",
+      @"ReleaseDate",
+      nil];
+      internal_static_MovieProto_fieldAccessorTable = 
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_MovieProto_descriptor
+                                        fieldNames:fieldNames
+                                      messageClass:[MovieProto class]
+                                      builderClass:[MovieProto_Builder class]] retain];
+    }
+    internal_static_TheaterProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Identifier",
+      @"Name",
+      @"StreetAddress",
+      @"City",
+      @"State",
+      @"PostalCode",
+      @"Country",
+      @"Phone",
+      @"Latitude",
+      @"Longitude",
+      nil];
+      internal_static_TheaterProto_fieldAccessorTable = 
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterProto_descriptor
+                                        fieldNames:fieldNames
+                                      messageClass:[TheaterProto class]
+                                      builderClass:[TheaterProto_Builder class]] retain];
+    }
+    internal_static_TheaterListingsProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Movies",
+      @"TheaterAndMovieShowtimes",
+      nil];
+      internal_static_TheaterListingsProto_fieldAccessorTable = 
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_descriptor
+                                        fieldNames:fieldNames
+                                      messageClass:[TheaterListingsProto class]
+                                      builderClass:[TheaterListingsProto_Builder class]] retain];
+    }
+    internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = [[[internal_static_TheaterListingsProto_descriptor nestedTypes] objectAtIndex:0] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Theater",
+      @"MovieAndShowtimes",
+      nil];
+      internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable = 
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor
+                                        fieldNames:fieldNames
+                                      messageClass:[TheaterAndMovieShowtimesProto class]
+                                      builderClass:[TheaterAndMovieShowtimesProto_Builder class]] retain];
+    }
+    internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = [[[internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor nestedTypes] objectAtIndex:0] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"MovieIdentifier",
+      @"Showtimes",
+      nil];
+      internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable = 
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor
+                                        fieldNames:fieldNames
+                                      messageClass:[MovieAndShowtimesProto class]
+                                      builderClass:[MovieAndShowtimesProto_Builder class]] retain];
+    }
+    internal_static_ReviewProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:5] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Title",
+      @"Url",
+      @"Rating",
+      @"Snippet",
+      @"Content",
+      @"Publisher",
+      @"Author",
+      @"Date",
+      nil];
+      internal_static_ReviewProto_fieldAccessorTable = 
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_ReviewProto_descriptor
+                                        fieldNames:fieldNames
+                                      messageClass:[ReviewProto class]
+                                      builderClass:[ReviewProto_Builder class]] retain];
+    }
+    internal_static_ReviewsListProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:6] retain];
+    {
+      NSArray* fieldNames = [NSArray arrayWithObjects:
+      @"Reviews",
+      nil];
+      internal_static_ReviewsListProto_fieldAccessorTable = 
+        [[PBFieldAccessorTable tableWithDescriptor:internal_static_ReviewsListProto_descriptor
+                                        fieldNames:fieldNames
+                                      messageClass:[ReviewsListProto class]
+                                      builderClass:[ReviewsListProto_Builder class]] retain];
+    }
+  }
 }
-+ (FileDescriptor*) getDescriptor {
-    return descriptor;
++ (PBFileDescriptor*) descriptor {
+  return descriptor;
 }
-+ (FileDescriptor*) buildDescriptor {
-    NSString* descriptorData = [NSString stringWithCString:
-                                "\n\017BoxOffice.proto\"M\n\rShowtimeProto\022\014\n\004Ti"
-                                "me\030\001 \002(\t\022\013\n\003Url\030\002 \001(\t\022\016\n\006Dubbed\030\003 \003(\t\022\021\n"
-                                "\tSubtitled\030\004 \003(\t\"Z\n\021AllShowtimesProto\022!\n"
-                                "\tShowtimes\030\001 \003(\0132\016.ShowtimeProto\022\016\n\006Vend"
-                                "or\030\002 \001(\t\022\022\n\nCaptioning\030\003 \001(\t\"\200\002\n\nMoviePr"
-                                "oto\022\022\n\nIdentifier\030\001 \001(\t\022\r\n\005Title\030\002 \001(\t\022\016"
-                                "\n\006Length\030\003 \001(\005\022\020\n\010Language\030\004 \001(\t\022\r\n\005Genr"
-                                "e\030\005 \001(\t\022\023\n\013Description\030\006 \001(\t\022\021\n\tRawRatin"
-                                "g\030\010 \001(\t\022\r\n\005Score\030\t \001(\005\022\017\n\007IMDbUrl\030\n \001(\t\022"
-                                "\020\n\010Director\030\013 \003(\t\022\014\n\004Cast\030\014 \003(\t\022\016\n\006Dubbe"
-                                "d\030\r \003(\t\022\021\n\tSubtitled\030\016 \003(\t\022\023\n\013ReleaseDat"
-                                "e\030\017 \001(\t\"\275\001\n\014TheaterProto\022\022\n\nIdentifier\030\001"
-                                " \001(\t\022\014\n\004Name\030\002 \001(\t\022\025\n\rStreetAddress\030\003 \001("
-                                "\t\022\014\n\004City\030\004 \001(\t\022\r\n\005State\030\005 \001(\t\022\022\n\nPostal"
-                                "Code\030\006 \001(\t\022\017\n\007Country\030\007 \001(\t\022\r\n\005Phone\030\010 \001"
-                                "(\t\022\020\n\010Latitude\030\t \001(\001\022\021\n\tLongitude\030\n \001(\001\""
-                                "\215\003\n\024TheaterListingsProto\022\033\n\006Movies\030\005 \003(\013"
-                                "2\013.MovieProto\022U\n\030TheaterAndMovieShowtime"
-                                "s\030\006 \003(\01323.TheaterListingsProto.TheaterAn"
-                                "dMovieShowtimesProto\032\200\002\n\035TheaterAndMovie"
-                                "ShowtimesProto\022\036\n\007Theater\030\003 \002(\0132\r.Theate"
-                                "rProto\022e\n\021MovieAndShowtimes\030\004 \003(\0132J.Thea"
-                                "terListingsProto.TheaterAndMovieShowtime"
-                                "sProto.MovieAndShowtimesProto\032X\n\026MovieAn"
-                                "dShowtimesProto\022\027\n\017MovieIdentifier\030\001 \002(\t"
-                                "\022%\n\tShowtimes\030\002 \002(\0132\022.AllShowtimesProto\""
-                                "\214\001\n\013ReviewProto\022\r\n\005Title\030\001 \001(\t\022\013\n\003Url\030\002 "
-                                "\001(\t\022\016\n\006Rating\030\003 \001(\002\022\017\n\007Snippet\030\004 \001(\t\022\017\n\007"
-                                "Content\030\005 \001(\t\022\021\n\tPublisher\030\006 \001(\t\022\016\n\006Auth"
-                                "or\030\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListPro"
-                                "to\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProto"
-                                ];
-    NSArray* dependencies = [NSArray arrayWithObjects:
-                             nil];
-    return [FileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
++ (PBFileDescriptor*) buildDescriptor {
+  NSString* descriptorData = [NSString stringWithCString:
+    "\n\017BoxOffice.proto\"M\n\rShowtimeProto\022\014\n\004Ti"
+    "me\030\001 \002(\t\022\013\n\003Url\030\002 \001(\t\022\016\n\006Dubbed\030\003 \003(\t\022\021\n"
+    "\tSubtitled\030\004 \003(\t\"Z\n\021AllShowtimesProto\022!\n"
+    "\tShowtimes\030\001 \003(\0132\016.ShowtimeProto\022\016\n\006Vend"
+    "or\030\002 \001(\t\022\022\n\nCaptioning\030\003 \001(\t\"\200\002\n\nMoviePr"
+    "oto\022\022\n\nIdentifier\030\001 \001(\t\022\r\n\005Title\030\002 \001(\t\022\016"
+    "\n\006Length\030\003 \001(\005\022\020\n\010Language\030\004 \001(\t\022\r\n\005Genr"
+    "e\030\005 \001(\t\022\023\n\013Description\030\006 \001(\t\022\021\n\tRawRatin"
+    "g\030\010 \001(\t\022\r\n\005Score\030\t \001(\005\022\017\n\007IMDbUrl\030\n \001(\t\022"
+    "\020\n\010Director\030\013 \003(\t\022\014\n\004Cast\030\014 \003(\t\022\016\n\006Dubbe"
+    "d\030\r \003(\t\022\021\n\tSubtitled\030\016 \003(\t\022\023\n\013ReleaseDat"
+    "e\030\017 \001(\t\"\275\001\n\014TheaterProto\022\022\n\nIdentifier\030\001"
+    " \001(\t\022\014\n\004Name\030\002 \001(\t\022\025\n\rStreetAddress\030\003 \001("
+    "\t\022\014\n\004City\030\004 \001(\t\022\r\n\005State\030\005 \001(\t\022\022\n\nPostal"
+    "Code\030\006 \001(\t\022\017\n\007Country\030\007 \001(\t\022\r\n\005Phone\030\010 \001"
+    "(\t\022\020\n\010Latitude\030\t \001(\001\022\021\n\tLongitude\030\n \001(\001\""
+    "\215\003\n\024TheaterListingsProto\022\033\n\006Movies\030\005 \003(\013"
+    "2\013.MovieProto\022U\n\030TheaterAndMovieShowtime"
+    "s\030\006 \003(\01323.TheaterListingsProto.TheaterAn"
+    "dMovieShowtimesProto\032\200\002\n\035TheaterAndMovie"
+    "ShowtimesProto\022\036\n\007Theater\030\003 \002(\0132\r.Theate"
+    "rProto\022e\n\021MovieAndShowtimes\030\004 \003(\0132J.Thea"
+    "terListingsProto.TheaterAndMovieShowtime"
+    "sProto.MovieAndShowtimesProto\032X\n\026MovieAn"
+    "dShowtimesProto\022\027\n\017MovieIdentifier\030\001 \002(\t"
+    "\022%\n\tShowtimes\030\002 \002(\0132\022.AllShowtimesProto\""
+    "\214\001\n\013ReviewProto\022\r\n\005Title\030\001 \001(\t\022\013\n\003Url\030\002 "
+    "\001(\t\022\016\n\006Rating\030\003 \001(\002\022\017\n\007Snippet\030\004 \001(\t\022\017\n\007"
+    "Content\030\005 \001(\t\022\021\n\tPublisher\030\006 \001(\t\022\016\n\006Auth"
+    "or\030\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListPro"
+    "to\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProto"
+    ];
+  NSArray* dependencies = [NSArray arrayWithObjects:
+           nil];
+  return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
+@end
+
+@interface ShowtimeProto ()
+@property BOOL hasTime;
+@property (retain) NSString* time;
+@property BOOL hasUrl;
+@property (retain) NSString* url;
+@property (retain) NSMutableArray* mutableDubbedList;
+@property (retain) NSMutableArray* mutableSubtitledList;
 @end
 
 @implementation ShowtimeProto
 
 @synthesize hasTime;
-@synthesize time_;
+@synthesize time;
 @synthesize hasUrl;
-@synthesize url_;
-@synthesize dubbed_;
-@synthesize subtitled_;
+@synthesize url;
+@synthesize mutableDubbedList;
+@synthesize mutableSubtitledList;
 - (void) dealloc {
-    self.hasTime = NO;
-    self.time_ = nil;
-    self.hasUrl = NO;
-    self.url_ = nil;
-    self.dubbed_ = nil;
-    self.subtitled_ = nil;
-    [super dealloc];
+  self.hasTime = NO;
+  self.time = nil;
+  self.hasUrl = NO;
+  self.url = nil;
+  self.mutableDubbedList = nil;
+  self.mutableSubtitledList = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        memoizedSerializedSize = -1;
-        self.time_ = @"";
-        self.url_ = @"";
-    }
-    return self;
+  if (self = [super init]) {
+    memoizedSerializedSize = -1;
+    self.time = @"";
+    self.url = @"";
+  }
+  return self;
 }
 static ShowtimeProto* defaultShowtimeProtoInstance = nil;
 + (void) initialize {
-    if (self == [ShowtimeProto class]) {
-        defaultShowtimeProtoInstance = [[ShowtimeProto alloc] init];
-    }
+  if (self == [ShowtimeProto class]) {
+    defaultShowtimeProtoInstance = [[ShowtimeProto alloc] init];
+  }
 }
 
-+ (ShowtimeProto*) getDefaultInstance {
-    return defaultShowtimeProtoInstance;
++ (ShowtimeProto*) defaultInstance {
+  return defaultShowtimeProtoInstance;
 }
 
-- (ShowtimeProto*) getDefaultInstanceForType {
-    return defaultShowtimeProtoInstance;
+- (ShowtimeProto*) defaultInstanceForType {
+  return defaultShowtimeProtoInstance;
 }
 
-+ (ProtocolBufferDescriptor*) getDescriptor {
-    return [BoxOffice internal_static_ShowtimeProto_descriptor];
++ (PBDescriptor*) descriptor {
+  return [BoxOfficeProtoRoot internal_static_ShowtimeProto_descriptor];
 }
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    return [BoxOffice internal_static_ShowtimeProto_fieldAccessorTable];
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+  return [BoxOfficeProtoRoot internal_static_ShowtimeProto_fieldAccessorTable];
 }
 
-- (BOOL) hasTime { return hasTime; }
-- (NSString*) getTime { return time_; }
 
-- (BOOL) hasUrl { return hasUrl; }
-- (NSString*) getUrl { return url_; }
 
-- (NSArray*) getDubbedList {
-    return dubbed_;
+- (NSArray*) dubbedList {
+  return mutableDubbedList;
 }
-- (int32_t) getDubbedCount { return dubbed_.count; }
-- (NSString*) getDubbed:(int32_t) index {
-    return [dubbed_ objectAtIndex:index];
+- (NSString*) dubbedAtIndex:(int32_t) index {
+  return [mutableDubbedList objectAtIndex:index];
 }
 
-- (NSArray*) getSubtitledList {
-    return subtitled_;
+- (NSArray*) subtitledList {
+  return mutableSubtitledList;
 }
-- (int32_t) getSubtitledCount { return subtitled_.count; }
-- (NSString*) getSubtitled:(int32_t) index {
-    return [subtitled_ objectAtIndex:index];
+- (NSString*) subtitledAtIndex:(int32_t) index {
+  return [mutableSubtitledList objectAtIndex:index];
 }
 
 - (BOOL) isInitialized {
-    if (!self.hasTime) return false;
-    return true;
+  if (!self.hasTime) return false;
+  return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    if (hasTime) {
-        [output writeString:1 value:self.getTime];
-    }
-    if (hasUrl) {
-        [output writeString:2 value:self.getUrl];
-    }
-    for (NSString* element in self.getDubbedList) {
-        [output writeString:3 value:element];
-    }
-    for (NSString* element in self.getSubtitledList) {
-        [output writeString:4 value:element];
-    }
-    [self.getUnknownFields writeToCodedOutputStream:output];
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (hasTime) {
+    [output writeString:1 value:self.time];
+  }
+  if (hasUrl) {
+    [output writeString:2 value:self.url];
+  }
+  for (NSString* element in self.mutableDubbedList) {
+    [output writeString:3 value:element];
+  }
+  for (NSString* element in self.mutableSubtitledList) {
+    [output writeString:4 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
-    int32_t size = memoizedSerializedSize;
-    if (size != -1) return size;
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) return size;
 
-    size = 0;
-    if (hasTime) {
-        size += computeStringSize(1, self.getTime);
-    }
-    if (hasUrl) {
-        size += computeStringSize(2, self.getUrl);
-    }
-    for (NSString* element in self.getDubbedList) {
-        size += computeStringSize(3, element);
-    }
-    for (NSString* element in self.getSubtitledList) {
-        size += computeStringSize(4, element);
-    }
-    size += self.getUnknownFields.getSerializedSize;
-    memoizedSerializedSize = size;
-    return size;
+  size = 0;
+  if (hasTime) {
+    size += computeStringSize(1, self.time);
+  }
+  if (hasUrl) {
+    size += computeStringSize(2, self.url);
+  }
+  for (NSString* element in self.mutableDubbedList) {
+    size += computeStringSize(3, element);
+  }
+  for (NSString* element in self.mutableSubtitledList) {
+    size += computeStringSize(4, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
 }
 
 + (ShowtimeProto*) parseFromData:(NSData*) data {
-    return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromData:data] buildParsed];
+  return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromData:data] buildParsed];
 }
-+ (ShowtimeProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
++ (ShowtimeProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 + (ShowtimeProto*) parseFromInputStream:(NSInputStream*) input {
-    return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromInputStream:input] buildParsed];
+  return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromInputStream:input] buildParsed];
 }
-+ (ShowtimeProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (ShowtimeProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (ShowtimeProto*) parseFromCodedInputStream:(CodedInputStream*) input {
-    return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
++ (ShowtimeProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (ShowtimeProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (ShowtimeProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ShowtimeProto*)[[[ShowtimeProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 + (ShowtimeProto_Builder*) newBuilder { return [[[ShowtimeProto_Builder alloc] init] autorelease]; }
 - (ShowtimeProto_Builder*) newBuilderForType { return [ShowtimeProto newBuilder]; }
 + (ShowtimeProto_Builder*) newBuilderWithShowtimeProto:(ShowtimeProto*) prototype {
-    return [[ShowtimeProto newBuilder] mergeFromShowtimeProto:prototype];
+  return [[ShowtimeProto newBuilder] mergeFromShowtimeProto:prototype];
 }
 
 @end
@@ -403,353 +406,350 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
 @implementation ShowtimeProto_Builder
 @synthesize result;
 - (void) dealloc {
-    self.result = nil;
-    [super dealloc];
+  self.result = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        self.result = [[[ShowtimeProto alloc] init] autorelease];
-    }
-    return self;
+  if (self = [super init]) {
+    self.result = [[[ShowtimeProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (ShowtimeProto*) internalGetResult {
-    return result;
+  return result;
 }
 
 - (ShowtimeProto_Builder*) clear {
-    self.result = [[[ShowtimeProto alloc] init] autorelease];
-    return self;
+  self.result = [[[ShowtimeProto alloc] init] autorelease];
+  return self;
 }
 
 - (ShowtimeProto_Builder*) clone {
-    return (ShowtimeProto_Builder*)[[[[ShowtimeProto_Builder alloc] init] autorelease] mergeFromShowtimeProto:result];
+  return (ShowtimeProto_Builder*)[[[[ShowtimeProto_Builder alloc] init] autorelease] mergeFromShowtimeProto:result];
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    return [ShowtimeProto getDescriptor];
+- (PBDescriptor*) descriptorForType {
+  return [ShowtimeProto descriptor];
 }
 
-- (ShowtimeProto*) getDefaultInstanceForType {
-    return [ShowtimeProto getDefaultInstance];
+- (ShowtimeProto*) defaultInstanceForType {
+  return [ShowtimeProto defaultInstance];
 }
 
 - (ShowtimeProto*) build {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (ShowtimeProto*) buildParsed {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (ShowtimeProto*) buildPartial {
-    ShowtimeProto* returnMe = [[result retain] autorelease];
-    self.result = nil;
-    return returnMe;
+  ShowtimeProto* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
 }
 
-- (ShowtimeProto_Builder*) mergeFromMessage:(id<Message>) other {
-    id o = other;
-    if ([o isKindOfClass:[ShowtimeProto class]]) {
-        return [self mergeFromShowtimeProto:o];
-    } else {
-        [super mergeFromMessage:other];
-        return self;
-    }
+- (ShowtimeProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
+  id o = other;
+  if ([o isKindOfClass:[ShowtimeProto class]]) {
+    return [self mergeFromShowtimeProto:o];
+  } else {
+    [super mergeFromMessage:other];
+    return self;
+  }
 }
 
 - (ShowtimeProto_Builder*) mergeFromShowtimeProto:(ShowtimeProto*) other {
-    if (other == [ShowtimeProto getDefaultInstance]) return self;
-    if (other.hasTime) {
-        [self setTime:other.getTime];
+  if (other == [ShowtimeProto defaultInstance]) return self;
+  if (other.hasTime) {
+    [self setTime:other.time];
+  }
+  if (other.hasUrl) {
+    [self setUrl:other.url];
+  }
+  if (other.mutableDubbedList.count > 0) {
+    if (result.mutableDubbedList == nil) {
+      result.mutableDubbedList = [NSMutableArray array];
     }
-    if (other.hasUrl) {
-        [self setUrl:other.getUrl];
+    [result.mutableDubbedList addObjectsFromArray:other.mutableDubbedList];
+  }
+  if (other.mutableSubtitledList.count > 0) {
+    if (result.mutableSubtitledList == nil) {
+      result.mutableSubtitledList = [NSMutableArray array];
     }
-    if (other.dubbed_.count > 0) {
-        if (result.dubbed_ == nil) {
-            result.dubbed_ = [NSMutableArray array];
-        }
-        [result.dubbed_ addObjectsFromArray:other.dubbed_];
-    }
-    if (other.subtitled_.count > 0) {
-        if (result.subtitled_ == nil) {
-            result.subtitled_ = [NSMutableArray array];
-        }
-        [result.subtitled_ addObjectsFromArray:other.subtitled_];
-    }
-    [self mergeUnknownFields:other.getUnknownFields];
-    return self;
+    [result.mutableSubtitledList addObjectsFromArray:other.mutableSubtitledList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
 }
 
-- (ShowtimeProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
+- (ShowtimeProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 
-- (ShowtimeProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
-    while (true) {
-        int32_t tag = [input readTag];
-        switch (tag) {
-            case 0:
-                [self setUnknownFields:[unknownFields build]];
-                return self;
-            default: {
-                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-                    [self setUnknownFields:[unknownFields build]];
-                    return self;
-                }
-                break;
-            }
-            case 10: {
-                [self setTime:[input readString]];
-                break;
-            }
-            case 18: {
-                [self setUrl:[input readString]];
-                break;
-            }
-            case 26: {
-                [self addDubbed:[input readString]];
-                break;
-            }
-            case 34: {
-                [self addSubtitled:[input readString]];
-                break;
-            }
+- (ShowtimeProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
+  while (true) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
         }
+        break;
+      }
+      case 10: {
+        [self setTime:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setUrl:[input readString]];
+        break;
+      }
+      case 26: {
+        [self addDubbed:[input readString]];
+        break;
+      }
+      case 34: {
+        [self addSubtitled:[input readString]];
+        break;
+      }
     }
+  }
 }
 
 
 - (BOOL) hasTime {
-    return result.hasTime;
+  return result.hasTime;
 }
-- (NSString*) getTime {
-    return result.getTime;
+- (NSString*) time {
+  return result.time;
 }
 - (ShowtimeProto_Builder*) setTime:(NSString*) value {
-    result.hasTime = YES;
-    result.time_ = value;
-    return self;
+  result.hasTime = YES;
+  result.time = value;
+  return self;
 }
 - (ShowtimeProto_Builder*) clearTime {
-    result.hasTime = NO;
-    result.time_ = @"";
-    return self;
+  result.hasTime = NO;
+  result.time = @"";
+  return self;
 }
 
 - (BOOL) hasUrl {
-    return result.hasUrl;
+  return result.hasUrl;
 }
-- (NSString*) getUrl {
-    return result.getUrl;
+- (NSString*) url {
+  return result.url;
 }
 - (ShowtimeProto_Builder*) setUrl:(NSString*) value {
-    result.hasUrl = YES;
-    result.url_ = value;
-    return self;
+  result.hasUrl = YES;
+  result.url = value;
+  return self;
 }
 - (ShowtimeProto_Builder*) clearUrl {
-    result.hasUrl = NO;
-    result.url_ = @"";
-    return self;
+  result.hasUrl = NO;
+  result.url = @"";
+  return self;
 }
 
-- (NSArray*) getDubbedList {
-    if (result.dubbed_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithArray:result.dubbed_];
+- (NSArray*) dubbedList {
+  if (result.mutableDubbedList == nil) { return [NSArray array]; }
+  return result.mutableDubbedList;
 }
-- (int32_t) getDubbedCount {
-    return result.getDubbedCount;
+- (NSString*) dubbedAtIndex:(int32_t) index {
+  return [result dubbedAtIndex:index];
 }
-- (NSString*) getDubbed:(int32_t) index {
-    return [result getDubbed:index];
-}
-- (ShowtimeProto_Builder*) setDubbed:(int32_t) index value:(NSString*) value {
-    [result.dubbed_ replaceObjectAtIndex:index withObject:value];
-    return self;
+- (ShowtimeProto_Builder*) replaceDubbedAtIndex:(int32_t) index withDubbed:(NSString*) value {
+  [result.mutableDubbedList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (ShowtimeProto_Builder*) addDubbed:(NSString*) value {
-    if (result.dubbed_ == nil) {
-        result.dubbed_ = [NSMutableArray array];
-    }
-    [result.dubbed_ addObject:value];
-    return self;
+  if (result.mutableDubbedList == nil) {
+    result.mutableDubbedList = [NSMutableArray array];
+  }
+  [result.mutableDubbedList addObject:value];
+  return self;
 }
 - (ShowtimeProto_Builder*) addAllDubbed:(NSArray*) values {
-    if (result.dubbed_ == nil) {
-        result.dubbed_ = [NSMutableArray array];
-    }
-    [result.dubbed_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableDubbedList == nil) {
+    result.mutableDubbedList = [NSMutableArray array];
+  }
+  [result.mutableDubbedList addObjectsFromArray:values];
+  return self;
 }
-- (ShowtimeProto_Builder*) clearDubbed {
-    result.dubbed_ = nil;
-    return self;
+- (ShowtimeProto_Builder*) clearDubbedList {
+  result.mutableDubbedList = nil;
+  return self;
 }
 
-- (NSArray*) getSubtitledList {
-    if (result.subtitled_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithArray:result.subtitled_];
+- (NSArray*) subtitledList {
+  if (result.mutableSubtitledList == nil) { return [NSArray array]; }
+  return result.mutableSubtitledList;
 }
-- (int32_t) getSubtitledCount {
-    return result.getSubtitledCount;
+- (NSString*) subtitledAtIndex:(int32_t) index {
+  return [result subtitledAtIndex:index];
 }
-- (NSString*) getSubtitled:(int32_t) index {
-    return [result getSubtitled:index];
-}
-- (ShowtimeProto_Builder*) setSubtitled:(int32_t) index value:(NSString*) value {
-    [result.subtitled_ replaceObjectAtIndex:index withObject:value];
-    return self;
+- (ShowtimeProto_Builder*) replaceSubtitledAtIndex:(int32_t) index withSubtitled:(NSString*) value {
+  [result.mutableSubtitledList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (ShowtimeProto_Builder*) addSubtitled:(NSString*) value {
-    if (result.subtitled_ == nil) {
-        result.subtitled_ = [NSMutableArray array];
-    }
-    [result.subtitled_ addObject:value];
-    return self;
+  if (result.mutableSubtitledList == nil) {
+    result.mutableSubtitledList = [NSMutableArray array];
+  }
+  [result.mutableSubtitledList addObject:value];
+  return self;
 }
 - (ShowtimeProto_Builder*) addAllSubtitled:(NSArray*) values {
-    if (result.subtitled_ == nil) {
-        result.subtitled_ = [NSMutableArray array];
-    }
-    [result.subtitled_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableSubtitledList == nil) {
+    result.mutableSubtitledList = [NSMutableArray array];
+  }
+  [result.mutableSubtitledList addObjectsFromArray:values];
+  return self;
 }
-- (ShowtimeProto_Builder*) clearSubtitled {
-    result.subtitled_ = nil;
-    return self;
+- (ShowtimeProto_Builder*) clearSubtitledList {
+  result.mutableSubtitledList = nil;
+  return self;
 }
+@end
+
+@interface AllShowtimesProto ()
+@property (retain) NSMutableArray* mutableShowtimesList;
+@property BOOL hasVendor;
+@property (retain) NSString* vendor;
+@property BOOL hasCaptioning;
+@property (retain) NSString* captioning;
 @end
 
 @implementation AllShowtimesProto
 
-@synthesize showtimes_;
+@synthesize mutableShowtimesList;
 @synthesize hasVendor;
-@synthesize vendor_;
+@synthesize vendor;
 @synthesize hasCaptioning;
-@synthesize captioning_;
+@synthesize captioning;
 - (void) dealloc {
-    self.showtimes_ = nil;
-    self.hasVendor = NO;
-    self.vendor_ = nil;
-    self.hasCaptioning = NO;
-    self.captioning_ = nil;
-    [super dealloc];
+  self.mutableShowtimesList = nil;
+  self.hasVendor = NO;
+  self.vendor = nil;
+  self.hasCaptioning = NO;
+  self.captioning = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        memoizedSerializedSize = -1;
-        self.vendor_ = @"";
-        self.captioning_ = @"";
-    }
-    return self;
+  if (self = [super init]) {
+    memoizedSerializedSize = -1;
+    self.vendor = @"";
+    self.captioning = @"";
+  }
+  return self;
 }
 static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
 + (void) initialize {
-    if (self == [AllShowtimesProto class]) {
-        defaultAllShowtimesProtoInstance = [[AllShowtimesProto alloc] init];
-    }
+  if (self == [AllShowtimesProto class]) {
+    defaultAllShowtimesProtoInstance = [[AllShowtimesProto alloc] init];
+  }
 }
 
-+ (AllShowtimesProto*) getDefaultInstance {
-    return defaultAllShowtimesProtoInstance;
++ (AllShowtimesProto*) defaultInstance {
+  return defaultAllShowtimesProtoInstance;
 }
 
-- (AllShowtimesProto*) getDefaultInstanceForType {
-    return defaultAllShowtimesProtoInstance;
+- (AllShowtimesProto*) defaultInstanceForType {
+  return defaultAllShowtimesProtoInstance;
 }
 
-+ (ProtocolBufferDescriptor*) getDescriptor {
-    return [BoxOffice internal_static_AllShowtimesProto_descriptor];
++ (PBDescriptor*) descriptor {
+  return [BoxOfficeProtoRoot internal_static_AllShowtimesProto_descriptor];
 }
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    return [BoxOffice internal_static_AllShowtimesProto_fieldAccessorTable];
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+  return [BoxOfficeProtoRoot internal_static_AllShowtimesProto_fieldAccessorTable];
 }
 
-- (NSArray*) getShowtimesList {
-    return showtimes_;
+- (NSArray*) showtimesList {
+  return mutableShowtimesList;
 }
-- (int32_t) getShowtimesCount { return showtimes_.count; }
-- (ShowtimeProto*) getShowtimes:(int32_t) index {
-    return [showtimes_ objectAtIndex:index];
+- (ShowtimeProto*) showtimesAtIndex:(int32_t) index {
+  return [mutableShowtimesList objectAtIndex:index];
 }
 
-- (BOOL) hasVendor { return hasVendor; }
-- (NSString*) getVendor { return vendor_; }
 
-- (BOOL) hasCaptioning { return hasCaptioning; }
-- (NSString*) getCaptioning { return captioning_; }
 
 - (BOOL) isInitialized {
-    for (ShowtimeProto* element in self.getShowtimesList) {
-        if (!element.isInitialized) return false;
-    }
-    return true;
+  for (ShowtimeProto* element in self.showtimesList) {
+    if (!element.isInitialized) return false;
+  }
+  return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    for (ShowtimeProto* element in self.getShowtimesList) {
-        [output writeMessage:1 value:element];
-    }
-    if (hasVendor) {
-        [output writeString:2 value:self.getVendor];
-    }
-    if (hasCaptioning) {
-        [output writeString:3 value:self.getCaptioning];
-    }
-    [self.getUnknownFields writeToCodedOutputStream:output];
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (ShowtimeProto* element in self.showtimesList) {
+    [output writeMessage:1 value:element];
+  }
+  if (hasVendor) {
+    [output writeString:2 value:self.vendor];
+  }
+  if (hasCaptioning) {
+    [output writeString:3 value:self.captioning];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
-    int32_t size = memoizedSerializedSize;
-    if (size != -1) return size;
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) return size;
 
-    size = 0;
-    for (ShowtimeProto* element in self.getShowtimesList) {
-        size += computeMessageSize(1, element);
-    }
-    if (hasVendor) {
-        size += computeStringSize(2, self.getVendor);
-    }
-    if (hasCaptioning) {
-        size += computeStringSize(3, self.getCaptioning);
-    }
-    size += self.getUnknownFields.getSerializedSize;
-    memoizedSerializedSize = size;
-    return size;
+  size = 0;
+  for (ShowtimeProto* element in self.showtimesList) {
+    size += computeMessageSize(1, element);
+  }
+  if (hasVendor) {
+    size += computeStringSize(2, self.vendor);
+  }
+  if (hasCaptioning) {
+    size += computeStringSize(3, self.captioning);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
 }
 
 + (AllShowtimesProto*) parseFromData:(NSData*) data {
-    return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromData:data] buildParsed];
+  return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromData:data] buildParsed];
 }
-+ (AllShowtimesProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
++ (AllShowtimesProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 + (AllShowtimesProto*) parseFromInputStream:(NSInputStream*) input {
-    return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromInputStream:input] buildParsed];
+  return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromInputStream:input] buildParsed];
 }
-+ (AllShowtimesProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (AllShowtimesProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (AllShowtimesProto*) parseFromCodedInputStream:(CodedInputStream*) input {
-    return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
++ (AllShowtimesProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (AllShowtimesProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (AllShowtimesProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (AllShowtimesProto*)[[[AllShowtimesProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 + (AllShowtimesProto_Builder*) newBuilder { return [[[AllShowtimesProto_Builder alloc] init] autorelease]; }
 - (AllShowtimesProto_Builder*) newBuilderForType { return [AllShowtimesProto newBuilder]; }
 + (AllShowtimesProto_Builder*) newBuilderWithAllShowtimesProto:(AllShowtimesProto*) prototype {
-    return [[AllShowtimesProto newBuilder] mergeFromAllShowtimesProto:prototype];
+  return [[AllShowtimesProto newBuilder] mergeFromAllShowtimesProto:prototype];
 }
 
 @end
@@ -757,480 +757,469 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
 @implementation AllShowtimesProto_Builder
 @synthesize result;
 - (void) dealloc {
-    self.result = nil;
-    [super dealloc];
+  self.result = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        self.result = [[[AllShowtimesProto alloc] init] autorelease];
-    }
-    return self;
+  if (self = [super init]) {
+    self.result = [[[AllShowtimesProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (AllShowtimesProto*) internalGetResult {
-    return result;
+  return result;
 }
 
 - (AllShowtimesProto_Builder*) clear {
-    self.result = [[[AllShowtimesProto alloc] init] autorelease];
-    return self;
+  self.result = [[[AllShowtimesProto alloc] init] autorelease];
+  return self;
 }
 
 - (AllShowtimesProto_Builder*) clone {
-    return (AllShowtimesProto_Builder*)[[[[AllShowtimesProto_Builder alloc] init] autorelease] mergeFromAllShowtimesProto:result];
+  return (AllShowtimesProto_Builder*)[[[[AllShowtimesProto_Builder alloc] init] autorelease] mergeFromAllShowtimesProto:result];
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    return [AllShowtimesProto getDescriptor];
+- (PBDescriptor*) descriptorForType {
+  return [AllShowtimesProto descriptor];
 }
 
-- (AllShowtimesProto*) getDefaultInstanceForType {
-    return [AllShowtimesProto getDefaultInstance];
+- (AllShowtimesProto*) defaultInstanceForType {
+  return [AllShowtimesProto defaultInstance];
 }
 
 - (AllShowtimesProto*) build {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (AllShowtimesProto*) buildParsed {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (AllShowtimesProto*) buildPartial {
-    AllShowtimesProto* returnMe = [[result retain] autorelease];
-    self.result = nil;
-    return returnMe;
+  AllShowtimesProto* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
 }
 
-- (AllShowtimesProto_Builder*) mergeFromMessage:(id<Message>) other {
-    id o = other;
-    if ([o isKindOfClass:[AllShowtimesProto class]]) {
-        return [self mergeFromAllShowtimesProto:o];
-    } else {
-        [super mergeFromMessage:other];
-        return self;
-    }
+- (AllShowtimesProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
+  id o = other;
+  if ([o isKindOfClass:[AllShowtimesProto class]]) {
+    return [self mergeFromAllShowtimesProto:o];
+  } else {
+    [super mergeFromMessage:other];
+    return self;
+  }
 }
 
 - (AllShowtimesProto_Builder*) mergeFromAllShowtimesProto:(AllShowtimesProto*) other {
-    if (other == [AllShowtimesProto getDefaultInstance]) return self;
-    if (other.showtimes_.count > 0) {
-        if (result.showtimes_ == nil) {
-            result.showtimes_ = [NSMutableArray array];
+  if (other == [AllShowtimesProto defaultInstance]) return self;
+  if (other.mutableShowtimesList.count > 0) {
+    if (result.mutableShowtimesList == nil) {
+      result.mutableShowtimesList = [NSMutableArray array];
+    }
+    [result.mutableShowtimesList addObjectsFromArray:other.mutableShowtimesList];
+  }
+  if (other.hasVendor) {
+    [self setVendor:other.vendor];
+  }
+  if (other.hasCaptioning) {
+    [self setCaptioning:other.captioning];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+
+- (AllShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+
+- (AllShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
+  while (true) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
         }
-        [result.showtimes_ addObjectsFromArray:other.showtimes_];
+        break;
+      }
+      case 10: {
+        ShowtimeProto_Builder* subBuilder = [ShowtimeProto newBuilder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addShowtimes:[subBuilder buildPartial]];
+        break;
+      }
+      case 18: {
+        [self setVendor:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setCaptioning:[input readString]];
+        break;
+      }
     }
-    if (other.hasVendor) {
-        [self setVendor:other.getVendor];
-    }
-    if (other.hasCaptioning) {
-        [self setCaptioning:other.getCaptioning];
-    }
-    [self mergeUnknownFields:other.getUnknownFields];
-    return self;
-}
-
-- (AllShowtimesProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
-}
-
-- (AllShowtimesProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
-    while (true) {
-        int32_t tag = [input readTag];
-        switch (tag) {
-            case 0:
-                [self setUnknownFields:[unknownFields build]];
-                return self;
-            default: {
-                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-                    [self setUnknownFields:[unknownFields build]];
-                    return self;
-                }
-                break;
-            }
-            case 10: {
-                ShowtimeProto_Builder* subBuilder = [ShowtimeProto newBuilder];
-                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-                [self addShowtimes:[subBuilder buildPartial]];
-                break;
-            }
-            case 18: {
-                [self setVendor:[input readString]];
-                break;
-            }
-            case 26: {
-                [self setCaptioning:[input readString]];
-                break;
-            }
-        }
-    }
+  }
 }
 
 
-- (NSArray*) getShowtimesList {
-    if (result.showtimes_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithObjects:result.showtimes_];
+- (NSArray*) showtimesList {
+  if (result.mutableShowtimesList == nil) { return [NSArray array]; }
+  return result.mutableShowtimesList;
 }
-- (int32_t) getShowtimesCount {
-    return result.getShowtimesCount;
+- (ShowtimeProto*) showtimesAtIndex:(int32_t) index {
+  return [result showtimesAtIndex:index];
 }
-- (ShowtimeProto*) getShowtimes:(int32_t) index {
-    return [result getShowtimes:index];
-}
-- (AllShowtimesProto_Builder*) setShowtimes:(int32_t) index value:(ShowtimeProto*) value {
-    [result.showtimes_ replaceObjectAtIndex:index withObject:value];
-    return self;
-}
-- (AllShowtimesProto_Builder*) setShowtimes:(int32_t) index builderForValue:(ShowtimeProto_Builder*) builderForValue {
-    [result.showtimes_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-    return self;
-}
-- (AllShowtimesProto_Builder*) addShowtimesBuilder:(ShowtimeProto_Builder*) builderForValue {
-    if (result.showtimes_ == nil) {
-        result.showtimes_ = [NSMutableArray array];
-    }
-    [result.showtimes_ addObject:[builderForValue build]];
-    return self;
+- (AllShowtimesProto_Builder*) replaceShowtimesAtIndex:(int32_t) index withShowtimes:(ShowtimeProto*) value {
+  [result.mutableShowtimesList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (AllShowtimesProto_Builder*) addAllShowtimes:(NSArray*) values {
-    if (result.showtimes_ == nil) {
-        result.showtimes_ = [NSMutableArray array];
-    }
-    [result.showtimes_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableShowtimesList == nil) {
+    result.mutableShowtimesList = [NSMutableArray array];
+  }
+  [result.mutableShowtimesList addObjectsFromArray:values];
+  return self;
 }
-- (AllShowtimesProto_Builder*) clearShowtimes {
-    result.showtimes_ = nil;
-    return self;
+- (AllShowtimesProto_Builder*) clearShowtimesList {
+  result.mutableShowtimesList = nil;
+  return self;
 }
 - (AllShowtimesProto_Builder*) addShowtimes:(ShowtimeProto*) value {
-    if (result.showtimes_ == nil) {
-        result.showtimes_ = [NSMutableArray array];
-    }
-    [result.showtimes_ addObject:value];
-    return self;
+  if (result.mutableShowtimesList == nil) {
+    result.mutableShowtimesList = [NSMutableArray array];
+  }
+  [result.mutableShowtimesList addObject:value];
+  return self;
 }
 
 - (BOOL) hasVendor {
-    return result.hasVendor;
+  return result.hasVendor;
 }
-- (NSString*) getVendor {
-    return result.getVendor;
+- (NSString*) vendor {
+  return result.vendor;
 }
 - (AllShowtimesProto_Builder*) setVendor:(NSString*) value {
-    result.hasVendor = YES;
-    result.vendor_ = value;
-    return self;
+  result.hasVendor = YES;
+  result.vendor = value;
+  return self;
 }
 - (AllShowtimesProto_Builder*) clearVendor {
-    result.hasVendor = NO;
-    result.vendor_ = @"";
-    return self;
+  result.hasVendor = NO;
+  result.vendor = @"";
+  return self;
 }
 
 - (BOOL) hasCaptioning {
-    return result.hasCaptioning;
+  return result.hasCaptioning;
 }
-- (NSString*) getCaptioning {
-    return result.getCaptioning;
+- (NSString*) captioning {
+  return result.captioning;
 }
 - (AllShowtimesProto_Builder*) setCaptioning:(NSString*) value {
-    result.hasCaptioning = YES;
-    result.captioning_ = value;
-    return self;
+  result.hasCaptioning = YES;
+  result.captioning = value;
+  return self;
 }
 - (AllShowtimesProto_Builder*) clearCaptioning {
-    result.hasCaptioning = NO;
-    result.captioning_ = @"";
-    return self;
+  result.hasCaptioning = NO;
+  result.captioning = @"";
+  return self;
 }
+@end
+
+@interface MovieProto ()
+@property BOOL hasIdentifier;
+@property (retain) NSString* identifier;
+@property BOOL hasTitle;
+@property (retain) NSString* title;
+@property BOOL hasLength;
+@property int32_t length;
+@property BOOL hasLanguage;
+@property (retain) NSString* language;
+@property BOOL hasGenre;
+@property (retain) NSString* genre;
+@property BOOL hasDescription;
+@property (retain) NSString* description;
+@property BOOL hasRawRating;
+@property (retain) NSString* rawRating;
+@property BOOL hasScore;
+@property int32_t score;
+@property BOOL hasIMDbUrl;
+@property (retain) NSString* iMDbUrl;
+@property (retain) NSMutableArray* mutableDirectorList;
+@property (retain) NSMutableArray* mutableCastList;
+@property (retain) NSMutableArray* mutableDubbedList;
+@property (retain) NSMutableArray* mutableSubtitledList;
+@property BOOL hasReleaseDate;
+@property (retain) NSString* releaseDate;
 @end
 
 @implementation MovieProto
 
 @synthesize hasIdentifier;
-@synthesize identifier_;
+@synthesize identifier;
 @synthesize hasTitle;
-@synthesize title_;
+@synthesize title;
 @synthesize hasLength;
-@synthesize length_;
+@synthesize length;
 @synthesize hasLanguage;
-@synthesize language_;
+@synthesize language;
 @synthesize hasGenre;
-@synthesize genre_;
+@synthesize genre;
 @synthesize hasDescription;
-@synthesize description_;
+@synthesize description;
 @synthesize hasRawRating;
-@synthesize rawRating_;
+@synthesize rawRating;
 @synthesize hasScore;
-@synthesize score_;
+@synthesize score;
 @synthesize hasIMDbUrl;
-@synthesize iMDbUrl_;
-@synthesize director_;
-@synthesize cast_;
-@synthesize dubbed_;
-@synthesize subtitled_;
+@synthesize iMDbUrl;
+@synthesize mutableDirectorList;
+@synthesize mutableCastList;
+@synthesize mutableDubbedList;
+@synthesize mutableSubtitledList;
 @synthesize hasReleaseDate;
-@synthesize releaseDate_;
+@synthesize releaseDate;
 - (void) dealloc {
-    self.hasIdentifier = NO;
-    self.identifier_ = nil;
-    self.hasTitle = NO;
-    self.title_ = nil;
-    self.hasLength = NO;
-    self.length_ = 0;
-    self.hasLanguage = NO;
-    self.language_ = nil;
-    self.hasGenre = NO;
-    self.genre_ = nil;
-    self.hasDescription = NO;
-    self.description_ = nil;
-    self.hasRawRating = NO;
-    self.rawRating_ = nil;
-    self.hasScore = NO;
-    self.score_ = 0;
-    self.hasIMDbUrl = NO;
-    self.iMDbUrl_ = nil;
-    self.director_ = nil;
-    self.cast_ = nil;
-    self.dubbed_ = nil;
-    self.subtitled_ = nil;
-    self.hasReleaseDate = NO;
-    self.releaseDate_ = nil;
-    [super dealloc];
+  self.hasIdentifier = NO;
+  self.identifier = nil;
+  self.hasTitle = NO;
+  self.title = nil;
+  self.hasLength = NO;
+  self.length = 0;
+  self.hasLanguage = NO;
+  self.language = nil;
+  self.hasGenre = NO;
+  self.genre = nil;
+  self.hasDescription = NO;
+  self.description = nil;
+  self.hasRawRating = NO;
+  self.rawRating = nil;
+  self.hasScore = NO;
+  self.score = 0;
+  self.hasIMDbUrl = NO;
+  self.iMDbUrl = nil;
+  self.mutableDirectorList = nil;
+  self.mutableCastList = nil;
+  self.mutableDubbedList = nil;
+  self.mutableSubtitledList = nil;
+  self.hasReleaseDate = NO;
+  self.releaseDate = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        memoizedSerializedSize = -1;
-        self.identifier_ = @"";
-        self.title_ = @"";
-        self.length_ = 0;
-        self.language_ = @"";
-        self.genre_ = @"";
-        self.description_ = @"";
-        self.rawRating_ = @"";
-        self.score_ = 0;
-        self.iMDbUrl_ = @"";
-        self.releaseDate_ = @"";
-    }
-    return self;
+  if (self = [super init]) {
+    memoizedSerializedSize = -1;
+    self.identifier = @"";
+    self.title = @"";
+    self.length = 0;
+    self.language = @"";
+    self.genre = @"";
+    self.description = @"";
+    self.rawRating = @"";
+    self.score = 0;
+    self.iMDbUrl = @"";
+    self.releaseDate = @"";
+  }
+  return self;
 }
 static MovieProto* defaultMovieProtoInstance = nil;
 + (void) initialize {
-    if (self == [MovieProto class]) {
-        defaultMovieProtoInstance = [[MovieProto alloc] init];
-    }
+  if (self == [MovieProto class]) {
+    defaultMovieProtoInstance = [[MovieProto alloc] init];
+  }
 }
 
-+ (MovieProto*) getDefaultInstance {
-    return defaultMovieProtoInstance;
++ (MovieProto*) defaultInstance {
+  return defaultMovieProtoInstance;
 }
 
-- (MovieProto*) getDefaultInstanceForType {
-    return defaultMovieProtoInstance;
+- (MovieProto*) defaultInstanceForType {
+  return defaultMovieProtoInstance;
 }
 
-+ (ProtocolBufferDescriptor*) getDescriptor {
-    return [BoxOffice internal_static_MovieProto_descriptor];
++ (PBDescriptor*) descriptor {
+  return [BoxOfficeProtoRoot internal_static_MovieProto_descriptor];
 }
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    return [BoxOffice internal_static_MovieProto_fieldAccessorTable];
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+  return [BoxOfficeProtoRoot internal_static_MovieProto_fieldAccessorTable];
 }
 
-- (BOOL) hasIdentifier { return hasIdentifier; }
-- (NSString*) getIdentifier { return identifier_; }
 
-- (BOOL) hasTitle { return hasTitle; }
-- (NSString*) getTitle { return title_; }
 
-- (BOOL) hasLength { return hasLength; }
-- (int32_t) getLength { return length_; }
 
-- (BOOL) hasLanguage { return hasLanguage; }
-- (NSString*) getLanguage { return language_; }
 
-- (BOOL) hasGenre { return hasGenre; }
-- (NSString*) getGenre { return genre_; }
 
-- (BOOL) hasDescription { return hasDescription; }
-- (NSString*) getDescription { return description_; }
 
-- (BOOL) hasRawRating { return hasRawRating; }
-- (NSString*) getRawRating { return rawRating_; }
 
-- (BOOL) hasScore { return hasScore; }
-- (int32_t) getScore { return score_; }
 
-- (BOOL) hasIMDbUrl { return hasIMDbUrl; }
-- (NSString*) getIMDbUrl { return iMDbUrl_; }
 
-- (NSArray*) getDirectorList {
-    return director_;
+- (NSArray*) directorList {
+  return mutableDirectorList;
 }
-- (int32_t) getDirectorCount { return director_.count; }
-- (NSString*) getDirector:(int32_t) index {
-    return [director_ objectAtIndex:index];
+- (NSString*) directorAtIndex:(int32_t) index {
+  return [mutableDirectorList objectAtIndex:index];
 }
 
-- (NSArray*) getCastList {
-    return cast_;
+- (NSArray*) castList {
+  return mutableCastList;
 }
-- (int32_t) getCastCount { return cast_.count; }
-- (NSString*) getCast:(int32_t) index {
-    return [cast_ objectAtIndex:index];
-}
-
-- (NSArray*) getDubbedList {
-    return dubbed_;
-}
-- (int32_t) getDubbedCount { return dubbed_.count; }
-- (NSString*) getDubbed:(int32_t) index {
-    return [dubbed_ objectAtIndex:index];
+- (NSString*) castAtIndex:(int32_t) index {
+  return [mutableCastList objectAtIndex:index];
 }
 
-- (NSArray*) getSubtitledList {
-    return subtitled_;
+- (NSArray*) dubbedList {
+  return mutableDubbedList;
 }
-- (int32_t) getSubtitledCount { return subtitled_.count; }
-- (NSString*) getSubtitled:(int32_t) index {
-    return [subtitled_ objectAtIndex:index];
+- (NSString*) dubbedAtIndex:(int32_t) index {
+  return [mutableDubbedList objectAtIndex:index];
 }
 
-- (BOOL) hasReleaseDate { return hasReleaseDate; }
-- (NSString*) getReleaseDate { return releaseDate_; }
+- (NSArray*) subtitledList {
+  return mutableSubtitledList;
+}
+- (NSString*) subtitledAtIndex:(int32_t) index {
+  return [mutableSubtitledList objectAtIndex:index];
+}
+
 
 - (BOOL) isInitialized {
-    return true;
+  return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    if (hasIdentifier) {
-        [output writeString:1 value:self.getIdentifier];
-    }
-    if (hasTitle) {
-        [output writeString:2 value:self.getTitle];
-    }
-    if (hasLength) {
-        [output writeInt32:3 value:self.getLength];
-    }
-    if (hasLanguage) {
-        [output writeString:4 value:self.getLanguage];
-    }
-    if (hasGenre) {
-        [output writeString:5 value:self.getGenre];
-    }
-    if (hasDescription) {
-        [output writeString:6 value:self.getDescription];
-    }
-    if (hasRawRating) {
-        [output writeString:8 value:self.getRawRating];
-    }
-    if (hasScore) {
-        [output writeInt32:9 value:self.getScore];
-    }
-    if (hasIMDbUrl) {
-        [output writeString:10 value:self.getIMDbUrl];
-    }
-    for (NSString* element in self.getDirectorList) {
-        [output writeString:11 value:element];
-    }
-    for (NSString* element in self.getCastList) {
-        [output writeString:12 value:element];
-    }
-    for (NSString* element in self.getDubbedList) {
-        [output writeString:13 value:element];
-    }
-    for (NSString* element in self.getSubtitledList) {
-        [output writeString:14 value:element];
-    }
-    if (hasReleaseDate) {
-        [output writeString:15 value:self.getReleaseDate];
-    }
-    [self.getUnknownFields writeToCodedOutputStream:output];
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (hasIdentifier) {
+    [output writeString:1 value:self.identifier];
+  }
+  if (hasTitle) {
+    [output writeString:2 value:self.title];
+  }
+  if (hasLength) {
+    [output writeInt32:3 value:self.length];
+  }
+  if (hasLanguage) {
+    [output writeString:4 value:self.language];
+  }
+  if (hasGenre) {
+    [output writeString:5 value:self.genre];
+  }
+  if (hasDescription) {
+    [output writeString:6 value:self.description];
+  }
+  if (hasRawRating) {
+    [output writeString:8 value:self.rawRating];
+  }
+  if (hasScore) {
+    [output writeInt32:9 value:self.score];
+  }
+  if (hasIMDbUrl) {
+    [output writeString:10 value:self.iMDbUrl];
+  }
+  for (NSString* element in self.mutableDirectorList) {
+    [output writeString:11 value:element];
+  }
+  for (NSString* element in self.mutableCastList) {
+    [output writeString:12 value:element];
+  }
+  for (NSString* element in self.mutableDubbedList) {
+    [output writeString:13 value:element];
+  }
+  for (NSString* element in self.mutableSubtitledList) {
+    [output writeString:14 value:element];
+  }
+  if (hasReleaseDate) {
+    [output writeString:15 value:self.releaseDate];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
-    int32_t size = memoizedSerializedSize;
-    if (size != -1) return size;
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) return size;
 
-    size = 0;
-    if (hasIdentifier) {
-        size += computeStringSize(1, self.getIdentifier);
-    }
-    if (hasTitle) {
-        size += computeStringSize(2, self.getTitle);
-    }
-    if (hasLength) {
-        size += computeInt32Size(3, self.getLength);
-    }
-    if (hasLanguage) {
-        size += computeStringSize(4, self.getLanguage);
-    }
-    if (hasGenre) {
-        size += computeStringSize(5, self.getGenre);
-    }
-    if (hasDescription) {
-        size += computeStringSize(6, self.getDescription);
-    }
-    if (hasRawRating) {
-        size += computeStringSize(8, self.getRawRating);
-    }
-    if (hasScore) {
-        size += computeInt32Size(9, self.getScore);
-    }
-    if (hasIMDbUrl) {
-        size += computeStringSize(10, self.getIMDbUrl);
-    }
-    for (NSString* element in self.getDirectorList) {
-        size += computeStringSize(11, element);
-    }
-    for (NSString* element in self.getCastList) {
-        size += computeStringSize(12, element);
-    }
-    for (NSString* element in self.getDubbedList) {
-        size += computeStringSize(13, element);
-    }
-    for (NSString* element in self.getSubtitledList) {
-        size += computeStringSize(14, element);
-    }
-    if (hasReleaseDate) {
-        size += computeStringSize(15, self.getReleaseDate);
-    }
-    size += self.getUnknownFields.getSerializedSize;
-    memoizedSerializedSize = size;
-    return size;
+  size = 0;
+  if (hasIdentifier) {
+    size += computeStringSize(1, self.identifier);
+  }
+  if (hasTitle) {
+    size += computeStringSize(2, self.title);
+  }
+  if (hasLength) {
+    size += computeInt32Size(3, self.length);
+  }
+  if (hasLanguage) {
+    size += computeStringSize(4, self.language);
+  }
+  if (hasGenre) {
+    size += computeStringSize(5, self.genre);
+  }
+  if (hasDescription) {
+    size += computeStringSize(6, self.description);
+  }
+  if (hasRawRating) {
+    size += computeStringSize(8, self.rawRating);
+  }
+  if (hasScore) {
+    size += computeInt32Size(9, self.score);
+  }
+  if (hasIMDbUrl) {
+    size += computeStringSize(10, self.iMDbUrl);
+  }
+  for (NSString* element in self.mutableDirectorList) {
+    size += computeStringSize(11, element);
+  }
+  for (NSString* element in self.mutableCastList) {
+    size += computeStringSize(12, element);
+  }
+  for (NSString* element in self.mutableDubbedList) {
+    size += computeStringSize(13, element);
+  }
+  for (NSString* element in self.mutableSubtitledList) {
+    size += computeStringSize(14, element);
+  }
+  if (hasReleaseDate) {
+    size += computeStringSize(15, self.releaseDate);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
 }
 
 + (MovieProto*) parseFromData:(NSData*) data {
-    return (MovieProto*)[[[MovieProto newBuilder] mergeFromData:data] buildParsed];
+  return (MovieProto*)[[[MovieProto newBuilder] mergeFromData:data] buildParsed];
 }
-+ (MovieProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (MovieProto*)[[[MovieProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
++ (MovieProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (MovieProto*)[[[MovieProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 + (MovieProto*) parseFromInputStream:(NSInputStream*) input {
-    return (MovieProto*)[[[MovieProto newBuilder] mergeFromInputStream:input] buildParsed];
+  return (MovieProto*)[[[MovieProto newBuilder] mergeFromInputStream:input] buildParsed];
 }
-+ (MovieProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (MovieProto*)[[[MovieProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (MovieProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (MovieProto*)[[[MovieProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (MovieProto*) parseFromCodedInputStream:(CodedInputStream*) input {
-    return (MovieProto*)[[[MovieProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
++ (MovieProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (MovieProto*)[[[MovieProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (MovieProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (MovieProto*)[[[MovieProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (MovieProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (MovieProto*)[[[MovieProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 + (MovieProto_Builder*) newBuilder { return [[[MovieProto_Builder alloc] init] autorelease]; }
 - (MovieProto_Builder*) newBuilderForType { return [MovieProto newBuilder]; }
 + (MovieProto_Builder*) newBuilderWithMovieProto:(MovieProto*) prototype {
-    return [[MovieProto newBuilder] mergeFromMovieProto:prototype];
+  return [[MovieProto newBuilder] mergeFromMovieProto:prototype];
 }
 
 @end
@@ -1238,724 +1227,715 @@ static MovieProto* defaultMovieProtoInstance = nil;
 @implementation MovieProto_Builder
 @synthesize result;
 - (void) dealloc {
-    self.result = nil;
-    [super dealloc];
+  self.result = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        self.result = [[[MovieProto alloc] init] autorelease];
-    }
-    return self;
+  if (self = [super init]) {
+    self.result = [[[MovieProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (MovieProto*) internalGetResult {
-    return result;
+  return result;
 }
 
 - (MovieProto_Builder*) clear {
-    self.result = [[[MovieProto alloc] init] autorelease];
-    return self;
+  self.result = [[[MovieProto alloc] init] autorelease];
+  return self;
 }
 
 - (MovieProto_Builder*) clone {
-    return (MovieProto_Builder*)[[[[MovieProto_Builder alloc] init] autorelease] mergeFromMovieProto:result];
+  return (MovieProto_Builder*)[[[[MovieProto_Builder alloc] init] autorelease] mergeFromMovieProto:result];
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    return [MovieProto getDescriptor];
+- (PBDescriptor*) descriptorForType {
+  return [MovieProto descriptor];
 }
 
-- (MovieProto*) getDefaultInstanceForType {
-    return [MovieProto getDefaultInstance];
+- (MovieProto*) defaultInstanceForType {
+  return [MovieProto defaultInstance];
 }
 
 - (MovieProto*) build {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (MovieProto*) buildParsed {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (MovieProto*) buildPartial {
-    MovieProto* returnMe = [[result retain] autorelease];
-    self.result = nil;
-    return returnMe;
+  MovieProto* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
 }
 
-- (MovieProto_Builder*) mergeFromMessage:(id<Message>) other {
-    id o = other;
-    if ([o isKindOfClass:[MovieProto class]]) {
-        return [self mergeFromMovieProto:o];
-    } else {
-        [super mergeFromMessage:other];
-        return self;
-    }
+- (MovieProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
+  id o = other;
+  if ([o isKindOfClass:[MovieProto class]]) {
+    return [self mergeFromMovieProto:o];
+  } else {
+    [super mergeFromMessage:other];
+    return self;
+  }
 }
 
 - (MovieProto_Builder*) mergeFromMovieProto:(MovieProto*) other {
-    if (other == [MovieProto getDefaultInstance]) return self;
-    if (other.hasIdentifier) {
-        [self setIdentifier:other.getIdentifier];
+  if (other == [MovieProto defaultInstance]) return self;
+  if (other.hasIdentifier) {
+    [self setIdentifier:other.identifier];
+  }
+  if (other.hasTitle) {
+    [self setTitle:other.title];
+  }
+  if (other.hasLength) {
+    [self setLength:other.length];
+  }
+  if (other.hasLanguage) {
+    [self setLanguage:other.language];
+  }
+  if (other.hasGenre) {
+    [self setGenre:other.genre];
+  }
+  if (other.hasDescription) {
+    [self setDescription:other.description];
+  }
+  if (other.hasRawRating) {
+    [self setRawRating:other.rawRating];
+  }
+  if (other.hasScore) {
+    [self setScore:other.score];
+  }
+  if (other.hasIMDbUrl) {
+    [self setIMDbUrl:other.iMDbUrl];
+  }
+  if (other.mutableDirectorList.count > 0) {
+    if (result.mutableDirectorList == nil) {
+      result.mutableDirectorList = [NSMutableArray array];
     }
-    if (other.hasTitle) {
-        [self setTitle:other.getTitle];
+    [result.mutableDirectorList addObjectsFromArray:other.mutableDirectorList];
+  }
+  if (other.mutableCastList.count > 0) {
+    if (result.mutableCastList == nil) {
+      result.mutableCastList = [NSMutableArray array];
     }
-    if (other.hasLength) {
-        [self setLength:other.getLength];
+    [result.mutableCastList addObjectsFromArray:other.mutableCastList];
+  }
+  if (other.mutableDubbedList.count > 0) {
+    if (result.mutableDubbedList == nil) {
+      result.mutableDubbedList = [NSMutableArray array];
     }
-    if (other.hasLanguage) {
-        [self setLanguage:other.getLanguage];
+    [result.mutableDubbedList addObjectsFromArray:other.mutableDubbedList];
+  }
+  if (other.mutableSubtitledList.count > 0) {
+    if (result.mutableSubtitledList == nil) {
+      result.mutableSubtitledList = [NSMutableArray array];
     }
-    if (other.hasGenre) {
-        [self setGenre:other.getGenre];
-    }
-    if (other.hasDescription) {
-        [self setDescription:other.getDescription];
-    }
-    if (other.hasRawRating) {
-        [self setRawRating:other.getRawRating];
-    }
-    if (other.hasScore) {
-        [self setScore:other.getScore];
-    }
-    if (other.hasIMDbUrl) {
-        [self setIMDbUrl:other.getIMDbUrl];
-    }
-    if (other.director_.count > 0) {
-        if (result.director_ == nil) {
-            result.director_ = [NSMutableArray array];
-        }
-        [result.director_ addObjectsFromArray:other.director_];
-    }
-    if (other.cast_.count > 0) {
-        if (result.cast_ == nil) {
-            result.cast_ = [NSMutableArray array];
-        }
-        [result.cast_ addObjectsFromArray:other.cast_];
-    }
-    if (other.dubbed_.count > 0) {
-        if (result.dubbed_ == nil) {
-            result.dubbed_ = [NSMutableArray array];
-        }
-        [result.dubbed_ addObjectsFromArray:other.dubbed_];
-    }
-    if (other.subtitled_.count > 0) {
-        if (result.subtitled_ == nil) {
-            result.subtitled_ = [NSMutableArray array];
-        }
-        [result.subtitled_ addObjectsFromArray:other.subtitled_];
-    }
-    if (other.hasReleaseDate) {
-        [self setReleaseDate:other.getReleaseDate];
-    }
-    [self mergeUnknownFields:other.getUnknownFields];
-    return self;
+    [result.mutableSubtitledList addObjectsFromArray:other.mutableSubtitledList];
+  }
+  if (other.hasReleaseDate) {
+    [self setReleaseDate:other.releaseDate];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
 }
 
-- (MovieProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
+- (MovieProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 
-- (MovieProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
-    while (true) {
-        int32_t tag = [input readTag];
-        switch (tag) {
-            case 0:
-                [self setUnknownFields:[unknownFields build]];
-                return self;
-            default: {
-                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-                    [self setUnknownFields:[unknownFields build]];
-                    return self;
-                }
-                break;
-            }
-            case 10: {
-                [self setIdentifier:[input readString]];
-                break;
-            }
-            case 18: {
-                [self setTitle:[input readString]];
-                break;
-            }
-            case 24: {
-                [self setLength:[input readInt32]];
-                break;
-            }
-            case 34: {
-                [self setLanguage:[input readString]];
-                break;
-            }
-            case 42: {
-                [self setGenre:[input readString]];
-                break;
-            }
-            case 50: {
-                [self setDescription:[input readString]];
-                break;
-            }
-            case 66: {
-                [self setRawRating:[input readString]];
-                break;
-            }
-            case 72: {
-                [self setScore:[input readInt32]];
-                break;
-            }
-            case 82: {
-                [self setIMDbUrl:[input readString]];
-                break;
-            }
-            case 90: {
-                [self addDirector:[input readString]];
-                break;
-            }
-            case 98: {
-                [self addCast:[input readString]];
-                break;
-            }
-            case 106: {
-                [self addDubbed:[input readString]];
-                break;
-            }
-            case 114: {
-                [self addSubtitled:[input readString]];
-                break;
-            }
-            case 122: {
-                [self setReleaseDate:[input readString]];
-                break;
-            }
+- (MovieProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
+  while (true) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
         }
+        break;
+      }
+      case 10: {
+        [self setIdentifier:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setTitle:[input readString]];
+        break;
+      }
+      case 24: {
+        [self setLength:[input readInt32]];
+        break;
+      }
+      case 34: {
+        [self setLanguage:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setGenre:[input readString]];
+        break;
+      }
+      case 50: {
+        [self setDescription:[input readString]];
+        break;
+      }
+      case 66: {
+        [self setRawRating:[input readString]];
+        break;
+      }
+      case 72: {
+        [self setScore:[input readInt32]];
+        break;
+      }
+      case 82: {
+        [self setIMDbUrl:[input readString]];
+        break;
+      }
+      case 90: {
+        [self addDirector:[input readString]];
+        break;
+      }
+      case 98: {
+        [self addCast:[input readString]];
+        break;
+      }
+      case 106: {
+        [self addDubbed:[input readString]];
+        break;
+      }
+      case 114: {
+        [self addSubtitled:[input readString]];
+        break;
+      }
+      case 122: {
+        [self setReleaseDate:[input readString]];
+        break;
+      }
     }
+  }
 }
 
 
 - (BOOL) hasIdentifier {
-    return result.hasIdentifier;
+  return result.hasIdentifier;
 }
-- (NSString*) getIdentifier {
-    return result.getIdentifier;
+- (NSString*) identifier {
+  return result.identifier;
 }
 - (MovieProto_Builder*) setIdentifier:(NSString*) value {
-    result.hasIdentifier = YES;
-    result.identifier_ = value;
-    return self;
+  result.hasIdentifier = YES;
+  result.identifier = value;
+  return self;
 }
 - (MovieProto_Builder*) clearIdentifier {
-    result.hasIdentifier = NO;
-    result.identifier_ = @"";
-    return self;
+  result.hasIdentifier = NO;
+  result.identifier = @"";
+  return self;
 }
 
 - (BOOL) hasTitle {
-    return result.hasTitle;
+  return result.hasTitle;
 }
-- (NSString*) getTitle {
-    return result.getTitle;
+- (NSString*) title {
+  return result.title;
 }
 - (MovieProto_Builder*) setTitle:(NSString*) value {
-    result.hasTitle = YES;
-    result.title_ = value;
-    return self;
+  result.hasTitle = YES;
+  result.title = value;
+  return self;
 }
 - (MovieProto_Builder*) clearTitle {
-    result.hasTitle = NO;
-    result.title_ = @"";
-    return self;
+  result.hasTitle = NO;
+  result.title = @"";
+  return self;
 }
 
 - (BOOL) hasLength {
-    return result.hasLength;
+  return result.hasLength;
 }
-- (int32_t) getLength {
-    return result.getLength;
+- (int32_t) length {
+  return result.length;
 }
 - (MovieProto_Builder*) setLength:(int32_t) value {
-    result.hasLength = YES;
-    result.length_ = value;
-    return self;
+  result.hasLength = YES;
+  result.length = value;
+  return self;
 }
 - (MovieProto_Builder*) clearLength {
-    result.hasLength = NO;
-    result.length_ = 0;
-    return self;
+  result.hasLength = NO;
+  result.length = 0;
+  return self;
 }
 
 - (BOOL) hasLanguage {
-    return result.hasLanguage;
+  return result.hasLanguage;
 }
-- (NSString*) getLanguage {
-    return result.getLanguage;
+- (NSString*) language {
+  return result.language;
 }
 - (MovieProto_Builder*) setLanguage:(NSString*) value {
-    result.hasLanguage = YES;
-    result.language_ = value;
-    return self;
+  result.hasLanguage = YES;
+  result.language = value;
+  return self;
 }
 - (MovieProto_Builder*) clearLanguage {
-    result.hasLanguage = NO;
-    result.language_ = @"";
-    return self;
+  result.hasLanguage = NO;
+  result.language = @"";
+  return self;
 }
 
 - (BOOL) hasGenre {
-    return result.hasGenre;
+  return result.hasGenre;
 }
-- (NSString*) getGenre {
-    return result.getGenre;
+- (NSString*) genre {
+  return result.genre;
 }
 - (MovieProto_Builder*) setGenre:(NSString*) value {
-    result.hasGenre = YES;
-    result.genre_ = value;
-    return self;
+  result.hasGenre = YES;
+  result.genre = value;
+  return self;
 }
 - (MovieProto_Builder*) clearGenre {
-    result.hasGenre = NO;
-    result.genre_ = @"";
-    return self;
+  result.hasGenre = NO;
+  result.genre = @"";
+  return self;
 }
 
 - (BOOL) hasDescription {
-    return result.hasDescription;
+  return result.hasDescription;
 }
-- (NSString*) getDescription {
-    return result.getDescription;
+- (NSString*) description {
+  return result.description;
 }
 - (MovieProto_Builder*) setDescription:(NSString*) value {
-    result.hasDescription = YES;
-    result.description_ = value;
-    return self;
+  result.hasDescription = YES;
+  result.description = value;
+  return self;
 }
 - (MovieProto_Builder*) clearDescription {
-    result.hasDescription = NO;
-    result.description_ = @"";
-    return self;
+  result.hasDescription = NO;
+  result.description = @"";
+  return self;
 }
 
 - (BOOL) hasRawRating {
-    return result.hasRawRating;
+  return result.hasRawRating;
 }
-- (NSString*) getRawRating {
-    return result.getRawRating;
+- (NSString*) rawRating {
+  return result.rawRating;
 }
 - (MovieProto_Builder*) setRawRating:(NSString*) value {
-    result.hasRawRating = YES;
-    result.rawRating_ = value;
-    return self;
+  result.hasRawRating = YES;
+  result.rawRating = value;
+  return self;
 }
 - (MovieProto_Builder*) clearRawRating {
-    result.hasRawRating = NO;
-    result.rawRating_ = @"";
-    return self;
+  result.hasRawRating = NO;
+  result.rawRating = @"";
+  return self;
 }
 
 - (BOOL) hasScore {
-    return result.hasScore;
+  return result.hasScore;
 }
-- (int32_t) getScore {
-    return result.getScore;
+- (int32_t) score {
+  return result.score;
 }
 - (MovieProto_Builder*) setScore:(int32_t) value {
-    result.hasScore = YES;
-    result.score_ = value;
-    return self;
+  result.hasScore = YES;
+  result.score = value;
+  return self;
 }
 - (MovieProto_Builder*) clearScore {
-    result.hasScore = NO;
-    result.score_ = 0;
-    return self;
+  result.hasScore = NO;
+  result.score = 0;
+  return self;
 }
 
 - (BOOL) hasIMDbUrl {
-    return result.hasIMDbUrl;
+  return result.hasIMDbUrl;
 }
-- (NSString*) getIMDbUrl {
-    return result.getIMDbUrl;
+- (NSString*) iMDbUrl {
+  return result.iMDbUrl;
 }
 - (MovieProto_Builder*) setIMDbUrl:(NSString*) value {
-    result.hasIMDbUrl = YES;
-    result.iMDbUrl_ = value;
-    return self;
+  result.hasIMDbUrl = YES;
+  result.iMDbUrl = value;
+  return self;
 }
 - (MovieProto_Builder*) clearIMDbUrl {
-    result.hasIMDbUrl = NO;
-    result.iMDbUrl_ = @"";
-    return self;
+  result.hasIMDbUrl = NO;
+  result.iMDbUrl = @"";
+  return self;
 }
 
-- (NSArray*) getDirectorList {
-    if (result.director_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithArray:result.director_];
+- (NSArray*) directorList {
+  if (result.mutableDirectorList == nil) { return [NSArray array]; }
+  return result.mutableDirectorList;
 }
-- (int32_t) getDirectorCount {
-    return result.getDirectorCount;
+- (NSString*) directorAtIndex:(int32_t) index {
+  return [result directorAtIndex:index];
 }
-- (NSString*) getDirector:(int32_t) index {
-    return [result getDirector:index];
-}
-- (MovieProto_Builder*) setDirector:(int32_t) index value:(NSString*) value {
-    [result.director_ replaceObjectAtIndex:index withObject:value];
-    return self;
+- (MovieProto_Builder*) replaceDirectorAtIndex:(int32_t) index withDirector:(NSString*) value {
+  [result.mutableDirectorList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (MovieProto_Builder*) addDirector:(NSString*) value {
-    if (result.director_ == nil) {
-        result.director_ = [NSMutableArray array];
-    }
-    [result.director_ addObject:value];
-    return self;
+  if (result.mutableDirectorList == nil) {
+    result.mutableDirectorList = [NSMutableArray array];
+  }
+  [result.mutableDirectorList addObject:value];
+  return self;
 }
 - (MovieProto_Builder*) addAllDirector:(NSArray*) values {
-    if (result.director_ == nil) {
-        result.director_ = [NSMutableArray array];
-    }
-    [result.director_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableDirectorList == nil) {
+    result.mutableDirectorList = [NSMutableArray array];
+  }
+  [result.mutableDirectorList addObjectsFromArray:values];
+  return self;
 }
-- (MovieProto_Builder*) clearDirector {
-    result.director_ = nil;
-    return self;
+- (MovieProto_Builder*) clearDirectorList {
+  result.mutableDirectorList = nil;
+  return self;
 }
 
-- (NSArray*) getCastList {
-    if (result.cast_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithArray:result.cast_];
+- (NSArray*) castList {
+  if (result.mutableCastList == nil) { return [NSArray array]; }
+  return result.mutableCastList;
 }
-- (int32_t) getCastCount {
-    return result.getCastCount;
+- (NSString*) castAtIndex:(int32_t) index {
+  return [result castAtIndex:index];
 }
-- (NSString*) getCast:(int32_t) index {
-    return [result getCast:index];
-}
-- (MovieProto_Builder*) setCast:(int32_t) index value:(NSString*) value {
-    [result.cast_ replaceObjectAtIndex:index withObject:value];
-    return self;
+- (MovieProto_Builder*) replaceCastAtIndex:(int32_t) index withCast:(NSString*) value {
+  [result.mutableCastList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (MovieProto_Builder*) addCast:(NSString*) value {
-    if (result.cast_ == nil) {
-        result.cast_ = [NSMutableArray array];
-    }
-    [result.cast_ addObject:value];
-    return self;
+  if (result.mutableCastList == nil) {
+    result.mutableCastList = [NSMutableArray array];
+  }
+  [result.mutableCastList addObject:value];
+  return self;
 }
 - (MovieProto_Builder*) addAllCast:(NSArray*) values {
-    if (result.cast_ == nil) {
-        result.cast_ = [NSMutableArray array];
-    }
-    [result.cast_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableCastList == nil) {
+    result.mutableCastList = [NSMutableArray array];
+  }
+  [result.mutableCastList addObjectsFromArray:values];
+  return self;
 }
-- (MovieProto_Builder*) clearCast {
-    result.cast_ = nil;
-    return self;
+- (MovieProto_Builder*) clearCastList {
+  result.mutableCastList = nil;
+  return self;
 }
 
-- (NSArray*) getDubbedList {
-    if (result.dubbed_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithArray:result.dubbed_];
+- (NSArray*) dubbedList {
+  if (result.mutableDubbedList == nil) { return [NSArray array]; }
+  return result.mutableDubbedList;
 }
-- (int32_t) getDubbedCount {
-    return result.getDubbedCount;
+- (NSString*) dubbedAtIndex:(int32_t) index {
+  return [result dubbedAtIndex:index];
 }
-- (NSString*) getDubbed:(int32_t) index {
-    return [result getDubbed:index];
-}
-- (MovieProto_Builder*) setDubbed:(int32_t) index value:(NSString*) value {
-    [result.dubbed_ replaceObjectAtIndex:index withObject:value];
-    return self;
+- (MovieProto_Builder*) replaceDubbedAtIndex:(int32_t) index withDubbed:(NSString*) value {
+  [result.mutableDubbedList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (MovieProto_Builder*) addDubbed:(NSString*) value {
-    if (result.dubbed_ == nil) {
-        result.dubbed_ = [NSMutableArray array];
-    }
-    [result.dubbed_ addObject:value];
-    return self;
+  if (result.mutableDubbedList == nil) {
+    result.mutableDubbedList = [NSMutableArray array];
+  }
+  [result.mutableDubbedList addObject:value];
+  return self;
 }
 - (MovieProto_Builder*) addAllDubbed:(NSArray*) values {
-    if (result.dubbed_ == nil) {
-        result.dubbed_ = [NSMutableArray array];
-    }
-    [result.dubbed_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableDubbedList == nil) {
+    result.mutableDubbedList = [NSMutableArray array];
+  }
+  [result.mutableDubbedList addObjectsFromArray:values];
+  return self;
 }
-- (MovieProto_Builder*) clearDubbed {
-    result.dubbed_ = nil;
-    return self;
+- (MovieProto_Builder*) clearDubbedList {
+  result.mutableDubbedList = nil;
+  return self;
 }
 
-- (NSArray*) getSubtitledList {
-    if (result.subtitled_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithArray:result.subtitled_];
+- (NSArray*) subtitledList {
+  if (result.mutableSubtitledList == nil) { return [NSArray array]; }
+  return result.mutableSubtitledList;
 }
-- (int32_t) getSubtitledCount {
-    return result.getSubtitledCount;
+- (NSString*) subtitledAtIndex:(int32_t) index {
+  return [result subtitledAtIndex:index];
 }
-- (NSString*) getSubtitled:(int32_t) index {
-    return [result getSubtitled:index];
-}
-- (MovieProto_Builder*) setSubtitled:(int32_t) index value:(NSString*) value {
-    [result.subtitled_ replaceObjectAtIndex:index withObject:value];
-    return self;
+- (MovieProto_Builder*) replaceSubtitledAtIndex:(int32_t) index withSubtitled:(NSString*) value {
+  [result.mutableSubtitledList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (MovieProto_Builder*) addSubtitled:(NSString*) value {
-    if (result.subtitled_ == nil) {
-        result.subtitled_ = [NSMutableArray array];
-    }
-    [result.subtitled_ addObject:value];
-    return self;
+  if (result.mutableSubtitledList == nil) {
+    result.mutableSubtitledList = [NSMutableArray array];
+  }
+  [result.mutableSubtitledList addObject:value];
+  return self;
 }
 - (MovieProto_Builder*) addAllSubtitled:(NSArray*) values {
-    if (result.subtitled_ == nil) {
-        result.subtitled_ = [NSMutableArray array];
-    }
-    [result.subtitled_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableSubtitledList == nil) {
+    result.mutableSubtitledList = [NSMutableArray array];
+  }
+  [result.mutableSubtitledList addObjectsFromArray:values];
+  return self;
 }
-- (MovieProto_Builder*) clearSubtitled {
-    result.subtitled_ = nil;
-    return self;
+- (MovieProto_Builder*) clearSubtitledList {
+  result.mutableSubtitledList = nil;
+  return self;
 }
 
 - (BOOL) hasReleaseDate {
-    return result.hasReleaseDate;
+  return result.hasReleaseDate;
 }
-- (NSString*) getReleaseDate {
-    return result.getReleaseDate;
+- (NSString*) releaseDate {
+  return result.releaseDate;
 }
 - (MovieProto_Builder*) setReleaseDate:(NSString*) value {
-    result.hasReleaseDate = YES;
-    result.releaseDate_ = value;
-    return self;
+  result.hasReleaseDate = YES;
+  result.releaseDate = value;
+  return self;
 }
 - (MovieProto_Builder*) clearReleaseDate {
-    result.hasReleaseDate = NO;
-    result.releaseDate_ = @"";
-    return self;
+  result.hasReleaseDate = NO;
+  result.releaseDate = @"";
+  return self;
 }
+@end
+
+@interface TheaterProto ()
+@property BOOL hasIdentifier;
+@property (retain) NSString* identifier;
+@property BOOL hasName;
+@property (retain) NSString* name;
+@property BOOL hasStreetAddress;
+@property (retain) NSString* streetAddress;
+@property BOOL hasCity;
+@property (retain) NSString* city;
+@property BOOL hasState;
+@property (retain) NSString* state;
+@property BOOL hasPostalCode;
+@property (retain) NSString* postalCode;
+@property BOOL hasCountry;
+@property (retain) NSString* country;
+@property BOOL hasPhone;
+@property (retain) NSString* phone;
+@property BOOL hasLatitude;
+@property Float64 latitude;
+@property BOOL hasLongitude;
+@property Float64 longitude;
 @end
 
 @implementation TheaterProto
 
 @synthesize hasIdentifier;
-@synthesize identifier_;
+@synthesize identifier;
 @synthesize hasName;
-@synthesize name_;
+@synthesize name;
 @synthesize hasStreetAddress;
-@synthesize streetAddress_;
+@synthesize streetAddress;
 @synthesize hasCity;
-@synthesize city_;
+@synthesize city;
 @synthesize hasState;
-@synthesize state_;
+@synthesize state;
 @synthesize hasPostalCode;
-@synthesize postalCode_;
+@synthesize postalCode;
 @synthesize hasCountry;
-@synthesize country_;
+@synthesize country;
 @synthesize hasPhone;
-@synthesize phone_;
+@synthesize phone;
 @synthesize hasLatitude;
-@synthesize latitude_;
+@synthesize latitude;
 @synthesize hasLongitude;
-@synthesize longitude_;
+@synthesize longitude;
 - (void) dealloc {
-    self.hasIdentifier = NO;
-    self.identifier_ = nil;
-    self.hasName = NO;
-    self.name_ = nil;
-    self.hasStreetAddress = NO;
-    self.streetAddress_ = nil;
-    self.hasCity = NO;
-    self.city_ = nil;
-    self.hasState = NO;
-    self.state_ = nil;
-    self.hasPostalCode = NO;
-    self.postalCode_ = nil;
-    self.hasCountry = NO;
-    self.country_ = nil;
-    self.hasPhone = NO;
-    self.phone_ = nil;
-    self.hasLatitude = NO;
-    self.latitude_ = 0;
-    self.hasLongitude = NO;
-    self.longitude_ = 0;
-    [super dealloc];
+  self.hasIdentifier = NO;
+  self.identifier = nil;
+  self.hasName = NO;
+  self.name = nil;
+  self.hasStreetAddress = NO;
+  self.streetAddress = nil;
+  self.hasCity = NO;
+  self.city = nil;
+  self.hasState = NO;
+  self.state = nil;
+  self.hasPostalCode = NO;
+  self.postalCode = nil;
+  self.hasCountry = NO;
+  self.country = nil;
+  self.hasPhone = NO;
+  self.phone = nil;
+  self.hasLatitude = NO;
+  self.latitude = 0;
+  self.hasLongitude = NO;
+  self.longitude = 0;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        memoizedSerializedSize = -1;
-        self.identifier_ = @"";
-        self.name_ = @"";
-        self.streetAddress_ = @"";
-        self.city_ = @"";
-        self.state_ = @"";
-        self.postalCode_ = @"";
-        self.country_ = @"";
-        self.phone_ = @"";
-        self.latitude_ = 0;
-        self.longitude_ = 0;
-    }
-    return self;
+  if (self = [super init]) {
+    memoizedSerializedSize = -1;
+    self.identifier = @"";
+    self.name = @"";
+    self.streetAddress = @"";
+    self.city = @"";
+    self.state = @"";
+    self.postalCode = @"";
+    self.country = @"";
+    self.phone = @"";
+    self.latitude = 0;
+    self.longitude = 0;
+  }
+  return self;
 }
 static TheaterProto* defaultTheaterProtoInstance = nil;
 + (void) initialize {
-    if (self == [TheaterProto class]) {
-        defaultTheaterProtoInstance = [[TheaterProto alloc] init];
-    }
+  if (self == [TheaterProto class]) {
+    defaultTheaterProtoInstance = [[TheaterProto alloc] init];
+  }
 }
 
-+ (TheaterProto*) getDefaultInstance {
-    return defaultTheaterProtoInstance;
++ (TheaterProto*) defaultInstance {
+  return defaultTheaterProtoInstance;
 }
 
-- (TheaterProto*) getDefaultInstanceForType {
-    return defaultTheaterProtoInstance;
+- (TheaterProto*) defaultInstanceForType {
+  return defaultTheaterProtoInstance;
 }
 
-+ (ProtocolBufferDescriptor*) getDescriptor {
-    return [BoxOffice internal_static_TheaterProto_descriptor];
++ (PBDescriptor*) descriptor {
+  return [BoxOfficeProtoRoot internal_static_TheaterProto_descriptor];
 }
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    return [BoxOffice internal_static_TheaterProto_fieldAccessorTable];
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+  return [BoxOfficeProtoRoot internal_static_TheaterProto_fieldAccessorTable];
 }
 
-- (BOOL) hasIdentifier { return hasIdentifier; }
-- (NSString*) getIdentifier { return identifier_; }
 
-- (BOOL) hasName { return hasName; }
-- (NSString*) getName { return name_; }
 
-- (BOOL) hasStreetAddress { return hasStreetAddress; }
-- (NSString*) getStreetAddress { return streetAddress_; }
 
-- (BOOL) hasCity { return hasCity; }
-- (NSString*) getCity { return city_; }
 
-- (BOOL) hasState { return hasState; }
-- (NSString*) getState { return state_; }
 
-- (BOOL) hasPostalCode { return hasPostalCode; }
-- (NSString*) getPostalCode { return postalCode_; }
 
-- (BOOL) hasCountry { return hasCountry; }
-- (NSString*) getCountry { return country_; }
 
-- (BOOL) hasPhone { return hasPhone; }
-- (NSString*) getPhone { return phone_; }
 
-- (BOOL) hasLatitude { return hasLatitude; }
-- (Float64) getLatitude { return latitude_; }
 
-- (BOOL) hasLongitude { return hasLongitude; }
-- (Float64) getLongitude { return longitude_; }
 
 - (BOOL) isInitialized {
-    return true;
+  return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    if (hasIdentifier) {
-        [output writeString:1 value:self.getIdentifier];
-    }
-    if (hasName) {
-        [output writeString:2 value:self.getName];
-    }
-    if (hasStreetAddress) {
-        [output writeString:3 value:self.getStreetAddress];
-    }
-    if (hasCity) {
-        [output writeString:4 value:self.getCity];
-    }
-    if (hasState) {
-        [output writeString:5 value:self.getState];
-    }
-    if (hasPostalCode) {
-        [output writeString:6 value:self.getPostalCode];
-    }
-    if (hasCountry) {
-        [output writeString:7 value:self.getCountry];
-    }
-    if (hasPhone) {
-        [output writeString:8 value:self.getPhone];
-    }
-    if (hasLatitude) {
-        [output writeDouble:9 value:self.getLatitude];
-    }
-    if (hasLongitude) {
-        [output writeDouble:10 value:self.getLongitude];
-    }
-    [self.getUnknownFields writeToCodedOutputStream:output];
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (hasIdentifier) {
+    [output writeString:1 value:self.identifier];
+  }
+  if (hasName) {
+    [output writeString:2 value:self.name];
+  }
+  if (hasStreetAddress) {
+    [output writeString:3 value:self.streetAddress];
+  }
+  if (hasCity) {
+    [output writeString:4 value:self.city];
+  }
+  if (hasState) {
+    [output writeString:5 value:self.state];
+  }
+  if (hasPostalCode) {
+    [output writeString:6 value:self.postalCode];
+  }
+  if (hasCountry) {
+    [output writeString:7 value:self.country];
+  }
+  if (hasPhone) {
+    [output writeString:8 value:self.phone];
+  }
+  if (hasLatitude) {
+    [output writeDouble:9 value:self.latitude];
+  }
+  if (hasLongitude) {
+    [output writeDouble:10 value:self.longitude];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
-    int32_t size = memoizedSerializedSize;
-    if (size != -1) return size;
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) return size;
 
-    size = 0;
-    if (hasIdentifier) {
-        size += computeStringSize(1, self.getIdentifier);
-    }
-    if (hasName) {
-        size += computeStringSize(2, self.getName);
-    }
-    if (hasStreetAddress) {
-        size += computeStringSize(3, self.getStreetAddress);
-    }
-    if (hasCity) {
-        size += computeStringSize(4, self.getCity);
-    }
-    if (hasState) {
-        size += computeStringSize(5, self.getState);
-    }
-    if (hasPostalCode) {
-        size += computeStringSize(6, self.getPostalCode);
-    }
-    if (hasCountry) {
-        size += computeStringSize(7, self.getCountry);
-    }
-    if (hasPhone) {
-        size += computeStringSize(8, self.getPhone);
-    }
-    if (hasLatitude) {
-        size += computeDoubleSize(9, self.getLatitude);
-    }
-    if (hasLongitude) {
-        size += computeDoubleSize(10, self.getLongitude);
-    }
-    size += self.getUnknownFields.getSerializedSize;
-    memoizedSerializedSize = size;
-    return size;
+  size = 0;
+  if (hasIdentifier) {
+    size += computeStringSize(1, self.identifier);
+  }
+  if (hasName) {
+    size += computeStringSize(2, self.name);
+  }
+  if (hasStreetAddress) {
+    size += computeStringSize(3, self.streetAddress);
+  }
+  if (hasCity) {
+    size += computeStringSize(4, self.city);
+  }
+  if (hasState) {
+    size += computeStringSize(5, self.state);
+  }
+  if (hasPostalCode) {
+    size += computeStringSize(6, self.postalCode);
+  }
+  if (hasCountry) {
+    size += computeStringSize(7, self.country);
+  }
+  if (hasPhone) {
+    size += computeStringSize(8, self.phone);
+  }
+  if (hasLatitude) {
+    size += computeDoubleSize(9, self.latitude);
+  }
+  if (hasLongitude) {
+    size += computeDoubleSize(10, self.longitude);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
 }
 
 + (TheaterProto*) parseFromData:(NSData*) data {
-    return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromData:data] buildParsed];
+  return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromData:data] buildParsed];
 }
-+ (TheaterProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
++ (TheaterProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 + (TheaterProto*) parseFromInputStream:(NSInputStream*) input {
-    return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromInputStream:input] buildParsed];
 }
-+ (TheaterProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (TheaterProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (TheaterProto*) parseFromCodedInputStream:(CodedInputStream*) input {
-    return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
++ (TheaterProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (TheaterProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (TheaterProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TheaterProto*)[[[TheaterProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 + (TheaterProto_Builder*) newBuilder { return [[[TheaterProto_Builder alloc] init] autorelease]; }
 - (TheaterProto_Builder*) newBuilderForType { return [TheaterProto newBuilder]; }
 + (TheaterProto_Builder*) newBuilderWithTheaterProto:(TheaterProto*) prototype {
-    return [[TheaterProto newBuilder] mergeFromTheaterProto:prototype];
+  return [[TheaterProto newBuilder] mergeFromTheaterProto:prototype];
 }
 
 @end
@@ -1963,668 +1943,677 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
 @implementation TheaterProto_Builder
 @synthesize result;
 - (void) dealloc {
-    self.result = nil;
-    [super dealloc];
+  self.result = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        self.result = [[[TheaterProto alloc] init] autorelease];
-    }
-    return self;
+  if (self = [super init]) {
+    self.result = [[[TheaterProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (TheaterProto*) internalGetResult {
-    return result;
+  return result;
 }
 
 - (TheaterProto_Builder*) clear {
-    self.result = [[[TheaterProto alloc] init] autorelease];
-    return self;
+  self.result = [[[TheaterProto alloc] init] autorelease];
+  return self;
 }
 
 - (TheaterProto_Builder*) clone {
-    return (TheaterProto_Builder*)[[[[TheaterProto_Builder alloc] init] autorelease] mergeFromTheaterProto:result];
+  return (TheaterProto_Builder*)[[[[TheaterProto_Builder alloc] init] autorelease] mergeFromTheaterProto:result];
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    return [TheaterProto getDescriptor];
+- (PBDescriptor*) descriptorForType {
+  return [TheaterProto descriptor];
 }
 
-- (TheaterProto*) getDefaultInstanceForType {
-    return [TheaterProto getDefaultInstance];
+- (TheaterProto*) defaultInstanceForType {
+  return [TheaterProto defaultInstance];
 }
 
 - (TheaterProto*) build {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (TheaterProto*) buildParsed {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (TheaterProto*) buildPartial {
-    TheaterProto* returnMe = [[result retain] autorelease];
-    self.result = nil;
-    return returnMe;
+  TheaterProto* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
 }
 
-- (TheaterProto_Builder*) mergeFromMessage:(id<Message>) other {
-    id o = other;
-    if ([o isKindOfClass:[TheaterProto class]]) {
-        return [self mergeFromTheaterProto:o];
-    } else {
-        [super mergeFromMessage:other];
-        return self;
-    }
+- (TheaterProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
+  id o = other;
+  if ([o isKindOfClass:[TheaterProto class]]) {
+    return [self mergeFromTheaterProto:o];
+  } else {
+    [super mergeFromMessage:other];
+    return self;
+  }
 }
 
 - (TheaterProto_Builder*) mergeFromTheaterProto:(TheaterProto*) other {
-    if (other == [TheaterProto getDefaultInstance]) return self;
-    if (other.hasIdentifier) {
-        [self setIdentifier:other.getIdentifier];
-    }
-    if (other.hasName) {
-        [self setName:other.getName];
-    }
-    if (other.hasStreetAddress) {
-        [self setStreetAddress:other.getStreetAddress];
-    }
-    if (other.hasCity) {
-        [self setCity:other.getCity];
-    }
-    if (other.hasState) {
-        [self setState:other.getState];
-    }
-    if (other.hasPostalCode) {
-        [self setPostalCode:other.getPostalCode];
-    }
-    if (other.hasCountry) {
-        [self setCountry:other.getCountry];
-    }
-    if (other.hasPhone) {
-        [self setPhone:other.getPhone];
-    }
-    if (other.hasLatitude) {
-        [self setLatitude:other.getLatitude];
-    }
-    if (other.hasLongitude) {
-        [self setLongitude:other.getLongitude];
-    }
-    [self mergeUnknownFields:other.getUnknownFields];
-    return self;
+  if (other == [TheaterProto defaultInstance]) return self;
+  if (other.hasIdentifier) {
+    [self setIdentifier:other.identifier];
+  }
+  if (other.hasName) {
+    [self setName:other.name];
+  }
+  if (other.hasStreetAddress) {
+    [self setStreetAddress:other.streetAddress];
+  }
+  if (other.hasCity) {
+    [self setCity:other.city];
+  }
+  if (other.hasState) {
+    [self setState:other.state];
+  }
+  if (other.hasPostalCode) {
+    [self setPostalCode:other.postalCode];
+  }
+  if (other.hasCountry) {
+    [self setCountry:other.country];
+  }
+  if (other.hasPhone) {
+    [self setPhone:other.phone];
+  }
+  if (other.hasLatitude) {
+    [self setLatitude:other.latitude];
+  }
+  if (other.hasLongitude) {
+    [self setLongitude:other.longitude];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
 }
 
-- (TheaterProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
+- (TheaterProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 
-- (TheaterProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
-    while (true) {
-        int32_t tag = [input readTag];
-        switch (tag) {
-            case 0:
-                [self setUnknownFields:[unknownFields build]];
-                return self;
-            default: {
-                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-                    [self setUnknownFields:[unknownFields build]];
-                    return self;
-                }
-                break;
-            }
-            case 10: {
-                [self setIdentifier:[input readString]];
-                break;
-            }
-            case 18: {
-                [self setName:[input readString]];
-                break;
-            }
-            case 26: {
-                [self setStreetAddress:[input readString]];
-                break;
-            }
-            case 34: {
-                [self setCity:[input readString]];
-                break;
-            }
-            case 42: {
-                [self setState:[input readString]];
-                break;
-            }
-            case 50: {
-                [self setPostalCode:[input readString]];
-                break;
-            }
-            case 58: {
-                [self setCountry:[input readString]];
-                break;
-            }
-            case 66: {
-                [self setPhone:[input readString]];
-                break;
-            }
-            case 73: {
-                [self setLatitude:[input readDouble]];
-                break;
-            }
-            case 81: {
-                [self setLongitude:[input readDouble]];
-                break;
-            }
+- (TheaterProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
+  while (true) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
         }
+        break;
+      }
+      case 10: {
+        [self setIdentifier:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setName:[input readString]];
+        break;
+      }
+      case 26: {
+        [self setStreetAddress:[input readString]];
+        break;
+      }
+      case 34: {
+        [self setCity:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setState:[input readString]];
+        break;
+      }
+      case 50: {
+        [self setPostalCode:[input readString]];
+        break;
+      }
+      case 58: {
+        [self setCountry:[input readString]];
+        break;
+      }
+      case 66: {
+        [self setPhone:[input readString]];
+        break;
+      }
+      case 73: {
+        [self setLatitude:[input readDouble]];
+        break;
+      }
+      case 81: {
+        [self setLongitude:[input readDouble]];
+        break;
+      }
     }
+  }
 }
 
 
 - (BOOL) hasIdentifier {
-    return result.hasIdentifier;
+  return result.hasIdentifier;
 }
-- (NSString*) getIdentifier {
-    return result.getIdentifier;
+- (NSString*) identifier {
+  return result.identifier;
 }
 - (TheaterProto_Builder*) setIdentifier:(NSString*) value {
-    result.hasIdentifier = YES;
-    result.identifier_ = value;
-    return self;
+  result.hasIdentifier = YES;
+  result.identifier = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearIdentifier {
-    result.hasIdentifier = NO;
-    result.identifier_ = @"";
-    return self;
+  result.hasIdentifier = NO;
+  result.identifier = @"";
+  return self;
 }
 
 - (BOOL) hasName {
-    return result.hasName;
+  return result.hasName;
 }
-- (NSString*) getName {
-    return result.getName;
+- (NSString*) name {
+  return result.name;
 }
 - (TheaterProto_Builder*) setName:(NSString*) value {
-    result.hasName = YES;
-    result.name_ = value;
-    return self;
+  result.hasName = YES;
+  result.name = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearName {
-    result.hasName = NO;
-    result.name_ = @"";
-    return self;
+  result.hasName = NO;
+  result.name = @"";
+  return self;
 }
 
 - (BOOL) hasStreetAddress {
-    return result.hasStreetAddress;
+  return result.hasStreetAddress;
 }
-- (NSString*) getStreetAddress {
-    return result.getStreetAddress;
+- (NSString*) streetAddress {
+  return result.streetAddress;
 }
 - (TheaterProto_Builder*) setStreetAddress:(NSString*) value {
-    result.hasStreetAddress = YES;
-    result.streetAddress_ = value;
-    return self;
+  result.hasStreetAddress = YES;
+  result.streetAddress = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearStreetAddress {
-    result.hasStreetAddress = NO;
-    result.streetAddress_ = @"";
-    return self;
+  result.hasStreetAddress = NO;
+  result.streetAddress = @"";
+  return self;
 }
 
 - (BOOL) hasCity {
-    return result.hasCity;
+  return result.hasCity;
 }
-- (NSString*) getCity {
-    return result.getCity;
+- (NSString*) city {
+  return result.city;
 }
 - (TheaterProto_Builder*) setCity:(NSString*) value {
-    result.hasCity = YES;
-    result.city_ = value;
-    return self;
+  result.hasCity = YES;
+  result.city = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearCity {
-    result.hasCity = NO;
-    result.city_ = @"";
-    return self;
+  result.hasCity = NO;
+  result.city = @"";
+  return self;
 }
 
 - (BOOL) hasState {
-    return result.hasState;
+  return result.hasState;
 }
-- (NSString*) getState {
-    return result.getState;
+- (NSString*) state {
+  return result.state;
 }
 - (TheaterProto_Builder*) setState:(NSString*) value {
-    result.hasState = YES;
-    result.state_ = value;
-    return self;
+  result.hasState = YES;
+  result.state = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearState {
-    result.hasState = NO;
-    result.state_ = @"";
-    return self;
+  result.hasState = NO;
+  result.state = @"";
+  return self;
 }
 
 - (BOOL) hasPostalCode {
-    return result.hasPostalCode;
+  return result.hasPostalCode;
 }
-- (NSString*) getPostalCode {
-    return result.getPostalCode;
+- (NSString*) postalCode {
+  return result.postalCode;
 }
 - (TheaterProto_Builder*) setPostalCode:(NSString*) value {
-    result.hasPostalCode = YES;
-    result.postalCode_ = value;
-    return self;
+  result.hasPostalCode = YES;
+  result.postalCode = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearPostalCode {
-    result.hasPostalCode = NO;
-    result.postalCode_ = @"";
-    return self;
+  result.hasPostalCode = NO;
+  result.postalCode = @"";
+  return self;
 }
 
 - (BOOL) hasCountry {
-    return result.hasCountry;
+  return result.hasCountry;
 }
-- (NSString*) getCountry {
-    return result.getCountry;
+- (NSString*) country {
+  return result.country;
 }
 - (TheaterProto_Builder*) setCountry:(NSString*) value {
-    result.hasCountry = YES;
-    result.country_ = value;
-    return self;
+  result.hasCountry = YES;
+  result.country = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearCountry {
-    result.hasCountry = NO;
-    result.country_ = @"";
-    return self;
+  result.hasCountry = NO;
+  result.country = @"";
+  return self;
 }
 
 - (BOOL) hasPhone {
-    return result.hasPhone;
+  return result.hasPhone;
 }
-- (NSString*) getPhone {
-    return result.getPhone;
+- (NSString*) phone {
+  return result.phone;
 }
 - (TheaterProto_Builder*) setPhone:(NSString*) value {
-    result.hasPhone = YES;
-    result.phone_ = value;
-    return self;
+  result.hasPhone = YES;
+  result.phone = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearPhone {
-    result.hasPhone = NO;
-    result.phone_ = @"";
-    return self;
+  result.hasPhone = NO;
+  result.phone = @"";
+  return self;
 }
 
 - (BOOL) hasLatitude {
-    return result.hasLatitude;
+  return result.hasLatitude;
 }
-- (Float64) getLatitude {
-    return result.getLatitude;
+- (Float64) latitude {
+  return result.latitude;
 }
 - (TheaterProto_Builder*) setLatitude:(Float64) value {
-    result.hasLatitude = YES;
-    result.latitude_ = value;
-    return self;
+  result.hasLatitude = YES;
+  result.latitude = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearLatitude {
-    result.hasLatitude = NO;
-    result.latitude_ = 0;
-    return self;
+  result.hasLatitude = NO;
+  result.latitude = 0;
+  return self;
 }
 
 - (BOOL) hasLongitude {
-    return result.hasLongitude;
+  return result.hasLongitude;
 }
-- (Float64) getLongitude {
-    return result.getLongitude;
+- (Float64) longitude {
+  return result.longitude;
 }
 - (TheaterProto_Builder*) setLongitude:(Float64) value {
-    result.hasLongitude = YES;
-    result.longitude_ = value;
-    return self;
+  result.hasLongitude = YES;
+  result.longitude = value;
+  return self;
 }
 - (TheaterProto_Builder*) clearLongitude {
-    result.hasLongitude = NO;
-    result.longitude_ = 0;
-    return self;
+  result.hasLongitude = NO;
+  result.longitude = 0;
+  return self;
 }
+@end
+
+@interface TheaterListingsProto ()
+@property (retain) NSMutableArray* mutableMoviesList;
+@property (retain) NSMutableArray* mutableTheaterAndMovieShowtimesList;
 @end
 
 @implementation TheaterListingsProto
 
-@synthesize movies_;
-@synthesize theaterAndMovieShowtimes_;
+@synthesize mutableMoviesList;
+@synthesize mutableTheaterAndMovieShowtimesList;
 - (void) dealloc {
-    self.movies_ = nil;
-    self.theaterAndMovieShowtimes_ = nil;
-    [super dealloc];
+  self.mutableMoviesList = nil;
+  self.mutableTheaterAndMovieShowtimesList = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        memoizedSerializedSize = -1;
-    }
-    return self;
+  if (self = [super init]) {
+    memoizedSerializedSize = -1;
+  }
+  return self;
 }
 static TheaterListingsProto* defaultTheaterListingsProtoInstance = nil;
 + (void) initialize {
-    if (self == [TheaterListingsProto class]) {
-        defaultTheaterListingsProtoInstance = [[TheaterListingsProto alloc] init];
-    }
+  if (self == [TheaterListingsProto class]) {
+    defaultTheaterListingsProtoInstance = [[TheaterListingsProto alloc] init];
+  }
 }
 
-+ (TheaterListingsProto*) getDefaultInstance {
-    return defaultTheaterListingsProtoInstance;
++ (TheaterListingsProto*) defaultInstance {
+  return defaultTheaterListingsProtoInstance;
 }
 
-- (TheaterListingsProto*) getDefaultInstanceForType {
-    return defaultTheaterListingsProtoInstance;
+- (TheaterListingsProto*) defaultInstanceForType {
+  return defaultTheaterListingsProtoInstance;
 }
 
-+ (ProtocolBufferDescriptor*) getDescriptor {
-    return [BoxOffice internal_static_TheaterListingsProto_descriptor];
++ (PBDescriptor*) descriptor {
+  return [BoxOfficeProtoRoot internal_static_TheaterListingsProto_descriptor];
 }
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    return [BoxOffice internal_static_TheaterListingsProto_fieldAccessorTable];
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+  return [BoxOfficeProtoRoot internal_static_TheaterListingsProto_fieldAccessorTable];
 }
 
-- (NSArray*) getMoviesList {
-    return movies_;
+- (NSArray*) moviesList {
+  return mutableMoviesList;
 }
-- (int32_t) getMoviesCount { return movies_.count; }
-- (MovieProto*) getMovies:(int32_t) index {
-    return [movies_ objectAtIndex:index];
+- (MovieProto*) moviesAtIndex:(int32_t) index {
+  return [mutableMoviesList objectAtIndex:index];
 }
 
-- (NSArray*) getTheaterAndMovieShowtimesList {
-    return theaterAndMovieShowtimes_;
+- (NSArray*) theaterAndMovieShowtimesList {
+  return mutableTheaterAndMovieShowtimesList;
 }
-- (int32_t) getTheaterAndMovieShowtimesCount { return theaterAndMovieShowtimes_.count; }
-- (TheaterAndMovieShowtimesProto*) getTheaterAndMovieShowtimes:(int32_t) index {
-    return [theaterAndMovieShowtimes_ objectAtIndex:index];
+- (TheaterAndMovieShowtimesProto*) theaterAndMovieShowtimesAtIndex:(int32_t) index {
+  return [mutableTheaterAndMovieShowtimesList objectAtIndex:index];
 }
 
 - (BOOL) isInitialized {
-    for (TheaterAndMovieShowtimesProto* element in self.getTheaterAndMovieShowtimesList) {
-        if (!element.isInitialized) return false;
-    }
-    return true;
+  for (TheaterAndMovieShowtimesProto* element in self.theaterAndMovieShowtimesList) {
+    if (!element.isInitialized) return false;
+  }
+  return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    for (MovieProto* element in self.getMoviesList) {
-        [output writeMessage:5 value:element];
-    }
-    for (TheaterAndMovieShowtimesProto* element in self.getTheaterAndMovieShowtimesList) {
-        [output writeMessage:6 value:element];
-    }
-    [self.getUnknownFields writeToCodedOutputStream:output];
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (MovieProto* element in self.moviesList) {
+    [output writeMessage:5 value:element];
+  }
+  for (TheaterAndMovieShowtimesProto* element in self.theaterAndMovieShowtimesList) {
+    [output writeMessage:6 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
-    int32_t size = memoizedSerializedSize;
-    if (size != -1) return size;
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) return size;
 
-    size = 0;
-    for (MovieProto* element in self.getMoviesList) {
-        size += computeMessageSize(5, element);
-    }
-    for (TheaterAndMovieShowtimesProto* element in self.getTheaterAndMovieShowtimesList) {
-        size += computeMessageSize(6, element);
-    }
-    size += self.getUnknownFields.getSerializedSize;
-    memoizedSerializedSize = size;
-    return size;
+  size = 0;
+  for (MovieProto* element in self.moviesList) {
+    size += computeMessageSize(5, element);
+  }
+  for (TheaterAndMovieShowtimesProto* element in self.theaterAndMovieShowtimesList) {
+    size += computeMessageSize(6, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
 }
 
 + (TheaterListingsProto*) parseFromData:(NSData*) data {
-    return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromData:data] buildParsed];
+  return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromData:data] buildParsed];
 }
-+ (TheaterListingsProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
++ (TheaterListingsProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 + (TheaterListingsProto*) parseFromInputStream:(NSInputStream*) input {
-    return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromInputStream:input] buildParsed];
 }
-+ (TheaterListingsProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (TheaterListingsProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (TheaterListingsProto*) parseFromCodedInputStream:(CodedInputStream*) input {
-    return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
++ (TheaterListingsProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (TheaterListingsProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (TheaterListingsProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TheaterListingsProto*)[[[TheaterListingsProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 + (TheaterListingsProto_Builder*) newBuilder { return [[[TheaterListingsProto_Builder alloc] init] autorelease]; }
 - (TheaterListingsProto_Builder*) newBuilderForType { return [TheaterListingsProto newBuilder]; }
 + (TheaterListingsProto_Builder*) newBuilderWithTheaterListingsProto:(TheaterListingsProto*) prototype {
-    return [[TheaterListingsProto newBuilder] mergeFromTheaterListingsProto:prototype];
+  return [[TheaterListingsProto newBuilder] mergeFromTheaterListingsProto:prototype];
 }
 
+@end
+
+@interface TheaterAndMovieShowtimesProto ()
+@property BOOL hasTheater;
+@property (retain) TheaterProto* theater;
+@property (retain) NSMutableArray* mutableMovieAndShowtimesList;
 @end
 
 @implementation TheaterAndMovieShowtimesProto
 
 @synthesize hasTheater;
-@synthesize theater_;
-@synthesize movieAndShowtimes_;
+@synthesize theater;
+@synthesize mutableMovieAndShowtimesList;
 - (void) dealloc {
-    self.hasTheater = NO;
-    self.theater_ = nil;
-    self.movieAndShowtimes_ = nil;
-    [super dealloc];
+  self.hasTheater = NO;
+  self.theater = nil;
+  self.mutableMovieAndShowtimesList = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        memoizedSerializedSize = -1;
-    }
-    return self;
+  if (self = [super init]) {
+    memoizedSerializedSize = -1;
+  }
+  return self;
 }
 static TheaterAndMovieShowtimesProto* defaultTheaterAndMovieShowtimesProtoInstance = nil;
 + (void) initialize {
-    if (self == [TheaterAndMovieShowtimesProto class]) {
-        defaultTheaterAndMovieShowtimesProtoInstance = [[TheaterAndMovieShowtimesProto alloc] init];
-    }
+  if (self == [TheaterAndMovieShowtimesProto class]) {
+    defaultTheaterAndMovieShowtimesProtoInstance = [[TheaterAndMovieShowtimesProto alloc] init];
+  }
 }
 
-+ (TheaterAndMovieShowtimesProto*) getDefaultInstance {
-    return defaultTheaterAndMovieShowtimesProtoInstance;
++ (TheaterAndMovieShowtimesProto*) defaultInstance {
+  return defaultTheaterAndMovieShowtimesProtoInstance;
 }
 
-- (TheaterAndMovieShowtimesProto*) getDefaultInstanceForType {
-    return defaultTheaterAndMovieShowtimesProtoInstance;
+- (TheaterAndMovieShowtimesProto*) defaultInstanceForType {
+  return defaultTheaterAndMovieShowtimesProtoInstance;
 }
 
-+ (ProtocolBufferDescriptor*) getDescriptor {
-    return [BoxOffice internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor];
++ (PBDescriptor*) descriptor {
+  return [BoxOfficeProtoRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor];
 }
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    return [BoxOffice internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable];
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+  return [BoxOfficeProtoRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable];
 }
 
-- (BOOL) hasTheater { return hasTheater; }
-- (TheaterProto*) getTheater { return theater_; }
 
-- (NSArray*) getMovieAndShowtimesList {
-    return movieAndShowtimes_;
+- (NSArray*) movieAndShowtimesList {
+  return mutableMovieAndShowtimesList;
 }
-- (int32_t) getMovieAndShowtimesCount { return movieAndShowtimes_.count; }
-- (MovieAndShowtimesProto*) getMovieAndShowtimes:(int32_t) index {
-    return [movieAndShowtimes_ objectAtIndex:index];
+- (MovieAndShowtimesProto*) movieAndShowtimesAtIndex:(int32_t) index {
+  return [mutableMovieAndShowtimesList objectAtIndex:index];
 }
 
 - (BOOL) isInitialized {
-    if (!self.hasTheater) return false;
-    for (MovieAndShowtimesProto* element in self.getMovieAndShowtimesList) {
-        if (!element.isInitialized) return false;
-    }
-    return true;
+  if (!self.hasTheater) return false;
+  for (MovieAndShowtimesProto* element in self.movieAndShowtimesList) {
+    if (!element.isInitialized) return false;
+  }
+  return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    if (self.hasTheater) {
-        [output writeMessage:3 value:self.getTheater];
-    }
-    for (MovieAndShowtimesProto* element in self.getMovieAndShowtimesList) {
-        [output writeMessage:4 value:element];
-    }
-    [self.getUnknownFields writeToCodedOutputStream:output];
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (self.hasTheater) {
+    [output writeMessage:3 value:self.theater];
+  }
+  for (MovieAndShowtimesProto* element in self.movieAndShowtimesList) {
+    [output writeMessage:4 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
-    int32_t size = memoizedSerializedSize;
-    if (size != -1) return size;
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) return size;
 
-    size = 0;
-    if (self.hasTheater) {
-        size += computeMessageSize(3, self.getTheater);
-    }
-    for (MovieAndShowtimesProto* element in self.getMovieAndShowtimesList) {
-        size += computeMessageSize(4, element);
-    }
-    size += self.getUnknownFields.getSerializedSize;
-    memoizedSerializedSize = size;
-    return size;
+  size = 0;
+  if (self.hasTheater) {
+    size += computeMessageSize(3, self.theater);
+  }
+  for (MovieAndShowtimesProto* element in self.movieAndShowtimesList) {
+    size += computeMessageSize(4, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
 }
 
 + (TheaterAndMovieShowtimesProto*) parseFromData:(NSData*) data {
-    return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromData:data] buildParsed];
+  return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromData:data] buildParsed];
 }
-+ (TheaterAndMovieShowtimesProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
++ (TheaterAndMovieShowtimesProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 + (TheaterAndMovieShowtimesProto*) parseFromInputStream:(NSInputStream*) input {
-    return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromInputStream:input] buildParsed];
 }
-+ (TheaterAndMovieShowtimesProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (TheaterAndMovieShowtimesProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (TheaterAndMovieShowtimesProto*) parseFromCodedInputStream:(CodedInputStream*) input {
-    return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
++ (TheaterAndMovieShowtimesProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (TheaterAndMovieShowtimesProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (TheaterAndMovieShowtimesProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (TheaterAndMovieShowtimesProto*)[[[TheaterAndMovieShowtimesProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 + (TheaterAndMovieShowtimesProto_Builder*) newBuilder { return [[[TheaterAndMovieShowtimesProto_Builder alloc] init] autorelease]; }
 - (TheaterAndMovieShowtimesProto_Builder*) newBuilderForType { return [TheaterAndMovieShowtimesProto newBuilder]; }
 + (TheaterAndMovieShowtimesProto_Builder*) newBuilderWithTheaterAndMovieShowtimesProto:(TheaterAndMovieShowtimesProto*) prototype {
-    return [[TheaterAndMovieShowtimesProto newBuilder] mergeFromTheaterAndMovieShowtimesProto:prototype];
+  return [[TheaterAndMovieShowtimesProto newBuilder] mergeFromTheaterAndMovieShowtimesProto:prototype];
 }
 
+@end
+
+@interface MovieAndShowtimesProto ()
+@property BOOL hasMovieIdentifier;
+@property (retain) NSString* movieIdentifier;
+@property BOOL hasShowtimes;
+@property (retain) AllShowtimesProto* showtimes;
 @end
 
 @implementation MovieAndShowtimesProto
 
 @synthesize hasMovieIdentifier;
-@synthesize movieIdentifier_;
+@synthesize movieIdentifier;
 @synthesize hasShowtimes;
-@synthesize showtimes_;
+@synthesize showtimes;
 - (void) dealloc {
-    self.hasMovieIdentifier = NO;
-    self.movieIdentifier_ = nil;
-    self.hasShowtimes = NO;
-    self.showtimes_ = nil;
-    [super dealloc];
+  self.hasMovieIdentifier = NO;
+  self.movieIdentifier = nil;
+  self.hasShowtimes = NO;
+  self.showtimes = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        memoizedSerializedSize = -1;
-        self.movieIdentifier_ = @"";
-    }
-    return self;
+  if (self = [super init]) {
+    memoizedSerializedSize = -1;
+    self.movieIdentifier = @"";
+  }
+  return self;
 }
 static MovieAndShowtimesProto* defaultMovieAndShowtimesProtoInstance = nil;
 + (void) initialize {
-    if (self == [MovieAndShowtimesProto class]) {
-        defaultMovieAndShowtimesProtoInstance = [[MovieAndShowtimesProto alloc] init];
-    }
+  if (self == [MovieAndShowtimesProto class]) {
+    defaultMovieAndShowtimesProtoInstance = [[MovieAndShowtimesProto alloc] init];
+  }
 }
 
-+ (MovieAndShowtimesProto*) getDefaultInstance {
-    return defaultMovieAndShowtimesProtoInstance;
++ (MovieAndShowtimesProto*) defaultInstance {
+  return defaultMovieAndShowtimesProtoInstance;
 }
 
-- (MovieAndShowtimesProto*) getDefaultInstanceForType {
-    return defaultMovieAndShowtimesProtoInstance;
+- (MovieAndShowtimesProto*) defaultInstanceForType {
+  return defaultMovieAndShowtimesProtoInstance;
 }
 
-+ (ProtocolBufferDescriptor*) getDescriptor {
-    return [BoxOffice internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor];
++ (PBDescriptor*) descriptor {
+  return [BoxOfficeProtoRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor];
 }
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    return [BoxOffice internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable];
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+  return [BoxOfficeProtoRoot internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable];
 }
 
-- (BOOL) hasMovieIdentifier { return hasMovieIdentifier; }
-- (NSString*) getMovieIdentifier { return movieIdentifier_; }
 
-- (BOOL) hasShowtimes { return hasShowtimes; }
-- (AllShowtimesProto*) getShowtimes { return showtimes_; }
 
 - (BOOL) isInitialized {
-    if (!self.hasMovieIdentifier) return false;
-    if (!self.hasShowtimes) return false;
-    if (!self.getShowtimes.isInitialized) return false;
-    return true;
+  if (!self.hasMovieIdentifier) return false;
+  if (!self.hasShowtimes) return false;
+  if (!self.showtimes.isInitialized) return false;
+  return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    if (hasMovieIdentifier) {
-        [output writeString:1 value:self.getMovieIdentifier];
-    }
-    if (self.hasShowtimes) {
-        [output writeMessage:2 value:self.getShowtimes];
-    }
-    [self.getUnknownFields writeToCodedOutputStream:output];
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (hasMovieIdentifier) {
+    [output writeString:1 value:self.movieIdentifier];
+  }
+  if (self.hasShowtimes) {
+    [output writeMessage:2 value:self.showtimes];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
-    int32_t size = memoizedSerializedSize;
-    if (size != -1) return size;
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) return size;
 
-    size = 0;
-    if (hasMovieIdentifier) {
-        size += computeStringSize(1, self.getMovieIdentifier);
-    }
-    if (self.hasShowtimes) {
-        size += computeMessageSize(2, self.getShowtimes);
-    }
-    size += self.getUnknownFields.getSerializedSize;
-    memoizedSerializedSize = size;
-    return size;
+  size = 0;
+  if (hasMovieIdentifier) {
+    size += computeStringSize(1, self.movieIdentifier);
+  }
+  if (self.hasShowtimes) {
+    size += computeMessageSize(2, self.showtimes);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
 }
 
 + (MovieAndShowtimesProto*) parseFromData:(NSData*) data {
-    return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromData:data] buildParsed];
+  return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromData:data] buildParsed];
 }
-+ (MovieAndShowtimesProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
++ (MovieAndShowtimesProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 + (MovieAndShowtimesProto*) parseFromInputStream:(NSInputStream*) input {
-    return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromInputStream:input] buildParsed];
+  return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromInputStream:input] buildParsed];
 }
-+ (MovieAndShowtimesProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (MovieAndShowtimesProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (MovieAndShowtimesProto*) parseFromCodedInputStream:(CodedInputStream*) input {
-    return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
++ (MovieAndShowtimesProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (MovieAndShowtimesProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (MovieAndShowtimesProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (MovieAndShowtimesProto*)[[[MovieAndShowtimesProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 + (MovieAndShowtimesProto_Builder*) newBuilder { return [[[MovieAndShowtimesProto_Builder alloc] init] autorelease]; }
 - (MovieAndShowtimesProto_Builder*) newBuilderForType { return [MovieAndShowtimesProto newBuilder]; }
 + (MovieAndShowtimesProto_Builder*) newBuilderWithMovieAndShowtimesProto:(MovieAndShowtimesProto*) prototype {
-    return [[MovieAndShowtimesProto newBuilder] mergeFromMovieAndShowtimesProto:prototype];
+  return [[MovieAndShowtimesProto newBuilder] mergeFromMovieAndShowtimesProto:prototype];
 }
 
 @end
@@ -2632,754 +2621,711 @@ static MovieAndShowtimesProto* defaultMovieAndShowtimesProtoInstance = nil;
 @implementation MovieAndShowtimesProto_Builder
 @synthesize result;
 - (void) dealloc {
-    self.result = nil;
-    [super dealloc];
+  self.result = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        self.result = [[[MovieAndShowtimesProto alloc] init] autorelease];
-    }
-    return self;
+  if (self = [super init]) {
+    self.result = [[[MovieAndShowtimesProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (MovieAndShowtimesProto*) internalGetResult {
-    return result;
+  return result;
 }
 
 - (MovieAndShowtimesProto_Builder*) clear {
-    self.result = [[[MovieAndShowtimesProto alloc] init] autorelease];
-    return self;
+  self.result = [[[MovieAndShowtimesProto alloc] init] autorelease];
+  return self;
 }
 
 - (MovieAndShowtimesProto_Builder*) clone {
-    return (MovieAndShowtimesProto_Builder*)[[[[MovieAndShowtimesProto_Builder alloc] init] autorelease] mergeFromMovieAndShowtimesProto:result];
+  return (MovieAndShowtimesProto_Builder*)[[[[MovieAndShowtimesProto_Builder alloc] init] autorelease] mergeFromMovieAndShowtimesProto:result];
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    return [MovieAndShowtimesProto getDescriptor];
+- (PBDescriptor*) descriptorForType {
+  return [MovieAndShowtimesProto descriptor];
 }
 
-- (MovieAndShowtimesProto*) getDefaultInstanceForType {
-    return [MovieAndShowtimesProto getDefaultInstance];
+- (MovieAndShowtimesProto*) defaultInstanceForType {
+  return [MovieAndShowtimesProto defaultInstance];
 }
 
 - (MovieAndShowtimesProto*) build {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (MovieAndShowtimesProto*) buildParsed {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (MovieAndShowtimesProto*) buildPartial {
-    MovieAndShowtimesProto* returnMe = [[result retain] autorelease];
-    self.result = nil;
-    return returnMe;
+  MovieAndShowtimesProto* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
 }
 
-- (MovieAndShowtimesProto_Builder*) mergeFromMessage:(id<Message>) other {
-    id o = other;
-    if ([o isKindOfClass:[MovieAndShowtimesProto class]]) {
-        return [self mergeFromMovieAndShowtimesProto:o];
-    } else {
-        [super mergeFromMessage:other];
-        return self;
-    }
+- (MovieAndShowtimesProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
+  id o = other;
+  if ([o isKindOfClass:[MovieAndShowtimesProto class]]) {
+    return [self mergeFromMovieAndShowtimesProto:o];
+  } else {
+    [super mergeFromMessage:other];
+    return self;
+  }
 }
 
 - (MovieAndShowtimesProto_Builder*) mergeFromMovieAndShowtimesProto:(MovieAndShowtimesProto*) other {
-    if (other == [MovieAndShowtimesProto getDefaultInstance]) return self;
-    if (other.hasMovieIdentifier) {
-        [self setMovieIdentifier:other.getMovieIdentifier];
-    }
-    if (other.hasShowtimes) {
-        [self mergeShowtimes:other.getShowtimes];
-    }
-    [self mergeUnknownFields:other.getUnknownFields];
-    return self;
+  if (other == [MovieAndShowtimesProto defaultInstance]) return self;
+  if (other.hasMovieIdentifier) {
+    [self setMovieIdentifier:other.movieIdentifier];
+  }
+  if (other.hasShowtimes) {
+    [self mergeShowtimes:other.showtimes];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
 }
 
-- (MovieAndShowtimesProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
+- (MovieAndShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 
-- (MovieAndShowtimesProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
-    while (true) {
-        int32_t tag = [input readTag];
-        switch (tag) {
-            case 0:
-                [self setUnknownFields:[unknownFields build]];
-                return self;
-            default: {
-                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-                    [self setUnknownFields:[unknownFields build]];
-                    return self;
-                }
-                break;
-            }
-            case 10: {
-                [self setMovieIdentifier:[input readString]];
-                break;
-            }
-            case 18: {
-                AllShowtimesProto_Builder* subBuilder = [AllShowtimesProto newBuilder];
-                if (self.hasShowtimes) {
-                    [subBuilder mergeFromAllShowtimesProto:self.getShowtimes];
-                }
-                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-                [self setShowtimes:[subBuilder buildPartial]];
-                break;
-            }
+- (MovieAndShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
+  while (true) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
         }
+        break;
+      }
+      case 10: {
+        [self setMovieIdentifier:[input readString]];
+        break;
+      }
+      case 18: {
+        AllShowtimesProto_Builder* subBuilder = [AllShowtimesProto newBuilder];
+        if (self.hasShowtimes) {
+          [subBuilder mergeFromAllShowtimesProto:self.showtimes];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setShowtimes:[subBuilder buildPartial]];
+        break;
+      }
     }
+  }
 }
 
 
 - (BOOL) hasMovieIdentifier {
-    return result.hasMovieIdentifier;
+  return result.hasMovieIdentifier;
 }
-- (NSString*) getMovieIdentifier {
-    return result.getMovieIdentifier;
+- (NSString*) movieIdentifier {
+  return result.movieIdentifier;
 }
 - (MovieAndShowtimesProto_Builder*) setMovieIdentifier:(NSString*) value {
-    result.hasMovieIdentifier = YES;
-    result.movieIdentifier_ = value;
-    return self;
+  result.hasMovieIdentifier = YES;
+  result.movieIdentifier = value;
+  return self;
 }
 - (MovieAndShowtimesProto_Builder*) clearMovieIdentifier {
-    result.hasMovieIdentifier = NO;
-    result.movieIdentifier_ = @"";
-    return self;
+  result.hasMovieIdentifier = NO;
+  result.movieIdentifier = @"";
+  return self;
 }
 
 - (BOOL) hasShowtimes {
-    return result.hasShowtimes;
+  return result.hasShowtimes;
 }
-- (AllShowtimesProto*) getShowtimes {
-    return result.getShowtimes;
+- (AllShowtimesProto*) showtimes {
+  return result.showtimes;
 }
-- (id<Message_Builder>) setShowtimes:(AllShowtimesProto*) value {
-    result.hasShowtimes = YES;
-    result.showtimes_ = value;
-    return self;
+- (id<PBMessage_Builder>) setShowtimes:(AllShowtimesProto*) value {
+  result.hasShowtimes = YES;
+  result.showtimes = value;
+  return self;
 }
-- (id<Message_Builder>) setShowtimesBuilder:(AllShowtimesProto_Builder*) builderForValue {
-    result.hasShowtimes = YES;
-    result.showtimes_ = [builderForValue build];
-    return self;
+- (id<PBMessage_Builder>) setShowtimesBuilder:(AllShowtimesProto_Builder*) builderForValue {
+  return [self setShowtimes:[builderForValue build]];
 }
-- (id<Message_Builder>) mergeShowtimes:(AllShowtimesProto*) value {
-    if (result.hasShowtimes &&
-        result.showtimes_ != [AllShowtimesProto getDefaultInstance]) {
-        result.showtimes_ =
-        [[[AllShowtimesProto newBuilderWithAllShowtimesProto:result.showtimes_] mergeFromAllShowtimesProto:value] buildPartial];
-    } else {
-        result.showtimes_ = value;
-    }
-    result.hasShowtimes = YES;
-    return self;
+- (id<PBMessage_Builder>) mergeShowtimes:(AllShowtimesProto*) value {
+  if (result.hasShowtimes &&
+      result.showtimes != [AllShowtimesProto defaultInstance]) {
+    result.showtimes =
+      [[[AllShowtimesProto newBuilderWithAllShowtimesProto:result.showtimes] mergeFromAllShowtimesProto:value] buildPartial];
+  } else {
+    result.showtimes = value;
+  }
+  result.hasShowtimes = YES;
+  return self;
 }
-- (id<Message_Builder>) clearShowtimes {
-    result.hasShowtimes = NO;
-    result.showtimes_ = [AllShowtimesProto getDefaultInstance];
-    return self;
+- (id<PBMessage_Builder>) clearShowtimes {
+  result.hasShowtimes = NO;
+  result.showtimes = [AllShowtimesProto defaultInstance];
+  return self;
 }
 @end
 
 @implementation TheaterAndMovieShowtimesProto_Builder
 @synthesize result;
 - (void) dealloc {
-    self.result = nil;
-    [super dealloc];
+  self.result = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        self.result = [[[TheaterAndMovieShowtimesProto alloc] init] autorelease];
-    }
-    return self;
+  if (self = [super init]) {
+    self.result = [[[TheaterAndMovieShowtimesProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (TheaterAndMovieShowtimesProto*) internalGetResult {
-    return result;
+  return result;
 }
 
 - (TheaterAndMovieShowtimesProto_Builder*) clear {
-    self.result = [[[TheaterAndMovieShowtimesProto alloc] init] autorelease];
-    return self;
+  self.result = [[[TheaterAndMovieShowtimesProto alloc] init] autorelease];
+  return self;
 }
 
 - (TheaterAndMovieShowtimesProto_Builder*) clone {
-    return (TheaterAndMovieShowtimesProto_Builder*)[[[[TheaterAndMovieShowtimesProto_Builder alloc] init] autorelease] mergeFromTheaterAndMovieShowtimesProto:result];
+  return (TheaterAndMovieShowtimesProto_Builder*)[[[[TheaterAndMovieShowtimesProto_Builder alloc] init] autorelease] mergeFromTheaterAndMovieShowtimesProto:result];
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    return [TheaterAndMovieShowtimesProto getDescriptor];
+- (PBDescriptor*) descriptorForType {
+  return [TheaterAndMovieShowtimesProto descriptor];
 }
 
-- (TheaterAndMovieShowtimesProto*) getDefaultInstanceForType {
-    return [TheaterAndMovieShowtimesProto getDefaultInstance];
+- (TheaterAndMovieShowtimesProto*) defaultInstanceForType {
+  return [TheaterAndMovieShowtimesProto defaultInstance];
 }
 
 - (TheaterAndMovieShowtimesProto*) build {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (TheaterAndMovieShowtimesProto*) buildParsed {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (TheaterAndMovieShowtimesProto*) buildPartial {
-    TheaterAndMovieShowtimesProto* returnMe = [[result retain] autorelease];
-    self.result = nil;
-    return returnMe;
+  TheaterAndMovieShowtimesProto* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
 }
 
-- (TheaterAndMovieShowtimesProto_Builder*) mergeFromMessage:(id<Message>) other {
-    id o = other;
-    if ([o isKindOfClass:[TheaterAndMovieShowtimesProto class]]) {
-        return [self mergeFromTheaterAndMovieShowtimesProto:o];
-    } else {
-        [super mergeFromMessage:other];
-        return self;
-    }
+- (TheaterAndMovieShowtimesProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
+  id o = other;
+  if ([o isKindOfClass:[TheaterAndMovieShowtimesProto class]]) {
+    return [self mergeFromTheaterAndMovieShowtimesProto:o];
+  } else {
+    [super mergeFromMessage:other];
+    return self;
+  }
 }
 
 - (TheaterAndMovieShowtimesProto_Builder*) mergeFromTheaterAndMovieShowtimesProto:(TheaterAndMovieShowtimesProto*) other {
-    if (other == [TheaterAndMovieShowtimesProto getDefaultInstance]) return self;
-    if (other.hasTheater) {
-        [self mergeTheater:other.getTheater];
+  if (other == [TheaterAndMovieShowtimesProto defaultInstance]) return self;
+  if (other.hasTheater) {
+    [self mergeTheater:other.theater];
+  }
+  if (other.mutableMovieAndShowtimesList.count > 0) {
+    if (result.mutableMovieAndShowtimesList == nil) {
+      result.mutableMovieAndShowtimesList = [NSMutableArray array];
     }
-    if (other.movieAndShowtimes_.count > 0) {
-        if (result.movieAndShowtimes_ == nil) {
-            result.movieAndShowtimes_ = [NSMutableArray array];
-        }
-        [result.movieAndShowtimes_ addObjectsFromArray:other.movieAndShowtimes_];
-    }
-    [self mergeUnknownFields:other.getUnknownFields];
-    return self;
+    [result.mutableMovieAndShowtimesList addObjectsFromArray:other.mutableMovieAndShowtimesList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
 }
 
-- (TheaterAndMovieShowtimesProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
+- (TheaterAndMovieShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 
-- (TheaterAndMovieShowtimesProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
-    while (true) {
-        int32_t tag = [input readTag];
-        switch (tag) {
-            case 0:
-                [self setUnknownFields:[unknownFields build]];
-                return self;
-            default: {
-                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-                    [self setUnknownFields:[unknownFields build]];
-                    return self;
-                }
-                break;
-            }
-            case 26: {
-                TheaterProto_Builder* subBuilder = [TheaterProto newBuilder];
-                if (self.hasTheater) {
-                    [subBuilder mergeFromTheaterProto:self.getTheater];
-                }
-                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-                [self setTheater:[subBuilder buildPartial]];
-                break;
-            }
-            case 34: {
-                MovieAndShowtimesProto_Builder* subBuilder = [MovieAndShowtimesProto newBuilder];
-                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-                [self addMovieAndShowtimes:[subBuilder buildPartial]];
-                break;
-            }
+- (TheaterAndMovieShowtimesProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
+  while (true) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
         }
+        break;
+      }
+      case 26: {
+        TheaterProto_Builder* subBuilder = [TheaterProto newBuilder];
+        if (self.hasTheater) {
+          [subBuilder mergeFromTheaterProto:self.theater];
+        }
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self setTheater:[subBuilder buildPartial]];
+        break;
+      }
+      case 34: {
+        MovieAndShowtimesProto_Builder* subBuilder = [MovieAndShowtimesProto newBuilder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addMovieAndShowtimes:[subBuilder buildPartial]];
+        break;
+      }
     }
+  }
 }
 
 
 - (BOOL) hasTheater {
-    return result.hasTheater;
+  return result.hasTheater;
 }
-- (TheaterProto*) getTheater {
-    return result.getTheater;
+- (TheaterProto*) theater {
+  return result.theater;
 }
-- (id<Message_Builder>) setTheater:(TheaterProto*) value {
-    result.hasTheater = YES;
-    result.theater_ = value;
-    return self;
+- (id<PBMessage_Builder>) setTheater:(TheaterProto*) value {
+  result.hasTheater = YES;
+  result.theater = value;
+  return self;
 }
-- (id<Message_Builder>) setTheaterBuilder:(TheaterProto_Builder*) builderForValue {
-    result.hasTheater = YES;
-    result.theater_ = [builderForValue build];
-    return self;
+- (id<PBMessage_Builder>) setTheaterBuilder:(TheaterProto_Builder*) builderForValue {
+  return [self setTheater:[builderForValue build]];
 }
-- (id<Message_Builder>) mergeTheater:(TheaterProto*) value {
-    if (result.hasTheater &&
-        result.theater_ != [TheaterProto getDefaultInstance]) {
-        result.theater_ =
-        [[[TheaterProto newBuilderWithTheaterProto:result.theater_] mergeFromTheaterProto:value] buildPartial];
-    } else {
-        result.theater_ = value;
-    }
-    result.hasTheater = YES;
-    return self;
+- (id<PBMessage_Builder>) mergeTheater:(TheaterProto*) value {
+  if (result.hasTheater &&
+      result.theater != [TheaterProto defaultInstance]) {
+    result.theater =
+      [[[TheaterProto newBuilderWithTheaterProto:result.theater] mergeFromTheaterProto:value] buildPartial];
+  } else {
+    result.theater = value;
+  }
+  result.hasTheater = YES;
+  return self;
 }
-- (id<Message_Builder>) clearTheater {
-    result.hasTheater = NO;
-    result.theater_ = [TheaterProto getDefaultInstance];
-    return self;
+- (id<PBMessage_Builder>) clearTheater {
+  result.hasTheater = NO;
+  result.theater = [TheaterProto defaultInstance];
+  return self;
 }
 
-- (NSArray*) getMovieAndShowtimesList {
-    if (result.movieAndShowtimes_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithObjects:result.movieAndShowtimes_];
+- (NSArray*) movieAndShowtimesList {
+  if (result.mutableMovieAndShowtimesList == nil) { return [NSArray array]; }
+  return result.mutableMovieAndShowtimesList;
 }
-- (int32_t) getMovieAndShowtimesCount {
-    return result.getMovieAndShowtimesCount;
+- (MovieAndShowtimesProto*) movieAndShowtimesAtIndex:(int32_t) index {
+  return [result movieAndShowtimesAtIndex:index];
 }
-- (MovieAndShowtimesProto*) getMovieAndShowtimes:(int32_t) index {
-    return [result getMovieAndShowtimes:index];
-}
-- (TheaterAndMovieShowtimesProto_Builder*) setMovieAndShowtimes:(int32_t) index value:(MovieAndShowtimesProto*) value {
-    [result.movieAndShowtimes_ replaceObjectAtIndex:index withObject:value];
-    return self;
-}
-- (TheaterAndMovieShowtimesProto_Builder*) setMovieAndShowtimes:(int32_t) index builderForValue:(MovieAndShowtimesProto_Builder*) builderForValue {
-    [result.movieAndShowtimes_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-    return self;
-}
-- (TheaterAndMovieShowtimesProto_Builder*) addMovieAndShowtimesBuilder:(MovieAndShowtimesProto_Builder*) builderForValue {
-    if (result.movieAndShowtimes_ == nil) {
-        result.movieAndShowtimes_ = [NSMutableArray array];
-    }
-    [result.movieAndShowtimes_ addObject:[builderForValue build]];
-    return self;
+- (TheaterAndMovieShowtimesProto_Builder*) replaceMovieAndShowtimesAtIndex:(int32_t) index withMovieAndShowtimes:(MovieAndShowtimesProto*) value {
+  [result.mutableMovieAndShowtimesList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (TheaterAndMovieShowtimesProto_Builder*) addAllMovieAndShowtimes:(NSArray*) values {
-    if (result.movieAndShowtimes_ == nil) {
-        result.movieAndShowtimes_ = [NSMutableArray array];
-    }
-    [result.movieAndShowtimes_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableMovieAndShowtimesList == nil) {
+    result.mutableMovieAndShowtimesList = [NSMutableArray array];
+  }
+  [result.mutableMovieAndShowtimesList addObjectsFromArray:values];
+  return self;
 }
-- (TheaterAndMovieShowtimesProto_Builder*) clearMovieAndShowtimes {
-    result.movieAndShowtimes_ = nil;
-    return self;
+- (TheaterAndMovieShowtimesProto_Builder*) clearMovieAndShowtimesList {
+  result.mutableMovieAndShowtimesList = nil;
+  return self;
 }
 - (TheaterAndMovieShowtimesProto_Builder*) addMovieAndShowtimes:(MovieAndShowtimesProto*) value {
-    if (result.movieAndShowtimes_ == nil) {
-        result.movieAndShowtimes_ = [NSMutableArray array];
-    }
-    [result.movieAndShowtimes_ addObject:value];
-    return self;
+  if (result.mutableMovieAndShowtimesList == nil) {
+    result.mutableMovieAndShowtimesList = [NSMutableArray array];
+  }
+  [result.mutableMovieAndShowtimesList addObject:value];
+  return self;
 }
 @end
 
 @implementation TheaterListingsProto_Builder
 @synthesize result;
 - (void) dealloc {
-    self.result = nil;
-    [super dealloc];
+  self.result = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        self.result = [[[TheaterListingsProto alloc] init] autorelease];
-    }
-    return self;
+  if (self = [super init]) {
+    self.result = [[[TheaterListingsProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (TheaterListingsProto*) internalGetResult {
-    return result;
+  return result;
 }
 
 - (TheaterListingsProto_Builder*) clear {
-    self.result = [[[TheaterListingsProto alloc] init] autorelease];
-    return self;
+  self.result = [[[TheaterListingsProto alloc] init] autorelease];
+  return self;
 }
 
 - (TheaterListingsProto_Builder*) clone {
-    return (TheaterListingsProto_Builder*)[[[[TheaterListingsProto_Builder alloc] init] autorelease] mergeFromTheaterListingsProto:result];
+  return (TheaterListingsProto_Builder*)[[[[TheaterListingsProto_Builder alloc] init] autorelease] mergeFromTheaterListingsProto:result];
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    return [TheaterListingsProto getDescriptor];
+- (PBDescriptor*) descriptorForType {
+  return [TheaterListingsProto descriptor];
 }
 
-- (TheaterListingsProto*) getDefaultInstanceForType {
-    return [TheaterListingsProto getDefaultInstance];
+- (TheaterListingsProto*) defaultInstanceForType {
+  return [TheaterListingsProto defaultInstance];
 }
 
 - (TheaterListingsProto*) build {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (TheaterListingsProto*) buildParsed {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (TheaterListingsProto*) buildPartial {
-    TheaterListingsProto* returnMe = [[result retain] autorelease];
-    self.result = nil;
-    return returnMe;
+  TheaterListingsProto* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
 }
 
-- (TheaterListingsProto_Builder*) mergeFromMessage:(id<Message>) other {
-    id o = other;
-    if ([o isKindOfClass:[TheaterListingsProto class]]) {
-        return [self mergeFromTheaterListingsProto:o];
-    } else {
-        [super mergeFromMessage:other];
-        return self;
-    }
+- (TheaterListingsProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
+  id o = other;
+  if ([o isKindOfClass:[TheaterListingsProto class]]) {
+    return [self mergeFromTheaterListingsProto:o];
+  } else {
+    [super mergeFromMessage:other];
+    return self;
+  }
 }
 
 - (TheaterListingsProto_Builder*) mergeFromTheaterListingsProto:(TheaterListingsProto*) other {
-    if (other == [TheaterListingsProto getDefaultInstance]) return self;
-    if (other.movies_.count > 0) {
-        if (result.movies_ == nil) {
-            result.movies_ = [NSMutableArray array];
+  if (other == [TheaterListingsProto defaultInstance]) return self;
+  if (other.mutableMoviesList.count > 0) {
+    if (result.mutableMoviesList == nil) {
+      result.mutableMoviesList = [NSMutableArray array];
+    }
+    [result.mutableMoviesList addObjectsFromArray:other.mutableMoviesList];
+  }
+  if (other.mutableTheaterAndMovieShowtimesList.count > 0) {
+    if (result.mutableTheaterAndMovieShowtimesList == nil) {
+      result.mutableTheaterAndMovieShowtimesList = [NSMutableArray array];
+    }
+    [result.mutableTheaterAndMovieShowtimesList addObjectsFromArray:other.mutableTheaterAndMovieShowtimesList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+
+- (TheaterListingsProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+
+- (TheaterListingsProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
+  while (true) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
         }
-        [result.movies_ addObjectsFromArray:other.movies_];
+        break;
+      }
+      case 42: {
+        MovieProto_Builder* subBuilder = [MovieProto newBuilder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addMovies:[subBuilder buildPartial]];
+        break;
+      }
+      case 50: {
+        TheaterAndMovieShowtimesProto_Builder* subBuilder = [TheaterAndMovieShowtimesProto newBuilder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addTheaterAndMovieShowtimes:[subBuilder buildPartial]];
+        break;
+      }
     }
-    if (other.theaterAndMovieShowtimes_.count > 0) {
-        if (result.theaterAndMovieShowtimes_ == nil) {
-            result.theaterAndMovieShowtimes_ = [NSMutableArray array];
-        }
-        [result.theaterAndMovieShowtimes_ addObjectsFromArray:other.theaterAndMovieShowtimes_];
-    }
-    [self mergeUnknownFields:other.getUnknownFields];
-    return self;
-}
-
-- (TheaterListingsProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
-}
-
-- (TheaterListingsProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
-    while (true) {
-        int32_t tag = [input readTag];
-        switch (tag) {
-            case 0:
-                [self setUnknownFields:[unknownFields build]];
-                return self;
-            default: {
-                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-                    [self setUnknownFields:[unknownFields build]];
-                    return self;
-                }
-                break;
-            }
-            case 42: {
-                MovieProto_Builder* subBuilder = [MovieProto newBuilder];
-                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-                [self addMovies:[subBuilder buildPartial]];
-                break;
-            }
-            case 50: {
-                TheaterAndMovieShowtimesProto_Builder* subBuilder = [TheaterAndMovieShowtimesProto newBuilder];
-                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-                [self addTheaterAndMovieShowtimes:[subBuilder buildPartial]];
-                break;
-            }
-        }
-    }
+  }
 }
 
 
-- (NSArray*) getMoviesList {
-    if (result.movies_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithObjects:result.movies_];
+- (NSArray*) moviesList {
+  if (result.mutableMoviesList == nil) { return [NSArray array]; }
+  return result.mutableMoviesList;
 }
-- (int32_t) getMoviesCount {
-    return result.getMoviesCount;
+- (MovieProto*) moviesAtIndex:(int32_t) index {
+  return [result moviesAtIndex:index];
 }
-- (MovieProto*) getMovies:(int32_t) index {
-    return [result getMovies:index];
-}
-- (TheaterListingsProto_Builder*) setMovies:(int32_t) index value:(MovieProto*) value {
-    [result.movies_ replaceObjectAtIndex:index withObject:value];
-    return self;
-}
-- (TheaterListingsProto_Builder*) setMovies:(int32_t) index builderForValue:(MovieProto_Builder*) builderForValue {
-    [result.movies_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-    return self;
-}
-- (TheaterListingsProto_Builder*) addMoviesBuilder:(MovieProto_Builder*) builderForValue {
-    if (result.movies_ == nil) {
-        result.movies_ = [NSMutableArray array];
-    }
-    [result.movies_ addObject:[builderForValue build]];
-    return self;
+- (TheaterListingsProto_Builder*) replaceMoviesAtIndex:(int32_t) index withMovies:(MovieProto*) value {
+  [result.mutableMoviesList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (TheaterListingsProto_Builder*) addAllMovies:(NSArray*) values {
-    if (result.movies_ == nil) {
-        result.movies_ = [NSMutableArray array];
-    }
-    [result.movies_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableMoviesList == nil) {
+    result.mutableMoviesList = [NSMutableArray array];
+  }
+  [result.mutableMoviesList addObjectsFromArray:values];
+  return self;
 }
-- (TheaterListingsProto_Builder*) clearMovies {
-    result.movies_ = nil;
-    return self;
+- (TheaterListingsProto_Builder*) clearMoviesList {
+  result.mutableMoviesList = nil;
+  return self;
 }
 - (TheaterListingsProto_Builder*) addMovies:(MovieProto*) value {
-    if (result.movies_ == nil) {
-        result.movies_ = [NSMutableArray array];
-    }
-    [result.movies_ addObject:value];
-    return self;
+  if (result.mutableMoviesList == nil) {
+    result.mutableMoviesList = [NSMutableArray array];
+  }
+  [result.mutableMoviesList addObject:value];
+  return self;
 }
 
-- (NSArray*) getTheaterAndMovieShowtimesList {
-    if (result.theaterAndMovieShowtimes_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithObjects:result.theaterAndMovieShowtimes_];
+- (NSArray*) theaterAndMovieShowtimesList {
+  if (result.mutableTheaterAndMovieShowtimesList == nil) { return [NSArray array]; }
+  return result.mutableTheaterAndMovieShowtimesList;
 }
-- (int32_t) getTheaterAndMovieShowtimesCount {
-    return result.getTheaterAndMovieShowtimesCount;
+- (TheaterAndMovieShowtimesProto*) theaterAndMovieShowtimesAtIndex:(int32_t) index {
+  return [result theaterAndMovieShowtimesAtIndex:index];
 }
-- (TheaterAndMovieShowtimesProto*) getTheaterAndMovieShowtimes:(int32_t) index {
-    return [result getTheaterAndMovieShowtimes:index];
-}
-- (TheaterListingsProto_Builder*) setTheaterAndMovieShowtimes:(int32_t) index value:(TheaterAndMovieShowtimesProto*) value {
-    [result.theaterAndMovieShowtimes_ replaceObjectAtIndex:index withObject:value];
-    return self;
-}
-- (TheaterListingsProto_Builder*) setTheaterAndMovieShowtimes:(int32_t) index builderForValue:(TheaterAndMovieShowtimesProto_Builder*) builderForValue {
-    [result.theaterAndMovieShowtimes_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-    return self;
-}
-- (TheaterListingsProto_Builder*) addTheaterAndMovieShowtimesBuilder:(TheaterAndMovieShowtimesProto_Builder*) builderForValue {
-    if (result.theaterAndMovieShowtimes_ == nil) {
-        result.theaterAndMovieShowtimes_ = [NSMutableArray array];
-    }
-    [result.theaterAndMovieShowtimes_ addObject:[builderForValue build]];
-    return self;
+- (TheaterListingsProto_Builder*) replaceTheaterAndMovieShowtimesAtIndex:(int32_t) index withTheaterAndMovieShowtimes:(TheaterAndMovieShowtimesProto*) value {
+  [result.mutableTheaterAndMovieShowtimesList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (TheaterListingsProto_Builder*) addAllTheaterAndMovieShowtimes:(NSArray*) values {
-    if (result.theaterAndMovieShowtimes_ == nil) {
-        result.theaterAndMovieShowtimes_ = [NSMutableArray array];
-    }
-    [result.theaterAndMovieShowtimes_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableTheaterAndMovieShowtimesList == nil) {
+    result.mutableTheaterAndMovieShowtimesList = [NSMutableArray array];
+  }
+  [result.mutableTheaterAndMovieShowtimesList addObjectsFromArray:values];
+  return self;
 }
-- (TheaterListingsProto_Builder*) clearTheaterAndMovieShowtimes {
-    result.theaterAndMovieShowtimes_ = nil;
-    return self;
+- (TheaterListingsProto_Builder*) clearTheaterAndMovieShowtimesList {
+  result.mutableTheaterAndMovieShowtimesList = nil;
+  return self;
 }
 - (TheaterListingsProto_Builder*) addTheaterAndMovieShowtimes:(TheaterAndMovieShowtimesProto*) value {
-    if (result.theaterAndMovieShowtimes_ == nil) {
-        result.theaterAndMovieShowtimes_ = [NSMutableArray array];
-    }
-    [result.theaterAndMovieShowtimes_ addObject:value];
-    return self;
+  if (result.mutableTheaterAndMovieShowtimesList == nil) {
+    result.mutableTheaterAndMovieShowtimesList = [NSMutableArray array];
+  }
+  [result.mutableTheaterAndMovieShowtimesList addObject:value];
+  return self;
 }
+@end
+
+@interface ReviewProto ()
+@property BOOL hasTitle;
+@property (retain) NSString* title;
+@property BOOL hasUrl;
+@property (retain) NSString* url;
+@property BOOL hasRating;
+@property Float32 rating;
+@property BOOL hasSnippet;
+@property (retain) NSString* snippet;
+@property BOOL hasContent;
+@property (retain) NSString* content;
+@property BOOL hasPublisher;
+@property (retain) NSString* publisher;
+@property BOOL hasAuthor;
+@property (retain) NSString* author;
+@property BOOL hasDate;
+@property (retain) NSString* date;
 @end
 
 @implementation ReviewProto
 
 @synthesize hasTitle;
-@synthesize title_;
+@synthesize title;
 @synthesize hasUrl;
-@synthesize url_;
+@synthesize url;
 @synthesize hasRating;
-@synthesize rating_;
+@synthesize rating;
 @synthesize hasSnippet;
-@synthesize snippet_;
+@synthesize snippet;
 @synthesize hasContent;
-@synthesize content_;
+@synthesize content;
 @synthesize hasPublisher;
-@synthesize publisher_;
+@synthesize publisher;
 @synthesize hasAuthor;
-@synthesize author_;
+@synthesize author;
 @synthesize hasDate;
-@synthesize date_;
+@synthesize date;
 - (void) dealloc {
-    self.hasTitle = NO;
-    self.title_ = nil;
-    self.hasUrl = NO;
-    self.url_ = nil;
-    self.hasRating = NO;
-    self.rating_ = 0;
-    self.hasSnippet = NO;
-    self.snippet_ = nil;
-    self.hasContent = NO;
-    self.content_ = nil;
-    self.hasPublisher = NO;
-    self.publisher_ = nil;
-    self.hasAuthor = NO;
-    self.author_ = nil;
-    self.hasDate = NO;
-    self.date_ = nil;
-    [super dealloc];
+  self.hasTitle = NO;
+  self.title = nil;
+  self.hasUrl = NO;
+  self.url = nil;
+  self.hasRating = NO;
+  self.rating = 0;
+  self.hasSnippet = NO;
+  self.snippet = nil;
+  self.hasContent = NO;
+  self.content = nil;
+  self.hasPublisher = NO;
+  self.publisher = nil;
+  self.hasAuthor = NO;
+  self.author = nil;
+  self.hasDate = NO;
+  self.date = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        memoizedSerializedSize = -1;
-        self.title_ = @"";
-        self.url_ = @"";
-        self.rating_ = 0;
-        self.snippet_ = @"";
-        self.content_ = @"";
-        self.publisher_ = @"";
-        self.author_ = @"";
-        self.date_ = @"";
-    }
-    return self;
+  if (self = [super init]) {
+    memoizedSerializedSize = -1;
+    self.title = @"";
+    self.url = @"";
+    self.rating = 0;
+    self.snippet = @"";
+    self.content = @"";
+    self.publisher = @"";
+    self.author = @"";
+    self.date = @"";
+  }
+  return self;
 }
 static ReviewProto* defaultReviewProtoInstance = nil;
 + (void) initialize {
-    if (self == [ReviewProto class]) {
-        defaultReviewProtoInstance = [[ReviewProto alloc] init];
-    }
+  if (self == [ReviewProto class]) {
+    defaultReviewProtoInstance = [[ReviewProto alloc] init];
+  }
 }
 
-+ (ReviewProto*) getDefaultInstance {
-    return defaultReviewProtoInstance;
++ (ReviewProto*) defaultInstance {
+  return defaultReviewProtoInstance;
 }
 
-- (ReviewProto*) getDefaultInstanceForType {
-    return defaultReviewProtoInstance;
+- (ReviewProto*) defaultInstanceForType {
+  return defaultReviewProtoInstance;
 }
 
-+ (ProtocolBufferDescriptor*) getDescriptor {
-    return [BoxOffice internal_static_ReviewProto_descriptor];
++ (PBDescriptor*) descriptor {
+  return [BoxOfficeProtoRoot internal_static_ReviewProto_descriptor];
 }
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    return [BoxOffice internal_static_ReviewProto_fieldAccessorTable];
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+  return [BoxOfficeProtoRoot internal_static_ReviewProto_fieldAccessorTable];
 }
 
-- (BOOL) hasTitle { return hasTitle; }
-- (NSString*) getTitle { return title_; }
 
-- (BOOL) hasUrl { return hasUrl; }
-- (NSString*) getUrl { return url_; }
 
-- (BOOL) hasRating { return hasRating; }
-- (Float32) getRating { return rating_; }
 
-- (BOOL) hasSnippet { return hasSnippet; }
-- (NSString*) getSnippet { return snippet_; }
 
-- (BOOL) hasContent { return hasContent; }
-- (NSString*) getContent { return content_; }
 
-- (BOOL) hasPublisher { return hasPublisher; }
-- (NSString*) getPublisher { return publisher_; }
 
-- (BOOL) hasAuthor { return hasAuthor; }
-- (NSString*) getAuthor { return author_; }
 
-- (BOOL) hasDate { return hasDate; }
-- (NSString*) getDate { return date_; }
 
 - (BOOL) isInitialized {
-    return true;
+  return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    if (hasTitle) {
-        [output writeString:1 value:self.getTitle];
-    }
-    if (hasUrl) {
-        [output writeString:2 value:self.getUrl];
-    }
-    if (hasRating) {
-        [output writeFloat:3 value:self.getRating];
-    }
-    if (hasSnippet) {
-        [output writeString:4 value:self.getSnippet];
-    }
-    if (hasContent) {
-        [output writeString:5 value:self.getContent];
-    }
-    if (hasPublisher) {
-        [output writeString:6 value:self.getPublisher];
-    }
-    if (hasAuthor) {
-        [output writeString:7 value:self.getAuthor];
-    }
-    if (hasDate) {
-        [output writeString:8 value:self.getDate];
-    }
-    [self.getUnknownFields writeToCodedOutputStream:output];
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  if (hasTitle) {
+    [output writeString:1 value:self.title];
+  }
+  if (hasUrl) {
+    [output writeString:2 value:self.url];
+  }
+  if (hasRating) {
+    [output writeFloat:3 value:self.rating];
+  }
+  if (hasSnippet) {
+    [output writeString:4 value:self.snippet];
+  }
+  if (hasContent) {
+    [output writeString:5 value:self.content];
+  }
+  if (hasPublisher) {
+    [output writeString:6 value:self.publisher];
+  }
+  if (hasAuthor) {
+    [output writeString:7 value:self.author];
+  }
+  if (hasDate) {
+    [output writeString:8 value:self.date];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
-    int32_t size = memoizedSerializedSize;
-    if (size != -1) return size;
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) return size;
 
-    size = 0;
-    if (hasTitle) {
-        size += computeStringSize(1, self.getTitle);
-    }
-    if (hasUrl) {
-        size += computeStringSize(2, self.getUrl);
-    }
-    if (hasRating) {
-        size += computeFloatSize(3, self.getRating);
-    }
-    if (hasSnippet) {
-        size += computeStringSize(4, self.getSnippet);
-    }
-    if (hasContent) {
-        size += computeStringSize(5, self.getContent);
-    }
-    if (hasPublisher) {
-        size += computeStringSize(6, self.getPublisher);
-    }
-    if (hasAuthor) {
-        size += computeStringSize(7, self.getAuthor);
-    }
-    if (hasDate) {
-        size += computeStringSize(8, self.getDate);
-    }
-    size += self.getUnknownFields.getSerializedSize;
-    memoizedSerializedSize = size;
-    return size;
+  size = 0;
+  if (hasTitle) {
+    size += computeStringSize(1, self.title);
+  }
+  if (hasUrl) {
+    size += computeStringSize(2, self.url);
+  }
+  if (hasRating) {
+    size += computeFloatSize(3, self.rating);
+  }
+  if (hasSnippet) {
+    size += computeStringSize(4, self.snippet);
+  }
+  if (hasContent) {
+    size += computeStringSize(5, self.content);
+  }
+  if (hasPublisher) {
+    size += computeStringSize(6, self.publisher);
+  }
+  if (hasAuthor) {
+    size += computeStringSize(7, self.author);
+  }
+  if (hasDate) {
+    size += computeStringSize(8, self.date);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
 }
 
 + (ReviewProto*) parseFromData:(NSData*) data {
-    return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromData:data] buildParsed];
+  return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromData:data] buildParsed];
 }
-+ (ReviewProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
++ (ReviewProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 + (ReviewProto*) parseFromInputStream:(NSInputStream*) input {
-    return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromInputStream:input] buildParsed];
+  return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromInputStream:input] buildParsed];
 }
-+ (ReviewProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (ReviewProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (ReviewProto*) parseFromCodedInputStream:(CodedInputStream*) input {
-    return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
++ (ReviewProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (ReviewProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (ReviewProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ReviewProto*)[[[ReviewProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 + (ReviewProto_Builder*) newBuilder { return [[[ReviewProto_Builder alloc] init] autorelease]; }
 - (ReviewProto_Builder*) newBuilderForType { return [ReviewProto newBuilder]; }
 + (ReviewProto_Builder*) newBuilderWithReviewProto:(ReviewProto*) prototype {
-    return [[ReviewProto newBuilder] mergeFromReviewProto:prototype];
+  return [[ReviewProto newBuilder] mergeFromReviewProto:prototype];
 }
 
 @end
@@ -3387,380 +3333,383 @@ static ReviewProto* defaultReviewProtoInstance = nil;
 @implementation ReviewProto_Builder
 @synthesize result;
 - (void) dealloc {
-    self.result = nil;
-    [super dealloc];
+  self.result = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        self.result = [[[ReviewProto alloc] init] autorelease];
-    }
-    return self;
+  if (self = [super init]) {
+    self.result = [[[ReviewProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (ReviewProto*) internalGetResult {
-    return result;
+  return result;
 }
 
 - (ReviewProto_Builder*) clear {
-    self.result = [[[ReviewProto alloc] init] autorelease];
-    return self;
+  self.result = [[[ReviewProto alloc] init] autorelease];
+  return self;
 }
 
 - (ReviewProto_Builder*) clone {
-    return (ReviewProto_Builder*)[[[[ReviewProto_Builder alloc] init] autorelease] mergeFromReviewProto:result];
+  return (ReviewProto_Builder*)[[[[ReviewProto_Builder alloc] init] autorelease] mergeFromReviewProto:result];
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    return [ReviewProto getDescriptor];
+- (PBDescriptor*) descriptorForType {
+  return [ReviewProto descriptor];
 }
 
-- (ReviewProto*) getDefaultInstanceForType {
-    return [ReviewProto getDefaultInstance];
+- (ReviewProto*) defaultInstanceForType {
+  return [ReviewProto defaultInstance];
 }
 
 - (ReviewProto*) build {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (ReviewProto*) buildParsed {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (ReviewProto*) buildPartial {
-    ReviewProto* returnMe = [[result retain] autorelease];
-    self.result = nil;
-    return returnMe;
+  ReviewProto* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
 }
 
-- (ReviewProto_Builder*) mergeFromMessage:(id<Message>) other {
-    id o = other;
-    if ([o isKindOfClass:[ReviewProto class]]) {
-        return [self mergeFromReviewProto:o];
-    } else {
-        [super mergeFromMessage:other];
-        return self;
-    }
+- (ReviewProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
+  id o = other;
+  if ([o isKindOfClass:[ReviewProto class]]) {
+    return [self mergeFromReviewProto:o];
+  } else {
+    [super mergeFromMessage:other];
+    return self;
+  }
 }
 
 - (ReviewProto_Builder*) mergeFromReviewProto:(ReviewProto*) other {
-    if (other == [ReviewProto getDefaultInstance]) return self;
-    if (other.hasTitle) {
-        [self setTitle:other.getTitle];
-    }
-    if (other.hasUrl) {
-        [self setUrl:other.getUrl];
-    }
-    if (other.hasRating) {
-        [self setRating:other.getRating];
-    }
-    if (other.hasSnippet) {
-        [self setSnippet:other.getSnippet];
-    }
-    if (other.hasContent) {
-        [self setContent:other.getContent];
-    }
-    if (other.hasPublisher) {
-        [self setPublisher:other.getPublisher];
-    }
-    if (other.hasAuthor) {
-        [self setAuthor:other.getAuthor];
-    }
-    if (other.hasDate) {
-        [self setDate:other.getDate];
-    }
-    [self mergeUnknownFields:other.getUnknownFields];
-    return self;
+  if (other == [ReviewProto defaultInstance]) return self;
+  if (other.hasTitle) {
+    [self setTitle:other.title];
+  }
+  if (other.hasUrl) {
+    [self setUrl:other.url];
+  }
+  if (other.hasRating) {
+    [self setRating:other.rating];
+  }
+  if (other.hasSnippet) {
+    [self setSnippet:other.snippet];
+  }
+  if (other.hasContent) {
+    [self setContent:other.content];
+  }
+  if (other.hasPublisher) {
+    [self setPublisher:other.publisher];
+  }
+  if (other.hasAuthor) {
+    [self setAuthor:other.author];
+  }
+  if (other.hasDate) {
+    [self setDate:other.date];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
 }
 
-- (ReviewProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
+- (ReviewProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 
-- (ReviewProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
-    while (true) {
-        int32_t tag = [input readTag];
-        switch (tag) {
-            case 0:
-                [self setUnknownFields:[unknownFields build]];
-                return self;
-            default: {
-                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-                    [self setUnknownFields:[unknownFields build]];
-                    return self;
-                }
-                break;
-            }
-            case 10: {
-                [self setTitle:[input readString]];
-                break;
-            }
-            case 18: {
-                [self setUrl:[input readString]];
-                break;
-            }
-            case 29: {
-                [self setRating:[input readFloat]];
-                break;
-            }
-            case 34: {
-                [self setSnippet:[input readString]];
-                break;
-            }
-            case 42: {
-                [self setContent:[input readString]];
-                break;
-            }
-            case 50: {
-                [self setPublisher:[input readString]];
-                break;
-            }
-            case 58: {
-                [self setAuthor:[input readString]];
-                break;
-            }
-            case 66: {
-                [self setDate:[input readString]];
-                break;
-            }
+- (ReviewProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
+  while (true) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
         }
+        break;
+      }
+      case 10: {
+        [self setTitle:[input readString]];
+        break;
+      }
+      case 18: {
+        [self setUrl:[input readString]];
+        break;
+      }
+      case 29: {
+        [self setRating:[input readFloat]];
+        break;
+      }
+      case 34: {
+        [self setSnippet:[input readString]];
+        break;
+      }
+      case 42: {
+        [self setContent:[input readString]];
+        break;
+      }
+      case 50: {
+        [self setPublisher:[input readString]];
+        break;
+      }
+      case 58: {
+        [self setAuthor:[input readString]];
+        break;
+      }
+      case 66: {
+        [self setDate:[input readString]];
+        break;
+      }
     }
+  }
 }
 
 
 - (BOOL) hasTitle {
-    return result.hasTitle;
+  return result.hasTitle;
 }
-- (NSString*) getTitle {
-    return result.getTitle;
+- (NSString*) title {
+  return result.title;
 }
 - (ReviewProto_Builder*) setTitle:(NSString*) value {
-    result.hasTitle = YES;
-    result.title_ = value;
-    return self;
+  result.hasTitle = YES;
+  result.title = value;
+  return self;
 }
 - (ReviewProto_Builder*) clearTitle {
-    result.hasTitle = NO;
-    result.title_ = @"";
-    return self;
+  result.hasTitle = NO;
+  result.title = @"";
+  return self;
 }
 
 - (BOOL) hasUrl {
-    return result.hasUrl;
+  return result.hasUrl;
 }
-- (NSString*) getUrl {
-    return result.getUrl;
+- (NSString*) url {
+  return result.url;
 }
 - (ReviewProto_Builder*) setUrl:(NSString*) value {
-    result.hasUrl = YES;
-    result.url_ = value;
-    return self;
+  result.hasUrl = YES;
+  result.url = value;
+  return self;
 }
 - (ReviewProto_Builder*) clearUrl {
-    result.hasUrl = NO;
-    result.url_ = @"";
-    return self;
+  result.hasUrl = NO;
+  result.url = @"";
+  return self;
 }
 
 - (BOOL) hasRating {
-    return result.hasRating;
+  return result.hasRating;
 }
-- (Float32) getRating {
-    return result.getRating;
+- (Float32) rating {
+  return result.rating;
 }
 - (ReviewProto_Builder*) setRating:(Float32) value {
-    result.hasRating = YES;
-    result.rating_ = value;
-    return self;
+  result.hasRating = YES;
+  result.rating = value;
+  return self;
 }
 - (ReviewProto_Builder*) clearRating {
-    result.hasRating = NO;
-    result.rating_ = 0;
-    return self;
+  result.hasRating = NO;
+  result.rating = 0;
+  return self;
 }
 
 - (BOOL) hasSnippet {
-    return result.hasSnippet;
+  return result.hasSnippet;
 }
-- (NSString*) getSnippet {
-    return result.getSnippet;
+- (NSString*) snippet {
+  return result.snippet;
 }
 - (ReviewProto_Builder*) setSnippet:(NSString*) value {
-    result.hasSnippet = YES;
-    result.snippet_ = value;
-    return self;
+  result.hasSnippet = YES;
+  result.snippet = value;
+  return self;
 }
 - (ReviewProto_Builder*) clearSnippet {
-    result.hasSnippet = NO;
-    result.snippet_ = @"";
-    return self;
+  result.hasSnippet = NO;
+  result.snippet = @"";
+  return self;
 }
 
 - (BOOL) hasContent {
-    return result.hasContent;
+  return result.hasContent;
 }
-- (NSString*) getContent {
-    return result.getContent;
+- (NSString*) content {
+  return result.content;
 }
 - (ReviewProto_Builder*) setContent:(NSString*) value {
-    result.hasContent = YES;
-    result.content_ = value;
-    return self;
+  result.hasContent = YES;
+  result.content = value;
+  return self;
 }
 - (ReviewProto_Builder*) clearContent {
-    result.hasContent = NO;
-    result.content_ = @"";
-    return self;
+  result.hasContent = NO;
+  result.content = @"";
+  return self;
 }
 
 - (BOOL) hasPublisher {
-    return result.hasPublisher;
+  return result.hasPublisher;
 }
-- (NSString*) getPublisher {
-    return result.getPublisher;
+- (NSString*) publisher {
+  return result.publisher;
 }
 - (ReviewProto_Builder*) setPublisher:(NSString*) value {
-    result.hasPublisher = YES;
-    result.publisher_ = value;
-    return self;
+  result.hasPublisher = YES;
+  result.publisher = value;
+  return self;
 }
 - (ReviewProto_Builder*) clearPublisher {
-    result.hasPublisher = NO;
-    result.publisher_ = @"";
-    return self;
+  result.hasPublisher = NO;
+  result.publisher = @"";
+  return self;
 }
 
 - (BOOL) hasAuthor {
-    return result.hasAuthor;
+  return result.hasAuthor;
 }
-- (NSString*) getAuthor {
-    return result.getAuthor;
+- (NSString*) author {
+  return result.author;
 }
 - (ReviewProto_Builder*) setAuthor:(NSString*) value {
-    result.hasAuthor = YES;
-    result.author_ = value;
-    return self;
+  result.hasAuthor = YES;
+  result.author = value;
+  return self;
 }
 - (ReviewProto_Builder*) clearAuthor {
-    result.hasAuthor = NO;
-    result.author_ = @"";
-    return self;
+  result.hasAuthor = NO;
+  result.author = @"";
+  return self;
 }
 
 - (BOOL) hasDate {
-    return result.hasDate;
+  return result.hasDate;
 }
-- (NSString*) getDate {
-    return result.getDate;
+- (NSString*) date {
+  return result.date;
 }
 - (ReviewProto_Builder*) setDate:(NSString*) value {
-    result.hasDate = YES;
-    result.date_ = value;
-    return self;
+  result.hasDate = YES;
+  result.date = value;
+  return self;
 }
 - (ReviewProto_Builder*) clearDate {
-    result.hasDate = NO;
-    result.date_ = @"";
-    return self;
+  result.hasDate = NO;
+  result.date = @"";
+  return self;
 }
+@end
+
+@interface ReviewsListProto ()
+@property (retain) NSMutableArray* mutableReviewsList;
 @end
 
 @implementation ReviewsListProto
 
-@synthesize reviews_;
+@synthesize mutableReviewsList;
 - (void) dealloc {
-    self.reviews_ = nil;
-    [super dealloc];
+  self.mutableReviewsList = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        memoizedSerializedSize = -1;
-    }
-    return self;
+  if (self = [super init]) {
+    memoizedSerializedSize = -1;
+  }
+  return self;
 }
 static ReviewsListProto* defaultReviewsListProtoInstance = nil;
 + (void) initialize {
-    if (self == [ReviewsListProto class]) {
-        defaultReviewsListProtoInstance = [[ReviewsListProto alloc] init];
-    }
+  if (self == [ReviewsListProto class]) {
+    defaultReviewsListProtoInstance = [[ReviewsListProto alloc] init];
+  }
 }
 
-+ (ReviewsListProto*) getDefaultInstance {
-    return defaultReviewsListProtoInstance;
++ (ReviewsListProto*) defaultInstance {
+  return defaultReviewsListProtoInstance;
 }
 
-- (ReviewsListProto*) getDefaultInstanceForType {
-    return defaultReviewsListProtoInstance;
+- (ReviewsListProto*) defaultInstanceForType {
+  return defaultReviewsListProtoInstance;
 }
 
-+ (ProtocolBufferDescriptor*) getDescriptor {
-    return [BoxOffice internal_static_ReviewsListProto_descriptor];
++ (PBDescriptor*) descriptor {
+  return [BoxOfficeProtoRoot internal_static_ReviewsListProto_descriptor];
 }
 
-- (GeneratedMessage_FieldAccessorTable*) internalGetFieldAccessorTable {
-    return [BoxOffice internal_static_ReviewsListProto_fieldAccessorTable];
+- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+  return [BoxOfficeProtoRoot internal_static_ReviewsListProto_fieldAccessorTable];
 }
 
-- (NSArray*) getReviewsList {
-    return reviews_;
+- (NSArray*) reviewsList {
+  return mutableReviewsList;
 }
-- (int32_t) getReviewsCount { return reviews_.count; }
-- (ReviewProto*) getReviews:(int32_t) index {
-    return [reviews_ objectAtIndex:index];
+- (ReviewProto*) reviewsAtIndex:(int32_t) index {
+  return [mutableReviewsList objectAtIndex:index];
 }
 
 - (BOOL) isInitialized {
-    return true;
+  return true;
 }
 
-- (void) writeToCodedOutputStream:(CodedOutputStream*) output {
-    for (ReviewProto* element in self.getReviewsList) {
-        [output writeMessage:1 value:element];
-    }
-    [self.getUnknownFields writeToCodedOutputStream:output];
+- (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
+  for (ReviewProto* element in self.reviewsList) {
+    [output writeMessage:1 value:element];
+  }
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
-- (int32_t) getSerializedSize {
-    int32_t size = memoizedSerializedSize;
-    if (size != -1) return size;
+- (int32_t) serializedSize {
+  int32_t size = memoizedSerializedSize;
+  if (size != -1) return size;
 
-    size = 0;
-    for (ReviewProto* element in self.getReviewsList) {
-        size += computeMessageSize(1, element);
-    }
-    size += self.getUnknownFields.getSerializedSize;
-    memoizedSerializedSize = size;
-    return size;
+  size = 0;
+  for (ReviewProto* element in self.reviewsList) {
+    size += computeMessageSize(1, element);
+  }
+  size += self.unknownFields.serializedSize;
+  memoizedSerializedSize = size;
+  return size;
 }
 
 + (ReviewsListProto*) parseFromData:(NSData*) data {
-    return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromData:data] buildParsed];
+  return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromData:data] buildParsed];
 }
-+ (ReviewsListProto*) parseFromData:(NSData*) data extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
++ (ReviewsListProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
 }
 + (ReviewsListProto*) parseFromInputStream:(NSInputStream*) input {
-    return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromInputStream:input] buildParsed];
+  return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromInputStream:input] buildParsed];
 }
-+ (ReviewsListProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (ReviewsListProto*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
-+ (ReviewsListProto*) parseFromCodedInputStream:(CodedInputStream*) input {
-    return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
++ (ReviewsListProto*) parseFromCodedInputStream:(PBCodedInputStream*) input {
+  return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromCodedInputStream:input] buildParsed];
 }
-+ (ReviewsListProto*) parseFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
++ (ReviewsListProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  return (ReviewsListProto*)[[[ReviewsListProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
 }
 
 + (ReviewsListProto_Builder*) newBuilder { return [[[ReviewsListProto_Builder alloc] init] autorelease]; }
 - (ReviewsListProto_Builder*) newBuilderForType { return [ReviewsListProto newBuilder]; }
 + (ReviewsListProto_Builder*) newBuilderWithReviewsListProto:(ReviewsListProto*) prototype {
-    return [[ReviewsListProto newBuilder] mergeFromReviewsListProto:prototype];
+  return [[ReviewsListProto newBuilder] mergeFromReviewsListProto:prototype];
 }
 
 @end
@@ -3768,150 +3717,136 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
 @implementation ReviewsListProto_Builder
 @synthesize result;
 - (void) dealloc {
-    self.result = nil;
-    [super dealloc];
+  self.result = nil;
+  [super dealloc];
 }
 - (id) init {
-    if (self = [super init]) {
-        self.result = [[[ReviewsListProto alloc] init] autorelease];
-    }
-    return self;
+  if (self = [super init]) {
+    self.result = [[[ReviewsListProto alloc] init] autorelease];
+  }
+  return self;
 }
 - (ReviewsListProto*) internalGetResult {
-    return result;
+  return result;
 }
 
 - (ReviewsListProto_Builder*) clear {
-    self.result = [[[ReviewsListProto alloc] init] autorelease];
-    return self;
+  self.result = [[[ReviewsListProto alloc] init] autorelease];
+  return self;
 }
 
 - (ReviewsListProto_Builder*) clone {
-    return (ReviewsListProto_Builder*)[[[[ReviewsListProto_Builder alloc] init] autorelease] mergeFromReviewsListProto:result];
+  return (ReviewsListProto_Builder*)[[[[ReviewsListProto_Builder alloc] init] autorelease] mergeFromReviewsListProto:result];
 }
 
-- (ProtocolBufferDescriptor*) getDescriptorForType {
-    return [ReviewsListProto getDescriptor];
+- (PBDescriptor*) descriptorForType {
+  return [ReviewsListProto descriptor];
 }
 
-- (ReviewsListProto*) getDefaultInstanceForType {
-    return [ReviewsListProto getDefaultInstance];
+- (ReviewsListProto*) defaultInstanceForType {
+  return [ReviewsListProto defaultInstance];
 }
 
 - (ReviewsListProto*) build {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (ReviewsListProto*) buildParsed {
-    if (!self.isInitialized) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
+  if (!self.isInitialized) {
+    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+  }
+  return [self buildPartial];
 }
 
 - (ReviewsListProto*) buildPartial {
-    ReviewsListProto* returnMe = [[result retain] autorelease];
-    self.result = nil;
-    return returnMe;
+  ReviewsListProto* returnMe = [[result retain] autorelease];
+  self.result = nil;
+  return returnMe;
 }
 
-- (ReviewsListProto_Builder*) mergeFromMessage:(id<Message>) other {
-    id o = other;
-    if ([o isKindOfClass:[ReviewsListProto class]]) {
-        return [self mergeFromReviewsListProto:o];
-    } else {
-        [super mergeFromMessage:other];
-        return self;
-    }
+- (ReviewsListProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
+  id o = other;
+  if ([o isKindOfClass:[ReviewsListProto class]]) {
+    return [self mergeFromReviewsListProto:o];
+  } else {
+    [super mergeFromMessage:other];
+    return self;
+  }
 }
 
 - (ReviewsListProto_Builder*) mergeFromReviewsListProto:(ReviewsListProto*) other {
-    if (other == [ReviewsListProto getDefaultInstance]) return self;
-    if (other.reviews_.count > 0) {
-        if (result.reviews_ == nil) {
-            result.reviews_ = [NSMutableArray array];
+  if (other == [ReviewsListProto defaultInstance]) return self;
+  if (other.mutableReviewsList.count > 0) {
+    if (result.mutableReviewsList == nil) {
+      result.mutableReviewsList = [NSMutableArray array];
+    }
+    [result.mutableReviewsList addObjectsFromArray:other.mutableReviewsList];
+  }
+  [self mergeUnknownFields:other.unknownFields];
+  return self;
+}
+
+- (ReviewsListProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
+}
+
+- (ReviewsListProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
+  while (true) {
+    int32_t tag = [input readTag];
+    switch (tag) {
+      case 0:
+        [self setUnknownFields:[unknownFields build]];
+        return self;
+      default: {
+        if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
+          [self setUnknownFields:[unknownFields build]];
+          return self;
         }
-        [result.reviews_ addObjectsFromArray:other.reviews_];
+        break;
+      }
+      case 10: {
+        ReviewProto_Builder* subBuilder = [ReviewProto newBuilder];
+        [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+        [self addReviews:[subBuilder buildPartial]];
+        break;
+      }
     }
-    [self mergeUnknownFields:other.getUnknownFields];
-    return self;
-}
-
-- (ReviewsListProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input {
-    return [self mergeFromCodedInputStream:input extensionRegistry:[ExtensionRegistry getEmptyRegistry]];
-}
-
-- (ReviewsListProto_Builder*) mergeFromCodedInputStream:(CodedInputStream*) input extensionRegistry:(ExtensionRegistry*) extensionRegistry {
-    UnknownFieldSet_Builder* unknownFields = [UnknownFieldSet newBuilder:self.getUnknownFields];
-    while (true) {
-        int32_t tag = [input readTag];
-        switch (tag) {
-            case 0:
-                [self setUnknownFields:[unknownFields build]];
-                return self;
-            default: {
-                if (![self parseUnknownField:input unknownFields:unknownFields extensionRegistry:extensionRegistry tag:tag]) {
-                    [self setUnknownFields:[unknownFields build]];
-                    return self;
-                }
-                break;
-            }
-            case 10: {
-                ReviewProto_Builder* subBuilder = [ReviewProto newBuilder];
-                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
-                [self addReviews:[subBuilder buildPartial]];
-                break;
-            }
-        }
-    }
+  }
 }
 
 
-- (NSArray*) getReviewsList {
-    if (result.reviews_ == nil) { return [NSArray array]; }
-    return [NSArray arrayWithObjects:result.reviews_];
+- (NSArray*) reviewsList {
+  if (result.mutableReviewsList == nil) { return [NSArray array]; }
+  return result.mutableReviewsList;
 }
-- (int32_t) getReviewsCount {
-    return result.getReviewsCount;
+- (ReviewProto*) reviewsAtIndex:(int32_t) index {
+  return [result reviewsAtIndex:index];
 }
-- (ReviewProto*) getReviews:(int32_t) index {
-    return [result getReviews:index];
-}
-- (ReviewsListProto_Builder*) setReviews:(int32_t) index value:(ReviewProto*) value {
-    [result.reviews_ replaceObjectAtIndex:index withObject:value];
-    return self;
-}
-- (ReviewsListProto_Builder*) setReviews:(int32_t) index builderForValue:(ReviewProto_Builder*) builderForValue {
-    [result.reviews_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-    return self;
-}
-- (ReviewsListProto_Builder*) addReviewsBuilder:(ReviewProto_Builder*) builderForValue {
-    if (result.reviews_ == nil) {
-        result.reviews_ = [NSMutableArray array];
-    }
-    [result.reviews_ addObject:[builderForValue build]];
-    return self;
+- (ReviewsListProto_Builder*) replaceReviewsAtIndex:(int32_t) index withReviews:(ReviewProto*) value {
+  [result.mutableReviewsList replaceObjectAtIndex:index withObject:value];
+  return self;
 }
 - (ReviewsListProto_Builder*) addAllReviews:(NSArray*) values {
-    if (result.reviews_ == nil) {
-        result.reviews_ = [NSMutableArray array];
-    }
-    [result.reviews_ addObjectsFromArray:values];
-    return self;
+  if (result.mutableReviewsList == nil) {
+    result.mutableReviewsList = [NSMutableArray array];
+  }
+  [result.mutableReviewsList addObjectsFromArray:values];
+  return self;
 }
-- (ReviewsListProto_Builder*) clearReviews {
-    result.reviews_ = nil;
-    return self;
+- (ReviewsListProto_Builder*) clearReviewsList {
+  result.mutableReviewsList = nil;
+  return self;
 }
 - (ReviewsListProto_Builder*) addReviews:(ReviewProto*) value {
-    if (result.reviews_ == nil) {
-        result.reviews_ = [NSMutableArray array];
-    }
-    [result.reviews_ addObject:value];
-    return self;
+  if (result.mutableReviewsList == nil) {
+    result.mutableReviewsList = [NSMutableArray array];
+  }
+  [result.mutableReviewsList addObject:value];
+  return self;
 }
 @end
 

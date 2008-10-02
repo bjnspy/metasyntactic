@@ -99,16 +99,16 @@
     if (data != nil) {
         @try {
             TheaterListingsProto* theaterListings = [TheaterListingsProto parseFromData:data];
-            NSArray* movieProtos = theaterListings.getMoviesList;
+            NSArray* movieProtos = theaterListings.moviesList;
 
             NSMutableDictionary* ratings = [NSMutableDictionary dictionary];
 
             for (MovieProto* movieProto in movieProtos) {
-                NSString* identifier = movieProto.getIdentifier;
-                NSString* title = movieProto.getTitle;
+                NSString* identifier = movieProto.identifier;
+                NSString* title = movieProto.title;
                 NSInteger score = -1;
                 if (movieProto.hasScore) {
-                    score = movieProto.getScore;
+                    score = movieProto.score;
                 }
 
                 MovieRating* info = [MovieRating ratingWithTitle:title
