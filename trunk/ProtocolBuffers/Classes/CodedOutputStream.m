@@ -297,7 +297,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
         case PBFieldDescriptorTypeSFixed64: [self writeSFixed64:number    value:[value longLongValue]]; break;
         case PBFieldDescriptorTypeSInt32:   [self writeSInt32:number      value:[value intValue]]; break;
         case PBFieldDescriptorTypeSInt64:   [self writeSInt64:number      value:[value longLongValue]]; break;
-        case PBFieldDescriptorTypeEnum:     [self writeEnum:number        value:[value getNumber]]; break;
+        case PBFieldDescriptorTypeEnum:     [self writeEnum:number        value:[value number]]; break;
         default:
             @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
@@ -545,7 +545,7 @@ int32_t computeFieldSize(PBFieldDescriptorType type,
         case PBFieldDescriptorTypeSFixed64: return computeSFixed64Size(number, [value longLongValue]);
         case PBFieldDescriptorTypeSInt32  : return computeSInt32Size  (number, [value intValue]);
         case PBFieldDescriptorTypeSInt64  : return computeSInt64Size  (number, [value longLongValue]);
-        case PBFieldDescriptorTypeEnum:     return computeEnumSize    (number, [value getNumber]);
+        case PBFieldDescriptorTypeEnum:     return computeEnumSize    (number, [value number]);
     }
 
     @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];

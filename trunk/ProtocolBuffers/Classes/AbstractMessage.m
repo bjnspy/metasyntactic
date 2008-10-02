@@ -45,7 +45,7 @@
 
     NSDictionary* allFields = self.getAllFields;
     for (PBFieldDescriptor* field in allFields) {
-        if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
+        if (field.objectiveCType == PBObjectiveCTypeMessage) {
             id value = [allFields objectForKey:field];
 
             if (field.isRepeated) {
@@ -72,10 +72,10 @@
         id value = [allFields objectForKey:field];
         if (field.isRepeated) {
             for (id element in value) {
-                [output writeField:field.getType number:field.getNumber value:element];
+                [output writeField:field.type number:field.number value:element];
             }
         } else {
-            [output writeField:field.getType number:field.getNumber value:value];
+            [output writeField:field.type number:field.number value:value];
         }
     }
 
@@ -116,10 +116,10 @@
 
         if (field.isRepeated) {
             for (id element in value) {
-                size += computeFieldSize(field.getType, field.getNumber, element);
+                size += computeFieldSize(field.type, field.number, element);
             }
         } else {
-            size += computeFieldSize(field.getType, field.getNumber, value);
+            size += computeFieldSize(field.type, field.number, value);
         }
     }
 

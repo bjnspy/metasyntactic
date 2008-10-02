@@ -82,7 +82,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 #if 0
 - (void) addExtension:(PBGeneratedExtension*) extension {
-    if (extension.getDescriptor.getObjectiveCType == PBFieldDescriptorTypeMessage) {
+    if (extension.getDescriptor.objectiveCType == PBFieldDescriptorTypeMessage) {
         [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:extension.getMessageDefaultInstance]];
     } else {
         [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:nil]];
@@ -92,7 +92,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 
 - (void) addFieldDescriptor:(PBFieldDescriptor*) type {
-    if (type.getObjectiveCType == PBFieldDescriptorTypeMessage) {
+    if (type.objectiveCType == PBFieldDescriptorTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"ExtensionRegistry.add() must be provided a default instance when adding an embedded message extension." userInfo:nil];
     }
@@ -103,7 +103,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 - (void) addFieldDescriptor:(PBFieldDescriptor*) type
             defaultInstance:(id<PBMessage>) defaultInstance {
-    if (type.getObjectiveCType != PBFieldDescriptorTypeMessage) {
+    if (type.objectiveCType != PBFieldDescriptorTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"ExtensionRegistry.add() provided a default instance for a non-message extension."
                                      userInfo:nil];
@@ -121,21 +121,21 @@ static PBExtensionRegistry* EMPTY = nil;
     }
 
     [extensionsByName setObject:extension
-                         forKey:extension.descriptor.getFullName];
+                         forKey:extension.descriptor.fullName];
     [extensionsByNumber setObject:extension
-                           forKey:[PBDescriptorIntPair pairWithDescriptor:extension.descriptor.getContainingType
-                                                                                   number:extension.descriptor.getNumber]];
+                           forKey:[PBDescriptorIntPair pairWithDescriptor:extension.descriptor.containingType
+                                                                   number:extension.descriptor.number]];
 
     PBFieldDescriptor* field = extension.descriptor;
 
-    if (field.getContainingType.options.getMessageSetWireFormat &&
-        field.getType == PBFieldDescriptorTypeMessage &&
+    if (field.containingType.options.getMessageSetWireFormat &&
+        field.type == PBFieldDescriptorTypeMessage &&
         field.isOptional &&
-        field.getExtensionScope == field.getMessageType) {
+        field.extensionScope == field.messageType) {
         // This is an extension of a MessageSet type defined within the extension
         // type's own scope.  For backwards-compatibility, allow it to be looked
         // up by type name.
-        [extensionsByName setObject:extension forKey:field.getMessageType.fullName];
+        [extensionsByName setObject:extension forKey:field.messageType.fullName];
     }
 }
 

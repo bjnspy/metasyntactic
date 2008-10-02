@@ -67,7 +67,7 @@
  * individual ranges of extensions at once.
  */
 - (void) writeUntil:(int32_t) end output:(PBCodedOutputStream*) output {
-    while (nextKey != nil && [nextValue getNumber] < end) {
+    while (nextKey != nil && [nextValue number] < end) {
         [extensions writeField:nextKey value:nextValue output:output];
         [self moveNext];
     }

@@ -51,17 +51,17 @@
             NSString* name = [fieldNames objectAtIndex:i];
             PBFieldDescriptor* field = [descriptor.fields objectAtIndex:i];
             if (field.isRepeated) {
-                if (field.getObjectiveCType == PBFieldDescriptorTypeMessage) {
+                if (field.objectiveCType == PBFieldDescriptorTypeMessage) {
                     [array addObject:[PBRepeatedMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
-                } else if (field.getObjectiveCType == PBFieldDescriptorTypeEnum) {
+                } else if (field.objectiveCType == PBFieldDescriptorTypeEnum) {
                     [array addObject:[PBRepeatedEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else {
                     [array addObject:[PBRepeatedFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 }
             } else {
-                if (field.getObjectiveCType == PBFieldDescriptorTypeMessage) {
+                if (field.objectiveCType == PBFieldDescriptorTypeMessage) {
                     [array addObject:[PBSingularMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
-                } else if (field.getObjectiveCType == PBFieldDescriptorTypeEnum) {
+                } else if (field.objectiveCType == PBFieldDescriptorTypeEnum) {
                     [array addObject:[PBSingularEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else {
                     [array addObject:[PBSingularFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
@@ -88,7 +88,7 @@
 
 
 - (id<PBFieldAccessor>) getField:(PBFieldDescriptor*) field {
-    if (field.getContainingType != descriptor) {
+    if (field.containingType != descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     } else if (field.isExtension) {
         // If this type had extensions, it would subclass PBExtendableMessage,
@@ -96,7 +96,7 @@
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 
-    return [fields objectAtIndex:field.getIndex];
+    return [fields objectAtIndex:field.index];
 }
 
 @end

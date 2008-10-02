@@ -39,52 +39,52 @@
 }
 
 
-- (PBObjectiveCType) getObjectiveCType {
+- (PBObjectiveCType) objectiveCType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (PBDescriptor*) getContainingType {
+- (PBDescriptor*) containingType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (PBDescriptor*) getExtensionScope {
+- (PBDescriptor*) extensionScope {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (PBDescriptor*) getMessageType {
+- (PBDescriptor*) messageType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (PBEnumDescriptor*) getEnumType {
+- (PBEnumDescriptor*) enumType {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (id) getDefaultValue {
+- (id) defaultValue {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (int32_t) getIndex {
+- (int32_t) index {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (int32_t) getNumber {
+- (int32_t) number {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (PBFieldDescriptorType) getType {
+- (PBFieldDescriptorType) type {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 
 
-- (NSString*) getFullName {
+- (NSString*) fullName {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

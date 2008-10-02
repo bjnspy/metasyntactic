@@ -26,44 +26,18 @@
 - (BOOL) isRepeated;
 - (BOOL) isExtension;
 - (BOOL) isOptional;
-- (PBObjectiveCType) getObjectiveCType;
-- (PBFieldDescriptorType) getType;
+- (PBObjectiveCType) objectiveCType;
+- (PBFieldDescriptorType) type;
 
-- (PBDescriptor*) getContainingType;
-- (PBDescriptor*) getExtensionScope;
-- (PBDescriptor*) getMessageType;
-- (PBEnumDescriptor*) getEnumType;
-
-- (id) getDefaultValue;
-- (int32_t) getIndex;
-- (int32_t) getNumber;
-
-- (NSString*) getFullName;
-
-
-#if 0
-    int32_t index;
-    FieldDescriptorProto* proto;
-    NSString* fullName;
-    PBFileDescriptor* file;
-    Type* type;
-    PBDescriptor* containingType;
-}
-
-@property int32_t index;
-@property (retain) FieldDescriptorProto* proto;
-@property (retain) NSString* fullName;
-@property (retain) PBFileDescriptor* file;
-@property (retain) Type* type;
-@property (retain) PBDescriptor* containingType;
-
-- (NSString*) name;
-
-- (BOOL) hasDefaultValue;
-- (FieldOptions*) options;
-
+- (PBDescriptor*) containingType;
 - (PBDescriptor*) extensionScope;
 - (PBDescriptor*) messageType;
-#endif
+- (PBEnumDescriptor*) enumType;
+
+- (id) defaultValue;
+- (int32_t) index;
+- (int32_t) number;
+
+- (NSString*) fullName;
 
 @end

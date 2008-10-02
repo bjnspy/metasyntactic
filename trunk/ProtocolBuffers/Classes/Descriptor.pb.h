@@ -566,7 +566,7 @@
 - (BOOL) hasName;
 - (NSString*) getName;
 - (BOOL) hasNumber;
-- (int32_t) getNumber;
+- (int32_t) number;
 - (BOOL) hasLabel;
 - (PBLabel*) getLabel;
 - (BOOL) hasType;
@@ -576,7 +576,7 @@
 - (BOOL) hasExtendee;
 - (NSString*) getExtendee;
 - (BOOL) hasDefaultValue;
-- (NSString*) getDefaultValue;
+- (NSString*) defaultValue;
 - (PBFieldOptions*) getOptions;
 + (PBFieldDescriptorProto*) getDefaultInstance;
 - (PBFieldDescriptorProto*) getDefaultInstanceForType;
@@ -623,7 +623,7 @@
 + (PBType*) TYPE_SINT32;
 + (PBType*) TYPE_SINT64;
 
-- (int32_t) getNumber;
+- (int32_t) number;
 + (PBType*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
 - (PBEnumDescriptor*) getDescriptorForType;
@@ -644,7 +644,7 @@
 + (PBLabel*) LABEL_REQUIRED;
 + (PBLabel*) LABEL_REPEATED;
 
-- (int32_t) getNumber;
+- (int32_t) number;
 + (PBLabel*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
 - (PBEnumDescriptor*) getDescriptorForType;
@@ -679,7 +679,7 @@
 
 // optional int32 number = 3;
 - (BOOL) hasNumber;
-- (int32_t) getNumber;
+- (int32_t) number;
 - (PBFieldDescriptorProto_Builder*) setNumber:(int32_t) value;
 - (PBFieldDescriptorProto_Builder*) clearNumber;
 
@@ -709,7 +709,7 @@
 
 // optional string default_value = 7;
 - (BOOL) hasDefaultValue;
-- (NSString*) getDefaultValue;
+- (NSString*) defaultValue;
 - (PBFieldDescriptorProto_Builder*) setDefaultValue:(NSString*) value;
 - (PBFieldDescriptorProto_Builder*) clearDefaultValue;
 
@@ -829,7 +829,7 @@
 - (BOOL) hasName;
 - (NSString*) getName;
 - (BOOL) hasNumber;
-- (int32_t) getNumber;
+- (int32_t) number;
 - (PBEnumValueOptions*) getOptions;
 + (PBEnumValueDescriptorProto*) getDefaultInstance;
 - (PBEnumValueDescriptorProto*) getDefaultInstanceForType;
@@ -875,7 +875,7 @@
 
 // optional int32 number = 2;
 - (BOOL) hasNumber;
-- (int32_t) getNumber;
+- (int32_t) number;
 - (PBEnumValueDescriptorProto_Builder*) setNumber:(int32_t) value;
 - (PBEnumValueDescriptorProto_Builder*) clearNumber;
 
@@ -1142,7 +1142,7 @@
 + (PBOptimizeMode*) SPEED;
 + (PBOptimizeMode*) CODE_SIZE;
 
-- (int32_t) getNumber;
+- (int32_t) number;
 + (PBOptimizeMode*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
 - (PBEnumDescriptor*) getDescriptorForType;
@@ -1307,7 +1307,7 @@
 + (PBCType*) CORD;
 + (PBCType*) STRING_PIECE;
 
-- (int32_t) getNumber;
+- (int32_t) number;
 + (PBCType*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
 - (PBEnumDescriptor*) getDescriptorForType;
