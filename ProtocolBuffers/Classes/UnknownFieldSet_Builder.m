@@ -18,7 +18,7 @@
 
 #import "CodedInputStream.h"
 #import "Field.h"
-#import "Field_Builder.h"
+#import "MutableField.h"
 #import "UnknownFieldSet.h"
 #import "WireFormat.h"
 

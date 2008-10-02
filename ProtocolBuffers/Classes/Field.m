@@ -17,7 +17,7 @@
 #import "Field.h"
 
 #import "CodedOutputStream.h"
-#import "Field_Builder.h"
+#import "MutableField.h"
 
 @interface PBField ()
 @property (retain) NSArray* varint;
