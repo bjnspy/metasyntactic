@@ -34,7 +34,7 @@
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
 - (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
 - (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
-- (PBUnknownFieldSet*) getUnknownFields;
+- (PBUnknownFieldSet*) unknownFields;
 - (id<PBMessage_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
 - (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;

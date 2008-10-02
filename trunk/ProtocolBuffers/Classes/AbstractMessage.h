@@ -28,7 +28,7 @@
 - (id) getField:(PBFieldDescriptor*) field;
 - (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
-- (PBUnknownFieldSet*) getUnknownFields;
+- (PBUnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
 - (int32_t) serializedSize;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;

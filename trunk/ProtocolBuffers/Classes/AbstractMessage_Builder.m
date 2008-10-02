@@ -89,7 +89,7 @@
 
 - (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input
                                 extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
     [PBFieldSet mergeFromCodedInputStream:input unknownFields:unknownFields extensionRegistry:extensionRegistry builder:self];
     [self setUnknownFields:[unknownFields build]];
 
@@ -98,7 +98,7 @@
 
 
 - (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields {
-    PBUnknownFieldSet* merged = [[[PBUnknownFieldSet newBuilder:self.getUnknownFields] mergeUnknownFields:unknownFields] build];
+    PBUnknownFieldSet* merged = [[[PBUnknownFieldSet newBuilder:self.unknownFields] mergeUnknownFields:unknownFields] build];
     [self setUnknownFields:merged];
 
     return self;
@@ -228,11 +228,6 @@
 
 
 - (id<PBMessage_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
-}
-
-
-- (PBUnknownFieldSet*) getUnknownFields {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

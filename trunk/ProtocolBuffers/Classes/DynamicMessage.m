@@ -168,7 +168,7 @@
 }
 
 
-- (PBUnknownFieldSet*) getUnknownFields {
+- (PBUnknownFieldSet*) unknownFields {
     return unknownFields;
 }
 

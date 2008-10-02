@@ -477,7 +477,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   for (PBFileDescriptorProto* element in self.getFileList) {
     [output writeMessage:1 value:element];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -488,7 +488,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   for (PBFileDescriptorProto* element in self.getFileList) {
     size += computeMessageSize(1, element);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -591,7 +591,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
     }
     [result.file_ addObjectsFromArray:other.file_];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -600,7 +600,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -806,7 +806,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     [output writeMessage:8 value:self.getOptions];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -838,7 +838,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(8, self.getOptions);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -974,7 +974,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   if (other.hasOptions) {
     [self mergeOptions:other.getOptions];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -983,7 +983,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -1449,7 +1449,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     [output writeMessage:7 value:self.getOptions];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -1478,7 +1478,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(7, self.getOptions);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -1571,7 +1571,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   if (hasEnd) {
     [output writeInt32:2 value:self.getEnd];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -1585,7 +1585,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   if (hasEnd) {
     size += computeInt32Size(2, self.getEnd);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -1688,7 +1688,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   if (other.hasEnd) {
     [self setEnd:other.getEnd];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -1697,7 +1697,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 
 - (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -1860,7 +1860,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   if (other.hasOptions) {
     [self mergeOptions:other.getOptions];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -1869,7 +1869,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -2328,7 +2328,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     [output writeMessage:8 value:self.getOptions];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -2360,7 +2360,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(8, self.getOptions);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -2676,7 +2676,7 @@ static PBLabel* LABEL_REPEATED = nil;
   if (other.hasOptions) {
     [self mergeOptions:other.getOptions];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -2685,7 +2685,7 @@ static PBLabel* LABEL_REPEATED = nil;
 }
 
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -2979,7 +2979,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     [output writeMessage:3 value:self.getOptions];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -2996,7 +2996,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(3, self.getOptions);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -3105,7 +3105,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   if (other.hasOptions) {
     [self mergeOptions:other.getOptions];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -3114,7 +3114,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -3318,7 +3318,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   if (self.hasOptions) {
     [output writeMessage:3 value:self.getOptions];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -3335,7 +3335,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   if (self.hasOptions) {
     size += computeMessageSize(3, self.getOptions);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -3441,7 +3441,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   if (other.hasOptions) {
     [self mergeOptions:other.getOptions];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -3450,7 +3450,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -3627,7 +3627,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     [output writeMessage:3 value:self.getOptions];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -3644,7 +3644,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(3, self.getOptions);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -3753,7 +3753,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   if (other.hasOptions) {
     [self mergeOptions:other.getOptions];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -3762,7 +3762,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -3977,7 +3977,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     [output writeMessage:4 value:self.getOptions];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -3997,7 +3997,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   if (self.hasOptions) {
     size += computeMessageSize(4, self.getOptions);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -4106,7 +4106,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   if (other.hasOptions) {
     [self mergeOptions:other.getOptions];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -4115,7 +4115,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -4345,7 +4345,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   if (hasObjectivecClassPrefix) {
     [output writeString:12 value:self.getObjectivecClassPrefix];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -4371,7 +4371,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   if (hasObjectivecClassPrefix) {
     size += computeStringSize(12, self.getObjectivecClassPrefix);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -4541,7 +4541,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
   if (other.hasObjectivecClassPrefix) {
     [self setObjectivecClassPrefix:other.getObjectivecClassPrefix];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -4550,7 +4550,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
 }
 
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -4752,7 +4752,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   if (hasMessageSetWireFormat) {
     [output writeBool:1 value:self.getMessageSetWireFormat];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -4763,7 +4763,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   if (hasMessageSetWireFormat) {
     size += computeBoolSize(1, self.getMessageSetWireFormat);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -4863,7 +4863,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   if (other.hasMessageSetWireFormat) {
     [self setMessageSetWireFormat:other.getMessageSetWireFormat];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -4872,7 +4872,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 }
 
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -4974,7 +4974,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   if (hasExperimentalMapKey) {
     [output writeString:9 value:self.getExperimentalMapKey];
   }
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -4988,7 +4988,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   if (hasExperimentalMapKey) {
     size += computeStringSize(9, self.getExperimentalMapKey);
   }
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5146,7 +5146,7 @@ static PBCType* STRING_PIECE = nil;
   if (other.hasExperimentalMapKey) {
     [self setExperimentalMapKey:other.getExperimentalMapKey];
   }
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -5155,7 +5155,7 @@ static PBCType* STRING_PIECE = nil;
 }
 
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -5262,7 +5262,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 }
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -5270,7 +5270,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5367,7 +5367,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 
 - (PBEnumOptions_Builder*) mergeFromPBEnumOptions:(PBEnumOptions*) other {
   if (other == [PBEnumOptions defaultInstance]) return self;
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -5376,7 +5376,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 }
 
 - (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -5435,7 +5435,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 }
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -5443,7 +5443,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5540,7 +5540,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 
 - (PBEnumValueOptions_Builder*) mergeFromPBEnumValueOptions:(PBEnumValueOptions*) other {
   if (other == [PBEnumValueOptions defaultInstance]) return self;
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -5549,7 +5549,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 }
 
 - (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -5608,7 +5608,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 }
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -5616,7 +5616,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5713,7 +5713,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 
 - (PBServiceOptions_Builder*) mergeFromPBServiceOptions:(PBServiceOptions*) other {
   if (other == [PBServiceOptions defaultInstance]) return self;
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -5722,7 +5722,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 }
 
 - (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -5781,7 +5781,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 }
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  [self.getUnknownFields writeToCodedOutputStream:output];
+  [self.unknownFields writeToCodedOutputStream:output];
 }
 
 - (int32_t) serializedSize {
@@ -5789,7 +5789,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  size += self.getUnknownFields.serializedSize;
+  size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
   return size;
 }
@@ -5886,7 +5886,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 
 - (PBMethodOptions_Builder*) mergeFromPBMethodOptions:(PBMethodOptions*) other {
   if (other == [PBMethodOptions defaultInstance]) return self;
-  [self mergeUnknownFields:other.getUnknownFields];
+  [self mergeUnknownFields:other.unknownFields];
   return self;
 }
 
@@ -5895,7 +5895,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 }
 
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
