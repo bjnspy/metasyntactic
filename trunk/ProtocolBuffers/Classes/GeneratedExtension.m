@@ -17,6 +17,12 @@
 #import "GeneratedExtension.h"
 
 
+@interface PBGeneratedExtension ()
+@property (retain) PBFieldDescriptor* descriptor;
+@property (retain) Class type;
+@end
+
+
 @implementation PBGeneratedExtension
 
 @synthesize descriptor;

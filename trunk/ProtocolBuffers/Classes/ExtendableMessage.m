@@ -14,6 +14,13 @@
 #import "ExtensionWriter.h"
 #import "GeneratedExtension.h"
 
+
+@interface PBExtendableMessage ()
+@property (retain) PBFieldSet* extensions;
+@end
+
+
+
 @implementation PBExtendableMessage
 
 @synthesize extensions;
@@ -35,7 +42,7 @@
 
 
 - (void) verifyExtensionContainingType:(PBGeneratedExtension*) extension {
-    if (extension.getDescriptor.containingType != [self getDescriptorForType]) {
+    if (extension.descriptor.containingType != [self getDescriptorForType]) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 }
@@ -43,14 +50,14 @@
 
 - (BOOL) hasExtension:(PBGeneratedExtension*) extension {
     [self verifyExtensionContainingType:extension];
-    return [extensions hasField:extension.getDescriptor];
+    return [extensions hasField:extension.descriptor];
 }
 
 
 /** Get the number of elements in a repeated extension. */
 - (int32_t) getExtensionCount:(PBGeneratedExtension*) extension {
     [self verifyExtensionContainingType:extension];
-    return [extensions getRepeatedFieldCount:extension.getDescriptor];
+    return [extensions getRepeatedFieldCount:extension.descriptor];
 }
 
 
