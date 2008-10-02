@@ -14,22 +14,33 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBField_Builder : NSObject {
-    PBField* result;
+#import "Field.h"
+
+@interface PBMutableField : PBField {
+@private
+    NSMutableArray* mutableVarint;
+    NSMutableArray* mutableFixed32;
+    NSMutableArray* mutableFixed64;
+    NSMutableArray* mutableLengthDelimited;
+    NSMutableArray* mutableGroup;
 }
 
-@property (retain) PBField* result;
+@property (retain) NSMutableArray* mutableVarint;
+@property (retain) NSMutableArray* mutableFixed32;
+@property (retain) NSMutableArray* mutableFixed64;
+@property (retain) NSMutableArray* mutableLengthDelimited;
+@property (retain) NSMutableArray* mutableGroup;
 
-- (PBField*) build;
++ (PBMutableField*) field;
 
-- (PBField_Builder*) mergeFromField:(PBField*) other;
+- (PBMutableField*) mergeFromField:(PBField*) other;
 
-- (PBField_Builder*) clear;
-- (PBField_Builder*) mergeFromField:(PBField*) other;
-- (PBField_Builder*) addVarint:(int64_t) value;
-- (PBField_Builder*) addFixed32:(int32_t) value;
-- (PBField_Builder*) addFixed64:(int64_t) value;
-- (PBField_Builder*) addLengthDelimited:(NSData*) value;
-- (PBField_Builder*) addGroup:(PBUnknownFieldSet*) value;
+- (PBMutableField*) clear;
+- (PBMutableField*) mergeFromField:(PBField*) other;
+- (PBMutableField*) addVarint:(int64_t) value;
+- (PBMutableField*) addFixed32:(int32_t) value;
+- (PBMutableField*) addFixed64:(int64_t) value;
+- (PBMutableField*) addLengthDelimited:(NSData*) value;
+- (PBMutableField*) addGroup:(PBUnknownFieldSet*) value;
 
 @end

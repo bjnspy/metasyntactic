@@ -36,7 +36,7 @@ enum PBObjectiveCType;
 @class PBExtensionInfo;
 @class PBDescriptorIntPair;
 @class PBField;
-@class PBField_Builder;
+@class PBMutableField;
 @class PBFieldDescriptor;
 @class PBFieldSet;
 @class PBFileDescriptor;

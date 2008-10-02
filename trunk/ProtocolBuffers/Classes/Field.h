@@ -15,21 +15,21 @@
 // limitations under the License.
 
 @interface PBField : NSObject {
-    NSMutableArray* varint;
-    NSMutableArray* fixed32;
-    NSMutableArray* fixed64;
-    NSMutableArray* lengthDelimited;
-    NSMutableArray* group;
+@protected
+    NSArray* varint;
+    NSArray* fixed32;
+    NSArray* fixed64;
+    NSArray* lengthDelimited;
+    NSArray* group;
 }
 
-@property (retain) NSMutableArray* varint;
-@property (retain) NSMutableArray* fixed32;
-@property (retain) NSMutableArray* fixed64;
-@property (retain) NSMutableArray* lengthDelimited;
-@property (retain) NSMutableArray* group;
+@property (retain, readonly) NSArray* varint;
+@property (retain, readonly) NSArray* fixed32;
+@property (retain, readonly) NSArray* fixed64;
+@property (retain, readonly) NSArray* lengthDelimited;
+@property (retain, readonly) NSArray* group;
 
 + (PBField*) defaultInstance;
-+ (PBField_Builder*) newBuilder;
 
 - (void) writeTo:(int32_t) fieldNumber
           output:(PBCodedOutputStream*) output;
