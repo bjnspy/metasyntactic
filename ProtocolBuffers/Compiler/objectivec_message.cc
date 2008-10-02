@@ -334,6 +334,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     bool is_own_file =
       descriptor_->containing_type() == NULL;
 
+    printer->Print(
+      "@interface $classname$ ()\n",
+      "classname", ClassName(descriptor_));
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GenerateExtensionSource(printer);
+    }
+    printer->Print("@end\n\n");
+
     printer->Print("@implementation $classname$\n\n",
       "classname", ClassName(descriptor_));
 

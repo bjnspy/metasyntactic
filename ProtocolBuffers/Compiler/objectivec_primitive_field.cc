@@ -95,22 +95,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       // Switch on cpp_type since we need to know which default_value_* method
       // of FieldDescriptor to call.
       switch (field->cpp_type()) {
-    case FieldDescriptor::CPPTYPE_INT32:
-      return SimpleItoa(field->default_value_int32());
-    case FieldDescriptor::CPPTYPE_UINT32:
-      // Need to print as a signed int since ObjectiveC has no unsigned.
-      return SimpleItoa(static_cast<int32>(field->default_value_uint32()));
-    case FieldDescriptor::CPPTYPE_INT64:
-      return SimpleItoa(field->default_value_int64()) + "L";
-    case FieldDescriptor::CPPTYPE_UINT64:
-      return SimpleItoa(static_cast<int64>(field->default_value_uint64())) +
-        "L";
-    case FieldDescriptor::CPPTYPE_DOUBLE:
-      return SimpleDtoa(field->default_value_double());
-    case FieldDescriptor::CPPTYPE_FLOAT:
-      return SimpleFtoa(field->default_value_float());
-    case FieldDescriptor::CPPTYPE_BOOL:
-      return field->default_value_bool() ? "YES" : "NO";
+    case FieldDescriptor::CPPTYPE_INT32:  return SimpleItoa(field->default_value_int32());
+    case FieldDescriptor::CPPTYPE_UINT32: return SimpleItoa(static_cast<int32>(field->default_value_uint32()));
+    case FieldDescriptor::CPPTYPE_INT64:  return SimpleItoa(field->default_value_int64()) + "L";
+    case FieldDescriptor::CPPTYPE_UINT64: return SimpleItoa(static_cast<int64>(field->default_value_uint64())) + "L";
+    case FieldDescriptor::CPPTYPE_DOUBLE: return SimpleDtoa(field->default_value_double());
+    case FieldDescriptor::CPPTYPE_FLOAT:  return SimpleFtoa(field->default_value_float());
+    case FieldDescriptor::CPPTYPE_BOOL:   return field->default_value_bool() ? "YES" : "NO";
     case FieldDescriptor::CPPTYPE_STRING: {
       bool isBytes = field->type() == FieldDescriptor::TYPE_BYTES;
 
@@ -153,6 +144,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         (*variables)["classname"] = ClassName(descriptor->containing_type());
         (*variables)["name"] = UnderscoresToCamelCase(descriptor);
         (*variables)["capitalized_name"] = UnderscoresToCapitalizedCamelCase(descriptor);
+        (*variables)["list_name"] = UnderscoresToCamelCase(descriptor) + "List";
+        (*variables)["mutable_list_name"] = "mutable" + UnderscoresToCapitalizedCamelCase(descriptor) + "List";
         (*variables)["number"] = SimpleItoa(descriptor->number());
         (*variables)["type"] = PrimitiveTypeName(GetObjectiveCType(descriptor));
 
@@ -171,37 +164,57 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   // ===================================================================
 
-  PrimitiveFieldGenerator::
-    PrimitiveFieldGenerator(const FieldDescriptor* descriptor)
+  PrimitiveFieldGenerator::PrimitiveFieldGenerator(const FieldDescriptor* descriptor)
     : descriptor_(descriptor) {
       SetPrimitiveVariables(descriptor, &variables_);
   }
 
-  PrimitiveFieldGenerator::~PrimitiveFieldGenerator() {}
+
+  PrimitiveFieldGenerator::~PrimitiveFieldGenerator() {
+  }
+
 
   void PrimitiveFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
     printer->Print(variables_,
       "BOOL has$capitalized_name$;\n"
-      "$storage_type$ $name$_;\n");
+      "$storage_type$ $name$;\n");
   }
+
 
   void PrimitiveFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      "@property BOOL has$capitalized_name$;\n");
+      "@property (readonly) BOOL has$capitalized_name$;\n");
+
     if (IsReferenceType(GetObjectiveCType(descriptor_))) {
       printer->Print(variables_,
-        "@property (retain) $storage_type$ $name$_;\n");
+        "@property (retain, readonly) $storage_type$ $name$;\n");
     } else {
       printer->Print(variables_,
-        "@property $storage_type$ $name$_;\n");
+        "@property (readonly) $storage_type$ $name$;\n");
     }
   }
+
+
+  void PrimitiveFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
+    printer->Print(variables_,
+      "@property BOOL has$capitalized_name$;\n");
+
+    if (IsReferenceType(GetObjectiveCType(descriptor_))) {
+      printer->Print(variables_,
+        "@property (retain) $storage_type$ $name$;\n");
+    } else {
+      printer->Print(variables_,
+        "@property $storage_type$ $name$;\n");
+    }
+  }
+
 
   void PrimitiveFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
       "@synthesize has$capitalized_name$;\n"
-      "@synthesize $name$_;\n");
+      "@synthesize $name$;\n");
   }
+
 
   void PrimitiveFieldGenerator::GenerateDeallocSource(io::Printer* printer) const {
     printer->Print(variables_,
@@ -209,86 +222,86 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     if (IsReferenceType(GetObjectiveCType(descriptor_))) {
       printer->Print(variables_,
-        "self.$name$_ = nil;\n");
+        "self.$name$ = nil;\n");
     } else {
       printer->Print(variables_,
-        "self.$name$_ = 0;\n");
+        "self.$name$ = 0;\n");
     }
   }
 
 
   void PrimitiveFieldGenerator::GenerateInitializationSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "self.$name$_ = $default$;\n");
+      "self.$name$ = $default$;\n");
   }
+
 
   void PrimitiveFieldGenerator::GenerateMembersHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "- (BOOL) has$capitalized_name$;\n"
-      "- ($storage_type$) get$capitalized_name$;\n");
   }
+
 
   void PrimitiveFieldGenerator::GenerateMembersSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "- (BOOL) has$capitalized_name$ { return has$capitalized_name$; }\n"
-      "- ($storage_type$) get$capitalized_name$ { return $name$_; }\n");
   }
 
-  void PrimitiveFieldGenerator::
-    GenerateBuilderMembersHeader(io::Printer* printer) const {
+
+  void PrimitiveFieldGenerator::GenerateBuilderMembersHeader(io::Printer* printer) const {
       printer->Print(variables_,
         "- (BOOL) has$capitalized_name$;\n"
-        "- ($storage_type$) get$capitalized_name$;\n"
+        "- ($storage_type$) $name$;\n"
         "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value;\n"
         "- ($classname$_Builder*) clear$capitalized_name$;\n");
   }
+
 
   void PrimitiveFieldGenerator::
     GenerateMergingCodeHeader(io::Printer* printer) const {
   }
 
-  void PrimitiveFieldGenerator::
-    GenerateBuildingCodeHeader(io::Printer* printer) const {
+
+  void PrimitiveFieldGenerator::GenerateBuildingCodeHeader(io::Printer* printer) const {
       // Nothing to do here for primitive types.
   }
 
-  void PrimitiveFieldGenerator::
-    GenerateParsingCodeHeader(io::Printer* printer) const {
+
+  void PrimitiveFieldGenerator::GenerateParsingCodeHeader(io::Printer* printer) const {
   }
+
 
   void PrimitiveFieldGenerator::
     GenerateSerializationCodeHeader(io::Printer* printer) const {
   }
 
+
   void PrimitiveFieldGenerator::
     GenerateSerializedSizeCodeHeader(io::Printer* printer) const {
   }
+
 
   void PrimitiveFieldGenerator::GenerateBuilderMembersSource(io::Printer* printer) const {
     printer->Print(variables_,
       "- (BOOL) has$capitalized_name$ {\n"
       "  return result.has$capitalized_name$;\n"
       "}\n"
-      "- ($storage_type$) get$capitalized_name$ {\n"
-      "  return result.get$capitalized_name$;\n"
+      "- ($storage_type$) $name$ {\n"
+      "  return result.$name$;\n"
       "}\n"
       "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value {\n"
       "  result.has$capitalized_name$ = YES;\n"
-      "  result.$name$_ = value;\n"
+      "  result.$name$ = value;\n"
       "  return self;\n"
       "}\n"
       "- ($classname$_Builder*) clear$capitalized_name$ {\n"
       "  result.has$capitalized_name$ = NO;\n"
-      "  result.$name$_ = $default$;\n"
+      "  result.$name$ = $default$;\n"
       "  return self;\n"
       "}\n");
   }
 
-  void PrimitiveFieldGenerator::
-    GenerateMergingCodeSource(io::Printer* printer) const {
+
+  void PrimitiveFieldGenerator::GenerateMergingCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "if (other.has$capitalized_name$) {\n"
-        "  [self set$capitalized_name$:other.get$capitalized_name$];\n"
+        "  [self set$capitalized_name$:other.$name$];\n"
         "}\n");
   }
 
@@ -297,25 +310,22 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       // Nothing to do here for primitive types.
   }
 
-  void PrimitiveFieldGenerator::
-    GenerateParsingCodeSource(io::Printer* printer) const {
+  void PrimitiveFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "[self set$capitalized_name$:[input read$capitalized_type$]];\n");
   }
 
-  void PrimitiveFieldGenerator::
-    GenerateSerializationCodeSource(io::Printer* printer) const {
+  void PrimitiveFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "if (has$capitalized_name$) {\n"
-        "  [output write$capitalized_type$:$number$ value:self.get$capitalized_name$];\n"
+        "  [output write$capitalized_type$:$number$ value:self.$name$];\n"
         "}\n");
   }
 
-  void PrimitiveFieldGenerator::
-    GenerateSerializedSizeCodeSource(io::Printer* printer) const {
+  void PrimitiveFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "if (has$capitalized_name$) {\n"
-        "  size += compute$capitalized_type$Size($number$, self.get$capitalized_name$);\n"
+        "  size += compute$capitalized_type$Size($number$, self.$name$);\n"
         "}\n");
   }
 
@@ -331,124 +341,128 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       SetPrimitiveVariables(descriptor, &variables_);
   }
 
-  RepeatedPrimitiveFieldGenerator::~RepeatedPrimitiveFieldGenerator() {}
+
+  RepeatedPrimitiveFieldGenerator::~RepeatedPrimitiveFieldGenerator() {
+  }
 
 
   void RepeatedPrimitiveFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      "NSMutableArray* $name$_;\n");
+      "NSMutableArray* $mutable_list_name$;\n");
   }
 
   void RepeatedPrimitiveFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "@property (retain) NSMutableArray* $name$_;\n");
+    //printer->Print(variables_,
+    //  "@property (retain) NSMutableArray* $name$_;\n");
   }
+
+
+  void RepeatedPrimitiveFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
+    printer->Print(variables_,
+      "@property (retain) NSMutableArray* $mutable_list_name$;\n");
+  }
+
 
   void RepeatedPrimitiveFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "@synthesize $name$_;\n");
+      "@synthesize $mutable_list_name$;\n");
   }
+
 
   void RepeatedPrimitiveFieldGenerator::GenerateDeallocSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "self.$name$_ = nil;\n");
+      "self.$mutable_list_name$ = nil;\n");
   }
+
 
   void RepeatedPrimitiveFieldGenerator::GenerateInitializationSource(io::Printer* printer) const {;
   }
 
+
   void RepeatedPrimitiveFieldGenerator::GenerateMembersHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      "- (NSArray*) get$capitalized_name$List;\n"
-      "- (int32_t) get$capitalized_name$Count;\n"
-      "- ($storage_type$) get$capitalized_name$:(int32_t) index;\n");
+      "- (NSArray*) $list_name$;\n"
+      "- ($storage_type$) $name$AtIndex:(int32_t) index;\n");
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateBuilderMembersHeader(io::Printer* printer) const {
+  void RepeatedPrimitiveFieldGenerator::GenerateBuilderMembersHeader(io::Printer* printer) const {
       printer->Print(variables_,
         // Note:  We return an unmodifiable list because otherwise the caller
         //   could hold on to the returned list and modify it after the message
         //   has been built, thus mutating the message which is supposed to be
         //   immutable.
-        "- (NSArray*) get$capitalized_name$List;\n"
-        "- (int32_t) get$capitalized_name$Count;\n"
-        "- ($storage_type$) get$capitalized_name$:(int32_t) index;\n"
-        "- ($classname$_Builder*) set$capitalized_name$:(int32_t) index value:($storage_type$) value;\n"
+        "- (NSArray*) $list_name$;\n"
+        "- ($storage_type$) $name$AtIndex:(int32_t) index;\n"
+        "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with$capitalized_name$:($storage_type$) value;\n"
         "- ($classname$_Builder*) add$capitalized_name$:($storage_type$) value;\n"
         "- ($classname$_Builder*) addAll$capitalized_name$:(NSArray*) values;\n"
-        "- ($classname$_Builder*) clear$capitalized_name$;\n");
+        "- ($classname$_Builder*) clear$capitalized_name$List;\n");
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateMergingCodeHeader(io::Printer* printer) const {
+
+  void RepeatedPrimitiveFieldGenerator::GenerateMergingCodeHeader(io::Printer* printer) const {
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateBuildingCodeHeader(io::Printer* printer) const {
+
+  void RepeatedPrimitiveFieldGenerator::GenerateBuildingCodeHeader(io::Printer* printer) const {
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateParsingCodeHeader(io::Printer* printer) const {
+
+  void RepeatedPrimitiveFieldGenerator::GenerateParsingCodeHeader(io::Printer* printer) const {
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateSerializationCodeHeader(io::Printer* printer) const {
+
+  void RepeatedPrimitiveFieldGenerator::GenerateSerializationCodeHeader(io::Printer* printer) const {
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateSerializedSizeCodeHeader(io::Printer* printer) const {
+
+  void RepeatedPrimitiveFieldGenerator::GenerateSerializedSizeCodeHeader(io::Printer* printer) const {
   }
 
 
   void RepeatedPrimitiveFieldGenerator::GenerateMembersSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "- (NSArray*) get$capitalized_name$List {\n"
-      "  return $name$_;\n"   // note:  unmodifiable list
+      "- (NSArray*) $list_name$ {\n"
+      "  return $mutable_list_name$;\n"   // note:  unmodifiable list
       "}\n"
-      "- (int32_t) get$capitalized_name$Count { return $name$_.count; }\n"
-      "- ($storage_type$) get$capitalized_name$:(int32_t) index {\n"
-      "  return [$name$_ objectAtIndex:index];\n"
+      "- ($storage_type$) $name$AtIndex:(int32_t) index {\n"
+      "  return [$mutable_list_name$ objectAtIndex:index];\n"
       "}\n");
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateBuilderMembersSource(io::Printer* printer) const {
+  void RepeatedPrimitiveFieldGenerator::GenerateBuilderMembersSource(io::Printer* printer) const {
       printer->Print(variables_,
         // Note:  We return an unmodifiable list because otherwise the caller
         //   could hold on to the returned list and modify it after the message
         //   has been built, thus mutating the message which is supposed to be
         //   immutable.
-        "- (NSArray*) get$capitalized_name$List {\n"
-        "  if (result.$name$_ == nil) { return [NSArray array]; }\n"
-        "  return [NSArray arrayWithArray:result.$name$_];\n"
+        "- (NSArray*) $list_name$ {\n"
+        "  if (result.$mutable_list_name$ == nil) { return [NSArray array]; }\n"
+        "  return result.$mutable_list_name$;\n"
         "}\n"
-        "- (int32_t) get$capitalized_name$Count {\n"
-        "  return result.get$capitalized_name$Count;\n"
+        "- ($storage_type$) $name$AtIndex:(int32_t) index {\n"
+        "  return [result $name$AtIndex:index];\n"
         "}\n"
-        "- ($storage_type$) get$capitalized_name$:(int32_t) index {\n"
-        "  return [result get$capitalized_name$:index];\n"
-        "}\n"
-        "- ($classname$_Builder*) set$capitalized_name$:(int32_t) index value:($storage_type$) value {\n"
-        "  [result.$name$_ replaceObjectAtIndex:index withObject:value];\n"
+        "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with$capitalized_name$:($storage_type$) value {\n"
+        "  [result.$mutable_list_name$ replaceObjectAtIndex:index withObject:value];\n"
         "  return self;\n"
         "}\n"
         "- ($classname$_Builder*) add$capitalized_name$:($storage_type$) value {\n"
-        "  if (result.$name$_ == nil) {\n"
-        "    result.$name$_ = [NSMutableArray array];\n"
+        "  if (result.$mutable_list_name$ == nil) {\n"
+        "    result.$mutable_list_name$ = [NSMutableArray array];\n"
         "  }\n"
-        "  [result.$name$_ addObject:value];\n"
+        "  [result.$mutable_list_name$ addObject:value];\n"
         "  return self;\n"
         "}\n"
         "- ($classname$_Builder*) addAll$capitalized_name$:(NSArray*) values {\n"
-        "  if (result.$name$_ == nil) {\n"
-        "    result.$name$_ = [NSMutableArray array];\n"
+        "  if (result.$mutable_list_name$ == nil) {\n"
+        "    result.$mutable_list_name$ = [NSMutableArray array];\n"
         "  }\n"
-        "  [result.$name$_ addObjectsFromArray:values];\n"
+        "  [result.$mutable_list_name$ addObjectsFromArray:values];\n"
         "  return self;\n"
         "}\n"
-        "- ($classname$_Builder*) clear$capitalized_name$ {\n"
-        "  result.$name$_ = nil;\n"
+        "- ($classname$_Builder*) clear$capitalized_name$List {\n"
+        "  result.$mutable_list_name$ = nil;\n"
         "  return self;\n"
         "}\n");
   }
@@ -456,28 +470,28 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void RepeatedPrimitiveFieldGenerator::
     GenerateMergingCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
-        "if (other.$name$_.count > 0) {\n"
-        "  if (result.$name$_ == nil) {\n"
-        "    result.$name$_ = [NSMutableArray array];\n"
+        "if (other.$mutable_list_name$.count > 0) {\n"
+        "  if (result.$mutable_list_name$ == nil) {\n"
+        "    result.$mutable_list_name$ = [NSMutableArray array];\n"
         "  }\n"
-        "  [result.$name$_ addObjectsFromArray:other.$name$_];\n"
+        "  [result.$mutable_list_name$ addObjectsFromArray:other.$mutable_list_name$];\n"
         "}\n");
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateBuildingCodeSource(io::Printer* printer) const {
+
+  void RepeatedPrimitiveFieldGenerator::GenerateBuildingCodeSource(io::Printer* printer) const {
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateParsingCodeSource(io::Printer* printer) const {
+
+  void RepeatedPrimitiveFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "[self add$capitalized_name$:[input read$capitalized_type$]];\n");
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateSerializationCodeSource(io::Printer* printer) const {
+
+  void RepeatedPrimitiveFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
-        "for ($storage_type$ element in self.get$capitalized_name$List) {\n"
+        "for ($storage_type$ element in self.$mutable_list_name$) {\n"
         "  [output write$capitalized_type$:$number$ value:element];\n"
         "}\n");
   }
@@ -485,7 +499,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void RepeatedPrimitiveFieldGenerator::
     GenerateSerializedSizeCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
-        "for ($storage_type$ element in self.get$capitalized_name$List) {\n"
+        "for ($storage_type$ element in self.$mutable_list_name$) {\n"
         "  size += compute$capitalized_type$Size($number$, element);\n"
         "}\n");
   }

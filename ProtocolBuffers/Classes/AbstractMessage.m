@@ -80,7 +80,7 @@
     }
 
     PBUnknownFieldSet* unknownFields = self.unknownFields;
-    if (self.descriptorForType.options.getMessageSetWireFormat) {
+    if (self.descriptorForType.options.messageSetWireFormat) {
         [unknownFields writeAsMessageSetTo:output];
     } else {
         [unknownFields writeToCodedOutputStream:output];
@@ -124,7 +124,7 @@
     }
 
     PBUnknownFieldSet* unknownFields = self.unknownFields;
-    if (self.descriptorForType.options.getMessageSetWireFormat) {
+    if (self.descriptorForType.options.messageSetWireFormat) {
         size += unknownFields.serializedSizeAsMessageSet;
     } else {
         size += unknownFields.serializedSize;

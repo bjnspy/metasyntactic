@@ -425,11 +425,15 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
 }
 @end
 
+@interface PBFileDescriptorSet ()
+@property (retain) NSMutableArray* mutableFileList;
+@end
+
 @implementation PBFileDescriptorSet
 
-@synthesize file_;
+@synthesize mutableFileList;
 - (void) dealloc {
-  self.file_ = nil;
+  self.mutableFileList = nil;
   [super dealloc];
 }
 - (id) init {
@@ -461,12 +465,11 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable];
 }
 
-- (NSArray*) getFileList {
-  return file_;
+- (NSArray*) fileList {
+  return mutableFileList;
 }
-- (int32_t) getFileCount { return file_.count; }
-- (PBFileDescriptorProto*) getFile:(int32_t) index {
-  return [file_ objectAtIndex:index];
+- (PBFileDescriptorProto*) fileAtIndex:(int32_t) index {
+  return [mutableFileList objectAtIndex:index];
 }
 
 - (BOOL) isInitialized {
@@ -474,7 +477,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  for (PBFileDescriptorProto* element in self.getFileList) {
+  for (PBFileDescriptorProto* element in self.fileList) {
     [output writeMessage:1 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -485,7 +488,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  for (PBFileDescriptorProto* element in self.getFileList) {
+  for (PBFileDescriptorProto* element in self.fileList) {
     size += computeMessageSize(1, element);
   }
   size += self.unknownFields.serializedSize;
@@ -585,11 +588,11 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 
 - (PBFileDescriptorSet_Builder*) mergeFromPBFileDescriptorSet:(PBFileDescriptorSet*) other {
   if (other == [PBFileDescriptorSet defaultInstance]) return self;
-  if (other.file_.count > 0) {
-    if (result.file_ == nil) {
-      result.file_ = [NSMutableArray array];
+  if (other.mutableFileList.count > 0) {
+    if (result.mutableFileList == nil) {
+      result.mutableFileList = [NSMutableArray array];
     }
-    [result.file_ addObjectsFromArray:other.file_];
+    [result.mutableFileList addObjectsFromArray:other.mutableFileList];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -625,83 +628,83 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 
 
-- (NSArray*) getFileList {
-  if (result.file_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.file_];
+- (NSArray*) fileList {
+  if (result.mutableFileList == nil) { return [NSArray array]; }
+  return result.mutableFileList;
 }
-- (int32_t) getFileCount {
-  return result.getFileCount;
+- (PBFileDescriptorProto*) fileAtIndex:(int32_t) index {
+  return [result fileAtIndex:index];
 }
-- (PBFileDescriptorProto*) getFile:(int32_t) index {
-  return [result getFile:index];
-}
-- (PBFileDescriptorSet_Builder*) setFile:(int32_t) index value:(PBFileDescriptorProto*) value {
-  [result.file_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBFileDescriptorSet_Builder*) setFile:(int32_t) index builderForValue:(PBFileDescriptorProto_Builder*) builderForValue {
-  [result.file_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBFileDescriptorSet_Builder*) addFileBuilder:(PBFileDescriptorProto_Builder*) builderForValue {
-  if (result.file_ == nil) {
-    result.file_ = [NSMutableArray array];
-  }
-  [result.file_ addObject:[builderForValue build]];
+- (PBFileDescriptorSet_Builder*) replaceFileAtIndex:(int32_t) index withFile:(PBFileDescriptorProto*) value {
+  [result.mutableFileList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBFileDescriptorSet_Builder*) addAllFile:(NSArray*) values {
-  if (result.file_ == nil) {
-    result.file_ = [NSMutableArray array];
+  if (result.mutableFileList == nil) {
+    result.mutableFileList = [NSMutableArray array];
   }
-  [result.file_ addObjectsFromArray:values];
+  [result.mutableFileList addObjectsFromArray:values];
   return self;
 }
-- (PBFileDescriptorSet_Builder*) clearFile {
-  result.file_ = nil;
+- (PBFileDescriptorSet_Builder*) clearFileList {
+  result.mutableFileList = nil;
   return self;
 }
 - (PBFileDescriptorSet_Builder*) addFile:(PBFileDescriptorProto*) value {
-  if (result.file_ == nil) {
-    result.file_ = [NSMutableArray array];
+  if (result.mutableFileList == nil) {
+    result.mutableFileList = [NSMutableArray array];
   }
-  [result.file_ addObject:value];
+  [result.mutableFileList addObject:value];
   return self;
 }
+@end
+
+@interface PBFileDescriptorProto ()
+@property BOOL hasName;
+@property (retain) NSString* name;
+@property BOOL hasPackage;
+@property (retain) NSString* package;
+@property (retain) NSMutableArray* mutableDependencyList;
+@property (retain) NSMutableArray* mutableMessageTypeList;
+@property (retain) NSMutableArray* mutableEnumTypeList;
+@property (retain) NSMutableArray* mutableServiceList;
+@property (retain) NSMutableArray* mutableExtensionList;
+@property BOOL hasOptions;
+@property (retain) PBFileOptions* options;
 @end
 
 @implementation PBFileDescriptorProto
 
 @synthesize hasName;
-@synthesize name_;
+@synthesize name;
 @synthesize hasPackage;
-@synthesize package_;
-@synthesize dependency_;
-@synthesize messageType_;
-@synthesize enumType_;
-@synthesize service_;
-@synthesize extension_;
+@synthesize package;
+@synthesize mutableDependencyList;
+@synthesize mutableMessageTypeList;
+@synthesize mutableEnumTypeList;
+@synthesize mutableServiceList;
+@synthesize mutableExtensionList;
 @synthesize hasOptions;
-@synthesize options_;
+@synthesize options;
 - (void) dealloc {
   self.hasName = NO;
-  self.name_ = nil;
+  self.name = nil;
   self.hasPackage = NO;
-  self.package_ = nil;
-  self.dependency_ = nil;
-  self.messageType_ = nil;
-  self.enumType_ = nil;
-  self.service_ = nil;
-  self.extension_ = nil;
+  self.package = nil;
+  self.mutableDependencyList = nil;
+  self.mutableMessageTypeList = nil;
+  self.mutableEnumTypeList = nil;
+  self.mutableServiceList = nil;
+  self.mutableExtensionList = nil;
   self.hasOptions = NO;
-  self.options_ = nil;
+  self.options = nil;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.name_ = @"";
-    self.package_ = @"";
+    self.name = @"";
+    self.package = @"";
   }
   return self;
 }
@@ -728,54 +731,43 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable];
 }
 
-- (BOOL) hasName { return hasName; }
-- (NSString*) getName { return name_; }
 
-- (BOOL) hasPackage { return hasPackage; }
-- (NSString*) getPackage { return package_; }
 
-- (NSArray*) getDependencyList {
-  return dependency_;
+- (NSArray*) dependencyList {
+  return mutableDependencyList;
 }
-- (int32_t) getDependencyCount { return dependency_.count; }
-- (NSString*) getDependency:(int32_t) index {
-  return [dependency_ objectAtIndex:index];
+- (NSString*) dependencyAtIndex:(int32_t) index {
+  return [mutableDependencyList objectAtIndex:index];
 }
 
-- (NSArray*) getMessageTypeList {
-  return messageType_;
+- (NSArray*) messageTypeList {
+  return mutableMessageTypeList;
 }
-- (int32_t) getMessageTypeCount { return messageType_.count; }
-- (PBDescriptorProto*) getMessageType:(int32_t) index {
-  return [messageType_ objectAtIndex:index];
-}
-
-- (NSArray*) getEnumTypeList {
-  return enumType_;
-}
-- (int32_t) getEnumTypeCount { return enumType_.count; }
-- (PBEnumDescriptorProto*) getEnumType:(int32_t) index {
-  return [enumType_ objectAtIndex:index];
+- (PBDescriptorProto*) messageTypeAtIndex:(int32_t) index {
+  return [mutableMessageTypeList objectAtIndex:index];
 }
 
-- (NSArray*) getServiceList {
-  return service_;
+- (NSArray*) enumTypeList {
+  return mutableEnumTypeList;
 }
-- (int32_t) getServiceCount { return service_.count; }
-- (PBServiceDescriptorProto*) getService:(int32_t) index {
-  return [service_ objectAtIndex:index];
-}
-
-- (NSArray*) getExtensionList {
-  return extension_;
-}
-- (int32_t) getExtensionCount { return extension_.count; }
-- (PBFieldDescriptorProto*) getExtension:(int32_t) index {
-  return [extension_ objectAtIndex:index];
+- (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index {
+  return [mutableEnumTypeList objectAtIndex:index];
 }
 
-- (BOOL) hasOptions { return hasOptions; }
-- (PBFileOptions*) getOptions { return options_; }
+- (NSArray*) serviceList {
+  return mutableServiceList;
+}
+- (PBServiceDescriptorProto*) serviceAtIndex:(int32_t) index {
+  return [mutableServiceList objectAtIndex:index];
+}
+
+- (NSArray*) extensionList {
+  return mutableExtensionList;
+}
+- (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index {
+  return [mutableExtensionList objectAtIndex:index];
+}
+
 
 - (BOOL) isInitialized {
   return true;
@@ -783,28 +775,28 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
-    [output writeString:1 value:self.getName];
+    [output writeString:1 value:self.name];
   }
   if (hasPackage) {
-    [output writeString:2 value:self.getPackage];
+    [output writeString:2 value:self.package];
   }
-  for (NSString* element in self.getDependencyList) {
+  for (NSString* element in self.mutableDependencyList) {
     [output writeString:3 value:element];
   }
-  for (PBDescriptorProto* element in self.getMessageTypeList) {
+  for (PBDescriptorProto* element in self.messageTypeList) {
     [output writeMessage:4 value:element];
   }
-  for (PBEnumDescriptorProto* element in self.getEnumTypeList) {
+  for (PBEnumDescriptorProto* element in self.enumTypeList) {
     [output writeMessage:5 value:element];
   }
-  for (PBServiceDescriptorProto* element in self.getServiceList) {
+  for (PBServiceDescriptorProto* element in self.serviceList) {
     [output writeMessage:6 value:element];
   }
-  for (PBFieldDescriptorProto* element in self.getExtensionList) {
+  for (PBFieldDescriptorProto* element in self.extensionList) {
     [output writeMessage:7 value:element];
   }
   if (self.hasOptions) {
-    [output writeMessage:8 value:self.getOptions];
+    [output writeMessage:8 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -815,28 +807,28 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 
   size = 0;
   if (hasName) {
-    size += computeStringSize(1, self.getName);
+    size += computeStringSize(1, self.name);
   }
   if (hasPackage) {
-    size += computeStringSize(2, self.getPackage);
+    size += computeStringSize(2, self.package);
   }
-  for (NSString* element in self.getDependencyList) {
+  for (NSString* element in self.mutableDependencyList) {
     size += computeStringSize(3, element);
   }
-  for (PBDescriptorProto* element in self.getMessageTypeList) {
+  for (PBDescriptorProto* element in self.messageTypeList) {
     size += computeMessageSize(4, element);
   }
-  for (PBEnumDescriptorProto* element in self.getEnumTypeList) {
+  for (PBEnumDescriptorProto* element in self.enumTypeList) {
     size += computeMessageSize(5, element);
   }
-  for (PBServiceDescriptorProto* element in self.getServiceList) {
+  for (PBServiceDescriptorProto* element in self.serviceList) {
     size += computeMessageSize(6, element);
   }
-  for (PBFieldDescriptorProto* element in self.getExtensionList) {
+  for (PBFieldDescriptorProto* element in self.extensionList) {
     size += computeMessageSize(7, element);
   }
   if (self.hasOptions) {
-    size += computeMessageSize(8, self.getOptions);
+    size += computeMessageSize(8, self.options);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -936,43 +928,43 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (PBFileDescriptorProto_Builder*) mergeFromPBFileDescriptorProto:(PBFileDescriptorProto*) other {
   if (other == [PBFileDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
-    [self setName:other.getName];
+    [self setName:other.name];
   }
   if (other.hasPackage) {
-    [self setPackage:other.getPackage];
+    [self setPackage:other.package];
   }
-  if (other.dependency_.count > 0) {
-    if (result.dependency_ == nil) {
-      result.dependency_ = [NSMutableArray array];
+  if (other.mutableDependencyList.count > 0) {
+    if (result.mutableDependencyList == nil) {
+      result.mutableDependencyList = [NSMutableArray array];
     }
-    [result.dependency_ addObjectsFromArray:other.dependency_];
+    [result.mutableDependencyList addObjectsFromArray:other.mutableDependencyList];
   }
-  if (other.messageType_.count > 0) {
-    if (result.messageType_ == nil) {
-      result.messageType_ = [NSMutableArray array];
+  if (other.mutableMessageTypeList.count > 0) {
+    if (result.mutableMessageTypeList == nil) {
+      result.mutableMessageTypeList = [NSMutableArray array];
     }
-    [result.messageType_ addObjectsFromArray:other.messageType_];
+    [result.mutableMessageTypeList addObjectsFromArray:other.mutableMessageTypeList];
   }
-  if (other.enumType_.count > 0) {
-    if (result.enumType_ == nil) {
-      result.enumType_ = [NSMutableArray array];
+  if (other.mutableEnumTypeList.count > 0) {
+    if (result.mutableEnumTypeList == nil) {
+      result.mutableEnumTypeList = [NSMutableArray array];
     }
-    [result.enumType_ addObjectsFromArray:other.enumType_];
+    [result.mutableEnumTypeList addObjectsFromArray:other.mutableEnumTypeList];
   }
-  if (other.service_.count > 0) {
-    if (result.service_ == nil) {
-      result.service_ = [NSMutableArray array];
+  if (other.mutableServiceList.count > 0) {
+    if (result.mutableServiceList == nil) {
+      result.mutableServiceList = [NSMutableArray array];
     }
-    [result.service_ addObjectsFromArray:other.service_];
+    [result.mutableServiceList addObjectsFromArray:other.mutableServiceList];
   }
-  if (other.extension_.count > 0) {
-    if (result.extension_ == nil) {
-      result.extension_ = [NSMutableArray array];
+  if (other.mutableExtensionList.count > 0) {
+    if (result.mutableExtensionList == nil) {
+      result.mutableExtensionList = [NSMutableArray array];
     }
-    [result.extension_ addObjectsFromArray:other.extension_];
+    [result.mutableExtensionList addObjectsFromArray:other.mutableExtensionList];
   }
   if (other.hasOptions) {
-    [self mergeOptions:other.getOptions];
+    [self mergeOptions:other.options];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1036,7 +1028,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
       case 66: {
         PBFileOptions_Builder* subBuilder = [PBFileOptions newBuilder];
         if (self.hasOptions) {
-          [subBuilder mergeFromPBFileOptions:self.getOptions];
+          [subBuilder mergeFromPBFileOptions:self.options];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptions:[subBuilder buildPartial]];
@@ -1050,307 +1042,258 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (BOOL) hasName {
   return result.hasName;
 }
-- (NSString*) getName {
-  return result.getName;
+- (NSString*) name {
+  return result.name;
 }
 - (PBFileDescriptorProto_Builder*) setName:(NSString*) value {
   result.hasName = YES;
-  result.name_ = value;
+  result.name = value;
   return self;
 }
 - (PBFileDescriptorProto_Builder*) clearName {
   result.hasName = NO;
-  result.name_ = @"";
+  result.name = @"";
   return self;
 }
 
 - (BOOL) hasPackage {
   return result.hasPackage;
 }
-- (NSString*) getPackage {
-  return result.getPackage;
+- (NSString*) package {
+  return result.package;
 }
 - (PBFileDescriptorProto_Builder*) setPackage:(NSString*) value {
   result.hasPackage = YES;
-  result.package_ = value;
+  result.package = value;
   return self;
 }
 - (PBFileDescriptorProto_Builder*) clearPackage {
   result.hasPackage = NO;
-  result.package_ = @"";
+  result.package = @"";
   return self;
 }
 
-- (NSArray*) getDependencyList {
-  if (result.dependency_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithArray:result.dependency_];
+- (NSArray*) dependencyList {
+  if (result.mutableDependencyList == nil) { return [NSArray array]; }
+  return result.mutableDependencyList;
 }
-- (int32_t) getDependencyCount {
-  return result.getDependencyCount;
+- (NSString*) dependencyAtIndex:(int32_t) index {
+  return [result dependencyAtIndex:index];
 }
-- (NSString*) getDependency:(int32_t) index {
-  return [result getDependency:index];
-}
-- (PBFileDescriptorProto_Builder*) setDependency:(int32_t) index value:(NSString*) value {
-  [result.dependency_ replaceObjectAtIndex:index withObject:value];
+- (PBFileDescriptorProto_Builder*) replaceDependencyAtIndex:(int32_t) index withDependency:(NSString*) value {
+  [result.mutableDependencyList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addDependency:(NSString*) value {
-  if (result.dependency_ == nil) {
-    result.dependency_ = [NSMutableArray array];
+  if (result.mutableDependencyList == nil) {
+    result.mutableDependencyList = [NSMutableArray array];
   }
-  [result.dependency_ addObject:value];
+  [result.mutableDependencyList addObject:value];
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addAllDependency:(NSArray*) values {
-  if (result.dependency_ == nil) {
-    result.dependency_ = [NSMutableArray array];
+  if (result.mutableDependencyList == nil) {
+    result.mutableDependencyList = [NSMutableArray array];
   }
-  [result.dependency_ addObjectsFromArray:values];
+  [result.mutableDependencyList addObjectsFromArray:values];
   return self;
 }
-- (PBFileDescriptorProto_Builder*) clearDependency {
-  result.dependency_ = nil;
+- (PBFileDescriptorProto_Builder*) clearDependencyList {
+  result.mutableDependencyList = nil;
   return self;
 }
 
-- (NSArray*) getMessageTypeList {
-  if (result.messageType_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.messageType_];
+- (NSArray*) messageTypeList {
+  if (result.mutableMessageTypeList == nil) { return [NSArray array]; }
+  return result.mutableMessageTypeList;
 }
-- (int32_t) getMessageTypeCount {
-  return result.getMessageTypeCount;
+- (PBDescriptorProto*) messageTypeAtIndex:(int32_t) index {
+  return [result messageTypeAtIndex:index];
 }
-- (PBDescriptorProto*) getMessageType:(int32_t) index {
-  return [result getMessageType:index];
-}
-- (PBFileDescriptorProto_Builder*) setMessageType:(int32_t) index value:(PBDescriptorProto*) value {
-  [result.messageType_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBFileDescriptorProto_Builder*) setMessageType:(int32_t) index builderForValue:(PBDescriptorProto_Builder*) builderForValue {
-  [result.messageType_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBFileDescriptorProto_Builder*) addMessageTypeBuilder:(PBDescriptorProto_Builder*) builderForValue {
-  if (result.messageType_ == nil) {
-    result.messageType_ = [NSMutableArray array];
-  }
-  [result.messageType_ addObject:[builderForValue build]];
+- (PBFileDescriptorProto_Builder*) replaceMessageTypeAtIndex:(int32_t) index withMessageType:(PBDescriptorProto*) value {
+  [result.mutableMessageTypeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addAllMessageType:(NSArray*) values {
-  if (result.messageType_ == nil) {
-    result.messageType_ = [NSMutableArray array];
+  if (result.mutableMessageTypeList == nil) {
+    result.mutableMessageTypeList = [NSMutableArray array];
   }
-  [result.messageType_ addObjectsFromArray:values];
+  [result.mutableMessageTypeList addObjectsFromArray:values];
   return self;
 }
-- (PBFileDescriptorProto_Builder*) clearMessageType {
-  result.messageType_ = nil;
+- (PBFileDescriptorProto_Builder*) clearMessageTypeList {
+  result.mutableMessageTypeList = nil;
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addMessageType:(PBDescriptorProto*) value {
-  if (result.messageType_ == nil) {
-    result.messageType_ = [NSMutableArray array];
+  if (result.mutableMessageTypeList == nil) {
+    result.mutableMessageTypeList = [NSMutableArray array];
   }
-  [result.messageType_ addObject:value];
+  [result.mutableMessageTypeList addObject:value];
   return self;
 }
 
-- (NSArray*) getEnumTypeList {
-  if (result.enumType_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.enumType_];
+- (NSArray*) enumTypeList {
+  if (result.mutableEnumTypeList == nil) { return [NSArray array]; }
+  return result.mutableEnumTypeList;
 }
-- (int32_t) getEnumTypeCount {
-  return result.getEnumTypeCount;
+- (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index {
+  return [result enumTypeAtIndex:index];
 }
-- (PBEnumDescriptorProto*) getEnumType:(int32_t) index {
-  return [result getEnumType:index];
-}
-- (PBFileDescriptorProto_Builder*) setEnumType:(int32_t) index value:(PBEnumDescriptorProto*) value {
-  [result.enumType_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBFileDescriptorProto_Builder*) setEnumType:(int32_t) index builderForValue:(PBEnumDescriptorProto_Builder*) builderForValue {
-  [result.enumType_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBFileDescriptorProto_Builder*) addEnumTypeBuilder:(PBEnumDescriptorProto_Builder*) builderForValue {
-  if (result.enumType_ == nil) {
-    result.enumType_ = [NSMutableArray array];
-  }
-  [result.enumType_ addObject:[builderForValue build]];
+- (PBFileDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index withEnumType:(PBEnumDescriptorProto*) value {
+  [result.mutableEnumTypeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addAllEnumType:(NSArray*) values {
-  if (result.enumType_ == nil) {
-    result.enumType_ = [NSMutableArray array];
+  if (result.mutableEnumTypeList == nil) {
+    result.mutableEnumTypeList = [NSMutableArray array];
   }
-  [result.enumType_ addObjectsFromArray:values];
+  [result.mutableEnumTypeList addObjectsFromArray:values];
   return self;
 }
-- (PBFileDescriptorProto_Builder*) clearEnumType {
-  result.enumType_ = nil;
+- (PBFileDescriptorProto_Builder*) clearEnumTypeList {
+  result.mutableEnumTypeList = nil;
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addEnumType:(PBEnumDescriptorProto*) value {
-  if (result.enumType_ == nil) {
-    result.enumType_ = [NSMutableArray array];
+  if (result.mutableEnumTypeList == nil) {
+    result.mutableEnumTypeList = [NSMutableArray array];
   }
-  [result.enumType_ addObject:value];
+  [result.mutableEnumTypeList addObject:value];
   return self;
 }
 
-- (NSArray*) getServiceList {
-  if (result.service_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.service_];
+- (NSArray*) serviceList {
+  if (result.mutableServiceList == nil) { return [NSArray array]; }
+  return result.mutableServiceList;
 }
-- (int32_t) getServiceCount {
-  return result.getServiceCount;
+- (PBServiceDescriptorProto*) serviceAtIndex:(int32_t) index {
+  return [result serviceAtIndex:index];
 }
-- (PBServiceDescriptorProto*) getService:(int32_t) index {
-  return [result getService:index];
-}
-- (PBFileDescriptorProto_Builder*) setService:(int32_t) index value:(PBServiceDescriptorProto*) value {
-  [result.service_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBFileDescriptorProto_Builder*) setService:(int32_t) index builderForValue:(PBServiceDescriptorProto_Builder*) builderForValue {
-  [result.service_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBFileDescriptorProto_Builder*) addServiceBuilder:(PBServiceDescriptorProto_Builder*) builderForValue {
-  if (result.service_ == nil) {
-    result.service_ = [NSMutableArray array];
-  }
-  [result.service_ addObject:[builderForValue build]];
+- (PBFileDescriptorProto_Builder*) replaceServiceAtIndex:(int32_t) index withService:(PBServiceDescriptorProto*) value {
+  [result.mutableServiceList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addAllService:(NSArray*) values {
-  if (result.service_ == nil) {
-    result.service_ = [NSMutableArray array];
+  if (result.mutableServiceList == nil) {
+    result.mutableServiceList = [NSMutableArray array];
   }
-  [result.service_ addObjectsFromArray:values];
+  [result.mutableServiceList addObjectsFromArray:values];
   return self;
 }
-- (PBFileDescriptorProto_Builder*) clearService {
-  result.service_ = nil;
+- (PBFileDescriptorProto_Builder*) clearServiceList {
+  result.mutableServiceList = nil;
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addService:(PBServiceDescriptorProto*) value {
-  if (result.service_ == nil) {
-    result.service_ = [NSMutableArray array];
+  if (result.mutableServiceList == nil) {
+    result.mutableServiceList = [NSMutableArray array];
   }
-  [result.service_ addObject:value];
+  [result.mutableServiceList addObject:value];
   return self;
 }
 
-- (NSArray*) getExtensionList {
-  if (result.extension_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.extension_];
+- (NSArray*) extensionList {
+  if (result.mutableExtensionList == nil) { return [NSArray array]; }
+  return result.mutableExtensionList;
 }
-- (int32_t) getExtensionCount {
-  return result.getExtensionCount;
+- (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index {
+  return [result extensionAtIndex:index];
 }
-- (PBFieldDescriptorProto*) getExtension:(int32_t) index {
-  return [result getExtension:index];
-}
-- (PBFileDescriptorProto_Builder*) setExtension:(int32_t) index value:(PBFieldDescriptorProto*) value {
-  [result.extension_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBFileDescriptorProto_Builder*) setExtension:(int32_t) index builderForValue:(PBFieldDescriptorProto_Builder*) builderForValue {
-  [result.extension_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBFileDescriptorProto_Builder*) addExtensionBuilder:(PBFieldDescriptorProto_Builder*) builderForValue {
-  if (result.extension_ == nil) {
-    result.extension_ = [NSMutableArray array];
-  }
-  [result.extension_ addObject:[builderForValue build]];
+- (PBFileDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index withExtension:(PBFieldDescriptorProto*) value {
+  [result.mutableExtensionList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addAllExtension:(NSArray*) values {
-  if (result.extension_ == nil) {
-    result.extension_ = [NSMutableArray array];
+  if (result.mutableExtensionList == nil) {
+    result.mutableExtensionList = [NSMutableArray array];
   }
-  [result.extension_ addObjectsFromArray:values];
+  [result.mutableExtensionList addObjectsFromArray:values];
   return self;
 }
-- (PBFileDescriptorProto_Builder*) clearExtension {
-  result.extension_ = nil;
+- (PBFileDescriptorProto_Builder*) clearExtensionList {
+  result.mutableExtensionList = nil;
   return self;
 }
 - (PBFileDescriptorProto_Builder*) addExtension:(PBFieldDescriptorProto*) value {
-  if (result.extension_ == nil) {
-    result.extension_ = [NSMutableArray array];
+  if (result.mutableExtensionList == nil) {
+    result.mutableExtensionList = [NSMutableArray array];
   }
-  [result.extension_ addObject:value];
+  [result.mutableExtensionList addObject:value];
   return self;
 }
 
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
-- (PBFileOptions*) getOptions {
-  return result.getOptions;
+- (PBFileOptions*) options {
+  return result.options;
 }
 - (id<PBMessage_Builder>) setOptions:(PBFileOptions*) value {
   result.hasOptions = YES;
-  result.options_ = value;
+  result.options = value;
   return self;
 }
 - (id<PBMessage_Builder>) setOptionsBuilder:(PBFileOptions_Builder*) builderForValue {
-  result.hasOptions = YES;
-  result.options_ = [builderForValue build];
-  return self;
+  return [self setOptions:[builderForValue build]];
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBFileOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBFileOptions defaultInstance]) {
-    result.options_ =
-      [[[PBFileOptions newBuilderWithPBFileOptions:result.options_] mergeFromPBFileOptions:value] buildPartial];
+      result.options != [PBFileOptions defaultInstance]) {
+    result.options =
+      [[[PBFileOptions newBuilderWithPBFileOptions:result.options] mergeFromPBFileOptions:value] buildPartial];
   } else {
-    result.options_ = value;
+    result.options = value;
   }
   result.hasOptions = YES;
   return self;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBFileOptions defaultInstance];
+  result.options = [PBFileOptions defaultInstance];
   return self;
 }
+@end
+
+@interface PBDescriptorProto ()
+@property BOOL hasName;
+@property (retain) NSString* name;
+@property (retain) NSMutableArray* mutableFieldList;
+@property (retain) NSMutableArray* mutableExtensionList;
+@property (retain) NSMutableArray* mutableNestedTypeList;
+@property (retain) NSMutableArray* mutableEnumTypeList;
+@property (retain) NSMutableArray* mutableExtensionRangeList;
+@property BOOL hasOptions;
+@property (retain) PBMessageOptions* options;
 @end
 
 @implementation PBDescriptorProto
 
 @synthesize hasName;
-@synthesize name_;
-@synthesize field_;
-@synthesize extension_;
-@synthesize nestedType_;
-@synthesize enumType_;
-@synthesize extensionRange_;
+@synthesize name;
+@synthesize mutableFieldList;
+@synthesize mutableExtensionList;
+@synthesize mutableNestedTypeList;
+@synthesize mutableEnumTypeList;
+@synthesize mutableExtensionRangeList;
 @synthesize hasOptions;
-@synthesize options_;
+@synthesize options;
 - (void) dealloc {
   self.hasName = NO;
-  self.name_ = nil;
-  self.field_ = nil;
-  self.extension_ = nil;
-  self.nestedType_ = nil;
-  self.enumType_ = nil;
-  self.extensionRange_ = nil;
+  self.name = nil;
+  self.mutableFieldList = nil;
+  self.mutableExtensionList = nil;
+  self.mutableNestedTypeList = nil;
+  self.mutableEnumTypeList = nil;
+  self.mutableExtensionRangeList = nil;
   self.hasOptions = NO;
-  self.options_ = nil;
+  self.options = nil;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.name_ = @"";
+    self.name = @"";
   }
   return self;
 }
@@ -1377,51 +1320,42 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_fieldAccessorTable];
 }
 
-- (BOOL) hasName { return hasName; }
-- (NSString*) getName { return name_; }
 
-- (NSArray*) getFieldList {
-  return field_;
+- (NSArray*) fieldList {
+  return mutableFieldList;
 }
-- (int32_t) getFieldCount { return field_.count; }
-- (PBFieldDescriptorProto*) getField:(int32_t) index {
-  return [field_ objectAtIndex:index];
+- (PBFieldDescriptorProto*) fieldAtIndex:(int32_t) index {
+  return [mutableFieldList objectAtIndex:index];
 }
 
-- (NSArray*) getExtensionList {
-  return extension_;
+- (NSArray*) extensionList {
+  return mutableExtensionList;
 }
-- (int32_t) getExtensionCount { return extension_.count; }
-- (PBFieldDescriptorProto*) getExtension:(int32_t) index {
-  return [extension_ objectAtIndex:index];
-}
-
-- (NSArray*) getNestedTypeList {
-  return nestedType_;
-}
-- (int32_t) getNestedTypeCount { return nestedType_.count; }
-- (PBDescriptorProto*) getNestedType:(int32_t) index {
-  return [nestedType_ objectAtIndex:index];
+- (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index {
+  return [mutableExtensionList objectAtIndex:index];
 }
 
-- (NSArray*) getEnumTypeList {
-  return enumType_;
+- (NSArray*) nestedTypeList {
+  return mutableNestedTypeList;
 }
-- (int32_t) getEnumTypeCount { return enumType_.count; }
-- (PBEnumDescriptorProto*) getEnumType:(int32_t) index {
-  return [enumType_ objectAtIndex:index];
-}
-
-- (NSArray*) getExtensionRangeList {
-  return extensionRange_;
-}
-- (int32_t) getExtensionRangeCount { return extensionRange_.count; }
-- (PBExtensionRange*) getExtensionRange:(int32_t) index {
-  return [extensionRange_ objectAtIndex:index];
+- (PBDescriptorProto*) nestedTypeAtIndex:(int32_t) index {
+  return [mutableNestedTypeList objectAtIndex:index];
 }
 
-- (BOOL) hasOptions { return hasOptions; }
-- (PBMessageOptions*) getOptions { return options_; }
+- (NSArray*) enumTypeList {
+  return mutableEnumTypeList;
+}
+- (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index {
+  return [mutableEnumTypeList objectAtIndex:index];
+}
+
+- (NSArray*) extensionRangeList {
+  return mutableExtensionRangeList;
+}
+- (PBExtensionRange*) extensionRangeAtIndex:(int32_t) index {
+  return [mutableExtensionRangeList objectAtIndex:index];
+}
+
 
 - (BOOL) isInitialized {
   return true;
@@ -1429,25 +1363,25 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
-    [output writeString:1 value:self.getName];
+    [output writeString:1 value:self.name];
   }
-  for (PBFieldDescriptorProto* element in self.getFieldList) {
+  for (PBFieldDescriptorProto* element in self.fieldList) {
     [output writeMessage:2 value:element];
   }
-  for (PBDescriptorProto* element in self.getNestedTypeList) {
+  for (PBDescriptorProto* element in self.nestedTypeList) {
     [output writeMessage:3 value:element];
   }
-  for (PBEnumDescriptorProto* element in self.getEnumTypeList) {
+  for (PBEnumDescriptorProto* element in self.enumTypeList) {
     [output writeMessage:4 value:element];
   }
-  for (PBExtensionRange* element in self.getExtensionRangeList) {
+  for (PBExtensionRange* element in self.extensionRangeList) {
     [output writeMessage:5 value:element];
   }
-  for (PBFieldDescriptorProto* element in self.getExtensionList) {
+  for (PBFieldDescriptorProto* element in self.extensionList) {
     [output writeMessage:6 value:element];
   }
   if (self.hasOptions) {
-    [output writeMessage:7 value:self.getOptions];
+    [output writeMessage:7 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1458,25 +1392,25 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 
   size = 0;
   if (hasName) {
-    size += computeStringSize(1, self.getName);
+    size += computeStringSize(1, self.name);
   }
-  for (PBFieldDescriptorProto* element in self.getFieldList) {
+  for (PBFieldDescriptorProto* element in self.fieldList) {
     size += computeMessageSize(2, element);
   }
-  for (PBDescriptorProto* element in self.getNestedTypeList) {
+  for (PBDescriptorProto* element in self.nestedTypeList) {
     size += computeMessageSize(3, element);
   }
-  for (PBEnumDescriptorProto* element in self.getEnumTypeList) {
+  for (PBEnumDescriptorProto* element in self.enumTypeList) {
     size += computeMessageSize(4, element);
   }
-  for (PBExtensionRange* element in self.getExtensionRangeList) {
+  for (PBExtensionRange* element in self.extensionRangeList) {
     size += computeMessageSize(5, element);
   }
-  for (PBFieldDescriptorProto* element in self.getExtensionList) {
+  for (PBFieldDescriptorProto* element in self.extensionList) {
     size += computeMessageSize(6, element);
   }
   if (self.hasOptions) {
-    size += computeMessageSize(7, self.getOptions);
+    size += computeMessageSize(7, self.options);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1510,24 +1444,31 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 
 @end
 
+@interface PBExtensionRange ()
+@property BOOL hasStart;
+@property int32_t start;
+@property BOOL hasEnd;
+@property int32_t end;
+@end
+
 @implementation PBExtensionRange
 
 @synthesize hasStart;
-@synthesize start_;
+@synthesize start;
 @synthesize hasEnd;
-@synthesize end_;
+@synthesize end;
 - (void) dealloc {
   self.hasStart = NO;
-  self.start_ = 0;
+  self.start = 0;
   self.hasEnd = NO;
-  self.end_ = 0;
+  self.end = 0;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.start_ = 0;
-    self.end_ = 0;
+    self.start = 0;
+    self.end = 0;
   }
   return self;
 }
@@ -1554,11 +1495,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable];
 }
 
-- (BOOL) hasStart { return hasStart; }
-- (int32_t) getStart { return start_; }
 
-- (BOOL) hasEnd { return hasEnd; }
-- (int32_t) getEnd { return end_; }
 
 - (BOOL) isInitialized {
   return true;
@@ -1566,10 +1503,10 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasStart) {
-    [output writeInt32:1 value:self.getStart];
+    [output writeInt32:1 value:self.start];
   }
   if (hasEnd) {
-    [output writeInt32:2 value:self.getEnd];
+    [output writeInt32:2 value:self.end];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -1580,10 +1517,10 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 
   size = 0;
   if (hasStart) {
-    size += computeInt32Size(1, self.getStart);
+    size += computeInt32Size(1, self.start);
   }
   if (hasEnd) {
-    size += computeInt32Size(2, self.getEnd);
+    size += computeInt32Size(2, self.end);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -1683,10 +1620,10 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 - (PBExtensionRange_Builder*) mergeFromPBExtensionRange:(PBExtensionRange*) other {
   if (other == [PBExtensionRange defaultInstance]) return self;
   if (other.hasStart) {
-    [self setStart:other.getStart];
+    [self setStart:other.start];
   }
   if (other.hasEnd) {
-    [self setEnd:other.getEnd];
+    [self setEnd:other.end];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1727,34 +1664,34 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 - (BOOL) hasStart {
   return result.hasStart;
 }
-- (int32_t) getStart {
-  return result.getStart;
+- (int32_t) start {
+  return result.start;
 }
 - (PBExtensionRange_Builder*) setStart:(int32_t) value {
   result.hasStart = YES;
-  result.start_ = value;
+  result.start = value;
   return self;
 }
 - (PBExtensionRange_Builder*) clearStart {
   result.hasStart = NO;
-  result.start_ = 0;
+  result.start = 0;
   return self;
 }
 
 - (BOOL) hasEnd {
   return result.hasEnd;
 }
-- (int32_t) getEnd {
-  return result.getEnd;
+- (int32_t) end {
+  return result.end;
 }
 - (PBExtensionRange_Builder*) setEnd:(int32_t) value {
   result.hasEnd = YES;
-  result.end_ = value;
+  result.end = value;
   return self;
 }
 - (PBExtensionRange_Builder*) clearEnd {
   result.hasEnd = NO;
-  result.end_ = 0;
+  result.end = 0;
   return self;
 }
 @end
@@ -1825,40 +1762,40 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 - (PBDescriptorProto_Builder*) mergeFromPBDescriptorProto:(PBDescriptorProto*) other {
   if (other == [PBDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
-    [self setName:other.getName];
+    [self setName:other.name];
   }
-  if (other.field_.count > 0) {
-    if (result.field_ == nil) {
-      result.field_ = [NSMutableArray array];
+  if (other.mutableFieldList.count > 0) {
+    if (result.mutableFieldList == nil) {
+      result.mutableFieldList = [NSMutableArray array];
     }
-    [result.field_ addObjectsFromArray:other.field_];
+    [result.mutableFieldList addObjectsFromArray:other.mutableFieldList];
   }
-  if (other.extension_.count > 0) {
-    if (result.extension_ == nil) {
-      result.extension_ = [NSMutableArray array];
+  if (other.mutableExtensionList.count > 0) {
+    if (result.mutableExtensionList == nil) {
+      result.mutableExtensionList = [NSMutableArray array];
     }
-    [result.extension_ addObjectsFromArray:other.extension_];
+    [result.mutableExtensionList addObjectsFromArray:other.mutableExtensionList];
   }
-  if (other.nestedType_.count > 0) {
-    if (result.nestedType_ == nil) {
-      result.nestedType_ = [NSMutableArray array];
+  if (other.mutableNestedTypeList.count > 0) {
+    if (result.mutableNestedTypeList == nil) {
+      result.mutableNestedTypeList = [NSMutableArray array];
     }
-    [result.nestedType_ addObjectsFromArray:other.nestedType_];
+    [result.mutableNestedTypeList addObjectsFromArray:other.mutableNestedTypeList];
   }
-  if (other.enumType_.count > 0) {
-    if (result.enumType_ == nil) {
-      result.enumType_ = [NSMutableArray array];
+  if (other.mutableEnumTypeList.count > 0) {
+    if (result.mutableEnumTypeList == nil) {
+      result.mutableEnumTypeList = [NSMutableArray array];
     }
-    [result.enumType_ addObjectsFromArray:other.enumType_];
+    [result.mutableEnumTypeList addObjectsFromArray:other.mutableEnumTypeList];
   }
-  if (other.extensionRange_.count > 0) {
-    if (result.extensionRange_ == nil) {
-      result.extensionRange_ = [NSMutableArray array];
+  if (other.mutableExtensionRangeList.count > 0) {
+    if (result.mutableExtensionRangeList == nil) {
+      result.mutableExtensionRangeList = [NSMutableArray array];
     }
-    [result.extensionRange_ addObjectsFromArray:other.extensionRange_];
+    [result.mutableExtensionRangeList addObjectsFromArray:other.mutableExtensionRangeList];
   }
   if (other.hasOptions) {
-    [self mergeOptions:other.getOptions];
+    [self mergeOptions:other.options];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -1920,7 +1857,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
       case 58: {
         PBMessageOptions_Builder* subBuilder = [PBMessageOptions newBuilder];
         if (self.hasOptions) {
-          [subBuilder mergeFromPBMessageOptions:self.getOptions];
+          [subBuilder mergeFromPBMessageOptions:self.options];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptions:[subBuilder buildPartial]];
@@ -1934,321 +1871,268 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 - (BOOL) hasName {
   return result.hasName;
 }
-- (NSString*) getName {
-  return result.getName;
+- (NSString*) name {
+  return result.name;
 }
 - (PBDescriptorProto_Builder*) setName:(NSString*) value {
   result.hasName = YES;
-  result.name_ = value;
+  result.name = value;
   return self;
 }
 - (PBDescriptorProto_Builder*) clearName {
   result.hasName = NO;
-  result.name_ = @"";
+  result.name = @"";
   return self;
 }
 
-- (NSArray*) getFieldList {
-  if (result.field_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.field_];
+- (NSArray*) fieldList {
+  if (result.mutableFieldList == nil) { return [NSArray array]; }
+  return result.mutableFieldList;
 }
-- (int32_t) getFieldCount {
-  return result.getFieldCount;
+- (PBFieldDescriptorProto*) fieldAtIndex:(int32_t) index {
+  return [result fieldAtIndex:index];
 }
-- (PBFieldDescriptorProto*) getField:(int32_t) index {
-  return [result getField:index];
-}
-- (PBDescriptorProto_Builder*) setField:(int32_t) index value:(PBFieldDescriptorProto*) value {
-  [result.field_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBDescriptorProto_Builder*) setField:(int32_t) index builderForValue:(PBFieldDescriptorProto_Builder*) builderForValue {
-  [result.field_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBDescriptorProto_Builder*) addFieldBuilder:(PBFieldDescriptorProto_Builder*) builderForValue {
-  if (result.field_ == nil) {
-    result.field_ = [NSMutableArray array];
-  }
-  [result.field_ addObject:[builderForValue build]];
+- (PBDescriptorProto_Builder*) replaceFieldAtIndex:(int32_t) index withField:(PBFieldDescriptorProto*) value {
+  [result.mutableFieldList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBDescriptorProto_Builder*) addAllField:(NSArray*) values {
-  if (result.field_ == nil) {
-    result.field_ = [NSMutableArray array];
+  if (result.mutableFieldList == nil) {
+    result.mutableFieldList = [NSMutableArray array];
   }
-  [result.field_ addObjectsFromArray:values];
+  [result.mutableFieldList addObjectsFromArray:values];
   return self;
 }
-- (PBDescriptorProto_Builder*) clearField {
-  result.field_ = nil;
+- (PBDescriptorProto_Builder*) clearFieldList {
+  result.mutableFieldList = nil;
   return self;
 }
 - (PBDescriptorProto_Builder*) addField:(PBFieldDescriptorProto*) value {
-  if (result.field_ == nil) {
-    result.field_ = [NSMutableArray array];
+  if (result.mutableFieldList == nil) {
+    result.mutableFieldList = [NSMutableArray array];
   }
-  [result.field_ addObject:value];
+  [result.mutableFieldList addObject:value];
   return self;
 }
 
-- (NSArray*) getExtensionList {
-  if (result.extension_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.extension_];
+- (NSArray*) extensionList {
+  if (result.mutableExtensionList == nil) { return [NSArray array]; }
+  return result.mutableExtensionList;
 }
-- (int32_t) getExtensionCount {
-  return result.getExtensionCount;
+- (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index {
+  return [result extensionAtIndex:index];
 }
-- (PBFieldDescriptorProto*) getExtension:(int32_t) index {
-  return [result getExtension:index];
-}
-- (PBDescriptorProto_Builder*) setExtension:(int32_t) index value:(PBFieldDescriptorProto*) value {
-  [result.extension_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBDescriptorProto_Builder*) setExtension:(int32_t) index builderForValue:(PBFieldDescriptorProto_Builder*) builderForValue {
-  [result.extension_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBDescriptorProto_Builder*) addExtensionBuilder:(PBFieldDescriptorProto_Builder*) builderForValue {
-  if (result.extension_ == nil) {
-    result.extension_ = [NSMutableArray array];
-  }
-  [result.extension_ addObject:[builderForValue build]];
+- (PBDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index withExtension:(PBFieldDescriptorProto*) value {
+  [result.mutableExtensionList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBDescriptorProto_Builder*) addAllExtension:(NSArray*) values {
-  if (result.extension_ == nil) {
-    result.extension_ = [NSMutableArray array];
+  if (result.mutableExtensionList == nil) {
+    result.mutableExtensionList = [NSMutableArray array];
   }
-  [result.extension_ addObjectsFromArray:values];
+  [result.mutableExtensionList addObjectsFromArray:values];
   return self;
 }
-- (PBDescriptorProto_Builder*) clearExtension {
-  result.extension_ = nil;
+- (PBDescriptorProto_Builder*) clearExtensionList {
+  result.mutableExtensionList = nil;
   return self;
 }
 - (PBDescriptorProto_Builder*) addExtension:(PBFieldDescriptorProto*) value {
-  if (result.extension_ == nil) {
-    result.extension_ = [NSMutableArray array];
+  if (result.mutableExtensionList == nil) {
+    result.mutableExtensionList = [NSMutableArray array];
   }
-  [result.extension_ addObject:value];
+  [result.mutableExtensionList addObject:value];
   return self;
 }
 
-- (NSArray*) getNestedTypeList {
-  if (result.nestedType_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.nestedType_];
+- (NSArray*) nestedTypeList {
+  if (result.mutableNestedTypeList == nil) { return [NSArray array]; }
+  return result.mutableNestedTypeList;
 }
-- (int32_t) getNestedTypeCount {
-  return result.getNestedTypeCount;
+- (PBDescriptorProto*) nestedTypeAtIndex:(int32_t) index {
+  return [result nestedTypeAtIndex:index];
 }
-- (PBDescriptorProto*) getNestedType:(int32_t) index {
-  return [result getNestedType:index];
-}
-- (PBDescriptorProto_Builder*) setNestedType:(int32_t) index value:(PBDescriptorProto*) value {
-  [result.nestedType_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBDescriptorProto_Builder*) setNestedType:(int32_t) index builderForValue:(PBDescriptorProto_Builder*) builderForValue {
-  [result.nestedType_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBDescriptorProto_Builder*) addNestedTypeBuilder:(PBDescriptorProto_Builder*) builderForValue {
-  if (result.nestedType_ == nil) {
-    result.nestedType_ = [NSMutableArray array];
-  }
-  [result.nestedType_ addObject:[builderForValue build]];
+- (PBDescriptorProto_Builder*) replaceNestedTypeAtIndex:(int32_t) index withNestedType:(PBDescriptorProto*) value {
+  [result.mutableNestedTypeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBDescriptorProto_Builder*) addAllNestedType:(NSArray*) values {
-  if (result.nestedType_ == nil) {
-    result.nestedType_ = [NSMutableArray array];
+  if (result.mutableNestedTypeList == nil) {
+    result.mutableNestedTypeList = [NSMutableArray array];
   }
-  [result.nestedType_ addObjectsFromArray:values];
+  [result.mutableNestedTypeList addObjectsFromArray:values];
   return self;
 }
-- (PBDescriptorProto_Builder*) clearNestedType {
-  result.nestedType_ = nil;
+- (PBDescriptorProto_Builder*) clearNestedTypeList {
+  result.mutableNestedTypeList = nil;
   return self;
 }
 - (PBDescriptorProto_Builder*) addNestedType:(PBDescriptorProto*) value {
-  if (result.nestedType_ == nil) {
-    result.nestedType_ = [NSMutableArray array];
+  if (result.mutableNestedTypeList == nil) {
+    result.mutableNestedTypeList = [NSMutableArray array];
   }
-  [result.nestedType_ addObject:value];
+  [result.mutableNestedTypeList addObject:value];
   return self;
 }
 
-- (NSArray*) getEnumTypeList {
-  if (result.enumType_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.enumType_];
+- (NSArray*) enumTypeList {
+  if (result.mutableEnumTypeList == nil) { return [NSArray array]; }
+  return result.mutableEnumTypeList;
 }
-- (int32_t) getEnumTypeCount {
-  return result.getEnumTypeCount;
+- (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index {
+  return [result enumTypeAtIndex:index];
 }
-- (PBEnumDescriptorProto*) getEnumType:(int32_t) index {
-  return [result getEnumType:index];
-}
-- (PBDescriptorProto_Builder*) setEnumType:(int32_t) index value:(PBEnumDescriptorProto*) value {
-  [result.enumType_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBDescriptorProto_Builder*) setEnumType:(int32_t) index builderForValue:(PBEnumDescriptorProto_Builder*) builderForValue {
-  [result.enumType_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBDescriptorProto_Builder*) addEnumTypeBuilder:(PBEnumDescriptorProto_Builder*) builderForValue {
-  if (result.enumType_ == nil) {
-    result.enumType_ = [NSMutableArray array];
-  }
-  [result.enumType_ addObject:[builderForValue build]];
+- (PBDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index withEnumType:(PBEnumDescriptorProto*) value {
+  [result.mutableEnumTypeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBDescriptorProto_Builder*) addAllEnumType:(NSArray*) values {
-  if (result.enumType_ == nil) {
-    result.enumType_ = [NSMutableArray array];
+  if (result.mutableEnumTypeList == nil) {
+    result.mutableEnumTypeList = [NSMutableArray array];
   }
-  [result.enumType_ addObjectsFromArray:values];
+  [result.mutableEnumTypeList addObjectsFromArray:values];
   return self;
 }
-- (PBDescriptorProto_Builder*) clearEnumType {
-  result.enumType_ = nil;
+- (PBDescriptorProto_Builder*) clearEnumTypeList {
+  result.mutableEnumTypeList = nil;
   return self;
 }
 - (PBDescriptorProto_Builder*) addEnumType:(PBEnumDescriptorProto*) value {
-  if (result.enumType_ == nil) {
-    result.enumType_ = [NSMutableArray array];
+  if (result.mutableEnumTypeList == nil) {
+    result.mutableEnumTypeList = [NSMutableArray array];
   }
-  [result.enumType_ addObject:value];
+  [result.mutableEnumTypeList addObject:value];
   return self;
 }
 
-- (NSArray*) getExtensionRangeList {
-  if (result.extensionRange_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.extensionRange_];
+- (NSArray*) extensionRangeList {
+  if (result.mutableExtensionRangeList == nil) { return [NSArray array]; }
+  return result.mutableExtensionRangeList;
 }
-- (int32_t) getExtensionRangeCount {
-  return result.getExtensionRangeCount;
+- (PBExtensionRange*) extensionRangeAtIndex:(int32_t) index {
+  return [result extensionRangeAtIndex:index];
 }
-- (PBExtensionRange*) getExtensionRange:(int32_t) index {
-  return [result getExtensionRange:index];
-}
-- (PBDescriptorProto_Builder*) setExtensionRange:(int32_t) index value:(PBExtensionRange*) value {
-  [result.extensionRange_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBDescriptorProto_Builder*) setExtensionRange:(int32_t) index builderForValue:(PBExtensionRange_Builder*) builderForValue {
-  [result.extensionRange_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBDescriptorProto_Builder*) addExtensionRangeBuilder:(PBExtensionRange_Builder*) builderForValue {
-  if (result.extensionRange_ == nil) {
-    result.extensionRange_ = [NSMutableArray array];
-  }
-  [result.extensionRange_ addObject:[builderForValue build]];
+- (PBDescriptorProto_Builder*) replaceExtensionRangeAtIndex:(int32_t) index withExtensionRange:(PBExtensionRange*) value {
+  [result.mutableExtensionRangeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBDescriptorProto_Builder*) addAllExtensionRange:(NSArray*) values {
-  if (result.extensionRange_ == nil) {
-    result.extensionRange_ = [NSMutableArray array];
+  if (result.mutableExtensionRangeList == nil) {
+    result.mutableExtensionRangeList = [NSMutableArray array];
   }
-  [result.extensionRange_ addObjectsFromArray:values];
+  [result.mutableExtensionRangeList addObjectsFromArray:values];
   return self;
 }
-- (PBDescriptorProto_Builder*) clearExtensionRange {
-  result.extensionRange_ = nil;
+- (PBDescriptorProto_Builder*) clearExtensionRangeList {
+  result.mutableExtensionRangeList = nil;
   return self;
 }
 - (PBDescriptorProto_Builder*) addExtensionRange:(PBExtensionRange*) value {
-  if (result.extensionRange_ == nil) {
-    result.extensionRange_ = [NSMutableArray array];
+  if (result.mutableExtensionRangeList == nil) {
+    result.mutableExtensionRangeList = [NSMutableArray array];
   }
-  [result.extensionRange_ addObject:value];
+  [result.mutableExtensionRangeList addObject:value];
   return self;
 }
 
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
-- (PBMessageOptions*) getOptions {
-  return result.getOptions;
+- (PBMessageOptions*) options {
+  return result.options;
 }
 - (id<PBMessage_Builder>) setOptions:(PBMessageOptions*) value {
   result.hasOptions = YES;
-  result.options_ = value;
+  result.options = value;
   return self;
 }
 - (id<PBMessage_Builder>) setOptionsBuilder:(PBMessageOptions_Builder*) builderForValue {
-  result.hasOptions = YES;
-  result.options_ = [builderForValue build];
-  return self;
+  return [self setOptions:[builderForValue build]];
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBMessageOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBMessageOptions defaultInstance]) {
-    result.options_ =
-      [[[PBMessageOptions newBuilderWithPBMessageOptions:result.options_] mergeFromPBMessageOptions:value] buildPartial];
+      result.options != [PBMessageOptions defaultInstance]) {
+    result.options =
+      [[[PBMessageOptions newBuilderWithPBMessageOptions:result.options] mergeFromPBMessageOptions:value] buildPartial];
   } else {
-    result.options_ = value;
+    result.options = value;
   }
   result.hasOptions = YES;
   return self;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBMessageOptions defaultInstance];
+  result.options = [PBMessageOptions defaultInstance];
   return self;
 }
+@end
+
+@interface PBFieldDescriptorProto ()
+@property BOOL hasName;
+@property (retain) NSString* name;
+@property BOOL hasNumber;
+@property int32_t number;
+@property BOOL hasLabel;
+@property (retain) PBLabel* label;
+@property BOOL hasType;
+@property (retain) PBType* type;
+@property BOOL hasTypeName;
+@property (retain) NSString* typeName;
+@property BOOL hasExtendee;
+@property (retain) NSString* extendee;
+@property BOOL hasDefaultValue;
+@property (retain) NSString* defaultValue;
+@property BOOL hasOptions;
+@property (retain) PBFieldOptions* options;
 @end
 
 @implementation PBFieldDescriptorProto
 
 @synthesize hasName;
-@synthesize name_;
+@synthesize name;
 @synthesize hasNumber;
-@synthesize number_;
+@synthesize number;
 @synthesize hasLabel;
-@synthesize label_;
+@synthesize label;
 @synthesize hasType;
-@synthesize type_;
+@synthesize type;
 @synthesize hasTypeName;
-@synthesize typeName_;
+@synthesize typeName;
 @synthesize hasExtendee;
-@synthesize extendee_;
+@synthesize extendee;
 @synthesize hasDefaultValue;
-@synthesize defaultValue_;
+@synthesize defaultValue;
 @synthesize hasOptions;
-@synthesize options_;
+@synthesize options;
 - (void) dealloc {
   self.hasName = NO;
-  self.name_ = nil;
+  self.name = nil;
   self.hasNumber = NO;
-  self.number_ = 0;
+  self.number = 0;
   self.hasLabel = NO;
-  self.label_ = nil;
+  self.label = nil;
   self.hasType = NO;
-  self.type_ = nil;
+  self.type = nil;
   self.hasTypeName = NO;
-  self.typeName_ = nil;
+  self.typeName = nil;
   self.hasExtendee = NO;
-  self.extendee_ = nil;
+  self.extendee = nil;
   self.hasDefaultValue = NO;
-  self.defaultValue_ = nil;
+  self.defaultValue = nil;
   self.hasOptions = NO;
-  self.options_ = nil;
+  self.options = nil;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.name_ = @"";
-    self.number_ = 0;
-    self.label_ = [PBLabel LABEL_OPTIONAL];
-    self.type_ = [PBType TYPE_DOUBLE];
-    self.typeName_ = @"";
-    self.extendee_ = @"";
-    self.defaultValue_ = @"";
+    self.name = @"";
+    self.number = 0;
+    self.label = [PBLabel LABEL_OPTIONAL];
+    self.type = [PBType TYPE_DOUBLE];
+    self.typeName = @"";
+    self.extendee = @"";
+    self.defaultValue = @"";
   }
   return self;
 }
@@ -2275,29 +2159,13 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable];
 }
 
-- (BOOL) hasName { return hasName; }
-- (NSString*) getName { return name_; }
 
-- (BOOL) hasNumber { return hasNumber; }
-- (int32_t) getNumber { return number_; }
 
-- (BOOL) hasLabel { return hasLabel; }
-- (PBLabel*) getLabel { return label_; }
 
-- (BOOL) hasType { return hasType; }
-- (PBType*) getType { return type_; }
 
-- (BOOL) hasTypeName { return hasTypeName; }
-- (NSString*) getTypeName { return typeName_; }
 
-- (BOOL) hasExtendee { return hasExtendee; }
-- (NSString*) getExtendee { return extendee_; }
 
-- (BOOL) hasDefaultValue { return hasDefaultValue; }
-- (NSString*) getDefaultValue { return defaultValue_; }
 
-- (BOOL) hasOptions { return hasOptions; }
-- (PBFieldOptions*) getOptions { return options_; }
 
 - (BOOL) isInitialized {
   return true;
@@ -2305,28 +2173,28 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
-    [output writeString:1 value:self.getName];
+    [output writeString:1 value:self.name];
   }
   if (hasExtendee) {
-    [output writeString:2 value:self.getExtendee];
+    [output writeString:2 value:self.extendee];
   }
   if (hasNumber) {
-    [output writeInt32:3 value:self.getNumber];
+    [output writeInt32:3 value:self.number];
   }
   if (self.hasLabel) {
-    [output writeEnum:4 value:self.getLabel.number];
+    [output writeEnum:4 value:self.label.number];
   }
   if (self.hasType) {
-    [output writeEnum:5 value:self.getType.number];
+    [output writeEnum:5 value:self.type.number];
   }
   if (hasTypeName) {
-    [output writeString:6 value:self.getTypeName];
+    [output writeString:6 value:self.typeName];
   }
   if (hasDefaultValue) {
-    [output writeString:7 value:self.getDefaultValue];
+    [output writeString:7 value:self.defaultValue];
   }
   if (self.hasOptions) {
-    [output writeMessage:8 value:self.getOptions];
+    [output writeMessage:8 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2337,28 +2205,28 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
 
   size = 0;
   if (hasName) {
-    size += computeStringSize(1, self.getName);
+    size += computeStringSize(1, self.name);
   }
   if (hasExtendee) {
-    size += computeStringSize(2, self.getExtendee);
+    size += computeStringSize(2, self.extendee);
   }
   if (hasNumber) {
-    size += computeInt32Size(3, self.getNumber);
+    size += computeInt32Size(3, self.number);
   }
   if (self.hasLabel) {
-    size += computeEnumSize(4, self.getLabel.number);
+    size += computeEnumSize(4, self.label.number);
   }
   if (self.hasType) {
-    size += computeEnumSize(5, self.getType.number);
+    size += computeEnumSize(5, self.type.number);
   }
   if (hasTypeName) {
-    size += computeStringSize(6, self.getTypeName);
+    size += computeStringSize(6, self.typeName);
   }
   if (hasDefaultValue) {
-    size += computeStringSize(7, self.getDefaultValue);
+    size += computeStringSize(7, self.defaultValue);
   }
   if (self.hasOptions) {
-    size += computeMessageSize(8, self.getOptions);
+    size += computeMessageSize(8, self.options);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -2390,6 +2258,11 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   return [[PBFieldDescriptorProto newBuilder] mergeFromPBFieldDescriptorProto:prototype];
 }
 
+@end
+
+@interface PBType ()
+@property int32_t index;
+@property int32_t value;
 @end
 
 @implementation PBType
@@ -2527,6 +2400,11 @@ static PBType* TYPE_SINT64 = nil;
 }
 @end
 
+@interface PBLabel ()
+@property int32_t index;
+@property int32_t value;
+@end
+
 @implementation PBLabel
 @synthesize index;
 @synthesize value;
@@ -2653,28 +2531,28 @@ static PBLabel* LABEL_REPEATED = nil;
 - (PBFieldDescriptorProto_Builder*) mergeFromPBFieldDescriptorProto:(PBFieldDescriptorProto*) other {
   if (other == [PBFieldDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
-    [self setName:other.getName];
+    [self setName:other.name];
   }
   if (other.hasNumber) {
-    [self setNumber:other.getNumber];
+    [self setNumber:other.number];
   }
   if (other.hasLabel) {
-    [self setLabel:other.getLabel];
+    [self setLabel:other.label];
   }
   if (other.hasType) {
-    [self setType:other.getType];
+    [self setType:other.type];
   }
   if (other.hasTypeName) {
-    [self setTypeName:other.getTypeName];
+    [self setTypeName:other.typeName];
   }
   if (other.hasExtendee) {
-    [self setExtendee:other.getExtendee];
+    [self setExtendee:other.extendee];
   }
   if (other.hasDefaultValue) {
-    [self setDefaultValue:other.getDefaultValue];
+    [self setDefaultValue:other.defaultValue];
   }
   if (other.hasOptions) {
-    [self mergeOptions:other.getOptions];
+    [self mergeOptions:other.options];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -2742,7 +2620,7 @@ static PBLabel* LABEL_REPEATED = nil;
       case 66: {
         PBFieldOptions_Builder* subBuilder = [PBFieldOptions newBuilder];
         if (self.hasOptions) {
-          [subBuilder mergeFromPBFieldOptions:self.getOptions];
+          [subBuilder mergeFromPBFieldOptions:self.options];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptions:[subBuilder buildPartial]];
@@ -2756,175 +2634,181 @@ static PBLabel* LABEL_REPEATED = nil;
 - (BOOL) hasName {
   return result.hasName;
 }
-- (NSString*) getName {
-  return result.getName;
+- (NSString*) name {
+  return result.name;
 }
 - (PBFieldDescriptorProto_Builder*) setName:(NSString*) value {
   result.hasName = YES;
-  result.name_ = value;
+  result.name = value;
   return self;
 }
 - (PBFieldDescriptorProto_Builder*) clearName {
   result.hasName = NO;
-  result.name_ = @"";
+  result.name = @"";
   return self;
 }
 
 - (BOOL) hasNumber {
   return result.hasNumber;
 }
-- (int32_t) getNumber {
-  return result.getNumber;
+- (int32_t) number {
+  return result.number;
 }
 - (PBFieldDescriptorProto_Builder*) setNumber:(int32_t) value {
   result.hasNumber = YES;
-  result.number_ = value;
+  result.number = value;
   return self;
 }
 - (PBFieldDescriptorProto_Builder*) clearNumber {
   result.hasNumber = NO;
-  result.number_ = 0;
+  result.number = 0;
   return self;
 }
 
 - (BOOL) hasLabel {
   return result.hasLabel;
 }
-- (PBLabel*) getLabel {
-  return result.getLabel;
+- (PBLabel*) label {
+  return result.label;
 }
 - (PBFieldDescriptorProto_Builder*) setLabel:(PBLabel*) value {
   result.hasLabel = YES;
-  result.label_ = value;
+  result.label = value;
   return self;
 }
 - (PBFieldDescriptorProto_Builder*) clearLabel {
   result.hasLabel = NO;
-  result.label_ = [PBLabel LABEL_OPTIONAL];
+  result.label = [PBLabel LABEL_OPTIONAL];
   return self;
 }
 
 - (BOOL) hasType {
   return result.hasType;
 }
-- (PBType*) getType {
-  return result.getType;
+- (PBType*) type {
+  return result.type;
 }
 - (PBFieldDescriptorProto_Builder*) setType:(PBType*) value {
   result.hasType = YES;
-  result.type_ = value;
+  result.type = value;
   return self;
 }
 - (PBFieldDescriptorProto_Builder*) clearType {
   result.hasType = NO;
-  result.type_ = [PBType TYPE_DOUBLE];
+  result.type = [PBType TYPE_DOUBLE];
   return self;
 }
 
 - (BOOL) hasTypeName {
   return result.hasTypeName;
 }
-- (NSString*) getTypeName {
-  return result.getTypeName;
+- (NSString*) typeName {
+  return result.typeName;
 }
 - (PBFieldDescriptorProto_Builder*) setTypeName:(NSString*) value {
   result.hasTypeName = YES;
-  result.typeName_ = value;
+  result.typeName = value;
   return self;
 }
 - (PBFieldDescriptorProto_Builder*) clearTypeName {
   result.hasTypeName = NO;
-  result.typeName_ = @"";
+  result.typeName = @"";
   return self;
 }
 
 - (BOOL) hasExtendee {
   return result.hasExtendee;
 }
-- (NSString*) getExtendee {
-  return result.getExtendee;
+- (NSString*) extendee {
+  return result.extendee;
 }
 - (PBFieldDescriptorProto_Builder*) setExtendee:(NSString*) value {
   result.hasExtendee = YES;
-  result.extendee_ = value;
+  result.extendee = value;
   return self;
 }
 - (PBFieldDescriptorProto_Builder*) clearExtendee {
   result.hasExtendee = NO;
-  result.extendee_ = @"";
+  result.extendee = @"";
   return self;
 }
 
 - (BOOL) hasDefaultValue {
   return result.hasDefaultValue;
 }
-- (NSString*) getDefaultValue {
-  return result.getDefaultValue;
+- (NSString*) defaultValue {
+  return result.defaultValue;
 }
 - (PBFieldDescriptorProto_Builder*) setDefaultValue:(NSString*) value {
   result.hasDefaultValue = YES;
-  result.defaultValue_ = value;
+  result.defaultValue = value;
   return self;
 }
 - (PBFieldDescriptorProto_Builder*) clearDefaultValue {
   result.hasDefaultValue = NO;
-  result.defaultValue_ = @"";
+  result.defaultValue = @"";
   return self;
 }
 
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
-- (PBFieldOptions*) getOptions {
-  return result.getOptions;
+- (PBFieldOptions*) options {
+  return result.options;
 }
 - (id<PBMessage_Builder>) setOptions:(PBFieldOptions*) value {
   result.hasOptions = YES;
-  result.options_ = value;
+  result.options = value;
   return self;
 }
 - (id<PBMessage_Builder>) setOptionsBuilder:(PBFieldOptions_Builder*) builderForValue {
-  result.hasOptions = YES;
-  result.options_ = [builderForValue build];
-  return self;
+  return [self setOptions:[builderForValue build]];
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBFieldOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBFieldOptions defaultInstance]) {
-    result.options_ =
-      [[[PBFieldOptions newBuilderWithPBFieldOptions:result.options_] mergeFromPBFieldOptions:value] buildPartial];
+      result.options != [PBFieldOptions defaultInstance]) {
+    result.options =
+      [[[PBFieldOptions newBuilderWithPBFieldOptions:result.options] mergeFromPBFieldOptions:value] buildPartial];
   } else {
-    result.options_ = value;
+    result.options = value;
   }
   result.hasOptions = YES;
   return self;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBFieldOptions defaultInstance];
+  result.options = [PBFieldOptions defaultInstance];
   return self;
 }
+@end
+
+@interface PBEnumDescriptorProto ()
+@property BOOL hasName;
+@property (retain) NSString* name;
+@property (retain) NSMutableArray* mutableValueList;
+@property BOOL hasOptions;
+@property (retain) PBEnumOptions* options;
 @end
 
 @implementation PBEnumDescriptorProto
 
 @synthesize hasName;
-@synthesize name_;
-@synthesize value_;
+@synthesize name;
+@synthesize mutableValueList;
 @synthesize hasOptions;
-@synthesize options_;
+@synthesize options;
 - (void) dealloc {
   self.hasName = NO;
-  self.name_ = nil;
-  self.value_ = nil;
+  self.name = nil;
+  self.mutableValueList = nil;
   self.hasOptions = NO;
-  self.options_ = nil;
+  self.options = nil;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.name_ = @"";
+    self.name = @"";
   }
   return self;
 }
@@ -2951,19 +2835,14 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable];
 }
 
-- (BOOL) hasName { return hasName; }
-- (NSString*) getName { return name_; }
 
-- (NSArray*) getValueList {
-  return value_;
+- (NSArray*) valueList {
+  return mutableValueList;
 }
-- (int32_t) getValueCount { return value_.count; }
-- (PBEnumValueDescriptorProto*) getValue:(int32_t) index {
-  return [value_ objectAtIndex:index];
+- (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index {
+  return [mutableValueList objectAtIndex:index];
 }
 
-- (BOOL) hasOptions { return hasOptions; }
-- (PBEnumOptions*) getOptions { return options_; }
 
 - (BOOL) isInitialized {
   return true;
@@ -2971,13 +2850,13 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
-    [output writeString:1 value:self.getName];
+    [output writeString:1 value:self.name];
   }
-  for (PBEnumValueDescriptorProto* element in self.getValueList) {
+  for (PBEnumValueDescriptorProto* element in self.valueList) {
     [output writeMessage:2 value:element];
   }
   if (self.hasOptions) {
-    [output writeMessage:3 value:self.getOptions];
+    [output writeMessage:3 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -2988,13 +2867,13 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 
   size = 0;
   if (hasName) {
-    size += computeStringSize(1, self.getName);
+    size += computeStringSize(1, self.name);
   }
-  for (PBEnumValueDescriptorProto* element in self.getValueList) {
+  for (PBEnumValueDescriptorProto* element in self.valueList) {
     size += computeMessageSize(2, element);
   }
   if (self.hasOptions) {
-    size += computeMessageSize(3, self.getOptions);
+    size += computeMessageSize(3, self.options);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3094,16 +2973,16 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 - (PBEnumDescriptorProto_Builder*) mergeFromPBEnumDescriptorProto:(PBEnumDescriptorProto*) other {
   if (other == [PBEnumDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
-    [self setName:other.getName];
+    [self setName:other.name];
   }
-  if (other.value_.count > 0) {
-    if (result.value_ == nil) {
-      result.value_ = [NSMutableArray array];
+  if (other.mutableValueList.count > 0) {
+    if (result.mutableValueList == nil) {
+      result.mutableValueList = [NSMutableArray array];
     }
-    [result.value_ addObjectsFromArray:other.value_];
+    [result.mutableValueList addObjectsFromArray:other.mutableValueList];
   }
   if (other.hasOptions) {
-    [self mergeOptions:other.getOptions];
+    [self mergeOptions:other.options];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3141,7 +3020,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
       case 26: {
         PBEnumOptions_Builder* subBuilder = [PBEnumOptions newBuilder];
         if (self.hasOptions) {
-          [subBuilder mergeFromPBEnumOptions:self.getOptions];
+          [subBuilder mergeFromPBEnumOptions:self.options];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptions:[subBuilder buildPartial]];
@@ -3155,120 +3034,113 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 - (BOOL) hasName {
   return result.hasName;
 }
-- (NSString*) getName {
-  return result.getName;
+- (NSString*) name {
+  return result.name;
 }
 - (PBEnumDescriptorProto_Builder*) setName:(NSString*) value {
   result.hasName = YES;
-  result.name_ = value;
+  result.name = value;
   return self;
 }
 - (PBEnumDescriptorProto_Builder*) clearName {
   result.hasName = NO;
-  result.name_ = @"";
+  result.name = @"";
   return self;
 }
 
-- (NSArray*) getValueList {
-  if (result.value_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.value_];
+- (NSArray*) valueList {
+  if (result.mutableValueList == nil) { return [NSArray array]; }
+  return result.mutableValueList;
 }
-- (int32_t) getValueCount {
-  return result.getValueCount;
+- (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index {
+  return [result valueAtIndex:index];
 }
-- (PBEnumValueDescriptorProto*) getValue:(int32_t) index {
-  return [result getValue:index];
-}
-- (PBEnumDescriptorProto_Builder*) setValue:(int32_t) index value:(PBEnumValueDescriptorProto*) value {
-  [result.value_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBEnumDescriptorProto_Builder*) setValue:(int32_t) index builderForValue:(PBEnumValueDescriptorProto_Builder*) builderForValue {
-  [result.value_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBEnumDescriptorProto_Builder*) addValueBuilder:(PBEnumValueDescriptorProto_Builder*) builderForValue {
-  if (result.value_ == nil) {
-    result.value_ = [NSMutableArray array];
-  }
-  [result.value_ addObject:[builderForValue build]];
+- (PBEnumDescriptorProto_Builder*) replaceValueAtIndex:(int32_t) index withValue:(PBEnumValueDescriptorProto*) value {
+  [result.mutableValueList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBEnumDescriptorProto_Builder*) addAllValue:(NSArray*) values {
-  if (result.value_ == nil) {
-    result.value_ = [NSMutableArray array];
+  if (result.mutableValueList == nil) {
+    result.mutableValueList = [NSMutableArray array];
   }
-  [result.value_ addObjectsFromArray:values];
+  [result.mutableValueList addObjectsFromArray:values];
   return self;
 }
-- (PBEnumDescriptorProto_Builder*) clearValue {
-  result.value_ = nil;
+- (PBEnumDescriptorProto_Builder*) clearValueList {
+  result.mutableValueList = nil;
   return self;
 }
 - (PBEnumDescriptorProto_Builder*) addValue:(PBEnumValueDescriptorProto*) value {
-  if (result.value_ == nil) {
-    result.value_ = [NSMutableArray array];
+  if (result.mutableValueList == nil) {
+    result.mutableValueList = [NSMutableArray array];
   }
-  [result.value_ addObject:value];
+  [result.mutableValueList addObject:value];
   return self;
 }
 
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
-- (PBEnumOptions*) getOptions {
-  return result.getOptions;
+- (PBEnumOptions*) options {
+  return result.options;
 }
 - (id<PBMessage_Builder>) setOptions:(PBEnumOptions*) value {
   result.hasOptions = YES;
-  result.options_ = value;
+  result.options = value;
   return self;
 }
 - (id<PBMessage_Builder>) setOptionsBuilder:(PBEnumOptions_Builder*) builderForValue {
-  result.hasOptions = YES;
-  result.options_ = [builderForValue build];
-  return self;
+  return [self setOptions:[builderForValue build]];
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBEnumOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBEnumOptions defaultInstance]) {
-    result.options_ =
-      [[[PBEnumOptions newBuilderWithPBEnumOptions:result.options_] mergeFromPBEnumOptions:value] buildPartial];
+      result.options != [PBEnumOptions defaultInstance]) {
+    result.options =
+      [[[PBEnumOptions newBuilderWithPBEnumOptions:result.options] mergeFromPBEnumOptions:value] buildPartial];
   } else {
-    result.options_ = value;
+    result.options = value;
   }
   result.hasOptions = YES;
   return self;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBEnumOptions defaultInstance];
+  result.options = [PBEnumOptions defaultInstance];
   return self;
 }
+@end
+
+@interface PBEnumValueDescriptorProto ()
+@property BOOL hasName;
+@property (retain) NSString* name;
+@property BOOL hasNumber;
+@property int32_t number;
+@property BOOL hasOptions;
+@property (retain) PBEnumValueOptions* options;
 @end
 
 @implementation PBEnumValueDescriptorProto
 
 @synthesize hasName;
-@synthesize name_;
+@synthesize name;
 @synthesize hasNumber;
-@synthesize number_;
+@synthesize number;
 @synthesize hasOptions;
-@synthesize options_;
+@synthesize options;
 - (void) dealloc {
   self.hasName = NO;
-  self.name_ = nil;
+  self.name = nil;
   self.hasNumber = NO;
-  self.number_ = 0;
+  self.number = 0;
   self.hasOptions = NO;
-  self.options_ = nil;
+  self.options = nil;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.name_ = @"";
-    self.number_ = 0;
+    self.name = @"";
+    self.number = 0;
   }
   return self;
 }
@@ -3295,14 +3167,8 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable];
 }
 
-- (BOOL) hasName { return hasName; }
-- (NSString*) getName { return name_; }
 
-- (BOOL) hasNumber { return hasNumber; }
-- (int32_t) getNumber { return number_; }
 
-- (BOOL) hasOptions { return hasOptions; }
-- (PBEnumValueOptions*) getOptions { return options_; }
 
 - (BOOL) isInitialized {
   return true;
@@ -3310,13 +3176,13 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
-    [output writeString:1 value:self.getName];
+    [output writeString:1 value:self.name];
   }
   if (hasNumber) {
-    [output writeInt32:2 value:self.getNumber];
+    [output writeInt32:2 value:self.number];
   }
   if (self.hasOptions) {
-    [output writeMessage:3 value:self.getOptions];
+    [output writeMessage:3 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3327,13 +3193,13 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 
   size = 0;
   if (hasName) {
-    size += computeStringSize(1, self.getName);
+    size += computeStringSize(1, self.name);
   }
   if (hasNumber) {
-    size += computeInt32Size(2, self.getNumber);
+    size += computeInt32Size(2, self.number);
   }
   if (self.hasOptions) {
-    size += computeMessageSize(3, self.getOptions);
+    size += computeMessageSize(3, self.options);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3433,13 +3299,13 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 - (PBEnumValueDescriptorProto_Builder*) mergeFromPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) other {
   if (other == [PBEnumValueDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
-    [self setName:other.getName];
+    [self setName:other.name];
   }
   if (other.hasNumber) {
-    [self setNumber:other.getNumber];
+    [self setNumber:other.number];
   }
   if (other.hasOptions) {
-    [self mergeOptions:other.getOptions];
+    [self mergeOptions:other.options];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3475,7 +3341,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
       case 26: {
         PBEnumValueOptions_Builder* subBuilder = [PBEnumValueOptions newBuilder];
         if (self.hasOptions) {
-          [subBuilder mergeFromPBEnumValueOptions:self.getOptions];
+          [subBuilder mergeFromPBEnumValueOptions:self.options];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptions:[subBuilder buildPartial]];
@@ -3489,90 +3355,96 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 - (BOOL) hasName {
   return result.hasName;
 }
-- (NSString*) getName {
-  return result.getName;
+- (NSString*) name {
+  return result.name;
 }
 - (PBEnumValueDescriptorProto_Builder*) setName:(NSString*) value {
   result.hasName = YES;
-  result.name_ = value;
+  result.name = value;
   return self;
 }
 - (PBEnumValueDescriptorProto_Builder*) clearName {
   result.hasName = NO;
-  result.name_ = @"";
+  result.name = @"";
   return self;
 }
 
 - (BOOL) hasNumber {
   return result.hasNumber;
 }
-- (int32_t) getNumber {
-  return result.getNumber;
+- (int32_t) number {
+  return result.number;
 }
 - (PBEnumValueDescriptorProto_Builder*) setNumber:(int32_t) value {
   result.hasNumber = YES;
-  result.number_ = value;
+  result.number = value;
   return self;
 }
 - (PBEnumValueDescriptorProto_Builder*) clearNumber {
   result.hasNumber = NO;
-  result.number_ = 0;
+  result.number = 0;
   return self;
 }
 
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
-- (PBEnumValueOptions*) getOptions {
-  return result.getOptions;
+- (PBEnumValueOptions*) options {
+  return result.options;
 }
 - (id<PBMessage_Builder>) setOptions:(PBEnumValueOptions*) value {
   result.hasOptions = YES;
-  result.options_ = value;
+  result.options = value;
   return self;
 }
 - (id<PBMessage_Builder>) setOptionsBuilder:(PBEnumValueOptions_Builder*) builderForValue {
-  result.hasOptions = YES;
-  result.options_ = [builderForValue build];
-  return self;
+  return [self setOptions:[builderForValue build]];
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBEnumValueOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBEnumValueOptions defaultInstance]) {
-    result.options_ =
-      [[[PBEnumValueOptions newBuilderWithPBEnumValueOptions:result.options_] mergeFromPBEnumValueOptions:value] buildPartial];
+      result.options != [PBEnumValueOptions defaultInstance]) {
+    result.options =
+      [[[PBEnumValueOptions newBuilderWithPBEnumValueOptions:result.options] mergeFromPBEnumValueOptions:value] buildPartial];
   } else {
-    result.options_ = value;
+    result.options = value;
   }
   result.hasOptions = YES;
   return self;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBEnumValueOptions defaultInstance];
+  result.options = [PBEnumValueOptions defaultInstance];
   return self;
 }
+@end
+
+@interface PBServiceDescriptorProto ()
+@property BOOL hasName;
+@property (retain) NSString* name;
+@property (retain) NSMutableArray* mutableMethodList;
+@property BOOL hasOptions;
+@property (retain) PBServiceOptions* options;
 @end
 
 @implementation PBServiceDescriptorProto
 
 @synthesize hasName;
-@synthesize name_;
-@synthesize method_;
+@synthesize name;
+@synthesize mutableMethodList;
 @synthesize hasOptions;
-@synthesize options_;
+@synthesize options;
 - (void) dealloc {
   self.hasName = NO;
-  self.name_ = nil;
-  self.method_ = nil;
+  self.name = nil;
+  self.mutableMethodList = nil;
   self.hasOptions = NO;
-  self.options_ = nil;
+  self.options = nil;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.name_ = @"";
+    self.name = @"";
   }
   return self;
 }
@@ -3599,19 +3471,14 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable];
 }
 
-- (BOOL) hasName { return hasName; }
-- (NSString*) getName { return name_; }
 
-- (NSArray*) getMethodList {
-  return method_;
+- (NSArray*) methodList {
+  return mutableMethodList;
 }
-- (int32_t) getMethodCount { return method_.count; }
-- (PBMethodDescriptorProto*) getMethod:(int32_t) index {
-  return [method_ objectAtIndex:index];
+- (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index {
+  return [mutableMethodList objectAtIndex:index];
 }
 
-- (BOOL) hasOptions { return hasOptions; }
-- (PBServiceOptions*) getOptions { return options_; }
 
 - (BOOL) isInitialized {
   return true;
@@ -3619,13 +3486,13 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
-    [output writeString:1 value:self.getName];
+    [output writeString:1 value:self.name];
   }
-  for (PBMethodDescriptorProto* element in self.getMethodList) {
+  for (PBMethodDescriptorProto* element in self.methodList) {
     [output writeMessage:2 value:element];
   }
   if (self.hasOptions) {
-    [output writeMessage:3 value:self.getOptions];
+    [output writeMessage:3 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3636,13 +3503,13 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 
   size = 0;
   if (hasName) {
-    size += computeStringSize(1, self.getName);
+    size += computeStringSize(1, self.name);
   }
-  for (PBMethodDescriptorProto* element in self.getMethodList) {
+  for (PBMethodDescriptorProto* element in self.methodList) {
     size += computeMessageSize(2, element);
   }
   if (self.hasOptions) {
-    size += computeMessageSize(3, self.getOptions);
+    size += computeMessageSize(3, self.options);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -3742,16 +3609,16 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 - (PBServiceDescriptorProto_Builder*) mergeFromPBServiceDescriptorProto:(PBServiceDescriptorProto*) other {
   if (other == [PBServiceDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
-    [self setName:other.getName];
+    [self setName:other.name];
   }
-  if (other.method_.count > 0) {
-    if (result.method_ == nil) {
-      result.method_ = [NSMutableArray array];
+  if (other.mutableMethodList.count > 0) {
+    if (result.mutableMethodList == nil) {
+      result.mutableMethodList = [NSMutableArray array];
     }
-    [result.method_ addObjectsFromArray:other.method_];
+    [result.mutableMethodList addObjectsFromArray:other.mutableMethodList];
   }
   if (other.hasOptions) {
-    [self mergeOptions:other.getOptions];
+    [self mergeOptions:other.options];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -3789,7 +3656,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
       case 26: {
         PBServiceOptions_Builder* subBuilder = [PBServiceOptions newBuilder];
         if (self.hasOptions) {
-          [subBuilder mergeFromPBServiceOptions:self.getOptions];
+          [subBuilder mergeFromPBServiceOptions:self.options];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptions:[subBuilder buildPartial]];
@@ -3803,125 +3670,120 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 - (BOOL) hasName {
   return result.hasName;
 }
-- (NSString*) getName {
-  return result.getName;
+- (NSString*) name {
+  return result.name;
 }
 - (PBServiceDescriptorProto_Builder*) setName:(NSString*) value {
   result.hasName = YES;
-  result.name_ = value;
+  result.name = value;
   return self;
 }
 - (PBServiceDescriptorProto_Builder*) clearName {
   result.hasName = NO;
-  result.name_ = @"";
+  result.name = @"";
   return self;
 }
 
-- (NSArray*) getMethodList {
-  if (result.method_ == nil) { return [NSArray array]; }
-  return [NSArray arrayWithObjects:result.method_];
+- (NSArray*) methodList {
+  if (result.mutableMethodList == nil) { return [NSArray array]; }
+  return result.mutableMethodList;
 }
-- (int32_t) getMethodCount {
-  return result.getMethodCount;
+- (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index {
+  return [result methodAtIndex:index];
 }
-- (PBMethodDescriptorProto*) getMethod:(int32_t) index {
-  return [result getMethod:index];
-}
-- (PBServiceDescriptorProto_Builder*) setMethod:(int32_t) index value:(PBMethodDescriptorProto*) value {
-  [result.method_ replaceObjectAtIndex:index withObject:value];
-  return self;
-}
-- (PBServiceDescriptorProto_Builder*) setMethod:(int32_t) index builderForValue:(PBMethodDescriptorProto_Builder*) builderForValue {
-  [result.method_ replaceObjectAtIndex:index withObject:[builderForValue build]];
-  return self;
-}
-- (PBServiceDescriptorProto_Builder*) addMethodBuilder:(PBMethodDescriptorProto_Builder*) builderForValue {
-  if (result.method_ == nil) {
-    result.method_ = [NSMutableArray array];
-  }
-  [result.method_ addObject:[builderForValue build]];
+- (PBServiceDescriptorProto_Builder*) replaceMethodAtIndex:(int32_t) index withMethod:(PBMethodDescriptorProto*) value {
+  [result.mutableMethodList replaceObjectAtIndex:index withObject:value];
   return self;
 }
 - (PBServiceDescriptorProto_Builder*) addAllMethod:(NSArray*) values {
-  if (result.method_ == nil) {
-    result.method_ = [NSMutableArray array];
+  if (result.mutableMethodList == nil) {
+    result.mutableMethodList = [NSMutableArray array];
   }
-  [result.method_ addObjectsFromArray:values];
+  [result.mutableMethodList addObjectsFromArray:values];
   return self;
 }
-- (PBServiceDescriptorProto_Builder*) clearMethod {
-  result.method_ = nil;
+- (PBServiceDescriptorProto_Builder*) clearMethodList {
+  result.mutableMethodList = nil;
   return self;
 }
 - (PBServiceDescriptorProto_Builder*) addMethod:(PBMethodDescriptorProto*) value {
-  if (result.method_ == nil) {
-    result.method_ = [NSMutableArray array];
+  if (result.mutableMethodList == nil) {
+    result.mutableMethodList = [NSMutableArray array];
   }
-  [result.method_ addObject:value];
+  [result.mutableMethodList addObject:value];
   return self;
 }
 
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
-- (PBServiceOptions*) getOptions {
-  return result.getOptions;
+- (PBServiceOptions*) options {
+  return result.options;
 }
 - (id<PBMessage_Builder>) setOptions:(PBServiceOptions*) value {
   result.hasOptions = YES;
-  result.options_ = value;
+  result.options = value;
   return self;
 }
 - (id<PBMessage_Builder>) setOptionsBuilder:(PBServiceOptions_Builder*) builderForValue {
-  result.hasOptions = YES;
-  result.options_ = [builderForValue build];
-  return self;
+  return [self setOptions:[builderForValue build]];
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBServiceOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBServiceOptions defaultInstance]) {
-    result.options_ =
-      [[[PBServiceOptions newBuilderWithPBServiceOptions:result.options_] mergeFromPBServiceOptions:value] buildPartial];
+      result.options != [PBServiceOptions defaultInstance]) {
+    result.options =
+      [[[PBServiceOptions newBuilderWithPBServiceOptions:result.options] mergeFromPBServiceOptions:value] buildPartial];
   } else {
-    result.options_ = value;
+    result.options = value;
   }
   result.hasOptions = YES;
   return self;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBServiceOptions defaultInstance];
+  result.options = [PBServiceOptions defaultInstance];
   return self;
 }
+@end
+
+@interface PBMethodDescriptorProto ()
+@property BOOL hasName;
+@property (retain) NSString* name;
+@property BOOL hasInputType;
+@property (retain) NSString* inputType;
+@property BOOL hasOutputType;
+@property (retain) NSString* outputType;
+@property BOOL hasOptions;
+@property (retain) PBMethodOptions* options;
 @end
 
 @implementation PBMethodDescriptorProto
 
 @synthesize hasName;
-@synthesize name_;
+@synthesize name;
 @synthesize hasInputType;
-@synthesize inputType_;
+@synthesize inputType;
 @synthesize hasOutputType;
-@synthesize outputType_;
+@synthesize outputType;
 @synthesize hasOptions;
-@synthesize options_;
+@synthesize options;
 - (void) dealloc {
   self.hasName = NO;
-  self.name_ = nil;
+  self.name = nil;
   self.hasInputType = NO;
-  self.inputType_ = nil;
+  self.inputType = nil;
   self.hasOutputType = NO;
-  self.outputType_ = nil;
+  self.outputType = nil;
   self.hasOptions = NO;
-  self.options_ = nil;
+  self.options = nil;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.name_ = @"";
-    self.inputType_ = @"";
-    self.outputType_ = @"";
+    self.name = @"";
+    self.inputType = @"";
+    self.outputType = @"";
   }
   return self;
 }
@@ -3948,17 +3810,9 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable];
 }
 
-- (BOOL) hasName { return hasName; }
-- (NSString*) getName { return name_; }
 
-- (BOOL) hasInputType { return hasInputType; }
-- (NSString*) getInputType { return inputType_; }
 
-- (BOOL) hasOutputType { return hasOutputType; }
-- (NSString*) getOutputType { return outputType_; }
 
-- (BOOL) hasOptions { return hasOptions; }
-- (PBMethodOptions*) getOptions { return options_; }
 
 - (BOOL) isInitialized {
   return true;
@@ -3966,16 +3820,16 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
-    [output writeString:1 value:self.getName];
+    [output writeString:1 value:self.name];
   }
   if (hasInputType) {
-    [output writeString:2 value:self.getInputType];
+    [output writeString:2 value:self.inputType];
   }
   if (hasOutputType) {
-    [output writeString:3 value:self.getOutputType];
+    [output writeString:3 value:self.outputType];
   }
   if (self.hasOptions) {
-    [output writeMessage:4 value:self.getOptions];
+    [output writeMessage:4 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -3986,16 +3840,16 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 
   size = 0;
   if (hasName) {
-    size += computeStringSize(1, self.getName);
+    size += computeStringSize(1, self.name);
   }
   if (hasInputType) {
-    size += computeStringSize(2, self.getInputType);
+    size += computeStringSize(2, self.inputType);
   }
   if (hasOutputType) {
-    size += computeStringSize(3, self.getOutputType);
+    size += computeStringSize(3, self.outputType);
   }
   if (self.hasOptions) {
-    size += computeMessageSize(4, self.getOptions);
+    size += computeMessageSize(4, self.options);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4095,16 +3949,16 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 - (PBMethodDescriptorProto_Builder*) mergeFromPBMethodDescriptorProto:(PBMethodDescriptorProto*) other {
   if (other == [PBMethodDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
-    [self setName:other.getName];
+    [self setName:other.name];
   }
   if (other.hasInputType) {
-    [self setInputType:other.getInputType];
+    [self setInputType:other.inputType];
   }
   if (other.hasOutputType) {
-    [self setOutputType:other.getOutputType];
+    [self setOutputType:other.outputType];
   }
   if (other.hasOptions) {
-    [self mergeOptions:other.getOptions];
+    [self mergeOptions:other.options];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -4144,7 +3998,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
       case 34: {
         PBMethodOptions_Builder* subBuilder = [PBMethodOptions newBuilder];
         if (self.hasOptions) {
-          [subBuilder mergeFromPBMethodOptions:self.getOptions];
+          [subBuilder mergeFromPBMethodOptions:self.options];
         }
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self setOptions:[subBuilder buildPartial]];
@@ -4158,126 +4012,139 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 - (BOOL) hasName {
   return result.hasName;
 }
-- (NSString*) getName {
-  return result.getName;
+- (NSString*) name {
+  return result.name;
 }
 - (PBMethodDescriptorProto_Builder*) setName:(NSString*) value {
   result.hasName = YES;
-  result.name_ = value;
+  result.name = value;
   return self;
 }
 - (PBMethodDescriptorProto_Builder*) clearName {
   result.hasName = NO;
-  result.name_ = @"";
+  result.name = @"";
   return self;
 }
 
 - (BOOL) hasInputType {
   return result.hasInputType;
 }
-- (NSString*) getInputType {
-  return result.getInputType;
+- (NSString*) inputType {
+  return result.inputType;
 }
 - (PBMethodDescriptorProto_Builder*) setInputType:(NSString*) value {
   result.hasInputType = YES;
-  result.inputType_ = value;
+  result.inputType = value;
   return self;
 }
 - (PBMethodDescriptorProto_Builder*) clearInputType {
   result.hasInputType = NO;
-  result.inputType_ = @"";
+  result.inputType = @"";
   return self;
 }
 
 - (BOOL) hasOutputType {
   return result.hasOutputType;
 }
-- (NSString*) getOutputType {
-  return result.getOutputType;
+- (NSString*) outputType {
+  return result.outputType;
 }
 - (PBMethodDescriptorProto_Builder*) setOutputType:(NSString*) value {
   result.hasOutputType = YES;
-  result.outputType_ = value;
+  result.outputType = value;
   return self;
 }
 - (PBMethodDescriptorProto_Builder*) clearOutputType {
   result.hasOutputType = NO;
-  result.outputType_ = @"";
+  result.outputType = @"";
   return self;
 }
 
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
-- (PBMethodOptions*) getOptions {
-  return result.getOptions;
+- (PBMethodOptions*) options {
+  return result.options;
 }
 - (id<PBMessage_Builder>) setOptions:(PBMethodOptions*) value {
   result.hasOptions = YES;
-  result.options_ = value;
+  result.options = value;
   return self;
 }
 - (id<PBMessage_Builder>) setOptionsBuilder:(PBMethodOptions_Builder*) builderForValue {
-  result.hasOptions = YES;
-  result.options_ = [builderForValue build];
-  return self;
+  return [self setOptions:[builderForValue build]];
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBMethodOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBMethodOptions defaultInstance]) {
-    result.options_ =
-      [[[PBMethodOptions newBuilderWithPBMethodOptions:result.options_] mergeFromPBMethodOptions:value] buildPartial];
+      result.options != [PBMethodOptions defaultInstance]) {
+    result.options =
+      [[[PBMethodOptions newBuilderWithPBMethodOptions:result.options] mergeFromPBMethodOptions:value] buildPartial];
   } else {
-    result.options_ = value;
+    result.options = value;
   }
   result.hasOptions = YES;
   return self;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBMethodOptions defaultInstance];
+  result.options = [PBMethodOptions defaultInstance];
   return self;
 }
+@end
+
+@interface PBFileOptions ()
+@property BOOL hasJavaPackage;
+@property (retain) NSString* javaPackage;
+@property BOOL hasJavaOuterClassname;
+@property (retain) NSString* javaOuterClassname;
+@property BOOL hasJavaMultipleFiles;
+@property BOOL javaMultipleFiles;
+@property BOOL hasOptimizeFor;
+@property (retain) PBOptimizeMode* optimizeFor;
+@property BOOL hasObjectivecPackage;
+@property (retain) NSString* objectivecPackage;
+@property BOOL hasObjectivecClassPrefix;
+@property (retain) NSString* objectivecClassPrefix;
 @end
 
 @implementation PBFileOptions
 
 @synthesize hasJavaPackage;
-@synthesize javaPackage_;
+@synthesize javaPackage;
 @synthesize hasJavaOuterClassname;
-@synthesize javaOuterClassname_;
+@synthesize javaOuterClassname;
 @synthesize hasJavaMultipleFiles;
-@synthesize javaMultipleFiles_;
+@synthesize javaMultipleFiles;
 @synthesize hasOptimizeFor;
-@synthesize optimizeFor_;
+@synthesize optimizeFor;
 @synthesize hasObjectivecPackage;
-@synthesize objectivecPackage_;
+@synthesize objectivecPackage;
 @synthesize hasObjectivecClassPrefix;
-@synthesize objectivecClassPrefix_;
+@synthesize objectivecClassPrefix;
 - (void) dealloc {
   self.hasJavaPackage = NO;
-  self.javaPackage_ = nil;
+  self.javaPackage = nil;
   self.hasJavaOuterClassname = NO;
-  self.javaOuterClassname_ = nil;
+  self.javaOuterClassname = nil;
   self.hasJavaMultipleFiles = NO;
-  self.javaMultipleFiles_ = 0;
+  self.javaMultipleFiles = 0;
   self.hasOptimizeFor = NO;
-  self.optimizeFor_ = nil;
+  self.optimizeFor = nil;
   self.hasObjectivecPackage = NO;
-  self.objectivecPackage_ = nil;
+  self.objectivecPackage = nil;
   self.hasObjectivecClassPrefix = NO;
-  self.objectivecClassPrefix_ = nil;
+  self.objectivecClassPrefix = nil;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.javaPackage_ = @"";
-    self.javaOuterClassname_ = @"";
-    self.javaMultipleFiles_ = NO;
-    self.optimizeFor_ = [PBOptimizeMode CODE_SIZE];
-    self.objectivecPackage_ = @"";
-    self.objectivecClassPrefix_ = @"";
+    self.javaPackage = @"";
+    self.javaOuterClassname = @"";
+    self.javaMultipleFiles = NO;
+    self.optimizeFor = [PBOptimizeMode CODE_SIZE];
+    self.objectivecPackage = @"";
+    self.objectivecClassPrefix = @"";
   }
   return self;
 }
@@ -4304,23 +4171,11 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FileOptions_fieldAccessorTable];
 }
 
-- (BOOL) hasJavaPackage { return hasJavaPackage; }
-- (NSString*) getJavaPackage { return javaPackage_; }
 
-- (BOOL) hasJavaOuterClassname { return hasJavaOuterClassname; }
-- (NSString*) getJavaOuterClassname { return javaOuterClassname_; }
 
-- (BOOL) hasJavaMultipleFiles { return hasJavaMultipleFiles; }
-- (BOOL) getJavaMultipleFiles { return javaMultipleFiles_; }
 
-- (BOOL) hasOptimizeFor { return hasOptimizeFor; }
-- (PBOptimizeMode*) getOptimizeFor { return optimizeFor_; }
 
-- (BOOL) hasObjectivecPackage { return hasObjectivecPackage; }
-- (NSString*) getObjectivecPackage { return objectivecPackage_; }
 
-- (BOOL) hasObjectivecClassPrefix { return hasObjectivecClassPrefix; }
-- (NSString*) getObjectivecClassPrefix { return objectivecClassPrefix_; }
 
 - (BOOL) isInitialized {
   return true;
@@ -4328,22 +4183,22 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasJavaPackage) {
-    [output writeString:1 value:self.getJavaPackage];
+    [output writeString:1 value:self.javaPackage];
   }
   if (hasJavaOuterClassname) {
-    [output writeString:8 value:self.getJavaOuterClassname];
+    [output writeString:8 value:self.javaOuterClassname];
   }
   if (self.hasOptimizeFor) {
-    [output writeEnum:9 value:self.getOptimizeFor.number];
+    [output writeEnum:9 value:self.optimizeFor.number];
   }
   if (hasJavaMultipleFiles) {
-    [output writeBool:10 value:self.getJavaMultipleFiles];
+    [output writeBool:10 value:self.javaMultipleFiles];
   }
   if (hasObjectivecPackage) {
-    [output writeString:11 value:self.getObjectivecPackage];
+    [output writeString:11 value:self.objectivecPackage];
   }
   if (hasObjectivecClassPrefix) {
-    [output writeString:12 value:self.getObjectivecClassPrefix];
+    [output writeString:12 value:self.objectivecClassPrefix];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4354,22 +4209,22 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
 
   size = 0;
   if (hasJavaPackage) {
-    size += computeStringSize(1, self.getJavaPackage);
+    size += computeStringSize(1, self.javaPackage);
   }
   if (hasJavaOuterClassname) {
-    size += computeStringSize(8, self.getJavaOuterClassname);
+    size += computeStringSize(8, self.javaOuterClassname);
   }
   if (self.hasOptimizeFor) {
-    size += computeEnumSize(9, self.getOptimizeFor.number);
+    size += computeEnumSize(9, self.optimizeFor.number);
   }
   if (hasJavaMultipleFiles) {
-    size += computeBoolSize(10, self.getJavaMultipleFiles);
+    size += computeBoolSize(10, self.javaMultipleFiles);
   }
   if (hasObjectivecPackage) {
-    size += computeStringSize(11, self.getObjectivecPackage);
+    size += computeStringSize(11, self.objectivecPackage);
   }
   if (hasObjectivecClassPrefix) {
-    size += computeStringSize(12, self.getObjectivecClassPrefix);
+    size += computeStringSize(12, self.objectivecClassPrefix);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4401,6 +4256,11 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   return [[PBFileOptions newBuilder] mergeFromPBFileOptions:prototype];
 }
 
+@end
+
+@interface PBOptimizeMode ()
+@property int32_t index;
+@property int32_t value;
 @end
 
 @implementation PBOptimizeMode
@@ -4524,22 +4384,22 @@ static PBOptimizeMode* CODE_SIZE = nil;
 - (PBFileOptions_Builder*) mergeFromPBFileOptions:(PBFileOptions*) other {
   if (other == [PBFileOptions defaultInstance]) return self;
   if (other.hasJavaPackage) {
-    [self setJavaPackage:other.getJavaPackage];
+    [self setJavaPackage:other.javaPackage];
   }
   if (other.hasJavaOuterClassname) {
-    [self setJavaOuterClassname:other.getJavaOuterClassname];
+    [self setJavaOuterClassname:other.javaOuterClassname];
   }
   if (other.hasJavaMultipleFiles) {
-    [self setJavaMultipleFiles:other.getJavaMultipleFiles];
+    [self setJavaMultipleFiles:other.javaMultipleFiles];
   }
   if (other.hasOptimizeFor) {
-    [self setOptimizeFor:other.getOptimizeFor];
+    [self setOptimizeFor:other.optimizeFor];
   }
   if (other.hasObjectivecPackage) {
-    [self setObjectivecPackage:other.getObjectivecPackage];
+    [self setObjectivecPackage:other.objectivecPackage];
   }
   if (other.hasObjectivecClassPrefix) {
-    [self setObjectivecClassPrefix:other.getObjectivecClassPrefix];
+    [self setObjectivecClassPrefix:other.objectivecClassPrefix];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -4602,119 +4462,124 @@ static PBOptimizeMode* CODE_SIZE = nil;
 - (BOOL) hasJavaPackage {
   return result.hasJavaPackage;
 }
-- (NSString*) getJavaPackage {
-  return result.getJavaPackage;
+- (NSString*) javaPackage {
+  return result.javaPackage;
 }
 - (PBFileOptions_Builder*) setJavaPackage:(NSString*) value {
   result.hasJavaPackage = YES;
-  result.javaPackage_ = value;
+  result.javaPackage = value;
   return self;
 }
 - (PBFileOptions_Builder*) clearJavaPackage {
   result.hasJavaPackage = NO;
-  result.javaPackage_ = @"";
+  result.javaPackage = @"";
   return self;
 }
 
 - (BOOL) hasJavaOuterClassname {
   return result.hasJavaOuterClassname;
 }
-- (NSString*) getJavaOuterClassname {
-  return result.getJavaOuterClassname;
+- (NSString*) javaOuterClassname {
+  return result.javaOuterClassname;
 }
 - (PBFileOptions_Builder*) setJavaOuterClassname:(NSString*) value {
   result.hasJavaOuterClassname = YES;
-  result.javaOuterClassname_ = value;
+  result.javaOuterClassname = value;
   return self;
 }
 - (PBFileOptions_Builder*) clearJavaOuterClassname {
   result.hasJavaOuterClassname = NO;
-  result.javaOuterClassname_ = @"";
+  result.javaOuterClassname = @"";
   return self;
 }
 
 - (BOOL) hasJavaMultipleFiles {
   return result.hasJavaMultipleFiles;
 }
-- (BOOL) getJavaMultipleFiles {
-  return result.getJavaMultipleFiles;
+- (BOOL) javaMultipleFiles {
+  return result.javaMultipleFiles;
 }
 - (PBFileOptions_Builder*) setJavaMultipleFiles:(BOOL) value {
   result.hasJavaMultipleFiles = YES;
-  result.javaMultipleFiles_ = value;
+  result.javaMultipleFiles = value;
   return self;
 }
 - (PBFileOptions_Builder*) clearJavaMultipleFiles {
   result.hasJavaMultipleFiles = NO;
-  result.javaMultipleFiles_ = NO;
+  result.javaMultipleFiles = NO;
   return self;
 }
 
 - (BOOL) hasOptimizeFor {
   return result.hasOptimizeFor;
 }
-- (PBOptimizeMode*) getOptimizeFor {
-  return result.getOptimizeFor;
+- (PBOptimizeMode*) optimizeFor {
+  return result.optimizeFor;
 }
 - (PBFileOptions_Builder*) setOptimizeFor:(PBOptimizeMode*) value {
   result.hasOptimizeFor = YES;
-  result.optimizeFor_ = value;
+  result.optimizeFor = value;
   return self;
 }
 - (PBFileOptions_Builder*) clearOptimizeFor {
   result.hasOptimizeFor = NO;
-  result.optimizeFor_ = [PBOptimizeMode CODE_SIZE];
+  result.optimizeFor = [PBOptimizeMode CODE_SIZE];
   return self;
 }
 
 - (BOOL) hasObjectivecPackage {
   return result.hasObjectivecPackage;
 }
-- (NSString*) getObjectivecPackage {
-  return result.getObjectivecPackage;
+- (NSString*) objectivecPackage {
+  return result.objectivecPackage;
 }
 - (PBFileOptions_Builder*) setObjectivecPackage:(NSString*) value {
   result.hasObjectivecPackage = YES;
-  result.objectivecPackage_ = value;
+  result.objectivecPackage = value;
   return self;
 }
 - (PBFileOptions_Builder*) clearObjectivecPackage {
   result.hasObjectivecPackage = NO;
-  result.objectivecPackage_ = @"";
+  result.objectivecPackage = @"";
   return self;
 }
 
 - (BOOL) hasObjectivecClassPrefix {
   return result.hasObjectivecClassPrefix;
 }
-- (NSString*) getObjectivecClassPrefix {
-  return result.getObjectivecClassPrefix;
+- (NSString*) objectivecClassPrefix {
+  return result.objectivecClassPrefix;
 }
 - (PBFileOptions_Builder*) setObjectivecClassPrefix:(NSString*) value {
   result.hasObjectivecClassPrefix = YES;
-  result.objectivecClassPrefix_ = value;
+  result.objectivecClassPrefix = value;
   return self;
 }
 - (PBFileOptions_Builder*) clearObjectivecClassPrefix {
   result.hasObjectivecClassPrefix = NO;
-  result.objectivecClassPrefix_ = @"";
+  result.objectivecClassPrefix = @"";
   return self;
 }
+@end
+
+@interface PBMessageOptions ()
+@property BOOL hasMessageSetWireFormat;
+@property BOOL messageSetWireFormat;
 @end
 
 @implementation PBMessageOptions
 
 @synthesize hasMessageSetWireFormat;
-@synthesize messageSetWireFormat_;
+@synthesize messageSetWireFormat;
 - (void) dealloc {
   self.hasMessageSetWireFormat = NO;
-  self.messageSetWireFormat_ = 0;
+  self.messageSetWireFormat = 0;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.messageSetWireFormat_ = NO;
+    self.messageSetWireFormat = NO;
   }
   return self;
 }
@@ -4741,8 +4606,6 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_MessageOptions_fieldAccessorTable];
 }
 
-- (BOOL) hasMessageSetWireFormat { return hasMessageSetWireFormat; }
-- (BOOL) getMessageSetWireFormat { return messageSetWireFormat_; }
 
 - (BOOL) isInitialized {
   return true;
@@ -4750,7 +4613,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasMessageSetWireFormat) {
-    [output writeBool:1 value:self.getMessageSetWireFormat];
+    [output writeBool:1 value:self.messageSetWireFormat];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4761,7 +4624,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 
   size = 0;
   if (hasMessageSetWireFormat) {
-    size += computeBoolSize(1, self.getMessageSetWireFormat);
+    size += computeBoolSize(1, self.messageSetWireFormat);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -4861,7 +4724,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 - (PBMessageOptions_Builder*) mergeFromPBMessageOptions:(PBMessageOptions*) other {
   if (other == [PBMessageOptions defaultInstance]) return self;
   if (other.hasMessageSetWireFormat) {
-    [self setMessageSetWireFormat:other.getMessageSetWireFormat];
+    [self setMessageSetWireFormat:other.messageSetWireFormat];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -4898,39 +4761,46 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 - (BOOL) hasMessageSetWireFormat {
   return result.hasMessageSetWireFormat;
 }
-- (BOOL) getMessageSetWireFormat {
-  return result.getMessageSetWireFormat;
+- (BOOL) messageSetWireFormat {
+  return result.messageSetWireFormat;
 }
 - (PBMessageOptions_Builder*) setMessageSetWireFormat:(BOOL) value {
   result.hasMessageSetWireFormat = YES;
-  result.messageSetWireFormat_ = value;
+  result.messageSetWireFormat = value;
   return self;
 }
 - (PBMessageOptions_Builder*) clearMessageSetWireFormat {
   result.hasMessageSetWireFormat = NO;
-  result.messageSetWireFormat_ = NO;
+  result.messageSetWireFormat = NO;
   return self;
 }
+@end
+
+@interface PBFieldOptions ()
+@property BOOL hasCtype;
+@property (retain) PBCType* ctype;
+@property BOOL hasExperimentalMapKey;
+@property (retain) NSString* experimentalMapKey;
 @end
 
 @implementation PBFieldOptions
 
 @synthesize hasCtype;
-@synthesize ctype_;
+@synthesize ctype;
 @synthesize hasExperimentalMapKey;
-@synthesize experimentalMapKey_;
+@synthesize experimentalMapKey;
 - (void) dealloc {
   self.hasCtype = NO;
-  self.ctype_ = nil;
+  self.ctype = nil;
   self.hasExperimentalMapKey = NO;
-  self.experimentalMapKey_ = nil;
+  self.experimentalMapKey = nil;
   [super dealloc];
 }
 - (id) init {
   if (self = [super init]) {
     memoizedSerializedSize = -1;
-    self.ctype_ = [PBCType CORD];
-    self.experimentalMapKey_ = @"";
+    self.ctype = [PBCType CORD];
+    self.experimentalMapKey = @"";
   }
   return self;
 }
@@ -4957,11 +4827,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldOptions_fieldAccessorTable];
 }
 
-- (BOOL) hasCtype { return hasCtype; }
-- (PBCType*) getCtype { return ctype_; }
 
-- (BOOL) hasExperimentalMapKey { return hasExperimentalMapKey; }
-- (NSString*) getExperimentalMapKey { return experimentalMapKey_; }
 
 - (BOOL) isInitialized {
   return true;
@@ -4969,10 +4835,10 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasCtype) {
-    [output writeEnum:1 value:self.getCtype.number];
+    [output writeEnum:1 value:self.ctype.number];
   }
   if (hasExperimentalMapKey) {
-    [output writeString:9 value:self.getExperimentalMapKey];
+    [output writeString:9 value:self.experimentalMapKey];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
@@ -4983,10 +4849,10 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 
   size = 0;
   if (self.hasCtype) {
-    size += computeEnumSize(1, self.getCtype.number);
+    size += computeEnumSize(1, self.ctype.number);
   }
   if (hasExperimentalMapKey) {
-    size += computeStringSize(9, self.getExperimentalMapKey);
+    size += computeStringSize(9, self.experimentalMapKey);
   }
   size += self.unknownFields.serializedSize;
   memoizedSerializedSize = size;
@@ -5018,6 +4884,11 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   return [[PBFieldOptions newBuilder] mergeFromPBFieldOptions:prototype];
 }
 
+@end
+
+@interface PBCType ()
+@property int32_t index;
+@property int32_t value;
 @end
 
 @implementation PBCType
@@ -5141,10 +5012,10 @@ static PBCType* STRING_PIECE = nil;
 - (PBFieldOptions_Builder*) mergeFromPBFieldOptions:(PBFieldOptions*) other {
   if (other == [PBFieldOptions defaultInstance]) return self;
   if (other.hasCtype) {
-    [self setCtype:other.getCtype];
+    [self setCtype:other.ctype];
   }
   if (other.hasExperimentalMapKey) {
-    [self setExperimentalMapKey:other.getExperimentalMapKey];
+    [self setExperimentalMapKey:other.experimentalMapKey];
   }
   [self mergeUnknownFields:other.unknownFields];
   return self;
@@ -5191,36 +5062,39 @@ static PBCType* STRING_PIECE = nil;
 - (BOOL) hasCtype {
   return result.hasCtype;
 }
-- (PBCType*) getCtype {
-  return result.getCtype;
+- (PBCType*) ctype {
+  return result.ctype;
 }
 - (PBFieldOptions_Builder*) setCtype:(PBCType*) value {
   result.hasCtype = YES;
-  result.ctype_ = value;
+  result.ctype = value;
   return self;
 }
 - (PBFieldOptions_Builder*) clearCtype {
   result.hasCtype = NO;
-  result.ctype_ = [PBCType CORD];
+  result.ctype = [PBCType CORD];
   return self;
 }
 
 - (BOOL) hasExperimentalMapKey {
   return result.hasExperimentalMapKey;
 }
-- (NSString*) getExperimentalMapKey {
-  return result.getExperimentalMapKey;
+- (NSString*) experimentalMapKey {
+  return result.experimentalMapKey;
 }
 - (PBFieldOptions_Builder*) setExperimentalMapKey:(NSString*) value {
   result.hasExperimentalMapKey = YES;
-  result.experimentalMapKey_ = value;
+  result.experimentalMapKey = value;
   return self;
 }
 - (PBFieldOptions_Builder*) clearExperimentalMapKey {
   result.hasExperimentalMapKey = NO;
-  result.experimentalMapKey_ = @"";
+  result.experimentalMapKey = @"";
   return self;
 }
+@end
+
+@interface PBEnumOptions ()
 @end
 
 @implementation PBEnumOptions
@@ -5396,6 +5270,9 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 
 @end
 
+@interface PBEnumValueOptions ()
+@end
+
 @implementation PBEnumValueOptions
 
 - (void) dealloc {
@@ -5569,6 +5446,9 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 
 @end
 
+@interface PBServiceOptions ()
+@end
+
 @implementation PBServiceOptions
 
 - (void) dealloc {
@@ -5740,6 +5620,9 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   }
 }
 
+@end
+
+@interface PBMethodOptions ()
 @end
 
 @implementation PBMethodOptions

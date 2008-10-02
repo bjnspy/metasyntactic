@@ -46,6 +46,7 @@ class EnumFieldGenerator : public FieldGenerator {
   void GenerateSerializationCodeHeader(io::Printer* printer) const;
   void GenerateSerializedSizeCodeHeader(io::Printer* printer) const;
 
+  void GenerateExtensionSource(io::Printer* printer) const;
   void GenerateSynthesizeSource(io::Printer* printer) const;
   void GenerateDeallocSource(io::Printer* printer) const;
   void GenerateInitializationSource(io::Printer* printer) const;
@@ -82,6 +83,7 @@ class RepeatedEnumFieldGenerator : public FieldGenerator {
   void GenerateSerializationCodeHeader(io::Printer* printer) const;
   void GenerateSerializedSizeCodeHeader(io::Printer* printer) const;
 
+  void GenerateExtensionSource(io::Printer* printer) const;
   void GenerateSynthesizeSource(io::Printer* printer) const;
   void GenerateDeallocSource(io::Printer* printer) const;
   void GenerateInitializationSource(io::Printer* printer) const;
