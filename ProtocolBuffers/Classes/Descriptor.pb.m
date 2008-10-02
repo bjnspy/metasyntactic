@@ -135,7 +135,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
 + (void) initialize {
   if (self == [DescriptorProtoRoot class]) {
     descriptor = [[DescriptorProtoRoot buildDescriptor] retain];
-    internal_static_google_protobuf_FileDescriptorSet_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:0] retain];
+    internal_static_google_protobuf_FileDescriptorSet_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"File",
@@ -146,7 +146,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBFileDescriptorSet class]
                                       builderClass:[PBFileDescriptorSet_Builder class]] retain];
     }
-    internal_static_google_protobuf_FileDescriptorProto_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:1] retain];
+    internal_static_google_protobuf_FileDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Name",
@@ -164,7 +164,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBFileDescriptorProto class]
                                       builderClass:[PBFileDescriptorProto_Builder class]] retain];
     }
-    internal_static_google_protobuf_DescriptorProto_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:2] retain];
+    internal_static_google_protobuf_DescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Name",
@@ -193,7 +193,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBExtensionRange class]
                                       builderClass:[PBExtensionRange_Builder class]] retain];
     }
-    internal_static_google_protobuf_FieldDescriptorProto_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:3] retain];
+    internal_static_google_protobuf_FieldDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Name",
@@ -211,7 +211,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBFieldDescriptorProto class]
                                       builderClass:[PBFieldDescriptorProto_Builder class]] retain];
     }
-    internal_static_google_protobuf_EnumDescriptorProto_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:4] retain];
+    internal_static_google_protobuf_EnumDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Name",
@@ -224,7 +224,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBEnumDescriptorProto class]
                                       builderClass:[PBEnumDescriptorProto_Builder class]] retain];
     }
-    internal_static_google_protobuf_EnumValueDescriptorProto_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:5] retain];
+    internal_static_google_protobuf_EnumValueDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:5] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Name",
@@ -237,7 +237,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBEnumValueDescriptorProto class]
                                       builderClass:[PBEnumValueDescriptorProto_Builder class]] retain];
     }
-    internal_static_google_protobuf_ServiceDescriptorProto_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:6] retain];
+    internal_static_google_protobuf_ServiceDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:6] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Name",
@@ -250,7 +250,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBServiceDescriptorProto class]
                                       builderClass:[PBServiceDescriptorProto_Builder class]] retain];
     }
-    internal_static_google_protobuf_MethodDescriptorProto_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:7] retain];
+    internal_static_google_protobuf_MethodDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:7] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Name",
@@ -264,7 +264,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBMethodDescriptorProto class]
                                       builderClass:[PBMethodDescriptorProto_Builder class]] retain];
     }
-    internal_static_google_protobuf_FileOptions_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:8] retain];
+    internal_static_google_protobuf_FileOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:8] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"JavaPackage",
@@ -280,7 +280,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBFileOptions class]
                                       builderClass:[PBFileOptions_Builder class]] retain];
     }
-    internal_static_google_protobuf_MessageOptions_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:9] retain];
+    internal_static_google_protobuf_MessageOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:9] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"MessageSetWireFormat",
@@ -291,7 +291,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBMessageOptions class]
                                       builderClass:[PBMessageOptions_Builder class]] retain];
     }
-    internal_static_google_protobuf_FieldOptions_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:10] retain];
+    internal_static_google_protobuf_FieldOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:10] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Ctype",
@@ -303,7 +303,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBFieldOptions class]
                                       builderClass:[PBFieldOptions_Builder class]] retain];
     }
-    internal_static_google_protobuf_EnumOptions_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:11] retain];
+    internal_static_google_protobuf_EnumOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:11] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
@@ -313,7 +313,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBEnumOptions class]
                                       builderClass:[PBEnumOptions_Builder class]] retain];
     }
-    internal_static_google_protobuf_EnumValueOptions_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:12] retain];
+    internal_static_google_protobuf_EnumValueOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:12] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
@@ -323,7 +323,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBEnumValueOptions class]
                                       builderClass:[PBEnumValueOptions_Builder class]] retain];
     }
-    internal_static_google_protobuf_ServiceOptions_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:13] retain];
+    internal_static_google_protobuf_ServiceOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:13] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
@@ -333,7 +333,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBServiceOptions class]
                                       builderClass:[PBServiceOptions_Builder class]] retain];
     }
-    internal_static_google_protobuf_MethodOptions_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:14] retain];
+    internal_static_google_protobuf_MethodOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:14] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       nil];
@@ -345,7 +345,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
   }
 }
-+ (PBFileDescriptor*) getDescriptor {
++ (PBFileDescriptor*) descriptor {
   return descriptor;
 }
 + (PBFileDescriptor*) buildDescriptor {
@@ -457,7 +457,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   return defaultPBFileDescriptorSetInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorSet_descriptor];
 }
 
@@ -549,7 +549,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBFileDescriptorSet getDescriptor];
+  return [PBFileDescriptorSet descriptor];
 }
 
 - (PBFileDescriptorSet*) defaultInstanceForType {
@@ -723,7 +723,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return defaultPBFileDescriptorProtoInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorProto_descriptor];
 }
 
@@ -888,7 +888,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBFileDescriptorProto getDescriptor];
+  return [PBFileDescriptorProto descriptor];
 }
 
 - (PBFileDescriptorProto*) defaultInstanceForType {
@@ -1312,7 +1312,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   return defaultPBDescriptorProtoInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_descriptor];
 }
 
@@ -1487,7 +1487,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   return defaultPBExtensionRangeInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor];
 }
 
@@ -1580,7 +1580,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBExtensionRange getDescriptor];
+  return [PBExtensionRange descriptor];
 }
 
 - (PBExtensionRange*) defaultInstanceForType {
@@ -1722,7 +1722,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBDescriptorProto getDescriptor];
+  return [PBDescriptorProto descriptor];
 }
 
 - (PBDescriptorProto*) defaultInstanceForType {
@@ -2151,7 +2151,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   return defaultPBFieldDescriptorProtoInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldDescriptorProto_descriptor];
 }
 
@@ -2362,18 +2362,18 @@ static PBType* TYPE_SINT64 = nil;
 }
 
 - (PBEnumValueDescriptor*) getValueDescriptor {
-  return [[PBType getDescriptor].values objectAtIndex:index];
+  return [[PBType descriptor].values objectAtIndex:index];
 }
 - (PBEnumDescriptor*) descriptorForType {
-  return [PBType getDescriptor];
+  return [PBType descriptor];
 }
-+ (PBEnumDescriptor*) getDescriptor {
-  return [[PBFieldDescriptorProto getDescriptor].enumTypes objectAtIndex:0];
++ (PBEnumDescriptor*) descriptor {
+  return [[PBFieldDescriptorProto descriptor].enumTypes objectAtIndex:0];
 }
 
 
 + (PBType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
-  if (desc.type != [PBType getDescriptor]) {
+  if (desc.type != [PBType descriptor]) {
     [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
   }
   PBType* VALUES[] = {
@@ -2442,18 +2442,18 @@ static PBLabel* LABEL_REPEATED = nil;
 }
 
 - (PBEnumValueDescriptor*) getValueDescriptor {
-  return [[PBLabel getDescriptor].values objectAtIndex:index];
+  return [[PBLabel descriptor].values objectAtIndex:index];
 }
 - (PBEnumDescriptor*) descriptorForType {
-  return [PBLabel getDescriptor];
+  return [PBLabel descriptor];
 }
-+ (PBEnumDescriptor*) getDescriptor {
-  return [[PBFieldDescriptorProto getDescriptor].enumTypes objectAtIndex:1];
++ (PBEnumDescriptor*) descriptor {
+  return [[PBFieldDescriptorProto descriptor].enumTypes objectAtIndex:1];
 }
 
 
 + (PBLabel*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
-  if (desc.type != [PBLabel getDescriptor]) {
+  if (desc.type != [PBLabel descriptor]) {
     [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
   }
   PBLabel* VALUES[] = {
@@ -2491,7 +2491,7 @@ static PBLabel* LABEL_REPEATED = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBFieldDescriptorProto getDescriptor];
+  return [PBFieldDescriptorProto descriptor];
 }
 
 - (PBFieldDescriptorProto*) defaultInstanceForType {
@@ -2827,7 +2827,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   return defaultPBEnumDescriptorProtoInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumDescriptorProto_descriptor];
 }
 
@@ -2933,7 +2933,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBEnumDescriptorProto getDescriptor];
+  return [PBEnumDescriptorProto descriptor];
 }
 
 - (PBEnumDescriptorProto*) defaultInstanceForType {
@@ -3159,7 +3159,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   return defaultPBEnumValueDescriptorProtoInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueDescriptorProto_descriptor];
 }
 
@@ -3259,7 +3259,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBEnumValueDescriptorProto getDescriptor];
+  return [PBEnumValueDescriptorProto descriptor];
 }
 
 - (PBEnumValueDescriptorProto*) defaultInstanceForType {
@@ -3463,7 +3463,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   return defaultPBServiceDescriptorProtoInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceDescriptorProto_descriptor];
 }
 
@@ -3569,7 +3569,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBServiceDescriptorProto getDescriptor];
+  return [PBServiceDescriptorProto descriptor];
 }
 
 - (PBServiceDescriptorProto*) defaultInstanceForType {
@@ -3802,7 +3802,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   return defaultPBMethodDescriptorProtoInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodDescriptorProto_descriptor];
 }
 
@@ -3909,7 +3909,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBMethodDescriptorProto getDescriptor];
+  return [PBMethodDescriptorProto descriptor];
 }
 
 - (PBMethodDescriptorProto*) defaultInstanceForType {
@@ -4163,7 +4163,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   return defaultPBFileOptionsInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileOptions_descriptor];
 }
 
@@ -4296,18 +4296,18 @@ static PBOptimizeMode* CODE_SIZE = nil;
 }
 
 - (PBEnumValueDescriptor*) getValueDescriptor {
-  return [[PBOptimizeMode getDescriptor].values objectAtIndex:index];
+  return [[PBOptimizeMode descriptor].values objectAtIndex:index];
 }
 - (PBEnumDescriptor*) descriptorForType {
-  return [PBOptimizeMode getDescriptor];
+  return [PBOptimizeMode descriptor];
 }
-+ (PBEnumDescriptor*) getDescriptor {
-  return [[PBFileOptions getDescriptor].enumTypes objectAtIndex:0];
++ (PBEnumDescriptor*) descriptor {
+  return [[PBFileOptions descriptor].enumTypes objectAtIndex:0];
 }
 
 
 + (PBOptimizeMode*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
-  if (desc.type != [PBOptimizeMode getDescriptor]) {
+  if (desc.type != [PBOptimizeMode descriptor]) {
     [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
   }
   PBOptimizeMode* VALUES[] = {
@@ -4344,7 +4344,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBFileOptions getDescriptor];
+  return [PBFileOptions descriptor];
 }
 
 - (PBFileOptions*) defaultInstanceForType {
@@ -4598,7 +4598,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   return defaultPBMessageOptionsInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_MessageOptions_descriptor];
 }
 
@@ -4684,7 +4684,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBMessageOptions getDescriptor];
+  return [PBMessageOptions descriptor];
 }
 
 - (PBMessageOptions*) defaultInstanceForType {
@@ -4819,7 +4819,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   return defaultPBFieldOptionsInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldOptions_descriptor];
 }
 
@@ -4924,18 +4924,18 @@ static PBCType* STRING_PIECE = nil;
 }
 
 - (PBEnumValueDescriptor*) getValueDescriptor {
-  return [[PBCType getDescriptor].values objectAtIndex:index];
+  return [[PBCType descriptor].values objectAtIndex:index];
 }
 - (PBEnumDescriptor*) descriptorForType {
-  return [PBCType getDescriptor];
+  return [PBCType descriptor];
 }
-+ (PBEnumDescriptor*) getDescriptor {
-  return [[PBFieldOptions getDescriptor].enumTypes objectAtIndex:0];
++ (PBEnumDescriptor*) descriptor {
+  return [[PBFieldOptions descriptor].enumTypes objectAtIndex:0];
 }
 
 
 + (PBCType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
-  if (desc.type != [PBCType getDescriptor]) {
+  if (desc.type != [PBCType descriptor]) {
     [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
   }
   PBCType* VALUES[] = {
@@ -4972,7 +4972,7 @@ static PBCType* STRING_PIECE = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBFieldOptions getDescriptor];
+  return [PBFieldOptions descriptor];
 }
 
 - (PBFieldOptions*) defaultInstanceForType {
@@ -5123,7 +5123,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   return defaultPBEnumOptionsInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumOptions_descriptor];
 }
 
@@ -5202,7 +5202,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBEnumOptions getDescriptor];
+  return [PBEnumOptions descriptor];
 }
 
 - (PBEnumOptions*) defaultInstanceForType {
@@ -5299,7 +5299,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   return defaultPBEnumValueOptionsInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueOptions_descriptor];
 }
 
@@ -5378,7 +5378,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBEnumValueOptions getDescriptor];
+  return [PBEnumValueOptions descriptor];
 }
 
 - (PBEnumValueOptions*) defaultInstanceForType {
@@ -5475,7 +5475,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   return defaultPBServiceOptionsInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceOptions_descriptor];
 }
 
@@ -5554,7 +5554,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBServiceOptions getDescriptor];
+  return [PBServiceOptions descriptor];
 }
 
 - (PBServiceOptions*) defaultInstanceForType {
@@ -5651,7 +5651,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   return defaultPBMethodOptionsInstance;
 }
 
-+ (PBDescriptor*) getDescriptor {
++ (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodOptions_descriptor];
 }
 
@@ -5730,7 +5730,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 }
 
 - (PBDescriptor*) descriptorForType {
-  return [PBMethodOptions getDescriptor];
+  return [PBMethodOptions descriptor];
 }
 
 - (PBMethodOptions*) defaultInstanceForType {

@@ -41,21 +41,20 @@
 
 @interface DescriptorProtoRoot : NSObject {
 }
-+ (PBFileDescriptor*) getDescriptor;
++ (PBFileDescriptor*) descriptor;
 + (PBFileDescriptor*) buildDescriptor;
 @end
 
 @interface PBFileDescriptorSet : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // repeated .google.protobuf.FileDescriptorProto file = 1;
     NSMutableArray* mutableFileList;
 }
 - (NSArray*) fileList;
 - (PBFileDescriptorProto*) fileAtIndex:(int32_t) index;
 + (PBFileDescriptorSet*) defaultInstance;
 - (PBFileDescriptorSet*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -89,7 +88,6 @@
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// repeated .google.protobuf.FileDescriptorProto file = 1;
 - (NSArray*) fileList;
 - (PBFileDescriptorProto*) fileAtIndex:(int32_t) index;
 - (PBFileDescriptorSet_Builder*) replaceFileAtIndex:(int32_t) index withFile:(PBFileDescriptorProto*) value;
@@ -101,23 +99,15 @@
 @interface PBFileDescriptorProto : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional string name = 1;
     BOOL hasName;
     NSString* name;
-    // optional string package = 2;
     BOOL hasPackage;
     NSString* package;
-    // repeated string dependency = 3;
     NSMutableArray* mutableDependencyList;
-    // repeated .google.protobuf.DescriptorProto message_type = 4;
     NSMutableArray* mutableMessageTypeList;
-    // repeated .google.protobuf.EnumDescriptorProto enum_type = 5;
     NSMutableArray* mutableEnumTypeList;
-    // repeated .google.protobuf.ServiceDescriptorProto service = 6;
     NSMutableArray* mutableServiceList;
-    // repeated .google.protobuf.FieldDescriptorProto extension = 7;
     NSMutableArray* mutableExtensionList;
-    // optional .google.protobuf.FileOptions options = 8;
     BOOL hasOptions;
     PBFileOptions* options;
 }
@@ -139,7 +129,7 @@
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index;
 + (PBFileDescriptorProto*) defaultInstance;
 - (PBFileDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -173,19 +163,16 @@
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional string name = 1;
 - (BOOL) hasName;
 - (NSString*) name;
 - (PBFileDescriptorProto_Builder*) setName:(NSString*) value;
 - (PBFileDescriptorProto_Builder*) clearName;
 
-// optional string package = 2;
 - (BOOL) hasPackage;
 - (NSString*) package;
 - (PBFileDescriptorProto_Builder*) setPackage:(NSString*) value;
 - (PBFileDescriptorProto_Builder*) clearPackage;
 
-// repeated string dependency = 3;
 - (NSArray*) dependencyList;
 - (NSString*) dependencyAtIndex:(int32_t) index;
 - (PBFileDescriptorProto_Builder*) replaceDependencyAtIndex:(int32_t) index withDependency:(NSString*) value;
@@ -193,7 +180,6 @@
 - (PBFileDescriptorProto_Builder*) addAllDependency:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearDependencyList;
 
-// repeated .google.protobuf.DescriptorProto message_type = 4;
 - (NSArray*) messageTypeList;
 - (PBDescriptorProto*) messageTypeAtIndex:(int32_t) index;
 - (PBFileDescriptorProto_Builder*) replaceMessageTypeAtIndex:(int32_t) index withMessageType:(PBDescriptorProto*) value;
@@ -201,7 +187,6 @@
 - (PBFileDescriptorProto_Builder*) addAllMessageType:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearMessageTypeList;
 
-// repeated .google.protobuf.EnumDescriptorProto enum_type = 5;
 - (NSArray*) enumTypeList;
 - (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index;
 - (PBFileDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index withEnumType:(PBEnumDescriptorProto*) value;
@@ -209,7 +194,6 @@
 - (PBFileDescriptorProto_Builder*) addAllEnumType:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearEnumTypeList;
 
-// repeated .google.protobuf.ServiceDescriptorProto service = 6;
 - (NSArray*) serviceList;
 - (PBServiceDescriptorProto*) serviceAtIndex:(int32_t) index;
 - (PBFileDescriptorProto_Builder*) replaceServiceAtIndex:(int32_t) index withService:(PBServiceDescriptorProto*) value;
@@ -217,7 +201,6 @@
 - (PBFileDescriptorProto_Builder*) addAllService:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearServiceList;
 
-// repeated .google.protobuf.FieldDescriptorProto extension = 7;
 - (NSArray*) extensionList;
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index;
 - (PBFileDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index withExtension:(PBFieldDescriptorProto*) value;
@@ -225,7 +208,6 @@
 - (PBFileDescriptorProto_Builder*) addAllExtension:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearExtensionList;
 
-// optional .google.protobuf.FileOptions options = 8;
 - (BOOL) hasOptions;
 - (PBFileOptions*) options;
 - (id<PBMessage_Builder>) setOptions:(PBFileOptions*) value;
@@ -237,20 +219,13 @@
 @interface PBDescriptorProto : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional string name = 1;
     BOOL hasName;
     NSString* name;
-    // repeated .google.protobuf.FieldDescriptorProto field = 2;
     NSMutableArray* mutableFieldList;
-    // repeated .google.protobuf.FieldDescriptorProto extension = 6;
     NSMutableArray* mutableExtensionList;
-    // repeated .google.protobuf.DescriptorProto nested_type = 3;
     NSMutableArray* mutableNestedTypeList;
-    // repeated .google.protobuf.EnumDescriptorProto enum_type = 4;
     NSMutableArray* mutableEnumTypeList;
-    // repeated .google.protobuf.DescriptorProto.ExtensionRange extension_range = 5;
     NSMutableArray* mutableExtensionRangeList;
-    // optional .google.protobuf.MessageOptions options = 7;
     BOOL hasOptions;
     PBMessageOptions* options;
 }
@@ -270,7 +245,7 @@
 - (PBExtensionRange*) extensionRangeAtIndex:(int32_t) index;
 + (PBDescriptorProto*) defaultInstance;
 - (PBDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -289,10 +264,8 @@
 @interface PBExtensionRange : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional int32 start = 1;
     BOOL hasStart;
     int32_t start;
-    // optional int32 end = 2;
     BOOL hasEnd;
     int32_t end;
 }
@@ -302,7 +275,7 @@
 @property (readonly) int32_t end;
 + (PBExtensionRange*) defaultInstance;
 - (PBExtensionRange*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -336,13 +309,11 @@
 - (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional int32 start = 1;
 - (BOOL) hasStart;
 - (int32_t) start;
 - (PBExtensionRange_Builder*) setStart:(int32_t) value;
 - (PBExtensionRange_Builder*) clearStart;
 
-// optional int32 end = 2;
 - (BOOL) hasEnd;
 - (int32_t) end;
 - (PBExtensionRange_Builder*) setEnd:(int32_t) value;
@@ -367,13 +338,11 @@
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional string name = 1;
 - (BOOL) hasName;
 - (NSString*) name;
 - (PBDescriptorProto_Builder*) setName:(NSString*) value;
 - (PBDescriptorProto_Builder*) clearName;
 
-// repeated .google.protobuf.FieldDescriptorProto field = 2;
 - (NSArray*) fieldList;
 - (PBFieldDescriptorProto*) fieldAtIndex:(int32_t) index;
 - (PBDescriptorProto_Builder*) replaceFieldAtIndex:(int32_t) index withField:(PBFieldDescriptorProto*) value;
@@ -381,7 +350,6 @@
 - (PBDescriptorProto_Builder*) addAllField:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearFieldList;
 
-// repeated .google.protobuf.FieldDescriptorProto extension = 6;
 - (NSArray*) extensionList;
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index;
 - (PBDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index withExtension:(PBFieldDescriptorProto*) value;
@@ -389,7 +357,6 @@
 - (PBDescriptorProto_Builder*) addAllExtension:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearExtensionList;
 
-// repeated .google.protobuf.DescriptorProto nested_type = 3;
 - (NSArray*) nestedTypeList;
 - (PBDescriptorProto*) nestedTypeAtIndex:(int32_t) index;
 - (PBDescriptorProto_Builder*) replaceNestedTypeAtIndex:(int32_t) index withNestedType:(PBDescriptorProto*) value;
@@ -397,7 +364,6 @@
 - (PBDescriptorProto_Builder*) addAllNestedType:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearNestedTypeList;
 
-// repeated .google.protobuf.EnumDescriptorProto enum_type = 4;
 - (NSArray*) enumTypeList;
 - (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index;
 - (PBDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index withEnumType:(PBEnumDescriptorProto*) value;
@@ -405,7 +371,6 @@
 - (PBDescriptorProto_Builder*) addAllEnumType:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearEnumTypeList;
 
-// repeated .google.protobuf.DescriptorProto.ExtensionRange extension_range = 5;
 - (NSArray*) extensionRangeList;
 - (PBExtensionRange*) extensionRangeAtIndex:(int32_t) index;
 - (PBDescriptorProto_Builder*) replaceExtensionRangeAtIndex:(int32_t) index withExtensionRange:(PBExtensionRange*) value;
@@ -413,7 +378,6 @@
 - (PBDescriptorProto_Builder*) addAllExtensionRange:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearExtensionRangeList;
 
-// optional .google.protobuf.MessageOptions options = 7;
 - (BOOL) hasOptions;
 - (PBMessageOptions*) options;
 - (id<PBMessage_Builder>) setOptions:(PBMessageOptions*) value;
@@ -425,28 +389,20 @@
 @interface PBFieldDescriptorProto : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional string name = 1;
     BOOL hasName;
     NSString* name;
-    // optional int32 number = 3;
     BOOL hasNumber;
     int32_t number;
-    // optional .google.protobuf.FieldDescriptorProto.Label label = 4;
     BOOL hasLabel;
     PBLabel* label;
-    // optional .google.protobuf.FieldDescriptorProto.Type type = 5;
     BOOL hasType;
     PBType* type;
-    // optional string type_name = 6;
     BOOL hasTypeName;
     NSString* typeName;
-    // optional string extendee = 2;
     BOOL hasExtendee;
     NSString* extendee;
-    // optional string default_value = 7;
     BOOL hasDefaultValue;
     NSString* defaultValue;
-    // optional .google.protobuf.FieldOptions options = 8;
     BOOL hasOptions;
     PBFieldOptions* options;
 }
@@ -468,7 +424,7 @@
 @property (retain, readonly) PBFieldOptions* options;
 + (PBFieldDescriptorProto*) defaultInstance;
 - (PBFieldDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -515,7 +471,7 @@
 + (PBType*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
 - (PBEnumDescriptor*) descriptorForType;
-+ (PBEnumDescriptor*) getDescriptor;
++ (PBEnumDescriptor*) descriptor;
 
 + (PBType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
 @end
@@ -536,7 +492,7 @@
 + (PBLabel*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
 - (PBEnumDescriptor*) descriptorForType;
-+ (PBEnumDescriptor*) getDescriptor;
++ (PBEnumDescriptor*) descriptor;
 
 + (PBLabel*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
 @end
@@ -559,49 +515,41 @@
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional string name = 1;
 - (BOOL) hasName;
 - (NSString*) name;
 - (PBFieldDescriptorProto_Builder*) setName:(NSString*) value;
 - (PBFieldDescriptorProto_Builder*) clearName;
 
-// optional int32 number = 3;
 - (BOOL) hasNumber;
 - (int32_t) number;
 - (PBFieldDescriptorProto_Builder*) setNumber:(int32_t) value;
 - (PBFieldDescriptorProto_Builder*) clearNumber;
 
-// optional .google.protobuf.FieldDescriptorProto.Label label = 4;
 - (BOOL) hasLabel;
 - (PBLabel*) label;
 - (PBFieldDescriptorProto_Builder*) setLabel:(PBLabel*) value;
 - (PBFieldDescriptorProto_Builder*) clearLabel;
 
-// optional .google.protobuf.FieldDescriptorProto.Type type = 5;
 - (BOOL) hasType;
 - (PBType*) type;
 - (PBFieldDescriptorProto_Builder*) setType:(PBType*) value;
 - (PBFieldDescriptorProto_Builder*) clearType;
 
-// optional string type_name = 6;
 - (BOOL) hasTypeName;
 - (NSString*) typeName;
 - (PBFieldDescriptorProto_Builder*) setTypeName:(NSString*) value;
 - (PBFieldDescriptorProto_Builder*) clearTypeName;
 
-// optional string extendee = 2;
 - (BOOL) hasExtendee;
 - (NSString*) extendee;
 - (PBFieldDescriptorProto_Builder*) setExtendee:(NSString*) value;
 - (PBFieldDescriptorProto_Builder*) clearExtendee;
 
-// optional string default_value = 7;
 - (BOOL) hasDefaultValue;
 - (NSString*) defaultValue;
 - (PBFieldDescriptorProto_Builder*) setDefaultValue:(NSString*) value;
 - (PBFieldDescriptorProto_Builder*) clearDefaultValue;
 
-// optional .google.protobuf.FieldOptions options = 8;
 - (BOOL) hasOptions;
 - (PBFieldOptions*) options;
 - (id<PBMessage_Builder>) setOptions:(PBFieldOptions*) value;
@@ -613,12 +561,9 @@
 @interface PBEnumDescriptorProto : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional string name = 1;
     BOOL hasName;
     NSString* name;
-    // repeated .google.protobuf.EnumValueDescriptorProto value = 2;
     NSMutableArray* mutableValueList;
-    // optional .google.protobuf.EnumOptions options = 3;
     BOOL hasOptions;
     PBEnumOptions* options;
 }
@@ -630,7 +575,7 @@
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index;
 + (PBEnumDescriptorProto*) defaultInstance;
 - (PBEnumDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -664,13 +609,11 @@
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional string name = 1;
 - (BOOL) hasName;
 - (NSString*) name;
 - (PBEnumDescriptorProto_Builder*) setName:(NSString*) value;
 - (PBEnumDescriptorProto_Builder*) clearName;
 
-// repeated .google.protobuf.EnumValueDescriptorProto value = 2;
 - (NSArray*) valueList;
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index;
 - (PBEnumDescriptorProto_Builder*) replaceValueAtIndex:(int32_t) index withValue:(PBEnumValueDescriptorProto*) value;
@@ -678,7 +621,6 @@
 - (PBEnumDescriptorProto_Builder*) addAllValue:(NSArray*) values;
 - (PBEnumDescriptorProto_Builder*) clearValueList;
 
-// optional .google.protobuf.EnumOptions options = 3;
 - (BOOL) hasOptions;
 - (PBEnumOptions*) options;
 - (id<PBMessage_Builder>) setOptions:(PBEnumOptions*) value;
@@ -690,13 +632,10 @@
 @interface PBEnumValueDescriptorProto : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional string name = 1;
     BOOL hasName;
     NSString* name;
-    // optional int32 number = 2;
     BOOL hasNumber;
     int32_t number;
-    // optional .google.protobuf.EnumValueOptions options = 3;
     BOOL hasOptions;
     PBEnumValueOptions* options;
 }
@@ -708,7 +647,7 @@
 @property (retain, readonly) PBEnumValueOptions* options;
 + (PBEnumValueDescriptorProto*) defaultInstance;
 - (PBEnumValueDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -742,19 +681,16 @@
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional string name = 1;
 - (BOOL) hasName;
 - (NSString*) name;
 - (PBEnumValueDescriptorProto_Builder*) setName:(NSString*) value;
 - (PBEnumValueDescriptorProto_Builder*) clearName;
 
-// optional int32 number = 2;
 - (BOOL) hasNumber;
 - (int32_t) number;
 - (PBEnumValueDescriptorProto_Builder*) setNumber:(int32_t) value;
 - (PBEnumValueDescriptorProto_Builder*) clearNumber;
 
-// optional .google.protobuf.EnumValueOptions options = 3;
 - (BOOL) hasOptions;
 - (PBEnumValueOptions*) options;
 - (id<PBMessage_Builder>) setOptions:(PBEnumValueOptions*) value;
@@ -766,12 +702,9 @@
 @interface PBServiceDescriptorProto : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional string name = 1;
     BOOL hasName;
     NSString* name;
-    // repeated .google.protobuf.MethodDescriptorProto method = 2;
     NSMutableArray* mutableMethodList;
-    // optional .google.protobuf.ServiceOptions options = 3;
     BOOL hasOptions;
     PBServiceOptions* options;
 }
@@ -783,7 +716,7 @@
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index;
 + (PBServiceDescriptorProto*) defaultInstance;
 - (PBServiceDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -817,13 +750,11 @@
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional string name = 1;
 - (BOOL) hasName;
 - (NSString*) name;
 - (PBServiceDescriptorProto_Builder*) setName:(NSString*) value;
 - (PBServiceDescriptorProto_Builder*) clearName;
 
-// repeated .google.protobuf.MethodDescriptorProto method = 2;
 - (NSArray*) methodList;
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index;
 - (PBServiceDescriptorProto_Builder*) replaceMethodAtIndex:(int32_t) index withMethod:(PBMethodDescriptorProto*) value;
@@ -831,7 +762,6 @@
 - (PBServiceDescriptorProto_Builder*) addAllMethod:(NSArray*) values;
 - (PBServiceDescriptorProto_Builder*) clearMethodList;
 
-// optional .google.protobuf.ServiceOptions options = 3;
 - (BOOL) hasOptions;
 - (PBServiceOptions*) options;
 - (id<PBMessage_Builder>) setOptions:(PBServiceOptions*) value;
@@ -843,16 +773,12 @@
 @interface PBMethodDescriptorProto : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional string name = 1;
     BOOL hasName;
     NSString* name;
-    // optional string input_type = 2;
     BOOL hasInputType;
     NSString* inputType;
-    // optional string output_type = 3;
     BOOL hasOutputType;
     NSString* outputType;
-    // optional .google.protobuf.MethodOptions options = 4;
     BOOL hasOptions;
     PBMethodOptions* options;
 }
@@ -866,7 +792,7 @@
 @property (retain, readonly) PBMethodOptions* options;
 + (PBMethodDescriptorProto*) defaultInstance;
 - (PBMethodDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -900,25 +826,21 @@
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional string name = 1;
 - (BOOL) hasName;
 - (NSString*) name;
 - (PBMethodDescriptorProto_Builder*) setName:(NSString*) value;
 - (PBMethodDescriptorProto_Builder*) clearName;
 
-// optional string input_type = 2;
 - (BOOL) hasInputType;
 - (NSString*) inputType;
 - (PBMethodDescriptorProto_Builder*) setInputType:(NSString*) value;
 - (PBMethodDescriptorProto_Builder*) clearInputType;
 
-// optional string output_type = 3;
 - (BOOL) hasOutputType;
 - (NSString*) outputType;
 - (PBMethodDescriptorProto_Builder*) setOutputType:(NSString*) value;
 - (PBMethodDescriptorProto_Builder*) clearOutputType;
 
-// optional .google.protobuf.MethodOptions options = 4;
 - (BOOL) hasOptions;
 - (PBMethodOptions*) options;
 - (id<PBMessage_Builder>) setOptions:(PBMethodOptions*) value;
@@ -930,22 +852,16 @@
 @interface PBFileOptions : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional string java_package = 1;
     BOOL hasJavaPackage;
     NSString* javaPackage;
-    // optional string java_outer_classname = 8;
     BOOL hasJavaOuterClassname;
     NSString* javaOuterClassname;
-    // optional bool java_multiple_files = 10 [default = false];
     BOOL hasJavaMultipleFiles;
     BOOL javaMultipleFiles;
-    // optional .google.protobuf.FileOptions.OptimizeMode optimize_for = 9 [default = CODE_SIZE];
     BOOL hasOptimizeFor;
     PBOptimizeMode* optimizeFor;
-    // optional string objectivec_package = 11;
     BOOL hasObjectivecPackage;
     NSString* objectivecPackage;
-    // optional string objectivec_class_prefix = 12;
     BOOL hasObjectivecClassPrefix;
     NSString* objectivecClassPrefix;
 }
@@ -963,7 +879,7 @@
 @property (retain, readonly) NSString* objectivecClassPrefix;
 + (PBFileOptions*) defaultInstance;
 - (PBFileOptions*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -994,7 +910,7 @@
 + (PBOptimizeMode*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
 - (PBEnumDescriptor*) descriptorForType;
-+ (PBEnumDescriptor*) getDescriptor;
++ (PBEnumDescriptor*) descriptor;
 
 + (PBOptimizeMode*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
 @end
@@ -1017,37 +933,31 @@
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional string java_package = 1;
 - (BOOL) hasJavaPackage;
 - (NSString*) javaPackage;
 - (PBFileOptions_Builder*) setJavaPackage:(NSString*) value;
 - (PBFileOptions_Builder*) clearJavaPackage;
 
-// optional string java_outer_classname = 8;
 - (BOOL) hasJavaOuterClassname;
 - (NSString*) javaOuterClassname;
 - (PBFileOptions_Builder*) setJavaOuterClassname:(NSString*) value;
 - (PBFileOptions_Builder*) clearJavaOuterClassname;
 
-// optional bool java_multiple_files = 10 [default = false];
 - (BOOL) hasJavaMultipleFiles;
 - (BOOL) javaMultipleFiles;
 - (PBFileOptions_Builder*) setJavaMultipleFiles:(BOOL) value;
 - (PBFileOptions_Builder*) clearJavaMultipleFiles;
 
-// optional .google.protobuf.FileOptions.OptimizeMode optimize_for = 9 [default = CODE_SIZE];
 - (BOOL) hasOptimizeFor;
 - (PBOptimizeMode*) optimizeFor;
 - (PBFileOptions_Builder*) setOptimizeFor:(PBOptimizeMode*) value;
 - (PBFileOptions_Builder*) clearOptimizeFor;
 
-// optional string objectivec_package = 11;
 - (BOOL) hasObjectivecPackage;
 - (NSString*) objectivecPackage;
 - (PBFileOptions_Builder*) setObjectivecPackage:(NSString*) value;
 - (PBFileOptions_Builder*) clearObjectivecPackage;
 
-// optional string objectivec_class_prefix = 12;
 - (BOOL) hasObjectivecClassPrefix;
 - (NSString*) objectivecClassPrefix;
 - (PBFileOptions_Builder*) setObjectivecClassPrefix:(NSString*) value;
@@ -1057,7 +967,6 @@
 @interface PBMessageOptions : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional bool message_set_wire_format = 1 [default = false];
     BOOL hasMessageSetWireFormat;
     BOOL messageSetWireFormat;
 }
@@ -1065,7 +974,7 @@
 @property (readonly) BOOL messageSetWireFormat;
 + (PBMessageOptions*) defaultInstance;
 - (PBMessageOptions*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1099,7 +1008,6 @@
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional bool message_set_wire_format = 1 [default = false];
 - (BOOL) hasMessageSetWireFormat;
 - (BOOL) messageSetWireFormat;
 - (PBMessageOptions_Builder*) setMessageSetWireFormat:(BOOL) value;
@@ -1109,10 +1017,8 @@
 @interface PBFieldOptions : PBGeneratedMessage {
 @private
     int32_t memoizedSerializedSize;
-    // optional .google.protobuf.FieldOptions.CType ctype = 1;
     BOOL hasCtype;
     PBCType* ctype;
-    // optional string experimental_map_key = 9;
     BOOL hasExperimentalMapKey;
     NSString* experimentalMapKey;
 }
@@ -1122,7 +1028,7 @@
 @property (retain, readonly) NSString* experimentalMapKey;
 + (PBFieldOptions*) defaultInstance;
 - (PBFieldOptions*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1153,7 +1059,7 @@
 + (PBCType*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) getValueDescriptor;
 - (PBEnumDescriptor*) descriptorForType;
-+ (PBEnumDescriptor*) getDescriptor;
++ (PBEnumDescriptor*) descriptor;
 
 + (PBCType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
 @end
@@ -1176,13 +1082,11 @@
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
-// optional .google.protobuf.FieldOptions.CType ctype = 1;
 - (BOOL) hasCtype;
 - (PBCType*) ctype;
 - (PBFieldOptions_Builder*) setCtype:(PBCType*) value;
 - (PBFieldOptions_Builder*) clearCtype;
 
-// optional string experimental_map_key = 9;
 - (BOOL) hasExperimentalMapKey;
 - (NSString*) experimentalMapKey;
 - (PBFieldOptions_Builder*) setExperimentalMapKey:(NSString*) value;
@@ -1195,7 +1099,7 @@
 }
 + (PBEnumOptions*) defaultInstance;
 - (PBEnumOptions*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1236,7 +1140,7 @@
 }
 + (PBEnumValueOptions*) defaultInstance;
 - (PBEnumValueOptions*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1277,7 +1181,7 @@
 }
 + (PBServiceOptions*) defaultInstance;
 - (PBServiceOptions*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1318,7 +1222,7 @@
 }
 + (PBMethodOptions*) defaultInstance;
 - (PBMethodOptions*) defaultInstanceForType;
-+ (PBDescriptor*) getDescriptor;
++ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
