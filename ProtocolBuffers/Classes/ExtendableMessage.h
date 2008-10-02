@@ -15,10 +15,10 @@
 // limitations under the License.
 
 @interface PBExtendableMessage : PBGeneratedMessage {
-  @private
+@private
     PBFieldSet* extensions;
 }
 
-@property (retain) PBFieldSet* extensions;
+@property (retain, readonly) PBFieldSet* extensions;
 
 @end

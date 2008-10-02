@@ -15,16 +15,17 @@
 // limitations under the License.
 
 @interface PBExtensionWriter : NSObject {
+@private
     PBFieldSet* extensions;
     NSEnumerator* enumerator;
     PBFieldDescriptor* nextKey;
     id nextValue;
 }
 
-@property (retain) PBFieldSet* extensions;
-@property (retain) NSEnumerator* enumerator;
-@property (retain) PBFieldDescriptor* nextKey;
-@property (retain) id nextValue;
+@property (retain, readonly) PBFieldSet* extensions;
+@property (retain, readonly) NSEnumerator* enumerator;
+@property (retain, readonly) PBFieldDescriptor* nextKey;
+@property (retain, readonly) id nextValue;
 
 + (PBExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions;
 

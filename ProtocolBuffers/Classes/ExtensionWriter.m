@@ -18,6 +18,15 @@
 
 #import "FieldSet.h"
 
+
+@interface PBExtensionWriter ()
+@property (retain) PBFieldSet* extensions;
+@property (retain) NSEnumerator* enumerator;
+@property (retain) PBFieldDescriptor* nextKey;
+@property (retain) id nextValue;
+@end
+
+
 @implementation PBExtensionWriter
 
 @synthesize extensions;

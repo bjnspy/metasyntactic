@@ -25,9 +25,7 @@
      */
 }
 
-@property (retain) PBFieldDescriptor* descriptor;
-@property (retain) Class type;
-
-- (PBFieldDescriptor*) getDescriptor;
+@property (retain, readonly) PBFieldDescriptor* descriptor;
+@property (retain, readonly) Class type;
 
 @end
