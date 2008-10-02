@@ -92,7 +92,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "- (PBEnumValueDescriptor*) getValueDescriptor;\n"
-      "- (PBEnumDescriptor*) getDescriptorForType;\n"
+      "- (PBEnumDescriptor*) descriptorForType;\n"
       "+ (PBEnumDescriptor*) getDescriptor;\n");
 
     printer->Print(
@@ -204,7 +204,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- (PBEnumValueDescriptor*) getValueDescriptor {\n"
       "  return [[$classname$ getDescriptor].values objectAtIndex:index];\n"
       "}\n"
-      "- (PBEnumDescriptor*) getDescriptorForType {\n"
+      "- (PBEnumDescriptor*) descriptorForType {\n"
       "  return [$classname$ getDescriptor];\n"
       "}\n"
       "+ (PBEnumDescriptor*) getDescriptor {\n",

@@ -293,8 +293,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     }
 
     printer->Print(
-      "+ ($classname$*) getDefaultInstance;\n"
-      "- ($classname$*) getDefaultInstanceForType;\n",
+      "+ ($classname$*) defaultInstance;\n"
+      "- ($classname$*) defaultInstanceForType;\n",
       "classname", ClassName(descriptor_));
     printer->Print(
       "+ (PBDescriptor*) getDescriptor;\n"
@@ -375,11 +375,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  }\n"
       "}\n"
       "\n"
-      "+ ($classname$*) getDefaultInstance {\n"
+      "+ ($classname$*) defaultInstance {\n"
       "  return default$classname$Instance;\n"
       "}\n"
       "\n"
-      "- ($classname$*) getDefaultInstanceForType {\n"
+      "- ($classname$*) defaultInstanceForType {\n"
       "  return default$classname$Instance;\n"
       "}\n"
       "\n",
@@ -529,8 +529,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       //"- ($classname$*) internalGetResult;\n"
       "- ($classname$_Builder*) clear;\n"
       "- ($classname$_Builder*) clone;\n"
-      "- (PBDescriptor*) getDescriptorForType;\n"
-      "- ($classname$*) getDefaultInstanceForType;\n",
+      "- (PBDescriptor*) descriptorForType;\n"
+      "- ($classname$*) defaultInstanceForType;\n",
       "classname", ClassName(descriptor_));
 
     // -----------------------------------------------------------------
@@ -622,17 +622,17 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     if (descriptor_->options().message_set_wire_format()) {
       printer->Print(
-        "[self.getUnknownFields writeAsMessageSetTo:output];\n");
+        "[self.unknownFields writeAsMessageSetTo:output];\n");
     } else {
       printer->Print(
-        "[self.getUnknownFields writeToCodedOutputStream:output];\n");
+        "[self.unknownFields writeToCodedOutputStream:output];\n");
     }
 
     printer->Outdent();
     printer->Print(
       "}\n"
       "\n"
-      "- (int32_t) getSerializedSize {\n"
+      "- (int32_t) serializedSize {\n"
       "  int32_t size = memoizedSerializedSize;\n"
       "  if (size != -1) return size;\n"
       "\n"
@@ -650,10 +650,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     if (descriptor_->options().message_set_wire_format()) {
       printer->Print(
-        "size += self.getUnknownFields.getSerializedSizeAsMessageSet;\n");
+        "size += self.unknownFields.getSerializedSizeAsMessageSet;\n");
     } else {
       printer->Print(
-        "size += self.getUnknownFields.getSerializedSize;\n");
+        "size += self.unknownFields.serializedSize;\n");
     }
 
     printer->Outdent();
@@ -756,12 +756,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return ($classname$_Builder*)[[[[$classname$_Builder alloc] init] autorelease] mergeFrom$classname$:result];\n"
       "}\n"
       "\n"
-      "- (PBDescriptor*) getDescriptorForType {\n"
+      "- (PBDescriptor*) descriptorForType {\n"
       "  return [$classname$ getDescriptor];\n"
       "}\n"
       "\n"
-      "- ($classname$*) getDefaultInstanceForType {\n"
-      "  return [$classname$ getDefaultInstance];\n"
+      "- ($classname$*) defaultInstanceForType {\n"
+      "  return [$classname$ defaultInstance];\n"
       "}\n"
       "\n",
       "classname", ClassName(descriptor_));
@@ -817,7 +817,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- ($classname$_Builder*) mergeFrom$classname$:($classname$*) other {\n"
       // Optimization:  If other is the default instance, we know none of its
       //   fields are set so we can skip the merge.
-      "  if (other == [$classname$ getDefaultInstance]) return self;\n",
+      "  if (other == [$classname$ defaultInstance]) return self;\n",
       "classname", ClassName(descriptor_));
     printer->Indent();
 
@@ -827,7 +827,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Outdent();
     printer->Print(
-      "  [self mergeUnknownFields:other.getUnknownFields];\n"
+      "  [self mergeUnknownFields:other.unknownFields];\n"
       "  return self;\n"
       "}\n"
       "\n");
@@ -842,7 +842,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "- ($classname$_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {\n"
-      "  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry getEmptyRegistry]];\n"
+      "  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];\n"
       "}\n"
       "\n"
       "- ($classname$_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n",
@@ -850,7 +850,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Indent();
 
     printer->Print(
-      "PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.getUnknownFields];\n"
+      "PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];\n"
       "while (true) {\n");
     printer->Indent();
 
