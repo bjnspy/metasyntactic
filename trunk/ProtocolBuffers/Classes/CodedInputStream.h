@@ -17,6 +17,7 @@
 #import "FieldDescriptorType.h"
 
 @interface PBCodedInputStream : NSObject {
+@private
     NSMutableData* buffer;
     int32_t bufferSize;
     int32_t bufferSizeAfterLimit;

@@ -16,6 +16,7 @@
 
 enum PBFieldDescriptorType;
 enum PBObjectiveCType;
+enum PBWireFormat;
 
 @protocol PBMessage;
 @protocol PBMessage_Builder;
@@ -45,14 +46,11 @@ enum PBObjectiveCType;
 @class PBFieldAccessor;
 @class PBFieldAccessorTable;
 @class PBGeneratedExtension;
-@class PBMethodDescriptor;
-@class PBServiceDescriptor;
 @class PBDynamicMessage;
 @class PBDynamicMessage_Builder;
 @class PBExtensionRegistry;
 @class PBUnknownFieldSet;
 @class PBUnknownFieldSet_Builder;
-@class PBWireFormat;
 @class PBDescriptor;
 @class PBRepeatedMessageFieldAccessor;
 @class PBRepeatedEnumFieldAccessor;
@@ -60,3 +58,5 @@ enum PBObjectiveCType;
 @class PBSingularMessageFieldAccessor;
 @class PBSingularEnumFieldAccessor;
 @class PBSingularFieldAccessor;
+@class PBMethodDescriptor;
+@class PBServiceDescriptor;

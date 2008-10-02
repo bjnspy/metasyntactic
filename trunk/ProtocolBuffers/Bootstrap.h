@@ -16,6 +16,8 @@
 
 #import "ForwardDeclarations.h"
 
+#import "Message_Builder.h"
+
 #import "CodedInputStream.h"
 #import "CodedOutputStream.h"
 #import "Descriptor.h"
