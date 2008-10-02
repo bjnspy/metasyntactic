@@ -932,25 +932,25 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
           switch (field->label()) {
         case FieldDescriptor::LABEL_REQUIRED:
           printer->Print(
-            "if (!self.get$name$.isInitialized) return false;\n",
+            "if (!self.$name$.isInitialized) return false;\n",
             "type", ClassName(field->message_type()),
-            "name", UnderscoresToCapitalizedCamelCase(field));
+            "name", UnderscoresToCamelCase(field));
           break;
         case FieldDescriptor::LABEL_OPTIONAL:
           printer->Print(
             "if (self.has$name$) {\n"
-            "  if (!self.get$name$.isInitialized) return false;\n"
+            "  if (!self.$name$.isInitialized) return false;\n"
             "}\n",
             "type", ClassName(field->message_type()),
-            "name", UnderscoresToCapitalizedCamelCase(field));
+            "name", UnderscoresToCamelCase(field));
           break;
         case FieldDescriptor::LABEL_REPEATED:
           printer->Print(
-            "for ($type$* element in self.get$name$List) {\n"
+            "for ($type$* element in self.$name$List) {\n"
             "  if (!element.isInitialized) return false;\n"
             "}\n",
             "type", ClassName(field->message_type()),
-            "name", UnderscoresToCapitalizedCamelCase(field));
+            "name", UnderscoresToCamelCase(field));
           break;
           }
       }
