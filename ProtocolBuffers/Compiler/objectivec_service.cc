@@ -55,10 +55,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "       selector:(SEL) selector;\n");
     }
 
-    // Generate getDescriptor() and descriptorForType().
+    // Generate descriptor and descriptorForType().
     printer->Print(
       "\n"
-      "+ (ServiceDescriptor*) getDescriptor;\n"
+      "+ (ServiceDescriptor*) descriptor;\n"
       "- (ServiceDescriptor*) descriptorForType;\n");
 
     // Generate more stuff.
@@ -94,14 +94,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "}\n");
     }
 
-    // Generate getDescriptor() and descriptorForType().
+    // Generate descriptor() and descriptorForType().
     printer->Print(
       "\n"
-      "+ (ServiceDescriptor*) getDescriptor {\n"
-      "  return [[$file$ getDescriptor].getServices objectAtIndex:$index$];\n"
+      "+ (ServiceDescriptor*) descriptor {\n"
+      "  return [[$file$ descriptor].getServices objectAtIndex:$index$];\n"
       "}\n"
       "- (ServiceDescriptor*) descriptorForType {\n"
-      "  return [self getDescriptor];\n"
+      "  return [self descriptor];\n"
       "}\n",
       "file", FileClassName(descriptor_->file()),
       "index", SimpleItoa(descriptor_->index()));
@@ -136,7 +136,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "            request:(id<PBMessage>) request\n"
       "             target:(id) target\n"
       "           selector:(SEL) selector {\n"
-      "  if (method.getService != self.getDescriptor) {\n"
+      "  if (method.getService != self.descriptor) {\n"
       "    [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
       "  switch(method.index) {\n");
@@ -181,7 +181,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     io::Printer* printer) {
       printer->Print(
         "- (id<PBMessage>) get$request_or_response$Prototype:(PBMethodDescriptor*) method {\n"
-        "  if (method.getService != getDescriptor) {\n"
+        "  if (method.getService != descriptor) {\n"
         "    [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"\" userInfo:nil];\n"
         "  }\n"
         "  switch(method.index) {\n",
@@ -275,7 +275,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "                        request:($input$*) request\n"
         "                         target:(id) target\n"
         "                       selector:(SEL) selector {\n"
-        "  [channel callMethod:[self.getDescriptor.getMethods objectAtIndex:$index$]\n"
+        "  [channel callMethod:[self.descriptor.getMethods objectAtIndex:$index$]\n"
         "           controller:controller\n"
         "              request:request\n"
         "             response:[$output$ defaultInstance]\n"

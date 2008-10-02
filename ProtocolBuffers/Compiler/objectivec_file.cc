@@ -134,14 +134,15 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     file_proto.SerializeToString(&file_data);
 
     printer->Print(
-      "+ (PBFileDescriptor*) getDescriptor;\n"
+      "+ (PBFileDescriptor*) descriptor;\n"
       "+ (PBFileDescriptor*) buildDescriptor;\n");
 
+
     // Static variables.
-    for (int i = 0; i < file_->message_type_count(); i++) {
-      // TODO(kenton):  Reuse MessageGenerator objects?
-      MessageGenerator(file_->message_type(i)).GenerateStaticVariablesHeader(printer);
-    }
+    //for (int i = 0; i < file_->message_type_count(); i++) {
+    //  // TODO(kenton):  Reuse MessageGenerator objects?
+    //  MessageGenerator(file_->message_type(i)).GenerateStaticVariablesHeader(printer);
+    //}
 
     // -----------------------------------------------------------------
     printer->Print("@end\n\n");
@@ -257,7 +258,7 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     printer->Print(
       "  }\n"
       "}\n"
-      "+ (PBFileDescriptor*) getDescriptor {\n"
+      "+ (PBFileDescriptor*) descriptor {\n"
       "  return descriptor;\n"
       "}\n"
       "+ (PBFileDescriptor*) buildDescriptor {\n"
@@ -281,7 +282,7 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
       "NSArray* dependencies = [NSArray arrayWithObjects:\n");
     for (int i = 0; i < file_->dependency_count(); i++) {
       printer->Print(
-        "        [$dependency$ getDescriptor],\n",
+        "        [$dependency$ descriptor],\n",
         "dependency", FileClassName(file_->dependency(i)));
     }
     printer->Print(

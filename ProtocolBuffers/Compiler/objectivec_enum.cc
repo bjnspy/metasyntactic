@@ -91,9 +91,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     // Reflection
 
     printer->Print(
-      "- (PBEnumValueDescriptor*) getValueDescriptor;\n"
+      "- (PBEnumValueDescriptor*) valueDescriptor;\n"
       "- (PBEnumDescriptor*) descriptorForType;\n"
-      "+ (PBEnumDescriptor*) getDescriptor;\n");
+      "+ (PBEnumDescriptor*) descriptor;\n");
 
     printer->Print(
       "\n"
@@ -208,26 +208,26 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     // Reflection
 
     printer->Print(
-      "- (PBEnumValueDescriptor*) getValueDescriptor {\n"
-      "  return [[$classname$ getDescriptor].values objectAtIndex:index];\n"
+      "- (PBEnumValueDescriptor*) valueDescriptor {\n"
+      "  return [[$classname$ descriptor].values objectAtIndex:index];\n"
       "}\n"
       "- (PBEnumDescriptor*) descriptorForType {\n"
-      "  return [$classname$ getDescriptor];\n"
+      "  return [$classname$ descriptor];\n"
       "}\n"
-      "+ (PBEnumDescriptor*) getDescriptor {\n",
+      "+ (PBEnumDescriptor*) descriptor {\n",
       "classname", ClassName(descriptor_));
 
     // TODO(kenton):  Cache statically?  Note that we can't access descriptors
     //   at module init time because it wouldn't work with descriptor.proto, but
-    //   we can cache the value the first time getDescriptor() is called.
+    //   we can cache the value the first time descriptor is called.
     if (descriptor_->containing_type() == NULL) {
       printer->Print(
-        "  return [[$file$ getDescriptor].enumTypes objectAtIndex:$index$];\n",
+        "  return [[$file$ descriptor].enumTypes objectAtIndex:$index$];\n",
         "file", FileClassName(descriptor_->file()),
         "index", SimpleItoa(descriptor_->index()));
     } else {
       printer->Print(
-        "  return [[$parent$ getDescriptor].enumTypes objectAtIndex:$index$];\n",
+        "  return [[$parent$ descriptor].enumTypes objectAtIndex:$index$];\n",
         "parent", ClassName(descriptor_->containing_type()),
         "index", SimpleItoa(descriptor_->index()));
     }
@@ -239,7 +239,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "\n"
       "+ ($classname$*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {\n"
-      "  if (desc.type != [$classname$ getDescriptor]) {\n"
+      "  if (desc.type != [$classname$ descriptor]) {\n"
       "    [NSException exceptionWithName:@\"\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
       "  $classname$* VALUES[] = {\n",
