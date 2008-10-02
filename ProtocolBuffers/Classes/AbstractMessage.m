@@ -79,7 +79,7 @@
         }
     }
 
-    PBUnknownFieldSet* unknownFields = self.getUnknownFields;
+    PBUnknownFieldSet* unknownFields = self.unknownFields;
     if (self.descriptorForType.options.getMessageSetWireFormat) {
         [unknownFields writeAsMessageSetTo:output];
     } else {
@@ -123,7 +123,7 @@
         }
     }
 
-    PBUnknownFieldSet* unknownFields = self.getUnknownFields;
+    PBUnknownFieldSet* unknownFields = self.unknownFields;
     if (self.descriptorForType.options.getMessageSetWireFormat) {
         size += unknownFields.getSerializedSizeAsMessageSet;
     } else {
@@ -195,7 +195,7 @@
 }
 
 
-- (PBUnknownFieldSet*) getUnknownFields {
+- (PBUnknownFieldSet*) unknownFields {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

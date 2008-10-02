@@ -20,7 +20,7 @@
 @private
 }
 
-- (PBUnknownFieldSet*) getUnknownFields;
+- (PBUnknownFieldSet*) unknownFields;
 
 - (id<PBMessage>) buildParsed;
 

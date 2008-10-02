@@ -141,7 +141,7 @@
 }
 
 
-- (PBUnknownFieldSet*) getUnknownFields {
+- (PBUnknownFieldSet*) unknownFields {
     return self.internalGetResult.unknownFields;
 }
 
