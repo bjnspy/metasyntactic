@@ -43,38 +43,6 @@
 }
 + (PBFileDescriptor*) getDescriptor;
 + (PBFileDescriptor*) buildDescriptor;
-+ (PBDescriptor*) internal_static_google_protobuf_FileDescriptorSet_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_FileDescriptorProto_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_DescriptorProto_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_FieldDescriptorProto_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_EnumDescriptorProto_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_EnumValueDescriptorProto_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_ServiceDescriptorProto_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_MethodDescriptorProto_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_FileOptions_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_FileOptions_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_MessageOptions_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_MessageOptions_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_FieldOptions_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_FieldOptions_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_EnumOptions_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_EnumOptions_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_EnumValueOptions_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_ServiceOptions_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_ServiceOptions_fieldAccessorTable;
-+ (PBDescriptor*) internal_static_google_protobuf_MethodOptions_descriptor;
-+ (PBFieldAccessorTable*) internal_static_google_protobuf_MethodOptions_fieldAccessorTable;
 @end
 
 @interface PBFileDescriptorSet : PBGeneratedMessage {
