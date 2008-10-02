@@ -23,7 +23,7 @@
 - (id<PBMessage_Builder>) clone;
 - (BOOL) isInitialized;
 - (PBDescriptor*) descriptorForType;
-- (id<PBMessage>) getDefaultInstanceForType;
+- (id<PBMessage>) defaultInstanceForType;
 - (NSDictionary*) allFields;
 - (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
 

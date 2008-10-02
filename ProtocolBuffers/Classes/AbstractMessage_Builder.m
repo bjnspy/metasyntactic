@@ -67,7 +67,7 @@
         } else if (field.objectiveCType == PBObjectiveCTypeMessage) {
             id<PBMessage> existingValue = [self getField:field];
 
-            if (existingValue == [existingValue getDefaultInstanceForType]) {
+            if (existingValue == [existingValue defaultInstanceForType]) {
                 [self setField:field value:value];
             } else {
                 id value1 = [[[[existingValue newBuilderForType] mergeFromMessage:existingValue] mergeFromMessage:value] build];
@@ -167,7 +167,7 @@
 }
 
 
-- (id<PBMessage>) getDefaultInstanceForType {
+- (id<PBMessage>) defaultInstanceForType {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

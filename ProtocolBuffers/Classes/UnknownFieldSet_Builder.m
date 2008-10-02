@@ -22,6 +22,13 @@
 #import "UnknownFieldSet.h"
 #import "WireFormat.h"
 
+@interface PBUnknownFieldSet_Builder ()
+@property (retain) NSMutableDictionary* fields;
+@property int32_t lastFieldNumber;
+@property (retain) PBMutableField* lastField;
+@end
+
+
 @implementation PBUnknownFieldSet_Builder
 
 @synthesize fields;

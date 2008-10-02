@@ -123,7 +123,7 @@
 }
 
 
-- (PBDynamicMessage*) getDefaultInstanceForType {
+- (PBDynamicMessage*) defaultInstanceForType {
     return [PBDynamicMessage defaultInstance:type];
 }
 
