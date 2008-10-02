@@ -20,36 +20,17 @@
     NSMutableDictionary* extensionsByNumber;
 }
 
-
 @property (retain, readonly) NSMutableDictionary* extensionsByName;
 @property (retain, readonly) NSMutableDictionary* extensionsByNumber;
 
-+ (PBExtensionRegistry*) getEmptyRegistry;
-
-- (id) initWithExtensionsByName:(NSMutableDictionary*) extensionsByName
-             extensionsByNumber:(NSMutableDictionary*) extensionsByNumber;
++ (PBExtensionRegistry*) emptyRegistry;
++ (PBExtensionRegistry*) registry;
++ (PBExtensionRegistry*) registryWithExtensionsByName:(NSMutableDictionary*) extensionsByName
+                                   extensionsByNumber:(NSMutableDictionary*) extensionsByNumber;
 
 - (void) addExtensionInfo:(PBExtensionInfo*) extension;
 
 - (PBExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
                                                fieldNumber:(int32_t) fieldNumber;
-
-#if 0
-
-
-+ (PBExtensionRegistry*) newInstance;
-+ (PBExtensionRegistry*) emptyRegistry;
-
-- (PBExtensionRegistry*) unmodifiable;
-
-- (PBExtensionInfo*) findExtensionByName:(NSString*) fullName;
-- (PBExtensionInfo*) findExtensionByContainingType:(Descriptors_Descriptor*) containingType fieldNumber:(int32_t) fieldNumber;
-
-- (void) add:(PBGeneratedExtension*) extension;
-- (void) add:(PBFieldDescriptor*) type;
-- (void) add:(PBFieldDescriptor*) type defaultInstance:(PBMessage*) defaultInstance;
-
-+ (PBExtensionRegistry*) registryWithExtensionsByName:(NSDictionary*) extensionsByName extensionsByNumber:(NSDictionary*) extensionsByNumber;
-#endif
 
 @end

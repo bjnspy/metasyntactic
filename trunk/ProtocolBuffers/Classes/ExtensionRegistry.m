@@ -37,8 +37,8 @@ static PBExtensionRegistry* EMPTY = nil;
 
 + (void) initialize {
     if (self = [PBExtensionRegistry class]) {
-        EMPTY = [[PBExtensionRegistry alloc] initWithExtensionsByName:[NSMutableDictionary dictionary]
-                                                 extensionsByNumber:[NSMutableDictionary dictionary]];
+        EMPTY = [[PBExtensionRegistry registryWithExtensionsByName:[NSMutableDictionary dictionary]
+                                                extensionsByNumber:[NSMutableDictionary dictionary]] retain];
     }
 }
 
@@ -55,14 +55,8 @@ static PBExtensionRegistry* EMPTY = nil;
 }
 
 
-+ (PBExtensionRegistry*) getEmptyRegistry {
++ (PBExtensionRegistry*) emptyRegistry {
     return EMPTY;
-}
-
-
-+ (PBExtensionRegistry*) newInstance {
-    return [[[PBExtensionRegistry alloc] initWithExtensionsByName:[NSMutableDictionary dictionary]
-                                             extensionsByNumber:[NSMutableDictionary dictionary]] autorelease];
 }
 
 
@@ -74,6 +68,19 @@ static PBExtensionRegistry* EMPTY = nil;
     }
 
     return self;
+}
+
+
++ (PBExtensionRegistry*) registryWithExtensionsByName:(NSMutableDictionary*) extensionsByName
+                                   extensionsByNumber:(NSMutableDictionary*) extensionsByNumber {
+    return [[[PBExtensionRegistry alloc] initWithExtensionsByName:extensionsByName
+                                               extensionsByNumber:extensionsByNumber] autorelease];
+}
+
+
++ (PBExtensionRegistry*) registry {
+    return [[[PBExtensionRegistry alloc] initWithExtensionsByName:[NSMutableDictionary dictionary]
+                                               extensionsByNumber:[NSMutableDictionary dictionary]] autorelease];
 }
 
 
