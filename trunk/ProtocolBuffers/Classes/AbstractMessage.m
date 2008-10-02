@@ -97,7 +97,7 @@
 
 
 - (void) writeToOutputStream:(NSOutputStream*) output {
-    PBCodedOutputStream* codedOutput = [PBCodedOutputStream newInstance:output];
+    PBCodedOutputStream* codedOutput = [PBCodedOutputStream streamWithOutputStream:output];
     [self writeToCodedOutputStream:codedOutput];
     [codedOutput flush];
 }
