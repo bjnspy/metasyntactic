@@ -22,12 +22,12 @@
     //   row (important when parsing an unknown repeated field).
     int32_t lastFieldNumber;
 
-    PBField_Builder* lastField;
+    PBMutableField* lastField;
 }
 
 @property (retain) NSMutableDictionary* fields;
 @property int32_t lastFieldNumber;
-@property (retain) PBField_Builder* lastField;
+@property (retain) PBMutableField* lastField;
 
 + (PBUnknownFieldSet_Builder*) newBuilder;
 

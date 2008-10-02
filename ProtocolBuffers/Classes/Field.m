@@ -19,13 +19,21 @@
 #import "CodedOutputStream.h"
 #import "Field_Builder.h"
 
+@interface PBField ()
+@property (retain) NSArray* varint;
+@property (retain) NSArray* fixed32;
+@property (retain) NSArray* fixed64;
+@property (retain) NSArray* lengthDelimited;
+@property (retain) NSArray* group;
+@end
+
 @implementation PBField
 
 static PBField* defaultInstance = nil;
 
 + (void) initialize {
     if (self == [PBField class]) {
-        defaultInstance = [[PBField newBuilder] build];
+        defaultInstance = [[PBField alloc] init];
     }
 }
 
@@ -45,16 +53,6 @@ static PBField* defaultInstance = nil;
     self.group = nil;
 
     [super dealloc];
-}
-
-
-+ (PBField_Builder*) newBuilder {
-    return [[[PBField_Builder alloc] init] autorelease];
-}
-
-
-+ (PBField_Builder*) newBuilder:(PBField*) copyFrom {
-    return [[PBField newBuilder] mergeFromField:copyFrom];
 }
 
 

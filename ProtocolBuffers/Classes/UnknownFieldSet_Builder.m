@@ -73,20 +73,20 @@
  * Get a field builder for the given field number which includes any
  * values that already exist.
  */
-- (PBField_Builder*) getFieldBuilder:(int32_t) number {
+- (PBMutableField*) getFieldBuilder:(int32_t) number {
     if (lastField != nil) {
         if (number == lastFieldNumber) {
             return lastField;
         }
         // Note:  addField() will reset lastField and lastFieldNumber.
-        [self addField:[lastField build] forNumber:lastFieldNumber];
+        [self addField:lastField forNumber:lastFieldNumber];
     }
     if (number == 0) {
         return nil;
     } else {
         PBField* existing = [fields objectForKey:[NSNumber numberWithInt:number]];
         lastFieldNumber = number;
-        self.lastField = [PBField newBuilder];
+        self.lastField = [PBMutableField field];
         if (existing != nil) {
             [lastField mergeFromField:existing];
         }
