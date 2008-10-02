@@ -77,12 +77,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     if (descriptor_->is_repeated()) {
       printer->Print(vars,
         "    $name$ = [[PBGeneratedMessage newRepeatedGeneratedExtension:\n"
-        "          [[self getDescriptor].getExtensions objectAtIndex:$index$]\n"
+        "          [[self descriptor].getExtensions objectAtIndex:$index$]\n"
         "          class:[$type$ class]] retain];\n");
     } else {
       printer->Print(vars,
         "    $name$ = [[PBGeneratedMessage newGeneratedExtension:\n"
-        "        [[self getDescriptor].getExtensions objectAtIndex:$index$\n"
+        "        [[self descriptor].getExtensions objectAtIndex:$index$\n"
         "        class:[$type$ class]] retain];\n");
     }
   }

@@ -274,8 +274,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   RepeatedMessageFieldGenerator::~RepeatedMessageFieldGenerator() {}
 
 
-  void RepeatedMessageFieldGenerator::
-    GenerateFieldsHeader(io::Printer* printer) const {
+  void RepeatedMessageFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
       printer->Print(variables_,
         "NSMutableArray* $mutable_list_name$;\n");
   }

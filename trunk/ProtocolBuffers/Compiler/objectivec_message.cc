@@ -179,7 +179,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     if (descriptor_->containing_type() == NULL) {
       printer->Print(vars,
-        "internal_$identifier$_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:$index$] retain];\n");
+        "internal_$identifier$_descriptor = [[[self descriptor].messageTypes objectAtIndex:$index$] retain];\n");
     } else {
       printer->Print(vars,
         "internal_$identifier$_descriptor = [[[internal_$parent$_descriptor nestedTypes] objectAtIndex:$index$] retain];\n");
@@ -277,7 +277,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Indent();
     for (int i = 0; i < descriptor_->field_count(); i++) {
-      PrintFieldComment(printer, descriptor_->field(i));
       field_generators_.get(descriptor_->field(i)).GenerateFieldsHeader(printer);
     }
     printer->Outdent();
@@ -297,7 +296,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- ($classname$*) defaultInstanceForType;\n",
       "classname", ClassName(descriptor_));
     printer->Print(
-      "+ (PBDescriptor*) getDescriptor;\n"
+      "+ (PBDescriptor*) descriptor;\n"
       "- (PBFieldAccessorTable*) internalGetFieldAccessorTable;\n"
       "\n",
       "fileclass", FileClassName(descriptor_->file()),
@@ -393,7 +392,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "\n",
       "classname", ClassName(descriptor_));
     printer->Print(
-      "+ (PBDescriptor*) getDescriptor {\n"
+      "+ (PBDescriptor*) descriptor {\n"
       "  return [$fileclass$ internal_$identifier$_descriptor];\n"
       "}\n"
       "\n"
@@ -522,7 +521,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
       printer->Print("\n");
-      PrintFieldComment(printer, descriptor_->field(i));
       field_generators_.get(descriptor_->field(i)).GenerateBuilderMembersHeader(printer);
     }
 
@@ -740,7 +738,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
       printer->Print("\n");
-      //PrintFieldComment(printer, descriptor_->field(i));
       field_generators_.get(descriptor_->field(i)).GenerateBuilderMembersSource(printer);
     }
 
@@ -765,7 +762,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n"
       "\n"
       "- (PBDescriptor*) descriptorForType {\n"
-      "  return [$classname$ getDescriptor];\n"
+      "  return [$classname$ descriptor];\n"
       "}\n"
       "\n"
       "- ($classname$*) defaultInstanceForType {\n"
