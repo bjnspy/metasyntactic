@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		740B6A7A0E948B4A007530E8 /* CodedInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74B00E8CCF0E00F16FD4 /* CodedInputStream.m */; };
 		7411FB650E8E3856002552B1 /* Utilities.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 7411FB630E8E3856002552B1 /* Utilities.h */; };
 		7411FB660E8E3856002552B1 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7411FB640E8E3856002552B1 /* Utilities.m */; };
 		741A74520E8CC69300F16FD4 /* ForwardDeclarations.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74510E8CC69300F16FD4 /* ForwardDeclarations.h */; };
@@ -79,7 +80,7 @@
 		745E98EB0E9420B2007FD139 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745E98EA0E9420B2007FD139 /* SenTestingKit.framework */; };
 		745E98FD0E942186007FD139 /* UtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E98FC0E942186007FD139 /* UtilitiesTests.m */; };
 		745E99260E94234C007FD139 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 7411FB640E8E3856002552B1 /* Utilities.m */; };
-		745E993D0E9425AE007FD139 /* CodedStreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E993C0E9425AE007FD139 /* CodedStreamTests.m */; };
+		745E993D0E9425AE007FD139 /* CodedInputStreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E993C0E9425AE007FD139 /* CodedInputStreamTests.m */; };
 		749E63960E93F81600F78C70 /* ExtendableMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63950E93F81600F78C70 /* ExtendableMessage.m */; };
 		749E63A30E93FD6000F78C70 /* ExtensionWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63A20E93FD6000F78C70 /* ExtensionWriter.m */; };
 		749E63F40E94071100F78C70 /* GeneratedExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63F30E94071100F78C70 /* GeneratedExtension.m */; };
@@ -106,6 +107,7 @@
 			dstPath = Headers;
 			dstSubfolderSpec = 1;
 			files = (
+				74516F5A0E90612D00D4E0C5 /* FieldAccessorTable.h in Copy Headers */,
 				745E98660E941F0E007FD139 /* Descriptor.pb.h in Copy Headers */,
 				741A758F0E8CE18200F16FD4 /* Descriptor.h in Copy Headers */,
 				741A75910E8CE18200F16FD4 /* FieldDescriptor.h in Copy Headers */,
@@ -118,7 +120,6 @@
 				741A74EB0E8CCF0E00F16FD4 /* GeneratedMessage.h in Copy Headers */,
 				745E98670E941F0E007FD139 /* GeneratedMessage_Builder.h in Copy Headers */,
 				7451707B0E90700500D4E0C5 /* FieldAccessor.h in Copy Headers */,
-				74516F5A0E90612D00D4E0C5 /* FieldAccessorTable.h in Copy Headers */,
 				745170A10E9072AB00D4E0C5 /* RepeatedEnumFieldAccessor.h in Copy Headers */,
 				745170A50E90732A00D4E0C5 /* RepeatedFieldAccessor.h in Copy Headers */,
 				745170B70E9073BA00D4E0C5 /* RepeatedMessageFieldAccessor.h in Copy Headers */,
@@ -233,8 +234,8 @@
 		745E98F40E94211C007FD139 /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		745E98FB0E942186007FD139 /* UtilitiesTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UtilitiesTests.h; sourceTree = "<group>"; };
 		745E98FC0E942186007FD139 /* UtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilitiesTests.m; sourceTree = "<group>"; };
-		745E993B0E9425AE007FD139 /* CodedStreamTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodedStreamTests.h; sourceTree = "<group>"; };
-		745E993C0E9425AE007FD139 /* CodedStreamTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedStreamTests.m; sourceTree = "<group>"; };
+		745E993B0E9425AE007FD139 /* CodedInputStreamTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodedInputStreamTests.h; sourceTree = "<group>"; };
+		745E993C0E9425AE007FD139 /* CodedInputStreamTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedInputStreamTests.m; sourceTree = "<group>"; };
 		745E99430E943511007FD139 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
 		749E63940E93F81600F78C70 /* ExtendableMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableMessage.h; sourceTree = "<group>"; };
 		749E63950E93F81600F78C70 /* ExtendableMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableMessage.m; sourceTree = "<group>"; };
@@ -387,9 +388,9 @@
 			isa = PBXGroup;
 			children = (
 				745E99430E943511007FD139 /* ProtocolBuffers_Prefix.pch */,
+				745181060E91783700D4E0C5 /* Bootstrap.h */,
 				745180080E916ED800D4E0C5 /* ProtocolBuffers.h */,
 				741A74510E8CC69300F16FD4 /* ForwardDeclarations.h */,
-				745181060E91783700D4E0C5 /* Bootstrap.h */,
 			);
 			name = "Other Sources";
 			sourceTree = "<group>";
@@ -477,8 +478,8 @@
 			children = (
 				745E98FB0E942186007FD139 /* UtilitiesTests.h */,
 				745E98FC0E942186007FD139 /* UtilitiesTests.m */,
-				745E993B0E9425AE007FD139 /* CodedStreamTests.h */,
-				745E993C0E9425AE007FD139 /* CodedStreamTests.m */,
+				745E993B0E9425AE007FD139 /* CodedInputStreamTests.h */,
+				745E993C0E9425AE007FD139 /* CodedInputStreamTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -581,9 +582,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				740B6A7A0E948B4A007530E8 /* CodedInputStream.m in Sources */,
 				745E99260E94234C007FD139 /* Utilities.m in Sources */,
 				745E98FD0E942186007FD139 /* UtilitiesTests.m in Sources */,
-				745E993D0E9425AE007FD139 /* CodedStreamTests.m in Sources */,
+				745E993D0E9425AE007FD139 /* CodedInputStreamTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
