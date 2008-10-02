@@ -30,8 +30,8 @@
 		741A74E40E8CCF0E00F16FD4 /* DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BC0E8CCF0E00F16FD4 /* DescriptorIntPair.m */; };
 		741A74E50E8CCF0E00F16FD4 /* ExtensionInfo.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BD0E8CCF0E00F16FD4 /* ExtensionInfo.h */; };
 		741A74E60E8CCF0E00F16FD4 /* ExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BE0E8CCF0E00F16FD4 /* ExtensionInfo.m */; };
-		741A74E70E8CCF0E00F16FD4 /* Field_Builder.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BF0E8CCF0E00F16FD4 /* Field_Builder.h */; };
-		741A74E80E8CCF0E00F16FD4 /* Field_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74C00E8CCF0E00F16FD4 /* Field_Builder.m */; };
+		741A74E70E8CCF0E00F16FD4 /* MutableField.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BF0E8CCF0E00F16FD4 /* MutableField.h */; };
+		741A74E80E8CCF0E00F16FD4 /* MutableField.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74C00E8CCF0E00F16FD4 /* MutableField.m */; };
 		741A74E90E8CCF0E00F16FD4 /* FieldSet.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74C10E8CCF0E00F16FD4 /* FieldSet.h */; };
 		741A74EA0E8CCF0E00F16FD4 /* FieldSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74C20E8CCF0E00F16FD4 /* FieldSet.m */; };
 		741A74EB0E8CCF0E00F16FD4 /* GeneratedMessage.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74C30E8CCF0E00F16FD4 /* GeneratedMessage.h */; };
@@ -148,7 +148,7 @@
 				741A74F90E8CCF0E00F16FD4 /* WireFormat.h in Copy Headers */,
 				74E79B170E8D73C600EFD26E /* ObjectiveCType.h in Copy Headers */,
 				74E79EFA0E8DA83400EFD26E /* Field.h in Copy Headers */,
-				741A74E70E8CCF0E00F16FD4 /* Field_Builder.h in Copy Headers */,
+				741A74E70E8CCF0E00F16FD4 /* MutableField.h in Copy Headers */,
 				741A74520E8CC69300F16FD4 /* ForwardDeclarations.h in Copy Headers */,
 				7451800F0E916F3D00D4E0C5 /* ProtocolBuffers.h in Copy Headers */,
 				7451810A0E91787C00D4E0C5 /* Bootstrap.h in Copy Headers */,
@@ -187,8 +187,8 @@
 		741A74BC0E8CCF0E00F16FD4 /* DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorIntPair.m; sourceTree = "<group>"; };
 		741A74BD0E8CCF0E00F16FD4 /* ExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionInfo.h; sourceTree = "<group>"; };
 		741A74BE0E8CCF0E00F16FD4 /* ExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionInfo.m; sourceTree = "<group>"; };
-		741A74BF0E8CCF0E00F16FD4 /* Field_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Field_Builder.h; sourceTree = "<group>"; };
-		741A74C00E8CCF0E00F16FD4 /* Field_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Field_Builder.m; sourceTree = "<group>"; };
+		741A74BF0E8CCF0E00F16FD4 /* MutableField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableField.h; sourceTree = "<group>"; };
+		741A74C00E8CCF0E00F16FD4 /* MutableField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MutableField.m; sourceTree = "<group>"; };
 		741A74C10E8CCF0E00F16FD4 /* FieldSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldSet.h; sourceTree = "<group>"; };
 		741A74C20E8CCF0E00F16FD4 /* FieldSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FieldSet.m; sourceTree = "<group>"; };
 		741A74C30E8CCF0E00F16FD4 /* GeneratedMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GeneratedMessage.h; sourceTree = "<group>"; };
@@ -356,8 +356,8 @@
 				74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */,
 				74E79EF80E8DA83400EFD26E /* Field.h */,
 				74E79EF90E8DA83400EFD26E /* Field.m */,
-				741A74BF0E8CCF0E00F16FD4 /* Field_Builder.h */,
-				741A74C00E8CCF0E00F16FD4 /* Field_Builder.m */,
+				741A74BF0E8CCF0E00F16FD4 /* MutableField.h */,
+				741A74C00E8CCF0E00F16FD4 /* MutableField.m */,
 				7411FB630E8E3856002552B1 /* Utilities.h */,
 				7411FB640E8E3856002552B1 /* Utilities.m */,
 			);
@@ -600,7 +600,7 @@
 				741A74E20E8CCF0E00F16FD4 /* ExtensionRegistry.m in Sources */,
 				741A74E40E8CCF0E00F16FD4 /* DescriptorIntPair.m in Sources */,
 				741A74E60E8CCF0E00F16FD4 /* ExtensionInfo.m in Sources */,
-				741A74E80E8CCF0E00F16FD4 /* Field_Builder.m in Sources */,
+				741A74E80E8CCF0E00F16FD4 /* MutableField.m in Sources */,
 				741A74EA0E8CCF0E00F16FD4 /* FieldSet.m in Sources */,
 				741A74EC0E8CCF0E00F16FD4 /* GeneratedMessage.m in Sources */,
 				741A74F20E8CCF0E00F16FD4 /* UnknownFieldSet.m in Sources */,

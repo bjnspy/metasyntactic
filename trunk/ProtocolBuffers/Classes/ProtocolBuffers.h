@@ -34,7 +34,7 @@
 #import "FieldDescriptor.h"
 #import "FieldDescriptorType.h"
 #import "FieldSet.h"
-#import "Field_Builder.h"
+#import "MutableField.h"
 #import "FileDescriptor.h"
 #import "GeneratedMessage.h"
 #import "GeneratedMessage_Builder.h"
