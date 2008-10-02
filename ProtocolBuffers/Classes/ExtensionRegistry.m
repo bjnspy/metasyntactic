@@ -128,14 +128,14 @@ static PBExtensionRegistry* EMPTY = nil;
 
     PBFieldDescriptor* field = extension.descriptor;
 
-    if (field.getContainingType.getOptions.getMessageSetWireFormat &&
+    if (field.getContainingType.options.getMessageSetWireFormat &&
         field.getType == PBFieldDescriptorTypeMessage &&
         field.isOptional &&
         field.getExtensionScope == field.getMessageType) {
         // This is an extension of a MessageSet type defined within the extension
         // type's own scope.  For backwards-compatibility, allow it to be looked
         // up by type name.
-        [extensionsByName setObject:extension forKey:field.getMessageType.getFullName];
+        [extensionsByName setObject:extension forKey:field.getMessageType.fullName];
     }
 }
 

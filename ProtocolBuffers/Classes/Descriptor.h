@@ -20,15 +20,12 @@
     NSArray* nestedTypes;
 }
 
-@property (retain) NSArray* nestedTypes;
+@property (retain, readonly) NSArray* nestedTypes;
 
-- (NSArray*) getFields;
-- (PBMessageOptions*) getOptions;
-
-- (NSString*) getFullName;
-
-- (NSArray*) getEnumTypes;
-- (NSArray*) getNestedTypes;
+- (NSArray*) fields;
+- (PBMessageOptions*) options;
+- (NSString*) fullName;
+- (NSArray*) enumTypes;
 
 - (BOOL) isExtensionNumber:(int32_t) number;
 - (PBFieldDescriptor*) findFieldByNumber:(int32_t) number;

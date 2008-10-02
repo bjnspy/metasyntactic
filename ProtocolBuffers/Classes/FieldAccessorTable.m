@@ -49,7 +49,7 @@
 
         for (int i = 0; i < fieldNames.count; i++) {
             NSString* name = [fieldNames objectAtIndex:i];
-            PBFieldDescriptor* field = [descriptor.getFields objectAtIndex:i];
+            PBFieldDescriptor* field = [descriptor.fields objectAtIndex:i];
             if (field.isRepeated) {
                 if (field.getObjectiveCType == PBFieldDescriptorTypeMessage) {
                     [array addObject:[PBRepeatedMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];

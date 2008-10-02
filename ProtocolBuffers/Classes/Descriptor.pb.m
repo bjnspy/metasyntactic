@@ -181,7 +181,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
                                       messageClass:[PBDescriptorProto class]
                                       builderClass:[PBDescriptorProto_Builder class]] retain];
     }
-    internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor = [[[internal_static_google_protobuf_DescriptorProto_descriptor getNestedTypes] objectAtIndex:0] retain];
+    internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor = [[[internal_static_google_protobuf_DescriptorProto_descriptor nestedTypes] objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:
       @"Start",
@@ -445,7 +445,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   }
 }
 
-+ (PBFileDescriptorSet*) defaultInstance {
++ (PBFileDescriptorSet*) getDefaultInstance {
   return defaultPBFileDescriptorSetInstance;
 }
 
@@ -550,7 +550,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 
 - (PBFileDescriptorSet*) getDefaultInstanceForType {
-  return [PBFileDescriptorSet defaultInstance];
+  return [PBFileDescriptorSet getDefaultInstance];
 }
 
 - (PBFileDescriptorSet*) build {
@@ -584,7 +584,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 
 - (PBFileDescriptorSet_Builder*) mergeFromPBFileDescriptorSet:(PBFileDescriptorSet*) other {
-  if (other == [PBFileDescriptorSet defaultInstance]) return self;
+  if (other == [PBFileDescriptorSet getDefaultInstance]) return self;
   if (other.file_.count > 0) {
     if (result.file_ == nil) {
       result.file_ = [NSMutableArray array];
@@ -712,7 +712,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   }
 }
 
-+ (PBFileDescriptorProto*) defaultInstance {
++ (PBFileDescriptorProto*) getDefaultInstance {
   return defaultPBFileDescriptorProtoInstance;
 }
 
@@ -900,7 +900,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 
 - (PBFileDescriptorProto*) getDefaultInstanceForType {
-  return [PBFileDescriptorProto defaultInstance];
+  return [PBFileDescriptorProto getDefaultInstance];
 }
 
 - (PBFileDescriptorProto*) build {
@@ -934,7 +934,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 
 - (PBFileDescriptorProto_Builder*) mergeFromPBFileDescriptorProto:(PBFileDescriptorProto*) other {
-  if (other == [PBFileDescriptorProto defaultInstance]) return self;
+  if (other == [PBFileDescriptorProto getDefaultInstance]) return self;
   if (other.hasName) {
     [self setName:other.getName];
   }
@@ -1308,7 +1308,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBFileOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBFileOptions defaultInstance]) {
+      result.options_ != [PBFileOptions getDefaultInstance]) {
     result.options_ =
       [[[PBFileOptions newBuilderWithPBFileOptions:result.options_] mergeFromPBFileOptions:value] buildPartial];
   } else {
@@ -1319,7 +1319,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBFileOptions defaultInstance];
+  result.options_ = [PBFileOptions getDefaultInstance];
   return self;
 }
 @end
@@ -1361,7 +1361,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   }
 }
 
-+ (PBDescriptorProto*) defaultInstance {
++ (PBDescriptorProto*) getDefaultInstance {
   return defaultPBDescriptorProtoInstance;
 }
 
@@ -1538,7 +1538,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
   }
 }
 
-+ (PBExtensionRange*) defaultInstance {
++ (PBExtensionRange*) getDefaultInstance {
   return defaultPBExtensionRangeInstance;
 }
 
@@ -1647,7 +1647,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 
 - (PBExtensionRange*) getDefaultInstanceForType {
-  return [PBExtensionRange defaultInstance];
+  return [PBExtensionRange getDefaultInstance];
 }
 
 - (PBExtensionRange*) build {
@@ -1681,7 +1681,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 
 - (PBExtensionRange_Builder*) mergeFromPBExtensionRange:(PBExtensionRange*) other {
-  if (other == [PBExtensionRange defaultInstance]) return self;
+  if (other == [PBExtensionRange getDefaultInstance]) return self;
   if (other.hasStart) {
     [self setStart:other.getStart];
   }
@@ -1789,7 +1789,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 
 - (PBDescriptorProto*) getDefaultInstanceForType {
-  return [PBDescriptorProto defaultInstance];
+  return [PBDescriptorProto getDefaultInstance];
 }
 
 - (PBDescriptorProto*) build {
@@ -1823,7 +1823,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 
 - (PBDescriptorProto_Builder*) mergeFromPBDescriptorProto:(PBDescriptorProto*) other {
-  if (other == [PBDescriptorProto defaultInstance]) return self;
+  if (other == [PBDescriptorProto getDefaultInstance]) return self;
   if (other.hasName) {
     [self setName:other.getName];
   }
@@ -2186,7 +2186,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBMessageOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBMessageOptions defaultInstance]) {
+      result.options_ != [PBMessageOptions getDefaultInstance]) {
     result.options_ =
       [[[PBMessageOptions newBuilderWithPBMessageOptions:result.options_] mergeFromPBMessageOptions:value] buildPartial];
   } else {
@@ -2197,7 +2197,7 @@ static PBExtensionRange* defaultPBExtensionRangeInstance = nil;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBMessageOptions defaultInstance];
+  result.options_ = [PBMessageOptions getDefaultInstance];
   return self;
 }
 @end
@@ -2259,7 +2259,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   }
 }
 
-+ (PBFieldDescriptorProto*) defaultInstance {
++ (PBFieldDescriptorProto*) getDefaultInstance {
   return defaultPBFieldDescriptorProtoInstance;
 }
 
@@ -2495,7 +2495,7 @@ static PBType* TYPE_SINT64 = nil;
   return [PBType getDescriptor];
 }
 + (PBEnumDescriptor*) getDescriptor {
-  return [[PBFieldDescriptorProto getDescriptor].getEnumTypes objectAtIndex:0];
+  return [[PBFieldDescriptorProto getDescriptor].enumTypes objectAtIndex:0];
 }
 
 
@@ -2570,7 +2570,7 @@ static PBLabel* LABEL_REPEATED = nil;
   return [PBLabel getDescriptor];
 }
 + (PBEnumDescriptor*) getDescriptor {
-  return [[PBFieldDescriptorProto getDescriptor].getEnumTypes objectAtIndex:1];
+  return [[PBFieldDescriptorProto getDescriptor].enumTypes objectAtIndex:1];
 }
 
 
@@ -2617,7 +2617,7 @@ static PBLabel* LABEL_REPEATED = nil;
 }
 
 - (PBFieldDescriptorProto*) getDefaultInstanceForType {
-  return [PBFieldDescriptorProto defaultInstance];
+  return [PBFieldDescriptorProto getDefaultInstance];
 }
 
 - (PBFieldDescriptorProto*) build {
@@ -2651,7 +2651,7 @@ static PBLabel* LABEL_REPEATED = nil;
 }
 
 - (PBFieldDescriptorProto_Builder*) mergeFromPBFieldDescriptorProto:(PBFieldDescriptorProto*) other {
-  if (other == [PBFieldDescriptorProto defaultInstance]) return self;
+  if (other == [PBFieldDescriptorProto getDefaultInstance]) return self;
   if (other.hasName) {
     [self setName:other.getName];
   }
@@ -2890,7 +2890,7 @@ static PBLabel* LABEL_REPEATED = nil;
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBFieldOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBFieldOptions defaultInstance]) {
+      result.options_ != [PBFieldOptions getDefaultInstance]) {
     result.options_ =
       [[[PBFieldOptions newBuilderWithPBFieldOptions:result.options_] mergeFromPBFieldOptions:value] buildPartial];
   } else {
@@ -2901,7 +2901,7 @@ static PBLabel* LABEL_REPEATED = nil;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBFieldOptions defaultInstance];
+  result.options_ = [PBFieldOptions getDefaultInstance];
   return self;
 }
 @end
@@ -2935,7 +2935,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   }
 }
 
-+ (PBEnumDescriptorProto*) defaultInstance {
++ (PBEnumDescriptorProto*) getDefaultInstance {
   return defaultPBEnumDescriptorProtoInstance;
 }
 
@@ -3058,7 +3058,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 
 - (PBEnumDescriptorProto*) getDefaultInstanceForType {
-  return [PBEnumDescriptorProto defaultInstance];
+  return [PBEnumDescriptorProto getDefaultInstance];
 }
 
 - (PBEnumDescriptorProto*) build {
@@ -3092,7 +3092,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 
 - (PBEnumDescriptorProto_Builder*) mergeFromPBEnumDescriptorProto:(PBEnumDescriptorProto*) other {
-  if (other == [PBEnumDescriptorProto defaultInstance]) return self;
+  if (other == [PBEnumDescriptorProto getDefaultInstance]) return self;
   if (other.hasName) {
     [self setName:other.getName];
   }
@@ -3231,7 +3231,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBEnumOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBEnumOptions defaultInstance]) {
+      result.options_ != [PBEnumOptions getDefaultInstance]) {
     result.options_ =
       [[[PBEnumOptions newBuilderWithPBEnumOptions:result.options_] mergeFromPBEnumOptions:value] buildPartial];
   } else {
@@ -3242,7 +3242,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBEnumOptions defaultInstance];
+  result.options_ = [PBEnumOptions getDefaultInstance];
   return self;
 }
 @end
@@ -3279,7 +3279,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   }
 }
 
-+ (PBEnumValueDescriptorProto*) defaultInstance {
++ (PBEnumValueDescriptorProto*) getDefaultInstance {
   return defaultPBEnumValueDescriptorProtoInstance;
 }
 
@@ -3397,7 +3397,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 
 - (PBEnumValueDescriptorProto*) getDefaultInstanceForType {
-  return [PBEnumValueDescriptorProto defaultInstance];
+  return [PBEnumValueDescriptorProto getDefaultInstance];
 }
 
 - (PBEnumValueDescriptorProto*) build {
@@ -3431,7 +3431,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 
 - (PBEnumValueDescriptorProto_Builder*) mergeFromPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) other {
-  if (other == [PBEnumValueDescriptorProto defaultInstance]) return self;
+  if (other == [PBEnumValueDescriptorProto getDefaultInstance]) return self;
   if (other.hasName) {
     [self setName:other.getName];
   }
@@ -3538,7 +3538,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBEnumValueOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBEnumValueOptions defaultInstance]) {
+      result.options_ != [PBEnumValueOptions getDefaultInstance]) {
     result.options_ =
       [[[PBEnumValueOptions newBuilderWithPBEnumValueOptions:result.options_] mergeFromPBEnumValueOptions:value] buildPartial];
   } else {
@@ -3549,7 +3549,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBEnumValueOptions defaultInstance];
+  result.options_ = [PBEnumValueOptions getDefaultInstance];
   return self;
 }
 @end
@@ -3583,7 +3583,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   }
 }
 
-+ (PBServiceDescriptorProto*) defaultInstance {
++ (PBServiceDescriptorProto*) getDefaultInstance {
   return defaultPBServiceDescriptorProtoInstance;
 }
 
@@ -3706,7 +3706,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 
 - (PBServiceDescriptorProto*) getDefaultInstanceForType {
-  return [PBServiceDescriptorProto defaultInstance];
+  return [PBServiceDescriptorProto getDefaultInstance];
 }
 
 - (PBServiceDescriptorProto*) build {
@@ -3740,7 +3740,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 
 - (PBServiceDescriptorProto_Builder*) mergeFromPBServiceDescriptorProto:(PBServiceDescriptorProto*) other {
-  if (other == [PBServiceDescriptorProto defaultInstance]) return self;
+  if (other == [PBServiceDescriptorProto getDefaultInstance]) return self;
   if (other.hasName) {
     [self setName:other.getName];
   }
@@ -3879,7 +3879,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBServiceOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBServiceOptions defaultInstance]) {
+      result.options_ != [PBServiceOptions getDefaultInstance]) {
     result.options_ =
       [[[PBServiceOptions newBuilderWithPBServiceOptions:result.options_] mergeFromPBServiceOptions:value] buildPartial];
   } else {
@@ -3890,7 +3890,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBServiceOptions defaultInstance];
+  result.options_ = [PBServiceOptions getDefaultInstance];
   return self;
 }
 @end
@@ -3932,7 +3932,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   }
 }
 
-+ (PBMethodDescriptorProto*) defaultInstance {
++ (PBMethodDescriptorProto*) getDefaultInstance {
   return defaultPBMethodDescriptorProtoInstance;
 }
 
@@ -4059,7 +4059,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 
 - (PBMethodDescriptorProto*) getDefaultInstanceForType {
-  return [PBMethodDescriptorProto defaultInstance];
+  return [PBMethodDescriptorProto getDefaultInstance];
 }
 
 - (PBMethodDescriptorProto*) build {
@@ -4093,7 +4093,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 
 - (PBMethodDescriptorProto_Builder*) mergeFromPBMethodDescriptorProto:(PBMethodDescriptorProto*) other {
-  if (other == [PBMethodDescriptorProto defaultInstance]) return self;
+  if (other == [PBMethodDescriptorProto getDefaultInstance]) return self;
   if (other.hasName) {
     [self setName:other.getName];
   }
@@ -4224,7 +4224,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 - (id<PBMessage_Builder>) mergeOptions:(PBMethodOptions*) value {
   if (result.hasOptions &&
-      result.options_ != [PBMethodOptions defaultInstance]) {
+      result.options_ != [PBMethodOptions getDefaultInstance]) {
     result.options_ =
       [[[PBMethodOptions newBuilderWithPBMethodOptions:result.options_] mergeFromPBMethodOptions:value] buildPartial];
   } else {
@@ -4235,7 +4235,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 - (id<PBMessage_Builder>) clearOptions {
   result.hasOptions = NO;
-  result.options_ = [PBMethodOptions defaultInstance];
+  result.options_ = [PBMethodOptions getDefaultInstance];
   return self;
 }
 @end
@@ -4288,7 +4288,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   }
 }
 
-+ (PBFileOptions*) defaultInstance {
++ (PBFileOptions*) getDefaultInstance {
   return defaultPBFileOptionsInstance;
 }
 
@@ -4442,7 +4442,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
   return [PBOptimizeMode getDescriptor];
 }
 + (PBEnumDescriptor*) getDescriptor {
-  return [[PBFileOptions getDescriptor].getEnumTypes objectAtIndex:0];
+  return [[PBFileOptions getDescriptor].enumTypes objectAtIndex:0];
 }
 
 
@@ -4488,7 +4488,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
 }
 
 - (PBFileOptions*) getDefaultInstanceForType {
-  return [PBFileOptions defaultInstance];
+  return [PBFileOptions getDefaultInstance];
 }
 
 - (PBFileOptions*) build {
@@ -4522,7 +4522,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
 }
 
 - (PBFileOptions_Builder*) mergeFromPBFileOptions:(PBFileOptions*) other {
-  if (other == [PBFileOptions defaultInstance]) return self;
+  if (other == [PBFileOptions getDefaultInstance]) return self;
   if (other.hasJavaPackage) {
     [self setJavaPackage:other.getJavaPackage];
   }
@@ -4725,7 +4725,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   }
 }
 
-+ (PBMessageOptions*) defaultInstance {
++ (PBMessageOptions*) getDefaultInstance {
   return defaultPBMessageOptionsInstance;
 }
 
@@ -4825,7 +4825,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 }
 
 - (PBMessageOptions*) getDefaultInstanceForType {
-  return [PBMessageOptions defaultInstance];
+  return [PBMessageOptions getDefaultInstance];
 }
 
 - (PBMessageOptions*) build {
@@ -4859,7 +4859,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 }
 
 - (PBMessageOptions_Builder*) mergeFromPBMessageOptions:(PBMessageOptions*) other {
-  if (other == [PBMessageOptions defaultInstance]) return self;
+  if (other == [PBMessageOptions getDefaultInstance]) return self;
   if (other.hasMessageSetWireFormat) {
     [self setMessageSetWireFormat:other.getMessageSetWireFormat];
   }
@@ -4941,7 +4941,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   }
 }
 
-+ (PBFieldOptions*) defaultInstance {
++ (PBFieldOptions*) getDefaultInstance {
   return defaultPBFieldOptionsInstance;
 }
 
@@ -5059,7 +5059,7 @@ static PBCType* STRING_PIECE = nil;
   return [PBCType getDescriptor];
 }
 + (PBEnumDescriptor*) getDescriptor {
-  return [[PBFieldOptions getDescriptor].getEnumTypes objectAtIndex:0];
+  return [[PBFieldOptions getDescriptor].enumTypes objectAtIndex:0];
 }
 
 
@@ -5105,7 +5105,7 @@ static PBCType* STRING_PIECE = nil;
 }
 
 - (PBFieldOptions*) getDefaultInstanceForType {
-  return [PBFieldOptions defaultInstance];
+  return [PBFieldOptions getDefaultInstance];
 }
 
 - (PBFieldOptions*) build {
@@ -5139,7 +5139,7 @@ static PBCType* STRING_PIECE = nil;
 }
 
 - (PBFieldOptions_Builder*) mergeFromPBFieldOptions:(PBFieldOptions*) other {
-  if (other == [PBFieldOptions defaultInstance]) return self;
+  if (other == [PBFieldOptions getDefaultInstance]) return self;
   if (other.hasCtype) {
     [self setCtype:other.getCtype];
   }
@@ -5241,7 +5241,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   }
 }
 
-+ (PBEnumOptions*) defaultInstance {
++ (PBEnumOptions*) getDefaultInstance {
   return defaultPBEnumOptionsInstance;
 }
 
@@ -5332,7 +5332,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 }
 
 - (PBEnumOptions*) getDefaultInstanceForType {
-  return [PBEnumOptions defaultInstance];
+  return [PBEnumOptions getDefaultInstance];
 }
 
 - (PBEnumOptions*) build {
@@ -5366,7 +5366,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 }
 
 - (PBEnumOptions_Builder*) mergeFromPBEnumOptions:(PBEnumOptions*) other {
-  if (other == [PBEnumOptions defaultInstance]) return self;
+  if (other == [PBEnumOptions getDefaultInstance]) return self;
   [self mergeUnknownFields:other.getUnknownFields];
   return self;
 }
@@ -5414,7 +5414,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   }
 }
 
-+ (PBEnumValueOptions*) defaultInstance {
++ (PBEnumValueOptions*) getDefaultInstance {
   return defaultPBEnumValueOptionsInstance;
 }
 
@@ -5505,7 +5505,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 }
 
 - (PBEnumValueOptions*) getDefaultInstanceForType {
-  return [PBEnumValueOptions defaultInstance];
+  return [PBEnumValueOptions getDefaultInstance];
 }
 
 - (PBEnumValueOptions*) build {
@@ -5539,7 +5539,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 }
 
 - (PBEnumValueOptions_Builder*) mergeFromPBEnumValueOptions:(PBEnumValueOptions*) other {
-  if (other == [PBEnumValueOptions defaultInstance]) return self;
+  if (other == [PBEnumValueOptions getDefaultInstance]) return self;
   [self mergeUnknownFields:other.getUnknownFields];
   return self;
 }
@@ -5587,7 +5587,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   }
 }
 
-+ (PBServiceOptions*) defaultInstance {
++ (PBServiceOptions*) getDefaultInstance {
   return defaultPBServiceOptionsInstance;
 }
 
@@ -5678,7 +5678,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 }
 
 - (PBServiceOptions*) getDefaultInstanceForType {
-  return [PBServiceOptions defaultInstance];
+  return [PBServiceOptions getDefaultInstance];
 }
 
 - (PBServiceOptions*) build {
@@ -5712,7 +5712,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 }
 
 - (PBServiceOptions_Builder*) mergeFromPBServiceOptions:(PBServiceOptions*) other {
-  if (other == [PBServiceOptions defaultInstance]) return self;
+  if (other == [PBServiceOptions getDefaultInstance]) return self;
   [self mergeUnknownFields:other.getUnknownFields];
   return self;
 }
@@ -5760,7 +5760,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   }
 }
 
-+ (PBMethodOptions*) defaultInstance {
++ (PBMethodOptions*) getDefaultInstance {
   return defaultPBMethodOptionsInstance;
 }
 
@@ -5851,7 +5851,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 }
 
 - (PBMethodOptions*) getDefaultInstanceForType {
-  return [PBMethodOptions defaultInstance];
+  return [PBMethodOptions getDefaultInstance];
 }
 
 - (PBMethodOptions*) build {
@@ -5885,7 +5885,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 }
 
 - (PBMethodOptions_Builder*) mergeFromPBMethodOptions:(PBMethodOptions*) other {
-  if (other == [PBMethodOptions defaultInstance]) return self;
+  if (other == [PBMethodOptions getDefaultInstance]) return self;
   [self mergeUnknownFields:other.getUnknownFields];
   return self;
 }
@@ -5914,3 +5914,4 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 }
 
 @end
+
