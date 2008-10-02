@@ -2361,7 +2361,7 @@ static PBType* TYPE_SINT64 = nil;
   }
 }
 
-- (PBEnumValueDescriptor*) getValueDescriptor {
+- (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBType descriptor].values objectAtIndex:index];
 }
 - (PBEnumDescriptor*) descriptorForType {
@@ -2441,7 +2441,7 @@ static PBLabel* LABEL_REPEATED = nil;
   }
 }
 
-- (PBEnumValueDescriptor*) getValueDescriptor {
+- (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBLabel descriptor].values objectAtIndex:index];
 }
 - (PBEnumDescriptor*) descriptorForType {
@@ -4295,7 +4295,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
   }
 }
 
-- (PBEnumValueDescriptor*) getValueDescriptor {
+- (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBOptimizeMode descriptor].values objectAtIndex:index];
 }
 - (PBEnumDescriptor*) descriptorForType {
@@ -4923,7 +4923,7 @@ static PBCType* STRING_PIECE = nil;
   }
 }
 
-- (PBEnumValueDescriptor*) getValueDescriptor {
+- (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBCType descriptor].values objectAtIndex:index];
 }
 - (PBEnumDescriptor*) descriptorForType {
