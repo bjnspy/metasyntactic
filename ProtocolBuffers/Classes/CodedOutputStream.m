@@ -22,6 +22,13 @@
 #import "Utilities.h"
 #import "WireFormat.h"
 
+@interface PBCodedOutputStream ()
+@property (retain) NSMutableData* buffer;
+@property int32_t position;
+@property (retain) NSOutputStream* output;
+@end
+
+
 @implementation PBCodedOutputStream
 
 const int32_t DEFAULT_BUFFER_SIZE = 4096;
@@ -31,7 +38,6 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 @synthesize output;
 @synthesize buffer;
 @synthesize position;
-
 
 - (void) dealloc {
     self.output = nil;
@@ -54,16 +60,16 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 }
 
 
-+ (PBCodedOutputStream*) newInstance:(NSOutputStream*) output
-                        bufferSize:(int32_t) bufferSize {
++ (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output
+                                     bufferSize:(int32_t) bufferSize {
     NSMutableData* data = [NSMutableData dataWithLength:bufferSize];
     return [[[PBCodedOutputStream alloc] initWithOutputStream:output
                                                        data:data] autorelease];
 }
 
 
-+ (PBCodedOutputStream*) newInstance:(NSOutputStream*) output {
-    return [PBCodedOutputStream newInstance:output bufferSize:DEFAULT_BUFFER_SIZE];
++ (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output {
+    return [PBCodedOutputStream streamWithOutputStream:output bufferSize:DEFAULT_BUFFER_SIZE];
 }
 
 

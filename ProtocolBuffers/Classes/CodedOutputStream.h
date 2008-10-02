@@ -22,11 +22,11 @@
     NSOutputStream* output;
 }
 
-@property (retain) NSMutableData* buffer;
-@property int32_t position;
-@property (retain) NSOutputStream* output;
+@property (retain, readonly) NSMutableData* buffer;
+@property (readonly) int32_t position;
+@property (retain, readonly) NSOutputStream* output;
 
-+ (PBCodedOutputStream*) newInstance:(NSOutputStream*) output;
++ (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output;
 + (PBCodedOutputStream*) streamWithData:(NSMutableData*) data;
 
 int32_t encodeZigZag32(int32_t n);

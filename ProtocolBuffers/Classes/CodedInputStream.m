@@ -21,17 +21,21 @@
 #import "Utilities.h"
 #import "WireFormat.h"
 
-@implementation PBCodedInputStream
 
+@interface PBCodedInputStream ()
+@property (retain) NSMutableData* buffer;
+@property (retain) NSInputStream* input;
+@end
+
+
+@implementation PBCodedInputStream
 
 const int32_t DEFAULT_RECURSION_LIMIT = 64;
 const int32_t DEFAULT_SIZE_LIMIT = 64 << 20;  // 64MB
 const int32_t BUFFER_SIZE = 4096;
 
-
 @synthesize buffer;
 @synthesize input;
-
 
 - (void) dealloc {
     self.buffer = nil;

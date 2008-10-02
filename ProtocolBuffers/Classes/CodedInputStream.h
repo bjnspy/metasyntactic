@@ -42,9 +42,8 @@
     int32_t sizeLimit;
 }
 
-
-@property (retain) NSMutableData* buffer;
-@property (retain) NSInputStream* input;
+@property (retain, readonly) NSMutableData* buffer;
+@property (retain, readonly) NSInputStream* input;
 
 + (PBCodedInputStream*) streamWithData:(NSData*) data;
 + (PBCodedInputStream*) streamWithInputStream:(NSInputStream*) input;
@@ -95,19 +94,5 @@ int64_t decodeZigZag64(int64_t n);
 - (void) checkLastTagWas:(int32_t) value;
 
 - (id) readPrimitiveField:(PBFieldDescriptorType) type;
-
-#if 0
-+ (PBCodedInputStream*) createFromInputStream:(NSInputStream*) input;
-
-
-- (BOOL) skipField:(int32_t) tag;
-
-
-
-+ (int32_t) decodeZigZag32:(int32_t) n;
-+ (int64_t) decodeZigZag64:(int64_t) n;
-
-
-#endif
 
 @end
