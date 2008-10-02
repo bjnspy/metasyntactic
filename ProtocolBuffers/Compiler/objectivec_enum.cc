@@ -83,7 +83,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "\n"
-      "- (int32_t) getNumber;\n"
+      "- (int32_t) number;\n"
       "+ ($classname$*) valueOf:(int32_t) value;\n",
       "classname", ClassName(descriptor_));
 
@@ -175,7 +175,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     // -----------------------------------------------------------------
 
     printer->Print(
-      "- (int32_t) getNumber { return value; }\n"
+      "- (int32_t) number { return value; }\n"
       "+ ($classname$*) valueOf:(int32_t) value {\n"
       "  switch (value) {\n",
       "classname", ClassName(descriptor_));
@@ -202,7 +202,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "- (PBEnumValueDescriptor*) getValueDescriptor {\n"
-      "  return [[$classname$ getDescriptor].getValues objectAtIndex:index];\n"
+      "  return [[$classname$ getDescriptor].values objectAtIndex:index];\n"
       "}\n"
       "- (PBEnumDescriptor*) getDescriptorForType {\n"
       "  return [$classname$ getDescriptor];\n"
@@ -215,12 +215,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     //   we can cache the value the first time getDescriptor() is called.
     if (descriptor_->containing_type() == NULL) {
       printer->Print(
-        "  return [[$file$ getDescriptor].getEnumTypes objectAtIndex:$index$];\n",
+        "  return [[$file$ getDescriptor].enumTypes objectAtIndex:$index$];\n",
         "file", FileClassName(descriptor_->file()),
         "index", SimpleItoa(descriptor_->index()));
     } else {
       printer->Print(
-        "  return [[$parent$ getDescriptor].getEnumTypes objectAtIndex:$index$];\n",
+        "  return [[$parent$ getDescriptor].enumTypes objectAtIndex:$index$];\n",
         "parent", ClassName(descriptor_->containing_type()),
         "index", SimpleItoa(descriptor_->index()));
     }
@@ -232,7 +232,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "\n"
       "+ ($classname$*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {\n"
-      "  if (desc.getType != [$classname$ getDescriptor]) {\n"
+      "  if (desc.type != [$classname$ getDescriptor]) {\n"
       "    [NSException exceptionWithName:@\"\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
       "  $classname$* VALUES[] = {\n",
@@ -249,7 +249,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "  };\n"
-      "  return VALUES[desc.getIndex];\n"
+      "  return VALUES[desc.index];\n"
       "}\n");
 
     // -----------------------------------------------------------------

@@ -19,7 +19,7 @@
 
 @implementation PBEnumDescriptor
 
-- (NSArray*) getValues {
+- (NSArray*) values {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

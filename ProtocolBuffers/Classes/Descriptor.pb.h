@@ -566,7 +566,7 @@
 - (BOOL) hasName;
 - (NSString*) getName;
 - (BOOL) hasNumber;
-- (int32_t) number;
+- (int32_t) getNumber;
 - (BOOL) hasLabel;
 - (PBLabel*) getLabel;
 - (BOOL) hasType;
@@ -576,7 +576,7 @@
 - (BOOL) hasExtendee;
 - (NSString*) getExtendee;
 - (BOOL) hasDefaultValue;
-- (NSString*) defaultValue;
+- (NSString*) getDefaultValue;
 - (PBFieldOptions*) getOptions;
 + (PBFieldDescriptorProto*) getDefaultInstance;
 - (PBFieldDescriptorProto*) getDefaultInstanceForType;
@@ -679,7 +679,7 @@
 
 // optional int32 number = 3;
 - (BOOL) hasNumber;
-- (int32_t) number;
+- (int32_t) getNumber;
 - (PBFieldDescriptorProto_Builder*) setNumber:(int32_t) value;
 - (PBFieldDescriptorProto_Builder*) clearNumber;
 
@@ -709,7 +709,7 @@
 
 // optional string default_value = 7;
 - (BOOL) hasDefaultValue;
-- (NSString*) defaultValue;
+- (NSString*) getDefaultValue;
 - (PBFieldDescriptorProto_Builder*) setDefaultValue:(NSString*) value;
 - (PBFieldDescriptorProto_Builder*) clearDefaultValue;
 
@@ -829,7 +829,7 @@
 - (BOOL) hasName;
 - (NSString*) getName;
 - (BOOL) hasNumber;
-- (int32_t) number;
+- (int32_t) getNumber;
 - (PBEnumValueOptions*) getOptions;
 + (PBEnumValueDescriptorProto*) getDefaultInstance;
 - (PBEnumValueDescriptorProto*) getDefaultInstanceForType;
@@ -875,7 +875,7 @@
 
 // optional int32 number = 2;
 - (BOOL) hasNumber;
-- (int32_t) number;
+- (int32_t) getNumber;
 - (PBEnumValueDescriptorProto_Builder*) setNumber:(int32_t) value;
 - (PBEnumValueDescriptorProto_Builder*) clearNumber;
 
