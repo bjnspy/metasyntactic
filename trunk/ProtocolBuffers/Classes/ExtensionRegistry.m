@@ -22,6 +22,13 @@
 #import "ExtensionInfo.h"
 #import "FieldDescriptor.h"
 
+
+@interface PBExtensionRegistry ()
+@property (retain) NSMutableDictionary* extensionsByName;
+@property (retain) NSMutableDictionary* extensionsByNumber;
+@end
+
+
 @implementation PBExtensionRegistry
 
 

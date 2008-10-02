@@ -15,12 +15,13 @@
 // limitations under the License.
 
 @interface PBDescriptorIntPair : NSObject {
+@private
     PBDescriptor* descriptor;
     int32_t number;
 }
 
-@property (retain) PBDescriptor* descriptor;
-@property int32_t number;
+@property (retain, readonly) PBDescriptor* descriptor;
+@property (readonly) int32_t number;
 
 + (PBDescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor number:(int32_t) number;
 

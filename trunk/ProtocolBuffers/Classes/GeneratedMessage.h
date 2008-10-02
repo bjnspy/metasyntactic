@@ -21,13 +21,13 @@
     PBUnknownFieldSet* unknownFields;
 }
 
-@property (retain) PBUnknownFieldSet* unknownFields;
+@property (retain, readonly) PBUnknownFieldSet* unknownFields;
 
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
-- (NSDictionary*) getAllFields;
+- (NSDictionary*) allFields;
 
 // @protected
-- (NSMutableDictionary*) getAllFieldsMutable;
+- (NSMutableDictionary*) allFieldsMutable;
 
 @end

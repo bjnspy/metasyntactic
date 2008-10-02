@@ -25,6 +25,12 @@
 #import "UnknownFieldSet.h"
 #import "UnknownFieldSet_Builder.h"
 
+
+@interface PBGeneratedMessage ()
+@property (retain) PBUnknownFieldSet* unknownFields;
+@end
+
+
 @implementation PBGeneratedMessage_Builder
 
 /**

@@ -19,6 +19,12 @@
 #import "FieldDescriptor.h"
 #import "UnknownFieldSet.h"
 
+
+@interface PBGeneratedMessage ()
+@property (retain) PBUnknownFieldSet* unknownFields;
+@end
+
+
 @implementation PBGeneratedMessage
 
 @synthesize unknownFields;
@@ -43,12 +49,7 @@
 }
 
 
-- (PBUnknownFieldSet*) getUnknownFields {
-    return unknownFields;
-}
-
-
-- (NSMutableDictionary*) getAllFieldsMutable {
+- (NSMutableDictionary*) allFieldsMutable {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
     
     PBDescriptor* descriptor = [self internalGetFieldAccessorTable].descriptor;
@@ -68,8 +69,8 @@
 }
 
 
-- (NSDictionary*) getAllFields {
-    return [self getAllFieldsMutable];
+- (NSDictionary*) allFields {
+    return [self allFieldsMutable];
 }
 
 @end

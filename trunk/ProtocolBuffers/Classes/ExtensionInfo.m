@@ -17,6 +17,12 @@
 #import "ExtensionInfo.h"
 
 
+@interface PBExtensionInfo ()
+@property (retain) PBFieldDescriptor* descriptor;
+@property (retain) id<PBMessage> defaultInstance;
+@end
+
+
 @implementation PBExtensionInfo
 
 @synthesize descriptor;

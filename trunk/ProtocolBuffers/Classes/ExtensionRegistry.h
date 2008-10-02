@@ -15,13 +15,14 @@
 // limitations under the License.
 
 @interface PBExtensionRegistry : NSObject {
+@private
     NSMutableDictionary* extensionsByName;
     NSMutableDictionary* extensionsByNumber;
 }
 
 
-@property (retain) NSMutableDictionary* extensionsByName;
-@property (retain) NSMutableDictionary* extensionsByNumber;
+@property (retain, readonly) NSMutableDictionary* extensionsByName;
+@property (retain, readonly) NSMutableDictionary* extensionsByNumber;
 
 + (PBExtensionRegistry*) getEmptyRegistry;
 
