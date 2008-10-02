@@ -34,7 +34,7 @@
 }
 
 
-- (int32_t) getNumber {
+- (int32_t) number {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
 

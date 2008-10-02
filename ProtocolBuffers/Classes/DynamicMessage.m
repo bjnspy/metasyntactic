@@ -134,7 +134,7 @@
 
 
 - (void) verifyContainingType:(PBFieldDescriptor*) field {
-    if (field.getContainingType != type) {
+    if (field.containingType != type) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"PBFieldDescriptor does not match message type." userInfo:nil];
     }
 }
@@ -150,7 +150,7 @@
     [self verifyContainingType:field];
     id result = [fields getField:field];
     if (result == nil) {
-        result = [PBDynamicMessage defaultInstance:field.getMessageType];
+        result = [PBDynamicMessage defaultInstance:field.messageType];
     }
     return result;
 }

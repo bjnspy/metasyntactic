@@ -2279,7 +2279,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
 - (NSString*) getName { return name_; }
 
 - (BOOL) hasNumber { return hasNumber; }
-- (int32_t) getNumber { return number_; }
+- (int32_t) number { return number_; }
 
 - (BOOL) hasLabel { return hasLabel; }
 - (PBLabel*) getLabel { return label_; }
@@ -2294,7 +2294,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
 - (NSString*) getExtendee { return extendee_; }
 
 - (BOOL) hasDefaultValue { return hasDefaultValue; }
-- (NSString*) getDefaultValue { return defaultValue_; }
+- (NSString*) defaultValue { return defaultValue_; }
 
 - (BOOL) hasOptions { return hasOptions; }
 - (PBFieldOptions*) getOptions { return options_; }
@@ -2311,19 +2311,19 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
     [output writeString:2 value:self.getExtendee];
   }
   if (hasNumber) {
-    [output writeInt32:3 value:self.getNumber];
+    [output writeInt32:3 value:self.number];
   }
   if (self.hasLabel) {
-    [output writeEnum:4 value:self.getLabel.getNumber];
+    [output writeEnum:4 value:self.getLabel.number];
   }
   if (self.hasType) {
-    [output writeEnum:5 value:self.getType.getNumber];
+    [output writeEnum:5 value:self.getType.number];
   }
   if (hasTypeName) {
     [output writeString:6 value:self.getTypeName];
   }
   if (hasDefaultValue) {
-    [output writeString:7 value:self.getDefaultValue];
+    [output writeString:7 value:self.defaultValue];
   }
   if (self.hasOptions) {
     [output writeMessage:8 value:self.getOptions];
@@ -2343,19 +2343,19 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
     size += computeStringSize(2, self.getExtendee);
   }
   if (hasNumber) {
-    size += computeInt32Size(3, self.getNumber);
+    size += computeInt32Size(3, self.number);
   }
   if (self.hasLabel) {
-    size += computeEnumSize(4, self.getLabel.getNumber);
+    size += computeEnumSize(4, self.getLabel.number);
   }
   if (self.hasType) {
-    size += computeEnumSize(5, self.getType.getNumber);
+    size += computeEnumSize(5, self.getType.number);
   }
   if (hasTypeName) {
     size += computeStringSize(6, self.getTypeName);
   }
   if (hasDefaultValue) {
-    size += computeStringSize(7, self.getDefaultValue);
+    size += computeStringSize(7, self.defaultValue);
   }
   if (self.hasOptions) {
     size += computeMessageSize(8, self.getOptions);
@@ -2463,7 +2463,7 @@ static PBType* TYPE_SINT64 = nil;
 + (PBType*) TYPE_SFIXED64 { return TYPE_SFIXED64; }
 + (PBType*) TYPE_SINT32 { return TYPE_SINT32; }
 + (PBType*) TYPE_SINT64 { return TYPE_SINT64; }
-- (int32_t) getNumber { return value; }
+- (int32_t) number { return value; }
 + (PBType*) valueOf:(int32_t) value {
   switch (value) {
     case 1: return TYPE_DOUBLE;
@@ -2553,7 +2553,7 @@ static PBLabel* LABEL_REPEATED = nil;
 + (PBLabel*) LABEL_OPTIONAL { return LABEL_OPTIONAL; }
 + (PBLabel*) LABEL_REQUIRED { return LABEL_REQUIRED; }
 + (PBLabel*) LABEL_REPEATED { return LABEL_REPEATED; }
-- (int32_t) getNumber { return value; }
+- (int32_t) number { return value; }
 + (PBLabel*) valueOf:(int32_t) value {
   switch (value) {
     case 1: return LABEL_OPTIONAL;
@@ -2656,7 +2656,7 @@ static PBLabel* LABEL_REPEATED = nil;
     [self setName:other.getName];
   }
   if (other.hasNumber) {
-    [self setNumber:other.getNumber];
+    [self setNumber:other.number];
   }
   if (other.hasLabel) {
     [self setLabel:other.getLabel];
@@ -2671,7 +2671,7 @@ static PBLabel* LABEL_REPEATED = nil;
     [self setExtendee:other.getExtendee];
   }
   if (other.hasDefaultValue) {
-    [self setDefaultValue:other.getDefaultValue];
+    [self setDefaultValue:other.defaultValue];
   }
   if (other.hasOptions) {
     [self mergeOptions:other.getOptions];
@@ -2773,8 +2773,8 @@ static PBLabel* LABEL_REPEATED = nil;
 - (BOOL) hasNumber {
   return result.hasNumber;
 }
-- (int32_t) getNumber {
-  return result.getNumber;
+- (int32_t) number {
+  return result.number;
 }
 - (PBFieldDescriptorProto_Builder*) setNumber:(int32_t) value {
   result.hasNumber = YES;
@@ -2858,8 +2858,8 @@ static PBLabel* LABEL_REPEATED = nil;
 - (BOOL) hasDefaultValue {
   return result.hasDefaultValue;
 }
-- (NSString*) getDefaultValue {
-  return result.getDefaultValue;
+- (NSString*) defaultValue {
+  return result.defaultValue;
 }
 - (PBFieldDescriptorProto_Builder*) setDefaultValue:(NSString*) value {
   result.hasDefaultValue = YES;
@@ -3299,7 +3299,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 - (NSString*) getName { return name_; }
 
 - (BOOL) hasNumber { return hasNumber; }
-- (int32_t) getNumber { return number_; }
+- (int32_t) number { return number_; }
 
 - (BOOL) hasOptions { return hasOptions; }
 - (PBEnumValueOptions*) getOptions { return options_; }
@@ -3313,7 +3313,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
     [output writeString:1 value:self.getName];
   }
   if (hasNumber) {
-    [output writeInt32:2 value:self.getNumber];
+    [output writeInt32:2 value:self.number];
   }
   if (self.hasOptions) {
     [output writeMessage:3 value:self.getOptions];
@@ -3330,7 +3330,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
     size += computeStringSize(1, self.getName);
   }
   if (hasNumber) {
-    size += computeInt32Size(2, self.getNumber);
+    size += computeInt32Size(2, self.number);
   }
   if (self.hasOptions) {
     size += computeMessageSize(3, self.getOptions);
@@ -3436,7 +3436,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
     [self setName:other.getName];
   }
   if (other.hasNumber) {
-    [self setNumber:other.getNumber];
+    [self setNumber:other.number];
   }
   if (other.hasOptions) {
     [self mergeOptions:other.getOptions];
@@ -3506,8 +3506,8 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 - (BOOL) hasNumber {
   return result.hasNumber;
 }
-- (int32_t) getNumber {
-  return result.getNumber;
+- (int32_t) number {
+  return result.number;
 }
 - (PBEnumValueDescriptorProto_Builder*) setNumber:(int32_t) value {
   result.hasNumber = YES;
@@ -4334,7 +4334,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
     [output writeString:8 value:self.getJavaOuterClassname];
   }
   if (self.hasOptimizeFor) {
-    [output writeEnum:9 value:self.getOptimizeFor.getNumber];
+    [output writeEnum:9 value:self.getOptimizeFor.number];
   }
   if (hasJavaMultipleFiles) {
     [output writeBool:10 value:self.getJavaMultipleFiles];
@@ -4360,7 +4360,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
     size += computeStringSize(8, self.getJavaOuterClassname);
   }
   if (self.hasOptimizeFor) {
-    size += computeEnumSize(9, self.getOptimizeFor.getNumber);
+    size += computeEnumSize(9, self.getOptimizeFor.number);
   }
   if (hasJavaMultipleFiles) {
     size += computeBoolSize(10, self.getJavaMultipleFiles);
@@ -4426,7 +4426,7 @@ static PBOptimizeMode* CODE_SIZE = nil;
 }
 + (PBOptimizeMode*) SPEED { return SPEED; }
 + (PBOptimizeMode*) CODE_SIZE { return CODE_SIZE; }
-- (int32_t) getNumber { return value; }
+- (int32_t) number { return value; }
 + (PBOptimizeMode*) valueOf:(int32_t) value {
   switch (value) {
     case 1: return SPEED;
@@ -4969,7 +4969,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasCtype) {
-    [output writeEnum:1 value:self.getCtype.getNumber];
+    [output writeEnum:1 value:self.getCtype.number];
   }
   if (hasExperimentalMapKey) {
     [output writeString:9 value:self.getExperimentalMapKey];
@@ -4983,7 +4983,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 
   size = 0;
   if (self.hasCtype) {
-    size += computeEnumSize(1, self.getCtype.getNumber);
+    size += computeEnumSize(1, self.getCtype.number);
   }
   if (hasExperimentalMapKey) {
     size += computeStringSize(9, self.getExperimentalMapKey);
@@ -5043,7 +5043,7 @@ static PBCType* STRING_PIECE = nil;
 }
 + (PBCType*) CORD { return CORD; }
 + (PBCType*) STRING_PIECE { return STRING_PIECE; }
-- (int32_t) getNumber { return value; }
+- (int32_t) number { return value; }
 + (PBCType*) valueOf:(int32_t) value {
   switch (value) {
     case 1: return CORD;

@@ -64,7 +64,7 @@
             for (id element in value) {
                 [self addRepeatedField:field value:element];
             }
-        } else if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
+        } else if (field.objectiveCType == PBObjectiveCTypeMessage) {
             id<PBMessage> existingValue = [self getField:field];
 
             if (existingValue == [existingValue getDefaultInstanceForType]) {

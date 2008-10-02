@@ -35,7 +35,7 @@
 
 
 - (void) verifyExtensionContainingType:(PBGeneratedExtension*) extension {
-    if (extension.getDescriptor.getContainingType != [self getDescriptorForType]) {
+    if (extension.getDescriptor.containingType != [self getDescriptorForType]) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 }
@@ -94,7 +94,7 @@
 
 
 - (void) verifyContainingType:(PBFieldDescriptor*) field {
-    if (field.getContainingType != [self getDescriptorForType]) {
+    if (field.containingType != [self getDescriptorForType]) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"PBFieldDescriptor does not match message type." userInfo:nil];
     }
 }
@@ -117,7 +117,7 @@
         if (value == nil) {
             // Lacking an PBExtensionRegistry, we have no way to determine the
             // extension's real type, so we return a DynamicMessage.
-            return [PBDynamicMessage defaultInstance:field.getMessageType];
+            return [PBDynamicMessage defaultInstance:field.messageType];
         } else {
             return value;
         }

@@ -109,14 +109,14 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 - (id) getField:(PBFieldDescriptor*) field {
     id result = [fields objectForKey:field];
     if (result == nil) {
-        if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
+        if (field.objectiveCType == PBObjectiveCTypeMessage) {
             if (field.isRepeated) {
                 return [NSArray array];
             } else {
                 return nil;
             }
         } else {
-            return field.getDefaultValue;
+            return field.defaultValue;
         }
     } else {
         return result;
@@ -133,7 +133,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  */
 - (void) verifyType:(PBFieldDescriptor*) field value:(id) value {
     BOOL isValid = NO;
-    switch (field.getObjectiveCType) {
+    switch (field.objectiveCType) {
         case PBObjectiveCTypeInt32:   isValid = [value isKindOfClass:[NSNumber class]]; break;
         case PBObjectiveCTypeInt64:   isValid = [value isKindOfClass:[NSNumber class]]; break;
         case PBObjectiveCTypeFloat32: isValid = [value isKindOfClass:[NSNumber class]]; break;
@@ -143,11 +143,11 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         case PBObjectiveCTypeData:    isValid = [value isKindOfClass:[NSData class]]; break;
         case PBObjectiveCTypeEnum:
             isValid = [value isKindOfClass:[PBEnumValueDescriptor class]] &&
-            [value getType] == field.getEnumType;
+            [value getType] == field.enumType;
             break;
         case PBObjectiveCTypeMessage:
             isValid = [value conformsToProtocol:@protocol(PBMessage)] &&
-            [value getDescriptorForType] == field.getMessageType;
+            [value getDescriptorForType] == field.messageType;
             break;
     }
 
@@ -160,7 +160,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         /*
          throw new IllegalArgumentException(
          "Wrong object type used with protocol message reflection.  " +
-         "PBMessage type \"" + field.getContainingType().getFullName() +
+         "PBMessage type \"" + field.containingType().getFullName() +
          "\", field \"" +
          (field.isExtension() ? field.getFullName() : field.getName()) +
          "\", value was type \"" + value.getClass().getName() + "\".");
@@ -273,7 +273,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     for (PBFieldDescriptor* field in fields) {
         id value = [fields objectForKey:field];
 
-        if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
+        if (field.objectiveCType == PBObjectiveCTypeMessage) {
             if (field.isRepeated) {
                 for (id<PBMessage> element in value) {
                     if (![element isInitialized]) {
@@ -333,7 +333,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 [fields setObject:existingValue forKey:field];
             }
             [existingValue addObjectsFromArray:otherValue];
-        } else if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
+        } else if (field.objectiveCType == PBObjectiveCTypeMessage) {
             id<PBMessage> existingValue = [fields objectForKey:field];
             if (existingValue == nil) {
                 [self setField:field value:otherValue];
@@ -362,7 +362,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 [fields setObject:existingValue forKey:field];
             }
             [existingValue addObjectsFromArray:value];
-        } else if (field.getObjectiveCType == PBObjectiveCTypeMessage) {
+        } else if (field.objectiveCType == PBObjectiveCTypeMessage) {
             id<PBMessage> existingValue = [fields objectForKey:field];
             if (existingValue == nil) {
                 [self setField:field value:value];
@@ -544,12 +544,12 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     }
 
     if (field == nil ||
-        wireType != PBWireFormatGetWireFormatForFieldType(field.getType)) {
+        wireType != PBWireFormatGetWireFormatForFieldType(field.type)) {
         // Unknown field or wrong wire type.  Skip.
         return [unknownFields mergeFieldFrom:tag input:input];
     } else {
         id value;
-        switch (field.getType) {
+        switch (field.type) {
             case PBFieldDescriptorTypeGroup: {
                 id<PBMessage_Builder> subBuilder;
                 if (defaultInstance != nil) {
@@ -560,7 +560,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 if (!field.isRepeated) {
                     [subBuilder mergeFromMessage:[builder getField:field]];
                 }
-                [input readGroup:field.getNumber builder:subBuilder extensionRegistry:extensionRegistry];
+                [input readGroup:field.number builder:subBuilder extensionRegistry:extensionRegistry];
                 value = [subBuilder build];
                 break;
             }
@@ -580,7 +580,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
             }
             case PBFieldDescriptorTypeEnum: {
                 int32_t rawValue = [input readEnum];
-                value = [field.getEnumType findValueByNumber:rawValue];
+                value = [field.enumType findValueByNumber:rawValue];
                 // If the number isn't recognized as a valid value for this enum,
                 // drop it.
                 if (value == nil) {
@@ -590,7 +590,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 break;
             }
             default:
-                value = [input readPrimitiveField:field.getType];
+                value = [input readPrimitiveField:field.type];
                 break;
         }
 
@@ -617,15 +617,15 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 /** Write a single field. */
 - (void) writeField:(PBFieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output {
     if (field.isExtension &&
-        field.getContainingType.options.getMessageSetWireFormat) {
-        [output writeMessageSetExtension:field.getNumber value:value];
+        field.containingType.options.getMessageSetWireFormat) {
+        [output writeMessageSetExtension:field.number value:value];
     } else {
         if (field.isRepeated) {
             for (id element in value) {
-                [output writeField:field.getType number:field.getNumber value:element];
+                [output writeField:field.type number:field.number value:element];
             }
         } else {
-            [output writeField:field.getType number:field.getNumber value:value];
+            [output writeField:field.type number:field.number value:value];
         }
     }
 }
@@ -640,15 +640,15 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         id value = [fields objectForKey:field];
 
         if (field.isExtension &&
-            field.getContainingType.options.getMessageSetWireFormat) {
-            size += computeMessageSetExtensionSize(field.getNumber, value);
+            field.containingType.options.getMessageSetWireFormat) {
+            size += computeMessageSetExtensionSize(field.number, value);
         } else {
             if (field.isRepeated) {
                 for (id element in value) {
-                    size += computeFieldSize(field.getType, field.getNumber, element);
+                    size += computeFieldSize(field.type, field.number, element);
                 }
             } else {
-                size += computeFieldSize(field.getType, field.getNumber, value);
+                size += computeFieldSize(field.type, field.number, value);
             }
         }
     }

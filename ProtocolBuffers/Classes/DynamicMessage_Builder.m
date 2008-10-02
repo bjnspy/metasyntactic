@@ -129,7 +129,7 @@
 
 
 - (void) verifyContainingType:(PBFieldDescriptor*) field {
-    if (field.getContainingType != type) {
+    if (field.containingType != type) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"PBFieldDescriptor does not match message type." userInfo:nil];
     }
 }
@@ -138,13 +138,13 @@
 - (PBDynamicMessage_Builder*) newBuilderForField:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
 
-    if (field.getObjectiveCType != PBObjectiveCTypeMessage) {
+    if (field.objectiveCType != PBObjectiveCTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"newBuilderForField is only valid for fields with message type."
                                      userInfo:nil];
     }
 
-    return [PBDynamicMessage_Builder builderWithType:field.getMessageType];
+    return [PBDynamicMessage_Builder builderWithType:field.messageType];
 }
 
 
@@ -158,7 +158,7 @@
     [self verifyContainingType:field];
     id result = [fields getField:field];
     if (result == nil) {
-        result = [PBDynamicMessage defaultInstance:field.getMessageType];
+        result = [PBDynamicMessage defaultInstance:field.messageType];
     }
     return result;
 }

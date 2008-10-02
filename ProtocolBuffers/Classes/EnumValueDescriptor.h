@@ -31,7 +31,7 @@
 @property (retain) NSString* fullName;
 
 - (PBEnumDescriptor*) getType;
-- (int32_t) getNumber;
+- (int32_t) number;
 - (int32_t) getIndex;
 
 @end
