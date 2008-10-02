@@ -96,10 +96,10 @@ static PBExtensionRegistry* EMPTY = nil;
 
 #if 0
 - (void) addExtension:(PBGeneratedExtension*) extension {
-    if (extension.getDescriptor.objectiveCType == PBFieldDescriptorTypeMessage) {
-        [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:extension.getMessageDefaultInstance]];
+    if (extension.descriptor.objectiveCType == PBFieldDescriptorTypeMessage) {
+        [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.descriptor defaultInstance:extension.getMessageDefaultInstance]];
     } else {
-        [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.getDescriptor defaultInstance:nil]];
+        [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.descriptor defaultInstance:nil]];
     }
 }
 #endif
