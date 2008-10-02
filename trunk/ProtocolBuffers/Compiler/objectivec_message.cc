@@ -179,10 +179,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     if (descriptor_->containing_type() == NULL) {
       printer->Print(vars,
-        "internal_$identifier$_descriptor = [[[self getDescriptor].getMessageTypes objectAtIndex:$index$] retain];\n");
+        "internal_$identifier$_descriptor = [[[self getDescriptor].messageTypes objectAtIndex:$index$] retain];\n");
     } else {
       printer->Print(vars,
-        "internal_$identifier$_descriptor = [[[internal_$parent$_descriptor getNestedTypes] objectAtIndex:$index$] retain];\n");
+        "internal_$identifier$_descriptor = [[[internal_$parent$_descriptor nestedTypes] objectAtIndex:$index$] retain];\n");
     }
 
     // And the FieldAccessorTable.

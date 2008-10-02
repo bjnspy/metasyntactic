@@ -174,7 +174,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     GenerateSerializationCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "if (self.has$capitalized_name$) {\n"
-        "  [output writeEnum:$number$ value:self.get$capitalized_name$.getNumber];\n"
+        "  [output writeEnum:$number$ value:self.get$capitalized_name$.number];\n"
         "}\n");
   }
 
@@ -188,7 +188,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     GenerateSerializedSizeCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "if (self.has$capitalized_name$) {\n"
-        "  size += computeEnumSize($number$, self.get$capitalized_name$.getNumber);\n"
+        "  size += computeEnumSize($number$, self.get$capitalized_name$.number);\n"
         "}\n");
   }
 
@@ -353,7 +353,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     GenerateSerializationCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "for ($storage_type$ element in self.get$capitalized_name$List) {\n"
-        "  [output writeEnum:$number$ value:element.getNumber];\n"
+        "  [output writeEnum:$number$ value:element.number];\n"
         "}\n");
   }
 
@@ -361,7 +361,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     GenerateSerializedSizeCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "for ($storage_type$ element : get$capitalized_name$List()) {\n"
-        "  size += computeEnumSize($number$, element.getNumber);\n"
+        "  size += computeEnumSize($number$, element.number);\n"
         "}\n");
   }
 

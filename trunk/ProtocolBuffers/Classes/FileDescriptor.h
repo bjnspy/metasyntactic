@@ -18,12 +18,10 @@
     NSArray* messageTypes;
 }
 
-@property (retain) NSArray* messageTypes;
+@property (retain, readonly) NSArray* messageTypes;
 
 + (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
 + (PBFileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;
-
-- (NSArray*) getMessageTypes;
 
 - (void) crossLink;
 

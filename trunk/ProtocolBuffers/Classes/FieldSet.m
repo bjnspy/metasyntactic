@@ -142,8 +142,10 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         case PBObjectiveCTypeString:  isValid = [value isKindOfClass:[NSString class]]; break;
         case PBObjectiveCTypeData:    isValid = [value isKindOfClass:[NSData class]]; break;
         case PBObjectiveCTypeEnum:
-            isValid = [value isKindOfClass:[PBEnumValueDescriptor class]] &&
-            [value getType] == field.enumType;
+            if ([value isKindOfClass:[PBEnumValueDescriptor class]]) {
+                PBEnumValueDescriptor* enumValue = value;
+                isValid = (enumValue.type == field.enumType);
+            }
             break;
         case PBObjectiveCTypeMessage:
             isValid = [value conformsToProtocol:@protocol(PBMessage)] &&

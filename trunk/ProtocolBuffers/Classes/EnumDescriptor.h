@@ -18,7 +18,7 @@
 
 }
 
-- (NSArray*) getValues;
+- (NSArray*) values;
 
 - (PBEnumValueDescriptor*) findValueByNumber:(int32_t) number;
 

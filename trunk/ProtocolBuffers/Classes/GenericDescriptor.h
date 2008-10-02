@@ -16,7 +16,7 @@
 
 @protocol PBGenericDescriptor
 - (id<PBMessage>) toProto;
-- (NSString*) getName;
-- (NSString*) getFullName;
-- (PBFileDescriptor*) getFile;
+- (NSString*) name;
+- (NSString*) fullName;
+- (PBFileDescriptor*) file;
 @end

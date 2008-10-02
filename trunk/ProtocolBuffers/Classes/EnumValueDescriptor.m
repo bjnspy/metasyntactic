@@ -16,6 +16,14 @@
 
 #import "EnumValueDescriptor.h"
 
+@interface PBEnumValueDescriptor ()
+@property (assign) PBFileDescriptor* file;
+@property (assign) PBEnumDescriptor* type;
+
+@property int32_t index;
+@property (copy) NSString* fullName;
+@end
+
 
 @implementation PBEnumValueDescriptor
 
@@ -39,13 +47,8 @@
 }
 
 
-- (PBEnumDescriptor*) getType {
+- (PBEnumDescriptor*) type {
     return type;
-}
-
-
-- (int32_t) getIndex {
-    return self.index;
 }
 
 

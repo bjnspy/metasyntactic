@@ -139,7 +139,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  if (method.getService != self.getDescriptor) {\n"
       "    [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
-      "  switch(method.getIndex) {\n");
+      "  switch(method.index) {\n");
     printer->Indent();
     printer->Indent();
 
@@ -184,7 +184,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "  if (method.getService != getDescriptor) {\n"
         "    [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"\" userInfo:nil];\n"
         "  }\n"
-        "  switch(method.getIndex) {\n",
+        "  switch(method.index) {\n",
         "request_or_response", (which == REQUEST) ? "Request" : "Response");
       printer->Indent();
       printer->Indent();

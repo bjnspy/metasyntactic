@@ -20,6 +20,12 @@
 #import "DescriptorPool.h"
 #import "FileDescriptor.h"
 
+
+@interface PBFileDescriptor ()
+@property (retain) NSArray* messageTypes;
+@end
+
+
 @implementation PBFileDescriptor
 
 @synthesize messageTypes;
