@@ -15,12 +15,13 @@
 // limitations under the License.
 
 @interface PBExtensionInfo : NSObject {
+@private
     PBFieldDescriptor* descriptor;
     id<PBMessage> defaultInstance;
 }
 
-@property (retain) PBFieldDescriptor* descriptor;
-@property (retain) id<PBMessage> defaultInstance;
+@property (retain, readonly) PBFieldDescriptor* descriptor;
+@property (retain, readonly) id<PBMessage> defaultInstance;
 
 + (PBExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor;
 + (PBExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor defaultInstance:(id<PBMessage>) defaultInstance;

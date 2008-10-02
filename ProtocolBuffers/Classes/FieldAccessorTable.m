@@ -25,6 +25,13 @@
 #import "SingularEnumFieldAccessor.h"
 #import "SingularFieldAccessor.h"
 
+
+@interface PBFieldAccessorTable()
+@property (retain) PBDescriptor* descriptor;
+@property (retain) NSArray* fields;
+@end
+
+
 @implementation PBFieldAccessorTable
 
 @synthesize descriptor;

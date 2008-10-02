@@ -18,6 +18,13 @@
 
 #import "Descriptor.h"
 
+
+@interface PBDescriptorIntPair ()
+@property (retain) PBDescriptor* descriptor;
+@property int32_t number;
+@end
+
+
 @implementation PBDescriptorIntPair
 
 @synthesize descriptor;
