@@ -93,7 +93,7 @@
 // ---------------------------------------------------------------
 // Reflection
 
-- (NSMutableDictionary*) getAllFieldsMutable {
+- (NSMutableDictionary*) allFieldsMutable {
     NSMutableDictionary* result = [super allFieldsMutable];
     [result addEntriesFromDictionary:extensions.allFields];
     return result;

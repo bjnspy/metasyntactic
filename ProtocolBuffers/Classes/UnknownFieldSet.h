@@ -30,6 +30,6 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 
 - (int32_t) serializedSize;
-- (int32_t) getSerializedSizeAsMessageSet;
+- (int32_t) serializedSizeAsMessageSet;
 
 @end

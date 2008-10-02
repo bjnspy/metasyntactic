@@ -125,7 +125,7 @@
 
     PBUnknownFieldSet* unknownFields = self.unknownFields;
     if (self.descriptorForType.options.getMessageSetWireFormat) {
-        size += unknownFields.getSerializedSizeAsMessageSet;
+        size += unknownFields.serializedSizeAsMessageSet;
     } else {
         size += unknownFields.serializedSize;
     }
