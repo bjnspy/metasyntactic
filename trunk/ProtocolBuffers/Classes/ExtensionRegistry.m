@@ -142,7 +142,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
     PBFieldDescriptor* field = extension.descriptor;
 
-    if (field.containingType.options.getMessageSetWireFormat &&
+    if (field.containingType.options.messageSetWireFormat &&
         field.type == PBFieldDescriptorTypeMessage &&
         field.isOptional &&
         field.extensionScope == field.messageType) {

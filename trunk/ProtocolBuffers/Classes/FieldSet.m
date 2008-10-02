@@ -518,7 +518,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                                     tag:(int32_t) tag {
     PBDescriptor* type = [builder descriptorForType];
 
-    if (type.options.getMessageSetWireFormat &&
+    if (type.options.messageSetWireFormat &&
         tag == PBWireFormatMessageSetItemTag) {
         [self mergeMessageSetExtensionFromCodedStream:input
                                         unknownFields:unknownFields
@@ -619,7 +619,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 /** Write a single field. */
 - (void) writeField:(PBFieldDescriptor*) field value:(id) value output:(PBCodedOutputStream*) output {
     if (field.isExtension &&
-        field.containingType.options.getMessageSetWireFormat) {
+        field.containingType.options.messageSetWireFormat) {
         [output writeMessageSetExtension:field.number value:value];
     } else {
         if (field.isRepeated) {
@@ -642,7 +642,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         id value = [fields objectForKey:field];
 
         if (field.isExtension &&
-            field.containingType.options.getMessageSetWireFormat) {
+            field.containingType.options.messageSetWireFormat) {
             size += computeMessageSetExtensionSize(field.number, value);
         } else {
             if (field.isRepeated) {

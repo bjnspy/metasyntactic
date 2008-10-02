@@ -61,8 +61,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  int32_t index;\n"
       "  int32_t value;\n"
       "}\n"
-      "@property int32_t index;\n"
-      "@property int32_t value;\n"
+      "@property (readonly) int32_t index;\n"
+      "@property (readonly) int32_t value;\n"
       "+ ($classname$*) newWithIndex:(int32_t) index value:(int32_t) value;\n",
       "classname", ClassName(descriptor_));
 
@@ -107,6 +107,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void EnumGenerator::GenerateSource(io::Printer* printer) {
+    printer->Print(
+      "@interface $classname$ ()\n"
+      "@property int32_t index;\n"
+      "@property int32_t value;\n"
+      "@end\n\n",
+      "classname", ClassName(descriptor_));
+
     printer->Print(
       "@implementation $classname$\n"
       "@synthesize index;\n"

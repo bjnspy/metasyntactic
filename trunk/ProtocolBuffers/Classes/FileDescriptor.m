@@ -84,12 +84,12 @@
     PBDescriptorPool* pool = [PBDescriptorPool poolWithDependencies:dependencies];
     PBFileDescriptor* result = [PBFileDescriptor descriptorWithProto:proto dependencies:dependencies pool:pool];
 
-    if (dependencies.count != proto.getDependencyCount) {
+    if (dependencies.count != proto.dependencyList.count) {
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
     }
 
-    for (int i = 0; i < proto.getDependencyCount; i++) {
-        if (![[[dependencies objectAtIndex:i] getName] isEqual:[proto getDependency:i]]) {
+    for (int i = 0; i < proto.dependencyList.count; i++) {
+        if (![[[dependencies objectAtIndex:i] name] isEqual:[proto dependencyAtIndex:i]]) {
             @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
         }
     }
