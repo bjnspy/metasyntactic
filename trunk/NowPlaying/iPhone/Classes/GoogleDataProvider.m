@@ -96,7 +96,8 @@
                                     movieIdToMovieMap:(NSDictionary*) movieIdToMovieMap {
     NSMutableDictionary* dictionary = [NSMutableDictionary dictionary];
 
-    for (MovieAndShowtimesProto* movieAndShowtimes in movieAndShowtimesList) {
+    for (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* movieAndShowtimes in
+         movieAndShowtimesList) {
         NSString* movieId = movieAndShowtimes.movieIdentifier;
         NSString* movieTitle = [[movieIdToMovieMap objectForKey:movieId] canonicalTitle];
 
@@ -125,7 +126,7 @@
 }
 
 
-- (void) processTheaterAndMovieShowtimes:(TheaterAndMovieShowtimesProto*) theaterAndMovieShowtimes
+- (void) processTheaterAndMovieShowtimes:(TheaterListingsProto_TheaterAndMovieShowtimesProto*) theaterAndMovieShowtimes
                                 theaters:(NSMutableArray*) theaters
                             performances:(NSMutableDictionary*) performances
                      synchronizationData:(NSMutableDictionary*) synchronizationData
@@ -197,7 +198,7 @@
     NSMutableDictionary* performances = [NSMutableDictionary dictionary];
     NSMutableDictionary* synchronizationData = [NSMutableDictionary dictionary];
 
-    for (TheaterAndMovieShowtimesProto* proto in theaterAndMovieShowtimes) {
+    for (TheaterListingsProto_TheaterAndMovieShowtimesProto* proto in theaterAndMovieShowtimes) {
         [self processTheaterAndMovieShowtimes:proto
                                      theaters:theaters
                                  performances:performances
