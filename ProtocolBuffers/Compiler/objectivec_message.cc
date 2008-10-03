@@ -263,7 +263,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void MessageGenerator::GenerateHeader(io::Printer* printer) {
     if (descriptor_->extension_range_count() > 0) {
       printer->Print(
-        "@interface $classname$ : PBGeneratedMessage_ExtendableMessage {\n",
+        "@interface $classname$ : PBExtendableMessage {\n",
         "classname", ClassName(descriptor_));
     } else {
       printer->Print(
@@ -330,9 +330,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void MessageGenerator::GenerateSource(io::Printer* printer) {
-    bool is_own_file =
-      descriptor_->containing_type() == NULL;
-
     printer->Print(
       "@interface $classname$ ()\n",
       "classname", ClassName(descriptor_));
@@ -374,11 +371,22 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return self;\n"
       "}\n");
 
+    for (int i = 0; i < descriptor_->extension_count(); i++) {
+      ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateFieldsSource(printer);
+    }
+
     printer->Print(
       "static $classname$* default$classname$Instance = nil;\n"
       "+ (void) initialize {\n"
       "  if (self == [$classname$ class]) {\n"
-      "    default$classname$Instance = [[$classname$ alloc] init];\n"
+      "    default$classname$Instance = [[$classname$ alloc] init];\n",
+      "classname", ClassName(descriptor_));
+
+    for (int i = 0; i < descriptor_->extension_count(); i++) {
+      ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateInitializationSource(printer);
+    }
+
+    printer->Print(
       "  }\n"
       "}\n"
       "\n"
@@ -436,14 +444,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     for (int i = 0; i < descriptor_->nested_type_count(); i++) {
       MessageGenerator(descriptor_->nested_type(i)).GenerateSource(printer);
-    }
-
-    for (int i = 0; i < descriptor_->extension_count(); i++) {
-      ExtensionGenerator(descriptor_->extension(i)).GenerateFieldsSource(printer);
-    }
-
-    for (int i = 0; i < descriptor_->extension_count(); i++) {
-      ExtensionGenerator(descriptor_->extension(i)).GenerateInitializationSource(printer);
     }
 
     GenerateBuilderSource(printer);
@@ -608,7 +608,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     if (descriptor_->extension_range_count() > 0) {
       printer->Print(
-        "ExtendableMessage_ExtensionWriter* extensionWriter = [self newExtensionWriter];\n");
+        "PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];\n");
     }
 
     // Merge the fields and the extension ranges, both sorted by field number.
@@ -656,7 +656,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     if (descriptor_->options().message_set_wire_format()) {
       printer->Print(
-        "size += self.unknownFields.getSerializedSizeAsMessageSet;\n");
+        "size += self.unknownFields.serializedSizeAsMessageSet;\n");
     } else {
       printer->Print(
         "size += self.unknownFields.serializedSize;\n");
@@ -919,8 +919,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
       if (field->is_required()) {
         printer->Print(
-          "if (!self.has$name$) return false;\n",
-          "name", UnderscoresToCapitalizedCamelCase(field));
+          "if (!self.has$capitalized_name$) return false;\n",
+          "capitalized_name", UnderscoresToCapitalizedCamelCase(field));
       }
     }
 
@@ -929,29 +929,29 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       const FieldDescriptor* field = descriptor_->field(i);
       if (field->cpp_type() == FieldDescriptor::CPPTYPE_MESSAGE &&
         HasRequiredFields(field->message_type())) {
+
+          map<string,string> vars;
+          vars["type"] = ClassName(field->message_type());
+          vars["name"] = UnderscoresToCamelCase(field);
+          vars["capitalized_name"] = UnderscoresToCapitalizedCamelCase(field);
+
           switch (field->label()) {
-        case FieldDescriptor::LABEL_REQUIRED:
-          printer->Print(
-            "if (!self.$name$.isInitialized) return false;\n",
-            "type", ClassName(field->message_type()),
-            "name", UnderscoresToCamelCase(field));
-          break;
-        case FieldDescriptor::LABEL_OPTIONAL:
-          printer->Print(
-            "if (self.has$name$) {\n"
-            "  if (!self.$name$.isInitialized) return false;\n"
-            "}\n",
-            "type", ClassName(field->message_type()),
-            "name", UnderscoresToCamelCase(field));
-          break;
-        case FieldDescriptor::LABEL_REPEATED:
-          printer->Print(
-            "for ($type$* element in self.$name$List) {\n"
-            "  if (!element.isInitialized) return false;\n"
-            "}\n",
-            "type", ClassName(field->message_type()),
-            "name", UnderscoresToCamelCase(field));
-          break;
+            case FieldDescriptor::LABEL_REQUIRED:
+              printer->Print(vars,
+                "if (!self.$name$.isInitialized) return false;\n");
+              break;
+            case FieldDescriptor::LABEL_OPTIONAL:
+              printer->Print(vars,
+                "if (self.has$capitalized_name$) {\n"
+                "  if (!self.$name$.isInitialized) return false;\n"
+                "}\n");
+              break;
+            case FieldDescriptor::LABEL_REPEATED:
+              printer->Print(vars,
+                "for ($type$* element in self.$name$List) {\n"
+                "  if (!element.isInitialized) return false;\n"
+                "}\n");
+              break;
           }
       }
     }

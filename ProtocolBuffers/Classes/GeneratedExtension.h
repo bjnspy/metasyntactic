@@ -28,4 +28,7 @@
 @property (retain, readonly) PBFieldDescriptor* descriptor;
 @property (retain, readonly) Class type;
 
++ (PBGeneratedExtension*) extensionWithDescriptor:(PBFieldDescriptor*) descriptor
+                                             type:(Class) type;
+
 @end

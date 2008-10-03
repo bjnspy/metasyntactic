@@ -44,11 +44,53 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         (*variables)["name"]                  = UnderscoresToCamelCase(descriptor);
         (*variables)["capitalized_name"]      = UnderscoresToCapitalizedCamelCase(descriptor);
         (*variables)["list_name"]             = UnderscoresToCamelCase(descriptor) + "List";
-        (*variables)["capitalized_list_name"] = "mutable" + UnderscoresToCapitalizedCamelCase(descriptor) + "List";
+        (*variables)["mutable_list_name"] = "mutable" + UnderscoresToCapitalizedCamelCase(descriptor) + "List";
         (*variables)["number"] = SimpleItoa(descriptor->number());
         (*variables)["type"] = type;
         (*variables)["storage_type"] = type + "*";
         (*variables)["default"] = "[" + type + " " + default_value->name() + "]";
+
+        string boxed_value = "value";
+        switch (GetObjectiveCType(descriptor)) {
+          case OBJECTIVECTYPE_INT:
+            boxed_value = "[NSNumber numberWithInt:value]";
+            break;
+          case OBJECTIVECTYPE_LONG:
+            boxed_value = "[NSNumber numberWithLongLong:value]";
+            break;
+          case OBJECTIVECTYPE_FLOAT:
+            boxed_value = "[NSNumber numberWithFloat:value]";
+            break;
+          case OBJECTIVECTYPE_DOUBLE:
+            boxed_value = "[NSNumber numberWithDouble:value]";
+            break;
+          case OBJECTIVECTYPE_BOOLEAN:
+            boxed_value = "[NSNumber numberWithBool:value]";
+            break;
+        } 
+
+        (*variables)["boxed_value"] = boxed_value;
+
+        string unboxed_value = "value";
+        switch (GetObjectiveCType(descriptor)) {
+          case OBJECTIVECTYPE_INT:
+            unboxed_value = "[value intValue]";
+            break;
+          case OBJECTIVECTYPE_LONG:
+            unboxed_value = "[value longLongValue]";
+            break;
+          case OBJECTIVECTYPE_FLOAT:
+            unboxed_value = "[value floatValue]";
+            break;
+          case OBJECTIVECTYPE_DOUBLE:
+            unboxed_value = "[value doubleValue]";
+            break;
+          case OBJECTIVECTYPE_BOOLEAN:
+            unboxed_value = "[value boolValue]";
+            break;
+        } 
+
+        (*variables)["unboxed_value"] = unboxed_value;
     }
 
   }  // namespace
@@ -294,7 +336,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return $mutable_list_name$;\n"
       "}\n"
       "- ($storage_type$) $name$AtIndex:(int32_t) index {\n"
-      "  return [$mutable_list_name$ objectAtIndex:index];\n"
+      "  id value = [$mutable_list_name$ objectAtIndex:index];\n"
+      "  return $unboxed_value$;\n"
       "}\n");
   }
 
@@ -307,14 +350,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return [result $name$AtIndex:index];\n"
       "}\n"
       "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with$capitalized_name$:($storage_type$) value {\n"
-      "  result [result.$mutable_list_name$ replaceObjectAtIndex:index withObject:value];\n"
+      "  [result.$mutable_list_name$ replaceObjectAtIndex:index withObject:$boxed_value$];\n"
       "  return self;\n"
       "}\n"
       "- ($classname$_Builder*) add$capitalized_name$:($storage_type$) value {\n"
       "  if (result.$mutable_list_name$ == nil) {\n"
       "    result.$mutable_list_name$ = [NSMutableArray array];\n"
       "  }\n"
-      "  [result.$mutable_list_name$ addObject:value];\n"
+      "  [result.$mutable_list_name$ addObject:$boxed_value$];\n"
       "  return self;\n"
       "}\n"
       "- ($classname$_Builder*) addAll$capitalized_name$:(NSArray*) values {\n"
@@ -347,7 +390,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void RepeatedEnumFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "int32_t rawValue = [input readEnum];\n"
-        "$storage_type$ value = [$storage_type$ valueOf:rawValue];\n"
+        "$storage_type$ value = [$type$ valueOf:rawValue];\n"
         "if (value == nil) {\n"
         "  [unknownFields mergeVarintField:$number$ value:rawValue];\n"
         "} else {\n"
@@ -366,7 +409,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void RepeatedEnumFieldGenerator::
     GenerateSerializedSizeCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
-        "for ($storage_type$ element : self.$list_name$) {\n"
+        "for ($storage_type$ element in self.$list_name$) {\n"
         "  size += computeEnumSize($number$, element.number);\n"
         "}\n");
   }

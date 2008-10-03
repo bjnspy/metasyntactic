@@ -14,11 +14,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "GeneratedMessage.h"
+
 @interface PBExtendableMessage : PBGeneratedMessage {
 @private
     PBFieldSet* extensions;
 }
 
 @property (retain, readonly) PBFieldSet* extensions;
+
+//@protexted
+- (BOOL) extensionsAreInitialized;
+- (int32_t) extensionsSerializedSize;
 
 @end

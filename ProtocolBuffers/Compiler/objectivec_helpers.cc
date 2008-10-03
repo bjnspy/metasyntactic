@@ -134,6 +134,47 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
+  string ClassNameWorker(const Descriptor* descriptor) {
+    string name;
+    if (descriptor->containing_type() != NULL) {
+      name = ClassNameWorker(descriptor->containing_type());
+      name += "_";
+    }
+    return name + descriptor->name();
+  }
+
+
+  string ClassNameWorker(const EnumDescriptor* descriptor) {
+    string name;
+    if (descriptor->containing_type() != NULL) {
+      name = ClassNameWorker(descriptor->containing_type());
+      name += "_";
+    }
+    return name + descriptor->name();
+  }
+  
+
+  string ClassName(const Descriptor* descriptor) {
+    string name = descriptor->file()->options().objectivec_class_prefix();
+    name += ClassNameWorker(descriptor);
+    return name;
+  }
+
+
+  string ClassName(const EnumDescriptor* descriptor) {
+    string name = descriptor->file()->options().objectivec_class_prefix();
+    name += ClassNameWorker(descriptor);
+    return name;
+  }
+
+
+  string ClassName(const ServiceDescriptor* descriptor) {
+    string name = descriptor->file()->options().objectivec_class_prefix();
+    name += descriptor->name();
+    return name;
+  }
+
+
   ObjectiveCType GetObjectiveCType(FieldDescriptor::Type field_type) {
     switch (field_type) {
     case FieldDescriptor::TYPE_INT32:
@@ -218,6 +259,16 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   bool IsReferenceType(ObjectiveCType type) {
     return !IsPrimitiveType(type);
+  }
+
+
+  bool ReturnsPrimitiveType(const FieldDescriptor* field) {
+    return IsPrimitiveType(GetObjectiveCType(field->type()));
+  }
+
+
+  bool ReturnsReferenceType(const FieldDescriptor* field) {
+    return !ReturnsPrimitiveType(field);
   }
 
 

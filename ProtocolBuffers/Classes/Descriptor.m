@@ -51,6 +51,11 @@
 }
 
 
+- (NSArray*) extensions {
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+}
+
+
 - (BOOL) isExtensionNumber:(int32_t) number {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }

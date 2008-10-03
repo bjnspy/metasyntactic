@@ -26,6 +26,7 @@
 - (PBMessageOptions*) options;
 - (NSString*) fullName;
 - (NSArray*) enumTypes;
+- (NSArray*) extensions;
 
 - (BOOL) isExtensionNumber:(int32_t) number;
 - (PBFieldDescriptor*) findFieldByNumber:(int32_t) number;
