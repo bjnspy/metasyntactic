@@ -22,16 +22,25 @@
 
 
 @interface PBFileDescriptor ()
-@property (retain) NSArray* messageTypes;
+@property (retain) NSMutableArray* mutableMessageTypes;
+@property (retain) NSMutableArray* mutableExtensions;
+@property (retain) NSMutableArray* mutableEnumTypes;
+@property (retain) NSMutableArray* mutableServices;
 @end
 
 
 @implementation PBFileDescriptor
 
-@synthesize messageTypes;
+@synthesize mutableMessageTypes;
+@synthesize mutableExtensions;
+@synthesize mutableEnumTypes;
+@synthesize mutableServices;
 
 - (void) dealloc {
-    self.messageTypes = nil;
+    self.mutableMessageTypes = nil;
+    self.mutableExtensions = nil;
+    self.mutableEnumTypes = nil;
+    self.mutableServices = nil;
 
     [super dealloc];
 }
@@ -44,6 +53,26 @@
     }
 
     return self;
+}
+
+
+- (NSArray*) messageTypes {
+    return mutableMessageTypes;
+}
+
+
+- (NSArray*) extensions {
+    return mutableExtensions;
+}
+
+
+- (NSArray*) enumTypes {
+    return mutableEnumTypes;
+}
+
+
+- (NSArray*) services {
+    return mutableServices;
 }
 
 

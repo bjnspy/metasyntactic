@@ -35,6 +35,18 @@
     [super dealloc];
 }
 
+
+- (id) initWithDescriptor:(PBFieldDescriptor*) descriptor
+                     type:(Class) type {
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+}
+
+
++ (PBGeneratedExtension*) extensionWithDescriptor:(PBFieldDescriptor*) descriptor
+                                             type:(Class) type {
+    return [[[PBGeneratedExtension alloc] initWithDescriptor:descriptor type:type] autorelease];
+}
+
 #if 0
 public static final class PBGeneratedExtension<
 ContainingType extends PBMessage, Type> {

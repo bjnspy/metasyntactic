@@ -16,7 +16,6 @@
 
 #import "CodedInputStreamTests.h"
 
-#import "ForwardDeclarations.h"
 #import "ProtocolBuffers.h"
 
 @implementation CodedInputStreamTests

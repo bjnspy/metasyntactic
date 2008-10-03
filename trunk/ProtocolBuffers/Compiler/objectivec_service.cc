@@ -37,7 +37,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void ServiceGenerator::GenerateHeader(io::Printer* printer) {
     printer->Print(
-      "@interface $classname$ : NSObject<Service> {\n"
+      "@interface $classname$ : NSObject<PBService> {\n"
       "}\n",
       "classname", ClassName(descriptor_));
 
@@ -49,17 +49,17 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["input"] = ClassName(method->input_type());
       vars["output"] = ClassName(method->output_type());
       printer->Print(vars,
-        "- (void) $name$:(id<RpcController>) controller\n"
-        "        request:($input$*) request\n"
-        "         target:(id) target\n"
-        "       selector:(SEL) selector;\n");
+        "- (void) $name$WithController:(id<PBRpcController>) controller\n"
+        "                      request:($input$*) request\n"
+        "                       target:(id) target\n"
+        "                     selector:(SEL) selector;\n");
     }
 
     // Generate descriptor and descriptorForType().
     printer->Print(
       "\n"
-      "+ (ServiceDescriptor*) descriptor;\n"
-      "- (ServiceDescriptor*) descriptorForType;\n");
+      "+ (PBServiceDescriptor*) descriptor;\n"
+      "- (PBServiceDescriptor*) descriptorForType;\n");
 
     // Generate more stuff.
     GenerateCallMethodHeader(printer);
@@ -86,25 +86,30 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["input"] = ClassName(method->input_type());
       vars["output"] = ClassName(method->output_type());
       printer->Print(vars,
-        "- (void) $name$:(id<RpcController>) controller\n"
-        "        request:($input$*) request\n"
-        "         target:(id) target\n"
-        "       selector:(SEL) selector {\n"
-        "  [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n"
+        "- (void) $name$WithController:(id<PBRpcController>) controller\n"
+        "                      request:($input$*) request\n"
+        "                       target:(id) target\n"
+        "                     selector:(SEL) selector {\n"
+        "  @throw [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n"
         "}\n");
     }
 
-    // Generate descriptor() and descriptorForType().
-    printer->Print(
-      "\n"
-      "+ (ServiceDescriptor*) descriptor {\n"
-      "  return [[$file$ descriptor].getServices objectAtIndex:$index$];\n"
-      "}\n"
-      "- (ServiceDescriptor*) descriptorForType {\n"
-      "  return [self descriptor];\n"
-      "}\n",
-      "file", FileClassName(descriptor_->file()),
-      "index", SimpleItoa(descriptor_->index()));
+    {
+      map<string, string> vars;
+      vars["file"] = FileClassName(descriptor_->file());
+      vars["index"] = SimpleItoa(descriptor_->index());
+      vars["classname"] = ClassName(descriptor_);
+
+      // Generate descriptor() and descriptorForType().
+      printer->Print(vars,
+        "\n"
+        "+ (PBServiceDescriptor*) descriptor {\n"
+        "  return [[$file$ descriptor].services objectAtIndex:$index$];\n"
+        "}\n"
+        "- (PBServiceDescriptor*) descriptorForType {\n"
+        "  return [$classname$ descriptor];\n"
+        "}\n");
+    }
 
     // Generate more stuff.
     GenerateCallMethodSource(printer);
@@ -136,8 +141,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "            request:(id<PBMessage>) request\n"
       "             target:(id) target\n"
       "           selector:(SEL) selector {\n"
-      "  if (method.getService != self.descriptor) {\n"
-      "    [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n"
+      "  if (method.service != self.descriptorForType) {\n"
+      "    @throw [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
       "  switch(method.index) {\n");
     printer->Indent();
@@ -152,13 +157,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["output"] = ClassName(method->output_type());
       printer->Print(vars,
         "case $index$:\n"
-        "  [self $method$WithController:controller request:request target:target selector:selector];\n"
+        "  [self $method$WithController:controller request:(id)request target:target selector:selector];\n"
         "  return;\n");
     }
 
     printer->Print(
       "default:\n"
-      "  [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n");
+      "  @throw [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n");
 
     printer->Outdent();
     printer->Outdent();
@@ -181,8 +186,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     io::Printer* printer) {
       printer->Print(
         "- (id<PBMessage>) get$request_or_response$Prototype:(PBMethodDescriptor*) method {\n"
-        "  if (method.getService != descriptor) {\n"
-        "    [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"\" userInfo:nil];\n"
+        "  if (method.service != self.descriptorForType) {\n"
+        "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"\" userInfo:nil];\n"
         "  }\n"
         "  switch(method.index) {\n",
         "request_or_response", (which == REQUEST) ? "Request" : "Response");
@@ -202,7 +207,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
       printer->Print(
         "default:\n"
-        "  [NSException exceptionWithName:@\"RuntimeError\" reason:@\"\" userInfo:nil];\n");
+        "  @throw [NSException exceptionWithName:@\"RuntimeError\" reason:@\"\" userInfo:nil];\n");
 
       printer->Outdent();
       printer->Outdent();
@@ -220,10 +225,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "@private\n"
-      "  id<RpcChannel> channel;\n"
+      "  id<PBRpcChannel> channel;\n"
       "}\n"
-      "@property (retain) id<RpcChannel> channel;\n"
-      "+ ($classname$_Stub*) newStub:(id<RpcChannel>) channel;\n",
+      "@property (retain) id<PBRpcChannel> channel;\n"
+      "+ ($classname$_Stub*) stubWithChannel:(id<PBRpcChannel>) channel;\n",
       "classname", ClassName(descriptor_));
 
     for (int i = 0; i < descriptor_->method_count(); i++) {
@@ -235,7 +240,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["output"] = ClassName(method->output_type());
       printer->Print(vars,
         "\n"
-        "- (void) $method$WithController:(id<RpcController>) controller\n"
+        "- (void) $method$WithController:(id<PBRpcController>) controller\n"
         "                        request:($input$*) request\n"
         "                         target:(id) target\n"
         "                       selector:(SEL) selector;");
@@ -250,13 +255,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "@synthesize channel;\n\n"
       "- (void) dealloc {\n"
       "  self.channel = nil;\n"
+      "  [super dealloc];\n"
       "}\n\n"
-      "- (id) initWithChannel:(id<RpcChannel>) channel_ {\n"
+      "- (id) initWithChannel:(id<PBRpcChannel>) channel_ {\n"
       "  if (self = [super init]) {\n"
-      "    self.channel = channel_\n"
+      "    self.channel = channel_;\n"
       "  }\n"
+      "  return self;\n"
       "}\n\n"
-      "+ ($classname$_Stub*) newStub:(id<RpcChannel>) channel {\n"
+      "+ ($classname$_Stub*) stubWithChannel:(id<PBRpcChannel>) channel {\n"
       "  return [[[$classname$_Stub alloc] initWithChannel:channel] autorelease];\n"
       "}\n"
       "\n",
@@ -269,13 +276,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["method"] = UnderscoresToCamelCase(method);
       vars["input"] = ClassName(method->input_type());
       vars["output"] = ClassName(method->output_type());
+      vars["classname"] = ClassName(descriptor_);
       printer->Print(vars,
         "\n"
-        "- (void) $method$WithController:(id<RpcController>) controller\n"
+        "- (void) $method$WithController:(id<PBRpcController>) controller\n"
         "                        request:($input$*) request\n"
         "                         target:(id) target\n"
         "                       selector:(SEL) selector {\n"
-        "  [channel callMethod:[self.descriptor.getMethods objectAtIndex:$index$]\n"
+        "  [channel callMethod:[[$classname$ descriptor].methods objectAtIndex:$index$]\n"
         "           controller:controller\n"
         "              request:request\n"
         "             response:[$output$ defaultInstance]\n"

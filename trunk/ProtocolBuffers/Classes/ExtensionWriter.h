@@ -29,4 +29,6 @@
 
 + (PBExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions;
 
+- (void) writeUntil:(int32_t) end output:(PBCodedOutputStream*) output;
+
 @end

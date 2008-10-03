@@ -14,9 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@class PBDescriptor;
-@class PBFieldDescriptor;
-@class PBUnknownFieldSet;
+#import "ForwardDeclarations.h"
 
 @protocol PBMessage_Builder
 - (id<PBMessage_Builder>) clear;

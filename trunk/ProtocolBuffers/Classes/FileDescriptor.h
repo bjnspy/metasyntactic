@@ -15,10 +15,17 @@
 // limitations under the License.
 
 @interface PBFileDescriptor : NSObject {
-    NSArray* messageTypes;
+@private
+    NSMutableArray* mutableMessageTypes;
+    NSMutableArray* mutableExtensions;
+    NSMutableArray* mutableEnumTypes;
+    NSMutableArray* mutableServices;
 }
 
-@property (retain, readonly) NSArray* messageTypes;
+- (NSArray*) messageTypes;
+- (NSArray*) extensions;
+- (NSArray*) enumTypes;
+- (NSArray*) services;
 
 + (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
 + (PBFileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;

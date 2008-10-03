@@ -40,13 +40,14 @@ namespace objectivec {
 // since extensions are just simple identifiers with interesting types.
 class ExtensionGenerator {
  public:
-  explicit ExtensionGenerator(const FieldDescriptor* descriptor);
+  explicit ExtensionGenerator(string classname, const FieldDescriptor* descriptor);
   ~ExtensionGenerator();
 
   void GenerateFieldsSource(io::Printer* printer);
   void GenerateInitializationSource(io::Printer* printer);
 
  private:
+  string classname_;
   const FieldDescriptor* descriptor_;
   GOOGLE_DISALLOW_EVIL_CONSTRUCTORS(ExtensionGenerator);
 };

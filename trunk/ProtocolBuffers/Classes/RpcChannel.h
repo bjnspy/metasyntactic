@@ -18,7 +18,7 @@
 - (void) callMethod:(PBMethodDescriptor*) method
          controller:(id<PBRpcController>) controller
             request:(id<PBMessage>) request
-  responsePrototype:(id<PBMessage>) responsePrototype
+           response:(id<PBMessage>) response
              target:(id) target
            selector:(SEL) selector;
 @end

@@ -34,6 +34,7 @@ enum PBWireFormat;
 @class PBDescriptor;
 @class PBEnumDescriptor;
 @class PBEnumValueDescriptor;
+@class PBExtendableBuilder;
 @class PBExtensionInfo;
 @class PBDescriptorIntPair;
 @class PBField;

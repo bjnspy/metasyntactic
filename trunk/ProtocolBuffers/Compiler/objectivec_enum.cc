@@ -122,7 +122,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     for (int i = 0; i < canonical_values_.size(); i++) {
       printer->Print(
-        "static $classname$* $name$ = nil;\n",
+        "static $classname$* $classname$_$name$ = nil;\n",
         "classname", ClassName(descriptor_),
         "name", SafeName(canonical_values_[i]->name()));
     }
@@ -151,7 +151,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["index"] = SimpleItoa(canonical_values_[i]->index());
       vars["number"] = SimpleItoa(canonical_values_[i]->number());
       printer->Print(vars,
-        "$name$ = [[$classname$ newWithIndex:$index$ value:$number$] retain];\n");
+        "$classname$_$name$ = [[$classname$ newWithIndex:$index$ value:$number$] retain];\n");
     }
 
     printer->Outdent();
@@ -165,7 +165,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["classname"] = ClassName(descriptor_);
       vars["name"] = SafeName(canonical_values_[i]->name());
       printer->Print(vars,
-        "+ ($classname$*) $name$ { return $name$; }\n");
+        "+ ($classname$*) $name$ { return $classname$_$name$; }\n");
     }
 
     // -----------------------------------------------------------------
@@ -176,7 +176,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["name"] = aliases_[i].value->name();
       vars["canonical_name"] = aliases_[i].canonical_value->name();
       printer->Print(vars,
-        "+ ($classname$*) $name$ { return $canonical_name$; }\n");
+        "+ ($classname$*) $name$ { return [$classname$ $canonical_name$]; }\n");
     }
 
     // -----------------------------------------------------------------
@@ -190,10 +190,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Indent();
 
     for (int i = 0; i < canonical_values_.size(); i++) {
-      printer->Print(
-        "case $number$: return $name$;\n",
-        "name", SafeName(canonical_values_[i]->name()),
-        "number", SimpleItoa(canonical_values_[i]->number()));
+      map<string, string> vars;
+      vars["name"] = SafeName(canonical_values_[i]->name());
+      vars["number"] = SimpleItoa(canonical_values_[i]->number());
+      vars["classname"] = ClassName(descriptor_);
+
+      printer->Print(vars,
+        "case $number$: return [$classname$ $name$];\n");
     }
 
     printer->Outdent();
@@ -240,7 +243,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "\n"
       "+ ($classname$*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {\n"
       "  if (desc.type != [$classname$ descriptor]) {\n"
-      "    [NSException exceptionWithName:@\"\" reason:@\"\" userInfo:nil];\n"
+      "    @throw [NSException exceptionWithName:@\"\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
       "  $classname$* VALUES[] = {\n",
       "classname", ClassName(descriptor_));
@@ -248,8 +251,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Indent();
     printer->Indent();
     for (int i = 0; i < descriptor_->value_count(); i++) {
-      printer->Print("$name$,\n",
-        "name", SafeName(descriptor_->value(i)->name()));
+      printer->Print("[$classname$ $name$],\n",
+        "name", SafeName(descriptor_->value(i)->name()),
+        "classname", ClassName(descriptor_));
     }
     printer->Outdent();
     printer->Outdent();

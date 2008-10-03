@@ -85,6 +85,14 @@
 		749E64C60E940A4400F78C70 /* GeneratedMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E64C50E940A4400F78C70 /* GeneratedMessage_Builder.m */; };
 		74AD665A0E93D0C700A01FD5 /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66590E93D0C700A01FD5 /* Descriptor.pb.m */; };
 		74E17ABC0E94A14900F8D0D3 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74D20E8CCF0E00F16FD4 /* WireFormat.m */; };
+		74E17B980E95638400F8D0D3 /* Unittest.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17B8F0E95638400F8D0D3 /* Unittest.pb.m */; };
+		74E17B990E95638400F8D0D3 /* UnittestEmbedOptimizeFor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17B910E95638400F8D0D3 /* UnittestEmbedOptimizeFor.pb.m */; };
+		74E17B9A0E95638400F8D0D3 /* UnittestImport.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17B930E95638400F8D0D3 /* UnittestImport.pb.m */; };
+		74E17B9B0E95638400F8D0D3 /* UnittestMset.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17B950E95638400F8D0D3 /* UnittestMset.pb.m */; };
+		74E17B9C0E95638400F8D0D3 /* UnittestOptimizeFor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17B970E95638400F8D0D3 /* UnittestOptimizeFor.pb.m */; };
+		74E17BF20E95655500F8D0D3 /* ExtendableBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */; };
+		74E17DB30E95EFDA00F8D0D3 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DB20E95EFDA00F8D0D3 /* MethodDescriptor.m */; };
+		74E17DD60E95F0D900F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DD50E95F0D900F8D0D3 /* ServiceDescriptor.m */; };
 		74E79B170E8D73C600EFD26E /* ObjectiveCType.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74E79B150E8D73C600EFD26E /* ObjectiveCType.h */; };
 		74E79BBB0E8D75E800EFD26E /* ObjectiveCType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */; };
 		74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */; };
@@ -231,7 +239,6 @@
 		745E98FC0E942186007FD139 /* UtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilitiesTests.m; sourceTree = "<group>"; };
 		745E993B0E9425AE007FD139 /* CodedInputStreamTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodedInputStreamTests.h; sourceTree = "<group>"; };
 		745E993C0E9425AE007FD139 /* CodedInputStreamTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedInputStreamTests.m; sourceTree = "<group>"; };
-		745E99430E943511007FD139 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
 		749E63940E93F81600F78C70 /* ExtendableMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableMessage.h; sourceTree = "<group>"; };
 		749E63950E93F81600F78C70 /* ExtendableMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableMessage.m; sourceTree = "<group>"; };
 		749E63A10E93FD6000F78C70 /* ExtensionWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionWriter.h; sourceTree = "<group>"; };
@@ -244,6 +251,23 @@
 		74AD66590E93D0C700A01FD5 /* Descriptor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptor.pb.m; sourceTree = "<group>"; };
 		74E17A8A0E949F0A00F8D0D3 /* Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bootstrap.h; path = Classes/Bootstrap.h; sourceTree = "<group>"; };
 		74E17A8B0E949F0A00F8D0D3 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForwardDeclarations.h; path = Classes/ForwardDeclarations.h; sourceTree = "<group>"; };
+		74E17B390E9561D700F8D0D3 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
+		74E17B8E0E95638400F8D0D3 /* Unittest.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unittest.pb.h; sourceTree = "<group>"; };
+		74E17B8F0E95638400F8D0D3 /* Unittest.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unittest.pb.m; sourceTree = "<group>"; };
+		74E17B900E95638400F8D0D3 /* UnittestEmbedOptimizeFor.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnittestEmbedOptimizeFor.pb.h; sourceTree = "<group>"; };
+		74E17B910E95638400F8D0D3 /* UnittestEmbedOptimizeFor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnittestEmbedOptimizeFor.pb.m; sourceTree = "<group>"; };
+		74E17B920E95638400F8D0D3 /* UnittestImport.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnittestImport.pb.h; sourceTree = "<group>"; };
+		74E17B930E95638400F8D0D3 /* UnittestImport.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnittestImport.pb.m; sourceTree = "<group>"; };
+		74E17B940E95638400F8D0D3 /* UnittestMset.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnittestMset.pb.h; sourceTree = "<group>"; };
+		74E17B950E95638400F8D0D3 /* UnittestMset.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnittestMset.pb.m; sourceTree = "<group>"; };
+		74E17B960E95638400F8D0D3 /* UnittestOptimizeFor.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnittestOptimizeFor.pb.h; sourceTree = "<group>"; };
+		74E17B970E95638400F8D0D3 /* UnittestOptimizeFor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnittestOptimizeFor.pb.m; sourceTree = "<group>"; };
+		74E17BF00E95655500F8D0D3 /* ExtendableBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableBuilder.h; sourceTree = "<group>"; };
+		74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableBuilder.m; sourceTree = "<group>"; };
+		74E17DB10E95EFDA00F8D0D3 /* MethodDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodDescriptor.h; sourceTree = "<group>"; };
+		74E17DB20E95EFDA00F8D0D3 /* MethodDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodDescriptor.m; sourceTree = "<group>"; };
+		74E17DD40E95F0D900F8D0D3 /* ServiceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDescriptor.h; sourceTree = "<group>"; };
+		74E17DD50E95F0D900F8D0D3 /* ServiceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceDescriptor.m; sourceTree = "<group>"; };
 		74E79B150E8D73C600EFD26E /* ObjectiveCType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ObjectiveCType.h; sourceTree = "<group>"; };
 		74E79BBA0E8D75E800EFD26E /* ObjectiveCType.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ObjectiveCType.m; sourceTree = "<group>"; };
 		74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FieldDescriptorType.h; sourceTree = "<group>"; };
@@ -384,9 +408,9 @@
 		32C88DFF0371C24200C91783 /* Other Sources */ = {
 			isa = PBXGroup;
 			children = (
+				74E17B390E9561D700F8D0D3 /* ProtocolBuffers_Prefix.pch */,
 				74E17A8A0E949F0A00F8D0D3 /* Bootstrap.h */,
 				74E17A8B0E949F0A00F8D0D3 /* ForwardDeclarations.h */,
-				745E99430E943511007FD139 /* ProtocolBuffers_Prefix.pch */,
 				745180080E916ED800D4E0C5 /* ProtocolBuffers.h */,
 			);
 			name = "Other Sources";
@@ -421,6 +445,10 @@
 				74E7A3410E8E155C00EFD26E /* EnumDescriptor.m */,
 				7451724C0E9086E300D4E0C5 /* DescriptorPool.h */,
 				7451724D0E9086E300D4E0C5 /* DescriptorPool.m */,
+				74E17DB10E95EFDA00F8D0D3 /* MethodDescriptor.h */,
+				74E17DB20E95EFDA00F8D0D3 /* MethodDescriptor.m */,
+				74E17DD40E95F0D900F8D0D3 /* ServiceDescriptor.h */,
+				74E17DD50E95F0D900F8D0D3 /* ServiceDescriptor.m */,
 			);
 			name = Descriptors;
 			sourceTree = "<group>";
@@ -453,6 +481,8 @@
 				749E63A20E93FD6000F78C70 /* ExtensionWriter.m */,
 				749E63F20E94071100F78C70 /* GeneratedExtension.h */,
 				749E63F30E94071100F78C70 /* GeneratedExtension.m */,
+				74E17BF00E95655500F8D0D3 /* ExtendableBuilder.h */,
+				74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */,
 			);
 			name = GeneratedMessage;
 			sourceTree = "<group>";
@@ -473,6 +503,16 @@
 		745E98E30E942034007FD139 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				74E17B8E0E95638400F8D0D3 /* Unittest.pb.h */,
+				74E17B8F0E95638400F8D0D3 /* Unittest.pb.m */,
+				74E17B900E95638400F8D0D3 /* UnittestEmbedOptimizeFor.pb.h */,
+				74E17B910E95638400F8D0D3 /* UnittestEmbedOptimizeFor.pb.m */,
+				74E17B920E95638400F8D0D3 /* UnittestImport.pb.h */,
+				74E17B930E95638400F8D0D3 /* UnittestImport.pb.m */,
+				74E17B940E95638400F8D0D3 /* UnittestMset.pb.h */,
+				74E17B950E95638400F8D0D3 /* UnittestMset.pb.m */,
+				74E17B960E95638400F8D0D3 /* UnittestOptimizeFor.pb.h */,
+				74E17B970E95638400F8D0D3 /* UnittestOptimizeFor.pb.m */,
 				745E98FB0E942186007FD139 /* UtilitiesTests.h */,
 				745E98FC0E942186007FD139 /* UtilitiesTests.m */,
 				745E993B0E9425AE007FD139 /* CodedInputStreamTests.h */,
@@ -628,6 +668,14 @@
 				749E63A30E93FD6000F78C70 /* ExtensionWriter.m in Sources */,
 				749E63F40E94071100F78C70 /* GeneratedExtension.m in Sources */,
 				749E64C60E940A4400F78C70 /* GeneratedMessage_Builder.m in Sources */,
+				74E17B980E95638400F8D0D3 /* Unittest.pb.m in Sources */,
+				74E17B990E95638400F8D0D3 /* UnittestEmbedOptimizeFor.pb.m in Sources */,
+				74E17B9A0E95638400F8D0D3 /* UnittestImport.pb.m in Sources */,
+				74E17B9B0E95638400F8D0D3 /* UnittestMset.pb.m in Sources */,
+				74E17B9C0E95638400F8D0D3 /* UnittestOptimizeFor.pb.m in Sources */,
+				74E17BF20E95655500F8D0D3 /* ExtendableBuilder.m in Sources */,
+				74E17DB30E95EFDA00F8D0D3 /* MethodDescriptor.m in Sources */,
+				74E17DD60E95F0D900F8D0D3 /* ServiceDescriptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

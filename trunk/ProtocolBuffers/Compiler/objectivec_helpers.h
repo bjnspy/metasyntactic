@@ -55,22 +55,11 @@ string FilePath(const FileDescriptor* file);
 // the rest of the the classes need
 string FileClassName(const FileDescriptor* file);
 
-// Converts the given fully-qualified name in the proto namespace to its
-// fully-qualified name in the ObjectiveC namespace, given that it is in the given
-// file.
-string ToObjectiveCName(const string& full_name, const FileDescriptor* file);
-
 // These return the fully-qualified class name corresponding to the given
 // descriptor.
-inline string ClassName(const Descriptor* descriptor) {
-  return ToObjectiveCName(descriptor->name(), descriptor->file());
-}
-inline string ClassName(const EnumDescriptor* descriptor) {
-  return ToObjectiveCName(descriptor->name(), descriptor->file());
-}
-inline string ClassName(const ServiceDescriptor* descriptor) {
-  return ToObjectiveCName(descriptor->name(), descriptor->file());
-}
+string ClassName(const Descriptor* descriptor);
+string ClassName(const EnumDescriptor* descriptor);
+string ClassName(const ServiceDescriptor* descriptor);
 
 string SafeName(const string& name);
 
@@ -99,6 +88,9 @@ const char* BoxedPrimitiveTypeName(ObjectiveCType type);
 
 bool IsPrimitiveType(ObjectiveCType type);
 bool IsReferenceType(ObjectiveCType type);
+
+bool ReturnsPrimitiveType(const FieldDescriptor* field);
+bool ReturnsReferenceType(const FieldDescriptor* field);
 
 }  // namespace objectivec
 }  // namespace compiler
