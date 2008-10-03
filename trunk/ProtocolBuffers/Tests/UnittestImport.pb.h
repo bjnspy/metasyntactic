@@ -64,7 +64,6 @@
   ImportMessage* result;
 }
 @property (retain) ImportMessage* result;
-// Construct using ImportMessage.newBuilder()
 - (ImportMessage_Builder*) clear;
 - (ImportMessage_Builder*) clone;
 - (PBDescriptor*) descriptorForType;

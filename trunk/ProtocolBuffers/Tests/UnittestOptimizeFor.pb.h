@@ -114,7 +114,6 @@
   TestOptimizedForSize* result;
 }
 @property (retain) TestOptimizedForSize* result;
-// Construct using TestOptimizedForSize.newBuilder()
 - (TestOptimizedForSize_Builder*) clear;
 - (TestOptimizedForSize_Builder*) clone;
 - (PBDescriptor*) descriptorForType;

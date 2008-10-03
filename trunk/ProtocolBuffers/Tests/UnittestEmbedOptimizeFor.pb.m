@@ -34,14 +34,11 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
 }
 + (PBFileDescriptor*) buildDescriptor {
   NSString* descriptorData = [NSString stringWithCString:
-    "\n1google/protobuf/unittest_embed_optimiz"
-    "e_for.proto\022\021protobuf_unittest\032+google/p"
-    "rotobuf/unittest_optimize_for.proto\"\241\001\n\031"
-    "TestEmbedOptimizedForSize\022A\n\020optional_me"
-    "ssage\030\001 \001(\0132\'.protobuf_unittest.TestOpti"
-    "mizedForSize\022A\n\020repeated_message\030\002 \003(\0132\'"
-    ".protobuf_unittest.TestOptimizedForSizeB"
-    "\002H\001"
+    "\n1google/protobuf/unittest_embed_optimize_for.proto\022\021protobuf_un"
+    "ittest\032+google/protobuf/unittest_optimize_for.proto\"\241\001\n\031T"
+    "estEmbedOptimizedForSize\022A\n\020optional_message\030\001 \001(\0132\'"
+    ".protobuf_unittest.TestOptimizedForSize\022A\n\020repeated_message\030\002"
+    " \003(\0132\'.protobuf_unittest.TestOptimizedForSizeB\002H\001"
     ];
   NSArray* dependencies = [NSArray arrayWithObjects:
           [UnittestOptimizeForProtoRoot descriptor],

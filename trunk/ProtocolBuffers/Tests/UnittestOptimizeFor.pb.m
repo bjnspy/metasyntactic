@@ -34,13 +34,12 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForS
 }
 + (PBFileDescriptor*) buildDescriptor {
   NSString* descriptorData = [NSString stringWithCString:
-    "\n+google/protobuf/unittest_optimize_for."
-    "proto\022\021protobuf_unittest\032\036google/protobu"
-    "f/unittest.proto\"\236\001\n\024TestOptimizedForSiz"
-    "e\022\t\n\001i\030\001 \001(\005\022.\n\003msg\030\023 \001(\0132!.protobuf_uni"
-    "ttest.ForeignMessage*\t\010\350\007\020\200\200\200\200\0022@\n\016test_"
-    "extension\022\'.protobuf_unittest.TestOptimi"
-    "zedForSize\030\322\t \001(\005B\002H\002"
+    "\n+google/protobuf/unittest_optimize_for.proto\022\021protobuf_unittest"
+    "\032\036google/protobuf/unittest.proto\"\236\001\n\024TestOptimizedForS"
+    "ize\022\t\n\001i\030\001 \001(\005\022.\n\003msg\030\023 \001(\0132!.pr"
+    "otobuf_unittest.ForeignMessage*\t\010\350\007\020\200\200\200\200\0022@"
+    "\n\016test_extension\022\'.protobuf_unittest.TestOptimizedForSize\030\322"
+    "\t \001(\005B\002H\002"
     ];
   NSArray* dependencies = [NSArray arrayWithObjects:
           [UnittestProtoRoot descriptor],

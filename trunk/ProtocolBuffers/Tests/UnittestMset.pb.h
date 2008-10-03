@@ -48,7 +48,6 @@
   TestMessageSet* result;
 }
 @property (retain) TestMessageSet* result;
-// Construct using TestMessageSet.newBuilder()
 - (TestMessageSet_Builder*) clear;
 - (TestMessageSet_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -93,7 +92,6 @@
   TestMessageSetContainer* result;
 }
 @property (retain) TestMessageSetContainer* result;
-// Construct using TestMessageSetContainer.newBuilder()
 - (TestMessageSetContainer_Builder*) clear;
 - (TestMessageSetContainer_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -145,7 +143,6 @@
   TestMessageSetExtension1* result;
 }
 @property (retain) TestMessageSetExtension1* result;
-// Construct using TestMessageSetExtension1.newBuilder()
 - (TestMessageSetExtension1_Builder*) clear;
 - (TestMessageSetExtension1_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -195,7 +192,6 @@
   TestMessageSetExtension2* result;
 }
 @property (retain) TestMessageSetExtension2* result;
-// Construct using TestMessageSetExtension2.newBuilder()
 - (TestMessageSetExtension2_Builder*) clear;
 - (TestMessageSetExtension2_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -274,7 +270,6 @@
   RawMessageSet_Item* result;
 }
 @property (retain) RawMessageSet_Item* result;
-// Construct using RawMessageSet_Item.newBuilder()
 - (RawMessageSet_Item_Builder*) clear;
 - (RawMessageSet_Item_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -303,7 +298,6 @@
   RawMessageSet* result;
 }
 @property (retain) RawMessageSet* result;
-// Construct using RawMessageSet.newBuilder()
 - (RawMessageSet_Builder*) clear;
 - (RawMessageSet_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
