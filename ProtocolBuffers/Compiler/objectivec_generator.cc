@@ -55,6 +55,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   ObjectiveCGenerator::ObjectiveCGenerator() {}
   ObjectiveCGenerator::~ObjectiveCGenerator() {}
 
+
   bool ObjectiveCGenerator::Generate(const FileDescriptor* file,
     const string& parameter,
     OutputDirectory* output_directory,

@@ -27,14 +27,14 @@
 
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
 
-  FieldGenerator::~FieldGenerator() {}
+  FieldGenerator::~FieldGenerator() {
+  }
+
 
   FieldGeneratorMap::FieldGeneratorMap(const Descriptor* descriptor)
     : descriptor_(descriptor),
-    field_generators_(
-    new scoped_ptr<FieldGenerator>[descriptor->field_count()]),
-    extension_generators_(
-    new scoped_ptr<FieldGenerator>[descriptor->extension_count()]) {
+    field_generators_(new scoped_ptr<FieldGenerator>[descriptor->field_count()]),
+    extension_generators_(new scoped_ptr<FieldGenerator>[descriptor->extension_count()]) {
 
       // Construct all the FieldGenerators.
       for (int i = 0; i < descriptor->field_count(); i++) {
@@ -67,7 +67,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     }
   }
 
-  FieldGeneratorMap::~FieldGeneratorMap() {}
+
+  FieldGeneratorMap::~FieldGeneratorMap() {
+  }
+
 
   const FieldGenerator& FieldGeneratorMap::get(
     const FieldDescriptor* field) const {
@@ -75,10 +78,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       return *field_generators_[field->index()];
   }
 
+
   const FieldGenerator& FieldGeneratorMap::get_extension(int index) const {
     return *extension_generators_[index];
   }
-
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf

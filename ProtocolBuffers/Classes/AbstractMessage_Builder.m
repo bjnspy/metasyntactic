@@ -139,16 +139,11 @@
 }
 
 
-- (id<PBMessage>) buildParsed {
+- (id<PBMessage>) build {
     if (![self isInitialized]) {
         @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
     }
     return [self buildPartial];
-}
-
-
-- (id<PBMessage>) build {
-    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 

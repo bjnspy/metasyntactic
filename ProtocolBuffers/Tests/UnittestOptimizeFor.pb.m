@@ -138,22 +138,22 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 }
 
 + (TestOptimizedForSize*) parseFromData:(NSData*) data {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromData:data] buildParsed];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromData:data] build];
 }
 + (TestOptimizedForSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestOptimizedForSize*) parseFromInputStream:(NSInputStream*) input {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromInputStream:input] build];
 }
 + (TestOptimizedForSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestOptimizedForSize_Builder*) newBuilder { return [[[TestOptimizedForSize_Builder alloc] init] autorelease]; }
@@ -198,13 +198,6 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 }
 
 - (TestOptimizedForSize*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestOptimizedForSize*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }

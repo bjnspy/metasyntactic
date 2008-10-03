@@ -83,7 +83,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "     $containing_type$_$name$ = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:$index$]\n"
         "                                                       type:[$type$ class]] retain];\n");
   }
-
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf

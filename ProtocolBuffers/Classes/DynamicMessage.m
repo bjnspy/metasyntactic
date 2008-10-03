@@ -78,40 +78,40 @@
 
 + (id<PBMessage>) parseFrom:(PBDescriptor*) type
          codedInputStream:(PBCodedInputStream*) input {
-    return [[[PBDynamicMessage builderWithType:type] mergeFromCodedInputStream:input] buildParsed];
+    return [[[PBDynamicMessage builderWithType:type] mergeFromCodedInputStream:input] build];
 }
 
 
 + (id<PBMessage>) parseFrom:(PBDescriptor*) type
          codedInputStream:(PBCodedInputStream*) input
         extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-    return [[[PBDynamicMessage builderWithType:type] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+    return [[[PBDynamicMessage builderWithType:type] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 
 + (id<PBMessage>) parseFrom:(PBDescriptor*) type
                      data:(NSData*) data {
-    return [[[PBDynamicMessage builderWithType:type] mergeFromData:data] buildParsed];
+    return [[[PBDynamicMessage builderWithType:type] mergeFromData:data] build];
 }
 
 
 + (id<PBMessage>) parseFrom:(PBDescriptor*) type
                      data:(NSData*) data
         extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-    return [[[PBDynamicMessage builderWithType:type] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+    return [[[PBDynamicMessage builderWithType:type] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 
 
 + (id<PBMessage>) parseFrom:(PBDescriptor*) type
               inputStream:(NSInputStream*) input {
-    return [[[PBDynamicMessage builderWithType:type] mergeFromInputStream:input] buildParsed];
+    return [[[PBDynamicMessage builderWithType:type] mergeFromInputStream:input] build];
 }
 
 
 + (id<PBMessage>) parseFrom:(PBDescriptor*) type
               inputStream:(NSInputStream*) input
         extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-    return [[[PBDynamicMessage builderWithType:type] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+    return [[[PBDynamicMessage builderWithType:type] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 

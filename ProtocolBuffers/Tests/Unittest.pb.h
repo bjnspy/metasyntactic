@@ -512,7 +512,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes_NestedMessage*) defaultInstanceForType;
 - (TestAllTypes_NestedMessage*) build;
-- (TestAllTypes_NestedMessage*) buildParsed;
 - (TestAllTypes_NestedMessage*) buildPartial;
 - (TestAllTypes_NestedMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllTypes_NestedMessage_Builder*) mergeFromTestAllTypes_NestedMessage:(TestAllTypes_NestedMessage*) other;
@@ -561,7 +560,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes_OptionalGroup*) defaultInstanceForType;
 - (TestAllTypes_OptionalGroup*) build;
-- (TestAllTypes_OptionalGroup*) buildParsed;
 - (TestAllTypes_OptionalGroup*) buildPartial;
 - (TestAllTypes_OptionalGroup_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllTypes_OptionalGroup_Builder*) mergeFromTestAllTypes_OptionalGroup:(TestAllTypes_OptionalGroup*) other;
@@ -610,7 +608,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes_RepeatedGroup*) defaultInstanceForType;
 - (TestAllTypes_RepeatedGroup*) build;
-- (TestAllTypes_RepeatedGroup*) buildParsed;
 - (TestAllTypes_RepeatedGroup*) buildPartial;
 - (TestAllTypes_RepeatedGroup_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllTypes_RepeatedGroup_Builder*) mergeFromTestAllTypes_RepeatedGroup:(TestAllTypes_RepeatedGroup*) other;
@@ -633,7 +630,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes*) defaultInstanceForType;
 - (TestAllTypes*) build;
-- (TestAllTypes*) buildParsed;
 - (TestAllTypes*) buildPartial;
 - (TestAllTypes_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllTypes_Builder*) mergeFromTestAllTypes:(TestAllTypes*) other;
@@ -1073,7 +1069,6 @@
 - (PBDescriptor*) descriptorForType;
 - (ForeignMessage*) defaultInstanceForType;
 - (ForeignMessage*) build;
-- (ForeignMessage*) buildParsed;
 - (ForeignMessage*) buildPartial;
 - (ForeignMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (ForeignMessage_Builder*) mergeFromForeignMessage:(ForeignMessage*) other;
@@ -1118,7 +1113,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestAllExtensions*) defaultInstanceForType;
 - (TestAllExtensions*) build;
-- (TestAllExtensions*) buildParsed;
 - (TestAllExtensions*) buildPartial;
 - (TestAllExtensions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllExtensions_Builder*) mergeFromTestAllExtensions:(TestAllExtensions*) other;
@@ -1162,7 +1156,6 @@
 - (PBDescriptor*) descriptorForType;
 - (OptionalGroup_extension*) defaultInstanceForType;
 - (OptionalGroup_extension*) build;
-- (OptionalGroup_extension*) buildParsed;
 - (OptionalGroup_extension*) buildPartial;
 - (OptionalGroup_extension_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (OptionalGroup_extension_Builder*) mergeFromOptionalGroup_extension:(OptionalGroup_extension*) other;
@@ -1211,7 +1204,6 @@
 - (PBDescriptor*) descriptorForType;
 - (RepeatedGroup_extension*) defaultInstanceForType;
 - (RepeatedGroup_extension*) build;
-- (RepeatedGroup_extension*) buildParsed;
 - (RepeatedGroup_extension*) buildPartial;
 - (RepeatedGroup_extension_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (RepeatedGroup_extension_Builder*) mergeFromRepeatedGroup_extension:(RepeatedGroup_extension*) other;
@@ -1388,7 +1380,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestRequired*) defaultInstanceForType;
 - (TestRequired*) build;
-- (TestRequired*) buildParsed;
 - (TestRequired*) buildPartial;
 - (TestRequired_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestRequired_Builder*) mergeFromTestRequired:(TestRequired*) other;
@@ -1604,7 +1595,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestRequiredForeign*) defaultInstanceForType;
 - (TestRequiredForeign*) build;
-- (TestRequiredForeign*) buildParsed;
 - (TestRequiredForeign*) buildPartial;
 - (TestRequiredForeign_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestRequiredForeign_Builder*) mergeFromTestRequiredForeign:(TestRequiredForeign*) other;
@@ -1667,7 +1657,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestForeignNested*) defaultInstanceForType;
 - (TestForeignNested*) build;
-- (TestForeignNested*) buildParsed;
 - (TestForeignNested*) buildPartial;
 - (TestForeignNested_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestForeignNested_Builder*) mergeFromTestForeignNested:(TestForeignNested*) other;
@@ -1714,7 +1703,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestEmptyMessage*) defaultInstanceForType;
 - (TestEmptyMessage*) build;
-- (TestEmptyMessage*) buildParsed;
 - (TestEmptyMessage*) buildPartial;
 - (TestEmptyMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestEmptyMessage_Builder*) mergeFromTestEmptyMessage:(TestEmptyMessage*) other;
@@ -1754,7 +1742,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestEmptyMessageWithExtensions*) defaultInstanceForType;
 - (TestEmptyMessageWithExtensions*) build;
-- (TestEmptyMessageWithExtensions*) buildParsed;
 - (TestEmptyMessageWithExtensions*) buildPartial;
 - (TestEmptyMessageWithExtensions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestEmptyMessageWithExtensions_Builder*) mergeFromTestEmptyMessageWithExtensions:(TestEmptyMessageWithExtensions*) other;
@@ -1802,7 +1789,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestReallyLargeTagNumber*) defaultInstanceForType;
 - (TestReallyLargeTagNumber*) build;
-- (TestReallyLargeTagNumber*) buildParsed;
 - (TestReallyLargeTagNumber*) buildPartial;
 - (TestReallyLargeTagNumber_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestReallyLargeTagNumber_Builder*) mergeFromTestReallyLargeTagNumber:(TestReallyLargeTagNumber*) other;
@@ -1860,7 +1846,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestRecursiveMessage*) defaultInstanceForType;
 - (TestRecursiveMessage*) build;
-- (TestRecursiveMessage*) buildParsed;
 - (TestRecursiveMessage*) buildPartial;
 - (TestRecursiveMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestRecursiveMessage_Builder*) mergeFromTestRecursiveMessage:(TestRecursiveMessage*) other;
@@ -1916,7 +1901,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestMutualRecursionA*) defaultInstanceForType;
 - (TestMutualRecursionA*) build;
-- (TestMutualRecursionA*) buildParsed;
 - (TestMutualRecursionA*) buildPartial;
 - (TestMutualRecursionA_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestMutualRecursionA_Builder*) mergeFromTestMutualRecursionA:(TestMutualRecursionA*) other;
@@ -1971,7 +1955,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestMutualRecursionB*) defaultInstanceForType;
 - (TestMutualRecursionB*) build;
-- (TestMutualRecursionB*) buildParsed;
 - (TestMutualRecursionB*) buildPartial;
 - (TestMutualRecursionB_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestMutualRecursionB_Builder*) mergeFromTestMutualRecursionB:(TestMutualRecursionB*) other;
@@ -2061,7 +2044,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestDupFieldNumber_Foo*) defaultInstanceForType;
 - (TestDupFieldNumber_Foo*) build;
-- (TestDupFieldNumber_Foo*) buildParsed;
 - (TestDupFieldNumber_Foo*) buildPartial;
 - (TestDupFieldNumber_Foo_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestDupFieldNumber_Foo_Builder*) mergeFromTestDupFieldNumber_Foo:(TestDupFieldNumber_Foo*) other;
@@ -2110,7 +2092,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestDupFieldNumber_Bar*) defaultInstanceForType;
 - (TestDupFieldNumber_Bar*) build;
-- (TestDupFieldNumber_Bar*) buildParsed;
 - (TestDupFieldNumber_Bar*) buildPartial;
 - (TestDupFieldNumber_Bar_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestDupFieldNumber_Bar_Builder*) mergeFromTestDupFieldNumber_Bar:(TestDupFieldNumber_Bar*) other;
@@ -2133,7 +2114,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestDupFieldNumber*) defaultInstanceForType;
 - (TestDupFieldNumber*) build;
-- (TestDupFieldNumber*) buildParsed;
 - (TestDupFieldNumber*) buildPartial;
 - (TestDupFieldNumber_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestDupFieldNumber_Builder*) mergeFromTestDupFieldNumber:(TestDupFieldNumber*) other;
@@ -2224,7 +2204,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstanceForType;
 - (TestNestedMessageHasBits_NestedMessage*) build;
-- (TestNestedMessageHasBits_NestedMessage*) buildParsed;
 - (TestNestedMessageHasBits_NestedMessage*) buildPartial;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromTestNestedMessageHasBits_NestedMessage:(TestNestedMessageHasBits_NestedMessage*) other;
@@ -2256,7 +2235,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestNestedMessageHasBits*) defaultInstanceForType;
 - (TestNestedMessageHasBits*) build;
-- (TestNestedMessageHasBits*) buildParsed;
 - (TestNestedMessageHasBits*) buildPartial;
 - (TestNestedMessageHasBits_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestNestedMessageHasBits_Builder*) mergeFromTestNestedMessageHasBits:(TestNestedMessageHasBits*) other;
@@ -2345,7 +2323,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestCamelCaseFieldNames*) defaultInstanceForType;
 - (TestCamelCaseFieldNames*) build;
-- (TestCamelCaseFieldNames*) buildParsed;
 - (TestCamelCaseFieldNames*) buildPartial;
 - (TestCamelCaseFieldNames_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestCamelCaseFieldNames_Builder*) mergeFromTestCamelCaseFieldNames:(TestCamelCaseFieldNames*) other;
@@ -2471,7 +2448,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestFieldOrderings*) defaultInstanceForType;
 - (TestFieldOrderings*) build;
-- (TestFieldOrderings*) buildParsed;
 - (TestFieldOrderings*) buildPartial;
 - (TestFieldOrderings_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestFieldOrderings_Builder*) mergeFromTestFieldOrderings:(TestFieldOrderings*) other;
@@ -2550,7 +2526,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestExtremeDefaultValues*) defaultInstanceForType;
 - (TestExtremeDefaultValues*) build;
-- (TestExtremeDefaultValues*) buildParsed;
 - (TestExtremeDefaultValues*) buildPartial;
 - (TestExtremeDefaultValues_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestExtremeDefaultValues_Builder*) mergeFromTestExtremeDefaultValues:(TestExtremeDefaultValues*) other;
@@ -2620,7 +2595,6 @@
 - (PBDescriptor*) descriptorForType;
 - (FooRequest*) defaultInstanceForType;
 - (FooRequest*) build;
-- (FooRequest*) buildParsed;
 - (FooRequest*) buildPartial;
 - (FooRequest_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (FooRequest_Builder*) mergeFromFooRequest:(FooRequest*) other;
@@ -2660,7 +2634,6 @@
 - (PBDescriptor*) descriptorForType;
 - (FooResponse*) defaultInstanceForType;
 - (FooResponse*) build;
-- (FooResponse*) buildParsed;
 - (FooResponse*) buildPartial;
 - (FooResponse_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (FooResponse_Builder*) mergeFromFooResponse:(FooResponse*) other;
@@ -2700,7 +2673,6 @@
 - (PBDescriptor*) descriptorForType;
 - (BarRequest*) defaultInstanceForType;
 - (BarRequest*) build;
-- (BarRequest*) buildParsed;
 - (BarRequest*) buildPartial;
 - (BarRequest_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (BarRequest_Builder*) mergeFromBarRequest:(BarRequest*) other;
@@ -2740,7 +2712,6 @@
 - (PBDescriptor*) descriptorForType;
 - (BarResponse*) defaultInstanceForType;
 - (BarResponse*) build;
-- (BarResponse*) buildParsed;
 - (BarResponse*) buildPartial;
 - (BarResponse_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (BarResponse_Builder*) mergeFromBarResponse:(BarResponse*) other;
