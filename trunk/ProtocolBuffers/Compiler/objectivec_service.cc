@@ -54,6 +54,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["input"] = ClassName(method->input_type());
       vars["output"] = ClassName(method->output_type());
       printer->Print(vars,
+        "// @abstract\n"
         "- (void) $name$WithController:(id<PBRpcController>) controller\n"
         "                      request:($input$*) request\n"
         "                       target:(id) target\n"
@@ -95,7 +96,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "                      request:($input$*) request\n"
         "                       target:(id) target\n"
         "                     selector:(SEL) selector {\n"
-        "  @throw [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n"
+        "  @throw [NSException exceptionWithName:@\"ImproperSubclassing\" reason:@\"\" userInfo:nil];\n"
         "}\n");
     }
 
@@ -147,7 +148,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "             target:(id) target\n"
       "           selector:(SEL) selector {\n"
       "  if (method.service != self.descriptorForType) {\n"
-      "    @throw [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n"
+      "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"Service.callMethod given method descriptor for wrong service type.\" userInfo:nil];\n"
       "  }\n"
       "  switch(method.index) {\n");
     printer->Indent();
@@ -168,7 +169,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "default:\n"
-      "  @throw [NSException exceptionWithName:@\"NYI\" reason:@\"\" userInfo:nil];\n");
+      "  @throw [NSException exceptionWithName:@\"RuntimeError\" reason:@\"\" userInfo:nil];\n");
 
     printer->Outdent();
     printer->Outdent();
@@ -193,7 +194,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       printer->Print(
         "- (id<PBMessage>) get$request_or_response$Prototype:(PBMethodDescriptor*) method {\n"
         "  if (method.service != self.descriptorForType) {\n"
-        "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"\" userInfo:nil];\n"
+        "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"Service.callMethod given method descriptor for wrong service type.\" userInfo:nil];\n"
         "  }\n"
         "  switch(method.index) {\n",
         "request_or_response", (which == REQUEST) ? "Request" : "Response");

@@ -17,9 +17,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMess
     descriptor = [[UnittestImportProtoRoot buildDescriptor] retain];
     internal_static_protobuf_unittest_import_ImportMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"D",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"D", nil];
       internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_import_ImportMessage_descriptor
                                         fieldNames:fieldNames
@@ -38,8 +36,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMess
     "\022\016\n\nIMPORT_FOO\020\007\022\016\n\nIMPORT_BAR\020\010\022\016\n\n"
     "IMPORT_BAZ\020\tB\034\n\030com.google.protobuf.testH\001"
     ];
-  NSArray* dependencies = [NSArray arrayWithObjects:
-           nil];
+  NSArray* dependencies = [NSArray arrayWithObjects:nil];
   return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
 @end
@@ -125,7 +122,6 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.d = 0;
   }
   return self;

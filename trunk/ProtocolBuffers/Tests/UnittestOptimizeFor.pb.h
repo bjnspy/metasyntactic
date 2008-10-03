@@ -80,8 +80,6 @@
 @end
 
 @interface TestOptimizedForSize : PBExtendableMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasI;
   int32_t i;
   BOOL hasMsg;
@@ -91,9 +89,10 @@
 @property (readonly) int32_t i;
 @property (readonly) BOOL hasMsg;
 @property (retain, readonly) ForeignMessage* msg;
+
++ (PBDescriptor*) descriptor;
 + (TestOptimizedForSize*) defaultInstance;
 - (TestOptimizedForSize*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -101,6 +100,7 @@
 + (TestOptimizedForSize_Builder*) newBuilder;
 - (TestOptimizedForSize_Builder*) newBuilderForType;
 + (TestOptimizedForSize_Builder*) newBuilderWithTestOptimizedForSize:(TestOptimizedForSize*) prototype;
+
 + (TestOptimizedForSize*) parseFromData:(NSData*) data;
 + (TestOptimizedForSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestOptimizedForSize*) parseFromInputStream:(NSInputStream*) input;
@@ -114,12 +114,16 @@
   TestOptimizedForSize* result;
 }
 @property (retain) TestOptimizedForSize* result;
-- (TestOptimizedForSize_Builder*) clear;
-- (TestOptimizedForSize_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestOptimizedForSize*) defaultInstanceForType;
+
+- (TestOptimizedForSize_Builder*) clear;
+- (TestOptimizedForSize_Builder*) clone;
+
 - (TestOptimizedForSize*) build;
 - (TestOptimizedForSize*) buildPartial;
+
 - (TestOptimizedForSize_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestOptimizedForSize_Builder*) mergeFromTestOptimizedForSize:(TestOptimizedForSize*) other;
 - (TestOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;

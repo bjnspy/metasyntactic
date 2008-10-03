@@ -34,16 +34,15 @@
 @end
 
 @interface ImportMessage : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasD;
   int32_t d;
 }
 @property (readonly) BOOL hasD;
 @property (readonly) int32_t d;
+
++ (PBDescriptor*) descriptor;
 + (ImportMessage*) defaultInstance;
 - (ImportMessage*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -51,6 +50,7 @@
 + (ImportMessage_Builder*) newBuilder;
 - (ImportMessage_Builder*) newBuilderForType;
 + (ImportMessage_Builder*) newBuilderWithImportMessage:(ImportMessage*) prototype;
+
 + (ImportMessage*) parseFromData:(NSData*) data;
 + (ImportMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (ImportMessage*) parseFromInputStream:(NSInputStream*) input;
@@ -64,12 +64,16 @@
   ImportMessage* result;
 }
 @property (retain) ImportMessage* result;
-- (ImportMessage_Builder*) clear;
-- (ImportMessage_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (ImportMessage*) defaultInstanceForType;
+
+- (ImportMessage_Builder*) clear;
+- (ImportMessage_Builder*) clone;
+
 - (ImportMessage*) build;
 - (ImportMessage*) buildPartial;
+
 - (ImportMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (ImportMessage_Builder*) mergeFromImportMessage:(ImportMessage*) other;
 - (ImportMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;

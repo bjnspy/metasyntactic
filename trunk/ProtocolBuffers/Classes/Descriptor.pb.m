@@ -137,9 +137,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     descriptor = [[DescriptorProtoRoot buildDescriptor] retain];
     internal_static_google_protobuf_FileDescriptorSet_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"File",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"File", nil];
       internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorSet_descriptor
                                         fieldNames:fieldNames
@@ -148,16 +146,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_FileDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Name",
-      @"Package",
-      @"Dependency",
-      @"MessageType",
-      @"EnumType",
-      @"Service",
-      @"Extension",
-      @"Options",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Package", @"Dependency", @"MessageType", @"EnumType", @"Service", @"Extension", @"Options", nil];
       internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileDescriptorProto_descriptor
                                         fieldNames:fieldNames
@@ -166,15 +155,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_DescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Name",
-      @"Field",
-      @"Extension",
-      @"NestedType",
-      @"EnumType",
-      @"ExtensionRange",
-      @"Options",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Field", @"Extension", @"NestedType", @"EnumType", @"ExtensionRange", @"Options", nil];
       internal_static_google_protobuf_DescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_descriptor
                                         fieldNames:fieldNames
@@ -183,10 +164,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor = [[[internal_static_google_protobuf_DescriptorProto_descriptor nestedTypes] objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Start",
-      @"End",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Start", @"End", nil];
       internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor
                                         fieldNames:fieldNames
@@ -195,16 +173,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_FieldDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Name",
-      @"Number",
-      @"Label",
-      @"Type",
-      @"TypeName",
-      @"Extendee",
-      @"DefaultValue",
-      @"Options",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Number", @"Label", @"Type", @"TypeName", @"Extendee", @"DefaultValue", @"Options", nil];
       internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldDescriptorProto_descriptor
                                         fieldNames:fieldNames
@@ -213,11 +182,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_EnumDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Name",
-      @"Value",
-      @"Options",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Value", @"Options", nil];
       internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumDescriptorProto_descriptor
                                         fieldNames:fieldNames
@@ -226,11 +191,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_EnumValueDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:5] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Name",
-      @"Number",
-      @"Options",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Number", @"Options", nil];
       internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueDescriptorProto_descriptor
                                         fieldNames:fieldNames
@@ -239,11 +200,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_ServiceDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:6] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Name",
-      @"Method",
-      @"Options",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"Method", @"Options", nil];
       internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceDescriptorProto_descriptor
                                         fieldNames:fieldNames
@@ -252,12 +209,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_MethodDescriptorProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:7] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Name",
-      @"InputType",
-      @"OutputType",
-      @"Options",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Name", @"InputType", @"OutputType", @"Options", nil];
       internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodDescriptorProto_descriptor
                                         fieldNames:fieldNames
@@ -266,14 +218,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_FileOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:8] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"JavaPackage",
-      @"JavaOuterClassname",
-      @"JavaMultipleFiles",
-      @"OptimizeFor",
-      @"ObjectivecPackage",
-      @"ObjectivecClassPrefix",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"JavaPackage", @"JavaOuterClassname", @"JavaMultipleFiles", @"OptimizeFor", @"ObjectivecPackage", @"ObjectivecClassPrefix", nil];
       internal_static_google_protobuf_FileOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FileOptions_descriptor
                                         fieldNames:fieldNames
@@ -282,9 +227,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_MessageOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:9] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"MessageSetWireFormat",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"MessageSetWireFormat", nil];
       internal_static_google_protobuf_MessageOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MessageOptions_descriptor
                                         fieldNames:fieldNames
@@ -293,10 +236,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_FieldOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:10] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Ctype",
-      @"ExperimentalMapKey",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Ctype", @"ExperimentalMapKey", nil];
       internal_static_google_protobuf_FieldOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_FieldOptions_descriptor
                                         fieldNames:fieldNames
@@ -305,8 +245,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_EnumOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:11] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_google_protobuf_EnumOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumOptions_descriptor
                                         fieldNames:fieldNames
@@ -315,8 +254,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_EnumValueOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:12] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_EnumValueOptions_descriptor
                                         fieldNames:fieldNames
@@ -325,8 +263,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_ServiceOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:13] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_google_protobuf_ServiceOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_ServiceOptions_descriptor
                                         fieldNames:fieldNames
@@ -335,8 +272,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     }
     internal_static_google_protobuf_MethodOptions_descriptor = [[[self descriptor].messageTypes objectAtIndex:14] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_google_protobuf_MethodOptions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_google_protobuf_MethodOptions_descriptor
                                         fieldNames:fieldNames
@@ -410,8 +346,7 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
     "ServiceOptions\"\017\n\rMethodOptionsB>\n\023com.google.protobufB\020De"
     "scriptorProtosH\001Z\017ProtocolBuffersb\002PB"
     ];
-  NSArray* dependencies = [NSArray arrayWithObjects:
-           nil];
+  NSArray* dependencies = [NSArray arrayWithObjects:nil];
   return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
 @end
@@ -429,7 +364,6 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -687,7 +621,6 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.name = @"";
     self.package = @"";
   }
@@ -1275,7 +1208,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.name = @"";
   }
   return self;
@@ -1454,7 +1386,6 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.start = 0;
     self.end = 0;
   }
@@ -2099,7 +2030,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.name = @"";
     self.number = 0;
     self.label = [PBFieldDescriptorProto_Label LABEL_OPTIONAL];
@@ -2774,7 +2704,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.name = @"";
   }
   return self;
@@ -3099,7 +3028,6 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.name = @"";
     self.number = 0;
   }
@@ -3397,7 +3325,6 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.name = @"";
   }
   return self;
@@ -3728,7 +3655,6 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.name = @"";
     self.inputType = @"";
     self.outputType = @"";
@@ -4079,7 +4005,6 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.javaPackage = @"";
     self.javaOuterClassname = @"";
     self.javaMultipleFiles = NO;
@@ -4512,7 +4437,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.messageSetWireFormat = NO;
   }
   return self;
@@ -4725,7 +4649,6 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.ctype = [PBFieldOptions_CType CORD];
     self.experimentalMapKey = @"";
   }
@@ -5024,7 +4947,6 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -5193,7 +5115,6 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -5362,7 +5283,6 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -5531,7 +5451,6 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }

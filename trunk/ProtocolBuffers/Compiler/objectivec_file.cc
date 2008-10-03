@@ -260,14 +260,14 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     printer->Outdent();
 
     printer->Print(
-      "NSArray* dependencies = [NSArray arrayWithObjects:\n");
+      "NSArray* dependencies = [NSArray arrayWithObjects:");
     for (int i = 0; i < file_->dependency_count(); i++) {
       printer->Print(
-        "        [$dependency$ descriptor],\n",
+        "[$dependency$ descriptor], ",
         "dependency", FileClassName(file_->dependency(i)));
     }
     printer->Print(
-      "         nil];\n"
+      "nil];\n"
       "return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];\n");
 
     printer->Outdent();

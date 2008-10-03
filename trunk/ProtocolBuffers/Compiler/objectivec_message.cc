@@ -188,13 +188,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     // And the FieldAccessorTable.
     printer->Print(vars,
       "{\n"
-      "  NSArray* fieldNames = [NSArray arrayWithObjects:\n");
+      "  NSArray* fieldNames = [NSArray arrayWithObjects:");
     for (int i = 0; i < descriptor_->field_count(); i++) {
       printer->Print(
-        "  @\"$field_name$\",\n",
+        "@\"$field_name$\", ",
         "field_name", UnderscoresToCapitalizedCamelCase(descriptor_->field(i)));
     }
-    printer->Print("  nil];\n");
+    printer->Print("nil];\n");
 
     printer->Print(vars,
       "  internal_$identifier$_fieldAccessorTable = \n"
@@ -271,10 +271,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "classname", ClassName(descriptor_));
     }
 
-    printer->Print(
-      " @private\n"
-      "  int32_t memoizedSerializedSize;\n");
-
     printer->Indent();
     for (int i = 0; i < descriptor_->field_count(); i++) {
       field_generators_.get(descriptor_->field(i)).GenerateFieldsHeader(printer);
@@ -292,11 +288,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     }
 
     printer->Print(
+      "\n"
+      "+ (PBDescriptor*) descriptor;\n"
       "+ ($classname$*) defaultInstance;\n"
       "- ($classname$*) defaultInstanceForType;\n",
       "classname", ClassName(descriptor_));
     printer->Print(
-      "+ (PBDescriptor*) descriptor;\n"
       "- (PBFieldAccessorTable*) internalGetFieldAccessorTable;\n"
       "\n",
       "fileclass", FileClassName(descriptor_->file()),
@@ -357,8 +354,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "- (id) init {\n"
-      "  if (self = [super init]) {\n"
-      "    memoizedSerializedSize = -1;\n");
+      "  if (self = [super init]) {\n");
     printer->Indent();
     printer->Indent();
     for (int i = 0; i < descriptor_->field_count(); i++) {
@@ -472,6 +468,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     //   because they need to be generated even for messages that are optimized
     //   for code size.
     printer->Print(
+      "\n"
       "+ ($classname$*) parseFromData:(NSData*) data;\n"
       "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;\n"
       "+ ($classname$*) parseFromInputStream:(NSInputStream*) input;\n"
@@ -531,15 +528,18 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageGenerator::GenerateCommonBuilderMethodsHeader(io::Printer* printer) {
     printer->Print(
-      "- ($classname$_Builder*) clear;\n"
-      "- ($classname$_Builder*) clone;\n"
+      "\n"
       "- (PBDescriptor*) descriptorForType;\n"
-      "- ($classname$*) defaultInstanceForType;\n",
+      "- ($classname$*) defaultInstanceForType;\n"
+      "\n"
+      "- ($classname$_Builder*) clear;\n"
+      "- ($classname$_Builder*) clone;\n",
       "classname", ClassName(descriptor_));
 
     // -----------------------------------------------------------------
 
     printer->Print(
+      "\n"
       "- ($classname$*) build;\n"
       "- ($classname$*) buildPartial;\n",
       "classname", ClassName(descriptor_));
@@ -555,6 +555,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     printer->Print(
+      "\n"
       "- ($classname$_Builder*) mergeFromMessage:(id<PBMessage>) other;\n"
       "- ($classname$_Builder*) mergeFrom$classname$:($classname$*) other;\n",
       "classname", ClassName(descriptor_));
