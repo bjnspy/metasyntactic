@@ -148,10 +148,12 @@
 
 @interface TestService : NSObject<PBService> {
 }
+// @abstract
 - (void) fooWithController:(id<PBRpcController>) controller
                       request:(FooRequest*) request
                        target:(id) target
                      selector:(SEL) selector;
+// @abstract
 - (void) barWithController:(id<PBRpcController>) controller
                       request:(BarRequest*) request
                        target:(id) target
@@ -186,8 +188,6 @@
                        selector:(SEL) selector;@end
 
 @interface TestAllTypes : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasOptionalInt32;
   int32_t optionalInt32;
   BOOL hasOptionalInt64;
@@ -437,9 +437,10 @@
 - (NSString*) repeatedStringPieceAtIndex:(int32_t) index;
 - (NSArray*) repeatedCordList;
 - (NSString*) repeatedCordAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (TestAllTypes*) defaultInstance;
 - (TestAllTypes*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -447,6 +448,7 @@
 + (TestAllTypes_Builder*) newBuilder;
 - (TestAllTypes_Builder*) newBuilderForType;
 + (TestAllTypes_Builder*) newBuilderWithTestAllTypes:(TestAllTypes*) prototype;
+
 + (TestAllTypes*) parseFromData:(NSData*) data;
 + (TestAllTypes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestAllTypes*) parseFromInputStream:(NSInputStream*) input;
@@ -477,16 +479,15 @@
 @end
 
 @interface TestAllTypes_NestedMessage : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasBb;
   int32_t bb;
 }
 @property (readonly) BOOL hasBb;
 @property (readonly) int32_t bb;
+
++ (PBDescriptor*) descriptor;
 + (TestAllTypes_NestedMessage*) defaultInstance;
 - (TestAllTypes_NestedMessage*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -494,6 +495,7 @@
 + (TestAllTypes_NestedMessage_Builder*) newBuilder;
 - (TestAllTypes_NestedMessage_Builder*) newBuilderForType;
 + (TestAllTypes_NestedMessage_Builder*) newBuilderWithTestAllTypes_NestedMessage:(TestAllTypes_NestedMessage*) prototype;
+
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data;
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestAllTypes_NestedMessage*) parseFromInputStream:(NSInputStream*) input;
@@ -507,12 +509,16 @@
   TestAllTypes_NestedMessage* result;
 }
 @property (retain) TestAllTypes_NestedMessage* result;
-- (TestAllTypes_NestedMessage_Builder*) clear;
-- (TestAllTypes_NestedMessage_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes_NestedMessage*) defaultInstanceForType;
+
+- (TestAllTypes_NestedMessage_Builder*) clear;
+- (TestAllTypes_NestedMessage_Builder*) clone;
+
 - (TestAllTypes_NestedMessage*) build;
 - (TestAllTypes_NestedMessage*) buildPartial;
+
 - (TestAllTypes_NestedMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllTypes_NestedMessage_Builder*) mergeFromTestAllTypes_NestedMessage:(TestAllTypes_NestedMessage*) other;
 - (TestAllTypes_NestedMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -525,16 +531,15 @@
 @end
 
 @interface TestAllTypes_OptionalGroup : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   int32_t a;
 }
 @property (readonly) BOOL hasA;
 @property (readonly) int32_t a;
+
++ (PBDescriptor*) descriptor;
 + (TestAllTypes_OptionalGroup*) defaultInstance;
 - (TestAllTypes_OptionalGroup*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -542,6 +547,7 @@
 + (TestAllTypes_OptionalGroup_Builder*) newBuilder;
 - (TestAllTypes_OptionalGroup_Builder*) newBuilderForType;
 + (TestAllTypes_OptionalGroup_Builder*) newBuilderWithTestAllTypes_OptionalGroup:(TestAllTypes_OptionalGroup*) prototype;
+
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data;
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestAllTypes_OptionalGroup*) parseFromInputStream:(NSInputStream*) input;
@@ -555,12 +561,16 @@
   TestAllTypes_OptionalGroup* result;
 }
 @property (retain) TestAllTypes_OptionalGroup* result;
-- (TestAllTypes_OptionalGroup_Builder*) clear;
-- (TestAllTypes_OptionalGroup_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes_OptionalGroup*) defaultInstanceForType;
+
+- (TestAllTypes_OptionalGroup_Builder*) clear;
+- (TestAllTypes_OptionalGroup_Builder*) clone;
+
 - (TestAllTypes_OptionalGroup*) build;
 - (TestAllTypes_OptionalGroup*) buildPartial;
+
 - (TestAllTypes_OptionalGroup_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllTypes_OptionalGroup_Builder*) mergeFromTestAllTypes_OptionalGroup:(TestAllTypes_OptionalGroup*) other;
 - (TestAllTypes_OptionalGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -573,16 +583,15 @@
 @end
 
 @interface TestAllTypes_RepeatedGroup : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   int32_t a;
 }
 @property (readonly) BOOL hasA;
 @property (readonly) int32_t a;
+
++ (PBDescriptor*) descriptor;
 + (TestAllTypes_RepeatedGroup*) defaultInstance;
 - (TestAllTypes_RepeatedGroup*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -590,6 +599,7 @@
 + (TestAllTypes_RepeatedGroup_Builder*) newBuilder;
 - (TestAllTypes_RepeatedGroup_Builder*) newBuilderForType;
 + (TestAllTypes_RepeatedGroup_Builder*) newBuilderWithTestAllTypes_RepeatedGroup:(TestAllTypes_RepeatedGroup*) prototype;
+
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data;
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestAllTypes_RepeatedGroup*) parseFromInputStream:(NSInputStream*) input;
@@ -603,12 +613,16 @@
   TestAllTypes_RepeatedGroup* result;
 }
 @property (retain) TestAllTypes_RepeatedGroup* result;
-- (TestAllTypes_RepeatedGroup_Builder*) clear;
-- (TestAllTypes_RepeatedGroup_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes_RepeatedGroup*) defaultInstanceForType;
+
+- (TestAllTypes_RepeatedGroup_Builder*) clear;
+- (TestAllTypes_RepeatedGroup_Builder*) clone;
+
 - (TestAllTypes_RepeatedGroup*) build;
 - (TestAllTypes_RepeatedGroup*) buildPartial;
+
 - (TestAllTypes_RepeatedGroup_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllTypes_RepeatedGroup_Builder*) mergeFromTestAllTypes_RepeatedGroup:(TestAllTypes_RepeatedGroup*) other;
 - (TestAllTypes_RepeatedGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -625,12 +639,16 @@
   TestAllTypes* result;
 }
 @property (retain) TestAllTypes* result;
-- (TestAllTypes_Builder*) clear;
-- (TestAllTypes_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes*) defaultInstanceForType;
+
+- (TestAllTypes_Builder*) clear;
+- (TestAllTypes_Builder*) clone;
+
 - (TestAllTypes*) build;
 - (TestAllTypes*) buildPartial;
+
 - (TestAllTypes_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllTypes_Builder*) mergeFromTestAllTypes:(TestAllTypes*) other;
 - (TestAllTypes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1034,16 +1052,15 @@
 @end
 
 @interface ForeignMessage : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasC;
   int32_t c;
 }
 @property (readonly) BOOL hasC;
 @property (readonly) int32_t c;
+
++ (PBDescriptor*) descriptor;
 + (ForeignMessage*) defaultInstance;
 - (ForeignMessage*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1051,6 +1068,7 @@
 + (ForeignMessage_Builder*) newBuilder;
 - (ForeignMessage_Builder*) newBuilderForType;
 + (ForeignMessage_Builder*) newBuilderWithForeignMessage:(ForeignMessage*) prototype;
+
 + (ForeignMessage*) parseFromData:(NSData*) data;
 + (ForeignMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (ForeignMessage*) parseFromInputStream:(NSInputStream*) input;
@@ -1064,12 +1082,16 @@
   ForeignMessage* result;
 }
 @property (retain) ForeignMessage* result;
-- (ForeignMessage_Builder*) clear;
-- (ForeignMessage_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (ForeignMessage*) defaultInstanceForType;
+
+- (ForeignMessage_Builder*) clear;
+- (ForeignMessage_Builder*) clone;
+
 - (ForeignMessage*) build;
 - (ForeignMessage*) buildPartial;
+
 - (ForeignMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (ForeignMessage_Builder*) mergeFromForeignMessage:(ForeignMessage*) other;
 - (ForeignMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1082,12 +1104,11 @@
 @end
 
 @interface TestAllExtensions : PBExtendableMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (TestAllExtensions*) defaultInstance;
 - (TestAllExtensions*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1095,6 +1116,7 @@
 + (TestAllExtensions_Builder*) newBuilder;
 - (TestAllExtensions_Builder*) newBuilderForType;
 + (TestAllExtensions_Builder*) newBuilderWithTestAllExtensions:(TestAllExtensions*) prototype;
+
 + (TestAllExtensions*) parseFromData:(NSData*) data;
 + (TestAllExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestAllExtensions*) parseFromInputStream:(NSInputStream*) input;
@@ -1108,12 +1130,16 @@
   TestAllExtensions* result;
 }
 @property (retain) TestAllExtensions* result;
-- (TestAllExtensions_Builder*) clear;
-- (TestAllExtensions_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestAllExtensions*) defaultInstanceForType;
+
+- (TestAllExtensions_Builder*) clear;
+- (TestAllExtensions_Builder*) clone;
+
 - (TestAllExtensions*) build;
 - (TestAllExtensions*) buildPartial;
+
 - (TestAllExtensions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestAllExtensions_Builder*) mergeFromTestAllExtensions:(TestAllExtensions*) other;
 - (TestAllExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1121,16 +1147,15 @@
 @end
 
 @interface OptionalGroup_extension : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   int32_t a;
 }
 @property (readonly) BOOL hasA;
 @property (readonly) int32_t a;
+
++ (PBDescriptor*) descriptor;
 + (OptionalGroup_extension*) defaultInstance;
 - (OptionalGroup_extension*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1138,6 +1163,7 @@
 + (OptionalGroup_extension_Builder*) newBuilder;
 - (OptionalGroup_extension_Builder*) newBuilderForType;
 + (OptionalGroup_extension_Builder*) newBuilderWithOptionalGroup_extension:(OptionalGroup_extension*) prototype;
+
 + (OptionalGroup_extension*) parseFromData:(NSData*) data;
 + (OptionalGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (OptionalGroup_extension*) parseFromInputStream:(NSInputStream*) input;
@@ -1151,12 +1177,16 @@
   OptionalGroup_extension* result;
 }
 @property (retain) OptionalGroup_extension* result;
-- (OptionalGroup_extension_Builder*) clear;
-- (OptionalGroup_extension_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (OptionalGroup_extension*) defaultInstanceForType;
+
+- (OptionalGroup_extension_Builder*) clear;
+- (OptionalGroup_extension_Builder*) clone;
+
 - (OptionalGroup_extension*) build;
 - (OptionalGroup_extension*) buildPartial;
+
 - (OptionalGroup_extension_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (OptionalGroup_extension_Builder*) mergeFromOptionalGroup_extension:(OptionalGroup_extension*) other;
 - (OptionalGroup_extension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1169,16 +1199,15 @@
 @end
 
 @interface RepeatedGroup_extension : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   int32_t a;
 }
 @property (readonly) BOOL hasA;
 @property (readonly) int32_t a;
+
++ (PBDescriptor*) descriptor;
 + (RepeatedGroup_extension*) defaultInstance;
 - (RepeatedGroup_extension*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1186,6 +1215,7 @@
 + (RepeatedGroup_extension_Builder*) newBuilder;
 - (RepeatedGroup_extension_Builder*) newBuilderForType;
 + (RepeatedGroup_extension_Builder*) newBuilderWithRepeatedGroup_extension:(RepeatedGroup_extension*) prototype;
+
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data;
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (RepeatedGroup_extension*) parseFromInputStream:(NSInputStream*) input;
@@ -1199,12 +1229,16 @@
   RepeatedGroup_extension* result;
 }
 @property (retain) RepeatedGroup_extension* result;
-- (RepeatedGroup_extension_Builder*) clear;
-- (RepeatedGroup_extension_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (RepeatedGroup_extension*) defaultInstanceForType;
+
+- (RepeatedGroup_extension_Builder*) clear;
+- (RepeatedGroup_extension_Builder*) clone;
+
 - (RepeatedGroup_extension*) build;
 - (RepeatedGroup_extension*) buildPartial;
+
 - (RepeatedGroup_extension_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (RepeatedGroup_extension_Builder*) mergeFromRepeatedGroup_extension:(RepeatedGroup_extension*) other;
 - (RepeatedGroup_extension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1217,8 +1251,6 @@
 @end
 
 @interface TestRequired : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   int32_t a;
   BOOL hasDummy2;
@@ -1352,9 +1384,10 @@
 @property (readonly) int32_t dummy32;
 @property (readonly) BOOL hasC;
 @property (readonly) int32_t c;
+
++ (PBDescriptor*) descriptor;
 + (TestRequired*) defaultInstance;
 - (TestRequired*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1362,6 +1395,7 @@
 + (TestRequired_Builder*) newBuilder;
 - (TestRequired_Builder*) newBuilderForType;
 + (TestRequired_Builder*) newBuilderWithTestRequired:(TestRequired*) prototype;
+
 + (TestRequired*) parseFromData:(NSData*) data;
 + (TestRequired*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestRequired*) parseFromInputStream:(NSInputStream*) input;
@@ -1375,12 +1409,16 @@
   TestRequired* result;
 }
 @property (retain) TestRequired* result;
-- (TestRequired_Builder*) clear;
-- (TestRequired_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestRequired*) defaultInstanceForType;
+
+- (TestRequired_Builder*) clear;
+- (TestRequired_Builder*) clone;
+
 - (TestRequired*) build;
 - (TestRequired*) buildPartial;
+
 - (TestRequired_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestRequired_Builder*) mergeFromTestRequired:(TestRequired*) other;
 - (TestRequired_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1553,8 +1591,6 @@
 @end
 
 @interface TestRequiredForeign : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasOptionalMessage;
   TestRequired* optionalMessage;
   NSMutableArray* mutableRepeatedMessageList;
@@ -1567,9 +1603,10 @@
 @property (readonly) int32_t dummy;
 - (NSArray*) repeatedMessageList;
 - (TestRequired*) repeatedMessageAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (TestRequiredForeign*) defaultInstance;
 - (TestRequiredForeign*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1577,6 +1614,7 @@
 + (TestRequiredForeign_Builder*) newBuilder;
 - (TestRequiredForeign_Builder*) newBuilderForType;
 + (TestRequiredForeign_Builder*) newBuilderWithTestRequiredForeign:(TestRequiredForeign*) prototype;
+
 + (TestRequiredForeign*) parseFromData:(NSData*) data;
 + (TestRequiredForeign*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestRequiredForeign*) parseFromInputStream:(NSInputStream*) input;
@@ -1590,12 +1628,16 @@
   TestRequiredForeign* result;
 }
 @property (retain) TestRequiredForeign* result;
-- (TestRequiredForeign_Builder*) clear;
-- (TestRequiredForeign_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestRequiredForeign*) defaultInstanceForType;
+
+- (TestRequiredForeign_Builder*) clear;
+- (TestRequiredForeign_Builder*) clone;
+
 - (TestRequiredForeign*) build;
 - (TestRequiredForeign*) buildPartial;
+
 - (TestRequiredForeign_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestRequiredForeign_Builder*) mergeFromTestRequiredForeign:(TestRequiredForeign*) other;
 - (TestRequiredForeign_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1622,16 +1664,15 @@
 @end
 
 @interface TestForeignNested : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasForeignNested;
   TestAllTypes_NestedMessage* foreignNested;
 }
 @property (readonly) BOOL hasForeignNested;
 @property (retain, readonly) TestAllTypes_NestedMessage* foreignNested;
+
++ (PBDescriptor*) descriptor;
 + (TestForeignNested*) defaultInstance;
 - (TestForeignNested*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1639,6 +1680,7 @@
 + (TestForeignNested_Builder*) newBuilder;
 - (TestForeignNested_Builder*) newBuilderForType;
 + (TestForeignNested_Builder*) newBuilderWithTestForeignNested:(TestForeignNested*) prototype;
+
 + (TestForeignNested*) parseFromData:(NSData*) data;
 + (TestForeignNested*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestForeignNested*) parseFromInputStream:(NSInputStream*) input;
@@ -1652,12 +1694,16 @@
   TestForeignNested* result;
 }
 @property (retain) TestForeignNested* result;
-- (TestForeignNested_Builder*) clear;
-- (TestForeignNested_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestForeignNested*) defaultInstanceForType;
+
+- (TestForeignNested_Builder*) clear;
+- (TestForeignNested_Builder*) clone;
+
 - (TestForeignNested*) build;
 - (TestForeignNested*) buildPartial;
+
 - (TestForeignNested_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestForeignNested_Builder*) mergeFromTestForeignNested:(TestForeignNested*) other;
 - (TestForeignNested_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1672,12 +1718,11 @@
 @end
 
 @interface TestEmptyMessage : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (TestEmptyMessage*) defaultInstance;
 - (TestEmptyMessage*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1685,6 +1730,7 @@
 + (TestEmptyMessage_Builder*) newBuilder;
 - (TestEmptyMessage_Builder*) newBuilderForType;
 + (TestEmptyMessage_Builder*) newBuilderWithTestEmptyMessage:(TestEmptyMessage*) prototype;
+
 + (TestEmptyMessage*) parseFromData:(NSData*) data;
 + (TestEmptyMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestEmptyMessage*) parseFromInputStream:(NSInputStream*) input;
@@ -1698,12 +1744,16 @@
   TestEmptyMessage* result;
 }
 @property (retain) TestEmptyMessage* result;
-- (TestEmptyMessage_Builder*) clear;
-- (TestEmptyMessage_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestEmptyMessage*) defaultInstanceForType;
+
+- (TestEmptyMessage_Builder*) clear;
+- (TestEmptyMessage_Builder*) clone;
+
 - (TestEmptyMessage*) build;
 - (TestEmptyMessage*) buildPartial;
+
 - (TestEmptyMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestEmptyMessage_Builder*) mergeFromTestEmptyMessage:(TestEmptyMessage*) other;
 - (TestEmptyMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1711,12 +1761,11 @@
 @end
 
 @interface TestEmptyMessageWithExtensions : PBExtendableMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (TestEmptyMessageWithExtensions*) defaultInstance;
 - (TestEmptyMessageWithExtensions*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1724,6 +1773,7 @@
 + (TestEmptyMessageWithExtensions_Builder*) newBuilder;
 - (TestEmptyMessageWithExtensions_Builder*) newBuilderForType;
 + (TestEmptyMessageWithExtensions_Builder*) newBuilderWithTestEmptyMessageWithExtensions:(TestEmptyMessageWithExtensions*) prototype;
+
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data;
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestEmptyMessageWithExtensions*) parseFromInputStream:(NSInputStream*) input;
@@ -1737,12 +1787,16 @@
   TestEmptyMessageWithExtensions* result;
 }
 @property (retain) TestEmptyMessageWithExtensions* result;
-- (TestEmptyMessageWithExtensions_Builder*) clear;
-- (TestEmptyMessageWithExtensions_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestEmptyMessageWithExtensions*) defaultInstanceForType;
+
+- (TestEmptyMessageWithExtensions_Builder*) clear;
+- (TestEmptyMessageWithExtensions_Builder*) clone;
+
 - (TestEmptyMessageWithExtensions*) build;
 - (TestEmptyMessageWithExtensions*) buildPartial;
+
 - (TestEmptyMessageWithExtensions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestEmptyMessageWithExtensions_Builder*) mergeFromTestEmptyMessageWithExtensions:(TestEmptyMessageWithExtensions*) other;
 - (TestEmptyMessageWithExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1750,8 +1804,6 @@
 @end
 
 @interface TestReallyLargeTagNumber : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   int32_t a;
   BOOL hasBb;
@@ -1761,9 +1813,10 @@
 @property (readonly) int32_t a;
 @property (readonly) BOOL hasBb;
 @property (readonly) int32_t bb;
+
++ (PBDescriptor*) descriptor;
 + (TestReallyLargeTagNumber*) defaultInstance;
 - (TestReallyLargeTagNumber*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1771,6 +1824,7 @@
 + (TestReallyLargeTagNumber_Builder*) newBuilder;
 - (TestReallyLargeTagNumber_Builder*) newBuilderForType;
 + (TestReallyLargeTagNumber_Builder*) newBuilderWithTestReallyLargeTagNumber:(TestReallyLargeTagNumber*) prototype;
+
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data;
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestReallyLargeTagNumber*) parseFromInputStream:(NSInputStream*) input;
@@ -1784,12 +1838,16 @@
   TestReallyLargeTagNumber* result;
 }
 @property (retain) TestReallyLargeTagNumber* result;
-- (TestReallyLargeTagNumber_Builder*) clear;
-- (TestReallyLargeTagNumber_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestReallyLargeTagNumber*) defaultInstanceForType;
+
+- (TestReallyLargeTagNumber_Builder*) clear;
+- (TestReallyLargeTagNumber_Builder*) clone;
+
 - (TestReallyLargeTagNumber*) build;
 - (TestReallyLargeTagNumber*) buildPartial;
+
 - (TestReallyLargeTagNumber_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestReallyLargeTagNumber_Builder*) mergeFromTestReallyLargeTagNumber:(TestReallyLargeTagNumber*) other;
 - (TestReallyLargeTagNumber_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1807,8 +1865,6 @@
 @end
 
 @interface TestRecursiveMessage : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   TestRecursiveMessage* a;
   BOOL hasI;
@@ -1818,9 +1874,10 @@
 @property (retain, readonly) TestRecursiveMessage* a;
 @property (readonly) BOOL hasI;
 @property (readonly) int32_t i;
+
++ (PBDescriptor*) descriptor;
 + (TestRecursiveMessage*) defaultInstance;
 - (TestRecursiveMessage*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1828,6 +1885,7 @@
 + (TestRecursiveMessage_Builder*) newBuilder;
 - (TestRecursiveMessage_Builder*) newBuilderForType;
 + (TestRecursiveMessage_Builder*) newBuilderWithTestRecursiveMessage:(TestRecursiveMessage*) prototype;
+
 + (TestRecursiveMessage*) parseFromData:(NSData*) data;
 + (TestRecursiveMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestRecursiveMessage*) parseFromInputStream:(NSInputStream*) input;
@@ -1841,12 +1899,16 @@
   TestRecursiveMessage* result;
 }
 @property (retain) TestRecursiveMessage* result;
-- (TestRecursiveMessage_Builder*) clear;
-- (TestRecursiveMessage_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestRecursiveMessage*) defaultInstanceForType;
+
+- (TestRecursiveMessage_Builder*) clear;
+- (TestRecursiveMessage_Builder*) clone;
+
 - (TestRecursiveMessage*) build;
 - (TestRecursiveMessage*) buildPartial;
+
 - (TestRecursiveMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestRecursiveMessage_Builder*) mergeFromTestRecursiveMessage:(TestRecursiveMessage*) other;
 - (TestRecursiveMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1866,16 +1928,15 @@
 @end
 
 @interface TestMutualRecursionA : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasBb;
   TestMutualRecursionB* bb;
 }
 @property (readonly) BOOL hasBb;
 @property (retain, readonly) TestMutualRecursionB* bb;
+
++ (PBDescriptor*) descriptor;
 + (TestMutualRecursionA*) defaultInstance;
 - (TestMutualRecursionA*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1883,6 +1944,7 @@
 + (TestMutualRecursionA_Builder*) newBuilder;
 - (TestMutualRecursionA_Builder*) newBuilderForType;
 + (TestMutualRecursionA_Builder*) newBuilderWithTestMutualRecursionA:(TestMutualRecursionA*) prototype;
+
 + (TestMutualRecursionA*) parseFromData:(NSData*) data;
 + (TestMutualRecursionA*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestMutualRecursionA*) parseFromInputStream:(NSInputStream*) input;
@@ -1896,12 +1958,16 @@
   TestMutualRecursionA* result;
 }
 @property (retain) TestMutualRecursionA* result;
-- (TestMutualRecursionA_Builder*) clear;
-- (TestMutualRecursionA_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestMutualRecursionA*) defaultInstanceForType;
+
+- (TestMutualRecursionA_Builder*) clear;
+- (TestMutualRecursionA_Builder*) clone;
+
 - (TestMutualRecursionA*) build;
 - (TestMutualRecursionA*) buildPartial;
+
 - (TestMutualRecursionA_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestMutualRecursionA_Builder*) mergeFromTestMutualRecursionA:(TestMutualRecursionA*) other;
 - (TestMutualRecursionA_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1916,8 +1982,6 @@
 @end
 
 @interface TestMutualRecursionB : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   TestMutualRecursionA* a;
   BOOL hasOptionalInt32;
@@ -1927,9 +1991,10 @@
 @property (retain, readonly) TestMutualRecursionA* a;
 @property (readonly) BOOL hasOptionalInt32;
 @property (readonly) int32_t optionalInt32;
+
++ (PBDescriptor*) descriptor;
 + (TestMutualRecursionB*) defaultInstance;
 - (TestMutualRecursionB*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1937,6 +2002,7 @@
 + (TestMutualRecursionB_Builder*) newBuilder;
 - (TestMutualRecursionB_Builder*) newBuilderForType;
 + (TestMutualRecursionB_Builder*) newBuilderWithTestMutualRecursionB:(TestMutualRecursionB*) prototype;
+
 + (TestMutualRecursionB*) parseFromData:(NSData*) data;
 + (TestMutualRecursionB*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestMutualRecursionB*) parseFromInputStream:(NSInputStream*) input;
@@ -1950,12 +2016,16 @@
   TestMutualRecursionB* result;
 }
 @property (retain) TestMutualRecursionB* result;
-- (TestMutualRecursionB_Builder*) clear;
-- (TestMutualRecursionB_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestMutualRecursionB*) defaultInstanceForType;
+
+- (TestMutualRecursionB_Builder*) clear;
+- (TestMutualRecursionB_Builder*) clone;
+
 - (TestMutualRecursionB*) build;
 - (TestMutualRecursionB*) buildPartial;
+
 - (TestMutualRecursionB_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestMutualRecursionB_Builder*) mergeFromTestMutualRecursionB:(TestMutualRecursionB*) other;
 - (TestMutualRecursionB_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1975,8 +2045,6 @@
 @end
 
 @interface TestDupFieldNumber : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   int32_t a;
   BOOL hasFoo;
@@ -1990,9 +2058,10 @@
 @property (retain, readonly) TestDupFieldNumber_Foo* foo;
 @property (readonly) BOOL hasBar;
 @property (retain, readonly) TestDupFieldNumber_Bar* bar;
+
++ (PBDescriptor*) descriptor;
 + (TestDupFieldNumber*) defaultInstance;
 - (TestDupFieldNumber*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2000,6 +2069,7 @@
 + (TestDupFieldNumber_Builder*) newBuilder;
 - (TestDupFieldNumber_Builder*) newBuilderForType;
 + (TestDupFieldNumber_Builder*) newBuilderWithTestDupFieldNumber:(TestDupFieldNumber*) prototype;
+
 + (TestDupFieldNumber*) parseFromData:(NSData*) data;
 + (TestDupFieldNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestDupFieldNumber*) parseFromInputStream:(NSInputStream*) input;
@@ -2009,16 +2079,15 @@
 @end
 
 @interface TestDupFieldNumber_Foo : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   int32_t a;
 }
 @property (readonly) BOOL hasA;
 @property (readonly) int32_t a;
+
++ (PBDescriptor*) descriptor;
 + (TestDupFieldNumber_Foo*) defaultInstance;
 - (TestDupFieldNumber_Foo*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2026,6 +2095,7 @@
 + (TestDupFieldNumber_Foo_Builder*) newBuilder;
 - (TestDupFieldNumber_Foo_Builder*) newBuilderForType;
 + (TestDupFieldNumber_Foo_Builder*) newBuilderWithTestDupFieldNumber_Foo:(TestDupFieldNumber_Foo*) prototype;
+
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data;
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestDupFieldNumber_Foo*) parseFromInputStream:(NSInputStream*) input;
@@ -2039,12 +2109,16 @@
   TestDupFieldNumber_Foo* result;
 }
 @property (retain) TestDupFieldNumber_Foo* result;
-- (TestDupFieldNumber_Foo_Builder*) clear;
-- (TestDupFieldNumber_Foo_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestDupFieldNumber_Foo*) defaultInstanceForType;
+
+- (TestDupFieldNumber_Foo_Builder*) clear;
+- (TestDupFieldNumber_Foo_Builder*) clone;
+
 - (TestDupFieldNumber_Foo*) build;
 - (TestDupFieldNumber_Foo*) buildPartial;
+
 - (TestDupFieldNumber_Foo_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestDupFieldNumber_Foo_Builder*) mergeFromTestDupFieldNumber_Foo:(TestDupFieldNumber_Foo*) other;
 - (TestDupFieldNumber_Foo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2057,16 +2131,15 @@
 @end
 
 @interface TestDupFieldNumber_Bar : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasA;
   int32_t a;
 }
 @property (readonly) BOOL hasA;
 @property (readonly) int32_t a;
+
++ (PBDescriptor*) descriptor;
 + (TestDupFieldNumber_Bar*) defaultInstance;
 - (TestDupFieldNumber_Bar*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2074,6 +2147,7 @@
 + (TestDupFieldNumber_Bar_Builder*) newBuilder;
 - (TestDupFieldNumber_Bar_Builder*) newBuilderForType;
 + (TestDupFieldNumber_Bar_Builder*) newBuilderWithTestDupFieldNumber_Bar:(TestDupFieldNumber_Bar*) prototype;
+
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data;
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestDupFieldNumber_Bar*) parseFromInputStream:(NSInputStream*) input;
@@ -2087,12 +2161,16 @@
   TestDupFieldNumber_Bar* result;
 }
 @property (retain) TestDupFieldNumber_Bar* result;
-- (TestDupFieldNumber_Bar_Builder*) clear;
-- (TestDupFieldNumber_Bar_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestDupFieldNumber_Bar*) defaultInstanceForType;
+
+- (TestDupFieldNumber_Bar_Builder*) clear;
+- (TestDupFieldNumber_Bar_Builder*) clone;
+
 - (TestDupFieldNumber_Bar*) build;
 - (TestDupFieldNumber_Bar*) buildPartial;
+
 - (TestDupFieldNumber_Bar_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestDupFieldNumber_Bar_Builder*) mergeFromTestDupFieldNumber_Bar:(TestDupFieldNumber_Bar*) other;
 - (TestDupFieldNumber_Bar_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2109,12 +2187,16 @@
   TestDupFieldNumber* result;
 }
 @property (retain) TestDupFieldNumber* result;
-- (TestDupFieldNumber_Builder*) clear;
-- (TestDupFieldNumber_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestDupFieldNumber*) defaultInstanceForType;
+
+- (TestDupFieldNumber_Builder*) clear;
+- (TestDupFieldNumber_Builder*) clone;
+
 - (TestDupFieldNumber*) build;
 - (TestDupFieldNumber*) buildPartial;
+
 - (TestDupFieldNumber_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestDupFieldNumber_Builder*) mergeFromTestDupFieldNumber:(TestDupFieldNumber*) other;
 - (TestDupFieldNumber_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2141,16 +2223,15 @@
 @end
 
 @interface TestNestedMessageHasBits : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasOptionalNestedMessage;
   TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 }
 @property (readonly) BOOL hasOptionalNestedMessage;
 @property (retain, readonly) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
+
++ (PBDescriptor*) descriptor;
 + (TestNestedMessageHasBits*) defaultInstance;
 - (TestNestedMessageHasBits*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2158,6 +2239,7 @@
 + (TestNestedMessageHasBits_Builder*) newBuilder;
 - (TestNestedMessageHasBits_Builder*) newBuilderForType;
 + (TestNestedMessageHasBits_Builder*) newBuilderWithTestNestedMessageHasBits:(TestNestedMessageHasBits*) prototype;
+
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data;
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestNestedMessageHasBits*) parseFromInputStream:(NSInputStream*) input;
@@ -2167,8 +2249,6 @@
 @end
 
 @interface TestNestedMessageHasBits_NestedMessage : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   NSMutableArray* mutableNestedmessageRepeatedInt32List;
   NSMutableArray* mutableNestedmessageRepeatedForeignmessageList;
 }
@@ -2176,9 +2256,10 @@
 - (int32_t) nestedmessageRepeatedInt32AtIndex:(int32_t) index;
 - (NSArray*) nestedmessageRepeatedForeignmessageList;
 - (ForeignMessage*) nestedmessageRepeatedForeignmessageAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2186,6 +2267,7 @@
 + (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilder;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderForType;
 + (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderWithTestNestedMessageHasBits_NestedMessage:(TestNestedMessageHasBits_NestedMessage*) prototype;
+
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data;
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestNestedMessageHasBits_NestedMessage*) parseFromInputStream:(NSInputStream*) input;
@@ -2199,12 +2281,16 @@
   TestNestedMessageHasBits_NestedMessage* result;
 }
 @property (retain) TestNestedMessageHasBits_NestedMessage* result;
-- (TestNestedMessageHasBits_NestedMessage_Builder*) clear;
-- (TestNestedMessageHasBits_NestedMessage_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstanceForType;
+
+- (TestNestedMessageHasBits_NestedMessage_Builder*) clear;
+- (TestNestedMessageHasBits_NestedMessage_Builder*) clone;
+
 - (TestNestedMessageHasBits_NestedMessage*) build;
 - (TestNestedMessageHasBits_NestedMessage*) buildPartial;
+
 - (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromTestNestedMessageHasBits_NestedMessage:(TestNestedMessageHasBits_NestedMessage*) other;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2230,12 +2316,16 @@
   TestNestedMessageHasBits* result;
 }
 @property (retain) TestNestedMessageHasBits* result;
-- (TestNestedMessageHasBits_Builder*) clear;
-- (TestNestedMessageHasBits_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestNestedMessageHasBits*) defaultInstanceForType;
+
+- (TestNestedMessageHasBits_Builder*) clear;
+- (TestNestedMessageHasBits_Builder*) clone;
+
 - (TestNestedMessageHasBits*) build;
 - (TestNestedMessageHasBits*) buildPartial;
+
 - (TestNestedMessageHasBits_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestNestedMessageHasBits_Builder*) mergeFromTestNestedMessageHasBits:(TestNestedMessageHasBits*) other;
 - (TestNestedMessageHasBits_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2250,8 +2340,6 @@
 @end
 
 @interface TestCamelCaseFieldNames : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasPrimitiveField;
   int32_t primitiveField;
   BOOL hasStringField;
@@ -2295,9 +2383,10 @@
 - (NSString*) repeatedStringPieceFieldAtIndex:(int32_t) index;
 - (NSArray*) repeatedCordFieldList;
 - (NSString*) repeatedCordFieldAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (TestCamelCaseFieldNames*) defaultInstance;
 - (TestCamelCaseFieldNames*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2305,6 +2394,7 @@
 + (TestCamelCaseFieldNames_Builder*) newBuilder;
 - (TestCamelCaseFieldNames_Builder*) newBuilderForType;
 + (TestCamelCaseFieldNames_Builder*) newBuilderWithTestCamelCaseFieldNames:(TestCamelCaseFieldNames*) prototype;
+
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data;
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestCamelCaseFieldNames*) parseFromInputStream:(NSInputStream*) input;
@@ -2318,12 +2408,16 @@
   TestCamelCaseFieldNames* result;
 }
 @property (retain) TestCamelCaseFieldNames* result;
-- (TestCamelCaseFieldNames_Builder*) clear;
-- (TestCamelCaseFieldNames_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestCamelCaseFieldNames*) defaultInstanceForType;
+
+- (TestCamelCaseFieldNames_Builder*) clear;
+- (TestCamelCaseFieldNames_Builder*) clone;
+
 - (TestCamelCaseFieldNames*) build;
 - (TestCamelCaseFieldNames*) buildPartial;
+
 - (TestCamelCaseFieldNames_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestCamelCaseFieldNames_Builder*) mergeFromTestCamelCaseFieldNames:(TestCamelCaseFieldNames*) other;
 - (TestCamelCaseFieldNames_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2405,8 +2499,6 @@
 @end
 
 @interface TestFieldOrderings : PBExtendableMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasMyString;
   NSString* myString;
   BOOL hasMyInt;
@@ -2420,9 +2512,10 @@
 @property (readonly) int64_t myInt;
 @property (readonly) BOOL hasMyFloat;
 @property (readonly) Float32 myFloat;
+
++ (PBDescriptor*) descriptor;
 + (TestFieldOrderings*) defaultInstance;
 - (TestFieldOrderings*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2430,6 +2523,7 @@
 + (TestFieldOrderings_Builder*) newBuilder;
 - (TestFieldOrderings_Builder*) newBuilderForType;
 + (TestFieldOrderings_Builder*) newBuilderWithTestFieldOrderings:(TestFieldOrderings*) prototype;
+
 + (TestFieldOrderings*) parseFromData:(NSData*) data;
 + (TestFieldOrderings*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestFieldOrderings*) parseFromInputStream:(NSInputStream*) input;
@@ -2443,12 +2537,16 @@
   TestFieldOrderings* result;
 }
 @property (retain) TestFieldOrderings* result;
-- (TestFieldOrderings_Builder*) clear;
-- (TestFieldOrderings_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestFieldOrderings*) defaultInstanceForType;
+
+- (TestFieldOrderings_Builder*) clear;
+- (TestFieldOrderings_Builder*) clone;
+
 - (TestFieldOrderings*) build;
 - (TestFieldOrderings*) buildPartial;
+
 - (TestFieldOrderings_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestFieldOrderings_Builder*) mergeFromTestFieldOrderings:(TestFieldOrderings*) other;
 - (TestFieldOrderings_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2471,8 +2569,6 @@
 @end
 
 @interface TestExtremeDefaultValues : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasEscapedBytes;
   NSData* escapedBytes;
   BOOL hasLargeUint32;
@@ -2498,9 +2594,10 @@
 @property (readonly) int64_t smallInt64;
 @property (readonly) BOOL hasUtf8String;
 @property (retain, readonly) NSString* utf8String;
+
++ (PBDescriptor*) descriptor;
 + (TestExtremeDefaultValues*) defaultInstance;
 - (TestExtremeDefaultValues*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2508,6 +2605,7 @@
 + (TestExtremeDefaultValues_Builder*) newBuilder;
 - (TestExtremeDefaultValues_Builder*) newBuilderForType;
 + (TestExtremeDefaultValues_Builder*) newBuilderWithTestExtremeDefaultValues:(TestExtremeDefaultValues*) prototype;
+
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data;
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestExtremeDefaultValues*) parseFromInputStream:(NSInputStream*) input;
@@ -2521,12 +2619,16 @@
   TestExtremeDefaultValues* result;
 }
 @property (retain) TestExtremeDefaultValues* result;
-- (TestExtremeDefaultValues_Builder*) clear;
-- (TestExtremeDefaultValues_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestExtremeDefaultValues*) defaultInstanceForType;
+
+- (TestExtremeDefaultValues_Builder*) clear;
+- (TestExtremeDefaultValues_Builder*) clone;
+
 - (TestExtremeDefaultValues*) build;
 - (TestExtremeDefaultValues*) buildPartial;
+
 - (TestExtremeDefaultValues_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestExtremeDefaultValues_Builder*) mergeFromTestExtremeDefaultValues:(TestExtremeDefaultValues*) other;
 - (TestExtremeDefaultValues_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2564,12 +2666,11 @@
 @end
 
 @interface FooRequest : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (FooRequest*) defaultInstance;
 - (FooRequest*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2577,6 +2678,7 @@
 + (FooRequest_Builder*) newBuilder;
 - (FooRequest_Builder*) newBuilderForType;
 + (FooRequest_Builder*) newBuilderWithFooRequest:(FooRequest*) prototype;
+
 + (FooRequest*) parseFromData:(NSData*) data;
 + (FooRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (FooRequest*) parseFromInputStream:(NSInputStream*) input;
@@ -2590,12 +2692,16 @@
   FooRequest* result;
 }
 @property (retain) FooRequest* result;
-- (FooRequest_Builder*) clear;
-- (FooRequest_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (FooRequest*) defaultInstanceForType;
+
+- (FooRequest_Builder*) clear;
+- (FooRequest_Builder*) clone;
+
 - (FooRequest*) build;
 - (FooRequest*) buildPartial;
+
 - (FooRequest_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (FooRequest_Builder*) mergeFromFooRequest:(FooRequest*) other;
 - (FooRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2603,12 +2709,11 @@
 @end
 
 @interface FooResponse : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (FooResponse*) defaultInstance;
 - (FooResponse*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2616,6 +2721,7 @@
 + (FooResponse_Builder*) newBuilder;
 - (FooResponse_Builder*) newBuilderForType;
 + (FooResponse_Builder*) newBuilderWithFooResponse:(FooResponse*) prototype;
+
 + (FooResponse*) parseFromData:(NSData*) data;
 + (FooResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (FooResponse*) parseFromInputStream:(NSInputStream*) input;
@@ -2629,12 +2735,16 @@
   FooResponse* result;
 }
 @property (retain) FooResponse* result;
-- (FooResponse_Builder*) clear;
-- (FooResponse_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (FooResponse*) defaultInstanceForType;
+
+- (FooResponse_Builder*) clear;
+- (FooResponse_Builder*) clone;
+
 - (FooResponse*) build;
 - (FooResponse*) buildPartial;
+
 - (FooResponse_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (FooResponse_Builder*) mergeFromFooResponse:(FooResponse*) other;
 - (FooResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2642,12 +2752,11 @@
 @end
 
 @interface BarRequest : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (BarRequest*) defaultInstance;
 - (BarRequest*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2655,6 +2764,7 @@
 + (BarRequest_Builder*) newBuilder;
 - (BarRequest_Builder*) newBuilderForType;
 + (BarRequest_Builder*) newBuilderWithBarRequest:(BarRequest*) prototype;
+
 + (BarRequest*) parseFromData:(NSData*) data;
 + (BarRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (BarRequest*) parseFromInputStream:(NSInputStream*) input;
@@ -2668,12 +2778,16 @@
   BarRequest* result;
 }
 @property (retain) BarRequest* result;
-- (BarRequest_Builder*) clear;
-- (BarRequest_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (BarRequest*) defaultInstanceForType;
+
+- (BarRequest_Builder*) clear;
+- (BarRequest_Builder*) clone;
+
 - (BarRequest*) build;
 - (BarRequest*) buildPartial;
+
 - (BarRequest_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (BarRequest_Builder*) mergeFromBarRequest:(BarRequest*) other;
 - (BarRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -2681,12 +2795,11 @@
 @end
 
 @interface BarResponse : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (BarResponse*) defaultInstance;
 - (BarResponse*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2694,6 +2807,7 @@
 + (BarResponse_Builder*) newBuilder;
 - (BarResponse_Builder*) newBuilderForType;
 + (BarResponse_Builder*) newBuilderWithBarResponse:(BarResponse*) prototype;
+
 + (BarResponse*) parseFromData:(NSData*) data;
 + (BarResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (BarResponse*) parseFromInputStream:(NSInputStream*) input;
@@ -2707,12 +2821,16 @@
   BarResponse* result;
 }
 @property (retain) BarResponse* result;
-- (BarResponse_Builder*) clear;
-- (BarResponse_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (BarResponse*) defaultInstanceForType;
+
+- (BarResponse_Builder*) clear;
+- (BarResponse_Builder*) clone;
+
 - (BarResponse*) build;
 - (BarResponse*) buildPartial;
+
 - (BarResponse_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (BarResponse_Builder*) mergeFromBarResponse:(BarResponse*) other;
 - (BarResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;

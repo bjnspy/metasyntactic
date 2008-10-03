@@ -451,76 +451,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
                                                            type:[NSNumber class]] retain];
     internal_static_protobuf_unittest_TestAllTypes_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"OptionalInt32",
-      @"OptionalInt64",
-      @"OptionalUint32",
-      @"OptionalUint64",
-      @"OptionalSint32",
-      @"OptionalSint64",
-      @"OptionalFixed32",
-      @"OptionalFixed64",
-      @"OptionalSfixed32",
-      @"OptionalSfixed64",
-      @"OptionalFloat",
-      @"OptionalDouble",
-      @"OptionalBool",
-      @"OptionalString",
-      @"OptionalBytes",
-      @"OptionalGroup",
-      @"OptionalNestedMessage",
-      @"OptionalForeignMessage",
-      @"OptionalImportMessage",
-      @"OptionalNestedEnum",
-      @"OptionalForeignEnum",
-      @"OptionalImportEnum",
-      @"OptionalStringPiece",
-      @"OptionalCord",
-      @"RepeatedInt32",
-      @"RepeatedInt64",
-      @"RepeatedUint32",
-      @"RepeatedUint64",
-      @"RepeatedSint32",
-      @"RepeatedSint64",
-      @"RepeatedFixed32",
-      @"RepeatedFixed64",
-      @"RepeatedSfixed32",
-      @"RepeatedSfixed64",
-      @"RepeatedFloat",
-      @"RepeatedDouble",
-      @"RepeatedBool",
-      @"RepeatedString",
-      @"RepeatedBytes",
-      @"RepeatedGroup",
-      @"RepeatedNestedMessage",
-      @"RepeatedForeignMessage",
-      @"RepeatedImportMessage",
-      @"RepeatedNestedEnum",
-      @"RepeatedForeignEnum",
-      @"RepeatedImportEnum",
-      @"RepeatedStringPiece",
-      @"RepeatedCord",
-      @"DefaultInt32",
-      @"DefaultInt64",
-      @"DefaultUint32",
-      @"DefaultUint64",
-      @"DefaultSint32",
-      @"DefaultSint64",
-      @"DefaultFixed32",
-      @"DefaultFixed64",
-      @"DefaultSfixed32",
-      @"DefaultSfixed64",
-      @"DefaultFloat",
-      @"DefaultDouble",
-      @"DefaultBool",
-      @"DefaultString",
-      @"DefaultBytes",
-      @"DefaultNestedEnum",
-      @"DefaultForeignEnum",
-      @"DefaultImportEnum",
-      @"DefaultStringPiece",
-      @"DefaultCord",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"OptionalInt32", @"OptionalInt64", @"OptionalUint32", @"OptionalUint64", @"OptionalSint32", @"OptionalSint64", @"OptionalFixed32", @"OptionalFixed64", @"OptionalSfixed32", @"OptionalSfixed64", @"OptionalFloat", @"OptionalDouble", @"OptionalBool", @"OptionalString", @"OptionalBytes", @"OptionalGroup", @"OptionalNestedMessage", @"OptionalForeignMessage", @"OptionalImportMessage", @"OptionalNestedEnum", @"OptionalForeignEnum", @"OptionalImportEnum", @"OptionalStringPiece", @"OptionalCord", @"RepeatedInt32", @"RepeatedInt64", @"RepeatedUint32", @"RepeatedUint64", @"RepeatedSint32", @"RepeatedSint64", @"RepeatedFixed32", @"RepeatedFixed64", @"RepeatedSfixed32", @"RepeatedSfixed64", @"RepeatedFloat", @"RepeatedDouble", @"RepeatedBool", @"RepeatedString", @"RepeatedBytes", @"RepeatedGroup", @"RepeatedNestedMessage", @"RepeatedForeignMessage", @"RepeatedImportMessage", @"RepeatedNestedEnum", @"RepeatedForeignEnum", @"RepeatedImportEnum", @"RepeatedStringPiece", @"RepeatedCord", @"DefaultInt32", @"DefaultInt64", @"DefaultUint32", @"DefaultUint64", @"DefaultSint32", @"DefaultSint64", @"DefaultFixed32", @"DefaultFixed64", @"DefaultSfixed32", @"DefaultSfixed64", @"DefaultFloat", @"DefaultDouble", @"DefaultBool", @"DefaultString", @"DefaultBytes", @"DefaultNestedEnum", @"DefaultForeignEnum", @"DefaultImportEnum", @"DefaultStringPiece", @"DefaultCord", nil];
       internal_static_protobuf_unittest_TestAllTypes_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllTypes_descriptor
                                         fieldNames:fieldNames
@@ -529,9 +460,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor = [[[internal_static_protobuf_unittest_TestAllTypes_descriptor nestedTypes] objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Bb",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Bb", nil];
       internal_static_protobuf_unittest_TestAllTypes_NestedMessage_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor
                                         fieldNames:fieldNames
@@ -540,9 +469,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor = [[[internal_static_protobuf_unittest_TestAllTypes_descriptor nestedTypes] objectAtIndex:1] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
       internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor
                                         fieldNames:fieldNames
@@ -551,9 +478,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor = [[[internal_static_protobuf_unittest_TestAllTypes_descriptor nestedTypes] objectAtIndex:2] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
       internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor
                                         fieldNames:fieldNames
@@ -562,9 +487,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_ForeignMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"C",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"C", nil];
       internal_static_protobuf_unittest_ForeignMessage_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_ForeignMessage_descriptor
                                         fieldNames:fieldNames
@@ -573,8 +496,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestAllExtensions_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_protobuf_unittest_TestAllExtensions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestAllExtensions_descriptor
                                         fieldNames:fieldNames
@@ -583,9 +505,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_OptionalGroup_extension_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
       internal_static_protobuf_unittest_OptionalGroup_extension_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_OptionalGroup_extension_descriptor
                                         fieldNames:fieldNames
@@ -594,9 +514,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
       internal_static_protobuf_unittest_RepeatedGroup_extension_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor
                                         fieldNames:fieldNames
@@ -605,41 +523,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestRequired_descriptor = [[[self descriptor].messageTypes objectAtIndex:5] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      @"Dummy2",
-      @"B",
-      @"Dummy4",
-      @"Dummy5",
-      @"Dummy6",
-      @"Dummy7",
-      @"Dummy8",
-      @"Dummy9",
-      @"Dummy10",
-      @"Dummy11",
-      @"Dummy12",
-      @"Dummy13",
-      @"Dummy14",
-      @"Dummy15",
-      @"Dummy16",
-      @"Dummy17",
-      @"Dummy18",
-      @"Dummy19",
-      @"Dummy20",
-      @"Dummy21",
-      @"Dummy22",
-      @"Dummy23",
-      @"Dummy24",
-      @"Dummy25",
-      @"Dummy26",
-      @"Dummy27",
-      @"Dummy28",
-      @"Dummy29",
-      @"Dummy30",
-      @"Dummy31",
-      @"Dummy32",
-      @"C",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"Dummy2", @"B", @"Dummy4", @"Dummy5", @"Dummy6", @"Dummy7", @"Dummy8", @"Dummy9", @"Dummy10", @"Dummy11", @"Dummy12", @"Dummy13", @"Dummy14", @"Dummy15", @"Dummy16", @"Dummy17", @"Dummy18", @"Dummy19", @"Dummy20", @"Dummy21", @"Dummy22", @"Dummy23", @"Dummy24", @"Dummy25", @"Dummy26", @"Dummy27", @"Dummy28", @"Dummy29", @"Dummy30", @"Dummy31", @"Dummy32", @"C", nil];
       internal_static_protobuf_unittest_TestRequired_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestRequired_descriptor
                                         fieldNames:fieldNames
@@ -648,11 +532,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestRequiredForeign_descriptor = [[[self descriptor].messageTypes objectAtIndex:6] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"OptionalMessage",
-      @"RepeatedMessage",
-      @"Dummy",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"OptionalMessage", @"RepeatedMessage", @"Dummy", nil];
       internal_static_protobuf_unittest_TestRequiredForeign_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestRequiredForeign_descriptor
                                         fieldNames:fieldNames
@@ -661,9 +541,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestForeignNested_descriptor = [[[self descriptor].messageTypes objectAtIndex:7] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"ForeignNested",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"ForeignNested", nil];
       internal_static_protobuf_unittest_TestForeignNested_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestForeignNested_descriptor
                                         fieldNames:fieldNames
@@ -672,8 +550,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestEmptyMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:8] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_protobuf_unittest_TestEmptyMessage_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestEmptyMessage_descriptor
                                         fieldNames:fieldNames
@@ -682,8 +559,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor = [[[self descriptor].messageTypes objectAtIndex:9] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor
                                         fieldNames:fieldNames
@@ -692,10 +568,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor = [[[self descriptor].messageTypes objectAtIndex:10] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      @"Bb",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"Bb", nil];
       internal_static_protobuf_unittest_TestReallyLargeTagNumber_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor
                                         fieldNames:fieldNames
@@ -704,10 +577,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestRecursiveMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:11] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      @"I",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"I", nil];
       internal_static_protobuf_unittest_TestRecursiveMessage_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestRecursiveMessage_descriptor
                                         fieldNames:fieldNames
@@ -716,9 +586,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestMutualRecursionA_descriptor = [[[self descriptor].messageTypes objectAtIndex:12] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Bb",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Bb", nil];
       internal_static_protobuf_unittest_TestMutualRecursionA_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMutualRecursionA_descriptor
                                         fieldNames:fieldNames
@@ -727,10 +595,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestMutualRecursionB_descriptor = [[[self descriptor].messageTypes objectAtIndex:13] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      @"OptionalInt32",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"OptionalInt32", nil];
       internal_static_protobuf_unittest_TestMutualRecursionB_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMutualRecursionB_descriptor
                                         fieldNames:fieldNames
@@ -739,11 +604,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestDupFieldNumber_descriptor = [[[self descriptor].messageTypes objectAtIndex:14] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      @"Foo",
-      @"Bar",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", @"Foo", @"Bar", nil];
       internal_static_protobuf_unittest_TestDupFieldNumber_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestDupFieldNumber_descriptor
                                         fieldNames:fieldNames
@@ -752,9 +613,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor = [[[internal_static_protobuf_unittest_TestDupFieldNumber_descriptor nestedTypes] objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
       internal_static_protobuf_unittest_TestDupFieldNumber_Foo_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor
                                         fieldNames:fieldNames
@@ -763,9 +622,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor = [[[internal_static_protobuf_unittest_TestDupFieldNumber_descriptor nestedTypes] objectAtIndex:1] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"A",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"A", nil];
       internal_static_protobuf_unittest_TestDupFieldNumber_Bar_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor
                                         fieldNames:fieldNames
@@ -774,9 +631,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor = [[[self descriptor].messageTypes objectAtIndex:15] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"OptionalNestedMessage",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"OptionalNestedMessage", nil];
       internal_static_protobuf_unittest_TestNestedMessageHasBits_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor
                                         fieldNames:fieldNames
@@ -785,10 +640,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor = [[[internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor nestedTypes] objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"NestedmessageRepeatedInt32",
-      @"NestedmessageRepeatedForeignmessage",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"NestedmessageRepeatedInt32", @"NestedmessageRepeatedForeignmessage", nil];
       internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor
                                         fieldNames:fieldNames
@@ -797,20 +649,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor = [[[self descriptor].messageTypes objectAtIndex:16] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"PrimitiveField",
-      @"StringField",
-      @"EnumField",
-      @"MessageField",
-      @"StringPieceField",
-      @"CordField",
-      @"RepeatedPrimitiveField",
-      @"RepeatedStringField",
-      @"RepeatedEnumField",
-      @"RepeatedMessageField",
-      @"RepeatedStringPieceField",
-      @"RepeatedCordField",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"PrimitiveField", @"StringField", @"EnumField", @"MessageField", @"StringPieceField", @"CordField", @"RepeatedPrimitiveField", @"RepeatedStringField", @"RepeatedEnumField", @"RepeatedMessageField", @"RepeatedStringPieceField", @"RepeatedCordField", nil];
       internal_static_protobuf_unittest_TestCamelCaseFieldNames_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor
                                         fieldNames:fieldNames
@@ -819,11 +658,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestFieldOrderings_descriptor = [[[self descriptor].messageTypes objectAtIndex:17] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"MyString",
-      @"MyInt",
-      @"MyFloat",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"MyString", @"MyInt", @"MyFloat", nil];
       internal_static_protobuf_unittest_TestFieldOrderings_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestFieldOrderings_descriptor
                                         fieldNames:fieldNames
@@ -832,14 +667,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor = [[[self descriptor].messageTypes objectAtIndex:18] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"EscapedBytes",
-      @"LargeUint32",
-      @"LargeUint64",
-      @"SmallInt32",
-      @"SmallInt64",
-      @"Utf8String",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"EscapedBytes", @"LargeUint32", @"LargeUint64", @"SmallInt32", @"SmallInt64", @"Utf8String", nil];
       internal_static_protobuf_unittest_TestExtremeDefaultValues_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor
                                         fieldNames:fieldNames
@@ -848,8 +676,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_FooRequest_descriptor = [[[self descriptor].messageTypes objectAtIndex:19] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_protobuf_unittest_FooRequest_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_FooRequest_descriptor
                                         fieldNames:fieldNames
@@ -858,8 +685,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_FooResponse_descriptor = [[[self descriptor].messageTypes objectAtIndex:20] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_protobuf_unittest_FooResponse_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_FooResponse_descriptor
                                         fieldNames:fieldNames
@@ -868,8 +694,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_BarRequest_descriptor = [[[self descriptor].messageTypes objectAtIndex:21] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_protobuf_unittest_BarRequest_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_BarRequest_descriptor
                                         fieldNames:fieldNames
@@ -878,8 +703,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     }
     internal_static_protobuf_unittest_BarResponse_descriptor = [[[self descriptor].messageTypes objectAtIndex:22] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_protobuf_unittest_BarResponse_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_BarResponse_descriptor
                                         fieldNames:fieldNames
@@ -1135,9 +959,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     "est.TestFieldOrderings\0302 \001(\t:?\n\020my_extension_int\022%.protob"
     "uf_unittest.TestFieldOrderings\030\005 \001(\005B\021B\rUnittestProtoH\001"
     ];
-  NSArray* dependencies = [NSArray arrayWithObjects:
-          [UnittestImportProtoRoot descriptor],
-           nil];
+  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestImportProtoRoot descriptor], nil];
   return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
 @end
@@ -1707,7 +1529,6 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.optionalInt32 = 0;
     self.optionalInt64 = 0L;
     self.optionalUint32 = 0;
@@ -2544,7 +2365,6 @@ static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAZ = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.bb = 0;
   }
   return self;
@@ -2751,7 +2571,6 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.a = 0;
   }
   return self;
@@ -2958,7 +2777,6 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.a = 0;
   }
   return self;
@@ -5403,7 +5221,6 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.c = 0;
   }
   return self;
@@ -5604,7 +5421,6 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -5783,7 +5599,6 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.a = 0;
   }
   return self;
@@ -5990,7 +5805,6 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.a = 0;
   }
   return self;
@@ -6389,7 +6203,6 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.a = 0;
     self.dummy2 = 0;
     self.b = 0;
@@ -7638,7 +7451,6 @@ static TestRequired* defaultTestRequiredInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.dummy = 0;
   }
   return self;
@@ -7957,7 +7769,6 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -8176,7 +7987,6 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -8345,7 +8155,6 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -8530,7 +8339,6 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.a = 0;
     self.bb = 0;
   }
@@ -8775,7 +8583,6 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.i = 0;
   }
   return self;
@@ -9032,7 +8839,6 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -9263,7 +9069,6 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.optionalInt32 = 0;
   }
   return self;
@@ -9532,7 +9337,6 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.a = 0;
   }
   return self;
@@ -9642,7 +9446,6 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.a = 0;
   }
   return self;
@@ -9849,7 +9652,6 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.a = 0;
   }
   return self;
@@ -10253,7 +10055,6 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -10348,7 +10149,6 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -10811,7 +10611,6 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.primitiveField = 0;
     self.stringField = @"";
     self.enumField = [ForeignEnum FOREIGN_FOO];
@@ -11545,7 +11344,6 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.myString = @"";
     self.myInt = 0L;
     self.myFloat = 0;
@@ -11851,7 +11649,6 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.escapedBytes = ([[[TestExtremeDefaultValues descriptor].fields objectAtIndex:0] defaultValue]);
     self.largeUint32 = -1;
     self.largeUint64 = -1L;
@@ -12212,7 +12009,6 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -12381,7 +12177,6 @@ static FooRequest* defaultFooRequestInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -12550,7 +12345,6 @@ static FooResponse* defaultFooResponseInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -12719,7 +12513,6 @@ static BarRequest* defaultBarRequestInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -12883,13 +12676,13 @@ static BarResponse* defaultBarResponseInstance = nil;
                       request:(FooRequest*) request
                        target:(id) target
                      selector:(SEL) selector {
-  @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 - (void) barWithController:(id<PBRpcController>) controller
                       request:(BarRequest*) request
                        target:(id) target
                      selector:(SEL) selector {
-  @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+  @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 + (PBServiceDescriptor*) descriptor {
@@ -12905,7 +12698,7 @@ static BarResponse* defaultBarResponseInstance = nil;
              target:(id) target
            selector:(SEL) selector {
   if (method.service != self.descriptorForType) {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Service.callMethod given method descriptor for wrong service type." userInfo:nil];
   }
   switch(method.index) {
     case 0:
@@ -12915,13 +12708,13 @@ static BarResponse* defaultBarResponseInstance = nil;
       [self barWithController:controller request:(id)request target:target selector:selector];
       return;
     default:
-      @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+      @throw [NSException exceptionWithName:@"RuntimeError" reason:@"" userInfo:nil];
   }
 }
 
 - (id<PBMessage>) getRequestPrototype:(PBMethodDescriptor*) method {
   if (method.service != self.descriptorForType) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Service.callMethod given method descriptor for wrong service type." userInfo:nil];
   }
   switch(method.index) {
     case 0:
@@ -12935,7 +12728,7 @@ static BarResponse* defaultBarResponseInstance = nil;
 
 - (id<PBMessage>) getResponsePrototype:(PBMethodDescriptor*) method {
   if (method.service != self.descriptorForType) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Service.callMethod given method descriptor for wrong service type." userInfo:nil];
   }
   switch(method.index) {
     case 0:

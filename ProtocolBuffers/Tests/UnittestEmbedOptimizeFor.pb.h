@@ -82,8 +82,6 @@
 @end
 
 @interface TestEmbedOptimizedForSize : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasOptionalMessage;
   TestOptimizedForSize* optionalMessage;
   NSMutableArray* mutableRepeatedMessageList;
@@ -92,9 +90,10 @@
 @property (retain, readonly) TestOptimizedForSize* optionalMessage;
 - (NSArray*) repeatedMessageList;
 - (TestOptimizedForSize*) repeatedMessageAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (TestEmbedOptimizedForSize*) defaultInstance;
 - (TestEmbedOptimizedForSize*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -102,6 +101,7 @@
 + (TestEmbedOptimizedForSize_Builder*) newBuilder;
 - (TestEmbedOptimizedForSize_Builder*) newBuilderForType;
 + (TestEmbedOptimizedForSize_Builder*) newBuilderWithTestEmbedOptimizedForSize:(TestEmbedOptimizedForSize*) prototype;
+
 + (TestEmbedOptimizedForSize*) parseFromData:(NSData*) data;
 + (TestEmbedOptimizedForSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (TestEmbedOptimizedForSize*) parseFromInputStream:(NSInputStream*) input;
@@ -115,12 +115,16 @@
   TestEmbedOptimizedForSize* result;
 }
 @property (retain) TestEmbedOptimizedForSize* result;
-- (TestEmbedOptimizedForSize_Builder*) clear;
-- (TestEmbedOptimizedForSize_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (TestEmbedOptimizedForSize*) defaultInstanceForType;
+
+- (TestEmbedOptimizedForSize_Builder*) clear;
+- (TestEmbedOptimizedForSize_Builder*) clone;
+
 - (TestEmbedOptimizedForSize*) build;
 - (TestEmbedOptimizedForSize*) buildPartial;
+
 - (TestEmbedOptimizedForSize_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestEmbedOptimizedForSize_Builder*) mergeFromTestEmbedOptimizedForSize:(TestEmbedOptimizedForSize*) other;
 - (TestEmbedOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;

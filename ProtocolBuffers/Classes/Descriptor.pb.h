@@ -46,15 +46,14 @@
 @end
 
 @interface PBFileDescriptorSet : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   NSMutableArray* mutableFileList;
 }
 - (NSArray*) fileList;
 - (PBFileDescriptorProto*) fileAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (PBFileDescriptorSet*) defaultInstance;
 - (PBFileDescriptorSet*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -62,6 +61,7 @@
 + (PBFileDescriptorSet_Builder*) newBuilder;
 - (PBFileDescriptorSet_Builder*) newBuilderForType;
 + (PBFileDescriptorSet_Builder*) newBuilderWithPBFileDescriptorSet:(PBFileDescriptorSet*) prototype;
+
 + (PBFileDescriptorSet*) parseFromData:(NSData*) data;
 + (PBFileDescriptorSet*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFileDescriptorSet*) parseFromInputStream:(NSInputStream*) input;
@@ -75,12 +75,16 @@
   PBFileDescriptorSet* result;
 }
 @property (retain) PBFileDescriptorSet* result;
-- (PBFileDescriptorSet_Builder*) clear;
-- (PBFileDescriptorSet_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBFileDescriptorSet*) defaultInstanceForType;
+
+- (PBFileDescriptorSet_Builder*) clear;
+- (PBFileDescriptorSet_Builder*) clone;
+
 - (PBFileDescriptorSet*) build;
 - (PBFileDescriptorSet*) buildPartial;
+
 - (PBFileDescriptorSet_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFileDescriptorSet_Builder*) mergeFromPBFileDescriptorSet:(PBFileDescriptorSet*) other;
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -95,8 +99,6 @@
 @end
 
 @interface PBFileDescriptorProto : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasName;
   NSString* name;
   BOOL hasPackage;
@@ -125,9 +127,10 @@
 - (PBServiceDescriptorProto*) serviceAtIndex:(int32_t) index;
 - (NSArray*) extensionList;
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (PBFileDescriptorProto*) defaultInstance;
 - (PBFileDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -135,6 +138,7 @@
 + (PBFileDescriptorProto_Builder*) newBuilder;
 - (PBFileDescriptorProto_Builder*) newBuilderForType;
 + (PBFileDescriptorProto_Builder*) newBuilderWithPBFileDescriptorProto:(PBFileDescriptorProto*) prototype;
+
 + (PBFileDescriptorProto*) parseFromData:(NSData*) data;
 + (PBFileDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFileDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
@@ -148,12 +152,16 @@
   PBFileDescriptorProto* result;
 }
 @property (retain) PBFileDescriptorProto* result;
-- (PBFileDescriptorProto_Builder*) clear;
-- (PBFileDescriptorProto_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBFileDescriptorProto*) defaultInstanceForType;
+
+- (PBFileDescriptorProto_Builder*) clear;
+- (PBFileDescriptorProto_Builder*) clone;
+
 - (PBFileDescriptorProto*) build;
 - (PBFileDescriptorProto*) buildPartial;
+
 - (PBFileDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFileDescriptorProto_Builder*) mergeFromPBFileDescriptorProto:(PBFileDescriptorProto*) other;
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -213,8 +221,6 @@
 @end
 
 @interface PBDescriptorProto : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasName;
   NSString* name;
   NSMutableArray* mutableFieldList;
@@ -239,9 +245,10 @@
 - (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index;
 - (NSArray*) extensionRangeList;
 - (PBDescriptorProto_ExtensionRange*) extensionRangeAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (PBDescriptorProto*) defaultInstance;
 - (PBDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -249,6 +256,7 @@
 + (PBDescriptorProto_Builder*) newBuilder;
 - (PBDescriptorProto_Builder*) newBuilderForType;
 + (PBDescriptorProto_Builder*) newBuilderWithPBDescriptorProto:(PBDescriptorProto*) prototype;
+
 + (PBDescriptorProto*) parseFromData:(NSData*) data;
 + (PBDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
@@ -258,8 +266,6 @@
 @end
 
 @interface PBDescriptorProto_ExtensionRange : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasStart;
   int32_t start;
   BOOL hasEnd;
@@ -269,9 +275,10 @@
 @property (readonly) int32_t start;
 @property (readonly) BOOL hasEnd;
 @property (readonly) int32_t end;
+
++ (PBDescriptor*) descriptor;
 + (PBDescriptorProto_ExtensionRange*) defaultInstance;
 - (PBDescriptorProto_ExtensionRange*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -279,6 +286,7 @@
 + (PBDescriptorProto_ExtensionRange_Builder*) newBuilder;
 - (PBDescriptorProto_ExtensionRange_Builder*) newBuilderForType;
 + (PBDescriptorProto_ExtensionRange_Builder*) newBuilderWithPBDescriptorProto_ExtensionRange:(PBDescriptorProto_ExtensionRange*) prototype;
+
 + (PBDescriptorProto_ExtensionRange*) parseFromData:(NSData*) data;
 + (PBDescriptorProto_ExtensionRange*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBDescriptorProto_ExtensionRange*) parseFromInputStream:(NSInputStream*) input;
@@ -292,12 +300,16 @@
   PBDescriptorProto_ExtensionRange* result;
 }
 @property (retain) PBDescriptorProto_ExtensionRange* result;
-- (PBDescriptorProto_ExtensionRange_Builder*) clear;
-- (PBDescriptorProto_ExtensionRange_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBDescriptorProto_ExtensionRange*) defaultInstanceForType;
+
+- (PBDescriptorProto_ExtensionRange_Builder*) clear;
+- (PBDescriptorProto_ExtensionRange_Builder*) clone;
+
 - (PBDescriptorProto_ExtensionRange*) build;
 - (PBDescriptorProto_ExtensionRange*) buildPartial;
+
 - (PBDescriptorProto_ExtensionRange_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBDescriptorProto_ExtensionRange_Builder*) mergeFromPBDescriptorProto_ExtensionRange:(PBDescriptorProto_ExtensionRange*) other;
 - (PBDescriptorProto_ExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -319,12 +331,16 @@
   PBDescriptorProto* result;
 }
 @property (retain) PBDescriptorProto* result;
-- (PBDescriptorProto_Builder*) clear;
-- (PBDescriptorProto_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBDescriptorProto*) defaultInstanceForType;
+
+- (PBDescriptorProto_Builder*) clear;
+- (PBDescriptorProto_Builder*) clone;
+
 - (PBDescriptorProto*) build;
 - (PBDescriptorProto*) buildPartial;
+
 - (PBDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBDescriptorProto_Builder*) mergeFromPBDescriptorProto:(PBDescriptorProto*) other;
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -379,8 +395,6 @@
 @end
 
 @interface PBFieldDescriptorProto : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasName;
   NSString* name;
   BOOL hasNumber;
@@ -414,9 +428,10 @@
 @property (retain, readonly) NSString* defaultValue;
 @property (readonly) BOOL hasOptions;
 @property (retain, readonly) PBFieldOptions* options;
+
++ (PBDescriptor*) descriptor;
 + (PBFieldDescriptorProto*) defaultInstance;
 - (PBFieldDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -424,6 +439,7 @@
 + (PBFieldDescriptorProto_Builder*) newBuilder;
 - (PBFieldDescriptorProto_Builder*) newBuilderForType;
 + (PBFieldDescriptorProto_Builder*) newBuilderWithPBFieldDescriptorProto:(PBFieldDescriptorProto*) prototype;
+
 + (PBFieldDescriptorProto*) parseFromData:(NSData*) data;
 + (PBFieldDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFieldDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
@@ -494,12 +510,16 @@
   PBFieldDescriptorProto* result;
 }
 @property (retain) PBFieldDescriptorProto* result;
-- (PBFieldDescriptorProto_Builder*) clear;
-- (PBFieldDescriptorProto_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBFieldDescriptorProto*) defaultInstanceForType;
+
+- (PBFieldDescriptorProto_Builder*) clear;
+- (PBFieldDescriptorProto_Builder*) clone;
+
 - (PBFieldDescriptorProto*) build;
 - (PBFieldDescriptorProto*) buildPartial;
+
 - (PBFieldDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFieldDescriptorProto_Builder*) mergeFromPBFieldDescriptorProto:(PBFieldDescriptorProto*) other;
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -549,8 +569,6 @@
 @end
 
 @interface PBEnumDescriptorProto : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasName;
   NSString* name;
   NSMutableArray* mutableValueList;
@@ -563,9 +581,10 @@
 @property (retain, readonly) PBEnumOptions* options;
 - (NSArray*) valueList;
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (PBEnumDescriptorProto*) defaultInstance;
 - (PBEnumDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -573,6 +592,7 @@
 + (PBEnumDescriptorProto_Builder*) newBuilder;
 - (PBEnumDescriptorProto_Builder*) newBuilderForType;
 + (PBEnumDescriptorProto_Builder*) newBuilderWithPBEnumDescriptorProto:(PBEnumDescriptorProto*) prototype;
+
 + (PBEnumDescriptorProto*) parseFromData:(NSData*) data;
 + (PBEnumDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
@@ -586,12 +606,16 @@
   PBEnumDescriptorProto* result;
 }
 @property (retain) PBEnumDescriptorProto* result;
-- (PBEnumDescriptorProto_Builder*) clear;
-- (PBEnumDescriptorProto_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBEnumDescriptorProto*) defaultInstanceForType;
+
+- (PBEnumDescriptorProto_Builder*) clear;
+- (PBEnumDescriptorProto_Builder*) clone;
+
 - (PBEnumDescriptorProto*) build;
 - (PBEnumDescriptorProto*) buildPartial;
+
 - (PBEnumDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBEnumDescriptorProto_Builder*) mergeFromPBEnumDescriptorProto:(PBEnumDescriptorProto*) other;
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -618,8 +642,6 @@
 @end
 
 @interface PBEnumValueDescriptorProto : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasName;
   NSString* name;
   BOOL hasNumber;
@@ -633,9 +655,10 @@
 @property (readonly) int32_t number;
 @property (readonly) BOOL hasOptions;
 @property (retain, readonly) PBEnumValueOptions* options;
+
++ (PBDescriptor*) descriptor;
 + (PBEnumValueDescriptorProto*) defaultInstance;
 - (PBEnumValueDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -643,6 +666,7 @@
 + (PBEnumValueDescriptorProto_Builder*) newBuilder;
 - (PBEnumValueDescriptorProto_Builder*) newBuilderForType;
 + (PBEnumValueDescriptorProto_Builder*) newBuilderWithPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) prototype;
+
 + (PBEnumValueDescriptorProto*) parseFromData:(NSData*) data;
 + (PBEnumValueDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumValueDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
@@ -656,12 +680,16 @@
   PBEnumValueDescriptorProto* result;
 }
 @property (retain) PBEnumValueDescriptorProto* result;
-- (PBEnumValueDescriptorProto_Builder*) clear;
-- (PBEnumValueDescriptorProto_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBEnumValueDescriptorProto*) defaultInstanceForType;
+
+- (PBEnumValueDescriptorProto_Builder*) clear;
+- (PBEnumValueDescriptorProto_Builder*) clone;
+
 - (PBEnumValueDescriptorProto*) build;
 - (PBEnumValueDescriptorProto*) buildPartial;
+
 - (PBEnumValueDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBEnumValueDescriptorProto_Builder*) mergeFromPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) other;
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -686,8 +714,6 @@
 @end
 
 @interface PBServiceDescriptorProto : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasName;
   NSString* name;
   NSMutableArray* mutableMethodList;
@@ -700,9 +726,10 @@
 @property (retain, readonly) PBServiceOptions* options;
 - (NSArray*) methodList;
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index;
+
++ (PBDescriptor*) descriptor;
 + (PBServiceDescriptorProto*) defaultInstance;
 - (PBServiceDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -710,6 +737,7 @@
 + (PBServiceDescriptorProto_Builder*) newBuilder;
 - (PBServiceDescriptorProto_Builder*) newBuilderForType;
 + (PBServiceDescriptorProto_Builder*) newBuilderWithPBServiceDescriptorProto:(PBServiceDescriptorProto*) prototype;
+
 + (PBServiceDescriptorProto*) parseFromData:(NSData*) data;
 + (PBServiceDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBServiceDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
@@ -723,12 +751,16 @@
   PBServiceDescriptorProto* result;
 }
 @property (retain) PBServiceDescriptorProto* result;
-- (PBServiceDescriptorProto_Builder*) clear;
-- (PBServiceDescriptorProto_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBServiceDescriptorProto*) defaultInstanceForType;
+
+- (PBServiceDescriptorProto_Builder*) clear;
+- (PBServiceDescriptorProto_Builder*) clone;
+
 - (PBServiceDescriptorProto*) build;
 - (PBServiceDescriptorProto*) buildPartial;
+
 - (PBServiceDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBServiceDescriptorProto_Builder*) mergeFromPBServiceDescriptorProto:(PBServiceDescriptorProto*) other;
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -755,8 +787,6 @@
 @end
 
 @interface PBMethodDescriptorProto : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasName;
   NSString* name;
   BOOL hasInputType;
@@ -774,9 +804,10 @@
 @property (retain, readonly) NSString* outputType;
 @property (readonly) BOOL hasOptions;
 @property (retain, readonly) PBMethodOptions* options;
+
++ (PBDescriptor*) descriptor;
 + (PBMethodDescriptorProto*) defaultInstance;
 - (PBMethodDescriptorProto*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -784,6 +815,7 @@
 + (PBMethodDescriptorProto_Builder*) newBuilder;
 - (PBMethodDescriptorProto_Builder*) newBuilderForType;
 + (PBMethodDescriptorProto_Builder*) newBuilderWithPBMethodDescriptorProto:(PBMethodDescriptorProto*) prototype;
+
 + (PBMethodDescriptorProto*) parseFromData:(NSData*) data;
 + (PBMethodDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBMethodDescriptorProto*) parseFromInputStream:(NSInputStream*) input;
@@ -797,12 +829,16 @@
   PBMethodDescriptorProto* result;
 }
 @property (retain) PBMethodDescriptorProto* result;
-- (PBMethodDescriptorProto_Builder*) clear;
-- (PBMethodDescriptorProto_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBMethodDescriptorProto*) defaultInstanceForType;
+
+- (PBMethodDescriptorProto_Builder*) clear;
+- (PBMethodDescriptorProto_Builder*) clone;
+
 - (PBMethodDescriptorProto*) build;
 - (PBMethodDescriptorProto*) buildPartial;
+
 - (PBMethodDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBMethodDescriptorProto_Builder*) mergeFromPBMethodDescriptorProto:(PBMethodDescriptorProto*) other;
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -832,8 +868,6 @@
 @end
 
 @interface PBFileOptions : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasJavaPackage;
   NSString* javaPackage;
   BOOL hasJavaOuterClassname;
@@ -859,9 +893,10 @@
 @property (retain, readonly) NSString* objectivecPackage;
 @property (readonly) BOOL hasObjectivecClassPrefix;
 @property (retain, readonly) NSString* objectivecClassPrefix;
+
++ (PBDescriptor*) descriptor;
 + (PBFileOptions*) defaultInstance;
 - (PBFileOptions*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -869,6 +904,7 @@
 + (PBFileOptions_Builder*) newBuilder;
 - (PBFileOptions_Builder*) newBuilderForType;
 + (PBFileOptions_Builder*) newBuilderWithPBFileOptions:(PBFileOptions*) prototype;
+
 + (PBFileOptions*) parseFromData:(NSData*) data;
 + (PBFileOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFileOptions*) parseFromInputStream:(NSInputStream*) input;
@@ -902,12 +938,16 @@
   PBFileOptions* result;
 }
 @property (retain) PBFileOptions* result;
-- (PBFileOptions_Builder*) clear;
-- (PBFileOptions_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBFileOptions*) defaultInstanceForType;
+
+- (PBFileOptions_Builder*) clear;
+- (PBFileOptions_Builder*) clone;
+
 - (PBFileOptions*) build;
 - (PBFileOptions*) buildPartial;
+
 - (PBFileOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFileOptions_Builder*) mergeFromPBFileOptions:(PBFileOptions*) other;
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -945,16 +985,15 @@
 @end
 
 @interface PBMessageOptions : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasMessageSetWireFormat;
   BOOL messageSetWireFormat;
 }
 @property (readonly) BOOL hasMessageSetWireFormat;
 @property (readonly) BOOL messageSetWireFormat;
+
++ (PBDescriptor*) descriptor;
 + (PBMessageOptions*) defaultInstance;
 - (PBMessageOptions*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -962,6 +1001,7 @@
 + (PBMessageOptions_Builder*) newBuilder;
 - (PBMessageOptions_Builder*) newBuilderForType;
 + (PBMessageOptions_Builder*) newBuilderWithPBMessageOptions:(PBMessageOptions*) prototype;
+
 + (PBMessageOptions*) parseFromData:(NSData*) data;
 + (PBMessageOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBMessageOptions*) parseFromInputStream:(NSInputStream*) input;
@@ -975,12 +1015,16 @@
   PBMessageOptions* result;
 }
 @property (retain) PBMessageOptions* result;
-- (PBMessageOptions_Builder*) clear;
-- (PBMessageOptions_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBMessageOptions*) defaultInstanceForType;
+
+- (PBMessageOptions_Builder*) clear;
+- (PBMessageOptions_Builder*) clone;
+
 - (PBMessageOptions*) build;
 - (PBMessageOptions*) buildPartial;
+
 - (PBMessageOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBMessageOptions_Builder*) mergeFromPBMessageOptions:(PBMessageOptions*) other;
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -993,8 +1037,6 @@
 @end
 
 @interface PBFieldOptions : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
   BOOL hasCtype;
   PBFieldOptions_CType* ctype;
   BOOL hasExperimentalMapKey;
@@ -1004,9 +1046,10 @@
 @property (retain, readonly) PBFieldOptions_CType* ctype;
 @property (readonly) BOOL hasExperimentalMapKey;
 @property (retain, readonly) NSString* experimentalMapKey;
+
++ (PBDescriptor*) descriptor;
 + (PBFieldOptions*) defaultInstance;
 - (PBFieldOptions*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1014,6 +1057,7 @@
 + (PBFieldOptions_Builder*) newBuilder;
 - (PBFieldOptions_Builder*) newBuilderForType;
 + (PBFieldOptions_Builder*) newBuilderWithPBFieldOptions:(PBFieldOptions*) prototype;
+
 + (PBFieldOptions*) parseFromData:(NSData*) data;
 + (PBFieldOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBFieldOptions*) parseFromInputStream:(NSInputStream*) input;
@@ -1047,12 +1091,16 @@
   PBFieldOptions* result;
 }
 @property (retain) PBFieldOptions* result;
-- (PBFieldOptions_Builder*) clear;
-- (PBFieldOptions_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBFieldOptions*) defaultInstanceForType;
+
+- (PBFieldOptions_Builder*) clear;
+- (PBFieldOptions_Builder*) clone;
+
 - (PBFieldOptions*) build;
 - (PBFieldOptions*) buildPartial;
+
 - (PBFieldOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBFieldOptions_Builder*) mergeFromPBFieldOptions:(PBFieldOptions*) other;
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1070,12 +1118,11 @@
 @end
 
 @interface PBEnumOptions : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (PBEnumOptions*) defaultInstance;
 - (PBEnumOptions*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1083,6 +1130,7 @@
 + (PBEnumOptions_Builder*) newBuilder;
 - (PBEnumOptions_Builder*) newBuilderForType;
 + (PBEnumOptions_Builder*) newBuilderWithPBEnumOptions:(PBEnumOptions*) prototype;
+
 + (PBEnumOptions*) parseFromData:(NSData*) data;
 + (PBEnumOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumOptions*) parseFromInputStream:(NSInputStream*) input;
@@ -1096,12 +1144,16 @@
   PBEnumOptions* result;
 }
 @property (retain) PBEnumOptions* result;
-- (PBEnumOptions_Builder*) clear;
-- (PBEnumOptions_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBEnumOptions*) defaultInstanceForType;
+
+- (PBEnumOptions_Builder*) clear;
+- (PBEnumOptions_Builder*) clone;
+
 - (PBEnumOptions*) build;
 - (PBEnumOptions*) buildPartial;
+
 - (PBEnumOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBEnumOptions_Builder*) mergeFromPBEnumOptions:(PBEnumOptions*) other;
 - (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1109,12 +1161,11 @@
 @end
 
 @interface PBEnumValueOptions : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (PBEnumValueOptions*) defaultInstance;
 - (PBEnumValueOptions*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1122,6 +1173,7 @@
 + (PBEnumValueOptions_Builder*) newBuilder;
 - (PBEnumValueOptions_Builder*) newBuilderForType;
 + (PBEnumValueOptions_Builder*) newBuilderWithPBEnumValueOptions:(PBEnumValueOptions*) prototype;
+
 + (PBEnumValueOptions*) parseFromData:(NSData*) data;
 + (PBEnumValueOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBEnumValueOptions*) parseFromInputStream:(NSInputStream*) input;
@@ -1135,12 +1187,16 @@
   PBEnumValueOptions* result;
 }
 @property (retain) PBEnumValueOptions* result;
-- (PBEnumValueOptions_Builder*) clear;
-- (PBEnumValueOptions_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBEnumValueOptions*) defaultInstanceForType;
+
+- (PBEnumValueOptions_Builder*) clear;
+- (PBEnumValueOptions_Builder*) clone;
+
 - (PBEnumValueOptions*) build;
 - (PBEnumValueOptions*) buildPartial;
+
 - (PBEnumValueOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBEnumValueOptions_Builder*) mergeFromPBEnumValueOptions:(PBEnumValueOptions*) other;
 - (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1148,12 +1204,11 @@
 @end
 
 @interface PBServiceOptions : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (PBServiceOptions*) defaultInstance;
 - (PBServiceOptions*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1161,6 +1216,7 @@
 + (PBServiceOptions_Builder*) newBuilder;
 - (PBServiceOptions_Builder*) newBuilderForType;
 + (PBServiceOptions_Builder*) newBuilderWithPBServiceOptions:(PBServiceOptions*) prototype;
+
 + (PBServiceOptions*) parseFromData:(NSData*) data;
 + (PBServiceOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBServiceOptions*) parseFromInputStream:(NSInputStream*) input;
@@ -1174,12 +1230,16 @@
   PBServiceOptions* result;
 }
 @property (retain) PBServiceOptions* result;
-- (PBServiceOptions_Builder*) clear;
-- (PBServiceOptions_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBServiceOptions*) defaultInstanceForType;
+
+- (PBServiceOptions_Builder*) clear;
+- (PBServiceOptions_Builder*) clone;
+
 - (PBServiceOptions*) build;
 - (PBServiceOptions*) buildPartial;
+
 - (PBServiceOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBServiceOptions_Builder*) mergeFromPBServiceOptions:(PBServiceOptions*) other;
 - (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;
@@ -1187,12 +1247,11 @@
 @end
 
 @interface PBMethodOptions : PBGeneratedMessage {
- @private
-  int32_t memoizedSerializedSize;
 }
+
++ (PBDescriptor*) descriptor;
 + (PBMethodOptions*) defaultInstance;
 - (PBMethodOptions*) defaultInstanceForType;
-+ (PBDescriptor*) descriptor;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1200,6 +1259,7 @@
 + (PBMethodOptions_Builder*) newBuilder;
 - (PBMethodOptions_Builder*) newBuilderForType;
 + (PBMethodOptions_Builder*) newBuilderWithPBMethodOptions:(PBMethodOptions*) prototype;
+
 + (PBMethodOptions*) parseFromData:(NSData*) data;
 + (PBMethodOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 + (PBMethodOptions*) parseFromInputStream:(NSInputStream*) input;
@@ -1213,12 +1273,16 @@
   PBMethodOptions* result;
 }
 @property (retain) PBMethodOptions* result;
-- (PBMethodOptions_Builder*) clear;
-- (PBMethodOptions_Builder*) clone;
+
 - (PBDescriptor*) descriptorForType;
 - (PBMethodOptions*) defaultInstanceForType;
+
+- (PBMethodOptions_Builder*) clear;
+- (PBMethodOptions_Builder*) clone;
+
 - (PBMethodOptions*) build;
 - (PBMethodOptions*) buildPartial;
+
 - (PBMethodOptions_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBMethodOptions_Builder*) mergeFromPBMethodOptions:(PBMethodOptions*) other;
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;

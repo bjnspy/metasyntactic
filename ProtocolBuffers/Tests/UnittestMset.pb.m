@@ -57,8 +57,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
     descriptor = [[UnittestMsetProtoRoot buildDescriptor] retain];
     internal_static_protobuf_unittest_TestMessageSet_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:nil];
       internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMessageSet_descriptor
                                         fieldNames:fieldNames
@@ -67,9 +66,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
     }
     internal_static_protobuf_unittest_TestMessageSetContainer_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"MessageSet",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"MessageSet", nil];
       internal_static_protobuf_unittest_TestMessageSetContainer_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMessageSetContainer_descriptor
                                         fieldNames:fieldNames
@@ -78,9 +75,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
     }
     internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"I",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"I", nil];
       internal_static_protobuf_unittest_TestMessageSetExtension1_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor
                                         fieldNames:fieldNames
@@ -89,9 +84,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
     }
     internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Str",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Str", nil];
       internal_static_protobuf_unittest_TestMessageSetExtension2_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor
                                         fieldNames:fieldNames
@@ -100,9 +93,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
     }
     internal_static_protobuf_unittest_RawMessageSet_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Item",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Item", nil];
       internal_static_protobuf_unittest_RawMessageSet_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_RawMessageSet_descriptor
                                         fieldNames:fieldNames
@@ -111,10 +102,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
     }
     internal_static_protobuf_unittest_RawMessageSet_Item_descriptor = [[[internal_static_protobuf_unittest_RawMessageSet_descriptor nestedTypes] objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"TypeId",
-      @"Message",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"TypeId", @"Message", nil];
       internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_RawMessageSet_Item_descriptor
                                         fieldNames:fieldNames
@@ -141,8 +129,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
     ".protobuf_unittest.RawMessageSet.Item\032(\n\004Item\022\017\n\007type_"
     "id\030\002 \002(\005\022\017\n\007message\030\003 \002(\014B\002H\001"
     ];
-  NSArray* dependencies = [NSArray arrayWithObjects:
-           nil];
+  NSArray* dependencies = [NSArray arrayWithObjects:nil];
   return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
 @end
@@ -157,7 +144,6 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -336,7 +322,6 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -564,7 +549,6 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.i = 0;
   }
   return self;
@@ -774,7 +758,6 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.str = @"";
   }
   return self;
@@ -981,7 +964,6 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -1092,7 +1074,6 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.typeId = 0;
     self.message = [NSData data];
   }

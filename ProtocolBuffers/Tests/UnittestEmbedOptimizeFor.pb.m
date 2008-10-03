@@ -17,10 +17,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
     descriptor = [[UnittestEmbedOptimizeForProtoRoot buildDescriptor] retain];
     internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"OptionalMessage",
-      @"RepeatedMessage",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"OptionalMessage", @"RepeatedMessage", nil];
       internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor
                                         fieldNames:fieldNames
@@ -40,9 +37,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
     ".protobuf_unittest.TestOptimizedForSize\022A\n\020repeated_message\030\002"
     " \003(\0132\'.protobuf_unittest.TestOptimizedForSizeB\002H\001"
     ];
-  NSArray* dependencies = [NSArray arrayWithObjects:
-          [UnittestOptimizeForProtoRoot descriptor],
-           nil];
+  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestOptimizeForProtoRoot descriptor], nil];
   return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
 @end
@@ -66,7 +61,6 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
