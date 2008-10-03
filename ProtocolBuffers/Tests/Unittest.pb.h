@@ -507,7 +507,6 @@
   TestAllTypes_NestedMessage* result;
 }
 @property (retain) TestAllTypes_NestedMessage* result;
-// Construct using TestAllTypes_NestedMessage.newBuilder()
 - (TestAllTypes_NestedMessage_Builder*) clear;
 - (TestAllTypes_NestedMessage_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -557,7 +556,6 @@
   TestAllTypes_OptionalGroup* result;
 }
 @property (retain) TestAllTypes_OptionalGroup* result;
-// Construct using TestAllTypes_OptionalGroup.newBuilder()
 - (TestAllTypes_OptionalGroup_Builder*) clear;
 - (TestAllTypes_OptionalGroup_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -607,7 +605,6 @@
   TestAllTypes_RepeatedGroup* result;
 }
 @property (retain) TestAllTypes_RepeatedGroup* result;
-// Construct using TestAllTypes_RepeatedGroup.newBuilder()
 - (TestAllTypes_RepeatedGroup_Builder*) clear;
 - (TestAllTypes_RepeatedGroup_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -631,7 +628,6 @@
   TestAllTypes* result;
 }
 @property (retain) TestAllTypes* result;
-// Construct using TestAllTypes.newBuilder()
 - (TestAllTypes_Builder*) clear;
 - (TestAllTypes_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1072,7 +1068,6 @@
   ForeignMessage* result;
 }
 @property (retain) ForeignMessage* result;
-// Construct using ForeignMessage.newBuilder()
 - (ForeignMessage_Builder*) clear;
 - (ForeignMessage_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1118,7 +1113,6 @@
   TestAllExtensions* result;
 }
 @property (retain) TestAllExtensions* result;
-// Construct using TestAllExtensions.newBuilder()
 - (TestAllExtensions_Builder*) clear;
 - (TestAllExtensions_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1163,7 +1157,6 @@
   OptionalGroup_extension* result;
 }
 @property (retain) OptionalGroup_extension* result;
-// Construct using OptionalGroup_extension.newBuilder()
 - (OptionalGroup_extension_Builder*) clear;
 - (OptionalGroup_extension_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1213,7 +1206,6 @@
   RepeatedGroup_extension* result;
 }
 @property (retain) RepeatedGroup_extension* result;
-// Construct using RepeatedGroup_extension.newBuilder()
 - (RepeatedGroup_extension_Builder*) clear;
 - (RepeatedGroup_extension_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1391,7 +1383,6 @@
   TestRequired* result;
 }
 @property (retain) TestRequired* result;
-// Construct using TestRequired.newBuilder()
 - (TestRequired_Builder*) clear;
 - (TestRequired_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1608,7 +1599,6 @@
   TestRequiredForeign* result;
 }
 @property (retain) TestRequiredForeign* result;
-// Construct using TestRequiredForeign.newBuilder()
 - (TestRequiredForeign_Builder*) clear;
 - (TestRequiredForeign_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1672,7 +1662,6 @@
   TestForeignNested* result;
 }
 @property (retain) TestForeignNested* result;
-// Construct using TestForeignNested.newBuilder()
 - (TestForeignNested_Builder*) clear;
 - (TestForeignNested_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1720,7 +1709,6 @@
   TestEmptyMessage* result;
 }
 @property (retain) TestEmptyMessage* result;
-// Construct using TestEmptyMessage.newBuilder()
 - (TestEmptyMessage_Builder*) clear;
 - (TestEmptyMessage_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1761,7 +1749,6 @@
   TestEmptyMessageWithExtensions* result;
 }
 @property (retain) TestEmptyMessageWithExtensions* result;
-// Construct using TestEmptyMessageWithExtensions.newBuilder()
 - (TestEmptyMessageWithExtensions_Builder*) clear;
 - (TestEmptyMessageWithExtensions_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1810,7 +1797,6 @@
   TestReallyLargeTagNumber* result;
 }
 @property (retain) TestReallyLargeTagNumber* result;
-// Construct using TestReallyLargeTagNumber.newBuilder()
 - (TestReallyLargeTagNumber_Builder*) clear;
 - (TestReallyLargeTagNumber_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1869,7 +1855,6 @@
   TestRecursiveMessage* result;
 }
 @property (retain) TestRecursiveMessage* result;
-// Construct using TestRecursiveMessage.newBuilder()
 - (TestRecursiveMessage_Builder*) clear;
 - (TestRecursiveMessage_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1926,7 +1911,6 @@
   TestMutualRecursionA* result;
 }
 @property (retain) TestMutualRecursionA* result;
-// Construct using TestMutualRecursionA.newBuilder()
 - (TestMutualRecursionA_Builder*) clear;
 - (TestMutualRecursionA_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -1982,7 +1966,6 @@
   TestMutualRecursionB* result;
 }
 @property (retain) TestMutualRecursionB* result;
-// Construct using TestMutualRecursionB.newBuilder()
 - (TestMutualRecursionB_Builder*) clear;
 - (TestMutualRecursionB_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2073,7 +2056,6 @@
   TestDupFieldNumber_Foo* result;
 }
 @property (retain) TestDupFieldNumber_Foo* result;
-// Construct using TestDupFieldNumber_Foo.newBuilder()
 - (TestDupFieldNumber_Foo_Builder*) clear;
 - (TestDupFieldNumber_Foo_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2123,7 +2105,6 @@
   TestDupFieldNumber_Bar* result;
 }
 @property (retain) TestDupFieldNumber_Bar* result;
-// Construct using TestDupFieldNumber_Bar.newBuilder()
 - (TestDupFieldNumber_Bar_Builder*) clear;
 - (TestDupFieldNumber_Bar_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2147,7 +2128,6 @@
   TestDupFieldNumber* result;
 }
 @property (retain) TestDupFieldNumber* result;
-// Construct using TestDupFieldNumber.newBuilder()
 - (TestDupFieldNumber_Builder*) clear;
 - (TestDupFieldNumber_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2239,7 +2219,6 @@
   TestNestedMessageHasBits_NestedMessage* result;
 }
 @property (retain) TestNestedMessageHasBits_NestedMessage* result;
-// Construct using TestNestedMessageHasBits_NestedMessage.newBuilder()
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clear;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2272,7 +2251,6 @@
   TestNestedMessageHasBits* result;
 }
 @property (retain) TestNestedMessageHasBits* result;
-// Construct using TestNestedMessageHasBits.newBuilder()
 - (TestNestedMessageHasBits_Builder*) clear;
 - (TestNestedMessageHasBits_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2362,7 +2340,6 @@
   TestCamelCaseFieldNames* result;
 }
 @property (retain) TestCamelCaseFieldNames* result;
-// Construct using TestCamelCaseFieldNames.newBuilder()
 - (TestCamelCaseFieldNames_Builder*) clear;
 - (TestCamelCaseFieldNames_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2489,7 +2466,6 @@
   TestFieldOrderings* result;
 }
 @property (retain) TestFieldOrderings* result;
-// Construct using TestFieldOrderings.newBuilder()
 - (TestFieldOrderings_Builder*) clear;
 - (TestFieldOrderings_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2569,7 +2545,6 @@
   TestExtremeDefaultValues* result;
 }
 @property (retain) TestExtremeDefaultValues* result;
-// Construct using TestExtremeDefaultValues.newBuilder()
 - (TestExtremeDefaultValues_Builder*) clear;
 - (TestExtremeDefaultValues_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2640,7 +2615,6 @@
   FooRequest* result;
 }
 @property (retain) FooRequest* result;
-// Construct using FooRequest.newBuilder()
 - (FooRequest_Builder*) clear;
 - (FooRequest_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2681,7 +2655,6 @@
   FooResponse* result;
 }
 @property (retain) FooResponse* result;
-// Construct using FooResponse.newBuilder()
 - (FooResponse_Builder*) clear;
 - (FooResponse_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2722,7 +2695,6 @@
   BarRequest* result;
 }
 @property (retain) BarRequest* result;
-// Construct using BarRequest.newBuilder()
 - (BarRequest_Builder*) clear;
 - (BarRequest_Builder*) clone;
 - (PBDescriptor*) descriptorForType;
@@ -2763,7 +2735,6 @@
   BarResponse* result;
 }
 @property (retain) BarResponse* result;
-// Construct using BarResponse.newBuilder()
 - (BarResponse_Builder*) clear;
 - (BarResponse_Builder*) clone;
 - (PBDescriptor*) descriptorForType;

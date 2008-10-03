@@ -115,7 +115,6 @@
   TestEmbedOptimizedForSize* result;
 }
 @property (retain) TestEmbedOptimizedForSize* result;
-// Construct using TestEmbedOptimizedForSize.newBuilder()
 - (TestEmbedOptimizedForSize_Builder*) clear;
 - (TestEmbedOptimizedForSize_Builder*) clone;
 - (PBDescriptor*) descriptorForType;

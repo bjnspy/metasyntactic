@@ -33,11 +33,10 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMess
 }
 + (PBFileDescriptor*) buildDescriptor {
   NSString* descriptorData = [NSString stringWithCString:
-    "\n%google/protobuf/unittest_import.proto\022"
-    "\030protobuf_unittest_import\"\032\n\rImportMessa"
-    "ge\022\t\n\001d\030\001 \001(\005*<\n\nImportEnum\022\016\n\nIMPORT_FO"
-    "O\020\007\022\016\n\nIMPORT_BAR\020\010\022\016\n\nIMPORT_BAZ\020\tB\034\n\030c"
-    "om.google.protobuf.testH\001"
+    "\n%google/protobuf/unittest_import.proto\022\030protobuf_unittest_impor"
+    "t\"\032\n\rImportMessage\022\t\n\001d\030\001 \001(\005*<\n\nImportEnum"
+    "\022\016\n\nIMPORT_FOO\020\007\022\016\n\nIMPORT_BAR\020\010\022\016\n\n"
+    "IMPORT_BAZ\020\tB\034\n\030com.google.protobuf.testH\001"
     ];
   NSArray* dependencies = [NSArray arrayWithObjects:
            nil];

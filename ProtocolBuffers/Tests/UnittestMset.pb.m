@@ -128,21 +128,18 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
 }
 + (PBFileDescriptor*) buildDescriptor {
   NSString* descriptorData = [NSString stringWithCString:
-    "\n#google/protobuf/unittest_mset.proto\022\021p"
-    "rotobuf_unittest\"\036\n\016TestMessageSet*\010\010\004\020\200"
-    "\200\200\200\002:\002\010\001\"Q\n\027TestMessageSetContainer\0226\n\013m"
-    "essage_set\030\001 \001(\0132!.protobuf_unittest.Tes"
-    "tMessageSet\"\226\001\n\030TestMessageSetExtension1"
-    "\022\t\n\001i\030\017 \001(\0052o\n\025message_set_extension\022!.p"
-    "rotobuf_unittest.TestMessageSet\030\260\246^ \001(\0132"
-    "+.protobuf_unittest.TestMessageSetExtens"
-    "ion1\"\230\001\n\030TestMessageSetExtension2\022\013\n\003str"
-    "\030\031 \001(\t2o\n\025message_set_extension\022!.protob"
-    "uf_unittest.TestMessageSet\030\371\273^ \001(\0132+.pro"
-    "tobuf_unittest.TestMessageSetExtension2\""
-    "n\n\rRawMessageSet\0223\n\004item\030\001 \003(\n2%.protobu"
-    "f_unittest.RawMessageSet.Item\032(\n\004Item\022\017\n"
-    "\007type_id\030\002 \002(\005\022\017\n\007message\030\003 \002(\014B\002H\001"
+    "\n#google/protobuf/unittest_mset.proto\022\021protobuf_unittest\"\036\n"
+    "\016TestMessageSet*\010\010\004\020\200\200\200\200\002:\002\010\001\"Q"
+    "\n\027TestMessageSetContainer\0226\n\013message_set\030\001 \001(\0132!"
+    ".protobuf_unittest.TestMessageSet\"\226\001\n\030TestMessageSetExtensio"
+    "n1\022\t\n\001i\030\017 \001(\0052o\n\025message_set_extension\022!.pro"
+    "tobuf_unittest.TestMessageSet\030\260\246^ \001(\0132+.protobuf_unittes"
+    "t.TestMessageSetExtension1\"\230\001\n\030TestMessageSetExtension2\022\013"
+    "\n\003str\030\031 \001(\t2o\n\025message_set_extension\022!.protobuf_un"
+    "ittest.TestMessageSet\030\371\273^ \001(\0132+.protobuf_unittest.TestMe"
+    "ssageSetExtension2\"n\n\rRawMessageSet\0223\n\004item\030\001 \003(\n2%"
+    ".protobuf_unittest.RawMessageSet.Item\032(\n\004Item\022\017\n\007type_"
+    "id\030\002 \002(\005\022\017\n\007message\030\003 \002(\014B\002H\001"
     ];
   NSArray* dependencies = [NSArray arrayWithObjects:
            nil];
