@@ -531,8 +531,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageGenerator::GenerateCommonBuilderMethodsHeader(io::Printer* printer) {
     printer->Print(
-      "// Construct using $classname$.newBuilder()\n"
-      //"- ($classname$*) internalGetResult;\n"
       "- ($classname$_Builder*) clear;\n"
       "- ($classname$_Builder*) clone;\n"
       "- (PBDescriptor*) descriptorForType;\n"
@@ -543,7 +541,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "- ($classname$*) build;\n"
-      "- ($classname$*) buildParsed;\n"
       "- ($classname$*) buildPartial;\n",
       "classname", ClassName(descriptor_));
     printer->Indent();
@@ -676,22 +673,22 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     //   for code size.
     printer->Print(
       "+ ($classname$*) parseFromData:(NSData*) data {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data] buildParsed];\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data] build];\n"
       "}\n"
       "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];\n"
       "}\n"
       "+ ($classname$*) parseFromInputStream:(NSInputStream*) input {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input] buildParsed];\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input] build];\n"
       "}\n"
       "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];\n"
       "}\n"
       "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input] buildParsed];\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input] build];\n"
       "}\n"
       "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];\n"
+      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];\n"
       "}\n"
       "\n",
       "classname", ClassName(descriptor_));
@@ -779,15 +776,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "    @throw [NSException exceptionWithName:@\"UninitializedMessage\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
       "  return [self buildPartial];\n"
-      "}\n"
-      "\n"
-      "- ($classname$*) buildParsed {\n"
-      "  if (!self.isInitialized) {\n"
-      "    @throw [NSException exceptionWithName:@\"UninitializedMessage\" reason:@\"\" userInfo:nil];\n"
-      "  }\n"
-      "  return [self buildPartial];\n"
-      "}\n"
-      "\n"
+      "}\n\n"
       "- ($classname$*) buildPartial {\n",
       "classname", ClassName(descriptor_));
     printer->Indent();

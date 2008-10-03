@@ -119,7 +119,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestOptimizedForSize*) defaultInstanceForType;
 - (TestOptimizedForSize*) build;
-- (TestOptimizedForSize*) buildParsed;
 - (TestOptimizedForSize*) buildPartial;
 - (TestOptimizedForSize_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestOptimizedForSize_Builder*) mergeFromTestOptimizedForSize:(TestOptimizedForSize*) other;

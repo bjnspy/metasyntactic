@@ -69,7 +69,6 @@
 - (PBDescriptor*) descriptorForType;
 - (ImportMessage*) defaultInstanceForType;
 - (ImportMessage*) build;
-- (ImportMessage*) buildParsed;
 - (ImportMessage*) buildPartial;
 - (ImportMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (ImportMessage_Builder*) mergeFromImportMessage:(ImportMessage*) other;

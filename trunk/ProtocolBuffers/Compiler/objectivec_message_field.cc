@@ -219,8 +219,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void MessageFieldGenerator::
-    GenerateBuildingCodeSource(io::Printer* printer) const {
+  void MessageFieldGenerator::GenerateBuildingCodeSource(io::Printer* printer) const {
       // Nothing to do for singular fields.
   }
 
@@ -265,8 +264,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void MessageFieldGenerator::
-    GenerateSerializedSizeCodeSource(io::Printer* printer) const {
+  void MessageFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "if (self.has$capitalized_name$) {\n"
         "  size += compute$group_or_message$Size($number$, self.$name$);\n"
@@ -285,8 +283,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  RepeatedMessageFieldGenerator::
-    RepeatedMessageFieldGenerator(const FieldDescriptor* descriptor)
+  RepeatedMessageFieldGenerator::RepeatedMessageFieldGenerator(const FieldDescriptor* descriptor)
     : descriptor_(descriptor) {
       SetMessageVariables(descriptor, &variables_);
   }
@@ -358,8 +355,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     //    
   }
 
-  void RepeatedMessageFieldGenerator::
-    GenerateBuilderMembersSource(io::Printer* printer) const {
+  void RepeatedMessageFieldGenerator::GenerateBuilderMembersSource(io::Printer* printer) const {
       printer->Print(variables_,
         "- (NSArray*) $list_name$ {\n"
         "  if (result.$mutable_list_name$ == nil) { return [NSArray array]; }\n"
@@ -427,12 +423,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void RepeatedMessageFieldGenerator::
-    GenerateBuildingCodeSource(io::Printer* printer) const {
+  void RepeatedMessageFieldGenerator::GenerateBuildingCodeSource(io::Printer* printer) const {
   }
 
-  void RepeatedMessageFieldGenerator::
-    GenerateParsingCodeSource(io::Printer* printer) const {
+  void RepeatedMessageFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "$type$_Builder* subBuilder = [$type$ newBuilder];\n");
 
@@ -448,16 +442,14 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "[self add$capitalized_name$:[subBuilder buildPartial]];\n");
   }
 
-  void RepeatedMessageFieldGenerator::
-    GenerateSerializationCodeSource(io::Printer* printer) const {
+  void RepeatedMessageFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "for ($type$* element in self.$list_name$) {\n"
         "  [output write$group_or_message$:$number$ value:element];\n"
         "}\n");
   }
 
-  void RepeatedMessageFieldGenerator::
-    GenerateSerializedSizeCodeSource(io::Printer* printer) const {
+  void RepeatedMessageFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "for ($type$* element in self.$list_name$) {\n"
         "  size += compute$group_or_message$Size($number$, element);\n"

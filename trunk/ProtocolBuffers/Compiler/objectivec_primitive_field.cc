@@ -54,24 +54,24 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     const char* GetCapitalizedType(const FieldDescriptor* field) {
       switch (field->type()) {
-    case FieldDescriptor::TYPE_INT32   : return "Int32"   ;
-    case FieldDescriptor::TYPE_UINT32  : return "UInt32"  ;
-    case FieldDescriptor::TYPE_SINT32  : return "SInt32"  ;
-    case FieldDescriptor::TYPE_FIXED32 : return "Fixed32" ;
-    case FieldDescriptor::TYPE_SFIXED32: return "SFixed32";
-    case FieldDescriptor::TYPE_INT64   : return "Int64"   ;
-    case FieldDescriptor::TYPE_UINT64  : return "UInt64"  ;
-    case FieldDescriptor::TYPE_SINT64  : return "SInt64"  ;
-    case FieldDescriptor::TYPE_FIXED64 : return "Fixed64" ;
-    case FieldDescriptor::TYPE_SFIXED64: return "SFixed64";
-    case FieldDescriptor::TYPE_FLOAT   : return "Float"   ;
-    case FieldDescriptor::TYPE_DOUBLE  : return "Double"  ;
-    case FieldDescriptor::TYPE_BOOL    : return "Bool"    ;
-    case FieldDescriptor::TYPE_STRING  : return "String"  ;
-    case FieldDescriptor::TYPE_BYTES   : return "Data"   ;
-    case FieldDescriptor::TYPE_ENUM    : return "Enum"    ;
-    case FieldDescriptor::TYPE_GROUP   : return "Group"   ;
-    case FieldDescriptor::TYPE_MESSAGE : return "Message" ;
+        case FieldDescriptor::TYPE_INT32   : return "Int32"   ;
+        case FieldDescriptor::TYPE_UINT32  : return "UInt32"  ;
+        case FieldDescriptor::TYPE_SINT32  : return "SInt32"  ;
+        case FieldDescriptor::TYPE_FIXED32 : return "Fixed32" ;
+        case FieldDescriptor::TYPE_SFIXED32: return "SFixed32";
+        case FieldDescriptor::TYPE_INT64   : return "Int64"   ;
+        case FieldDescriptor::TYPE_UINT64  : return "UInt64"  ;
+        case FieldDescriptor::TYPE_SINT64  : return "SInt64"  ;
+        case FieldDescriptor::TYPE_FIXED64 : return "Fixed64" ;
+        case FieldDescriptor::TYPE_SFIXED64: return "SFixed64";
+        case FieldDescriptor::TYPE_FLOAT   : return "Float"   ;
+        case FieldDescriptor::TYPE_DOUBLE  : return "Double"  ;
+        case FieldDescriptor::TYPE_BOOL    : return "Bool"    ;
+        case FieldDescriptor::TYPE_STRING  : return "String"  ;
+        case FieldDescriptor::TYPE_BYTES   : return "Data"   ;
+        case FieldDescriptor::TYPE_ENUM    : return "Enum"    ;
+        case FieldDescriptor::TYPE_GROUP   : return "Group"   ;
+        case FieldDescriptor::TYPE_MESSAGE : return "Message" ;
 
       // No default because we want the compiler to complain if any new
       // types are added.
@@ -295,8 +295,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void PrimitiveFieldGenerator::
-    GenerateMergingCodeHeader(io::Printer* printer) const {
+  void PrimitiveFieldGenerator::GenerateMergingCodeHeader(io::Printer* printer) const {
   }
 
 
@@ -309,13 +308,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void PrimitiveFieldGenerator::
-    GenerateSerializationCodeHeader(io::Printer* printer) const {
+  void PrimitiveFieldGenerator::GenerateSerializationCodeHeader(io::Printer* printer) const {
   }
 
 
-  void PrimitiveFieldGenerator::
-    GenerateSerializedSizeCodeHeader(io::Printer* printer) const {
+  void PrimitiveFieldGenerator::GenerateSerializedSizeCodeHeader(io::Printer* printer) const {
   }
 
 
@@ -347,8 +344,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n");
   }
 
-  void PrimitiveFieldGenerator::
-    GenerateBuildingCodeSource(io::Printer* printer) const {
+  void PrimitiveFieldGenerator::GenerateBuildingCodeSource(io::Printer* printer) const {
       // Nothing to do here for primitive types.
   }
 
@@ -377,8 +373,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   // ===================================================================
 
-  RepeatedPrimitiveFieldGenerator::
-    RepeatedPrimitiveFieldGenerator(const FieldDescriptor* descriptor)
+  RepeatedPrimitiveFieldGenerator::RepeatedPrimitiveFieldGenerator(const FieldDescriptor* descriptor)
     : descriptor_(descriptor) {
       SetPrimitiveVariables(descriptor, &variables_);
   }
@@ -510,8 +505,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n");
   }
 
-  void RepeatedPrimitiveFieldGenerator::
-    GenerateMergingCodeSource(io::Printer* printer) const {
+  void RepeatedPrimitiveFieldGenerator::GenerateMergingCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "if (other.$mutable_list_name$.count > 0) {\n"
         "  if (result.$mutable_list_name$ == nil) {\n"

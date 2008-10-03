@@ -2437,22 +2437,22 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
 }
 
 + (TestAllTypes*) parseFromData:(NSData*) data {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromData:data] buildParsed];
+  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromData:data] build];
 }
 + (TestAllTypes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromInputStream:input] build];
 }
 + (TestAllTypes*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestAllTypes_Builder*) newBuilder { return [[[TestAllTypes_Builder alloc] init] autorelease]; }
@@ -2598,22 +2598,22 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 }
 
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromData:data] buildParsed];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromData:data] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromInputStream:input] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestAllTypes_NestedMessage_Builder*) newBuilder { return [[[TestAllTypes_NestedMessage_Builder alloc] init] autorelease]; }
@@ -2658,13 +2658,6 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 }
 
 - (TestAllTypes_NestedMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestAllTypes_NestedMessage*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -2812,22 +2805,22 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 }
 
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromData:data] buildParsed];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromData:data] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromInputStream:input] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestAllTypes_OptionalGroup_Builder*) newBuilder { return [[[TestAllTypes_OptionalGroup_Builder alloc] init] autorelease]; }
@@ -2872,13 +2865,6 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 }
 
 - (TestAllTypes_OptionalGroup*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestAllTypes_OptionalGroup*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -3026,22 +3012,22 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromData:data] buildParsed];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromData:data] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromInputStream:input] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestAllTypes_RepeatedGroup_Builder*) newBuilder { return [[[TestAllTypes_RepeatedGroup_Builder alloc] init] autorelease]; }
@@ -3086,13 +3072,6 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 
 - (TestAllTypes_RepeatedGroup*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestAllTypes_RepeatedGroup*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -3204,13 +3183,6 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 
 - (TestAllTypes*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestAllTypes*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -5485,22 +5457,22 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 }
 
 + (ForeignMessage*) parseFromData:(NSData*) data {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromData:data] buildParsed];
+  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromData:data] build];
 }
 + (ForeignMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (ForeignMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromInputStream:input] buildParsed];
+  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromInputStream:input] build];
 }
 + (ForeignMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (ForeignMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (ForeignMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (ForeignMessage_Builder*) newBuilder { return [[[ForeignMessage_Builder alloc] init] autorelease]; }
@@ -5545,13 +5517,6 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 }
 
 - (ForeignMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (ForeignMessage*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -5689,22 +5654,22 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 }
 
 + (TestAllExtensions*) parseFromData:(NSData*) data {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromData:data] buildParsed];
+  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromData:data] build];
 }
 + (TestAllExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllExtensions*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromInputStream:input] build];
 }
 + (TestAllExtensions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestAllExtensions_Builder*) newBuilder { return [[[TestAllExtensions_Builder alloc] init] autorelease]; }
@@ -5749,13 +5714,6 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 }
 
 - (TestAllExtensions*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestAllExtensions*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -5879,22 +5837,22 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 }
 
 + (OptionalGroup_extension*) parseFromData:(NSData*) data {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromData:data] buildParsed];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromData:data] build];
 }
 + (OptionalGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (OptionalGroup_extension*) parseFromInputStream:(NSInputStream*) input {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromInputStream:input] buildParsed];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromInputStream:input] build];
 }
 + (OptionalGroup_extension*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (OptionalGroup_extension*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (OptionalGroup_extension*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (OptionalGroup_extension_Builder*) newBuilder { return [[[OptionalGroup_extension_Builder alloc] init] autorelease]; }
@@ -5939,13 +5897,6 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 }
 
 - (OptionalGroup_extension*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (OptionalGroup_extension*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -6093,22 +6044,22 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 }
 
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromData:data] buildParsed];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromData:data] build];
 }
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (RepeatedGroup_extension*) parseFromInputStream:(NSInputStream*) input {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromInputStream:input] buildParsed];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromInputStream:input] build];
 }
 + (RepeatedGroup_extension*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (RepeatedGroup_extension*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (RepeatedGroup_extension*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (RepeatedGroup_extension_Builder*) newBuilder { return [[[RepeatedGroup_extension_Builder alloc] init] autorelease]; }
@@ -6153,13 +6104,6 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 }
 
 - (RepeatedGroup_extension*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (RepeatedGroup_extension*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -6764,22 +6708,22 @@ static TestRequired* defaultTestRequiredInstance = nil;
 }
 
 + (TestRequired*) parseFromData:(NSData*) data {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromData:data] buildParsed];
+  return (TestRequired*)[[[TestRequired newBuilder] mergeFromData:data] build];
 }
 + (TestRequired*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestRequired*)[[[TestRequired newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestRequired*) parseFromInputStream:(NSInputStream*) input {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestRequired*)[[[TestRequired newBuilder] mergeFromInputStream:input] build];
 }
 + (TestRequired*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestRequired*)[[[TestRequired newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestRequired*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestRequired*)[[[TestRequired newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestRequired*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestRequired*)[[[TestRequired newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestRequired_Builder*) newBuilder { return [[[TestRequired_Builder alloc] init] autorelease]; }
@@ -6824,13 +6768,6 @@ static TestRequired* defaultTestRequiredInstance = nil;
 }
 
 - (TestRequired*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestRequired*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -7782,22 +7719,22 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 }
 
 + (TestRequiredForeign*) parseFromData:(NSData*) data {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromData:data] buildParsed];
+  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromData:data] build];
 }
 + (TestRequiredForeign*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestRequiredForeign*) parseFromInputStream:(NSInputStream*) input {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromInputStream:input] build];
 }
 + (TestRequiredForeign*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestRequiredForeign*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestRequiredForeign*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestRequiredForeign_Builder*) newBuilder { return [[[TestRequiredForeign_Builder alloc] init] autorelease]; }
@@ -7842,13 +7779,6 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 }
 
 - (TestRequiredForeign*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestRequiredForeign*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -8080,22 +8010,22 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 }
 
 + (TestForeignNested*) parseFromData:(NSData*) data {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromData:data] buildParsed];
+  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromData:data] build];
 }
 + (TestForeignNested*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestForeignNested*) parseFromInputStream:(NSInputStream*) input {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromInputStream:input] build];
 }
 + (TestForeignNested*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestForeignNested*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestForeignNested*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestForeignNested_Builder*) newBuilder { return [[[TestForeignNested_Builder alloc] init] autorelease]; }
@@ -8140,13 +8070,6 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 }
 
 - (TestForeignNested*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestForeignNested*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -8299,22 +8222,22 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 }
 
 + (TestEmptyMessage*) parseFromData:(NSData*) data {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromData:data] buildParsed];
+  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromData:data] build];
 }
 + (TestEmptyMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestEmptyMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromInputStream:input] build];
 }
 + (TestEmptyMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestEmptyMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestEmptyMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestEmptyMessage_Builder*) newBuilder { return [[[TestEmptyMessage_Builder alloc] init] autorelease]; }
@@ -8359,13 +8282,6 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 }
 
 - (TestEmptyMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestEmptyMessage*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -8479,22 +8395,22 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 }
 
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromData:data] buildParsed];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromData:data] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromInputStream:(NSInputStream*) input {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromInputStream:input] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestEmptyMessageWithExtensions_Builder*) newBuilder { return [[[TestEmptyMessageWithExtensions_Builder alloc] init] autorelease]; }
@@ -8539,13 +8455,6 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 }
 
 - (TestEmptyMessageWithExtensions*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestEmptyMessageWithExtensions*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -8683,22 +8592,22 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 }
 
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromData:data] buildParsed];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromData:data] build];
 }
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestReallyLargeTagNumber*) parseFromInputStream:(NSInputStream*) input {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromInputStream:input] build];
 }
 + (TestReallyLargeTagNumber*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestReallyLargeTagNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestReallyLargeTagNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestReallyLargeTagNumber_Builder*) newBuilder { return [[[TestReallyLargeTagNumber_Builder alloc] init] autorelease]; }
@@ -8743,13 +8652,6 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 }
 
 - (TestReallyLargeTagNumber*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestReallyLargeTagNumber*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -8934,22 +8836,22 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 }
 
 + (TestRecursiveMessage*) parseFromData:(NSData*) data {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromData:data] buildParsed];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromData:data] build];
 }
 + (TestRecursiveMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestRecursiveMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromInputStream:input] build];
 }
 + (TestRecursiveMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestRecursiveMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestRecursiveMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestRecursiveMessage_Builder*) newBuilder { return [[[TestRecursiveMessage_Builder alloc] init] autorelease]; }
@@ -8994,13 +8896,6 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 }
 
 - (TestRecursiveMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestRecursiveMessage*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -9190,22 +9085,22 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 }
 
 + (TestMutualRecursionA*) parseFromData:(NSData*) data {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromData:data] buildParsed];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromData:data] build];
 }
 + (TestMutualRecursionA*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestMutualRecursionA*) parseFromInputStream:(NSInputStream*) input {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromInputStream:input] build];
 }
 + (TestMutualRecursionA*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestMutualRecursionA*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestMutualRecursionA*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestMutualRecursionA_Builder*) newBuilder { return [[[TestMutualRecursionA_Builder alloc] init] autorelease]; }
@@ -9250,13 +9145,6 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 }
 
 - (TestMutualRecursionA*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestMutualRecursionA*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -9436,22 +9324,22 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 }
 
 + (TestMutualRecursionB*) parseFromData:(NSData*) data {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromData:data] buildParsed];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromData:data] build];
 }
 + (TestMutualRecursionB*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestMutualRecursionB*) parseFromInputStream:(NSInputStream*) input {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromInputStream:input] build];
 }
 + (TestMutualRecursionB*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestMutualRecursionB*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestMutualRecursionB*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestMutualRecursionB_Builder*) newBuilder { return [[[TestMutualRecursionB_Builder alloc] init] autorelease]; }
@@ -9496,13 +9384,6 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 }
 
 - (TestMutualRecursionB*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestMutualRecursionB*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -9719,22 +9600,22 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
 }
 
 + (TestDupFieldNumber*) parseFromData:(NSData*) data {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromData:data] buildParsed];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromData:data] build];
 }
 + (TestDupFieldNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber*) parseFromInputStream:(NSInputStream*) input {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromInputStream:input] build];
 }
 + (TestDupFieldNumber*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestDupFieldNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestDupFieldNumber_Builder*) newBuilder { return [[[TestDupFieldNumber_Builder alloc] init] autorelease]; }
@@ -9815,22 +9696,22 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 }
 
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromData:data] buildParsed];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromData:data] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromInputStream:(NSInputStream*) input {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromInputStream:input] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestDupFieldNumber_Foo_Builder*) newBuilder { return [[[TestDupFieldNumber_Foo_Builder alloc] init] autorelease]; }
@@ -9875,13 +9756,6 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 }
 
 - (TestDupFieldNumber_Foo*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestDupFieldNumber_Foo*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -10029,22 +9903,22 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromData:data] buildParsed];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromData:data] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromInputStream:(NSInputStream*) input {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromInputStream:input] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestDupFieldNumber_Bar_Builder*) newBuilder { return [[[TestDupFieldNumber_Bar_Builder alloc] init] autorelease]; }
@@ -10089,13 +9963,6 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 
 - (TestDupFieldNumber_Bar*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestDupFieldNumber_Bar*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -10207,13 +10074,6 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 
 - (TestDupFieldNumber*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestDupFieldNumber*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -10446,22 +10306,22 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
 }
 
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromData:data] buildParsed];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromData:data] build];
 }
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestNestedMessageHasBits*) parseFromInputStream:(NSInputStream*) input {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromInputStream:input] build];
 }
 + (TestNestedMessageHasBits*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestNestedMessageHasBits*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestNestedMessageHasBits*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestNestedMessageHasBits_Builder*) newBuilder { return [[[TestNestedMessageHasBits_Builder alloc] init] autorelease]; }
@@ -10562,22 +10422,22 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 }
 
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromData:data] buildParsed];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromData:data] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromInputStream:input] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilder { return [[[TestNestedMessageHasBits_NestedMessage_Builder alloc] init] autorelease]; }
@@ -10622,13 +10482,6 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 }
 
 - (TestNestedMessageHasBits_NestedMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestNestedMessageHasBits_NestedMessage*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -10798,13 +10651,6 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 }
 
 - (TestNestedMessageHasBits*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestNestedMessageHasBits*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -11142,22 +10988,22 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 }
 
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromData:data] buildParsed];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromData:data] build];
 }
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestCamelCaseFieldNames*) parseFromInputStream:(NSInputStream*) input {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromInputStream:input] build];
 }
 + (TestCamelCaseFieldNames*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestCamelCaseFieldNames*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestCamelCaseFieldNames*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestCamelCaseFieldNames_Builder*) newBuilder { return [[[TestCamelCaseFieldNames_Builder alloc] init] autorelease]; }
@@ -11202,13 +11048,6 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 }
 
 - (TestCamelCaseFieldNames*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestCamelCaseFieldNames*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -11781,22 +11620,22 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 }
 
 + (TestFieldOrderings*) parseFromData:(NSData*) data {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromData:data] buildParsed];
+  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromData:data] build];
 }
 + (TestFieldOrderings*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestFieldOrderings*) parseFromInputStream:(NSInputStream*) input {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromInputStream:input] build];
 }
 + (TestFieldOrderings*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestFieldOrderings*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestFieldOrderings*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestFieldOrderings_Builder*) newBuilder { return [[[TestFieldOrderings_Builder alloc] init] autorelease]; }
@@ -11841,13 +11680,6 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 }
 
 - (TestFieldOrderings*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestFieldOrderings*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -12113,22 +11945,22 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromData:data] buildParsed];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromData:data] build];
 }
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestExtremeDefaultValues*) parseFromInputStream:(NSInputStream*) input {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromInputStream:input] buildParsed];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromInputStream:input] build];
 }
 + (TestExtremeDefaultValues*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestExtremeDefaultValues*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (TestExtremeDefaultValues*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (TestExtremeDefaultValues_Builder*) newBuilder { return [[[TestExtremeDefaultValues_Builder alloc] init] autorelease]; }
@@ -12173,13 +12005,6 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 
 - (TestExtremeDefaultValues*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (TestExtremeDefaultValues*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -12433,22 +12258,22 @@ static FooRequest* defaultFooRequestInstance = nil;
 }
 
 + (FooRequest*) parseFromData:(NSData*) data {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromData:data] buildParsed];
+  return (FooRequest*)[[[FooRequest newBuilder] mergeFromData:data] build];
 }
 + (FooRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (FooRequest*)[[[FooRequest newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (FooRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromInputStream:input] buildParsed];
+  return (FooRequest*)[[[FooRequest newBuilder] mergeFromInputStream:input] build];
 }
 + (FooRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (FooRequest*)[[[FooRequest newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (FooRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (FooRequest*)[[[FooRequest newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (FooRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (FooRequest*)[[[FooRequest newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (FooRequest_Builder*) newBuilder { return [[[FooRequest_Builder alloc] init] autorelease]; }
@@ -12493,13 +12318,6 @@ static FooRequest* defaultFooRequestInstance = nil;
 }
 
 - (FooRequest*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (FooRequest*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -12609,22 +12427,22 @@ static FooResponse* defaultFooResponseInstance = nil;
 }
 
 + (FooResponse*) parseFromData:(NSData*) data {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromData:data] buildParsed];
+  return (FooResponse*)[[[FooResponse newBuilder] mergeFromData:data] build];
 }
 + (FooResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (FooResponse*)[[[FooResponse newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (FooResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromInputStream:input] buildParsed];
+  return (FooResponse*)[[[FooResponse newBuilder] mergeFromInputStream:input] build];
 }
 + (FooResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (FooResponse*)[[[FooResponse newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (FooResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (FooResponse*)[[[FooResponse newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (FooResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (FooResponse*)[[[FooResponse newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (FooResponse_Builder*) newBuilder { return [[[FooResponse_Builder alloc] init] autorelease]; }
@@ -12669,13 +12487,6 @@ static FooResponse* defaultFooResponseInstance = nil;
 }
 
 - (FooResponse*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (FooResponse*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -12785,22 +12596,22 @@ static BarRequest* defaultBarRequestInstance = nil;
 }
 
 + (BarRequest*) parseFromData:(NSData*) data {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromData:data] buildParsed];
+  return (BarRequest*)[[[BarRequest newBuilder] mergeFromData:data] build];
 }
 + (BarRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (BarRequest*)[[[BarRequest newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (BarRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromInputStream:input] buildParsed];
+  return (BarRequest*)[[[BarRequest newBuilder] mergeFromInputStream:input] build];
 }
 + (BarRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (BarRequest*)[[[BarRequest newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (BarRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (BarRequest*)[[[BarRequest newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (BarRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (BarRequest*)[[[BarRequest newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (BarRequest_Builder*) newBuilder { return [[[BarRequest_Builder alloc] init] autorelease]; }
@@ -12845,13 +12656,6 @@ static BarRequest* defaultBarRequestInstance = nil;
 }
 
 - (BarRequest*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (BarRequest*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
@@ -12961,22 +12765,22 @@ static BarResponse* defaultBarResponseInstance = nil;
 }
 
 + (BarResponse*) parseFromData:(NSData*) data {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromData:data] buildParsed];
+  return (BarResponse*)[[[BarResponse newBuilder] mergeFromData:data] build];
 }
 + (BarResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (BarResponse*)[[[BarResponse newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (BarResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromInputStream:input] buildParsed];
+  return (BarResponse*)[[[BarResponse newBuilder] mergeFromInputStream:input] build];
 }
 + (BarResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (BarResponse*)[[[BarResponse newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (BarResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (BarResponse*)[[[BarResponse newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (BarResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (BarResponse*)[[[BarResponse newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (BarResponse_Builder*) newBuilder { return [[[BarResponse_Builder alloc] init] autorelease]; }
@@ -13021,13 +12825,6 @@ static BarResponse* defaultBarResponseInstance = nil;
 }
 
 - (BarResponse*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (BarResponse*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }

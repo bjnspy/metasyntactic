@@ -27,13 +27,18 @@
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
 
   ServiceGenerator::ServiceGenerator(const ServiceDescriptor* descriptor)
-    : descriptor_(descriptor) {}
+    : descriptor_(descriptor) {
+  }
 
-  ServiceGenerator::~ServiceGenerator() {}
+
+  ServiceGenerator::~ServiceGenerator() {
+  }
+
 
   void ServiceGenerator::DetermineDependencies(set<string>* dependencies) {
     dependencies->insert(ClassName(descriptor_));
   }
+
 
   void ServiceGenerator::GenerateHeader(io::Printer* printer) {
     printer->Print(
@@ -174,6 +179,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "\n");
   }
 
+
   void ServiceGenerator::GenerateGetPrototypeHeader(RequestOrResponse which,
     io::Printer* printer) {
       printer->Print(
@@ -218,6 +224,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "\n");
   }
 
+
   void ServiceGenerator::GenerateStubHeader(io::Printer* printer) {
     printer->Print(
       "@interface $classname$_Stub : $classname$ {\n",
@@ -248,6 +255,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print("@end\n\n");
   }
+
 
   void ServiceGenerator::GenerateStubSource(io::Printer* printer) {
     printer->Print(
@@ -294,8 +302,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print("@end\n\n");
   }
-
-
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf

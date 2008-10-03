@@ -53,7 +53,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestMessageSet*) defaultInstanceForType;
 - (TestMessageSet*) build;
-- (TestMessageSet*) buildParsed;
 - (TestMessageSet*) buildPartial;
 - (TestMessageSet_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestMessageSet_Builder*) mergeFromTestMessageSet:(TestMessageSet*) other;
@@ -97,7 +96,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestMessageSetContainer*) defaultInstanceForType;
 - (TestMessageSetContainer*) build;
-- (TestMessageSetContainer*) buildParsed;
 - (TestMessageSetContainer*) buildPartial;
 - (TestMessageSetContainer_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestMessageSetContainer_Builder*) mergeFromTestMessageSetContainer:(TestMessageSetContainer*) other;
@@ -148,7 +146,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestMessageSetExtension1*) defaultInstanceForType;
 - (TestMessageSetExtension1*) build;
-- (TestMessageSetExtension1*) buildParsed;
 - (TestMessageSetExtension1*) buildPartial;
 - (TestMessageSetExtension1_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestMessageSetExtension1_Builder*) mergeFromTestMessageSetExtension1:(TestMessageSetExtension1*) other;
@@ -197,7 +194,6 @@
 - (PBDescriptor*) descriptorForType;
 - (TestMessageSetExtension2*) defaultInstanceForType;
 - (TestMessageSetExtension2*) build;
-- (TestMessageSetExtension2*) buildParsed;
 - (TestMessageSetExtension2*) buildPartial;
 - (TestMessageSetExtension2_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (TestMessageSetExtension2_Builder*) mergeFromTestMessageSetExtension2:(TestMessageSetExtension2*) other;
@@ -275,7 +271,6 @@
 - (PBDescriptor*) descriptorForType;
 - (RawMessageSet_Item*) defaultInstanceForType;
 - (RawMessageSet_Item*) build;
-- (RawMessageSet_Item*) buildParsed;
 - (RawMessageSet_Item*) buildPartial;
 - (RawMessageSet_Item_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (RawMessageSet_Item_Builder*) mergeFromRawMessageSet_Item:(RawMessageSet_Item*) other;
@@ -303,7 +298,6 @@
 - (PBDescriptor*) descriptorForType;
 - (RawMessageSet*) defaultInstanceForType;
 - (RawMessageSet*) build;
-- (RawMessageSet*) buildParsed;
 - (RawMessageSet*) buildPartial;
 - (RawMessageSet_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (RawMessageSet_Builder*) mergeFromRawMessageSet:(RawMessageSet*) other;

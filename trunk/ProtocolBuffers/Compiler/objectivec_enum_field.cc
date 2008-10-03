@@ -97,8 +97,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   // ===================================================================
 
-  EnumFieldGenerator::
-    EnumFieldGenerator(const FieldDescriptor* descriptor)
+  EnumFieldGenerator::EnumFieldGenerator(const FieldDescriptor* descriptor)
     : descriptor_(descriptor) {
       SetEnumVariables(descriptor, &variables_);
   }
@@ -106,23 +105,23 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   EnumFieldGenerator::~EnumFieldGenerator() {}
 
   void EnumFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
-      printer->Print(variables_,
-        "BOOL has$capitalized_name$;\n"
-        "$storage_type$ $name$;\n");
+    printer->Print(variables_,
+      "BOOL has$capitalized_name$;\n"
+      "$storage_type$ $name$;\n");
   }
 
 
   void EnumFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
-      printer->Print(variables_,
-        "@property (readonly) BOOL has$capitalized_name$;\n"
-        "@property (retain, readonly) $storage_type$ $name$;\n");
+    printer->Print(variables_,
+      "@property (readonly) BOOL has$capitalized_name$;\n"
+      "@property (retain, readonly) $storage_type$ $name$;\n");
   }
 
 
   void EnumFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
-      printer->Print(variables_,
-        "@property BOOL has$capitalized_name$;\n"
-        "@property (retain) $storage_type$ $name$;\n");
+    printer->Print(variables_,
+      "@property BOOL has$capitalized_name$;\n"
+      "@property (retain) $storage_type$ $name$;\n");
   }
 
 
@@ -158,37 +157,38 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void EnumFieldGenerator::GenerateBuilderMembersHeader(io::Printer* printer) const {
-      printer->Print(variables_,
-        "- (BOOL) has$capitalized_name$;\n"
-        "- ($storage_type$) $name$;\n"\
-        "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value;\n"
-        "- ($classname$_Builder*) clear$capitalized_name$;\n");
+    printer->Print(variables_,
+      "- (BOOL) has$capitalized_name$;\n"
+      "- ($storage_type$) $name$;\n"\
+      "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value;\n"
+      "- ($classname$_Builder*) clear$capitalized_name$;\n");
   }
 
 
   void EnumFieldGenerator::GenerateBuilderMembersSource(io::Printer* printer) const {
-      printer->Print(variables_,
-        "- (BOOL) has$capitalized_name$ {\n"
-        "  return result.has$capitalized_name$;\n"
-        "}\n"
-        "- ($storage_type$) $name$ {\n"
-        "  return result.$name$;\n"
-        "}\n"
-        "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value {\n"
-        "  result.has$capitalized_name$ = YES;\n"
-        "  result.$name$ = value;\n"
-        "  return self;\n"
-        "}\n"
-        "- ($classname$_Builder*) clear$capitalized_name$ {\n"
-        "  result.has$capitalized_name$ = NO;\n"
-        "  result.$name$ = $default$;\n"
-        "  return self;\n"
-        "}\n");
+    printer->Print(variables_,
+      "- (BOOL) has$capitalized_name$ {\n"
+      "  return result.has$capitalized_name$;\n"
+      "}\n"
+      "- ($storage_type$) $name$ {\n"
+      "  return result.$name$;\n"
+      "}\n"
+      "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value {\n"
+      "  result.has$capitalized_name$ = YES;\n"
+      "  result.$name$ = value;\n"
+      "  return self;\n"
+      "}\n"
+      "- ($classname$_Builder*) clear$capitalized_name$ {\n"
+      "  result.has$capitalized_name$ = NO;\n"
+      "  result.$name$ = $default$;\n"
+      "  return self;\n"
+      "}\n");
   }
 
 
   void EnumFieldGenerator::GenerateMergingCodeHeader(io::Printer* printer) const {
   }
+
 
   void EnumFieldGenerator::GenerateMergingCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
@@ -201,7 +201,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     // Nothing to do here for enum types.
   }
   void EnumFieldGenerator::GenerateBuildingCodeSource(io::Printer* printer) const {
-      // Nothing to do here for enum types.
+    // Nothing to do here for enum types.
   }
 
 
@@ -221,16 +221,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void EnumFieldGenerator::
-    GenerateSerializationCodeHeader(io::Printer* printer) const {
+  void EnumFieldGenerator::GenerateSerializationCodeHeader(io::Printer* printer) const {
   }
 
 
   void EnumFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
-      printer->Print(variables_,
-        "if (self.has$capitalized_name$) {\n"
-        "  [output writeEnum:$number$ value:self.$name$.number];\n"
-        "}\n");
+    printer->Print(variables_,
+      "if (self.has$capitalized_name$) {\n"
+      "  [output writeEnum:$number$ value:self.$name$.number];\n"
+      "}\n");
   }
 
 
@@ -239,10 +238,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void EnumFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
-      printer->Print(variables_,
-        "if (self.has$capitalized_name$) {\n"
-        "  size += computeEnumSize($number$, self.$name$.number);\n"
-        "}\n");
+    printer->Print(variables_,
+      "if (self.has$capitalized_name$) {\n"
+      "  size += computeEnumSize($number$, self.$name$.number);\n"
+      "}\n");
   }
 
 
@@ -373,8 +372,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n");
   }
 
-  void RepeatedEnumFieldGenerator::
-    GenerateMergingCodeSource(io::Printer* printer) const {
+  void RepeatedEnumFieldGenerator::GenerateMergingCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "if (other.$mutable_list_name$.count > 0) {\n"
         "  if (result.$mutable_list_name$ == nil) {\n"
@@ -388,36 +386,35 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
   void RepeatedEnumFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
-      printer->Print(variables_,
-        "int32_t rawValue = [input readEnum];\n"
-        "$storage_type$ value = [$type$ valueOf:rawValue];\n"
-        "if (value == nil) {\n"
-        "  [unknownFields mergeVarintField:$number$ value:rawValue];\n"
-        "} else {\n"
-        "  [self add$capitalized_name$:value];\n"
-        "}\n");
+    printer->Print(variables_,
+      "int32_t rawValue = [input readEnum];\n"
+      "$storage_type$ value = [$type$ valueOf:rawValue];\n"
+      "if (value == nil) {\n"
+      "  [unknownFields mergeVarintField:$number$ value:rawValue];\n"
+      "} else {\n"
+      "  [self add$capitalized_name$:value];\n"
+      "}\n");
   }
 
-  void RepeatedEnumFieldGenerator::
-    GenerateSerializationCodeSource(io::Printer* printer) const {
+  void RepeatedEnumFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "for ($storage_type$ element in self.$list_name$) {\n"
         "  [output writeEnum:$number$ value:element.number];\n"
         "}\n");
   }
 
-  void RepeatedEnumFieldGenerator::
-    GenerateSerializedSizeCodeSource(io::Printer* printer) const {
+
+  void RepeatedEnumFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
         "for ($storage_type$ element in self.$list_name$) {\n"
         "  size += computeEnumSize($number$, element.number);\n"
         "}\n");
   }
 
+
   string RepeatedEnumFieldGenerator::GetBoxedType() const {
     return ClassName(descriptor_->enum_type());
   }
-
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf

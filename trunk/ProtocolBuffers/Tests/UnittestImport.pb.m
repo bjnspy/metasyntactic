@@ -179,22 +179,22 @@ static ImportMessage* defaultImportMessageInstance = nil;
 }
 
 + (ImportMessage*) parseFromData:(NSData*) data {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromData:data] buildParsed];
+  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromData:data] build];
 }
 + (ImportMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] buildParsed];
+  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (ImportMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromInputStream:input] buildParsed];
+  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromInputStream:input] build];
 }
 + (ImportMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (ImportMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromCodedInputStream:input] buildParsed];
+  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromCodedInputStream:input] build];
 }
 + (ImportMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] buildParsed];
+  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
 
 + (ImportMessage_Builder*) newBuilder { return [[[ImportMessage_Builder alloc] init] autorelease]; }
@@ -239,13 +239,6 @@ static ImportMessage* defaultImportMessageInstance = nil;
 }
 
 - (ImportMessage*) build {
-  if (!self.isInitialized) {
-    @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-  }
-  return [self buildPartial];
-}
-
-- (ImportMessage*) buildParsed {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }

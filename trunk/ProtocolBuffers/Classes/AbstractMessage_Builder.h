@@ -22,8 +22,6 @@
 
 - (PBUnknownFieldSet*) unknownFields;
 
-- (id<PBMessage>) buildParsed;
-
 - (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input;
 - (id<PBMessage_Builder>) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 - (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;

@@ -21,7 +21,6 @@
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
 - (id<PBMessage>) build;
 - (id<PBMessage>) buildPartial;
-- (id<PBMessage>) buildParsed;
 - (id<PBMessage_Builder>) clone;
 - (BOOL) isInitialized;
 - (PBDescriptor*) descriptorForType;
