@@ -143,6 +143,9 @@
 		74E17A6B0E949D0A00F8D0D3 /* UnknownFieldSet_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A440E949D0A00F8D0D3 /* UnknownFieldSet_Builder.m */; };
 		74E17A6C0E949D0A00F8D0D3 /* Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A460E949D0A00F8D0D3 /* Utilities.m */; };
 		74E17A6D0E949D0A00F8D0D3 /* WireFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17A480E949D0A00F8D0D3 /* WireFormat.m */; };
+		74E17FC90E95FEFE00F8D0D3 /* ExtendableBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC40E95FEFE00F8D0D3 /* ExtendableBuilder.m */; };
+		74E17FCA0E95FEFE00F8D0D3 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC60E95FEFE00F8D0D3 /* MethodDescriptor.m */; };
+		74E17FCB0E95FEFE00F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17FC80E95FEFE00F8D0D3 /* ServiceDescriptor.m */; };
 		74E6F01D0E723FB700A4C2BE /* PriorityMutex.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */; };
 		74EA26D70DCC5197001C03A7 /* DifferenceEngine.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EA26D60DCC5197001C03A7 /* DifferenceEngine.m */; };
 		74EC04F50DD2B704006953A4 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = 74EC04F40DD2B704006953A4 /* Location.m */; };
@@ -407,8 +410,6 @@
 		74D739C70DDBE31300D8CCDF /* MovieTitleCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MovieTitleCell.m; sourceTree = "<group>"; };
 		74DB93BA0E3855A2007D0010 /* SearchDatePickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchDatePickerViewController.h; sourceTree = "<group>"; };
 		74DB93BB0E3855A2007D0010 /* SearchDatePickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchDatePickerViewController.m; sourceTree = "<group>"; };
-		74E179F40E949CFA00F8D0D3 /* Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bootstrap.h; path = ../../ProtocolBuffers/Bootstrap.h; sourceTree = SOURCE_ROOT; };
-		74E179F50E949CFA00F8D0D3 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForwardDeclarations.h; path = ../../ProtocolBuffers/ForwardDeclarations.h; sourceTree = SOURCE_ROOT; };
 		74E179F70E949D0900F8D0D3 /* AbstractMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage.h; sourceTree = "<group>"; };
 		74E179F80E949D0900F8D0D3 /* AbstractMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractMessage.m; sourceTree = "<group>"; };
 		74E179F90E949D0900F8D0D3 /* AbstractMessage_Builder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractMessage_Builder.h; sourceTree = "<group>"; };
@@ -491,6 +492,14 @@
 		74E17A460E949D0A00F8D0D3 /* Utilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utilities.m; sourceTree = "<group>"; };
 		74E17A470E949D0A00F8D0D3 /* WireFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireFormat.h; sourceTree = "<group>"; };
 		74E17A480E949D0A00F8D0D3 /* WireFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WireFormat.m; sourceTree = "<group>"; };
+		74E17FC10E95FEEB00F8D0D3 /* Bootstrap.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Bootstrap.h; path = ../../ProtocolBuffers/Classes/Bootstrap.h; sourceTree = SOURCE_ROOT; };
+		74E17FC20E95FEEB00F8D0D3 /* ForwardDeclarations.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForwardDeclarations.h; path = ../../ProtocolBuffers/Classes/ForwardDeclarations.h; sourceTree = SOURCE_ROOT; };
+		74E17FC30E95FEFE00F8D0D3 /* ExtendableBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableBuilder.h; sourceTree = "<group>"; };
+		74E17FC40E95FEFE00F8D0D3 /* ExtendableBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableBuilder.m; sourceTree = "<group>"; };
+		74E17FC50E95FEFE00F8D0D3 /* MethodDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodDescriptor.h; sourceTree = "<group>"; };
+		74E17FC60E95FEFE00F8D0D3 /* MethodDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodDescriptor.m; sourceTree = "<group>"; };
+		74E17FC70E95FEFE00F8D0D3 /* ServiceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDescriptor.h; sourceTree = "<group>"; };
+		74E17FC80E95FEFE00F8D0D3 /* ServiceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceDescriptor.m; sourceTree = "<group>"; };
 		74E6F01B0E723FB700A4C2BE /* PriorityMutex.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PriorityMutex.h; sourceTree = "<group>"; };
 		74E6F01C0E723FB700A4C2BE /* PriorityMutex.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PriorityMutex.m; sourceTree = "<group>"; };
 		74EA26D50DCC5197001C03A7 /* DifferenceEngine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DifferenceEngine.h; sourceTree = "<group>"; };
@@ -882,9 +891,9 @@
 		745184B40E91D8D600D4E0C5 /* ProtocolBuffers */ = {
 			isa = PBXGroup;
 			children = (
+				74E17FC10E95FEEB00F8D0D3 /* Bootstrap.h */,
+				74E17FC20E95FEEB00F8D0D3 /* ForwardDeclarations.h */,
 				74E179F60E949D0900F8D0D3 /* Classes */,
-				74E179F40E949CFA00F8D0D3 /* Bootstrap.h */,
-				74E179F50E949CFA00F8D0D3 /* ForwardDeclarations.h */,
 			);
 			name = ProtocolBuffers;
 			sourceTree = "<group>";
@@ -1042,6 +1051,12 @@
 		74E179F60E949D0900F8D0D3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				74E17FC30E95FEFE00F8D0D3 /* ExtendableBuilder.h */,
+				74E17FC40E95FEFE00F8D0D3 /* ExtendableBuilder.m */,
+				74E17FC50E95FEFE00F8D0D3 /* MethodDescriptor.h */,
+				74E17FC60E95FEFE00F8D0D3 /* MethodDescriptor.m */,
+				74E17FC70E95FEFE00F8D0D3 /* ServiceDescriptor.h */,
+				74E17FC80E95FEFE00F8D0D3 /* ServiceDescriptor.m */,
 				74E179F70E949D0900F8D0D3 /* AbstractMessage.h */,
 				74E179F80E949D0900F8D0D3 /* AbstractMessage.m */,
 				74E179F90E949D0900F8D0D3 /* AbstractMessage_Builder.h */,
@@ -1425,6 +1440,9 @@
 				74E17A6B0E949D0A00F8D0D3 /* UnknownFieldSet_Builder.m in Sources */,
 				74E17A6C0E949D0A00F8D0D3 /* Utilities.m in Sources */,
 				74E17A6D0E949D0A00F8D0D3 /* WireFormat.m in Sources */,
+				74E17FC90E95FEFE00F8D0D3 /* ExtendableBuilder.m in Sources */,
+				74E17FCA0E95FEFE00F8D0D3 /* MethodDescriptor.m in Sources */,
+				74E17FCB0E95FEFE00F8D0D3 /* ServiceDescriptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
