@@ -156,9 +156,9 @@ property_definition(country);
         distance *= GREAT_CIRCLE_RADIUS_MILES;
     }
 
-    if (distance > 200) {
-        return UNKNOWN_DISTANCE;
-    }
+//    if (distance > 200) {
+//        return UNKNOWN_DISTANCE;
+//    }
 
     return distance;
 }

@@ -81,12 +81,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     descriptor = [[BoxOfficeProtoRoot buildDescriptor] retain];
     internal_static_ShowtimeProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Time",
-      @"Url",
-      @"Dubbed",
-      @"Subtitled",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Time", @"Url", @"Dubbed", @"Subtitled", nil];
       internal_static_ShowtimeProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_ShowtimeProto_descriptor
                                         fieldNames:fieldNames
@@ -95,11 +90,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     }
     internal_static_AllShowtimesProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:1] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Showtimes",
-      @"Vendor",
-      @"Captioning",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Showtimes", @"Vendor", @"Captioning", nil];
       internal_static_AllShowtimesProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_AllShowtimesProto_descriptor
                                         fieldNames:fieldNames
@@ -108,22 +99,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     }
     internal_static_MovieProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:2] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Identifier",
-      @"Title",
-      @"Length",
-      @"Language",
-      @"Genre",
-      @"Description",
-      @"RawRating",
-      @"Score",
-      @"IMDbUrl",
-      @"Director",
-      @"Cast",
-      @"Dubbed",
-      @"Subtitled",
-      @"ReleaseDate",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Identifier", @"Title", @"Length", @"Language", @"Genre", @"Description", @"RawRating", @"Score", @"IMDbUrl", @"Director", @"Cast", @"Dubbed", @"Subtitled", @"ReleaseDate", nil];
       internal_static_MovieProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_MovieProto_descriptor
                                         fieldNames:fieldNames
@@ -132,18 +108,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     }
     internal_static_TheaterProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:3] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Identifier",
-      @"Name",
-      @"StreetAddress",
-      @"City",
-      @"State",
-      @"PostalCode",
-      @"Country",
-      @"Phone",
-      @"Latitude",
-      @"Longitude",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Identifier", @"Name", @"StreetAddress", @"City", @"State", @"PostalCode", @"Country", @"Phone", @"Latitude", @"Longitude", nil];
       internal_static_TheaterProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterProto_descriptor
                                         fieldNames:fieldNames
@@ -152,10 +117,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     }
     internal_static_TheaterListingsProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:4] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Movies",
-      @"TheaterAndMovieShowtimes",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Movies", @"TheaterAndMovieShowtimes", nil];
       internal_static_TheaterListingsProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_descriptor
                                         fieldNames:fieldNames
@@ -164,10 +126,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     }
     internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor = [[[internal_static_TheaterListingsProto_descriptor nestedTypes] objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Theater",
-      @"MovieAndShowtimes",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Theater", @"MovieAndShowtimes", nil];
       internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor
                                         fieldNames:fieldNames
@@ -176,10 +135,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     }
     internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor = [[[internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_descriptor nestedTypes] objectAtIndex:0] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"MovieIdentifier",
-      @"Showtimes",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"MovieIdentifier", @"Showtimes", nil];
       internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_descriptor
                                         fieldNames:fieldNames
@@ -188,16 +144,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     }
     internal_static_ReviewProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:5] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Title",
-      @"Url",
-      @"Rating",
-      @"Snippet",
-      @"Content",
-      @"Publisher",
-      @"Author",
-      @"Date",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Title", @"Url", @"Rating", @"Snippet", @"Content", @"Publisher", @"Author", @"Date", nil];
       internal_static_ReviewProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_ReviewProto_descriptor
                                         fieldNames:fieldNames
@@ -206,9 +153,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     }
     internal_static_ReviewsListProto_descriptor = [[[self descriptor].messageTypes objectAtIndex:6] retain];
     {
-      NSArray* fieldNames = [NSArray arrayWithObjects:
-      @"Reviews",
-      nil];
+      NSArray* fieldNames = [NSArray arrayWithObjects:@"Reviews", nil];
       internal_static_ReviewsListProto_fieldAccessorTable = 
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_ReviewsListProto_descriptor
                                         fieldNames:fieldNames
@@ -254,8 +199,7 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
     "\007 \001(\t\022\014\n\004Date\030\010 \001(\t\"1\n\020ReviewsListProto"
     "\022\035\n\007reviews\030\001 \003(\0132\014.ReviewProto"
     ];
-  NSArray* dependencies = [NSArray arrayWithObjects:
-           nil];
+  NSArray* dependencies = [NSArray arrayWithObjects:nil];
   return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
 }
 @end
@@ -288,7 +232,6 @@ static PBFieldAccessorTable* internal_static_ReviewsListProto_fieldAccessorTable
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.time = @"";
     self.url = @"";
   }
@@ -645,7 +588,6 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.vendor = @"";
     self.captioning = @"";
   }
@@ -1009,7 +951,6 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.identifier = @"";
     self.title = @"";
     self.length = 0;
@@ -1774,7 +1715,6 @@ static MovieProto* defaultMovieProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.identifier = @"";
     self.name = @"";
     self.streetAddress = @"";
@@ -2269,7 +2209,6 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -2391,7 +2330,6 @@ static TheaterListingsProto* defaultTheaterListingsProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
@@ -2510,7 +2448,6 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.movieIdentifier = @"";
   }
   return self;
@@ -3155,7 +3092,6 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
     self.title = @"";
     self.url = @"";
     self.rating = 0;
@@ -3583,7 +3519,6 @@ static ReviewProto* defaultReviewProtoInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    memoizedSerializedSize = -1;
   }
   return self;
 }
