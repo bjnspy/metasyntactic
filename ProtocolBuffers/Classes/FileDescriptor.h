@@ -38,7 +38,6 @@
 - (NSString*) name;
 
 + (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
-+ (PBFileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;
 
 - (void) crossLink;
 

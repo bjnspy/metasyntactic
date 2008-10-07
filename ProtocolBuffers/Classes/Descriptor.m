@@ -82,9 +82,13 @@
     if (self = [super init]) {
         self.index = index_;
         self.proto = proto_;
-        self.fullName = [PBDescriptor computeFullName:file parent:parent_ name:proto.name];
         self.file = file_;
         self.containingType = parent_;
+        self.fullName = [PBDescriptor computeFullName:file parent:parent_ name:proto.name];
+        
+        if ([self.fullName hasPrefix:@"."]) {
+            @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+        }
         
         self.mutableNestedTypes = [NSMutableArray array];
         for (PBDescriptorProto* p in proto.nestedTypeList) {

@@ -75,7 +75,7 @@
         self.file = file_;
         
         if (proto.hasType) {
-            self.type = PBFieldDescriptorTypeValueOf(proto.type);
+            self.type = PBFieldDescriptorTypeFrom(proto.type);
         }
         
         if (self.number <= 0) {
