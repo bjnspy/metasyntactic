@@ -152,11 +152,6 @@
 }
 
 
-- (PBEnumDescriptor*) enumType {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
 - (id) defaultValue {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
