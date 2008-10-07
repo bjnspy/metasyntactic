@@ -132,21 +132,6 @@
 }
 
 
-
-+ (PBFileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies {
-    PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:[descriptorData dataUsingEncoding:NSISOLatin1StringEncoding]];
-    // Hack:  We can't embed a raw byte array inside generated Java code
-    //   (at least, not efficiently), but we can embed Strings.  So, the
-    //   protocol compiler embeds the FileDescriptorProto as a giant
-    //   string literal which is passed to this function to construct the
-    //   file's PBFileDescriptor.  The string literal contains only 8-bit
-    //   characters, each one representing a byte of the FileDescriptorProto's
-    //   serialized form.  So, if we convert it to bytes in ISO-8859-1, we
-    //   should get the original bytes that we want.
-    return [self buildFrom:proto dependencies:dependencies];
-}
-
-
 + (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies {
     // Building decsriptors involves two steps:  translating and linking.
     // In the translation step (implemented by PBFileDescriptor's

@@ -38,12 +38,20 @@
 }
 
 
-- (id) initWithDependencies:(NSArray*) fileDescriptorDependencies {
+- (id) initWithDependencies:(NSArray*) dependencies_ {
     if (self = [super init]) {
+        self.dependencies = [NSMutableArray array];
         self.descriptorsByName = [NSMutableDictionary dictionary];
         self.fieldsByNumber = [NSMutableDictionary dictionary];
         self.enumValuesByNumber = [NSMutableDictionary dictionary];
 
+        for (PBFileDescriptor* dependency in dependencies_) {
+            [dependencies addObject:dependency.pool];
+        }
+        
+        for (PBFileDescriptor* dependency in dependencies_) {
+            [self addPackage:dependency.package file:dependency];
+        }
     }
 
     return self;

@@ -28,11 +28,13 @@ typedef enum {
     PBFieldDescriptorTypeMessage,
     PBFieldDescriptorTypeData,
     PBFieldDescriptorTypeUInt32,
+    PBFieldDescriptorTypeEnum,
     PBFieldDescriptorTypeSFixed32,
     PBFieldDescriptorTypeSFixed64,
     PBFieldDescriptorTypeSInt32,
     PBFieldDescriptorTypeSInt64,
-    PBFieldDescriptorTypeEnum
 } PBFieldDescriptorType;
 
-PBFieldDescriptorType PBFieldDescriptorTypeValueOf(PBFieldDescriptorProto_Type* type);
+PBFieldDescriptorType PBFieldDescriptorTypeFrom(PBFieldDescriptorProto_Type* type);
+PBFieldDescriptorProto_Type* PBFieldDescriptorTypeTo(PBFieldDescriptorType type);
+
