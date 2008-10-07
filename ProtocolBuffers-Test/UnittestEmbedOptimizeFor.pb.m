@@ -30,15 +30,28 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
   return descriptor;
 }
 + (PBFileDescriptor*) buildDescriptor {
-  NSString* descriptorData = [NSString stringWithCString:
-    "\n1google/protobuf/unittest_embed_optimize_for.proto\022\021protobuf_un"
-    "ittest\032+google/protobuf/unittest_optimize_for.proto\"\241\001\n\031T"
-    "estEmbedOptimizedForSize\022A\n\020optional_message\030\001 \001(\0132\'"
-    ".protobuf_unittest.TestOptimizedForSize\022A\n\020repeated_message\030\002"
-    " \003(\0132\'.protobuf_unittest.TestOptimizedForSizeB\002H\001"
-    ];
+  static uint8_t descriptorData[] = {
+    10,49,103,111,111,103,108,101,47,112,114,111,116,111,98,117,102,47,117,
+    110,105,116,116,101,115,116,95,101,109,98,101,100,95,111,112,116,105,109,
+    105,122,101,95,102,111,114,46,112,114,111,116,111,18,17,112,114,111,116,
+    111,98,117,102,95,117,110,105,116,116,101,115,116,26,43,103,111,111,103,
+    108,101,47,112,114,111,116,111,98,117,102,47,117,110,105,116,116,101,115,
+    116,95,111,112,116,105,109,105,122,101,95,102,111,114,46,112,114,111,116,
+    111,34,161,1,10,25,84,101,115,116,69,109,98,101,100,79,112,116,105,109,
+    105,122,101,100,70,111,114,83,105,122,101,18,65,10,16,111,112,116,105,111,
+    110,97,108,95,109,101,115,115,97,103,101,24,1,32,1,40,11,50,39,46,112,114,
+    111,116,111,98,117,102,95,117,110,105,116,116,101,115,116,46,84,101,115,
+    116,79,112,116,105,109,105,122,101,100,70,111,114,83,105,122,101,18,65,
+    10,16,114,101,112,101,97,116,101,100,95,109,101,115,115,97,103,101,24,2,
+    32,3,40,11,50,39,46,112,114,111,116,111,98,117,102,95,117,110,105,116,116,
+    101,115,116,46,84,101,115,116,79,112,116,105,109,105,122,101,100,70,111,
+    114,83,105,122,101,66,2,72,1,
+  };
   NSArray* dependencies = [NSArray arrayWithObjects:[UnittestOptimizeForProtoRoot descriptor], nil];
-  return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
+  
+  NSData* data = [NSData dataWithBytes:descriptorData length:283];
+  PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
+  return [PBFileDescriptor buildFrom:proto dependencies:dependencies];
 }
 @end
 
