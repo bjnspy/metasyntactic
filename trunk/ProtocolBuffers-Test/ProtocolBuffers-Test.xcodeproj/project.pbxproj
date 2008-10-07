@@ -38,6 +38,7 @@
 		08FB7796FE84155DC02AAC07 /* ProtocolBuffers-Test.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "ProtocolBuffers-Test.m"; sourceTree = "<group>"; };
 		08FB779EFE84155DC02AAC07 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		32A70AAB03705E1F00C91783 /* ProtocolBuffers-Test_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "ProtocolBuffers-Test_Prefix.pch"; sourceTree = "<group>"; };
+		74365E140E9BF94100448025 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		74B54D840E9AD295008C7C2C /* TestUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtilities.h; sourceTree = "<group>"; };
 		74B54D850E9AD295008C7C2C /* TestUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUtilities.m; sourceTree = "<group>"; };
 		74B54D860E9AD295008C7C2C /* Unittest.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unittest.pb.h; sourceTree = "<group>"; };
@@ -104,6 +105,7 @@
 				74B54DAA0E9AD30C008C7C2C /* ForwardDeclarations.h */,
 				74B54E050E9ADC19008C7C2C /* UnknownFieldSetTest.h */,
 				74B54E060E9ADC19008C7C2C /* UnknownFieldSetTest.m */,
+				74365E140E9BF94100448025 /* Macros.h */,
 			);
 			name = Source;
 			sourceTree = "<group>";

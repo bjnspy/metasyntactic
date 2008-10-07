@@ -30,16 +30,27 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForS
   return descriptor;
 }
 + (PBFileDescriptor*) buildDescriptor {
-  NSString* descriptorData = [NSString stringWithCString:
-    "\n+google/protobuf/unittest_optimize_for.proto\022\021protobuf_unittest"
-    "\032\036google/protobuf/unittest.proto\"\236\001\n\024TestOptimizedForS"
-    "ize\022\t\n\001i\030\001 \001(\005\022.\n\003msg\030\023 \001(\0132!.pr"
-    "otobuf_unittest.ForeignMessage*\t\010\350\007\020\200\200\200\200\0022@"
-    "\n\016test_extension\022\'.protobuf_unittest.TestOptimizedForSize\030\322"
-    "\t \001(\005B\002H\002"
-    ];
+  static uint8_t descriptorData[] = {
+    10,43,103,111,111,103,108,101,47,112,114,111,116,111,98,117,102,47,117,
+    110,105,116,116,101,115,116,95,111,112,116,105,109,105,122,101,95,102,111,
+    114,46,112,114,111,116,111,18,17,112,114,111,116,111,98,117,102,95,117,
+    110,105,116,116,101,115,116,26,30,103,111,111,103,108,101,47,112,114,111,
+    116,111,98,117,102,47,117,110,105,116,116,101,115,116,46,112,114,111,116,
+    111,34,158,1,10,20,84,101,115,116,79,112,116,105,109,105,122,101,100,70,
+    111,114,83,105,122,101,18,9,10,1,105,24,1,32,1,40,5,18,46,10,3,109,115,
+    103,24,19,32,1,40,11,50,33,46,112,114,111,116,111,98,117,102,95,117,110,
+    105,116,116,101,115,116,46,70,111,114,101,105,103,110,77,101,115,115,97,
+    103,101,42,9,8,232,7,16,128,128,128,128,2,50,64,10,14,116,101,115,116,95,
+    101,120,116,101,110,115,105,111,110,18,39,46,112,114,111,116,111,98,117,
+    102,95,117,110,105,116,116,101,115,116,46,84,101,115,116,79,112,116,105,
+    109,105,122,101,100,70,111,114,83,105,122,101,24,210,9,32,1,40,5,66,2,72,
+    2,
+  };
   NSArray* dependencies = [NSArray arrayWithObjects:[UnittestProtoRoot descriptor], nil];
-  return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
+  
+  NSData* data = [NSData dataWithBytes:descriptorData length:261];
+  PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
+  return [PBFileDescriptor buildFrom:proto dependencies:dependencies];
 }
 @end
 

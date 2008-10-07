@@ -30,14 +30,22 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMess
   return descriptor;
 }
 + (PBFileDescriptor*) buildDescriptor {
-  NSString* descriptorData = [NSString stringWithCString:
-    "\n%google/protobuf/unittest_import.proto\022\030protobuf_unittest_impor"
-    "t\"\032\n\rImportMessage\022\t\n\001d\030\001 \001(\005*<\n\nImportEnum"
-    "\022\016\n\nIMPORT_FOO\020\007\022\016\n\nIMPORT_BAR\020\010\022\016\n\n"
-    "IMPORT_BAZ\020\tB\034\n\030com.google.protobuf.testH\001"
-    ];
+  static uint8_t descriptorData[] = {
+    10,37,103,111,111,103,108,101,47,112,114,111,116,111,98,117,102,47,117,
+    110,105,116,116,101,115,116,95,105,109,112,111,114,116,46,112,114,111,116,
+    111,18,24,112,114,111,116,111,98,117,102,95,117,110,105,116,116,101,115,
+    116,95,105,109,112,111,114,116,34,26,10,13,73,109,112,111,114,116,77,101,
+    115,115,97,103,101,18,9,10,1,100,24,1,32,1,40,5,42,60,10,10,73,109,112,
+    111,114,116,69,110,117,109,18,14,10,10,73,77,80,79,82,84,95,70,79,79,16,
+    7,18,14,10,10,73,77,80,79,82,84,95,66,65,82,16,8,18,14,10,10,73,77,80,79,
+    82,84,95,66,65,90,16,9,66,28,10,24,99,111,109,46,103,111,111,103,108,101,
+    46,112,114,111,116,111,98,117,102,46,116,101,115,116,72,1,
+  };
   NSArray* dependencies = [NSArray arrayWithObjects:nil];
-  return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];
+  
+  NSData* data = [NSData dataWithBytes:descriptorData length:185];
+  PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
+  return [PBFileDescriptor buildFrom:proto dependencies:dependencies];
 }
 @end
 
