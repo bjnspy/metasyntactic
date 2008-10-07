@@ -68,7 +68,8 @@
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
     NSDictionary* allFields = self.allFields;
-    for (PBFieldDescriptor* field in allFields) {
+    NSArray* sortedFields = [allFields.allKeys sortedArrayUsingSelector:@selector(compare:)];
+    for (PBFieldDescriptor* field in sortedFields) {
         id value = [allFields objectForKey:field];
         if (field.isRepeated) {
             for (id element in value) {

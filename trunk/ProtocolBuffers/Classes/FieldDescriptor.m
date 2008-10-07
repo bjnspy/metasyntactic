@@ -324,4 +324,31 @@
     }
 }
 
+
+/**
+ * Compare with another {@code FieldDescriptor}.  This orders fields in
+ * "canonical" order, which simply means ascending order by field number.
+ * {@code other} must be a field of the same type -- i.e.
+ * {@code getContainingType()} must return the same {@code Descriptor} for
+ * both fields.
+ *
+ * @return negative, zero, or positive if {@code this} is less than,
+ *         equal to, or greater than {@code other}, respectively.
+ */
+- (NSComparisonResult) compare:(PBFieldDescriptor*) other {
+    if (other.containingType != containingType) {
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"FieldDescriptors can only be compared to other FieldDescriptors for fields of the same message type."
+                                     userInfo:nil];
+    }
+    
+    if (self.number < other.number) {
+        return NSOrderedAscending;
+    } else if (self.number > other.number) {
+        return NSOrderedDescending;
+    } else {
+        return NSOrderedSame;
+    }
+}
+
 @end
