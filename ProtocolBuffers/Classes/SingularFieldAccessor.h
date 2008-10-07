@@ -17,8 +17,17 @@
 #import "FieldAccessor.h"
 
 @interface PBSingularFieldAccessor : NSObject<PBFieldAccessor> {
-
+@private
+    SEL getSelector;
+    SEL setSelector;
+    SEL hasSelector;
+    SEL clearSelector;
 }
+
+@property (readonly) SEL getSelector;
+@property (readonly) SEL setSelector;
+@property (readonly) SEL hasSelector;
+@property (readonly) SEL clearSelector;
 
 + (PBSingularFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
