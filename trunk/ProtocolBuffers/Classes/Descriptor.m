@@ -153,7 +153,7 @@
 
 
 - (PBMessageOptions*) options {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    return proto.options;
 }
 
 

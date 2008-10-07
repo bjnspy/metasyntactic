@@ -16,14 +16,46 @@
 
 #import "SingularFieldAccessor.h"
 
+@interface PBSingularFieldAccessor()
+    @property SEL getSelector;
+    @property SEL setSelector;
+    @property SEL hasSelector;
+    @property SEL clearSelector;
+@end
+
 
 @implementation PBSingularFieldAccessor
 
+@synthesize getSelector;
+@synthesize setSelector;
+@synthesize hasSelector;
+@synthesize clearSelector;
+
+- (void) dealloc {
+    [super dealloc];
+}
+
+
+- (id) initWithField:(PBFieldDescriptor*) field
+                name:(NSString*) name
+        messageClass:(Class) messageClass
+        builderClass:(Class) builderClass {
+    if (self = [super init]) {
+        self.getSelector = sel_getUid(name.UTF8String);
+        self.setSelector = sel_getUid([[NSString stringWithFormat:@"set%@:", name] UTF8String]);
+        self.hasSelector = sel_getUid([[NSString stringWithFormat:@"has%@", name] UTF8String]);
+        self.clearSelector = sel_getUid([[NSString stringWithFormat:@"clear%@", name] UTF8String]);
+    }
+    
+    return self;
+}
+
+
 + (PBSingularFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                                             name:(NSString*) name
-                                                     messageClass:(Class) messageClass
-                                                     builderClass:(Class) builderClass {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+                                          name:(NSString*) name
+                                  messageClass:(Class) messageClass
+                                  builderClass:(Class) builderClass {
+    return [[[PBSingularFieldAccessor alloc] initWithField:field name:name messageClass:messageClass builderClass:builderClass] autorelease];
 }
 
 

@@ -116,33 +116,29 @@
 }
 
 
-- (BOOL) isRequired {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (BOOL) isRepeated {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
 - (BOOL) isExtension {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    return proto.hasExtendee;
 }
 
 
+/** Is this field declared required? */
+- (BOOL) isRequired {
+    return proto.label == [PBFieldDescriptorProto_Label LABEL_REQUIRED];
+}
+
+/** Is this field declared optional? */
 - (BOOL) isOptional {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    return proto.label == [PBFieldDescriptorProto_Label LABEL_OPTIONAL];
+}
+
+/** Is this field declared repeated? */
+- (BOOL) isRepeated {
+    return proto.label == [PBFieldDescriptorProto_Label LABEL_REPEATED];
 }
 
 
 - (PBObjectiveCType) objectiveCType {
     return PBObjectiveCTypeFromFieldDescriptorType(self.type);
-}
-
-
-- (PBDescriptor*) containingType {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
@@ -173,11 +169,6 @@
 
 - (int32_t) number {
     return proto.number;
-}
-
-
-- (PBFieldDescriptorType) type {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
