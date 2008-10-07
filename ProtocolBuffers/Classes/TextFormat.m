@@ -72,7 +72,27 @@
             }
         }
     } else {
-        @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+        int64_t result = [numberText longLongValue];
+        if (negative) {
+            result = -result;
+        }
+
+        // Check bounds.
+        // No need to check for 64-bit numbers since they'd have to be 16 chars
+        // or longer to overflow.
+        if (!isLong) {
+            if (isSigned) {
+                if (result > INT_MAX || result < INT_MIN) {
+                    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range for 32-bit signed integer: " userInfo:nil];
+                }
+            } else {
+                if (result >= (1LL << 32) || result < 0) {
+                    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range for 32-bit unsigned integer: " userInfo:nil];
+                }
+            }
+        }
+        
+        return result;
 #if 0
         BigInteger bigValue = new BigInteger(numberText, radix);
         if (negative) {

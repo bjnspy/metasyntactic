@@ -153,7 +153,13 @@
 
 
 - (id) defaultValue {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    if (self.objectiveCType == PBObjectiveCTypeMessage) {
+        @throw [NSException exceptionWithName:@"UnsupportedOperation"
+                                       reason:@"FieldDescriptor.getDefaultValue() called on an embedded message field."
+                                     userInfo:nil];
+    }
+
+    return defaultValue;
 }
 
 
@@ -243,36 +249,36 @@
                 break;
             case PBFieldDescriptorTypeUInt32:
             case PBFieldDescriptorTypeFixed32: {
-                defaultValue = [NSNumber numberWithInt:[PBTextFormat parseUInt32:proto.defaultValue]];
+                self.defaultValue = [NSNumber numberWithInt:[PBTextFormat parseUInt32:proto.defaultValue]];
                 break;
             }
             case PBFieldDescriptorTypeInt64:
             case PBFieldDescriptorTypeSInt64:
             case PBFieldDescriptorTypeSFixed64:
-                defaultValue = [NSNumber numberWithLongLong:[PBTextFormat parseInt64:proto.defaultValue]];
+                self.defaultValue = [NSNumber numberWithLongLong:[PBTextFormat parseInt64:proto.defaultValue]];
                 break;
             case PBFieldDescriptorTypeUInt64:
             case PBFieldDescriptorTypeFixed64: {
-                defaultValue = [NSNumber numberWithLongLong:[PBTextFormat parseUInt64:proto.defaultValue]];
+                self.defaultValue = [NSNumber numberWithLongLong:[PBTextFormat parseUInt64:proto.defaultValue]];
                 break;
             }
             case PBFieldDescriptorTypeFloat:
-                defaultValue = [NSNumber numberWithFloat:[proto.defaultValue floatValue]];
+                self.defaultValue = [NSNumber numberWithFloat:[proto.defaultValue floatValue]];
                 break;
             case PBFieldDescriptorTypeDouble:
-                defaultValue = [NSNumber numberWithDouble:[proto.defaultValue doubleValue]];
+                self.defaultValue = [NSNumber numberWithDouble:[proto.defaultValue doubleValue]];
                 break;
             case PBFieldDescriptorTypeBool:
-                defaultValue = [NSNumber numberWithBool:[@"YES" isEqual:proto.defaultValue]];
+                self.defaultValue = [NSNumber numberWithBool:[@"YES" isEqual:proto.defaultValue]];
                 break;
             case PBFieldDescriptorTypeString:
-                defaultValue = proto.defaultValue;
+                self.defaultValue = proto.defaultValue;
                 break;
             case PBFieldDescriptorTypeData:
-                defaultValue = [PBTextFormat unescapeBytes:proto.defaultValue];
+                self.defaultValue = [PBTextFormat unescapeBytes:proto.defaultValue];
                 break;
             case PBFieldDescriptorTypeEnum:
-                defaultValue = [enumType findValueByName:proto.defaultValue];
+                self.defaultValue = [enumType findValueByName:proto.defaultValue];
                 if (defaultValue == nil) {
                     @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Unknown enum default value:" userInfo:nil];
                 }
@@ -284,19 +290,19 @@
     } else {
         // Determine the default default for this field.
         if (self.isRepeated) {
-            defaultValue = [NSArray array];
+            self.defaultValue = [NSArray array];
         } else {
             switch (self.objectiveCType) {
                 case PBObjectiveCTypeEnum:
                     // We guarantee elsewhere that an enum type always has at least
                     // one possible value.
-                    defaultValue = [self.enumType.values objectAtIndex:0];
+                    self.defaultValue = [self.enumType.values objectAtIndex:0];
                     break;
                 case PBObjectiveCTypeMessage:
-                    defaultValue = nil;
+                    self.defaultValue = nil;
                     break;
                 default:
-                    defaultValue = PBObjectiveCTypeDefault(self.objectiveCType);
+                    self.defaultValue = PBObjectiveCTypeDefault(self.objectiveCType);
                     break;
             }
         }
