@@ -19,25 +19,50 @@
 #import "FieldDescriptorType.h"
 #import "ObjectiveCType.h"
 
-@interface PBFieldDescriptor : NSObject/*<PBGenericDescriptor>*/ {
+@interface PBFieldDescriptor : NSObject<PBGenericDescriptor> {
+@private
+    int32_t index;
+    
+    PBFieldDescriptorProto* proto;
+    NSString* fullName;
+    
+    // TODO(cyrusn): circularity between us and our containing file
+    PBFileDescriptor* file;
+    PBDescriptor* extensionScope;
+    
+    // Possibly initialized during cross-linking.
+    PBFieldDescriptorType type;
+    
+    // TODO(cyrusn): circularity between us and our containing type
+    PBDescriptor* containingType;
+    PBDescriptor* messageType;
+    PBEnumDescriptor* enumType;
+    id defaultValue;
 }
+
+@property (readonly) int32_t index;
+@property (readonly, retain) PBFieldDescriptorProto* proto;
+@property (readonly, copy) NSString* fullName;
+@property (readonly, retain) PBFileDescriptor* file;
+@property (readonly, retain) PBDescriptor* extensionScope;
+@property (readonly) PBFieldDescriptorType type;
+@property (readonly, retain) PBDescriptor* containingType;
+@property (readonly, retain) PBDescriptor* messageType;
+@property (readonly, retain) PBEnumDescriptor* enumType;
+@property (readonly, retain) id defaultValue;
+
++ (PBFieldDescriptor*) descriptorWithProto:(PBFieldDescriptorProto*) proto
+                                      file:(PBFileDescriptor*) file
+                                    parent:(PBDescriptor*) parent
+                                     index:(int32_t) index
+                               isExtension:(BOOL) isExtension;
 
 - (BOOL) isRequired;
 - (BOOL) isRepeated;
 - (BOOL) isExtension;
 - (BOOL) isOptional;
 - (PBObjectiveCType) objectiveCType;
-- (PBFieldDescriptorType) type;
 
-- (PBDescriptor*) containingType;
-- (PBDescriptor*) extensionScope;
-- (PBDescriptor*) messageType;
-- (PBEnumDescriptor*) enumType;
-
-- (id) defaultValue;
-- (int32_t) index;
 - (int32_t) number;
-
-- (NSString*) fullName;
 
 @end

@@ -14,10 +14,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBServiceDescriptor : NSObject {
+#import "GenericDescriptor.h"
+
+@interface PBServiceDescriptor : NSObject<PBGenericDescriptor> {
 @private
+    int32_t index;
+    PBServiceDescriptorProto* proto;
+    NSString* fullName;
+    PBFileDescriptor* file;
     NSMutableArray* mutableMethods;
 }
+
+@property (readonly) int32_t index;
+@property (readonly, retain) PBServiceDescriptorProto* proto;
+@property (readonly, copy) NSString* fullName;
+@property (readonly, retain) PBFileDescriptor* file;
+
++ (PBServiceDescriptor*) descriptorWithProto:(PBServiceDescriptorProto*) proto
+                                        file:(PBFileDescriptor*) file
+                                       index:(int32_t) index;
 
 - (NSArray*) methods;
 

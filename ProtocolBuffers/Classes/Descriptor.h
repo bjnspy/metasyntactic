@@ -16,16 +16,39 @@
 
 #import "GenericDescriptor.h"
 
-@interface PBDescriptor : NSObject/*<PBGenericDescriptor>*/ {
-    NSArray* nestedTypes;
+@interface PBDescriptor : NSObject<PBGenericDescriptor> {
+@private
+    int32_t index;
+    PBDescriptorProto* proto;
+    NSString* fullName;
+    PBFileDescriptor* file;
+    // TODO(cyrusn): circularity between us and our containing type
+    PBDescriptor* containingType;
+    NSMutableArray* mutableNestedTypes;
+    NSMutableArray* mutableEnumTypes;
+    NSMutableArray* mutableFields;
+    NSMutableArray* mutableExtensions;
 }
 
-@property (retain, readonly) NSArray* nestedTypes;
+@property (readonly) int32_t index;
+@property (retain, readonly) PBDescriptorProto* proto;
+@property (retain, readonly) NSString* fullName;
+@property (retain, readonly) PBFileDescriptor* file;
+@property (retain, readonly) PBDescriptor* containingType;
+
+- (NSArray*) nestedTypes;
+- (NSArray*) enumTypes;
+- (NSArray*) fields;
+- (NSArray*) extensions;
 
 + (PBDescriptor*) descriptorWithProto:(PBDescriptorProto*) proto
                                  file:(PBFileDescriptor*) file
                                parent:(PBDescriptor*) parent
                                 index:(int32_t) index;
+
++ (NSString*) computeFullName:(PBFileDescriptor*) file
+                       parent:(PBDescriptor*) parent
+                         name:(NSString*) name;
 
 - (NSArray*) fields;
 - (PBMessageOptions*) options;

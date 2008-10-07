@@ -34,3 +34,5 @@ typedef enum {
     PBFieldDescriptorTypeSInt64,
     PBFieldDescriptorTypeEnum
 } PBFieldDescriptorType;
+
+PBFieldDescriptorType PBFieldDescriptorTypeValueOf(PBFieldDescriptorProto_Type* type);

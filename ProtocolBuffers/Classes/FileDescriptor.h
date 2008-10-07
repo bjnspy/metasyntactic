@@ -22,13 +22,20 @@
     NSMutableArray* mutableEnumTypes;
     NSMutableArray* mutableServices;
     NSMutableArray* mutableDependencies;
+    
+    // TODO(cyrusn): circularity betwen us and the pool.
     PBDescriptorPool* pool;
 }
+
+@property (retain) PBDescriptorPool* pool;
 
 - (NSArray*) messageTypes;
 - (NSArray*) extensions;
 - (NSArray*) enumTypes;
 - (NSArray*) services;
+
+- (NSString*) package;
+- (NSString*) name;
 
 + (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
 + (PBFileDescriptor*) internalBuildGeneratedFileFrom:(NSString*) descriptorData dependencies:(NSArray*) dependencies;

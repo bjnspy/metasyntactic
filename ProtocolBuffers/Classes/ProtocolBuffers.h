@@ -29,7 +29,7 @@
 #import "EnumValueDescriptor.h"
 #import "ExtendableMessage.h"
 #import "ExtensionRegistry.h"
-#import "DescriptorIntPair.h"
+#import "ExtensionRegistry_DescriptorIntPair.h"
 #import "ExtensionInfo.h"
 #import "Field.h"
 #import "FieldDescriptor.h"

@@ -16,22 +16,76 @@
 
 #import "ServiceDescriptor.h"
 
+#import "Descriptor.pb.h"
+#import "DescriptorPool.h"
+
 @interface PBServiceDescriptor()
-@property (retain) NSMutableArray* mutableMethods;
+    @property int32_t index;
+    @property (retain) PBServiceDescriptorProto* proto;
+    @property (copy) NSString* fullName;
+    @property (retain) PBFileDescriptor* file;
+    @property (retain) NSMutableArray* mutableMethods;
 @end
 
 @implementation PBServiceDescriptor
 
+@synthesize index;
+@synthesize proto;
+@synthesize fullName;
+@synthesize file;
 @synthesize mutableMethods;
 
 - (void) dealloc {
+    self.index = 0;
+    self.proto = nil;
+    self.fullName = nil;
+    self.file = nil;
     self.mutableMethods = nil;
+
     [super dealloc];
+}
+
+
+- (id) initWithProto:(PBServiceDescriptorProto*) proto_
+                file:(PBFileDescriptor*) file_
+               index:(int32_t) index_ {
+    if (self = [super init]) {
+        self.index = index_;
+        self.proto = proto_;
+        self.fullName = [PBDescriptor computeFullName:file parent:nil name:proto.name];
+        self.file = file_;
+        
+        self.mutableMethods = [NSMutableArray array];
+        for (PBMethodDescriptorProto* m in proto.methodList) {
+            [mutableMethods addObject:[PBMethodDescriptor descriptorWithProto:m file:file parent:self index:mutableMethods.count]];
+        }
+        
+        [file.pool addSymbol:self];
+    }
+    
+    return self;
+}
+
+
++ (PBServiceDescriptor*) descriptorWithProto:(PBServiceDescriptorProto*) proto
+                                        file:(PBFileDescriptor*) file
+                                       index:(int32_t) index {
+    return [[[PBServiceDescriptor alloc] initWithProto:proto file:file index:index] autorelease];
 }
 
 
 - (NSArray*) methods {
     return mutableMethods;
+}
+
+
+- (id<PBMessage>) toProto {
+    return proto;
+}
+
+
+- (NSString*) name {
+    return proto.name;
 }
 
 @end

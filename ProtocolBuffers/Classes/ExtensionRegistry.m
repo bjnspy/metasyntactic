@@ -18,7 +18,7 @@
 
 #import "Descriptor.pb.h"
 #import "Descriptor.h"
-#import "DescriptorIntPair.h"
+#import "ExtensionRegistry_DescriptorIntPair.h"
 #import "ExtensionInfo.h"
 #import "FieldDescriptor.h"
 
@@ -91,7 +91,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 - (PBExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType
                                                fieldNumber:(int32_t) fieldNumber {
-    return [extensionsByNumber objectForKey:[PBDescriptorIntPair pairWithDescriptor:containingType number:fieldNumber]];
+    return [extensionsByNumber objectForKey:[PBExtensionRegistry_DescriptorIntPair pairWithDescriptor:containingType number:fieldNumber]];
 }
 
 #if 0
@@ -137,8 +137,8 @@ static PBExtensionRegistry* EMPTY = nil;
     [extensionsByName setObject:extension
                          forKey:extension.descriptor.fullName];
     [extensionsByNumber setObject:extension
-                           forKey:[PBDescriptorIntPair pairWithDescriptor:extension.descriptor.containingType
-                                                                   number:extension.descriptor.number]];
+                           forKey:[PBExtensionRegistry_DescriptorIntPair pairWithDescriptor:extension.descriptor.containingType
+                                                                                     number:extension.descriptor.number]];
 
     PBFieldDescriptor* field = extension.descriptor;
 

@@ -25,8 +25,6 @@
 		741A74E00E8CCF0E00F16FD4 /* DynamicMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74B80E8CCF0E00F16FD4 /* DynamicMessage_Builder.m */; };
 		741A74E10E8CCF0E00F16FD4 /* ExtensionRegistry.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74B90E8CCF0E00F16FD4 /* ExtensionRegistry.h */; };
 		741A74E20E8CCF0E00F16FD4 /* ExtensionRegistry.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BA0E8CCF0E00F16FD4 /* ExtensionRegistry.m */; };
-		741A74E30E8CCF0E00F16FD4 /* DescriptorIntPair.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BB0E8CCF0E00F16FD4 /* DescriptorIntPair.h */; };
-		741A74E40E8CCF0E00F16FD4 /* DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BC0E8CCF0E00F16FD4 /* DescriptorIntPair.m */; };
 		741A74E50E8CCF0E00F16FD4 /* ExtensionInfo.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BD0E8CCF0E00F16FD4 /* ExtensionInfo.h */; };
 		741A74E60E8CCF0E00F16FD4 /* ExtensionInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 741A74BE0E8CCF0E00F16FD4 /* ExtensionInfo.m */; };
 		741A74E70E8CCF0E00F16FD4 /* MutableField.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 741A74BF0E8CCF0E00F16FD4 /* MutableField.h */; };
@@ -81,6 +79,8 @@
 		749E64C60E940A4400F78C70 /* GeneratedMessage_Builder.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E64C50E940A4400F78C70 /* GeneratedMessage_Builder.m */; };
 		74AD665A0E93D0C700A01FD5 /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66590E93D0C700A01FD5 /* Descriptor.pb.m */; };
 		74B54F2E0E9AEA50008C7C2C /* PBPackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B54F2D0E9AEA50008C7C2C /* PBPackageDescriptor.m */; };
+		74B551790E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B551780E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m */; };
+		74B5517C0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */; };
 		74E17BF20E95655500F8D0D3 /* ExtendableBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */; };
 		74E17DB30E95EFDA00F8D0D3 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DB20E95EFDA00F8D0D3 /* MethodDescriptor.m */; };
 		74E17DD60E95F0D900F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DD50E95F0D900F8D0D3 /* ServiceDescriptor.m */; };
@@ -146,7 +146,6 @@
 				741A74DD0E8CCF0E00F16FD4 /* DynamicMessage.h in Copy Headers */,
 				741A74DF0E8CCF0E00F16FD4 /* DynamicMessage_Builder.h in Copy Headers */,
 				741A74E10E8CCF0E00F16FD4 /* ExtensionRegistry.h in Copy Headers */,
-				741A74E30E8CCF0E00F16FD4 /* DescriptorIntPair.h in Copy Headers */,
 				741A74E50E8CCF0E00F16FD4 /* ExtensionInfo.h in Copy Headers */,
 				741A74E90E8CCF0E00F16FD4 /* FieldSet.h in Copy Headers */,
 				74517E710E90CDED00D4E0C5 /* Message.h in Copy Headers */,
@@ -189,8 +188,6 @@
 		741A74B80E8CCF0E00F16FD4 /* DynamicMessage_Builder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DynamicMessage_Builder.m; sourceTree = "<group>"; };
 		741A74B90E8CCF0E00F16FD4 /* ExtensionRegistry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry.h; sourceTree = "<group>"; };
 		741A74BA0E8CCF0E00F16FD4 /* ExtensionRegistry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry.m; sourceTree = "<group>"; };
-		741A74BB0E8CCF0E00F16FD4 /* DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorIntPair.h; sourceTree = "<group>"; };
-		741A74BC0E8CCF0E00F16FD4 /* DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorIntPair.m; sourceTree = "<group>"; };
 		741A74BD0E8CCF0E00F16FD4 /* ExtensionInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionInfo.h; sourceTree = "<group>"; };
 		741A74BE0E8CCF0E00F16FD4 /* ExtensionInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionInfo.m; sourceTree = "<group>"; };
 		741A74BF0E8CCF0E00F16FD4 /* MutableField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MutableField.h; sourceTree = "<group>"; };
@@ -251,6 +248,10 @@
 		74AD66590E93D0C700A01FD5 /* Descriptor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptor.pb.m; sourceTree = "<group>"; };
 		74B54F2C0E9AEA50008C7C2C /* PBPackageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPackageDescriptor.h; sourceTree = "<group>"; };
 		74B54F2D0E9AEA50008C7C2C /* PBPackageDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPackageDescriptor.m; sourceTree = "<group>"; };
+		74B551770E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry_DescriptorIntPair.h; sourceTree = "<group>"; };
+		74B551780E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry_DescriptorIntPair.m; sourceTree = "<group>"; };
+		74B5517A0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorPool_DescriptorIntPair.h; sourceTree = "<group>"; };
+		74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorPool_DescriptorIntPair.m; sourceTree = "<group>"; };
 		74E17B390E9561D700F8D0D3 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
 		74E17BF00E95655500F8D0D3 /* ExtendableBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableBuilder.h; sourceTree = "<group>"; };
 		74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableBuilder.m; sourceTree = "<group>"; };
@@ -420,9 +421,9 @@
 				741A758C0E8CE18200F16FD4 /* Descriptor.m */,
 				741A758D0E8CE18200F16FD4 /* FieldDescriptor.h */,
 				741A758E0E8CE18200F16FD4 /* FieldDescriptor.m */,
-				741A75930E8CE38500F16FD4 /* GenericDescriptor.h */,
 				741A75970E8CE3DA00F16FD4 /* FileDescriptor.h */,
 				741A75980E8CE3DA00F16FD4 /* FileDescriptor.m */,
+				741A75930E8CE38500F16FD4 /* GenericDescriptor.h */,
 				74E79C2E0E8D82B500EFD26E /* FieldDescriptorType.h */,
 				74E79C2F0E8D82B500EFD26E /* FieldDescriptorType.m */,
 				74E79DC50E8D989100EFD26E /* EnumValueDescriptor.h */,
@@ -437,6 +438,8 @@
 				74E17DD50E95F0D900F8D0D3 /* ServiceDescriptor.m */,
 				74B54F2C0E9AEA50008C7C2C /* PBPackageDescriptor.h */,
 				74B54F2D0E9AEA50008C7C2C /* PBPackageDescriptor.m */,
+				74B5517A0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.h */,
+				74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */,
 			);
 			name = Descriptors;
 			sourceTree = "<group>";
@@ -478,10 +481,10 @@
 		745E97CF0E941793007FD139 /* ExtensionRegistry */ = {
 			isa = PBXGroup;
 			children = (
+				74B551770E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.h */,
+				74B551780E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m */,
 				741A74B90E8CCF0E00F16FD4 /* ExtensionRegistry.h */,
 				741A74BA0E8CCF0E00F16FD4 /* ExtensionRegistry.m */,
-				741A74BB0E8CCF0E00F16FD4 /* DescriptorIntPair.h */,
-				741A74BC0E8CCF0E00F16FD4 /* DescriptorIntPair.m */,
 				741A74BD0E8CCF0E00F16FD4 /* ExtensionInfo.h */,
 				741A74BE0E8CCF0E00F16FD4 /* ExtensionInfo.m */,
 			);
@@ -564,7 +567,6 @@
 				741A74DE0E8CCF0E00F16FD4 /* DynamicMessage.m in Sources */,
 				741A74E00E8CCF0E00F16FD4 /* DynamicMessage_Builder.m in Sources */,
 				741A74E20E8CCF0E00F16FD4 /* ExtensionRegistry.m in Sources */,
-				741A74E40E8CCF0E00F16FD4 /* DescriptorIntPair.m in Sources */,
 				741A74E60E8CCF0E00F16FD4 /* ExtensionInfo.m in Sources */,
 				741A74E80E8CCF0E00F16FD4 /* MutableField.m in Sources */,
 				741A74EA0E8CCF0E00F16FD4 /* FieldSet.m in Sources */,
@@ -598,6 +600,8 @@
 				74E17DB30E95EFDA00F8D0D3 /* MethodDescriptor.m in Sources */,
 				74E17DD60E95F0D900F8D0D3 /* ServiceDescriptor.m in Sources */,
 				74B54F2E0E9AEA50008C7C2C /* PBPackageDescriptor.m in Sources */,
+				74B551790E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m in Sources */,
+				74B5517C0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

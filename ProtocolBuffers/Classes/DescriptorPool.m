@@ -16,6 +16,9 @@
 
 #import "DescriptorPool.h"
 
+#import "DescriptorPool_DescriptorIntPair.h"
+#import "EnumDescriptor.h"
+#import "EnumValueDescriptor.h"
 #import "PBPackageDescriptor.h"
 
 @implementation PBDescriptorPool
@@ -63,6 +66,99 @@
     PBPackageDescriptor* packageDescriptor = [PBPackageDescriptor descriptorWithFullName:fullName name:name file:file];
     [descriptorsByName setObject:packageDescriptor forKey:fullName];
 }
+
+
+BOOL isLetter(unichar c) {
+    return (c >= 'a' && c <= 'z') || (c >= 'A' && c<= 'Z');
+}
+
+
+BOOL isDigit(unichar c) {
+    return (c >= '0' && c <= '9');
+}
+
+
+/**
+ * Verifies that the descriptor's name is valid (i.e. it contains only
+ * letters, digits, and underscores, and does not start with a digit).
+ */
+- (void) validateSymbolName:(id<PBGenericDescriptor>) descriptor {
+    NSString* name = [descriptor name];
+    if (name.length == 0) {
+        @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Missing name." userInfo:nil];
+    } else {
+        for (int i = 0; i < name.length; i++) {
+            unichar c = [name characterAtIndex:i];
+            
+            // Non-ASCII characters are not valid in protobuf identifiers, even
+            // if they are letters or digits.
+            if (c >= 128) {
+                @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
+            }
+            
+            // First character must be letter or _.  Subsequent characters may
+            // be letters, numbers, or digits.
+            if (isLetter(c) || c == '_' ||
+                (isDigit(c) && i > 0)) {
+                // Valid
+            } else {
+                @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
+            }
+        }
+    }
+}
+
+
+/**
+ * Adds a symbol to the symbol table.  If a symbol with the same name
+ * already exists, throws an error.
+ */
+- (void) addSymbol:(id<PBGenericDescriptor>) descriptor {
+    [self validateSymbolName:descriptor];
+    
+    NSString* fullName = [descriptor fullName];
+
+    if ([descriptorsByName objectForKey:fullName] != nil) {
+        @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
+    }
+    
+    [descriptorsByName setObject:descriptor forKey:fullName];
+
+#if 0
+    if (old != null) {
+        descriptorsByName.put(fullName, old);
+        
+        if (descriptor.getFile() == old.getFile()) {
+            if (dotpos == -1) {
+                throw new DescriptorValidationException(descriptor,
+                                                        "\"" + fullName + "\" is already defined.");
+            } else {
+                throw new DescriptorValidationException(descriptor,
+                                                        "\"" + fullName.substring(dotpos + 1) +
+                                                        "\" is already defined in \"" +
+                                                        fullName.substring(0, dotpos) + "\".");
+            }
+        } else {
+            throw new DescriptorValidationException(descriptor,
+                                                    "\"" + fullName + "\" is already defined in file \"" +
+                                                    old.getFile().getName() + "\".");
+        }
+    }
+#endif
+}
+
+
+- (void) addEnumValueByNumber:(PBEnumValueDescriptor*) value {
+    PBDescriptorPool_DescriptorIntPair* key = [PBDescriptorPool_DescriptorIntPair pairWithDescriptor:value.type
+                                                                                              number:value.number];
+    
+    if ([enumValuesByNumber objectForKey:key] == nil) {
+        [enumValuesByNumber setObject:value forKey:key];
+        // Not an error:  Multiple enum values may have the same number, but
+        // we only want the first one in the map.
+    }
+}
+
 
 #if 0
 private static final class PBDescriptorPool {
@@ -165,39 +261,6 @@ private static final class PBDescriptorPool {
                                                     "\"" + name + "\" is not defined.");
         } else {
             return result;
-        }
-    }
-
-    /**
-     * Adds a symbol to the symbol table.  If a symbol with the same name
-     * already exists, throws an error.
-     */
-    void addSymbol(PBGenericDescriptor descriptor)
-    throws DescriptorValidationException {
-        validateSymbolName(descriptor);
-
-        String fullName = descriptor.getFullName();
-        int dotpos = fullName.lastIndexOf('.');
-
-        PBGenericDescriptor old = descriptorsByName.put(fullName, descriptor);
-        if (old != null) {
-            descriptorsByName.put(fullName, old);
-
-            if (descriptor.getFile() == old.getFile()) {
-                if (dotpos == -1) {
-                    throw new DescriptorValidationException(descriptor,
-                                                            "\"" + fullName + "\" is already defined.");
-                } else {
-                    throw new DescriptorValidationException(descriptor,
-                                                            "\"" + fullName.substring(dotpos + 1) +
-                                                            "\" is already defined in \"" +
-                                                            fullName.substring(0, dotpos) + "\".");
-                }
-            } else {
-                throw new DescriptorValidationException(descriptor,
-                                                        "\"" + fullName + "\" is already defined in file \"" +
-                                                        old.getFile().getName() + "\".");
-            }
         }
     }
 #endif
