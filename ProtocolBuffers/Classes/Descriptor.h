@@ -22,6 +22,11 @@
 
 @property (retain, readonly) NSArray* nestedTypes;
 
++ (PBDescriptor*) descriptorWithProto:(PBDescriptorProto*) proto
+                                 file:(PBFileDescriptor*) file
+                               parent:(PBDescriptor*) parent
+                                index:(int32_t) index;
+
 - (NSArray*) fields;
 - (PBMessageOptions*) options;
 - (NSString*) fullName;
@@ -30,6 +35,7 @@
 
 - (BOOL) isExtensionNumber:(int32_t) number;
 - (PBFieldDescriptor*) findFieldByNumber:(int32_t) number;
+- (PBFieldDescriptor*) findFieldByName:(NSString*) name;
 
 #if 0
 NSArray* fields;
@@ -54,14 +60,10 @@ NSArray* fields;
 
 - (NSString*) name;
 
-- (PBFieldDescriptor*) findFieldByName:(NSString*) name;
 - (PBDescriptor*) findNestedTypeByName:(NSString*) name;
 - (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
 
-+ (PBDescriptor*) descriptorWithProto:(DescriptorProto*) proto
-                               file:(PBFileDescriptor*) file
-                             parent:(PBDescriptor*) parent
-                              index:(int32_t) index;
+
 #endif
 
 @end

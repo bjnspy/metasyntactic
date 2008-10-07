@@ -17,19 +17,7 @@
 #import "Field.h"
 
 @interface PBMutableField : PBField {
-@private
-    NSMutableArray* mutableVarint;
-    NSMutableArray* mutableFixed32;
-    NSMutableArray* mutableFixed64;
-    NSMutableArray* mutableLengthDelimited;
-    NSMutableArray* mutableGroup;
 }
-
-@property (retain) NSMutableArray* mutableVarint;
-@property (retain) NSMutableArray* mutableFixed32;
-@property (retain) NSMutableArray* mutableFixed64;
-@property (retain) NSMutableArray* mutableLengthDelimited;
-@property (retain) NSMutableArray* mutableGroup;
 
 + (PBMutableField*) field;
 

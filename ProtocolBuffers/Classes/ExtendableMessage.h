@@ -23,6 +23,8 @@
 
 @property (retain, readonly) PBFieldSet* extensions;
 
+- (void) verifyExtensionContainingType:(PBGeneratedExtension*) extension;
+
 //@protexted
 - (BOOL) extensionsAreInitialized;
 - (int32_t) extensionsSerializedSize;

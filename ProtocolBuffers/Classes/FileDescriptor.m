@@ -22,34 +22,75 @@
 
 
 @interface PBFileDescriptor ()
+@property (retain) PBFileDescriptorProto* proto;
 @property (retain) NSMutableArray* mutableMessageTypes;
 @property (retain) NSMutableArray* mutableExtensions;
 @property (retain) NSMutableArray* mutableEnumTypes;
 @property (retain) NSMutableArray* mutableServices;
+@property (retain) NSMutableArray* mutableDependencies;
+@property (retain) PBDescriptorPool* pool;
 @end
 
 
 @implementation PBFileDescriptor
 
+@synthesize proto;
 @synthesize mutableMessageTypes;
 @synthesize mutableExtensions;
 @synthesize mutableEnumTypes;
 @synthesize mutableServices;
+@synthesize mutableDependencies;
+@synthesize pool;
 
 - (void) dealloc {
+    self.proto;
     self.mutableMessageTypes = nil;
     self.mutableExtensions = nil;
     self.mutableEnumTypes = nil;
     self.mutableServices = nil;
-
+    self.mutableDependencies = nil;
+    self.pool = nil;
+    
     [super dealloc];
 }
 
-- (id) initWithProto:(PBFileDescriptorProto*) proto
-                           dependencies:(NSArray*) dependencies
-                                   pool:(PBDescriptorPool*) pool {
+
+- (NSString*) package {
+    return proto.package;
+}
+
+
+- (id) initWithProto:(PBFileDescriptorProto*) proto_
+        dependencies:(NSArray*) dependencies_
+                pool:(PBDescriptorPool*) pool_ {
     if (self = [super init]) {
-        @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+        self.pool = pool_;
+        self.proto = proto_;
+        self.mutableDependencies = [NSMutableArray arrayWithArray:dependencies_];
+
+        [pool addPackage:self.package file:self];
+        
+        self.mutableMessageTypes = [NSMutableArray array];
+        for (PBDescriptorProto* m in proto.messageTypeList) {
+            [mutableMessageTypes addObject:[PBDescriptor descriptorWithProto:m file:self parent:nil index:mutableMessageTypes.count]];
+        }
+#if 0        
+        enumTypes = new EnumDescriptor[proto.getEnumTypeCount()];
+        for (int i = 0; i < proto.getEnumTypeCount(); i++) {
+            enumTypes[i] = new EnumDescriptor(proto.getEnumType(i), this, null, i);
+        }
+        
+        services = new ServiceDescriptor[proto.getServiceCount()];
+        for (int i = 0; i < proto.getServiceCount(); i++) {
+            services[i] = new ServiceDescriptor(proto.getService(i), this, i);
+        }
+        
+        extensions = new FieldDescriptor[proto.getExtensionCount()];
+        for (int i = 0; i < proto.getExtensionCount(); i++) {
+            extensions[i] = new FieldDescriptor(
+                                                proto.getExtension(i), this, null, i, true);
+        }
+#endif
     }
 
     return self;

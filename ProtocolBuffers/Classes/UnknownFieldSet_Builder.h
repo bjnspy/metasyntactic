@@ -43,6 +43,8 @@
 
 - (BOOL) mergeFieldFrom:(int32_t) tag input:(PBCodedInputStream*) input;
 
+- (PBUnknownFieldSet_Builder*) addField:(PBField*) field forNumber:(int32_t) number;
+
 #if 0
     int32_t lastFieldNumbers;
     UnknownFieldSet_Field_Builder* lastField;
@@ -54,7 +56,6 @@
 - (PBUnknownFieldSet_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) other;
 - (PBUnknownFieldSet_Builder*) mergeField:(int32_t) number field:(UnknownFieldSet_Field*) field;
 - (BOOL) hasField:(int32_t) number;
-- (PBUnknownFieldSet_Builder*) addField:(int32_t) number field:(UnknownFieldSet_Field*) field;
 - (NSDictionary*) dictionary;
 #endif
 

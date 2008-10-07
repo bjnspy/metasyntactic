@@ -70,7 +70,17 @@
 - (BOOL) arrayMatches:(NSArray*) array {
     for (NSString* text in array) {
         NSString* lowercaseText = [[Utilities asciiString:text] lowercaseString];
-        if ([lowercaseText rangeOfString:currentlyExecutingRequest.lowercaseValue].length > 0) {
+                
+        NSRange range = [lowercaseText rangeOfString:currentlyExecutingRequest.lowercaseValue];
+        if (range.length > 0) {
+            if (range.location > 0) {
+                // make sure it's matching the start of a word
+                unichar c = [lowercaseText characterAtIndex:range.location - 1];
+                if (c >= 'a' && c <= 'z') {
+                    continue;
+                }
+            }   
+
             return YES;
         }
     }

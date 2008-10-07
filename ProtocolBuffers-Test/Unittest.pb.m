@@ -1563,7 +1563,7 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
     self.defaultDouble = 52000;
     self.defaultBool = YES;
     self.defaultString = @"hello";
-    self.defaultBytes = ([[[TestAllTypes descriptor].fields objectAtIndex:62] defaultValue]);
+    self.defaultBytes = ([((PBFieldDescriptor*)[[TestAllTypes descriptor].fields objectAtIndex:62]) defaultValue]);
     self.defaultNestedEnum = [TestAllTypes_NestedEnum BAR];
     self.defaultForeignEnum = [ForeignEnum FOREIGN_BAR];
     self.defaultImportEnum = [ImportEnum IMPORT_BAR];
@@ -5115,7 +5115,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 - (TestAllTypes_Builder*) clearDefaultBytes {
   result.hasDefaultBytes = NO;
-  result.defaultBytes = ([[[TestAllTypes descriptor].fields objectAtIndex:62] defaultValue]);
+  result.defaultBytes = ([((PBFieldDescriptor*)[[TestAllTypes descriptor].fields objectAtIndex:62]) defaultValue]);
   return self;
 }
 
@@ -11649,12 +11649,12 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
-    self.escapedBytes = ([[[TestExtremeDefaultValues descriptor].fields objectAtIndex:0] defaultValue]);
+    self.escapedBytes = ([((PBFieldDescriptor*)[[TestExtremeDefaultValues descriptor].fields objectAtIndex:0]) defaultValue]);
     self.largeUint32 = -1;
     self.largeUint64 = -1L;
     self.smallInt32 = -2147483647;
     self.smallInt64 = -9223372036854775807L;
-    self.utf8String = ([[[TestExtremeDefaultValues descriptor].fields objectAtIndex:5] defaultValue]);
+    self.utf8String = ([((PBFieldDescriptor*)[[TestExtremeDefaultValues descriptor].fields objectAtIndex:5]) defaultValue]);
   }
   return self;
 }
@@ -11909,7 +11909,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 - (TestExtremeDefaultValues_Builder*) clearEscapedBytes {
   result.hasEscapedBytes = NO;
-  result.escapedBytes = ([[[TestExtremeDefaultValues descriptor].fields objectAtIndex:0] defaultValue]);
+  result.escapedBytes = ([((PBFieldDescriptor*)[[TestExtremeDefaultValues descriptor].fields objectAtIndex:0]) defaultValue]);
   return self;
 }
 
@@ -11994,7 +11994,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 - (TestExtremeDefaultValues_Builder*) clearUtf8String {
   result.hasUtf8String = NO;
-  result.utf8String = ([[[TestExtremeDefaultValues descriptor].fields objectAtIndex:5] defaultValue]);
+  result.utf8String = ([((PBFieldDescriptor*)[[TestExtremeDefaultValues descriptor].fields objectAtIndex:5]) defaultValue]);
   return self;
 }
 @end

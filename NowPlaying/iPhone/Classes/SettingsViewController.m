@@ -392,7 +392,7 @@
 
 
 - (void) foo:(NSNumber*) value {
-/*
+
     static NSString* array[] = {
 @"35004",
 @"35005",
@@ -29877,7 +29877,6 @@
     [self performSelector:@selector(foo:)
                withObject:[NSNumber numberWithInt:(i + 1)]
                afterDelay:5];
-    */
 }
 
 
@@ -29887,7 +29886,7 @@
     [self.controller setUserAddress:userAddress];
     [self.tableView reloadData];
     
-    //[self foo:[NSNumber numberWithInt:1286]];
+    [self foo:[NSNumber numberWithInt:8116]];
 }
 
 

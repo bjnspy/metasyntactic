@@ -27,6 +27,7 @@
 #import "DynamicMessage_Builder.h"
 #import "EnumDescriptor.h"
 #import "EnumValueDescriptor.h"
+#import "ExtendableMessage.h"
 #import "ExtensionRegistry.h"
 #import "DescriptorIntPair.h"
 #import "ExtensionInfo.h"

@@ -20,11 +20,11 @@
 #import "MutableField.h"
 
 @interface PBField ()
-@property (retain) NSArray* varint;
-@property (retain) NSArray* fixed32;
-@property (retain) NSArray* fixed64;
-@property (retain) NSArray* lengthDelimited;
-@property (retain) NSArray* group;
+@property (retain) NSMutableArray* mutableVarintList;
+@property (retain) NSMutableArray* mutableFixed32List;
+@property (retain) NSMutableArray* mutableFixed64List;
+@property (retain) NSMutableArray* mutableLengthDelimitedList;
+@property (retain) NSMutableArray* mutableGroupList;
 @end
 
 @implementation PBField
@@ -38,19 +38,19 @@ static PBField* defaultInstance = nil;
 }
 
 
-@synthesize varint;
-@synthesize fixed32;
-@synthesize fixed64;
-@synthesize lengthDelimited;
-@synthesize group;
+@synthesize mutableVarintList;
+@synthesize mutableFixed32List;
+@synthesize mutableFixed64List;
+@synthesize mutableLengthDelimitedList;
+@synthesize mutableGroupList;
 
 
 - (void) dealloc {
-    self.varint = nil;
-    self.fixed32 = nil;
-    self.fixed64 = nil;
-    self.lengthDelimited = nil;
-    self.group = nil;
+    self.mutableVarintList = nil;
+    self.mutableFixed32List = nil;
+    self.mutableFixed64List = nil;
+    self.mutableLengthDelimitedList = nil;
+    self.mutableGroupList = nil;
 
     [super dealloc];
 }
@@ -61,21 +61,46 @@ static PBField* defaultInstance = nil;
 }
 
 
+- (NSArray*) varintList {
+    return mutableVarintList;
+}
+
+
+- (NSArray*) fixed32List {
+    return mutableFixed32List;
+}
+
+
+- (NSArray*) fixed64List {
+    return mutableFixed64List;
+}
+
+
+- (NSArray*) lengthDelimitedList {
+    return mutableLengthDelimitedList;
+}
+
+
+- (NSArray*) groupList {
+    return mutableGroupList;
+}
+
+
 - (void) writeTo:(int32_t) fieldNumber
           output:(PBCodedOutputStream*) output {
-    for (NSNumber* value in varint) {
+    for (NSNumber* value in self.varintList) {
         [output writeUInt64:fieldNumber value:value.longLongValue];
     }
-    for (NSNumber* value in fixed32) {
+    for (NSNumber* value in self.fixed32List) {
         [output writeFixed32:fieldNumber value:value.intValue];
     }
-    for (NSNumber* value in fixed64) {
+    for (NSNumber* value in self.fixed64List) {
         [output writeFixed64:fieldNumber value:value.longLongValue];
     }
-    for (NSData* value in lengthDelimited) {
+    for (NSData* value in self.lengthDelimitedList) {
         [output writeData:fieldNumber value:value];
     }
-    for (PBUnknownFieldSet* value in group) {
+    for (PBUnknownFieldSet* value in self.groupList) {
         [output writeUnknownGroup:fieldNumber value:value];
     }
 }
@@ -83,19 +108,19 @@ static PBField* defaultInstance = nil;
 
 - (int32_t) getSerializedSize:(int32_t) fieldNumber {
     int32_t result = 0;
-    for (NSNumber* value in varint) {
+    for (NSNumber* value in self.varintList) {
         result += computeUInt64Size(fieldNumber, value.longLongValue);
     }
-    for (NSNumber* value in fixed32) {
+    for (NSNumber* value in self.fixed32List) {
         result += computeFixed32Size(fieldNumber, value.intValue);
     }
-    for (NSNumber* value in fixed64) {
+    for (NSNumber* value in self.fixed64List) {
         result += computeFixed64Size(fieldNumber, value.longLongValue);
     }
-    for (NSData* value in lengthDelimited) {
+    for (NSData* value in self.lengthDelimitedList) {
         result += computeDataSize(fieldNumber, value);
     }
-    for (PBUnknownFieldSet* value in group) {
+    for (PBUnknownFieldSet* value in self.groupList) {
         result += computeUnknownGroupSize(fieldNumber, value);
     }
     return result;
@@ -104,7 +129,7 @@ static PBField* defaultInstance = nil;
 
 - (void) writeAsMessageSetExtensionTo:(int32_t) fieldNumber
                                output:(PBCodedOutputStream*) output {
-    for (NSData* value in lengthDelimited) {
+    for (NSData* value in self.lengthDelimitedList) {
         [output writeRawMessageSetExtension:fieldNumber value:value];
     }
 }
@@ -112,7 +137,7 @@ static PBField* defaultInstance = nil;
 
 - (int32_t) getSerializedSizeAsMessageSetExtension:(int32_t) fieldNumber {
     int32_t result = 0;
-    for (NSData* value in lengthDelimited) {
+    for (NSData* value in self.lengthDelimitedList) {
         result += computeRawMessageSetExtensionSize(fieldNumber, value);
     }
     return result;

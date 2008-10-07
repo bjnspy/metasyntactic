@@ -16,6 +16,7 @@
 
 #import "DescriptorPool.h"
 
+#import "PBPackageDescriptor.h"
 
 @implementation PBDescriptorPool
 
@@ -47,6 +48,20 @@
 
 + (PBDescriptorPool*) poolWithDependencies:(NSArray*) dependencies {
     return [[[PBDescriptorPool alloc] initWithDependencies:dependencies] autorelease];
+}
+
+
+- (void) addPackage:(NSString*) fullName file:(PBFileDescriptor*) file {
+    NSRange dotpos = [fullName rangeOfString:@"." options:NSBackwardsSearch];
+    
+    NSString* name = fullName;
+    if (dotpos.length > 0) {
+        [self addPackage:[fullName substringToIndex:dotpos.location] file:file];
+        name = [fullName substringFromIndex:(dotpos.location + 1)];
+    }
+    
+    PBPackageDescriptor* packageDescriptor = [PBPackageDescriptor descriptorWithFullName:fullName name:name file:file];
+    [descriptorsByName setObject:packageDescriptor forKey:fullName];
 }
 
 #if 0

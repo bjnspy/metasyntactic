@@ -191,6 +191,8 @@
 
 - (void) reportUserLocation:(Location*) location {
     if (location == nil) {
+#ifdef DEBUG
+#else
         UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
                                                          message:NSLocalizedString(@"Could not find location.", nil)
                                                         delegate:nil
@@ -198,6 +200,7 @@
                                                otherButtonTitles:nil] autorelease];
 
         [alert show];
+#endif
         return;
     }
 

@@ -19,6 +19,23 @@
 
 @implementation PBExtendableBuilder
 
+
+- (PBExtendableMessage*) internalGetResult {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
+- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension
+                                       value:(id) value {
+    PBExtendableMessage* message = [self internalGetResult];
+    [message verifyExtensionContainingType:extension];
+    [message.extensions setField:extension.descriptor value:[extension toReflectionType:value]];
+
+    return self;
+}
+
+
+
 #if 0
 public abstract static class ExtendableBuilder<
 MessageType extends ExtendableMessage,
