@@ -16,8 +16,40 @@
 
 #import "TextFormat.h"
 
+#import "Utilities.h"
 
 @implementation PBTextFormat
+
+
+BOOL allZeroes(NSString* string) {
+    for (int i = 0; i < string.length; i++) {
+        if ([string characterAtIndex:i] != '0') {
+            return NO;
+        }
+    }
+    
+    return YES;
+}
+
+
+/** Is this an octal digit? */
+BOOL isOctal(unichar c) {
+    return '0' <= c && c <= '7';
+}
+
+
+/** Is this an octal digit? */
+BOOL isDecimal(unichar c) {
+    return '0' <= c && c <= '9';
+}
+
+/** Is this a hex digit? */
+BOOL isHex(unichar c) {
+    return
+    isDecimal(c) ||
+    ('a' <= c && c <= 'f') ||
+    ('A' <= c && c <= 'F');
+}
 
 
 + (int64_t) parseInteger:(NSString*) text
@@ -30,8 +62,8 @@
         if (!isSigned) {
             @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number must be positive" userInfo:nil];
         }
-        ++pos;
-        negative = true;
+        pos += 1;
+        negative = YES;
     }
     
     int32_t radix = 10;
@@ -39,97 +71,69 @@
         pos += 2;
         radix = 16;
     } else if ([[text substringFromIndex:pos] hasPrefix:@"0"]) {
+        pos += 1;
         radix = 8;
     }
     
-    if (radix != 10) {
-        @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    // strto[ul]l returns 0 on error.  However, that value collides with the
+    // actual value '0' if we're parsing '0'.  So, we need to be able to 
+    // determine if '0' is an error or not.  We do that by checking for the
+    // possible values that can legally produce 0.  After that point, if we
+    // get a '0' then it must be an error.
+    NSString* numberText = [text substringFromIndex:pos];
+    if (allZeroes(numberText)) {
+        return 0;
     }
     
-    NSString* numberText = [text substringFromIndex:pos];
-    
-    int64_t result = 0;
-    if (numberText.length < 16) {
-        // Can safely assume no overflow.
-        //result = Long.parseLong(numberText, radix);
-        result = [numberText longLongValue];
-        if (negative) {
-            result = -result;
+    // Verify that all characters are legal for the radix we specified
+    for (int i = 0; i < numberText.length; i++) {
+        char c = [numberText characterAtIndex:i];
+        if (!isHex(c)) {
+            @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Illegal character in number" userInfo:nil];
         }
-        
-        // Check bounds.
-        // No need to check for 64-bit numbers since they'd have to be 16 chars
-        // or longer to overflow.
-        if (!isLong) {
-            if (isSigned) {
-                if (result > INT_MAX || result < INT_MIN) {
-                    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range for 32-bit signed integer: " userInfo:nil];
-                }
-            } else {
-                if (result >= (1LL << 32) || result < 0) {
-                    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range for 32-bit unsigned integer: " userInfo:nil];
-                }
-            }
+        if (radix == 10 && !isDecimal(c)) {
+            @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Illegal character in number" userInfo:nil];
+        }
+        if (radix == 8 && !isOctal(c)) {
+            @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Illegal character in number" userInfo:nil];
+        }
+    }
+    
+    // add the negative back in if necessary
+    if (negative) {
+        numberText = [NSString stringWithFormat:@"-%@", numberText];
+    }
+
+    // now call into the appropriate conversion utilities.
+    int64_t result;
+    const char* in_string = numberText.UTF8String;
+    char* out_string = NULL;
+    if (isLong) {
+        if (isSigned) {
+            result = strtoll(in_string, &out_string, radix);
+        } else {
+            result = convertUInt64ToInt64(strtoull(in_string, &out_string, radix);
         }
     } else {
-        int64_t result = [numberText longLongValue];
-        if (negative) {
-            result = -result;
-        }
-
-        // Check bounds.
-        // No need to check for 64-bit numbers since they'd have to be 16 chars
-        // or longer to overflow.
-        if (!isLong) {
-            if (isSigned) {
-                if (result > INT_MAX || result < INT_MIN) {
-                    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range for 32-bit signed integer: " userInfo:nil];
-                }
-            } else {
-                if (result >= (1LL << 32) || result < 0) {
-                    @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range for 32-bit unsigned integer: " userInfo:nil];
-                }
-            }
-        }
-        
-        return result;
-#if 0
-        BigInteger bigValue = new BigInteger(numberText, radix);
-        if (negative) {
-            bigValue = bigValue.negate();
-        }
-        
-        // Check bounds.
-        if (!isLong) {
-            if (isSigned) {
-                if (bigValue.bitLength() > 31) {
-                    throw new NumberFormatException(
-                                                    "Number out of range for 32-bit signed integer: " + text);
-                }
-            } else {
-                if (bigValue.bitLength() > 32) {
-                    throw new NumberFormatException(
-                                                    "Number out of range for 32-bit unsigned integer: " + text);
-                }
-            }
+        if (isSigned) {
+            result = strtol(in_string, &out_string, radix);
         } else {
-            if (isSigned) {
-                if (bigValue.bitLength() > 63) {
-                    throw new NumberFormatException(
-                                                    "Number out of range for 64-bit signed integer: " + text);
-                }
-            } else {
-                if (bigValue.bitLength() > 64) {
-                    throw new NumberFormatException(
-                                                    "Number out of range for 64-bit unsigned integer: " + text);
-                }
-            }
+            result = convertUInt32ToInt32(strtoul(in_string, &out_string, radix));
         }
-        
-        result = bigValue.longValue();
-#endif
     }
     
+    // from the man pages:
+    // (Thus, if *str is not `\0' but **endptr is `\0' on return, the entire
+    // string was valid.)
+    
+    if (errno == ERANGE) {
+        @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range" userInfo:nil];
+    }
+    
+    if (result == 0) {
+        @throw [NSException exceptionWithName:@"NumberFormat" reason:@"IllegalNumber" userInfo:nil];
+    }
+        
     return result;
 }
 
@@ -175,20 +179,6 @@
  */
 + (int64_t) parseUInt64:(NSString*) text {
     return [self parseInteger:text isSigned:false isLong:true];
-}
-
-
-/** Is this an octal digit? */
-BOOL isOctal(unichar c) {
-    return '0' <= c && c <= '7';
-}
-
-/** Is this a hex digit? */
-BOOL isHex(unichar c) {
-    return
-    ('0' <= c && c <= '9') ||
-    ('a' <= c && c <= 'f') ||
-    ('A' <= c && c <= 'F');
 }
 
 /**
