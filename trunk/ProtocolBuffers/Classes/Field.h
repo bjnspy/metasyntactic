@@ -16,18 +16,18 @@
 
 @interface PBField : NSObject {
 @protected
-    NSArray* varint;
-    NSArray* fixed32;
-    NSArray* fixed64;
-    NSArray* lengthDelimited;
-    NSArray* group;
+    NSMutableArray* mutableVarintList;
+    NSMutableArray* mutableFixed32List;
+    NSMutableArray* mutableFixed64List;
+    NSMutableArray* mutableLengthDelimitedList;
+    NSMutableArray* mutableGroupList;
 }
 
-@property (retain, readonly) NSArray* varint;
-@property (retain, readonly) NSArray* fixed32;
-@property (retain, readonly) NSArray* fixed64;
-@property (retain, readonly) NSArray* lengthDelimited;
-@property (retain, readonly) NSArray* group;
+- (NSArray*) varintList;
+- (NSArray*) fixed32List;
+- (NSArray*) fixed64List;
+- (NSArray*) lengthDelimitedList;
+- (NSArray*) groupList;
 
 + (PBField*) defaultInstance;
 

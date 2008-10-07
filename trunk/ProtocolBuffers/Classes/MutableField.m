@@ -18,29 +18,19 @@
 
 #import "Field.h"
 
+
 @interface PBField ()
-@property (retain) NSArray* varint;
-@property (retain) NSArray* fixed32;
-@property (retain) NSArray* fixed64;
-@property (retain) NSArray* lengthDelimited;
-@property (retain) NSArray* group;
+@property (retain) NSMutableArray* mutableVarintList;
+@property (retain) NSMutableArray* mutableFixed32List;
+@property (retain) NSMutableArray* mutableFixed64List;
+@property (retain) NSMutableArray* mutableLengthDelimitedList;
+@property (retain) NSMutableArray* mutableGroupList;
 @end
+
 
 @implementation PBMutableField
 
-@synthesize mutableVarint;
-@synthesize mutableFixed32;
-@synthesize mutableFixed64;
-@synthesize mutableLengthDelimited;
-@synthesize mutableGroup;
-
 - (void) dealloc {
-    self.mutableVarint = nil;
-    self.mutableFixed32 = nil;
-    self.mutableFixed64 = nil;
-    self.mutableLengthDelimited = nil;
-    self.mutableGroup = nil;
-
     [super dealloc];
 }
 
@@ -58,80 +48,50 @@
 }
 
 
-- (void) setMutableVarint:(NSMutableArray*) array {
-    self.mutableVarint = array;
-    self.varint = array;
-}
-
-
-- (void) setMutableFixed32:(NSMutableArray*) array {
-    self.mutableFixed32 = array;
-    self.fixed32 = array;
-}
-
-
-- (void) setMutableFixed64:(NSMutableArray*) array {
-    self.mutableFixed64 = array;
-    self.fixed64 = array;
-}
-
-
-- (void) setMutableLengthDelimited:(NSMutableArray*) array {
-    self.mutableLengthDelimited = array;
-    self.lengthDelimited = array;
-}
-
-
-- (void) setMutableGroup:(NSMutableArray*) array {
-    self.mutableGroup = array;
-    self.group = array;
-}
-
-
 - (PBMutableField*) clear {
-    self.mutableVarint = nil;
-    self.mutableFixed32 = nil;
-    self.mutableFixed64 = nil;
-    self.mutableLengthDelimited = nil;
-    self.mutableGroup = nil;
+    self.mutableVarintList = nil;
+    self.mutableFixed32List = nil;
+    self.mutableFixed64List = nil;
+    self.mutableLengthDelimitedList = nil;
+    self.mutableGroupList = nil;
     return self;
 }
 
 
 - (PBMutableField*) mergeFromField:(PBField*) other {
-    if (other.varint.count > 0) {
-        if (mutableVarint == nil) {
-            self.mutableVarint = [NSMutableArray array];
+    if (other.varintList.count > 0) {
+        if (mutableVarintList == nil) {
+            self.mutableVarintList = [NSMutableArray array];
         }
-        [mutableVarint addObjectsFromArray:other.varint];
+        [mutableVarintList addObjectsFromArray:other.varintList];
     }
 
-    if (other.fixed32.count > 0) {
-        if (mutableFixed32 == nil) {
-            self.mutableFixed32 = [NSMutableArray array];
+    if (other.fixed32List.count > 0) {
+        if (mutableFixed32List == nil) {
+            self.mutableFixed32List = [NSMutableArray array];
         }
-        [mutableFixed32 addObjectsFromArray:other.fixed32];
+        [mutableFixed32List addObjectsFromArray:other.fixed32List];
     }
 
-    if (other.fixed64.count > 0) {
-        if (mutableFixed64 == nil) {
-            self.mutableFixed64 = [NSMutableArray array];
+    if (other.fixed64List.count > 0) {
+        if (mutableFixed64List == nil) {
+            self.mutableFixed64List = [NSMutableArray array];
         }
-        [mutableFixed64 addObjectsFromArray:other.fixed64];
+        [mutableFixed64List addObjectsFromArray:other.fixed64List];
     }
 
-    if (other.lengthDelimited.count > 0) {
-        if (mutableLengthDelimited == nil) {
-            self.mutableLengthDelimited = [NSMutableArray array];
+    if (other.lengthDelimitedList.count > 0) {
+        if (mutableLengthDelimitedList == nil) {
+            self.mutableLengthDelimitedList = [NSMutableArray array];
         }
-        [mutableLengthDelimited addObjectsFromArray:other.lengthDelimited];
+        [mutableLengthDelimitedList addObjectsFromArray:other.lengthDelimitedList];
     }
 
-    if (other.group.count > 0) {
-        if (mutableGroup == nil) {
-            self.mutableGroup = [NSMutableArray array];
+    if (other.groupList.count > 0) {
+        if (mutableGroupList == nil) {
+            self.mutableGroupList = [NSMutableArray array];
         }
-        [mutableGroup addObjectsFromArray:other.group];
+        [mutableGroupList addObjectsFromArray:other.groupList];
     }
 
     return self;
@@ -139,46 +99,46 @@
 
 
 - (PBMutableField*) addVarint:(int64_t) value {
-    if (mutableVarint == nil) {
-        self.mutableVarint = [NSMutableArray array];
+    if (mutableVarintList == nil) {
+        self.mutableVarintList = [NSMutableArray array];
     }
-    [mutableVarint addObject:[NSNumber numberWithLongLong:value]];
+    [mutableVarintList addObject:[NSNumber numberWithLongLong:value]];
     return self;
 }
 
 
 - (PBMutableField*) addFixed32:(int32_t) value {
-    if (mutableFixed32 == nil) {
-        self.mutableFixed32 = [NSMutableArray array];
+    if (mutableFixed32List == nil) {
+        self.mutableFixed32List = [NSMutableArray array];
     }
-    [mutableFixed32 addObject:[NSNumber numberWithInt:value]];
+    [mutableFixed32List addObject:[NSNumber numberWithInt:value]];
     return self;
 }
 
 
 - (PBMutableField*) addFixed64:(int64_t) value {
-    if (mutableFixed64 == nil) {
-        self.mutableFixed64 = [NSMutableArray array];
+    if (mutableFixed64List == nil) {
+        self.mutableFixed64List = [NSMutableArray array];
     }
-    [mutableFixed64 addObject:[NSNumber numberWithLongLong:value]];
+    [mutableFixed64List addObject:[NSNumber numberWithLongLong:value]];
     return self;
 }
 
 
 - (PBMutableField*) addLengthDelimited:(NSData*) value {
-    if (mutableLengthDelimited == nil) {
-        self.mutableLengthDelimited = [NSMutableArray array];
+    if (mutableLengthDelimitedList == nil) {
+        self.mutableLengthDelimitedList = [NSMutableArray array];
     }
-    [mutableLengthDelimited addObject:value];
+    [mutableLengthDelimitedList addObject:value];
     return self;
 }
 
 
 - (PBMutableField*) addGroup:(PBUnknownFieldSet*) value {
-    if (mutableGroup == nil) {
-        self.mutableGroup = [NSMutableArray array];
+    if (mutableGroupList == nil) {
+        self.mutableGroupList = [NSMutableArray array];
     }
-    [mutableGroup addObject:value];
+    [mutableGroupList addObject:value];
     return self;
 }
 

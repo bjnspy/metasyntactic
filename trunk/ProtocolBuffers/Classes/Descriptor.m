@@ -31,6 +31,15 @@
     [super dealloc];
 }
 
+
++ (PBDescriptor*) descriptorWithProto:(PBDescriptorProto*) proto
+                                 file:(PBFileDescriptor*) file
+                               parent:(PBDescriptor*) parent
+                                index:(int32_t) index {
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+}
+
+
 - (NSArray*) fields {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
@@ -62,6 +71,11 @@
 
 
 - (PBFieldDescriptor*) findFieldByNumber:(int32_t) number {
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+}
+
+
+- (PBFieldDescriptor*) findFieldByName:(NSString*) name {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

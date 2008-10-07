@@ -1,0 +1,10 @@
+//
+// Prefix header for all source files of the 'ProtocolBuffers-Test' target in the 'ProtocolBuffers-Test' project.
+//
+
+#ifdef __OBJC__
+    #import <Foundation/Foundation.h>
+    #import <SenTestingKit/SenTestingKit.h>
+    #import <ProtocolBuffers/ProtocolBuffers.h>
+    #import "ForwardDeclarations.h"
+#endif

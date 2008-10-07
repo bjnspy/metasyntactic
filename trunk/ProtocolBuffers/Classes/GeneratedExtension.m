@@ -16,6 +16,9 @@
 
 #import "GeneratedExtension.h"
 
+#import "Descriptor.h"
+#import "FieldDescriptor.h"
+#import "ObjectiveCType.h"
 
 @interface PBGeneratedExtension ()
 @property (retain) PBFieldDescriptor* descriptor;
@@ -45,6 +48,38 @@
 + (PBGeneratedExtension*) extensionWithDescriptor:(PBFieldDescriptor*) descriptor
                                              type:(Class) type {
     return [[[PBGeneratedExtension alloc] initWithDescriptor:descriptor type:type] autorelease];
+}
+
+
+/**
+ * Like {@link #toReflectionType(Object)}, but if the type is a repeated
+ * type, this converts a single element.
+ */
+- (id) singularToReflectionType:(id) value {
+    switch (descriptor.objectiveCType) {
+        case PBObjectiveCTypeEnum:
+            @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+        default:
+            return value;
+    }
+}
+
+
+- (id) toReflectionType:(id) value {
+    if (descriptor.isRepeated) {
+        if (descriptor.objectiveCType == PBObjectiveCTypeEnum) {
+            // Must convert the whole list.
+            NSMutableArray* result = [NSMutableArray array];
+            for (id element in value) {
+                [result addObject:[self singularToReflectionType:element]];
+            }
+            return result;
+        } else {
+            return value;
+        }
+    } else {
+        return [self singularToReflectionType:value];
+    }
 }
 
 #if 0
@@ -169,19 +204,7 @@ ContainingType extends PBMessage, Type> {
             return singularToReflectionType(value);
         }
     }
-    
-    /**
-     * Like {@link #toReflectionType(Object)}, but if the type is a repeated
-     * type, this converts a single element.
-     */
-    private Object singularToReflectionType(Object value) {
-        switch (descriptor.getJavaType()) {
-            case ENUM:
-                return invokeOrDie(enumGetValueDescriptor, value);
-            default:
-                return value;
-        }
-    }
+
 }
 #endif
 

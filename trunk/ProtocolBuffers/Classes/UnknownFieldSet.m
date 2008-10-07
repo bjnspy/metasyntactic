@@ -70,11 +70,6 @@ static PBUnknownFieldSet* defaultInstance = nil;
 }
 
 
-- (NSDictionary*) asMap {
-    return fields;
-}
-
-
 - (BOOL) hasField:(int32_t) number {
     return [fields objectForKey:[NSNumber numberWithInt:number]] != nil;
 }
@@ -149,6 +144,20 @@ static PBUnknownFieldSet* defaultInstance = nil;
     return result;
 }
 
+
+/**
+ * Serializes the message to a {@code ByteString} and returns it. This is
+ * just a trivial wrapper around {@link #writeTo(PBCodedOutputStream)}.
+ */
+- (NSData*) toData {
+    NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
+    PBCodedOutputStream* output = [PBCodedOutputStream streamWithData:data];
+    
+    [self writeToCodedOutputStream:output];
+    return data;
+}
+
+
 #if 0
 
 
@@ -161,22 +170,7 @@ public final String toString() {
     return TextFormat.printToString(this);
 }
 
-/**
- * Serializes the message to a {@code ByteString} and returns it. This is
- * just a trivial wrapper around {@link #writeTo(PBCodedOutputStream)}.
- */
-public final ByteString toByteString() {
-    try {
-        ByteString.CodedBuilder out =
-        ByteString.newCodedBuilder(getSerializedSize());
-        writeTo(out.getCodedOutput());
-        return out.build();
-    } catch (IOException e) {
-        throw new RuntimeException(
-                                   "Serializing to a ByteString threw an IOException (should " +
-                                   "never happen).", e);
-    }
-}
+
 
 
 /**

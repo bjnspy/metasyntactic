@@ -28,8 +28,11 @@
 
 - (void) writeAsMessageSetTo:(PBCodedOutputStream*) output;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
+- (NSData*) toData;
 
 - (int32_t) serializedSize;
 - (int32_t) serializedSizeAsMessageSet;
+
+- (PBField*) getField:(int32_t) number;
 
 @end

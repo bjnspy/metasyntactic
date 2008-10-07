@@ -28,4 +28,6 @@
 
 + (PBDescriptorPool*) poolWithDependencies:(NSArray*) dependencies;
 
+- (void) addPackage:(NSString*) fullName file:(PBFileDescriptor*) file;
+
 @end

@@ -16,10 +16,13 @@
 
 @interface PBFileDescriptor : NSObject {
 @private
+    PBFileDescriptorProto* proto;
     NSMutableArray* mutableMessageTypes;
     NSMutableArray* mutableExtensions;
     NSMutableArray* mutableEnumTypes;
     NSMutableArray* mutableServices;
+    NSMutableArray* mutableDependencies;
+    PBDescriptorPool* pool;
 }
 
 - (NSArray*) messageTypes;

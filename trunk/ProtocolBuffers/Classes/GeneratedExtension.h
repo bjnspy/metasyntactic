@@ -31,4 +31,6 @@
 + (PBGeneratedExtension*) extensionWithDescriptor:(PBFieldDescriptor*) descriptor
                                              type:(Class) type;
 
+- (id) toReflectionType:(id) value;
+
 @end
