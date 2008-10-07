@@ -43,6 +43,7 @@
 
 - (NSArray*) values;
 
+- (PBEnumValueDescriptor*) findValueByName:(NSString*) name;
 - (PBEnumValueDescriptor*) findValueByNumber:(int32_t) number;
 
 @end

@@ -32,7 +32,9 @@
 - (void) addPackage:(NSString*) fullName file:(PBFileDescriptor*) file;
 - (void) addSymbol:(id<PBGenericDescriptor>) descriptor;
 - (void) addEnumValueByNumber:(PBEnumValueDescriptor*) value;
+- (void) addFieldByNumber:(PBFieldDescriptor*) field;
 
+- (id<PBGenericDescriptor>) findSymbol:(NSString*) fullName;
 - (id<PBGenericDescriptor>) lookupSymbol:(NSString*) name
                               relativeTo:(id<PBGenericDescriptor>) relativeTo;
 
