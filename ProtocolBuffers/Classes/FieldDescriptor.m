@@ -137,7 +137,7 @@
 
 
 - (PBObjectiveCType) objectiveCType {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    return PBObjectiveCTypeFromFieldDescriptorType(self.type);
 }
 
 

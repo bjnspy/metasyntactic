@@ -27,3 +27,4 @@ typedef enum {
 } PBObjectiveCType;
 
 id PBObjectiveCTypeDefault(PBObjectiveCType type);
+PBObjectiveCType PBObjectiveCTypeFromFieldDescriptorType(PBFieldDescriptorType type);
