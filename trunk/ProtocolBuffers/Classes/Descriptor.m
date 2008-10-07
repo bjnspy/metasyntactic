@@ -162,7 +162,12 @@
 
 
 - (BOOL) isExtensionNumber:(int32_t) number {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    for (PBDescriptorProto_ExtensionRange* range in proto.extensionRangeList) {
+        if (range.start <= number && number < range.end) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 
@@ -172,7 +177,12 @@
 
 
 - (PBFieldDescriptor*) findFieldByName:(NSString*) name {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    id result = [file.pool findSymbol:[NSString stringWithFormat:@"%@.%@", fullName, name]];
+    if (result != nil && [result isKindOfClass:[PBFieldDescriptor class]]) {
+        return result;
+    } else {
+        return nil;
+    }
 }
 
 

@@ -39,9 +39,32 @@
 }
 
 
-- (id) initWithDescriptor:(PBFieldDescriptor*) descriptor
-                     type:(Class) type {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+- (id) initWithDescriptor:(PBFieldDescriptor*) descriptor_
+                     type:(Class) type_ {
+    if (self = [super init]) {
+        if (!descriptor_.isExtension) {
+            @throw [NSException exceptionWithName:@"" reason:@"PBGeneratedExtension given a regular (non-extension) field." userInfo:nil];
+        }
+        
+#if 0
+        self.descriptor = descriptor_;
+        self.type = type_;
+        
+        switch (descriptor.objectiveCType) {
+            case PBObjectiveCTypeMessage:
+                messageDefaultInstance = @selector(defaultInstance);
+                (PBMessage)invokeOrDie(getMethodOrDie(type, "defaultInstance"),
+                                       null);
+                break;
+            case PBObjectiveCTypeEnum:
+                enumValueOf = @selector(valueOf:),
+                enumGetValueDescriptor = @selector(valueDescriptor);
+                break;
+        }
+#endif
+    }
+    
+    return self;
 }
 
 
@@ -89,34 +112,7 @@ ContainingType extends PBMessage, Type> {
     //   class.  Also try to avoid suppressing unchecked warnings.
     
     private PBGeneratedExtension(PBFieldDescriptor descriptor, Class type) {
-        if (!descriptor.isExtension()) {
-            throw new IllegalArgumentException(
-                                               "PBGeneratedExtension given a regular (non-extension) field.");
-        }
-        
-        this.descriptor = descriptor;
-        this.type = type;
-        
-        switch (descriptor.getJavaType()) {
-            case MESSAGE:
-                enumValueOf = null;
-                enumGetValueDescriptor = null;
-                messageDefaultInstance =
-                (PBMessage)invokeOrDie(getMethodOrDie(type, "defaultInstance"),
-                                     null);
-                break;
-            case ENUM:
-                enumValueOf = getMethodOrDie(type, "valueOf",
-                                             PBEnumValueDescriptor.class);
-                enumGetValueDescriptor = getMethodOrDie(type, "getValueDescriptor");
-                messageDefaultInstance = null;
-                break;
-            default:
-                enumValueOf = null;
-                enumGetValueDescriptor = null;
-                messageDefaultInstance = null;
-                break;
-        }
+
     }
     
     

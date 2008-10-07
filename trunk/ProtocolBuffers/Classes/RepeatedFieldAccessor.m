@@ -19,11 +19,38 @@
 
 @implementation PBRepeatedFieldAccessor
 
+- (id) initWithField:(PBFieldDescriptor*) field
+                name:(NSString*) name
+        messageClass:(Class) messageClass
+        builderClass:(Class) builderClass {
+    if (self = [super init]) {
+#if 0
+        getMethod = getMethodOrDie(messageClass, "get" + camelCaseName + "List");
+        
+        getRepeatedMethod =
+        getMethodOrDie(messageClass, "get" + camelCaseName, Integer.TYPE);
+        type = getRepeatedMethod.getReturnType();
+        setRepeatedMethod =
+        getMethodOrDie(builderClass, "set" + camelCaseName,
+                       Integer.TYPE, type);
+        addRepeatedMethod =
+        getMethodOrDie(builderClass, "add" + camelCaseName, type);
+        getCountMethod =
+        getMethodOrDie(messageClass, "get" + camelCaseName + "Count");
+        
+        clearMethod = getMethodOrDie(builderClass, "clear" + camelCaseName);
+#endif
+    }
+    
+    return self;
+}
+
+
 + (PBRepeatedFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                                             name:(NSString*) name
-                                                     messageClass:(Class) messageClass
-                                                     builderClass:(Class) builderClass {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+                                          name:(NSString*) name
+                                  messageClass:(Class) messageClass
+                                  builderClass:(Class) builderClass {
+    return [[[PBRepeatedFieldAccessor alloc] initWithField:field name:name messageClass:messageClass builderClass:builderClass] autorelease];
 }
 
 - (id) get:(PBGeneratedMessage*) message {
