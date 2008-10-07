@@ -176,7 +176,17 @@
 
 
 - (void) crossLink {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    for (PBDescriptor* d in self.messageTypes) {
+        [d crossLink];
+    }
+    
+    for (PBServiceDescriptor* s in self.services) {
+        [s crossLink];
+    }
+    
+    for (PBFieldDescriptor* f in self.extensions) {
+        [f crossLink];
+    }
 }
 
 @end

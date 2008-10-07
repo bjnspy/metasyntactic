@@ -42,4 +42,7 @@
                                      parent:(PBServiceDescriptor*) parent
                                       index:(int32_t) index;
 
+// @internal
+- (void) crossLink;
+
 @end

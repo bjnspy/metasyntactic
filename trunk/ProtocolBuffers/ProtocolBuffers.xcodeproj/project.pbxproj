@@ -81,6 +81,7 @@
 		74B54F2E0E9AEA50008C7C2C /* PBPackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B54F2D0E9AEA50008C7C2C /* PBPackageDescriptor.m */; };
 		74B551790E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B551780E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m */; };
 		74B5517C0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */; };
+		74B5520C0E9B149B008C7C2C /* ExtensionRegistry_DescriptorIntPair.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74B551770E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.h */; };
 		74E17BF20E95655500F8D0D3 /* ExtendableBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */; };
 		74E17DB30E95EFDA00F8D0D3 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DB20E95EFDA00F8D0D3 /* MethodDescriptor.m */; };
 		74E17DD60E95F0D900F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DD50E95F0D900F8D0D3 /* ServiceDescriptor.m */; };
@@ -114,6 +115,7 @@
 				741A758F0E8CE18200F16FD4 /* Descriptor.h in Copy Headers */,
 				741A75910E8CE18200F16FD4 /* FieldDescriptor.h in Copy Headers */,
 				741A75950E8CE38500F16FD4 /* GenericDescriptor.h in Copy Headers */,
+				74B5520C0E9B149B008C7C2C /* ExtensionRegistry_DescriptorIntPair.h in Copy Headers */,
 				741A75990E8CE3DA00F16FD4 /* FileDescriptor.h in Copy Headers */,
 				74E79C300E8D82B500EFD26E /* FieldDescriptorType.h in Copy Headers */,
 				74E79DC70E8D989100EFD26E /* EnumValueDescriptor.h in Copy Headers */,

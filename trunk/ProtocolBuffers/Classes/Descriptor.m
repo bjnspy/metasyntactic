@@ -182,4 +182,19 @@
 }
 
 
+- (void) crossLink {
+    for (PBDescriptor* d in self.nestedTypes) {
+        [d crossLink];
+    }
+    
+    for (PBFieldDescriptor* f in self.fields) {
+        [f crossLink];
+    }
+    
+    for (PBFieldDescriptor* f in self.extensions) {
+        [f crossLink];
+    }
+}
+
+
 @end

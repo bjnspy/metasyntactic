@@ -15,6 +15,7 @@
 // limitations under the License.
 
 @interface PBDescriptorPool : NSObject {
+@private
     NSMutableArray* dependencies;
     NSMutableDictionary* descriptorsByName;
     NSMutableDictionary* fieldsByNumber;
@@ -31,5 +32,8 @@
 - (void) addPackage:(NSString*) fullName file:(PBFileDescriptor*) file;
 - (void) addSymbol:(id<PBGenericDescriptor>) descriptor;
 - (void) addEnumValueByNumber:(PBEnumValueDescriptor*) value;
+
+- (id<PBGenericDescriptor>) lookupSymbol:(NSString*) name
+                              relativeTo:(id<PBGenericDescriptor>) relativeTo;
 
 @end
