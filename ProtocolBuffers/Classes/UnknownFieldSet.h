@@ -33,6 +33,7 @@
 - (int32_t) serializedSize;
 - (int32_t) serializedSizeAsMessageSet;
 
+- (BOOL) hasField:(int32_t) number;
 - (PBField*) getField:(int32_t) number;
 
 @end
