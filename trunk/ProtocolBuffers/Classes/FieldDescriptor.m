@@ -18,6 +18,7 @@
 
 #import "Descriptor.pb.h"
 #import "DescriptorPool.h"
+#import "TextFormat.h"
 
 @interface PBFieldDescriptor()
     @property int32_t index;
@@ -191,181 +192,144 @@
 
 
 - (void) crossLink {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-#if 0
-
-if (proto.hasExtendee()) {
-    GenericDescriptor extendee =
-    file.pool.lookupSymbol(proto.getExtendee(), this);
-    if (!(extendee instanceof Descriptor)) {
-        throw new DescriptorValidationException(this,
-                                                "\"" + proto.getExtendee() + "\" is not a message type.");
-    }
-    this.containingType = (Descriptor)extendee;
-    
-    if (!getContainingType().isExtensionNumber(getNumber())) {
-        throw new DescriptorValidationException(this,
-                                                "\"" + getContainingType().getFullName() + "\" does not declare " +
-                                                getNumber() + " as an extension number.");
-    }
-}
-
-if (proto.hasTypeName()) {
-    GenericDescriptor typeDescriptor =
-    file.pool.lookupSymbol(proto.getTypeName(), this);
-    
-    if (!proto.hasType()) {
-        // Choose field type based on symbol.
-        if (typeDescriptor instanceof Descriptor) {
-            this.type = Type.MESSAGE;
-        } else if (typeDescriptor instanceof EnumDescriptor) {
-            this.type = Type.ENUM;
-        } else {
-            throw new DescriptorValidationException(this,
-                                                    "\"" + proto.getTypeName() + "\" is not a type.");
+    if (proto.hasExtendee) {
+        id extendee = [file.pool lookupSymbol:proto.extendee relativeTo:self];
+        if (![extendee isKindOfClass:[PBDescriptor class]]) {
+            @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
         }
-    }
-    
-    if (getJavaType() == JavaType.MESSAGE) {
-        if (!(typeDescriptor instanceof Descriptor)) {
-            throw new DescriptorValidationException(this,
-                                                    "\"" + proto.getTypeName() + "\" is not a message type.");
-        }
-        this.messageType = (Descriptor)typeDescriptor;
+        self.containingType = extendee;
         
-        if (proto.hasDefaultValue()) {
-            throw new DescriptorValidationException(this,
-                                                    "Messages can't have default values.");
+        if (![self.containingType isExtensionNumber:self.number]) {
+            @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
         }
-    } else if (getJavaType() == JavaType.ENUM) {
-        if (!(typeDescriptor instanceof EnumDescriptor)) {
-            throw new DescriptorValidationException(this,
-                                                    "\"" + proto.getTypeName() + "\" is not an enum type.");
-        }
-        this.enumType = (EnumDescriptor)typeDescriptor;
-    } else {
-        throw new DescriptorValidationException(this,
-                                                "Field with primitive type has type_name.");
-    }
-} else {
-    if (getJavaType() == JavaType.MESSAGE ||
-        getJavaType() == JavaType.ENUM) {
-        throw new DescriptorValidationException(this,
-                                                "Field with message or enum type missing type_name.");
-    }
-}
-
-// We don't attempt to parse the default value until here because for
-// enums we need the enum type's descriptor.
-if (proto.hasDefaultValue()) {
-    if (isRepeated()) {
-        throw new DescriptorValidationException(this,
-                                                "Repeated fields cannot have default values.");
     }
     
-    try {
-        switch (getType()) {
-            case INT32:
-            case SINT32:
-            case SFIXED32:
-                defaultValue = TextFormat.parseInt32(proto.getDefaultValue());
-                break;
-            case UINT32:
-            case FIXED32: {
-                defaultValue = TextFormat.parseUInt32(proto.getDefaultValue());
-                break;
+    if (proto.hasTypeName) {
+        id typeDescriptor = [file.pool lookupSymbol:proto.typeName relativeTo:self];
+        
+        if (!proto.hasType) {
+            // Choose field type based on symbol.
+            if ([typeDescriptor isKindOfClass:[PBDescriptor class]]) {
+                self.type = PBFieldDescriptorTypeMessage;
+            } else if ([typeDescriptor isKindOfClass:[PBEnumDescriptor class]]) {
+                self.type = PBFieldDescriptorTypeEnum;
+            } else {
+                @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
             }
-            case INT64:
-            case SINT64:
-            case SFIXED64:
-                defaultValue = TextFormat.parseInt64(proto.getDefaultValue());
-                break;
-            case UINT64:
-            case FIXED64: {
-                defaultValue = TextFormat.parseUInt64(proto.getDefaultValue());
-                break;
+        }
+        
+        if (self.objectiveCType == PBObjectiveCTypeMessage) {
+            if (![typeDescriptor isKindOfClass:[PBDescriptor class]]) {
+                @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
             }
-            case FLOAT:
-                defaultValue = Float.valueOf(proto.getDefaultValue());
-                break;
-            case DOUBLE:
-                defaultValue = Double.valueOf(proto.getDefaultValue());
-                break;
-            case BOOL:
-                defaultValue = Boolean.valueOf(proto.getDefaultValue());
-                break;
-            case STRING:
-                defaultValue = proto.getDefaultValue();
-                break;
-            case BYTES:
-                try {
-                    defaultValue =
-                    TextFormat.unescapeBytes(proto.getDefaultValue());
-                } catch (TextFormat.InvalidEscapeSequence e) {
-                    throw new DescriptorValidationException(this,
-                                                            "Couldn't parse default value: " + e.getMessage());
-                }
-                break;
-            case ENUM:
-                defaultValue = enumType.findValueByName(proto.getDefaultValue());
-                if (defaultValue == null) {
-                    throw new DescriptorValidationException(this,
-                                                            "Unknown enum default value: \"" +
-                                                            proto.getDefaultValue() + "\"");
-                }
-                break;
-            case MESSAGE:
-            case GROUP:
-                throw new DescriptorValidationException(this,
-                                                        "Message type had default value.");
-        }
-    } catch (NumberFormatException e) {
-        DescriptorValidationException validationException =
-        new DescriptorValidationException(this,
-                                          "Could not parse default value: \"" +
-                                          proto.getDefaultValue() + "\"");
-        validationException.initCause(e);
-        throw validationException;
-    }
-} else {
-    // Determine the default default for this field.
-    if (isRepeated()) {
-        defaultValue = Collections.EMPTY_LIST;
-    } else {
-        switch (getJavaType()) {
-            case ENUM:
-                // We guarantee elsewhere that an enum type always has at least
-                // one possible value.
-                defaultValue = enumType.getValues().get(0);
-                break;
-            case MESSAGE:
-                defaultValue = null;
-                break;
-            default:
-                defaultValue = getJavaType().defaultDefault;
-                break;
-        }
-    }
-}
-
-if (!isExtension()) {
-    file.pool.addFieldByNumber(this);
-}
-
-if (containingType != null &&
-    containingType.getOptions().getMessageSetWireFormat()) {
-    if (isExtension()) {
-        if (!isOptional() || getType() != Type.MESSAGE) {
-            throw new DescriptorValidationException(this,
-                                                    "Extensions of MessageSets must be optional messages.");
+            self.messageType = typeDescriptor;
+            
+            if (proto.hasDefaultValue) {
+                @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Messages can't have default values." userInfo:nil];
+            }
+        } else if (self.objectiveCType == PBObjectiveCTypeEnum) {
+            if (![typeDescriptor isKindOfClass:[PBEnumDescriptor class]]) {
+                @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
+            }
+            self.enumType = typeDescriptor;
+        } else {
+            @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Field with primitive type has type_name." userInfo:nil];
         }
     } else {
-        throw new DescriptorValidationException(this,
-                                                "MessageSets cannot have fields, only extensions.");
+        if (self.objectiveCType == PBObjectiveCTypeMessage ||
+            self.objectiveCType == PBObjectiveCTypeEnum) {
+            @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Field with message or enum type missing type_name." userInfo:nil];
+        }
     }
-}
-}
-#endif
+    
+    // We don't attempt to parse the default value until here because for
+    // enums we need the enum type's descriptor.
+    if (proto.hasDefaultValue) {
+        if (self.isRepeated) {
+            @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Repeated fields cannot have default values." userInfo:nil];
+        }
+        
+        switch (self.type) {
+            case PBFieldDescriptorTypeInt32:
+            case PBFieldDescriptorTypeSInt32:
+            case PBFieldDescriptorTypeSFixed32:
+                self.defaultValue = [NSNumber numberWithInt:[PBTextFormat parseInt32:proto.defaultValue]];
+                break;
+            case PBFieldDescriptorTypeUInt32:
+            case PBFieldDescriptorTypeFixed32: {
+                defaultValue = [NSNumber numberWithInt:[PBTextFormat parseUInt32:proto.defaultValue]];
+                break;
+            }
+            case PBFieldDescriptorTypeInt64:
+            case PBFieldDescriptorTypeSInt64:
+            case PBFieldDescriptorTypeSFixed64:
+                defaultValue = [NSNumber numberWithLongLong:[PBTextFormat parseInt64:proto.defaultValue]];
+                break;
+            case PBFieldDescriptorTypeUInt64:
+            case PBFieldDescriptorTypeFixed64: {
+                defaultValue = [NSNumber numberWithLongLong:[PBTextFormat parseUInt64:proto.defaultValue]];
+                break;
+            }
+            case PBFieldDescriptorTypeFloat:
+                defaultValue = [NSNumber numberWithFloat:[proto.defaultValue floatValue]];
+                break;
+            case PBFieldDescriptorTypeDouble:
+                defaultValue = [NSNumber numberWithDouble:[proto.defaultValue doubleValue]];
+                break;
+            case PBFieldDescriptorTypeBool:
+                defaultValue = [NSNumber numberWithBool:[@"YES" isEqual:proto.defaultValue]];
+                break;
+            case PBFieldDescriptorTypeString:
+                defaultValue = proto.defaultValue;
+                break;
+            case PBFieldDescriptorTypeData:
+                defaultValue = [PBTextFormat unescapeBytes:proto.defaultValue];
+                break;
+            case PBFieldDescriptorTypeEnum:
+                defaultValue = [enumType findValueByName:proto.defaultValue];
+                if (defaultValue == nil) {
+                    @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Unknown enum default value:" userInfo:nil];
+                }
+                break;
+            case PBFieldDescriptorTypeMessage:
+            case PBFieldDescriptorTypeGroup:
+                @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Message type had default value." userInfo:nil];
+        }
+    } else {
+        // Determine the default default for this field.
+        if (self.isRepeated) {
+            defaultValue = [NSArray array];
+        } else {
+            switch (self.objectiveCType) {
+                case PBObjectiveCTypeEnum:
+                    // We guarantee elsewhere that an enum type always has at least
+                    // one possible value.
+                    defaultValue = [self.enumType.values objectAtIndex:0];
+                    break;
+                case PBObjectiveCTypeMessage:
+                    defaultValue = nil;
+                    break;
+                default:
+                    defaultValue = PBObjectiveCTypeDefault(self.objectiveCType);
+                    break;
+            }
+        }
+    }
+    
+    if (!self.isExtension) {
+        [file.pool addFieldByNumber:self];
+    }
+    
+    if (containingType != nil &&
+        containingType.options.messageSetWireFormat) {
+        if (self.isExtension) {
+            if (!self.isOptional || self.type != PBFieldDescriptorTypeMessage) {
+                @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Extensions of MessageSets must be optional messages." userInfo:nil];
+            }
+        } else {
+            @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"MessageSets cannot have fields, only extensions." userInfo:nil];
+        }
+    }
 }
 
 @end

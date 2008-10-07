@@ -82,6 +82,7 @@
 		74B551790E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B551780E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m */; };
 		74B5517C0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */; };
 		74B5520C0E9B149B008C7C2C /* ExtensionRegistry_DescriptorIntPair.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74B551770E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.h */; };
+		74B553080E9B2227008C7C2C /* TextFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B553070E9B2227008C7C2C /* TextFormat.m */; };
 		74E17BF20E95655500F8D0D3 /* ExtendableBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */; };
 		74E17DB30E95EFDA00F8D0D3 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DB20E95EFDA00F8D0D3 /* MethodDescriptor.m */; };
 		74E17DD60E95F0D900F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DD50E95F0D900F8D0D3 /* ServiceDescriptor.m */; };
@@ -254,6 +255,8 @@
 		74B551780E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry_DescriptorIntPair.m; sourceTree = "<group>"; };
 		74B5517A0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorPool_DescriptorIntPair.h; sourceTree = "<group>"; };
 		74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorPool_DescriptorIntPair.m; sourceTree = "<group>"; };
+		74B553060E9B2227008C7C2C /* TextFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFormat.h; sourceTree = "<group>"; };
+		74B553070E9B2227008C7C2C /* TextFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFormat.m; sourceTree = "<group>"; };
 		74E17B390E9561D700F8D0D3 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
 		74E17BF00E95655500F8D0D3 /* ExtendableBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableBuilder.h; sourceTree = "<group>"; };
 		74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableBuilder.m; sourceTree = "<group>"; };
@@ -371,6 +374,8 @@
 				741A74C00E8CCF0E00F16FD4 /* MutableField.m */,
 				7411FB630E8E3856002552B1 /* Utilities.h */,
 				7411FB640E8E3856002552B1 /* Utilities.m */,
+				74B553060E9B2227008C7C2C /* TextFormat.h */,
+				74B553070E9B2227008C7C2C /* TextFormat.m */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -604,6 +609,7 @@
 				74B54F2E0E9AEA50008C7C2C /* PBPackageDescriptor.m in Sources */,
 				74B551790E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m in Sources */,
 				74B5517C0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m in Sources */,
+				74B553080E9B2227008C7C2C /* TextFormat.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

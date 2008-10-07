@@ -19,6 +19,7 @@
 #import "DescriptorPool_DescriptorIntPair.h"
 #import "EnumDescriptor.h"
 #import "EnumValueDescriptor.h"
+#import "FieldDescriptor.h"
 #import "PBPackageDescriptor.h"
 
 @implementation PBDescriptorPool
@@ -183,7 +184,7 @@ BOOL isDigit(unichar c) {
     // TODO(kenton):  This could be optimized in a number of ways.
     
     id<PBGenericDescriptor> result = nil;
-    if (name.length > 0 && [name characterAtIndex:0] == '.') {
+    if ([name hasPrefix:@"."]) {
         // Fully-qualified name.
         result = [self findSymbol:[name substringFromIndex:1]];
     } else {
@@ -235,6 +236,17 @@ BOOL isDigit(unichar c) {
     } else {
         return result;
     }
+}
+
+
+- (void) addFieldByNumber:(PBFieldDescriptor*) field {
+    PBDescriptorPool_DescriptorIntPair* key = [PBDescriptorPool_DescriptorIntPair pairWithDescriptor:field.containingType number:field.number];
+
+    if ([fieldsByNumber objectForKey:key] != nil) {
+        @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
+    }
+    
+    [fieldsByNumber setObject:field forKey:key];
 }
 
 
