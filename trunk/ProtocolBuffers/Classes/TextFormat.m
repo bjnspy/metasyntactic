@@ -158,80 +158,106 @@
 }
 
 
+/** Is this an octal digit? */
+BOOL isOctal(unichar c) {
+    return '0' <= c && c <= '7';
+}
+
+/** Is this a hex digit? */
+BOOL isHex(unichar c) {
+    return
+    ('0' <= c && c <= '9') ||
+    ('a' <= c && c <= 'f') ||
+    ('A' <= c && c <= 'F');
+}
+
+/**
+ * Interpret a character as a digit (in any base up to 36) and return the
+ * numeric value.  This is like {@code Character.digit()} but we don't accept
+ * non-ASCII digits.
+ */
+int32_t digitValue(unichar c) {
+    if ('0' <= c && c <= '9') {
+        return c - '0';
+    } else if ('a' <= c && c <= 'z') {
+        return c - 'a' + 10;
+    } else {
+        return c - 'A' + 10;
+    }
+}
+
+
 /**
  * Un-escape a byte sequence as escaped using
  * {@link #escapeBytes(ByteString)}.  Two-digit hex escapes (starting with
  * "\x") are also recognized.
  */
 + (NSData*) unescapeBytes:(NSString*) input {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-#if 0
-    byte[] result = new byte[input.length()];
-    int pos = 0;
-    for (int i = 0; i < input.length(); i++) {
-        char c = input.charAt(i);
+    NSMutableData* result = [NSMutableData dataWithLength:input.length];
+    
+    int32_t pos = 0;
+    for (int32_t i = 0; i < input.length; i++) {
+        unichar c = [input characterAtIndex:i];
         if (c == '\\') {
-            if (i + 1 < input.length()) {
+            if (i + 1 < input.length) {
                 ++i;
-                c = input.charAt(i);
+                c = [input characterAtIndex:i];
                 if (isOctal(c)) {
                     // Octal escape.
-                    int code = digitValue(c);
-                    if (i + 1 < input.length() && isOctal(input.charAt(i + 1))) {
+                    int32_t code = digitValue(c);
+                    if (i + 1 < input.length && isOctal([input characterAtIndex:(i + 1)])) {
                         ++i;
-                        code = code * 8 + digitValue(input.charAt(i));
+                        code = code * 8 + digitValue([input characterAtIndex:i]);
                     }
-                    if (i + 1 < input.length() && isOctal(input.charAt(i + 1))) {
+                    if (i + 1 < input.length && isOctal([input characterAtIndex:(i + 1)])) {
                         ++i;
-                        code = code * 8 + digitValue(input.charAt(i));
+                        code = code * 8 + digitValue([input characterAtIndex:i]);
                     }
-                    result[pos++] = (byte)code;
+                    ((int8_t*)result.mutableBytes)[pos++] = (int8_t)code;
                 } else {
                     switch (c) {
-                        case 'a' : result[pos++] = 0x07; break;
-                        case 'b' : result[pos++] = '\b'; break;
-                        case 'f' : result[pos++] = '\f'; break;
-                        case 'n' : result[pos++] = '\n'; break;
-                        case 'r' : result[pos++] = '\r'; break;
-                        case 't' : result[pos++] = '\t'; break;
-                        case 'v' : result[pos++] = 0x0b; break;
-                        case '\\': result[pos++] = '\\'; break;
-                        case '\'': result[pos++] = '\''; break;
-                        case '"' : result[pos++] = '\"'; break;
+                        case 'a' : ((int8_t*)result.mutableBytes)[pos++] = 0x07; break;
+                        case 'b' : ((int8_t*)result.mutableBytes)[pos++] = '\b'; break;
+                        case 'f' : ((int8_t*)result.mutableBytes)[pos++] = '\f'; break;
+                        case 'n' : ((int8_t*)result.mutableBytes)[pos++] = '\n'; break;
+                        case 'r' : ((int8_t*)result.mutableBytes)[pos++] = '\r'; break;
+                        case 't' : ((int8_t*)result.mutableBytes)[pos++] = '\t'; break;
+                        case 'v' : ((int8_t*)result.mutableBytes)[pos++] = 0x0b; break;
+                        case '\\': ((int8_t*)result.mutableBytes)[pos++] = '\\'; break;
+                        case '\'': ((int8_t*)result.mutableBytes)[pos++] = '\''; break;
+                        case '"' : ((int8_t*)result.mutableBytes)[pos++] = '\"'; break;
                             
-                        case 'x':
-                            // hex escape
-                            int code = 0;
-                            if (i + 1 < input.length() && isHex(input.charAt(i + 1))) {
+                        case 'x': // hex escape 
+                        {
+                            int32_t code = 0;
+                            if (i + 1 < input.length && isHex([input characterAtIndex:(i + 1)])) {
                                 ++i;
-                                code = digitValue(input.charAt(i));
+                                code = digitValue([input characterAtIndex:i]);
                             } else {
-                                throw new InvalidEscapeSequence(
-                                                                "Invalid escape sequence: '\\x' with no digits");
+                                @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence: '\\x' with no digits" userInfo:nil];
                             }
-                            if (i + 1 < input.length() && isHex(input.charAt(i + 1))) {
+                            if (i + 1 < input.length && isHex([input characterAtIndex:(i + 1)])) {
                                 ++i;
-                                code = code * 16 + digitValue(input.charAt(i));
+                                code = code * 16 + digitValue([input characterAtIndex:i]);
                             }
-                            result[pos++] = (byte)code;
+                            ((int8_t*)result.mutableBytes)[pos++] = (int8_t)code;
                             break;
+                        }
                             
                         default:
-                            throw new InvalidEscapeSequence(
-                                                            "Invalid escape sequence: '\\" + c + "'");
+                            @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence" userInfo:nil];
                     }
                 }
             } else {
-                throw new InvalidEscapeSequence(
-                                                "Invalid escape sequence: '\\' at end of string.");
+                @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence: '\\' at end of string" userInfo:nil];
             }
         } else {
-            result[pos++] = (byte)c;
+            ((int8_t*)result.mutableBytes)[pos++] = (int8_t)c;
         }
     }
     
-    return ByteString.copyFrom(result, 0, pos);
-#endif
+    [result setLength:pos];
+    return result;
 }
 
 @end
