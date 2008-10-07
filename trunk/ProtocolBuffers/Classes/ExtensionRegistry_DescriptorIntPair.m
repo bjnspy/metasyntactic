@@ -14,18 +14,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "DescriptorIntPair.h"
+#import "ExtensionRegistry_DescriptorIntPair.h"
 
 #import "Descriptor.h"
 
 
-@interface PBDescriptorIntPair ()
+@interface PBExtensionRegistry_DescriptorIntPair ()
 @property (retain) PBDescriptor* descriptor;
 @property int32_t number;
 @end
 
 
-@implementation PBDescriptorIntPair
+@implementation PBExtensionRegistry_DescriptorIntPair
 
 @synthesize descriptor;
 @synthesize number;
@@ -50,9 +50,10 @@
 }
 
 
-+ (PBDescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor
++ (PBExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor
                                                      number:(int32_t) number {
-    return [[[PBDescriptorIntPair alloc] initWithDescriptor:descriptor number:number] autorelease];
+    return [[[PBExtensionRegistry_DescriptorIntPair alloc] initWithDescriptor:descriptor 
+                                                                       number:number] autorelease];
 }
 
 
@@ -62,11 +63,11 @@
 
 
 - (BOOL) isEqual:(id) obj {
-    if (![obj isKindOfClass:[PBDescriptorIntPair class]]) {
+    if (![obj isKindOfClass:[PBExtensionRegistry_DescriptorIntPair class]]) {
         return false;
     }
 
-    PBDescriptorIntPair* other = obj;
+    PBExtensionRegistry_DescriptorIntPair* other = obj;
     return descriptor == other.descriptor && number == other.number;
 }
 

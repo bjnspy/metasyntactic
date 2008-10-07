@@ -15,3 +15,9 @@
 // limitations under the License.
 
 #import "FieldDescriptorType.h"
+
+#import "Descriptor.pb.h"
+
+PBFieldDescriptorType PBFieldDescriptorTypeValueOf(PBFieldDescriptorProto_Type* type) {
+    return (PBFieldDescriptorType)(type.number - 1);
+}

@@ -14,22 +14,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBDescriptorPool : NSObject {
-    NSMutableArray* dependencies;
-    NSMutableDictionary* descriptorsByName;
-    NSMutableDictionary* fieldsByNumber;
-    NSMutableDictionary* enumValuesByNumber;
+@interface PBExtensionRegistry_DescriptorIntPair : NSObject {
+@private
+    PBDescriptor* descriptor;
+    int32_t number;
 }
 
-@property (retain) NSMutableArray* dependencies;
-@property (retain) NSMutableDictionary* descriptorsByName;
-@property (retain) NSMutableDictionary* fieldsByNumber;
-@property (retain) NSMutableDictionary* enumValuesByNumber;
+@property (retain, readonly) PBDescriptor* descriptor;
+@property (readonly) int32_t number;
 
-+ (PBDescriptorPool*) poolWithDependencies:(NSArray*) dependencies;
-
-- (void) addPackage:(NSString*) fullName file:(PBFileDescriptor*) file;
-- (void) addSymbol:(id<PBGenericDescriptor>) descriptor;
-- (void) addEnumValueByNumber:(PBEnumValueDescriptor*) value;
++ (PBExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor
+                                                       number:(int32_t) number;
 
 @end

@@ -14,15 +14,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBDescriptorIntPair : NSObject {
+#include "GenericDescriptor.h"
+
+@interface PBDescriptorPool_DescriptorIntPair : NSObject {
 @private
-    PBDescriptor* descriptor;
+    id<PBGenericDescriptor> descriptor;
     int32_t number;
 }
 
-@property (retain, readonly) PBDescriptor* descriptor;
+@property (retain, readonly) id<PBGenericDescriptor> descriptor;
 @property (readonly) int32_t number;
 
-+ (PBDescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor number:(int32_t) number;
++ (PBDescriptorPool_DescriptorIntPair*) pairWithDescriptor:(id<PBGenericDescriptor>) descriptor
+                                                    number:(int32_t) number;
 
 @end

@@ -14,9 +14,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBEnumDescriptor : NSObject {
+#import "GenericDescriptor.h"
 
+@interface PBEnumDescriptor : NSObject<PBGenericDescriptor> {
+@private
+    int32_t index;
+    PBEnumDescriptorProto* proto;
+    NSString* fullName;
+
+    // TODO(cyrusn): circularity between us and file
+    PBFileDescriptor* file;
+    // TODO(cyrusn): circularity between us and containingType
+    PBDescriptor* containingType;
+    // TODO(cyrusn): circularity between us and enum values
+    NSMutableArray* mutableValues;
 }
+
+@property (readonly) int32_t index;
+@property (readonly, retain) PBEnumDescriptorProto* proto;
+@property (readonly, copy) NSString* fullName;
+@property (readonly, retain) PBFileDescriptor* file;
+@property (readonly, retain) PBDescriptor* containingType;
+
++ (PBEnumDescriptor*) descriptorWithProto:(PBEnumDescriptorProto*) proto
+                                     file:(PBFileDescriptor*) file
+                                   parent:(PBDescriptor*) parent
+                                    index:(int32_t) index;
 
 - (NSArray*) values;
 

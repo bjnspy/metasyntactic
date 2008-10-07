@@ -14,13 +14,32 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBMethodDescriptor : NSObject {
+#import "GenericDescriptor.h"
+
+@interface PBMethodDescriptor : NSObject<PBGenericDescriptor> {
 @private
     int32_t index;
+    PBMethodDescriptorProto* proto;
+    NSString* fullName;
+    PBFileDescriptor* file;
     PBServiceDescriptor* service;
+    
+    // Initialized during cross-linking.
+    PBDescriptor* inputType;
+    PBDescriptor* outputType;
 }
 
 @property (readonly) int32_t index;
+@property (readonly, retain) PBMethodDescriptorProto* proto;
+@property (readonly, copy) NSString* fullName;
+@property (readonly, retain) PBFileDescriptor* file;
 @property (readonly, retain) PBServiceDescriptor* service;
+@property (readonly, retain) PBDescriptor* inputType;
+@property (readonly, retain) PBDescriptor* outputType;
+
++ (PBMethodDescriptor*) descriptorWithProto:(PBMethodDescriptorProto*) proto
+                                       file:(PBFileDescriptor*) file
+                                     parent:(PBServiceDescriptor*) parent
+                                      index:(int32_t) index;
 
 @end

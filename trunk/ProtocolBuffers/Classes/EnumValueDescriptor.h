@@ -14,12 +14,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBEnumValueDescriptor : NSObject/*<PBGenericDescriptor>*/ {
+#import "GenericDescriptor.h"
+
+@interface PBEnumValueDescriptor : NSObject<PBGenericDescriptor> {
+@private
     PBFileDescriptor* file;
     PBEnumDescriptor* type;
 
     int32_t index;
-    //EnumValueDescriptorProto proto;
+    PBEnumValueDescriptorProto* proto;
     NSString* fullName;
 }
 
@@ -28,10 +31,14 @@
 @property (assign, readonly) PBEnumDescriptor* type;
 
 @property (readonly) int32_t index;
+@property (readonly, retain) PBEnumValueDescriptorProto* proto;
 @property (copy, readonly) NSString* fullName;
 
-- (PBEnumDescriptor*) type;
++ (PBEnumDescriptor*) descriptorWithProto:(PBEnumValueDescriptorProto*) proto
+                                     file:(PBFileDescriptor*) file
+                                   parent:(PBEnumDescriptor*) parent
+                                    index:(int32_t) index;
+
 - (int32_t) number;
-- (int32_t) index;
 
 @end

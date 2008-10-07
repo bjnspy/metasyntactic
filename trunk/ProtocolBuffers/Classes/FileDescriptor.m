@@ -18,17 +18,16 @@
 
 #import "Descriptor.pb.h"
 #import "DescriptorPool.h"
-#import "FileDescriptor.h"
-
+#import "FieldDescriptor.h"
+#import "ServiceDescriptor.h"
 
 @interface PBFileDescriptor ()
-@property (retain) PBFileDescriptorProto* proto;
-@property (retain) NSMutableArray* mutableMessageTypes;
-@property (retain) NSMutableArray* mutableExtensions;
-@property (retain) NSMutableArray* mutableEnumTypes;
-@property (retain) NSMutableArray* mutableServices;
-@property (retain) NSMutableArray* mutableDependencies;
-@property (retain) PBDescriptorPool* pool;
+    @property (retain) PBFileDescriptorProto* proto;
+    @property (retain) NSMutableArray* mutableMessageTypes;
+    @property (retain) NSMutableArray* mutableExtensions;
+    @property (retain) NSMutableArray* mutableEnumTypes;
+    @property (retain) NSMutableArray* mutableServices;
+    @property (retain) NSMutableArray* mutableDependencies;
 @end
 
 
@@ -60,6 +59,11 @@
 }
 
 
+- (NSString*) name {
+    return proto.name;
+}
+
+
 - (id) initWithProto:(PBFileDescriptorProto*) proto_
         dependencies:(NSArray*) dependencies_
                 pool:(PBDescriptorPool*) pool_ {
@@ -74,23 +78,25 @@
         for (PBDescriptorProto* m in proto.messageTypeList) {
             [mutableMessageTypes addObject:[PBDescriptor descriptorWithProto:m file:self parent:nil index:mutableMessageTypes.count]];
         }
-#if 0        
-        enumTypes = new EnumDescriptor[proto.getEnumTypeCount()];
-        for (int i = 0; i < proto.getEnumTypeCount(); i++) {
-            enumTypes[i] = new EnumDescriptor(proto.getEnumType(i), this, null, i);
+        
+        self.mutableEnumTypes = [NSMutableArray array];
+        for (PBEnumDescriptorProto* e in proto.enumTypeList) {
+            [mutableEnumTypes addObject:[PBEnumDescriptor descriptorWithProto:e file:self parent:nil index:mutableEnumTypes.count]];
         }
         
-        services = new ServiceDescriptor[proto.getServiceCount()];
-        for (int i = 0; i < proto.getServiceCount(); i++) {
-            services[i] = new ServiceDescriptor(proto.getService(i), this, i);
+        self.mutableServices = [NSMutableArray array];
+        for (PBServiceDescriptorProto* s in proto.serviceList) {
+            [mutableServices addObject:[PBServiceDescriptor descriptorWithProto:s file:self index:mutableServices.count]];
         }
         
-        extensions = new FieldDescriptor[proto.getExtensionCount()];
-        for (int i = 0; i < proto.getExtensionCount(); i++) {
-            extensions[i] = new FieldDescriptor(
-                                                proto.getExtension(i), this, null, i, true);
+        self.mutableExtensions = [NSMutableArray array];
+        for (PBFieldDescriptorProto* f in proto.extensionList) {
+            [mutableExtensions addObject:[PBFieldDescriptor descriptorWithProto:f
+                                                                           file:self
+                                                                         parent:nil
+                                                                          index:mutableExtensions.count
+                                                                    isExtension:YES]];
         }
-#endif
     }
 
     return self;
