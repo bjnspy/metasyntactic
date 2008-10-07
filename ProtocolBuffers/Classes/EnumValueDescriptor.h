@@ -34,10 +34,10 @@
 @property (readonly, retain) PBEnumValueDescriptorProto* proto;
 @property (copy, readonly) NSString* fullName;
 
-+ (PBEnumDescriptor*) descriptorWithProto:(PBEnumValueDescriptorProto*) proto
-                                     file:(PBFileDescriptor*) file
-                                   parent:(PBEnumDescriptor*) parent
-                                    index:(int32_t) index;
++ (PBEnumValueDescriptor*) descriptorWithProto:(PBEnumValueDescriptorProto*) proto
+                                          file:(PBFileDescriptor*) file
+                                        parent:(PBEnumDescriptor*) parent
+                                         index:(int32_t) index;
 
 - (int32_t) number;
 

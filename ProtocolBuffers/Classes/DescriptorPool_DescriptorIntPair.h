@@ -16,7 +16,7 @@
 
 #include "GenericDescriptor.h"
 
-@interface PBDescriptorPool_DescriptorIntPair : NSObject {
+@interface PBDescriptorPool_DescriptorIntPair : NSObject<NSCopying> {
 @private
     id<PBGenericDescriptor> descriptor;
     int32_t number;

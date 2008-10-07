@@ -60,6 +60,9 @@
 - (PBFieldDescriptor*) findFieldByNumber:(int32_t) number;
 - (PBFieldDescriptor*) findFieldByName:(NSString*) name;
 
+// @internal
+- (void) crossLink;
+
 #if 0
 NSArray* fields;
     int32_t index;

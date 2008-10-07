@@ -67,17 +67,17 @@
 }
 
 
-+ (PBEnumDescriptor*) descriptorWithProto:(PBEnumValueDescriptorProto*) proto
-                                     file:(PBFileDescriptor*) file
-                                   parent:(PBEnumDescriptor*) parent
-                                    index:(int32_t) index {
-    return [[[PBEnumDescriptor alloc] initWithProto:proto file:file parent:parent index:index] autorelease];
++ (PBEnumValueDescriptor*) descriptorWithProto:(PBEnumValueDescriptorProto*) proto
+                                          file:(PBFileDescriptor*) file
+                                        parent:(PBEnumDescriptor*) parent
+                                         index:(int32_t) index {
+    return [[[PBEnumValueDescriptor alloc] initWithProto:proto file:file parent:parent index:index] autorelease];
 }
 
 
 
 - (int32_t) number {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    return proto.number;
 }
 
 

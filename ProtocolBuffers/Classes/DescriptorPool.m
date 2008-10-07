@@ -160,6 +160,84 @@ BOOL isDigit(unichar c) {
 }
 
 
+/** Find a generic descriptor by fully-qualified name. */
+- (id<PBGenericDescriptor>) findSymbol:(NSString*) fullName {
+    id<PBGenericDescriptor> result = [descriptorsByName objectForKey:fullName];
+    if (result != nil) {
+        return result;
+    }
+    
+    for (PBDescriptorPool* p in dependencies) {
+        result = [p.descriptorsByName objectForKey:fullName];
+        if (result != nil) {
+            return result;
+        }
+    }
+    
+    return nil;
+}
+
+
+- (id<PBGenericDescriptor>) lookupSymbol:(NSString*) name
+                              relativeTo:(id<PBGenericDescriptor>) relativeTo {
+    // TODO(kenton):  This could be optimized in a number of ways.
+    
+    id<PBGenericDescriptor> result = nil;
+    if (name.length > 0 && [name characterAtIndex:0] == '.') {
+        // Fully-qualified name.
+        result = [self findSymbol:[name substringFromIndex:1]];
+    } else {
+        // If "name" is a compound identifier, we want to search for the
+        // first component of it, then search within it for the rest.
+        NSRange firstPartLength = [name rangeOfString:@"."];
+        NSString* firstPart = name;
+        if (firstPartLength.length > 0) {
+            firstPart = [name substringToIndex:firstPartLength.location];
+        }
+        
+        // We will search each parent scope of "relativeTo" looking for the
+        // symbol.
+        NSMutableString* scopeToTry = [NSMutableString stringWithString:[relativeTo fullName]];
+        
+        while (true) {
+            // Chop off the last component of the scope.
+            NSRange dotpos = [scopeToTry rangeOfString:@"." options:NSBackwardsSearch];
+            if (dotpos.length <= 0) {
+                result = [self findSymbol:name];
+                break;
+            } else {
+                [scopeToTry setString:[scopeToTry substringToIndex:(dotpos.location + 1)]];
+                
+                // Append firstPart and try to find.
+                [scopeToTry appendString:firstPart];
+                result = [self findSymbol:scopeToTry];
+                
+                if (result != nil) {
+                    if (firstPartLength.length > 0) {
+                        // We only found the first part of the symbol.  Now look for
+                        // the whole thing.  If this fails, we *don't* want to keep
+                        // searching parent scopes.
+                        [scopeToTry setString:[scopeToTry substringToIndex:(dotpos.location + 1)]];
+                        [scopeToTry appendString:name];
+                        result = [self findSymbol:scopeToTry];
+                    }
+                    break;
+                }
+                
+                // Not found.  Remove the name so we can try again.
+                [scopeToTry setString:[scopeToTry substringToIndex:dotpos.location]];
+            }
+        }
+    }
+    
+    if (result == nil) {
+        @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
+    } else {
+        return result;
+    }
+}
+
+
 #if 0
 private static final class PBDescriptorPool {
     PBDescriptorPool(PBFileDescriptor[] dependencies) {
@@ -201,68 +279,7 @@ private static final class PBDescriptorPool {
      * partially-qualified, or unqualified.  C++-like name lookup semantics
      * are used to search for the matching descriptor.
      */
-    PBGenericDescriptor lookupSymbol(String name,
-                                   PBGenericDescriptor relativeTo)
-    throws DescriptorValidationException {
-        // TODO(kenton):  This could be optimized in a number of ways.
 
-        PBGenericDescriptor result;
-        if (name.startsWith(".")) {
-            // Fully-qualified name.
-            result = findSymbol(name.substring(1));
-        } else {
-            // If "name" is a compound identifier, we want to search for the
-            // first component of it, then search within it for the rest.
-            int firstPartLength = name.indexOf('.');
-            String firstPart;
-            if (firstPartLength == -1) {
-                firstPart = name;
-            } else {
-                firstPart = name.substring(0, firstPartLength);
-            }
-
-            // We will search each parent scope of "relativeTo" looking for the
-            // symbol.
-            StringBuilder scopeToTry = new StringBuilder(relativeTo.getFullName());
-
-            while (true) {
-                // Chop off the last component of the scope.
-                int dotpos = scopeToTry.lastIndexOf(".");
-                if (dotpos == -1) {
-                    result = findSymbol(name);
-                    break;
-                } else {
-                    scopeToTry.setLength(dotpos + 1);
-
-                    // Append firstPart and try to find.
-                    scopeToTry.append(firstPart);
-                    result = findSymbol(scopeToTry.toString());
-
-                    if (result != null) {
-                        if (firstPartLength != -1) {
-                            // We only found the first part of the symbol.  Now look for
-                            // the whole thing.  If this fails, we *don't* want to keep
-                            // searching parent scopes.
-                            scopeToTry.setLength(dotpos + 1);
-                            scopeToTry.append(name);
-                            result = findSymbol(scopeToTry.toString());
-                        }
-                        break;
-                    }
-
-                    // Not found.  Remove the name so we can try again.
-                    scopeToTry.setLength(dotpos);
-                }
-            }
-        }
-
-        if (result == null) {
-            throw new DescriptorValidationException(relativeTo,
-                                                    "\"" + name + "\" is not defined.");
-        } else {
-            return result;
-        }
-    }
 #endif
 
 @end

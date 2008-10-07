@@ -116,67 +116,67 @@
 
 
 - (BOOL) isRequired {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (BOOL) isRepeated {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (BOOL) isExtension {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (BOOL) isOptional {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (PBObjectiveCType) objectiveCType {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (PBDescriptor*) containingType {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (PBDescriptor*) extensionScope {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (PBDescriptor*) messageType {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (PBEnumDescriptor*) enumType {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (id) defaultValue {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (int32_t) index {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
 - (int32_t) number {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    return proto.number;
 }
 
 
 - (PBFieldDescriptorType) type {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
@@ -187,6 +187,185 @@
 
 - (NSString*) name {
     return proto.name;
+}
+
+
+- (void) crossLink {
+    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+#if 0
+
+if (proto.hasExtendee()) {
+    GenericDescriptor extendee =
+    file.pool.lookupSymbol(proto.getExtendee(), this);
+    if (!(extendee instanceof Descriptor)) {
+        throw new DescriptorValidationException(this,
+                                                "\"" + proto.getExtendee() + "\" is not a message type.");
+    }
+    this.containingType = (Descriptor)extendee;
+    
+    if (!getContainingType().isExtensionNumber(getNumber())) {
+        throw new DescriptorValidationException(this,
+                                                "\"" + getContainingType().getFullName() + "\" does not declare " +
+                                                getNumber() + " as an extension number.");
+    }
+}
+
+if (proto.hasTypeName()) {
+    GenericDescriptor typeDescriptor =
+    file.pool.lookupSymbol(proto.getTypeName(), this);
+    
+    if (!proto.hasType()) {
+        // Choose field type based on symbol.
+        if (typeDescriptor instanceof Descriptor) {
+            this.type = Type.MESSAGE;
+        } else if (typeDescriptor instanceof EnumDescriptor) {
+            this.type = Type.ENUM;
+        } else {
+            throw new DescriptorValidationException(this,
+                                                    "\"" + proto.getTypeName() + "\" is not a type.");
+        }
+    }
+    
+    if (getJavaType() == JavaType.MESSAGE) {
+        if (!(typeDescriptor instanceof Descriptor)) {
+            throw new DescriptorValidationException(this,
+                                                    "\"" + proto.getTypeName() + "\" is not a message type.");
+        }
+        this.messageType = (Descriptor)typeDescriptor;
+        
+        if (proto.hasDefaultValue()) {
+            throw new DescriptorValidationException(this,
+                                                    "Messages can't have default values.");
+        }
+    } else if (getJavaType() == JavaType.ENUM) {
+        if (!(typeDescriptor instanceof EnumDescriptor)) {
+            throw new DescriptorValidationException(this,
+                                                    "\"" + proto.getTypeName() + "\" is not an enum type.");
+        }
+        this.enumType = (EnumDescriptor)typeDescriptor;
+    } else {
+        throw new DescriptorValidationException(this,
+                                                "Field with primitive type has type_name.");
+    }
+} else {
+    if (getJavaType() == JavaType.MESSAGE ||
+        getJavaType() == JavaType.ENUM) {
+        throw new DescriptorValidationException(this,
+                                                "Field with message or enum type missing type_name.");
+    }
+}
+
+// We don't attempt to parse the default value until here because for
+// enums we need the enum type's descriptor.
+if (proto.hasDefaultValue()) {
+    if (isRepeated()) {
+        throw new DescriptorValidationException(this,
+                                                "Repeated fields cannot have default values.");
+    }
+    
+    try {
+        switch (getType()) {
+            case INT32:
+            case SINT32:
+            case SFIXED32:
+                defaultValue = TextFormat.parseInt32(proto.getDefaultValue());
+                break;
+            case UINT32:
+            case FIXED32: {
+                defaultValue = TextFormat.parseUInt32(proto.getDefaultValue());
+                break;
+            }
+            case INT64:
+            case SINT64:
+            case SFIXED64:
+                defaultValue = TextFormat.parseInt64(proto.getDefaultValue());
+                break;
+            case UINT64:
+            case FIXED64: {
+                defaultValue = TextFormat.parseUInt64(proto.getDefaultValue());
+                break;
+            }
+            case FLOAT:
+                defaultValue = Float.valueOf(proto.getDefaultValue());
+                break;
+            case DOUBLE:
+                defaultValue = Double.valueOf(proto.getDefaultValue());
+                break;
+            case BOOL:
+                defaultValue = Boolean.valueOf(proto.getDefaultValue());
+                break;
+            case STRING:
+                defaultValue = proto.getDefaultValue();
+                break;
+            case BYTES:
+                try {
+                    defaultValue =
+                    TextFormat.unescapeBytes(proto.getDefaultValue());
+                } catch (TextFormat.InvalidEscapeSequence e) {
+                    throw new DescriptorValidationException(this,
+                                                            "Couldn't parse default value: " + e.getMessage());
+                }
+                break;
+            case ENUM:
+                defaultValue = enumType.findValueByName(proto.getDefaultValue());
+                if (defaultValue == null) {
+                    throw new DescriptorValidationException(this,
+                                                            "Unknown enum default value: \"" +
+                                                            proto.getDefaultValue() + "\"");
+                }
+                break;
+            case MESSAGE:
+            case GROUP:
+                throw new DescriptorValidationException(this,
+                                                        "Message type had default value.");
+        }
+    } catch (NumberFormatException e) {
+        DescriptorValidationException validationException =
+        new DescriptorValidationException(this,
+                                          "Could not parse default value: \"" +
+                                          proto.getDefaultValue() + "\"");
+        validationException.initCause(e);
+        throw validationException;
+    }
+} else {
+    // Determine the default default for this field.
+    if (isRepeated()) {
+        defaultValue = Collections.EMPTY_LIST;
+    } else {
+        switch (getJavaType()) {
+            case ENUM:
+                // We guarantee elsewhere that an enum type always has at least
+                // one possible value.
+                defaultValue = enumType.getValues().get(0);
+                break;
+            case MESSAGE:
+                defaultValue = null;
+                break;
+            default:
+                defaultValue = getJavaType().defaultDefault;
+                break;
+        }
+    }
+}
+
+if (!isExtension()) {
+    file.pool.addFieldByNumber(this);
+}
+
+if (containingType != null &&
+    containingType.getOptions().getMessageSetWireFormat()) {
+    if (isExtension()) {
+        if (!isOptional() || getType() != Type.MESSAGE) {
+            throw new DescriptorValidationException(this,
+                                                    "Extensions of MessageSets must be optional messages.");
+        }
+    } else {
+        throw new DescriptorValidationException(this,
+                                                "MessageSets cannot have fields, only extensions.");
+    }
+}
+}
+#endif
 }
 
 @end

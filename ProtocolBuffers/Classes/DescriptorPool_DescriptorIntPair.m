@@ -59,4 +59,9 @@
     return descriptor == other.descriptor && number == other.number;
 }
 
+
+- (id) copyWithZone:(NSZone*) zone {
+    return [self retain];
+}
+
 @end

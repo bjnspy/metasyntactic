@@ -89,4 +89,20 @@
     return proto.name;
 }
 
+
+- (void) crossLink {
+    id inputType_ = [file.pool lookupSymbol:proto.inputType relativeTo:self];
+    if (![inputType_ isKindOfClass:[PBDescriptor class]]) {
+        @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
+    }
+    self.inputType = inputType_;
+    
+    id outputType_ = [file.pool lookupSymbol:proto.outputType relativeTo:self];
+    if (![outputType_ isKindOfClass:[PBDescriptor class]]) {
+        @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
+    }
+    self.outputType = outputType_;
+}
+
+
 @end

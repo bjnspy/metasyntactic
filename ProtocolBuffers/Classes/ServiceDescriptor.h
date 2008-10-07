@@ -36,4 +36,7 @@
 
 - (NSArray*) methods;
 
+// @internal
+- (void) crossLink;
+
 @end

@@ -88,4 +88,11 @@
     return proto.name;
 }
 
+
+- (void) crossLink {
+    for (PBMethodDescriptor* m in self.methods) {
+        [m crossLink];
+    }
+}
+
 @end

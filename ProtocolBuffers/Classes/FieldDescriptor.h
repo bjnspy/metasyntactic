@@ -65,4 +65,7 @@
 
 - (int32_t) number;
 
+// @internal
+- (void) crossLink;
+
 @end
