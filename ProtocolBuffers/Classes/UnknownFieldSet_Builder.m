@@ -157,11 +157,6 @@
 }
 
 
-- (PBUnknownFieldSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-
-
 - (PBUnknownFieldSet_Builder*) mergeFromData:(NSData*) data {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
 }
@@ -210,6 +205,20 @@
     }
 }
 
+
+/**
+ * Parse an entire message from {@code input} and merge its fields into
+ * this set.
+ */
+- (PBUnknownFieldSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
+    while (true) {
+        int32_t tag = [input readTag];
+        if (tag == 0 || ![self mergeFieldFrom:tag input:input]) {
+            break;
+        }
+    }
+    return self;
+}
 
 
 #if 0
@@ -281,19 +290,7 @@ public static final class Builder {
         return Collections.unmodifiableMap(fields);
     }
 
-    /**
-     * Parse an entire message from {@code input} and merge its fields into
-     * this set.
-     */
-    public Builder mergeFrom(PBCodedInputStream input) throws IOException {
-        while (true) {
-            int32_t tag = input.readTag();
-            if (tag == 0 || !mergeFieldFrom(tag, input)) {
-                break;
-            }
-        }
-        return this;
-    }
+
 
 
     /**

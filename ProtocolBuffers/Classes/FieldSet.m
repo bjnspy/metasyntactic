@@ -609,7 +609,8 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 
 /** See {@link PBMessage#writeTo(PBCodedOutputStream)}. */
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-    for (PBFieldDescriptor* field in fields) {
+    NSArray* sortedFields = [fields.allKeys sortedArrayUsingSelector:@selector(compare:)];
+    for (PBFieldDescriptor* field in sortedFields) {
         id value = [fields objectForKey:field];
         [self writeField:field value:value output:output];
     }
