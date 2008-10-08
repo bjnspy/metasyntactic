@@ -141,40 +141,24 @@ const int UNKNOWN_TYPE_ID = 1550055;
 //    STAssertEqualObjects(@"bar", [raw itemAtIndex:2].message. .getItem(2).getMessage().toStringUtf8());
 }
 
-#if 0
 
-
-public void testParseMessageSet() throws Exception {
-    ExtensionRegistry extensionRegistry = ExtensionRegistry.newInstance();
-    extensionRegistry.add(TestMessageSetExtension1.messageSetExtension);
-    extensionRegistry.add(TestMessageSetExtension2.messageSetExtension);
+- (void) testParseMessageSet {
+    int32_t TYPE_ID_1 = [[[TestMessageSetExtension1 descriptor].extensions objectAtIndex:0] number];
+    int32_t TYPE_ID_2 = [[[TestMessageSetExtension2 descriptor].extensions objectAtIndex:0] number];
+    
+    PBExtensionRegistry* extensionRegistry = [PBExtensionRegistry registry];
+    [extensionRegistry addExtension:[TestMessageSetExtension1 messageSetExtension]];
+    [extensionRegistry addExtension:[TestMessageSetExtension2 messageSetExtension]];
     
     // Set up a RawMessageSet with two known messages and an unknown one.
-    RawMessageSet raw =
-    RawMessageSet.newBuilder()
-    .addItem(
-             RawMessageSet.Item.newBuilder()
-             .setTypeId(TYPE_ID_1)
-             .setMessage(
-                         TestMessageSetExtension1.newBuilder()
-                         .setI(123)
-                         .build().toByteString())
-             .build())
-    .addItem(
-             RawMessageSet.Item.newBuilder()
-             .setTypeId(TYPE_ID_2)
-             .setMessage(
-                         TestMessageSetExtension2.newBuilder()
-                         .setStr("foo")
-                         .build().toByteString())
-             .build())
-    .addItem(
-             RawMessageSet.Item.newBuilder()
-             .setTypeId(UNKNOWN_TYPE_ID)
-             .setMessage(ByteString.copyFromUtf8("bar"))
-             .build())
-    .build();
-    
+    RawMessageSet* raw =
+    [[[[[RawMessageSet newBuilder]
+         addItem:[[[[RawMessageSet_Item newBuilder] setTypeId:TYPE_ID_1] setMessage:[[[[TestMessageSetExtension1 newBuilder] setI:123] build] toData]] build]]
+        addItem:[[[[RawMessageSet_Item newBuilder] setTypeId:TYPE_ID_2] setMessage:[[[[TestMessageSetExtension2 newBuilder] setStr:@"foo"] build] toData]] build]]
+       addItem:[[[[RawMessageSet_Item newBuilder] setTypeId:UNKNOWN_TYPE_ID] setMessage:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]] build]]
+      build];
+       
+/*    
     ByteString data = raw.toByteString();
     
     // Parse as a TestMessageSet and check the contents.
@@ -195,7 +179,7 @@ public void testParseMessageSet() throws Exception {
     UnknownFieldSet.Field field = unknownFields.getField(UNKNOWN_TYPE_ID);
     assertEquals(1, field.getLengthDelimitedList().size());
     assertEquals("bar", field.getLengthDelimitedList().get(0).toStringUtf8());
+ */
 }
-#endif
 
 @end
