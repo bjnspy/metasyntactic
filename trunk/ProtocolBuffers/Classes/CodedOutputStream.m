@@ -296,7 +296,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
         case PBFieldDescriptorTypeBool:     [self writeBool:number        value:[value boolValue]]; break;
         case PBFieldDescriptorTypeString:   [self writeString:number      value:value]; break;
         case PBFieldDescriptorTypeGroup:    [self writeGroup:number       value:value]; break;
-        case PBFieldDescriptorTypeMessage:  [self writeGroup:number       value:value]; break;
+        case PBFieldDescriptorTypeMessage:  [self writeMessage:number     value:value]; break;
         case PBFieldDescriptorTypeData:     [self writeData:number        value:value]; break;
         case PBFieldDescriptorTypeUInt32:   [self writeUInt32:number      value:[value intValue]]; break;
         case PBFieldDescriptorTypeSFixed32: [self writeSFixed32:number    value:[value intValue]]; break;
@@ -307,6 +307,8 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
         default:
             @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
+    
+    NSLog(@"Wrote type:%d number:%d pos:%d", type, number, position);
 }
 
 

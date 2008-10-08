@@ -16,14 +16,15 @@
 
 #import "ExtensionWriter.h"
 
+#import "FieldDescriptor.h"
 #import "FieldSet.h"
 
 
 @interface PBExtensionWriter ()
-@property (retain) PBFieldSet* extensions;
-@property (retain) NSEnumerator* enumerator;
-@property (retain) PBFieldDescriptor* nextKey;
-@property (retain) id nextValue;
+    @property (retain) PBFieldSet* extensions;
+    @property (retain) NSEnumerator* enumerator;
+    @property (retain) PBFieldDescriptor* nextKey;
+    @property (retain) id nextValue;
 @end
 
 
@@ -55,7 +56,7 @@
 - (id) initWithExtensions:(PBFieldSet*) extensions_ {
     if (self = [super init]) {
         self.extensions = extensions_;
-        self.enumerator = extensions.fields.keyEnumerator;
+        self.enumerator = [[extensions.fields.allKeys sortedArrayUsingSelector:@selector(compare:)] objectEnumerator];
         
         [self moveNext];
     }
@@ -76,7 +77,7 @@
  * individual ranges of extensions at once.
  */
 - (void) writeUntil:(int32_t) end output:(PBCodedOutputStream*) output {
-    while (nextKey != nil && [nextValue number] < end) {
+    while (nextKey != nil && nextKey.number < end) {
         [extensions writeField:nextKey value:nextValue output:output];
         [self moveNext];
     }

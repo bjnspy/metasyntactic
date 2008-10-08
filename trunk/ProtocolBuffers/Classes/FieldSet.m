@@ -639,7 +639,8 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  */
 - (int32_t) serializedSize {
     int32_t size = 0;
-    for (PBFieldDescriptor* field in fields) {
+    NSArray* sortedFields = [fields.allKeys sortedArrayUsingSelector:@selector(compare:)];
+    for (PBFieldDescriptor* field in sortedFields) {
         id value = [fields objectForKey:field];
 
         if (field.isExtension &&
@@ -648,10 +649,14 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         } else {
             if (field.isRepeated) {
                 for (id element in value) {
-                    size += computeFieldSize(field.type, field.number, element);
+                    int32_t type = field.type;
+                    size += computeFieldSize(type, field.number, element);
+                    NSLog(@"Size  type:%d number:%d pos:%d", type, field.number, size);
                 }
             } else {
-                size += computeFieldSize(field.type, field.number, value);
+                int32_t type = field.type;
+                size += computeFieldSize(type, field.number, value);
+                NSLog(@"Size  type:%d number:%d pos:%d", type, field.number, size);
             }
         }
     }
