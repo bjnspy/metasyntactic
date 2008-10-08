@@ -64,12 +64,14 @@
     return [self.internalGetResult getExtension:extension];
 }
 
-#if 0
+
 /** Get one element of a repeated extension. */
-public final <Type> Type getExtension(
-                                      GeneratedExtension<MessageType, List<Type>> extension, int index) {
-    return internalGetResult().getExtension(extension, index);
+- (id)  getExtension:(PBGeneratedExtension*) extension index:(int32_t) index {
+    return [self.internalGetResult getExtension:extension atIndex:index];
 }
+
+#if 0
+
 
 /** Set the value of an extension. */
 public final <Type> BuilderType setExtension(

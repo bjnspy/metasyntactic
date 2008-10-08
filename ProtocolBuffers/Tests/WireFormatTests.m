@@ -40,26 +40,28 @@
 }
 
 
-#if 0
-
-
-public void testParseExtensions() throws Exception {
+- (void) testParseExtensions {
     // TestAllTypes and TestAllExtensions should have compatible wire formats,
     // so if we serealize a TestAllTypes then parse it as TestAllExtensions
     // it should work.
     
-    TestAllTypes message = TestUtil.getAllSet();
-    ByteString rawBytes = message.toByteString();
+    TestAllTypes* message = [TestUtilities allSet];
+    NSData* rawBytes = message.toData;
     
-    ExtensionRegistry registry = ExtensionRegistry.newInstance();
-    TestUtil.registerAllExtensions(registry);
-    registry = registry.getUnmodifiable();
+    PBExtensionRegistry* registry = [PBExtensionRegistry registry];
+    [TestUtilities registerAllExtensions:registry];
     
-    TestAllExtensions message2 =
-    TestAllExtensions.parseFrom(rawBytes, registry);
+    TestAllExtensions* message2 =
+    [TestAllExtensions parseFromData:rawBytes extensionRegistry:registry];
     
-    TestUtil.assertAllExtensionsSet(message2);
+    [TestUtilities assertAllExtensionsSet:message2];
 }
+
+
+#if 0
+
+
+
 
 public void testExtensionsSerializedSize() throws Exception {
     assertEquals(TestUtil.getAllSet().getSerializedSize(),
