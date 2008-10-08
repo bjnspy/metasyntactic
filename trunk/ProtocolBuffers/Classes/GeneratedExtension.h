@@ -35,5 +35,6 @@
 - (id) toReflectionType:(id) value;
 - (id) singularToReflectionType:(id) value;
 - (id) fromReflectionType:(id) value;
+- (id) singularFromReflectionType:(id) value;
 
 @end

@@ -16,6 +16,7 @@
 
 #import "ExtendableBuilder.h"
 
+#import "ExtendableMessage.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"
 
@@ -67,7 +68,7 @@
 
 /** Get one element of a repeated extension. */
 - (id)  getExtension:(PBGeneratedExtension*) extension index:(int32_t) index {
-    return [self.internalGetResult getExtension:extension atIndex:index];
+    return [self.internalGetResult getExtension:extension index:index];
 }
 
 #if 0
