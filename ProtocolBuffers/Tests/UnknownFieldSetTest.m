@@ -181,6 +181,13 @@
 }
 
 
+- (void) testClearMessage {
+    TestEmptyMessage* message =
+    [[[[TestEmptyMessage newBuilder] mergeFromMessage:emptyMessage] clear] build];
+    STAssertTrue(0 == message.serializedSize, @"");
+}
+
+
 #if 0
 
 public void testClearMessage() throws Exception {
