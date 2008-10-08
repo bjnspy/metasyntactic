@@ -34,4 +34,6 @@
 + (TestAllTypes*) allSet;
 + (TestAllExtensions*) allExtensionsSet;
 
++ (void) assertAllFieldsSet:(TestAllTypes*) message;
+
 @end

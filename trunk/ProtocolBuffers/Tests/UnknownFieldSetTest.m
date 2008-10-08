@@ -49,7 +49,7 @@
 
 - (PBField*) getField:(NSString*) name {
   PBFieldDescriptor* field = [descriptor findFieldByName:name];
-  NSAssert(field != nil, @"");
+  STAssertTrue(field != nil, @"");
   return [unknownFields getField:field.number];
 }
 
@@ -188,34 +188,26 @@
 }
 
 
+- (void) testParseKnownAndUnknown {
+    // Test mixing known and unknown fields when parsing.
+    
+    PBUnknownFieldSet* fields = 
+    [[[PBUnknownFieldSet newBuilder:unknownFields] addField:[[PBMutableField field] addVarint:654321]
+                                                 forNumber:123456] build];
+    
+    NSData* data = fields.toData;
+    TestAllTypes* destination = [TestAllTypes parseFromData:data];
+    
+    [TestUtilities assertAllFieldsSet:destination];
+    STAssertTrue(1 == destination.unknownFields.fields.count, @"");
+    
+    PBField* field = [destination.unknownFields getField:123456];
+    STAssertTrue(1 == field.varintList.count, @"");
+    STAssertTrue(654321 == [[field.varintList objectAtIndex:0] longLongValue], @"");
+}
 #if 0
 
-public void testClearMessage() throws Exception {
-  TestEmptyMessage message =
-  TestEmptyMessage.newBuilder().mergeFrom(emptyMessage).clear().build();
-  NSAssert(0, message.getSerializedSize());
-}
 
-public void testParseKnownAndUnknown() throws Exception {
-  // Test mixing known and unknown fields when parsing.
-  
-  UnknownFieldSet fields =
-  UnknownFieldSet.newBuilder(unknownFields)
-  .addField(123456,
-            UnknownFieldSet.Field.newBuilder().addVarint(654321).build())
-  .build();
-  
-  ByteString data = fields.toByteString();
-  TestAllTypes destination = TestAllTypes.parseFrom(data);
-  
-  TestUtil.assertAllFieldsSet(destination);
-  NSAssert(1, destination.getUnknownFields().asMap().size());
-  
-  UnknownFieldSet.Field field =
-  destination.getUnknownFields().getField(123456);
-  NSAssert(1, field.getVarintList().size());
-  NSAssert(654321, (long) field.getVarintList().get(0));
-}
 
 public void testWrongTypeTreatedAsUnknown() throws Exception {
   // Test that fields of the wrong wire type are treated like unknown fields
@@ -227,7 +219,7 @@ public void testWrongTypeTreatedAsUnknown() throws Exception {
   
   // All fields should have been interpreted as unknown, so the debug strings
   // should be the same.
-  NSAssert(emptyMessage.toString(), allTypesMessage.toString());
+  STAssertTrue(emptyMessage.toString(), allTypesMessage.toString());
 }
 
 public void testUnknownExtensions() throws Exception {
@@ -237,9 +229,9 @@ public void testUnknownExtensions() throws Exception {
   TestEmptyMessageWithExtensions message =
   TestEmptyMessageWithExtensions.parseFrom(allFieldsData);
   
-  NSAssert(unknownFields.asMap().size(),
+  STAssertTrue(unknownFields.asMap().size(),
            message.getUnknownFields().asMap().size());
-  NSAssert(allFieldsData, message.toByteString());
+  STAssertTrue(allFieldsData, message.toByteString());
 }
 
 public void testWrongExtensionTypeTreatedAsUnknown() throws Exception {
@@ -253,7 +245,7 @@ public void testWrongExtensionTypeTreatedAsUnknown() throws Exception {
   
   // All fields should have been interpreted as unknown, so the debug strings
   // should be the same.
-  NSAssert(emptyMessage.toString(),
+  STAssertTrue(emptyMessage.toString(),
            allExtensionsMessage.toString());
 }
 
@@ -284,16 +276,16 @@ public void testParseUnknownEnumValue() throws Exception {
   
   {
     TestAllTypes message = TestAllTypes.parseFrom(data);
-    NSAssert(TestAllTypes.NestedEnum.BAR,
+    STAssertTrue(TestAllTypes.NestedEnum.BAR,
              message.getOptionalNestedEnum());
-    NSAssert(
+    STAssertTrue(
              Arrays.asList(TestAllTypes.NestedEnum.FOO, TestAllTypes.NestedEnum.BAZ),
              message.getRepeatedNestedEnumList());
-    NSAssert(Arrays.asList(5L),
+    STAssertTrue(Arrays.asList(5L),
              message.getUnknownFields()
              .getField(singularField.getNumber())
              .getVarintList());
-    NSAssert(Arrays.asList(4L, 6L),
+    STAssertTrue(Arrays.asList(4L, 6L),
              message.getUnknownFields()
              .getField(repeatedField.getNumber())
              .getVarintList());
@@ -302,16 +294,16 @@ public void testParseUnknownEnumValue() throws Exception {
   {
     TestAllExtensions message =
     TestAllExtensions.parseFrom(data, TestUtil.getExtensionRegistry());
-    NSAssert(TestAllTypes.NestedEnum.BAR,
+    STAssertTrue(TestAllTypes.NestedEnum.BAR,
              message.getExtension(UnittestProto.optionalNestedEnumExtension));
-    NSAssert(
+    STAssertTrue(
              Arrays.asList(TestAllTypes.NestedEnum.FOO, TestAllTypes.NestedEnum.BAZ),
              message.getExtension(UnittestProto.repeatedNestedEnumExtension));
-    NSAssert(Arrays.asList(5L),
+    STAssertTrue(Arrays.asList(5L),
              message.getUnknownFields()
              .getField(singularField.getNumber())
              .getVarintList());
-    NSAssert(Arrays.asList(4L, 6L),
+    STAssertTrue(Arrays.asList(4L, 6L),
              message.getUnknownFields()
              .getField(repeatedField.getNumber())
              .getVarintList());
@@ -329,8 +321,8 @@ public void testLargeVarint() throws Exception {
   .toByteString();
   UnknownFieldSet parsed = UnknownFieldSet.parseFrom(data);
   UnknownFieldSet.Field field = parsed.getField(1);
-  NSAssert(1, field.getVarintList().size());
-  NSAssert(0x7FFFFFFFFFFFFFFFL, (long)field.getVarintList().get(0));
+  STAssertTrue(1, field.getVarintList().size());
+  STAssertTrue(0x7FFFFFFFFFFFFFFFL, (long)field.getVarintList().get(0));
 }
 #endif
 
