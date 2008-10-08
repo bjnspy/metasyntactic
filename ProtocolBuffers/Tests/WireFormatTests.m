@@ -57,16 +57,17 @@
     [TestUtilities assertAllExtensionsSet:message2];
 }
 
+- (void) testExtensionsSerializedSize {
+    STAssertTrue([TestUtilities allSet].serializedSize == [TestUtilities allExtensionsSet].serializedSize, @"");
+}
+
 
 #if 0
 
 
 
 
-public void testExtensionsSerializedSize() throws Exception {
-    assertEquals(TestUtil.getAllSet().getSerializedSize(),
-                 TestUtil.getAllExtensionsSet().getSerializedSize());
-}
+public 
 
 private void assertFieldsInOrder(ByteString data) throws Exception {
     CodedInputStream input = data.newCodedInput();
