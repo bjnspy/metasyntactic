@@ -17,13 +17,46 @@
 #import "RepeatedEnumFieldAccessor.h"
 
 
+@interface PBRepeatedEnumFieldAccessor()
+    @property SEL valueOfMethod;
+    @property SEL valueDescriptorMethod;
+@end
+
+
 @implementation PBRepeatedEnumFieldAccessor
 
+@synthesize valueOfMethod;
+@synthesize valueDescriptorMethod;
+
+- (void) dealloc {
+    self.valueOfMethod = 0;
+    self.valueDescriptorMethod = 0;
+
+    [super dealloc];
+}
+
+
+- (id) initWithField:(PBFieldDescriptor*) field
+                name:(NSString*) name
+        messageClass:(Class) messageClass
+        builderClass:(Class) builderClass {
+    if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
+        self.valueOfMethod = @selector(valueOfDescriptor:);
+        self.valueDescriptorMethod = @selector(valueDescriptor);
+    }
+    
+    return self;
+}
+
+
 + (PBRepeatedEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                                             name:(NSString*) name
-                                                     messageClass:(Class) messageClass
-                                                     builderClass:(Class) builderClass {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+                                              name:(NSString*) name
+                                      messageClass:(Class) messageClass
+                                      builderClass:(Class) builderClass {
+    return [[[PBRepeatedEnumFieldAccessor alloc] initWithField:field
+                                                          name:name
+                                                  messageClass:messageClass
+                                                  builderClass:builderClass] autorelease];
 }
 
 - (id) get:(PBGeneratedMessage*) message {

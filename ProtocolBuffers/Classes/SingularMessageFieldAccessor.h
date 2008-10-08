@@ -14,16 +14,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "FieldAccessor.h"
+#import "SingularFieldAccessor.h"
 
-@interface PBSingularMessageFieldAccessor : NSObject<PBFieldAccessor> {
-
+@interface PBSingularMessageFieldAccessor : PBSingularFieldAccessor {
+@private
+    SEL newBuilderMethod;
 }
 
+@property (readonly) SEL newBuilderMethod;
+
+
 + (PBSingularMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                                             name:(NSString*) name
-                                                     messageClass:(Class) messageClass
-                                                     builderClass:(Class) builderClass;
+                                                 name:(NSString*) name
+                                         messageClass:(Class) messageClass
+                                         builderClass:(Class) builderClass;
 
 - (id) get:(PBGeneratedMessage*) message;
 - (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value;

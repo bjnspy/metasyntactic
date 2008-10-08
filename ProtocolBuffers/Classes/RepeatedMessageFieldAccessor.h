@@ -14,11 +14,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "FieldAccessor.h"
+#import "RepeatedFieldAccessor.h"
 
-@interface PBRepeatedMessageFieldAccessor : NSObject<PBFieldAccessor> {
-
+@interface PBRepeatedMessageFieldAccessor : PBRepeatedFieldAccessor {
+@private
+    SEL newBuilderMethod;
 }
+
+@property (readonly) SEL newBuilderMethod;
 
 + (PBRepeatedMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                                 name:(NSString*) name

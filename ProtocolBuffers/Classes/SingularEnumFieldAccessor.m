@@ -16,13 +16,45 @@
 
 #import "SingularEnumFieldAccessor.h"
 
+@interface PBSingularEnumFieldAccessor()
+    @property SEL valueOfMethod;
+    @property SEL valueDescriptorMethod;
+@end
+
+
 @implementation PBSingularEnumFieldAccessor
+
+@synthesize valueOfMethod;
+@synthesize valueDescriptorMethod;
+
+- (void) dealloc {
+    self.valueOfMethod = 0;
+    self.valueDescriptorMethod = 0;
+    [super dealloc];
+}
+
+
+- (id) initWithField:(PBFieldDescriptor*) field
+                name:(NSString*) name
+        messageClass:(Class) messageClass
+        builderClass:(Class) builderClass {
+    if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
+        self.valueOfMethod = @selector(valueOfDescriptor:);
+        self.valueDescriptorMethod = @selector(valueDescriptor);
+    }
+    
+    return self;
+}
+
 
 + (PBSingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    return [[[PBSingularEnumFieldAccessor alloc] initWithField:field
+                                                          name:name
+                                                  messageClass:messageClass
+                                                  builderClass:builderClass] autorelease];
 }
 
 

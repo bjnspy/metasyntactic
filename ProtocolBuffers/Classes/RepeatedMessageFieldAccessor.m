@@ -16,14 +16,42 @@
 
 #import "RepeatedMessageFieldAccessor.h"
 
+@interface PBRepeatedMessageFieldAccessor()
+    @property SEL newBuilderMethod;
+@end
+
 
 @implementation PBRepeatedMessageFieldAccessor
+
+@synthesize newBuilderMethod;
+
+- (void) dealloc {
+    self.newBuilderMethod = 0;
+    
+    [super dealloc];
+}
+
+
+- (id) initWithField:(PBFieldDescriptor*) field
+                name:(NSString*) name
+        messageClass:(Class) messageClass
+        builderClass:(Class) builderClass {
+    if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
+        self.newBuilderMethod = @selector(newBuilder);
+    }
+    
+    return self;
+}
+
 
 + (PBRepeatedMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass
                                                      builderClass:(Class) builderClass {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    return [[[PBRepeatedMessageFieldAccessor alloc] initWithField:field
+                                                             name:name
+                                                     messageClass:messageClass
+                                                     builderClass:builderClass] autorelease];
 }
 
 - (id) get:(PBGeneratedMessage*) message {

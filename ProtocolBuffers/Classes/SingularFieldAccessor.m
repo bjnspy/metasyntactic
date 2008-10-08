@@ -32,6 +32,11 @@
 @synthesize clearSelector;
 
 - (void) dealloc {
+    self.getSelector = 0;
+    self.setSelector = 0;
+    self.hasSelector = 0;
+    self.clearSelector = 0;
+
     [super dealloc];
 }
 
