@@ -126,10 +126,12 @@
     return proto.label == [PBFieldDescriptorProto_Label LABEL_REQUIRED];
 }
 
+
 /** Is this field declared optional? */
 - (BOOL) isOptional {
     return proto.label == [PBFieldDescriptorProto_Label LABEL_OPTIONAL];
 }
+
 
 /** Is this field declared repeated? */
 - (BOOL) isRepeated {
@@ -143,7 +145,12 @@
 
 
 - (PBDescriptor*) extensionScope {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    if (!self.isExtension) {
+        @throw [NSException exceptionWithName:@"UnsupportedOperation"
+                                       reason:@"This field is not an extension." userInfo:nil];
+    }
+
+    return extensionScope;
 }
 
 
