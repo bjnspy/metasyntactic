@@ -258,74 +258,61 @@
     STAssertTrue(0x7FFFFFFFFFFFFFFFL == [[field.varintList objectAtIndex:0] longLongValue], @"");
 }
 
-#if 0
 
-
-
-
-
-public void testParseUnknownEnumValue() throws Exception {
-  Descriptors.FieldDescriptor singularField =
-  TestAllTypes.getDescriptor().findFieldByName("optional_nested_enum");
-  Descriptors.FieldDescriptor repeatedField =
-  TestAllTypes.getDescriptor().findFieldByName("repeated_nested_enum");
-  assertNotNull(singularField);
-  assertNotNull(repeatedField);
-  
-  ByteString data =
-  UnknownFieldSet.newBuilder()
-  .addField(singularField.getNumber(),
-            UnknownFieldSet.Field.newBuilder()
-            .addVarint(TestAllTypes.NestedEnum.BAR.getNumber())
-            .addVarint(5)   // not valid
-            .build())
-  .addField(repeatedField.getNumber(),
-            UnknownFieldSet.Field.newBuilder()
-            .addVarint(TestAllTypes.NestedEnum.FOO.getNumber())
-            .addVarint(4)   // not valid
-            .addVarint(TestAllTypes.NestedEnum.BAZ.getNumber())
-            .addVarint(6)   // not valid
-            .build())
-  .build()
-  .toByteString();
-  
-  {
-    TestAllTypes message = TestAllTypes.parseFrom(data);
-    STAssertTrue(TestAllTypes.NestedEnum.BAR,
-             message.getOptionalNestedEnum());
-    STAssertTrue(
-             Arrays.asList(TestAllTypes.NestedEnum.FOO, TestAllTypes.NestedEnum.BAZ),
-             message.getRepeatedNestedEnumList());
-    STAssertTrue(Arrays.asList(5L),
-             message.getUnknownFields()
-             .getField(singularField.getNumber())
-             .getVarintList());
-    STAssertTrue(Arrays.asList(4L, 6L),
-             message.getUnknownFields()
-             .getField(repeatedField.getNumber())
-             .getVarintList());
-  }
-  
-  {
-    TestAllExtensions message =
-    TestAllExtensions.parseFrom(data, TestUtil.getExtensionRegistry());
-    STAssertTrue(TestAllTypes.NestedEnum.BAR,
-             message.getExtension(UnittestProto.optionalNestedEnumExtension));
-    STAssertTrue(
-             Arrays.asList(TestAllTypes.NestedEnum.FOO, TestAllTypes.NestedEnum.BAZ),
-             message.getExtension(UnittestProto.repeatedNestedEnumExtension));
-    STAssertTrue(Arrays.asList(5L),
-             message.getUnknownFields()
-             .getField(singularField.getNumber())
-             .getVarintList());
-    STAssertTrue(Arrays.asList(4L, 6L),
-             message.getUnknownFields()
-             .getField(repeatedField.getNumber())
-             .getVarintList());
-  }
+- (void) testParseUnknownEnumValue {
+    PBFieldDescriptor* singularField = [[TestAllTypes descriptor] findFieldByName:@"optional_nested_enum"];
+    PBFieldDescriptor* repeatedField = [[TestAllTypes descriptor] findFieldByName:@"repeated_nested_enum"];
+    STAssertNotNil(singularField, @"");
+    STAssertNotNil(repeatedField, @"");
+    
+    NSData* data = [[[[[PBUnknownFieldSet newBuilder]
+                       addField:[[[PBMutableField field] 
+                                  addVarint:[TestAllTypes_NestedEnum BAR].number] 
+                                 addVarint:5]
+                       forNumber:singularField.number]
+                      addField:[[[[[PBMutableField field]
+                                   addVarint:[TestAllTypes_NestedEnum FOO].number]
+                                  addVarint:4]
+                                 addVarint:[TestAllTypes_NestedEnum BAZ].number]
+                                addVarint:6]
+                      forNumber:repeatedField.number] build] toData];
+    
+    {
+        TestAllTypes* message = [TestAllTypes parseFromData:data];
+        STAssertTrue([TestAllTypes_NestedEnum BAR] == message.optionalNestedEnum, @"");
+        NSArray* array1 = [NSArray arrayWithObjects:
+                          [TestAllTypes_NestedEnum FOO],
+                          [TestAllTypes_NestedEnum BAZ], nil];
+        STAssertEqualObjects(array1,
+                             message.repeatedNestedEnumList, @"");
+        
+        STAssertEqualObjects([NSArray arrayWithObject:[NSNumber numberWithLongLong:5]],
+                             [message.unknownFields getField:singularField.number].varintList, @"");
+        
+        NSArray* array2 = [NSArray arrayWithObjects:[NSNumber numberWithLongLong:4], [NSNumber numberWithLongLong:6], nil];
+        STAssertEqualObjects(array2,
+                             [message.unknownFields getField:repeatedField.number].varintList, @"");
+        
+    }
+/*    
+    {
+        TestAllExtensions message =
+        TestAllExtensions.parseFrom(data, TestUtil.getExtensionRegistry());
+        STAssertTrue(TestAllTypes.NestedEnum.BAR,
+                     message.getExtension(UnittestProto.optionalNestedEnumExtension));
+        STAssertTrue(
+                     Arrays.asList(TestAllTypes.NestedEnum.FOO, TestAllTypes.NestedEnum.BAZ),
+                     message.getExtension(UnittestProto.repeatedNestedEnumExtension));
+        STAssertTrue(Arrays.asList(5L),
+                     message.getUnknownFields()
+                     .getField(singularField.getNumber())
+                     .getVarintList());
+        STAssertTrue(Arrays.asList(4L, 6L),
+                     message.getUnknownFields()
+                     .getField(repeatedField.getNumber())
+                     .getVarintList());
+    }
+ */
 }
-
-
-#endif
 
 @end
