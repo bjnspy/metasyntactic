@@ -81,47 +81,47 @@
 
 - (void) testVarint {
   PBField* field = [self getField:@"optional_int32"];
-  NSAssert(1 == field.varintList.count, @"");
-  NSAssert(allFields.optionalInt32 == [[field.varintList objectAtIndex:0] intValue], @"");
+  STAssertTrue(1 == field.varintList.count, @"");
+  STAssertTrue(allFields.optionalInt32 == [[field.varintList objectAtIndex:0] intValue], @"");
 }
 
 
 - (void) testFixed32 {
   PBField* field = [self getField:@"optional_fixed32"];
-  NSAssert(1 == field.fixed32List.count, @"");
-  NSAssert(allFields.optionalFixed32 == [[field.fixed32List objectAtIndex:0] intValue], @"");
+  STAssertTrue(1 == field.fixed32List.count, @"");
+  STAssertTrue(allFields.optionalFixed32 == [[field.fixed32List objectAtIndex:0] intValue], @"");
 }
 
 
 - (void) testFixed64 {
   PBField* field = [self getField:@"optional_fixed64"];
-  NSAssert(1 == field.fixed64List.count, @"");
-  NSAssert(allFields.optionalFixed64 == [[field.fixed64List objectAtIndex:0] longLongValue], @"");
+  STAssertTrue(1 == field.fixed64List.count, @"");
+  STAssertTrue(allFields.optionalFixed64 == [[field.fixed64List objectAtIndex:0] longLongValue], @"");
 }
 
 
 - (void) testLengthDelimited {
   PBField* field = [self getField:@"optional_bytes"];
-  NSAssert(1 == field.lengthDelimitedList.count, @"");
-  NSAssert([allFields.optionalBytes isEqual:[field.lengthDelimitedList objectAtIndex:0]], @"");
+  STAssertTrue(1 == field.lengthDelimitedList.count, @"");
+  STAssertTrue([allFields.optionalBytes isEqual:[field.lengthDelimitedList objectAtIndex:0]], @"");
 }
 
 - (void) testGroup {
   PBFieldDescriptor* nestedFieldDescriptor =
   [[TestAllTypes_OptionalGroup descriptor] findFieldByName:@"a"];
-  NSAssert(nestedFieldDescriptor != nil, @"");
+  STAssertTrue(nestedFieldDescriptor != nil, @"");
   
   PBField* field = [self getField:@"optionalgroup"];
-  NSAssert(1 == field.groupList.count, @"");
+  STAssertTrue(1 == field.groupList.count, @"");
   
   PBUnknownFieldSet* group = [field.groupList objectAtIndex:0];
-  NSAssert(1 == group.fields.count, @"");
-  NSAssert([group hasField:nestedFieldDescriptor.number], @"");
+  STAssertTrue(1 == group.fields.count, @"");
+  STAssertTrue([group hasField:nestedFieldDescriptor.number], @"");
   
   PBField* nestedField =
   [group getField:nestedFieldDescriptor.number];
-  NSAssert(1 == nestedField.varintList.count, @"");
-  NSAssert(allFields.optionalGroup.a == [[nestedField.varintList objectAtIndex:0] intValue], @"");
+  STAssertTrue(1 == nestedField.varintList.count, @"");
+  STAssertTrue(allFields.optionalGroup.a == [[nestedField.varintList objectAtIndex:0] intValue], @"");
 }
 
 
