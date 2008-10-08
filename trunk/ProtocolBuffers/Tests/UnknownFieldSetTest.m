@@ -327,14 +327,4 @@ public void testLargeVarint() throws Exception {
 }
 #endif
 
-+ (void) runAllTests {
-  [[[[UnknownFieldSetTest alloc] init] autorelease] testVarint];
-  [[[[UnknownFieldSetTest alloc] init] autorelease] testFixed32];
-  [[[[UnknownFieldSetTest alloc] init] autorelease] testFixed64];
-  [[[[UnknownFieldSetTest alloc] init] autorelease] testLengthDelimited];
-  [[[[UnknownFieldSetTest alloc] init] autorelease] testGroup];
-  
-}
-
-
 @end
