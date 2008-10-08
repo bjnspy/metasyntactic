@@ -221,6 +221,13 @@
 }
 
 
+- (PBUnknownFieldSet_Builder*) clear {
+    self.fields = [NSMutableDictionary dictionary];
+    self.lastFieldNumber = 0;
+    self.lastField = nil;
+    return self;
+}
+
 #if 0
 
 
@@ -245,12 +252,7 @@ public static final class Builder {
 
 
     /** Reset the builder to an empty set. */
-    public Builder clear() {
-        fields = new TreeMap<Integer, PBField>();
-        lastFieldNumber = 0;
-        lastField = null;
-        return this;
-    }
+
 
     /**
      * Merge the fields from {@code other} into this set.  If a field number
