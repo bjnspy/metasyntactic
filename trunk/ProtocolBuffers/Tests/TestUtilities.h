@@ -31,11 +31,13 @@
 
 + (void) setAllFields:(TestAllTypes_Builder*) message;
 + (void) setAllExtensions:(TestAllExtensions_Builder*) message;
++ (void) registerAllExtensions:(PBExtensionRegistry*) registry;
 
 + (TestAllTypes*) allSet;
 + (TestAllExtensions*) allExtensionsSet;
 
 + (void) assertAllFieldsSet:(TestAllTypes*) message;
++ (void) assertAllExtensionsSet:(TestAllExtensions*) message;
 
 + (PBExtensionRegistry*) extensionRegistry;
 

@@ -25,6 +25,212 @@
 }
 
 
+
+/**
+ * Assert (using {@code junit.framework.Assert}} that all extensions of
+ * {@code message} are set to the values assigned by {@code setAllExtensions}.
+ */
+- (void) assertAllExtensionsSet:(TestAllExtensions*) message {
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalInt64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalUint32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalUint64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalSint32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalSint64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalFixed32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalFixed64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalSfixed32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalSfixed64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalFloatExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalDoubleExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalBoolExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalStringExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
+    
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalGroupExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalNestedMessageExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalForeignMessageExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalImportMessageExtension]], @"");
+    
+    STAssertTrue([[message getExtension:[UnittestProtoRoot optionalGroupExtension]] hasA], @"");
+    STAssertTrue([[message getExtension:[UnittestProtoRoot optionalNestedMessageExtension]] hasBb], @"");
+    STAssertTrue([[message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]] hasC], @"");
+    STAssertTrue([[message getExtension:[UnittestProtoRoot optionalImportMessageExtension]] hasD], @"");
+    
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
+    
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalCordExtension]], @"");
+    
+    STAssertTrue(101 == [[message getExtension:[UnittestProtoRoot optionalInt32Extension]] intValue], @"");
+    STAssertTrue(102L == [[message getExtension:[UnittestProtoRoot optionalInt64Extension]] intValue], @"");
+    STAssertTrue(103 == [[message getExtension:[UnittestProtoRoot optionalUint32Extension]] intValue], @"");
+    STAssertTrue(104L == [[message getExtension:[UnittestProtoRoot optionalUint64Extension]] intValue], @"");
+    STAssertTrue(105 == [[message getExtension:[UnittestProtoRoot optionalSint32Extension]] intValue], @"");
+    STAssertTrue(106L == [[message getExtension:[UnittestProtoRoot optionalSint64Extension]] intValue], @"");
+    STAssertTrue(107 == [[message getExtension:[UnittestProtoRoot optionalFixed32Extension]] intValue], @"");
+    STAssertTrue(108L == [[message getExtension:[UnittestProtoRoot optionalFixed64Extension]] intValue], @"");
+    STAssertTrue(109 == [[message getExtension:[UnittestProtoRoot optionalSfixed32Extension]] intValue], @"");
+    STAssertTrue(110L == [[message getExtension:[UnittestProtoRoot optionalSfixed64Extension]] intValue], @"");
+    STAssertTrue(111.0 == [[message getExtension:[UnittestProtoRoot optionalFloatExtension]] floatValue], @"");
+    STAssertTrue(112.0 == [[message getExtension:[UnittestProtoRoot optionalDoubleExtension]] doubleValue], @"");
+    STAssertTrue(true == [[message getExtension:[UnittestProtoRoot optionalBoolExtension]] boolValue], @"");
+    STAssertEqualObjects(@"115", [message getExtension:[UnittestProtoRoot optionalStringExtension]], @"");
+    STAssertEqualObjects([TestUtilities toData:@"116"], [message getExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
+    
+    STAssertTrue(117 == [[message getExtension:[UnittestProtoRoot optionalGroupExtension]] a], @"");
+    STAssertTrue(118 == [[message getExtension:[UnittestProtoRoot optionalNestedMessageExtension]] bb], @"");
+    STAssertTrue(119 == [[message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]] c], @"");
+    STAssertTrue(120 == [[message getExtension:[UnittestProtoRoot optionalImportMessageExtension]] d], @"");
+    
+    STAssertTrue([TestAllTypes_NestedEnum BAZ] == [message getExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
+    STAssertTrue([ForeignEnum FOREIGN_BAZ] == [message getExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
+    STAssertTrue([ImportEnum IMPORT_BAZ] == [message getExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
+    
+     STAssertEqualObjects(@"124", [message getExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
+     STAssertEqualObjects(@"125", [message getExtension:[UnittestProtoRoot optionalCordExtension]], @"");
+    
+    // -----------------------------------------------------------------
+    
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedInt32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedInt64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedUint32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedUint64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedSint32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedSint64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedFixed32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedFixed64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedSfixed32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedSfixed64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedFloatExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedDoubleExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedBoolExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedStringExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedBytesExtension]], @"");
+    
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedGroupExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedNestedMessageExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedForeignMessageExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedImportMessageExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedNestedEnumExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedForeignEnumExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedImportEnumExtension]], @"");
+    
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedStringPieceExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedCordExtension]], @"");
+    
+    STAssertTrue(201 == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension] index:0] intValue], @"");;
+    STAssertTrue(202L == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension] index:0] intValue], @"");;
+    STAssertTrue(203 == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension] index:0] intValue], @"");;
+    STAssertTrue(204L == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension] index:0] intValue], @"");
+    STAssertTrue(205 == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension] index:0] intValue], @"");
+    STAssertTrue(206L == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension] index:0] intValue], @"");
+    STAssertTrue(207 == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension] index:0] intValue], @"");
+    STAssertTrue(208L == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension] index:0] intValue], @"");
+    STAssertTrue(209 == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:0] intValue], @"");
+    STAssertTrue(210L == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:0] intValue], @"");
+    STAssertTrue(211.0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension] index:0] floatValue], @"");
+    STAssertTrue(212.0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension] index:0] doubleValue], @"");
+    STAssertTrue(true == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension] index:0] boolValue], @"");
+    STAssertEqualObjects(@"215", [message getExtension:[UnittestProtoRoot repeatedStringExtension] index:0], @"");
+    STAssertEqualObjects([TestUtilities toData:@"216"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:0], @"");
+    
+    STAssertTrue(217 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:0] a], @"");
+    STAssertTrue(218 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:0] b], @"");
+    STAssertTrue(219 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:0] c], @"");
+    STAssertTrue(220 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:0] d], @"");
+    
+    STAssertTrue([TestAllTypes_NestedEnum BAR] == [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:0], @"");
+    STAssertTrue([ForeignEnum FOREIGN_BAR] == [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:0], @"");
+    STAssertTrue([ImportEnum IMPORT_BAR] == [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:0], @"");
+    
+    STAssertEqualObjects(@"224", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:0], @"");
+    STAssertEqualObjects(@"225", [message getExtension:[UnittestProtoRoot repeatedCordExtension] index:0], @"");
+    
+    STAssertTrue(301 == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension] index:1] intValue], @"");
+    STAssertTrue(302L == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension] index:1] intValue], @"");
+    STAssertTrue(303 == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension] index:1] intValue], @"");
+    STAssertTrue(304L == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension] index:1] intValue], @"");
+    STAssertTrue(305 == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension] index:1] intValue], @"");
+    STAssertTrue(306L == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension] index:1] intValue], @"");
+    STAssertTrue(307 == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension] index:1] intValue], @"");
+    STAssertTrue(308L == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension] index:1] intValue], @"");
+    STAssertTrue(309 == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:1] intValue], @"");
+    STAssertTrue(310L == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:1] intValue], @"");
+    STAssertTrue(311.0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension] index:1] floatValue], @"");
+    STAssertTrue(312.0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension] index:1] doubleValue], @"");
+    STAssertTrue(false == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension] index:1] boolValue], @"");
+    STAssertEqualObjects(@"315", [message getExtension:[UnittestProtoRoot repeatedStringExtension] index:1], @"");
+    STAssertEqualObjects([TestUtilities toData:@"316"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:1], @"");
+    
+    STAssertTrue(317 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:1] a], @"");
+    STAssertTrue(318 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:1] b], @"");
+    STAssertTrue(319 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:1] c], @"");
+    STAssertTrue(320 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:1] d], @"");
+    
+    STAssertTrue([TestAllTypes_NestedEnum BAZ] == [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:1], @"");
+    STAssertTrue([ForeignEnum FOREIGN_BAZ] == [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:1], @"");
+    STAssertTrue([ImportEnum IMPORT_BAZ] == [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:1], @"");
+    
+    STAssertEqualObjects(@"324", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:1], @"");
+    STAssertEqualObjects(@"325", [message getExtension:[UnittestProtoRoot repeatedCordExtension] index:1], @"");
+    
+    // -----------------------------------------------------------------
+    
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultInt32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultInt64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultUint32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultUint64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultSint32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultSint64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultFixed32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultFixed64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultSfixed32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultSfixed64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultFloatExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultDoubleExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultBoolExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultStringExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
+    
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
+    
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultCordExtension]], @"");
+    
+    STAssertTrue(401 == [[message getExtension:[UnittestProtoRoot defaultInt32Extension]] intValue], @"");
+    STAssertTrue(402L == [[message getExtension:[UnittestProtoRoot defaultInt64Extension]] intValue], @"");
+    STAssertTrue(403 == [[message getExtension:[UnittestProtoRoot defaultUint32Extension]] intValue], @"");
+    STAssertTrue(404L == [[message getExtension:[UnittestProtoRoot defaultUint64Extension]] intValue], @"");
+    STAssertTrue(405 == [[message getExtension:[UnittestProtoRoot defaultSint32Extension]] intValue], @"");
+    STAssertTrue(406L == [[message getExtension:[UnittestProtoRoot defaultSint64Extension]] intValue], @"");
+    STAssertTrue(407 == [[message getExtension:[UnittestProtoRoot defaultFixed32Extension]] intValue], @"");
+    STAssertTrue(408L == [[message getExtension:[UnittestProtoRoot defaultFixed64Extension]] intValue], @"");
+    STAssertTrue(409 == [[message getExtension:[UnittestProtoRoot defaultSfixed32Extension]] intValue], @"");
+    STAssertTrue(410L == [[message getExtension:[UnittestProtoRoot defaultSfixed64Extension]] intValue], @"");
+    STAssertTrue(411.0 == [[message getExtension:[UnittestProtoRoot defaultFloatExtension]] floatValue], @"");
+    STAssertTrue(412.0 == [[message getExtension:[UnittestProtoRoot defaultDoubleExtension]] doubleValue], @"");
+    STAssertTrue(false == [[message getExtension:[UnittestProtoRoot defaultBoolExtension]] boolValue], @"");
+    STAssertEqualObjects(@"415", [message getExtension:[UnittestProtoRoot defaultStringExtension]], @"");
+    STAssertEqualObjects([TestUtilities toData:@"416"], [message getExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
+    
+    STAssertTrue([TestAllTypes_NestedEnum FOO] == [message getExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
+    STAssertTrue([ForeignEnum FOREIGN_FOO] == [message getExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
+    STAssertTrue([ImportEnum IMPORT_FOO] == [message getExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
+    
+    STAssertEqualObjects(@"424", [message getExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
+    STAssertEqualObjects(@"425", [message getExtension:[UnittestProtoRoot defaultCordExtension]], @"");
+}
+
++ (void) assertAllExtensionsSet:(TestAllExtensions*) message {
+    return [[[[TestUtilities alloc] init] autorelease] assertAllExtensionsSet:message];
+}
+
+
 // -------------------------------------------------------------------
 
 /**
@@ -781,33 +987,33 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
                   [message setRepeatedBytes   (1, toData("516"));
                    
                    [message setRepeatedGroup(1,
-                                             [TestAllTypes_RepeatedGroup newBuilder].setA(517) build]);
+                       [TestAllTypes_RepeatedGroup newBuilder].setA(517) build]);
                     [message setRepeatedNestedMessage(1,
-                                                      [TestAllTypes_NestedMessage newBuilder].setBb(518) build]);
+          [TestAllTypes_NestedMessage newBuilder].setBb(518) build]);
                      [message setRepeatedForeignMessage(1,
-                                                        [ForeignMessage newBuilder].setC(519) build]);
+            [ForeignMessage newBuilder].setC(519) build]);
                       [message setRepeatedImportMessage(1,
-                                                        [ImportMessage newBuilder] setD:520] build]);
+            [ImportMessage newBuilder] setD:520] build]);
                        
                        [message setRepeatedNestedEnum (1, [TestAllTypes_NestedEnum FOO]);
                         [message setRepeatedForeignEnum(1, [ForeignEnum FOREIGN_FOO]);
                          [message setRepeatedImportEnum (1, [ImportEnum IMPORT_FOO]);
-                          
-                          [message setRepeatedStringPiece(1, "524");
-                           [message setRepeatedCord(1, "525");
-                           }
-                           
-                           
-                           
-                           
-                           // -------------------------------------------------------------------
-                           
+    
+    [message setRepeatedStringPiece(1, "524");
+     [message setRepeatedCord(1, "525");
+     }
+     
+     
+     
+     
+     // -------------------------------------------------------------------
+     
     /**
      * Assert (using {@code junit.framework.Assert}} that all fields of
      * {@code message} are set to the values assigned by {@code setAllFields}
      * followed by {@code modifyRepeatedFields}.
      */
-                           public static void assertRepeatedFieldsModified(TestAllTypes message) {
+     public static void assertRepeatedFieldsModified(TestAllTypes message) {
         // ModifyRepeatedFields only sets the second repeated element of each
         // field.  In addition to verifying this, we also verify that the first
         // element and size were *not* modified.
@@ -852,12 +1058,12 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
         STAssertTrue(212D == [message repeatedDoubleAtIndex:0], @"");
         STAssertTrue(true == [message repeatedBoolAtIndex:0], @"");
         STAssertTrue("215" == [message repeatedStringAtIndex:0], @"");
-        Assert.assertEquals(toData("216"), message.getRepeatedBytes(0));
+        STAssertTrue(toData("216"), message.getRepeatedBytes(0));
         
-        STAssertTrue(217 == [message repeatedGroupAtIndex:0].getA(), @"");
-        STAssertTrue(218 == [message repeatedNestedMessageAtIndex:0].getBb(), @"");
-        STAssertTrue(219 == [message repeatedForeignMessageAtIndex:0].getC(), @"");
-        STAssertTrue(220 == [message repeatedImportMessageAtIndex:0].getD(), @"");
+        STAssertTrue(217 == [message repeatedGroupAtIndex:0]a, @"");
+        STAssertTrue(218 == [message repeatedNestedMessageAtIndex:0].b, @"");
+        STAssertTrue(219 == [message repeatedForeignMessageAtIndex:0].c, @"");
+        STAssertTrue(220 == [message repeatedImportMessageAtIndex:0].d, @"");
         
         STAssertTrue([TestAllTypes_NestedEnum BAR] == [message repeatedNestedEnumAtIndex:0], @"");
         STAssertTrue([ForeignEnum FOREIGN_BAR] == [message repeatedForeignEnumAtIndex:0], @"");
@@ -881,12 +1087,12 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
         STAssertTrue(512D == [message repeatedDoubleAtIndex:1], @"");
         STAssertTrue(true == [message repeatedBoolAtIndex:1], @"");
         STAssertTrue("515" == [message repeatedStringAtIndex:1], @"");
-        Assert.assertEquals(toData("516"), message.getRepeatedBytes(1));
+        STAssertTrue(toData("516"), message.getRepeatedBytes(1));
         
-        STAssertTrue(517 == [message repeatedGroupAtIndex:1].getA(), @"");
-        STAssertTrue(518 == [message repeatedNestedMessageAtIndex:1].getBb(), @"");
-        STAssertTrue(519 == [message repeatedForeignMessageAtIndex:1].getC(), @"");
-        STAssertTrue(520 == [message repeatedImportMessageAtIndex:1].getD(), @"");
+        STAssertTrue(517 == [message repeatedGroupAtIndex:1]a, @"");
+        STAssertTrue(518 == [message repeatedNestedMessageAtIndex:1].b, @"");
+        STAssertTrue(519 == [message repeatedForeignMessageAtIndex:1].c, @"");
+        STAssertTrue(520 == [message repeatedImportMessageAtIndex:1].d, @"");
         
         STAssertTrue([TestAllTypes_NestedEnum FOO] == [message repeatedNestedEnumAtIndex:1], @"");
         STAssertTrue([ForeignEnum FOREIGN_FOO] == [message repeatedForeignEnumAtIndex:1], @"");
@@ -895,58 +1101,58 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
         STAssertTrue("524" == [message repeatedStringPieceAtIndex:1], @"");
         STAssertTrue("525" == [message repeatedCordAtIndex:1], @"");
     }
-                           
-                           // ===================================================================
-                           // Like above, but for extensions
-                           
-                           // Java gets confused with things like assertEquals(int, Integer):  it can't
-                           // decide whether to call assertEquals(int, int) or assertEquals(Object,
-                           // Object).  So we define these methods to help it.
-                           private static void assertEqualsExactType(int a, int b) {
-        Assert.assertEquals(a, b);
+     
+     // ===================================================================
+     // Like above, but for extensions
+     
+     // Java gets confused with things like assertEquals(int, Integer):  it can't
+     // decide whether to call assertEquals(int, int) or assertEquals(Object,
+     // Object).  So we define these methods to help it.
+     private static void STAssertTrue(int a, int b) {
+        STAssertTrue(a, b);
     }
-                           private static void assertEqualsExactType(long a, long b) {
-        Assert.assertEquals(a, b);
+     private static void STAssertTrue(long a, long b) {
+        STAssertTrue(a, b);
     }
-                           private static void assertEqualsExactType(float a, float b) {
-        Assert.assertEquals(a, b, 0.0);
+     private static void STAssertTrue(float a, float b) {
+        STAssertTrue(a, b, 0.0);
     }
-                           private static void assertEqualsExactType(double a, double b) {
-        Assert.assertEquals(a, b, 0.0);
+     private static void STAssertTrue(double a, double b) {
+        STAssertTrue(a, b, 0.0);
     }
-                           private static void assertEqualsExactType(boolean a, boolean b) {
-        Assert.assertEquals(a, b);
+     private static void STAssertTrue(boolean a, boolean b) {
+        STAssertTrue(a, b);
     }
-                           private static void assertEqualsExactType(String a, String b) {
-        Assert.assertEquals(a, b);
+     private static void STAssertTrue(String a, String b) {
+        STAssertTrue(a, b);
     }
-                           private static void assertEqualsExactType(ByteString a, ByteString b) {
-        Assert.assertEquals(a, b);
+     private static void STAssertTrue(ByteString a, ByteString b) {
+        STAssertTrue(a, b);
     }
-                           private static void assertEqualsExactType(TestAllTypes_NestedEnum a,
-                                                                     TestAllTypes_NestedEnum b) {
-        Assert.assertEquals(a, b);
+     private static void STAssertTrue(TestAllTypes_NestedEnum a,
+                         TestAllTypes_NestedEnum b) {
+        STAssertTrue(a, b);
     }
-                           private static void assertEqualsExactType(ForeignEnum a, ForeignEnum b) {
-        Assert.assertEquals(a, b);
+     private static void STAssertTrue(ForeignEnum a, ForeignEnum b) {
+        STAssertTrue(a, b);
     }
-                           private static void assertEqualsExactType(ImportEnum a, ImportEnum b) {
-        Assert.assertEquals(a, b);
+     private static void STAssertTrue(ImportEnum a, ImportEnum b) {
+        STAssertTrue(a, b);
     }
-                           
-                           
-                           
-                           
-                           
-                           
-                           // -------------------------------------------------------------------
-                           
+     
+     
+     
+     
+     
+     
+     // -------------------------------------------------------------------
+     
     /**
      * Modify the repeated extensions of {@code message} to contain the values
      * expected by {@code assertRepeatedExtensionsModified()}.
      */
-                           public static void modifyRepeatedExtensions(
-                                                                       TestAllExtensions.Builder message) {
+     public static void modifyRepeatedExtensions(
+     TestAllExtensions.Builder message) {
         [message setExtension:[UnittestProtoRoot repeatedInt32Extension], 1, 501);
          [message setExtension:[UnittestProtoRoot repeatedInt64Extension], 1, 502L);
           [message setExtension:[UnittestProtoRoot repeatedUint32Extension], 1, 503);
@@ -980,490 +1186,279 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
                          [ImportEnum IMPORT_FOO]);
                          
                          [message setExtension:[UnittestProtoRoot repeatedStringPieceExtension], 1, "524");
-                          [message setExtension:[UnittestProtoRoot repeatedCordExtension], 1, "525");
-                          }
-                          
-                          // -------------------------------------------------------------------
-                          
-        /**
-         * Assert (using {@code junit.framework.Assert}} that all extensions of
-         * {@code message} are set to the values assigned by {@code setAllExtensions}.
-         */
-                          public static void assertAllExtensionsSet(TestAllExtensions message) {
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalInt32Extension]   ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalInt64Extension]   ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalUint32Extension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalUint64Extension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalSint32Extension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalSint64Extension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalFixed32Extension] ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalFixed64Extension] ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalSfixed32Extension]));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalSfixed64Extension]));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalFloatExtension]   ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalDoubleExtension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalBoolExtension]    ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalStringExtension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalBytesExtension]   ));
-            
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalGroupExtension]         ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalNestedMessageExtension] ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalForeignMessageExtension]));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalImportMessageExtension] ));
-            
-            STAssertTrue(message.getExtension([UnittestProtoRoot optionalGroupExtension]         ).hasA);
-            STAssertTrue(message.getExtension([UnittestProtoRoot optionalNestedMessageExtension] ).hasBb);
-            STAssertTrue(message.getExtension([UnittestProtoRoot optionalForeignMessageExtension]).hasC);
-            STAssertTrue(message.getExtension([UnittestProtoRoot optionalImportMessageExtension] ).hasD);
-            
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalNestedEnumExtension] ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalForeignEnumExtension]));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalImportEnumExtension] ));
-            
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalStringPieceExtension]));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot optionalCordExtension]));
-            
-            assertEqualsExactType(101, message.getExtension([UnittestProtoRoot optionalInt32Extension]   ));
-            assertEqualsExactType(102L, message.getExtension([UnittestProtoRoot optionalInt64Extension]   ));
-            assertEqualsExactType(103, message.getExtension([UnittestProtoRoot optionalUint32Extension]  ));
-            assertEqualsExactType(104L, message.getExtension([UnittestProtoRoot optionalUint64Extension]  ));
-            assertEqualsExactType(105, message.getExtension([UnittestProtoRoot optionalSint32Extension]  ));
-            assertEqualsExactType(106L, message.getExtension([UnittestProtoRoot optionalSint64Extension]  ));
-            assertEqualsExactType(107, message.getExtension([UnittestProtoRoot optionalFixed32Extension] ));
-            assertEqualsExactType(108L, message.getExtension([UnittestProtoRoot optionalFixed64Extension] ));
-            assertEqualsExactType(109, message.getExtension([UnittestProtoRoot optionalSfixed32Extension]));
-            assertEqualsExactType(110L, message.getExtension([UnittestProtoRoot optionalSfixed64Extension]));
-            assertEqualsExactType(111F, message.getExtension([UnittestProtoRoot optionalFloatExtension]   ));
-            assertEqualsExactType(112D, message.getExtension([UnittestProtoRoot optionalDoubleExtension]  ));
-            assertEqualsExactType(true, message.getExtension([UnittestProtoRoot optionalBoolExtension]    ));
-            assertEqualsExactType("115", message.getExtension([UnittestProtoRoot optionalStringExtension]  ));
-            assertEqualsExactType(toData("116"), message.getExtension([UnittestProtoRoot optionalBytesExtension]));
-            
-            assertEqualsExactType(117, message.getExtension([UnittestProtoRoot optionalGroupExtension]         ).getA());
-            assertEqualsExactType(118, message.getExtension([UnittestProtoRoot optionalNestedMessageExtension] ).getBb());
-            assertEqualsExactType(119, message.getExtension([UnittestProtoRoot optionalForeignMessageExtension]).getC());
-            assertEqualsExactType(120, message.getExtension([UnittestProtoRoot optionalImportMessageExtension] ).getD());
-            
-            assertEqualsExactType([TestAllTypes_NestedEnum BAZ],
-                                  message.getExtension([UnittestProtoRoot optionalNestedEnumExtension]));
-            assertEqualsExactType([ForeignEnum FOREIGN_BAZ],
-                                  message.getExtension([UnittestProtoRoot optionalForeignEnumExtension]));
-            assertEqualsExactType([ImportEnum IMPORT_BAZ],
-                                  message.getExtension([UnittestProtoRoot optionalImportEnumExtension]));
-            
-            assertEqualsExactType("124", message.getExtension([UnittestProtoRoot optionalStringPieceExtension]));
-            assertEqualsExactType("125", message.getExtension([UnittestProtoRoot optionalCordExtension]));
-            
-            // -----------------------------------------------------------------
-            
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedInt32Extension]   ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedInt64Extension]   ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedUint32Extension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedUint64Extension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedSint32Extension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedSint64Extension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedFixed32Extension] ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedFixed64Extension] ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedSfixed32Extension]));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedSfixed64Extension]));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedFloatExtension]   ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedDoubleExtension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedBoolExtension]    ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedStringExtension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedBytesExtension]   ));
-            
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedGroupExtension]         ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedNestedMessageExtension] ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedForeignMessageExtension]));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedImportMessageExtension] ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedNestedEnumExtension]    ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedForeignEnumExtension]   ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedImportEnumExtension]    ));
-            
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedStringPieceExtension]));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedCordExtension]));
-            
-            assertEqualsExactType(201, message.getExtension([UnittestProtoRoot repeatedInt32Extension], 0));
-            assertEqualsExactType(202L, message.getExtension([UnittestProtoRoot repeatedInt64Extension], 0));
-            assertEqualsExactType(203, message.getExtension([UnittestProtoRoot repeatedUint32Extension], 0));
-            assertEqualsExactType(204L, message.getExtension([UnittestProtoRoot repeatedUint64Extension], 0));
-            assertEqualsExactType(205, message.getExtension([UnittestProtoRoot repeatedSint32Extension], 0));
-            assertEqualsExactType(206L, message.getExtension([UnittestProtoRoot repeatedSint64Extension], 0));
-            assertEqualsExactType(207, message.getExtension([UnittestProtoRoot repeatedFixed32Extension], 0));
-            assertEqualsExactType(208L, message.getExtension([UnittestProtoRoot repeatedFixed64Extension], 0));
-            assertEqualsExactType(209, message.getExtension([UnittestProtoRoot repeatedSfixed32Extension], 0));
-            assertEqualsExactType(210L, message.getExtension([UnittestProtoRoot repeatedSfixed64Extension], 0));
-            assertEqualsExactType(211F, message.getExtension([UnittestProtoRoot repeatedFloatExtension], 0));
-            assertEqualsExactType(212D, message.getExtension([UnittestProtoRoot repeatedDoubleExtension], 0));
-            assertEqualsExactType(true, message.getExtension([UnittestProtoRoot repeatedBoolExtension], 0));
-            assertEqualsExactType("215", message.getExtension([UnittestProtoRoot repeatedStringExtension], 0));
-            assertEqualsExactType(toData("216"), message.getExtension([UnittestProtoRoot repeatedBytesExtension], 0));
-            
-            assertEqualsExactType(217, message.getExtension([UnittestProtoRoot repeatedGroupExtension], 0).getA());
-            assertEqualsExactType(218, message.getExtension([UnittestProtoRoot repeatedNestedMessageExtension], 0).getBb());
-            assertEqualsExactType(219, message.getExtension([UnittestProtoRoot repeatedForeignMessageExtension], 0).getC());
-            assertEqualsExactType(220, message.getExtension([UnittestProtoRoot repeatedImportMessageExtension], 0).getD());
-            
-            assertEqualsExactType([TestAllTypes_NestedEnum BAR],
-                                  message.getExtension([UnittestProtoRoot repeatedNestedEnumExtension], 0));
-            assertEqualsExactType([ForeignEnum FOREIGN_BAR],
-                                  message.getExtension([UnittestProtoRoot repeatedForeignEnumExtension], 0));
-            assertEqualsExactType([ImportEnum IMPORT_BAR],
-                                  message.getExtension([UnittestProtoRoot repeatedImportEnumExtension], 0));
-            
-            assertEqualsExactType("224", message.getExtension([UnittestProtoRoot repeatedStringPieceExtension], 0));
-            assertEqualsExactType("225", message.getExtension([UnittestProtoRoot repeatedCordExtension], 0));
-            
-            assertEqualsExactType(301, message.getExtension([UnittestProtoRoot repeatedInt32Extension], 1));
-            assertEqualsExactType(302L, message.getExtension([UnittestProtoRoot repeatedInt64Extension], 1));
-            assertEqualsExactType(303, message.getExtension([UnittestProtoRoot repeatedUint32Extension], 1));
-            assertEqualsExactType(304L, message.getExtension([UnittestProtoRoot repeatedUint64Extension], 1));
-            assertEqualsExactType(305, message.getExtension([UnittestProtoRoot repeatedSint32Extension], 1));
-            assertEqualsExactType(306L, message.getExtension([UnittestProtoRoot repeatedSint64Extension], 1));
-            assertEqualsExactType(307, message.getExtension([UnittestProtoRoot repeatedFixed32Extension], 1));
-            assertEqualsExactType(308L, message.getExtension([UnittestProtoRoot repeatedFixed64Extension], 1));
-            assertEqualsExactType(309, message.getExtension([UnittestProtoRoot repeatedSfixed32Extension], 1));
-            assertEqualsExactType(310L, message.getExtension([UnittestProtoRoot repeatedSfixed64Extension], 1));
-            assertEqualsExactType(311F, message.getExtension([UnittestProtoRoot repeatedFloatExtension], 1));
-            assertEqualsExactType(312D, message.getExtension([UnittestProtoRoot repeatedDoubleExtension], 1));
-            assertEqualsExactType(false, message.getExtension([UnittestProtoRoot repeatedBoolExtension], 1));
-            assertEqualsExactType("315", message.getExtension([UnittestProtoRoot repeatedStringExtension], 1));
-            assertEqualsExactType(toData("316"), message.getExtension([UnittestProtoRoot repeatedBytesExtension], 1));
-            
-            assertEqualsExactType(317, message.getExtension([UnittestProtoRoot repeatedGroupExtension], 1).getA());
-            assertEqualsExactType(318, message.getExtension([UnittestProtoRoot repeatedNestedMessageExtension], 1).getBb());
-            assertEqualsExactType(319, message.getExtension([UnittestProtoRoot repeatedForeignMessageExtension], 1).getC());
-            assertEqualsExactType(320, message.getExtension([UnittestProtoRoot repeatedImportMessageExtension], 1).getD());
-            
-            assertEqualsExactType([TestAllTypes_NestedEnum BAZ],
-                                  message.getExtension([UnittestProtoRoot repeatedNestedEnumExtension], 1));
-            assertEqualsExactType([ForeignEnum FOREIGN_BAZ],
-                                  message.getExtension([UnittestProtoRoot repeatedForeignEnumExtension], 1));
-            assertEqualsExactType([ImportEnum IMPORT_BAZ],
-                                  message.getExtension([UnittestProtoRoot repeatedImportEnumExtension], 1));
-            
-            assertEqualsExactType("324", message.getExtension([UnittestProtoRoot repeatedStringPieceExtension], 1));
-            assertEqualsExactType("325", message.getExtension([UnittestProtoRoot repeatedCordExtension], 1));
-            
-            // -----------------------------------------------------------------
-            
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultInt32Extension]   ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultInt64Extension]   ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultUint32Extension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultUint64Extension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultSint32Extension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultSint64Extension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultFixed32Extension] ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultFixed64Extension] ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultSfixed32Extension]));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultSfixed64Extension]));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultFloatExtension]   ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultDoubleExtension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultBoolExtension]    ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultStringExtension]  ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultBytesExtension]   ));
-            
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultNestedEnumExtension] ));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultForeignEnumExtension]));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultImportEnumExtension] ));
-            
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultStringPieceExtension]));
-            Assert.assertTrue(message.hasExtension([UnittestProtoRoot defaultCordExtension]));
-            
-            assertEqualsExactType(401, message.getExtension([UnittestProtoRoot defaultInt32Extension]   ));
-            assertEqualsExactType(402L, message.getExtension([UnittestProtoRoot defaultInt64Extension]   ));
-            assertEqualsExactType(403, message.getExtension([UnittestProtoRoot defaultUint32Extension]  ));
-            assertEqualsExactType(404L, message.getExtension([UnittestProtoRoot defaultUint64Extension]  ));
-            assertEqualsExactType(405, message.getExtension([UnittestProtoRoot defaultSint32Extension]  ));
-            assertEqualsExactType(406L, message.getExtension([UnittestProtoRoot defaultSint64Extension]  ));
-            assertEqualsExactType(407, message.getExtension([UnittestProtoRoot defaultFixed32Extension] ));
-            assertEqualsExactType(408L, message.getExtension([UnittestProtoRoot defaultFixed64Extension] ));
-            assertEqualsExactType(409, message.getExtension([UnittestProtoRoot defaultSfixed32Extension]));
-            assertEqualsExactType(410L, message.getExtension([UnittestProtoRoot defaultSfixed64Extension]));
-            assertEqualsExactType(411F, message.getExtension([UnittestProtoRoot defaultFloatExtension]   ));
-            assertEqualsExactType(412D, message.getExtension([UnittestProtoRoot defaultDoubleExtension]  ));
-            assertEqualsExactType(false, message.getExtension([UnittestProtoRoot defaultBoolExtension]    ));
-            assertEqualsExactType("415", message.getExtension([UnittestProtoRoot defaultStringExtension]  ));
-            assertEqualsExactType(toData("416"), message.getExtension([UnittestProtoRoot defaultBytesExtension]));
-            
-            assertEqualsExactType([TestAllTypes_NestedEnum FOO],
-                                  message.getExtension([UnittestProtoRoot defaultNestedEnumExtension] ));
-            assertEqualsExactType([ForeignEnum FOREIGN_FOO],
-                                  message.getExtension([UnittestProtoRoot defaultForeignEnumExtension]));
-            assertEqualsExactType([ImportEnum IMPORT_FOO],
-                                  message.getExtension([UnittestProtoRoot defaultImportEnumExtension]));
-            
-            assertEqualsExactType("424", message.getExtension([UnittestProtoRoot defaultStringPieceExtension]));
-            assertEqualsExactType("425", message.getExtension([UnittestProtoRoot defaultCordExtension]));
-        }
-                          
-                          // -------------------------------------------------------------------
-                          
+    [message setExtension:[UnittestProtoRoot repeatedCordExtension], 1, "525");
+    }
+    
+    // -------------------------------------------------------------------
+
+    
+    // -------------------------------------------------------------------
+    
         /**
          * Assert (using {@code junit.framework.Assert}} that all extensions of
          * {@code message} are cleared, and that getting the extensions returns their
          * default values.
          */
-                          public static void assertExtensionsClear(TestAllExtensions message) {
+    public static void assertExtensionsClear(TestAllExtensions message) {
             // hasBlah() should initially be false for all optional fields.
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalInt32Extension]   ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalInt64Extension]   ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalUint32Extension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalUint64Extension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalSint32Extension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalSint64Extension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalFixed32Extension] ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalFixed64Extension] ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalSfixed32Extension]));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalSfixed64Extension]));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalFloatExtension]   ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalDoubleExtension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalBoolExtension]    ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalStringExtension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalBytesExtension]   ));
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalInt64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalUint32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalUint64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSint32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSint64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFixed32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFixed64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSfixed32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSfixed64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFloatExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalDoubleExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalBoolExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalStringExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
             
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalGroupExtension]         ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalNestedMessageExtension] ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalForeignMessageExtension]));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalImportMessageExtension] ));
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalGroupExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalNestedMessageExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalForeignMessageExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalImportMessageExtension]], @"");
             
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalNestedEnumExtension] ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalForeignEnumExtension]));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalImportEnumExtension] ));
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
             
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalStringPieceExtension]));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot optionalCordExtension]));
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot optionalCordExtension]], @"");
             
             // Optional fields without defaults are set to zero or something like it.
-            assertEqualsExactType(0, message.getExtension([UnittestProtoRoot optionalInt32Extension]   ));
-            assertEqualsExactType(0L, message.getExtension([UnittestProtoRoot optionalInt64Extension]   ));
-            assertEqualsExactType(0, message.getExtension([UnittestProtoRoot optionalUint32Extension]  ));
-            assertEqualsExactType(0L, message.getExtension([UnittestProtoRoot optionalUint64Extension]  ));
-            assertEqualsExactType(0, message.getExtension([UnittestProtoRoot optionalSint32Extension]  ));
-            assertEqualsExactType(0L, message.getExtension([UnittestProtoRoot optionalSint64Extension]  ));
-            assertEqualsExactType(0, message.getExtension([UnittestProtoRoot optionalFixed32Extension] ));
-            assertEqualsExactType(0L, message.getExtension([UnittestProtoRoot optionalFixed64Extension] ));
-            assertEqualsExactType(0, message.getExtension([UnittestProtoRoot optionalSfixed32Extension]));
-            assertEqualsExactType(0L, message.getExtension([UnittestProtoRoot optionalSfixed64Extension]));
-            assertEqualsExactType(0F, message.getExtension([UnittestProtoRoot optionalFloatExtension]   ));
-            assertEqualsExactType(0D, message.getExtension([UnittestProtoRoot optionalDoubleExtension]  ));
-            assertEqualsExactType(false, message.getExtension([UnittestProtoRoot optionalBoolExtension]    ));
-            assertEqualsExactType("", message.getExtension([UnittestProtoRoot optionalStringExtension]  ));
-            assertEqualsExactType(ByteString.EMPTY, message.getExtension([UnittestProtoRoot optionalBytesExtension]));
+            STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalInt32Extension]   ));
+                STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalInt64Extension]   ));
+                     STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalUint32Extension]  ));
+                         STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalUint64Extension]  ));
+                         STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalSint32Extension]  ));
+       STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalSint64Extension]  ));
+            STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalFixed32Extension] ));
+           STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalFixed64Extension] ));
+                STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalSfixed32Extension]));
+                    STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalSfixed64Extension]));
+                         STAssertTrue(0F, [message getExtension:[UnittestProtoRoot optionalFloatExtension]   ));
+                         STAssertTrue(0D, [message getExtension:[UnittestProtoRoot optionalDoubleExtension]  ));
+        STAssertTrue(false, [message getExtension:[UnittestProtoRoot optionalBoolExtension]    ));
+                STAssertTrue("", [message getExtension:[UnittestProtoRoot optionalStringExtension]  ));
+                STAssertTrue(ByteString.EMPTY, [message getExtension:[UnittestProtoRoot optionalBytesExtension]));
             
             // Embedded messages should also be clear.
-            STAssertFalse(message.getExtension([UnittestProtoRoot optionalGroupExtension]         ).hasA());
-            STAssertFalse(message.getExtension([UnittestProtoRoot optionalNestedMessageExtension] ).hasBb());
-            STAssertFalse(message.getExtension([UnittestProtoRoot optionalForeignMessageExtension]).hasC());
-            STAssertFalse(message.getExtension([UnittestProtoRoot optionalImportMessageExtension] ).hasD());
+             STAssertFalse([message getExtension:[UnittestProtoRoot optionalGroupExtension]         ).hasA());
+      STAssertFalse([message getExtension:[UnittestProtoRoot optionalNestedMessageExtension] ).hasBb());
+                     STAssertFalse([message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]).hasC());
+         STAssertFalse([message getExtension:[UnittestProtoRoot optionalImportMessageExtension] ).hasD());
             
-            assertEqualsExactType(0, message.getExtension([UnittestProtoRoot optionalGroupExtension]         ).getA());
-            assertEqualsExactType(0, message.getExtension([UnittestProtoRoot optionalNestedMessageExtension] ).getBb());
-            assertEqualsExactType(0, message.getExtension([UnittestProtoRoot optionalForeignMessageExtension]).getC());
-            assertEqualsExactType(0, message.getExtension([UnittestProtoRoot optionalImportMessageExtension] ).getD());
+            STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalGroupExtension]         .a);
+            STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalNestedMessageExtension] ).b);
+            STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]).c);
+            STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalImportMessageExtension] ).d);
             
             // Enums without defaults are set to the first value in the enum.
-            assertEqualsExactType([TestAllTypes_NestedEnum FOO],
-                                  message.getExtension([UnittestProtoRoot optionalNestedEnumExtension] ));
-            assertEqualsExactType([ForeignEnum FOREIGN_FOO],
-                                  message.getExtension([UnittestProtoRoot optionalForeignEnumExtension]));
-            assertEqualsExactType([ImportEnum IMPORT_FOO],
-                                  message.getExtension([UnittestProtoRoot optionalImportEnumExtension]));
+            STAssertTrue([TestAllTypes_NestedEnum FOO],
+            [message getExtension:[UnittestProtoRoot optionalNestedEnumExtension] ));
+            STAssertTrue([ForeignEnum FOREIGN_FOO],
+            [message getExtension:[UnittestProtoRoot optionalForeignEnumExtension]));
+            STAssertTrue([ImportEnum IMPORT_FOO],
+            [message getExtension:[UnittestProtoRoot optionalImportEnumExtension]));
             
-            assertEqualsExactType("", message.getExtension([UnittestProtoRoot optionalStringPieceExtension]));
-            assertEqualsExactType("", message.getExtension([UnittestProtoRoot optionalCordExtension]));
+            STAssertTrue("", [message getExtension:[UnittestProtoRoot optionalStringPieceExtension]));
+            STAssertTrue("", [message getExtension:[UnittestProtoRoot optionalCordExtension]));
             
             // Repeated fields are empty.
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedInt32Extension]   ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedInt64Extension]   ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedUint32Extension]  ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedUint64Extension]  ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedSint32Extension]  ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedSint64Extension]  ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedFixed32Extension] ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedFixed64Extension] ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedSfixed32Extension]));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedSfixed64Extension]));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedFloatExtension]   ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedDoubleExtension]  ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedBoolExtension]    ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedStringExtension]  ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedBytesExtension]   ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedInt32Extension]   ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedInt64Extension]   ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedUint32Extension]  ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedUint64Extension]  ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedSint32Extension]  ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedSint64Extension]  ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedFixed32Extension] ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedFixed64Extension] ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedSfixed32Extension]));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedSfixed64Extension]));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedFloatExtension]   ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedDoubleExtension]  ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedBoolExtension]    ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedStringExtension]  ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedBytesExtension]   ));
             
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedGroupExtension]         ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedNestedMessageExtension] ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedForeignMessageExtension]));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedImportMessageExtension] ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedNestedEnumExtension]    ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedForeignEnumExtension]   ));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedImportEnumExtension]    ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedGroupExtension]         ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedNestedMessageExtension] ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedForeignMessageExtension]));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedImportMessageExtension] ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedNestedEnumExtension]    ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedForeignEnumExtension]   ));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedImportEnumExtension]    ));
             
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedStringPieceExtension]));
-            Assert.assertEquals(0, message.getExtensionCount([UnittestProtoRoot repeatedCordExtension]));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedStringPieceExtension]));
+            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedCordExtension]));
             
             // hasBlah() should also be false for all default fields.
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultInt32Extension]   ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultInt64Extension]   ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultUint32Extension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultUint64Extension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultSint32Extension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultSint64Extension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultFixed32Extension] ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultFixed64Extension] ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultSfixed32Extension]));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultSfixed64Extension]));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultFloatExtension]   ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultDoubleExtension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultBoolExtension]    ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultStringExtension]  ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultBytesExtension]   ));
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultInt32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultInt64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultUint32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultUint64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSint32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSint64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFixed32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFixed64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSfixed32Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSfixed64Extension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFloatExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultDoubleExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultBoolExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultStringExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
             
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultNestedEnumExtension] ));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultForeignEnumExtension]));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultImportEnumExtension] ));
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
             
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultStringPieceExtension]));
-            STAssertFalse(message.hasExtension([UnittestProtoRoot defaultCordExtension]));
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
+            STAssertFalse([message hasExtension:[UnittestProtoRoot defaultCordExtension]], @"");
             
             // Fields with defaults have their default values (duh).
-            assertEqualsExactType( 41, message.getExtension([UnittestProtoRoot defaultInt32Extension]   ));
-            assertEqualsExactType( 42L, message.getExtension([UnittestProtoRoot defaultInt64Extension]   ));
-            assertEqualsExactType( 43, message.getExtension([UnittestProtoRoot defaultUint32Extension]  ));
-            assertEqualsExactType( 44L, message.getExtension([UnittestProtoRoot defaultUint64Extension]  ));
-            assertEqualsExactType(-45, message.getExtension([UnittestProtoRoot defaultSint32Extension]  ));
-            assertEqualsExactType( 46L, message.getExtension([UnittestProtoRoot defaultSint64Extension]  ));
-            assertEqualsExactType( 47, message.getExtension([UnittestProtoRoot defaultFixed32Extension] ));
-            assertEqualsExactType( 48L, message.getExtension([UnittestProtoRoot defaultFixed64Extension] ));
-            assertEqualsExactType( 49, message.getExtension([UnittestProtoRoot defaultSfixed32Extension]));
-            assertEqualsExactType(-50L, message.getExtension([UnittestProtoRoot defaultSfixed64Extension]));
-            assertEqualsExactType( 51.5F, message.getExtension([UnittestProtoRoot defaultFloatExtension]   ));
-            assertEqualsExactType( 52e3D, message.getExtension([UnittestProtoRoot defaultDoubleExtension]  ));
-            assertEqualsExactType(true, message.getExtension([UnittestProtoRoot defaultBoolExtension]    ));
-            assertEqualsExactType("hello", message.getExtension([UnittestProtoRoot defaultStringExtension]  ));
-            assertEqualsExactType(toData("world"), message.getExtension([UnittestProtoRoot defaultBytesExtension]));
+            STAssertTrue( 41, [message getExtension:[UnittestProtoRoot defaultInt32Extension]   ));
+            STAssertTrue( 42L, [message getExtension:[UnittestProtoRoot defaultInt64Extension]   ));
+            STAssertTrue( 43, [message getExtension:[UnittestProtoRoot defaultUint32Extension]  ));
+            STAssertTrue( 44L, [message getExtension:[UnittestProtoRoot defaultUint64Extension]  ));
+            STAssertTrue(-45, [message getExtension:[UnittestProtoRoot defaultSint32Extension]  ));
+            STAssertTrue( 46L, [message getExtension:[UnittestProtoRoot defaultSint64Extension]  ));
+            STAssertTrue( 47, [message getExtension:[UnittestProtoRoot defaultFixed32Extension] ));
+            STAssertTrue( 48L, [message getExtension:[UnittestProtoRoot defaultFixed64Extension] ));
+            STAssertTrue( 49, [message getExtension:[UnittestProtoRoot defaultSfixed32Extension]));
+            STAssertTrue(-50L, [message getExtension:[UnittestProtoRoot defaultSfixed64Extension]));
+            STAssertTrue( 51.5F, [message getExtension:[UnittestProtoRoot defaultFloatExtension]   ));
+            STAssertTrue( 52e3D, [message getExtension:[UnittestProtoRoot defaultDoubleExtension]  ));
+            STAssertTrue(true, [message getExtension:[UnittestProtoRoot defaultBoolExtension]    ));
+            STAssertTrue("hello", [message getExtension:[UnittestProtoRoot defaultStringExtension]  ));
+            STAssertTrue(toData("world"), [message getExtension:[UnittestProtoRoot defaultBytesExtension]));
             
-            assertEqualsExactType([TestAllTypes_NestedEnum BAR],
-                                  message.getExtension([UnittestProtoRoot defaultNestedEnumExtension] ));
-            assertEqualsExactType([ForeignEnum FOREIGN_BAR],
-                                  message.getExtension([UnittestProtoRoot defaultForeignEnumExtension]));
-            assertEqualsExactType([ImportEnum IMPORT_BAR],
-                                  message.getExtension([UnittestProtoRoot defaultImportEnumExtension]));
+            STAssertTrue([TestAllTypes_NestedEnum BAR],
+            [message getExtension:[UnittestProtoRoot defaultNestedEnumExtension] ));
+            STAssertTrue([ForeignEnum FOREIGN_BAR],
+            [message getExtension:[UnittestProtoRoot defaultForeignEnumExtension]));
+            STAssertTrue([ImportEnum IMPORT_BAR],
+            [message getExtension:[UnittestProtoRoot defaultImportEnumExtension]));
             
-            assertEqualsExactType("abc", message.getExtension([UnittestProtoRoot defaultStringPieceExtension]));
-            assertEqualsExactType("123", message.getExtension([UnittestProtoRoot defaultCordExtension]));
+            STAssertTrue("abc", [message getExtension:[UnittestProtoRoot defaultStringPieceExtension]));
+            STAssertTrue("123", [message getExtension:[UnittestProtoRoot defaultCordExtension]));
         }
-                          
-                          // -------------------------------------------------------------------
-                          
+    
+    // -------------------------------------------------------------------
+    
         /**
          * Assert (using {@code junit.framework.Assert}} that all extensions of
          * {@code message} are set to the values assigned by {@code setAllExtensions}
          * followed by {@code modifyRepeatedExtensions}.
          */
-                          public static void assertRepeatedExtensionsModified(
-                                                                              TestAllExtensions message) {
+    public static void assertRepeatedExtensionsModified(
+            TestAllExtensions message) {
             // ModifyRepeatedFields only sets the second repeated element of each
             // field.  In addition to verifying this, we also verify that the first
             // element and size were *not* modified.
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedInt32Extension]   ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedInt64Extension]   ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedUint32Extension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedUint64Extension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedSint32Extension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedSint64Extension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedFixed32Extension] ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedFixed64Extension] ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedSfixed32Extension]));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedSfixed64Extension]));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedFloatExtension]   ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedDoubleExtension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedBoolExtension]    ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedStringExtension]  ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedBytesExtension]   ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedInt32Extension]   ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedInt64Extension]   ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedUint32Extension]  ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedUint64Extension]  ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedSint32Extension]  ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedSint64Extension]  ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedFixed32Extension] ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedFixed64Extension] ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedSfixed32Extension]));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedSfixed64Extension]));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedFloatExtension]   ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedDoubleExtension]  ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedBoolExtension]    ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedStringExtension]  ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedBytesExtension]   ));
             
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedGroupExtension]         ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedNestedMessageExtension] ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedForeignMessageExtension]));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedImportMessageExtension] ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedNestedEnumExtension]    ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedForeignEnumExtension]   ));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedImportEnumExtension]    ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedGroupExtension]         ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedNestedMessageExtension] ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedForeignMessageExtension]));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedImportMessageExtension] ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedNestedEnumExtension]    ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedForeignEnumExtension]   ));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedImportEnumExtension]    ));
             
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedStringPieceExtension]));
-            Assert.assertEquals(2, message.getExtensionCount([UnittestProtoRoot repeatedCordExtension]));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedStringPieceExtension]));
+            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedCordExtension]));
             
-            assertEqualsExactType(201, message.getExtension([UnittestProtoRoot repeatedInt32Extension], 0));
-            assertEqualsExactType(202L, message.getExtension([UnittestProtoRoot repeatedInt64Extension], 0));
-            assertEqualsExactType(203, message.getExtension([UnittestProtoRoot repeatedUint32Extension], 0));
-            assertEqualsExactType(204L, message.getExtension([UnittestProtoRoot repeatedUint64Extension], 0));
-            assertEqualsExactType(205, message.getExtension([UnittestProtoRoot repeatedSint32Extension], 0));
-            assertEqualsExactType(206L, message.getExtension([UnittestProtoRoot repeatedSint64Extension], 0));
-            assertEqualsExactType(207, message.getExtension([UnittestProtoRoot repeatedFixed32Extension], 0));
-            assertEqualsExactType(208L, message.getExtension([UnittestProtoRoot repeatedFixed64Extension], 0));
-            assertEqualsExactType(209, message.getExtension([UnittestProtoRoot repeatedSfixed32Extension], 0));
-            assertEqualsExactType(210L, message.getExtension([UnittestProtoRoot repeatedSfixed64Extension], 0));
-            assertEqualsExactType(211F, message.getExtension([UnittestProtoRoot repeatedFloatExtension], 0));
-            assertEqualsExactType(212D, message.getExtension([UnittestProtoRoot repeatedDoubleExtension], 0));
-            assertEqualsExactType(true, message.getExtension([UnittestProtoRoot repeatedBoolExtension], 0));
-            assertEqualsExactType("215", message.getExtension([UnittestProtoRoot repeatedStringExtension], 0));
-            assertEqualsExactType(toData("216"), message.getExtension([UnittestProtoRoot repeatedBytesExtension], 0));
+            STAssertTrue(201, [message getExtension:[UnittestProtoRoot repeatedInt32Extension], 0));
+            STAssertTrue(202L, [message getExtension:[UnittestProtoRoot repeatedInt64Extension], 0));
+            STAssertTrue(203, [message getExtension:[UnittestProtoRoot repeatedUint32Extension], 0));
+            STAssertTrue(204L, [message getExtension:[UnittestProtoRoot repeatedUint64Extension], 0));
+            STAssertTrue(205, [message getExtension:[UnittestProtoRoot repeatedSint32Extension], 0));
+            STAssertTrue(206L, [message getExtension:[UnittestProtoRoot repeatedSint64Extension], 0));
+            STAssertTrue(207, [message getExtension:[UnittestProtoRoot repeatedFixed32Extension], 0));
+            STAssertTrue(208L, [message getExtension:[UnittestProtoRoot repeatedFixed64Extension], 0));
+            STAssertTrue(209, [message getExtension:[UnittestProtoRoot repeatedSfixed32Extension], 0));
+            STAssertTrue(210L, [message getExtension:[UnittestProtoRoot repeatedSfixed64Extension], 0));
+            STAssertTrue(211F, [message getExtension:[UnittestProtoRoot repeatedFloatExtension], 0));
+            STAssertTrue(212D, [message getExtension:[UnittestProtoRoot repeatedDoubleExtension], 0));
+            STAssertTrue(true, [message getExtension:[UnittestProtoRoot repeatedBoolExtension], 0));
+            STAssertTrue("215", [message getExtension:[UnittestProtoRoot repeatedStringExtension], 0));
+            STAssertTrue(toData("216"), [message getExtension:[UnittestProtoRoot repeatedBytesExtension], 0));
             
-            assertEqualsExactType(217, message.getExtension([UnittestProtoRoot repeatedGroupExtension], 0).getA());
-            assertEqualsExactType(218, message.getExtension([UnittestProtoRoot repeatedNestedMessageExtension], 0).getBb());
-            assertEqualsExactType(219, message.getExtension([UnittestProtoRoot repeatedForeignMessageExtension], 0).getC());
-            assertEqualsExactType(220, message.getExtension([UnittestProtoRoot repeatedImportMessageExtension], 0).getD());
+            STAssertTrue(217, [message getExtension:[UnittestProtoRoot repeatedGroupExtension], 0.a);
+            STAssertTrue(218, [message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension], 0).b);
+            STAssertTrue(219, [message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension], 0).c);
+            STAssertTrue(220, [message getExtension:[UnittestProtoRoot repeatedImportMessageExtension], 0).d);
             
-            assertEqualsExactType([TestAllTypes_NestedEnum BAR],
-                                  message.getExtension([UnittestProtoRoot repeatedNestedEnumExtension], 0));
-            assertEqualsExactType([ForeignEnum FOREIGN_BAR],
-                                  message.getExtension([UnittestProtoRoot repeatedForeignEnumExtension], 0));
-            assertEqualsExactType([ImportEnum IMPORT_BAR],
-                                  message.getExtension([UnittestProtoRoot repeatedImportEnumExtension], 0));
+            STAssertTrue([TestAllTypes_NestedEnum BAR],
+            [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension], 0));
+            STAssertTrue([ForeignEnum FOREIGN_BAR],
+            [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension], 0));
+            STAssertTrue([ImportEnum IMPORT_BAR],
+            [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension], 0));
             
-            assertEqualsExactType("224", message.getExtension([UnittestProtoRoot repeatedStringPieceExtension], 0));
-            assertEqualsExactType("225", message.getExtension([UnittestProtoRoot repeatedCordExtension], 0));
+            STAssertTrue("224", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension], 0));
+            STAssertTrue("225", [message getExtension:[UnittestProtoRoot repeatedCordExtension], 0));
             
             // Actually verify the second (modified) elements now.
-            assertEqualsExactType(501, message.getExtension([UnittestProtoRoot repeatedInt32Extension], 1));
-            assertEqualsExactType(502L, message.getExtension([UnittestProtoRoot repeatedInt64Extension], 1));
-            assertEqualsExactType(503, message.getExtension([UnittestProtoRoot repeatedUint32Extension], 1));
-            assertEqualsExactType(504L, message.getExtension([UnittestProtoRoot repeatedUint64Extension], 1));
-            assertEqualsExactType(505, message.getExtension([UnittestProtoRoot repeatedSint32Extension], 1));
-            assertEqualsExactType(506L, message.getExtension([UnittestProtoRoot repeatedSint64Extension], 1));
-            assertEqualsExactType(507, message.getExtension([UnittestProtoRoot repeatedFixed32Extension], 1));
-            assertEqualsExactType(508L, message.getExtension([UnittestProtoRoot repeatedFixed64Extension], 1));
-            assertEqualsExactType(509, message.getExtension([UnittestProtoRoot repeatedSfixed32Extension], 1));
-            assertEqualsExactType(510L, message.getExtension([UnittestProtoRoot repeatedSfixed64Extension], 1));
-            assertEqualsExactType(511F, message.getExtension([UnittestProtoRoot repeatedFloatExtension], 1));
-            assertEqualsExactType(512D, message.getExtension([UnittestProtoRoot repeatedDoubleExtension], 1));
-            assertEqualsExactType(true, message.getExtension([UnittestProtoRoot repeatedBoolExtension], 1));
-            assertEqualsExactType("515", message.getExtension([UnittestProtoRoot repeatedStringExtension], 1));
-            assertEqualsExactType(toData("516"), message.getExtension([UnittestProtoRoot repeatedBytesExtension], 1));
+            STAssertTrue(501, [message getExtension:[UnittestProtoRoot repeatedInt32Extension], 1));
+            STAssertTrue(502L, [message getExtension:[UnittestProtoRoot repeatedInt64Extension], 1));
+            STAssertTrue(503, [message getExtension:[UnittestProtoRoot repeatedUint32Extension], 1));
+            STAssertTrue(504L, [message getExtension:[UnittestProtoRoot repeatedUint64Extension], 1));
+            STAssertTrue(505, [message getExtension:[UnittestProtoRoot repeatedSint32Extension], 1));
+            STAssertTrue(506L, [message getExtension:[UnittestProtoRoot repeatedSint64Extension], 1));
+            STAssertTrue(507, [message getExtension:[UnittestProtoRoot repeatedFixed32Extension], 1));
+            STAssertTrue(508L, [message getExtension:[UnittestProtoRoot repeatedFixed64Extension], 1));
+            STAssertTrue(509, [message getExtension:[UnittestProtoRoot repeatedSfixed32Extension], 1));
+            STAssertTrue(510L, [message getExtension:[UnittestProtoRoot repeatedSfixed64Extension], 1));
+            STAssertTrue(511F, [message getExtension:[UnittestProtoRoot repeatedFloatExtension], 1));
+            STAssertTrue(512D, [message getExtension:[UnittestProtoRoot repeatedDoubleExtension], 1));
+            STAssertTrue(true, [message getExtension:[UnittestProtoRoot repeatedBoolExtension], 1));
+            STAssertTrue("515", [message getExtension:[UnittestProtoRoot repeatedStringExtension], 1));
+            STAssertTrue(toData("516"), [message getExtension:[UnittestProtoRoot repeatedBytesExtension], 1));
             
-            assertEqualsExactType(517, message.getExtension([UnittestProtoRoot repeatedGroupExtension], 1).getA());
-            assertEqualsExactType(518, message.getExtension([UnittestProtoRoot repeatedNestedMessageExtension], 1).getBb());
-            assertEqualsExactType(519, message.getExtension([UnittestProtoRoot repeatedForeignMessageExtension], 1).getC());
-            assertEqualsExactType(520, message.getExtension([UnittestProtoRoot repeatedImportMessageExtension], 1).getD());
+            STAssertTrue(517, [message getExtension:[UnittestProtoRoot repeatedGroupExtension], 1].a);
+            STAssertTrue(518, [message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension], 1).b);
+            STAssertTrue(519, [message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension], 1).c);
+            STAssertTrue(520, [message getExtension:[UnittestProtoRoot repeatedImportMessageExtension], 1).d);
             
-            assertEqualsExactType([TestAllTypes_NestedEnum FOO],
-                                  message.getExtension([UnittestProtoRoot repeatedNestedEnumExtension], 1));
-            assertEqualsExactType([ForeignEnum FOREIGN_FOO],
-                                  message.getExtension([UnittestProtoRoot repeatedForeignEnumExtension], 1));
-            assertEqualsExactType([ImportEnum IMPORT_FOO],
-                                  message.getExtension([UnittestProtoRoot repeatedImportEnumExtension], 1));
+            STAssertTrue([TestAllTypes_NestedEnum FOO],
+            [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension], 1));
+            STAssertTrue([ForeignEnum FOREIGN_FOO],
+            [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension], 1));
+            STAssertTrue([ImportEnum IMPORT_FOO],
+            [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension], 1));
             
-            assertEqualsExactType("524", message.getExtension([UnittestProtoRoot repeatedStringPieceExtension], 1));
-            assertEqualsExactType("525", message.getExtension([UnittestProtoRoot repeatedCordExtension], 1));
+            STAssertTrue("524", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension], 1));
+            STAssertTrue("525", [message getExtension:[UnittestProtoRoot repeatedCordExtension], 1));
         }
-                          
-                          // ===================================================================
-                          
+    
+    // ===================================================================
+    
         /**
          * Performs the same things that the methods of {@code TestUtil} do, but
          * via the reflection interface.  This is its own class because it needs
          * to know what descriptor to use.
          */
-                          public static class ReflectionTester {
+    public static class ReflectionTester {
             private final Descriptors.Descriptor baseDescriptor;
             private final ExtensionRegistry extensionRegistry;
             
@@ -1510,12 +1505,12 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
              * registry.
              */
             public ReflectionTester(Descriptors.Descriptor baseDescriptor,
-                                    ExtensionRegistry extensionRegistry) {
+              ExtensionRegistry extensionRegistry) {
                 this.baseDescriptor = baseDescriptor;
                 this.extensionRegistry = extensionRegistry;
                 
                 this.file = baseDescriptor.getFile();
-                Assert.assertEquals(1, file.getDependencies().size());
+                STAssertTrue(1, file.getDependencies().size());
                 this.importFile = file.getDependencies().get(0);
                 
                 Descriptors.Descriptor testAllTypes;
@@ -1606,13 +1601,13 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
              * on what type is being tested.
              */
             private Message.Builder newBuilderForField(
-                                                       Message.Builder parent, Descriptors.FieldDescriptor field) {
+           Message.Builder parent, Descriptors.FieldDescriptor field) {
                 if (extensionRegistry == null) {
                     return parent.newBuilderForField(field);
                 } else {
                     ExtensionRegistry.ExtensionInfo extension =
                     extensionRegistry.findExtensionByNumber(field.getContainingType(),
-                                                            field.getNumber());
+                field.getNumber());
                     Assert.assertNotNull(extension);
                     Assert.assertNotNull(extension.defaultInstance);
                     return extension.defaultInstance.newBuilderForType();
@@ -1637,419 +1632,419 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
                        [message setField(f("optional_fixed64" ), 108L);
                         [message setField(f("optional_sfixed32"), 109 );
                          [message setField(f("optional_sfixed64"), 110L);
-                          [message setField(f("optional_float"   ), 111F);
-                           [message setField(f("optional_double"  ), 112D);
-                            [message setField(f("optional_bool"    ), true);
-                             [message setField(f("optional_string"  ), "115");
-                              [message setField(f("optional_bytes"   ), toData("116"));
-                               
-                               [message setField(f("optionalgroup"),
-                                                 newBuilderForField(message, f("optionalgroup"))
+    [message setField(f("optional_float"   ), 111F);
+     [message setField(f("optional_double"  ), 112D);
+      [message setField(f("optional_bool"    ), true);
+       [message setField(f("optional_string"  ), "115");
+        [message setField(f("optional_bytes"   ), toData("116"));
+         
+         [message setField(f("optionalgroup"),
+     newBuilderForField(message, f("optionalgroup"))
  .setField(groupA, 117) build]);
-                                [message setField(f("optional_nested_message"),
-                                                  newBuilderForField(message, f("optional_nested_message"))
+          [message setField(f("optional_nested_message"),
+      newBuilderForField(message, f("optional_nested_message"))
 .setField(nestedB, 118) build]);
-                                 [message setField(f("optional_foreign_message"),
-                                                   newBuilderForField(message, f("optional_foreign_message"))
+           [message setField(f("optional_foreign_message"),
+       newBuilderForField(message, f("optional_foreign_message"))
  .setField(foreignC, 119) build]);
-                                  [message setField(f("optional_import_message"),
-                                                    newBuilderForField(message, f("optional_import_message"))
+            [message setField(f("optional_import_message"),
+        newBuilderForField(message, f("optional_import_message"))
 .setField(importD, 120) build]);
-                                   
-                                   [message setField(f("optional_nested_enum" ),  nestedBaz);
-                                    [message setField(f("optional_foreign_enum"), foreignBaz);
-                                     [message setField(f("optional_import_enum" ),  importBaz);
-                                      
-                                      [message setField(f("optional_string_piece" ), "124");
-                                       [message setField(f("optional_cord" ), "125");
-                                        
-                                        // -----------------------------------------------------------------
-                                        
-                                        message.addRepeatedField(f("repeated_int32"   ), 201 );
-                                        message.addRepeatedField(f("repeated_int64"   ), 202L);
-                                        message.addRepeatedField(f("repeated_uint32"  ), 203 );
-                                        message.addRepeatedField(f("repeated_uint64"  ), 204L);
-                                        message.addRepeatedField(f("repeated_sint32"  ), 205 );
-                                        message.addRepeatedField(f("repeated_sint64"  ), 206L);
-                                        message.addRepeatedField(f("repeated_fixed32" ), 207 );
-                                        message.addRepeatedField(f("repeated_fixed64" ), 208L);
-                                        message.addRepeatedField(f("repeated_sfixed32"), 209 );
-                                        message.addRepeatedField(f("repeated_sfixed64"), 210L);
-                                        message.addRepeatedField(f("repeated_float"   ), 211F);
-                                        message.addRepeatedField(f("repeated_double"  ), 212D);
-                                        message.addRepeatedField(f("repeated_bool"    ), true);
-                                        message.addRepeatedField(f("repeated_string"  ), "215");
-                                        message.addRepeatedField(f("repeated_bytes"   ), toData("216"));
-                                        
-                                        message.addRepeatedField(f("repeatedgroup"),
-                                                                 newBuilderForField(message, f("repeatedgroup"))
+             
+             [message setField(f("optional_nested_enum" ),  nestedBaz);
+              [message setField(f("optional_foreign_enum"), foreignBaz);
+               [message setField(f("optional_import_enum" ),  importBaz);
+                
+                [message setField(f("optional_string_piece" ), "124");
+                 [message setField(f("optional_cord" ), "125");
+                  
+                  // -----------------------------------------------------------------
+                  
+                  message.addRepeatedField(f("repeated_int32"   ), 201 );
+                  message.addRepeatedField(f("repeated_int64"   ), 202L);
+                  message.addRepeatedField(f("repeated_uint32"  ), 203 );
+                  message.addRepeatedField(f("repeated_uint64"  ), 204L);
+                  message.addRepeatedField(f("repeated_sint32"  ), 205 );
+                  message.addRepeatedField(f("repeated_sint64"  ), 206L);
+                  message.addRepeatedField(f("repeated_fixed32" ), 207 );
+                  message.addRepeatedField(f("repeated_fixed64" ), 208L);
+                  message.addRepeatedField(f("repeated_sfixed32"), 209 );
+                  message.addRepeatedField(f("repeated_sfixed64"), 210L);
+                  message.addRepeatedField(f("repeated_float"   ), 211F);
+                  message.addRepeatedField(f("repeated_double"  ), 212D);
+                  message.addRepeatedField(f("repeated_bool"    ), true);
+                  message.addRepeatedField(f("repeated_string"  ), "215");
+                  message.addRepeatedField(f("repeated_bytes"   ), toData("216"));
+                  
+                  message.addRepeatedField(f("repeatedgroup"),
+                     newBuilderForField(message, f("repeatedgroup"))
        .setField(repeatedGroupA, 217) build]);
-                                        message.addRepeatedField(f("repeated_nested_message"),
-                                                                 newBuilderForField(message, f("repeated_nested_message"))
+                  message.addRepeatedField(f("repeated_nested_message"),
+                     newBuilderForField(message, f("repeated_nested_message"))
        .setField(nestedB, 218) build]);
-                                        message.addRepeatedField(f("repeated_foreign_message"),
-                                                                 newBuilderForField(message, f("repeated_foreign_message"))
+                  message.addRepeatedField(f("repeated_foreign_message"),
+                     newBuilderForField(message, f("repeated_foreign_message"))
        .setField(foreignC, 219) build]);
-                                        message.addRepeatedField(f("repeated_import_message"),
-                                                                 newBuilderForField(message, f("repeated_import_message"))
+                  message.addRepeatedField(f("repeated_import_message"),
+                     newBuilderForField(message, f("repeated_import_message"))
        .setField(importD, 220) build]);
-                                        
-                                        message.addRepeatedField(f("repeated_nested_enum" ),  nestedBar);
-                                        message.addRepeatedField(f("repeated_foreign_enum"), foreignBar);
-                                        message.addRepeatedField(f("repeated_import_enum" ),  importBar);
-                                        
-                                        message.addRepeatedField(f("repeated_string_piece" ), "224");
-                                        message.addRepeatedField(f("repeated_cord" ), "225");
-                                        
-                                        // Add a second one of each field.
-                                        message.addRepeatedField(f("repeated_int32"   ), 301 );
-                                        message.addRepeatedField(f("repeated_int64"   ), 302L);
-                                        message.addRepeatedField(f("repeated_uint32"  ), 303 );
-                                        message.addRepeatedField(f("repeated_uint64"  ), 304L);
-                                        message.addRepeatedField(f("repeated_sint32"  ), 305 );
-                                        message.addRepeatedField(f("repeated_sint64"  ), 306L);
-                                        message.addRepeatedField(f("repeated_fixed32" ), 307 );
-                                        message.addRepeatedField(f("repeated_fixed64" ), 308L);
-                                        message.addRepeatedField(f("repeated_sfixed32"), 309 );
-                                        message.addRepeatedField(f("repeated_sfixed64"), 310L);
-                                        message.addRepeatedField(f("repeated_float"   ), 311F);
-                                        message.addRepeatedField(f("repeated_double"  ), 312D);
-                                        message.addRepeatedField(f("repeated_bool"    ), false);
-                                        message.addRepeatedField(f("repeated_string"  ), "315");
-                                        message.addRepeatedField(f("repeated_bytes"   ), toData("316"));
-                                        
-                                        message.addRepeatedField(f("repeatedgroup"),
-                                                                 newBuilderForField(message, f("repeatedgroup"))
+                  
+                  message.addRepeatedField(f("repeated_nested_enum" ),  nestedBar);
+                  message.addRepeatedField(f("repeated_foreign_enum"), foreignBar);
+                  message.addRepeatedField(f("repeated_import_enum" ),  importBar);
+                  
+                  message.addRepeatedField(f("repeated_string_piece" ), "224");
+                  message.addRepeatedField(f("repeated_cord" ), "225");
+                  
+                  // Add a second one of each field.
+                  message.addRepeatedField(f("repeated_int32"   ), 301 );
+                  message.addRepeatedField(f("repeated_int64"   ), 302L);
+                  message.addRepeatedField(f("repeated_uint32"  ), 303 );
+                  message.addRepeatedField(f("repeated_uint64"  ), 304L);
+                  message.addRepeatedField(f("repeated_sint32"  ), 305 );
+                  message.addRepeatedField(f("repeated_sint64"  ), 306L);
+                  message.addRepeatedField(f("repeated_fixed32" ), 307 );
+                  message.addRepeatedField(f("repeated_fixed64" ), 308L);
+                  message.addRepeatedField(f("repeated_sfixed32"), 309 );
+                  message.addRepeatedField(f("repeated_sfixed64"), 310L);
+                  message.addRepeatedField(f("repeated_float"   ), 311F);
+                  message.addRepeatedField(f("repeated_double"  ), 312D);
+                  message.addRepeatedField(f("repeated_bool"    ), false);
+                  message.addRepeatedField(f("repeated_string"  ), "315");
+                  message.addRepeatedField(f("repeated_bytes"   ), toData("316"));
+                  
+                  message.addRepeatedField(f("repeatedgroup"),
+                     newBuilderForField(message, f("repeatedgroup"))
        .setField(repeatedGroupA, 317) build]);
-                                        message.addRepeatedField(f("repeated_nested_message"),
-                                                                 newBuilderForField(message, f("repeated_nested_message"))
+                  message.addRepeatedField(f("repeated_nested_message"),
+                     newBuilderForField(message, f("repeated_nested_message"))
        .setField(nestedB, 318) build]);
-                                        message.addRepeatedField(f("repeated_foreign_message"),
-                                                                 newBuilderForField(message, f("repeated_foreign_message"))
+                  message.addRepeatedField(f("repeated_foreign_message"),
+                     newBuilderForField(message, f("repeated_foreign_message"))
        .setField(foreignC, 319) build]);
-                                        message.addRepeatedField(f("repeated_import_message"),
-                                                                 newBuilderForField(message, f("repeated_import_message"))
+                  message.addRepeatedField(f("repeated_import_message"),
+                     newBuilderForField(message, f("repeated_import_message"))
        .setField(importD, 320) build]);
-                                        
-                                        message.addRepeatedField(f("repeated_nested_enum" ),  nestedBaz);
-                                        message.addRepeatedField(f("repeated_foreign_enum"), foreignBaz);
-                                        message.addRepeatedField(f("repeated_import_enum" ),  importBaz);
-                                        
-                                        message.addRepeatedField(f("repeated_string_piece" ), "324");
-                                        message.addRepeatedField(f("repeated_cord" ), "325");
-                                        
-                                        // -----------------------------------------------------------------
-                                        
-                                        [message setField(f("default_int32"   ), 401 );
-                                         [message setField(f("default_int64"   ), 402L);
-                                          [message setField(f("default_uint32"  ), 403 );
-                                           [message setField(f("default_uint64"  ), 404L);
-                                            [message setField(f("default_sint32"  ), 405 );
-                                             [message setField(f("default_sint64"  ), 406L);
-                                              [message setField(f("default_fixed32" ), 407 );
-                                               [message setField(f("default_fixed64" ), 408L);
-                                                [message setField(f("default_sfixed32"), 409 );
-                                                 [message setField(f("default_sfixed64"), 410L);
-                                                  [message setField(f("default_float"   ), 411F);
-                                                   [message setField(f("default_double"  ), 412D);
-                                                    [message setField(f("default_bool"    ), false);
-                                                     [message setField(f("default_string"  ), "415");
-                                                      [message setField(f("default_bytes"   ), toData("416"));
-                                                       
-                                                       [message setField(f("default_nested_enum" ),  nestedFoo);
-                                                        [message setField(f("default_foreign_enum"), foreignFoo);
-                                                         [message setField(f("default_import_enum" ),  importFoo);
-                                                          
-                                                          [message setField(f("default_string_piece" ), "424");
-                                                           [message setField(f("default_cord" ), "425");
-                                                           }
-                                                           
-                                                           // -------------------------------------------------------------------
-                                                           
-                                                           /**
+                  
+                  message.addRepeatedField(f("repeated_nested_enum" ),  nestedBaz);
+                  message.addRepeatedField(f("repeated_foreign_enum"), foreignBaz);
+                  message.addRepeatedField(f("repeated_import_enum" ),  importBaz);
+                  
+                  message.addRepeatedField(f("repeated_string_piece" ), "324");
+                  message.addRepeatedField(f("repeated_cord" ), "325");
+                  
+                  // -----------------------------------------------------------------
+                  
+                  [message setField(f("default_int32"   ), 401 );
+                   [message setField(f("default_int64"   ), 402L);
+                    [message setField(f("default_uint32"  ), 403 );
+                     [message setField(f("default_uint64"  ), 404L);
+                      [message setField(f("default_sint32"  ), 405 );
+                       [message setField(f("default_sint64"  ), 406L);
+                        [message setField(f("default_fixed32" ), 407 );
+                         [message setField(f("default_fixed64" ), 408L);
+    [message setField(f("default_sfixed32"), 409 );
+     [message setField(f("default_sfixed64"), 410L);
+      [message setField(f("default_float"   ), 411F);
+       [message setField(f("default_double"  ), 412D);
+        [message setField(f("default_bool"    ), false);
+         [message setField(f("default_string"  ), "415");
+          [message setField(f("default_bytes"   ), toData("416"));
+           
+           [message setField(f("default_nested_enum" ),  nestedFoo);
+            [message setField(f("default_foreign_enum"), foreignFoo);
+             [message setField(f("default_import_enum" ),  importFoo);
+              
+              [message setField(f("default_string_piece" ), "424");
+               [message setField(f("default_cord" ), "425");
+               }
+               
+               // -------------------------------------------------------------------
+               
+               /**
                  * Modify the repeated fields of {@code message} to contain the values
                  * expected by {@code assertRepeatedFieldsModified()}, using the
                  * {@link Message.Builder} reflection interface.
                  */
-                                                           void modifyRepeatedFieldsViaReflection(Message.Builder message) {
+               void modifyRepeatedFieldsViaReflection(Message.Builder message) {
                     [message setRepeatedField(f("repeated_int32"   ), 1, 501 );
                      [message setRepeatedField(f("repeated_int64"   ), 1, 502L);
                       [message setRepeatedField(f("repeated_uint32"  ), 1, 503 );
                        [message setRepeatedField(f("repeated_uint64"  ), 1, 504L);
                         [message setRepeatedField(f("repeated_sint32"  ), 1, 505 );
                          [message setRepeatedField(f("repeated_sint64"  ), 1, 506L);
-                          [message setRepeatedField(f("repeated_fixed32" ), 1, 507 );
-                           [message setRepeatedField(f("repeated_fixed64" ), 1, 508L);
-                            [message setRepeatedField(f("repeated_sfixed32"), 1, 509 );
-                             [message setRepeatedField(f("repeated_sfixed64"), 1, 510L);
-                              [message setRepeatedField(f("repeated_float"   ), 1, 511F);
-                               [message setRepeatedField(f("repeated_double"  ), 1, 512D);
-                                [message setRepeatedField(f("repeated_bool"    ), 1, true);
-                                 [message setRepeatedField(f("repeated_string"  ), 1, "515");
-                                  [message setRepeatedField(f("repeated_bytes"   ), 1, toData("516"));
-                                   
-                                   [message setRepeatedField(f("repeatedgroup"), 1,
-                                                             newBuilderForField(message, f("repeatedgroup"))
+    [message setRepeatedField(f("repeated_fixed32" ), 1, 507 );
+     [message setRepeatedField(f("repeated_fixed64" ), 1, 508L);
+      [message setRepeatedField(f("repeated_sfixed32"), 1, 509 );
+       [message setRepeatedField(f("repeated_sfixed64"), 1, 510L);
+        [message setRepeatedField(f("repeated_float"   ), 1, 511F);
+         [message setRepeatedField(f("repeated_double"  ), 1, 512D);
+          [message setRepeatedField(f("repeated_bool"    ), 1, true);
+           [message setRepeatedField(f("repeated_string"  ), 1, "515");
+            [message setRepeatedField(f("repeated_bytes"   ), 1, toData("516"));
+             
+             [message setRepeatedField(f("repeatedgroup"), 1,
+                 newBuilderForField(message, f("repeatedgroup"))
    .setField(repeatedGroupA, 517) build]);
-                                    [message setRepeatedField(f("repeated_nested_message"), 1,
-                                                              newBuilderForField(message, f("repeated_nested_message"))
+              [message setRepeatedField(f("repeated_nested_message"), 1,
+                  newBuilderForField(message, f("repeated_nested_message"))
     .setField(nestedB, 518) build]);
-                                     [message setRepeatedField(f("repeated_foreign_message"), 1,
-                                                               newBuilderForField(message, f("repeated_foreign_message"))
+               [message setRepeatedField(f("repeated_foreign_message"), 1,
+                   newBuilderForField(message, f("repeated_foreign_message"))
      .setField(foreignC, 519) build]);
-                                      [message setRepeatedField(f("repeated_import_message"), 1,
-                                                                newBuilderForField(message, f("repeated_import_message"))
+                [message setRepeatedField(f("repeated_import_message"), 1,
+                    newBuilderForField(message, f("repeated_import_message"))
       .setField(importD, 520) build]);
-                                       
-                                       [message setRepeatedField(f("repeated_nested_enum" ), 1,  nestedFoo);
-                                        [message setRepeatedField(f("repeated_foreign_enum"), 1, foreignFoo);
-                                         [message setRepeatedField(f("repeated_import_enum" ), 1,  importFoo);
-                                          
-                                          [message setRepeatedField(f("repeated_string_piece"), 1, "524");
-                                           [message setRepeatedField(f("repeated_cord"), 1, "525");
-                                           }
-                                           
-                                           // -------------------------------------------------------------------
-                                           
-                                           /**
+                 
+                 [message setRepeatedField(f("repeated_nested_enum" ), 1,  nestedFoo);
+                  [message setRepeatedField(f("repeated_foreign_enum"), 1, foreignFoo);
+                   [message setRepeatedField(f("repeated_import_enum" ), 1,  importFoo);
+                    
+                    [message setRepeatedField(f("repeated_string_piece"), 1, "524");
+                     [message setRepeatedField(f("repeated_cord"), 1, "525");
+                     }
+                     
+                     // -------------------------------------------------------------------
+                     
+                     /**
                      * Assert (using {@code junit.framework.Assert}} that all fields of
                      * {@code message} are set to the values assigned by {@code setAllFields},
                      * using the {@link Message} reflection interface.
                      */
-                                           public void assertAllFieldsSetViaReflection(Message message) {
-                        Assert.assertTrue(message.hasField(f("optional_int32"   )));
-                        Assert.assertTrue(message.hasField(f("optional_int64"   )));
-                        Assert.assertTrue(message.hasField(f("optional_uint32"  )));
-                        Assert.assertTrue(message.hasField(f("optional_uint64"  )));
-                        Assert.assertTrue(message.hasField(f("optional_sint32"  )));
-                        Assert.assertTrue(message.hasField(f("optional_sint64"  )));
-                        Assert.assertTrue(message.hasField(f("optional_fixed32" )));
-                        Assert.assertTrue(message.hasField(f("optional_fixed64" )));
-                        Assert.assertTrue(message.hasField(f("optional_sfixed32")));
-                        Assert.assertTrue(message.hasField(f("optional_sfixed64")));
-                        Assert.assertTrue(message.hasField(f("optional_float"   )));
-                        Assert.assertTrue(message.hasField(f("optional_double"  )));
-                        Assert.assertTrue(message.hasField(f("optional_bool"    )));
-                        Assert.assertTrue(message.hasField(f("optional_string"  )));
-                        Assert.assertTrue(message.hasField(f("optional_bytes"   )));
+                     public void assertAllFieldsSetViaReflection(Message message) {
+                        STAssertTrue(message.hasField(f("optional_int32"   )));
+                        STAssertTrue(message.hasField(f("optional_int64"   )));
+                        STAssertTrue(message.hasField(f("optional_uint32"  )));
+                        STAssertTrue(message.hasField(f("optional_uint64"  )));
+                        STAssertTrue(message.hasField(f("optional_sint32"  )));
+                        STAssertTrue(message.hasField(f("optional_sint64"  )));
+                        STAssertTrue(message.hasField(f("optional_fixed32" )));
+                        STAssertTrue(message.hasField(f("optional_fixed64" )));
+                        STAssertTrue(message.hasField(f("optional_sfixed32")));
+                        STAssertTrue(message.hasField(f("optional_sfixed64")));
+                        STAssertTrue(message.hasField(f("optional_float"   )));
+                        STAssertTrue(message.hasField(f("optional_double"  )));
+                        STAssertTrue(message.hasField(f("optional_bool"    )));
+                        STAssertTrue(message.hasField(f("optional_string"  )));
+                        STAssertTrue(message.hasField(f("optional_bytes"   )));
                         
-                        Assert.assertTrue(message.hasField(f("optionalgroup"           )));
-                        Assert.assertTrue(message.hasField(f("optional_nested_message" )));
-                        Assert.assertTrue(message.hasField(f("optional_foreign_message")));
-                        Assert.assertTrue(message.hasField(f("optional_import_message" )));
+                        STAssertTrue(message.hasField(f("optionalgroup"           )));
+                        STAssertTrue(message.hasField(f("optional_nested_message" )));
+                        STAssertTrue(message.hasField(f("optional_foreign_message")));
+                        STAssertTrue(message.hasField(f("optional_import_message" )));
                         
-                        Assert.assertTrue(
-                                          ((Message)message.getField(f("optionalgroup"))).hasField(groupA));
-                        Assert.assertTrue(
-                                          ((Message)message.getField(f("optional_nested_message")))
+                        STAssertTrue(
+                    ((Message)message.getField(f("optionalgroup"))).hasField(groupA));
+                        STAssertTrue(
+                    ((Message)message.getField(f("optional_nested_message")))
 .hasField(nestedB));
-                        Assert.assertTrue(
-                                          ((Message)message.getField(f("optional_foreign_message")))
+                        STAssertTrue(
+                    ((Message)message.getField(f("optional_foreign_message")))
 .hasField(foreignC));
-                        Assert.assertTrue(
-                                          ((Message)message.getField(f("optional_import_message")))
+                        STAssertTrue(
+                    ((Message)message.getField(f("optional_import_message")))
 .hasField(importD));
                         
-                        Assert.assertTrue(message.hasField(f("optional_nested_enum" )));
-                        Assert.assertTrue(message.hasField(f("optional_foreign_enum")));
-                        Assert.assertTrue(message.hasField(f("optional_import_enum" )));
+                        STAssertTrue(message.hasField(f("optional_nested_enum" )));
+                        STAssertTrue(message.hasField(f("optional_foreign_enum")));
+                        STAssertTrue(message.hasField(f("optional_import_enum" )));
                         
-                        Assert.assertTrue(message.hasField(f("optional_string_piece")));
-                        Assert.assertTrue(message.hasField(f("optional_cord")));
+                        STAssertTrue(message.hasField(f("optional_string_piece")));
+                        STAssertTrue(message.hasField(f("optional_cord")));
                         
-                        Assert.assertEquals(101, message.getField(f("optional_int32"   )));
-                        Assert.assertEquals(102L, message.getField(f("optional_int64"   )));
-                        Assert.assertEquals(103, message.getField(f("optional_uint32"  )));
-                        Assert.assertEquals(104L, message.getField(f("optional_uint64"  )));
-                        Assert.assertEquals(105, message.getField(f("optional_sint32"  )));
-                        Assert.assertEquals(106L, message.getField(f("optional_sint64"  )));
-                        Assert.assertEquals(107, message.getField(f("optional_fixed32" )));
-                        Assert.assertEquals(108L, message.getField(f("optional_fixed64" )));
-                        Assert.assertEquals(109, message.getField(f("optional_sfixed32")));
-                        Assert.assertEquals(110L, message.getField(f("optional_sfixed64")));
-                        Assert.assertEquals(111F, message.getField(f("optional_float"   )));
-                        Assert.assertEquals(112D, message.getField(f("optional_double"  )));
-                        Assert.assertEquals(true, message.getField(f("optional_bool"    )));
-                        Assert.assertEquals("115", message.getField(f("optional_string"  )));
-                        Assert.assertEquals(toData("116"), message.getField(f("optional_bytes")));
+                        STAssertTrue(101, message.getField(f("optional_int32"   )));
+                        STAssertTrue(102L, message.getField(f("optional_int64"   )));
+                        STAssertTrue(103, message.getField(f("optional_uint32"  )));
+                        STAssertTrue(104L, message.getField(f("optional_uint64"  )));
+                        STAssertTrue(105, message.getField(f("optional_sint32"  )));
+                        STAssertTrue(106L, message.getField(f("optional_sint64"  )));
+                        STAssertTrue(107, message.getField(f("optional_fixed32" )));
+                        STAssertTrue(108L, message.getField(f("optional_fixed64" )));
+                        STAssertTrue(109, message.getField(f("optional_sfixed32")));
+                        STAssertTrue(110L, message.getField(f("optional_sfixed64")));
+                        STAssertTrue(111F, message.getField(f("optional_float"   )));
+                        STAssertTrue(112D, message.getField(f("optional_double"  )));
+                        STAssertTrue(true, message.getField(f("optional_bool"    )));
+                        STAssertTrue("115", message.getField(f("optional_string"  )));
+                        STAssertTrue(toData("116"), message.getField(f("optional_bytes")));
                         
-                        Assert.assertEquals(117,
-                                            ((Message)message.getField(f("optionalgroup"))).getField(groupA));
-                        Assert.assertEquals(118,
-                                            ((Message)message.getField(f("optional_nested_message")))
+                        STAssertTrue(117,
+                      ((Message)message.getField(f("optionalgroup"))).getField(groupA));
+                        STAssertTrue(118,
+                      ((Message)message.getField(f("optional_nested_message")))
 .getField(nestedB));
-                        Assert.assertEquals(119,
-                                            ((Message)message.getField(f("optional_foreign_message")))
+                        STAssertTrue(119,
+                      ((Message)message.getField(f("optional_foreign_message")))
 .getField(foreignC));
-                        Assert.assertEquals(120,
-                                            ((Message)message.getField(f("optional_import_message")))
+                        STAssertTrue(120,
+                      ((Message)message.getField(f("optional_import_message")))
 .getField(importD));
                         
-                        Assert.assertEquals( nestedBaz, message.getField(f("optional_nested_enum" )));
-                        Assert.assertEquals(foreignBaz, message.getField(f("optional_foreign_enum")));
-                        Assert.assertEquals( importBaz, message.getField(f("optional_import_enum" )));
+                        STAssertTrue( nestedBaz, message.getField(f("optional_nested_enum" )));
+                        STAssertTrue(foreignBaz, message.getField(f("optional_foreign_enum")));
+                        STAssertTrue( importBaz, message.getField(f("optional_import_enum" )));
                         
-                        Assert.assertEquals("124", message.getField(f("optional_string_piece")));
-                        Assert.assertEquals("125", message.getField(f("optional_cord")));
+                        STAssertTrue("124", message.getField(f("optional_string_piece")));
+                        STAssertTrue("125", message.getField(f("optional_cord")));
                         
                         // -----------------------------------------------------------------
                         
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_int32"   )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_int64"   )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_uint32"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_uint64"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_sint32"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_sint64"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_fixed32" )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_fixed64" )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_sfixed32")));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_sfixed64")));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_float"   )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_double"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_bool"    )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_string"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_bytes"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_int32"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_int64"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_uint32"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_uint64"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sint32"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sint64"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_fixed32" )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_fixed64" )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sfixed32")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sfixed64")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_float"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_double"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_bool"    )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_string"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_bytes"   )));
                         
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeatedgroup"           )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_nested_message" )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_foreign_message")));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_import_message" )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_nested_enum"    )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_foreign_enum"   )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_import_enum"    )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeatedgroup"           )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_nested_message" )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_foreign_message")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_import_message" )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_nested_enum"    )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_foreign_enum"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_import_enum"    )));
                         
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_string_piece")));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_cord")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_string_piece")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_cord")));
                         
-                        Assert.assertEquals(201, message.getRepeatedField(f("repeated_int32"   ), 0));
-                        Assert.assertEquals(202L, message.getRepeatedField(f("repeated_int64"   ), 0));
-                        Assert.assertEquals(203, message.getRepeatedField(f("repeated_uint32"  ), 0));
-                        Assert.assertEquals(204L, message.getRepeatedField(f("repeated_uint64"  ), 0));
-                        Assert.assertEquals(205, message.getRepeatedField(f("repeated_sint32"  ), 0));
-                        Assert.assertEquals(206L, message.getRepeatedField(f("repeated_sint64"  ), 0));
-                        Assert.assertEquals(207, message.getRepeatedField(f("repeated_fixed32" ), 0));
-                        Assert.assertEquals(208L, message.getRepeatedField(f("repeated_fixed64" ), 0));
-                        Assert.assertEquals(209, message.getRepeatedField(f("repeated_sfixed32"), 0));
-                        Assert.assertEquals(210L, message.getRepeatedField(f("repeated_sfixed64"), 0));
-                        Assert.assertEquals(211F, message.getRepeatedField(f("repeated_float"   ), 0));
-                        Assert.assertEquals(212D, message.getRepeatedField(f("repeated_double"  ), 0));
-                        Assert.assertEquals(true, message.getRepeatedField(f("repeated_bool"    ), 0));
-                        Assert.assertEquals("215", message.getRepeatedField(f("repeated_string"  ), 0));
-                        Assert.assertEquals(toData("216"), message.getRepeatedField(f("repeated_bytes"), 0));
+                        STAssertTrue(201, message.getRepeatedField(f("repeated_int32"   ), 0));
+                        STAssertTrue(202L, message.getRepeatedField(f("repeated_int64"   ), 0));
+                        STAssertTrue(203, message.getRepeatedField(f("repeated_uint32"  ), 0));
+                        STAssertTrue(204L, message.getRepeatedField(f("repeated_uint64"  ), 0));
+                        STAssertTrue(205, message.getRepeatedField(f("repeated_sint32"  ), 0));
+                        STAssertTrue(206L, message.getRepeatedField(f("repeated_sint64"  ), 0));
+                        STAssertTrue(207, message.getRepeatedField(f("repeated_fixed32" ), 0));
+                        STAssertTrue(208L, message.getRepeatedField(f("repeated_fixed64" ), 0));
+                        STAssertTrue(209, message.getRepeatedField(f("repeated_sfixed32"), 0));
+                        STAssertTrue(210L, message.getRepeatedField(f("repeated_sfixed64"), 0));
+                        STAssertTrue(211F, message.getRepeatedField(f("repeated_float"   ), 0));
+                        STAssertTrue(212D, message.getRepeatedField(f("repeated_double"  ), 0));
+                        STAssertTrue(true, message.getRepeatedField(f("repeated_bool"    ), 0));
+                        STAssertTrue("215", message.getRepeatedField(f("repeated_string"  ), 0));
+                        STAssertTrue(toData("216"), message.getRepeatedField(f("repeated_bytes"), 0));
                         
-                        Assert.assertEquals(217,
-                                            ((Message)message.getRepeatedField(f("repeatedgroup"), 0))
+                        STAssertTrue(217,
+                      ((Message)message.getRepeatedField(f("repeatedgroup"), 0))
 .getField(repeatedGroupA));
-                        Assert.assertEquals(218,
-                                            ((Message)message.getRepeatedField(f("repeated_nested_message"), 0))
+                        STAssertTrue(218,
+                      ((Message)message.getRepeatedField(f("repeated_nested_message"), 0))
 .getField(nestedB));
-                        Assert.assertEquals(219,
-                                            ((Message)message.getRepeatedField(f("repeated_foreign_message"), 0))
+                        STAssertTrue(219,
+                      ((Message)message.getRepeatedField(f("repeated_foreign_message"), 0))
 .getField(foreignC));
-                        Assert.assertEquals(220,
-                                            ((Message)message.getRepeatedField(f("repeated_import_message"), 0))
+                        STAssertTrue(220,
+                      ((Message)message.getRepeatedField(f("repeated_import_message"), 0))
 .getField(importD));
                         
-                        Assert.assertEquals( nestedBar, message.getRepeatedField(f("repeated_nested_enum" ),0));
-                        Assert.assertEquals(foreignBar, message.getRepeatedField(f("repeated_foreign_enum"),0));
-                        Assert.assertEquals( importBar, message.getRepeatedField(f("repeated_import_enum" ),0));
+                        STAssertTrue( nestedBar, message.getRepeatedField(f("repeated_nested_enum" ),0));
+                        STAssertTrue(foreignBar, message.getRepeatedField(f("repeated_foreign_enum"),0));
+                        STAssertTrue( importBar, message.getRepeatedField(f("repeated_import_enum" ),0));
                         
-                        Assert.assertEquals("224", message.getRepeatedField(f("repeated_string_piece"), 0));
-                        Assert.assertEquals("225", message.getRepeatedField(f("repeated_cord"), 0));
+                        STAssertTrue("224", message.getRepeatedField(f("repeated_string_piece"), 0));
+                        STAssertTrue("225", message.getRepeatedField(f("repeated_cord"), 0));
                         
-                        Assert.assertEquals(301, message.getRepeatedField(f("repeated_int32"   ), 1));
-                        Assert.assertEquals(302L, message.getRepeatedField(f("repeated_int64"   ), 1));
-                        Assert.assertEquals(303, message.getRepeatedField(f("repeated_uint32"  ), 1));
-                        Assert.assertEquals(304L, message.getRepeatedField(f("repeated_uint64"  ), 1));
-                        Assert.assertEquals(305, message.getRepeatedField(f("repeated_sint32"  ), 1));
-                        Assert.assertEquals(306L, message.getRepeatedField(f("repeated_sint64"  ), 1));
-                        Assert.assertEquals(307, message.getRepeatedField(f("repeated_fixed32" ), 1));
-                        Assert.assertEquals(308L, message.getRepeatedField(f("repeated_fixed64" ), 1));
-                        Assert.assertEquals(309, message.getRepeatedField(f("repeated_sfixed32"), 1));
-                        Assert.assertEquals(310L, message.getRepeatedField(f("repeated_sfixed64"), 1));
-                        Assert.assertEquals(311F, message.getRepeatedField(f("repeated_float"   ), 1));
-                        Assert.assertEquals(312D, message.getRepeatedField(f("repeated_double"  ), 1));
-                        Assert.assertEquals(false, message.getRepeatedField(f("repeated_bool"    ), 1));
-                        Assert.assertEquals("315", message.getRepeatedField(f("repeated_string"  ), 1));
-                        Assert.assertEquals(toData("316"), message.getRepeatedField(f("repeated_bytes"), 1));
+                        STAssertTrue(301, message.getRepeatedField(f("repeated_int32"   ), 1));
+                        STAssertTrue(302L, message.getRepeatedField(f("repeated_int64"   ), 1));
+                        STAssertTrue(303, message.getRepeatedField(f("repeated_uint32"  ), 1));
+                        STAssertTrue(304L, message.getRepeatedField(f("repeated_uint64"  ), 1));
+                        STAssertTrue(305, message.getRepeatedField(f("repeated_sint32"  ), 1));
+                        STAssertTrue(306L, message.getRepeatedField(f("repeated_sint64"  ), 1));
+                        STAssertTrue(307, message.getRepeatedField(f("repeated_fixed32" ), 1));
+                        STAssertTrue(308L, message.getRepeatedField(f("repeated_fixed64" ), 1));
+                        STAssertTrue(309, message.getRepeatedField(f("repeated_sfixed32"), 1));
+                        STAssertTrue(310L, message.getRepeatedField(f("repeated_sfixed64"), 1));
+                        STAssertTrue(311F, message.getRepeatedField(f("repeated_float"   ), 1));
+                        STAssertTrue(312D, message.getRepeatedField(f("repeated_double"  ), 1));
+                        STAssertTrue(false, message.getRepeatedField(f("repeated_bool"    ), 1));
+                        STAssertTrue("315", message.getRepeatedField(f("repeated_string"  ), 1));
+                        STAssertTrue(toData("316"), message.getRepeatedField(f("repeated_bytes"), 1));
                         
-                        Assert.assertEquals(317,
-                                            ((Message)message.getRepeatedField(f("repeatedgroup"), 1))
+                        STAssertTrue(317,
+                      ((Message)message.getRepeatedField(f("repeatedgroup"), 1))
 .getField(repeatedGroupA));
-                        Assert.assertEquals(318,
-                                            ((Message)message.getRepeatedField(f("repeated_nested_message"), 1))
+                        STAssertTrue(318,
+                      ((Message)message.getRepeatedField(f("repeated_nested_message"), 1))
 .getField(nestedB));
-                        Assert.assertEquals(319,
-                                            ((Message)message.getRepeatedField(f("repeated_foreign_message"), 1))
+                        STAssertTrue(319,
+                      ((Message)message.getRepeatedField(f("repeated_foreign_message"), 1))
 .getField(foreignC));
-                        Assert.assertEquals(320,
-                                            ((Message)message.getRepeatedField(f("repeated_import_message"), 1))
+                        STAssertTrue(320,
+                      ((Message)message.getRepeatedField(f("repeated_import_message"), 1))
 .getField(importD));
                         
-                        Assert.assertEquals( nestedBaz, message.getRepeatedField(f("repeated_nested_enum" ),1));
-                        Assert.assertEquals(foreignBaz, message.getRepeatedField(f("repeated_foreign_enum"),1));
-                        Assert.assertEquals( importBaz, message.getRepeatedField(f("repeated_import_enum" ),1));
+                        STAssertTrue( nestedBaz, message.getRepeatedField(f("repeated_nested_enum" ),1));
+                        STAssertTrue(foreignBaz, message.getRepeatedField(f("repeated_foreign_enum"),1));
+                        STAssertTrue( importBaz, message.getRepeatedField(f("repeated_import_enum" ),1));
                         
-                        Assert.assertEquals("324", message.getRepeatedField(f("repeated_string_piece"), 1));
-                        Assert.assertEquals("325", message.getRepeatedField(f("repeated_cord"), 1));
+                        STAssertTrue("324", message.getRepeatedField(f("repeated_string_piece"), 1));
+                        STAssertTrue("325", message.getRepeatedField(f("repeated_cord"), 1));
                         
                         // -----------------------------------------------------------------
                         
-                        Assert.assertTrue(message.hasField(f("default_int32"   )));
-                        Assert.assertTrue(message.hasField(f("default_int64"   )));
-                        Assert.assertTrue(message.hasField(f("default_uint32"  )));
-                        Assert.assertTrue(message.hasField(f("default_uint64"  )));
-                        Assert.assertTrue(message.hasField(f("default_sint32"  )));
-                        Assert.assertTrue(message.hasField(f("default_sint64"  )));
-                        Assert.assertTrue(message.hasField(f("default_fixed32" )));
-                        Assert.assertTrue(message.hasField(f("default_fixed64" )));
-                        Assert.assertTrue(message.hasField(f("default_sfixed32")));
-                        Assert.assertTrue(message.hasField(f("default_sfixed64")));
-                        Assert.assertTrue(message.hasField(f("default_float"   )));
-                        Assert.assertTrue(message.hasField(f("default_double"  )));
-                        Assert.assertTrue(message.hasField(f("default_bool"    )));
-                        Assert.assertTrue(message.hasField(f("default_string"  )));
-                        Assert.assertTrue(message.hasField(f("default_bytes"   )));
+                        STAssertTrue(message.hasField(f("default_int32"   )));
+                        STAssertTrue(message.hasField(f("default_int64"   )));
+                        STAssertTrue(message.hasField(f("default_uint32"  )));
+                        STAssertTrue(message.hasField(f("default_uint64"  )));
+                        STAssertTrue(message.hasField(f("default_sint32"  )));
+                        STAssertTrue(message.hasField(f("default_sint64"  )));
+                        STAssertTrue(message.hasField(f("default_fixed32" )));
+                        STAssertTrue(message.hasField(f("default_fixed64" )));
+                        STAssertTrue(message.hasField(f("default_sfixed32")));
+                        STAssertTrue(message.hasField(f("default_sfixed64")));
+                        STAssertTrue(message.hasField(f("default_float"   )));
+                        STAssertTrue(message.hasField(f("default_double"  )));
+                        STAssertTrue(message.hasField(f("default_bool"    )));
+                        STAssertTrue(message.hasField(f("default_string"  )));
+                        STAssertTrue(message.hasField(f("default_bytes"   )));
                         
-                        Assert.assertTrue(message.hasField(f("default_nested_enum" )));
-                        Assert.assertTrue(message.hasField(f("default_foreign_enum")));
-                        Assert.assertTrue(message.hasField(f("default_import_enum" )));
+                        STAssertTrue(message.hasField(f("default_nested_enum" )));
+                        STAssertTrue(message.hasField(f("default_foreign_enum")));
+                        STAssertTrue(message.hasField(f("default_import_enum" )));
                         
-                        Assert.assertTrue(message.hasField(f("default_string_piece")));
-                        Assert.assertTrue(message.hasField(f("default_cord")));
+                        STAssertTrue(message.hasField(f("default_string_piece")));
+                        STAssertTrue(message.hasField(f("default_cord")));
                         
-                        Assert.assertEquals(401, message.getField(f("default_int32"   )));
-                        Assert.assertEquals(402L, message.getField(f("default_int64"   )));
-                        Assert.assertEquals(403, message.getField(f("default_uint32"  )));
-                        Assert.assertEquals(404L, message.getField(f("default_uint64"  )));
-                        Assert.assertEquals(405, message.getField(f("default_sint32"  )));
-                        Assert.assertEquals(406L, message.getField(f("default_sint64"  )));
-                        Assert.assertEquals(407, message.getField(f("default_fixed32" )));
-                        Assert.assertEquals(408L, message.getField(f("default_fixed64" )));
-                        Assert.assertEquals(409, message.getField(f("default_sfixed32")));
-                        Assert.assertEquals(410L, message.getField(f("default_sfixed64")));
-                        Assert.assertEquals(411F, message.getField(f("default_float"   )));
-                        Assert.assertEquals(412D, message.getField(f("default_double"  )));
-                        Assert.assertEquals(false, message.getField(f("default_bool"    )));
-                        Assert.assertEquals("415", message.getField(f("default_string"  )));
-                        Assert.assertEquals(toData("416"), message.getField(f("default_bytes")));
+                        STAssertTrue(401, message.getField(f("default_int32"   )));
+                        STAssertTrue(402L, message.getField(f("default_int64"   )));
+                        STAssertTrue(403, message.getField(f("default_uint32"  )));
+                        STAssertTrue(404L, message.getField(f("default_uint64"  )));
+                        STAssertTrue(405, message.getField(f("default_sint32"  )));
+                        STAssertTrue(406L, message.getField(f("default_sint64"  )));
+                        STAssertTrue(407, message.getField(f("default_fixed32" )));
+                        STAssertTrue(408L, message.getField(f("default_fixed64" )));
+                        STAssertTrue(409, message.getField(f("default_sfixed32")));
+                        STAssertTrue(410L, message.getField(f("default_sfixed64")));
+                        STAssertTrue(411F, message.getField(f("default_float"   )));
+                        STAssertTrue(412D, message.getField(f("default_double"  )));
+                        STAssertTrue(false, message.getField(f("default_bool"    )));
+                        STAssertTrue("415", message.getField(f("default_string"  )));
+                        STAssertTrue(toData("416"), message.getField(f("default_bytes")));
                         
-                        Assert.assertEquals( nestedFoo, message.getField(f("default_nested_enum" )));
-                        Assert.assertEquals(foreignFoo, message.getField(f("default_foreign_enum")));
-                        Assert.assertEquals( importFoo, message.getField(f("default_import_enum" )));
+                        STAssertTrue( nestedFoo, message.getField(f("default_nested_enum" )));
+                        STAssertTrue(foreignFoo, message.getField(f("default_foreign_enum")));
+                        STAssertTrue( importFoo, message.getField(f("default_import_enum" )));
                         
-                        Assert.assertEquals("424", message.getField(f("default_string_piece")));
-                        Assert.assertEquals("425", message.getField(f("default_cord")));
+                        STAssertTrue("424", message.getField(f("default_string_piece")));
+                        STAssertTrue("425", message.getField(f("default_cord")));
                     }
-                                           
-                                           // -------------------------------------------------------------------
-                                           
-                                           /**
+                     
+                     // -------------------------------------------------------------------
+                     
+                     /**
                      * Assert (using {@code junit.framework.Assert}} that all fields of
                      * {@code message} are cleared, and that getting the fields returns their
                      * default values, using the {@link Message} reflection interface.
                      */
-                                           public void assertClearViaReflection(Message message) {
+                     public void assertClearViaReflection(Message message) {
                         // has_blah() should initially be false for all optional fields.
                         STAssertFalse(message.hasField(f("optional_int32"   )));
                         STAssertFalse(message.hasField(f("optional_int64"   )));
@@ -2080,82 +2075,82 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
                         STAssertFalse(message.hasField(f("optional_cord")));
                         
                         // Optional fields without defaults are set to zero or something like it.
-                        Assert.assertEquals(0, message.getField(f("optional_int32"   )));
-                        Assert.assertEquals(0L, message.getField(f("optional_int64"   )));
-                        Assert.assertEquals(0, message.getField(f("optional_uint32"  )));
-                        Assert.assertEquals(0L, message.getField(f("optional_uint64"  )));
-                        Assert.assertEquals(0, message.getField(f("optional_sint32"  )));
-                        Assert.assertEquals(0L, message.getField(f("optional_sint64"  )));
-                        Assert.assertEquals(0, message.getField(f("optional_fixed32" )));
-                        Assert.assertEquals(0L, message.getField(f("optional_fixed64" )));
-                        Assert.assertEquals(0, message.getField(f("optional_sfixed32")));
-                        Assert.assertEquals(0L, message.getField(f("optional_sfixed64")));
-                        Assert.assertEquals(0F, message.getField(f("optional_float"   )));
-                        Assert.assertEquals(0D, message.getField(f("optional_double"  )));
-                        Assert.assertEquals(false, message.getField(f("optional_bool"    )));
-                        Assert.assertEquals("", message.getField(f("optional_string"  )));
-                        Assert.assertEquals(ByteString.EMPTY, message.getField(f("optional_bytes")));
+                        STAssertTrue(0, message.getField(f("optional_int32"   )));
+                        STAssertTrue(0L, message.getField(f("optional_int64"   )));
+                        STAssertTrue(0, message.getField(f("optional_uint32"  )));
+                        STAssertTrue(0L, message.getField(f("optional_uint64"  )));
+                        STAssertTrue(0, message.getField(f("optional_sint32"  )));
+                        STAssertTrue(0L, message.getField(f("optional_sint64"  )));
+                        STAssertTrue(0, message.getField(f("optional_fixed32" )));
+                        STAssertTrue(0L, message.getField(f("optional_fixed64" )));
+                        STAssertTrue(0, message.getField(f("optional_sfixed32")));
+                        STAssertTrue(0L, message.getField(f("optional_sfixed64")));
+                        STAssertTrue(0F, message.getField(f("optional_float"   )));
+                        STAssertTrue(0D, message.getField(f("optional_double"  )));
+                        STAssertTrue(false, message.getField(f("optional_bool"    )));
+                        STAssertTrue("", message.getField(f("optional_string"  )));
+                        STAssertTrue(ByteString.EMPTY, message.getField(f("optional_bytes")));
                         
                         // Embedded messages should also be clear.
                         STAssertFalse(
-                                      ((Message)message.getField(f("optionalgroup"))).hasField(groupA));
+                ((Message)message.getField(f("optionalgroup"))).hasField(groupA));
                         STAssertFalse(
-                                      ((Message)message.getField(f("optional_nested_message")))
+                ((Message)message.getField(f("optional_nested_message")))
 .hasField(nestedB));
                         STAssertFalse(
-                                      ((Message)message.getField(f("optional_foreign_message")))
+                ((Message)message.getField(f("optional_foreign_message")))
 .hasField(foreignC));
                         STAssertFalse(
-                                      ((Message)message.getField(f("optional_import_message")))
+                ((Message)message.getField(f("optional_import_message")))
 .hasField(importD));
                         
-                        Assert.assertEquals(0,
-                                            ((Message)message.getField(f("optionalgroup"))).getField(groupA));
-                        Assert.assertEquals(0,
-                                            ((Message)message.getField(f("optional_nested_message")))
+                        STAssertTrue(0,
+                      ((Message)message.getField(f("optionalgroup"))).getField(groupA));
+                        STAssertTrue(0,
+                      ((Message)message.getField(f("optional_nested_message")))
 .getField(nestedB));
-                        Assert.assertEquals(0,
-                                            ((Message)message.getField(f("optional_foreign_message")))
+                        STAssertTrue(0,
+                      ((Message)message.getField(f("optional_foreign_message")))
 .getField(foreignC));
-                        Assert.assertEquals(0,
-                                            ((Message)message.getField(f("optional_import_message")))
+                        STAssertTrue(0,
+                      ((Message)message.getField(f("optional_import_message")))
 .getField(importD));
                         
                         // Enums without defaults are set to the first value in the enum.
-                        Assert.assertEquals( nestedFoo, message.getField(f("optional_nested_enum" )));
-                        Assert.assertEquals(foreignFoo, message.getField(f("optional_foreign_enum")));
-                        Assert.assertEquals( importFoo, message.getField(f("optional_import_enum" )));
+                        STAssertTrue( nestedFoo, message.getField(f("optional_nested_enum" )));
+                        STAssertTrue(foreignFoo, message.getField(f("optional_foreign_enum")));
+                        STAssertTrue( importFoo, message.getField(f("optional_import_enum" )));
                         
-                        Assert.assertEquals("", message.getField(f("optional_string_piece")));
-                        Assert.assertEquals("", message.getField(f("optional_cord")));
+                        STAssertTrue("", message.getField(f("optional_string_piece")));
+                        STAssertTrue("", message.getField(f("optional_cord")));
                         
                         // Repeated fields are empty.
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_int32"   )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_int64"   )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_uint32"  )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_uint64"  )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_sint32"  )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_sint64"  )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_fixed32" )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_fixed64" )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_sfixed32")));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_sfixed64")));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_float"   )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_double"  )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_bool"    )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_string"  )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_bytes"   )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_int32"   )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_int64"   )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_uint32"  )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_uint64"  )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_sint32"  )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_sint64"  )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_fixed32" )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_fixed64" )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_sfixed32")));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_sfixed64")));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_float"   )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_double"  )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_bool"    )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_string"  )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_bytes"   )));
                         
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeatedgroup"           )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_nested_message" )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_foreign_message")));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_import_message" )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_nested_enum"    )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_foreign_enum"   )));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_import_enum"    )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeatedgroup"           )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_nested_message" )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_foreign_message")));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_import_message" )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_nested_enum"    )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_foreign_enum"   )));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_import_enum"    )));
                         
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_string_piece")));
-                        Assert.assertEquals(0, message.getRepeatedFieldCount(f("repeated_cord")));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_string_piece")));
+                        STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_cord")));
                         
                         // has_blah() should also be false for all default fields.
                         STAssertFalse(message.hasField(f("default_int32"   )));
@@ -2182,186 +2177,186 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
                         STAssertFalse(message.hasField(f("default_cord" )));
                         
                         // Fields with defaults have their default values (duh).
-                        Assert.assertEquals( 41, message.getField(f("default_int32"   )));
-                        Assert.assertEquals( 42L, message.getField(f("default_int64"   )));
-                        Assert.assertEquals( 43, message.getField(f("default_uint32"  )));
-                        Assert.assertEquals( 44L, message.getField(f("default_uint64"  )));
-                        Assert.assertEquals(-45, message.getField(f("default_sint32"  )));
-                        Assert.assertEquals( 46L, message.getField(f("default_sint64"  )));
-                        Assert.assertEquals( 47, message.getField(f("default_fixed32" )));
-                        Assert.assertEquals( 48L, message.getField(f("default_fixed64" )));
-                        Assert.assertEquals( 49, message.getField(f("default_sfixed32")));
-                        Assert.assertEquals(-50L, message.getField(f("default_sfixed64")));
-                        Assert.assertEquals( 51.5F, message.getField(f("default_float"   )));
-                        Assert.assertEquals( 52e3D, message.getField(f("default_double"  )));
-                        Assert.assertEquals(true, message.getField(f("default_bool"    )));
-                        Assert.assertEquals("hello", message.getField(f("default_string"  )));
-                        Assert.assertEquals(toData("world"), message.getField(f("default_bytes")));
+                        STAssertTrue( 41, message.getField(f("default_int32"   )));
+                        STAssertTrue( 42L, message.getField(f("default_int64"   )));
+                        STAssertTrue( 43, message.getField(f("default_uint32"  )));
+                        STAssertTrue( 44L, message.getField(f("default_uint64"  )));
+                        STAssertTrue(-45, message.getField(f("default_sint32"  )));
+                        STAssertTrue( 46L, message.getField(f("default_sint64"  )));
+                        STAssertTrue( 47, message.getField(f("default_fixed32" )));
+                        STAssertTrue( 48L, message.getField(f("default_fixed64" )));
+                        STAssertTrue( 49, message.getField(f("default_sfixed32")));
+                        STAssertTrue(-50L, message.getField(f("default_sfixed64")));
+                        STAssertTrue( 51.5F, message.getField(f("default_float"   )));
+                        STAssertTrue( 52e3D, message.getField(f("default_double"  )));
+                        STAssertTrue(true, message.getField(f("default_bool"    )));
+                        STAssertTrue("hello", message.getField(f("default_string"  )));
+                        STAssertTrue(toData("world"), message.getField(f("default_bytes")));
                         
-                        Assert.assertEquals( nestedBar, message.getField(f("default_nested_enum" )));
-                        Assert.assertEquals(foreignBar, message.getField(f("default_foreign_enum")));
-                        Assert.assertEquals( importBar, message.getField(f("default_import_enum" )));
+                        STAssertTrue( nestedBar, message.getField(f("default_nested_enum" )));
+                        STAssertTrue(foreignBar, message.getField(f("default_foreign_enum")));
+                        STAssertTrue( importBar, message.getField(f("default_import_enum" )));
                         
-                        Assert.assertEquals("abc", message.getField(f("default_string_piece")));
-                        Assert.assertEquals("123", message.getField(f("default_cord")));
+                        STAssertTrue("abc", message.getField(f("default_string_piece")));
+                        STAssertTrue("123", message.getField(f("default_cord")));
                     }
-                                           
-                                           // ---------------------------------------------------------------
-                                           
-                                           public void assertRepeatedFieldsModifiedViaReflection(Message message) {
+                     
+                     // ---------------------------------------------------------------
+                     
+                     public void assertRepeatedFieldsModifiedViaReflection(Message message) {
                         // ModifyRepeatedFields only sets the second repeated element of each
                         // field.  In addition to verifying this, we also verify that the first
                         // element and size were *not* modified.
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_int32"   )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_int64"   )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_uint32"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_uint64"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_sint32"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_sint64"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_fixed32" )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_fixed64" )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_sfixed32")));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_sfixed64")));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_float"   )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_double"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_bool"    )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_string"  )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_bytes"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_int32"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_int64"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_uint32"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_uint64"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sint32"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sint64"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_fixed32" )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_fixed64" )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sfixed32")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sfixed64")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_float"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_double"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_bool"    )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_string"  )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_bytes"   )));
                         
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeatedgroup"           )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_nested_message" )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_foreign_message")));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_import_message" )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_nested_enum"    )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_foreign_enum"   )));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_import_enum"    )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeatedgroup"           )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_nested_message" )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_foreign_message")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_import_message" )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_nested_enum"    )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_foreign_enum"   )));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_import_enum"    )));
                         
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_string_piece")));
-                        Assert.assertEquals(2, message.getRepeatedFieldCount(f("repeated_cord")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_string_piece")));
+                        STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_cord")));
                         
-                        Assert.assertEquals(201, message.getRepeatedField(f("repeated_int32"   ), 0));
-                        Assert.assertEquals(202L, message.getRepeatedField(f("repeated_int64"   ), 0));
-                        Assert.assertEquals(203, message.getRepeatedField(f("repeated_uint32"  ), 0));
-                        Assert.assertEquals(204L, message.getRepeatedField(f("repeated_uint64"  ), 0));
-                        Assert.assertEquals(205, message.getRepeatedField(f("repeated_sint32"  ), 0));
-                        Assert.assertEquals(206L, message.getRepeatedField(f("repeated_sint64"  ), 0));
-                        Assert.assertEquals(207, message.getRepeatedField(f("repeated_fixed32" ), 0));
-                        Assert.assertEquals(208L, message.getRepeatedField(f("repeated_fixed64" ), 0));
-                        Assert.assertEquals(209, message.getRepeatedField(f("repeated_sfixed32"), 0));
-                        Assert.assertEquals(210L, message.getRepeatedField(f("repeated_sfixed64"), 0));
-                        Assert.assertEquals(211F, message.getRepeatedField(f("repeated_float"   ), 0));
-                        Assert.assertEquals(212D, message.getRepeatedField(f("repeated_double"  ), 0));
-                        Assert.assertEquals(true, message.getRepeatedField(f("repeated_bool"    ), 0));
-                        Assert.assertEquals("215", message.getRepeatedField(f("repeated_string"  ), 0));
-                        Assert.assertEquals(toData("216"), message.getRepeatedField(f("repeated_bytes"), 0));
+                        STAssertTrue(201, message.getRepeatedField(f("repeated_int32"   ), 0));
+                        STAssertTrue(202L, message.getRepeatedField(f("repeated_int64"   ), 0));
+                        STAssertTrue(203, message.getRepeatedField(f("repeated_uint32"  ), 0));
+                        STAssertTrue(204L, message.getRepeatedField(f("repeated_uint64"  ), 0));
+                        STAssertTrue(205, message.getRepeatedField(f("repeated_sint32"  ), 0));
+                        STAssertTrue(206L, message.getRepeatedField(f("repeated_sint64"  ), 0));
+                        STAssertTrue(207, message.getRepeatedField(f("repeated_fixed32" ), 0));
+                        STAssertTrue(208L, message.getRepeatedField(f("repeated_fixed64" ), 0));
+                        STAssertTrue(209, message.getRepeatedField(f("repeated_sfixed32"), 0));
+                        STAssertTrue(210L, message.getRepeatedField(f("repeated_sfixed64"), 0));
+                        STAssertTrue(211F, message.getRepeatedField(f("repeated_float"   ), 0));
+                        STAssertTrue(212D, message.getRepeatedField(f("repeated_double"  ), 0));
+                        STAssertTrue(true, message.getRepeatedField(f("repeated_bool"    ), 0));
+                        STAssertTrue("215", message.getRepeatedField(f("repeated_string"  ), 0));
+                        STAssertTrue(toData("216"), message.getRepeatedField(f("repeated_bytes"), 0));
                         
-                        Assert.assertEquals(217,
-                                            ((Message)message.getRepeatedField(f("repeatedgroup"), 0))
+                        STAssertTrue(217,
+                      ((Message)message.getRepeatedField(f("repeatedgroup"), 0))
 .getField(repeatedGroupA));
-                        Assert.assertEquals(218,
-                                            ((Message)message.getRepeatedField(f("repeated_nested_message"), 0))
+                        STAssertTrue(218,
+                      ((Message)message.getRepeatedField(f("repeated_nested_message"), 0))
 .getField(nestedB));
-                        Assert.assertEquals(219,
-                                            ((Message)message.getRepeatedField(f("repeated_foreign_message"), 0))
+                        STAssertTrue(219,
+                      ((Message)message.getRepeatedField(f("repeated_foreign_message"), 0))
 .getField(foreignC));
-                        Assert.assertEquals(220,
-                                            ((Message)message.getRepeatedField(f("repeated_import_message"), 0))
+                        STAssertTrue(220,
+                      ((Message)message.getRepeatedField(f("repeated_import_message"), 0))
 .getField(importD));
                         
-                        Assert.assertEquals( nestedBar, message.getRepeatedField(f("repeated_nested_enum" ),0));
-                        Assert.assertEquals(foreignBar, message.getRepeatedField(f("repeated_foreign_enum"),0));
-                        Assert.assertEquals( importBar, message.getRepeatedField(f("repeated_import_enum" ),0));
+                        STAssertTrue( nestedBar, message.getRepeatedField(f("repeated_nested_enum" ),0));
+                        STAssertTrue(foreignBar, message.getRepeatedField(f("repeated_foreign_enum"),0));
+                        STAssertTrue( importBar, message.getRepeatedField(f("repeated_import_enum" ),0));
                         
-                        Assert.assertEquals("224", message.getRepeatedField(f("repeated_string_piece"), 0));
-                        Assert.assertEquals("225", message.getRepeatedField(f("repeated_cord"), 0));
+                        STAssertTrue("224", message.getRepeatedField(f("repeated_string_piece"), 0));
+                        STAssertTrue("225", message.getRepeatedField(f("repeated_cord"), 0));
                         
-                        Assert.assertEquals(501, message.getRepeatedField(f("repeated_int32"   ), 1));
-                        Assert.assertEquals(502L, message.getRepeatedField(f("repeated_int64"   ), 1));
-                        Assert.assertEquals(503, message.getRepeatedField(f("repeated_uint32"  ), 1));
-                        Assert.assertEquals(504L, message.getRepeatedField(f("repeated_uint64"  ), 1));
-                        Assert.assertEquals(505, message.getRepeatedField(f("repeated_sint32"  ), 1));
-                        Assert.assertEquals(506L, message.getRepeatedField(f("repeated_sint64"  ), 1));
-                        Assert.assertEquals(507, message.getRepeatedField(f("repeated_fixed32" ), 1));
-                        Assert.assertEquals(508L, message.getRepeatedField(f("repeated_fixed64" ), 1));
-                        Assert.assertEquals(509, message.getRepeatedField(f("repeated_sfixed32"), 1));
-                        Assert.assertEquals(510L, message.getRepeatedField(f("repeated_sfixed64"), 1));
-                        Assert.assertEquals(511F, message.getRepeatedField(f("repeated_float"   ), 1));
-                        Assert.assertEquals(512D, message.getRepeatedField(f("repeated_double"  ), 1));
-                        Assert.assertEquals(true, message.getRepeatedField(f("repeated_bool"    ), 1));
-                        Assert.assertEquals("515", message.getRepeatedField(f("repeated_string"  ), 1));
-                        Assert.assertEquals(toData("516"), message.getRepeatedField(f("repeated_bytes"), 1));
+                        STAssertTrue(501, message.getRepeatedField(f("repeated_int32"   ), 1));
+                        STAssertTrue(502L, message.getRepeatedField(f("repeated_int64"   ), 1));
+                        STAssertTrue(503, message.getRepeatedField(f("repeated_uint32"  ), 1));
+                        STAssertTrue(504L, message.getRepeatedField(f("repeated_uint64"  ), 1));
+                        STAssertTrue(505, message.getRepeatedField(f("repeated_sint32"  ), 1));
+                        STAssertTrue(506L, message.getRepeatedField(f("repeated_sint64"  ), 1));
+                        STAssertTrue(507, message.getRepeatedField(f("repeated_fixed32" ), 1));
+                        STAssertTrue(508L, message.getRepeatedField(f("repeated_fixed64" ), 1));
+                        STAssertTrue(509, message.getRepeatedField(f("repeated_sfixed32"), 1));
+                        STAssertTrue(510L, message.getRepeatedField(f("repeated_sfixed64"), 1));
+                        STAssertTrue(511F, message.getRepeatedField(f("repeated_float"   ), 1));
+                        STAssertTrue(512D, message.getRepeatedField(f("repeated_double"  ), 1));
+                        STAssertTrue(true, message.getRepeatedField(f("repeated_bool"    ), 1));
+                        STAssertTrue("515", message.getRepeatedField(f("repeated_string"  ), 1));
+                        STAssertTrue(toData("516"), message.getRepeatedField(f("repeated_bytes"), 1));
                         
-                        Assert.assertEquals(517,
-                                            ((Message)message.getRepeatedField(f("repeatedgroup"), 1))
+                        STAssertTrue(517,
+                      ((Message)message.getRepeatedField(f("repeatedgroup"), 1))
 .getField(repeatedGroupA));
-                        Assert.assertEquals(518,
-                                            ((Message)message.getRepeatedField(f("repeated_nested_message"), 1))
+                        STAssertTrue(518,
+                      ((Message)message.getRepeatedField(f("repeated_nested_message"), 1))
 .getField(nestedB));
-                        Assert.assertEquals(519,
-                                            ((Message)message.getRepeatedField(f("repeated_foreign_message"), 1))
+                        STAssertTrue(519,
+                      ((Message)message.getRepeatedField(f("repeated_foreign_message"), 1))
 .getField(foreignC));
-                        Assert.assertEquals(520,
-                                            ((Message)message.getRepeatedField(f("repeated_import_message"), 1))
+                        STAssertTrue(520,
+                      ((Message)message.getRepeatedField(f("repeated_import_message"), 1))
 .getField(importD));
                         
-                        Assert.assertEquals( nestedFoo, message.getRepeatedField(f("repeated_nested_enum" ),1));
-                        Assert.assertEquals(foreignFoo, message.getRepeatedField(f("repeated_foreign_enum"),1));
-                        Assert.assertEquals( importFoo, message.getRepeatedField(f("repeated_import_enum" ),1));
+                        STAssertTrue( nestedFoo, message.getRepeatedField(f("repeated_nested_enum" ),1));
+                        STAssertTrue(foreignFoo, message.getRepeatedField(f("repeated_foreign_enum"),1));
+                        STAssertTrue( importFoo, message.getRepeatedField(f("repeated_import_enum" ),1));
                         
-                        Assert.assertEquals("524", message.getRepeatedField(f("repeated_string_piece"), 1));
-                        Assert.assertEquals("525", message.getRepeatedField(f("repeated_cord"), 1));
+                        STAssertTrue("524", message.getRepeatedField(f("repeated_string_piece"), 1));
+                        STAssertTrue("525", message.getRepeatedField(f("repeated_cord"), 1));
                     }
-                                           }
-                                           
+                     }
+                     
                     /**
                      * @param filePath The path relative to
                      * {@link com.google.testing.util.TestUtil#getDefaultSrcDir}.
                      */
-                                           public static String readTextFromFile(String filePath) {
+                     public static String readTextFromFile(String filePath) {
                         return readBytesFromFile(filePath).toStringUtf8();
                     }
-                                           
-                                           private static File getTestDataDir() {
+                     
+                     private static File getTestDataDir() {
                         // Search each parent directory looking for "src/google/protobuf".
                         File ancestor = new File(".");
                         try {
-                            ancestor = ancestor.getCanonicalFile();
+      ancestor = ancestor.getCanonicalFile();
                         } catch (IOException e) {
-                            throw new RuntimeException(
-                                                       "Couldn't get canonical name of working directory.", e);
+      throw new RuntimeException(
+           "Couldn't get canonical name of working directory.", e);
                         }
                         while (ancestor != null && ancestor.exists()) {
-                            if (new File(ancestor, "src/google/protobuf").exists()) {
-                                return new File(ancestor, "src/google/protobuf/testdata");
-                            }
-                            ancestor = ancestor.getParentFile();
+      if (new File(ancestor, "src/google/protobuf").exists()) {
+          return new File(ancestor, "src/google/protobuf/testdata");
+      }
+      ancestor = ancestor.getParentFile();
                         }
                         
                         throw new RuntimeException(
-                                                   "Could not find golden files.  This test must be run from within the " +
-                                                   "protobuf source package so that it can read test data files from the " +
-                                                   "C++ source tree.");
+       "Could not find golden files.  This test must be run from within the " +
+       "protobuf source package so that it can read test data files from the " +
+       "C++ source tree.");
                     }
-                                           
+                     
                     /**
                      * @param filePath The path relative to
                      * {@link com.google.testing.util.TestUtil#getDefaultSrcDir}.
                      */
-                                           public static ByteString readBytesFromFile(String filename) {
+                     public static ByteString readBytesFromFile(String filename) {
                         File fullPath = new File(getTestDataDir(), filename);
                         try {
-                            RandomAccessFile file = new RandomAccessFile(fullPath, "r");
-                            byte[] content = new byte[(int) file.length()];
-                            file.readFully(content);
-                            return ByteString.copyFrom(content);
+      RandomAccessFile file = new RandomAccessFile(fullPath, "r");
+      byte[] content = new byte[(int) file.length()];
+      file.readFully(content);
+      return ByteString.copyFrom(content);
                         } catch (IOException e) {
-                            // Throw a RuntimeException here so that we can call this function from
-                            // static initializers.
-                            throw new IllegalArgumentException(
-                                                               "Couldn't read file: " + fullPath.getPath(), e);
+      // Throw a RuntimeException here so that we can call this function from
+      // static initializers.
+      throw new IllegalArgumentException(
+                   "Couldn't read file: " + fullPath.getPath(), e);
                         }
                     }
-                                           
+                     
                     /**
                      * Get the bytes of the "golden message".  This is a serialized TestAllTypes
                      * with all fields set as they would be by
@@ -2369,15 +2364,15 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
                      * on disk rather than generated dynamically.  The file is actually generated
                      * by C++ code, so testing against it verifies compatibility with C++.
                      */
-                                           public static ByteString getGoldenMessage() {
+                     public static ByteString getGoldenMessage() {
                         if (goldenMessage == null) {
-                            goldenMessage = readBytesFromFile("golden_message");
+      goldenMessage = readBytesFromFile("golden_message");
                         }
                         return goldenMessage;
                     }
-                                           private static ByteString goldenMessage = null;
-                                           }
-                                           
+                     private static ByteString goldenMessage = null;
+                     }
+                     
 #endif
-                                           
-                                           @end
+                     
+                     @end
