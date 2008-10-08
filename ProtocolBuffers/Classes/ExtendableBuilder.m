@@ -16,6 +16,8 @@
 
 #import "ExtendableBuilder.h"
 
+#import "FieldDescriptor.h"
+#import "FieldSet.h"
 
 @implementation PBExtendableBuilder
 
@@ -27,7 +29,7 @@
 
 - (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension
                                        value:(id) value {
-    PBExtendableMessage* message = [self internalGetResult];
+    PBExtendableMessage* message = self.internalGetResult;
     [message verifyExtensionContainingType:extension];
     [message.extensions setField:extension.descriptor value:[extension toReflectionType:value]];
 
@@ -35,146 +37,142 @@
 }
 
 
+/** Append a value to a repeated extension. */
+- (PBGeneratedMessage_Builder*) addExtension:(PBGeneratedExtension*) extension
+                                       value:(id) value {
+    PBExtendableMessage* message = self.internalGetResult;
+    [message verifyExtensionContainingType:extension];
+    [message.extensions addRepeatedField:extension.descriptor value:[extension singularToReflectionType:value]];
+    return self;
+}
+
+
+/** Check if a singular extension is present. */
+- (BOOL) hasExtension:(PBGeneratedExtension*) extension {
+    return [self.internalGetResult hasExtension:extension];
+}
+
+
+/** Get the number of elements in a repeated extension. */
+- (int32_t) getExtensionCount:(PBGeneratedExtension*) extension {
+    return [self.internalGetResult getExtensionCount:extension];
+}
+
+
+/** Get the value of an extension. */
+- (id) getExtension:(PBGeneratedExtension*) extension {
+    return [self.internalGetResult getExtension:extension];
+}
 
 #if 0
-public abstract static class ExtendableBuilder<
-MessageType extends ExtendableMessage,
-BuilderType extends ExtendableBuilder>
-extends GeneratedMessage.Builder<BuilderType> {
-    protected ExtendableBuilder() {}
-    protected abstract ExtendableMessage<MessageType> internalGetResult();
-    
-    /** Check if a singular extension is present. */
-    public final boolean hasExtension(
-                                      GeneratedExtension<MessageType, ?> extension) {
-        return internalGetResult().hasExtension(extension);
-    }
-    
-    /** Get the number of elements in a repeated extension. */
-    public final <Type> int getExtensionCount(
-                                              GeneratedExtension<MessageType, List<Type>> extension) {
-        return internalGetResult().getExtensionCount(extension);
-    }
-    
-    /** Get the value of an extension. */
-    public final <Type> Type getExtension(
-                                          GeneratedExtension<MessageType, Type> extension) {
-        return internalGetResult().getExtension(extension);
-    }
-    
-    /** Get one element of a repeated extension. */
-    public final <Type> Type getExtension(
-                                          GeneratedExtension<MessageType, List<Type>> extension, int index) {
-        return internalGetResult().getExtension(extension, index);
-    }
-    
-    /** Set the value of an extension. */
-    public final <Type> BuilderType setExtension(
-                                                 GeneratedExtension<MessageType, Type> extension, Type value) {
-        ExtendableMessage<MessageType> message = internalGetResult();
-        message.verifyExtensionContainingType(extension);
-        message.extensions.setField(extension.getDescriptor(),
-                                    extension.toReflectionType(value));
-        return (BuilderType)this;
-    }
-    
-    /** Set the value of one element of a repeated extension. */
-    public final <Type> BuilderType setExtension(
-                                                 GeneratedExtension<MessageType, List<Type>> extension,
-                                                 int index, Type value) {
-        ExtendableMessage<MessageType> message = internalGetResult();
-        message.verifyExtensionContainingType(extension);
-        message.extensions.setRepeatedField(
-                                            extension.getDescriptor(), index,
-                                            extension.singularToReflectionType(value));
-        return (BuilderType)this;
-    }
-    
-    /** Append a value to a repeated extension. */
-    public final <Type> BuilderType addExtension(
-                                                 GeneratedExtension<MessageType, List<Type>> extension, Type value) {
-        ExtendableMessage<MessageType> message = internalGetResult();
-        message.verifyExtensionContainingType(extension);
-        message.extensions.addRepeatedField(
-                                            extension.getDescriptor(), extension.singularToReflectionType(value));
-        return (BuilderType)this;
-    }
-    
-    /** Clear an extension. */
-    public final <Type> BuilderType clearExtension(
-                                                   GeneratedExtension<MessageType, ?> extension) {
-        ExtendableMessage<MessageType> message = internalGetResult();
-        message.verifyExtensionContainingType(extension);
-        message.extensions.clearField(extension.getDescriptor());
-        return (BuilderType)this;
-    }
-    
-    /**
-     * Called by subclasses to parse an unknown field or an extension.
-     * @return {@code true} unless the tag is an end-group tag.
-     */
-    protected boolean parseUnknownField(CodedInputStream input,
-                                        UnknownFieldSet.Builder unknownFields,
-                                        ExtensionRegistry extensionRegistry,
-                                        int tag)
-    throws IOException {
-        ExtendableMessage<MessageType> message = internalGetResult();
-        return message.extensions.mergeFieldFrom(
-                                                 input, unknownFields, extensionRegistry, this, tag);
-    }
-    
-    // ---------------------------------------------------------------
-    // Reflection
-    
-    // We don't have to override the get*() methods here because they already
-    // just forward to the underlying message.
-    
-    public BuilderType setField(FieldDescriptor field, Object value) {
-        if (field.isExtension()) {
-            ExtendableMessage<MessageType> message = internalGetResult();
-            message.verifyContainingType(field);
-            message.extensions.setField(field, value);
-            return (BuilderType)this;
-        } else {
-            return super.setField(field, value);
-        }
-    }
-    
-    public BuilderType clearField(Descriptors.FieldDescriptor field) {
-        if (field.isExtension()) {
-            ExtendableMessage<MessageType> message = internalGetResult();
-            message.verifyContainingType(field);
-            message.extensions.clearField(field);
-            return (BuilderType)this;
-        } else {
-            return super.clearField(field);
-        }
-    }
-    
-    public BuilderType setRepeatedField(Descriptors.FieldDescriptor field,
-                                        int index, Object value) {
-        if (field.isExtension()) {
-            ExtendableMessage<MessageType> message = internalGetResult();
-            message.verifyContainingType(field);
-            message.extensions.setRepeatedField(field, index, value);
-            return (BuilderType)this;
-        } else {
-            return super.setRepeatedField(field, index, value);
-        }
-    }
-    
-    public BuilderType addRepeatedField(Descriptors.FieldDescriptor field,
-                                        Object value) {
-        if (field.isExtension()) {
-            ExtendableMessage<MessageType> message = internalGetResult();
-            message.verifyContainingType(field);
-            message.extensions.addRepeatedField(field, value);
-            return (BuilderType)this;
-        } else {
-            return super.addRepeatedField(field, value);
-        }
-    }
+/** Get one element of a repeated extension. */
+public final <Type> Type getExtension(
+                                      GeneratedExtension<MessageType, List<Type>> extension, int index) {
+    return internalGetResult().getExtension(extension, index);
+}
+
+/** Set the value of an extension. */
+public final <Type> BuilderType setExtension(
+                                             GeneratedExtension<MessageType, Type> extension, Type value) {
+    ExtendableMessage<MessageType> message = internalGetResult();
+    message.verifyExtensionContainingType(extension);
+    message.extensions.setField(extension.getDescriptor(),
+                                extension.toReflectionType(value));
+    return (BuilderType)this;
+}
+
+/** Set the value of one element of a repeated extension. */
+public final <Type> BuilderType setExtension(
+                                             GeneratedExtension<MessageType, List<Type>> extension,
+                                             int index, Type value) {
+    ExtendableMessage<MessageType> message = internalGetResult();
+    message.verifyExtensionContainingType(extension);
+    message.extensions.setRepeatedField(
+                                        extension.getDescriptor(), index,
+                                        extension.singularToReflectionType(value));
+    return (BuilderType)this;
 }
 #endif
+
+
+/** Clear an extension. */
+- (PBGeneratedMessage_Builder*) clearExtension:(PBGeneratedExtension*) extension {
+    PBExtendableMessage* message = self.internalGetResult;
+    [message verifyExtensionContainingType:extension];
+    [message.extensions clearField:extension.descriptor];
+    return self;
+}
+
+
+/**
+ * Called by subclasses to parse an unknown field or an extension.
+ * @return {@code true} unless the tag is an end-group tag.
+ */
+- (BOOL) parseUnknownField:(PBCodedInputStream*) input
+             unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
+         extensionRegistry:(PBExtensionRegistry*) extensionRegistry
+                       tag:(int32_t) tag {
+    //return [message.extensions mergeFieldFrom(input, unknownFields, extensionRegistry, this, tag);
+    return [PBFieldSet mergeFieldFromCodedInputStream:input
+                                        unknownFields:unknownFields
+                                    extensionRegistry:extensionRegistry
+                                              builder:self
+                                                  tag:tag];
+}
+
+
+// ---------------------------------------------------------------
+// Reflection
+
+// We don't have to override the get*() methods here because they already
+// just forward to the underlying message.
+
+- (PBGeneratedMessage_Builder*) setField:(PBFieldDescriptor*) field
+                                   value:(id) value {
+    if (field.isExtension) {
+        PBExtendableMessage* message = self.internalGetResult;
+        [message verifyContainingType:field];
+        [message.extensions setField:field value:value];
+        return self;
+    } else {
+        return (PBGeneratedMessage_Builder*)[super setField:field value:value];
+    }
+}
+
+- (PBGeneratedMessage_Builder*) clearField:(PBFieldDescriptor*) field {
+    if (field.isExtension) {
+        PBExtendableMessage* message = self.internalGetResult;
+        [message verifyContainingType:field];
+        [message.extensions clearField:field];
+        return self;
+    } else {
+        return (PBGeneratedMessage_Builder*)[super clearField:field];
+    }
+}
+
+- (PBGeneratedMessage_Builder*) setRepeatedField:(PBFieldDescriptor*) field
+                                           index:(int32_t) index
+                                           value:(id) value {
+    if (field.isExtension) {
+        PBExtendableMessage* message = self.internalGetResult;
+        [message verifyContainingType:field];
+        [message.extensions setRepeatedField:field index:index value:value];
+        return self;
+    } else {
+        return (PBGeneratedMessage_Builder*)[super setRepeatedField:field index:index value:value];
+    }
+}
+
+- (PBGeneratedMessage_Builder*) addRepeatedField:(PBFieldDescriptor*) field
+                                           value:(id) value {
+    if (field.isExtension) {
+        PBExtendableMessage* message = self.internalGetResult;
+        [message verifyContainingType:field];
+        [message.extensions addRepeatedField:field value:value];
+        return self;
+    } else {
+        return (PBGeneratedMessage_Builder*)[super addRepeatedField:field value:value];
+    }
+}
 
 @end

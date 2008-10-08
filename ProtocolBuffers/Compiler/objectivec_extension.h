@@ -43,6 +43,8 @@ class ExtensionGenerator {
   explicit ExtensionGenerator(string classname, const FieldDescriptor* descriptor);
   ~ExtensionGenerator();
 
+  void GenerateMembersHeader(io::Printer* printer);
+  void GenerateMembersSource(io::Printer* printer);
   void GenerateFieldsSource(io::Printer* printer);
   void GenerateInitializationSource(io::Printer* printer);
 

@@ -18,19 +18,22 @@
 @private
     PBFieldDescriptor* descriptor;
     Class type;
-    /*
-     private final Method enumValueOf;
-     private final Method enumGetValueDescriptor;
-     private final PBMessage messageDefaultInstance;
-     */
+    SEL enumValueOf;
+    SEL enumGetValueDescriptor;
+    id<PBMessage> messageDefaultInstance;
 }
 
 @property (retain, readonly) PBFieldDescriptor* descriptor;
 @property (retain, readonly) Class type;
+@property (retain, readonly) id<PBMessage> messageDefaultInstance;
+@property (readonly) SEL enumValueOf;
+@property (readonly) SEL enumGetValueDescriptor;
 
 + (PBGeneratedExtension*) extensionWithDescriptor:(PBFieldDescriptor*) descriptor
                                              type:(Class) type;
 
 - (id) toReflectionType:(id) value;
+- (id) singularToReflectionType:(id) value;
+- (id) fromReflectionType:(id) value;
 
 @end

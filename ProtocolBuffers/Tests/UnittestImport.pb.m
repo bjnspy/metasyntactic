@@ -50,8 +50,8 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMess
 @end
 
 @interface ImportEnum ()
-@property int32_t index;
-@property int32_t value;
+  @property int32_t index;
+  @property int32_t value;
 @end
 
 @implementation ImportEnum
@@ -89,7 +89,6 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
     default: return nil;
   }
 }
-
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[ImportEnum descriptor].values objectAtIndex:index];
 }
@@ -99,8 +98,6 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
 + (PBEnumDescriptor*) descriptor {
   return [[UnittestImportProtoRoot descriptor].enumTypes objectAtIndex:0];
 }
-
-
 + (ImportEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.type != [ImportEnum descriptor]) {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
@@ -140,35 +137,30 @@ static ImportMessage* defaultImportMessageInstance = nil;
     defaultImportMessageInstance = [[ImportMessage alloc] init];
   }
 }
-
 + (ImportMessage*) defaultInstance {
   return defaultImportMessageInstance;
 }
-
 - (ImportMessage*) defaultInstanceForType {
   return defaultImportMessageInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [ImportMessage descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [UnittestImportProtoRoot internal_static_protobuf_unittest_import_ImportMessage_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [UnittestImportProtoRoot internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable];
 }
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasD) {
     [output writeInt32:1 value:self.d];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -181,7 +173,6 @@ static ImportMessage* defaultImportMessageInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (ImportMessage*) parseFromData:(NSData*) data {
   return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromData:data] build];
 }
@@ -200,13 +191,11 @@ static ImportMessage* defaultImportMessageInstance = nil;
 + (ImportMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (ImportMessage_Builder*) newBuilder { return [[[ImportMessage_Builder alloc] init] autorelease]; }
 - (ImportMessage_Builder*) newBuilderForType { return [ImportMessage newBuilder]; }
 + (ImportMessage_Builder*) newBuilderWithImportMessage:(ImportMessage*) prototype {
   return [[ImportMessage newBuilder] mergeFromImportMessage:prototype];
 }
-
 @end
 
 @implementation ImportMessage_Builder
@@ -224,37 +213,30 @@ static ImportMessage* defaultImportMessageInstance = nil;
 - (ImportMessage*) internalGetResult {
   return result;
 }
-
 - (ImportMessage_Builder*) clear {
   self.result = [[[ImportMessage alloc] init] autorelease];
   return self;
 }
-
 - (ImportMessage_Builder*) clone {
   return (ImportMessage_Builder*)[[[[ImportMessage_Builder alloc] init] autorelease] mergeFromImportMessage:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [ImportMessage descriptor];
 }
-
 - (ImportMessage*) defaultInstanceForType {
   return [ImportMessage defaultInstance];
 }
-
 - (ImportMessage*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (ImportMessage*) buildPartial {
   ImportMessage* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (ImportMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[ImportMessage class]]) {
@@ -264,7 +246,6 @@ static ImportMessage* defaultImportMessageInstance = nil;
     return self;
   }
 }
-
 - (ImportMessage_Builder*) mergeFromImportMessage:(ImportMessage*) other {
   if (other == [ImportMessage defaultInstance]) return self;
   if (other.hasD) {
@@ -273,11 +254,9 @@ static ImportMessage* defaultImportMessageInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (ImportMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (ImportMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -300,8 +279,6 @@ static ImportMessage* defaultImportMessageInstance = nil;
     }
   }
 }
-
-
 - (BOOL) hasD {
   return result.hasD;
 }

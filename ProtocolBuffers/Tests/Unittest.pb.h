@@ -81,6 +81,76 @@
 }
 + (PBFileDescriptor*) descriptor;
 + (PBFileDescriptor*) buildDescriptor;
++ (PBGeneratedExtension*) optionalInt32Extension;
++ (PBGeneratedExtension*) optionalInt64Extension;
++ (PBGeneratedExtension*) optionalUint32Extension;
++ (PBGeneratedExtension*) optionalUint64Extension;
++ (PBGeneratedExtension*) optionalSint32Extension;
++ (PBGeneratedExtension*) optionalSint64Extension;
++ (PBGeneratedExtension*) optionalFixed32Extension;
++ (PBGeneratedExtension*) optionalFixed64Extension;
++ (PBGeneratedExtension*) optionalSfixed32Extension;
++ (PBGeneratedExtension*) optionalSfixed64Extension;
++ (PBGeneratedExtension*) optionalFloatExtension;
++ (PBGeneratedExtension*) optionalDoubleExtension;
++ (PBGeneratedExtension*) optionalBoolExtension;
++ (PBGeneratedExtension*) optionalStringExtension;
++ (PBGeneratedExtension*) optionalBytesExtension;
++ (PBGeneratedExtension*) optionalGroupExtension;
++ (PBGeneratedExtension*) optionalNestedMessageExtension;
++ (PBGeneratedExtension*) optionalForeignMessageExtension;
++ (PBGeneratedExtension*) optionalImportMessageExtension;
++ (PBGeneratedExtension*) optionalNestedEnumExtension;
++ (PBGeneratedExtension*) optionalForeignEnumExtension;
++ (PBGeneratedExtension*) optionalImportEnumExtension;
++ (PBGeneratedExtension*) optionalStringPieceExtension;
++ (PBGeneratedExtension*) optionalCordExtension;
++ (PBGeneratedExtension*) repeatedInt32Extension;
++ (PBGeneratedExtension*) repeatedInt64Extension;
++ (PBGeneratedExtension*) repeatedUint32Extension;
++ (PBGeneratedExtension*) repeatedUint64Extension;
++ (PBGeneratedExtension*) repeatedSint32Extension;
++ (PBGeneratedExtension*) repeatedSint64Extension;
++ (PBGeneratedExtension*) repeatedFixed32Extension;
++ (PBGeneratedExtension*) repeatedFixed64Extension;
++ (PBGeneratedExtension*) repeatedSfixed32Extension;
++ (PBGeneratedExtension*) repeatedSfixed64Extension;
++ (PBGeneratedExtension*) repeatedFloatExtension;
++ (PBGeneratedExtension*) repeatedDoubleExtension;
++ (PBGeneratedExtension*) repeatedBoolExtension;
++ (PBGeneratedExtension*) repeatedStringExtension;
++ (PBGeneratedExtension*) repeatedBytesExtension;
++ (PBGeneratedExtension*) repeatedGroupExtension;
++ (PBGeneratedExtension*) repeatedNestedMessageExtension;
++ (PBGeneratedExtension*) repeatedForeignMessageExtension;
++ (PBGeneratedExtension*) repeatedImportMessageExtension;
++ (PBGeneratedExtension*) repeatedNestedEnumExtension;
++ (PBGeneratedExtension*) repeatedForeignEnumExtension;
++ (PBGeneratedExtension*) repeatedImportEnumExtension;
++ (PBGeneratedExtension*) repeatedStringPieceExtension;
++ (PBGeneratedExtension*) repeatedCordExtension;
++ (PBGeneratedExtension*) defaultInt32Extension;
++ (PBGeneratedExtension*) defaultInt64Extension;
++ (PBGeneratedExtension*) defaultUint32Extension;
++ (PBGeneratedExtension*) defaultUint64Extension;
++ (PBGeneratedExtension*) defaultSint32Extension;
++ (PBGeneratedExtension*) defaultSint64Extension;
++ (PBGeneratedExtension*) defaultFixed32Extension;
++ (PBGeneratedExtension*) defaultFixed64Extension;
++ (PBGeneratedExtension*) defaultSfixed32Extension;
++ (PBGeneratedExtension*) defaultSfixed64Extension;
++ (PBGeneratedExtension*) defaultFloatExtension;
++ (PBGeneratedExtension*) defaultDoubleExtension;
++ (PBGeneratedExtension*) defaultBoolExtension;
++ (PBGeneratedExtension*) defaultStringExtension;
++ (PBGeneratedExtension*) defaultBytesExtension;
++ (PBGeneratedExtension*) defaultNestedEnumExtension;
++ (PBGeneratedExtension*) defaultForeignEnumExtension;
++ (PBGeneratedExtension*) defaultImportEnumExtension;
++ (PBGeneratedExtension*) defaultStringPieceExtension;
++ (PBGeneratedExtension*) defaultCordExtension;
++ (PBGeneratedExtension*) myExtensionString;
++ (PBGeneratedExtension*) myExtensionInt;
 @end
 
 @interface ForeignEnum : NSObject {
@@ -445,6 +515,7 @@
 - (NSString*) repeatedCordAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestAllTypes*) defaultInstance;
 - (TestAllTypes*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -492,6 +563,7 @@
 @property (readonly) int32_t bb;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestAllTypes_NestedMessage*) defaultInstance;
 - (TestAllTypes_NestedMessage*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -544,6 +616,7 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestAllTypes_OptionalGroup*) defaultInstance;
 - (TestAllTypes_OptionalGroup*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -596,6 +669,7 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestAllTypes_RepeatedGroup*) defaultInstance;
 - (TestAllTypes_RepeatedGroup*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1065,6 +1139,7 @@
 @property (readonly) int32_t c;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (ForeignMessage*) defaultInstance;
 - (ForeignMessage*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1113,6 +1188,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestAllExtensions*) defaultInstance;
 - (TestAllExtensions*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1160,6 +1236,7 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (OptionalGroup_extension*) defaultInstance;
 - (OptionalGroup_extension*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1212,6 +1289,7 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (RepeatedGroup_extension*) defaultInstance;
 - (RepeatedGroup_extension*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1392,6 +1470,7 @@
 @property (readonly) int32_t c;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestRequired*) defaultInstance;
 - (TestRequired*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1611,6 +1690,7 @@
 - (TestRequired*) repeatedMessageAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestRequiredForeign*) defaultInstance;
 - (TestRequiredForeign*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1677,6 +1757,7 @@
 @property (retain, readonly) TestAllTypes_NestedMessage* foreignNested;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestForeignNested*) defaultInstance;
 - (TestForeignNested*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1727,6 +1808,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestEmptyMessage*) defaultInstance;
 - (TestEmptyMessage*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1770,6 +1852,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestEmptyMessageWithExtensions*) defaultInstance;
 - (TestEmptyMessageWithExtensions*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1821,6 +1904,7 @@
 @property (readonly) int32_t bb;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestReallyLargeTagNumber*) defaultInstance;
 - (TestReallyLargeTagNumber*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1882,6 +1966,7 @@
 @property (readonly) int32_t i;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestRecursiveMessage*) defaultInstance;
 - (TestRecursiveMessage*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1941,6 +2026,7 @@
 @property (retain, readonly) TestMutualRecursionB* bb;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestMutualRecursionA*) defaultInstance;
 - (TestMutualRecursionA*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1999,6 +2085,7 @@
 @property (readonly) int32_t optionalInt32;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestMutualRecursionB*) defaultInstance;
 - (TestMutualRecursionB*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2066,6 +2153,7 @@
 @property (retain, readonly) TestDupFieldNumber_Bar* bar;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestDupFieldNumber*) defaultInstance;
 - (TestDupFieldNumber*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2092,6 +2180,7 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestDupFieldNumber_Foo*) defaultInstance;
 - (TestDupFieldNumber_Foo*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2144,6 +2233,7 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestDupFieldNumber_Bar*) defaultInstance;
 - (TestDupFieldNumber_Bar*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2236,6 +2326,7 @@
 @property (retain, readonly) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestNestedMessageHasBits*) defaultInstance;
 - (TestNestedMessageHasBits*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2264,6 +2355,7 @@
 - (ForeignMessage*) nestedmessageRepeatedForeignmessageAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2391,6 +2483,7 @@
 - (NSString*) repeatedCordFieldAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestCamelCaseFieldNames*) defaultInstance;
 - (TestCamelCaseFieldNames*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2520,6 +2613,7 @@
 @property (readonly) Float32 myFloat;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestFieldOrderings*) defaultInstance;
 - (TestFieldOrderings*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2602,6 +2696,7 @@
 @property (retain, readonly) NSString* utf8String;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (TestExtremeDefaultValues*) defaultInstance;
 - (TestExtremeDefaultValues*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2675,6 +2770,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (FooRequest*) defaultInstance;
 - (FooRequest*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2718,6 +2814,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (FooResponse*) defaultInstance;
 - (FooResponse*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2761,6 +2858,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (BarRequest*) defaultInstance;
 - (BarRequest*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -2804,6 +2902,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (BarResponse*) defaultInstance;
 - (BarResponse*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;

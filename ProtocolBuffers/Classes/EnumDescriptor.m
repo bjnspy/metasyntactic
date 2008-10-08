@@ -18,6 +18,7 @@
 
 #import "Descriptor.pb.h"
 #import "DescriptorPool.h"
+#import "DescriptorPool_DescriptorIntPair.h"
 
 @interface PBEnumDescriptor()
     @property int32_t index;
@@ -93,7 +94,8 @@
 
 
 - (PBEnumValueDescriptor*) findValueByNumber:(int32_t) number {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    PBDescriptorPool_DescriptorIntPair* key = [PBDescriptorPool_DescriptorIntPair pairWithDescriptor:self number:number];
+    return [file.pool.enumValuesByNumber objectForKey:key];
 }
 
 

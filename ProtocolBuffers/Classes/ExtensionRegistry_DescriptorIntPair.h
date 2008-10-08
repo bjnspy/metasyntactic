@@ -14,7 +14,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBExtensionRegistry_DescriptorIntPair : NSObject {
+@interface PBExtensionRegistry_DescriptorIntPair : NSObject<NSCopying> {
 @private
     PBDescriptor* descriptor;
     int32_t number;

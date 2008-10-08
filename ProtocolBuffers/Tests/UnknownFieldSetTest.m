@@ -106,6 +106,7 @@
   STAssertTrue([allFields.optionalBytes isEqual:[field.lengthDelimitedList objectAtIndex:0]], @"");
 }
 
+
 - (void) testGroup {
   PBFieldDescriptor* nestedFieldDescriptor =
   [[TestAllTypes_OptionalGroup descriptor] findFieldByName:@"a"];
@@ -294,25 +295,22 @@
                              [message.unknownFields getField:repeatedField.number].varintList, @"");
         
     }
-/*    
+
     {
-        TestAllExtensions message =
-        TestAllExtensions.parseFrom(data, TestUtil.getExtensionRegistry());
-        STAssertTrue(TestAllTypes.NestedEnum.BAR,
-                     message.getExtension(UnittestProto.optionalNestedEnumExtension));
-        STAssertTrue(
-                     Arrays.asList(TestAllTypes.NestedEnum.FOO, TestAllTypes.NestedEnum.BAZ),
-                     message.getExtension(UnittestProto.repeatedNestedEnumExtension));
-        STAssertTrue(Arrays.asList(5L),
-                     message.getUnknownFields()
-                     .getField(singularField.getNumber())
-                     .getVarintList());
-        STAssertTrue(Arrays.asList(4L, 6L),
-                     message.getUnknownFields()
-                     .getField(repeatedField.getNumber())
-                     .getVarintList());
+        TestAllExtensions* message =
+        [TestAllExtensions parseFromData:data extensionRegistry:[TestUtilities extensionRegistry]];
+        STAssertTrue([TestAllTypes_NestedEnum BAR] == 
+                     [message getExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
+        NSArray* array1 = [NSArray arrayWithObjects:[TestAllTypes_NestedEnum FOO], [TestAllTypes_NestedEnum BAZ], nil];
+        STAssertEqualObjects(array1,
+                     [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension]], @"");
+        STAssertEqualObjects([NSArray arrayWithObject:[NSNumber numberWithInt:5]],
+                     [message.unknownFields getField:singularField.number].varintList, @"");
+        
+        NSArray* array2 = [NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:6], nil];
+        STAssertEqualObjects(array2,
+                             [message.unknownFields getField:repeatedField.number].varintList, @"");
     }
- */
 }
 
 @end
