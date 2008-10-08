@@ -307,8 +307,6 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
         default:
             @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
-    
-    NSLog(@"Wrote type:%d number:%d pos:%d", type, number, position);
 }
 
 

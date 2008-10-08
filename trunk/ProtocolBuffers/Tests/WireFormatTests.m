@@ -8,7 +8,7 @@
 
 #import "WireFormatTests.h"
 
-#import "CodedInputStream.h"
+//#import "CodedInputStream.h"
 #import "TestUtilities.h"
 #import "Unittest.pb.h"
 
