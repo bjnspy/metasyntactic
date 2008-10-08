@@ -33,6 +33,4 @@
 @property (retain) TestEmptyMessage* emptyMessage;
 @property (retain) PBUnknownFieldSet* unknownFields;
 
-+ (void) runAllTests;
-
 @end
