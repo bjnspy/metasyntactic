@@ -104,6 +104,11 @@
 		8DC2EF530486A6940098B216 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C1666FE841158C02AAC07 /* InfoPlist.strings */; };
 		8DC2EF570486A6940098B216 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7B1FEA5585E11CA2CBB /* Cocoa.framework */; };
 		8DEB01410E9C620600911656 /* MicroTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB01400E9C620600911656 /* MicroTest.m */; };
+		8DEB01720E9C657C00911656 /* UnknownFieldSetTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */; };
+		8DEB017C0E9C663F00911656 /* TestUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB017B0E9C663F00911656 /* TestUtilities.m */; };
+		8DEB01940E9C66B900911656 /* Unittest.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB01930E9C66B900911656 /* Unittest.pb.m */; };
+		8DEB01F70E9C673F00911656 /* UnittestImport.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DEB01F60E9C673F00911656 /* UnittestImport.pb.m */; };
+		8DEB02070E9C67AD00911656 /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ProtocolBuffers.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -283,6 +288,15 @@
 		8DC2EF5B0486A6940098B216 /* ProtocolBuffers.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ProtocolBuffers.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DEB013F0E9C620600911656 /* MicroTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MicroTest.h; sourceTree = "<group>"; };
 		8DEB01400E9C620600911656 /* MicroTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MicroTest.m; sourceTree = "<group>"; };
+		8DEB01700E9C657C00911656 /* UnknownFieldSetTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnknownFieldSetTest.h; sourceTree = "<group>"; };
+		8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnknownFieldSetTest.m; sourceTree = "<group>"; };
+		8DEB017A0E9C663F00911656 /* TestUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestUtilities.h; sourceTree = "<group>"; };
+		8DEB017B0E9C663F00911656 /* TestUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestUtilities.m; sourceTree = "<group>"; };
+		8DEB01920E9C66B900911656 /* Unittest.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Unittest.pb.h; sourceTree = "<group>"; };
+		8DEB01930E9C66B900911656 /* Unittest.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Unittest.pb.m; sourceTree = "<group>"; };
+		8DEB01F50E9C673F00911656 /* UnittestImport.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnittestImport.pb.h; sourceTree = "<group>"; };
+		8DEB01F60E9C673F00911656 /* UnittestImport.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnittestImport.pb.m; sourceTree = "<group>"; };
+		8DEB02020E9C678D00911656 /* Macros.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macros.h; sourceTree = "<group>"; };
 		8DFF12890E9C608E00A95526 /* Unit Tests.octest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Unit Tests.octest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		8DFF128A0E9C608E00A95526 /* Unit Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Unit Tests-Info.plist"; sourceTree = "<group>"; };
 		D2F7E79907B2D74100F64583 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = /System/Library/Frameworks/CoreData.framework; sourceTree = "<absolute>"; };
@@ -302,6 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DEB02070E9C67AD00911656 /* ProtocolBuffers.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -515,6 +530,13 @@
 		745E98E30E942034007FD139 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				8DEB02020E9C678D00911656 /* Macros.h */,
+				8DEB01F50E9C673F00911656 /* UnittestImport.pb.h */,
+				8DEB01F60E9C673F00911656 /* UnittestImport.pb.m */,
+				8DEB01920E9C66B900911656 /* Unittest.pb.h */,
+				8DEB01930E9C66B900911656 /* Unittest.pb.m */,
+				8DEB017A0E9C663F00911656 /* TestUtilities.h */,
+				8DEB017B0E9C663F00911656 /* TestUtilities.m */,
 				745E98FB0E942186007FD139 /* UtilitiesTests.h */,
 				745E98FC0E942186007FD139 /* UtilitiesTests.m */,
 				745E993B0E9425AE007FD139 /* CodedInputStreamTests.h */,
@@ -523,6 +545,8 @@
 				74E1803A0E9649F600F8D0D3 /* CoreTests.m */,
 				8DEB013F0E9C620600911656 /* MicroTest.h */,
 				8DEB01400E9C620600911656 /* MicroTest.m */,
+				8DEB01700E9C657C00911656 /* UnknownFieldSetTest.h */,
+				8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -676,6 +700,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				8DEB01410E9C620600911656 /* MicroTest.m in Sources */,
+				8DEB01720E9C657C00911656 /* UnknownFieldSetTest.m in Sources */,
+				8DEB017C0E9C663F00911656 /* TestUtilities.m in Sources */,
+				8DEB01940E9C66B900911656 /* Unittest.pb.m in Sources */,
+				8DEB01F70E9C673F00911656 /* UnittestImport.pb.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
