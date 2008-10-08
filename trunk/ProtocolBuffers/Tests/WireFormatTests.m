@@ -11,6 +11,7 @@
 //#import "CodedInputStream.h"
 #import "TestUtilities.h"
 #import "Unittest.pb.h"
+#import "UnittestMset.pb.h"
 
 @implementation WireFormatTests
 
@@ -102,66 +103,45 @@
     [self assertFieldsInOrder:dynamic_data];
 }
 
-/*
-const int UNKNOWN_TYPE_ID = 1550055;
-private static final int TYPE_ID_1 =
-TestMessageSetExtension1.getDescriptor().getExtensions().get(0).getNumber();
-private static final int TYPE_ID_2 =
-TestMessageSetExtension2.getDescriptor().getExtensions().get(0).getNumber();
-*/
- 
-/*
+const int UNKNOWN_TYPE_ID = 1550055; 
+
 - (void) testSerializeMessageSet {
-    // Set up a TestMessageSet with two known messages and an unknown one.
-    TestMessageSet* messageSet =
-    [[[[[[[TestMessageSet newBuilder]
-         setExtension:[TestMessageSetExtension1 messag
-    .setExtension(
-                  TestMessageSetExtension1.messageSetExtension,
-                  TestMessageSetExtension1.newBuilder().setI(123).build())
-    .setExtension(
-                  TestMessageSetExtension2.messageSetExtension,
-                  TestMessageSetExtension2.newBuilder().setStr("foo").build())
-    .setUnknownFields(
-                      UnknownFieldSet.newBuilder()
-                      .addField(UNKNOWN_TYPE_ID,
-                                UnknownFieldSet.Field.newBuilder()
-                                .addLengthDelimited(ByteString.copyFromUtf8("bar"))
-                                .build())
-                      .build())
-    .build();
+    int32_t TYPE_ID_1 = [[[TestMessageSetExtension1 descriptor].extensions objectAtIndex:0] number];
+    int32_t TYPE_ID_2 = [[[TestMessageSetExtension2 descriptor].extensions objectAtIndex:0] number];
     
-    ByteString data = messageSet.toByteString();
+    // Set up a TestMessageSet with two known messages and an unknown one.
+    PBUnknownFieldSet* unknownFields =
+    [[[PBUnknownFieldSet newBuilder] addField:[[PBMutableField field] addLengthDelimited:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]]
+                                    forNumber:UNKNOWN_TYPE_ID] build];
+    
+    TestMessageSet* messageSet =
+    (id)[[[[[TestMessageSet newBuilder]
+        setExtension:[TestMessageSetExtension1 messageSetExtension] value:[[[TestMessageSetExtension1 newBuilder] setI:123] build]]
+       setExtension:[TestMessageSetExtension2 messageSetExtension] value:[[[TestMessageSetExtension2 newBuilder] setStr:@"foo"] build]]
+      setUnknownFields:unknownFields] build];
+
+    NSData* data = messageSet.toData;
     
     // Parse back using RawMessageSet and check the contents.
-    RawMessageSet raw = RawMessageSet.parseFrom(data);
+    RawMessageSet* raw = [RawMessageSet parseFromData:data];
     
-    assertTrue(raw.getUnknownFields().asMap().isEmpty());
+    STAssertTrue(raw.unknownFields.fields.count == 0, @"");
+    STAssertTrue(3 == raw.itemList.count, @"");
+    STAssertTrue(TYPE_ID_1 == [raw itemAtIndex:0].typeId, @"");
+    STAssertTrue(TYPE_ID_2 == [raw itemAtIndex:1].typeId, @"");
+    STAssertTrue(UNKNOWN_TYPE_ID == [raw itemAtIndex:2].typeId, @"");
     
-    assertEquals(3, raw.getItemCount());
-    assertEquals(TYPE_ID_1, raw.getItem(0).getTypeId());
-    assertEquals(TYPE_ID_2, raw.getItem(1).getTypeId());
-    assertEquals(UNKNOWN_TYPE_ID, raw.getItem(2).getTypeId());
+    TestMessageSetExtension1* message1 =
+    [TestMessageSetExtension1 parseFromData:[raw itemAtIndex:0].message];
+    STAssertTrue(123 == message1.i, @"");
     
-    TestMessageSetExtension1 message1 =
-    TestMessageSetExtension1.parseFrom(
-                                       raw.getItem(0).getMessage().toByteArray());
-    assertEquals(123, message1.getI());
-    
-    TestMessageSetExtension2 message2 =
-    TestMessageSetExtension2.parseFrom(
-                                       raw.getItem(1).getMessage().toByteArray());
-    assertEquals("foo", message2.getStr());
-    
-    assertEquals("bar", raw.getItem(2).getMessage().toStringUtf8());
+    TestMessageSetExtension2* message2 =
+    [TestMessageSetExtension2 parseFromData:[raw itemAtIndex:1].message];
+    STAssertEqualObjects(@"foo", message2.str, @"");
+//    STAssertEqualObjects(@"bar", [raw itemAtIndex:2].message. .getItem(2).getMessage().toStringUtf8());
 }
-*/
 
 #if 0
-
-
-
-
 
 
 public void testParseMessageSet() throws Exception {
