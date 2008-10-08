@@ -138,7 +138,7 @@
     STAssertEqualObjects([TestUtilities toData:@"216"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:0], @"");
     
     STAssertTrue(217 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:0] a], @"");
-    STAssertTrue(218 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:0] b], @"");
+    STAssertTrue(218 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:0] bb], @"");
     STAssertTrue(219 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:0] c], @"");
     STAssertTrue(220 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:0] d], @"");
     
@@ -166,7 +166,7 @@
     STAssertEqualObjects([TestUtilities toData:@"316"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:1], @"");
     
     STAssertTrue(317 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:1] a], @"");
-    STAssertTrue(318 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:1] b], @"");
+    STAssertTrue(318 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:1] bb], @"");
     STAssertTrue(319 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:1] c], @"");
     STAssertTrue(320 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:1] d], @"");
     
@@ -1061,7 +1061,7 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
         STAssertTrue(toData("216"), message.getRepeatedBytes(0));
         
         STAssertTrue(217 == [message repeatedGroupAtIndex:0]a, @"");
-        STAssertTrue(218 == [message repeatedNestedMessageAtIndex:0].b, @"");
+        STAssertTrue(218 == [message repeatedNestedMessageAtIndex:0].bb, @"");
         STAssertTrue(219 == [message repeatedForeignMessageAtIndex:0].c, @"");
         STAssertTrue(220 == [message repeatedImportMessageAtIndex:0].d, @"");
         
@@ -1090,7 +1090,7 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
         STAssertTrue(toData("516"), message.getRepeatedBytes(1));
         
         STAssertTrue(517 == [message repeatedGroupAtIndex:1]a, @"");
-        STAssertTrue(518 == [message repeatedNestedMessageAtIndex:1].b, @"");
+        STAssertTrue(518 == [message repeatedNestedMessageAtIndex:1].bb, @"");
         STAssertTrue(519 == [message repeatedForeignMessageAtIndex:1].c, @"");
         STAssertTrue(520 == [message repeatedImportMessageAtIndex:1].d, @"");
         
@@ -1253,7 +1253,7 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
          STAssertFalse([message getExtension:[UnittestProtoRoot optionalImportMessageExtension] ).hasD());
             
             STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalGroupExtension]         .a);
-            STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalNestedMessageExtension] ).b);
+            STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalNestedMessageExtension] ).bb);
             STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]).c);
             STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalImportMessageExtension] ).d);
             
@@ -1404,7 +1404,7 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
             STAssertTrue(toData("216"), [message getExtension:[UnittestProtoRoot repeatedBytesExtension], 0));
             
             STAssertTrue(217, [message getExtension:[UnittestProtoRoot repeatedGroupExtension], 0.a);
-            STAssertTrue(218, [message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension], 0).b);
+            STAssertTrue(218, [message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension], 0).bb);
             STAssertTrue(219, [message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension], 0).c);
             STAssertTrue(220, [message getExtension:[UnittestProtoRoot repeatedImportMessageExtension], 0).d);
             
@@ -1436,7 +1436,7 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
             STAssertTrue(toData("516"), [message getExtension:[UnittestProtoRoot repeatedBytesExtension], 1));
             
             STAssertTrue(517, [message getExtension:[UnittestProtoRoot repeatedGroupExtension], 1].a);
-            STAssertTrue(518, [message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension], 1).b);
+            STAssertTrue(518, [message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension], 1).bb);
             STAssertTrue(519, [message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension], 1).c);
             STAssertTrue(520, [message getExtension:[UnittestProtoRoot repeatedImportMessageExtension], 1).d);
             

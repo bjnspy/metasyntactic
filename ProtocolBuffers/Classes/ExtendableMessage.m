@@ -16,9 +16,8 @@
 
 
 @interface PBExtendableMessage ()
-@property (retain) PBFieldSet* extensions;
+    @property (retain) PBFieldSet* extensions;
 @end
-
 
 
 @implementation PBExtendableMessage
@@ -75,7 +74,8 @@
 
 /** Get one element of a repeated extension. */
 - (id) getExtension:(PBGeneratedExtension*) extension index:(int32_t) index {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    [self verifyExtensionContainingType:extension];
+    return [extension singularFromReflectionType:[extensions getRepeatedField:extension.descriptor index:index]];
 }
 
 
