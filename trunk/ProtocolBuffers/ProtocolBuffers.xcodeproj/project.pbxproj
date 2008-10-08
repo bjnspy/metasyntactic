@@ -81,6 +81,8 @@
 		745E98690E941F0E007FD139 /* ExtensionWriter.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 749E63A10E93FD6000F78C70 /* ExtensionWriter.h */; };
 		745E986A0E941F0E007FD139 /* GeneratedExtension.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 749E63F20E94071100F78C70 /* GeneratedExtension.h */; };
 		745E98EB0E9420B2007FD139 /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745E98EA0E9420B2007FD139 /* SenTestingKit.framework */; };
+		747C0AE40E9CBA61004B9278 /* WireFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C0AE30E9CBA61004B9278 /* WireFormatTests.m */; };
+		747C0AE50E9CBA61004B9278 /* WireFormatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 747C0AE30E9CBA61004B9278 /* WireFormatTests.m */; };
 		749E63960E93F81600F78C70 /* ExtendableMessage.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63950E93F81600F78C70 /* ExtendableMessage.m */; };
 		749E63A30E93FD6000F78C70 /* ExtensionWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63A20E93FD6000F78C70 /* ExtensionWriter.m */; };
 		749E63F40E94071100F78C70 /* GeneratedExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 749E63F30E94071100F78C70 /* GeneratedExtension.m */; };
@@ -255,6 +257,8 @@
 		745E98FC0E942186007FD139 /* UtilitiesTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UtilitiesTests.m; sourceTree = "<group>"; };
 		745E993B0E9425AE007FD139 /* CodedInputStreamTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodedInputStreamTests.h; sourceTree = "<group>"; };
 		745E993C0E9425AE007FD139 /* CodedInputStreamTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodedInputStreamTests.m; sourceTree = "<group>"; };
+		747C0AE20E9CBA61004B9278 /* WireFormatTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WireFormatTests.h; sourceTree = "<group>"; };
+		747C0AE30E9CBA61004B9278 /* WireFormatTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WireFormatTests.m; sourceTree = "<group>"; };
 		749E63940E93F81600F78C70 /* ExtendableMessage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableMessage.h; sourceTree = "<group>"; };
 		749E63950E93F81600F78C70 /* ExtendableMessage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableMessage.m; sourceTree = "<group>"; };
 		749E63A10E93FD6000F78C70 /* ExtensionWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionWriter.h; sourceTree = "<group>"; };
@@ -568,6 +572,8 @@
 				8DEB01400E9C620600911656 /* MicroTest.m */,
 				8DEB01700E9C657C00911656 /* UnknownFieldSetTest.h */,
 				8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */,
+				747C0AE20E9CBA61004B9278 /* WireFormatTests.h */,
+				747C0AE30E9CBA61004B9278 /* WireFormatTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -693,6 +699,7 @@
 				74237C840E9C7E4E00FDC6D7 /* Unittest.pb.m in Sources */,
 				74237C850E9C7E4E00FDC6D7 /* UnittestImport.pb.m in Sources */,
 				74237C650E9C7DC000FDC6D7 /* main.m in Sources */,
+				747C0AE40E9CBA61004B9278 /* WireFormatTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -755,6 +762,7 @@
 				8DEB017C0E9C663F00911656 /* TestUtilities.m in Sources */,
 				8DEB01940E9C66B900911656 /* Unittest.pb.m in Sources */,
 				8DEB01F70E9C673F00911656 /* UnittestImport.pb.m in Sources */,
+				747C0AE50E9CBA61004B9278 /* WireFormatTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
