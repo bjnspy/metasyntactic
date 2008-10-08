@@ -41,6 +41,13 @@
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
+
+- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension
+                                       value:(id) value {
+    @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
+}
+
+
 /**
  * Get the PBFieldAccessorTable for this type.  We can't have the message
  * class pass this in to the constructor because of bootstrapping trouble

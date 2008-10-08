@@ -651,12 +651,10 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 for (id element in value) {
                     int32_t type = field.type;
                     size += computeFieldSize(type, field.number, element);
-                    NSLog(@"Size  type:%d number:%d pos:%d", type, field.number, size);
                 }
             } else {
                 int32_t type = field.type;
                 size += computeFieldSize(type, field.number, value);
-                NSLog(@"Size  type:%d number:%d pos:%d", type, field.number, size);
             }
         }
     }

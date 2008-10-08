@@ -72,14 +72,6 @@
 }
 
 
-- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension value:(id) value {
-    PBExtendableMessage* message = self.internalGetResult;
-    [message verifyExtensionContainingType:extension];
-    [message.extensions setField:extension.descriptor value:[extension toReflectionType:value]];
-    return self;
-}
-
-
 #if 0
 
 
