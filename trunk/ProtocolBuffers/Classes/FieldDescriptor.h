@@ -19,7 +19,7 @@
 #import "FieldDescriptorType.h"
 #import "ObjectiveCType.h"
 
-@interface PBFieldDescriptor : NSObject<PBGenericDescriptor> {
+@interface PBFieldDescriptor : NSObject<PBGenericDescriptor,NSCopying> {
 @private
     int32_t index;
     

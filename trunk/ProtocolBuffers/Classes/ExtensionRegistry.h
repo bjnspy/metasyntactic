@@ -28,6 +28,7 @@
 + (PBExtensionRegistry*) registryWithExtensionsByName:(NSMutableDictionary*) extensionsByName
                                    extensionsByNumber:(NSMutableDictionary*) extensionsByNumber;
 
+- (void) addExtension:(PBGeneratedExtension*) extension;
 - (void) addExtensionInfo:(PBExtensionInfo*) extension;
 
 - (PBExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType

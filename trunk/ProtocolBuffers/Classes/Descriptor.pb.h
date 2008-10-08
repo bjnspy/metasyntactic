@@ -56,6 +56,7 @@
 - (PBFileDescriptorProto*) fileAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBFileDescriptorSet*) defaultInstance;
 - (PBFileDescriptorSet*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -133,6 +134,7 @@
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBFileDescriptorProto*) defaultInstance;
 - (PBFileDescriptorProto*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -251,6 +253,7 @@
 - (PBDescriptorProto_ExtensionRange*) extensionRangeAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBDescriptorProto*) defaultInstance;
 - (PBDescriptorProto*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -281,6 +284,7 @@
 @property (readonly) int32_t end;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBDescriptorProto_ExtensionRange*) defaultInstance;
 - (PBDescriptorProto_ExtensionRange*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -434,6 +438,7 @@
 @property (retain, readonly) PBFieldOptions* options;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBFieldDescriptorProto*) defaultInstance;
 - (PBFieldDescriptorProto*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -587,6 +592,7 @@
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBEnumDescriptorProto*) defaultInstance;
 - (PBEnumDescriptorProto*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -661,6 +667,7 @@
 @property (retain, readonly) PBEnumValueOptions* options;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBEnumValueDescriptorProto*) defaultInstance;
 - (PBEnumValueDescriptorProto*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -732,6 +739,7 @@
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBServiceDescriptorProto*) defaultInstance;
 - (PBServiceDescriptorProto*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -810,6 +818,7 @@
 @property (retain, readonly) PBMethodOptions* options;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBMethodDescriptorProto*) defaultInstance;
 - (PBMethodDescriptorProto*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -899,6 +908,7 @@
 @property (retain, readonly) NSString* objectivecClassPrefix;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBFileOptions*) defaultInstance;
 - (PBFileOptions*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -996,6 +1006,7 @@
 @property (readonly) BOOL messageSetWireFormat;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBMessageOptions*) defaultInstance;
 - (PBMessageOptions*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1052,6 +1063,7 @@
 @property (retain, readonly) NSString* experimentalMapKey;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBFieldOptions*) defaultInstance;
 - (PBFieldOptions*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1125,6 +1137,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBEnumOptions*) defaultInstance;
 - (PBEnumOptions*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1168,6 +1181,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBEnumValueOptions*) defaultInstance;
 - (PBEnumValueOptions*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1211,6 +1225,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBServiceOptions*) defaultInstance;
 - (PBServiceOptions*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
@@ -1254,6 +1269,7 @@
 }
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (PBMethodOptions*) defaultInstance;
 - (PBMethodOptions*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;

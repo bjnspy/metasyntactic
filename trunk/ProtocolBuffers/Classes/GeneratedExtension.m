@@ -21,8 +21,11 @@
 #import "ObjectiveCType.h"
 
 @interface PBGeneratedExtension ()
-@property (retain) PBFieldDescriptor* descriptor;
-@property (retain) Class type;
+    @property (retain) PBFieldDescriptor* descriptor;
+    @property (retain) Class type;
+    @property (retain) id<PBMessage> messageDefaultInstance;
+    @property SEL enumValueOf;
+    @property SEL enumGetValueDescriptor;
 @end
 
 
@@ -30,10 +33,16 @@
 
 @synthesize descriptor;
 @synthesize type;
+@synthesize enumValueOf;
+@synthesize enumGetValueDescriptor;
+@synthesize messageDefaultInstance;
 
 - (void) dealloc {
     self.descriptor = nil;
     self.type = nil;
+    self.enumValueOf = 0;
+    self.enumGetValueDescriptor = 0;
+    self.messageDefaultInstance = 0;
     
     [super dealloc];
 }
@@ -45,23 +54,19 @@
         if (!descriptor_.isExtension) {
             @throw [NSException exceptionWithName:@"" reason:@"PBGeneratedExtension given a regular (non-extension) field." userInfo:nil];
         }
-        
-#if 0
+     
         self.descriptor = descriptor_;
         self.type = type_;
         
         switch (descriptor.objectiveCType) {
             case PBObjectiveCTypeMessage:
-                messageDefaultInstance = @selector(defaultInstance);
-                (PBMessage)invokeOrDie(getMethodOrDie(type, "defaultInstance"),
-                                       null);
+                self.messageDefaultInstance = [type performSelector:@selector(defaultInstance)];
                 break;
             case PBObjectiveCTypeEnum:
-                enumValueOf = @selector(valueOf:),
-                enumGetValueDescriptor = @selector(valueDescriptor);
+                self.enumValueOf = @selector(valueOf:),
+                self.enumGetValueDescriptor = @selector(valueDescriptor);
                 break;
         }
-#endif
     }
     
     return self;
@@ -81,7 +86,8 @@
 - (id) singularToReflectionType:(id) value {
     switch (descriptor.objectiveCType) {
         case PBObjectiveCTypeEnum:
-            @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+            //invokeOrDie(enumGetValueDescriptor, value);
+            return [value performSelector:enumGetValueDescriptor];
         default:
             return value;
     }
@@ -104,6 +110,52 @@
         return [self singularToReflectionType:value];
     }
 }
+
+
+/**
+ * Like {@link #fromReflectionType(Object)}, but if the type is a repeated
+ * type, this converts a single element.
+ */
+- (id) singularFromReflectionType:(id) value {
+    switch (descriptor.objectiveCType) {
+        case PBObjectiveCTypeMessage:
+            if ([value isKindOfClass:type]) {
+                return value;
+            } else {
+                // It seems the copy of the embedded message stored inside the
+                // extended message is not of the exact type the user was
+                // expecting.  This can happen if a user defines a
+                // PBGeneratedExtension manually and gives it a different type.
+                // This should not happen in normal use.  But, to be nice, we'll
+                // copy the message to whatever type the caller was expecting.
+                return [[[messageDefaultInstance newBuilderForType] mergeFromMessage:value] build];
+            }
+        case PBObjectiveCTypeEnum:
+            return [type performSelector:enumValueOf withObject:value];
+        default:
+            return value;
+    }
+}
+
+
+- (id) fromReflectionType:(id) value {
+    if (descriptor.isRepeated) {
+        if (descriptor.objectiveCType == PBFieldDescriptorTypeMessage ||
+            descriptor.objectiveCType == PBFieldDescriptorTypeEnum) {
+            // Must convert the whole list.
+            NSMutableArray* result = [NSMutableArray array];
+            for (id element in value) {
+                [result addObject:[self singularFromReflectionType:element]];
+            }
+            return result;
+        } else {
+            return value;
+        }
+    } else {
+        return [self singularFromReflectionType:value];
+    }
+}
+
 
 #if 0
 public static final class PBGeneratedExtension<
@@ -133,49 +185,7 @@ ContainingType extends PBMessage, Type> {
      * type.
      */
     @SuppressWarnings("unchecked")
-    private Object fromReflectionType(Object value) {
-        if (descriptor.isRepeated()) {
-            if (descriptor.getJavaType() == FieldDescriptor.JavaType.MESSAGE ||
-                descriptor.getJavaType() == FieldDescriptor.JavaType.ENUM) {
-                // Must convert the whole list.
-                List result = new ArrayList();
-                for (Object element : (List)value) {
-                    result.add(singularFromReflectionType(element));
-                }
-                return result;
-            } else {
-                return value;
-            }
-        } else {
-            return singularFromReflectionType(value);
-        }
-    }
-    
-    /**
-     * Like {@link #fromReflectionType(Object)}, but if the type is a repeated
-     * type, this converts a single element.
-     */
-    private Object singularFromReflectionType(Object value) {
-        switch (descriptor.getJavaType()) {
-            case MESSAGE:
-                if (type.isInstance(value)) {
-                    return value;
-                } else {
-                    // It seems the copy of the embedded message stored inside the
-                    // extended message is not of the exact type the user was
-                    // expecting.  This can happen if a user defines a
-                    // PBGeneratedExtension manually and gives it a different type.
-                    // This should not happen in normal use.  But, to be nice, we'll
-                    // copy the message to whatever type the caller was expecting.
-                    return messageDefaultInstance.newBuilderForType()
-                    .mergeFrom((PBMessage)value).build();
-                }
-            case ENUM:
-                return invokeOrDie(enumValueOf, null, (PBEnumValueDescriptor)value);
-            default:
-                return value;
-        }
-    }
+
     
     /**
      * Convert from the type used by the native accessors to the type used

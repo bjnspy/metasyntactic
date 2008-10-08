@@ -94,15 +94,14 @@ static PBExtensionRegistry* EMPTY = nil;
     return [extensionsByNumber objectForKey:[PBExtensionRegistry_DescriptorIntPair pairWithDescriptor:containingType number:fieldNumber]];
 }
 
-#if 0
+
 - (void) addExtension:(PBGeneratedExtension*) extension {
     if (extension.descriptor.objectiveCType == PBFieldDescriptorTypeMessage) {
-        [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.descriptor defaultInstance:extension.getMessageDefaultInstance]];
+        [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.descriptor defaultInstance:extension.messageDefaultInstance]];
     } else {
         [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.descriptor defaultInstance:nil]];
     }
 }
-#endif
 
 
 - (void) addFieldDescriptor:(PBFieldDescriptor*) type {

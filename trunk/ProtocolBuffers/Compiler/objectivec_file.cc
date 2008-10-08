@@ -29,6 +29,7 @@
 #include <google/protobuf/io/zero_copy_stream.h>
 #include <google/protobuf/descriptor.pb.h>
 #include <google/protobuf/stubs/strutil.h>
+#include <sstream>
 
 namespace google { namespace protobuf { namespace compiler {namespace objectivec {
 
@@ -88,7 +89,7 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     // hacky.  but this is how other generators determine if we're generating
     // the core ProtocolBuffers library
     if (file_->name() != "google/protobuf/descriptor.proto") {
-      //printer->Print("#import <ProtocolBuffers/ProtocolBuffers.h>\n\n");
+      printer->Print("#import <ProtocolBuffers/ProtocolBuffers.h>\n\n");
     }
 
     if (file_->dependency_count() > 0) {
@@ -101,7 +102,11 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     }
 
     printer->Print(
+      "@class PBDescriptor;\n"
+      "@class PBEnumDescriptor;\n"
+      "@class PBEnumValueDescriptor;\n"
       "@class PBFieldAccessorTable;\n"
+      "@class PBFileDescriptor;\n"
       "@class PBGeneratedMessage_Builder;\n");
 
     set<string> dependencies;
@@ -124,6 +129,10 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     printer->Print(
       "+ (PBFileDescriptor*) descriptor;\n"
       "+ (PBFileDescriptor*) buildDescriptor;\n");
+
+    for (int i = 0; i < file_->extension_count(); i++) {
+      ExtensionGenerator(classname_, file_->extension(i)).GenerateMembersHeader(printer);
+    }
 
     // -----------------------------------------------------------------
     printer->Print("@end\n\n");
@@ -223,13 +232,23 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
 
     printer->Print(
       "  }\n"
-      "}\n"
+      "}\n");
+
+    for (int i = 0; i < file_->extension_count(); i++) {
+      ExtensionGenerator(classname_, file_->extension(i)).GenerateMembersSource(printer);
+    }
+
+    printer->Print(
       "+ (PBFileDescriptor*) descriptor {\n"
       "  return descriptor;\n"
-      "}\n"
-      "+ (PBFileDescriptor*) buildDescriptor {\n"
-      "  NSString* descriptorData = [NSString stringWithCString:\n",
+      "}\n");
+
+    printer->Print(
+      "+ (PBFileDescriptor*) buildDescriptor {\n",
+      //"  NSString* descriptorData = [NSString stringWithCString:\n",
       "classname", classname_);
+
+    printer->Print("  static uint8_t descriptorData[] = {\n");
 
     printer->Indent();
     printer->Indent();
@@ -245,19 +264,24 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
     string current_line;
     for (int i = 0; i < file_data.size(); i++) {
       if (current_line.length() > 70) {
-        printer->Print("\"$value$\"\n",
-          "value", current_line);
+        printer->Print("$value$\n", "value", current_line);
         current_line = "";
       }
 
-      current_line += CEscape(file_data.substr(i, 1));
+      uint8 b = file_data[i];
+
+      stringstream stream;
+      stream << (int)b;
+      stream << ",";
+
+      current_line += stream.str();
     }
-    printer->Print("\"$value$\"\n",
+
+    printer->Print("$value$\n",
       "value", current_line);
 
-
-    printer->Print("];\n");
     printer->Outdent();
+    printer->Print("};\n");
 
     printer->Print(
       "NSArray* dependencies = [NSArray arrayWithObjects:");
@@ -266,9 +290,15 @@ namespace google { namespace protobuf { namespace compiler {namespace objectivec
         "[$dependency$ descriptor], ",
         "dependency", FileClassName(file_->dependency(i)));
     }
+
+    stringstream ss;
+    ss << (int) file_data.size();
     printer->Print(
-      "nil];\n"
-      "return [PBFileDescriptor internalBuildGeneratedFileFrom:descriptorData dependencies:dependencies];\n");
+      "nil];\n\n"
+      "NSData* data = [NSData dataWithBytes:descriptorData length:$length$];\n"
+      "PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];\n"
+      "return [PBFileDescriptor buildFrom:proto dependencies:dependencies];\n",
+      "length", ss.str());
 
     printer->Outdent();
 

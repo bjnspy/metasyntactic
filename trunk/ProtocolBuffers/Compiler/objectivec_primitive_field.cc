@@ -122,7 +122,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       // initializers for ByteStrings are both tricky.  We can sidestep the
       // whole problem by just grabbing the default value from the descriptor.
       return strings::Substitute(
-        "([[[$0 descriptor].fields objectAtIndex:$1] defaultValue])",
+        "([((PBFieldDescriptor*)[[$0 descriptor].fields objectAtIndex:$1]) defaultValue])",
         ClassName(field->containing_type()), field->index());
                                           }
 

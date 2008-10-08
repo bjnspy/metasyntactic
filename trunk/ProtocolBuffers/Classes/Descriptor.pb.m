@@ -446,23 +446,21 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
     defaultPBFileDescriptorSetInstance = [[PBFileDescriptorSet alloc] init];
   }
 }
-
 + (PBFileDescriptorSet*) defaultInstance {
   return defaultPBFileDescriptorSetInstance;
 }
-
 - (PBFileDescriptorSet*) defaultInstanceForType {
   return defaultPBFileDescriptorSetInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBFileDescriptorSet descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorSet_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable];
 }
-
 - (NSArray*) fileList {
   return mutableFileList;
 }
@@ -470,18 +468,15 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   id value = [mutableFileList objectAtIndex:index];
   return value;
 }
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   for (PBFileDescriptorProto* element in self.fileList) {
     [output writeMessage:1 value:element];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -494,7 +489,6 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBFileDescriptorSet*) parseFromData:(NSData*) data {
   return (PBFileDescriptorSet*)[[[PBFileDescriptorSet newBuilder] mergeFromData:data] build];
 }
@@ -513,13 +507,11 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 + (PBFileDescriptorSet*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBFileDescriptorSet*)[[[PBFileDescriptorSet newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBFileDescriptorSet_Builder*) newBuilder { return [[[PBFileDescriptorSet_Builder alloc] init] autorelease]; }
 - (PBFileDescriptorSet_Builder*) newBuilderForType { return [PBFileDescriptorSet newBuilder]; }
 + (PBFileDescriptorSet_Builder*) newBuilderWithPBFileDescriptorSet:(PBFileDescriptorSet*) prototype {
   return [[PBFileDescriptorSet newBuilder] mergeFromPBFileDescriptorSet:prototype];
 }
-
 @end
 
 @implementation PBFileDescriptorSet_Builder
@@ -537,37 +529,30 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 - (PBFileDescriptorSet*) internalGetResult {
   return result;
 }
-
 - (PBFileDescriptorSet_Builder*) clear {
   self.result = [[[PBFileDescriptorSet alloc] init] autorelease];
   return self;
 }
-
 - (PBFileDescriptorSet_Builder*) clone {
   return (PBFileDescriptorSet_Builder*)[[[[PBFileDescriptorSet_Builder alloc] init] autorelease] mergeFromPBFileDescriptorSet:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBFileDescriptorSet descriptor];
 }
-
 - (PBFileDescriptorSet*) defaultInstanceForType {
   return [PBFileDescriptorSet defaultInstance];
 }
-
 - (PBFileDescriptorSet*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBFileDescriptorSet*) buildPartial {
   PBFileDescriptorSet* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBFileDescriptorSet_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFileDescriptorSet class]]) {
@@ -577,7 +562,6 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
     return self;
   }
 }
-
 - (PBFileDescriptorSet_Builder*) mergeFromPBFileDescriptorSet:(PBFileDescriptorSet*) other {
   if (other == [PBFileDescriptorSet defaultInstance]) return self;
   if (other.mutableFileList.count > 0) {
@@ -589,11 +573,9 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -618,8 +600,6 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
     }
   }
 }
-
-
 - (NSArray*) fileList {
   if (result.mutableFileList == nil) { return [NSArray array]; }
   return result.mutableFileList;
@@ -705,25 +685,21 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
     defaultPBFileDescriptorProtoInstance = [[PBFileDescriptorProto alloc] init];
   }
 }
-
 + (PBFileDescriptorProto*) defaultInstance {
   return defaultPBFileDescriptorProtoInstance;
 }
-
 - (PBFileDescriptorProto*) defaultInstanceForType {
   return defaultPBFileDescriptorProtoInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBFileDescriptorProto descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorProto_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable];
 }
-
-
-
 - (NSArray*) dependencyList {
   return mutableDependencyList;
 }
@@ -731,7 +707,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   id value = [mutableDependencyList objectAtIndex:index];
   return value;
 }
-
 - (NSArray*) messageTypeList {
   return mutableMessageTypeList;
 }
@@ -739,7 +714,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   id value = [mutableMessageTypeList objectAtIndex:index];
   return value;
 }
-
 - (NSArray*) enumTypeList {
   return mutableEnumTypeList;
 }
@@ -747,7 +721,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   id value = [mutableEnumTypeList objectAtIndex:index];
   return value;
 }
-
 - (NSArray*) serviceList {
   return mutableServiceList;
 }
@@ -755,7 +728,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   id value = [mutableServiceList objectAtIndex:index];
   return value;
 }
-
 - (NSArray*) extensionList {
   return mutableExtensionList;
 }
@@ -763,12 +735,9 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   id value = [mutableExtensionList objectAtIndex:index];
   return value;
 }
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.name];
@@ -796,7 +765,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -830,7 +798,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBFileDescriptorProto*) parseFromData:(NSData*) data {
   return (PBFileDescriptorProto*)[[[PBFileDescriptorProto newBuilder] mergeFromData:data] build];
 }
@@ -849,13 +816,11 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 + (PBFileDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBFileDescriptorProto*)[[[PBFileDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBFileDescriptorProto_Builder*) newBuilder { return [[[PBFileDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBFileDescriptorProto_Builder*) newBuilderForType { return [PBFileDescriptorProto newBuilder]; }
 + (PBFileDescriptorProto_Builder*) newBuilderWithPBFileDescriptorProto:(PBFileDescriptorProto*) prototype {
   return [[PBFileDescriptorProto newBuilder] mergeFromPBFileDescriptorProto:prototype];
 }
-
 @end
 
 @implementation PBFileDescriptorProto_Builder
@@ -873,37 +838,30 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (PBFileDescriptorProto*) internalGetResult {
   return result;
 }
-
 - (PBFileDescriptorProto_Builder*) clear {
   self.result = [[[PBFileDescriptorProto alloc] init] autorelease];
   return self;
 }
-
 - (PBFileDescriptorProto_Builder*) clone {
   return (PBFileDescriptorProto_Builder*)[[[[PBFileDescriptorProto_Builder alloc] init] autorelease] mergeFromPBFileDescriptorProto:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBFileDescriptorProto descriptor];
 }
-
 - (PBFileDescriptorProto*) defaultInstanceForType {
   return [PBFileDescriptorProto defaultInstance];
 }
-
 - (PBFileDescriptorProto*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBFileDescriptorProto*) buildPartial {
   PBFileDescriptorProto* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBFileDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFileDescriptorProto class]]) {
@@ -913,7 +871,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
     return self;
   }
 }
-
 - (PBFileDescriptorProto_Builder*) mergeFromPBFileDescriptorProto:(PBFileDescriptorProto*) other {
   if (other == [PBFileDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
@@ -958,11 +915,9 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -1026,8 +981,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
     }
   }
 }
-
-
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -1044,7 +997,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   result.name = @"";
   return self;
 }
-
 - (BOOL) hasPackage {
   return result.hasPackage;
 }
@@ -1061,7 +1013,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   result.package = @"";
   return self;
 }
-
 - (NSArray*) dependencyList {
   if (result.mutableDependencyList == nil) { return [NSArray array]; }
   return result.mutableDependencyList;
@@ -1091,7 +1042,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   result.mutableDependencyList = nil;
   return self;
 }
-
 - (NSArray*) messageTypeList {
   if (result.mutableMessageTypeList == nil) { return [NSArray array]; }
   return result.mutableMessageTypeList;
@@ -1121,7 +1071,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   [result.mutableMessageTypeList addObject:value];
   return self;
 }
-
 - (NSArray*) enumTypeList {
   if (result.mutableEnumTypeList == nil) { return [NSArray array]; }
   return result.mutableEnumTypeList;
@@ -1151,7 +1100,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   [result.mutableEnumTypeList addObject:value];
   return self;
 }
-
 - (NSArray*) serviceList {
   if (result.mutableServiceList == nil) { return [NSArray array]; }
   return result.mutableServiceList;
@@ -1181,7 +1129,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   [result.mutableServiceList addObject:value];
   return self;
 }
-
 - (NSArray*) extensionList {
   if (result.mutableExtensionList == nil) { return [NSArray array]; }
   return result.mutableExtensionList;
@@ -1211,7 +1158,6 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   [result.mutableExtensionList addObject:value];
   return self;
 }
-
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -1291,24 +1237,21 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
     defaultPBDescriptorProtoInstance = [[PBDescriptorProto alloc] init];
   }
 }
-
 + (PBDescriptorProto*) defaultInstance {
   return defaultPBDescriptorProtoInstance;
 }
-
 - (PBDescriptorProto*) defaultInstanceForType {
   return defaultPBDescriptorProtoInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBDescriptorProto descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_fieldAccessorTable];
 }
-
-
 - (NSArray*) fieldList {
   return mutableFieldList;
 }
@@ -1316,7 +1259,6 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   id value = [mutableFieldList objectAtIndex:index];
   return value;
 }
-
 - (NSArray*) extensionList {
   return mutableExtensionList;
 }
@@ -1324,7 +1266,6 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   id value = [mutableExtensionList objectAtIndex:index];
   return value;
 }
-
 - (NSArray*) nestedTypeList {
   return mutableNestedTypeList;
 }
@@ -1332,7 +1273,6 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   id value = [mutableNestedTypeList objectAtIndex:index];
   return value;
 }
-
 - (NSArray*) enumTypeList {
   return mutableEnumTypeList;
 }
@@ -1340,7 +1280,6 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   id value = [mutableEnumTypeList objectAtIndex:index];
   return value;
 }
-
 - (NSArray*) extensionRangeList {
   return mutableExtensionRangeList;
 }
@@ -1348,12 +1287,9 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   id value = [mutableExtensionRangeList objectAtIndex:index];
   return value;
 }
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.name];
@@ -1378,7 +1314,6 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -1409,7 +1344,6 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBDescriptorProto*) parseFromData:(NSData*) data {
   return (PBDescriptorProto*)[[[PBDescriptorProto newBuilder] mergeFromData:data] build];
 }
@@ -1428,13 +1362,11 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 + (PBDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBDescriptorProto*)[[[PBDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBDescriptorProto_Builder*) newBuilder { return [[[PBDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBDescriptorProto_Builder*) newBuilderForType { return [PBDescriptorProto newBuilder]; }
 + (PBDescriptorProto_Builder*) newBuilderWithPBDescriptorProto:(PBDescriptorProto*) prototype {
   return [[PBDescriptorProto newBuilder] mergeFromPBDescriptorProto:prototype];
 }
-
 @end
 
 @interface PBDescriptorProto_ExtensionRange ()
@@ -1470,29 +1402,24 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
     defaultPBDescriptorProto_ExtensionRangeInstance = [[PBDescriptorProto_ExtensionRange alloc] init];
   }
 }
-
 + (PBDescriptorProto_ExtensionRange*) defaultInstance {
   return defaultPBDescriptorProto_ExtensionRangeInstance;
 }
-
 - (PBDescriptorProto_ExtensionRange*) defaultInstanceForType {
   return defaultPBDescriptorProto_ExtensionRangeInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBDescriptorProto_ExtensionRange descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable];
 }
-
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasStart) {
     [output writeInt32:1 value:self.start];
@@ -1502,7 +1429,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -1518,7 +1444,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBDescriptorProto_ExtensionRange*) parseFromData:(NSData*) data {
   return (PBDescriptorProto_ExtensionRange*)[[[PBDescriptorProto_ExtensionRange newBuilder] mergeFromData:data] build];
 }
@@ -1537,13 +1462,11 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 + (PBDescriptorProto_ExtensionRange*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBDescriptorProto_ExtensionRange*)[[[PBDescriptorProto_ExtensionRange newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBDescriptorProto_ExtensionRange_Builder*) newBuilder { return [[[PBDescriptorProto_ExtensionRange_Builder alloc] init] autorelease]; }
 - (PBDescriptorProto_ExtensionRange_Builder*) newBuilderForType { return [PBDescriptorProto_ExtensionRange newBuilder]; }
 + (PBDescriptorProto_ExtensionRange_Builder*) newBuilderWithPBDescriptorProto_ExtensionRange:(PBDescriptorProto_ExtensionRange*) prototype {
   return [[PBDescriptorProto_ExtensionRange newBuilder] mergeFromPBDescriptorProto_ExtensionRange:prototype];
 }
-
 @end
 
 @implementation PBDescriptorProto_ExtensionRange_Builder
@@ -1561,37 +1484,30 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBDescriptorProto_ExtensionRange*) internalGetResult {
   return result;
 }
-
 - (PBDescriptorProto_ExtensionRange_Builder*) clear {
   self.result = [[[PBDescriptorProto_ExtensionRange alloc] init] autorelease];
   return self;
 }
-
 - (PBDescriptorProto_ExtensionRange_Builder*) clone {
   return (PBDescriptorProto_ExtensionRange_Builder*)[[[[PBDescriptorProto_ExtensionRange_Builder alloc] init] autorelease] mergeFromPBDescriptorProto_ExtensionRange:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBDescriptorProto_ExtensionRange descriptor];
 }
-
 - (PBDescriptorProto_ExtensionRange*) defaultInstanceForType {
   return [PBDescriptorProto_ExtensionRange defaultInstance];
 }
-
 - (PBDescriptorProto_ExtensionRange*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBDescriptorProto_ExtensionRange*) buildPartial {
   PBDescriptorProto_ExtensionRange* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBDescriptorProto_ExtensionRange_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBDescriptorProto_ExtensionRange class]]) {
@@ -1601,7 +1517,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
     return self;
   }
 }
-
 - (PBDescriptorProto_ExtensionRange_Builder*) mergeFromPBDescriptorProto_ExtensionRange:(PBDescriptorProto_ExtensionRange*) other {
   if (other == [PBDescriptorProto_ExtensionRange defaultInstance]) return self;
   if (other.hasStart) {
@@ -1613,11 +1528,9 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBDescriptorProto_ExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBDescriptorProto_ExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -1644,8 +1557,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
     }
   }
 }
-
-
 - (BOOL) hasStart {
   return result.hasStart;
 }
@@ -1662,7 +1573,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   result.start = 0;
   return self;
 }
-
 - (BOOL) hasEnd {
   return result.hasEnd;
 }
@@ -1696,37 +1606,30 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBDescriptorProto*) internalGetResult {
   return result;
 }
-
 - (PBDescriptorProto_Builder*) clear {
   self.result = [[[PBDescriptorProto alloc] init] autorelease];
   return self;
 }
-
 - (PBDescriptorProto_Builder*) clone {
   return (PBDescriptorProto_Builder*)[[[[PBDescriptorProto_Builder alloc] init] autorelease] mergeFromPBDescriptorProto:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBDescriptorProto descriptor];
 }
-
 - (PBDescriptorProto*) defaultInstanceForType {
   return [PBDescriptorProto defaultInstance];
 }
-
 - (PBDescriptorProto*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBDescriptorProto*) buildPartial {
   PBDescriptorProto* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBDescriptorProto class]]) {
@@ -1736,7 +1639,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
     return self;
   }
 }
-
 - (PBDescriptorProto_Builder*) mergeFromPBDescriptorProto:(PBDescriptorProto*) other {
   if (other == [PBDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
@@ -1778,11 +1680,9 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -1844,8 +1744,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
     }
   }
 }
-
-
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -1862,7 +1760,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   result.name = @"";
   return self;
 }
-
 - (NSArray*) fieldList {
   if (result.mutableFieldList == nil) { return [NSArray array]; }
   return result.mutableFieldList;
@@ -1892,7 +1789,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   [result.mutableFieldList addObject:value];
   return self;
 }
-
 - (NSArray*) extensionList {
   if (result.mutableExtensionList == nil) { return [NSArray array]; }
   return result.mutableExtensionList;
@@ -1922,7 +1818,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   [result.mutableExtensionList addObject:value];
   return self;
 }
-
 - (NSArray*) nestedTypeList {
   if (result.mutableNestedTypeList == nil) { return [NSArray array]; }
   return result.mutableNestedTypeList;
@@ -1952,7 +1847,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   [result.mutableNestedTypeList addObject:value];
   return self;
 }
-
 - (NSArray*) enumTypeList {
   if (result.mutableEnumTypeList == nil) { return [NSArray array]; }
   return result.mutableEnumTypeList;
@@ -1982,7 +1876,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   [result.mutableEnumTypeList addObject:value];
   return self;
 }
-
 - (NSArray*) extensionRangeList {
   if (result.mutableExtensionRangeList == nil) { return [NSArray array]; }
   return result.mutableExtensionRangeList;
@@ -2012,7 +1905,6 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   [result.mutableExtensionRangeList addObject:value];
   return self;
 }
-
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -2119,35 +2011,24 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
     defaultPBFieldDescriptorProtoInstance = [[PBFieldDescriptorProto alloc] init];
   }
 }
-
 + (PBFieldDescriptorProto*) defaultInstance {
   return defaultPBFieldDescriptorProtoInstance;
 }
-
 - (PBFieldDescriptorProto*) defaultInstanceForType {
   return defaultPBFieldDescriptorProtoInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBFieldDescriptorProto descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldDescriptorProto_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable];
 }
-
-
-
-
-
-
-
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.name];
@@ -2175,7 +2056,6 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -2209,7 +2089,6 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBFieldDescriptorProto*) parseFromData:(NSData*) data {
   return (PBFieldDescriptorProto*)[[[PBFieldDescriptorProto newBuilder] mergeFromData:data] build];
 }
@@ -2228,18 +2107,16 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
 + (PBFieldDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBFieldDescriptorProto*)[[[PBFieldDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBFieldDescriptorProto_Builder*) newBuilder { return [[[PBFieldDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBFieldDescriptorProto_Builder*) newBuilderForType { return [PBFieldDescriptorProto newBuilder]; }
 + (PBFieldDescriptorProto_Builder*) newBuilderWithPBFieldDescriptorProto:(PBFieldDescriptorProto*) prototype {
   return [[PBFieldDescriptorProto newBuilder] mergeFromPBFieldDescriptorProto:prototype];
 }
-
 @end
 
 @interface PBFieldDescriptorProto_Type ()
-@property int32_t index;
-@property int32_t value;
+  @property int32_t index;
+  @property int32_t value;
 @end
 
 @implementation PBFieldDescriptorProto_Type
@@ -2337,7 +2214,6 @@ static PBFieldDescriptorProto_Type* PBFieldDescriptorProto_Type_TYPE_SINT64 = ni
     default: return nil;
   }
 }
-
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBFieldDescriptorProto_Type descriptor].values objectAtIndex:index];
 }
@@ -2347,8 +2223,6 @@ static PBFieldDescriptorProto_Type* PBFieldDescriptorProto_Type_TYPE_SINT64 = ni
 + (PBEnumDescriptor*) descriptor {
   return [[PBFieldDescriptorProto descriptor].enumTypes objectAtIndex:0];
 }
-
-
 + (PBFieldDescriptorProto_Type*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.type != [PBFieldDescriptorProto_Type descriptor]) {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
@@ -2378,8 +2252,8 @@ static PBFieldDescriptorProto_Type* PBFieldDescriptorProto_Type_TYPE_SINT64 = ni
 @end
 
 @interface PBFieldDescriptorProto_Label ()
-@property int32_t index;
-@property int32_t value;
+  @property int32_t index;
+  @property int32_t value;
 @end
 
 @implementation PBFieldDescriptorProto_Label
@@ -2417,7 +2291,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
     default: return nil;
   }
 }
-
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBFieldDescriptorProto_Label descriptor].values objectAtIndex:index];
 }
@@ -2427,8 +2300,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 + (PBEnumDescriptor*) descriptor {
   return [[PBFieldDescriptorProto descriptor].enumTypes objectAtIndex:1];
 }
-
-
 + (PBFieldDescriptorProto_Label*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.type != [PBFieldDescriptorProto_Label descriptor]) {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
@@ -2457,37 +2328,30 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 - (PBFieldDescriptorProto*) internalGetResult {
   return result;
 }
-
 - (PBFieldDescriptorProto_Builder*) clear {
   self.result = [[[PBFieldDescriptorProto alloc] init] autorelease];
   return self;
 }
-
 - (PBFieldDescriptorProto_Builder*) clone {
   return (PBFieldDescriptorProto_Builder*)[[[[PBFieldDescriptorProto_Builder alloc] init] autorelease] mergeFromPBFieldDescriptorProto:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBFieldDescriptorProto descriptor];
 }
-
 - (PBFieldDescriptorProto*) defaultInstanceForType {
   return [PBFieldDescriptorProto defaultInstance];
 }
-
 - (PBFieldDescriptorProto*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBFieldDescriptorProto*) buildPartial {
   PBFieldDescriptorProto* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBFieldDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFieldDescriptorProto class]]) {
@@ -2497,7 +2361,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
     return self;
   }
 }
-
 - (PBFieldDescriptorProto_Builder*) mergeFromPBFieldDescriptorProto:(PBFieldDescriptorProto*) other {
   if (other == [PBFieldDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
@@ -2527,11 +2390,9 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -2599,8 +2460,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
     }
   }
 }
-
-
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -2617,7 +2476,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   result.name = @"";
   return self;
 }
-
 - (BOOL) hasNumber {
   return result.hasNumber;
 }
@@ -2634,7 +2492,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   result.number = 0;
   return self;
 }
-
 - (BOOL) hasLabel {
   return result.hasLabel;
 }
@@ -2651,7 +2508,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   result.label = [PBFieldDescriptorProto_Label LABEL_OPTIONAL];
   return self;
 }
-
 - (BOOL) hasType {
   return result.hasType;
 }
@@ -2668,7 +2524,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   result.type = [PBFieldDescriptorProto_Type TYPE_DOUBLE];
   return self;
 }
-
 - (BOOL) hasTypeName {
   return result.hasTypeName;
 }
@@ -2685,7 +2540,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   result.typeName = @"";
   return self;
 }
-
 - (BOOL) hasExtendee {
   return result.hasExtendee;
 }
@@ -2702,7 +2556,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   result.extendee = @"";
   return self;
 }
-
 - (BOOL) hasDefaultValue {
   return result.hasDefaultValue;
 }
@@ -2719,7 +2572,6 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   result.defaultValue = @"";
   return self;
 }
-
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -2787,24 +2639,21 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
     defaultPBEnumDescriptorProtoInstance = [[PBEnumDescriptorProto alloc] init];
   }
 }
-
 + (PBEnumDescriptorProto*) defaultInstance {
   return defaultPBEnumDescriptorProtoInstance;
 }
-
 - (PBEnumDescriptorProto*) defaultInstanceForType {
   return defaultPBEnumDescriptorProtoInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBEnumDescriptorProto descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumDescriptorProto_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable];
 }
-
-
 - (NSArray*) valueList {
   return mutableValueList;
 }
@@ -2812,12 +2661,9 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   id value = [mutableValueList objectAtIndex:index];
   return value;
 }
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.name];
@@ -2830,7 +2676,6 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -2849,7 +2694,6 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBEnumDescriptorProto*) parseFromData:(NSData*) data {
   return (PBEnumDescriptorProto*)[[[PBEnumDescriptorProto newBuilder] mergeFromData:data] build];
 }
@@ -2868,13 +2712,11 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 + (PBEnumDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBEnumDescriptorProto*)[[[PBEnumDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBEnumDescriptorProto_Builder*) newBuilder { return [[[PBEnumDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBEnumDescriptorProto_Builder*) newBuilderForType { return [PBEnumDescriptorProto newBuilder]; }
 + (PBEnumDescriptorProto_Builder*) newBuilderWithPBEnumDescriptorProto:(PBEnumDescriptorProto*) prototype {
   return [[PBEnumDescriptorProto newBuilder] mergeFromPBEnumDescriptorProto:prototype];
 }
-
 @end
 
 @implementation PBEnumDescriptorProto_Builder
@@ -2892,37 +2734,30 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 - (PBEnumDescriptorProto*) internalGetResult {
   return result;
 }
-
 - (PBEnumDescriptorProto_Builder*) clear {
   self.result = [[[PBEnumDescriptorProto alloc] init] autorelease];
   return self;
 }
-
 - (PBEnumDescriptorProto_Builder*) clone {
   return (PBEnumDescriptorProto_Builder*)[[[[PBEnumDescriptorProto_Builder alloc] init] autorelease] mergeFromPBEnumDescriptorProto:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBEnumDescriptorProto descriptor];
 }
-
 - (PBEnumDescriptorProto*) defaultInstanceForType {
   return [PBEnumDescriptorProto defaultInstance];
 }
-
 - (PBEnumDescriptorProto*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBEnumDescriptorProto*) buildPartial {
   PBEnumDescriptorProto* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBEnumDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBEnumDescriptorProto class]]) {
@@ -2932,7 +2767,6 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
     return self;
   }
 }
-
 - (PBEnumDescriptorProto_Builder*) mergeFromPBEnumDescriptorProto:(PBEnumDescriptorProto*) other {
   if (other == [PBEnumDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
@@ -2950,11 +2784,9 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -2992,8 +2824,6 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
     }
   }
 }
-
-
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -3010,7 +2840,6 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   result.name = @"";
   return self;
 }
-
 - (NSArray*) valueList {
   if (result.mutableValueList == nil) { return [NSArray array]; }
   return result.mutableValueList;
@@ -3040,7 +2869,6 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   [result.mutableValueList addObject:value];
   return self;
 }
-
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -3112,30 +2940,24 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
     defaultPBEnumValueDescriptorProtoInstance = [[PBEnumValueDescriptorProto alloc] init];
   }
 }
-
 + (PBEnumValueDescriptorProto*) defaultInstance {
   return defaultPBEnumValueDescriptorProtoInstance;
 }
-
 - (PBEnumValueDescriptorProto*) defaultInstanceForType {
   return defaultPBEnumValueDescriptorProtoInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBEnumValueDescriptorProto descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueDescriptorProto_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable];
 }
-
-
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.name];
@@ -3148,7 +2970,6 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -3167,7 +2988,6 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBEnumValueDescriptorProto*) parseFromData:(NSData*) data {
   return (PBEnumValueDescriptorProto*)[[[PBEnumValueDescriptorProto newBuilder] mergeFromData:data] build];
 }
@@ -3186,13 +3006,11 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 + (PBEnumValueDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBEnumValueDescriptorProto*)[[[PBEnumValueDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBEnumValueDescriptorProto_Builder*) newBuilder { return [[[PBEnumValueDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBEnumValueDescriptorProto_Builder*) newBuilderForType { return [PBEnumValueDescriptorProto newBuilder]; }
 + (PBEnumValueDescriptorProto_Builder*) newBuilderWithPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) prototype {
   return [[PBEnumValueDescriptorProto newBuilder] mergeFromPBEnumValueDescriptorProto:prototype];
 }
-
 @end
 
 @implementation PBEnumValueDescriptorProto_Builder
@@ -3210,37 +3028,30 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 - (PBEnumValueDescriptorProto*) internalGetResult {
   return result;
 }
-
 - (PBEnumValueDescriptorProto_Builder*) clear {
   self.result = [[[PBEnumValueDescriptorProto alloc] init] autorelease];
   return self;
 }
-
 - (PBEnumValueDescriptorProto_Builder*) clone {
   return (PBEnumValueDescriptorProto_Builder*)[[[[PBEnumValueDescriptorProto_Builder alloc] init] autorelease] mergeFromPBEnumValueDescriptorProto:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBEnumValueDescriptorProto descriptor];
 }
-
 - (PBEnumValueDescriptorProto*) defaultInstanceForType {
   return [PBEnumValueDescriptorProto defaultInstance];
 }
-
 - (PBEnumValueDescriptorProto*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBEnumValueDescriptorProto*) buildPartial {
   PBEnumValueDescriptorProto* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBEnumValueDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBEnumValueDescriptorProto class]]) {
@@ -3250,7 +3061,6 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
     return self;
   }
 }
-
 - (PBEnumValueDescriptorProto_Builder*) mergeFromPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) other {
   if (other == [PBEnumValueDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
@@ -3265,11 +3075,9 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -3305,8 +3113,6 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
     }
   }
 }
-
-
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -3323,7 +3129,6 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   result.name = @"";
   return self;
 }
-
 - (BOOL) hasNumber {
   return result.hasNumber;
 }
@@ -3340,7 +3145,6 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   result.number = 0;
   return self;
 }
-
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -3408,24 +3212,21 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
     defaultPBServiceDescriptorProtoInstance = [[PBServiceDescriptorProto alloc] init];
   }
 }
-
 + (PBServiceDescriptorProto*) defaultInstance {
   return defaultPBServiceDescriptorProtoInstance;
 }
-
 - (PBServiceDescriptorProto*) defaultInstanceForType {
   return defaultPBServiceDescriptorProtoInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBServiceDescriptorProto descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceDescriptorProto_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable];
 }
-
-
 - (NSArray*) methodList {
   return mutableMethodList;
 }
@@ -3433,12 +3234,9 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   id value = [mutableMethodList objectAtIndex:index];
   return value;
 }
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.name];
@@ -3451,7 +3249,6 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -3470,7 +3267,6 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBServiceDescriptorProto*) parseFromData:(NSData*) data {
   return (PBServiceDescriptorProto*)[[[PBServiceDescriptorProto newBuilder] mergeFromData:data] build];
 }
@@ -3489,13 +3285,11 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 + (PBServiceDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBServiceDescriptorProto*)[[[PBServiceDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBServiceDescriptorProto_Builder*) newBuilder { return [[[PBServiceDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBServiceDescriptorProto_Builder*) newBuilderForType { return [PBServiceDescriptorProto newBuilder]; }
 + (PBServiceDescriptorProto_Builder*) newBuilderWithPBServiceDescriptorProto:(PBServiceDescriptorProto*) prototype {
   return [[PBServiceDescriptorProto newBuilder] mergeFromPBServiceDescriptorProto:prototype];
 }
-
 @end
 
 @implementation PBServiceDescriptorProto_Builder
@@ -3513,37 +3307,30 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 - (PBServiceDescriptorProto*) internalGetResult {
   return result;
 }
-
 - (PBServiceDescriptorProto_Builder*) clear {
   self.result = [[[PBServiceDescriptorProto alloc] init] autorelease];
   return self;
 }
-
 - (PBServiceDescriptorProto_Builder*) clone {
   return (PBServiceDescriptorProto_Builder*)[[[[PBServiceDescriptorProto_Builder alloc] init] autorelease] mergeFromPBServiceDescriptorProto:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBServiceDescriptorProto descriptor];
 }
-
 - (PBServiceDescriptorProto*) defaultInstanceForType {
   return [PBServiceDescriptorProto defaultInstance];
 }
-
 - (PBServiceDescriptorProto*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBServiceDescriptorProto*) buildPartial {
   PBServiceDescriptorProto* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBServiceDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBServiceDescriptorProto class]]) {
@@ -3553,7 +3340,6 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
     return self;
   }
 }
-
 - (PBServiceDescriptorProto_Builder*) mergeFromPBServiceDescriptorProto:(PBServiceDescriptorProto*) other {
   if (other == [PBServiceDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
@@ -3571,11 +3357,9 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -3613,8 +3397,6 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
     }
   }
 }
-
-
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -3631,7 +3413,6 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   result.name = @"";
   return self;
 }
-
 - (NSArray*) methodList {
   if (result.mutableMethodList == nil) { return [NSArray array]; }
   return result.mutableMethodList;
@@ -3661,7 +3442,6 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   [result.mutableMethodList addObject:value];
   return self;
 }
-
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -3740,31 +3520,24 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
     defaultPBMethodDescriptorProtoInstance = [[PBMethodDescriptorProto alloc] init];
   }
 }
-
 + (PBMethodDescriptorProto*) defaultInstance {
   return defaultPBMethodDescriptorProtoInstance;
 }
-
 - (PBMethodDescriptorProto*) defaultInstanceForType {
   return defaultPBMethodDescriptorProtoInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBMethodDescriptorProto descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodDescriptorProto_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable];
 }
-
-
-
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
     [output writeString:1 value:self.name];
@@ -3780,7 +3553,6 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -3802,7 +3574,6 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBMethodDescriptorProto*) parseFromData:(NSData*) data {
   return (PBMethodDescriptorProto*)[[[PBMethodDescriptorProto newBuilder] mergeFromData:data] build];
 }
@@ -3821,13 +3592,11 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 + (PBMethodDescriptorProto*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBMethodDescriptorProto*)[[[PBMethodDescriptorProto newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBMethodDescriptorProto_Builder*) newBuilder { return [[[PBMethodDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBMethodDescriptorProto_Builder*) newBuilderForType { return [PBMethodDescriptorProto newBuilder]; }
 + (PBMethodDescriptorProto_Builder*) newBuilderWithPBMethodDescriptorProto:(PBMethodDescriptorProto*) prototype {
   return [[PBMethodDescriptorProto newBuilder] mergeFromPBMethodDescriptorProto:prototype];
 }
-
 @end
 
 @implementation PBMethodDescriptorProto_Builder
@@ -3845,37 +3614,30 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 - (PBMethodDescriptorProto*) internalGetResult {
   return result;
 }
-
 - (PBMethodDescriptorProto_Builder*) clear {
   self.result = [[[PBMethodDescriptorProto alloc] init] autorelease];
   return self;
 }
-
 - (PBMethodDescriptorProto_Builder*) clone {
   return (PBMethodDescriptorProto_Builder*)[[[[PBMethodDescriptorProto_Builder alloc] init] autorelease] mergeFromPBMethodDescriptorProto:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBMethodDescriptorProto descriptor];
 }
-
 - (PBMethodDescriptorProto*) defaultInstanceForType {
   return [PBMethodDescriptorProto defaultInstance];
 }
-
 - (PBMethodDescriptorProto*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBMethodDescriptorProto*) buildPartial {
   PBMethodDescriptorProto* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBMethodDescriptorProto_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBMethodDescriptorProto class]]) {
@@ -3885,7 +3647,6 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
     return self;
   }
 }
-
 - (PBMethodDescriptorProto_Builder*) mergeFromPBMethodDescriptorProto:(PBMethodDescriptorProto*) other {
   if (other == [PBMethodDescriptorProto defaultInstance]) return self;
   if (other.hasName) {
@@ -3903,11 +3664,9 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -3947,8 +3706,6 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
     }
   }
 }
-
-
 - (BOOL) hasName {
   return result.hasName;
 }
@@ -3965,7 +3722,6 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   result.name = @"";
   return self;
 }
-
 - (BOOL) hasInputType {
   return result.hasInputType;
 }
@@ -3982,7 +3738,6 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   result.inputType = @"";
   return self;
 }
-
 - (BOOL) hasOutputType {
   return result.hasOutputType;
 }
@@ -3999,7 +3754,6 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   result.outputType = @"";
   return self;
 }
-
 - (BOOL) hasOptions {
   return result.hasOptions;
 }
@@ -4093,33 +3847,24 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
     defaultPBFileOptionsInstance = [[PBFileOptions alloc] init];
   }
 }
-
 + (PBFileOptions*) defaultInstance {
   return defaultPBFileOptionsInstance;
 }
-
 - (PBFileOptions*) defaultInstanceForType {
   return defaultPBFileOptionsInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBFileOptions descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileOptions_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FileOptions_fieldAccessorTable];
 }
-
-
-
-
-
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasJavaPackage) {
     [output writeString:1 value:self.javaPackage];
@@ -4141,7 +3886,6 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -4169,7 +3913,6 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBFileOptions*) parseFromData:(NSData*) data {
   return (PBFileOptions*)[[[PBFileOptions newBuilder] mergeFromData:data] build];
 }
@@ -4188,18 +3931,16 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
 + (PBFileOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBFileOptions*)[[[PBFileOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBFileOptions_Builder*) newBuilder { return [[[PBFileOptions_Builder alloc] init] autorelease]; }
 - (PBFileOptions_Builder*) newBuilderForType { return [PBFileOptions newBuilder]; }
 + (PBFileOptions_Builder*) newBuilderWithPBFileOptions:(PBFileOptions*) prototype {
   return [[PBFileOptions newBuilder] mergeFromPBFileOptions:prototype];
 }
-
 @end
 
 @interface PBFileOptions_OptimizeMode ()
-@property int32_t index;
-@property int32_t value;
+  @property int32_t index;
+  @property int32_t value;
 @end
 
 @implementation PBFileOptions_OptimizeMode
@@ -4233,7 +3974,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
     default: return nil;
   }
 }
-
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBFileOptions_OptimizeMode descriptor].values objectAtIndex:index];
 }
@@ -4243,8 +3983,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
 + (PBEnumDescriptor*) descriptor {
   return [[PBFileOptions descriptor].enumTypes objectAtIndex:0];
 }
-
-
 + (PBFileOptions_OptimizeMode*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.type != [PBFileOptions_OptimizeMode descriptor]) {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
@@ -4272,37 +4010,30 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
 - (PBFileOptions*) internalGetResult {
   return result;
 }
-
 - (PBFileOptions_Builder*) clear {
   self.result = [[[PBFileOptions alloc] init] autorelease];
   return self;
 }
-
 - (PBFileOptions_Builder*) clone {
   return (PBFileOptions_Builder*)[[[[PBFileOptions_Builder alloc] init] autorelease] mergeFromPBFileOptions:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBFileOptions descriptor];
 }
-
 - (PBFileOptions*) defaultInstanceForType {
   return [PBFileOptions defaultInstance];
 }
-
 - (PBFileOptions*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBFileOptions*) buildPartial {
   PBFileOptions* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBFileOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFileOptions class]]) {
@@ -4312,7 +4043,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
     return self;
   }
 }
-
 - (PBFileOptions_Builder*) mergeFromPBFileOptions:(PBFileOptions*) other {
   if (other == [PBFileOptions defaultInstance]) return self;
   if (other.hasJavaPackage) {
@@ -4336,11 +4066,9 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -4389,8 +4117,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
     }
   }
 }
-
-
 - (BOOL) hasJavaPackage {
   return result.hasJavaPackage;
 }
@@ -4407,7 +4133,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
   result.javaPackage = @"";
   return self;
 }
-
 - (BOOL) hasJavaOuterClassname {
   return result.hasJavaOuterClassname;
 }
@@ -4424,7 +4149,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
   result.javaOuterClassname = @"";
   return self;
 }
-
 - (BOOL) hasJavaMultipleFiles {
   return result.hasJavaMultipleFiles;
 }
@@ -4441,7 +4165,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
   result.javaMultipleFiles = NO;
   return self;
 }
-
 - (BOOL) hasOptimizeFor {
   return result.hasOptimizeFor;
 }
@@ -4458,7 +4181,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
   result.optimizeFor = [PBFileOptions_OptimizeMode CODE_SIZE];
   return self;
 }
-
 - (BOOL) hasObjectivecPackage {
   return result.hasObjectivecPackage;
 }
@@ -4475,7 +4197,6 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
   result.objectivecPackage = @"";
   return self;
 }
-
 - (BOOL) hasObjectivecClassPrefix {
   return result.hasObjectivecClassPrefix;
 }
@@ -4520,35 +4241,30 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
     defaultPBMessageOptionsInstance = [[PBMessageOptions alloc] init];
   }
 }
-
 + (PBMessageOptions*) defaultInstance {
   return defaultPBMessageOptionsInstance;
 }
-
 - (PBMessageOptions*) defaultInstanceForType {
   return defaultPBMessageOptionsInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBMessageOptions descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_MessageOptions_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_MessageOptions_fieldAccessorTable];
 }
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasMessageSetWireFormat) {
     [output writeBool:1 value:self.messageSetWireFormat];
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -4561,7 +4277,6 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBMessageOptions*) parseFromData:(NSData*) data {
   return (PBMessageOptions*)[[[PBMessageOptions newBuilder] mergeFromData:data] build];
 }
@@ -4580,13 +4295,11 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 + (PBMessageOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBMessageOptions*)[[[PBMessageOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBMessageOptions_Builder*) newBuilder { return [[[PBMessageOptions_Builder alloc] init] autorelease]; }
 - (PBMessageOptions_Builder*) newBuilderForType { return [PBMessageOptions newBuilder]; }
 + (PBMessageOptions_Builder*) newBuilderWithPBMessageOptions:(PBMessageOptions*) prototype {
   return [[PBMessageOptions newBuilder] mergeFromPBMessageOptions:prototype];
 }
-
 @end
 
 @implementation PBMessageOptions_Builder
@@ -4604,37 +4317,30 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 - (PBMessageOptions*) internalGetResult {
   return result;
 }
-
 - (PBMessageOptions_Builder*) clear {
   self.result = [[[PBMessageOptions alloc] init] autorelease];
   return self;
 }
-
 - (PBMessageOptions_Builder*) clone {
   return (PBMessageOptions_Builder*)[[[[PBMessageOptions_Builder alloc] init] autorelease] mergeFromPBMessageOptions:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBMessageOptions descriptor];
 }
-
 - (PBMessageOptions*) defaultInstanceForType {
   return [PBMessageOptions defaultInstance];
 }
-
 - (PBMessageOptions*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBMessageOptions*) buildPartial {
   PBMessageOptions* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBMessageOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBMessageOptions class]]) {
@@ -4644,7 +4350,6 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
     return self;
   }
 }
-
 - (PBMessageOptions_Builder*) mergeFromPBMessageOptions:(PBMessageOptions*) other {
   if (other == [PBMessageOptions defaultInstance]) return self;
   if (other.hasMessageSetWireFormat) {
@@ -4653,11 +4358,9 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -4680,8 +4383,6 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
     }
   }
 }
-
-
 - (BOOL) hasMessageSetWireFormat {
   return result.hasMessageSetWireFormat;
 }
@@ -4733,29 +4434,24 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
     defaultPBFieldOptionsInstance = [[PBFieldOptions alloc] init];
   }
 }
-
 + (PBFieldOptions*) defaultInstance {
   return defaultPBFieldOptionsInstance;
 }
-
 - (PBFieldOptions*) defaultInstanceForType {
   return defaultPBFieldOptionsInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBFieldOptions descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldOptions_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldOptions_fieldAccessorTable];
 }
-
-
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasCtype) {
     [output writeEnum:1 value:self.ctype.number];
@@ -4765,7 +4461,6 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   }
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -4781,7 +4476,6 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBFieldOptions*) parseFromData:(NSData*) data {
   return (PBFieldOptions*)[[[PBFieldOptions newBuilder] mergeFromData:data] build];
 }
@@ -4800,18 +4494,16 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 + (PBFieldOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBFieldOptions*)[[[PBFieldOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBFieldOptions_Builder*) newBuilder { return [[[PBFieldOptions_Builder alloc] init] autorelease]; }
 - (PBFieldOptions_Builder*) newBuilderForType { return [PBFieldOptions newBuilder]; }
 + (PBFieldOptions_Builder*) newBuilderWithPBFieldOptions:(PBFieldOptions*) prototype {
   return [[PBFieldOptions newBuilder] mergeFromPBFieldOptions:prototype];
 }
-
 @end
 
 @interface PBFieldOptions_CType ()
-@property int32_t index;
-@property int32_t value;
+  @property int32_t index;
+  @property int32_t value;
 @end
 
 @implementation PBFieldOptions_CType
@@ -4845,7 +4537,6 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
     default: return nil;
   }
 }
-
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBFieldOptions_CType descriptor].values objectAtIndex:index];
 }
@@ -4855,8 +4546,6 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
 + (PBEnumDescriptor*) descriptor {
   return [[PBFieldOptions descriptor].enumTypes objectAtIndex:0];
 }
-
-
 + (PBFieldOptions_CType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.type != [PBFieldOptions_CType descriptor]) {
     @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
@@ -4884,37 +4573,30 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
 - (PBFieldOptions*) internalGetResult {
   return result;
 }
-
 - (PBFieldOptions_Builder*) clear {
   self.result = [[[PBFieldOptions alloc] init] autorelease];
   return self;
 }
-
 - (PBFieldOptions_Builder*) clone {
   return (PBFieldOptions_Builder*)[[[[PBFieldOptions_Builder alloc] init] autorelease] mergeFromPBFieldOptions:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBFieldOptions descriptor];
 }
-
 - (PBFieldOptions*) defaultInstanceForType {
   return [PBFieldOptions defaultInstance];
 }
-
 - (PBFieldOptions*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBFieldOptions*) buildPartial {
   PBFieldOptions* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBFieldOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBFieldOptions class]]) {
@@ -4924,7 +4606,6 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
     return self;
   }
 }
-
 - (PBFieldOptions_Builder*) mergeFromPBFieldOptions:(PBFieldOptions*) other {
   if (other == [PBFieldOptions defaultInstance]) return self;
   if (other.hasCtype) {
@@ -4936,11 +4617,9 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -4973,8 +4652,6 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
     }
   }
 }
-
-
 - (BOOL) hasCtype {
   return result.hasCtype;
 }
@@ -4991,7 +4668,6 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
   result.ctype = [PBFieldOptions_CType CORD];
   return self;
 }
-
 - (BOOL) hasExperimentalMapKey {
   return result.hasExperimentalMapKey;
 }
@@ -5029,31 +4705,27 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
     defaultPBEnumOptionsInstance = [[PBEnumOptions alloc] init];
   }
 }
-
 + (PBEnumOptions*) defaultInstance {
   return defaultPBEnumOptionsInstance;
 }
-
 - (PBEnumOptions*) defaultInstanceForType {
   return defaultPBEnumOptionsInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBEnumOptions descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumOptions_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumOptions_fieldAccessorTable];
 }
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -5063,7 +4735,6 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBEnumOptions*) parseFromData:(NSData*) data {
   return (PBEnumOptions*)[[[PBEnumOptions newBuilder] mergeFromData:data] build];
 }
@@ -5082,13 +4753,11 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 + (PBEnumOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBEnumOptions*)[[[PBEnumOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBEnumOptions_Builder*) newBuilder { return [[[PBEnumOptions_Builder alloc] init] autorelease]; }
 - (PBEnumOptions_Builder*) newBuilderForType { return [PBEnumOptions newBuilder]; }
 + (PBEnumOptions_Builder*) newBuilderWithPBEnumOptions:(PBEnumOptions*) prototype {
   return [[PBEnumOptions newBuilder] mergeFromPBEnumOptions:prototype];
 }
-
 @end
 
 @implementation PBEnumOptions_Builder
@@ -5106,37 +4775,30 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 - (PBEnumOptions*) internalGetResult {
   return result;
 }
-
 - (PBEnumOptions_Builder*) clear {
   self.result = [[[PBEnumOptions alloc] init] autorelease];
   return self;
 }
-
 - (PBEnumOptions_Builder*) clone {
   return (PBEnumOptions_Builder*)[[[[PBEnumOptions_Builder alloc] init] autorelease] mergeFromPBEnumOptions:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBEnumOptions descriptor];
 }
-
 - (PBEnumOptions*) defaultInstanceForType {
   return [PBEnumOptions defaultInstance];
 }
-
 - (PBEnumOptions*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBEnumOptions*) buildPartial {
   PBEnumOptions* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBEnumOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBEnumOptions class]]) {
@@ -5146,17 +4808,14 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
     return self;
   }
 }
-
 - (PBEnumOptions_Builder*) mergeFromPBEnumOptions:(PBEnumOptions*) other {
   if (other == [PBEnumOptions defaultInstance]) return self;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -5175,7 +4834,6 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
     }
   }
 }
-
 @end
 
 @interface PBEnumValueOptions ()
@@ -5197,31 +4855,27 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
     defaultPBEnumValueOptionsInstance = [[PBEnumValueOptions alloc] init];
   }
 }
-
 + (PBEnumValueOptions*) defaultInstance {
   return defaultPBEnumValueOptionsInstance;
 }
-
 - (PBEnumValueOptions*) defaultInstanceForType {
   return defaultPBEnumValueOptionsInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBEnumValueOptions descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueOptions_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable];
 }
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -5231,7 +4885,6 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBEnumValueOptions*) parseFromData:(NSData*) data {
   return (PBEnumValueOptions*)[[[PBEnumValueOptions newBuilder] mergeFromData:data] build];
 }
@@ -5250,13 +4903,11 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 + (PBEnumValueOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBEnumValueOptions*)[[[PBEnumValueOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBEnumValueOptions_Builder*) newBuilder { return [[[PBEnumValueOptions_Builder alloc] init] autorelease]; }
 - (PBEnumValueOptions_Builder*) newBuilderForType { return [PBEnumValueOptions newBuilder]; }
 + (PBEnumValueOptions_Builder*) newBuilderWithPBEnumValueOptions:(PBEnumValueOptions*) prototype {
   return [[PBEnumValueOptions newBuilder] mergeFromPBEnumValueOptions:prototype];
 }
-
 @end
 
 @implementation PBEnumValueOptions_Builder
@@ -5274,37 +4925,30 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 - (PBEnumValueOptions*) internalGetResult {
   return result;
 }
-
 - (PBEnumValueOptions_Builder*) clear {
   self.result = [[[PBEnumValueOptions alloc] init] autorelease];
   return self;
 }
-
 - (PBEnumValueOptions_Builder*) clone {
   return (PBEnumValueOptions_Builder*)[[[[PBEnumValueOptions_Builder alloc] init] autorelease] mergeFromPBEnumValueOptions:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBEnumValueOptions descriptor];
 }
-
 - (PBEnumValueOptions*) defaultInstanceForType {
   return [PBEnumValueOptions defaultInstance];
 }
-
 - (PBEnumValueOptions*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBEnumValueOptions*) buildPartial {
   PBEnumValueOptions* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBEnumValueOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBEnumValueOptions class]]) {
@@ -5314,17 +4958,14 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
     return self;
   }
 }
-
 - (PBEnumValueOptions_Builder*) mergeFromPBEnumValueOptions:(PBEnumValueOptions*) other {
   if (other == [PBEnumValueOptions defaultInstance]) return self;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -5343,7 +4984,6 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
     }
   }
 }
-
 @end
 
 @interface PBServiceOptions ()
@@ -5365,31 +5005,27 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
     defaultPBServiceOptionsInstance = [[PBServiceOptions alloc] init];
   }
 }
-
 + (PBServiceOptions*) defaultInstance {
   return defaultPBServiceOptionsInstance;
 }
-
 - (PBServiceOptions*) defaultInstanceForType {
   return defaultPBServiceOptionsInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBServiceOptions descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceOptions_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceOptions_fieldAccessorTable];
 }
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -5399,7 +5035,6 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBServiceOptions*) parseFromData:(NSData*) data {
   return (PBServiceOptions*)[[[PBServiceOptions newBuilder] mergeFromData:data] build];
 }
@@ -5418,13 +5053,11 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 + (PBServiceOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBServiceOptions*)[[[PBServiceOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBServiceOptions_Builder*) newBuilder { return [[[PBServiceOptions_Builder alloc] init] autorelease]; }
 - (PBServiceOptions_Builder*) newBuilderForType { return [PBServiceOptions newBuilder]; }
 + (PBServiceOptions_Builder*) newBuilderWithPBServiceOptions:(PBServiceOptions*) prototype {
   return [[PBServiceOptions newBuilder] mergeFromPBServiceOptions:prototype];
 }
-
 @end
 
 @implementation PBServiceOptions_Builder
@@ -5442,37 +5075,30 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 - (PBServiceOptions*) internalGetResult {
   return result;
 }
-
 - (PBServiceOptions_Builder*) clear {
   self.result = [[[PBServiceOptions alloc] init] autorelease];
   return self;
 }
-
 - (PBServiceOptions_Builder*) clone {
   return (PBServiceOptions_Builder*)[[[[PBServiceOptions_Builder alloc] init] autorelease] mergeFromPBServiceOptions:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBServiceOptions descriptor];
 }
-
 - (PBServiceOptions*) defaultInstanceForType {
   return [PBServiceOptions defaultInstance];
 }
-
 - (PBServiceOptions*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBServiceOptions*) buildPartial {
   PBServiceOptions* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBServiceOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBServiceOptions class]]) {
@@ -5482,17 +5108,14 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
     return self;
   }
 }
-
 - (PBServiceOptions_Builder*) mergeFromPBServiceOptions:(PBServiceOptions*) other {
   if (other == [PBServiceOptions defaultInstance]) return self;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -5511,7 +5134,6 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
     }
   }
 }
-
 @end
 
 @interface PBMethodOptions ()
@@ -5533,31 +5155,27 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
     defaultPBMethodOptionsInstance = [[PBMethodOptions alloc] init];
   }
 }
-
 + (PBMethodOptions*) defaultInstance {
   return defaultPBMethodOptionsInstance;
 }
-
 - (PBMethodOptions*) defaultInstanceForType {
   return defaultPBMethodOptionsInstance;
 }
-
+- (PBDescriptor*) descriptorForType {
+  return [PBMethodOptions descriptor];
+}
 + (PBDescriptor*) descriptor {
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodOptions_descriptor];
 }
-
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodOptions_fieldAccessorTable];
 }
-
 - (BOOL) isInitialized {
   return true;
 }
-
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
 }
-
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
   if (size != -1) return size;
@@ -5567,7 +5185,6 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   memoizedSerializedSize = size;
   return size;
 }
-
 + (PBMethodOptions*) parseFromData:(NSData*) data {
   return (PBMethodOptions*)[[[PBMethodOptions newBuilder] mergeFromData:data] build];
 }
@@ -5586,13 +5203,11 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 + (PBMethodOptions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   return (PBMethodOptions*)[[[PBMethodOptions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-
 + (PBMethodOptions_Builder*) newBuilder { return [[[PBMethodOptions_Builder alloc] init] autorelease]; }
 - (PBMethodOptions_Builder*) newBuilderForType { return [PBMethodOptions newBuilder]; }
 + (PBMethodOptions_Builder*) newBuilderWithPBMethodOptions:(PBMethodOptions*) prototype {
   return [[PBMethodOptions newBuilder] mergeFromPBMethodOptions:prototype];
 }
-
 @end
 
 @implementation PBMethodOptions_Builder
@@ -5610,37 +5225,30 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 - (PBMethodOptions*) internalGetResult {
   return result;
 }
-
 - (PBMethodOptions_Builder*) clear {
   self.result = [[[PBMethodOptions alloc] init] autorelease];
   return self;
 }
-
 - (PBMethodOptions_Builder*) clone {
   return (PBMethodOptions_Builder*)[[[[PBMethodOptions_Builder alloc] init] autorelease] mergeFromPBMethodOptions:result];
 }
-
 - (PBDescriptor*) descriptorForType {
   return [PBMethodOptions descriptor];
 }
-
 - (PBMethodOptions*) defaultInstanceForType {
   return [PBMethodOptions defaultInstance];
 }
-
 - (PBMethodOptions*) build {
   if (!self.isInitialized) {
     @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
   }
   return [self buildPartial];
 }
-
 - (PBMethodOptions*) buildPartial {
   PBMethodOptions* returnMe = [[result retain] autorelease];
   self.result = nil;
   return returnMe;
 }
-
 - (PBMethodOptions_Builder*) mergeFromMessage:(id<PBMessage>) other {
   id o = other;
   if ([o isKindOfClass:[PBMethodOptions class]]) {
@@ -5650,17 +5258,14 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
     return self;
   }
 }
-
 - (PBMethodOptions_Builder*) mergeFromPBMethodOptions:(PBMethodOptions*) other {
   if (other == [PBMethodOptions defaultInstance]) return self;
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
-
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
-
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];
   while (true) {
@@ -5679,6 +5284,5 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
     }
   }
 }
-
 @end
 

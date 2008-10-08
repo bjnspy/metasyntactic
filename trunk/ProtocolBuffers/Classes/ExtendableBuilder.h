@@ -21,6 +21,7 @@
 }
 
 - (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
+- (PBGeneratedMessage_Builder*) addExtension:(PBGeneratedExtension*) extension value:(id) value;
 
 //@protected
 - (PBExtendableMessage*) internalGetResult;

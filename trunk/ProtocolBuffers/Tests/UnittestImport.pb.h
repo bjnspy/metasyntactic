@@ -47,6 +47,7 @@
 @property (readonly) int32_t d;
 
 + (PBDescriptor*) descriptor;
+- (PBDescriptor*) descriptorForType;
 + (ImportMessage*) defaultInstance;
 - (ImportMessage*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;

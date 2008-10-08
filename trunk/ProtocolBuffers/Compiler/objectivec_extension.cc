@@ -35,28 +35,34 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
+  void ExtensionGenerator::GenerateMembersHeader(io::Printer* printer) {
+    map<string, string> vars;
+    vars["name"] = UnderscoresToCamelCase(descriptor_);
+
+    printer->Print(vars,
+      "+ (PBGeneratedExtension*) $name$;\n");
+  }
+
+
   void ExtensionGenerator::GenerateFieldsSource(io::Printer* printer) {
     map<string, string> vars;
     vars["name"] = UnderscoresToCamelCase(descriptor_);
     vars["containing_type"] = classname_;
-    vars["index"] = SimpleItoa(descriptor_->index());
-
-    ObjectiveCType objectivec_type = GetObjectiveCType(descriptor_);
-    string singular_type;
-    switch (objectivec_type) {
-    case OBJECTIVECTYPE_MESSAGE:
-      vars["type"] = ClassName(descriptor_->message_type());
-      break;
-    case OBJECTIVECTYPE_ENUM:
-      vars["type"] = ClassName(descriptor_->enum_type());
-      break;
-    default:
-      vars["type"] = BoxedPrimitiveTypeName(objectivec_type);
-      break;
-    }
 
     printer->Print(vars,
       "static PBGeneratedExtension* $containing_type$_$name$ = nil;\n");
+  }
+
+
+  void ExtensionGenerator::GenerateMembersSource(io::Printer* printer) {
+    map<string, string> vars;
+    vars["name"] = UnderscoresToCamelCase(descriptor_);
+    vars["containing_type"] = classname_;
+
+    printer->Print(vars,
+      "+ (PBGeneratedExtension*) $name$ {\n"
+      "  return $containing_type$_$name$;\n"
+      "}\n");
   }
 
   void ExtensionGenerator::GenerateInitializationSource(io::Printer* printer) {

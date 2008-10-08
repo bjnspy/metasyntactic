@@ -63,7 +63,13 @@
 
 /** Get the value of an extension. */
 - (id) getExtension:(PBGeneratedExtension*) extension {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    [self verifyExtensionContainingType:extension];
+    id value = [extensions getField:extension.descriptor];
+    if (value == nil) {
+        return extension.messageDefaultInstance;
+    } else {
+        return [extension fromReflectionType:value];
+    }
 }
 
 

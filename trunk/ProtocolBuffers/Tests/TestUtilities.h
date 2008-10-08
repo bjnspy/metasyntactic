@@ -20,6 +20,7 @@
 @class TestAllExtensions_Builder;
 @class TestAllTypes;
 @class TestAllTypes_Builder;
+@class PBExtensionRegistry;
 
 @interface TestUtilities : SenTestCase {
 
@@ -35,5 +36,7 @@
 + (TestAllExtensions*) allExtensionsSet;
 
 + (void) assertAllFieldsSet:(TestAllTypes*) message;
+
++ (PBExtensionRegistry*) extensionRegistry;
 
 @end
