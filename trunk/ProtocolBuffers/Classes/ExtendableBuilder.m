@@ -71,18 +71,19 @@
     return [self.internalGetResult getExtension:extension index:index];
 }
 
+
+- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension value:(id) value {
+    PBExtendableMessage* message = self.internalGetResult;
+    [message verifyExtensionContainingType:extension];
+    [message.extensions setField:extension.descriptor value:[extension toReflectionType:value]];
+    return self;
+}
+
+
 #if 0
 
 
 /** Set the value of an extension. */
-public final <Type> BuilderType setExtension(
-                                             GeneratedExtension<MessageType, Type> extension, Type value) {
-    ExtendableMessage<MessageType> message = internalGetResult();
-    message.verifyExtensionContainingType(extension);
-    message.extensions.setField(extension.getDescriptor(),
-                                extension.toReflectionType(value));
-    return (BuilderType)this;
-}
 
 /** Set the value of one element of a repeated extension. */
 public final <Type> BuilderType setExtension(

@@ -75,6 +75,7 @@
 - (int64_t) readRawLittleEndian64;
 - (NSData*) readRawData:(int32_t) size;
 
+- (BOOL) skipField:(int32_t) tag;
 - (void) skipRawBytes:(int32_t) size;
 - (void) skipMessage;
 
