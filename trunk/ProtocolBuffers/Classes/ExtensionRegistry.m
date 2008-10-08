@@ -96,7 +96,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 
 - (void) addExtension:(PBGeneratedExtension*) extension {
-    if (extension.descriptor.objectiveCType == PBFieldDescriptorTypeMessage) {
+    if (extension.descriptor.objectiveCType == PBObjectiveCTypeMessage) {
         [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.descriptor defaultInstance:extension.messageDefaultInstance]];
     } else {
         [self addExtensionInfo:[PBExtensionInfo infoWithDescriptor:extension.descriptor defaultInstance:nil]];
@@ -105,7 +105,7 @@ static PBExtensionRegistry* EMPTY = nil;
 
 
 - (void) addFieldDescriptor:(PBFieldDescriptor*) type {
-    if (type.objectiveCType == PBFieldDescriptorTypeMessage) {
+    if (type.objectiveCType == PBObjectiveCTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
                                        reason:@"ExtensionRegistry.add() must be provided a default instance when adding an embedded message extension." userInfo:nil];
     }

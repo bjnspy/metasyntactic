@@ -14,11 +14,16 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "FieldAccessor.h"
+#import "RepeatedFieldAccessor.h"
 
-@interface PBRepeatedEnumFieldAccessor : NSObject<PBFieldAccessor> {
-
+@interface PBRepeatedEnumFieldAccessor : PBRepeatedFieldAccessor {
+@private
+    SEL valueOfMethod;
+    SEL valueDescriptorMethod;
 }
+
+@property (readonly) SEL valueOfMethod;
+@property (readonly) SEL valueDescriptorMethod;
 
 + (PBRepeatedEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name

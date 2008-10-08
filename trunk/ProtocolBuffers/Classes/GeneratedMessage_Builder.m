@@ -66,7 +66,7 @@
             for (id element in newValue) {
                 [self addRepeatedField:field value:element];
             }
-        } else if (field.objectiveCType == PBFieldDescriptorTypeMessage &&
+        } else if (field.objectiveCType == PBObjectiveCTypeMessage &&
                    [self hasField:field]) {
             // Merge singular embedded messages.
             id<PBMessage> oldValue = [self getField:field];

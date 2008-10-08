@@ -20,10 +20,15 @@
 
 }
 
+- (id) initWithField:(PBFieldDescriptor*) field
+                name:(NSString*) name
+        messageClass:(Class) messageClass
+        builderClass:(Class) builderClass;
+
 + (PBRepeatedFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                                             name:(NSString*) name
-                                                     messageClass:(Class) messageClass
-                                                     builderClass:(Class) builderClass;
+                                          name:(NSString*) name
+                                  messageClass:(Class) messageClass
+                                  builderClass:(Class) builderClass;
 
 - (id) get:(PBGeneratedMessage*) message;
 - (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value;

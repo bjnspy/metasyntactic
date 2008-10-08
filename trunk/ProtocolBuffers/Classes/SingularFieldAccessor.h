@@ -29,10 +29,15 @@
 @property (readonly) SEL hasSelector;
 @property (readonly) SEL clearSelector;
 
+- (id) initWithField:(PBFieldDescriptor*) field
+                name:(NSString*) name
+        messageClass:(Class) messageClass
+        builderClass:(Class) builderClass;
+
 + (PBSingularFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                                             name:(NSString*) name
-                                                     messageClass:(Class) messageClass
-                                                     builderClass:(Class) builderClass;
+                                          name:(NSString*) name
+                                  messageClass:(Class) messageClass
+                                  builderClass:(Class) builderClass;
 
 - (id) get:(PBGeneratedMessage*) message;
 - (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value;

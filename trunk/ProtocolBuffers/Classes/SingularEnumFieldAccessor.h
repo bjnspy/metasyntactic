@@ -14,11 +14,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "FieldAccessor.h"
+#import "SingularFieldAccessor.h"
 
-@interface PBSingularEnumFieldAccessor : NSObject<PBFieldAccessor> {
-
+@interface PBSingularEnumFieldAccessor : PBSingularFieldAccessor {
+@private
+    SEL valueOfMethod;
+    SEL valueDescriptorMethod;
 }
+
+@property (readonly) SEL valueOfMethod;
+@property (readonly) SEL valueDescriptorMethod;
+
 
 + (PBSingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                                 name:(NSString*) name

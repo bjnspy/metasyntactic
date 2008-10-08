@@ -63,7 +63,7 @@
                 self.messageDefaultInstance = [type performSelector:@selector(defaultInstance)];
                 break;
             case PBObjectiveCTypeEnum:
-                self.enumValueOf = @selector(valueOf:),
+                self.enumValueOf = @selector(valueOfDescriptor:),
                 self.enumGetValueDescriptor = @selector(valueDescriptor);
                 break;
         }
@@ -140,8 +140,8 @@
 
 - (id) fromReflectionType:(id) value {
     if (descriptor.isRepeated) {
-        if (descriptor.objectiveCType == PBFieldDescriptorTypeMessage ||
-            descriptor.objectiveCType == PBFieldDescriptorTypeEnum) {
+        if (descriptor.objectiveCType == PBObjectiveCTypeMessage ||
+            descriptor.objectiveCType == PBObjectiveCTypeEnum) {
             // Must convert the whole list.
             NSMutableArray* result = [NSMutableArray array];
             for (id element in value) {

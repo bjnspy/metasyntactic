@@ -58,17 +58,17 @@
             NSString* name = [fieldNames objectAtIndex:i];
             PBFieldDescriptor* field = [descriptor.fields objectAtIndex:i];
             if (field.isRepeated) {
-                if (field.objectiveCType == PBFieldDescriptorTypeMessage) {
+                if (field.objectiveCType == PBObjectiveCTypeMessage) {
                     [array addObject:[PBRepeatedMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
-                } else if (field.objectiveCType == PBFieldDescriptorTypeEnum) {
+                } else if (field.objectiveCType == PBObjectiveCTypeEnum) {
                     [array addObject:[PBRepeatedEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else {
                     [array addObject:[PBRepeatedFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 }
             } else {
-                if (field.objectiveCType == PBFieldDescriptorTypeMessage) {
+                if (field.objectiveCType == PBObjectiveCTypeMessage) {
                     [array addObject:[PBSingularMessageFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
-                } else if (field.objectiveCType == PBFieldDescriptorTypeEnum) {
+                } else if (field.objectiveCType == PBObjectiveCTypeEnum) {
                     [array addObject:[PBSingularEnumFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];
                 } else {
                     [array addObject:[PBSingularFieldAccessor accessorWithField:field name:name messageClass:messageClass builderClass:builderClass]];

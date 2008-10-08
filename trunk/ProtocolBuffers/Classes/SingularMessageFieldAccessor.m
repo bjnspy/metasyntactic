@@ -16,14 +16,43 @@
 
 #import "SingularMessageFieldAccessor.h"
 
+@interface PBSingularMessageFieldAccessor()
+    @property SEL newBuilderMethod;
+@end
+
 
 @implementation PBSingularMessageFieldAccessor
 
+@synthesize newBuilderMethod;
+
+- (void) dealloc {
+    self.newBuilderMethod = 0;
+
+    [super dealloc];
+}
+
+
+- (id) initWithField:(PBFieldDescriptor*) field
+                name:(NSString*) name
+        messageClass:(Class) messageClass
+        builderClass:(Class) builderClass {
+    if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
+        self.newBuilderMethod = @selector(newBuilder);
+    }
+    
+    return self;
+}
+
+
 + (PBSingularMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                                             name:(NSString*) name
-                                                     messageClass:(Class) messageClass
-                                                     builderClass:(Class) builderClass {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+                                                 name:(NSString*) name
+                                         messageClass:(Class) messageClass
+                                         builderClass:(Class) builderClass {
+    return [[[PBSingularMessageFieldAccessor alloc] initWithField:field
+                                                             name:name
+                                                     messageClass:messageClass
+                                                     builderClass:builderClass] autorelease];
+//    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
