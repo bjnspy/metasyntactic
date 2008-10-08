@@ -26,6 +26,8 @@
 + (PBUnknownFieldSet*) defaultInstance;
 + (PBUnknownFieldSet_Builder*) newBuilder;
 
++ (PBUnknownFieldSet*) parseFromData:(NSData*) data;
+
 - (void) writeAsMessageSetTo:(PBCodedOutputStream*) output;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (NSData*) toData;
