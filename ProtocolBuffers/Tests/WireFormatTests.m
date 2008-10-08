@@ -8,6 +8,7 @@
 
 #import "WireFormatTests.h"
 
+#import "CodedInputStream.h"
 #import "TestUtilities.h"
 #import "Unittest.pb.h"
 
@@ -57,57 +58,54 @@
     [TestUtilities assertAllExtensionsSet:message2];
 }
 
+
 - (void) testExtensionsSerializedSize {
     STAssertTrue([TestUtilities allSet].serializedSize == [TestUtilities allExtensionsSet].serializedSize, @"");
 }
 
 
-#if 0
-
-
-
-
-public 
-
-private void assertFieldsInOrder(ByteString data) throws Exception {
-    CodedInputStream input = data.newCodedInput();
-    int previousTag = 0;
+- (void) assertFieldsInOrder:(NSData*) data {
+    PBCodedInputStream* input = [PBCodedInputStream streamWithData:data];
+    int32_t previousTag = 0;
     
     while (true) {
-        int tag = input.readTag();
+        int32_t tag = [input readTag];
         if (tag == 0) {
             break;
         }
         
-        assertTrue(tag > previousTag);
-        input.skipField(tag);
+        STAssertTrue(tag > previousTag, @"");
+        [input skipField:tag];
     }
 }
 
-public void testInterleavedFieldsAndExtensions() throws Exception {
+
+- (void) testInterleavedFieldsAndExtensions {
     // Tests that fields are written in order even when extension ranges
     // are interleaved with field numbers.
-    ByteString data =
-    TestFieldOrderings.newBuilder()
-    .setMyInt(1)
-    .setMyString("foo")
-    .setMyFloat(1.0F)
-    .setExtension(UnittestProto.myExtensionInt, 23)
-    .setExtension(UnittestProto.myExtensionString, "bar")
-    .build().toByteString();
-    assertFieldsInOrder(data);
+    NSData* data = [[[[[[[[TestFieldOrderings newBuilder]
+                          setMyInt:1]
+                         setMyString:@"foo"]
+                        setMyFloat:1.0]
+                       setExtension:[UnittestProtoRoot myExtensionInt] value:[NSNumber numberWithInt:23]] 
+                      setExtension:[UnittestProtoRoot myExtensionString] value:@"bar"] build] toData];
+    [self assertFieldsInOrder:data];
     
-    Descriptors.Descriptor descriptor = TestFieldOrderings.getDescriptor();
-    ByteString dynamic_data =
-    DynamicMessage.newBuilder(TestFieldOrderings.getDescriptor())
-    .setField(descriptor.findFieldByName("my_int"), 1L)
-    .setField(descriptor.findFieldByName("my_string"), "foo")
-    .setField(descriptor.findFieldByName("my_float"), 1.0F)
-    .setField(UnittestProto.myExtensionInt.getDescriptor(), 23)
-    .setField(UnittestProto.myExtensionString.getDescriptor(), "bar")
-    .build().toByteString();
-    assertFieldsInOrder(dynamic_data);
+    PBDescriptor* descriptor = [TestFieldOrderings descriptor];
+    NSData* dynamic_data = [[[[[[[[PBDynamicMessage builderWithType:[TestFieldOrderings descriptor]]
+                                  setField:[descriptor findFieldByName:@"my_int"] value:[NSNumber numberWithInt:1L]]
+                                 setField:[descriptor findFieldByName:@"my_string"] value:@"foo"]
+                                setField:[descriptor findFieldByName:@"my_float"] value:[NSNumber numberWithFloat:1.0]]
+                               setField:[UnittestProtoRoot myExtensionInt].descriptor value:[NSNumber numberWithInt:23]]
+                              setField:[UnittestProtoRoot myExtensionString].descriptor value:@"bar"] build] toData];
+    
+    [self assertFieldsInOrder:dynamic_data];
 }
+
+#if 0
+
+
+
 
 private static final int UNKNOWN_TYPE_ID = 1550055;
 private static final int TYPE_ID_1 =
