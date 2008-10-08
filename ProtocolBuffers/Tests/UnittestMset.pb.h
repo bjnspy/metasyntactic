@@ -139,6 +139,7 @@
 - (TestMessageSetExtension1*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
++ (PBGeneratedExtension*) messageSetExtension;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestMessageSetExtension1_Builder*) newBuilder;
@@ -192,6 +193,7 @@
 - (TestMessageSetExtension2*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
++ (PBGeneratedExtension*) messageSetExtension;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestMessageSetExtension2_Builder*) newBuilder;

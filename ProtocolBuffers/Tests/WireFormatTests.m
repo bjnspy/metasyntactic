@@ -102,21 +102,20 @@
     [self assertFieldsInOrder:dynamic_data];
 }
 
-#if 0
-
-
-
-
-private static final int UNKNOWN_TYPE_ID = 1550055;
+/*
+const int UNKNOWN_TYPE_ID = 1550055;
 private static final int TYPE_ID_1 =
 TestMessageSetExtension1.getDescriptor().getExtensions().get(0).getNumber();
 private static final int TYPE_ID_2 =
 TestMessageSetExtension2.getDescriptor().getExtensions().get(0).getNumber();
-
-public void testSerializeMessageSet() throws Exception {
+*/
+ 
+/*
+- (void) testSerializeMessageSet {
     // Set up a TestMessageSet with two known messages and an unknown one.
-    TestMessageSet messageSet =
-    TestMessageSet.newBuilder()
+    TestMessageSet* messageSet =
+    [[[[[[[TestMessageSet newBuilder]
+         setExtension:[TestMessageSetExtension1 messag
     .setExtension(
                   TestMessageSetExtension1.messageSetExtension,
                   TestMessageSetExtension1.newBuilder().setI(123).build())
@@ -156,6 +155,14 @@ public void testSerializeMessageSet() throws Exception {
     
     assertEquals("bar", raw.getItem(2).getMessage().toStringUtf8());
 }
+*/
+
+#if 0
+
+
+
+
+
 
 public void testParseMessageSet() throws Exception {
     ExtensionRegistry extensionRegistry = ExtensionRegistry.newInstance();

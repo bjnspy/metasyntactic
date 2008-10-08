@@ -81,6 +81,9 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForS
   return self;
 }
 static PBGeneratedExtension* TestOptimizedForSize_testExtension = nil;
++ (PBGeneratedExtension*) testExtension {
+  return TestOptimizedForSize_testExtension;
+}
 static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 + (void) initialize {
   if (self == [TestOptimizedForSize class]) {
