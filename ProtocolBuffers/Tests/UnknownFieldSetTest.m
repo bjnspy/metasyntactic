@@ -246,6 +246,18 @@
     STAssertEqualObjects(emptyMessage_.toData, allExtensionsMessage.toData, @"");
 }
 
+
+- (void) testLargeVarint {
+    NSData* data =
+    [[[[PBUnknownFieldSet newBuilder] addField:[[PBMutableField field] addVarint:0x7FFFFFFFFFFFFFFFL]
+                                   forNumber:1] build] toData];
+    
+    PBUnknownFieldSet* parsed = [PBUnknownFieldSet parseFromData:data];
+    PBField* field = [parsed getField:1];
+    STAssertTrue(1 == field.varintList.count, @"");
+    STAssertTrue(0x7FFFFFFFFFFFFFFFL == [[field.varintList objectAtIndex:0] longLongValue], @"");
+}
+
 #if 0
 
 
@@ -313,20 +325,7 @@ public void testParseUnknownEnumValue() throws Exception {
   }
 }
 
-public void testLargeVarint() throws Exception {
-  ByteString data =
-  UnknownFieldSet.newBuilder()
-  .addField(1,
-            UnknownFieldSet.Field.newBuilder()
-            .addVarint(0x7FFFFFFFFFFFFFFFL)
-            .build())
-  .build()
-  .toByteString();
-  UnknownFieldSet parsed = UnknownFieldSet.parseFrom(data);
-  UnknownFieldSet.Field field = parsed.getField(1);
-  STAssertTrue(1, field.getVarintList().size());
-  STAssertTrue(0x7FFFFFFFFFFFFFFFL, (long)field.getVarintList().get(0));
-}
+
 #endif
 
 @end

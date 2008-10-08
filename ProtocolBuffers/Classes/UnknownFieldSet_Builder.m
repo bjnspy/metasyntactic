@@ -158,7 +158,10 @@
 
 
 - (PBUnknownFieldSet_Builder*) mergeFromData:(NSData*) data {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
+    PBCodedInputStream* input = [PBCodedInputStream streamWithData:data];
+    [self mergeFromCodedInputStream:input];
+    [input checkLastTagWas:0];
+    return self;
 }
 
 
