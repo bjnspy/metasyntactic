@@ -45,6 +45,8 @@
 
 - (PBUnknownFieldSet_Builder*) addField:(PBField*) field forNumber:(int32_t) number;
 
+- (PBUnknownFieldSet_Builder*) clear;
+
 #if 0
     int32_t lastFieldNumbers;
     UnknownFieldSet_Field_Builder* lastField;
@@ -52,8 +54,6 @@
 
 @property (retain) NSDictionary* fields;
 
-- (PBUnknownFieldSet_Builder*) clear;
-- (PBUnknownFieldSet_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) other;
 - (PBUnknownFieldSet_Builder*) mergeField:(int32_t) number field:(UnknownFieldSet_Field*) field;
 - (BOOL) hasField:(int32_t) number;
 - (NSDictionary*) dictionary;

@@ -174,63 +174,14 @@
 }
 
 
+- (void) testClear {
+    PBUnknownFieldSet* fields = 
+    [[[[PBUnknownFieldSet newBuilder] mergeUnknownFields:unknownFields] clear] build];
+    STAssertEquals(fields.fields.count, (NSUInteger) 0, @"");
+}
+
+
 #if 0
-
-
-public void testSerialize() throws Exception {
-  // Check that serializing the UnknownFieldSet produces the original data
-  // again.
-  ByteString data = emptyMessage.toByteString();
-  NSAssert(allFieldsData, data);
-}
-
-public void testCopyFrom() throws Exception {
-  TestEmptyMessage message =
-  TestEmptyMessage.newBuilder().mergeFrom(emptyMessage).build();
-  
-  NSAssert(emptyMessage.toString(), message.toString());
-}
-
-public void testMergeFrom() throws Exception {
-  TestEmptyMessage source =
-  TestEmptyMessage.newBuilder()
-  .setUnknownFields(
-                    UnknownFieldSet.newBuilder()
-                    .addField(2,
-                              UnknownFieldSet.Field.newBuilder()
-                              .addVarint(2).build())
-                    .addField(3,
-                              UnknownFieldSet.Field.newBuilder()
-                              .addVarint(4).build())
-                    .build())
-  .build();
-  TestEmptyMessage destination =
-  TestEmptyMessage.newBuilder()
-  .setUnknownFields(
-                    UnknownFieldSet.newBuilder()
-                    .addField(1,
-                              UnknownFieldSet.Field.newBuilder()
-                              .addVarint(1).build())
-                    .addField(3,
-                              UnknownFieldSet.Field.newBuilder()
-                              .addVarint(3).build())
-                    .build())
-  .mergeFrom(source)
-  .build();
-  
-  NSAssert(
-           "1: 1\n" +
-           "2: 2\n" +
-           "3: 3\n" +
-           "3: 4\n",
-           destination.toString());
-}
-
-public void testClear() throws Exception {
-  UnknownFieldSet fields =
-  UnknownFieldSet.newBuilder().mergeFrom(unknownFields).clear().build();
-  assertTrue(fields.asMap().isEmpty());
-}
 
 public void testClearMessage() throws Exception {
   TestEmptyMessage message =
