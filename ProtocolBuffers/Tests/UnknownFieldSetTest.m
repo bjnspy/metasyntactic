@@ -205,34 +205,38 @@
     STAssertTrue(1 == field.varintList.count, @"");
     STAssertTrue(654321 == [[field.varintList objectAtIndex:0] longLongValue], @"");
 }
+
+#if 0
+- (void) testWrongTypeTreatedAsUnknown {
+    // Test that fields of the wrong wire type are treated like unknown fields
+    // when parsing.
+    
+    NSData* bizarroData = [self getBizarroData];
+    TestAllTypes* allTypesMessage = [TestAllTypes parseFromData:bizarroData];
+    TestEmptyMessage* emptyMessage_ = [TestEmptyMessage parseFromData:bizarroData];
+    
+    // All fields should have been interpreted as unknown, so the debug strings
+    // should be the same.
+    STAssertEquals(emptyMessage_.toData, allTypesMessage.toData, @"");
+}
+#endif
+
+- (void) testUnknownExtensions {
+    // Make sure fields are properly parsed to the UnknownFieldSet even when
+    // they are declared as extension numbers.
+    
+    TestEmptyMessageWithExtensions* message =
+    [TestEmptyMessageWithExtensions parseFromData:allFieldsData];
+    
+    STAssertTrue(unknownFields.fields.count ==  message.unknownFields.fields.count, @"");
+    STAssertEqualObjects(allFieldsData, message.toData, @"");
+}
+
+
+
 #if 0
 
 
-
-public void testWrongTypeTreatedAsUnknown() throws Exception {
-  // Test that fields of the wrong wire type are treated like unknown fields
-  // when parsing.
-  
-  ByteString bizarroData = getBizarroData();
-  TestAllTypes allTypesMessage = TestAllTypes.parseFrom(bizarroData);
-  TestEmptyMessage emptyMessage = TestEmptyMessage.parseFrom(bizarroData);
-  
-  // All fields should have been interpreted as unknown, so the debug strings
-  // should be the same.
-  STAssertTrue(emptyMessage.toString(), allTypesMessage.toString());
-}
-
-public void testUnknownExtensions() throws Exception {
-  // Make sure fields are properly parsed to the UnknownFieldSet even when
-  // they are declared as extension numbers.
-  
-  TestEmptyMessageWithExtensions message =
-  TestEmptyMessageWithExtensions.parseFrom(allFieldsData);
-  
-  STAssertTrue(unknownFields.asMap().size(),
-           message.getUnknownFields().asMap().size());
-  STAssertTrue(allFieldsData, message.toByteString());
-}
 
 public void testWrongExtensionTypeTreatedAsUnknown() throws Exception {
   // Test that fields of the wrong wire type are treated like unknown fields

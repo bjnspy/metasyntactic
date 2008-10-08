@@ -69,7 +69,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         self.fields = [NSMutableDictionary dictionary];
     }
 
-    return fields;
+    return self;
 }
 
 
