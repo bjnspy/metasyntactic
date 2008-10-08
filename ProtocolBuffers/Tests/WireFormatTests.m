@@ -24,31 +24,24 @@
     [TestUtilities assertAllFieldsSet:message2];
 }
 
-#if 0
-public void testSerialization() throws Exception {
-    TestAllTypes message = TestUtil.getAllSet();
-    
-    ByteString rawBytes = message.toByteString();
-    assertEquals(rawBytes.size(), message.getSerializedSize());
-    
-    TestAllTypes message2 = TestAllTypes.parseFrom(rawBytes);
-    
-    TestUtil.assertAllFieldsSet(message2);
-}
 
-public void testSerializeExtensions() throws Exception {
+- (void) testSerializeExtensions {
     // TestAllTypes and TestAllExtensions should have compatible wire formats,
     // so if we serealize a TestAllExtensions then parse it as TestAllTypes
     // it should work.
     
-    TestAllExtensions message = TestUtil.getAllExtensionsSet();
-    ByteString rawBytes = message.toByteString();
-    assertEquals(rawBytes.size(), message.getSerializedSize());
+    TestAllExtensions* message = [TestUtilities allExtensionsSet];
+    NSData* rawBytes = message.toData;
+    STAssertTrue(rawBytes.length == message.serializedSize, @"");
     
-    TestAllTypes message2 = TestAllTypes.parseFrom(rawBytes);
+    TestAllTypes* message2 = [TestAllTypes parseFromData:rawBytes];
     
-    TestUtil.assertAllFieldsSet(message2);
+    [TestUtilities assertAllFieldsSet:message2];
 }
+
+
+#if 0
+
 
 public void testParseExtensions() throws Exception {
     // TestAllTypes and TestAllExtensions should have compatible wire formats,

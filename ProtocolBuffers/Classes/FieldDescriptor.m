@@ -148,7 +148,12 @@
 
 
 - (PBDescriptor*) messageType {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    if (self.objectiveCType != PBObjectiveCTypeMessage) {
+        @throw [NSException exceptionWithName:@"UnsupportedOperation"
+                                       reason:@"This field is not of message type." userInfo:nil];
+    }
+
+    return messageType;
 }
 
 
