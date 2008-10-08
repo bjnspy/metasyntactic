@@ -46,6 +46,7 @@
 - (PBUnknownFieldSet_Builder*) addField:(PBField*) field forNumber:(int32_t) number;
 
 - (PBUnknownFieldSet_Builder*) clear;
+- (PBUnknownFieldSet_Builder*) mergeField:(PBField*) field forNumber:(int32_t) number;
 
 #if 0
     int32_t lastFieldNumbers;

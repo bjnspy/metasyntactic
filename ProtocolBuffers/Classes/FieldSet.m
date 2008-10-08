@@ -28,6 +28,8 @@
 #import "FieldDescriptor.h"
 #import "Message.h"
 #import "Message_Builder.h"
+#import "MutableField.h"
+#import "UnknownFieldSet_Builder.h"
 #import "WireFormat.h"
 
 @implementation PBFieldSet
@@ -410,98 +412,88 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                                    unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                                extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                          builder:(id<PBMessage_Builder>) builder {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-    /*
-     PBDescriptor type = builder.descriptorForType();
-     
-     // The wire format for MessageSet is:
-     //   message MessageSet {
-     //     repeated group Item = 1 {
-     //       required int32 typeId = 2;
-     //       required bytes message = 3;
-     //     }
-     //   }
-     // "typeId" is the extension's field number.  The extension can only be
-     // a message type, where "message" contains the encoded bytes of that
-     // message.
-     //
-     // In practice, we will probably never see a MessageSet item in which
-     // the message appears before the type ID, or where either field does not
-     // appear exactly once.  However, in theory such cases are valid, so we
-     // should be prepared to accept them.
-     
-     int typeId = 0;
-     ByteString rawBytes = null;  // If we encounter "message" before "typeId"
-     Message.Builder subBuilder = null;
-     PBFieldDescriptor field = null;
-     
-     while (true) {
-     int tag = input.readTag();
-     if (tag == 0) {
-     break;
-     }
-     
-     if (tag == PBWireFormat.MESSAGE_SET_TYPE_ID_TAG) {
-     typeId = input.readUInt32();
-     // Zero is not a valid type ID.
-     if (typeId != 0) {
-     ExtensionRegistry.ExtensionInfo extension =
-     extensionRegistry.findExtensionByNumber(type, typeId);
-     if (extension != null) {
-     field = extension.descriptor;
-     subBuilder = extension.defaultInstance.newBuilderForType();
-     PBMessage originalMessage = (PBMessage)builder.getField(field);
-     if (originalMessage != null) {
-     subBuilder.mergeFrom(originalMessage);
-     }
-     if (rawBytes != null) {
-     // We already encountered the message.  Parse it now.
-     subBuilder.mergeFrom(
-     PBCodedInputStream.newInstance(rawBytes.newInput()));
-     rawBytes = null;
-     }
-     } else {
-     // Unknown extension number.  If we already saw data, put it
-     // in rawBytes.
-     if (rawBytes != null) {
-     unknownFields.mergeField(typeId,
-     UnknownFieldSet.PBField.newBuilder()
-     .addLengthDelimited(rawBytes)
-     .build());
-     rawBytes = null;
-     }
-     }
-     }
-     } else if (tag == PBWireFormat.MESSAGE_SET_MESSAGE_TAG) {
-     if (typeId == 0) {
-     // We haven't seen a type ID yet, so we have to store the raw bytes
-     // for now.
-     rawBytes = input.readBytes();
-     } else if (subBuilder == null) {
-     // We don't know how to parse this.  Ignore it.
-     unknownFields.mergeField(typeId,
-     UnknownFieldSet.PBField.newBuilder()
-     .addLengthDelimited(input.readBytes())
-     .build());
-     } else {
-     // We already know the type, so we can parse directly from the input
-     // with no copying.  Hooray!
-     input.readMessage(subBuilder, extensionRegistry);
-     }
-     } else {
-     // Unknown tag.  Skip it.
-     if (!input.skipField(tag)) {
-     break;  // end of group
-     }
-     }
-     }
-     
-     input.checkLastTagWas(PBWireFormat.MESSAGE_SET_ITEM_END_TAG);
-     
-     if (subBuilder != null) {
-     builder.setField(field, subBuilder.build());
-     }
-     */
+    PBDescriptor* type = [builder descriptorForType];
+
+    // The wire format for MessageSet is:
+    //   message MessageSet {
+    //     repeated group Item = 1 {
+    //       required int32 typeId = 2;
+    //       required bytes message = 3;
+    //     }
+    //   }
+    // "typeId" is the extension's field number.  The extension can only be
+    // a message type, where "message" contains the encoded bytes of that
+    // message.
+    //
+    // In practice, we will probably never see a MessageSet item in which
+    // the message appears before the type ID, or where either field does not
+    // appear exactly once.  However, in theory such cases are valid, so we
+    // should be prepared to accept them.
+    
+    int32_t typeId = 0;
+    NSData* rawBytes = nil;  // If we encounter "message" before "typeId"
+    id<PBMessage_Builder> subBuilder = nil;
+    PBFieldDescriptor* field = nil;
+    
+    while (true) {
+        int32_t tag = [input readTag];
+        if (tag == 0) {
+            break;
+        }
+        
+        if (tag == PBWireFormatMessageSetTypeIdTag) {
+            typeId = [input readUInt32];
+            // Zero is not a valid type ID.
+            if (typeId != 0) {
+                PBExtensionInfo* extension =
+                [extensionRegistry findExtensionByNumber:type fieldNumber:typeId];
+                if (extension != nil) {
+                    field = extension.descriptor;
+                    subBuilder = [extension.defaultInstance newBuilderForType];
+                    id<PBMessage> originalMessage = [builder getField:field];
+                    if (originalMessage != nil) {
+                        [subBuilder mergeFromMessage:originalMessage];
+                    }
+                    if (rawBytes != nil) {
+                        // We already encountered the message.  Parse it now.
+                        [subBuilder mergeFromCodedInputStream:[PBCodedInputStream streamWithData:rawBytes]];
+                        rawBytes = nil;
+                    }
+                } else {
+                    // Unknown extension number.  If we already saw data, put it
+                    // in rawBytes.
+                    if (rawBytes != nil) {
+                        [unknownFields mergeField:[[PBMutableField field] addLengthDelimited:rawBytes] forNumber:typeId];
+                        rawBytes = nil;
+                    }
+                }
+            }
+        } else if (tag == PBWireFormatMessageSetMessageTag) {
+            if (typeId == 0) {
+                // We haven't seen a type ID yet, so we have to store the raw bytes
+                // for now.
+                rawBytes = [input readData];
+            } else if (subBuilder == nil) {
+                // We don't know how to parse this.  Ignore it.
+                [unknownFields mergeField:[[PBMutableField field] addLengthDelimited:[input readData]] forNumber:typeId];
+            } else {
+                // We already know the type, so we can parse directly from the input
+                // with no copying.  Hooray!
+                [input readMessage:subBuilder extensionRegistry:extensionRegistry];
+            }
+        } else {
+            // Unknown tag.  Skip it.
+            if (![input skipField:tag]) {
+                break;  // end of group
+            }
+        }
+    }
+    
+    [input checkLastTagWas:PBWireFormatMessageSetItemEndTag];
+    
+    if (subBuilder != nil) {
+        [builder setField:field value:[subBuilder build]];
+    }
 }
 
 

@@ -158,28 +158,25 @@ const int UNKNOWN_TYPE_ID = 1550055;
        addItem:[[[[RawMessageSet_Item newBuilder] setTypeId:UNKNOWN_TYPE_ID] setMessage:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]] build]]
       build];
        
-/*    
-    ByteString data = raw.toByteString();
+
+    NSData* data = raw.toData;
     
     // Parse as a TestMessageSet and check the contents.
-    TestMessageSet messageSet =
-    TestMessageSet.parseFrom(data, extensionRegistry);
+    TestMessageSet* messageSet =
+    [TestMessageSet parseFromData:data extensionRegistry:extensionRegistry];
     
-    assertEquals(123, messageSet.getExtension(
-                                              TestMessageSetExtension1.messageSetExtension).getI());
-    assertEquals("foo", messageSet.getExtension(
-                                                TestMessageSetExtension2.messageSetExtension).getStr());
-    
+    STAssertTrue(123 == [[messageSet getExtension:[TestMessageSetExtension1 messageSetExtension]] i], @"");
+    STAssertEqualObjects(@"foo", [[messageSet getExtension:[TestMessageSetExtension2 messageSetExtension]] str], @"");
+
     // Check for unknown field with type LENGTH_DELIMITED,
     //   number UNKNOWN_TYPE_ID, and contents "bar".
-    UnknownFieldSet unknownFields = messageSet.getUnknownFields();
-    assertEquals(1, unknownFields.asMap().size());
-    assertTrue(unknownFields.hasField(UNKNOWN_TYPE_ID));
+    PBUnknownFieldSet* unknownFields = messageSet.unknownFields;
+    STAssertTrue(1 == unknownFields.fields.count, @"");
+    STAssertTrue([unknownFields hasField:UNKNOWN_TYPE_ID], @"");
     
-    UnknownFieldSet.Field field = unknownFields.getField(UNKNOWN_TYPE_ID);
-    assertEquals(1, field.getLengthDelimitedList().size());
-    assertEquals("bar", field.getLengthDelimitedList().get(0).toStringUtf8());
- */
+    PBField* field = [unknownFields getField:UNKNOWN_TYPE_ID];
+    STAssertTrue(1 == field.lengthDelimitedList.count, @"");
+//    STAssertEqualObjects(@"bar", field.lengthDelimitedList().get(0).toStringUtf8());
 }
 
 @end
