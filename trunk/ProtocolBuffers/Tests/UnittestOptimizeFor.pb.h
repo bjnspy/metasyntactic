@@ -102,6 +102,7 @@
 - (TestOptimizedForSize*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
++ (PBGeneratedExtension*) testExtension;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestOptimizedForSize_Builder*) newBuilder;

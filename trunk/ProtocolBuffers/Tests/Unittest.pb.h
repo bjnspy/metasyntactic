@@ -1475,6 +1475,8 @@
 - (TestRequired*) defaultInstanceForType;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
++ (PBGeneratedExtension*) single;
++ (PBGeneratedExtension*) multi;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestRequired_Builder*) newBuilder;

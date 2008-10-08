@@ -537,6 +537,9 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   return self;
 }
 static PBGeneratedExtension* TestMessageSetExtension1_messageSetExtension = nil;
++ (PBGeneratedExtension*) messageSetExtension {
+  return TestMessageSetExtension1_messageSetExtension;
+}
 static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 + (void) initialize {
   if (self == [TestMessageSetExtension1 class]) {
@@ -726,6 +729,9 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   return self;
 }
 static PBGeneratedExtension* TestMessageSetExtension2_messageSetExtension = nil;
++ (PBGeneratedExtension*) messageSetExtension {
+  return TestMessageSetExtension2_messageSetExtension;
+}
 static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 + (void) initialize {
   if (self == [TestMessageSetExtension2 class]) {

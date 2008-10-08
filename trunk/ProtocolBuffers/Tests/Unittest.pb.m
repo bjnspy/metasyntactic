@@ -6505,6 +6505,12 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 }
 static PBGeneratedExtension* TestRequired_single = nil;
 static PBGeneratedExtension* TestRequired_multi = nil;
++ (PBGeneratedExtension*) single {
+  return TestRequired_single;
+}
++ (PBGeneratedExtension*) multi {
+  return TestRequired_multi;
+}
 static TestRequired* defaultTestRequiredInstance = nil;
 + (void) initialize {
   if (self == [TestRequired class]) {
