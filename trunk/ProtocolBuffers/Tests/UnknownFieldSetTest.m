@@ -206,7 +206,7 @@
     STAssertTrue(654321 == [[field.varintList objectAtIndex:0] longLongValue], @"");
 }
 
-#if 0
+
 - (void) testWrongTypeTreatedAsUnknown {
     // Test that fields of the wrong wire type are treated like unknown fields
     // when parsing.
@@ -217,9 +217,9 @@
     
     // All fields should have been interpreted as unknown, so the debug strings
     // should be the same.
-    STAssertEquals(emptyMessage_.toData, allTypesMessage.toData, @"");
+    STAssertEqualObjects(emptyMessage_.toData, allTypesMessage.toData, @"");
 }
-#endif
+
 
 - (void) testUnknownExtensions {
     // Make sure fields are properly parsed to the UnknownFieldSet even when
@@ -233,25 +233,24 @@
 }
 
 
+- (void) testWrongExtensionTypeTreatedAsUnknown {
+    // Test that fields of the wrong wire type are treated like unknown fields
+    // when parsing extensions.
+    
+    NSData* bizarroData = [self getBizarroData];
+    TestAllExtensions* allExtensionsMessage = [TestAllExtensions parseFromData:bizarroData];
+    TestEmptyMessage* emptyMessage_ = [TestEmptyMessage parseFromData:bizarroData];
+    
+    // All fields should have been interpreted as unknown, so the debug strings
+    // should be the same.
+    STAssertEqualObjects(emptyMessage_.toData, allExtensionsMessage.toData, @"");
+}
 
 #if 0
 
 
 
-public void testWrongExtensionTypeTreatedAsUnknown() throws Exception {
-  // Test that fields of the wrong wire type are treated like unknown fields
-  // when parsing extensions.
-  
-  ByteString bizarroData = getBizarroData();
-  TestAllExtensions allExtensionsMessage =
-  TestAllExtensions.parseFrom(bizarroData);
-  TestEmptyMessage emptyMessage = TestEmptyMessage.parseFrom(bizarroData);
-  
-  // All fields should have been interpreted as unknown, so the debug strings
-  // should be the same.
-  STAssertTrue(emptyMessage.toString(),
-           allExtensionsMessage.toString());
-}
+
 
 public void testParseUnknownEnumValue() throws Exception {
   Descriptors.FieldDescriptor singularField =
