@@ -19,6 +19,7 @@
 #import "ApplicationTabBarController.h"
 #import "NowPlayingController.h"
 #import "NowPlayingModel.h"
+#import "Pulser.h"
 
 @implementation NowPlayingAppDelegate
 
@@ -30,12 +31,14 @@ static NowPlayingAppDelegate* appDelegate = nil;
 @synthesize controller;
 @synthesize model;
 @synthesize tabBarController;
+@synthesize pulser;
 
 - (void) dealloc {
     self.window = nil;
     self.controller = nil;
     self.model = nil;
     self.tabBarController = nil;
+    self.pulser = nil;
 
     [super dealloc];
 }
@@ -46,7 +49,8 @@ static NowPlayingAppDelegate* appDelegate = nil;
 
     self.model = [NowPlayingModel model];
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
-
+    self.pulser = [Pulser pulserWithTarget:tabBarController action:@selector(refresh) pulseInterval:5];
+    
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
 
@@ -60,8 +64,18 @@ static NowPlayingAppDelegate* appDelegate = nil;
 }
 
 
+- (void) refresh {
+    if (![NSThread isMainThread]) {
+        [self performSelectorOnMainThread:@selector(refresh) withObject:nil waitUntilDone:NO];
+        return;
+    }
+    
+    [pulser tryPulse];
+}
+
+
 + (void) refresh {
-    [appDelegate.tabBarController refresh];
+    [appDelegate refresh];
 }
 
 

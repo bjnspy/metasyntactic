@@ -21,6 +21,7 @@
 #import "Location.h"
 #import "MovieRating.h"
 #import "NetworkUtilities.h"
+#import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "Review.h"
 #import "ThreadingUtilities.h"
@@ -220,6 +221,7 @@ static NSString* hash_key = @"Hash";
     }
 
     [self saveMovie:movieTitle reviews:reviews hash:serverHash ratingsProvider:ratingsProvider];
+    [NowPlayingAppDelegate refresh];
 }
 
 

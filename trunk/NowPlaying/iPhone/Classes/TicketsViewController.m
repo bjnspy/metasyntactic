@@ -92,8 +92,6 @@
 
         self.title = title_;
         self.navigationItem.titleView = label;
-
-        [self refresh];
     }
 
     return self;
@@ -104,6 +102,8 @@
     self.navigationItem.rightBarButtonItem = [[[UIBarButtonItem alloc] initWithCustomView:[GlobalActivityIndicator activityView]] autorelease];
 
     [self.tableView deselectRowAtIndexPath:self.tableView.indexPathForSelectedRow animated:animated];
+
+    [self refresh];
 }
 
 

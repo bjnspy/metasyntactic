@@ -67,6 +67,7 @@
 @class PosterCache;
 @class PosterDownloader;
 @class PriorityMutex;
+@class Pulser;
 @class RatingsCache;
 @class RatingsProviderViewController;
 @class Review;

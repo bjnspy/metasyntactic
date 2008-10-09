@@ -14,21 +14,23 @@
 // this program; if not, write to the Free Software Foundation, Inc., 51
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
-@interface NowPlayingAppDelegate : NSObject <UIApplicationDelegate> {
-    IBOutlet UIWindow* window;
-    ApplicationTabBarController* tabBarController;
-
-    NowPlayingModel* model;
-    NowPlayingController* controller;
-    Pulser* pulser;
+@interface Pulser : NSObject {
+    id target;
+    SEL action;
+    NSTimeInterval pulseInterval;
+    
+    NSDate* lastPulseTime;
 }
 
-@property (nonatomic, retain) UIWindow* window;
-@property (retain) NowPlayingController* controller;
-@property (retain) NowPlayingModel* model;
-@property (retain) ApplicationTabBarController* tabBarController;
-@property (retain) Pulser* pulser;
+@property (retain) id target;
+@property SEL action;
+@property NSTimeInterval pulseInterval;
+@property (retain) NSDate* lastPulseTime;
 
-+ (void) refresh;
++ (Pulser*) pulserWithTarget:(id) target
+                      action:(SEL) action
+               pulseInterval:(NSTimeInterval) pulseInterval;
+
+- (void) tryPulse;
 
 @end

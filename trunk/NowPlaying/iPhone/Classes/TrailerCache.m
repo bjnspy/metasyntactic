@@ -21,6 +21,7 @@
 #import "FileUtilities.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
+#import "NowPlayingAppDelegate.h"
 #import "ThreadingUtilities.h"
 
 @implementation TrailerCache
@@ -147,6 +148,7 @@
 
     NSArray* trailers = [trailersString componentsSeparatedByString:@"\n"];
     [FileUtilities writeObject:trailers toFile:[self trailerFilePath:movie.canonicalTitle]];
+    [NowPlayingAppDelegate refresh];
 }
 
 

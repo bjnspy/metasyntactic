@@ -181,15 +181,13 @@
 
 
 - (NSInteger) numberOfSectionsInTableView:(UITableView*) tableView {
-    return 3;
+    return 2;
 }
 
 
 - (NSInteger)     tableView:(UITableView*) tableView
       numberOfRowsInSection:(NSInteger) section {
     if (section == 0) {
-        return 1;
-    } else if (section == 1) {
         return 6;
     } else {
         return 1;
@@ -200,14 +198,6 @@
 - (UITableViewCell*) tableView:(UITableView*) tableView
          cellForRowAtIndexPath:(NSIndexPath*) indexPath {
     if (indexPath.section == 0) {
-        UITableViewCell* cell = [[[UITableViewCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
-
-        cell.text = NSLocalizedString(@"Donate", nil);
-        cell.textColor = [ColorCache commandColor];
-        cell.textAlignment = UITextAlignmentCenter;
-
-        return cell;
-    } else if (indexPath.section == 1) {
         if (indexPath.row >= 0 && indexPath.row <= 3) {
             SettingCell* cell = [[[SettingCell alloc] initWithFrame:[UIScreen mainScreen].applicationFrame] autorelease];
 
@@ -328,8 +318,6 @@
     NSInteger row = indexPath.row;
 
     if (section == 0) {
-        [Application openBrowser:@"https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=cyrusn%40stwing%2eupenn%2eedu&item_name=iPhone%20Apps%20Donations&no_shipping=0&no_note=1&tax=0&currency_code=USD&lc=US&bn=PP%2dDonationsBF&charset=UTF%2d8"];
-    } else if (section == 1) {
         if (row == 0) {
             NSString* message;
 
@@ -384,15 +372,15 @@
             [[[RatingsProviderViewController alloc] initWithNavigationController:navigationController] autorelease];
             [navigationController pushViewController:controller animated:YES];
         }
-    } else if (section == 2) {
+    } else if (section == 1) {
         CreditsViewController* controller = [[[CreditsViewController alloc] init] autorelease];
         [navigationController pushViewController:controller animated:YES];
     }
 }
 
 
+#ifdef DEBUG
 - (void) foo:(NSNumber*) value {
-
     static NSString* array[] = {
 @"35004",
 @"35005",
@@ -29878,6 +29866,7 @@
                withObject:[NSNumber numberWithInt:(i + 1)]
                afterDelay:5];
 }
+#endif
 
 
 - (void) onUserAddressChanged:(NSString*) userAddress {
@@ -29886,7 +29875,9 @@
     [self.controller setUserAddress:userAddress];
     [self.tableView reloadData];
     
-    [self foo:[NSNumber numberWithInt:8116]];
+#ifdef DEBUG
+    //[self foo:[NSNumber numberWithInt:25116]];
+#endif
 }
 
 

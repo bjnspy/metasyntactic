@@ -21,6 +21,7 @@
 #import "FileUtilities.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
+#import "NowPlayingAppDelegate.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 #import "XmlElement.h"
@@ -320,6 +321,7 @@ static NSString* titles_key = @"Titles";
     [self updatePoster:movie];
     [self updateSynopsis:movie studio:studio title:title];
     [self updateTrailers:movie studio:studio title:title];
+    [NowPlayingAppDelegate refresh];
 }
 
 
