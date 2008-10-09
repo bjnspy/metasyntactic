@@ -125,67 +125,65 @@
 }
 
 
-#if 0
-
-
-public void testSerialize() throws Exception {
+- (void) testSerialize {
     // Check that serializing the UnknownFieldSet produces the original data
     // again.
-    ByteString data = emptyMessage.toByteString();
-    NSAssert(allFieldsData, data);
+    NSData* data = [emptyMessage toData];
+    NSAssert([allFieldsData isEqual:data], @"");
 }
 
-public void testCopyFrom() throws Exception {
-    TestEmptyMessage message =
-    TestEmptyMessage.newBuilder().mergeFrom(emptyMessage).build();
+
+- (void) testCopyFrom {
+    TestEmptyMessage* message =
+    [[[TestEmptyMessage newBuilder] mergeFromMessage:emptyMessage] build];
     
-    NSAssert(emptyMessage.toString(), message.toString());
+    NSAssert([emptyMessage.toData isEqual:message.toData], @"");
 }
 
-public void testMergeFrom() throws Exception {
-    TestEmptyMessage source =
-    TestEmptyMessage.newBuilder()
-    .setUnknownFields(
-                      UnknownFieldSet.newBuilder()
-                      .addField(2,
-                                UnknownFieldSet.Field.newBuilder()
-                                .addVarint(2).build())
-                      .addField(3,
-                                UnknownFieldSet.Field.newBuilder()
-                                .addVarint(4).build())
-                      .build())
-    .build();
-    TestEmptyMessage destination =
-    TestEmptyMessage.newBuilder()
-    .setUnknownFields(
-                      UnknownFieldSet.newBuilder()
-                      .addField(1,
-                                UnknownFieldSet.Field.newBuilder()
-                                .addVarint(1).build())
-                      .addField(3,
-                                UnknownFieldSet.Field.newBuilder()
-                                .addVarint(3).build())
-                      .build())
-    .mergeFrom(source)
-    .build();
+
+- (void) testMergeFrom {
+    PBUnknownFieldSet* set1 =
+    [[[[PBUnknownFieldSet newBuilder]
+       addField:[[PBMutableField field] addVarint:2] forNumber:2]
+      addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
     
-    NSAssert(
-                 "1: 1\n" +
-                 "2: 2\n" +
-                 "3: 3\n" +
-                 "3: 4\n",
-                 destination.toString());
+    PBUnknownFieldSet* set2 = 
+    [[[[PBUnknownFieldSet newBuilder]
+       addField:[[PBMutableField field] addVarint:1] forNumber:1]
+      addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
+    
+    PBUnknownFieldSet* set3 =
+    [[[[PBUnknownFieldSet newBuilder]
+       addField:[[PBMutableField field] addVarint:1] forNumber:1]
+      addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
+    
+    PBUnknownFieldSet* set4 = 
+    [[[[PBUnknownFieldSet newBuilder]
+       addField:[[PBMutableField field] addVarint:2] forNumber:2]
+      addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
+    
+    TestEmptyMessage* source1 = (id)[[[TestEmptyMessage newBuilder] setUnknownFields:set1] build];
+    TestEmptyMessage* source2 = (id)[[[TestEmptyMessage newBuilder] setUnknownFields:set2] build];
+    TestEmptyMessage* source3 = (id)[[[TestEmptyMessage newBuilder] setUnknownFields:set3] build];
+    TestEmptyMessage* source4 = (id)[[[TestEmptyMessage newBuilder] setUnknownFields:set4] build];
+    
+    TestEmptyMessage* destination1 = (id)[[[[TestEmptyMessage newBuilder] mergeFromMessage:source1] mergeFromMessage:source2] build];
+    TestEmptyMessage* destination2 = (id)[[[[TestEmptyMessage newBuilder] mergeFromMessage:source3] mergeFromMessage:source4] build];
+    
+    NSAssert([destination1.toData isEqual:destination2.toData], @"");
 }
+
+#if 0
 
 public void testClear() throws Exception {
     UnknownFieldSet fields =
-    UnknownFieldSet.newBuilder().mergeFrom(unknownFields).clear().build();
+    [UnknownFieldSet newBuilder].mergeFrom(unknownFields).clear().build();
     assertTrue(fields.asMap().isEmpty());
 }
 
 public void testClearMessage() throws Exception {
     TestEmptyMessage message =
-    TestEmptyMessage.newBuilder().mergeFrom(emptyMessage).clear().build();
+    [TestEmptyMessage newBuilder].mergeFrom(emptyMessage).clear().build();
     NSAssert(0, message.getSerializedSize());
 }
 
@@ -195,7 +193,7 @@ public void testParseKnownAndUnknown() throws Exception {
     UnknownFieldSet fields =
     UnknownFieldSet.newBuilder(unknownFields)
     .addField(123456,
-              UnknownFieldSet.Field.newBuilder().addVarint(654321).build())
+              [PBMutableField field].addVarint(654321).build())
     .build();
     
     ByteString data = fields.toByteString();
@@ -204,7 +202,7 @@ public void testParseKnownAndUnknown() throws Exception {
     TestUtil.assertAllFieldsSet(destination);
     NSAssert(1, destination.getUnknownFields().asMap().size());
     
-    UnknownFieldSet.Field field =
+    PBField field =
     destination.getUnknownFields().getField(123456);
     NSAssert(1, field.getVarintList().size());
     NSAssert(654321, (long) field.getVarintList().get(0));
@@ -259,14 +257,14 @@ public void testParseUnknownEnumValue() throws Exception {
     assertNotNull(repeatedField);
     
     ByteString data =
-    UnknownFieldSet.newBuilder()
+    [UnknownFieldSet newBuilder]
     .addField(singularField.getNumber(),
-              UnknownFieldSet.Field.newBuilder()
+              [PBMutableField field]
               .addVarint(TestAllTypes.NestedEnum.BAR.getNumber())
               .addVarint(5)   // not valid
               .build())
     .addField(repeatedField.getNumber(),
-              UnknownFieldSet.Field.newBuilder()
+              [PBMutableField field]
               .addVarint(TestAllTypes.NestedEnum.FOO.getNumber())
               .addVarint(4)   // not valid
               .addVarint(TestAllTypes.NestedEnum.BAZ.getNumber())
@@ -313,15 +311,15 @@ public void testParseUnknownEnumValue() throws Exception {
 
 public void testLargeVarint() throws Exception {
     ByteString data =
-    UnknownFieldSet.newBuilder()
+    [UnknownFieldSet newBuilder]
     .addField(1,
-              UnknownFieldSet.Field.newBuilder()
+              [PBMutableField field]
               .addVarint(0x7FFFFFFFFFFFFFFFL)
               .build())
     .build()
     .toByteString();
     UnknownFieldSet parsed = UnknownFieldSet.parseFrom(data);
-    UnknownFieldSet.Field field = parsed.getField(1);
+    PBField field = parsed.getField(1);
     NSAssert(1, field.getVarintList().size());
     NSAssert(0x7FFFFFFFFFFFFFFFL, (long)field.getVarintList().get(0));
 }
@@ -333,6 +331,9 @@ public void testLargeVarint() throws Exception {
     [[[[UnknownFieldSetTest alloc] init] autorelease] testFixed64];
     [[[[UnknownFieldSetTest alloc] init] autorelease] testLengthDelimited];
     [[[[UnknownFieldSetTest alloc] init] autorelease] testGroup];
+    [[[[UnknownFieldSetTest alloc] init] autorelease] testSerialize];
+    [[[[UnknownFieldSetTest alloc] init] autorelease] testCopyFrom];
+    [[[[UnknownFieldSetTest alloc] init] autorelease] testMergeFrom];
     
 }
 
