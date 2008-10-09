@@ -122,6 +122,12 @@
 
 
 - (void) initializeData {
+    self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:movie]];
+    
+    if (!self.model.noRatings) {
+        self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
+    }
+    
     NSArray* theatersShowingMovie = [self.model theatersShowingMovie:movie];
 
     if (filterTheatersByDistance) {
@@ -158,11 +164,6 @@
 
         self.title = movie.displayTitle;
         self.navigationItem.titleView = label;
-        self.trailersArray = [NSArray arrayWithArray:[self.model trailersForMovie:movie]];
-
-        if (!self.model.noRatings) {
-            self.reviewsArray = [NSArray arrayWithArray:[self.model reviewsForMovie:movie]];
-        }
     }
 
     return self;

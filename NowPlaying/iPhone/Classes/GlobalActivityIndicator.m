@@ -69,11 +69,6 @@ static NSInteger visibleBackgroundTaskCount = 0;
 }
 
 
-- (void) refresh {
-    [NowPlayingAppDelegate refresh];
-}
-
-
 + (void) addBackgroundTask:(BOOL) isVisible {
     [gate lock];
     {
@@ -111,11 +106,10 @@ static NSInteger visibleBackgroundTaskCount = 0;
         if (totalBackgroundTaskCount == 0) {
             [indicator performSelectorOnMainThread:@selector(stopNetworkIndicator) withObject:nil waitUntilDone:NO];
         }
-
-        [indicator performSelectorOnMainThread:@selector(refresh) withObject:nil waitUntilDone:NO];
+        
+        [NowPlayingAppDelegate refresh];
     }
     [gate unlock];
 }
-
 
 @end

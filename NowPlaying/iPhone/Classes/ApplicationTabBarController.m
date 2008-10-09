@@ -109,30 +109,10 @@
 }
 
 
-- (void) refresh:(NSDate*) date {
-    if (lastRefreshDate != nil) {
-        if ([date compare:lastRefreshDate] == NSOrderedAscending) {
-            // were freshed already since this request was issued.  ignore it
-            return;
-        }
-
-        if (ABS([lastRefreshDate timeIntervalSinceDate:date]) < 3) {
-            // it's too soon since the last refresh.  wait a while
-            [self performSelector:@selector(refresh:) withObject:date afterDelay:3];
-            return;
-        }
-    }
-
-    self.lastRefreshDate = [NSDate date];
-
+- (void) refresh {
     for (id viewController in self.viewControllers) {
         [viewController refresh];
     }
-}
-
-
-- (void) refresh {
-    [self refresh:[NSDate date]];
 }
 
 

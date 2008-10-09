@@ -20,6 +20,7 @@
 #import "FileUtilities.h"
 #import "Location.h"
 #import "Movie.h"
+#import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "PosterDownloader.h"
 #import "ThreadingUtilities.h"
@@ -97,13 +98,17 @@
 
 - (void) downloadPoster:(Movie*) movie
              postalCode:(NSString*) postalCode {
-    if ([[NSFileManager defaultManager] fileExistsAtPath:[self posterFilePath:movie]]) {
+    NSString* path = [self posterFilePath:movie];
+
+    if ([[NSFileManager defaultManager] fileExistsAtPath:path]) {
         return;
     }
 
     NSData* data = [PosterDownloader download:movie postalCode:postalCode];
-    NSString* path = [self posterFilePath:movie];
-    [data writeToFile:path atomically:YES];
+    if (data != nil) {
+        [data writeToFile:path atomically:YES];
+        [NowPlayingAppDelegate refresh];
+    }
 }
 
 

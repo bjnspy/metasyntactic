@@ -20,6 +20,7 @@
 #import "FileUtilities.h"
 #import "Movie.h"
 #import "NetworkUtilities.h"
+#import "NowPlayingAppDelegate.h"
 #import "ThreadingUtilities.h"
 #import "Utilities.h"
 
@@ -86,6 +87,7 @@
 
         if (imdbAddress.length > 0) {
             [FileUtilities writeObject:imdbAddress toFile:path];
+            [NowPlayingAppDelegate refresh];
         }
     }
 }
