@@ -2744,27 +2744,25 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   return size;
 }
 + (TestAllTypes*) parseFromData:(NSData*) data {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromData:data] build];
+  return (TestAllTypes*)[[[TestAllTypes_Builder builder] mergeFromData:data] build];
 }
 + (TestAllTypes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes*)[[[TestAllTypes_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromInputStream:input] build];
+  return (TestAllTypes*)[[[TestAllTypes_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestAllTypes*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes*)[[[TestAllTypes_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestAllTypes*)[[[TestAllTypes_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllTypes*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes*)[[[TestAllTypes newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes*)[[[TestAllTypes_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestAllTypes_Builder*) newBuilder { return [[[TestAllTypes_Builder alloc] init] autorelease]; }
-- (TestAllTypes_Builder*) newBuilderForType { return [TestAllTypes newBuilder]; }
-+ (TestAllTypes_Builder*) newBuilderWithPrototype:(TestAllTypes*) prototype {
-  return [[TestAllTypes newBuilder] mergeFromTestAllTypes:prototype];
+- (TestAllTypes_Builder*) createBuilder {
+  return [TestAllTypes_Builder builder];
 }
 @end
 
@@ -2893,27 +2891,25 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   return size;
 }
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromData:data] build];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage_Builder builder] mergeFromData:data] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromInputStream:input] build];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllTypes_NestedMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes_NestedMessage*)[[[TestAllTypes_NestedMessage_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestAllTypes_NestedMessage_Builder*) newBuilder { return [[[TestAllTypes_NestedMessage_Builder alloc] init] autorelease]; }
-- (TestAllTypes_NestedMessage_Builder*) newBuilderForType { return [TestAllTypes_NestedMessage newBuilder]; }
-+ (TestAllTypes_NestedMessage_Builder*) newBuilderWithPrototype:(TestAllTypes_NestedMessage*) prototype {
-  return [[TestAllTypes_NestedMessage newBuilder] mergeFromTestAllTypes_NestedMessage:prototype];
+- (TestAllTypes_NestedMessage_Builder*) createBuilder {
+  return [TestAllTypes_NestedMessage_Builder builder];
 }
 @end
 
@@ -2929,6 +2925,12 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   }
   return self;
 }
++ (TestAllTypes_NestedMessage_Builder*) builder {
+  return [[[TestAllTypes_NestedMessage_Builder alloc] init] autorelease];
+}
++ (TestAllTypes_NestedMessage_Builder*) builderWithPrototype:(TestAllTypes_NestedMessage*) prototype {
+  return [[TestAllTypes_NestedMessage_Builder builder] mergeFromTestAllTypes_NestedMessage:prototype];
+}
 - (TestAllTypes_NestedMessage*) internalGetResult {
   return result;
 }
@@ -2937,7 +2939,7 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   return self;
 }
 - (TestAllTypes_NestedMessage_Builder*) clone {
-  return (TestAllTypes_NestedMessage_Builder*)[[[[TestAllTypes_NestedMessage_Builder alloc] init] autorelease] mergeFromTestAllTypes_NestedMessage:result];
+  return [TestAllTypes_NestedMessage_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestAllTypes_NestedMessage descriptor];
@@ -3079,27 +3081,25 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   return size;
 }
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromData:data] build];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup_Builder builder] mergeFromData:data] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromInputStream:input] build];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllTypes_OptionalGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes_OptionalGroup*)[[[TestAllTypes_OptionalGroup_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestAllTypes_OptionalGroup_Builder*) newBuilder { return [[[TestAllTypes_OptionalGroup_Builder alloc] init] autorelease]; }
-- (TestAllTypes_OptionalGroup_Builder*) newBuilderForType { return [TestAllTypes_OptionalGroup newBuilder]; }
-+ (TestAllTypes_OptionalGroup_Builder*) newBuilderWithPrototype:(TestAllTypes_OptionalGroup*) prototype {
-  return [[TestAllTypes_OptionalGroup newBuilder] mergeFromTestAllTypes_OptionalGroup:prototype];
+- (TestAllTypes_OptionalGroup_Builder*) createBuilder {
+  return [TestAllTypes_OptionalGroup_Builder builder];
 }
 @end
 
@@ -3115,6 +3115,12 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   }
   return self;
 }
++ (TestAllTypes_OptionalGroup_Builder*) builder {
+  return [[[TestAllTypes_OptionalGroup_Builder alloc] init] autorelease];
+}
++ (TestAllTypes_OptionalGroup_Builder*) builderWithPrototype:(TestAllTypes_OptionalGroup*) prototype {
+  return [[TestAllTypes_OptionalGroup_Builder builder] mergeFromTestAllTypes_OptionalGroup:prototype];
+}
 - (TestAllTypes_OptionalGroup*) internalGetResult {
   return result;
 }
@@ -3123,7 +3129,7 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   return self;
 }
 - (TestAllTypes_OptionalGroup_Builder*) clone {
-  return (TestAllTypes_OptionalGroup_Builder*)[[[[TestAllTypes_OptionalGroup_Builder alloc] init] autorelease] mergeFromTestAllTypes_OptionalGroup:result];
+  return [TestAllTypes_OptionalGroup_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestAllTypes_OptionalGroup descriptor];
@@ -3265,27 +3271,25 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return size;
 }
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromData:data] build];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup_Builder builder] mergeFromData:data] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromInputStream:input] build];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllTypes_RepeatedGroup*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllTypes_RepeatedGroup*)[[[TestAllTypes_RepeatedGroup_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestAllTypes_RepeatedGroup_Builder*) newBuilder { return [[[TestAllTypes_RepeatedGroup_Builder alloc] init] autorelease]; }
-- (TestAllTypes_RepeatedGroup_Builder*) newBuilderForType { return [TestAllTypes_RepeatedGroup newBuilder]; }
-+ (TestAllTypes_RepeatedGroup_Builder*) newBuilderWithPrototype:(TestAllTypes_RepeatedGroup*) prototype {
-  return [[TestAllTypes_RepeatedGroup newBuilder] mergeFromTestAllTypes_RepeatedGroup:prototype];
+- (TestAllTypes_RepeatedGroup_Builder*) createBuilder {
+  return [TestAllTypes_RepeatedGroup_Builder builder];
 }
 @end
 
@@ -3301,6 +3305,12 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   }
   return self;
 }
++ (TestAllTypes_RepeatedGroup_Builder*) builder {
+  return [[[TestAllTypes_RepeatedGroup_Builder alloc] init] autorelease];
+}
++ (TestAllTypes_RepeatedGroup_Builder*) builderWithPrototype:(TestAllTypes_RepeatedGroup*) prototype {
+  return [[TestAllTypes_RepeatedGroup_Builder builder] mergeFromTestAllTypes_RepeatedGroup:prototype];
+}
 - (TestAllTypes_RepeatedGroup*) internalGetResult {
   return result;
 }
@@ -3309,7 +3319,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (TestAllTypes_RepeatedGroup_Builder*) clone {
-  return (TestAllTypes_RepeatedGroup_Builder*)[[[[TestAllTypes_RepeatedGroup_Builder alloc] init] autorelease] mergeFromTestAllTypes_RepeatedGroup:result];
+  return [TestAllTypes_RepeatedGroup_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestAllTypes_RepeatedGroup descriptor];
@@ -3400,6 +3410,12 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   }
   return self;
 }
++ (TestAllTypes_Builder*) builder {
+  return [[[TestAllTypes_Builder alloc] init] autorelease];
+}
++ (TestAllTypes_Builder*) builderWithPrototype:(TestAllTypes*) prototype {
+  return [[TestAllTypes_Builder builder] mergeFromTestAllTypes:prototype];
+}
 - (TestAllTypes*) internalGetResult {
   return result;
 }
@@ -3408,7 +3424,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (TestAllTypes_Builder*) clone {
-  return (TestAllTypes_Builder*)[[[[TestAllTypes_Builder alloc] init] autorelease] mergeFromTestAllTypes:result];
+  return [TestAllTypes_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestAllTypes descriptor];
@@ -3796,7 +3812,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
         break;
       }
       case 131: {
-        TestAllTypes_OptionalGroup_Builder* subBuilder = [TestAllTypes_OptionalGroup newBuilder];
+        TestAllTypes_OptionalGroup_Builder* subBuilder = [TestAllTypes_OptionalGroup_Builder builder];
         if (self.hasOptionalGroup) {
           [subBuilder mergeFromTestAllTypes_OptionalGroup:self.optionalGroup];
         }
@@ -3805,7 +3821,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
         break;
       }
       case 146: {
-        TestAllTypes_NestedMessage_Builder* subBuilder = [TestAllTypes_NestedMessage newBuilder];
+        TestAllTypes_NestedMessage_Builder* subBuilder = [TestAllTypes_NestedMessage_Builder builder];
         if (self.hasOptionalNestedMessage) {
           [subBuilder mergeFromTestAllTypes_NestedMessage:self.optionalNestedMessage];
         }
@@ -3814,7 +3830,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
         break;
       }
       case 154: {
-        ForeignMessage_Builder* subBuilder = [ForeignMessage newBuilder];
+        ForeignMessage_Builder* subBuilder = [ForeignMessage_Builder builder];
         if (self.hasOptionalForeignMessage) {
           [subBuilder mergeFromForeignMessage:self.optionalForeignMessage];
         }
@@ -3823,7 +3839,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
         break;
       }
       case 162: {
-        ImportMessage_Builder* subBuilder = [ImportMessage newBuilder];
+        ImportMessage_Builder* subBuilder = [ImportMessage_Builder builder];
         if (self.hasOptionalImportMessage) {
           [subBuilder mergeFromImportMessage:self.optionalImportMessage];
         }
@@ -3930,25 +3946,25 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
         break;
       }
       case 371: {
-        TestAllTypes_RepeatedGroup_Builder* subBuilder = [TestAllTypes_RepeatedGroup newBuilder];
+        TestAllTypes_RepeatedGroup_Builder* subBuilder = [TestAllTypes_RepeatedGroup_Builder builder];
         [input readGroup:46 builder:subBuilder extensionRegistry:extensionRegistry];
         [self addRepeatedGroup:[subBuilder buildPartial]];
         break;
       }
       case 386: {
-        TestAllTypes_NestedMessage_Builder* subBuilder = [TestAllTypes_NestedMessage newBuilder];
+        TestAllTypes_NestedMessage_Builder* subBuilder = [TestAllTypes_NestedMessage_Builder builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addRepeatedNestedMessage:[subBuilder buildPartial]];
         break;
       }
       case 394: {
-        ForeignMessage_Builder* subBuilder = [ForeignMessage newBuilder];
+        ForeignMessage_Builder* subBuilder = [ForeignMessage_Builder builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addRepeatedForeignMessage:[subBuilder buildPartial]];
         break;
       }
       case 402: {
-        ImportMessage_Builder* subBuilder = [ImportMessage newBuilder];
+        ImportMessage_Builder* subBuilder = [ImportMessage_Builder builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addRepeatedImportMessage:[subBuilder buildPartial]];
         break;
@@ -4350,7 +4366,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalGroup &&
       result.optionalGroup != [TestAllTypes_OptionalGroup defaultInstance]) {
     result.optionalGroup =
-      [[[TestAllTypes_OptionalGroup newBuilderWithPrototype:result.optionalGroup] mergeFromTestAllTypes_OptionalGroup:value] buildPartial];
+      [[[TestAllTypes_OptionalGroup_Builder builderWithPrototype:result.optionalGroup] mergeFromTestAllTypes_OptionalGroup:value] buildPartial];
   } else {
     result.optionalGroup = value;
   }
@@ -4380,7 +4396,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalNestedMessage &&
       result.optionalNestedMessage != [TestAllTypes_NestedMessage defaultInstance]) {
     result.optionalNestedMessage =
-      [[[TestAllTypes_NestedMessage newBuilderWithPrototype:result.optionalNestedMessage] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
+      [[[TestAllTypes_NestedMessage_Builder builderWithPrototype:result.optionalNestedMessage] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
   } else {
     result.optionalNestedMessage = value;
   }
@@ -4410,7 +4426,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalForeignMessage &&
       result.optionalForeignMessage != [ForeignMessage defaultInstance]) {
     result.optionalForeignMessage =
-      [[[ForeignMessage newBuilderWithPrototype:result.optionalForeignMessage] mergeFromForeignMessage:value] buildPartial];
+      [[[ForeignMessage_Builder builderWithPrototype:result.optionalForeignMessage] mergeFromForeignMessage:value] buildPartial];
   } else {
     result.optionalForeignMessage = value;
   }
@@ -4440,7 +4456,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalImportMessage &&
       result.optionalImportMessage != [ImportMessage defaultInstance]) {
     result.optionalImportMessage =
-      [[[ImportMessage newBuilderWithPrototype:result.optionalImportMessage] mergeFromImportMessage:value] buildPartial];
+      [[[ImportMessage_Builder builderWithPrototype:result.optionalImportMessage] mergeFromImportMessage:value] buildPartial];
   } else {
     result.optionalImportMessage = value;
   }
@@ -5610,27 +5626,25 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   return size;
 }
 + (ForeignMessage*) parseFromData:(NSData*) data {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromData:data] build];
+  return (ForeignMessage*)[[[ForeignMessage_Builder builder] mergeFromData:data] build];
 }
 + (ForeignMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (ForeignMessage*)[[[ForeignMessage_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (ForeignMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromInputStream:input] build];
+  return (ForeignMessage*)[[[ForeignMessage_Builder builder] mergeFromInputStream:input] build];
 }
 + (ForeignMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (ForeignMessage*)[[[ForeignMessage_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (ForeignMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromCodedInputStream:input] build];
+  return (ForeignMessage*)[[[ForeignMessage_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (ForeignMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ForeignMessage*)[[[ForeignMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (ForeignMessage*)[[[ForeignMessage_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (ForeignMessage_Builder*) newBuilder { return [[[ForeignMessage_Builder alloc] init] autorelease]; }
-- (ForeignMessage_Builder*) newBuilderForType { return [ForeignMessage newBuilder]; }
-+ (ForeignMessage_Builder*) newBuilderWithPrototype:(ForeignMessage*) prototype {
-  return [[ForeignMessage newBuilder] mergeFromForeignMessage:prototype];
+- (ForeignMessage_Builder*) createBuilder {
+  return [ForeignMessage_Builder builder];
 }
 @end
 
@@ -5646,6 +5660,12 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   }
   return self;
 }
++ (ForeignMessage_Builder*) builder {
+  return [[[ForeignMessage_Builder alloc] init] autorelease];
+}
++ (ForeignMessage_Builder*) builderWithPrototype:(ForeignMessage*) prototype {
+  return [[ForeignMessage_Builder builder] mergeFromForeignMessage:prototype];
+}
 - (ForeignMessage*) internalGetResult {
   return result;
 }
@@ -5654,7 +5674,7 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   return self;
 }
 - (ForeignMessage_Builder*) clone {
-  return (ForeignMessage_Builder*)[[[[ForeignMessage_Builder alloc] init] autorelease] mergeFromForeignMessage:result];
+  return [ForeignMessage_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [ForeignMessage descriptor];
@@ -5787,27 +5807,25 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   return size;
 }
 + (TestAllExtensions*) parseFromData:(NSData*) data {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromData:data] build];
+  return (TestAllExtensions*)[[[TestAllExtensions_Builder builder] mergeFromData:data] build];
 }
 + (TestAllExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestAllExtensions*)[[[TestAllExtensions_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestAllExtensions*) parseFromInputStream:(NSInputStream*) input {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromInputStream:input] build];
+  return (TestAllExtensions*)[[[TestAllExtensions_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestAllExtensions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllExtensions*)[[[TestAllExtensions_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestAllExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestAllExtensions*)[[[TestAllExtensions_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestAllExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestAllExtensions*)[[[TestAllExtensions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestAllExtensions*)[[[TestAllExtensions_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestAllExtensions_Builder*) newBuilder { return [[[TestAllExtensions_Builder alloc] init] autorelease]; }
-- (TestAllExtensions_Builder*) newBuilderForType { return [TestAllExtensions newBuilder]; }
-+ (TestAllExtensions_Builder*) newBuilderWithPrototype:(TestAllExtensions*) prototype {
-  return [[TestAllExtensions newBuilder] mergeFromTestAllExtensions:prototype];
+- (TestAllExtensions_Builder*) createBuilder {
+  return [TestAllExtensions_Builder builder];
 }
 @end
 
@@ -5823,6 +5841,12 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   }
   return self;
 }
++ (TestAllExtensions_Builder*) builder {
+  return [[[TestAllExtensions_Builder alloc] init] autorelease];
+}
++ (TestAllExtensions_Builder*) builderWithPrototype:(TestAllExtensions*) prototype {
+  return [[TestAllExtensions_Builder builder] mergeFromTestAllExtensions:prototype];
+}
 - (TestAllExtensions*) internalGetResult {
   return result;
 }
@@ -5831,7 +5855,7 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   return self;
 }
 - (TestAllExtensions_Builder*) clone {
-  return (TestAllExtensions_Builder*)[[[[TestAllExtensions_Builder alloc] init] autorelease] mergeFromTestAllExtensions:result];
+  return [TestAllExtensions_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestAllExtensions descriptor];
@@ -5950,27 +5974,25 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   return size;
 }
 + (OptionalGroup_extension*) parseFromData:(NSData*) data {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromData:data] build];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension_Builder builder] mergeFromData:data] build];
 }
 + (OptionalGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (OptionalGroup_extension*) parseFromInputStream:(NSInputStream*) input {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromInputStream:input] build];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension_Builder builder] mergeFromInputStream:input] build];
 }
 + (OptionalGroup_extension*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (OptionalGroup_extension*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromCodedInputStream:input] build];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (OptionalGroup_extension*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (OptionalGroup_extension*)[[[OptionalGroup_extension newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (OptionalGroup_extension*)[[[OptionalGroup_extension_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (OptionalGroup_extension_Builder*) newBuilder { return [[[OptionalGroup_extension_Builder alloc] init] autorelease]; }
-- (OptionalGroup_extension_Builder*) newBuilderForType { return [OptionalGroup_extension newBuilder]; }
-+ (OptionalGroup_extension_Builder*) newBuilderWithPrototype:(OptionalGroup_extension*) prototype {
-  return [[OptionalGroup_extension newBuilder] mergeFromOptionalGroup_extension:prototype];
+- (OptionalGroup_extension_Builder*) createBuilder {
+  return [OptionalGroup_extension_Builder builder];
 }
 @end
 
@@ -5986,6 +6008,12 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   }
   return self;
 }
++ (OptionalGroup_extension_Builder*) builder {
+  return [[[OptionalGroup_extension_Builder alloc] init] autorelease];
+}
++ (OptionalGroup_extension_Builder*) builderWithPrototype:(OptionalGroup_extension*) prototype {
+  return [[OptionalGroup_extension_Builder builder] mergeFromOptionalGroup_extension:prototype];
+}
 - (OptionalGroup_extension*) internalGetResult {
   return result;
 }
@@ -5994,7 +6022,7 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   return self;
 }
 - (OptionalGroup_extension_Builder*) clone {
-  return (OptionalGroup_extension_Builder*)[[[[OptionalGroup_extension_Builder alloc] init] autorelease] mergeFromOptionalGroup_extension:result];
+  return [OptionalGroup_extension_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [OptionalGroup_extension descriptor];
@@ -6136,27 +6164,25 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   return size;
 }
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromData:data] build];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension_Builder builder] mergeFromData:data] build];
 }
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (RepeatedGroup_extension*) parseFromInputStream:(NSInputStream*) input {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromInputStream:input] build];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension_Builder builder] mergeFromInputStream:input] build];
 }
 + (RepeatedGroup_extension*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (RepeatedGroup_extension*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromCodedInputStream:input] build];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (RepeatedGroup_extension*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (RepeatedGroup_extension*)[[[RepeatedGroup_extension_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (RepeatedGroup_extension_Builder*) newBuilder { return [[[RepeatedGroup_extension_Builder alloc] init] autorelease]; }
-- (RepeatedGroup_extension_Builder*) newBuilderForType { return [RepeatedGroup_extension newBuilder]; }
-+ (RepeatedGroup_extension_Builder*) newBuilderWithPrototype:(RepeatedGroup_extension*) prototype {
-  return [[RepeatedGroup_extension newBuilder] mergeFromRepeatedGroup_extension:prototype];
+- (RepeatedGroup_extension_Builder*) createBuilder {
+  return [RepeatedGroup_extension_Builder builder];
 }
 @end
 
@@ -6172,6 +6198,12 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   }
   return self;
 }
++ (RepeatedGroup_extension_Builder*) builder {
+  return [[[RepeatedGroup_extension_Builder alloc] init] autorelease];
+}
++ (RepeatedGroup_extension_Builder*) builderWithPrototype:(RepeatedGroup_extension*) prototype {
+  return [[RepeatedGroup_extension_Builder builder] mergeFromRepeatedGroup_extension:prototype];
+}
 - (RepeatedGroup_extension*) internalGetResult {
   return result;
 }
@@ -6180,7 +6212,7 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   return self;
 }
 - (RepeatedGroup_extension_Builder*) clone {
-  return (RepeatedGroup_extension_Builder*)[[[[RepeatedGroup_extension_Builder alloc] init] autorelease] mergeFromRepeatedGroup_extension:result];
+  return [RepeatedGroup_extension_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [RepeatedGroup_extension descriptor];
@@ -6753,27 +6785,25 @@ static TestRequired* defaultTestRequiredInstance = nil;
   return size;
 }
 + (TestRequired*) parseFromData:(NSData*) data {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromData:data] build];
+  return (TestRequired*)[[[TestRequired_Builder builder] mergeFromData:data] build];
 }
 + (TestRequired*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestRequired*)[[[TestRequired_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestRequired*) parseFromInputStream:(NSInputStream*) input {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromInputStream:input] build];
+  return (TestRequired*)[[[TestRequired_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestRequired*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestRequired*)[[[TestRequired_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestRequired*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestRequired*)[[[TestRequired_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestRequired*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequired*)[[[TestRequired newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestRequired*)[[[TestRequired_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestRequired_Builder*) newBuilder { return [[[TestRequired_Builder alloc] init] autorelease]; }
-- (TestRequired_Builder*) newBuilderForType { return [TestRequired newBuilder]; }
-+ (TestRequired_Builder*) newBuilderWithPrototype:(TestRequired*) prototype {
-  return [[TestRequired newBuilder] mergeFromTestRequired:prototype];
+- (TestRequired_Builder*) createBuilder {
+  return [TestRequired_Builder builder];
 }
 @end
 
@@ -6789,6 +6819,12 @@ static TestRequired* defaultTestRequiredInstance = nil;
   }
   return self;
 }
++ (TestRequired_Builder*) builder {
+  return [[[TestRequired_Builder alloc] init] autorelease];
+}
++ (TestRequired_Builder*) builderWithPrototype:(TestRequired*) prototype {
+  return [[TestRequired_Builder builder] mergeFromTestRequired:prototype];
+}
 - (TestRequired*) internalGetResult {
   return result;
 }
@@ -6797,7 +6833,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
   return self;
 }
 - (TestRequired_Builder*) clone {
-  return (TestRequired_Builder*)[[[[TestRequired_Builder alloc] init] autorelease] mergeFromTestRequired:result];
+  return [TestRequired_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestRequired descriptor];
@@ -7709,27 +7745,25 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   return size;
 }
 + (TestRequiredForeign*) parseFromData:(NSData*) data {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromData:data] build];
+  return (TestRequiredForeign*)[[[TestRequiredForeign_Builder builder] mergeFromData:data] build];
 }
 + (TestRequiredForeign*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestRequiredForeign*)[[[TestRequiredForeign_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestRequiredForeign*) parseFromInputStream:(NSInputStream*) input {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromInputStream:input] build];
+  return (TestRequiredForeign*)[[[TestRequiredForeign_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestRequiredForeign*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestRequiredForeign*)[[[TestRequiredForeign_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestRequiredForeign*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestRequiredForeign*)[[[TestRequiredForeign_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestRequiredForeign*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRequiredForeign*)[[[TestRequiredForeign newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestRequiredForeign*)[[[TestRequiredForeign_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestRequiredForeign_Builder*) newBuilder { return [[[TestRequiredForeign_Builder alloc] init] autorelease]; }
-- (TestRequiredForeign_Builder*) newBuilderForType { return [TestRequiredForeign newBuilder]; }
-+ (TestRequiredForeign_Builder*) newBuilderWithPrototype:(TestRequiredForeign*) prototype {
-  return [[TestRequiredForeign newBuilder] mergeFromTestRequiredForeign:prototype];
+- (TestRequiredForeign_Builder*) createBuilder {
+  return [TestRequiredForeign_Builder builder];
 }
 @end
 
@@ -7745,6 +7779,12 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   }
   return self;
 }
++ (TestRequiredForeign_Builder*) builder {
+  return [[[TestRequiredForeign_Builder alloc] init] autorelease];
+}
++ (TestRequiredForeign_Builder*) builderWithPrototype:(TestRequiredForeign*) prototype {
+  return [[TestRequiredForeign_Builder builder] mergeFromTestRequiredForeign:prototype];
+}
 - (TestRequiredForeign*) internalGetResult {
   return result;
 }
@@ -7753,7 +7793,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   return self;
 }
 - (TestRequiredForeign_Builder*) clone {
-  return (TestRequiredForeign_Builder*)[[[[TestRequiredForeign_Builder alloc] init] autorelease] mergeFromTestRequiredForeign:result];
+  return [TestRequiredForeign_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestRequiredForeign descriptor];
@@ -7817,7 +7857,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
         break;
       }
       case 10: {
-        TestRequired_Builder* subBuilder = [TestRequired newBuilder];
+        TestRequired_Builder* subBuilder = [TestRequired_Builder builder];
         if (self.hasOptionalMessage) {
           [subBuilder mergeFromTestRequired:self.optionalMessage];
         }
@@ -7826,7 +7866,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
         break;
       }
       case 18: {
-        TestRequired_Builder* subBuilder = [TestRequired newBuilder];
+        TestRequired_Builder* subBuilder = [TestRequired_Builder builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addRepeatedMessage:[subBuilder buildPartial]];
         break;
@@ -7856,7 +7896,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   if (result.hasOptionalMessage &&
       result.optionalMessage != [TestRequired defaultInstance]) {
     result.optionalMessage =
-      [[[TestRequired newBuilderWithPrototype:result.optionalMessage] mergeFromTestRequired:value] buildPartial];
+      [[[TestRequired_Builder builderWithPrototype:result.optionalMessage] mergeFromTestRequired:value] buildPartial];
   } else {
     result.optionalMessage = value;
   }
@@ -7977,27 +8017,25 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   return size;
 }
 + (TestForeignNested*) parseFromData:(NSData*) data {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromData:data] build];
+  return (TestForeignNested*)[[[TestForeignNested_Builder builder] mergeFromData:data] build];
 }
 + (TestForeignNested*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestForeignNested*)[[[TestForeignNested_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestForeignNested*) parseFromInputStream:(NSInputStream*) input {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromInputStream:input] build];
+  return (TestForeignNested*)[[[TestForeignNested_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestForeignNested*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestForeignNested*)[[[TestForeignNested_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestForeignNested*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestForeignNested*)[[[TestForeignNested_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestForeignNested*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestForeignNested*)[[[TestForeignNested newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestForeignNested*)[[[TestForeignNested_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestForeignNested_Builder*) newBuilder { return [[[TestForeignNested_Builder alloc] init] autorelease]; }
-- (TestForeignNested_Builder*) newBuilderForType { return [TestForeignNested newBuilder]; }
-+ (TestForeignNested_Builder*) newBuilderWithPrototype:(TestForeignNested*) prototype {
-  return [[TestForeignNested newBuilder] mergeFromTestForeignNested:prototype];
+- (TestForeignNested_Builder*) createBuilder {
+  return [TestForeignNested_Builder builder];
 }
 @end
 
@@ -8013,6 +8051,12 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   }
   return self;
 }
++ (TestForeignNested_Builder*) builder {
+  return [[[TestForeignNested_Builder alloc] init] autorelease];
+}
++ (TestForeignNested_Builder*) builderWithPrototype:(TestForeignNested*) prototype {
+  return [[TestForeignNested_Builder builder] mergeFromTestForeignNested:prototype];
+}
 - (TestForeignNested*) internalGetResult {
   return result;
 }
@@ -8021,7 +8065,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   return self;
 }
 - (TestForeignNested_Builder*) clone {
-  return (TestForeignNested_Builder*)[[[[TestForeignNested_Builder alloc] init] autorelease] mergeFromTestForeignNested:result];
+  return [TestForeignNested_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestForeignNested descriptor];
@@ -8076,7 +8120,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
         break;
       }
       case 10: {
-        TestAllTypes_NestedMessage_Builder* subBuilder = [TestAllTypes_NestedMessage newBuilder];
+        TestAllTypes_NestedMessage_Builder* subBuilder = [TestAllTypes_NestedMessage_Builder builder];
         if (self.hasForeignNested) {
           [subBuilder mergeFromTestAllTypes_NestedMessage:self.foreignNested];
         }
@@ -8105,7 +8149,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   if (result.hasForeignNested &&
       result.foreignNested != [TestAllTypes_NestedMessage defaultInstance]) {
     result.foreignNested =
-      [[[TestAllTypes_NestedMessage newBuilderWithPrototype:result.foreignNested] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
+      [[[TestAllTypes_NestedMessage_Builder builderWithPrototype:result.foreignNested] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
   } else {
     result.foreignNested = value;
   }
@@ -8169,27 +8213,25 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   return size;
 }
 + (TestEmptyMessage*) parseFromData:(NSData*) data {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromData:data] build];
+  return (TestEmptyMessage*)[[[TestEmptyMessage_Builder builder] mergeFromData:data] build];
 }
 + (TestEmptyMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestEmptyMessage*)[[[TestEmptyMessage_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestEmptyMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromInputStream:input] build];
+  return (TestEmptyMessage*)[[[TestEmptyMessage_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestEmptyMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestEmptyMessage*)[[[TestEmptyMessage_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestEmptyMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestEmptyMessage*)[[[TestEmptyMessage_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestEmptyMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessage*)[[[TestEmptyMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestEmptyMessage*)[[[TestEmptyMessage_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestEmptyMessage_Builder*) newBuilder { return [[[TestEmptyMessage_Builder alloc] init] autorelease]; }
-- (TestEmptyMessage_Builder*) newBuilderForType { return [TestEmptyMessage newBuilder]; }
-+ (TestEmptyMessage_Builder*) newBuilderWithPrototype:(TestEmptyMessage*) prototype {
-  return [[TestEmptyMessage newBuilder] mergeFromTestEmptyMessage:prototype];
+- (TestEmptyMessage_Builder*) createBuilder {
+  return [TestEmptyMessage_Builder builder];
 }
 @end
 
@@ -8205,6 +8247,12 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   }
   return self;
 }
++ (TestEmptyMessage_Builder*) builder {
+  return [[[TestEmptyMessage_Builder alloc] init] autorelease];
+}
++ (TestEmptyMessage_Builder*) builderWithPrototype:(TestEmptyMessage*) prototype {
+  return [[TestEmptyMessage_Builder builder] mergeFromTestEmptyMessage:prototype];
+}
 - (TestEmptyMessage*) internalGetResult {
   return result;
 }
@@ -8213,7 +8261,7 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   return self;
 }
 - (TestEmptyMessage_Builder*) clone {
-  return (TestEmptyMessage_Builder*)[[[[TestEmptyMessage_Builder alloc] init] autorelease] mergeFromTestEmptyMessage:result];
+  return [TestEmptyMessage_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestEmptyMessage descriptor];
@@ -8323,27 +8371,25 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   return size;
 }
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromData:data] build];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions_Builder builder] mergeFromData:data] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromInputStream:(NSInputStream*) input {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromInputStream:input] build];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestEmptyMessageWithExtensions*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestEmptyMessageWithExtensions*)[[[TestEmptyMessageWithExtensions_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestEmptyMessageWithExtensions_Builder*) newBuilder { return [[[TestEmptyMessageWithExtensions_Builder alloc] init] autorelease]; }
-- (TestEmptyMessageWithExtensions_Builder*) newBuilderForType { return [TestEmptyMessageWithExtensions newBuilder]; }
-+ (TestEmptyMessageWithExtensions_Builder*) newBuilderWithPrototype:(TestEmptyMessageWithExtensions*) prototype {
-  return [[TestEmptyMessageWithExtensions newBuilder] mergeFromTestEmptyMessageWithExtensions:prototype];
+- (TestEmptyMessageWithExtensions_Builder*) createBuilder {
+  return [TestEmptyMessageWithExtensions_Builder builder];
 }
 @end
 
@@ -8359,6 +8405,12 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   }
   return self;
 }
++ (TestEmptyMessageWithExtensions_Builder*) builder {
+  return [[[TestEmptyMessageWithExtensions_Builder alloc] init] autorelease];
+}
++ (TestEmptyMessageWithExtensions_Builder*) builderWithPrototype:(TestEmptyMessageWithExtensions*) prototype {
+  return [[TestEmptyMessageWithExtensions_Builder builder] mergeFromTestEmptyMessageWithExtensions:prototype];
+}
 - (TestEmptyMessageWithExtensions*) internalGetResult {
   return result;
 }
@@ -8367,7 +8419,7 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   return self;
 }
 - (TestEmptyMessageWithExtensions_Builder*) clone {
-  return (TestEmptyMessageWithExtensions_Builder*)[[[[TestEmptyMessageWithExtensions_Builder alloc] init] autorelease] mergeFromTestEmptyMessageWithExtensions:result];
+  return [TestEmptyMessageWithExtensions_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestEmptyMessageWithExtensions descriptor];
@@ -8499,27 +8551,25 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   return size;
 }
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromData:data] build];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber_Builder builder] mergeFromData:data] build];
 }
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestReallyLargeTagNumber*) parseFromInputStream:(NSInputStream*) input {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromInputStream:input] build];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestReallyLargeTagNumber*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestReallyLargeTagNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestReallyLargeTagNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestReallyLargeTagNumber*)[[[TestReallyLargeTagNumber_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestReallyLargeTagNumber_Builder*) newBuilder { return [[[TestReallyLargeTagNumber_Builder alloc] init] autorelease]; }
-- (TestReallyLargeTagNumber_Builder*) newBuilderForType { return [TestReallyLargeTagNumber newBuilder]; }
-+ (TestReallyLargeTagNumber_Builder*) newBuilderWithPrototype:(TestReallyLargeTagNumber*) prototype {
-  return [[TestReallyLargeTagNumber newBuilder] mergeFromTestReallyLargeTagNumber:prototype];
+- (TestReallyLargeTagNumber_Builder*) createBuilder {
+  return [TestReallyLargeTagNumber_Builder builder];
 }
 @end
 
@@ -8535,6 +8585,12 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   }
   return self;
 }
++ (TestReallyLargeTagNumber_Builder*) builder {
+  return [[[TestReallyLargeTagNumber_Builder alloc] init] autorelease];
+}
++ (TestReallyLargeTagNumber_Builder*) builderWithPrototype:(TestReallyLargeTagNumber*) prototype {
+  return [[TestReallyLargeTagNumber_Builder builder] mergeFromTestReallyLargeTagNumber:prototype];
+}
 - (TestReallyLargeTagNumber*) internalGetResult {
   return result;
 }
@@ -8543,7 +8599,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   return self;
 }
 - (TestReallyLargeTagNumber_Builder*) clone {
-  return (TestReallyLargeTagNumber_Builder*)[[[[TestReallyLargeTagNumber_Builder alloc] init] autorelease] mergeFromTestReallyLargeTagNumber:result];
+  return [TestReallyLargeTagNumber_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestReallyLargeTagNumber descriptor];
@@ -8720,27 +8776,25 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   return size;
 }
 + (TestRecursiveMessage*) parseFromData:(NSData*) data {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromData:data] build];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage_Builder builder] mergeFromData:data] build];
 }
 + (TestRecursiveMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestRecursiveMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromInputStream:input] build];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestRecursiveMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestRecursiveMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestRecursiveMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestRecursiveMessage*)[[[TestRecursiveMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestRecursiveMessage*)[[[TestRecursiveMessage_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestRecursiveMessage_Builder*) newBuilder { return [[[TestRecursiveMessage_Builder alloc] init] autorelease]; }
-- (TestRecursiveMessage_Builder*) newBuilderForType { return [TestRecursiveMessage newBuilder]; }
-+ (TestRecursiveMessage_Builder*) newBuilderWithPrototype:(TestRecursiveMessage*) prototype {
-  return [[TestRecursiveMessage newBuilder] mergeFromTestRecursiveMessage:prototype];
+- (TestRecursiveMessage_Builder*) createBuilder {
+  return [TestRecursiveMessage_Builder builder];
 }
 @end
 
@@ -8756,6 +8810,12 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   }
   return self;
 }
++ (TestRecursiveMessage_Builder*) builder {
+  return [[[TestRecursiveMessage_Builder alloc] init] autorelease];
+}
++ (TestRecursiveMessage_Builder*) builderWithPrototype:(TestRecursiveMessage*) prototype {
+  return [[TestRecursiveMessage_Builder builder] mergeFromTestRecursiveMessage:prototype];
+}
 - (TestRecursiveMessage*) internalGetResult {
   return result;
 }
@@ -8764,7 +8824,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   return self;
 }
 - (TestRecursiveMessage_Builder*) clone {
-  return (TestRecursiveMessage_Builder*)[[[[TestRecursiveMessage_Builder alloc] init] autorelease] mergeFromTestRecursiveMessage:result];
+  return [TestRecursiveMessage_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestRecursiveMessage descriptor];
@@ -8822,7 +8882,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
         break;
       }
       case 10: {
-        TestRecursiveMessage_Builder* subBuilder = [TestRecursiveMessage newBuilder];
+        TestRecursiveMessage_Builder* subBuilder = [TestRecursiveMessage_Builder builder];
         if (self.hasA) {
           [subBuilder mergeFromTestRecursiveMessage:self.a];
         }
@@ -8855,7 +8915,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   if (result.hasA &&
       result.a != [TestRecursiveMessage defaultInstance]) {
     result.a =
-      [[[TestRecursiveMessage newBuilderWithPrototype:result.a] mergeFromTestRecursiveMessage:value] buildPartial];
+      [[[TestRecursiveMessage_Builder builderWithPrototype:result.a] mergeFromTestRecursiveMessage:value] buildPartial];
   } else {
     result.a = value;
   }
@@ -8947,27 +9007,25 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   return size;
 }
 + (TestMutualRecursionA*) parseFromData:(NSData*) data {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromData:data] build];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA_Builder builder] mergeFromData:data] build];
 }
 + (TestMutualRecursionA*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestMutualRecursionA*) parseFromInputStream:(NSInputStream*) input {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromInputStream:input] build];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestMutualRecursionA*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestMutualRecursionA*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestMutualRecursionA*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionA*)[[[TestMutualRecursionA newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestMutualRecursionA*)[[[TestMutualRecursionA_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestMutualRecursionA_Builder*) newBuilder { return [[[TestMutualRecursionA_Builder alloc] init] autorelease]; }
-- (TestMutualRecursionA_Builder*) newBuilderForType { return [TestMutualRecursionA newBuilder]; }
-+ (TestMutualRecursionA_Builder*) newBuilderWithPrototype:(TestMutualRecursionA*) prototype {
-  return [[TestMutualRecursionA newBuilder] mergeFromTestMutualRecursionA:prototype];
+- (TestMutualRecursionA_Builder*) createBuilder {
+  return [TestMutualRecursionA_Builder builder];
 }
 @end
 
@@ -8983,6 +9041,12 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   }
   return self;
 }
++ (TestMutualRecursionA_Builder*) builder {
+  return [[[TestMutualRecursionA_Builder alloc] init] autorelease];
+}
++ (TestMutualRecursionA_Builder*) builderWithPrototype:(TestMutualRecursionA*) prototype {
+  return [[TestMutualRecursionA_Builder builder] mergeFromTestMutualRecursionA:prototype];
+}
 - (TestMutualRecursionA*) internalGetResult {
   return result;
 }
@@ -8991,7 +9055,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   return self;
 }
 - (TestMutualRecursionA_Builder*) clone {
-  return (TestMutualRecursionA_Builder*)[[[[TestMutualRecursionA_Builder alloc] init] autorelease] mergeFromTestMutualRecursionA:result];
+  return [TestMutualRecursionA_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestMutualRecursionA descriptor];
@@ -9046,7 +9110,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
         break;
       }
       case 10: {
-        TestMutualRecursionB_Builder* subBuilder = [TestMutualRecursionB newBuilder];
+        TestMutualRecursionB_Builder* subBuilder = [TestMutualRecursionB_Builder builder];
         if (self.hasBb) {
           [subBuilder mergeFromTestMutualRecursionB:self.bb];
         }
@@ -9075,7 +9139,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   if (result.hasBb &&
       result.bb != [TestMutualRecursionB defaultInstance]) {
     result.bb =
-      [[[TestMutualRecursionB newBuilderWithPrototype:result.bb] mergeFromTestMutualRecursionB:value] buildPartial];
+      [[[TestMutualRecursionB_Builder builderWithPrototype:result.bb] mergeFromTestMutualRecursionB:value] buildPartial];
   } else {
     result.bb = value;
   }
@@ -9164,27 +9228,25 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   return size;
 }
 + (TestMutualRecursionB*) parseFromData:(NSData*) data {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromData:data] build];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB_Builder builder] mergeFromData:data] build];
 }
 + (TestMutualRecursionB*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestMutualRecursionB*) parseFromInputStream:(NSInputStream*) input {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromInputStream:input] build];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestMutualRecursionB*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestMutualRecursionB*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestMutualRecursionB*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestMutualRecursionB*)[[[TestMutualRecursionB newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestMutualRecursionB*)[[[TestMutualRecursionB_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestMutualRecursionB_Builder*) newBuilder { return [[[TestMutualRecursionB_Builder alloc] init] autorelease]; }
-- (TestMutualRecursionB_Builder*) newBuilderForType { return [TestMutualRecursionB newBuilder]; }
-+ (TestMutualRecursionB_Builder*) newBuilderWithPrototype:(TestMutualRecursionB*) prototype {
-  return [[TestMutualRecursionB newBuilder] mergeFromTestMutualRecursionB:prototype];
+- (TestMutualRecursionB_Builder*) createBuilder {
+  return [TestMutualRecursionB_Builder builder];
 }
 @end
 
@@ -9200,6 +9262,12 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   }
   return self;
 }
++ (TestMutualRecursionB_Builder*) builder {
+  return [[[TestMutualRecursionB_Builder alloc] init] autorelease];
+}
++ (TestMutualRecursionB_Builder*) builderWithPrototype:(TestMutualRecursionB*) prototype {
+  return [[TestMutualRecursionB_Builder builder] mergeFromTestMutualRecursionB:prototype];
+}
 - (TestMutualRecursionB*) internalGetResult {
   return result;
 }
@@ -9208,7 +9276,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   return self;
 }
 - (TestMutualRecursionB_Builder*) clone {
-  return (TestMutualRecursionB_Builder*)[[[[TestMutualRecursionB_Builder alloc] init] autorelease] mergeFromTestMutualRecursionB:result];
+  return [TestMutualRecursionB_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestMutualRecursionB descriptor];
@@ -9266,7 +9334,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
         break;
       }
       case 10: {
-        TestMutualRecursionA_Builder* subBuilder = [TestMutualRecursionA newBuilder];
+        TestMutualRecursionA_Builder* subBuilder = [TestMutualRecursionA_Builder builder];
         if (self.hasA) {
           [subBuilder mergeFromTestMutualRecursionA:self.a];
         }
@@ -9299,7 +9367,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   if (result.hasA &&
       result.a != [TestMutualRecursionA defaultInstance]) {
     result.a =
-      [[[TestMutualRecursionA newBuilderWithPrototype:result.a] mergeFromTestMutualRecursionA:value] buildPartial];
+      [[[TestMutualRecursionA_Builder builderWithPrototype:result.a] mergeFromTestMutualRecursionA:value] buildPartial];
   } else {
     result.a = value;
   }
@@ -9416,27 +9484,25 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
   return size;
 }
 + (TestDupFieldNumber*) parseFromData:(NSData*) data {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromData:data] build];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber_Builder builder] mergeFromData:data] build];
 }
 + (TestDupFieldNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber*) parseFromInputStream:(NSInputStream*) input {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromInputStream:input] build];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestDupFieldNumber*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestDupFieldNumber*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber*)[[[TestDupFieldNumber newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestDupFieldNumber*)[[[TestDupFieldNumber_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestDupFieldNumber_Builder*) newBuilder { return [[[TestDupFieldNumber_Builder alloc] init] autorelease]; }
-- (TestDupFieldNumber_Builder*) newBuilderForType { return [TestDupFieldNumber newBuilder]; }
-+ (TestDupFieldNumber_Builder*) newBuilderWithPrototype:(TestDupFieldNumber*) prototype {
-  return [[TestDupFieldNumber newBuilder] mergeFromTestDupFieldNumber:prototype];
+- (TestDupFieldNumber_Builder*) createBuilder {
+  return [TestDupFieldNumber_Builder builder];
 }
 @end
 
@@ -9503,27 +9569,25 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   return size;
 }
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromData:data] build];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo_Builder builder] mergeFromData:data] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromInputStream:(NSInputStream*) input {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromInputStream:input] build];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestDupFieldNumber_Foo*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestDupFieldNumber_Foo*)[[[TestDupFieldNumber_Foo_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestDupFieldNumber_Foo_Builder*) newBuilder { return [[[TestDupFieldNumber_Foo_Builder alloc] init] autorelease]; }
-- (TestDupFieldNumber_Foo_Builder*) newBuilderForType { return [TestDupFieldNumber_Foo newBuilder]; }
-+ (TestDupFieldNumber_Foo_Builder*) newBuilderWithPrototype:(TestDupFieldNumber_Foo*) prototype {
-  return [[TestDupFieldNumber_Foo newBuilder] mergeFromTestDupFieldNumber_Foo:prototype];
+- (TestDupFieldNumber_Foo_Builder*) createBuilder {
+  return [TestDupFieldNumber_Foo_Builder builder];
 }
 @end
 
@@ -9539,6 +9603,12 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   }
   return self;
 }
++ (TestDupFieldNumber_Foo_Builder*) builder {
+  return [[[TestDupFieldNumber_Foo_Builder alloc] init] autorelease];
+}
++ (TestDupFieldNumber_Foo_Builder*) builderWithPrototype:(TestDupFieldNumber_Foo*) prototype {
+  return [[TestDupFieldNumber_Foo_Builder builder] mergeFromTestDupFieldNumber_Foo:prototype];
+}
 - (TestDupFieldNumber_Foo*) internalGetResult {
   return result;
 }
@@ -9547,7 +9617,7 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   return self;
 }
 - (TestDupFieldNumber_Foo_Builder*) clone {
-  return (TestDupFieldNumber_Foo_Builder*)[[[[TestDupFieldNumber_Foo_Builder alloc] init] autorelease] mergeFromTestDupFieldNumber_Foo:result];
+  return [TestDupFieldNumber_Foo_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestDupFieldNumber_Foo descriptor];
@@ -9689,27 +9759,25 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   return size;
 }
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromData:data] build];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar_Builder builder] mergeFromData:data] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromInputStream:(NSInputStream*) input {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromInputStream:input] build];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestDupFieldNumber_Bar*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestDupFieldNumber_Bar*)[[[TestDupFieldNumber_Bar_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestDupFieldNumber_Bar_Builder*) newBuilder { return [[[TestDupFieldNumber_Bar_Builder alloc] init] autorelease]; }
-- (TestDupFieldNumber_Bar_Builder*) newBuilderForType { return [TestDupFieldNumber_Bar newBuilder]; }
-+ (TestDupFieldNumber_Bar_Builder*) newBuilderWithPrototype:(TestDupFieldNumber_Bar*) prototype {
-  return [[TestDupFieldNumber_Bar newBuilder] mergeFromTestDupFieldNumber_Bar:prototype];
+- (TestDupFieldNumber_Bar_Builder*) createBuilder {
+  return [TestDupFieldNumber_Bar_Builder builder];
 }
 @end
 
@@ -9725,6 +9793,12 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   }
   return self;
 }
++ (TestDupFieldNumber_Bar_Builder*) builder {
+  return [[[TestDupFieldNumber_Bar_Builder alloc] init] autorelease];
+}
++ (TestDupFieldNumber_Bar_Builder*) builderWithPrototype:(TestDupFieldNumber_Bar*) prototype {
+  return [[TestDupFieldNumber_Bar_Builder builder] mergeFromTestDupFieldNumber_Bar:prototype];
+}
 - (TestDupFieldNumber_Bar*) internalGetResult {
   return result;
 }
@@ -9733,7 +9807,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   return self;
 }
 - (TestDupFieldNumber_Bar_Builder*) clone {
-  return (TestDupFieldNumber_Bar_Builder*)[[[[TestDupFieldNumber_Bar_Builder alloc] init] autorelease] mergeFromTestDupFieldNumber_Bar:result];
+  return [TestDupFieldNumber_Bar_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestDupFieldNumber_Bar descriptor];
@@ -9824,6 +9898,12 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   }
   return self;
 }
++ (TestDupFieldNumber_Builder*) builder {
+  return [[[TestDupFieldNumber_Builder alloc] init] autorelease];
+}
++ (TestDupFieldNumber_Builder*) builderWithPrototype:(TestDupFieldNumber*) prototype {
+  return [[TestDupFieldNumber_Builder builder] mergeFromTestDupFieldNumber:prototype];
+}
 - (TestDupFieldNumber*) internalGetResult {
   return result;
 }
@@ -9832,7 +9912,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   return self;
 }
 - (TestDupFieldNumber_Builder*) clone {
-  return (TestDupFieldNumber_Builder*)[[[[TestDupFieldNumber_Builder alloc] init] autorelease] mergeFromTestDupFieldNumber:result];
+  return [TestDupFieldNumber_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestDupFieldNumber descriptor];
@@ -9897,7 +9977,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
         break;
       }
       case 19: {
-        TestDupFieldNumber_Foo_Builder* subBuilder = [TestDupFieldNumber_Foo newBuilder];
+        TestDupFieldNumber_Foo_Builder* subBuilder = [TestDupFieldNumber_Foo_Builder builder];
         if (self.hasFoo) {
           [subBuilder mergeFromTestDupFieldNumber_Foo:self.foo];
         }
@@ -9906,7 +9986,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
         break;
       }
       case 27: {
-        TestDupFieldNumber_Bar_Builder* subBuilder = [TestDupFieldNumber_Bar newBuilder];
+        TestDupFieldNumber_Bar_Builder* subBuilder = [TestDupFieldNumber_Bar_Builder builder];
         if (self.hasBar) {
           [subBuilder mergeFromTestDupFieldNumber_Bar:self.bar];
         }
@@ -9951,7 +10031,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   if (result.hasFoo &&
       result.foo != [TestDupFieldNumber_Foo defaultInstance]) {
     result.foo =
-      [[[TestDupFieldNumber_Foo newBuilderWithPrototype:result.foo] mergeFromTestDupFieldNumber_Foo:value] buildPartial];
+      [[[TestDupFieldNumber_Foo_Builder builderWithPrototype:result.foo] mergeFromTestDupFieldNumber_Foo:value] buildPartial];
   } else {
     result.foo = value;
   }
@@ -9981,7 +10061,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   if (result.hasBar &&
       result.bar != [TestDupFieldNumber_Bar defaultInstance]) {
     result.bar =
-      [[[TestDupFieldNumber_Bar newBuilderWithPrototype:result.bar] mergeFromTestDupFieldNumber_Bar:value] buildPartial];
+      [[[TestDupFieldNumber_Bar_Builder builderWithPrototype:result.bar] mergeFromTestDupFieldNumber_Bar:value] buildPartial];
   } else {
     result.bar = value;
   }
@@ -10057,27 +10137,25 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
   return size;
 }
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromData:data] build];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits_Builder builder] mergeFromData:data] build];
 }
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestNestedMessageHasBits*) parseFromInputStream:(NSInputStream*) input {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromInputStream:input] build];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestNestedMessageHasBits*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestNestedMessageHasBits*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestNestedMessageHasBits*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestNestedMessageHasBits*)[[[TestNestedMessageHasBits_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestNestedMessageHasBits_Builder*) newBuilder { return [[[TestNestedMessageHasBits_Builder alloc] init] autorelease]; }
-- (TestNestedMessageHasBits_Builder*) newBuilderForType { return [TestNestedMessageHasBits newBuilder]; }
-+ (TestNestedMessageHasBits_Builder*) newBuilderWithPrototype:(TestNestedMessageHasBits*) prototype {
-  return [[TestNestedMessageHasBits newBuilder] mergeFromTestNestedMessageHasBits:prototype];
+- (TestNestedMessageHasBits_Builder*) createBuilder {
+  return [TestNestedMessageHasBits_Builder builder];
 }
 @end
 
@@ -10163,27 +10241,25 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   return size;
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromData:data] build];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage_Builder builder] mergeFromData:data] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromInputStream:input] build];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestNestedMessageHasBits_NestedMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestNestedMessageHasBits_NestedMessage*)[[[TestNestedMessageHasBits_NestedMessage_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilder { return [[[TestNestedMessageHasBits_NestedMessage_Builder alloc] init] autorelease]; }
-- (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderForType { return [TestNestedMessageHasBits_NestedMessage newBuilder]; }
-+ (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderWithPrototype:(TestNestedMessageHasBits_NestedMessage*) prototype {
-  return [[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromTestNestedMessageHasBits_NestedMessage:prototype];
+- (TestNestedMessageHasBits_NestedMessage_Builder*) createBuilder {
+  return [TestNestedMessageHasBits_NestedMessage_Builder builder];
 }
 @end
 
@@ -10199,6 +10275,12 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   }
   return self;
 }
++ (TestNestedMessageHasBits_NestedMessage_Builder*) builder {
+  return [[[TestNestedMessageHasBits_NestedMessage_Builder alloc] init] autorelease];
+}
++ (TestNestedMessageHasBits_NestedMessage_Builder*) builderWithPrototype:(TestNestedMessageHasBits_NestedMessage*) prototype {
+  return [[TestNestedMessageHasBits_NestedMessage_Builder builder] mergeFromTestNestedMessageHasBits_NestedMessage:prototype];
+}
 - (TestNestedMessageHasBits_NestedMessage*) internalGetResult {
   return result;
 }
@@ -10207,7 +10289,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   return self;
 }
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clone {
-  return (TestNestedMessageHasBits_NestedMessage_Builder*)[[[[TestNestedMessageHasBits_NestedMessage_Builder alloc] init] autorelease] mergeFromTestNestedMessageHasBits_NestedMessage:result];
+  return [TestNestedMessageHasBits_NestedMessage_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestNestedMessageHasBits_NestedMessage descriptor];
@@ -10275,7 +10357,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
         break;
       }
       case 18: {
-        ForeignMessage_Builder* subBuilder = [ForeignMessage newBuilder];
+        ForeignMessage_Builder* subBuilder = [ForeignMessage_Builder builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addNestedmessageRepeatedForeignmessage:[subBuilder buildPartial]];
         break;
@@ -10355,6 +10437,12 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   }
   return self;
 }
++ (TestNestedMessageHasBits_Builder*) builder {
+  return [[[TestNestedMessageHasBits_Builder alloc] init] autorelease];
+}
++ (TestNestedMessageHasBits_Builder*) builderWithPrototype:(TestNestedMessageHasBits*) prototype {
+  return [[TestNestedMessageHasBits_Builder builder] mergeFromTestNestedMessageHasBits:prototype];
+}
 - (TestNestedMessageHasBits*) internalGetResult {
   return result;
 }
@@ -10363,7 +10451,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   return self;
 }
 - (TestNestedMessageHasBits_Builder*) clone {
-  return (TestNestedMessageHasBits_Builder*)[[[[TestNestedMessageHasBits_Builder alloc] init] autorelease] mergeFromTestNestedMessageHasBits:result];
+  return [TestNestedMessageHasBits_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestNestedMessageHasBits descriptor];
@@ -10418,7 +10506,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
         break;
       }
       case 10: {
-        TestNestedMessageHasBits_NestedMessage_Builder* subBuilder = [TestNestedMessageHasBits_NestedMessage newBuilder];
+        TestNestedMessageHasBits_NestedMessage_Builder* subBuilder = [TestNestedMessageHasBits_NestedMessage_Builder builder];
         if (self.hasOptionalNestedMessage) {
           [subBuilder mergeFromTestNestedMessageHasBits_NestedMessage:self.optionalNestedMessage];
         }
@@ -10447,7 +10535,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   if (result.hasOptionalNestedMessage &&
       result.optionalNestedMessage != [TestNestedMessageHasBits_NestedMessage defaultInstance]) {
     result.optionalNestedMessage =
-      [[[TestNestedMessageHasBits_NestedMessage newBuilderWithPrototype:result.optionalNestedMessage] mergeFromTestNestedMessageHasBits_NestedMessage:value] buildPartial];
+      [[[TestNestedMessageHasBits_NestedMessage_Builder builderWithPrototype:result.optionalNestedMessage] mergeFromTestNestedMessageHasBits_NestedMessage:value] buildPartial];
   } else {
     result.optionalNestedMessage = value;
   }
@@ -10684,27 +10772,25 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   return size;
 }
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromData:data] build];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames_Builder builder] mergeFromData:data] build];
 }
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestCamelCaseFieldNames*) parseFromInputStream:(NSInputStream*) input {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromInputStream:input] build];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestCamelCaseFieldNames*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestCamelCaseFieldNames*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestCamelCaseFieldNames*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestCamelCaseFieldNames*)[[[TestCamelCaseFieldNames_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestCamelCaseFieldNames_Builder*) newBuilder { return [[[TestCamelCaseFieldNames_Builder alloc] init] autorelease]; }
-- (TestCamelCaseFieldNames_Builder*) newBuilderForType { return [TestCamelCaseFieldNames newBuilder]; }
-+ (TestCamelCaseFieldNames_Builder*) newBuilderWithPrototype:(TestCamelCaseFieldNames*) prototype {
-  return [[TestCamelCaseFieldNames newBuilder] mergeFromTestCamelCaseFieldNames:prototype];
+- (TestCamelCaseFieldNames_Builder*) createBuilder {
+  return [TestCamelCaseFieldNames_Builder builder];
 }
 @end
 
@@ -10720,6 +10806,12 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   }
   return self;
 }
++ (TestCamelCaseFieldNames_Builder*) builder {
+  return [[[TestCamelCaseFieldNames_Builder alloc] init] autorelease];
+}
++ (TestCamelCaseFieldNames_Builder*) builderWithPrototype:(TestCamelCaseFieldNames*) prototype {
+  return [[TestCamelCaseFieldNames_Builder builder] mergeFromTestCamelCaseFieldNames:prototype];
+}
 - (TestCamelCaseFieldNames*) internalGetResult {
   return result;
 }
@@ -10728,7 +10820,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   return self;
 }
 - (TestCamelCaseFieldNames_Builder*) clone {
-  return (TestCamelCaseFieldNames_Builder*)[[[[TestCamelCaseFieldNames_Builder alloc] init] autorelease] mergeFromTestCamelCaseFieldNames:result];
+  return [TestCamelCaseFieldNames_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestCamelCaseFieldNames descriptor];
@@ -10852,7 +10944,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
         break;
       }
       case 34: {
-        ForeignMessage_Builder* subBuilder = [ForeignMessage newBuilder];
+        ForeignMessage_Builder* subBuilder = [ForeignMessage_Builder builder];
         if (self.hasMessageField) {
           [subBuilder mergeFromForeignMessage:self.messageField];
         }
@@ -10887,7 +10979,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
         break;
       }
       case 82: {
-        ForeignMessage_Builder* subBuilder = [ForeignMessage newBuilder];
+        ForeignMessage_Builder* subBuilder = [ForeignMessage_Builder builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addRepeatedMessageField:[subBuilder buildPartial]];
         break;
@@ -10969,7 +11061,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   if (result.hasMessageField &&
       result.messageField != [ForeignMessage defaultInstance]) {
     result.messageField =
-      [[[ForeignMessage newBuilderWithPrototype:result.messageField] mergeFromForeignMessage:value] buildPartial];
+      [[[ForeignMessage_Builder builderWithPrototype:result.messageField] mergeFromForeignMessage:value] buildPartial];
   } else {
     result.messageField = value;
   }
@@ -11282,27 +11374,25 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   return size;
 }
 + (TestFieldOrderings*) parseFromData:(NSData*) data {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromData:data] build];
+  return (TestFieldOrderings*)[[[TestFieldOrderings_Builder builder] mergeFromData:data] build];
 }
 + (TestFieldOrderings*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestFieldOrderings*)[[[TestFieldOrderings_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestFieldOrderings*) parseFromInputStream:(NSInputStream*) input {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromInputStream:input] build];
+  return (TestFieldOrderings*)[[[TestFieldOrderings_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestFieldOrderings*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestFieldOrderings*)[[[TestFieldOrderings_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestFieldOrderings*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestFieldOrderings*)[[[TestFieldOrderings_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestFieldOrderings*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestFieldOrderings*)[[[TestFieldOrderings newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestFieldOrderings*)[[[TestFieldOrderings_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestFieldOrderings_Builder*) newBuilder { return [[[TestFieldOrderings_Builder alloc] init] autorelease]; }
-- (TestFieldOrderings_Builder*) newBuilderForType { return [TestFieldOrderings newBuilder]; }
-+ (TestFieldOrderings_Builder*) newBuilderWithPrototype:(TestFieldOrderings*) prototype {
-  return [[TestFieldOrderings newBuilder] mergeFromTestFieldOrderings:prototype];
+- (TestFieldOrderings_Builder*) createBuilder {
+  return [TestFieldOrderings_Builder builder];
 }
 @end
 
@@ -11318,6 +11408,12 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   }
   return self;
 }
++ (TestFieldOrderings_Builder*) builder {
+  return [[[TestFieldOrderings_Builder alloc] init] autorelease];
+}
++ (TestFieldOrderings_Builder*) builderWithPrototype:(TestFieldOrderings*) prototype {
+  return [[TestFieldOrderings_Builder builder] mergeFromTestFieldOrderings:prototype];
+}
 - (TestFieldOrderings*) internalGetResult {
   return result;
 }
@@ -11326,7 +11422,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   return self;
 }
 - (TestFieldOrderings_Builder*) clone {
-  return (TestFieldOrderings_Builder*)[[[[TestFieldOrderings_Builder alloc] init] autorelease] mergeFromTestFieldOrderings:result];
+  return [TestFieldOrderings_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestFieldOrderings descriptor];
@@ -11579,27 +11675,25 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   return size;
 }
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromData:data] build];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues_Builder builder] mergeFromData:data] build];
 }
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestExtremeDefaultValues*) parseFromInputStream:(NSInputStream*) input {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromInputStream:input] build];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestExtremeDefaultValues*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestExtremeDefaultValues*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestExtremeDefaultValues*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestExtremeDefaultValues*)[[[TestExtremeDefaultValues_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestExtremeDefaultValues_Builder*) newBuilder { return [[[TestExtremeDefaultValues_Builder alloc] init] autorelease]; }
-- (TestExtremeDefaultValues_Builder*) newBuilderForType { return [TestExtremeDefaultValues newBuilder]; }
-+ (TestExtremeDefaultValues_Builder*) newBuilderWithPrototype:(TestExtremeDefaultValues*) prototype {
-  return [[TestExtremeDefaultValues newBuilder] mergeFromTestExtremeDefaultValues:prototype];
+- (TestExtremeDefaultValues_Builder*) createBuilder {
+  return [TestExtremeDefaultValues_Builder builder];
 }
 @end
 
@@ -11615,6 +11709,12 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   }
   return self;
 }
++ (TestExtremeDefaultValues_Builder*) builder {
+  return [[[TestExtremeDefaultValues_Builder alloc] init] autorelease];
+}
++ (TestExtremeDefaultValues_Builder*) builderWithPrototype:(TestExtremeDefaultValues*) prototype {
+  return [[TestExtremeDefaultValues_Builder builder] mergeFromTestExtremeDefaultValues:prototype];
+}
 - (TestExtremeDefaultValues*) internalGetResult {
   return result;
 }
@@ -11623,7 +11723,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   return self;
 }
 - (TestExtremeDefaultValues_Builder*) clone {
-  return (TestExtremeDefaultValues_Builder*)[[[[TestExtremeDefaultValues_Builder alloc] init] autorelease] mergeFromTestExtremeDefaultValues:result];
+  return [TestExtremeDefaultValues_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestExtremeDefaultValues descriptor];
@@ -11867,27 +11967,25 @@ static FooRequest* defaultFooRequestInstance = nil;
   return size;
 }
 + (FooRequest*) parseFromData:(NSData*) data {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromData:data] build];
+  return (FooRequest*)[[[FooRequest_Builder builder] mergeFromData:data] build];
 }
 + (FooRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (FooRequest*)[[[FooRequest_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (FooRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromInputStream:input] build];
+  return (FooRequest*)[[[FooRequest_Builder builder] mergeFromInputStream:input] build];
 }
 + (FooRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (FooRequest*)[[[FooRequest_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (FooRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromCodedInputStream:input] build];
+  return (FooRequest*)[[[FooRequest_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (FooRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooRequest*)[[[FooRequest newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (FooRequest*)[[[FooRequest_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (FooRequest_Builder*) newBuilder { return [[[FooRequest_Builder alloc] init] autorelease]; }
-- (FooRequest_Builder*) newBuilderForType { return [FooRequest newBuilder]; }
-+ (FooRequest_Builder*) newBuilderWithPrototype:(FooRequest*) prototype {
-  return [[FooRequest newBuilder] mergeFromFooRequest:prototype];
+- (FooRequest_Builder*) createBuilder {
+  return [FooRequest_Builder builder];
 }
 @end
 
@@ -11903,6 +12001,12 @@ static FooRequest* defaultFooRequestInstance = nil;
   }
   return self;
 }
++ (FooRequest_Builder*) builder {
+  return [[[FooRequest_Builder alloc] init] autorelease];
+}
++ (FooRequest_Builder*) builderWithPrototype:(FooRequest*) prototype {
+  return [[FooRequest_Builder builder] mergeFromFooRequest:prototype];
+}
 - (FooRequest*) internalGetResult {
   return result;
 }
@@ -11911,7 +12015,7 @@ static FooRequest* defaultFooRequestInstance = nil;
   return self;
 }
 - (FooRequest_Builder*) clone {
-  return (FooRequest_Builder*)[[[[FooRequest_Builder alloc] init] autorelease] mergeFromFooRequest:result];
+  return [FooRequest_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [FooRequest descriptor];
@@ -12017,27 +12121,25 @@ static FooResponse* defaultFooResponseInstance = nil;
   return size;
 }
 + (FooResponse*) parseFromData:(NSData*) data {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromData:data] build];
+  return (FooResponse*)[[[FooResponse_Builder builder] mergeFromData:data] build];
 }
 + (FooResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (FooResponse*)[[[FooResponse_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (FooResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromInputStream:input] build];
+  return (FooResponse*)[[[FooResponse_Builder builder] mergeFromInputStream:input] build];
 }
 + (FooResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (FooResponse*)[[[FooResponse_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (FooResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromCodedInputStream:input] build];
+  return (FooResponse*)[[[FooResponse_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (FooResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (FooResponse*)[[[FooResponse newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (FooResponse*)[[[FooResponse_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (FooResponse_Builder*) newBuilder { return [[[FooResponse_Builder alloc] init] autorelease]; }
-- (FooResponse_Builder*) newBuilderForType { return [FooResponse newBuilder]; }
-+ (FooResponse_Builder*) newBuilderWithPrototype:(FooResponse*) prototype {
-  return [[FooResponse newBuilder] mergeFromFooResponse:prototype];
+- (FooResponse_Builder*) createBuilder {
+  return [FooResponse_Builder builder];
 }
 @end
 
@@ -12053,6 +12155,12 @@ static FooResponse* defaultFooResponseInstance = nil;
   }
   return self;
 }
++ (FooResponse_Builder*) builder {
+  return [[[FooResponse_Builder alloc] init] autorelease];
+}
++ (FooResponse_Builder*) builderWithPrototype:(FooResponse*) prototype {
+  return [[FooResponse_Builder builder] mergeFromFooResponse:prototype];
+}
 - (FooResponse*) internalGetResult {
   return result;
 }
@@ -12061,7 +12169,7 @@ static FooResponse* defaultFooResponseInstance = nil;
   return self;
 }
 - (FooResponse_Builder*) clone {
-  return (FooResponse_Builder*)[[[[FooResponse_Builder alloc] init] autorelease] mergeFromFooResponse:result];
+  return [FooResponse_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [FooResponse descriptor];
@@ -12167,27 +12275,25 @@ static BarRequest* defaultBarRequestInstance = nil;
   return size;
 }
 + (BarRequest*) parseFromData:(NSData*) data {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromData:data] build];
+  return (BarRequest*)[[[BarRequest_Builder builder] mergeFromData:data] build];
 }
 + (BarRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (BarRequest*)[[[BarRequest_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (BarRequest*) parseFromInputStream:(NSInputStream*) input {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromInputStream:input] build];
+  return (BarRequest*)[[[BarRequest_Builder builder] mergeFromInputStream:input] build];
 }
 + (BarRequest*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (BarRequest*)[[[BarRequest_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (BarRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromCodedInputStream:input] build];
+  return (BarRequest*)[[[BarRequest_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (BarRequest*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarRequest*)[[[BarRequest newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (BarRequest*)[[[BarRequest_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (BarRequest_Builder*) newBuilder { return [[[BarRequest_Builder alloc] init] autorelease]; }
-- (BarRequest_Builder*) newBuilderForType { return [BarRequest newBuilder]; }
-+ (BarRequest_Builder*) newBuilderWithPrototype:(BarRequest*) prototype {
-  return [[BarRequest newBuilder] mergeFromBarRequest:prototype];
+- (BarRequest_Builder*) createBuilder {
+  return [BarRequest_Builder builder];
 }
 @end
 
@@ -12203,6 +12309,12 @@ static BarRequest* defaultBarRequestInstance = nil;
   }
   return self;
 }
++ (BarRequest_Builder*) builder {
+  return [[[BarRequest_Builder alloc] init] autorelease];
+}
++ (BarRequest_Builder*) builderWithPrototype:(BarRequest*) prototype {
+  return [[BarRequest_Builder builder] mergeFromBarRequest:prototype];
+}
 - (BarRequest*) internalGetResult {
   return result;
 }
@@ -12211,7 +12323,7 @@ static BarRequest* defaultBarRequestInstance = nil;
   return self;
 }
 - (BarRequest_Builder*) clone {
-  return (BarRequest_Builder*)[[[[BarRequest_Builder alloc] init] autorelease] mergeFromBarRequest:result];
+  return [BarRequest_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [BarRequest descriptor];
@@ -12317,27 +12429,25 @@ static BarResponse* defaultBarResponseInstance = nil;
   return size;
 }
 + (BarResponse*) parseFromData:(NSData*) data {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromData:data] build];
+  return (BarResponse*)[[[BarResponse_Builder builder] mergeFromData:data] build];
 }
 + (BarResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (BarResponse*)[[[BarResponse_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (BarResponse*) parseFromInputStream:(NSInputStream*) input {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromInputStream:input] build];
+  return (BarResponse*)[[[BarResponse_Builder builder] mergeFromInputStream:input] build];
 }
 + (BarResponse*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (BarResponse*)[[[BarResponse_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (BarResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromCodedInputStream:input] build];
+  return (BarResponse*)[[[BarResponse_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (BarResponse*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (BarResponse*)[[[BarResponse newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (BarResponse*)[[[BarResponse_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (BarResponse_Builder*) newBuilder { return [[[BarResponse_Builder alloc] init] autorelease]; }
-- (BarResponse_Builder*) newBuilderForType { return [BarResponse newBuilder]; }
-+ (BarResponse_Builder*) newBuilderWithPrototype:(BarResponse*) prototype {
-  return [[BarResponse newBuilder] mergeFromBarResponse:prototype];
+- (BarResponse_Builder*) createBuilder {
+  return [BarResponse_Builder builder];
 }
 @end
 
@@ -12353,6 +12463,12 @@ static BarResponse* defaultBarResponseInstance = nil;
   }
   return self;
 }
++ (BarResponse_Builder*) builder {
+  return [[[BarResponse_Builder alloc] init] autorelease];
+}
++ (BarResponse_Builder*) builderWithPrototype:(BarResponse*) prototype {
+  return [[BarResponse_Builder builder] mergeFromBarResponse:prototype];
+}
 - (BarResponse*) internalGetResult {
   return result;
 }
@@ -12361,7 +12477,7 @@ static BarResponse* defaultBarResponseInstance = nil;
   return self;
 }
 - (BarResponse_Builder*) clone {
-  return (BarResponse_Builder*)[[[[BarResponse_Builder alloc] init] autorelease] mergeFromBarResponse:result];
+  return [BarResponse_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [BarResponse descriptor];

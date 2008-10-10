@@ -84,7 +84,7 @@
 - (void) testInterleavedFieldsAndExtensions {
     // Tests that fields are written in order even when extension ranges
     // are interleaved with field numbers.
-    NSData* data = [[[[[[[[TestFieldOrderings newBuilder]
+    NSData* data = [[[[[[[[TestFieldOrderings_Builder builder]
                           setMyInt:1]
                          setMyString:@"foo"]
                         setMyFloat:1.0]
@@ -111,13 +111,13 @@ const int UNKNOWN_TYPE_ID = 1550055;
     
     // Set up a TestMessageSet with two known messages and an unknown one.
     PBUnknownFieldSet* unknownFields =
-    [[[PBUnknownFieldSet newBuilder] addField:[[PBMutableField field] addLengthDelimited:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]]
+    [[[PBUnknownFieldSet_Builder builder] addField:[[PBMutableField field] addLengthDelimited:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]]
                                     forNumber:UNKNOWN_TYPE_ID] build];
     
     TestMessageSet* messageSet =
-    (id)[[[[[TestMessageSet newBuilder]
-        setExtension:[TestMessageSetExtension1 messageSetExtension] value:[[[TestMessageSetExtension1 newBuilder] setI:123] build]]
-       setExtension:[TestMessageSetExtension2 messageSetExtension] value:[[[TestMessageSetExtension2 newBuilder] setStr:@"foo"] build]]
+    (id)[[[[[TestMessageSet_Builder builder]
+        setExtension:[TestMessageSetExtension1 messageSetExtension] value:[[[TestMessageSetExtension1_Builder builder] setI:123] build]]
+       setExtension:[TestMessageSetExtension2 messageSetExtension] value:[[[TestMessageSetExtension2_Builder builder] setStr:@"foo"] build]]
       setUnknownFields:unknownFields] build];
 
     NSData* data = messageSet.toData;
@@ -152,10 +152,10 @@ const int UNKNOWN_TYPE_ID = 1550055;
     
     // Set up a RawMessageSet with two known messages and an unknown one.
     RawMessageSet* raw =
-    [[[[[RawMessageSet newBuilder]
-         addItem:[[[[RawMessageSet_Item newBuilder] setTypeId:TYPE_ID_1] setMessage:[[[[TestMessageSetExtension1 newBuilder] setI:123] build] toData]] build]]
-        addItem:[[[[RawMessageSet_Item newBuilder] setTypeId:TYPE_ID_2] setMessage:[[[[TestMessageSetExtension2 newBuilder] setStr:@"foo"] build] toData]] build]]
-       addItem:[[[[RawMessageSet_Item newBuilder] setTypeId:UNKNOWN_TYPE_ID] setMessage:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]] build]]
+    [[[[[RawMessageSet_Builder builder]
+         addItem:[[[[RawMessageSet_Item_Builder builder] setTypeId:TYPE_ID_1] setMessage:[[[[TestMessageSetExtension1_Builder builder] setI:123] build] toData]] build]]
+        addItem:[[[[RawMessageSet_Item_Builder builder] setTypeId:TYPE_ID_2] setMessage:[[[[TestMessageSetExtension2_Builder builder] setStr:@"foo"] build] toData]] build]]
+       addItem:[[[[RawMessageSet_Item_Builder builder] setTypeId:UNKNOWN_TYPE_ID] setMessage:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]] build]]
       build];
        
 

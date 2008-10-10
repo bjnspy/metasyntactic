@@ -105,9 +105,7 @@
 + (PBGeneratedExtension*) testExtension;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestOptimizedForSize_Builder*) newBuilder;
-- (TestOptimizedForSize_Builder*) newBuilderForType;
-+ (TestOptimizedForSize_Builder*) newBuilderWithPrototype:(TestOptimizedForSize*) prototype;
+- (TestOptimizedForSize_Builder*) createBuilder;
 
 + (TestOptimizedForSize*) parseFromData:(NSData*) data;
 + (TestOptimizedForSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -122,6 +120,9 @@
   TestOptimizedForSize* result;
 }
 @property (retain) TestOptimizedForSize* result;
+
++ (TestOptimizedForSize_Builder*) builder;
++ (TestOptimizedForSize_Builder*) builderWithPrototype:(TestOptimizedForSize*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestOptimizedForSize*) defaultInstanceForType;

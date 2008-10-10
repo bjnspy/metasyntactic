@@ -63,9 +63,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBFileDescriptorSet_Builder*) newBuilder;
-- (PBFileDescriptorSet_Builder*) newBuilderForType;
-+ (PBFileDescriptorSet_Builder*) newBuilderWithPrototype:(PBFileDescriptorSet*) prototype;
+- (PBFileDescriptorSet_Builder*) createBuilder;
 
 + (PBFileDescriptorSet*) parseFromData:(NSData*) data;
 + (PBFileDescriptorSet*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -80,6 +78,9 @@
   PBFileDescriptorSet* result;
 }
 @property (retain) PBFileDescriptorSet* result;
+
++ (PBFileDescriptorSet_Builder*) builder;
++ (PBFileDescriptorSet_Builder*) builderWithPrototype:(PBFileDescriptorSet*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBFileDescriptorSet*) defaultInstanceForType;
@@ -141,9 +142,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBFileDescriptorProto_Builder*) newBuilder;
-- (PBFileDescriptorProto_Builder*) newBuilderForType;
-+ (PBFileDescriptorProto_Builder*) newBuilderWithPrototype:(PBFileDescriptorProto*) prototype;
+- (PBFileDescriptorProto_Builder*) createBuilder;
 
 + (PBFileDescriptorProto*) parseFromData:(NSData*) data;
 + (PBFileDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -158,6 +157,9 @@
   PBFileDescriptorProto* result;
 }
 @property (retain) PBFileDescriptorProto* result;
+
++ (PBFileDescriptorProto_Builder*) builder;
++ (PBFileDescriptorProto_Builder*) builderWithPrototype:(PBFileDescriptorProto*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBFileDescriptorProto*) defaultInstanceForType;
@@ -260,9 +262,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBDescriptorProto_Builder*) newBuilder;
-- (PBDescriptorProto_Builder*) newBuilderForType;
-+ (PBDescriptorProto_Builder*) newBuilderWithPrototype:(PBDescriptorProto*) prototype;
+- (PBDescriptorProto_Builder*) createBuilder;
 
 + (PBDescriptorProto*) parseFromData:(NSData*) data;
 + (PBDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -291,9 +291,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBDescriptorProto_ExtensionRange_Builder*) newBuilder;
-- (PBDescriptorProto_ExtensionRange_Builder*) newBuilderForType;
-+ (PBDescriptorProto_ExtensionRange_Builder*) newBuilderWithPrototype:(PBDescriptorProto_ExtensionRange*) prototype;
+- (PBDescriptorProto_ExtensionRange_Builder*) createBuilder;
 
 + (PBDescriptorProto_ExtensionRange*) parseFromData:(NSData*) data;
 + (PBDescriptorProto_ExtensionRange*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -308,6 +306,9 @@
   PBDescriptorProto_ExtensionRange* result;
 }
 @property (retain) PBDescriptorProto_ExtensionRange* result;
+
++ (PBDescriptorProto_ExtensionRange_Builder*) builder;
++ (PBDescriptorProto_ExtensionRange_Builder*) builderWithPrototype:(PBDescriptorProto_ExtensionRange*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBDescriptorProto_ExtensionRange*) defaultInstanceForType;
@@ -339,6 +340,9 @@
   PBDescriptorProto* result;
 }
 @property (retain) PBDescriptorProto* result;
+
++ (PBDescriptorProto_Builder*) builder;
++ (PBDescriptorProto_Builder*) builderWithPrototype:(PBDescriptorProto*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBDescriptorProto*) defaultInstanceForType;
@@ -445,9 +449,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBFieldDescriptorProto_Builder*) newBuilder;
-- (PBFieldDescriptorProto_Builder*) newBuilderForType;
-+ (PBFieldDescriptorProto_Builder*) newBuilderWithPrototype:(PBFieldDescriptorProto*) prototype;
+- (PBFieldDescriptorProto_Builder*) createBuilder;
 
 + (PBFieldDescriptorProto*) parseFromData:(NSData*) data;
 + (PBFieldDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -519,6 +521,9 @@
   PBFieldDescriptorProto* result;
 }
 @property (retain) PBFieldDescriptorProto* result;
+
++ (PBFieldDescriptorProto_Builder*) builder;
++ (PBFieldDescriptorProto_Builder*) builderWithPrototype:(PBFieldDescriptorProto*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBFieldDescriptorProto*) defaultInstanceForType;
@@ -599,9 +604,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBEnumDescriptorProto_Builder*) newBuilder;
-- (PBEnumDescriptorProto_Builder*) newBuilderForType;
-+ (PBEnumDescriptorProto_Builder*) newBuilderWithPrototype:(PBEnumDescriptorProto*) prototype;
+- (PBEnumDescriptorProto_Builder*) createBuilder;
 
 + (PBEnumDescriptorProto*) parseFromData:(NSData*) data;
 + (PBEnumDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -616,6 +619,9 @@
   PBEnumDescriptorProto* result;
 }
 @property (retain) PBEnumDescriptorProto* result;
+
++ (PBEnumDescriptorProto_Builder*) builder;
++ (PBEnumDescriptorProto_Builder*) builderWithPrototype:(PBEnumDescriptorProto*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBEnumDescriptorProto*) defaultInstanceForType;
@@ -674,9 +680,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBEnumValueDescriptorProto_Builder*) newBuilder;
-- (PBEnumValueDescriptorProto_Builder*) newBuilderForType;
-+ (PBEnumValueDescriptorProto_Builder*) newBuilderWithPrototype:(PBEnumValueDescriptorProto*) prototype;
+- (PBEnumValueDescriptorProto_Builder*) createBuilder;
 
 + (PBEnumValueDescriptorProto*) parseFromData:(NSData*) data;
 + (PBEnumValueDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -691,6 +695,9 @@
   PBEnumValueDescriptorProto* result;
 }
 @property (retain) PBEnumValueDescriptorProto* result;
+
++ (PBEnumValueDescriptorProto_Builder*) builder;
++ (PBEnumValueDescriptorProto_Builder*) builderWithPrototype:(PBEnumValueDescriptorProto*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBEnumValueDescriptorProto*) defaultInstanceForType;
@@ -746,9 +753,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBServiceDescriptorProto_Builder*) newBuilder;
-- (PBServiceDescriptorProto_Builder*) newBuilderForType;
-+ (PBServiceDescriptorProto_Builder*) newBuilderWithPrototype:(PBServiceDescriptorProto*) prototype;
+- (PBServiceDescriptorProto_Builder*) createBuilder;
 
 + (PBServiceDescriptorProto*) parseFromData:(NSData*) data;
 + (PBServiceDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -763,6 +768,9 @@
   PBServiceDescriptorProto* result;
 }
 @property (retain) PBServiceDescriptorProto* result;
+
++ (PBServiceDescriptorProto_Builder*) builder;
++ (PBServiceDescriptorProto_Builder*) builderWithPrototype:(PBServiceDescriptorProto*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBServiceDescriptorProto*) defaultInstanceForType;
@@ -825,9 +833,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBMethodDescriptorProto_Builder*) newBuilder;
-- (PBMethodDescriptorProto_Builder*) newBuilderForType;
-+ (PBMethodDescriptorProto_Builder*) newBuilderWithPrototype:(PBMethodDescriptorProto*) prototype;
+- (PBMethodDescriptorProto_Builder*) createBuilder;
 
 + (PBMethodDescriptorProto*) parseFromData:(NSData*) data;
 + (PBMethodDescriptorProto*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -842,6 +848,9 @@
   PBMethodDescriptorProto* result;
 }
 @property (retain) PBMethodDescriptorProto* result;
+
++ (PBMethodDescriptorProto_Builder*) builder;
++ (PBMethodDescriptorProto_Builder*) builderWithPrototype:(PBMethodDescriptorProto*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBMethodDescriptorProto*) defaultInstanceForType;
@@ -915,9 +924,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBFileOptions_Builder*) newBuilder;
-- (PBFileOptions_Builder*) newBuilderForType;
-+ (PBFileOptions_Builder*) newBuilderWithPrototype:(PBFileOptions*) prototype;
+- (PBFileOptions_Builder*) createBuilder;
 
 + (PBFileOptions*) parseFromData:(NSData*) data;
 + (PBFileOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -952,6 +959,9 @@
   PBFileOptions* result;
 }
 @property (retain) PBFileOptions* result;
+
++ (PBFileOptions_Builder*) builder;
++ (PBFileOptions_Builder*) builderWithPrototype:(PBFileOptions*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBFileOptions*) defaultInstanceForType;
@@ -1013,9 +1023,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBMessageOptions_Builder*) newBuilder;
-- (PBMessageOptions_Builder*) newBuilderForType;
-+ (PBMessageOptions_Builder*) newBuilderWithPrototype:(PBMessageOptions*) prototype;
+- (PBMessageOptions_Builder*) createBuilder;
 
 + (PBMessageOptions*) parseFromData:(NSData*) data;
 + (PBMessageOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1030,6 +1038,9 @@
   PBMessageOptions* result;
 }
 @property (retain) PBMessageOptions* result;
+
++ (PBMessageOptions_Builder*) builder;
++ (PBMessageOptions_Builder*) builderWithPrototype:(PBMessageOptions*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBMessageOptions*) defaultInstanceForType;
@@ -1070,9 +1081,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBFieldOptions_Builder*) newBuilder;
-- (PBFieldOptions_Builder*) newBuilderForType;
-+ (PBFieldOptions_Builder*) newBuilderWithPrototype:(PBFieldOptions*) prototype;
+- (PBFieldOptions_Builder*) createBuilder;
 
 + (PBFieldOptions*) parseFromData:(NSData*) data;
 + (PBFieldOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1107,6 +1116,9 @@
   PBFieldOptions* result;
 }
 @property (retain) PBFieldOptions* result;
+
++ (PBFieldOptions_Builder*) builder;
++ (PBFieldOptions_Builder*) builderWithPrototype:(PBFieldOptions*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBFieldOptions*) defaultInstanceForType;
@@ -1144,9 +1156,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBEnumOptions_Builder*) newBuilder;
-- (PBEnumOptions_Builder*) newBuilderForType;
-+ (PBEnumOptions_Builder*) newBuilderWithPrototype:(PBEnumOptions*) prototype;
+- (PBEnumOptions_Builder*) createBuilder;
 
 + (PBEnumOptions*) parseFromData:(NSData*) data;
 + (PBEnumOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1161,6 +1171,9 @@
   PBEnumOptions* result;
 }
 @property (retain) PBEnumOptions* result;
+
++ (PBEnumOptions_Builder*) builder;
++ (PBEnumOptions_Builder*) builderWithPrototype:(PBEnumOptions*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBEnumOptions*) defaultInstanceForType;
@@ -1188,9 +1201,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBEnumValueOptions_Builder*) newBuilder;
-- (PBEnumValueOptions_Builder*) newBuilderForType;
-+ (PBEnumValueOptions_Builder*) newBuilderWithPrototype:(PBEnumValueOptions*) prototype;
+- (PBEnumValueOptions_Builder*) createBuilder;
 
 + (PBEnumValueOptions*) parseFromData:(NSData*) data;
 + (PBEnumValueOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1205,6 +1216,9 @@
   PBEnumValueOptions* result;
 }
 @property (retain) PBEnumValueOptions* result;
+
++ (PBEnumValueOptions_Builder*) builder;
++ (PBEnumValueOptions_Builder*) builderWithPrototype:(PBEnumValueOptions*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBEnumValueOptions*) defaultInstanceForType;
@@ -1232,9 +1246,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBServiceOptions_Builder*) newBuilder;
-- (PBServiceOptions_Builder*) newBuilderForType;
-+ (PBServiceOptions_Builder*) newBuilderWithPrototype:(PBServiceOptions*) prototype;
+- (PBServiceOptions_Builder*) createBuilder;
 
 + (PBServiceOptions*) parseFromData:(NSData*) data;
 + (PBServiceOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1249,6 +1261,9 @@
   PBServiceOptions* result;
 }
 @property (retain) PBServiceOptions* result;
+
++ (PBServiceOptions_Builder*) builder;
++ (PBServiceOptions_Builder*) builderWithPrototype:(PBServiceOptions*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBServiceOptions*) defaultInstanceForType;
@@ -1276,9 +1291,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (PBMethodOptions_Builder*) newBuilder;
-- (PBMethodOptions_Builder*) newBuilderForType;
-+ (PBMethodOptions_Builder*) newBuilderWithPrototype:(PBMethodOptions*) prototype;
+- (PBMethodOptions_Builder*) createBuilder;
 
 + (PBMethodOptions*) parseFromData:(NSData*) data;
 + (PBMethodOptions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1293,6 +1306,9 @@
   PBMethodOptions* result;
 }
 @property (retain) PBMethodOptions* result;
+
++ (PBMethodOptions_Builder*) builder;
++ (PBMethodOptions_Builder*) builderWithPrototype:(PBMethodOptions*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (PBMethodOptions*) defaultInstanceForType;

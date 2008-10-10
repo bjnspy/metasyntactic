@@ -174,27 +174,25 @@ static ImportMessage* defaultImportMessageInstance = nil;
   return size;
 }
 + (ImportMessage*) parseFromData:(NSData*) data {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromData:data] build];
+  return (ImportMessage*)[[[ImportMessage_Builder builder] mergeFromData:data] build];
 }
 + (ImportMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (ImportMessage*)[[[ImportMessage_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (ImportMessage*) parseFromInputStream:(NSInputStream*) input {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromInputStream:input] build];
+  return (ImportMessage*)[[[ImportMessage_Builder builder] mergeFromInputStream:input] build];
 }
 + (ImportMessage*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (ImportMessage*)[[[ImportMessage_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (ImportMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromCodedInputStream:input] build];
+  return (ImportMessage*)[[[ImportMessage_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (ImportMessage*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (ImportMessage*)[[[ImportMessage newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (ImportMessage*)[[[ImportMessage_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (ImportMessage_Builder*) newBuilder { return [[[ImportMessage_Builder alloc] init] autorelease]; }
-- (ImportMessage_Builder*) newBuilderForType { return [ImportMessage newBuilder]; }
-+ (ImportMessage_Builder*) newBuilderWithPrototype:(ImportMessage*) prototype {
-  return [[ImportMessage newBuilder] mergeFromImportMessage:prototype];
+- (ImportMessage_Builder*) createBuilder {
+  return [ImportMessage_Builder builder];
 }
 @end
 
@@ -210,6 +208,12 @@ static ImportMessage* defaultImportMessageInstance = nil;
   }
   return self;
 }
++ (ImportMessage_Builder*) builder {
+  return [[[ImportMessage_Builder alloc] init] autorelease];
+}
++ (ImportMessage_Builder*) builderWithPrototype:(ImportMessage*) prototype {
+  return [[ImportMessage_Builder builder] mergeFromImportMessage:prototype];
+}
 - (ImportMessage*) internalGetResult {
   return result;
 }
@@ -218,7 +222,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
   return self;
 }
 - (ImportMessage_Builder*) clone {
-  return (ImportMessage_Builder*)[[[[ImportMessage_Builder alloc] init] autorelease] mergeFromImportMessage:result];
+  return [ImportMessage_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [ImportMessage descriptor];
