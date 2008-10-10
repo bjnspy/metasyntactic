@@ -303,7 +303,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 - (TestOptimizedForSize*) repeatedMessageAtIndex:(int32_t) index {
   return [result repeatedMessageAtIndex:index];
 }
-- (TestEmbedOptimizedForSize_Builder*) replaceRepeatedMessageAtIndex:(int32_t) index withRepeatedMessage:(TestOptimizedForSize*) value {
+- (TestEmbedOptimizedForSize_Builder*) replaceRepeatedMessageAtIndex:(int32_t) index with:(TestOptimizedForSize*) value {
   [result.mutableRepeatedMessageList replaceObjectAtIndex:index withObject:value];
   return self;
 }

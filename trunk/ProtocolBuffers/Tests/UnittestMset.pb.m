@@ -1335,7 +1335,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 - (RawMessageSet_Item*) itemAtIndex:(int32_t) index {
   return [result itemAtIndex:index];
 }
-- (RawMessageSet_Builder*) replaceItemAtIndex:(int32_t) index withItem:(RawMessageSet_Item*) value {
+- (RawMessageSet_Builder*) replaceItemAtIndex:(int32_t) index with:(RawMessageSet_Item*) value {
   [result.mutableItemList replaceObjectAtIndex:index withObject:value];
   return self;
 }

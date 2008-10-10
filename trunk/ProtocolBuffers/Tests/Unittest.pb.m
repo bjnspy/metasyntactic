@@ -4559,7 +4559,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int32_t) repeatedInt32AtIndex:(int32_t) index {
   return [result repeatedInt32AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedInt32AtIndex:(int32_t) index withRepeatedInt32:(int32_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedInt32AtIndex:(int32_t) index with:(int32_t) value {
   [result.mutableRepeatedInt32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
@@ -4588,7 +4588,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int64_t) repeatedInt64AtIndex:(int32_t) index {
   return [result repeatedInt64AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedInt64AtIndex:(int32_t) index withRepeatedInt64:(int64_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedInt64AtIndex:(int32_t) index with:(int64_t) value {
   [result.mutableRepeatedInt64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
   return self;
 }
@@ -4617,7 +4617,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int32_t) repeatedUint32AtIndex:(int32_t) index {
   return [result repeatedUint32AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedUint32AtIndex:(int32_t) index withRepeatedUint32:(int32_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedUint32AtIndex:(int32_t) index with:(int32_t) value {
   [result.mutableRepeatedUint32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
@@ -4646,7 +4646,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int64_t) repeatedUint64AtIndex:(int32_t) index {
   return [result repeatedUint64AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedUint64AtIndex:(int32_t) index withRepeatedUint64:(int64_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedUint64AtIndex:(int32_t) index with:(int64_t) value {
   [result.mutableRepeatedUint64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
   return self;
 }
@@ -4675,7 +4675,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int32_t) repeatedSint32AtIndex:(int32_t) index {
   return [result repeatedSint32AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedSint32AtIndex:(int32_t) index withRepeatedSint32:(int32_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedSint32AtIndex:(int32_t) index with:(int32_t) value {
   [result.mutableRepeatedSint32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
@@ -4704,7 +4704,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int64_t) repeatedSint64AtIndex:(int32_t) index {
   return [result repeatedSint64AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedSint64AtIndex:(int32_t) index withRepeatedSint64:(int64_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedSint64AtIndex:(int32_t) index with:(int64_t) value {
   [result.mutableRepeatedSint64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
   return self;
 }
@@ -4733,7 +4733,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int32_t) repeatedFixed32AtIndex:(int32_t) index {
   return [result repeatedFixed32AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedFixed32AtIndex:(int32_t) index withRepeatedFixed32:(int32_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedFixed32AtIndex:(int32_t) index with:(int32_t) value {
   [result.mutableRepeatedFixed32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
@@ -4762,7 +4762,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int64_t) repeatedFixed64AtIndex:(int32_t) index {
   return [result repeatedFixed64AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedFixed64AtIndex:(int32_t) index withRepeatedFixed64:(int64_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedFixed64AtIndex:(int32_t) index with:(int64_t) value {
   [result.mutableRepeatedFixed64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
   return self;
 }
@@ -4791,7 +4791,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int32_t) repeatedSfixed32AtIndex:(int32_t) index {
   return [result repeatedSfixed32AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedSfixed32AtIndex:(int32_t) index withRepeatedSfixed32:(int32_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedSfixed32AtIndex:(int32_t) index with:(int32_t) value {
   [result.mutableRepeatedSfixed32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
@@ -4820,7 +4820,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (int64_t) repeatedSfixed64AtIndex:(int32_t) index {
   return [result repeatedSfixed64AtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedSfixed64AtIndex:(int32_t) index withRepeatedSfixed64:(int64_t) value {
+- (TestAllTypes_Builder*) replaceRepeatedSfixed64AtIndex:(int32_t) index with:(int64_t) value {
   [result.mutableRepeatedSfixed64List replaceObjectAtIndex:index withObject:[NSNumber numberWithLongLong:value]];
   return self;
 }
@@ -4849,7 +4849,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (Float32) repeatedFloatAtIndex:(int32_t) index {
   return [result repeatedFloatAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedFloatAtIndex:(int32_t) index withRepeatedFloat:(Float32) value {
+- (TestAllTypes_Builder*) replaceRepeatedFloatAtIndex:(int32_t) index with:(Float32) value {
   [result.mutableRepeatedFloatList replaceObjectAtIndex:index withObject:[NSNumber numberWithFloat:value]];
   return self;
 }
@@ -4878,7 +4878,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (Float64) repeatedDoubleAtIndex:(int32_t) index {
   return [result repeatedDoubleAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedDoubleAtIndex:(int32_t) index withRepeatedDouble:(Float64) value {
+- (TestAllTypes_Builder*) replaceRepeatedDoubleAtIndex:(int32_t) index with:(Float64) value {
   [result.mutableRepeatedDoubleList replaceObjectAtIndex:index withObject:[NSNumber numberWithDouble:value]];
   return self;
 }
@@ -4907,7 +4907,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (BOOL) repeatedBoolAtIndex:(int32_t) index {
   return [result repeatedBoolAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedBoolAtIndex:(int32_t) index withRepeatedBool:(BOOL) value {
+- (TestAllTypes_Builder*) replaceRepeatedBoolAtIndex:(int32_t) index with:(BOOL) value {
   [result.mutableRepeatedBoolList replaceObjectAtIndex:index withObject:[NSNumber numberWithBool:value]];
   return self;
 }
@@ -4936,7 +4936,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (NSString*) repeatedStringAtIndex:(int32_t) index {
   return [result repeatedStringAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedStringAtIndex:(int32_t) index withRepeatedString:(NSString*) value {
+- (TestAllTypes_Builder*) replaceRepeatedStringAtIndex:(int32_t) index with:(NSString*) value {
   [result.mutableRepeatedStringList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -4965,7 +4965,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (NSData*) repeatedBytesAtIndex:(int32_t) index {
   return [result repeatedBytesAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedBytesAtIndex:(int32_t) index withRepeatedBytes:(NSData*) value {
+- (TestAllTypes_Builder*) replaceRepeatedBytesAtIndex:(int32_t) index with:(NSData*) value {
   [result.mutableRepeatedBytesList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -4994,7 +4994,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_RepeatedGroup*) repeatedGroupAtIndex:(int32_t) index {
   return [result repeatedGroupAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedGroupAtIndex:(int32_t) index withRepeatedGroup:(TestAllTypes_RepeatedGroup*) value {
+- (TestAllTypes_Builder*) replaceRepeatedGroupAtIndex:(int32_t) index with:(TestAllTypes_RepeatedGroup*) value {
   [result.mutableRepeatedGroupList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -5023,7 +5023,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_NestedMessage*) repeatedNestedMessageAtIndex:(int32_t) index {
   return [result repeatedNestedMessageAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedNestedMessageAtIndex:(int32_t) index withRepeatedNestedMessage:(TestAllTypes_NestedMessage*) value {
+- (TestAllTypes_Builder*) replaceRepeatedNestedMessageAtIndex:(int32_t) index with:(TestAllTypes_NestedMessage*) value {
   [result.mutableRepeatedNestedMessageList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -5052,7 +5052,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (ForeignMessage*) repeatedForeignMessageAtIndex:(int32_t) index {
   return [result repeatedForeignMessageAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedForeignMessageAtIndex:(int32_t) index withRepeatedForeignMessage:(ForeignMessage*) value {
+- (TestAllTypes_Builder*) replaceRepeatedForeignMessageAtIndex:(int32_t) index with:(ForeignMessage*) value {
   [result.mutableRepeatedForeignMessageList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -5081,7 +5081,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (ImportMessage*) repeatedImportMessageAtIndex:(int32_t) index {
   return [result repeatedImportMessageAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedImportMessageAtIndex:(int32_t) index withRepeatedImportMessage:(ImportMessage*) value {
+- (TestAllTypes_Builder*) replaceRepeatedImportMessageAtIndex:(int32_t) index with:(ImportMessage*) value {
   [result.mutableRepeatedImportMessageList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -5109,7 +5109,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_NestedEnum*) repeatedNestedEnumAtIndex:(int32_t) index {
   return [result repeatedNestedEnumAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedNestedEnumAtIndex:(int32_t) index withRepeatedNestedEnum:(TestAllTypes_NestedEnum*) value {
+- (TestAllTypes_Builder*) replaceRepeatedNestedEnumAtIndex:(int32_t) index with:(TestAllTypes_NestedEnum*) value {
   [result.mutableRepeatedNestedEnumList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -5137,7 +5137,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (ForeignEnum*) repeatedForeignEnumAtIndex:(int32_t) index {
   return [result repeatedForeignEnumAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedForeignEnumAtIndex:(int32_t) index withRepeatedForeignEnum:(ForeignEnum*) value {
+- (TestAllTypes_Builder*) replaceRepeatedForeignEnumAtIndex:(int32_t) index with:(ForeignEnum*) value {
   [result.mutableRepeatedForeignEnumList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -5165,7 +5165,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (ImportEnum*) repeatedImportEnumAtIndex:(int32_t) index {
   return [result repeatedImportEnumAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedImportEnumAtIndex:(int32_t) index withRepeatedImportEnum:(ImportEnum*) value {
+- (TestAllTypes_Builder*) replaceRepeatedImportEnumAtIndex:(int32_t) index with:(ImportEnum*) value {
   [result.mutableRepeatedImportEnumList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -5194,7 +5194,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (NSString*) repeatedStringPieceAtIndex:(int32_t) index {
   return [result repeatedStringPieceAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedStringPieceAtIndex:(int32_t) index withRepeatedStringPiece:(NSString*) value {
+- (TestAllTypes_Builder*) replaceRepeatedStringPieceAtIndex:(int32_t) index with:(NSString*) value {
   [result.mutableRepeatedStringPieceList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -5223,7 +5223,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (NSString*) repeatedCordAtIndex:(int32_t) index {
   return [result repeatedCordAtIndex:index];
 }
-- (TestAllTypes_Builder*) replaceRepeatedCordAtIndex:(int32_t) index withRepeatedCord:(NSString*) value {
+- (TestAllTypes_Builder*) replaceRepeatedCordAtIndex:(int32_t) index with:(NSString*) value {
   [result.mutableRepeatedCordList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -7920,7 +7920,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 - (TestRequired*) repeatedMessageAtIndex:(int32_t) index {
   return [result repeatedMessageAtIndex:index];
 }
-- (TestRequiredForeign_Builder*) replaceRepeatedMessageAtIndex:(int32_t) index withRepeatedMessage:(TestRequired*) value {
+- (TestRequiredForeign_Builder*) replaceRepeatedMessageAtIndex:(int32_t) index with:(TestRequired*) value {
   [result.mutableRepeatedMessageList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -10390,7 +10390,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 - (int32_t) nestedmessageRepeatedInt32AtIndex:(int32_t) index {
   return [result nestedmessageRepeatedInt32AtIndex:index];
 }
-- (TestNestedMessageHasBits_NestedMessage_Builder*) replaceNestedmessageRepeatedInt32AtIndex:(int32_t) index withNestedmessageRepeatedInt32:(int32_t) value {
+- (TestNestedMessageHasBits_NestedMessage_Builder*) replaceNestedmessageRepeatedInt32AtIndex:(int32_t) index with:(int32_t) value {
   [result.mutableNestedmessageRepeatedInt32List replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
@@ -10419,7 +10419,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 - (ForeignMessage*) nestedmessageRepeatedForeignmessageAtIndex:(int32_t) index {
   return [result nestedmessageRepeatedForeignmessageAtIndex:index];
 }
-- (TestNestedMessageHasBits_NestedMessage_Builder*) replaceNestedmessageRepeatedForeignmessageAtIndex:(int32_t) index withNestedmessageRepeatedForeignmessage:(ForeignMessage*) value {
+- (TestNestedMessageHasBits_NestedMessage_Builder*) replaceNestedmessageRepeatedForeignmessageAtIndex:(int32_t) index with:(ForeignMessage*) value {
   [result.mutableNestedmessageRepeatedForeignmessageList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -11125,7 +11125,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (int32_t) repeatedPrimitiveFieldAtIndex:(int32_t) index {
   return [result repeatedPrimitiveFieldAtIndex:index];
 }
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedPrimitiveFieldAtIndex:(int32_t) index withRepeatedPrimitiveField:(int32_t) value {
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedPrimitiveFieldAtIndex:(int32_t) index with:(int32_t) value {
   [result.mutableRepeatedPrimitiveFieldList replaceObjectAtIndex:index withObject:[NSNumber numberWithInt:value]];
   return self;
 }
@@ -11154,7 +11154,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (NSString*) repeatedStringFieldAtIndex:(int32_t) index {
   return [result repeatedStringFieldAtIndex:index];
 }
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedStringFieldAtIndex:(int32_t) index withRepeatedStringField:(NSString*) value {
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedStringFieldAtIndex:(int32_t) index with:(NSString*) value {
   [result.mutableRepeatedStringFieldList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -11182,7 +11182,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (ForeignEnum*) repeatedEnumFieldAtIndex:(int32_t) index {
   return [result repeatedEnumFieldAtIndex:index];
 }
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedEnumFieldAtIndex:(int32_t) index withRepeatedEnumField:(ForeignEnum*) value {
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedEnumFieldAtIndex:(int32_t) index with:(ForeignEnum*) value {
   [result.mutableRepeatedEnumFieldList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -11211,7 +11211,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (ForeignMessage*) repeatedMessageFieldAtIndex:(int32_t) index {
   return [result repeatedMessageFieldAtIndex:index];
 }
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedMessageFieldAtIndex:(int32_t) index withRepeatedMessageField:(ForeignMessage*) value {
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedMessageFieldAtIndex:(int32_t) index with:(ForeignMessage*) value {
   [result.mutableRepeatedMessageFieldList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -11240,7 +11240,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (NSString*) repeatedStringPieceFieldAtIndex:(int32_t) index {
   return [result repeatedStringPieceFieldAtIndex:index];
 }
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedStringPieceFieldAtIndex:(int32_t) index withRepeatedStringPieceField:(NSString*) value {
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedStringPieceFieldAtIndex:(int32_t) index with:(NSString*) value {
   [result.mutableRepeatedStringPieceFieldList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -11269,7 +11269,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (NSString*) repeatedCordFieldAtIndex:(int32_t) index {
   return [result repeatedCordFieldAtIndex:index];
 }
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedCordFieldAtIndex:(int32_t) index withRepeatedCordField:(NSString*) value {
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedCordFieldAtIndex:(int32_t) index with:(NSString*) value {
   [result.mutableRepeatedCordFieldList replaceObjectAtIndex:index withObject:value];
   return self;
 }

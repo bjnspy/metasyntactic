@@ -611,7 +611,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 - (PBFileDescriptorProto*) fileAtIndex:(int32_t) index {
   return [result fileAtIndex:index];
 }
-- (PBFileDescriptorSet_Builder*) replaceFileAtIndex:(int32_t) index withFile:(PBFileDescriptorProto*) value {
+- (PBFileDescriptorSet_Builder*) replaceFileAtIndex:(int32_t) index with:(PBFileDescriptorProto*) value {
   [result.mutableFileList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1029,7 +1029,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (NSString*) dependencyAtIndex:(int32_t) index {
   return [result dependencyAtIndex:index];
 }
-- (PBFileDescriptorProto_Builder*) replaceDependencyAtIndex:(int32_t) index withDependency:(NSString*) value {
+- (PBFileDescriptorProto_Builder*) replaceDependencyAtIndex:(int32_t) index with:(NSString*) value {
   [result.mutableDependencyList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1058,7 +1058,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (PBDescriptorProto*) messageTypeAtIndex:(int32_t) index {
   return [result messageTypeAtIndex:index];
 }
-- (PBFileDescriptorProto_Builder*) replaceMessageTypeAtIndex:(int32_t) index withMessageType:(PBDescriptorProto*) value {
+- (PBFileDescriptorProto_Builder*) replaceMessageTypeAtIndex:(int32_t) index with:(PBDescriptorProto*) value {
   [result.mutableMessageTypeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1087,7 +1087,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index {
   return [result enumTypeAtIndex:index];
 }
-- (PBFileDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index withEnumType:(PBEnumDescriptorProto*) value {
+- (PBFileDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index with:(PBEnumDescriptorProto*) value {
   [result.mutableEnumTypeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1116,7 +1116,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (PBServiceDescriptorProto*) serviceAtIndex:(int32_t) index {
   return [result serviceAtIndex:index];
 }
-- (PBFileDescriptorProto_Builder*) replaceServiceAtIndex:(int32_t) index withService:(PBServiceDescriptorProto*) value {
+- (PBFileDescriptorProto_Builder*) replaceServiceAtIndex:(int32_t) index with:(PBServiceDescriptorProto*) value {
   [result.mutableServiceList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1145,7 +1145,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index {
   return [result extensionAtIndex:index];
 }
-- (PBFileDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index withExtension:(PBFieldDescriptorProto*) value {
+- (PBFileDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index with:(PBFieldDescriptorProto*) value {
   [result.mutableExtensionList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1785,7 +1785,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBFieldDescriptorProto*) fieldAtIndex:(int32_t) index {
   return [result fieldAtIndex:index];
 }
-- (PBDescriptorProto_Builder*) replaceFieldAtIndex:(int32_t) index withField:(PBFieldDescriptorProto*) value {
+- (PBDescriptorProto_Builder*) replaceFieldAtIndex:(int32_t) index with:(PBFieldDescriptorProto*) value {
   [result.mutableFieldList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1814,7 +1814,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index {
   return [result extensionAtIndex:index];
 }
-- (PBDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index withExtension:(PBFieldDescriptorProto*) value {
+- (PBDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index with:(PBFieldDescriptorProto*) value {
   [result.mutableExtensionList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1843,7 +1843,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBDescriptorProto*) nestedTypeAtIndex:(int32_t) index {
   return [result nestedTypeAtIndex:index];
 }
-- (PBDescriptorProto_Builder*) replaceNestedTypeAtIndex:(int32_t) index withNestedType:(PBDescriptorProto*) value {
+- (PBDescriptorProto_Builder*) replaceNestedTypeAtIndex:(int32_t) index with:(PBDescriptorProto*) value {
   [result.mutableNestedTypeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1872,7 +1872,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index {
   return [result enumTypeAtIndex:index];
 }
-- (PBDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index withEnumType:(PBEnumDescriptorProto*) value {
+- (PBDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index with:(PBEnumDescriptorProto*) value {
   [result.mutableEnumTypeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -1901,7 +1901,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBDescriptorProto_ExtensionRange*) extensionRangeAtIndex:(int32_t) index {
   return [result extensionRangeAtIndex:index];
 }
-- (PBDescriptorProto_Builder*) replaceExtensionRangeAtIndex:(int32_t) index withExtensionRange:(PBDescriptorProto_ExtensionRange*) value {
+- (PBDescriptorProto_Builder*) replaceExtensionRangeAtIndex:(int32_t) index with:(PBDescriptorProto_ExtensionRange*) value {
   [result.mutableExtensionRangeList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -2875,7 +2875,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index {
   return [result valueAtIndex:index];
 }
-- (PBEnumDescriptorProto_Builder*) replaceValueAtIndex:(int32_t) index withValue:(PBEnumValueDescriptorProto*) value {
+- (PBEnumDescriptorProto_Builder*) replaceValueAtIndex:(int32_t) index with:(PBEnumValueDescriptorProto*) value {
   [result.mutableValueList replaceObjectAtIndex:index withObject:value];
   return self;
 }
@@ -3458,7 +3458,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index {
   return [result methodAtIndex:index];
 }
-- (PBServiceDescriptorProto_Builder*) replaceMethodAtIndex:(int32_t) index withMethod:(PBMethodDescriptorProto*) value {
+- (PBServiceDescriptorProto_Builder*) replaceMethodAtIndex:(int32_t) index with:(PBMethodDescriptorProto*) value {
   [result.mutableMethodList replaceObjectAtIndex:index withObject:value];
   return self;
 }

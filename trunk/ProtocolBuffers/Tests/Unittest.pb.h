@@ -864,168 +864,168 @@
 
 - (NSArray*) repeatedInt32List;
 - (int32_t) repeatedInt32AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedInt32AtIndex:(int32_t) index withRepeatedInt32:(int32_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedInt32AtIndex:(int32_t) index with:(int32_t) value;
 - (TestAllTypes_Builder*) addRepeatedInt32:(int32_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedInt32:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedInt32List;
 
 - (NSArray*) repeatedInt64List;
 - (int64_t) repeatedInt64AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedInt64AtIndex:(int32_t) index withRepeatedInt64:(int64_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedInt64AtIndex:(int32_t) index with:(int64_t) value;
 - (TestAllTypes_Builder*) addRepeatedInt64:(int64_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedInt64:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedInt64List;
 
 - (NSArray*) repeatedUint32List;
 - (int32_t) repeatedUint32AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedUint32AtIndex:(int32_t) index withRepeatedUint32:(int32_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedUint32AtIndex:(int32_t) index with:(int32_t) value;
 - (TestAllTypes_Builder*) addRepeatedUint32:(int32_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedUint32:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedUint32List;
 
 - (NSArray*) repeatedUint64List;
 - (int64_t) repeatedUint64AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedUint64AtIndex:(int32_t) index withRepeatedUint64:(int64_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedUint64AtIndex:(int32_t) index with:(int64_t) value;
 - (TestAllTypes_Builder*) addRepeatedUint64:(int64_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedUint64:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedUint64List;
 
 - (NSArray*) repeatedSint32List;
 - (int32_t) repeatedSint32AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedSint32AtIndex:(int32_t) index withRepeatedSint32:(int32_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedSint32AtIndex:(int32_t) index with:(int32_t) value;
 - (TestAllTypes_Builder*) addRepeatedSint32:(int32_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedSint32:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedSint32List;
 
 - (NSArray*) repeatedSint64List;
 - (int64_t) repeatedSint64AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedSint64AtIndex:(int32_t) index withRepeatedSint64:(int64_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedSint64AtIndex:(int32_t) index with:(int64_t) value;
 - (TestAllTypes_Builder*) addRepeatedSint64:(int64_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedSint64:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedSint64List;
 
 - (NSArray*) repeatedFixed32List;
 - (int32_t) repeatedFixed32AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedFixed32AtIndex:(int32_t) index withRepeatedFixed32:(int32_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedFixed32AtIndex:(int32_t) index with:(int32_t) value;
 - (TestAllTypes_Builder*) addRepeatedFixed32:(int32_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedFixed32:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedFixed32List;
 
 - (NSArray*) repeatedFixed64List;
 - (int64_t) repeatedFixed64AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedFixed64AtIndex:(int32_t) index withRepeatedFixed64:(int64_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedFixed64AtIndex:(int32_t) index with:(int64_t) value;
 - (TestAllTypes_Builder*) addRepeatedFixed64:(int64_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedFixed64:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedFixed64List;
 
 - (NSArray*) repeatedSfixed32List;
 - (int32_t) repeatedSfixed32AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedSfixed32AtIndex:(int32_t) index withRepeatedSfixed32:(int32_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedSfixed32AtIndex:(int32_t) index with:(int32_t) value;
 - (TestAllTypes_Builder*) addRepeatedSfixed32:(int32_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedSfixed32:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedSfixed32List;
 
 - (NSArray*) repeatedSfixed64List;
 - (int64_t) repeatedSfixed64AtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedSfixed64AtIndex:(int32_t) index withRepeatedSfixed64:(int64_t) value;
+- (TestAllTypes_Builder*) replaceRepeatedSfixed64AtIndex:(int32_t) index with:(int64_t) value;
 - (TestAllTypes_Builder*) addRepeatedSfixed64:(int64_t) value;
 - (TestAllTypes_Builder*) addAllRepeatedSfixed64:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedSfixed64List;
 
 - (NSArray*) repeatedFloatList;
 - (Float32) repeatedFloatAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedFloatAtIndex:(int32_t) index withRepeatedFloat:(Float32) value;
+- (TestAllTypes_Builder*) replaceRepeatedFloatAtIndex:(int32_t) index with:(Float32) value;
 - (TestAllTypes_Builder*) addRepeatedFloat:(Float32) value;
 - (TestAllTypes_Builder*) addAllRepeatedFloat:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedFloatList;
 
 - (NSArray*) repeatedDoubleList;
 - (Float64) repeatedDoubleAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedDoubleAtIndex:(int32_t) index withRepeatedDouble:(Float64) value;
+- (TestAllTypes_Builder*) replaceRepeatedDoubleAtIndex:(int32_t) index with:(Float64) value;
 - (TestAllTypes_Builder*) addRepeatedDouble:(Float64) value;
 - (TestAllTypes_Builder*) addAllRepeatedDouble:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedDoubleList;
 
 - (NSArray*) repeatedBoolList;
 - (BOOL) repeatedBoolAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedBoolAtIndex:(int32_t) index withRepeatedBool:(BOOL) value;
+- (TestAllTypes_Builder*) replaceRepeatedBoolAtIndex:(int32_t) index with:(BOOL) value;
 - (TestAllTypes_Builder*) addRepeatedBool:(BOOL) value;
 - (TestAllTypes_Builder*) addAllRepeatedBool:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedBoolList;
 
 - (NSArray*) repeatedStringList;
 - (NSString*) repeatedStringAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedStringAtIndex:(int32_t) index withRepeatedString:(NSString*) value;
+- (TestAllTypes_Builder*) replaceRepeatedStringAtIndex:(int32_t) index with:(NSString*) value;
 - (TestAllTypes_Builder*) addRepeatedString:(NSString*) value;
 - (TestAllTypes_Builder*) addAllRepeatedString:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedStringList;
 
 - (NSArray*) repeatedBytesList;
 - (NSData*) repeatedBytesAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedBytesAtIndex:(int32_t) index withRepeatedBytes:(NSData*) value;
+- (TestAllTypes_Builder*) replaceRepeatedBytesAtIndex:(int32_t) index with:(NSData*) value;
 - (TestAllTypes_Builder*) addRepeatedBytes:(NSData*) value;
 - (TestAllTypes_Builder*) addAllRepeatedBytes:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedBytesList;
 
 - (NSArray*) repeatedGroupList;
 - (TestAllTypes_RepeatedGroup*) repeatedGroupAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedGroupAtIndex:(int32_t) index withRepeatedGroup:(TestAllTypes_RepeatedGroup*) value;
+- (TestAllTypes_Builder*) replaceRepeatedGroupAtIndex:(int32_t) index with:(TestAllTypes_RepeatedGroup*) value;
 - (TestAllTypes_Builder*) addRepeatedGroup:(TestAllTypes_RepeatedGroup*) value;
 - (TestAllTypes_Builder*) addAllRepeatedGroup:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedGroupList;
 
 - (NSArray*) repeatedNestedMessageList;
 - (TestAllTypes_NestedMessage*) repeatedNestedMessageAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedNestedMessageAtIndex:(int32_t) index withRepeatedNestedMessage:(TestAllTypes_NestedMessage*) value;
+- (TestAllTypes_Builder*) replaceRepeatedNestedMessageAtIndex:(int32_t) index with:(TestAllTypes_NestedMessage*) value;
 - (TestAllTypes_Builder*) addRepeatedNestedMessage:(TestAllTypes_NestedMessage*) value;
 - (TestAllTypes_Builder*) addAllRepeatedNestedMessage:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedNestedMessageList;
 
 - (NSArray*) repeatedForeignMessageList;
 - (ForeignMessage*) repeatedForeignMessageAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedForeignMessageAtIndex:(int32_t) index withRepeatedForeignMessage:(ForeignMessage*) value;
+- (TestAllTypes_Builder*) replaceRepeatedForeignMessageAtIndex:(int32_t) index with:(ForeignMessage*) value;
 - (TestAllTypes_Builder*) addRepeatedForeignMessage:(ForeignMessage*) value;
 - (TestAllTypes_Builder*) addAllRepeatedForeignMessage:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedForeignMessageList;
 
 - (NSArray*) repeatedImportMessageList;
 - (ImportMessage*) repeatedImportMessageAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedImportMessageAtIndex:(int32_t) index withRepeatedImportMessage:(ImportMessage*) value;
+- (TestAllTypes_Builder*) replaceRepeatedImportMessageAtIndex:(int32_t) index with:(ImportMessage*) value;
 - (TestAllTypes_Builder*) addRepeatedImportMessage:(ImportMessage*) value;
 - (TestAllTypes_Builder*) addAllRepeatedImportMessage:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedImportMessageList;
 
 - (NSArray*) repeatedNestedEnumList;
 - (TestAllTypes_NestedEnum*) repeatedNestedEnumAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedNestedEnumAtIndex:(int32_t) index withRepeatedNestedEnum:(TestAllTypes_NestedEnum*) value;
+- (TestAllTypes_Builder*) replaceRepeatedNestedEnumAtIndex:(int32_t) index with:(TestAllTypes_NestedEnum*) value;
 - (TestAllTypes_Builder*) addRepeatedNestedEnum:(TestAllTypes_NestedEnum*) value;
 - (TestAllTypes_Builder*) addAllRepeatedNestedEnum:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedNestedEnumList;
 
 - (NSArray*) repeatedForeignEnumList;
 - (ForeignEnum*) repeatedForeignEnumAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedForeignEnumAtIndex:(int32_t) index withRepeatedForeignEnum:(ForeignEnum*) value;
+- (TestAllTypes_Builder*) replaceRepeatedForeignEnumAtIndex:(int32_t) index with:(ForeignEnum*) value;
 - (TestAllTypes_Builder*) addRepeatedForeignEnum:(ForeignEnum*) value;
 - (TestAllTypes_Builder*) addAllRepeatedForeignEnum:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedForeignEnumList;
 
 - (NSArray*) repeatedImportEnumList;
 - (ImportEnum*) repeatedImportEnumAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedImportEnumAtIndex:(int32_t) index withRepeatedImportEnum:(ImportEnum*) value;
+- (TestAllTypes_Builder*) replaceRepeatedImportEnumAtIndex:(int32_t) index with:(ImportEnum*) value;
 - (TestAllTypes_Builder*) addRepeatedImportEnum:(ImportEnum*) value;
 - (TestAllTypes_Builder*) addAllRepeatedImportEnum:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedImportEnumList;
 
 - (NSArray*) repeatedStringPieceList;
 - (NSString*) repeatedStringPieceAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedStringPieceAtIndex:(int32_t) index withRepeatedStringPiece:(NSString*) value;
+- (TestAllTypes_Builder*) replaceRepeatedStringPieceAtIndex:(int32_t) index with:(NSString*) value;
 - (TestAllTypes_Builder*) addRepeatedStringPiece:(NSString*) value;
 - (TestAllTypes_Builder*) addAllRepeatedStringPiece:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedStringPieceList;
 
 - (NSArray*) repeatedCordList;
 - (NSString*) repeatedCordAtIndex:(int32_t) index;
-- (TestAllTypes_Builder*) replaceRepeatedCordAtIndex:(int32_t) index withRepeatedCord:(NSString*) value;
+- (TestAllTypes_Builder*) replaceRepeatedCordAtIndex:(int32_t) index with:(NSString*) value;
 - (TestAllTypes_Builder*) addRepeatedCord:(NSString*) value;
 - (TestAllTypes_Builder*) addAllRepeatedCord:(NSArray*) values;
 - (TestAllTypes_Builder*) clearRepeatedCordList;
@@ -1740,7 +1740,7 @@
 
 - (NSArray*) repeatedMessageList;
 - (TestRequired*) repeatedMessageAtIndex:(int32_t) index;
-- (TestRequiredForeign_Builder*) replaceRepeatedMessageAtIndex:(int32_t) index withRepeatedMessage:(TestRequired*) value;
+- (TestRequiredForeign_Builder*) replaceRepeatedMessageAtIndex:(int32_t) index with:(TestRequired*) value;
 - (TestRequiredForeign_Builder*) addRepeatedMessage:(TestRequired*) value;
 - (TestRequiredForeign_Builder*) addAllRepeatedMessage:(NSArray*) values;
 - (TestRequiredForeign_Builder*) clearRepeatedMessageList;
@@ -2398,14 +2398,14 @@
 
 - (NSArray*) nestedmessageRepeatedInt32List;
 - (int32_t) nestedmessageRepeatedInt32AtIndex:(int32_t) index;
-- (TestNestedMessageHasBits_NestedMessage_Builder*) replaceNestedmessageRepeatedInt32AtIndex:(int32_t) index withNestedmessageRepeatedInt32:(int32_t) value;
+- (TestNestedMessageHasBits_NestedMessage_Builder*) replaceNestedmessageRepeatedInt32AtIndex:(int32_t) index with:(int32_t) value;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) addNestedmessageRepeatedInt32:(int32_t) value;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) addAllNestedmessageRepeatedInt32:(NSArray*) values;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clearNestedmessageRepeatedInt32List;
 
 - (NSArray*) nestedmessageRepeatedForeignmessageList;
 - (ForeignMessage*) nestedmessageRepeatedForeignmessageAtIndex:(int32_t) index;
-- (TestNestedMessageHasBits_NestedMessage_Builder*) replaceNestedmessageRepeatedForeignmessageAtIndex:(int32_t) index withNestedmessageRepeatedForeignmessage:(ForeignMessage*) value;
+- (TestNestedMessageHasBits_NestedMessage_Builder*) replaceNestedmessageRepeatedForeignmessageAtIndex:(int32_t) index with:(ForeignMessage*) value;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) addNestedmessageRepeatedForeignmessage:(ForeignMessage*) value;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) addAllNestedmessageRepeatedForeignmessage:(NSArray*) values;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clearNestedmessageRepeatedForeignmessageList;
@@ -2558,42 +2558,42 @@
 
 - (NSArray*) repeatedPrimitiveFieldList;
 - (int32_t) repeatedPrimitiveFieldAtIndex:(int32_t) index;
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedPrimitiveFieldAtIndex:(int32_t) index withRepeatedPrimitiveField:(int32_t) value;
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedPrimitiveFieldAtIndex:(int32_t) index with:(int32_t) value;
 - (TestCamelCaseFieldNames_Builder*) addRepeatedPrimitiveField:(int32_t) value;
 - (TestCamelCaseFieldNames_Builder*) addAllRepeatedPrimitiveField:(NSArray*) values;
 - (TestCamelCaseFieldNames_Builder*) clearRepeatedPrimitiveFieldList;
 
 - (NSArray*) repeatedStringFieldList;
 - (NSString*) repeatedStringFieldAtIndex:(int32_t) index;
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedStringFieldAtIndex:(int32_t) index withRepeatedStringField:(NSString*) value;
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedStringFieldAtIndex:(int32_t) index with:(NSString*) value;
 - (TestCamelCaseFieldNames_Builder*) addRepeatedStringField:(NSString*) value;
 - (TestCamelCaseFieldNames_Builder*) addAllRepeatedStringField:(NSArray*) values;
 - (TestCamelCaseFieldNames_Builder*) clearRepeatedStringFieldList;
 
 - (NSArray*) repeatedEnumFieldList;
 - (ForeignEnum*) repeatedEnumFieldAtIndex:(int32_t) index;
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedEnumFieldAtIndex:(int32_t) index withRepeatedEnumField:(ForeignEnum*) value;
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedEnumFieldAtIndex:(int32_t) index with:(ForeignEnum*) value;
 - (TestCamelCaseFieldNames_Builder*) addRepeatedEnumField:(ForeignEnum*) value;
 - (TestCamelCaseFieldNames_Builder*) addAllRepeatedEnumField:(NSArray*) values;
 - (TestCamelCaseFieldNames_Builder*) clearRepeatedEnumFieldList;
 
 - (NSArray*) repeatedMessageFieldList;
 - (ForeignMessage*) repeatedMessageFieldAtIndex:(int32_t) index;
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedMessageFieldAtIndex:(int32_t) index withRepeatedMessageField:(ForeignMessage*) value;
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedMessageFieldAtIndex:(int32_t) index with:(ForeignMessage*) value;
 - (TestCamelCaseFieldNames_Builder*) addRepeatedMessageField:(ForeignMessage*) value;
 - (TestCamelCaseFieldNames_Builder*) addAllRepeatedMessageField:(NSArray*) values;
 - (TestCamelCaseFieldNames_Builder*) clearRepeatedMessageFieldList;
 
 - (NSArray*) repeatedStringPieceFieldList;
 - (NSString*) repeatedStringPieceFieldAtIndex:(int32_t) index;
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedStringPieceFieldAtIndex:(int32_t) index withRepeatedStringPieceField:(NSString*) value;
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedStringPieceFieldAtIndex:(int32_t) index with:(NSString*) value;
 - (TestCamelCaseFieldNames_Builder*) addRepeatedStringPieceField:(NSString*) value;
 - (TestCamelCaseFieldNames_Builder*) addAllRepeatedStringPieceField:(NSArray*) values;
 - (TestCamelCaseFieldNames_Builder*) clearRepeatedStringPieceFieldList;
 
 - (NSArray*) repeatedCordFieldList;
 - (NSString*) repeatedCordFieldAtIndex:(int32_t) index;
-- (TestCamelCaseFieldNames_Builder*) replaceRepeatedCordFieldAtIndex:(int32_t) index withRepeatedCordField:(NSString*) value;
+- (TestCamelCaseFieldNames_Builder*) replaceRepeatedCordFieldAtIndex:(int32_t) index with:(NSString*) value;
 - (TestCamelCaseFieldNames_Builder*) addRepeatedCordField:(NSString*) value;
 - (TestCamelCaseFieldNames_Builder*) addAllRepeatedCordField:(NSArray*) values;
 - (TestCamelCaseFieldNames_Builder*) clearRepeatedCordFieldList;

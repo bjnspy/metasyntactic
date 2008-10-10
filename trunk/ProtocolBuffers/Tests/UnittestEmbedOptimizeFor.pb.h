@@ -146,7 +146,7 @@
 
 - (NSArray*) repeatedMessageList;
 - (TestOptimizedForSize*) repeatedMessageAtIndex:(int32_t) index;
-- (TestEmbedOptimizedForSize_Builder*) replaceRepeatedMessageAtIndex:(int32_t) index withRepeatedMessage:(TestOptimizedForSize*) value;
+- (TestEmbedOptimizedForSize_Builder*) replaceRepeatedMessageAtIndex:(int32_t) index with:(TestOptimizedForSize*) value;
 - (TestEmbedOptimizedForSize_Builder*) addRepeatedMessage:(TestOptimizedForSize*) value;
 - (TestEmbedOptimizedForSize_Builder*) addAllRepeatedMessage:(NSArray*) values;
 - (TestEmbedOptimizedForSize_Builder*) clearRepeatedMessageList;

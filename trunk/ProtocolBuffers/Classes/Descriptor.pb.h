@@ -97,7 +97,7 @@
 
 - (NSArray*) fileList;
 - (PBFileDescriptorProto*) fileAtIndex:(int32_t) index;
-- (PBFileDescriptorSet_Builder*) replaceFileAtIndex:(int32_t) index withFile:(PBFileDescriptorProto*) value;
+- (PBFileDescriptorSet_Builder*) replaceFileAtIndex:(int32_t) index with:(PBFileDescriptorProto*) value;
 - (PBFileDescriptorSet_Builder*) addFile:(PBFileDescriptorProto*) value;
 - (PBFileDescriptorSet_Builder*) addAllFile:(NSArray*) values;
 - (PBFileDescriptorSet_Builder*) clearFileList;
@@ -185,35 +185,35 @@
 
 - (NSArray*) dependencyList;
 - (NSString*) dependencyAtIndex:(int32_t) index;
-- (PBFileDescriptorProto_Builder*) replaceDependencyAtIndex:(int32_t) index withDependency:(NSString*) value;
+- (PBFileDescriptorProto_Builder*) replaceDependencyAtIndex:(int32_t) index with:(NSString*) value;
 - (PBFileDescriptorProto_Builder*) addDependency:(NSString*) value;
 - (PBFileDescriptorProto_Builder*) addAllDependency:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearDependencyList;
 
 - (NSArray*) messageTypeList;
 - (PBDescriptorProto*) messageTypeAtIndex:(int32_t) index;
-- (PBFileDescriptorProto_Builder*) replaceMessageTypeAtIndex:(int32_t) index withMessageType:(PBDescriptorProto*) value;
+- (PBFileDescriptorProto_Builder*) replaceMessageTypeAtIndex:(int32_t) index with:(PBDescriptorProto*) value;
 - (PBFileDescriptorProto_Builder*) addMessageType:(PBDescriptorProto*) value;
 - (PBFileDescriptorProto_Builder*) addAllMessageType:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearMessageTypeList;
 
 - (NSArray*) enumTypeList;
 - (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index;
-- (PBFileDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index withEnumType:(PBEnumDescriptorProto*) value;
+- (PBFileDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index with:(PBEnumDescriptorProto*) value;
 - (PBFileDescriptorProto_Builder*) addEnumType:(PBEnumDescriptorProto*) value;
 - (PBFileDescriptorProto_Builder*) addAllEnumType:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearEnumTypeList;
 
 - (NSArray*) serviceList;
 - (PBServiceDescriptorProto*) serviceAtIndex:(int32_t) index;
-- (PBFileDescriptorProto_Builder*) replaceServiceAtIndex:(int32_t) index withService:(PBServiceDescriptorProto*) value;
+- (PBFileDescriptorProto_Builder*) replaceServiceAtIndex:(int32_t) index with:(PBServiceDescriptorProto*) value;
 - (PBFileDescriptorProto_Builder*) addService:(PBServiceDescriptorProto*) value;
 - (PBFileDescriptorProto_Builder*) addAllService:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearServiceList;
 
 - (NSArray*) extensionList;
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index;
-- (PBFileDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index withExtension:(PBFieldDescriptorProto*) value;
+- (PBFileDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index with:(PBFieldDescriptorProto*) value;
 - (PBFileDescriptorProto_Builder*) addExtension:(PBFieldDescriptorProto*) value;
 - (PBFileDescriptorProto_Builder*) addAllExtension:(NSArray*) values;
 - (PBFileDescriptorProto_Builder*) clearExtensionList;
@@ -361,35 +361,35 @@
 
 - (NSArray*) fieldList;
 - (PBFieldDescriptorProto*) fieldAtIndex:(int32_t) index;
-- (PBDescriptorProto_Builder*) replaceFieldAtIndex:(int32_t) index withField:(PBFieldDescriptorProto*) value;
+- (PBDescriptorProto_Builder*) replaceFieldAtIndex:(int32_t) index with:(PBFieldDescriptorProto*) value;
 - (PBDescriptorProto_Builder*) addField:(PBFieldDescriptorProto*) value;
 - (PBDescriptorProto_Builder*) addAllField:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearFieldList;
 
 - (NSArray*) extensionList;
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index;
-- (PBDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index withExtension:(PBFieldDescriptorProto*) value;
+- (PBDescriptorProto_Builder*) replaceExtensionAtIndex:(int32_t) index with:(PBFieldDescriptorProto*) value;
 - (PBDescriptorProto_Builder*) addExtension:(PBFieldDescriptorProto*) value;
 - (PBDescriptorProto_Builder*) addAllExtension:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearExtensionList;
 
 - (NSArray*) nestedTypeList;
 - (PBDescriptorProto*) nestedTypeAtIndex:(int32_t) index;
-- (PBDescriptorProto_Builder*) replaceNestedTypeAtIndex:(int32_t) index withNestedType:(PBDescriptorProto*) value;
+- (PBDescriptorProto_Builder*) replaceNestedTypeAtIndex:(int32_t) index with:(PBDescriptorProto*) value;
 - (PBDescriptorProto_Builder*) addNestedType:(PBDescriptorProto*) value;
 - (PBDescriptorProto_Builder*) addAllNestedType:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearNestedTypeList;
 
 - (NSArray*) enumTypeList;
 - (PBEnumDescriptorProto*) enumTypeAtIndex:(int32_t) index;
-- (PBDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index withEnumType:(PBEnumDescriptorProto*) value;
+- (PBDescriptorProto_Builder*) replaceEnumTypeAtIndex:(int32_t) index with:(PBEnumDescriptorProto*) value;
 - (PBDescriptorProto_Builder*) addEnumType:(PBEnumDescriptorProto*) value;
 - (PBDescriptorProto_Builder*) addAllEnumType:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearEnumTypeList;
 
 - (NSArray*) extensionRangeList;
 - (PBDescriptorProto_ExtensionRange*) extensionRangeAtIndex:(int32_t) index;
-- (PBDescriptorProto_Builder*) replaceExtensionRangeAtIndex:(int32_t) index withExtensionRange:(PBDescriptorProto_ExtensionRange*) value;
+- (PBDescriptorProto_Builder*) replaceExtensionRangeAtIndex:(int32_t) index with:(PBDescriptorProto_ExtensionRange*) value;
 - (PBDescriptorProto_Builder*) addExtensionRange:(PBDescriptorProto_ExtensionRange*) value;
 - (PBDescriptorProto_Builder*) addAllExtensionRange:(NSArray*) values;
 - (PBDescriptorProto_Builder*) clearExtensionRangeList;
@@ -638,7 +638,7 @@
 
 - (NSArray*) valueList;
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index;
-- (PBEnumDescriptorProto_Builder*) replaceValueAtIndex:(int32_t) index withValue:(PBEnumValueDescriptorProto*) value;
+- (PBEnumDescriptorProto_Builder*) replaceValueAtIndex:(int32_t) index with:(PBEnumValueDescriptorProto*) value;
 - (PBEnumDescriptorProto_Builder*) addValue:(PBEnumValueDescriptorProto*) value;
 - (PBEnumDescriptorProto_Builder*) addAllValue:(NSArray*) values;
 - (PBEnumDescriptorProto_Builder*) clearValueList;
@@ -785,7 +785,7 @@
 
 - (NSArray*) methodList;
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index;
-- (PBServiceDescriptorProto_Builder*) replaceMethodAtIndex:(int32_t) index withMethod:(PBMethodDescriptorProto*) value;
+- (PBServiceDescriptorProto_Builder*) replaceMethodAtIndex:(int32_t) index with:(PBMethodDescriptorProto*) value;
 - (PBServiceDescriptorProto_Builder*) addMethod:(PBMethodDescriptorProto*) value;
 - (PBServiceDescriptorProto_Builder*) addAllMethod:(NSArray*) values;
 - (PBServiceDescriptorProto_Builder*) clearMethodList;

@@ -344,7 +344,7 @@
 
 - (NSArray*) itemList;
 - (RawMessageSet_Item*) itemAtIndex:(int32_t) index;
-- (RawMessageSet_Builder*) replaceItemAtIndex:(int32_t) index withItem:(RawMessageSet_Item*) value;
+- (RawMessageSet_Builder*) replaceItemAtIndex:(int32_t) index with:(RawMessageSet_Item*) value;
 - (RawMessageSet_Builder*) addItem:(RawMessageSet_Item*) value;
 - (RawMessageSet_Builder*) addAllItem:(NSArray*) values;
 - (RawMessageSet_Builder*) clearItemList;
