@@ -137,20 +137,21 @@
     STAssertTrue(builder.isInitialized, @"");
 }
      
-#if 0
-public void testRequiredDynamic() throws Exception {
-    Descriptors.Descriptor descriptor = TestRequired.getDescriptor();
-    DynamicMessage.Builder builder = DynamicMessage.newBuilder(descriptor);
+
+- (void) testRequiredDynamic {
+    PBDescriptor* descriptor = [TestRequired descriptor];
+    PBDynamicMessage_Builder* builder = [PBDynamicMessage_Builder builderWithType:descriptor];
     
     STAssertFalse(builder.isInitialized, @"");
-    [builder setField:descriptor.findFieldByName("a"), 1);
+    [builder setField:[descriptor findFieldByName:@"a"] value:[NSNumber numberWithInt:1]];
     STAssertFalse(builder.isInitialized, @"");
-    [builder setField:descriptor.findFieldByName("b"), 1);
+    [builder setField:[descriptor findFieldByName:@"b"] value:[NSNumber numberWithInt:1]];
     STAssertFalse(builder.isInitialized, @"");
-    [builder setField:descriptor.findFieldByName("c"), 1);
+    [builder setField:[descriptor findFieldByName:@"c"] value:[NSNumber numberWithInt:1]];
     STAssertTrue(builder.isInitialized, @"");
 }
-
+     
+#if 0
 public void testRequiredDynamicForeign() throws Exception {
     Descriptors.Descriptor descriptor = TestRequiredForeign.getDescriptor();
     DynamicMessage.Builder builder = DynamicMessage.newBuilder(descriptor);
