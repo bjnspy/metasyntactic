@@ -239,15 +239,15 @@
 }
 
 
-#if 0
-public void testDynamicBuildPartial() throws Exception {
+- (void) testDynamicBuildPartial {
     // We're mostly testing that no exception is thrown.
-    DynamicMessage message =
-    DynamicMessage.newBuilder(TestRequired.getDescriptor())
-    .buildPartial();
-    assertFalse(message.isInitialized());
+    PBDynamicMessage* message =
+    [[PBDynamicMessage_Builder builderWithType:[TestRequired descriptor]]
+     buildPartial];
+    STAssertFalse(message.isInitialized, @"");
 }
 
+#if 0
 public void testDynamicParseUnititialized() throws Exception {
     try {
         Descriptors.Descriptor descriptor = TestRequired.getDescriptor();
