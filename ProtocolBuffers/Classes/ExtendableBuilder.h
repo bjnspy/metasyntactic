@@ -25,6 +25,7 @@
 
 - (id)  getExtension:(PBGeneratedExtension*) extension index:(int32_t) index;
 - (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
+- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension index:(int32_t) index value:(id) value;
 
 //@protected
 - (PBExtendableMessage*) internalGetResult;
