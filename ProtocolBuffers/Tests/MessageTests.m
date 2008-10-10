@@ -215,16 +215,12 @@
 }
 
 
-#if 0
-public void testParseUnititialized() throws Exception {
-    try {
-        TestRequired.parseFrom(ByteString.EMPTY);
-        fail("Should have thrown an exception.");
-    } catch (InvalidProtocolBufferException e) {
-        assertEquals("Message missing required fields: a, b, c", e.getMessage());
-    }
+- (void) testParseUnititialized {
+    STAssertThrows([TestRequired parseFromData:[NSData data]], @"");
 }
 
+
+#if 0
 public void testParseNestedUnititialized() throws Exception {
     ByteString data =
     TestRequiredForeign.newBuilder()
