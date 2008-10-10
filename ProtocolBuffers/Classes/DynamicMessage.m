@@ -113,12 +113,12 @@
 
 
 + (PBDynamicMessage_Builder*) bulderWithType:(PBDescriptor*) type {
-    return [PBDynamicMessage_Builder builderWithType:type];
+    return [PBDynamicMessage builderWithType:type];
 }
 
 
 + (PBDynamicMessage_Builder*) builderWithMessage:(id<PBMessage>) prototype {
-    return [[PBDynamicMessage_Builder builderWithType:[prototype descriptor]] mergeFromMessage:prototype];
+    return [[PBDynamicMessage builderWithType:[prototype descriptor]] mergeFromMessage:prototype];
 }
 
 
@@ -212,12 +212,12 @@
 
 
 - (PBDynamicMessage_Builder*) createBuilder {
-    return [PBDynamicMessage_Builder builderWithType:type];
+    return [PBDynamicMessage builderWithType:type];
 }
 
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type {
-    return [PBDynamicMessage_Builder builderWithType:type];
+    return [PBDynamicMessage builderWithType:type];
 }
 
 

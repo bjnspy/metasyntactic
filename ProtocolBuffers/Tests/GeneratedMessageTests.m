@@ -22,7 +22,7 @@
     STAssertTrue([TestAllTypes defaultInstance] ==
                [[TestAllTypes defaultInstance] defaultInstance], @"");
     STAssertTrue([TestAllTypes defaultInstance] ==
-               [[TestAllTypes_Builder builder] defaultInstance], @"");
+               [[TestAllTypes builder] defaultInstance], @"");
 }
 
 #if 0
