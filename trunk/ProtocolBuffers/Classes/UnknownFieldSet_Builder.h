@@ -30,7 +30,8 @@
 @property (readonly) int32_t lastFieldNumber;
 @property (retain, readonly) PBMutableField* lastField;
 
-+ (PBUnknownFieldSet_Builder*) newBuilder;
++ (PBUnknownFieldSet_Builder*) builder;
++ (PBUnknownFieldSet_Builder*) builderWithUnknownFields:(PBUnknownFieldSet*) other;
 
 - (PBUnknownFieldSet*) build;
 - (PBUnknownFieldSet_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) other;

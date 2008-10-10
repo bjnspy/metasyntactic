@@ -41,16 +41,6 @@ static PBUnknownFieldSet* defaultInstance = nil;
 }
 
 
-+ (PBUnknownFieldSet_Builder*) newBuilder {
-    return [PBUnknownFieldSet_Builder newBuilder];
-}
-
-
-+ (PBUnknownFieldSet_Builder*) newBuilder:(PBUnknownFieldSet*) copyFrom {
-    return [[PBUnknownFieldSet_Builder newBuilder] mergeUnknownFields:copyFrom];
-}
-
-
 + (PBUnknownFieldSet*) defaultInstance {
     return defaultInstance;
 }
@@ -98,17 +88,17 @@ static PBUnknownFieldSet* defaultInstance = nil;
 
 
 + (PBUnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-    return [[[PBUnknownFieldSet newBuilder] mergeFromCodedInputStream:input] build];
+    return [[[PBUnknownFieldSet_Builder builder] mergeFromCodedInputStream:input] build];
 }
 
 
 + (PBUnknownFieldSet*) parseFromData:(NSData*) data {
-    return [[[PBUnknownFieldSet newBuilder] mergeFromData:data] build];
+    return [[[PBUnknownFieldSet_Builder builder] mergeFromData:data] build];
 }
 
 
 + (PBUnknownFieldSet*) parseFromInputStream:(NSInputStream*) input {
-    return [[[PBUnknownFieldSet newBuilder] mergeFromInputStream:input] build];
+    return [[[PBUnknownFieldSet_Builder builder] mergeFromInputStream:input] build];
 }
 
 

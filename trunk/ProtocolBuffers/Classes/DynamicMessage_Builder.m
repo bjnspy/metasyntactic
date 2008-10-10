@@ -113,7 +113,7 @@
 
 - (PBDynamicMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input
                                     extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-    PBUnknownFieldSet_Builder* unknownFieldsBuilder = [PBUnknownFieldSet newBuilder:unknownFields];
+    PBUnknownFieldSet_Builder* unknownFieldsBuilder = [PBUnknownFieldSet_Builder builderWithUnknownFields:unknownFields];
     [PBFieldSet mergeFromCodedInputStream:input unknownFields:unknownFieldsBuilder extensionRegistry:extensionRegistry builder:self];
     self.unknownFields = [unknownFieldsBuilder build];
     return self;
@@ -215,7 +215,7 @@
 
 
 - (PBDynamicMessage_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields_ {
-    self.unknownFields = [[[PBUnknownFieldSet newBuilder:unknownFields] mergeUnknownFields:unknownFields_] build];
+    self.unknownFields = [[[PBUnknownFieldSet_Builder builderWithUnknownFields:unknownFields] mergeUnknownFields:unknownFields_] build];
     return self;
 }
 

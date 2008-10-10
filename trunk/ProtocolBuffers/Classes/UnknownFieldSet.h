@@ -20,11 +20,9 @@
 
 @property (retain) NSDictionary* fields;
 
-+ (PBUnknownFieldSet_Builder*) newBuilder:(PBUnknownFieldSet*) copyFrom;
 + (PBUnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
 
 + (PBUnknownFieldSet*) defaultInstance;
-+ (PBUnknownFieldSet_Builder*) newBuilder;
 
 + (PBUnknownFieldSet*) parseFromData:(NSData*) data;
 

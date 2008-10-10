@@ -53,8 +53,13 @@
 }
 
 
-+ (PBUnknownFieldSet_Builder*) newBuilder {
++ (PBUnknownFieldSet_Builder*) builder {
     return [[[PBUnknownFieldSet_Builder alloc] init] autorelease];
+}
+
+
++ (PBUnknownFieldSet_Builder*) builderWithUnknownFields:(PBUnknownFieldSet*) copyFrom {
+    return [[PBUnknownFieldSet_Builder builder] mergeUnknownFields:copyFrom];
 }
 
 
@@ -198,7 +203,7 @@
             [[self getFieldBuilder:number] addLengthDelimited:[input readData]];
             return true;
         case PBWireFormatStartGroup: {
-            PBUnknownFieldSet_Builder* subBuilder = [PBUnknownFieldSet newBuilder];
+            PBUnknownFieldSet_Builder* subBuilder = [PBUnknownFieldSet_Builder builder];
             [input readUnknownGroup:number builder:subBuilder];
             [[self getFieldBuilder:number] addGroup:[subBuilder build]];
             return true;
