@@ -200,18 +200,22 @@
                     build], @"");
 }
 
-#if 0
-public void testBuildNestedPartial() throws Exception {
+
+- (void) testBuildNestedPartial {
     // We're mostly testing that no exception is thrown.
-    TestRequiredForeign message =
-    TestRequiredForeign.newBuilder()
-    .setOptionalMessageself.testRequiredUninitialized
-    .addRepeatedMessageself.testRequiredUninitialized
-    .addRepeatedMessageself.testRequiredUninitialized
-    .buildPartial();
-    assertFalse(message.isInitialized());
+    
+    TestRequiredForeign* message = 
+    [[[[[TestRequiredForeign_Builder builder]
+        setOptionalMessage:self.testRequiredUninitialized]
+       addRepeatedMessage:self.testRequiredUninitialized]
+      addRepeatedMessage:self.testRequiredUninitialized]
+     buildPartial];
+    
+    STAssertFalse(message.isInitialized, @"");
 }
 
+
+#if 0
 public void testParseUnititialized() throws Exception {
     try {
         TestRequired.parseFrom(ByteString.EMPTY);
