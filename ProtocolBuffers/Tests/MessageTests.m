@@ -84,6 +84,7 @@
     return [TestRequired defaultInstance];
 }
 
+
 - (TestRequired*) testRequiredInitialized {
     return [[[[[TestRequired_Builder builder] setA:1] setB:2] setC:3] build];
 }
@@ -100,6 +101,7 @@
     [builder setC:1];
     STAssertTrue(builder.isInitialized, @"");
 }
+
 
 - (void) testRequiredForeign {
     TestRequiredForeign_Builder* builder = [TestRequiredForeign_Builder builder];
@@ -118,6 +120,7 @@
     [builder replaceRepeatedMessageAtIndex:0 withRepeatedMessage:self.testRequiredInitialized];
     STAssertTrue(builder.isInitialized, @"");
 }
+
 
 - (void) testRequiredExtension {
     TestAllExtensions_Builder* builder = [TestAllExtensions_Builder builder];
@@ -151,30 +154,33 @@
     STAssertTrue(builder.isInitialized, @"");
 }
      
-#if 0
-public void testRequiredDynamicForeign() throws Exception {
-    Descriptors.Descriptor descriptor = TestRequiredForeign.getDescriptor();
-    DynamicMessage.Builder builder = DynamicMessage.newBuilder(descriptor);
+
+- (void) testRequiredDynamicForeign {
+    PBDescriptor* descriptor = [TestRequiredForeign descriptor];
+    PBDynamicMessage_Builder* builder = [PBDynamicMessage_Builder builderWithType:descriptor];
     
     STAssertTrue(builder.isInitialized, @"");
     
-    [builder setField:descriptor.findFieldByName("optional_message"),
-                     self.testRequiredUninitialized);
+    [builder setField:[descriptor findFieldByName:@"optional_message"]
+                value:self.testRequiredUninitialized];
     STAssertFalse(builder.isInitialized, @"");
     
-    [builder setField:descriptor.findFieldByName("optional_message"),
-                     self.testRequiredInitialized);
+    [builder setField:[descriptor findFieldByName:@"optional_message"]
+                value:self.testRequiredInitialized];
     STAssertTrue(builder.isInitialized, @"");
     
-    builder.addRepeatedField(descriptor.findFieldByName("repeated_message"),
-                             self.testRequiredUninitialized);
+    [builder addRepeatedField:[descriptor findFieldByName:@"repeated_message"]
+                        value:self.testRequiredUninitialized];
     STAssertFalse(builder.isInitialized, @"");
     
-    builder.setRepeatedField(descriptor.findFieldByName("repeated_message"), 0,
-                             self.testRequiredInitialized);
+    [builder setRepeatedField:[descriptor findFieldByName:@"repeated_message"]
+                        index:0
+                        value:self.testRequiredInitialized];
     STAssertTrue(builder.isInitialized, @"");
 }
 
+     
+     #if 0
 public void testUninitializedException() throws Exception {
     try {
         TestRequired.newBuilder().build();
