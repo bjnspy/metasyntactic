@@ -454,10 +454,10 @@
     [message setOptionalString:@"115"];
     [message setOptionalBytes:[self toData:@"116"]];
     
-    [message setOptionalGroup:[[[TestAllTypes_OptionalGroup_Builder builder] setA:117] build]];
-    [message setOptionalNestedMessage:[[[TestAllTypes_NestedMessage_Builder builder] setBb:118] build]];
-    [message setOptionalForeignMessage:[[[ForeignMessage_Builder builder] setC:119] build]];
-    [message setOptionalImportMessage:[[[ImportMessage_Builder builder] setD:120] build]];
+    [message setOptionalGroup:[[[TestAllTypes_OptionalGroup builder] setA:117] build]];
+    [message setOptionalNestedMessage:[[[TestAllTypes_NestedMessage builder] setBb:118] build]];
+    [message setOptionalForeignMessage:[[[ForeignMessage builder] setC:119] build]];
+    [message setOptionalImportMessage:[[[ImportMessage builder] setD:120] build]];
     
     [message setOptionalNestedEnum:[TestAllTypes_NestedEnum BAZ]];
     [message setOptionalForeignEnum:[ForeignEnum FOREIGN_BAZ]];
@@ -484,10 +484,10 @@
     [message addRepeatedString  :@"215"];
     [message addRepeatedBytes   :[self toData:@"216"]];
     
-    [message addRepeatedGroup:[[[TestAllTypes_RepeatedGroup_Builder builder] setA:217] build]];
-    [message addRepeatedNestedMessage:[[[TestAllTypes_NestedMessage_Builder builder] setBb:218] build]];
-    [message addRepeatedForeignMessage:[[[ForeignMessage_Builder builder] setC:219] build]];
-    [message addRepeatedImportMessage:[[[ImportMessage_Builder builder] setD:220] build]];
+    [message addRepeatedGroup:[[[TestAllTypes_RepeatedGroup builder] setA:217] build]];
+    [message addRepeatedNestedMessage:[[[TestAllTypes_NestedMessage builder] setBb:218] build]];
+    [message addRepeatedForeignMessage:[[[ForeignMessage builder] setC:219] build]];
+    [message addRepeatedImportMessage:[[[ImportMessage builder] setD:220] build]];
     
     [message addRepeatedNestedEnum :[TestAllTypes_NestedEnum BAR]];
     [message addRepeatedForeignEnum:[ForeignEnum FOREIGN_BAR]];
@@ -513,10 +513,10 @@
     [message addRepeatedString  :@"315"];
     [message addRepeatedBytes   :[self toData:@"316"]];
     
-    [message addRepeatedGroup:[[[TestAllTypes_RepeatedGroup_Builder builder] setA:317] build]];
-    [message addRepeatedNestedMessage:[[[TestAllTypes_NestedMessage_Builder builder] setBb:318] build]];
-    [message addRepeatedForeignMessage:[[[ForeignMessage_Builder builder] setC:319] build]];
-    [message addRepeatedImportMessage:[[[ImportMessage_Builder builder] setD:320] build]];
+    [message addRepeatedGroup:[[[TestAllTypes_RepeatedGroup builder] setA:317] build]];
+    [message addRepeatedNestedMessage:[[[TestAllTypes_NestedMessage builder] setBb:318] build]];
+    [message addRepeatedForeignMessage:[[[ForeignMessage builder] setC:319] build]];
+    [message addRepeatedImportMessage:[[[ImportMessage builder] setD:320] build]];
     
     [message addRepeatedNestedEnum :[TestAllTypes_NestedEnum BAZ]];
     [message addRepeatedForeignEnum:[ForeignEnum FOREIGN_BAZ]];
@@ -573,13 +573,13 @@
     [message setExtension:[UnittestProtoRoot optionalBytesExtension]   value:[self toData:@"116"]];
     
     [message setExtension:[UnittestProtoRoot optionalGroupExtension]
-                    value:[[[OptionalGroup_extension_Builder builder] setA:117] build]];
+                    value:[[[OptionalGroup_extension builder] setA:117] build]];
     [message setExtension:[UnittestProtoRoot optionalNestedMessageExtension]
-                    value:[[[TestAllTypes_NestedMessage_Builder builder] setBb:118] build]];
+                    value:[[[TestAllTypes_NestedMessage builder] setBb:118] build]];
     [message setExtension:[UnittestProtoRoot optionalForeignMessageExtension]
-                    value:[[[ForeignMessage_Builder builder] setC:119] build]];
+                    value:[[[ForeignMessage builder] setC:119] build]];
     [message setExtension:[UnittestProtoRoot optionalImportMessageExtension]
-                    value:[[[ImportMessage_Builder builder] setD:120] build]];
+                    value:[[[ImportMessage builder] setD:120] build]];
     
     [message setExtension:[UnittestProtoRoot optionalNestedEnumExtension]
                     value:[TestAllTypes_NestedEnum BAZ]];
@@ -610,13 +610,13 @@
     [message addExtension:[UnittestProtoRoot repeatedBytesExtension]   value:[self toData:@"216"]];
     
     [message addExtension:[UnittestProtoRoot repeatedGroupExtension]
-                    value:[[[RepeatedGroup_extension_Builder builder] setA:217] build]];
+                    value:[[[RepeatedGroup_extension builder] setA:217] build]];
     [message addExtension:[UnittestProtoRoot repeatedNestedMessageExtension]
-                    value:[[[TestAllTypes_NestedMessage_Builder builder] setBb:218] build]];
+                    value:[[[TestAllTypes_NestedMessage builder] setBb:218] build]];
     [message addExtension:[UnittestProtoRoot repeatedForeignMessageExtension]
-                    value:[[[ForeignMessage_Builder builder] setC:219] build]];
+                    value:[[[ForeignMessage builder] setC:219] build]];
     [message addExtension:[UnittestProtoRoot repeatedImportMessageExtension]
-                    value:[[[ImportMessage_Builder builder] setD:220] build]];
+                    value:[[[ImportMessage builder] setD:220] build]];
     
     [message addExtension:[UnittestProtoRoot repeatedNestedEnumExtension]
                     value:[TestAllTypes_NestedEnum BAR]];
@@ -646,13 +646,13 @@
     [message addExtension:[UnittestProtoRoot repeatedBytesExtension] value:[self toData:@"316"]];
     
     [message addExtension:[UnittestProtoRoot repeatedGroupExtension]
-                    value:[[[RepeatedGroup_extension_Builder builder] setA:317] build]];
+                    value:[[[RepeatedGroup_extension builder] setA:317] build]];
     [message addExtension:[UnittestProtoRoot repeatedNestedMessageExtension]
-                    value:[[[TestAllTypes_NestedMessage_Builder builder] setBb:318] build]];
+                    value:[[[TestAllTypes_NestedMessage builder] setBb:318] build]];
     [message addExtension:[UnittestProtoRoot repeatedForeignMessageExtension]
-                    value:[[[ForeignMessage_Builder builder] setC:319] build]];
+                    value:[[[ForeignMessage builder] setC:319] build]];
     [message addExtension:[UnittestProtoRoot repeatedImportMessageExtension]
-                    value:[[[ImportMessage_Builder builder] setD:320] build]];
+                    value:[[[ImportMessage builder] setD:320] build]];
     
     [message addExtension:[UnittestProtoRoot repeatedNestedEnumExtension]
                     value:[TestAllTypes_NestedEnum BAZ]];
@@ -784,14 +784,14 @@
 
 
 + (TestAllTypes*) allSet {
-    TestAllTypes_Builder* builder = [TestAllTypes_Builder builder];
+    TestAllTypes_Builder* builder = [TestAllTypes builder];
     [self setAllFields:builder];
     return [builder build];
 }
 
 
 + (TestAllExtensions*) allExtensionsSet {
-    TestAllExtensions_Builder* builder = [TestAllExtensions_Builder builder];
+    TestAllExtensions_Builder* builder = [TestAllExtensions builder];
     [self setAllExtensions:builder];
     return [builder build];
 }

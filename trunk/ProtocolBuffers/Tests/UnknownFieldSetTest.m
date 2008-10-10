@@ -142,7 +142,7 @@
 
 - (void) testCopyFrom {
     TestEmptyMessage* message =
-    [[[TestEmptyMessage_Builder builder] mergeFromMessage:emptyMessage] build];
+    [[[TestEmptyMessage builder] mergeFromMessage:emptyMessage] build];
     
     STAssertEqualObjects(emptyMessage.toData, message.toData, @"");
 }
@@ -169,13 +169,13 @@
        addField:[[PBMutableField field] addVarint:2] forNumber:2]
       addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
     
-    TestEmptyMessage* source1 = (id)[[[TestEmptyMessage_Builder builder] setUnknownFields:set1] build];
-    TestEmptyMessage* source2 = (id)[[[TestEmptyMessage_Builder builder] setUnknownFields:set2] build];
-    TestEmptyMessage* source3 = (id)[[[TestEmptyMessage_Builder builder] setUnknownFields:set3] build];
-    TestEmptyMessage* source4 = (id)[[[TestEmptyMessage_Builder builder] setUnknownFields:set4] build];
+    TestEmptyMessage* source1 = (id)[[[TestEmptyMessage builder] setUnknownFields:set1] build];
+    TestEmptyMessage* source2 = (id)[[[TestEmptyMessage builder] setUnknownFields:set2] build];
+    TestEmptyMessage* source3 = (id)[[[TestEmptyMessage builder] setUnknownFields:set3] build];
+    TestEmptyMessage* source4 = (id)[[[TestEmptyMessage builder] setUnknownFields:set4] build];
     
-    TestEmptyMessage* destination1 = (id)[[[[TestEmptyMessage_Builder builder] mergeFromMessage:source1] mergeFromMessage:source2] build];
-    TestEmptyMessage* destination2 = (id)[[[[TestEmptyMessage_Builder builder] mergeFromMessage:source3] mergeFromMessage:source4] build];
+    TestEmptyMessage* destination1 = (id)[[[[TestEmptyMessage builder] mergeFromMessage:source1] mergeFromMessage:source2] build];
+    TestEmptyMessage* destination2 = (id)[[[[TestEmptyMessage builder] mergeFromMessage:source3] mergeFromMessage:source4] build];
     
     STAssertEqualObjects(destination1.toData, destination2.toData, @"");
 }
@@ -190,7 +190,7 @@
 
 - (void) testClearMessage {
     TestEmptyMessage* message =
-    [[[[TestEmptyMessage_Builder builder] mergeFromMessage:emptyMessage] clear] build];
+    [[[[TestEmptyMessage builder] mergeFromMessage:emptyMessage] clear] build];
     STAssertTrue(0 == message.serializedSize, @"");
 }
 

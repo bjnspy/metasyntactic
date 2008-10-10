@@ -98,7 +98,7 @@
 
 
 - (PBDynamicMessage_Builder*) clone {
-    PBDynamicMessage_Builder* result = [PBDynamicMessage_Builder builderWithType:type];
+    PBDynamicMessage_Builder* result = [PBDynamicMessage builderWithType:type];
     [result.fields mergeFromFieldSet:fields];
     return result;
 }
@@ -149,7 +149,7 @@
                                      userInfo:nil];
     }
 
-    return [PBDynamicMessage_Builder builderWithType:field.messageType];
+    return [PBDynamicMessage builderWithType:field.messageType];
 }
 
 
