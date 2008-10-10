@@ -220,34 +220,20 @@
 }
 
 
-#if 0
-public void testParseNestedUnititialized() throws Exception {
-    ByteString data =
-    TestRequiredForeign.newBuilder()
-    .setOptionalMessageself.testRequiredUninitialized
-    .addRepeatedMessageself.testRequiredUninitialized
-    .addRepeatedMessageself.testRequiredUninitialized
-    .buildPartial().toByteString();
+- (void) testParseNestedUnititialized {
+    TestRequiredForeign* message = 
+    [[[[[TestRequiredForeign_Builder builder]
+        setOptionalMessage:self.testRequiredUninitialized]
+       addRepeatedMessage:self.testRequiredUninitialized]
+      addRepeatedMessage:self.testRequiredUninitialized]
+     buildPartial];
     
-    try {
-        TestRequiredForeign.parseFrom(data);
-        fail("Should have thrown an exception.");
-    } catch (InvalidProtocolBufferException e) {
-        assertEquals(
-                     "Message missing required fields: " +
-                     "optional_message.a, " +
-                     "optional_message.b, " +
-                     "optional_message.c, " +
-                     "repeated_message[0].a, " +
-                     "repeated_message[0].b, " +
-                     "repeated_message[0].c, " +
-                     "repeated_message[1].a, " +
-                     "repeated_message[1].b, " +
-                     "repeated_message[1].c",
-                     e.getMessage());
-    }
+    NSData* data = message.toData;
+    
+    STAssertThrows([TestRequiredForeign parseFromData:data], @"");
 }
 
+#if 0
 public void testDynamicUninitializedException() throws Exception {
     try {
         DynamicMessage.newBuilder(TestRequired.getDescriptor()).build();
