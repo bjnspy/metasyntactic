@@ -15,16 +15,17 @@
 // Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #import <SenTestingKit/SenTestingKit.h>
+#import "DescriptorTests.h"
+#import "MessageTests.h"
 #import "UnknownFieldSetTest.h"
 #import "WireFormatTests.h"
-#import "MessageTests.h"
 
 int main(int argc, char *argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
     
     [SenTestObserver class];
     
-    SenTestSuite *suite= [SenTestSuite testSuiteForTestCaseClass:[MessageTests class]];
+    SenTestSuite *suite= [SenTestSuite testSuiteForTestCaseClass:[DescriptorTests class]];
     [suite run];
     
     [pool release];

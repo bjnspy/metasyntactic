@@ -84,6 +84,7 @@
         self.proto = proto_;
         self.file = file_;
         self.containingType = parent_;
+        
         self.fullName = [PBDescriptor computeFullName:file parent:parent_ name:proto.name];
         
         if ([self.fullName hasPrefix:@"."]) {

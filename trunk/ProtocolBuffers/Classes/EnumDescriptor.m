@@ -58,9 +58,10 @@
     if (self = [super init]) {
         self.index = index_;
         self.proto = proto_;
-        self.fullName = [PBDescriptor computeFullName:file_ parent:parent_ name:proto.name];
         self.file = file_;
         self.containingType = parent_;
+        
+        self.fullName = [PBDescriptor computeFullName:file_ parent:parent_ name:proto.name];
         
         if (proto.valueList.count == 0) {
             // We cannot allow enums with no values because this would mean there

@@ -183,4 +183,110 @@
     }
 }
 
+
+/**
+ * Find a message type in the file by name.  Does not find nested types.
+ *
+ * @param name The unqualified type name to look for.
+ * @return The message type's descriptor, or {@code null} if not found.
+ */
+- (PBDescriptor*) findMessageTypeByName:(NSString*) name {
+    // Don't allow looking up nested types.  This will make optimization
+    // easier later.
+    if ([name rangeOfString:@"."].length > 0) {
+        return nil;
+    }
+    
+    if (self.package.length > 0) {
+        name = [NSString stringWithFormat:@"%@.%@", self.package, name];
+    }
+    id result = [pool findSymbol:name];
+    if (result != nil &&
+        [result isKindOfClass:[PBDescriptor class]] &&
+        [result file] == self) {
+        return result;
+    } else {
+        return nil;
+    }
+}
+
+/**
+ * Find an enum type in the file by name.  Does not find nested types.
+ *
+ * @param name The unqualified type name to look for.
+ * @return The enum type's descriptor, or {@code null} if not found.
+ */
+- (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name {
+    // Don't allow looking up nested types.  This will make optimization
+    // easier later.
+    if ([name rangeOfString:@"."].length > 0) {
+        return nil;
+    }
+    
+    if (self.package.length > 0) {
+        name = [NSString stringWithFormat:@"%@.%@", self.package, name];
+    }
+    id result = [pool findSymbol:name];
+    if (result != nil &&
+        [result isKindOfClass:[PBEnumDescriptor class]] &&
+        [result file] == self) {
+        return result;
+    } else {
+        return nil;
+    }
+}
+
+/**
+ * Find a service type in the file by name.
+ *
+ * @param name The unqualified type name to look for.
+ * @return The service type's descriptor, or {@code null} if not found.
+ */
+- (PBServiceDescriptor*) findServiceByName:(NSString*) name {
+    // Don't allow looking up nested types.  This will make optimization
+    // easier later.
+    if ([name rangeOfString:@"."].length > 0) {
+        return nil;
+    }
+    
+    if (self.package.length > 0) {
+        name = [NSString stringWithFormat:@"%@.%@", self.package, name];
+    }
+    id result = [pool findSymbol:name];
+    if (result != nil &&
+        [result isKindOfClass:[PBServiceDescriptor class]] &&
+        [result file] == self) {
+        return result;
+    } else {
+        return nil;
+    }
+}
+
+/**
+ * Find an extension in the file by name.  Does not find extensions nested
+ * inside message types.
+ *
+ * @param name The unqualified extension name to look for.
+ * @return The extension's descriptor, or {@code null} if not found.
+ */
+- (PBFieldDescriptor*) findExtensionByName:(NSString*) name {
+    // Don't allow looking up nested types.  This will make optimization
+    // easier later.
+    if ([name rangeOfString:@"."].length > 0) {
+        return nil;
+    }
+    
+    if (self.package.length > 0) {
+        name = [NSString stringWithFormat:@"%@.%@", self.package, name];
+    }
+    id result = [pool findSymbol:name];
+    if (result != nil &&
+        [result isKindOfClass:[PBFieldDescriptor class]] &&
+        [result file] == self) {
+        return result;
+    } else {
+        return nil;
+    }
+}
+
 @end
