@@ -267,15 +267,15 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 - (TestOptimizedForSize*) optionalMessage {
   return result.optionalMessage;
 }
-- (id<PBMessage_Builder>) setOptionalMessage:(TestOptimizedForSize*) value {
+- (TestEmbedOptimizedForSize_Builder*) setOptionalMessage:(TestOptimizedForSize*) value {
   result.hasOptionalMessage = YES;
   result.optionalMessage = value;
   return self;
 }
-- (id<PBMessage_Builder>) setOptionalMessageBuilder:(TestOptimizedForSize_Builder*) builderForValue {
+- (TestEmbedOptimizedForSize_Builder*) setOptionalMessageBuilder:(TestOptimizedForSize_Builder*) builderForValue {
   return [self setOptionalMessage:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeOptionalMessage:(TestOptimizedForSize*) value {
+- (TestEmbedOptimizedForSize_Builder*) mergeOptionalMessage:(TestOptimizedForSize*) value {
   if (result.hasOptionalMessage &&
       result.optionalMessage != [TestOptimizedForSize defaultInstance]) {
     result.optionalMessage =
@@ -286,7 +286,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   result.hasOptionalMessage = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearOptionalMessage {
+- (TestEmbedOptimizedForSize_Builder*) clearOptionalMessage {
   result.hasOptionalMessage = NO;
   result.optionalMessage = [TestOptimizedForSize defaultInstance];
   return self;

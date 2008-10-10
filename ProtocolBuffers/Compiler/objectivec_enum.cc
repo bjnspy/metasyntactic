@@ -109,8 +109,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void EnumGenerator::GenerateSource(io::Printer* printer) {
     printer->Print(
       "@interface $classname$ ()\n"
-      "@property int32_t index;\n"
-      "@property int32_t value;\n"
+      "  @property int32_t index;\n"
+      "  @property int32_t value;\n"
       "@end\n\n",
       "classname", ClassName(descriptor_));
 
@@ -204,8 +204,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "    default: return nil;\n"
       "  }\n"
-      "}\n"
-      "\n");
+      "}\n");
 
     // -----------------------------------------------------------------
     // Reflection
@@ -236,11 +235,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     }
 
     printer->Print(
-      "}\n"
-      "\n");
+      "}\n");
 
     printer->Print(
-      "\n"
       "+ ($classname$*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {\n"
       "  if (desc.type != [$classname$ descriptor]) {\n"
       "    @throw [NSException exceptionWithName:@\"\" reason:@\"\" userInfo:nil];\n"

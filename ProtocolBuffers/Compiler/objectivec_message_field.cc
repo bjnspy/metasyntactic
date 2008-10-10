@@ -158,10 +158,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(variables_,
       "- (BOOL) has$capitalized_name$;\n"
       "- ($storage_type$) $name$;\n"
-      "- (id<PBMessage_Builder>) set$capitalized_name$:($storage_type$) value;\n"
-      "- (id<PBMessage_Builder>) set$capitalized_name$Builder:($type$_Builder*) builderForValue;\n"
-      "- (id<PBMessage_Builder>) merge$capitalized_name$:($storage_type$) value;\n"
-      "- (id<PBMessage_Builder>) clear$capitalized_name$;\n");
+      "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value;\n"
+      "- ($classname$_Builder*) set$capitalized_name$Builder:($type$_Builder*) builderForValue;\n"
+      "- ($classname$_Builder*) merge$capitalized_name$:($storage_type$) value;\n"
+      "- ($classname$_Builder*) clear$capitalized_name$;\n");
   }
 
   void MessageFieldGenerator::GenerateBuilderMembersSource(io::Printer* printer) const {
@@ -172,18 +172,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- ($storage_type$) $name$ {\n"
       "  return result.$name$;\n"
       "}\n"
-      "- (id<PBMessage_Builder>) set$capitalized_name$:($storage_type$) value {\n"
+      "- ($classname$_Builder*) set$capitalized_name$:($storage_type$) value {\n"
       "  result.has$capitalized_name$ = YES;\n"
       "  result.$name$ = value;\n"
       "  return self;\n"
       "}\n"
-      "- (id<PBMessage_Builder>) set$capitalized_name$Builder:($type$_Builder*) builderForValue {\n"
+      "- ($classname$_Builder*) set$capitalized_name$Builder:($type$_Builder*) builderForValue {\n"
       "  return [self set$capitalized_name$:[builderForValue build]];\n"
-      //"  result.has$capitalized_name$ = YES;\n"
-      //"  result.$name$ = [builderForValue build];\n"
-      //"  return self;\n"
       "}\n"
-      "- (id<PBMessage_Builder>) merge$capitalized_name$:($storage_type$) value {\n"
+      "- ($classname$_Builder*) merge$capitalized_name$:($storage_type$) value {\n"
       "  if (result.has$capitalized_name$ &&\n"
       "      result.$name$ != [$type$ defaultInstance]) {\n"
       "    result.$name$ =\n"
@@ -194,7 +191,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  result.has$capitalized_name$ = YES;\n"
       "  return self;\n"
       "}\n"
-      "- (id<PBMessage_Builder>) clear$capitalized_name$ {\n"
+      "- ($classname$_Builder*) clear$capitalized_name$ {\n"
       "  result.has$capitalized_name$ = NO;\n"
       "  result.$name$ = [$type$ defaultInstance];\n"
       "  return self;\n"

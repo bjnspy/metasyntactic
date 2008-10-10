@@ -108,7 +108,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
       // Generate descriptor() and descriptorForType().
       printer->Print(vars,
-        "\n"
         "+ (PBServiceDescriptor*) descriptor {\n"
         "  return [[$file$ descriptor].services objectAtIndex:$index$];\n"
         "}\n"
@@ -141,7 +140,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void ServiceGenerator::GenerateCallMethodSource(io::Printer* printer) {
     printer->Print(
-      "\n"
       "- (void) callMethod:(PBMethodDescriptor*) method\n"
       "         controller:(id<PBRpcController>) controller\n"
       "            request:(id<PBMessage>) request\n"
@@ -176,8 +174,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print(
       "  }\n"
-      "}\n"
-      "\n");
+      "}\n");
   }
 
 
@@ -221,8 +218,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
       printer->Print(
         "  }\n"
-        "}\n"
-        "\n");
+        "}\n");
   }
 
 
@@ -260,22 +256,21 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void ServiceGenerator::GenerateStubSource(io::Printer* printer) {
     printer->Print(
-      "@implementation $classname$_Stub\n\n"
-      "@synthesize channel;\n\n"
+      "@implementation $classname$_Stub\n"
+      "@synthesize channel;\n"
       "- (void) dealloc {\n"
       "  self.channel = nil;\n"
       "  [super dealloc];\n"
-      "}\n\n"
+      "}\n"
       "- (id) initWithChannel:(id<PBRpcChannel>) channel_ {\n"
       "  if (self = [super init]) {\n"
       "    self.channel = channel_;\n"
       "  }\n"
       "  return self;\n"
-      "}\n\n"
+      "}\n"
       "+ ($classname$_Stub*) stubWithChannel:(id<PBRpcChannel>) channel {\n"
       "  return [[[$classname$_Stub alloc] initWithChannel:channel] autorelease];\n"
-      "}\n"
-      "\n",
+      "}\n",
       "classname", ClassName(descriptor_));
 
     for (int i = 0; i < descriptor_->method_count(); i++) {
@@ -287,7 +282,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["output"] = ClassName(method->output_type());
       vars["classname"] = ClassName(descriptor_);
       printer->Print(vars,
-        "\n"
         "- (void) $method$WithController:(id<PBRpcController>) controller\n"
         "                        request:($input$*) request\n"
         "                         target:(id) target\n"

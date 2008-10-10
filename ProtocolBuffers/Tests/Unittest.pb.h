@@ -811,31 +811,31 @@
 
 - (BOOL) hasOptionalGroup;
 - (TestAllTypes_OptionalGroup*) optionalGroup;
-- (id<PBMessage_Builder>) setOptionalGroup:(TestAllTypes_OptionalGroup*) value;
-- (id<PBMessage_Builder>) setOptionalGroupBuilder:(TestAllTypes_OptionalGroup_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptionalGroup:(TestAllTypes_OptionalGroup*) value;
-- (id<PBMessage_Builder>) clearOptionalGroup;
+- (TestAllTypes_Builder*) setOptionalGroup:(TestAllTypes_OptionalGroup*) value;
+- (TestAllTypes_Builder*) setOptionalGroupBuilder:(TestAllTypes_OptionalGroup_Builder*) builderForValue;
+- (TestAllTypes_Builder*) mergeOptionalGroup:(TestAllTypes_OptionalGroup*) value;
+- (TestAllTypes_Builder*) clearOptionalGroup;
 
 - (BOOL) hasOptionalNestedMessage;
 - (TestAllTypes_NestedMessage*) optionalNestedMessage;
-- (id<PBMessage_Builder>) setOptionalNestedMessage:(TestAllTypes_NestedMessage*) value;
-- (id<PBMessage_Builder>) setOptionalNestedMessageBuilder:(TestAllTypes_NestedMessage_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptionalNestedMessage:(TestAllTypes_NestedMessage*) value;
-- (id<PBMessage_Builder>) clearOptionalNestedMessage;
+- (TestAllTypes_Builder*) setOptionalNestedMessage:(TestAllTypes_NestedMessage*) value;
+- (TestAllTypes_Builder*) setOptionalNestedMessageBuilder:(TestAllTypes_NestedMessage_Builder*) builderForValue;
+- (TestAllTypes_Builder*) mergeOptionalNestedMessage:(TestAllTypes_NestedMessage*) value;
+- (TestAllTypes_Builder*) clearOptionalNestedMessage;
 
 - (BOOL) hasOptionalForeignMessage;
 - (ForeignMessage*) optionalForeignMessage;
-- (id<PBMessage_Builder>) setOptionalForeignMessage:(ForeignMessage*) value;
-- (id<PBMessage_Builder>) setOptionalForeignMessageBuilder:(ForeignMessage_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptionalForeignMessage:(ForeignMessage*) value;
-- (id<PBMessage_Builder>) clearOptionalForeignMessage;
+- (TestAllTypes_Builder*) setOptionalForeignMessage:(ForeignMessage*) value;
+- (TestAllTypes_Builder*) setOptionalForeignMessageBuilder:(ForeignMessage_Builder*) builderForValue;
+- (TestAllTypes_Builder*) mergeOptionalForeignMessage:(ForeignMessage*) value;
+- (TestAllTypes_Builder*) clearOptionalForeignMessage;
 
 - (BOOL) hasOptionalImportMessage;
 - (ImportMessage*) optionalImportMessage;
-- (id<PBMessage_Builder>) setOptionalImportMessage:(ImportMessage*) value;
-- (id<PBMessage_Builder>) setOptionalImportMessageBuilder:(ImportMessage_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptionalImportMessage:(ImportMessage*) value;
-- (id<PBMessage_Builder>) clearOptionalImportMessage;
+- (TestAllTypes_Builder*) setOptionalImportMessage:(ImportMessage*) value;
+- (TestAllTypes_Builder*) setOptionalImportMessageBuilder:(ImportMessage_Builder*) builderForValue;
+- (TestAllTypes_Builder*) mergeOptionalImportMessage:(ImportMessage*) value;
+- (TestAllTypes_Builder*) clearOptionalImportMessage;
 
 - (BOOL) hasOptionalNestedEnum;
 - (TestAllTypes_NestedEnum*) optionalNestedEnum;
@@ -1733,10 +1733,10 @@
 
 - (BOOL) hasOptionalMessage;
 - (TestRequired*) optionalMessage;
-- (id<PBMessage_Builder>) setOptionalMessage:(TestRequired*) value;
-- (id<PBMessage_Builder>) setOptionalMessageBuilder:(TestRequired_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptionalMessage:(TestRequired*) value;
-- (id<PBMessage_Builder>) clearOptionalMessage;
+- (TestRequiredForeign_Builder*) setOptionalMessage:(TestRequired*) value;
+- (TestRequiredForeign_Builder*) setOptionalMessageBuilder:(TestRequired_Builder*) builderForValue;
+- (TestRequiredForeign_Builder*) mergeOptionalMessage:(TestRequired*) value;
+- (TestRequiredForeign_Builder*) clearOptionalMessage;
 
 - (NSArray*) repeatedMessageList;
 - (TestRequired*) repeatedMessageAtIndex:(int32_t) index;
@@ -1800,10 +1800,10 @@
 
 - (BOOL) hasForeignNested;
 - (TestAllTypes_NestedMessage*) foreignNested;
-- (id<PBMessage_Builder>) setForeignNested:(TestAllTypes_NestedMessage*) value;
-- (id<PBMessage_Builder>) setForeignNestedBuilder:(TestAllTypes_NestedMessage_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeForeignNested:(TestAllTypes_NestedMessage*) value;
-- (id<PBMessage_Builder>) clearForeignNested;
+- (TestForeignNested_Builder*) setForeignNested:(TestAllTypes_NestedMessage*) value;
+- (TestForeignNested_Builder*) setForeignNestedBuilder:(TestAllTypes_NestedMessage_Builder*) builderForValue;
+- (TestForeignNested_Builder*) mergeForeignNested:(TestAllTypes_NestedMessage*) value;
+- (TestForeignNested_Builder*) clearForeignNested;
 @end
 
 @interface TestEmptyMessage : PBGeneratedMessage {
@@ -2009,10 +2009,10 @@
 
 - (BOOL) hasA;
 - (TestRecursiveMessage*) a;
-- (id<PBMessage_Builder>) setA:(TestRecursiveMessage*) value;
-- (id<PBMessage_Builder>) setABuilder:(TestRecursiveMessage_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeA:(TestRecursiveMessage*) value;
-- (id<PBMessage_Builder>) clearA;
+- (TestRecursiveMessage_Builder*) setA:(TestRecursiveMessage*) value;
+- (TestRecursiveMessage_Builder*) setABuilder:(TestRecursiveMessage_Builder*) builderForValue;
+- (TestRecursiveMessage_Builder*) mergeA:(TestRecursiveMessage*) value;
+- (TestRecursiveMessage_Builder*) clearA;
 
 - (BOOL) hasI;
 - (int32_t) i;
@@ -2069,10 +2069,10 @@
 
 - (BOOL) hasBb;
 - (TestMutualRecursionB*) bb;
-- (id<PBMessage_Builder>) setBb:(TestMutualRecursionB*) value;
-- (id<PBMessage_Builder>) setBbBuilder:(TestMutualRecursionB_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeBb:(TestMutualRecursionB*) value;
-- (id<PBMessage_Builder>) clearBb;
+- (TestMutualRecursionA_Builder*) setBb:(TestMutualRecursionB*) value;
+- (TestMutualRecursionA_Builder*) setBbBuilder:(TestMutualRecursionB_Builder*) builderForValue;
+- (TestMutualRecursionA_Builder*) mergeBb:(TestMutualRecursionB*) value;
+- (TestMutualRecursionA_Builder*) clearBb;
 @end
 
 @interface TestMutualRecursionB : PBGeneratedMessage {
@@ -2128,10 +2128,10 @@
 
 - (BOOL) hasA;
 - (TestMutualRecursionA*) a;
-- (id<PBMessage_Builder>) setA:(TestMutualRecursionA*) value;
-- (id<PBMessage_Builder>) setABuilder:(TestMutualRecursionA_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeA:(TestMutualRecursionA*) value;
-- (id<PBMessage_Builder>) clearA;
+- (TestMutualRecursionB_Builder*) setA:(TestMutualRecursionA*) value;
+- (TestMutualRecursionB_Builder*) setABuilder:(TestMutualRecursionA_Builder*) builderForValue;
+- (TestMutualRecursionB_Builder*) mergeA:(TestMutualRecursionA*) value;
+- (TestMutualRecursionB_Builder*) clearA;
 
 - (BOOL) hasOptionalInt32;
 - (int32_t) optionalInt32;
@@ -2307,17 +2307,17 @@
 
 - (BOOL) hasFoo;
 - (TestDupFieldNumber_Foo*) foo;
-- (id<PBMessage_Builder>) setFoo:(TestDupFieldNumber_Foo*) value;
-- (id<PBMessage_Builder>) setFooBuilder:(TestDupFieldNumber_Foo_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeFoo:(TestDupFieldNumber_Foo*) value;
-- (id<PBMessage_Builder>) clearFoo;
+- (TestDupFieldNumber_Builder*) setFoo:(TestDupFieldNumber_Foo*) value;
+- (TestDupFieldNumber_Builder*) setFooBuilder:(TestDupFieldNumber_Foo_Builder*) builderForValue;
+- (TestDupFieldNumber_Builder*) mergeFoo:(TestDupFieldNumber_Foo*) value;
+- (TestDupFieldNumber_Builder*) clearFoo;
 
 - (BOOL) hasBar;
 - (TestDupFieldNumber_Bar*) bar;
-- (id<PBMessage_Builder>) setBar:(TestDupFieldNumber_Bar*) value;
-- (id<PBMessage_Builder>) setBarBuilder:(TestDupFieldNumber_Bar_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeBar:(TestDupFieldNumber_Bar*) value;
-- (id<PBMessage_Builder>) clearBar;
+- (TestDupFieldNumber_Builder*) setBar:(TestDupFieldNumber_Bar*) value;
+- (TestDupFieldNumber_Builder*) setBarBuilder:(TestDupFieldNumber_Bar_Builder*) builderForValue;
+- (TestDupFieldNumber_Builder*) mergeBar:(TestDupFieldNumber_Bar*) value;
+- (TestDupFieldNumber_Builder*) clearBar;
 @end
 
 @interface TestNestedMessageHasBits : PBGeneratedMessage {
@@ -2433,10 +2433,10 @@
 
 - (BOOL) hasOptionalNestedMessage;
 - (TestNestedMessageHasBits_NestedMessage*) optionalNestedMessage;
-- (id<PBMessage_Builder>) setOptionalNestedMessage:(TestNestedMessageHasBits_NestedMessage*) value;
-- (id<PBMessage_Builder>) setOptionalNestedMessageBuilder:(TestNestedMessageHasBits_NestedMessage_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptionalNestedMessage:(TestNestedMessageHasBits_NestedMessage*) value;
-- (id<PBMessage_Builder>) clearOptionalNestedMessage;
+- (TestNestedMessageHasBits_Builder*) setOptionalNestedMessage:(TestNestedMessageHasBits_NestedMessage*) value;
+- (TestNestedMessageHasBits_Builder*) setOptionalNestedMessageBuilder:(TestNestedMessageHasBits_NestedMessage_Builder*) builderForValue;
+- (TestNestedMessageHasBits_Builder*) mergeOptionalNestedMessage:(TestNestedMessageHasBits_NestedMessage*) value;
+- (TestNestedMessageHasBits_Builder*) clearOptionalNestedMessage;
 @end
 
 @interface TestCamelCaseFieldNames : PBGeneratedMessage {
@@ -2541,10 +2541,10 @@
 
 - (BOOL) hasMessageField;
 - (ForeignMessage*) messageField;
-- (id<PBMessage_Builder>) setMessageField:(ForeignMessage*) value;
-- (id<PBMessage_Builder>) setMessageFieldBuilder:(ForeignMessage_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeMessageField:(ForeignMessage*) value;
-- (id<PBMessage_Builder>) clearMessageField;
+- (TestCamelCaseFieldNames_Builder*) setMessageField:(ForeignMessage*) value;
+- (TestCamelCaseFieldNames_Builder*) setMessageFieldBuilder:(ForeignMessage_Builder*) builderForValue;
+- (TestCamelCaseFieldNames_Builder*) mergeMessageField:(ForeignMessage*) value;
+- (TestCamelCaseFieldNames_Builder*) clearMessageField;
 
 - (BOOL) hasStringPieceField;
 - (NSString*) stringPieceField;

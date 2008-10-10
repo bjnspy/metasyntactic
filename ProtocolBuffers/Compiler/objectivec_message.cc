@@ -290,6 +290,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "\n"
       "+ (PBDescriptor*) descriptor;\n"
+      "- (PBDescriptor*) descriptorForType;\n"
       "+ ($classname$*) defaultInstance;\n"
       "- ($classname$*) defaultInstanceForType;\n",
       "classname", ClassName(descriptor_));
@@ -298,6 +299,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "\n",
       "fileclass", FileClassName(descriptor_->file()),
       "identifier", UniqueFileScopeIdentifier(descriptor_));
+
+    for (int i = 0; i < descriptor_->extension_count(); i++) {
+      ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateMembersHeader(printer);
+    }
 
     //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
     GenerateIsInitializedHeader(printer);
@@ -370,6 +375,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     for (int i = 0; i < descriptor_->extension_count(); i++) {
       ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateFieldsSource(printer);
     }
+    for (int i = 0; i < descriptor_->extension_count(); i++) {
+      ExtensionGenerator(ClassName(descriptor_), descriptor_->extension(i)).GenerateMembersSource(printer);
+    }
 
     printer->Print(
       "static $classname$* default$classname$Instance = nil;\n"
@@ -385,32 +393,29 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "  }\n"
       "}\n"
-      "\n"
       "+ ($classname$*) defaultInstance {\n"
       "  return default$classname$Instance;\n"
       "}\n"
-      "\n"
       "- ($classname$*) defaultInstanceForType {\n"
       "  return default$classname$Instance;\n"
       "}\n"
-      "\n",
+      "- (PBDescriptor*) descriptorForType {\n"
+      "  return [$classname$ descriptor];\n"
+      "}\n",
       "classname", ClassName(descriptor_));
     printer->Print(
       "+ (PBDescriptor*) descriptor {\n"
       "  return [$fileclass$ internal_$identifier$_descriptor];\n"
       "}\n"
-      "\n"
       "- (PBFieldAccessorTable*) internalGetFieldAccessorTable {\n"
       "  return [$fileclass$ internal_$identifier$_fieldAccessorTable];\n"
-      "}\n"
-      "\n",
+      "}\n",
       "fileclass", FileClassName(descriptor_->file()),
       "identifier", UniqueFileScopeIdentifier(descriptor_));
 
     // Fields
     for (int i = 0; i < descriptor_->field_count(); i++) {
       field_generators_.get(descriptor_->field(i)).GenerateMembersSource(printer);
-      printer->Print("\n");
     }
 
     //if (descriptor_->file()->options().optimize_for() == FileOptions::SPEED) {
@@ -425,8 +430,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- ($classname$_Builder*) newBuilderForType { return [$classname$ newBuilder]; }\n"
       "+ ($classname$_Builder*) newBuilderWith$classname$:($classname$*) prototype {\n"
       "  return [[$classname$ newBuilder] mergeFrom$classname$:prototype];\n"
-      "}\n"
-      "\n",
+      "}\n",
       "classname", ClassName(descriptor_));
 
     //GenerateStaticVariablesSource(printer);
@@ -635,7 +639,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Outdent();
     printer->Print(
       "}\n"
-      "\n"
       "- (int32_t) serializedSize {\n"
       "  int32_t size = memoizedSerializedSize;\n"
       "  if (size != -1) return size;\n"
@@ -664,8 +667,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "  memoizedSerializedSize = size;\n"
       "  return size;\n"
-      "}\n"
-      "\n");
+      "}\n");
   }
 
   void MessageGenerator::GenerateParseFromMethodsSource(io::Printer* printer) {
@@ -690,8 +692,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n"
       "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
       "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];\n"
-      "}\n"
-      "\n",
+      "}\n",
       "classname", ClassName(descriptor_));
   }
 
@@ -735,7 +736,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     //}
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
-      printer->Print("\n");
       field_generators_.get(descriptor_->field(i)).GenerateBuilderMembersSource(printer);
     }
 
@@ -749,24 +749,19 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- ($classname$*) internalGetResult {\n"
       "  return result;\n"
       "}\n"
-      "\n"
       "- ($classname$_Builder*) clear {\n"
       "  self.result = [[[$classname$ alloc] init] autorelease];\n"
       "  return self;\n"
       "}\n"
-      "\n"
       "- ($classname$_Builder*) clone {\n"
       "  return ($classname$_Builder*)[[[[$classname$_Builder alloc] init] autorelease] mergeFrom$classname$:result];\n"
       "}\n"
-      "\n"
       "- (PBDescriptor*) descriptorForType {\n"
       "  return [$classname$ descriptor];\n"
       "}\n"
-      "\n"
       "- ($classname$*) defaultInstanceForType {\n"
       "  return [$classname$ defaultInstance];\n"
-      "}\n"
-      "\n",
+      "}\n",
       "classname", ClassName(descriptor_));
 
     // -----------------------------------------------------------------
@@ -777,7 +772,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "    @throw [NSException exceptionWithName:@\"UninitializedMessage\" reason:@\"\" userInfo:nil];\n"
       "  }\n"
       "  return [self buildPartial];\n"
-      "}\n\n"
+      "}\n"
       "- ($classname$*) buildPartial {\n",
       "classname", ClassName(descriptor_));
     printer->Indent();
@@ -791,8 +786,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  $classname$* returnMe = [[result retain] autorelease];\n"
       "  self.result = nil;\n"
       "  return returnMe;\n"
-      "}\n"
-      "\n",
+      "}\n",
       "classname", ClassName(descriptor_));
 
     // -----------------------------------------------------------------
@@ -808,7 +802,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "    return self;\n"
       "  }\n"
       "}\n"
-      "\n"
       "- ($classname$_Builder*) mergeFrom$classname$:($classname$*) other {\n"
       // Optimization:  If other is the default instance, we know none of its
       //   fields are set so we can skip the merge.
@@ -824,8 +817,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "  [self mergeUnknownFields:other.unknownFields];\n"
       "  return self;\n"
-      "}\n"
-      "\n");
+      "}\n");
     //}
   }
 
@@ -839,7 +831,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- ($classname$_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {\n"
       "  return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];\n"
       "}\n"
-      "\n"
       "- ($classname$_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n",
       "classname", ClassName(descriptor_));
     printer->Indent();
@@ -890,8 +881,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "    }\n"     // switch (tag)
       "  }\n"       // while (true)
-      "}\n"
-      "\n");
+      "}\n");
   }
 
   // ===================================================================
@@ -954,10 +944,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Outdent();
     printer->Print(
       "  return true;\n"
-      "}\n"
-      "\n");
+      "}\n");
   }
-
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf

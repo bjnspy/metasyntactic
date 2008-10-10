@@ -144,9 +144,9 @@
 
 - (BOOL) hasMsg;
 - (ForeignMessage*) msg;
-- (id<PBMessage_Builder>) setMsg:(ForeignMessage*) value;
-- (id<PBMessage_Builder>) setMsgBuilder:(ForeignMessage_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeMsg:(ForeignMessage*) value;
-- (id<PBMessage_Builder>) clearMsg;
+- (TestOptimizedForSize_Builder*) setMsg:(ForeignMessage*) value;
+- (TestOptimizedForSize_Builder*) setMsgBuilder:(ForeignMessage_Builder*) builderForValue;
+- (TestOptimizedForSize_Builder*) mergeMsg:(ForeignMessage*) value;
+- (TestOptimizedForSize_Builder*) clearMsg;
 @end
 
