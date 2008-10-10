@@ -14,10 +14,10 @@
 
 #import "ExtensionRegistry.h"
 
-#import "Descriptor.pb.h"
 #import "Descriptor.h"
-#import "ExtensionRegistry_DescriptorIntPair.h"
+#import "Descriptor.pb.h"
 #import "ExtensionInfo.h"
+#import "ExtensionRegistry_DescriptorIntPair.h"
 #import "FieldDescriptor.h"
 
 

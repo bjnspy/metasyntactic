@@ -14,10 +14,10 @@
 
 #import "GeneratedMessage_Builder.h"
 
-#import "FieldDescriptor.h"
-#import "GeneratedMessage.h"
 #import "FieldAccessor.h"
 #import "FieldAccessorTable.h"
+#import "FieldDescriptor.h"
+#import "GeneratedMessage.h"
 #import "Message.h"
 #import "Message_Builder.h"
 #import "UnknownFieldSet.h"

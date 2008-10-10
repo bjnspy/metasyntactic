@@ -15,9 +15,9 @@
 #import "ExtendableMessage.h"
 
 #import "DynamicMessage.h"
+#import "ExtensionWriter.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"
-#import "ExtensionWriter.h"
 #import "GeneratedExtension.h"
 
 

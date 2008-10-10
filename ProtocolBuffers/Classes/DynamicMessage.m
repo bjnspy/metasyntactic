@@ -14,8 +14,8 @@
 
 #import "DynamicMessage.h"
 
-#import "Descriptor.pb.h"
 #import "Descriptor.h"
+#import "Descriptor.pb.h"
 #import "DynamicMessage_Builder.h"
 #import "FieldDescriptor.h"
 #import "FieldSet.h"

@@ -16,12 +16,12 @@
 
 #import "Descriptor.h"
 #import "FieldDescriptor.h"
-#import "RepeatedMessageFieldAccessor.h";
 #import "RepeatedEnumFieldAccessor.h";
 #import "RepeatedFieldAccessor.h";
-#import "SingularMessageFieldAccessor.h";
+#import "RepeatedMessageFieldAccessor.h";
 #import "SingularEnumFieldAccessor.h"
 #import "SingularFieldAccessor.h"
+#import "SingularMessageFieldAccessor.h";
 
 
 @interface PBFieldAccessorTable()

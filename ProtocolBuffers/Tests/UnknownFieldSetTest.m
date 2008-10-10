@@ -14,9 +14,9 @@
 
 #import "UnknownFieldSetTest.h"
 
+#import "Macros.h"
 #import "TestUtilities.h"
 #import "Unittest.pb.h"
-#import "Macros.h"
 
 @implementation UnknownFieldSetTest
 

@@ -14,8 +14,6 @@
 
 #import "ForwardDeclarations.h"
 
-#import "Message_Builder.h"
-
 #import "CodedInputStream.h"
 #import "CodedOutputStream.h"
 #import "Descriptor.h"
@@ -25,11 +23,12 @@
 #import "ExtendableMessage.h"
 #import "ExtensionRegistry.h"
 #import "ExtensionWriter.h"
+#import "FieldAccessorTable.h"
 #import "FileDescriptor.h"
 #import "GeneratedExtension.h"
 #import "GeneratedMessage.h"
 #import "GeneratedMessage_Builder.h"
-#import "FieldAccessorTable.h"
+#import "Message_Builder.h"
 #import "MethodDescriptor.h"
 #import "RpcChannel.h"
 #import "Service.h"
