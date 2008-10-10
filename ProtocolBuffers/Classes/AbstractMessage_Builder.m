@@ -70,7 +70,7 @@
             if (existingValue == [existingValue defaultInstanceForType]) {
                 [self setField:field value:value];
             } else {
-                id value1 = [[[[existingValue newBuilderForType] mergeFromMessage:existingValue] mergeFromMessage:value] build];
+                id value1 = [[[[existingValue createBuilder] mergeFromMessage:existingValue] mergeFromMessage:value] build];
                 [self setField:field value:value1];
             }
         } else {
