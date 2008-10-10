@@ -66,20 +66,20 @@
     STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
 }
 
-#if 0
+
 /** Test merging two DynamicMessages. */
-public void testDynamicMergeFrom() throws Exception {
-    DynamicMessage result =
-    DynamicMessage.newBuilder(MERGE_DEST)
-    .mergeFrom(DynamicMessage.newBuilder(MERGE_SOURCE).build())
-    .build();
-    
-    assertEquals(MERGE_RESULT_TEXT, result.toString());
+- (void) testDynamicMergeFrom {
+    PBDynamicMessage* result =
+    [[[PBDynamicMessage builderWithMessage:self.mergeDestination]
+      mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
+     build];
+
+    STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
 }
 
 // =================================================================
 // Required-field-related tests.
-
+#if 0
 private static final TestRequired TEST_REQUIRED_UNINITIALIZED =
 TestRequired.getDefaultInstance();
 private static final TestRequired TEST_REQUIRED_INITIALIZED =
