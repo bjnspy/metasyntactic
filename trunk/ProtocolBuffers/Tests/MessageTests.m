@@ -247,15 +247,9 @@
 }
 
 
-#if 0
 - (void) testDynamicParseUnititialized {
-    try {
-        Descriptors.Descriptor descriptor = TestRequired.getDescriptor();
-        DynamicMessage.parseFrom(descriptor, ByteString.EMPTY);
-        fail("Should have thrown an exception.");
-    } catch (InvalidProtocolBufferException e) {
-        assertEquals("Message missing required fields: a, b, c", e.getMessage());
-    }
+    PBDescriptor* descriptor = [TestRequired descriptor];
+    STAssertThrows([PBDynamicMessage parseFrom:descriptor data:[NSData data]], @"");
 }
-#endif
+
 @end
