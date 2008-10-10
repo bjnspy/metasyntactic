@@ -34,6 +34,6 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (void) writeToOutputStream:(NSOutputStream*) output;
 - (NSData*) toData;
-- (id<PBMessage_Builder>) newBuilderForType;
+- (id<PBMessage_Builder>) createBuilder;
 
 @end

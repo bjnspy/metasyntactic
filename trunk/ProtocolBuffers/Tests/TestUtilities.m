@@ -1610,7 +1610,7 @@ public static void modifyRepeatedFields(TestAllTypes.Builder message) {
                 field.getNumber());
                     Assert.assertNotNull(extension);
                     Assert.assertNotNull(extension.defaultInstance);
-                    return extension.defaultInstance.newBuilderForType();
+                    return extension.defaultInstance.createBuilder();
                 }
             }
             

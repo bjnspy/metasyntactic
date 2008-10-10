@@ -78,7 +78,7 @@
             // Merge singular embedded messages.
             id<PBMessage> oldValue = [self getField:field];
             [self setField:field
-                     value:[[[[oldValue newBuilderForType] mergeFromMessage:oldValue] mergeFromMessage:newValue] buildPartial]];
+                     value:[[[[oldValue createBuilder] mergeFromMessage:oldValue] mergeFromMessage:newValue] buildPartial]];
         } else {
             // Just overwrite.
             [self setField:field value:newValue];

@@ -213,7 +213,7 @@
 }
 
 
-- (PBDynamicMessage_Builder*) newBuilderForType {
+- (PBDynamicMessage_Builder*) createBuilder {
     return [PBDynamicMessage_Builder builderWithType:type];
 }
 

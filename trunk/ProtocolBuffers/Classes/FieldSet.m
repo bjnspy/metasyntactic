@@ -343,7 +343,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 [self setField:field value:otherValue];
             } else {
                 [self setField:field
-                         value:[[[[existingValue newBuilderForType] mergeFromMessage:existingValue] mergeFromMessage:otherValue] build]];
+                         value:[[[[existingValue createBuilder] mergeFromMessage:existingValue] mergeFromMessage:otherValue] build]];
             }
         } else {
             [self setField:field value:otherValue];
@@ -372,7 +372,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 [self setField:field value:value];
             } else {
                 [self setField:field
-                         value:[[[[existingValue newBuilderForType] mergeFromMessage:existingValue] mergeFromMessage:value] build]];
+                         value:[[[[existingValue createBuilder] mergeFromMessage:existingValue] mergeFromMessage:value] build]];
             }
         } else {
             [self setField:field value:value];
@@ -449,7 +449,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 [extensionRegistry findExtensionByNumber:type fieldNumber:typeId];
                 if (extension != nil) {
                     field = extension.descriptor;
-                    subBuilder = [extension.defaultInstance newBuilderForType];
+                    subBuilder = [extension.defaultInstance createBuilder];
                     id<PBMessage> originalMessage = [builder getField:field];
                     if (originalMessage != nil) {
                         [subBuilder mergeFromMessage:originalMessage];
@@ -547,7 +547,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
             case PBFieldDescriptorTypeGroup: {
                 id<PBMessage_Builder> subBuilder;
                 if (defaultInstance != nil) {
-                    subBuilder = [defaultInstance newBuilderForType];
+                    subBuilder = [defaultInstance createBuilder];
                 } else {
                     subBuilder = [builder newBuilderForField:field];
                 }
@@ -561,7 +561,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
             case PBFieldDescriptorTypeMessage: {
                 id<PBMessage_Builder> subBuilder;
                 if (defaultInstance != nil) {
-                    subBuilder = [defaultInstance newBuilderForType];
+                    subBuilder = [defaultInstance createBuilder];
                 } else {
                     subBuilder = [builder newBuilderForField:field];
                 }
