@@ -54,9 +54,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (ImportMessage_Builder*) newBuilder;
-- (ImportMessage_Builder*) newBuilderForType;
-+ (ImportMessage_Builder*) newBuilderWithPrototype:(ImportMessage*) prototype;
+- (ImportMessage_Builder*) createBuilder;
 
 + (ImportMessage*) parseFromData:(NSData*) data;
 + (ImportMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -71,6 +69,9 @@
   ImportMessage* result;
 }
 @property (retain) ImportMessage* result;
+
++ (ImportMessage_Builder*) builder;
++ (ImportMessage_Builder*) builderWithPrototype:(ImportMessage*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (ImportMessage*) defaultInstanceForType;

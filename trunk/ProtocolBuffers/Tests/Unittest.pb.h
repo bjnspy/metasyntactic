@@ -522,9 +522,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestAllTypes_Builder*) newBuilder;
-- (TestAllTypes_Builder*) newBuilderForType;
-+ (TestAllTypes_Builder*) newBuilderWithPrototype:(TestAllTypes*) prototype;
+- (TestAllTypes_Builder*) createBuilder;
 
 + (TestAllTypes*) parseFromData:(NSData*) data;
 + (TestAllTypes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -570,9 +568,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestAllTypes_NestedMessage_Builder*) newBuilder;
-- (TestAllTypes_NestedMessage_Builder*) newBuilderForType;
-+ (TestAllTypes_NestedMessage_Builder*) newBuilderWithPrototype:(TestAllTypes_NestedMessage*) prototype;
+- (TestAllTypes_NestedMessage_Builder*) createBuilder;
 
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data;
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -587,6 +583,9 @@
   TestAllTypes_NestedMessage* result;
 }
 @property (retain) TestAllTypes_NestedMessage* result;
+
++ (TestAllTypes_NestedMessage_Builder*) builder;
++ (TestAllTypes_NestedMessage_Builder*) builderWithPrototype:(TestAllTypes_NestedMessage*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes_NestedMessage*) defaultInstanceForType;
@@ -623,9 +622,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestAllTypes_OptionalGroup_Builder*) newBuilder;
-- (TestAllTypes_OptionalGroup_Builder*) newBuilderForType;
-+ (TestAllTypes_OptionalGroup_Builder*) newBuilderWithPrototype:(TestAllTypes_OptionalGroup*) prototype;
+- (TestAllTypes_OptionalGroup_Builder*) createBuilder;
 
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data;
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -640,6 +637,9 @@
   TestAllTypes_OptionalGroup* result;
 }
 @property (retain) TestAllTypes_OptionalGroup* result;
+
++ (TestAllTypes_OptionalGroup_Builder*) builder;
++ (TestAllTypes_OptionalGroup_Builder*) builderWithPrototype:(TestAllTypes_OptionalGroup*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes_OptionalGroup*) defaultInstanceForType;
@@ -676,9 +676,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestAllTypes_RepeatedGroup_Builder*) newBuilder;
-- (TestAllTypes_RepeatedGroup_Builder*) newBuilderForType;
-+ (TestAllTypes_RepeatedGroup_Builder*) newBuilderWithPrototype:(TestAllTypes_RepeatedGroup*) prototype;
+- (TestAllTypes_RepeatedGroup_Builder*) createBuilder;
 
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data;
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -693,6 +691,9 @@
   TestAllTypes_RepeatedGroup* result;
 }
 @property (retain) TestAllTypes_RepeatedGroup* result;
+
++ (TestAllTypes_RepeatedGroup_Builder*) builder;
++ (TestAllTypes_RepeatedGroup_Builder*) builderWithPrototype:(TestAllTypes_RepeatedGroup*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes_RepeatedGroup*) defaultInstanceForType;
@@ -719,6 +720,9 @@
   TestAllTypes* result;
 }
 @property (retain) TestAllTypes* result;
+
++ (TestAllTypes_Builder*) builder;
++ (TestAllTypes_Builder*) builderWithPrototype:(TestAllTypes*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestAllTypes*) defaultInstanceForType;
@@ -1146,9 +1150,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (ForeignMessage_Builder*) newBuilder;
-- (ForeignMessage_Builder*) newBuilderForType;
-+ (ForeignMessage_Builder*) newBuilderWithPrototype:(ForeignMessage*) prototype;
+- (ForeignMessage_Builder*) createBuilder;
 
 + (ForeignMessage*) parseFromData:(NSData*) data;
 + (ForeignMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1163,6 +1165,9 @@
   ForeignMessage* result;
 }
 @property (retain) ForeignMessage* result;
+
++ (ForeignMessage_Builder*) builder;
++ (ForeignMessage_Builder*) builderWithPrototype:(ForeignMessage*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (ForeignMessage*) defaultInstanceForType;
@@ -1195,9 +1200,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestAllExtensions_Builder*) newBuilder;
-- (TestAllExtensions_Builder*) newBuilderForType;
-+ (TestAllExtensions_Builder*) newBuilderWithPrototype:(TestAllExtensions*) prototype;
+- (TestAllExtensions_Builder*) createBuilder;
 
 + (TestAllExtensions*) parseFromData:(NSData*) data;
 + (TestAllExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1212,6 +1215,9 @@
   TestAllExtensions* result;
 }
 @property (retain) TestAllExtensions* result;
+
++ (TestAllExtensions_Builder*) builder;
++ (TestAllExtensions_Builder*) builderWithPrototype:(TestAllExtensions*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestAllExtensions*) defaultInstanceForType;
@@ -1243,9 +1249,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (OptionalGroup_extension_Builder*) newBuilder;
-- (OptionalGroup_extension_Builder*) newBuilderForType;
-+ (OptionalGroup_extension_Builder*) newBuilderWithPrototype:(OptionalGroup_extension*) prototype;
+- (OptionalGroup_extension_Builder*) createBuilder;
 
 + (OptionalGroup_extension*) parseFromData:(NSData*) data;
 + (OptionalGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1260,6 +1264,9 @@
   OptionalGroup_extension* result;
 }
 @property (retain) OptionalGroup_extension* result;
+
++ (OptionalGroup_extension_Builder*) builder;
++ (OptionalGroup_extension_Builder*) builderWithPrototype:(OptionalGroup_extension*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (OptionalGroup_extension*) defaultInstanceForType;
@@ -1296,9 +1303,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (RepeatedGroup_extension_Builder*) newBuilder;
-- (RepeatedGroup_extension_Builder*) newBuilderForType;
-+ (RepeatedGroup_extension_Builder*) newBuilderWithPrototype:(RepeatedGroup_extension*) prototype;
+- (RepeatedGroup_extension_Builder*) createBuilder;
 
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data;
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1313,6 +1318,9 @@
   RepeatedGroup_extension* result;
 }
 @property (retain) RepeatedGroup_extension* result;
+
++ (RepeatedGroup_extension_Builder*) builder;
++ (RepeatedGroup_extension_Builder*) builderWithPrototype:(RepeatedGroup_extension*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (RepeatedGroup_extension*) defaultInstanceForType;
@@ -1479,9 +1487,7 @@
 + (PBGeneratedExtension*) multi;
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestRequired_Builder*) newBuilder;
-- (TestRequired_Builder*) newBuilderForType;
-+ (TestRequired_Builder*) newBuilderWithPrototype:(TestRequired*) prototype;
+- (TestRequired_Builder*) createBuilder;
 
 + (TestRequired*) parseFromData:(NSData*) data;
 + (TestRequired*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1496,6 +1502,9 @@
   TestRequired* result;
 }
 @property (retain) TestRequired* result;
+
++ (TestRequired_Builder*) builder;
++ (TestRequired_Builder*) builderWithPrototype:(TestRequired*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestRequired*) defaultInstanceForType;
@@ -1699,9 +1708,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestRequiredForeign_Builder*) newBuilder;
-- (TestRequiredForeign_Builder*) newBuilderForType;
-+ (TestRequiredForeign_Builder*) newBuilderWithPrototype:(TestRequiredForeign*) prototype;
+- (TestRequiredForeign_Builder*) createBuilder;
 
 + (TestRequiredForeign*) parseFromData:(NSData*) data;
 + (TestRequiredForeign*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1716,6 +1723,9 @@
   TestRequiredForeign* result;
 }
 @property (retain) TestRequiredForeign* result;
+
++ (TestRequiredForeign_Builder*) builder;
++ (TestRequiredForeign_Builder*) builderWithPrototype:(TestRequiredForeign*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestRequiredForeign*) defaultInstanceForType;
@@ -1766,9 +1776,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestForeignNested_Builder*) newBuilder;
-- (TestForeignNested_Builder*) newBuilderForType;
-+ (TestForeignNested_Builder*) newBuilderWithPrototype:(TestForeignNested*) prototype;
+- (TestForeignNested_Builder*) createBuilder;
 
 + (TestForeignNested*) parseFromData:(NSData*) data;
 + (TestForeignNested*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1783,6 +1791,9 @@
   TestForeignNested* result;
 }
 @property (retain) TestForeignNested* result;
+
++ (TestForeignNested_Builder*) builder;
++ (TestForeignNested_Builder*) builderWithPrototype:(TestForeignNested*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestForeignNested*) defaultInstanceForType;
@@ -1817,9 +1828,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestEmptyMessage_Builder*) newBuilder;
-- (TestEmptyMessage_Builder*) newBuilderForType;
-+ (TestEmptyMessage_Builder*) newBuilderWithPrototype:(TestEmptyMessage*) prototype;
+- (TestEmptyMessage_Builder*) createBuilder;
 
 + (TestEmptyMessage*) parseFromData:(NSData*) data;
 + (TestEmptyMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1834,6 +1843,9 @@
   TestEmptyMessage* result;
 }
 @property (retain) TestEmptyMessage* result;
+
++ (TestEmptyMessage_Builder*) builder;
++ (TestEmptyMessage_Builder*) builderWithPrototype:(TestEmptyMessage*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestEmptyMessage*) defaultInstanceForType;
@@ -1861,9 +1873,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestEmptyMessageWithExtensions_Builder*) newBuilder;
-- (TestEmptyMessageWithExtensions_Builder*) newBuilderForType;
-+ (TestEmptyMessageWithExtensions_Builder*) newBuilderWithPrototype:(TestEmptyMessageWithExtensions*) prototype;
+- (TestEmptyMessageWithExtensions_Builder*) createBuilder;
 
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data;
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1878,6 +1888,9 @@
   TestEmptyMessageWithExtensions* result;
 }
 @property (retain) TestEmptyMessageWithExtensions* result;
+
++ (TestEmptyMessageWithExtensions_Builder*) builder;
++ (TestEmptyMessageWithExtensions_Builder*) builderWithPrototype:(TestEmptyMessageWithExtensions*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestEmptyMessageWithExtensions*) defaultInstanceForType;
@@ -1913,9 +1926,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestReallyLargeTagNumber_Builder*) newBuilder;
-- (TestReallyLargeTagNumber_Builder*) newBuilderForType;
-+ (TestReallyLargeTagNumber_Builder*) newBuilderWithPrototype:(TestReallyLargeTagNumber*) prototype;
+- (TestReallyLargeTagNumber_Builder*) createBuilder;
 
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data;
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1930,6 +1941,9 @@
   TestReallyLargeTagNumber* result;
 }
 @property (retain) TestReallyLargeTagNumber* result;
+
++ (TestReallyLargeTagNumber_Builder*) builder;
++ (TestReallyLargeTagNumber_Builder*) builderWithPrototype:(TestReallyLargeTagNumber*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestReallyLargeTagNumber*) defaultInstanceForType;
@@ -1975,9 +1989,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestRecursiveMessage_Builder*) newBuilder;
-- (TestRecursiveMessage_Builder*) newBuilderForType;
-+ (TestRecursiveMessage_Builder*) newBuilderWithPrototype:(TestRecursiveMessage*) prototype;
+- (TestRecursiveMessage_Builder*) createBuilder;
 
 + (TestRecursiveMessage*) parseFromData:(NSData*) data;
 + (TestRecursiveMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1992,6 +2004,9 @@
   TestRecursiveMessage* result;
 }
 @property (retain) TestRecursiveMessage* result;
+
++ (TestRecursiveMessage_Builder*) builder;
++ (TestRecursiveMessage_Builder*) builderWithPrototype:(TestRecursiveMessage*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestRecursiveMessage*) defaultInstanceForType;
@@ -2035,9 +2050,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestMutualRecursionA_Builder*) newBuilder;
-- (TestMutualRecursionA_Builder*) newBuilderForType;
-+ (TestMutualRecursionA_Builder*) newBuilderWithPrototype:(TestMutualRecursionA*) prototype;
+- (TestMutualRecursionA_Builder*) createBuilder;
 
 + (TestMutualRecursionA*) parseFromData:(NSData*) data;
 + (TestMutualRecursionA*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2052,6 +2065,9 @@
   TestMutualRecursionA* result;
 }
 @property (retain) TestMutualRecursionA* result;
+
++ (TestMutualRecursionA_Builder*) builder;
++ (TestMutualRecursionA_Builder*) builderWithPrototype:(TestMutualRecursionA*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestMutualRecursionA*) defaultInstanceForType;
@@ -2094,9 +2110,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestMutualRecursionB_Builder*) newBuilder;
-- (TestMutualRecursionB_Builder*) newBuilderForType;
-+ (TestMutualRecursionB_Builder*) newBuilderWithPrototype:(TestMutualRecursionB*) prototype;
+- (TestMutualRecursionB_Builder*) createBuilder;
 
 + (TestMutualRecursionB*) parseFromData:(NSData*) data;
 + (TestMutualRecursionB*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2111,6 +2125,9 @@
   TestMutualRecursionB* result;
 }
 @property (retain) TestMutualRecursionB* result;
+
++ (TestMutualRecursionB_Builder*) builder;
++ (TestMutualRecursionB_Builder*) builderWithPrototype:(TestMutualRecursionB*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestMutualRecursionB*) defaultInstanceForType;
@@ -2162,9 +2179,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestDupFieldNumber_Builder*) newBuilder;
-- (TestDupFieldNumber_Builder*) newBuilderForType;
-+ (TestDupFieldNumber_Builder*) newBuilderWithPrototype:(TestDupFieldNumber*) prototype;
+- (TestDupFieldNumber_Builder*) createBuilder;
 
 + (TestDupFieldNumber*) parseFromData:(NSData*) data;
 + (TestDupFieldNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2189,9 +2204,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestDupFieldNumber_Foo_Builder*) newBuilder;
-- (TestDupFieldNumber_Foo_Builder*) newBuilderForType;
-+ (TestDupFieldNumber_Foo_Builder*) newBuilderWithPrototype:(TestDupFieldNumber_Foo*) prototype;
+- (TestDupFieldNumber_Foo_Builder*) createBuilder;
 
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data;
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2206,6 +2219,9 @@
   TestDupFieldNumber_Foo* result;
 }
 @property (retain) TestDupFieldNumber_Foo* result;
+
++ (TestDupFieldNumber_Foo_Builder*) builder;
++ (TestDupFieldNumber_Foo_Builder*) builderWithPrototype:(TestDupFieldNumber_Foo*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestDupFieldNumber_Foo*) defaultInstanceForType;
@@ -2242,9 +2258,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestDupFieldNumber_Bar_Builder*) newBuilder;
-- (TestDupFieldNumber_Bar_Builder*) newBuilderForType;
-+ (TestDupFieldNumber_Bar_Builder*) newBuilderWithPrototype:(TestDupFieldNumber_Bar*) prototype;
+- (TestDupFieldNumber_Bar_Builder*) createBuilder;
 
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data;
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2259,6 +2273,9 @@
   TestDupFieldNumber_Bar* result;
 }
 @property (retain) TestDupFieldNumber_Bar* result;
+
++ (TestDupFieldNumber_Bar_Builder*) builder;
++ (TestDupFieldNumber_Bar_Builder*) builderWithPrototype:(TestDupFieldNumber_Bar*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestDupFieldNumber_Bar*) defaultInstanceForType;
@@ -2285,6 +2302,9 @@
   TestDupFieldNumber* result;
 }
 @property (retain) TestDupFieldNumber* result;
+
++ (TestDupFieldNumber_Builder*) builder;
++ (TestDupFieldNumber_Builder*) builderWithPrototype:(TestDupFieldNumber*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestDupFieldNumber*) defaultInstanceForType;
@@ -2335,9 +2355,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestNestedMessageHasBits_Builder*) newBuilder;
-- (TestNestedMessageHasBits_Builder*) newBuilderForType;
-+ (TestNestedMessageHasBits_Builder*) newBuilderWithPrototype:(TestNestedMessageHasBits*) prototype;
+- (TestNestedMessageHasBits_Builder*) createBuilder;
 
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data;
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2364,9 +2382,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilder;
-- (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderForType;
-+ (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderWithPrototype:(TestNestedMessageHasBits_NestedMessage*) prototype;
+- (TestNestedMessageHasBits_NestedMessage_Builder*) createBuilder;
 
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data;
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2381,6 +2397,9 @@
   TestNestedMessageHasBits_NestedMessage* result;
 }
 @property (retain) TestNestedMessageHasBits_NestedMessage* result;
+
++ (TestNestedMessageHasBits_NestedMessage_Builder*) builder;
++ (TestNestedMessageHasBits_NestedMessage_Builder*) builderWithPrototype:(TestNestedMessageHasBits_NestedMessage*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstanceForType;
@@ -2416,6 +2435,9 @@
   TestNestedMessageHasBits* result;
 }
 @property (retain) TestNestedMessageHasBits* result;
+
++ (TestNestedMessageHasBits_Builder*) builder;
++ (TestNestedMessageHasBits_Builder*) builderWithPrototype:(TestNestedMessageHasBits*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestNestedMessageHasBits*) defaultInstanceForType;
@@ -2492,9 +2514,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestCamelCaseFieldNames_Builder*) newBuilder;
-- (TestCamelCaseFieldNames_Builder*) newBuilderForType;
-+ (TestCamelCaseFieldNames_Builder*) newBuilderWithPrototype:(TestCamelCaseFieldNames*) prototype;
+- (TestCamelCaseFieldNames_Builder*) createBuilder;
 
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data;
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2509,6 +2529,9 @@
   TestCamelCaseFieldNames* result;
 }
 @property (retain) TestCamelCaseFieldNames* result;
+
++ (TestCamelCaseFieldNames_Builder*) builder;
++ (TestCamelCaseFieldNames_Builder*) builderWithPrototype:(TestCamelCaseFieldNames*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestCamelCaseFieldNames*) defaultInstanceForType;
@@ -2622,9 +2645,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestFieldOrderings_Builder*) newBuilder;
-- (TestFieldOrderings_Builder*) newBuilderForType;
-+ (TestFieldOrderings_Builder*) newBuilderWithPrototype:(TestFieldOrderings*) prototype;
+- (TestFieldOrderings_Builder*) createBuilder;
 
 + (TestFieldOrderings*) parseFromData:(NSData*) data;
 + (TestFieldOrderings*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2639,6 +2660,9 @@
   TestFieldOrderings* result;
 }
 @property (retain) TestFieldOrderings* result;
+
++ (TestFieldOrderings_Builder*) builder;
++ (TestFieldOrderings_Builder*) builderWithPrototype:(TestFieldOrderings*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestFieldOrderings*) defaultInstanceForType;
@@ -2705,9 +2729,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (TestExtremeDefaultValues_Builder*) newBuilder;
-- (TestExtremeDefaultValues_Builder*) newBuilderForType;
-+ (TestExtremeDefaultValues_Builder*) newBuilderWithPrototype:(TestExtremeDefaultValues*) prototype;
+- (TestExtremeDefaultValues_Builder*) createBuilder;
 
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data;
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2722,6 +2744,9 @@
   TestExtremeDefaultValues* result;
 }
 @property (retain) TestExtremeDefaultValues* result;
+
++ (TestExtremeDefaultValues_Builder*) builder;
++ (TestExtremeDefaultValues_Builder*) builderWithPrototype:(TestExtremeDefaultValues*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (TestExtremeDefaultValues*) defaultInstanceForType;
@@ -2779,9 +2804,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (FooRequest_Builder*) newBuilder;
-- (FooRequest_Builder*) newBuilderForType;
-+ (FooRequest_Builder*) newBuilderWithPrototype:(FooRequest*) prototype;
+- (FooRequest_Builder*) createBuilder;
 
 + (FooRequest*) parseFromData:(NSData*) data;
 + (FooRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2796,6 +2819,9 @@
   FooRequest* result;
 }
 @property (retain) FooRequest* result;
+
++ (FooRequest_Builder*) builder;
++ (FooRequest_Builder*) builderWithPrototype:(FooRequest*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (FooRequest*) defaultInstanceForType;
@@ -2823,9 +2849,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (FooResponse_Builder*) newBuilder;
-- (FooResponse_Builder*) newBuilderForType;
-+ (FooResponse_Builder*) newBuilderWithPrototype:(FooResponse*) prototype;
+- (FooResponse_Builder*) createBuilder;
 
 + (FooResponse*) parseFromData:(NSData*) data;
 + (FooResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2840,6 +2864,9 @@
   FooResponse* result;
 }
 @property (retain) FooResponse* result;
+
++ (FooResponse_Builder*) builder;
++ (FooResponse_Builder*) builderWithPrototype:(FooResponse*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (FooResponse*) defaultInstanceForType;
@@ -2867,9 +2894,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (BarRequest_Builder*) newBuilder;
-- (BarRequest_Builder*) newBuilderForType;
-+ (BarRequest_Builder*) newBuilderWithPrototype:(BarRequest*) prototype;
+- (BarRequest_Builder*) createBuilder;
 
 + (BarRequest*) parseFromData:(NSData*) data;
 + (BarRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2884,6 +2909,9 @@
   BarRequest* result;
 }
 @property (retain) BarRequest* result;
+
++ (BarRequest_Builder*) builder;
++ (BarRequest_Builder*) builderWithPrototype:(BarRequest*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (BarRequest*) defaultInstanceForType;
@@ -2911,9 +2939,7 @@
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-+ (BarResponse_Builder*) newBuilder;
-- (BarResponse_Builder*) newBuilderForType;
-+ (BarResponse_Builder*) newBuilderWithPrototype:(BarResponse*) prototype;
+- (BarResponse_Builder*) createBuilder;
 
 + (BarResponse*) parseFromData:(NSData*) data;
 + (BarResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2928,6 +2954,9 @@
   BarResponse* result;
 }
 @property (retain) BarResponse* result;
+
++ (BarResponse_Builder*) builder;
++ (BarResponse_Builder*) builderWithPrototype:(BarResponse*) prototype;
 
 - (PBDescriptor*) descriptorForType;
 - (BarResponse*) defaultInstanceForType;

@@ -139,27 +139,25 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   return size;
 }
 + (TestOptimizedForSize*) parseFromData:(NSData*) data {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromData:data] build];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize_Builder builder] mergeFromData:data] build];
 }
 + (TestOptimizedForSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestOptimizedForSize*) parseFromInputStream:(NSInputStream*) input {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromInputStream:input] build];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestOptimizedForSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestOptimizedForSize*)[[[TestOptimizedForSize newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestOptimizedForSize*)[[[TestOptimizedForSize_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestOptimizedForSize_Builder*) newBuilder { return [[[TestOptimizedForSize_Builder alloc] init] autorelease]; }
-- (TestOptimizedForSize_Builder*) newBuilderForType { return [TestOptimizedForSize newBuilder]; }
-+ (TestOptimizedForSize_Builder*) newBuilderWithPrototype:(TestOptimizedForSize*) prototype {
-  return [[TestOptimizedForSize newBuilder] mergeFromTestOptimizedForSize:prototype];
+- (TestOptimizedForSize_Builder*) createBuilder {
+  return [TestOptimizedForSize_Builder builder];
 }
 @end
 
@@ -175,6 +173,12 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   }
   return self;
 }
++ (TestOptimizedForSize_Builder*) builder {
+  return [[[TestOptimizedForSize_Builder alloc] init] autorelease];
+}
++ (TestOptimizedForSize_Builder*) builderWithPrototype:(TestOptimizedForSize*) prototype {
+  return [[TestOptimizedForSize_Builder builder] mergeFromTestOptimizedForSize:prototype];
+}
 - (TestOptimizedForSize*) internalGetResult {
   return result;
 }
@@ -183,7 +187,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   return self;
 }
 - (TestOptimizedForSize_Builder*) clone {
-  return (TestOptimizedForSize_Builder*)[[[[TestOptimizedForSize_Builder alloc] init] autorelease] mergeFromTestOptimizedForSize:result];
+  return [TestOptimizedForSize_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestOptimizedForSize descriptor];
@@ -245,7 +249,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
         break;
       }
       case 154: {
-        ForeignMessage_Builder* subBuilder = [ForeignMessage newBuilder];
+        ForeignMessage_Builder* subBuilder = [ForeignMessage_Builder builder];
         if (self.hasMsg) {
           [subBuilder mergeFromForeignMessage:self.msg];
         }
@@ -290,7 +294,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   if (result.hasMsg &&
       result.msg != [ForeignMessage defaultInstance]) {
     result.msg =
-      [[[ForeignMessage newBuilderWithPrototype:result.msg] mergeFromForeignMessage:value] buildPartial];
+      [[[ForeignMessage_Builder builderWithPrototype:result.msg] mergeFromForeignMessage:value] buildPartial];
   } else {
     result.msg = value;
   }

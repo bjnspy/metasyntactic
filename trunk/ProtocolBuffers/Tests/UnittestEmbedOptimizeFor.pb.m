@@ -139,27 +139,25 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   return size;
 }
 + (TestEmbedOptimizedForSize*) parseFromData:(NSData*) data {
-  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize newBuilder] mergeFromData:data] build];
+  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize_Builder builder] mergeFromData:data] build];
 }
 + (TestEmbedOptimizedForSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];
+  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];
 }
 + (TestEmbedOptimizedForSize*) parseFromInputStream:(NSInputStream*) input {
-  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize newBuilder] mergeFromInputStream:input] build];
+  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize_Builder builder] mergeFromInputStream:input] build];
 }
 + (TestEmbedOptimizedForSize*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];
 }
 + (TestEmbedOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize newBuilder] mergeFromCodedInputStream:input] build];
+  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize_Builder builder] mergeFromCodedInputStream:input] build];
 }
 + (TestEmbedOptimizedForSize*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
+  return (TestEmbedOptimizedForSize*)[[[TestEmbedOptimizedForSize_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];
 }
-+ (TestEmbedOptimizedForSize_Builder*) newBuilder { return [[[TestEmbedOptimizedForSize_Builder alloc] init] autorelease]; }
-- (TestEmbedOptimizedForSize_Builder*) newBuilderForType { return [TestEmbedOptimizedForSize newBuilder]; }
-+ (TestEmbedOptimizedForSize_Builder*) newBuilderWithPrototype:(TestEmbedOptimizedForSize*) prototype {
-  return [[TestEmbedOptimizedForSize newBuilder] mergeFromTestEmbedOptimizedForSize:prototype];
+- (TestEmbedOptimizedForSize_Builder*) createBuilder {
+  return [TestEmbedOptimizedForSize_Builder builder];
 }
 @end
 
@@ -175,6 +173,12 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   }
   return self;
 }
++ (TestEmbedOptimizedForSize_Builder*) builder {
+  return [[[TestEmbedOptimizedForSize_Builder alloc] init] autorelease];
+}
++ (TestEmbedOptimizedForSize_Builder*) builderWithPrototype:(TestEmbedOptimizedForSize*) prototype {
+  return [[TestEmbedOptimizedForSize_Builder builder] mergeFromTestEmbedOptimizedForSize:prototype];
+}
 - (TestEmbedOptimizedForSize*) internalGetResult {
   return result;
 }
@@ -183,7 +187,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   return self;
 }
 - (TestEmbedOptimizedForSize_Builder*) clone {
-  return (TestEmbedOptimizedForSize_Builder*)[[[[TestEmbedOptimizedForSize_Builder alloc] init] autorelease] mergeFromTestEmbedOptimizedForSize:result];
+  return [TestEmbedOptimizedForSize_Builder builderWithPrototype:result];
 }
 - (PBDescriptor*) descriptorForType {
   return [TestEmbedOptimizedForSize descriptor];
@@ -244,7 +248,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
         break;
       }
       case 10: {
-        TestOptimizedForSize_Builder* subBuilder = [TestOptimizedForSize newBuilder];
+        TestOptimizedForSize_Builder* subBuilder = [TestOptimizedForSize_Builder builder];
         if (self.hasOptionalMessage) {
           [subBuilder mergeFromTestOptimizedForSize:self.optionalMessage];
         }
@@ -253,7 +257,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
         break;
       }
       case 18: {
-        TestOptimizedForSize_Builder* subBuilder = [TestOptimizedForSize newBuilder];
+        TestOptimizedForSize_Builder* subBuilder = [TestOptimizedForSize_Builder builder];
         [input readMessage:subBuilder extensionRegistry:extensionRegistry];
         [self addRepeatedMessage:[subBuilder buildPartial]];
         break;
@@ -279,7 +283,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   if (result.hasOptionalMessage &&
       result.optionalMessage != [TestOptimizedForSize defaultInstance]) {
     result.optionalMessage =
-      [[[TestOptimizedForSize newBuilderWithPrototype:result.optionalMessage] mergeFromTestOptimizedForSize:value] buildPartial];
+      [[[TestOptimizedForSize_Builder builderWithPrototype:result.optionalMessage] mergeFromTestOptimizedForSize:value] buildPartial];
   } else {
     result.optionalMessage = value;
   }

@@ -13,7 +13,7 @@
 @implementation MessageTests
 
 - (TestAllTypes*) mergeSource {
-    return [[[[[[TestAllTypes newBuilder]
+    return [[[[[[TestAllTypes_Builder builder]
                 setOptionalInt32:1]
                setOptionalString:@"foo"]
               setOptionalForeignMessage:[ForeignMessage defaultInstance]]
@@ -23,21 +23,21 @@
 
 
 - (TestAllTypes*) mergeDestination {
-    return [[[[[[TestAllTypes newBuilder]
+    return [[[[[[TestAllTypes_Builder builder]
                 setOptionalInt64:2]
                setOptionalString:@"baz"]
-              setOptionalForeignMessage:[[[ForeignMessage newBuilder] setC:3] build]]
+              setOptionalForeignMessage:[[[ForeignMessage_Builder builder] setC:3] build]]
              addRepeatedString:@"qux"]
             build];
 }
 
 
 - (TestAllTypes*) mergeResult {
-    return [[[[[[[[TestAllTypes newBuilder]
+    return [[[[[[[[TestAllTypes_Builder builder]
                   setOptionalInt32:1]
                  setOptionalInt64:2]
                 setOptionalString:@"foo"]
-               setOptionalForeignMessage:[[[ForeignMessage newBuilder] setC:3] build]]
+               setOptionalForeignMessage:[[[ForeignMessage_Builder builder] setC:3] build]]
               addRepeatedString:@"qux"]
              addRepeatedString:@"bar"]
             build];
@@ -46,7 +46,7 @@
 
 - (void) testMergeFrom {
     TestAllTypes* result =
-    [[[TestAllTypes newBuilderWithPrototype:self.mergeDestination]
+    [[[TestAllTypes_Builder builderWithPrototype:self.mergeDestination]
       mergeFromTestAllTypes:self.mergeSource] build];
     
     STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
@@ -59,7 +59,7 @@
  * code path.
  */
 - (void) testMergeFromDynamic {
-    TestAllTypes* result = [[[TestAllTypes newBuilderWithPrototype:self.mergeDestination]
+    TestAllTypes* result = [[[TestAllTypes_Builder builderWithPrototype:self.mergeDestination]
                              mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
                             build];
     
@@ -85,12 +85,12 @@
 }
 
 - (TestRequired*) testRequiredInitialized {
-    return [[[[[TestRequired newBuilder] setA:1] setB:2] setC:3] build];
+    return [[[[[TestRequired_Builder builder] setA:1] setB:2] setC:3] build];
 }
 
 
 - (void) testRequired {
-    TestRequired_Builder* builder = [TestRequired newBuilder];
+    TestRequired_Builder* builder = [TestRequired_Builder builder];
     
     STAssertFalse(builder.isInitialized, @"");
     [builder setA:1];
@@ -102,7 +102,7 @@
 }
 
 - (void) testRequiredForeign {
-    TestRequiredForeign_Builder* builder = [TestRequiredForeign newBuilder];
+    TestRequiredForeign_Builder* builder = [TestRequiredForeign_Builder builder];
     
     STAssertTrue(builder.isInitialized, @"");
     
@@ -120,7 +120,7 @@
 }
 
 - (void) testRequiredExtension {
-    TestAllExtensions_Builder* builder = [TestAllExtensions newBuilder];
+    TestAllExtensions_Builder* builder = [TestAllExtensions_Builder builder];
     
     STAssertTrue(builder.isInitialized, @"");
     

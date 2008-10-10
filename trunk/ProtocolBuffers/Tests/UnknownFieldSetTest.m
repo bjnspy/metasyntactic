@@ -58,7 +58,7 @@
 // numbers as allFieldsData except that each field is some other wire
 // type.
 - (NSData*) getBizarroData {
-  PBUnknownFieldSet_Builder* bizarroFields = [PBUnknownFieldSet newBuilder];
+  PBUnknownFieldSet_Builder* bizarroFields = [PBUnknownFieldSet_Builder builder];
   
   PBField* varintField = [[PBMutableField field] addVarint:1];
   PBField* fixed32Field = [[PBMutableField field] addFixed32:1];
@@ -136,7 +136,7 @@
 
 - (void) testCopyFrom {
     TestEmptyMessage* message =
-    [[[TestEmptyMessage newBuilder] mergeFromMessage:emptyMessage] build];
+    [[[TestEmptyMessage_Builder builder] mergeFromMessage:emptyMessage] build];
     
     STAssertEqualObjects(emptyMessage.toData, message.toData, @"");
 }
@@ -144,32 +144,32 @@
 
 - (void) testMergeFrom {
     PBUnknownFieldSet* set1 =
-    [[[[PBUnknownFieldSet newBuilder]
+    [[[[PBUnknownFieldSet_Builder builder]
        addField:[[PBMutableField field] addVarint:2] forNumber:2]
       addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
     
     PBUnknownFieldSet* set2 = 
-    [[[[PBUnknownFieldSet newBuilder]
+    [[[[PBUnknownFieldSet_Builder builder]
        addField:[[PBMutableField field] addVarint:1] forNumber:1]
       addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
     
     PBUnknownFieldSet* set3 =
-    [[[[PBUnknownFieldSet newBuilder]
+    [[[[PBUnknownFieldSet_Builder builder]
        addField:[[PBMutableField field] addVarint:1] forNumber:1]
       addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
     
     PBUnknownFieldSet* set4 = 
-    [[[[PBUnknownFieldSet newBuilder]
+    [[[[PBUnknownFieldSet_Builder builder]
        addField:[[PBMutableField field] addVarint:2] forNumber:2]
       addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
     
-    TestEmptyMessage* source1 = (id)[[[TestEmptyMessage newBuilder] setUnknownFields:set1] build];
-    TestEmptyMessage* source2 = (id)[[[TestEmptyMessage newBuilder] setUnknownFields:set2] build];
-    TestEmptyMessage* source3 = (id)[[[TestEmptyMessage newBuilder] setUnknownFields:set3] build];
-    TestEmptyMessage* source4 = (id)[[[TestEmptyMessage newBuilder] setUnknownFields:set4] build];
+    TestEmptyMessage* source1 = (id)[[[TestEmptyMessage_Builder builder] setUnknownFields:set1] build];
+    TestEmptyMessage* source2 = (id)[[[TestEmptyMessage_Builder builder] setUnknownFields:set2] build];
+    TestEmptyMessage* source3 = (id)[[[TestEmptyMessage_Builder builder] setUnknownFields:set3] build];
+    TestEmptyMessage* source4 = (id)[[[TestEmptyMessage_Builder builder] setUnknownFields:set4] build];
     
-    TestEmptyMessage* destination1 = (id)[[[[TestEmptyMessage newBuilder] mergeFromMessage:source1] mergeFromMessage:source2] build];
-    TestEmptyMessage* destination2 = (id)[[[[TestEmptyMessage newBuilder] mergeFromMessage:source3] mergeFromMessage:source4] build];
+    TestEmptyMessage* destination1 = (id)[[[[TestEmptyMessage_Builder builder] mergeFromMessage:source1] mergeFromMessage:source2] build];
+    TestEmptyMessage* destination2 = (id)[[[[TestEmptyMessage_Builder builder] mergeFromMessage:source3] mergeFromMessage:source4] build];
     
     STAssertEqualObjects(destination1.toData, destination2.toData, @"");
 }
@@ -177,14 +177,14 @@
 
 - (void) testClear {
     PBUnknownFieldSet* fields = 
-    [[[[PBUnknownFieldSet newBuilder] mergeUnknownFields:unknownFields] clear] build];
+    [[[[PBUnknownFieldSet_Builder builder] mergeUnknownFields:unknownFields] clear] build];
     STAssertEquals(fields.fields.count, (NSUInteger) 0, @"");
 }
 
 
 - (void) testClearMessage {
     TestEmptyMessage* message =
-    [[[[TestEmptyMessage newBuilder] mergeFromMessage:emptyMessage] clear] build];
+    [[[[TestEmptyMessage_Builder builder] mergeFromMessage:emptyMessage] clear] build];
     STAssertTrue(0 == message.serializedSize, @"");
 }
 
@@ -193,7 +193,7 @@
     // Test mixing known and unknown fields when parsing.
     
     PBUnknownFieldSet* fields = 
-    [[[PBUnknownFieldSet newBuilder:unknownFields] addField:[[PBMutableField field] addVarint:654321]
+    [[[PBUnknownFieldSet_Builder builderWithUnknownFields:unknownFields] addField:[[PBMutableField field] addVarint:654321]
                                                  forNumber:123456] build];
     
     NSData* data = fields.toData;
@@ -250,7 +250,7 @@
 
 - (void) testLargeVarint {
     NSData* data =
-    [[[[PBUnknownFieldSet newBuilder] addField:[[PBMutableField field] addVarint:0x7FFFFFFFFFFFFFFFL]
+    [[[[PBUnknownFieldSet_Builder builder] addField:[[PBMutableField field] addVarint:0x7FFFFFFFFFFFFFFFL]
                                    forNumber:1] build] toData];
     
     PBUnknownFieldSet* parsed = [PBUnknownFieldSet parseFromData:data];
@@ -266,7 +266,7 @@
     STAssertNotNil(singularField, @"");
     STAssertNotNil(repeatedField, @"");
     
-    NSData* data = [[[[[PBUnknownFieldSet newBuilder]
+    NSData* data = [[[[[PBUnknownFieldSet_Builder builder]
                        addField:[[[PBMutableField field] 
                                   addVarint:[TestAllTypes_NestedEnum BAR].number] 
                                  addVarint:5]
