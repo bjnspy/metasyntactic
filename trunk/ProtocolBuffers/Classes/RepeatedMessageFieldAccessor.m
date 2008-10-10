@@ -54,20 +54,6 @@
                                                      builderClass:builderClass] autorelease];
 }
 
-- (id) get:(PBGeneratedMessage*) message {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (id) getRepeated:(PBGeneratedMessage*) message index:(int32_t) index {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
 
 - (void) setRepeated:(PBGeneratedMessage_Builder*) builder index:(int32_t) index value:(id) value {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
@@ -75,21 +61,6 @@
 
 
 - (void) addRepeated:(PBGeneratedMessage_Builder*) builder value:(id) value {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (BOOL) has:(PBGeneratedMessage*) message {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (int32_t) getRepeatedCount:(PBGeneratedMessage*) message {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (void) clear:(PBGeneratedMessage_Builder*) builder {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

@@ -16,30 +16,49 @@
 
 #import "RepeatedFieldAccessor.h"
 
+@interface PBRepeatedFieldAccessor()
+    @property SEL itemListSelector;
+    @property SEL itemAtIndexSelector;
+    @property SEL replaceItemAtIndexWithItemSelector;
+    @property SEL addItemSelector;
+    @property SEL addAllItemSelector;
+    @property SEL clearItemListSelector;
+@end
+
 
 @implementation PBRepeatedFieldAccessor
 
-- (id) initWithField:(PBFieldDescriptor*) field
+@synthesize itemListSelector;
+@synthesize itemAtIndexSelector;
+@synthesize replaceItemAtIndexWithItemSelector;
+@synthesize addItemSelector;
+@synthesize addAllItemSelector;
+@synthesize clearItemListSelector;
+
+- (void) dealloc {
+    self.itemListSelector = nil;
+    self.itemAtIndexSelector = nil;
+    self.replaceItemAtIndexWithItemSelector = nil;
+    self.addItemSelector = nil;
+    self.addAllItemSelector = nil;
+    self.clearItemListSelector = nil;
+
+    [super dealloc];
+}
+
+- (id) initWithField:(PBFieldDescriptor*) field_
                 name:(NSString*) name
         messageClass:(Class) messageClass
         builderClass:(Class) builderClass {
-    if (self = [super init]) {
-#if 0
-        getMethod = getMethodOrDie(messageClass, "get" + camelCaseName + "List");
-        
-        getRepeatedMethod =
-        getMethodOrDie(messageClass, "get" + camelCaseName, Integer.TYPE);
-        type = getRepeatedMethod.getReturnType();
-        setRepeatedMethod =
-        getMethodOrDie(builderClass, "set" + camelCaseName,
-                       Integer.TYPE, type);
-        addRepeatedMethod =
-        getMethodOrDie(builderClass, "add" + camelCaseName, type);
-        getCountMethod =
-        getMethodOrDie(messageClass, "get" + camelCaseName + "Count");
-        
-        clearMethod = getMethodOrDie(builderClass, "clear" + camelCaseName);
-#endif
+    if (self = [super initWithField:field_]) {
+        NSString* camelName = [self camelName:name];
+        self.itemListSelector = sel_getUid([[NSString stringWithFormat:@"%@List", camelName] UTF8String]);
+        self.itemAtIndexSelector = sel_getUid([[NSString stringWithFormat:@"%@AtIndex:", camelName] UTF8String]);
+        self.replaceItemAtIndexWithItemSelector = 
+        sel_getUid([[NSString stringWithFormat:@"replace%@AtIndex:with%@:", name, name] UTF8String]);
+        self.addItemSelector = sel_getUid([[NSString stringWithFormat:@"add%@:", name] UTF8String]);
+        self.addAllItemSelector = sel_getUid([[NSString stringWithFormat:@"addAll%@:", name] UTF8String]);
+        self.clearItemListSelector = sel_getUid([[NSString stringWithFormat:@"clear%@List", name] UTF8String]);
     }
     
     return self;
@@ -54,7 +73,7 @@
 }
 
 - (id) get:(PBGeneratedMessage*) message {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    return [message performSelector:itemListSelector];
 }
 
 
@@ -74,7 +93,7 @@
 
 
 - (void) addRepeated:(PBGeneratedMessage_Builder*) builder value:(id) value {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    [builder performSelector:addItemSelector withObject:value];
 }
 
 

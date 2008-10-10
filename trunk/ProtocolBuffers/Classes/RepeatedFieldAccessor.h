@@ -14,11 +14,25 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "AbstractFieldAccessor.h"
 #import "FieldAccessor.h"
 
-@interface PBRepeatedFieldAccessor : NSObject<PBFieldAccessor> {
-
+@interface PBRepeatedFieldAccessor : PBAbstractFieldAccessor<PBFieldAccessor> {
+@private
+    SEL itemListSelector;
+    SEL itemAtIndexSelector;
+    SEL replaceItemAtIndexWithItemSelector;
+    SEL addItemSelector;
+    SEL addAllItemSelector;
+    SEL clearItemListSelector;
 }
+
+@property (readonly) SEL itemListSelector;
+@property (readonly) SEL itemAtIndexSelector;
+@property (readonly) SEL replaceItemAtIndexWithItemSelector;
+@property (readonly) SEL addItemSelector;
+@property (readonly) SEL addAllItemSelector;
+@property (readonly) SEL clearItemListSelector;
 
 - (id) initWithField:(PBFieldDescriptor*) field
                 name:(NSString*) name

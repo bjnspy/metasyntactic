@@ -14,9 +14,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+#import "AbstractFieldAccessor.h"
 #import "FieldAccessor.h"
 
-@interface PBSingularFieldAccessor : NSObject<PBFieldAccessor> {
+@interface PBSingularFieldAccessor : PBAbstractFieldAccessor<PBFieldAccessor> {
 @private
     SEL getSelector;
     SEL setSelector;

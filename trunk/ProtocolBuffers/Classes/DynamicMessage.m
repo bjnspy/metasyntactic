@@ -47,7 +47,6 @@
 }
 
 
-
 - (id) initWithType:(PBDescriptor*) type_
              fields:(PBFieldSet*) fields_
       unknownFields:(PBUnknownFieldSet*) unknownFields_ {

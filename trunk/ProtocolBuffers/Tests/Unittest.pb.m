@@ -2763,7 +2763,7 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
 }
 + (TestAllTypes_Builder*) newBuilder { return [[[TestAllTypes_Builder alloc] init] autorelease]; }
 - (TestAllTypes_Builder*) newBuilderForType { return [TestAllTypes newBuilder]; }
-+ (TestAllTypes_Builder*) newBuilderWithTestAllTypes:(TestAllTypes*) prototype {
++ (TestAllTypes_Builder*) newBuilderWithPrototype:(TestAllTypes*) prototype {
   return [[TestAllTypes newBuilder] mergeFromTestAllTypes:prototype];
 }
 @end
@@ -2912,7 +2912,7 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 }
 + (TestAllTypes_NestedMessage_Builder*) newBuilder { return [[[TestAllTypes_NestedMessage_Builder alloc] init] autorelease]; }
 - (TestAllTypes_NestedMessage_Builder*) newBuilderForType { return [TestAllTypes_NestedMessage newBuilder]; }
-+ (TestAllTypes_NestedMessage_Builder*) newBuilderWithTestAllTypes_NestedMessage:(TestAllTypes_NestedMessage*) prototype {
++ (TestAllTypes_NestedMessage_Builder*) newBuilderWithPrototype:(TestAllTypes_NestedMessage*) prototype {
   return [[TestAllTypes_NestedMessage newBuilder] mergeFromTestAllTypes_NestedMessage:prototype];
 }
 @end
@@ -3098,7 +3098,7 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 }
 + (TestAllTypes_OptionalGroup_Builder*) newBuilder { return [[[TestAllTypes_OptionalGroup_Builder alloc] init] autorelease]; }
 - (TestAllTypes_OptionalGroup_Builder*) newBuilderForType { return [TestAllTypes_OptionalGroup newBuilder]; }
-+ (TestAllTypes_OptionalGroup_Builder*) newBuilderWithTestAllTypes_OptionalGroup:(TestAllTypes_OptionalGroup*) prototype {
++ (TestAllTypes_OptionalGroup_Builder*) newBuilderWithPrototype:(TestAllTypes_OptionalGroup*) prototype {
   return [[TestAllTypes_OptionalGroup newBuilder] mergeFromTestAllTypes_OptionalGroup:prototype];
 }
 @end
@@ -3284,7 +3284,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 + (TestAllTypes_RepeatedGroup_Builder*) newBuilder { return [[[TestAllTypes_RepeatedGroup_Builder alloc] init] autorelease]; }
 - (TestAllTypes_RepeatedGroup_Builder*) newBuilderForType { return [TestAllTypes_RepeatedGroup newBuilder]; }
-+ (TestAllTypes_RepeatedGroup_Builder*) newBuilderWithTestAllTypes_RepeatedGroup:(TestAllTypes_RepeatedGroup*) prototype {
++ (TestAllTypes_RepeatedGroup_Builder*) newBuilderWithPrototype:(TestAllTypes_RepeatedGroup*) prototype {
   return [[TestAllTypes_RepeatedGroup newBuilder] mergeFromTestAllTypes_RepeatedGroup:prototype];
 }
 @end
@@ -4350,7 +4350,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalGroup &&
       result.optionalGroup != [TestAllTypes_OptionalGroup defaultInstance]) {
     result.optionalGroup =
-      [[[TestAllTypes_OptionalGroup newBuilderWithTestAllTypes_OptionalGroup:result.optionalGroup] mergeFromTestAllTypes_OptionalGroup:value] buildPartial];
+      [[[TestAllTypes_OptionalGroup newBuilderWithPrototype:result.optionalGroup] mergeFromTestAllTypes_OptionalGroup:value] buildPartial];
   } else {
     result.optionalGroup = value;
   }
@@ -4380,7 +4380,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalNestedMessage &&
       result.optionalNestedMessage != [TestAllTypes_NestedMessage defaultInstance]) {
     result.optionalNestedMessage =
-      [[[TestAllTypes_NestedMessage newBuilderWithTestAllTypes_NestedMessage:result.optionalNestedMessage] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
+      [[[TestAllTypes_NestedMessage newBuilderWithPrototype:result.optionalNestedMessage] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
   } else {
     result.optionalNestedMessage = value;
   }
@@ -4410,7 +4410,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalForeignMessage &&
       result.optionalForeignMessage != [ForeignMessage defaultInstance]) {
     result.optionalForeignMessage =
-      [[[ForeignMessage newBuilderWithForeignMessage:result.optionalForeignMessage] mergeFromForeignMessage:value] buildPartial];
+      [[[ForeignMessage newBuilderWithPrototype:result.optionalForeignMessage] mergeFromForeignMessage:value] buildPartial];
   } else {
     result.optionalForeignMessage = value;
   }
@@ -4440,7 +4440,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   if (result.hasOptionalImportMessage &&
       result.optionalImportMessage != [ImportMessage defaultInstance]) {
     result.optionalImportMessage =
-      [[[ImportMessage newBuilderWithImportMessage:result.optionalImportMessage] mergeFromImportMessage:value] buildPartial];
+      [[[ImportMessage newBuilderWithPrototype:result.optionalImportMessage] mergeFromImportMessage:value] buildPartial];
   } else {
     result.optionalImportMessage = value;
   }
@@ -5629,7 +5629,7 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 }
 + (ForeignMessage_Builder*) newBuilder { return [[[ForeignMessage_Builder alloc] init] autorelease]; }
 - (ForeignMessage_Builder*) newBuilderForType { return [ForeignMessage newBuilder]; }
-+ (ForeignMessage_Builder*) newBuilderWithForeignMessage:(ForeignMessage*) prototype {
++ (ForeignMessage_Builder*) newBuilderWithPrototype:(ForeignMessage*) prototype {
   return [[ForeignMessage newBuilder] mergeFromForeignMessage:prototype];
 }
 @end
@@ -5806,7 +5806,7 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 }
 + (TestAllExtensions_Builder*) newBuilder { return [[[TestAllExtensions_Builder alloc] init] autorelease]; }
 - (TestAllExtensions_Builder*) newBuilderForType { return [TestAllExtensions newBuilder]; }
-+ (TestAllExtensions_Builder*) newBuilderWithTestAllExtensions:(TestAllExtensions*) prototype {
++ (TestAllExtensions_Builder*) newBuilderWithPrototype:(TestAllExtensions*) prototype {
   return [[TestAllExtensions newBuilder] mergeFromTestAllExtensions:prototype];
 }
 @end
@@ -5969,7 +5969,7 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 }
 + (OptionalGroup_extension_Builder*) newBuilder { return [[[OptionalGroup_extension_Builder alloc] init] autorelease]; }
 - (OptionalGroup_extension_Builder*) newBuilderForType { return [OptionalGroup_extension newBuilder]; }
-+ (OptionalGroup_extension_Builder*) newBuilderWithOptionalGroup_extension:(OptionalGroup_extension*) prototype {
++ (OptionalGroup_extension_Builder*) newBuilderWithPrototype:(OptionalGroup_extension*) prototype {
   return [[OptionalGroup_extension newBuilder] mergeFromOptionalGroup_extension:prototype];
 }
 @end
@@ -6155,7 +6155,7 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 }
 + (RepeatedGroup_extension_Builder*) newBuilder { return [[[RepeatedGroup_extension_Builder alloc] init] autorelease]; }
 - (RepeatedGroup_extension_Builder*) newBuilderForType { return [RepeatedGroup_extension newBuilder]; }
-+ (RepeatedGroup_extension_Builder*) newBuilderWithRepeatedGroup_extension:(RepeatedGroup_extension*) prototype {
++ (RepeatedGroup_extension_Builder*) newBuilderWithPrototype:(RepeatedGroup_extension*) prototype {
   return [[RepeatedGroup_extension newBuilder] mergeFromRepeatedGroup_extension:prototype];
 }
 @end
@@ -6772,7 +6772,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
 }
 + (TestRequired_Builder*) newBuilder { return [[[TestRequired_Builder alloc] init] autorelease]; }
 - (TestRequired_Builder*) newBuilderForType { return [TestRequired newBuilder]; }
-+ (TestRequired_Builder*) newBuilderWithTestRequired:(TestRequired*) prototype {
++ (TestRequired_Builder*) newBuilderWithPrototype:(TestRequired*) prototype {
   return [[TestRequired newBuilder] mergeFromTestRequired:prototype];
 }
 @end
@@ -7728,7 +7728,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 }
 + (TestRequiredForeign_Builder*) newBuilder { return [[[TestRequiredForeign_Builder alloc] init] autorelease]; }
 - (TestRequiredForeign_Builder*) newBuilderForType { return [TestRequiredForeign newBuilder]; }
-+ (TestRequiredForeign_Builder*) newBuilderWithTestRequiredForeign:(TestRequiredForeign*) prototype {
++ (TestRequiredForeign_Builder*) newBuilderWithPrototype:(TestRequiredForeign*) prototype {
   return [[TestRequiredForeign newBuilder] mergeFromTestRequiredForeign:prototype];
 }
 @end
@@ -7856,7 +7856,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   if (result.hasOptionalMessage &&
       result.optionalMessage != [TestRequired defaultInstance]) {
     result.optionalMessage =
-      [[[TestRequired newBuilderWithTestRequired:result.optionalMessage] mergeFromTestRequired:value] buildPartial];
+      [[[TestRequired newBuilderWithPrototype:result.optionalMessage] mergeFromTestRequired:value] buildPartial];
   } else {
     result.optionalMessage = value;
   }
@@ -7996,7 +7996,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 }
 + (TestForeignNested_Builder*) newBuilder { return [[[TestForeignNested_Builder alloc] init] autorelease]; }
 - (TestForeignNested_Builder*) newBuilderForType { return [TestForeignNested newBuilder]; }
-+ (TestForeignNested_Builder*) newBuilderWithTestForeignNested:(TestForeignNested*) prototype {
++ (TestForeignNested_Builder*) newBuilderWithPrototype:(TestForeignNested*) prototype {
   return [[TestForeignNested newBuilder] mergeFromTestForeignNested:prototype];
 }
 @end
@@ -8105,7 +8105,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   if (result.hasForeignNested &&
       result.foreignNested != [TestAllTypes_NestedMessage defaultInstance]) {
     result.foreignNested =
-      [[[TestAllTypes_NestedMessage newBuilderWithTestAllTypes_NestedMessage:result.foreignNested] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
+      [[[TestAllTypes_NestedMessage newBuilderWithPrototype:result.foreignNested] mergeFromTestAllTypes_NestedMessage:value] buildPartial];
   } else {
     result.foreignNested = value;
   }
@@ -8188,7 +8188,7 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 }
 + (TestEmptyMessage_Builder*) newBuilder { return [[[TestEmptyMessage_Builder alloc] init] autorelease]; }
 - (TestEmptyMessage_Builder*) newBuilderForType { return [TestEmptyMessage newBuilder]; }
-+ (TestEmptyMessage_Builder*) newBuilderWithTestEmptyMessage:(TestEmptyMessage*) prototype {
++ (TestEmptyMessage_Builder*) newBuilderWithPrototype:(TestEmptyMessage*) prototype {
   return [[TestEmptyMessage newBuilder] mergeFromTestEmptyMessage:prototype];
 }
 @end
@@ -8342,7 +8342,7 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 }
 + (TestEmptyMessageWithExtensions_Builder*) newBuilder { return [[[TestEmptyMessageWithExtensions_Builder alloc] init] autorelease]; }
 - (TestEmptyMessageWithExtensions_Builder*) newBuilderForType { return [TestEmptyMessageWithExtensions newBuilder]; }
-+ (TestEmptyMessageWithExtensions_Builder*) newBuilderWithTestEmptyMessageWithExtensions:(TestEmptyMessageWithExtensions*) prototype {
++ (TestEmptyMessageWithExtensions_Builder*) newBuilderWithPrototype:(TestEmptyMessageWithExtensions*) prototype {
   return [[TestEmptyMessageWithExtensions newBuilder] mergeFromTestEmptyMessageWithExtensions:prototype];
 }
 @end
@@ -8518,7 +8518,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 }
 + (TestReallyLargeTagNumber_Builder*) newBuilder { return [[[TestReallyLargeTagNumber_Builder alloc] init] autorelease]; }
 - (TestReallyLargeTagNumber_Builder*) newBuilderForType { return [TestReallyLargeTagNumber newBuilder]; }
-+ (TestReallyLargeTagNumber_Builder*) newBuilderWithTestReallyLargeTagNumber:(TestReallyLargeTagNumber*) prototype {
++ (TestReallyLargeTagNumber_Builder*) newBuilderWithPrototype:(TestReallyLargeTagNumber*) prototype {
   return [[TestReallyLargeTagNumber newBuilder] mergeFromTestReallyLargeTagNumber:prototype];
 }
 @end
@@ -8739,7 +8739,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 }
 + (TestRecursiveMessage_Builder*) newBuilder { return [[[TestRecursiveMessage_Builder alloc] init] autorelease]; }
 - (TestRecursiveMessage_Builder*) newBuilderForType { return [TestRecursiveMessage newBuilder]; }
-+ (TestRecursiveMessage_Builder*) newBuilderWithTestRecursiveMessage:(TestRecursiveMessage*) prototype {
++ (TestRecursiveMessage_Builder*) newBuilderWithPrototype:(TestRecursiveMessage*) prototype {
   return [[TestRecursiveMessage newBuilder] mergeFromTestRecursiveMessage:prototype];
 }
 @end
@@ -8855,7 +8855,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   if (result.hasA &&
       result.a != [TestRecursiveMessage defaultInstance]) {
     result.a =
-      [[[TestRecursiveMessage newBuilderWithTestRecursiveMessage:result.a] mergeFromTestRecursiveMessage:value] buildPartial];
+      [[[TestRecursiveMessage newBuilderWithPrototype:result.a] mergeFromTestRecursiveMessage:value] buildPartial];
   } else {
     result.a = value;
   }
@@ -8966,7 +8966,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 }
 + (TestMutualRecursionA_Builder*) newBuilder { return [[[TestMutualRecursionA_Builder alloc] init] autorelease]; }
 - (TestMutualRecursionA_Builder*) newBuilderForType { return [TestMutualRecursionA newBuilder]; }
-+ (TestMutualRecursionA_Builder*) newBuilderWithTestMutualRecursionA:(TestMutualRecursionA*) prototype {
++ (TestMutualRecursionA_Builder*) newBuilderWithPrototype:(TestMutualRecursionA*) prototype {
   return [[TestMutualRecursionA newBuilder] mergeFromTestMutualRecursionA:prototype];
 }
 @end
@@ -9075,7 +9075,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   if (result.hasBb &&
       result.bb != [TestMutualRecursionB defaultInstance]) {
     result.bb =
-      [[[TestMutualRecursionB newBuilderWithTestMutualRecursionB:result.bb] mergeFromTestMutualRecursionB:value] buildPartial];
+      [[[TestMutualRecursionB newBuilderWithPrototype:result.bb] mergeFromTestMutualRecursionB:value] buildPartial];
   } else {
     result.bb = value;
   }
@@ -9183,7 +9183,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 }
 + (TestMutualRecursionB_Builder*) newBuilder { return [[[TestMutualRecursionB_Builder alloc] init] autorelease]; }
 - (TestMutualRecursionB_Builder*) newBuilderForType { return [TestMutualRecursionB newBuilder]; }
-+ (TestMutualRecursionB_Builder*) newBuilderWithTestMutualRecursionB:(TestMutualRecursionB*) prototype {
++ (TestMutualRecursionB_Builder*) newBuilderWithPrototype:(TestMutualRecursionB*) prototype {
   return [[TestMutualRecursionB newBuilder] mergeFromTestMutualRecursionB:prototype];
 }
 @end
@@ -9299,7 +9299,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   if (result.hasA &&
       result.a != [TestMutualRecursionA defaultInstance]) {
     result.a =
-      [[[TestMutualRecursionA newBuilderWithTestMutualRecursionA:result.a] mergeFromTestMutualRecursionA:value] buildPartial];
+      [[[TestMutualRecursionA newBuilderWithPrototype:result.a] mergeFromTestMutualRecursionA:value] buildPartial];
   } else {
     result.a = value;
   }
@@ -9435,7 +9435,7 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
 }
 + (TestDupFieldNumber_Builder*) newBuilder { return [[[TestDupFieldNumber_Builder alloc] init] autorelease]; }
 - (TestDupFieldNumber_Builder*) newBuilderForType { return [TestDupFieldNumber newBuilder]; }
-+ (TestDupFieldNumber_Builder*) newBuilderWithTestDupFieldNumber:(TestDupFieldNumber*) prototype {
++ (TestDupFieldNumber_Builder*) newBuilderWithPrototype:(TestDupFieldNumber*) prototype {
   return [[TestDupFieldNumber newBuilder] mergeFromTestDupFieldNumber:prototype];
 }
 @end
@@ -9522,7 +9522,7 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 }
 + (TestDupFieldNumber_Foo_Builder*) newBuilder { return [[[TestDupFieldNumber_Foo_Builder alloc] init] autorelease]; }
 - (TestDupFieldNumber_Foo_Builder*) newBuilderForType { return [TestDupFieldNumber_Foo newBuilder]; }
-+ (TestDupFieldNumber_Foo_Builder*) newBuilderWithTestDupFieldNumber_Foo:(TestDupFieldNumber_Foo*) prototype {
++ (TestDupFieldNumber_Foo_Builder*) newBuilderWithPrototype:(TestDupFieldNumber_Foo*) prototype {
   return [[TestDupFieldNumber_Foo newBuilder] mergeFromTestDupFieldNumber_Foo:prototype];
 }
 @end
@@ -9708,7 +9708,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 + (TestDupFieldNumber_Bar_Builder*) newBuilder { return [[[TestDupFieldNumber_Bar_Builder alloc] init] autorelease]; }
 - (TestDupFieldNumber_Bar_Builder*) newBuilderForType { return [TestDupFieldNumber_Bar newBuilder]; }
-+ (TestDupFieldNumber_Bar_Builder*) newBuilderWithTestDupFieldNumber_Bar:(TestDupFieldNumber_Bar*) prototype {
++ (TestDupFieldNumber_Bar_Builder*) newBuilderWithPrototype:(TestDupFieldNumber_Bar*) prototype {
   return [[TestDupFieldNumber_Bar newBuilder] mergeFromTestDupFieldNumber_Bar:prototype];
 }
 @end
@@ -9951,7 +9951,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   if (result.hasFoo &&
       result.foo != [TestDupFieldNumber_Foo defaultInstance]) {
     result.foo =
-      [[[TestDupFieldNumber_Foo newBuilderWithTestDupFieldNumber_Foo:result.foo] mergeFromTestDupFieldNumber_Foo:value] buildPartial];
+      [[[TestDupFieldNumber_Foo newBuilderWithPrototype:result.foo] mergeFromTestDupFieldNumber_Foo:value] buildPartial];
   } else {
     result.foo = value;
   }
@@ -9981,7 +9981,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   if (result.hasBar &&
       result.bar != [TestDupFieldNumber_Bar defaultInstance]) {
     result.bar =
-      [[[TestDupFieldNumber_Bar newBuilderWithTestDupFieldNumber_Bar:result.bar] mergeFromTestDupFieldNumber_Bar:value] buildPartial];
+      [[[TestDupFieldNumber_Bar newBuilderWithPrototype:result.bar] mergeFromTestDupFieldNumber_Bar:value] buildPartial];
   } else {
     result.bar = value;
   }
@@ -10076,7 +10076,7 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
 }
 + (TestNestedMessageHasBits_Builder*) newBuilder { return [[[TestNestedMessageHasBits_Builder alloc] init] autorelease]; }
 - (TestNestedMessageHasBits_Builder*) newBuilderForType { return [TestNestedMessageHasBits newBuilder]; }
-+ (TestNestedMessageHasBits_Builder*) newBuilderWithTestNestedMessageHasBits:(TestNestedMessageHasBits*) prototype {
++ (TestNestedMessageHasBits_Builder*) newBuilderWithPrototype:(TestNestedMessageHasBits*) prototype {
   return [[TestNestedMessageHasBits newBuilder] mergeFromTestNestedMessageHasBits:prototype];
 }
 @end
@@ -10182,7 +10182,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 }
 + (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilder { return [[[TestNestedMessageHasBits_NestedMessage_Builder alloc] init] autorelease]; }
 - (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderForType { return [TestNestedMessageHasBits_NestedMessage newBuilder]; }
-+ (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderWithTestNestedMessageHasBits_NestedMessage:(TestNestedMessageHasBits_NestedMessage*) prototype {
++ (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderWithPrototype:(TestNestedMessageHasBits_NestedMessage*) prototype {
   return [[TestNestedMessageHasBits_NestedMessage newBuilder] mergeFromTestNestedMessageHasBits_NestedMessage:prototype];
 }
 @end
@@ -10447,7 +10447,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   if (result.hasOptionalNestedMessage &&
       result.optionalNestedMessage != [TestNestedMessageHasBits_NestedMessage defaultInstance]) {
     result.optionalNestedMessage =
-      [[[TestNestedMessageHasBits_NestedMessage newBuilderWithTestNestedMessageHasBits_NestedMessage:result.optionalNestedMessage] mergeFromTestNestedMessageHasBits_NestedMessage:value] buildPartial];
+      [[[TestNestedMessageHasBits_NestedMessage newBuilderWithPrototype:result.optionalNestedMessage] mergeFromTestNestedMessageHasBits_NestedMessage:value] buildPartial];
   } else {
     result.optionalNestedMessage = value;
   }
@@ -10703,7 +10703,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 }
 + (TestCamelCaseFieldNames_Builder*) newBuilder { return [[[TestCamelCaseFieldNames_Builder alloc] init] autorelease]; }
 - (TestCamelCaseFieldNames_Builder*) newBuilderForType { return [TestCamelCaseFieldNames newBuilder]; }
-+ (TestCamelCaseFieldNames_Builder*) newBuilderWithTestCamelCaseFieldNames:(TestCamelCaseFieldNames*) prototype {
++ (TestCamelCaseFieldNames_Builder*) newBuilderWithPrototype:(TestCamelCaseFieldNames*) prototype {
   return [[TestCamelCaseFieldNames newBuilder] mergeFromTestCamelCaseFieldNames:prototype];
 }
 @end
@@ -10969,7 +10969,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   if (result.hasMessageField &&
       result.messageField != [ForeignMessage defaultInstance]) {
     result.messageField =
-      [[[ForeignMessage newBuilderWithForeignMessage:result.messageField] mergeFromForeignMessage:value] buildPartial];
+      [[[ForeignMessage newBuilderWithPrototype:result.messageField] mergeFromForeignMessage:value] buildPartial];
   } else {
     result.messageField = value;
   }
@@ -11301,7 +11301,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 }
 + (TestFieldOrderings_Builder*) newBuilder { return [[[TestFieldOrderings_Builder alloc] init] autorelease]; }
 - (TestFieldOrderings_Builder*) newBuilderForType { return [TestFieldOrderings newBuilder]; }
-+ (TestFieldOrderings_Builder*) newBuilderWithTestFieldOrderings:(TestFieldOrderings*) prototype {
++ (TestFieldOrderings_Builder*) newBuilderWithPrototype:(TestFieldOrderings*) prototype {
   return [[TestFieldOrderings newBuilder] mergeFromTestFieldOrderings:prototype];
 }
 @end
@@ -11598,7 +11598,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 + (TestExtremeDefaultValues_Builder*) newBuilder { return [[[TestExtremeDefaultValues_Builder alloc] init] autorelease]; }
 - (TestExtremeDefaultValues_Builder*) newBuilderForType { return [TestExtremeDefaultValues newBuilder]; }
-+ (TestExtremeDefaultValues_Builder*) newBuilderWithTestExtremeDefaultValues:(TestExtremeDefaultValues*) prototype {
++ (TestExtremeDefaultValues_Builder*) newBuilderWithPrototype:(TestExtremeDefaultValues*) prototype {
   return [[TestExtremeDefaultValues newBuilder] mergeFromTestExtremeDefaultValues:prototype];
 }
 @end
@@ -11886,7 +11886,7 @@ static FooRequest* defaultFooRequestInstance = nil;
 }
 + (FooRequest_Builder*) newBuilder { return [[[FooRequest_Builder alloc] init] autorelease]; }
 - (FooRequest_Builder*) newBuilderForType { return [FooRequest newBuilder]; }
-+ (FooRequest_Builder*) newBuilderWithFooRequest:(FooRequest*) prototype {
++ (FooRequest_Builder*) newBuilderWithPrototype:(FooRequest*) prototype {
   return [[FooRequest newBuilder] mergeFromFooRequest:prototype];
 }
 @end
@@ -12036,7 +12036,7 @@ static FooResponse* defaultFooResponseInstance = nil;
 }
 + (FooResponse_Builder*) newBuilder { return [[[FooResponse_Builder alloc] init] autorelease]; }
 - (FooResponse_Builder*) newBuilderForType { return [FooResponse newBuilder]; }
-+ (FooResponse_Builder*) newBuilderWithFooResponse:(FooResponse*) prototype {
++ (FooResponse_Builder*) newBuilderWithPrototype:(FooResponse*) prototype {
   return [[FooResponse newBuilder] mergeFromFooResponse:prototype];
 }
 @end
@@ -12186,7 +12186,7 @@ static BarRequest* defaultBarRequestInstance = nil;
 }
 + (BarRequest_Builder*) newBuilder { return [[[BarRequest_Builder alloc] init] autorelease]; }
 - (BarRequest_Builder*) newBuilderForType { return [BarRequest newBuilder]; }
-+ (BarRequest_Builder*) newBuilderWithBarRequest:(BarRequest*) prototype {
++ (BarRequest_Builder*) newBuilderWithPrototype:(BarRequest*) prototype {
   return [[BarRequest newBuilder] mergeFromBarRequest:prototype];
 }
 @end
@@ -12336,7 +12336,7 @@ static BarResponse* defaultBarResponseInstance = nil;
 }
 + (BarResponse_Builder*) newBuilder { return [[[BarResponse_Builder alloc] init] autorelease]; }
 - (BarResponse_Builder*) newBuilderForType { return [BarResponse newBuilder]; }
-+ (BarResponse_Builder*) newBuilderWithBarResponse:(BarResponse*) prototype {
++ (BarResponse_Builder*) newBuilderWithPrototype:(BarResponse*) prototype {
   return [[BarResponse newBuilder] mergeFromBarResponse:prototype];
 }
 @end

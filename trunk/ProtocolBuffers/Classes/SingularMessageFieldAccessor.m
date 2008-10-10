@@ -16,10 +16,11 @@
 
 #import "SingularMessageFieldAccessor.h"
 
+#import "FieldDescriptor.h"
+
 @interface PBSingularMessageFieldAccessor()
     @property SEL newBuilderMethod;
 @end
-
 
 @implementation PBSingularMessageFieldAccessor
 
@@ -52,17 +53,33 @@
                                                              name:name
                                                      messageClass:messageClass
                                                      builderClass:builderClass] autorelease];
-//    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
 
-- (id) get:(PBGeneratedMessage*) message {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+- (Class) messageClass {
+    return [self.field.messageType class];
+}
+
+
+- (id) coerceType:(id) value {
+    if ([value descriptorForType] == self.field.messageType) {
+        return value;
+    } else {
+        // The value is not the exact right message type.  However, if it
+        // is an alternative implementation of the same type -- e.g. a
+        // DynamicMessage -- we should accept it.  In this case we can make
+        // a copy of the message.
+        @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+#if 0
+        id<PBMessage_Builder> builder = [messageClass performSelector:newBuilderMethod];
+        return [[builder mergeFromMessage:value] build];
+#endif
+    }
 }
 
 
 - (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    [super set:builder value:[self coerceType:value]];
 }
 
 
@@ -77,11 +94,6 @@
 
 
 - (void) addRepeated:(PBGeneratedMessage_Builder*) builder value:(id) value {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (BOOL) has:(PBGeneratedMessage*) message {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

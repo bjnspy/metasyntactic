@@ -158,7 +158,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 }
 + (TestEmbedOptimizedForSize_Builder*) newBuilder { return [[[TestEmbedOptimizedForSize_Builder alloc] init] autorelease]; }
 - (TestEmbedOptimizedForSize_Builder*) newBuilderForType { return [TestEmbedOptimizedForSize newBuilder]; }
-+ (TestEmbedOptimizedForSize_Builder*) newBuilderWithTestEmbedOptimizedForSize:(TestEmbedOptimizedForSize*) prototype {
++ (TestEmbedOptimizedForSize_Builder*) newBuilderWithPrototype:(TestEmbedOptimizedForSize*) prototype {
   return [[TestEmbedOptimizedForSize newBuilder] mergeFromTestEmbedOptimizedForSize:prototype];
 }
 @end
@@ -279,7 +279,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   if (result.hasOptionalMessage &&
       result.optionalMessage != [TestOptimizedForSize defaultInstance]) {
     result.optionalMessage =
-      [[[TestOptimizedForSize newBuilderWithTestOptimizedForSize:result.optionalMessage] mergeFromTestOptimizedForSize:value] buildPartial];
+      [[[TestOptimizedForSize newBuilderWithPrototype:result.optionalMessage] mergeFromTestOptimizedForSize:value] buildPartial];
   } else {
     result.optionalMessage = value;
   }

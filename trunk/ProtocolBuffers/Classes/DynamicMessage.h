@@ -32,5 +32,6 @@
 + (PBDynamicMessage*) defaultInstance:(PBDescriptor*) type;
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
++ (PBDynamicMessage_Builder*) builderWithMessage:(id<PBMessage>) prototype;
 
 @end

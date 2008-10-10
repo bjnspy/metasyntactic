@@ -40,7 +40,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestMessageSet_Builder*) newBuilder;
 - (TestMessageSet_Builder*) newBuilderForType;
-+ (TestMessageSet_Builder*) newBuilderWithTestMessageSet:(TestMessageSet*) prototype;
++ (TestMessageSet_Builder*) newBuilderWithPrototype:(TestMessageSet*) prototype;
 
 + (TestMessageSet*) parseFromData:(NSData*) data;
 + (TestMessageSet*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -88,7 +88,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestMessageSetContainer_Builder*) newBuilder;
 - (TestMessageSetContainer_Builder*) newBuilderForType;
-+ (TestMessageSetContainer_Builder*) newBuilderWithTestMessageSetContainer:(TestMessageSetContainer*) prototype;
++ (TestMessageSetContainer_Builder*) newBuilderWithPrototype:(TestMessageSetContainer*) prototype;
 
 + (TestMessageSetContainer*) parseFromData:(NSData*) data;
 + (TestMessageSetContainer*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -144,7 +144,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestMessageSetExtension1_Builder*) newBuilder;
 - (TestMessageSetExtension1_Builder*) newBuilderForType;
-+ (TestMessageSetExtension1_Builder*) newBuilderWithTestMessageSetExtension1:(TestMessageSetExtension1*) prototype;
++ (TestMessageSetExtension1_Builder*) newBuilderWithPrototype:(TestMessageSetExtension1*) prototype;
 
 + (TestMessageSetExtension1*) parseFromData:(NSData*) data;
 + (TestMessageSetExtension1*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -198,7 +198,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestMessageSetExtension2_Builder*) newBuilder;
 - (TestMessageSetExtension2_Builder*) newBuilderForType;
-+ (TestMessageSetExtension2_Builder*) newBuilderWithTestMessageSetExtension2:(TestMessageSetExtension2*) prototype;
++ (TestMessageSetExtension2_Builder*) newBuilderWithPrototype:(TestMessageSetExtension2*) prototype;
 
 + (TestMessageSetExtension2*) parseFromData:(NSData*) data;
 + (TestMessageSetExtension2*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -250,7 +250,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (RawMessageSet_Builder*) newBuilder;
 - (RawMessageSet_Builder*) newBuilderForType;
-+ (RawMessageSet_Builder*) newBuilderWithRawMessageSet:(RawMessageSet*) prototype;
++ (RawMessageSet_Builder*) newBuilderWithPrototype:(RawMessageSet*) prototype;
 
 + (RawMessageSet*) parseFromData:(NSData*) data;
 + (RawMessageSet*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -281,7 +281,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (RawMessageSet_Item_Builder*) newBuilder;
 - (RawMessageSet_Item_Builder*) newBuilderForType;
-+ (RawMessageSet_Item_Builder*) newBuilderWithRawMessageSet_Item:(RawMessageSet_Item*) prototype;
++ (RawMessageSet_Item_Builder*) newBuilderWithPrototype:(RawMessageSet_Item*) prototype;
 
 + (RawMessageSet_Item*) parseFromData:(NSData*) data;
 + (RawMessageSet_Item*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;

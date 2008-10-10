@@ -14,24 +14,15 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "SingularFieldAccessor.h"
-
-@interface PBSingularEnumFieldAccessor : PBSingularFieldAccessor {
+@interface PBAbstractFieldAccessor : NSObject {
 @private
-    SEL valueOfMethod;
-    SEL valueDescriptorMethod;
+    PBFieldDescriptor* field;
 }
 
-@property (readonly) SEL valueOfMethod;
-@property (readonly) SEL valueDescriptorMethod;
+@property (readonly, retain) PBFieldDescriptor* field;
 
-
-+ (PBSingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
-                                                                name:(NSString*) name
-                                                        messageClass:(Class) messageClass
-                                                        builderClass:(Class) builderClass;
-
-- (id) get:(PBGeneratedMessage*) message;
-- (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value;
+//@protected
+- (id) initWithField:(PBFieldDescriptor*) field;
+- (NSString*) camelName:(NSString*) name;
 
 @end

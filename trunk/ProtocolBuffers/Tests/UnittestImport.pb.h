@@ -56,7 +56,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (ImportMessage_Builder*) newBuilder;
 - (ImportMessage_Builder*) newBuilderForType;
-+ (ImportMessage_Builder*) newBuilderWithImportMessage:(ImportMessage*) prototype;
++ (ImportMessage_Builder*) newBuilderWithPrototype:(ImportMessage*) prototype;
 
 + (ImportMessage*) parseFromData:(NSData*) data;
 + (ImportMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;

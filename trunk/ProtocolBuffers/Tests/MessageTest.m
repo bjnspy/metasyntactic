@@ -12,7 +12,7 @@
 
 @implementation MessageTest
 
-+ (TestAllTypes*) mergeSource {
+- (TestAllTypes*) mergeSource {
     return [[[[[[TestAllTypes newBuilder]
                 setOptionalInt32:1]
                setOptionalString:@"foo"]
@@ -20,6 +20,7 @@
              addRepeatedString:@"bar"]
             build];
 }
+
 
 - (TestAllTypes*) mergeDestination {
     return [[[[[[TestAllTypes newBuilder]
@@ -30,48 +31,42 @@
             build];
 }
 
-#if 0
 
-static final TestAllTypes MERGE_DEST =
-TestAllTypes.newBuilder()
-.setOptionalInt64(2)
-.setOptionalString("baz")
-.setOptionalForeignMessage(ForeignMessage.newBuilder().setC(3).build())
-.addRepeatedString("qux")
-.build();
-
-static final String MERGE_RESULT_TEXT =
-"optional_int32: 1\n" +
-"optional_int64: 2\n" +
-"optional_string: \"foo\"\n" +
-"optional_foreign_message {\n" +
-"  c: 3\n" +
-"}\n" +
-"repeated_string: \"qux\"\n" +
-"repeated_string: \"bar\"\n";
-
-public void testMergeFrom() throws Exception {
-    TestAllTypes result =
-    TestAllTypes.newBuilder(MERGE_DEST)
-    .mergeFrom(MERGE_SOURCE).build();
-    
-    assertEquals(MERGE_RESULT_TEXT, result.toString());
+- (TestAllTypes*) mergeResult {
+    return [[[[[[[[TestAllTypes newBuilder]
+                  setOptionalInt32:1]
+                 setOptionalInt64:2]
+                setOptionalString:@"foo"]
+               setOptionalForeignMessage:[[[ForeignMessage newBuilder] setC:3] build]]
+              addRepeatedString:@"qux"]
+             addRepeatedString:@"bar"]
+            build];
 }
+
+
+- (void) testMergeFrom {
+    TestAllTypes* result =
+    [[[TestAllTypes newBuilderWithPrototype:self.mergeDestination]
+      mergeFromTestAllTypes:self.mergeSource] build];
+
+    STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
+}
+
 
 /**
  * Test merging a DynamicMessage into a GeneratedMessage.  As long as they
  * have the same descriptor, this should work, but it is an entirely different
  * code path.
  */
-public void testMergeFromDynamic() throws Exception {
-    TestAllTypes result =
-    TestAllTypes.newBuilder(MERGE_DEST)
-    .mergeFrom(DynamicMessage.newBuilder(MERGE_SOURCE).build())
-    .build();
-    
-    assertEquals(MERGE_RESULT_TEXT, result.toString());
+- (void) testMergeFromDynamic {
+    TestAllTypes* result = [[[TestAllTypes newBuilderWithPrototype:self.mergeDestination]
+                             mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
+                            build];
+
+    STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
 }
 
+#if 0
 /** Test merging two DynamicMessages. */
 public void testDynamicMergeFrom() throws Exception {
     DynamicMessage result =

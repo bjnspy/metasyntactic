@@ -175,11 +175,6 @@
 }
 
 
-- (int32_t) index {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
 - (int32_t) number {
     return proto.number;
 }

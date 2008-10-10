@@ -524,7 +524,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestAllTypes_Builder*) newBuilder;
 - (TestAllTypes_Builder*) newBuilderForType;
-+ (TestAllTypes_Builder*) newBuilderWithTestAllTypes:(TestAllTypes*) prototype;
++ (TestAllTypes_Builder*) newBuilderWithPrototype:(TestAllTypes*) prototype;
 
 + (TestAllTypes*) parseFromData:(NSData*) data;
 + (TestAllTypes*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -572,7 +572,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestAllTypes_NestedMessage_Builder*) newBuilder;
 - (TestAllTypes_NestedMessage_Builder*) newBuilderForType;
-+ (TestAllTypes_NestedMessage_Builder*) newBuilderWithTestAllTypes_NestedMessage:(TestAllTypes_NestedMessage*) prototype;
++ (TestAllTypes_NestedMessage_Builder*) newBuilderWithPrototype:(TestAllTypes_NestedMessage*) prototype;
 
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data;
 + (TestAllTypes_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -625,7 +625,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestAllTypes_OptionalGroup_Builder*) newBuilder;
 - (TestAllTypes_OptionalGroup_Builder*) newBuilderForType;
-+ (TestAllTypes_OptionalGroup_Builder*) newBuilderWithTestAllTypes_OptionalGroup:(TestAllTypes_OptionalGroup*) prototype;
++ (TestAllTypes_OptionalGroup_Builder*) newBuilderWithPrototype:(TestAllTypes_OptionalGroup*) prototype;
 
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data;
 + (TestAllTypes_OptionalGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -678,7 +678,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestAllTypes_RepeatedGroup_Builder*) newBuilder;
 - (TestAllTypes_RepeatedGroup_Builder*) newBuilderForType;
-+ (TestAllTypes_RepeatedGroup_Builder*) newBuilderWithTestAllTypes_RepeatedGroup:(TestAllTypes_RepeatedGroup*) prototype;
++ (TestAllTypes_RepeatedGroup_Builder*) newBuilderWithPrototype:(TestAllTypes_RepeatedGroup*) prototype;
 
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data;
 + (TestAllTypes_RepeatedGroup*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1148,7 +1148,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (ForeignMessage_Builder*) newBuilder;
 - (ForeignMessage_Builder*) newBuilderForType;
-+ (ForeignMessage_Builder*) newBuilderWithForeignMessage:(ForeignMessage*) prototype;
++ (ForeignMessage_Builder*) newBuilderWithPrototype:(ForeignMessage*) prototype;
 
 + (ForeignMessage*) parseFromData:(NSData*) data;
 + (ForeignMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1197,7 +1197,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestAllExtensions_Builder*) newBuilder;
 - (TestAllExtensions_Builder*) newBuilderForType;
-+ (TestAllExtensions_Builder*) newBuilderWithTestAllExtensions:(TestAllExtensions*) prototype;
++ (TestAllExtensions_Builder*) newBuilderWithPrototype:(TestAllExtensions*) prototype;
 
 + (TestAllExtensions*) parseFromData:(NSData*) data;
 + (TestAllExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1245,7 +1245,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (OptionalGroup_extension_Builder*) newBuilder;
 - (OptionalGroup_extension_Builder*) newBuilderForType;
-+ (OptionalGroup_extension_Builder*) newBuilderWithOptionalGroup_extension:(OptionalGroup_extension*) prototype;
++ (OptionalGroup_extension_Builder*) newBuilderWithPrototype:(OptionalGroup_extension*) prototype;
 
 + (OptionalGroup_extension*) parseFromData:(NSData*) data;
 + (OptionalGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1298,7 +1298,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (RepeatedGroup_extension_Builder*) newBuilder;
 - (RepeatedGroup_extension_Builder*) newBuilderForType;
-+ (RepeatedGroup_extension_Builder*) newBuilderWithRepeatedGroup_extension:(RepeatedGroup_extension*) prototype;
++ (RepeatedGroup_extension_Builder*) newBuilderWithPrototype:(RepeatedGroup_extension*) prototype;
 
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data;
 + (RepeatedGroup_extension*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1481,7 +1481,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestRequired_Builder*) newBuilder;
 - (TestRequired_Builder*) newBuilderForType;
-+ (TestRequired_Builder*) newBuilderWithTestRequired:(TestRequired*) prototype;
++ (TestRequired_Builder*) newBuilderWithPrototype:(TestRequired*) prototype;
 
 + (TestRequired*) parseFromData:(NSData*) data;
 + (TestRequired*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1701,7 +1701,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestRequiredForeign_Builder*) newBuilder;
 - (TestRequiredForeign_Builder*) newBuilderForType;
-+ (TestRequiredForeign_Builder*) newBuilderWithTestRequiredForeign:(TestRequiredForeign*) prototype;
++ (TestRequiredForeign_Builder*) newBuilderWithPrototype:(TestRequiredForeign*) prototype;
 
 + (TestRequiredForeign*) parseFromData:(NSData*) data;
 + (TestRequiredForeign*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1768,7 +1768,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestForeignNested_Builder*) newBuilder;
 - (TestForeignNested_Builder*) newBuilderForType;
-+ (TestForeignNested_Builder*) newBuilderWithTestForeignNested:(TestForeignNested*) prototype;
++ (TestForeignNested_Builder*) newBuilderWithPrototype:(TestForeignNested*) prototype;
 
 + (TestForeignNested*) parseFromData:(NSData*) data;
 + (TestForeignNested*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1819,7 +1819,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestEmptyMessage_Builder*) newBuilder;
 - (TestEmptyMessage_Builder*) newBuilderForType;
-+ (TestEmptyMessage_Builder*) newBuilderWithTestEmptyMessage:(TestEmptyMessage*) prototype;
++ (TestEmptyMessage_Builder*) newBuilderWithPrototype:(TestEmptyMessage*) prototype;
 
 + (TestEmptyMessage*) parseFromData:(NSData*) data;
 + (TestEmptyMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1863,7 +1863,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestEmptyMessageWithExtensions_Builder*) newBuilder;
 - (TestEmptyMessageWithExtensions_Builder*) newBuilderForType;
-+ (TestEmptyMessageWithExtensions_Builder*) newBuilderWithTestEmptyMessageWithExtensions:(TestEmptyMessageWithExtensions*) prototype;
++ (TestEmptyMessageWithExtensions_Builder*) newBuilderWithPrototype:(TestEmptyMessageWithExtensions*) prototype;
 
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data;
 + (TestEmptyMessageWithExtensions*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1915,7 +1915,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestReallyLargeTagNumber_Builder*) newBuilder;
 - (TestReallyLargeTagNumber_Builder*) newBuilderForType;
-+ (TestReallyLargeTagNumber_Builder*) newBuilderWithTestReallyLargeTagNumber:(TestReallyLargeTagNumber*) prototype;
++ (TestReallyLargeTagNumber_Builder*) newBuilderWithPrototype:(TestReallyLargeTagNumber*) prototype;
 
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data;
 + (TestReallyLargeTagNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -1977,7 +1977,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestRecursiveMessage_Builder*) newBuilder;
 - (TestRecursiveMessage_Builder*) newBuilderForType;
-+ (TestRecursiveMessage_Builder*) newBuilderWithTestRecursiveMessage:(TestRecursiveMessage*) prototype;
++ (TestRecursiveMessage_Builder*) newBuilderWithPrototype:(TestRecursiveMessage*) prototype;
 
 + (TestRecursiveMessage*) parseFromData:(NSData*) data;
 + (TestRecursiveMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2037,7 +2037,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestMutualRecursionA_Builder*) newBuilder;
 - (TestMutualRecursionA_Builder*) newBuilderForType;
-+ (TestMutualRecursionA_Builder*) newBuilderWithTestMutualRecursionA:(TestMutualRecursionA*) prototype;
++ (TestMutualRecursionA_Builder*) newBuilderWithPrototype:(TestMutualRecursionA*) prototype;
 
 + (TestMutualRecursionA*) parseFromData:(NSData*) data;
 + (TestMutualRecursionA*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2096,7 +2096,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestMutualRecursionB_Builder*) newBuilder;
 - (TestMutualRecursionB_Builder*) newBuilderForType;
-+ (TestMutualRecursionB_Builder*) newBuilderWithTestMutualRecursionB:(TestMutualRecursionB*) prototype;
++ (TestMutualRecursionB_Builder*) newBuilderWithPrototype:(TestMutualRecursionB*) prototype;
 
 + (TestMutualRecursionB*) parseFromData:(NSData*) data;
 + (TestMutualRecursionB*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2164,7 +2164,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestDupFieldNumber_Builder*) newBuilder;
 - (TestDupFieldNumber_Builder*) newBuilderForType;
-+ (TestDupFieldNumber_Builder*) newBuilderWithTestDupFieldNumber:(TestDupFieldNumber*) prototype;
++ (TestDupFieldNumber_Builder*) newBuilderWithPrototype:(TestDupFieldNumber*) prototype;
 
 + (TestDupFieldNumber*) parseFromData:(NSData*) data;
 + (TestDupFieldNumber*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2191,7 +2191,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestDupFieldNumber_Foo_Builder*) newBuilder;
 - (TestDupFieldNumber_Foo_Builder*) newBuilderForType;
-+ (TestDupFieldNumber_Foo_Builder*) newBuilderWithTestDupFieldNumber_Foo:(TestDupFieldNumber_Foo*) prototype;
++ (TestDupFieldNumber_Foo_Builder*) newBuilderWithPrototype:(TestDupFieldNumber_Foo*) prototype;
 
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data;
 + (TestDupFieldNumber_Foo*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2244,7 +2244,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestDupFieldNumber_Bar_Builder*) newBuilder;
 - (TestDupFieldNumber_Bar_Builder*) newBuilderForType;
-+ (TestDupFieldNumber_Bar_Builder*) newBuilderWithTestDupFieldNumber_Bar:(TestDupFieldNumber_Bar*) prototype;
++ (TestDupFieldNumber_Bar_Builder*) newBuilderWithPrototype:(TestDupFieldNumber_Bar*) prototype;
 
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data;
 + (TestDupFieldNumber_Bar*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2337,7 +2337,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestNestedMessageHasBits_Builder*) newBuilder;
 - (TestNestedMessageHasBits_Builder*) newBuilderForType;
-+ (TestNestedMessageHasBits_Builder*) newBuilderWithTestNestedMessageHasBits:(TestNestedMessageHasBits*) prototype;
++ (TestNestedMessageHasBits_Builder*) newBuilderWithPrototype:(TestNestedMessageHasBits*) prototype;
 
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data;
 + (TestNestedMessageHasBits*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2366,7 +2366,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilder;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderForType;
-+ (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderWithTestNestedMessageHasBits_NestedMessage:(TestNestedMessageHasBits_NestedMessage*) prototype;
++ (TestNestedMessageHasBits_NestedMessage_Builder*) newBuilderWithPrototype:(TestNestedMessageHasBits_NestedMessage*) prototype;
 
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data;
 + (TestNestedMessageHasBits_NestedMessage*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2494,7 +2494,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestCamelCaseFieldNames_Builder*) newBuilder;
 - (TestCamelCaseFieldNames_Builder*) newBuilderForType;
-+ (TestCamelCaseFieldNames_Builder*) newBuilderWithTestCamelCaseFieldNames:(TestCamelCaseFieldNames*) prototype;
++ (TestCamelCaseFieldNames_Builder*) newBuilderWithPrototype:(TestCamelCaseFieldNames*) prototype;
 
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data;
 + (TestCamelCaseFieldNames*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2624,7 +2624,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestFieldOrderings_Builder*) newBuilder;
 - (TestFieldOrderings_Builder*) newBuilderForType;
-+ (TestFieldOrderings_Builder*) newBuilderWithTestFieldOrderings:(TestFieldOrderings*) prototype;
++ (TestFieldOrderings_Builder*) newBuilderWithPrototype:(TestFieldOrderings*) prototype;
 
 + (TestFieldOrderings*) parseFromData:(NSData*) data;
 + (TestFieldOrderings*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2707,7 +2707,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestExtremeDefaultValues_Builder*) newBuilder;
 - (TestExtremeDefaultValues_Builder*) newBuilderForType;
-+ (TestExtremeDefaultValues_Builder*) newBuilderWithTestExtremeDefaultValues:(TestExtremeDefaultValues*) prototype;
++ (TestExtremeDefaultValues_Builder*) newBuilderWithPrototype:(TestExtremeDefaultValues*) prototype;
 
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data;
 + (TestExtremeDefaultValues*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2781,7 +2781,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (FooRequest_Builder*) newBuilder;
 - (FooRequest_Builder*) newBuilderForType;
-+ (FooRequest_Builder*) newBuilderWithFooRequest:(FooRequest*) prototype;
++ (FooRequest_Builder*) newBuilderWithPrototype:(FooRequest*) prototype;
 
 + (FooRequest*) parseFromData:(NSData*) data;
 + (FooRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2825,7 +2825,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (FooResponse_Builder*) newBuilder;
 - (FooResponse_Builder*) newBuilderForType;
-+ (FooResponse_Builder*) newBuilderWithFooResponse:(FooResponse*) prototype;
++ (FooResponse_Builder*) newBuilderWithPrototype:(FooResponse*) prototype;
 
 + (FooResponse*) parseFromData:(NSData*) data;
 + (FooResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2869,7 +2869,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (BarRequest_Builder*) newBuilder;
 - (BarRequest_Builder*) newBuilderForType;
-+ (BarRequest_Builder*) newBuilderWithBarRequest:(BarRequest*) prototype;
++ (BarRequest_Builder*) newBuilderWithPrototype:(BarRequest*) prototype;
 
 + (BarRequest*) parseFromData:(NSData*) data;
 + (BarRequest*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
@@ -2913,7 +2913,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (BarResponse_Builder*) newBuilder;
 - (BarResponse_Builder*) newBuilderForType;
-+ (BarResponse_Builder*) newBuilderWithBarResponse:(BarResponse*) prototype;
++ (BarResponse_Builder*) newBuilderWithPrototype:(BarResponse*) prototype;
 
 + (BarResponse*) parseFromData:(NSData*) data;
 + (BarResponse*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
