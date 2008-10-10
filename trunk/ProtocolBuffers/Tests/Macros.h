@@ -1,40 +1,13 @@
+//Copyright 2008 Cyrus Najmabadi
 //
-//  Macros.h
-//  ProtocolBuffers-Test
+//Licensed under the Apache License, Version 2.0 (the "License");
+//you may not use this file except in compliance with the License.
+//You may obtain a copy of the License at
 //
-//  Created by Cyrus Najmabadi on 10/7/08.
-//  Copyright 2008 __MyCompanyName__. All rights reserved.
+//     http://www.apache.org/licenses/LICENSE-2.0
 //
-
-#define AssertEquals(a1, a2, description, ...) \
-do { \
-    @try {\
-        if (@encode(__typeof__(a1)) != @encode(__typeof__(a2))) { \
-            [self failWithException:[NSException failureInFile:[NSString stringWithUTF8String:__FILE__] \
-                atLine:__LINE__ \
-                withDescription:[@"Type mismatch -- " stringByAppendingString:STComposeString(description, ##__VA_ARGS__)]]]; \
-        } else { \
-            __typeof__(a1) a1value = (a1); \
-            __typeof__(a2) a2value = (a2); \
-            NSValue *a1encoded = [NSValue value:&a1value withObjCType: @encode(__typeof__(a1))]; \
-            NSValue *a2encoded = [NSValue value:&a2value withObjCType: @encode(__typeof__(a2))]; \
-            if (![a1encoded isEqualToValue:a2encoded]) { \
-                [self failWithException:[NSException failureInEqualityBetweenValue: a1encoded \
-                    andValue: a2encoded \
-                    withAccuracy: nil \
-                    inFile: [NSString stringWithUTF8String:__FILE__] \
-                    atLine: __LINE__ \
-                    withDescription: STComposeString(description, ##__VA_ARGS__)]]; \
-            } \
-        } \
-    } \
-    @catch (id anException) { \
-        [self failWithException:[NSException \
-            failureInRaise:[NSString stringWithFormat: @"(%s) == (%s)", #a1, #a2] \
-            exception:anException \
-            inFile:[NSString stringWithUTF8String:__FILE__] \
-            atLine:__LINE__ \
-            withDescription:STComposeString(description, ##__VA_ARGS__)]]; \
-    } \
-} while(0)
-
+//Unless required by applicable law or agreed to in writing, software
+//distributed under the License is distributed on an "AS IS" BASIS,
+//WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+//See the License for the specific language governing permissions and
+//limitations under the License.
