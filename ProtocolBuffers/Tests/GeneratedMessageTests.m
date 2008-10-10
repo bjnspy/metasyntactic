@@ -44,6 +44,31 @@
     [TestUtilities assertRepeatedFieldsModified:message];
 }
 
+
+- (void) testRepeatedAppend {
+    TestAllTypes_Builder* builder = [TestAllTypes builder];
+    
+    NSArray* array = 
+    [NSArray arrayWithObjects:
+     [NSNumber numberWithInt:1],
+     [NSNumber numberWithInt:2],
+     [NSNumber numberWithInt:3],
+     [NSNumber numberWithInt:4], nil];
+    
+    [builder addAllRepeatedInt32:array];
+    [builder addAllRepeatedForeignEnum:[NSArray arrayWithObject:[ForeignEnum FOREIGN_BAZ]]];
+    
+    ForeignMessage* foreignMessage = [[[ForeignMessage builder] setC:12] build];
+    [builder addAllRepeatedForeignMessage:[NSArray arrayWithObject:foreignMessage]];
+    
+    TestAllTypes* message = [builder build];
+    STAssertEqualObjects(message.repeatedInt32List, array, @"");
+    STAssertEqualObjects(message.repeatedForeignEnumList,
+                 [NSArray arrayWithObject:[ForeignEnum FOREIGN_BAZ]], @"");
+    STAssertTrue(1 == message.repeatedForeignMessageList.count, @"");
+    STAssertTrue(12 == [[message repeatedForeignMessageAtIndex:0] c], @"");
+}
+
 #if 0
 
 
@@ -53,23 +78,6 @@ new [TestUtilities ReflectionTester(TestAllTypes.getDescriptor(), null);
 
 
 
-public void testRepeatedAppend() throws Exception {
-    TestAllTypes_Builder builder = [TestAllTypes builder];
-    
-    builder.addAllRepeatedInt32(Arrays.asList(1, 2, 3, 4));
-    builder.addAllRepeatedForeignEnum(Arrays.asList(ForeignEnum.FOREIGN_BAZ));
-    
-    ForeignMessage foreignMessage =
-    ForeignMessage.newBuilder().setC(12).build();
-    builder.addAllRepeatedForeignMessage(Arrays.asList(foreignMessage));
-    
-    TestAllTypes message = builder.build();
-    assertEquals(message.getRepeatedInt32List(), Arrays.asList(1, 2, 3, 4));
-    assertEquals(message.getRepeatedForeignEnumList(),
-                 Arrays.asList(ForeignEnum.FOREIGN_BAZ));
-    assertEquals(1, message.getRepeatedForeignMessageCount());
-    assertEquals(12, message.getRepeatedForeignMessage(0).getC());
-}
 
 public void testSettingForeignMessageUsingBuilder() throws Exception {
     TestAllTypes message = [TestAllTypes builder]
