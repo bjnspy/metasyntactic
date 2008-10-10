@@ -2103,6 +2103,10 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
     self.optionalBool = NO;
     self.optionalString = @"";
     self.optionalBytes = [NSData data];
+    self.optionalGroup = [TestAllTypes_OptionalGroup defaultInstance];
+    self.optionalNestedMessage = [TestAllTypes_NestedMessage defaultInstance];
+    self.optionalForeignMessage = [ForeignMessage defaultInstance];
+    self.optionalImportMessage = [ImportMessage defaultInstance];
     self.optionalNestedEnum = [TestAllTypes_NestedEnum FOO];
     self.optionalForeignEnum = [ForeignEnum FOREIGN_FOO];
     self.optionalImportEnum = [ImportEnum IMPORT_FOO];
@@ -7673,6 +7677,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    self.optionalMessage = [TestRequired defaultInstance];
     self.dummy = 0;
   }
   return self;
@@ -7971,6 +7976,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    self.foreignNested = [TestAllTypes_NestedMessage defaultInstance];
   }
   return self;
 }
@@ -8723,6 +8729,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    self.a = [TestRecursiveMessage defaultInstance];
     self.i = 0;
   }
   return self;
@@ -8961,6 +8968,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    self.bb = [TestMutualRecursionB defaultInstance];
   }
   return self;
 }
@@ -9175,6 +9183,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    self.a = [TestMutualRecursionA defaultInstance];
     self.optionalInt32 = 0;
   }
   return self;
@@ -9426,6 +9435,8 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 - (id) init {
   if (self = [super init]) {
     self.a = 0;
+    self.foo = [TestDupFieldNumber_Foo defaultInstance];
+    self.bar = [TestDupFieldNumber_Bar defaultInstance];
   }
   return self;
 }
@@ -10091,6 +10102,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    self.optionalNestedMessage = [TestNestedMessageHasBits_NestedMessage defaultInstance];
   }
   return self;
 }
@@ -10616,6 +10628,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
     self.primitiveField = 0;
     self.stringField = @"";
     self.enumField = [ForeignEnum FOREIGN_FOO];
+    self.messageField = [ForeignMessage defaultInstance];
     self.stringPieceField = @"";
     self.cordField = @"";
   }

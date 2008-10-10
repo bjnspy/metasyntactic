@@ -70,51 +70,53 @@
     }
 }
 
-#if 0
-public void testDescriptor() throws Exception {
+
+- (void) testDescriptor {
     PBDescriptor* messageType = [TestAllTypes descriptor];
-    PBDescriptor* nestedType = TestAllTypes.NestedMessage.getDescriptor();
+    PBDescriptor* nestedType = [TestAllTypes_NestedMessage descriptor];
     
-    STAssertEqualObjects(@"TestAllTypes", messageType.getName());
-    STAssertEqualObjects(@"protobuf_unittest.TestAllTypes", messageType.getFullName());
-    STAssertEqualObjects(UnittestProto.getDescriptor(), messageType.getFile());
-    STAssertNil(messageType.getContainingType());
-    STAssertEqualObjects(DescriptorProtos.MessageOptions.getDefaultInstance(),
-                 messageType.getOptions());
-    STAssertEqualObjects(@"TestAllTypes", messageType.toProto().getName());
+    STAssertEqualObjects(@"TestAllTypes", messageType.name, @"");
+    STAssertEqualObjects(@"protobuf_unittest.TestAllTypes", messageType.fullName, @"");
+    STAssertEqualObjects([UnittestProtoRoot descriptor], messageType.file, @"");
+    STAssertNil(messageType.containingType, @"");
+    STAssertEqualObjects([PBMessageOptions defaultInstance],
+                 messageType.options, @"");
+    STAssertEqualObjects(@"TestAllTypes", messageType.proto.name, @"");
     
-    STAssertEqualObjects(@"NestedMessage", nestedType.getName());
+    STAssertEqualObjects(@"NestedMessage", nestedType.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.TestAllTypes.NestedMessage",
-                 nestedType.getFullName());
-    STAssertEqualObjects(UnittestProto.getDescriptor(), nestedType.getFile());
-    STAssertEqualObjects(messageType, nestedType.getContainingType());
+                 nestedType.fullName, @"");
+    STAssertEqualObjects([UnittestProtoRoot descriptor], nestedType.file, @"");
+    STAssertEqualObjects(messageType, nestedType.containingType, @"");
     
-    PBFieldDescriptor* field = messageType.getFields().get(0);
-    STAssertEqualObjects(@"optional_int32", field.getName());
-    STAssertEqualObjects(field, messageType.findFieldByName(@"optional_int32"));
-    STAssertNil(messageType.findFieldByName(@"no_such_field"));
-    STAssertEqualObjects(field, messageType.findFieldByNumber(1));
-    STAssertNil(messageType.findFieldByNumber(571283));
-    for (int i = 0; i < messageType.getFields().size(); i++) {
-        STAssertEqualObjects(i, messageType.getFields().get(i).getIndex());
+    PBFieldDescriptor* field = [messageType.fields objectAtIndex:0];
+    STAssertEqualObjects(@"optional_int32", field.name, @"");
+    STAssertEqualObjects(field, [messageType findFieldByName:@"optional_int32"], @"");
+    STAssertNil([messageType findFieldByName:@"no_such_field"], @"");
+    STAssertEqualObjects(field, [messageType findFieldByNumber:1], @"");
+    STAssertNil([messageType findFieldByNumber:571283], @"");
+    for (int i = 0; i < messageType.fields.count; i++) {
+        STAssertTrue(i == [[messageType.fields objectAtIndex:i] index], @"");
     }
     
-    STAssertEqualObjects(nestedType, messageType.getNestedTypes().get(0));
-    STAssertEqualObjects(nestedType, messageType.findNestedTypeByName(@"NestedMessage"));
-    STAssertNil(messageType.findNestedTypeByName(@"NoSuchType"));
-    for (int i = 0; i < messageType.getNestedTypes().size(); i++) {
-        STAssertEqualObjects(i, messageType.getNestedTypes().get(i).getIndex());
+    STAssertEqualObjects(nestedType, [messageType.nestedTypes objectAtIndex:0], @"");
+    STAssertEqualObjects(nestedType, [messageType findNestedTypeByName:@"NestedMessage"], @"");
+    STAssertNil([messageType findNestedTypeByName:@"NoSuchType"], @"");
+    for (int i = 0; i < messageType.nestedTypes.count; i++) {
+        STAssertTrue(i == [[messageType.nestedTypes objectAtIndex:i] index], @"");
     }
     
-    PBEnumDescriptor* enumType = TestAllTypes.NestedEnum.getDescriptor();
-    STAssertEqualObjects(enumType, messageType.enumTypes.get(0));
-    STAssertEqualObjects(enumType, messageType.findEnumTypeByName(@"NestedEnum"));
-    STAssertNil(messageType.findEnumTypeByName(@"NoSuchType"));
-    for (int i = 0; i < messageType.enumTypes.size(); i++) {
-        STAssertEqualObjects(i, messageType.enumTypes.get(i).getIndex());
+    PBEnumDescriptor* enumType = [TestAllTypes_NestedEnum descriptor];
+    STAssertEqualObjects(enumType, [messageType.enumTypes objectAtIndex:0], @"");
+    STAssertEqualObjects(enumType, [messageType findEnumTypeByName:@"NestedEnum"], @"");
+    STAssertNil([messageType findEnumTypeByName:@"NoSuchType"], @"");
+    for (int i = 0; i < messageType.enumTypes.count; i++) {
+        STAssertTrue(i == [[messageType.enumTypes objectAtIndex:i] index], @"");
     }
 }
 
+
+#if 0
 public void testFieldDescriptor() throws Exception {
     PBDescriptor* messageType = [TestAllTypes descriptor];
     PBFieldDescriptor* primitiveField =

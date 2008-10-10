@@ -18,6 +18,7 @@
 
 #import "Descriptor.pb.h"
 #import "DescriptorPool.h"
+#import "DescriptorPool_DescriptorIntPair.h"
 #import "EnumDescriptor.h"
 #import "FieldDescriptor.h"
 #import "FileDescriptor.h"
@@ -173,13 +174,45 @@
 
 
 - (PBFieldDescriptor*) findFieldByNumber:(int32_t) number {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    PBDescriptorPool_DescriptorIntPair* pair =
+    [PBDescriptorPool_DescriptorIntPair pairWithDescriptor:self number:number];
+    return [file.pool.fieldsByNumber objectForKey:pair];
 }
 
 
 - (PBFieldDescriptor*) findFieldByName:(NSString*) name {
     id result = [file.pool findSymbol:[NSString stringWithFormat:@"%@.%@", fullName, name]];
     if (result != nil && [result isKindOfClass:[PBFieldDescriptor class]]) {
+        return result;
+    } else {
+        return nil;
+    }
+}
+
+
+/**
+ * Finds a nested message type by name.
+ * @param name The unqualified name of the nested type (e.g. "Foo").
+ * @return The types's descriptor, or {@code null} if not found.
+ */
+- (PBDescriptor*) findNestedTypeByName:(NSString*) name {
+    id result = [file.pool findSymbol:[NSString stringWithFormat:@"%@.%@", self.fullName, name]];
+    if (result != nil && [result isKindOfClass:[PBDescriptor class]]) {
+        return result;
+    } else {
+        return nil;
+    }
+}
+
+
+/**
+ * Finds a nested enum type by name.
+ * @param name The unqualified name of the nested type (e.g. "Foo").
+ * @return The types's descriptor, or {@code null} if not found.
+ */
+- (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name {
+    id result = [file.pool findSymbol:[NSString stringWithFormat:@"%@.%@", self.fullName, name]];
+    if (result != nil && [result isKindOfClass:[PBEnumDescriptor class]]) {
         return result;
     } else {
         return nil;

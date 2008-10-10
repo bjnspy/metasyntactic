@@ -74,6 +74,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
 }
 - (id) init {
   if (self = [super init]) {
+    self.optionalMessage = [TestOptimizedForSize defaultInstance];
   }
   return self;
 }
