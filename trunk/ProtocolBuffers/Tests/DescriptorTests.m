@@ -116,73 +116,68 @@
 }
 
 
-#if 0
-public void testFieldDescriptor() throws Exception {
+- (void) testFieldDescriptor {
     PBDescriptor* messageType = [TestAllTypes descriptor];
-    PBFieldDescriptor* primitiveField =
-    messageType.findFieldByName(@"optional_int32");
-    PBFieldDescriptor* enumField =
-    messageType.findFieldByName(@"optional_nested_enum");
-    PBFieldDescriptor* messageField =
-    messageType.findFieldByName(@"optional_foreign_message");
-    PBFieldDescriptor* cordField =
-    messageType.findFieldByName(@"optional_cord");
-    PBFieldDescriptor* extension =
-    UnittestProto.optionalInt32Extension.getDescriptor();
-    PBFieldDescriptor* nestedExtension = TestRequired.single.getDescriptor();
+    PBFieldDescriptor* primitiveField = [messageType findFieldByName:@"optional_int32"];
+    PBFieldDescriptor* enumField = [messageType findFieldByName:@"optional_nested_enum"];
+    PBFieldDescriptor* messageField = [messageType findFieldByName:@"optional_foreign_message"];
+    PBFieldDescriptor* cordField = [messageType findFieldByName:@"optional_cord"];
+    PBFieldDescriptor* extension = [[UnittestProtoRoot optionalInt32Extension] descriptor];
+    PBFieldDescriptor* nestedExtension = [[TestRequired single] descriptor];
     
-    STAssertEqualObjects(@"optional_int32", primitiveField.getName());
+    STAssertEqualObjects(@"optional_int32", primitiveField.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.TestAllTypes.optional_int32",
-                 primitiveField.getFullName());
-    STAssertEqualObjects(1, primitiveField.getNumber());
-    STAssertEqualObjects(messageType, primitiveField.getContainingType());
-    STAssertEqualObjects(UnittestProto.getDescriptor(), primitiveField.getFile());
-    STAssertEqualObjects(PBFieldDescriptor*.Type.INT32, primitiveField.getType());
-    STAssertEqualObjects(PBFieldDescriptor*.JavaType.INT, primitiveField.getJavaType());
-    STAssertEqualObjects(DescriptorProtos.FieldOptions.getDefaultInstance(),
-                 primitiveField.getOptions());
-    assertFalse(primitiveField.isExtension());
-    STAssertEqualObjects(@"optional_int32", primitiveField.toProto().getName());
+                 primitiveField.fullName, @"");
+    STAssertEquals(1, primitiveField.number, @"");
+    STAssertEqualObjects(messageType, primitiveField.containingType, @"");
+    STAssertEqualObjects([UnittestProtoRoot descriptor], primitiveField.file, @"");
+    STAssertEquals(PBFieldDescriptorTypeInt32, primitiveField.type, @"");
+    STAssertEquals(PBObjectiveCTypeInt32, primitiveField.objectiveCType, @"");
+    STAssertEqualObjects([PBFieldOptions defaultInstance],
+                 primitiveField.options, @"");
+    STAssertFalse(primitiveField.isExtension, @"");
+    STAssertEqualObjects(@"optional_int32", primitiveField.proto.name, @"");
     
-    STAssertEqualObjects(@"optional_nested_enum", enumField.getName());
-    STAssertEqualObjects(PBFieldDescriptor*.Type.ENUM, enumField.getType());
-    STAssertEqualObjects(PBFieldDescriptor*.JavaType.ENUM, enumField.getJavaType());
-    STAssertEqualObjects(TestAllTypes.NestedEnum.getDescriptor(),
-                 enumField.getEnumType());
+    STAssertEqualObjects(@"optional_nested_enum", enumField.name, @"");
+    STAssertEquals(PBFieldDescriptorTypeEnum, enumField.type, @"");
+    STAssertEquals(PBObjectiveCTypeEnum, enumField.objectiveCType, @"");
+    STAssertEqualObjects([TestAllTypes_NestedEnum descriptor],
+                 enumField.enumType, @"");
     
-    STAssertEqualObjects(@"optional_foreign_message", messageField.getName());
-    STAssertEqualObjects(PBFieldDescriptor*.Type.MESSAGE, messageField.getType());
-    STAssertEqualObjects(PBFieldDescriptor*.JavaType.MESSAGE, messageField.getJavaType());
-    STAssertEqualObjects(ForeignMessage.getDescriptor(), messageField.getMessageType());
+    STAssertEqualObjects(@"optional_foreign_message", messageField.name, @"");
+    STAssertEquals(PBFieldDescriptorTypeMessage, messageField.type, @"");
+    STAssertEquals(PBObjectiveCTypeMessage, messageField.objectiveCType, @"");
+    STAssertEqualObjects([ForeignMessage descriptor], messageField.messageType, @"");
     
-    STAssertEqualObjects(@"optional_cord", cordField.getName());
-    STAssertEqualObjects(PBFieldDescriptor*.Type.STRING, cordField.getType());
-    STAssertEqualObjects(PBFieldDescriptor*.JavaType.STRING, cordField.getJavaType());
-    STAssertEqualObjects(DescriptorProtos.FieldOptions.CType.CORD,
-                 cordField.getOptions().getCtype());
+    STAssertEqualObjects(@"optional_cord", cordField.name, @"");
+    STAssertEquals(PBFieldDescriptorTypeString, cordField.type, @"");
+    STAssertEquals(PBObjectiveCTypeString, cordField.objectiveCType, @"");
+    STAssertEqualObjects([PBFieldOptions_CType CORD],
+                 cordField.options.ctype, @"");
     
-    STAssertEqualObjects(@"optional_int32_extension", extension.getName());
+    STAssertEqualObjects(@"optional_int32_extension", extension.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.optional_int32_extension",
-                 extension.getFullName());
-    STAssertEqualObjects(1, extension.getNumber());
-    STAssertEqualObjects(TestAllExtensions.getDescriptor(),
-                 extension.getContainingType());
-    STAssertEqualObjects(UnittestProto.getDescriptor(), extension.getFile());
-    STAssertEqualObjects(PBFieldDescriptor*.Type.INT32, extension.getType());
-    STAssertEqualObjects(PBFieldDescriptor*.JavaType.INT, extension.getJavaType());
-    STAssertEqualObjects(DescriptorProtos.FieldOptions.getDefaultInstance(),
-                 extension.getOptions());
-    assertTrue(extension.isExtension());
-    STAssertEqualObjects(null, extension.getExtensionScope());
-    STAssertEqualObjects(@"optional_int32_extension", extension.toProto().getName());
+                 extension.fullName, @"");
+    STAssertEquals(1, extension.number, @"");
+    STAssertEqualObjects([TestAllExtensions descriptor],
+                 extension.containingType, @"");
+    STAssertEqualObjects([UnittestProtoRoot descriptor], extension.file, @"");
+    STAssertEquals(PBFieldDescriptorTypeInt32, extension.type, @"");
+    STAssertEquals(PBObjectiveCTypeInt32, extension.objectiveCType, @"");
+    STAssertEqualObjects([PBFieldOptions defaultInstance],
+                 extension.options, @"");
+    STAssertTrue(extension.isExtension, @"");
+    STAssertEqualObjects(nil, extension.extensionScope, @"");
+    STAssertEqualObjects(@"optional_int32_extension", extension.proto.name, @"");
     
-    STAssertEqualObjects(@"single", nestedExtension.getName());
+    STAssertEqualObjects(@"single", nestedExtension.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.TestRequired.single",
-                 nestedExtension.getFullName());
-    STAssertEqualObjects(TestRequired.getDescriptor(),
-                 nestedExtension.getExtensionScope());
+                 nestedExtension.fullName, @"");
+    STAssertEqualObjects([TestRequired descriptor],
+                 nestedExtension.extensionScope, @"");
 }
 
+#if 0
 public void testFieldDescriptorLabel() throws Exception {
     PBFieldDescriptor* requiredField =
     TestRequired.getDescriptor().findFieldByName(@"a");
@@ -191,19 +186,19 @@ public void testFieldDescriptorLabel() throws Exception {
     PBFieldDescriptor* repeatedField =
     [TestAllTypes descriptor].findFieldByName(@"repeated_int32");
     
-    assertTrue(requiredField.isRequired());
-    assertFalse(requiredField.isRepeated());
-    assertFalse(optionalField.isRequired());
-    assertFalse(optionalField.isRepeated());
-    assertFalse(repeatedField.isRequired());
-    assertTrue(repeatedField.isRepeated());
+    STAssertTrue(requiredField.isRequired());
+    STAssertFalse(requiredField.isRepeated());
+    STAssertFalse(optionalField.isRequired());
+    STAssertFalse(optionalField.isRepeated());
+    STAssertFalse(repeatedField.isRequired());
+    STAssertTrue(repeatedField.isRepeated());
 }
 
 public void testFieldDescriptorDefault() throws Exception {
     PBDescriptor* d = [TestAllTypes descriptor];
-    assertFalse(d.findFieldByName(@"optional_int32").hasDefaultValue());
+    STAssertFalse(d.findFieldByName(@"optional_int32").hasDefaultValue());
     STAssertEqualObjects(0, d.findFieldByName(@"optional_int32").getDefaultValue());
-    assertTrue(d.findFieldByName(@"default_int32").hasDefaultValue());
+    STAssertTrue(d.findFieldByName(@"default_int32").hasDefaultValue());
     STAssertEqualObjects(41, d.findFieldByName(@"default_int32").getDefaultValue());
     
     d = TestExtremeDefaultValues.getDescriptor();
@@ -221,15 +216,15 @@ public void testEnumDescriptor() throws Exception {
     
     STAssertEqualObjects(@"ForeignEnum", enumType.getName());
     STAssertEqualObjects(@"protobuf_unittest.ForeignEnum", enumType.getFullName());
-    STAssertEqualObjects(UnittestProto.getDescriptor(), enumType.getFile());
+    STAssertEqualObjects([UnittestProtoRoot descriptor], enumType.file);
     STAssertNil(enumType.getContainingType());
     STAssertEqualObjects(DescriptorProtos.EnumOptions.getDefaultInstance(),
-                 enumType.getOptions());
+                 enumType.options);
     
     STAssertEqualObjects(@"NestedEnum", nestedType.getName());
     STAssertEqualObjects(@"protobuf_unittest.TestAllTypes.NestedEnum",
                  nestedType.getFullName());
-    STAssertEqualObjects(UnittestProto.getDescriptor(), nestedType.getFile());
+    STAssertEqualObjects([UnittestProtoRoot descriptor], nestedType.file);
     STAssertEqualObjects([TestAllTypes descriptor], nestedType.getContainingType());
     
     EnumValueDescriptor value = ForeignEnum.FOREIGN_FOO.getValueDescriptor();
@@ -249,7 +244,7 @@ public void testServiceDescriptor() throws Exception {
     
     STAssertEqualObjects(@"TestService", service.getName());
     STAssertEqualObjects(@"protobuf_unittest.TestService", service.getFullName());
-    STAssertEqualObjects(UnittestProto.getDescriptor(), service.getFile());
+    STAssertEqualObjects([UnittestProtoRoot descriptor], service.file);
     
     STAssertEqualObjects(2, service.getMethods().size());
     

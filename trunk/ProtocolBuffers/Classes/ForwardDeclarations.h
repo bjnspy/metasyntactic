@@ -50,6 +50,7 @@ enum PBWireFormat;
 @class PBFieldDescriptor;
 @class PBFieldDescriptorProto;
 @class PBFieldDescriptorProto_Type;
+@class PBFieldOptions;
 @class PBFieldSet;
 @class PBFileDescriptor;
 @class PBFileDescriptorProto;
