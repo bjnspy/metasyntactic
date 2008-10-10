@@ -82,20 +82,20 @@
 }
 
 
-- (id<PBMessage>) build {
-    if (![self isInitialized]) {
-        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
-    }
-    return [self buildPartial];
-}
-
-
 - (PBDynamicMessage*) buildPartial {
     //[fields makeImmutable];
     PBDynamicMessage* result = [PBDynamicMessage messageWithType:type fields:fields unknownFields:unknownFields];
     self.fields = nil;
     self.unknownFields = nil;
     return result;
+}
+
+
+- (PBDynamicMessage*) build {
+    if (![self isInitialized]) {
+        @throw [NSException exceptionWithName:@"UninitializedMessage" reason:@"" userInfo:nil];
+    }
+    return [self buildPartial];
 }
 
 

@@ -30,5 +30,6 @@
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
 
 - (PBDynamicMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
+- (PBDynamicMessage*) build;
 
 @end
