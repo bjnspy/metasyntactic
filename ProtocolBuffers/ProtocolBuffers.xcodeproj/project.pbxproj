@@ -576,8 +576,6 @@
 		745E98E30E942034007FD139 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				74B320490E9F884E00AAC227 /* MessageTests.h */,
-				74B3204A0E9F884E00AAC227 /* MessageTests.m */,
 				74A411AC0E9CDD00007CF82C /* UnittestEmbedOptimizeFor.pb.h */,
 				74A411AD0E9CDD00007CF82C /* UnittestEmbedOptimizeFor.pb.m */,
 				74A411AE0E9CDD00007CF82C /* UnittestMset.pb.h */,
@@ -599,6 +597,8 @@
 				74E1803A0E9649F600F8D0D3 /* CoreTests.m */,
 				8DEB013F0E9C620600911656 /* MicroTest.h */,
 				8DEB01400E9C620600911656 /* MicroTest.m */,
+				74B320490E9F884E00AAC227 /* MessageTests.h */,
+				74B3204A0E9F884E00AAC227 /* MessageTests.m */,
 				8DEB01700E9C657C00911656 /* UnknownFieldSetTest.h */,
 				8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */,
 				747C0AE20E9CBA61004B9278 /* WireFormatTests.h */,

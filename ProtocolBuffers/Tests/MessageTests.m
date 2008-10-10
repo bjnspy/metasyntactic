@@ -233,16 +233,13 @@
     STAssertThrows([TestRequiredForeign parseFromData:data], @"");
 }
 
-#if 0
-public void testDynamicUninitializedException() throws Exception {
-    try {
-        DynamicMessage.newBuilder(TestRequired.getDescriptor()).build();
-        fail("Should have thrown an exception.");
-    } catch (UninitializedMessageException e) {
-        assertEquals("Message missing required fields: a, b, c", e.getMessage());
-    }
+
+- (void) testDynamicUninitializedException {
+    STAssertThrows([[PBDynamicMessage_Builder builderWithType:[TestRequired descriptor]] build], @"");
 }
 
+
+#if 0
 public void testDynamicBuildPartial() throws Exception {
     // We're mostly testing that no exception is thrown.
     DynamicMessage message =
