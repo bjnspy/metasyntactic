@@ -31,5 +31,6 @@
 
 - (PBDynamicMessage_Builder*) mergeFromMessage:(id<PBMessage>) other;
 - (PBDynamicMessage*) build;
+- (PBDynamicMessage*) buildPartial;
 
 @end
