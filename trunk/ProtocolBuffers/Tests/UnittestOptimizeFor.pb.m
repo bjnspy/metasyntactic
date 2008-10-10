@@ -95,10 +95,10 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 + (TestOptimizedForSize*) defaultInstance {
   return defaultTestOptimizedForSizeInstance;
 }
-- (TestOptimizedForSize*) defaultInstanceForType {
+- (TestOptimizedForSize*) defaultInstance {
   return defaultTestOptimizedForSizeInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestOptimizedForSize descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -189,10 +189,10 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 - (TestOptimizedForSize_Builder*) clone {
   return [TestOptimizedForSize_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestOptimizedForSize descriptor];
 }
-- (TestOptimizedForSize*) defaultInstanceForType {
+- (TestOptimizedForSize*) defaultInstance {
   return [TestOptimizedForSize defaultInstance];
 }
 - (TestOptimizedForSize*) build {

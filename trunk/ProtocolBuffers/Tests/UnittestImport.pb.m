@@ -92,7 +92,7 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[ImportEnum descriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) descriptorForType {
+- (PBEnumDescriptor*) descriptor {
   return [ImportEnum descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
@@ -140,10 +140,10 @@ static ImportMessage* defaultImportMessageInstance = nil;
 + (ImportMessage*) defaultInstance {
   return defaultImportMessageInstance;
 }
-- (ImportMessage*) defaultInstanceForType {
+- (ImportMessage*) defaultInstance {
   return defaultImportMessageInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [ImportMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -224,10 +224,10 @@ static ImportMessage* defaultImportMessageInstance = nil;
 - (ImportMessage_Builder*) clone {
   return [ImportMessage_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [ImportMessage descriptor];
 }
-- (ImportMessage*) defaultInstanceForType {
+- (ImportMessage*) defaultInstance {
   return [ImportMessage defaultInstance];
 }
 - (ImportMessage*) build {

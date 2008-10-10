@@ -61,11 +61,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "                     selector:(SEL) selector;\n");
     }
 
-    // Generate descriptor and descriptorForType().
     printer->Print(
       "\n"
       "+ (PBServiceDescriptor*) descriptor;\n"
-      "- (PBServiceDescriptor*) descriptorForType;\n");
+      "- (PBServiceDescriptor*) descriptor;\n");
 
     // Generate more stuff.
     GenerateCallMethodHeader(printer);
@@ -106,12 +105,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["index"] = SimpleItoa(descriptor_->index());
       vars["classname"] = ClassName(descriptor_);
 
-      // Generate descriptor() and descriptorForType().
       printer->Print(vars,
         "+ (PBServiceDescriptor*) descriptor {\n"
         "  return [[$file$ descriptor].services objectAtIndex:$index$];\n"
         "}\n"
-        "- (PBServiceDescriptor*) descriptorForType {\n"
+        "- (PBServiceDescriptor*) descriptor {\n"
         "  return [$classname$ descriptor];\n"
         "}\n");
     }
@@ -145,7 +143,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "            request:(id<PBMessage>) request\n"
       "             target:(id) target\n"
       "           selector:(SEL) selector {\n"
-      "  if (method.service != self.descriptorForType) {\n"
+      "  if (method.service != self.descriptor) {\n"
       "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"Service.callMethod given method descriptor for wrong service type.\" userInfo:nil];\n"
       "  }\n"
       "  switch(method.index) {\n");
@@ -190,7 +188,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     io::Printer* printer) {
       printer->Print(
         "- (id<PBMessage>) get$request_or_response$Prototype:(PBMethodDescriptor*) method {\n"
-        "  if (method.service != self.descriptorForType) {\n"
+        "  if (method.service != self.descriptor) {\n"
         "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"Service.callMethod given method descriptor for wrong service type.\" userInfo:nil];\n"
         "  }\n"
         "  switch(method.index) {\n",

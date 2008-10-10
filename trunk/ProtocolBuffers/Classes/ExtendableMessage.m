@@ -41,7 +41,7 @@
 
 
 - (void) verifyExtensionContainingType:(PBGeneratedExtension*) extension {
-    if (extension.descriptor.containingType != [self descriptorForType]) {
+    if (extension.descriptor.containingType != [self descriptor]) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 }
@@ -107,7 +107,7 @@
 
 
 - (void) verifyContainingType:(PBFieldDescriptor*) field {
-    if (field.containingType != [self descriptorForType]) {
+    if (field.containingType != [self descriptor]) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"PBFieldDescriptor does not match message type." userInfo:nil];
     }
 }

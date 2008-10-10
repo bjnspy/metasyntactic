@@ -59,7 +59,7 @@
 
 
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
-    if ([other descriptorForType] !=
+    if ([other descriptor] !=
         self.internalGetFieldAccessorTable.descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
@@ -89,7 +89,7 @@
 }
 
 
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
     return self.internalGetFieldAccessorTable.descriptor;
 }
 

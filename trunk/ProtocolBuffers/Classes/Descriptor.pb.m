@@ -449,10 +449,10 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 + (PBFileDescriptorSet*) defaultInstance {
   return defaultPBFileDescriptorSetInstance;
 }
-- (PBFileDescriptorSet*) defaultInstanceForType {
+- (PBFileDescriptorSet*) defaultInstance {
   return defaultPBFileDescriptorSetInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFileDescriptorSet descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -540,10 +540,10 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 - (PBFileDescriptorSet_Builder*) clone {
   return [PBFileDescriptorSet_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFileDescriptorSet descriptor];
 }
-- (PBFileDescriptorSet*) defaultInstanceForType {
+- (PBFileDescriptorSet*) defaultInstance {
   return [PBFileDescriptorSet defaultInstance];
 }
 - (PBFileDescriptorSet*) build {
@@ -692,10 +692,10 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 + (PBFileDescriptorProto*) defaultInstance {
   return defaultPBFileDescriptorProtoInstance;
 }
-- (PBFileDescriptorProto*) defaultInstanceForType {
+- (PBFileDescriptorProto*) defaultInstance {
   return defaultPBFileDescriptorProtoInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFileDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -853,10 +853,10 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (PBFileDescriptorProto_Builder*) clone {
   return [PBFileDescriptorProto_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFileDescriptorProto descriptor];
 }
-- (PBFileDescriptorProto*) defaultInstanceForType {
+- (PBFileDescriptorProto*) defaultInstance {
   return [PBFileDescriptorProto defaultInstance];
 }
 - (PBFileDescriptorProto*) build {
@@ -1248,10 +1248,10 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 + (PBDescriptorProto*) defaultInstance {
   return defaultPBDescriptorProtoInstance;
 }
-- (PBDescriptorProto*) defaultInstanceForType {
+- (PBDescriptorProto*) defaultInstance {
   return defaultPBDescriptorProtoInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -1411,10 +1411,10 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 + (PBDescriptorProto_ExtensionRange*) defaultInstance {
   return defaultPBDescriptorProto_ExtensionRangeInstance;
 }
-- (PBDescriptorProto_ExtensionRange*) defaultInstanceForType {
+- (PBDescriptorProto_ExtensionRange*) defaultInstance {
   return defaultPBDescriptorProto_ExtensionRangeInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBDescriptorProto_ExtensionRange descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -1501,10 +1501,10 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBDescriptorProto_ExtensionRange_Builder*) clone {
   return [PBDescriptorProto_ExtensionRange_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBDescriptorProto_ExtensionRange descriptor];
 }
-- (PBDescriptorProto_ExtensionRange*) defaultInstanceForType {
+- (PBDescriptorProto_ExtensionRange*) defaultInstance {
   return [PBDescriptorProto_ExtensionRange defaultInstance];
 }
 - (PBDescriptorProto_ExtensionRange*) build {
@@ -1629,10 +1629,10 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBDescriptorProto_Builder*) clone {
   return [PBDescriptorProto_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBDescriptorProto descriptor];
 }
-- (PBDescriptorProto*) defaultInstanceForType {
+- (PBDescriptorProto*) defaultInstance {
   return [PBDescriptorProto defaultInstance];
 }
 - (PBDescriptorProto*) build {
@@ -2030,10 +2030,10 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
 + (PBFieldDescriptorProto*) defaultInstance {
   return defaultPBFieldDescriptorProtoInstance;
 }
-- (PBFieldDescriptorProto*) defaultInstanceForType {
+- (PBFieldDescriptorProto*) defaultInstance {
   return defaultPBFieldDescriptorProtoInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFieldDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -2231,7 +2231,7 @@ static PBFieldDescriptorProto_Type* PBFieldDescriptorProto_Type_TYPE_SINT64 = ni
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBFieldDescriptorProto_Type descriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) descriptorForType {
+- (PBEnumDescriptor*) descriptor {
   return [PBFieldDescriptorProto_Type descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
@@ -2308,7 +2308,7 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBFieldDescriptorProto_Label descriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) descriptorForType {
+- (PBEnumDescriptor*) descriptor {
   return [PBFieldDescriptorProto_Label descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
@@ -2355,10 +2355,10 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 - (PBFieldDescriptorProto_Builder*) clone {
   return [PBFieldDescriptorProto_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFieldDescriptorProto descriptor];
 }
-- (PBFieldDescriptorProto*) defaultInstanceForType {
+- (PBFieldDescriptorProto*) defaultInstance {
   return [PBFieldDescriptorProto defaultInstance];
 }
 - (PBFieldDescriptorProto*) build {
@@ -2662,10 +2662,10 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 + (PBEnumDescriptorProto*) defaultInstance {
   return defaultPBEnumDescriptorProtoInstance;
 }
-- (PBEnumDescriptorProto*) defaultInstanceForType {
+- (PBEnumDescriptorProto*) defaultInstance {
   return defaultPBEnumDescriptorProtoInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBEnumDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -2765,10 +2765,10 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 - (PBEnumDescriptorProto_Builder*) clone {
   return [PBEnumDescriptorProto_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBEnumDescriptorProto descriptor];
 }
-- (PBEnumDescriptorProto*) defaultInstanceForType {
+- (PBEnumDescriptorProto*) defaultInstance {
   return [PBEnumDescriptorProto defaultInstance];
 }
 - (PBEnumDescriptorProto*) build {
@@ -2967,10 +2967,10 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 + (PBEnumValueDescriptorProto*) defaultInstance {
   return defaultPBEnumValueDescriptorProtoInstance;
 }
-- (PBEnumValueDescriptorProto*) defaultInstanceForType {
+- (PBEnumValueDescriptorProto*) defaultInstance {
   return defaultPBEnumValueDescriptorProtoInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBEnumValueDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -3063,10 +3063,10 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 - (PBEnumValueDescriptorProto_Builder*) clone {
   return [PBEnumValueDescriptorProto_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBEnumValueDescriptorProto descriptor];
 }
-- (PBEnumValueDescriptorProto*) defaultInstanceForType {
+- (PBEnumValueDescriptorProto*) defaultInstance {
   return [PBEnumValueDescriptorProto defaultInstance];
 }
 - (PBEnumValueDescriptorProto*) build {
@@ -3243,10 +3243,10 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 + (PBServiceDescriptorProto*) defaultInstance {
   return defaultPBServiceDescriptorProtoInstance;
 }
-- (PBServiceDescriptorProto*) defaultInstanceForType {
+- (PBServiceDescriptorProto*) defaultInstance {
   return defaultPBServiceDescriptorProtoInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBServiceDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -3346,10 +3346,10 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 - (PBServiceDescriptorProto_Builder*) clone {
   return [PBServiceDescriptorProto_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBServiceDescriptorProto descriptor];
 }
-- (PBServiceDescriptorProto*) defaultInstanceForType {
+- (PBServiceDescriptorProto*) defaultInstance {
   return [PBServiceDescriptorProto defaultInstance];
 }
 - (PBServiceDescriptorProto*) build {
@@ -3555,10 +3555,10 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 + (PBMethodDescriptorProto*) defaultInstance {
   return defaultPBMethodDescriptorProtoInstance;
 }
-- (PBMethodDescriptorProto*) defaultInstanceForType {
+- (PBMethodDescriptorProto*) defaultInstance {
   return defaultPBMethodDescriptorProtoInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBMethodDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -3657,10 +3657,10 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 - (PBMethodDescriptorProto_Builder*) clone {
   return [PBMethodDescriptorProto_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBMethodDescriptorProto descriptor];
 }
-- (PBMethodDescriptorProto*) defaultInstanceForType {
+- (PBMethodDescriptorProto*) defaultInstance {
   return [PBMethodDescriptorProto defaultInstance];
 }
 - (PBMethodDescriptorProto*) build {
@@ -3886,10 +3886,10 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
 + (PBFileOptions*) defaultInstance {
   return defaultPBFileOptionsInstance;
 }
-- (PBFileOptions*) defaultInstanceForType {
+- (PBFileOptions*) defaultInstance {
   return defaultPBFileOptionsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFileOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -4011,7 +4011,7 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBFileOptions_OptimizeMode descriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) descriptorForType {
+- (PBEnumDescriptor*) descriptor {
   return [PBFileOptions_OptimizeMode descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
@@ -4057,10 +4057,10 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
 - (PBFileOptions_Builder*) clone {
   return [PBFileOptions_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFileOptions descriptor];
 }
-- (PBFileOptions*) defaultInstanceForType {
+- (PBFileOptions*) defaultInstance {
   return [PBFileOptions defaultInstance];
 }
 - (PBFileOptions*) build {
@@ -4284,10 +4284,10 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 + (PBMessageOptions*) defaultInstance {
   return defaultPBMessageOptionsInstance;
 }
-- (PBMessageOptions*) defaultInstanceForType {
+- (PBMessageOptions*) defaultInstance {
   return defaultPBMessageOptionsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBMessageOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -4368,10 +4368,10 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 - (PBMessageOptions_Builder*) clone {
   return [PBMessageOptions_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBMessageOptions descriptor];
 }
-- (PBMessageOptions*) defaultInstanceForType {
+- (PBMessageOptions*) defaultInstance {
   return [PBMessageOptions defaultInstance];
 }
 - (PBMessageOptions*) build {
@@ -4481,10 +4481,10 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 + (PBFieldOptions*) defaultInstance {
   return defaultPBFieldOptionsInstance;
 }
-- (PBFieldOptions*) defaultInstanceForType {
+- (PBFieldOptions*) defaultInstance {
   return defaultPBFieldOptionsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFieldOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -4582,7 +4582,7 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[PBFieldOptions_CType descriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) descriptorForType {
+- (PBEnumDescriptor*) descriptor {
   return [PBFieldOptions_CType descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
@@ -4628,10 +4628,10 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
 - (PBFieldOptions_Builder*) clone {
   return [PBFieldOptions_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBFieldOptions descriptor];
 }
-- (PBFieldOptions*) defaultInstanceForType {
+- (PBFieldOptions*) defaultInstance {
   return [PBFieldOptions defaultInstance];
 }
 - (PBFieldOptions*) build {
@@ -4756,10 +4756,10 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 + (PBEnumOptions*) defaultInstance {
   return defaultPBEnumOptionsInstance;
 }
-- (PBEnumOptions*) defaultInstanceForType {
+- (PBEnumOptions*) defaultInstance {
   return defaultPBEnumOptionsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBEnumOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -4834,10 +4834,10 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 - (PBEnumOptions_Builder*) clone {
   return [PBEnumOptions_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBEnumOptions descriptor];
 }
-- (PBEnumOptions*) defaultInstanceForType {
+- (PBEnumOptions*) defaultInstance {
   return [PBEnumOptions defaultInstance];
 }
 - (PBEnumOptions*) build {
@@ -4910,10 +4910,10 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 + (PBEnumValueOptions*) defaultInstance {
   return defaultPBEnumValueOptionsInstance;
 }
-- (PBEnumValueOptions*) defaultInstanceForType {
+- (PBEnumValueOptions*) defaultInstance {
   return defaultPBEnumValueOptionsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBEnumValueOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -4988,10 +4988,10 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 - (PBEnumValueOptions_Builder*) clone {
   return [PBEnumValueOptions_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBEnumValueOptions descriptor];
 }
-- (PBEnumValueOptions*) defaultInstanceForType {
+- (PBEnumValueOptions*) defaultInstance {
   return [PBEnumValueOptions defaultInstance];
 }
 - (PBEnumValueOptions*) build {
@@ -5064,10 +5064,10 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 + (PBServiceOptions*) defaultInstance {
   return defaultPBServiceOptionsInstance;
 }
-- (PBServiceOptions*) defaultInstanceForType {
+- (PBServiceOptions*) defaultInstance {
   return defaultPBServiceOptionsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBServiceOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -5142,10 +5142,10 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 - (PBServiceOptions_Builder*) clone {
   return [PBServiceOptions_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBServiceOptions descriptor];
 }
-- (PBServiceOptions*) defaultInstanceForType {
+- (PBServiceOptions*) defaultInstance {
   return [PBServiceOptions defaultInstance];
 }
 - (PBServiceOptions*) build {
@@ -5218,10 +5218,10 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 + (PBMethodOptions*) defaultInstance {
   return defaultPBMethodOptionsInstance;
 }
-- (PBMethodOptions*) defaultInstanceForType {
+- (PBMethodOptions*) defaultInstance {
   return defaultPBMethodOptionsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBMethodOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -5296,10 +5296,10 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 - (PBMethodOptions_Builder*) clone {
   return [PBMethodOptions_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [PBMethodOptions descriptor];
 }
-- (PBMethodOptions*) defaultInstanceForType {
+- (PBMethodOptions*) defaultInstance {
   return [PBMethodOptions defaultInstance];
 }
 - (PBMethodOptions*) build {

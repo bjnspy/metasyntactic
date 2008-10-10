@@ -97,9 +97,9 @@
 @property (retain, readonly) ForeignMessage* msg;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestOptimizedForSize*) defaultInstance;
-- (TestOptimizedForSize*) defaultInstanceForType;
+- (TestOptimizedForSize*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 + (PBGeneratedExtension*) testExtension;
@@ -124,8 +124,8 @@
 + (TestOptimizedForSize_Builder*) builder;
 + (TestOptimizedForSize_Builder*) builderWithPrototype:(TestOptimizedForSize*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestOptimizedForSize*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestOptimizedForSize*) defaultInstance;
 
 - (TestOptimizedForSize_Builder*) clear;
 - (TestOptimizedForSize_Builder*) clone;

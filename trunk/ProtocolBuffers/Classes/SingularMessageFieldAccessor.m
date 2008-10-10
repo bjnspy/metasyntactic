@@ -62,7 +62,8 @@
 
 
 - (id) coerceType:(id) value {
-    if ([value descriptorForType] == self.field.messageType) {
+    if ([value conformsToProtocol:@protocol(PBMessage)] &&
+        [(id<PBMessage>)value descriptor] == self.field.messageType) {
         return value;
     } else {
         // The value is not the exact right message type.  However, if it

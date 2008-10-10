@@ -73,7 +73,7 @@
 
 
 - (PBDynamicMessage_Builder*) mergeFromMessage:(id<PBMessage>) other {
-    if ([other descriptorForType] != type) {
+    if ([other descriptor] != type) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage can only merge messages of the same type." userInfo:nil];
     }
 
@@ -120,12 +120,12 @@
 }
 
 
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
     return type;
 }
 
 
-- (PBDynamicMessage*) defaultInstanceForType {
+- (PBDynamicMessage*) defaultInstance {
     return [PBDynamicMessage defaultInstance:type];
 }
 

@@ -1575,7 +1575,7 @@ static ForeignEnum* ForeignEnum_FOREIGN_BAZ = nil;
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[ForeignEnum descriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) descriptorForType {
+- (PBEnumDescriptor*) descriptor {
   return [ForeignEnum descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
@@ -1639,7 +1639,7 @@ static TestEnumWithDupValue* TestEnumWithDupValue_BAZ = nil;
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[TestEnumWithDupValue descriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) descriptorForType {
+- (PBEnumDescriptor*) descriptor {
   return [TestEnumWithDupValue descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
@@ -1719,7 +1719,7 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[TestSparseEnum descriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) descriptorForType {
+- (PBEnumDescriptor*) descriptor {
   return [TestSparseEnum descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
@@ -2140,10 +2140,10 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
 + (TestAllTypes*) defaultInstance {
   return defaultTestAllTypesInstance;
 }
-- (TestAllTypes*) defaultInstanceForType {
+- (TestAllTypes*) defaultInstance {
   return defaultTestAllTypesInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllTypes descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -2809,7 +2809,7 @@ static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAZ = nil;
 - (PBEnumValueDescriptor*) valueDescriptor {
   return [[TestAllTypes_NestedEnum descriptor].values objectAtIndex:index];
 }
-- (PBEnumDescriptor*) descriptorForType {
+- (PBEnumDescriptor*) descriptor {
   return [TestAllTypes_NestedEnum descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
@@ -2857,10 +2857,10 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 + (TestAllTypes_NestedMessage*) defaultInstance {
   return defaultTestAllTypes_NestedMessageInstance;
 }
-- (TestAllTypes_NestedMessage*) defaultInstanceForType {
+- (TestAllTypes_NestedMessage*) defaultInstance {
   return defaultTestAllTypes_NestedMessageInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllTypes_NestedMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -2941,10 +2941,10 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 - (TestAllTypes_NestedMessage_Builder*) clone {
   return [TestAllTypes_NestedMessage_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllTypes_NestedMessage descriptor];
 }
-- (TestAllTypes_NestedMessage*) defaultInstanceForType {
+- (TestAllTypes_NestedMessage*) defaultInstance {
   return [TestAllTypes_NestedMessage defaultInstance];
 }
 - (TestAllTypes_NestedMessage*) build {
@@ -3047,10 +3047,10 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 + (TestAllTypes_OptionalGroup*) defaultInstance {
   return defaultTestAllTypes_OptionalGroupInstance;
 }
-- (TestAllTypes_OptionalGroup*) defaultInstanceForType {
+- (TestAllTypes_OptionalGroup*) defaultInstance {
   return defaultTestAllTypes_OptionalGroupInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllTypes_OptionalGroup descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -3131,10 +3131,10 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 - (TestAllTypes_OptionalGroup_Builder*) clone {
   return [TestAllTypes_OptionalGroup_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllTypes_OptionalGroup descriptor];
 }
-- (TestAllTypes_OptionalGroup*) defaultInstanceForType {
+- (TestAllTypes_OptionalGroup*) defaultInstance {
   return [TestAllTypes_OptionalGroup defaultInstance];
 }
 - (TestAllTypes_OptionalGroup*) build {
@@ -3237,10 +3237,10 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 + (TestAllTypes_RepeatedGroup*) defaultInstance {
   return defaultTestAllTypes_RepeatedGroupInstance;
 }
-- (TestAllTypes_RepeatedGroup*) defaultInstanceForType {
+- (TestAllTypes_RepeatedGroup*) defaultInstance {
   return defaultTestAllTypes_RepeatedGroupInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllTypes_RepeatedGroup descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -3321,10 +3321,10 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_RepeatedGroup_Builder*) clone {
   return [TestAllTypes_RepeatedGroup_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllTypes_RepeatedGroup descriptor];
 }
-- (TestAllTypes_RepeatedGroup*) defaultInstanceForType {
+- (TestAllTypes_RepeatedGroup*) defaultInstance {
   return [TestAllTypes_RepeatedGroup defaultInstance];
 }
 - (TestAllTypes_RepeatedGroup*) build {
@@ -3426,10 +3426,10 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_Builder*) clone {
   return [TestAllTypes_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllTypes descriptor];
 }
-- (TestAllTypes*) defaultInstanceForType {
+- (TestAllTypes*) defaultInstance {
   return [TestAllTypes defaultInstance];
 }
 - (TestAllTypes*) build {
@@ -5592,10 +5592,10 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 + (ForeignMessage*) defaultInstance {
   return defaultForeignMessageInstance;
 }
-- (ForeignMessage*) defaultInstanceForType {
+- (ForeignMessage*) defaultInstance {
   return defaultForeignMessageInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [ForeignMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -5676,10 +5676,10 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 - (ForeignMessage_Builder*) clone {
   return [ForeignMessage_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [ForeignMessage descriptor];
 }
-- (ForeignMessage*) defaultInstanceForType {
+- (ForeignMessage*) defaultInstance {
   return [ForeignMessage defaultInstance];
 }
 - (ForeignMessage*) build {
@@ -5775,10 +5775,10 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 + (TestAllExtensions*) defaultInstance {
   return defaultTestAllExtensionsInstance;
 }
-- (TestAllExtensions*) defaultInstanceForType {
+- (TestAllExtensions*) defaultInstance {
   return defaultTestAllExtensionsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllExtensions descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -5857,10 +5857,10 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 - (TestAllExtensions_Builder*) clone {
   return [TestAllExtensions_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestAllExtensions descriptor];
 }
-- (TestAllExtensions*) defaultInstanceForType {
+- (TestAllExtensions*) defaultInstance {
   return [TestAllExtensions defaultInstance];
 }
 - (TestAllExtensions*) build {
@@ -5940,10 +5940,10 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 + (OptionalGroup_extension*) defaultInstance {
   return defaultOptionalGroup_extensionInstance;
 }
-- (OptionalGroup_extension*) defaultInstanceForType {
+- (OptionalGroup_extension*) defaultInstance {
   return defaultOptionalGroup_extensionInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [OptionalGroup_extension descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -6024,10 +6024,10 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 - (OptionalGroup_extension_Builder*) clone {
   return [OptionalGroup_extension_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [OptionalGroup_extension descriptor];
 }
-- (OptionalGroup_extension*) defaultInstanceForType {
+- (OptionalGroup_extension*) defaultInstance {
   return [OptionalGroup_extension defaultInstance];
 }
 - (OptionalGroup_extension*) build {
@@ -6130,10 +6130,10 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 + (RepeatedGroup_extension*) defaultInstance {
   return defaultRepeatedGroup_extensionInstance;
 }
-- (RepeatedGroup_extension*) defaultInstanceForType {
+- (RepeatedGroup_extension*) defaultInstance {
   return defaultRepeatedGroup_extensionInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [RepeatedGroup_extension descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -6214,10 +6214,10 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 - (RepeatedGroup_extension_Builder*) clone {
   return [RepeatedGroup_extension_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [RepeatedGroup_extension descriptor];
 }
-- (RepeatedGroup_extension*) defaultInstanceForType {
+- (RepeatedGroup_extension*) defaultInstance {
   return [RepeatedGroup_extension defaultInstance];
 }
 - (RepeatedGroup_extension*) build {
@@ -6556,10 +6556,10 @@ static TestRequired* defaultTestRequiredInstance = nil;
 + (TestRequired*) defaultInstance {
   return defaultTestRequiredInstance;
 }
-- (TestRequired*) defaultInstanceForType {
+- (TestRequired*) defaultInstance {
   return defaultTestRequiredInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestRequired descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -6835,10 +6835,10 @@ static TestRequired* defaultTestRequiredInstance = nil;
 - (TestRequired_Builder*) clone {
   return [TestRequired_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestRequired descriptor];
 }
-- (TestRequired*) defaultInstanceForType {
+- (TestRequired*) defaultInstance {
   return [TestRequired defaultInstance];
 }
 - (TestRequired*) build {
@@ -7686,10 +7686,10 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 + (TestRequiredForeign*) defaultInstance {
   return defaultTestRequiredForeignInstance;
 }
-- (TestRequiredForeign*) defaultInstanceForType {
+- (TestRequiredForeign*) defaultInstance {
   return defaultTestRequiredForeignInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestRequiredForeign descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -7795,10 +7795,10 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 - (TestRequiredForeign_Builder*) clone {
   return [TestRequiredForeign_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestRequiredForeign descriptor];
 }
-- (TestRequiredForeign*) defaultInstanceForType {
+- (TestRequiredForeign*) defaultInstance {
   return [TestRequiredForeign defaultInstance];
 }
 - (TestRequiredForeign*) build {
@@ -7983,10 +7983,10 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 + (TestForeignNested*) defaultInstance {
   return defaultTestForeignNestedInstance;
 }
-- (TestForeignNested*) defaultInstanceForType {
+- (TestForeignNested*) defaultInstance {
   return defaultTestForeignNestedInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestForeignNested descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -8067,10 +8067,10 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 - (TestForeignNested_Builder*) clone {
   return [TestForeignNested_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestForeignNested descriptor];
 }
-- (TestForeignNested*) defaultInstanceForType {
+- (TestForeignNested*) defaultInstance {
   return [TestForeignNested defaultInstance];
 }
 - (TestForeignNested*) build {
@@ -8185,10 +8185,10 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 + (TestEmptyMessage*) defaultInstance {
   return defaultTestEmptyMessageInstance;
 }
-- (TestEmptyMessage*) defaultInstanceForType {
+- (TestEmptyMessage*) defaultInstance {
   return defaultTestEmptyMessageInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestEmptyMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -8263,10 +8263,10 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 - (TestEmptyMessage_Builder*) clone {
   return [TestEmptyMessage_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestEmptyMessage descriptor];
 }
-- (TestEmptyMessage*) defaultInstanceForType {
+- (TestEmptyMessage*) defaultInstance {
   return [TestEmptyMessage defaultInstance];
 }
 - (TestEmptyMessage*) build {
@@ -8339,10 +8339,10 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 + (TestEmptyMessageWithExtensions*) defaultInstance {
   return defaultTestEmptyMessageWithExtensionsInstance;
 }
-- (TestEmptyMessageWithExtensions*) defaultInstanceForType {
+- (TestEmptyMessageWithExtensions*) defaultInstance {
   return defaultTestEmptyMessageWithExtensionsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestEmptyMessageWithExtensions descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -8421,10 +8421,10 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 - (TestEmptyMessageWithExtensions_Builder*) clone {
   return [TestEmptyMessageWithExtensions_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestEmptyMessageWithExtensions descriptor];
 }
-- (TestEmptyMessageWithExtensions*) defaultInstanceForType {
+- (TestEmptyMessageWithExtensions*) defaultInstance {
   return [TestEmptyMessageWithExtensions defaultInstance];
 }
 - (TestEmptyMessageWithExtensions*) build {
@@ -8511,10 +8511,10 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 + (TestReallyLargeTagNumber*) defaultInstance {
   return defaultTestReallyLargeTagNumberInstance;
 }
-- (TestReallyLargeTagNumber*) defaultInstanceForType {
+- (TestReallyLargeTagNumber*) defaultInstance {
   return defaultTestReallyLargeTagNumberInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestReallyLargeTagNumber descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -8601,10 +8601,10 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 - (TestReallyLargeTagNumber_Builder*) clone {
   return [TestReallyLargeTagNumber_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestReallyLargeTagNumber descriptor];
 }
-- (TestReallyLargeTagNumber*) defaultInstanceForType {
+- (TestReallyLargeTagNumber*) defaultInstance {
   return [TestReallyLargeTagNumber defaultInstance];
 }
 - (TestReallyLargeTagNumber*) build {
@@ -8736,10 +8736,10 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 + (TestRecursiveMessage*) defaultInstance {
   return defaultTestRecursiveMessageInstance;
 }
-- (TestRecursiveMessage*) defaultInstanceForType {
+- (TestRecursiveMessage*) defaultInstance {
   return defaultTestRecursiveMessageInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestRecursiveMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -8826,10 +8826,10 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 - (TestRecursiveMessage_Builder*) clone {
   return [TestRecursiveMessage_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestRecursiveMessage descriptor];
 }
-- (TestRecursiveMessage*) defaultInstanceForType {
+- (TestRecursiveMessage*) defaultInstance {
   return [TestRecursiveMessage defaultInstance];
 }
 - (TestRecursiveMessage*) build {
@@ -8973,10 +8973,10 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 + (TestMutualRecursionA*) defaultInstance {
   return defaultTestMutualRecursionAInstance;
 }
-- (TestMutualRecursionA*) defaultInstanceForType {
+- (TestMutualRecursionA*) defaultInstance {
   return defaultTestMutualRecursionAInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMutualRecursionA descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -9057,10 +9057,10 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 - (TestMutualRecursionA_Builder*) clone {
   return [TestMutualRecursionA_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMutualRecursionA descriptor];
 }
-- (TestMutualRecursionA*) defaultInstanceForType {
+- (TestMutualRecursionA*) defaultInstance {
   return [TestMutualRecursionA defaultInstance];
 }
 - (TestMutualRecursionA*) build {
@@ -9188,10 +9188,10 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 + (TestMutualRecursionB*) defaultInstance {
   return defaultTestMutualRecursionBInstance;
 }
-- (TestMutualRecursionB*) defaultInstanceForType {
+- (TestMutualRecursionB*) defaultInstance {
   return defaultTestMutualRecursionBInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMutualRecursionB descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -9278,10 +9278,10 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 - (TestMutualRecursionB_Builder*) clone {
   return [TestMutualRecursionB_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMutualRecursionB descriptor];
 }
-- (TestMutualRecursionB*) defaultInstanceForType {
+- (TestMutualRecursionB*) defaultInstance {
   return [TestMutualRecursionB defaultInstance];
 }
 - (TestMutualRecursionB*) build {
@@ -9438,10 +9438,10 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
 + (TestDupFieldNumber*) defaultInstance {
   return defaultTestDupFieldNumberInstance;
 }
-- (TestDupFieldNumber*) defaultInstanceForType {
+- (TestDupFieldNumber*) defaultInstance {
   return defaultTestDupFieldNumberInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestDupFieldNumber descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -9535,10 +9535,10 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 + (TestDupFieldNumber_Foo*) defaultInstance {
   return defaultTestDupFieldNumber_FooInstance;
 }
-- (TestDupFieldNumber_Foo*) defaultInstanceForType {
+- (TestDupFieldNumber_Foo*) defaultInstance {
   return defaultTestDupFieldNumber_FooInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestDupFieldNumber_Foo descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -9619,10 +9619,10 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 - (TestDupFieldNumber_Foo_Builder*) clone {
   return [TestDupFieldNumber_Foo_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestDupFieldNumber_Foo descriptor];
 }
-- (TestDupFieldNumber_Foo*) defaultInstanceForType {
+- (TestDupFieldNumber_Foo*) defaultInstance {
   return [TestDupFieldNumber_Foo defaultInstance];
 }
 - (TestDupFieldNumber_Foo*) build {
@@ -9725,10 +9725,10 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 + (TestDupFieldNumber_Bar*) defaultInstance {
   return defaultTestDupFieldNumber_BarInstance;
 }
-- (TestDupFieldNumber_Bar*) defaultInstanceForType {
+- (TestDupFieldNumber_Bar*) defaultInstance {
   return defaultTestDupFieldNumber_BarInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestDupFieldNumber_Bar descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -9809,10 +9809,10 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 - (TestDupFieldNumber_Bar_Builder*) clone {
   return [TestDupFieldNumber_Bar_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestDupFieldNumber_Bar descriptor];
 }
-- (TestDupFieldNumber_Bar*) defaultInstanceForType {
+- (TestDupFieldNumber_Bar*) defaultInstance {
   return [TestDupFieldNumber_Bar defaultInstance];
 }
 - (TestDupFieldNumber_Bar*) build {
@@ -9914,10 +9914,10 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 - (TestDupFieldNumber_Builder*) clone {
   return [TestDupFieldNumber_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestDupFieldNumber descriptor];
 }
-- (TestDupFieldNumber*) defaultInstanceForType {
+- (TestDupFieldNumber*) defaultInstance {
   return [TestDupFieldNumber defaultInstance];
 }
 - (TestDupFieldNumber*) build {
@@ -10103,10 +10103,10 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
 + (TestNestedMessageHasBits*) defaultInstance {
   return defaultTestNestedMessageHasBitsInstance;
 }
-- (TestNestedMessageHasBits*) defaultInstanceForType {
+- (TestNestedMessageHasBits*) defaultInstance {
   return defaultTestNestedMessageHasBitsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestNestedMessageHasBits descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -10187,10 +10187,10 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 + (TestNestedMessageHasBits_NestedMessage*) defaultInstance {
   return defaultTestNestedMessageHasBits_NestedMessageInstance;
 }
-- (TestNestedMessageHasBits_NestedMessage*) defaultInstanceForType {
+- (TestNestedMessageHasBits_NestedMessage*) defaultInstance {
   return defaultTestNestedMessageHasBits_NestedMessageInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestNestedMessageHasBits_NestedMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -10291,10 +10291,10 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clone {
   return [TestNestedMessageHasBits_NestedMessage_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestNestedMessageHasBits_NestedMessage descriptor];
 }
-- (TestNestedMessageHasBits_NestedMessage*) defaultInstanceForType {
+- (TestNestedMessageHasBits_NestedMessage*) defaultInstance {
   return [TestNestedMessageHasBits_NestedMessage defaultInstance];
 }
 - (TestNestedMessageHasBits_NestedMessage*) build {
@@ -10453,10 +10453,10 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 - (TestNestedMessageHasBits_Builder*) clone {
   return [TestNestedMessageHasBits_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestNestedMessageHasBits descriptor];
 }
-- (TestNestedMessageHasBits*) defaultInstanceForType {
+- (TestNestedMessageHasBits*) defaultInstance {
   return [TestNestedMessageHasBits defaultInstance];
 }
 - (TestNestedMessageHasBits*) build {
@@ -10630,10 +10630,10 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 + (TestCamelCaseFieldNames*) defaultInstance {
   return defaultTestCamelCaseFieldNamesInstance;
 }
-- (TestCamelCaseFieldNames*) defaultInstanceForType {
+- (TestCamelCaseFieldNames*) defaultInstance {
   return defaultTestCamelCaseFieldNamesInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestCamelCaseFieldNames descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -10822,10 +10822,10 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (TestCamelCaseFieldNames_Builder*) clone {
   return [TestCamelCaseFieldNames_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestCamelCaseFieldNames descriptor];
 }
-- (TestCamelCaseFieldNames*) defaultInstanceForType {
+- (TestCamelCaseFieldNames*) defaultInstance {
   return [TestCamelCaseFieldNames defaultInstance];
 }
 - (TestCamelCaseFieldNames*) build {
@@ -11323,10 +11323,10 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 + (TestFieldOrderings*) defaultInstance {
   return defaultTestFieldOrderingsInstance;
 }
-- (TestFieldOrderings*) defaultInstanceForType {
+- (TestFieldOrderings*) defaultInstance {
   return defaultTestFieldOrderingsInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestFieldOrderings descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -11424,10 +11424,10 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 - (TestFieldOrderings_Builder*) clone {
   return [TestFieldOrderings_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestFieldOrderings descriptor];
 }
-- (TestFieldOrderings*) defaultInstanceForType {
+- (TestFieldOrderings*) defaultInstance {
   return [TestFieldOrderings defaultInstance];
 }
 - (TestFieldOrderings*) build {
@@ -11611,10 +11611,10 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 + (TestExtremeDefaultValues*) defaultInstance {
   return defaultTestExtremeDefaultValuesInstance;
 }
-- (TestExtremeDefaultValues*) defaultInstanceForType {
+- (TestExtremeDefaultValues*) defaultInstance {
   return defaultTestExtremeDefaultValuesInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestExtremeDefaultValues descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -11725,10 +11725,10 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 - (TestExtremeDefaultValues_Builder*) clone {
   return [TestExtremeDefaultValues_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestExtremeDefaultValues descriptor];
 }
-- (TestExtremeDefaultValues*) defaultInstanceForType {
+- (TestExtremeDefaultValues*) defaultInstance {
   return [TestExtremeDefaultValues defaultInstance];
 }
 - (TestExtremeDefaultValues*) build {
@@ -11939,10 +11939,10 @@ static FooRequest* defaultFooRequestInstance = nil;
 + (FooRequest*) defaultInstance {
   return defaultFooRequestInstance;
 }
-- (FooRequest*) defaultInstanceForType {
+- (FooRequest*) defaultInstance {
   return defaultFooRequestInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [FooRequest descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -12017,10 +12017,10 @@ static FooRequest* defaultFooRequestInstance = nil;
 - (FooRequest_Builder*) clone {
   return [FooRequest_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [FooRequest descriptor];
 }
-- (FooRequest*) defaultInstanceForType {
+- (FooRequest*) defaultInstance {
   return [FooRequest defaultInstance];
 }
 - (FooRequest*) build {
@@ -12093,10 +12093,10 @@ static FooResponse* defaultFooResponseInstance = nil;
 + (FooResponse*) defaultInstance {
   return defaultFooResponseInstance;
 }
-- (FooResponse*) defaultInstanceForType {
+- (FooResponse*) defaultInstance {
   return defaultFooResponseInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [FooResponse descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -12171,10 +12171,10 @@ static FooResponse* defaultFooResponseInstance = nil;
 - (FooResponse_Builder*) clone {
   return [FooResponse_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [FooResponse descriptor];
 }
-- (FooResponse*) defaultInstanceForType {
+- (FooResponse*) defaultInstance {
   return [FooResponse defaultInstance];
 }
 - (FooResponse*) build {
@@ -12247,10 +12247,10 @@ static BarRequest* defaultBarRequestInstance = nil;
 + (BarRequest*) defaultInstance {
   return defaultBarRequestInstance;
 }
-- (BarRequest*) defaultInstanceForType {
+- (BarRequest*) defaultInstance {
   return defaultBarRequestInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [BarRequest descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -12325,10 +12325,10 @@ static BarRequest* defaultBarRequestInstance = nil;
 - (BarRequest_Builder*) clone {
   return [BarRequest_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [BarRequest descriptor];
 }
-- (BarRequest*) defaultInstanceForType {
+- (BarRequest*) defaultInstance {
   return [BarRequest defaultInstance];
 }
 - (BarRequest*) build {
@@ -12401,10 +12401,10 @@ static BarResponse* defaultBarResponseInstance = nil;
 + (BarResponse*) defaultInstance {
   return defaultBarResponseInstance;
 }
-- (BarResponse*) defaultInstanceForType {
+- (BarResponse*) defaultInstance {
   return defaultBarResponseInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [BarResponse descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -12479,10 +12479,10 @@ static BarResponse* defaultBarResponseInstance = nil;
 - (BarResponse_Builder*) clone {
   return [BarResponse_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [BarResponse descriptor];
 }
-- (BarResponse*) defaultInstanceForType {
+- (BarResponse*) defaultInstance {
   return [BarResponse defaultInstance];
 }
 - (BarResponse*) build {
@@ -12549,7 +12549,7 @@ static BarResponse* defaultBarResponseInstance = nil;
 + (PBServiceDescriptor*) descriptor {
   return [[UnittestProtoRoot descriptor].services objectAtIndex:0];
 }
-- (PBServiceDescriptor*) descriptorForType {
+- (PBServiceDescriptor*) descriptor {
   return [TestService descriptor];
 }
 - (void) callMethod:(PBMethodDescriptor*) method
@@ -12557,7 +12557,7 @@ static BarResponse* defaultBarResponseInstance = nil;
             request:(id<PBMessage>) request
              target:(id) target
            selector:(SEL) selector {
-  if (method.service != self.descriptorForType) {
+  if (method.service != self.descriptor) {
     @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Service.callMethod given method descriptor for wrong service type." userInfo:nil];
   }
   switch(method.index) {
@@ -12572,7 +12572,7 @@ static BarResponse* defaultBarResponseInstance = nil;
   }
 }
 - (id<PBMessage>) getRequestPrototype:(PBMethodDescriptor*) method {
-  if (method.service != self.descriptorForType) {
+  if (method.service != self.descriptor) {
     @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Service.callMethod given method descriptor for wrong service type." userInfo:nil];
   }
   switch(method.index) {
@@ -12585,7 +12585,7 @@ static BarResponse* defaultBarResponseInstance = nil;
   }
 }
 - (id<PBMessage>) getResponsePrototype:(PBMethodDescriptor*) method {
-  if (method.service != self.descriptorForType) {
+  if (method.service != self.descriptor) {
     @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Service.callMethod given method descriptor for wrong service type." userInfo:nil];
   }
   switch(method.index) {

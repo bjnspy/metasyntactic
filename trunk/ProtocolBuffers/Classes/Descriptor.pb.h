@@ -56,9 +56,9 @@
 - (PBFileDescriptorProto*) fileAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBFileDescriptorSet*) defaultInstance;
-- (PBFileDescriptorSet*) defaultInstanceForType;
+- (PBFileDescriptorSet*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -82,8 +82,8 @@
 + (PBFileDescriptorSet_Builder*) builder;
 + (PBFileDescriptorSet_Builder*) builderWithPrototype:(PBFileDescriptorSet*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBFileDescriptorSet*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBFileDescriptorSet*) defaultInstance;
 
 - (PBFileDescriptorSet_Builder*) clear;
 - (PBFileDescriptorSet_Builder*) clone;
@@ -135,9 +135,9 @@
 - (PBFieldDescriptorProto*) extensionAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBFileDescriptorProto*) defaultInstance;
-- (PBFileDescriptorProto*) defaultInstanceForType;
+- (PBFileDescriptorProto*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -161,8 +161,8 @@
 + (PBFileDescriptorProto_Builder*) builder;
 + (PBFileDescriptorProto_Builder*) builderWithPrototype:(PBFileDescriptorProto*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBFileDescriptorProto*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBFileDescriptorProto*) defaultInstance;
 
 - (PBFileDescriptorProto_Builder*) clear;
 - (PBFileDescriptorProto_Builder*) clone;
@@ -255,9 +255,9 @@
 - (PBDescriptorProto_ExtensionRange*) extensionRangeAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBDescriptorProto*) defaultInstance;
-- (PBDescriptorProto*) defaultInstanceForType;
+- (PBDescriptorProto*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -284,9 +284,9 @@
 @property (readonly) int32_t end;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBDescriptorProto_ExtensionRange*) defaultInstance;
-- (PBDescriptorProto_ExtensionRange*) defaultInstanceForType;
+- (PBDescriptorProto_ExtensionRange*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -310,8 +310,8 @@
 + (PBDescriptorProto_ExtensionRange_Builder*) builder;
 + (PBDescriptorProto_ExtensionRange_Builder*) builderWithPrototype:(PBDescriptorProto_ExtensionRange*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBDescriptorProto_ExtensionRange*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBDescriptorProto_ExtensionRange*) defaultInstance;
 
 - (PBDescriptorProto_ExtensionRange_Builder*) clear;
 - (PBDescriptorProto_ExtensionRange_Builder*) clone;
@@ -344,8 +344,8 @@
 + (PBDescriptorProto_Builder*) builder;
 + (PBDescriptorProto_Builder*) builderWithPrototype:(PBDescriptorProto*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBDescriptorProto*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBDescriptorProto*) defaultInstance;
 
 - (PBDescriptorProto_Builder*) clear;
 - (PBDescriptorProto_Builder*) clone;
@@ -442,9 +442,9 @@
 @property (retain, readonly) PBFieldOptions* options;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBFieldDescriptorProto*) defaultInstance;
-- (PBFieldDescriptorProto*) defaultInstanceForType;
+- (PBFieldDescriptorProto*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -489,7 +489,7 @@
 - (int32_t) number;
 + (PBFieldDescriptorProto_Type*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptorForType;
+- (PBEnumDescriptor*) descriptor;
 + (PBEnumDescriptor*) descriptor;
 
 + (PBFieldDescriptorProto_Type*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -510,7 +510,7 @@
 - (int32_t) number;
 + (PBFieldDescriptorProto_Label*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptorForType;
+- (PBEnumDescriptor*) descriptor;
 + (PBEnumDescriptor*) descriptor;
 
 + (PBFieldDescriptorProto_Label*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -525,8 +525,8 @@
 + (PBFieldDescriptorProto_Builder*) builder;
 + (PBFieldDescriptorProto_Builder*) builderWithPrototype:(PBFieldDescriptorProto*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBFieldDescriptorProto*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBFieldDescriptorProto*) defaultInstance;
 
 - (PBFieldDescriptorProto_Builder*) clear;
 - (PBFieldDescriptorProto_Builder*) clone;
@@ -597,9 +597,9 @@
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBEnumDescriptorProto*) defaultInstance;
-- (PBEnumDescriptorProto*) defaultInstanceForType;
+- (PBEnumDescriptorProto*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -623,8 +623,8 @@
 + (PBEnumDescriptorProto_Builder*) builder;
 + (PBEnumDescriptorProto_Builder*) builderWithPrototype:(PBEnumDescriptorProto*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBEnumDescriptorProto*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBEnumDescriptorProto*) defaultInstance;
 
 - (PBEnumDescriptorProto_Builder*) clear;
 - (PBEnumDescriptorProto_Builder*) clone;
@@ -673,9 +673,9 @@
 @property (retain, readonly) PBEnumValueOptions* options;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBEnumValueDescriptorProto*) defaultInstance;
-- (PBEnumValueDescriptorProto*) defaultInstanceForType;
+- (PBEnumValueDescriptorProto*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -699,8 +699,8 @@
 + (PBEnumValueDescriptorProto_Builder*) builder;
 + (PBEnumValueDescriptorProto_Builder*) builderWithPrototype:(PBEnumValueDescriptorProto*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBEnumValueDescriptorProto*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBEnumValueDescriptorProto*) defaultInstance;
 
 - (PBEnumValueDescriptorProto_Builder*) clear;
 - (PBEnumValueDescriptorProto_Builder*) clone;
@@ -746,9 +746,9 @@
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBServiceDescriptorProto*) defaultInstance;
-- (PBServiceDescriptorProto*) defaultInstanceForType;
+- (PBServiceDescriptorProto*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -772,8 +772,8 @@
 + (PBServiceDescriptorProto_Builder*) builder;
 + (PBServiceDescriptorProto_Builder*) builderWithPrototype:(PBServiceDescriptorProto*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBServiceDescriptorProto*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBServiceDescriptorProto*) defaultInstance;
 
 - (PBServiceDescriptorProto_Builder*) clear;
 - (PBServiceDescriptorProto_Builder*) clone;
@@ -826,9 +826,9 @@
 @property (retain, readonly) PBMethodOptions* options;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBMethodDescriptorProto*) defaultInstance;
-- (PBMethodDescriptorProto*) defaultInstanceForType;
+- (PBMethodDescriptorProto*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -852,8 +852,8 @@
 + (PBMethodDescriptorProto_Builder*) builder;
 + (PBMethodDescriptorProto_Builder*) builderWithPrototype:(PBMethodDescriptorProto*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBMethodDescriptorProto*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBMethodDescriptorProto*) defaultInstance;
 
 - (PBMethodDescriptorProto_Builder*) clear;
 - (PBMethodDescriptorProto_Builder*) clone;
@@ -917,9 +917,9 @@
 @property (retain, readonly) NSString* objectivecClassPrefix;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBFileOptions*) defaultInstance;
-- (PBFileOptions*) defaultInstanceForType;
+- (PBFileOptions*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -948,7 +948,7 @@
 - (int32_t) number;
 + (PBFileOptions_OptimizeMode*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptorForType;
+- (PBEnumDescriptor*) descriptor;
 + (PBEnumDescriptor*) descriptor;
 
 + (PBFileOptions_OptimizeMode*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -963,8 +963,8 @@
 + (PBFileOptions_Builder*) builder;
 + (PBFileOptions_Builder*) builderWithPrototype:(PBFileOptions*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBFileOptions*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBFileOptions*) defaultInstance;
 
 - (PBFileOptions_Builder*) clear;
 - (PBFileOptions_Builder*) clone;
@@ -1016,9 +1016,9 @@
 @property (readonly) BOOL messageSetWireFormat;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBMessageOptions*) defaultInstance;
-- (PBMessageOptions*) defaultInstanceForType;
+- (PBMessageOptions*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1042,8 +1042,8 @@
 + (PBMessageOptions_Builder*) builder;
 + (PBMessageOptions_Builder*) builderWithPrototype:(PBMessageOptions*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBMessageOptions*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBMessageOptions*) defaultInstance;
 
 - (PBMessageOptions_Builder*) clear;
 - (PBMessageOptions_Builder*) clone;
@@ -1074,9 +1074,9 @@
 @property (retain, readonly) NSString* experimentalMapKey;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBFieldOptions*) defaultInstance;
-- (PBFieldOptions*) defaultInstanceForType;
+- (PBFieldOptions*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1105,7 +1105,7 @@
 - (int32_t) number;
 + (PBFieldOptions_CType*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptorForType;
+- (PBEnumDescriptor*) descriptor;
 + (PBEnumDescriptor*) descriptor;
 
 + (PBFieldOptions_CType*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -1120,8 +1120,8 @@
 + (PBFieldOptions_Builder*) builder;
 + (PBFieldOptions_Builder*) builderWithPrototype:(PBFieldOptions*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBFieldOptions*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBFieldOptions*) defaultInstance;
 
 - (PBFieldOptions_Builder*) clear;
 - (PBFieldOptions_Builder*) clone;
@@ -1149,9 +1149,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBEnumOptions*) defaultInstance;
-- (PBEnumOptions*) defaultInstanceForType;
+- (PBEnumOptions*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1175,8 +1175,8 @@
 + (PBEnumOptions_Builder*) builder;
 + (PBEnumOptions_Builder*) builderWithPrototype:(PBEnumOptions*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBEnumOptions*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBEnumOptions*) defaultInstance;
 
 - (PBEnumOptions_Builder*) clear;
 - (PBEnumOptions_Builder*) clone;
@@ -1194,9 +1194,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBEnumValueOptions*) defaultInstance;
-- (PBEnumValueOptions*) defaultInstanceForType;
+- (PBEnumValueOptions*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1220,8 +1220,8 @@
 + (PBEnumValueOptions_Builder*) builder;
 + (PBEnumValueOptions_Builder*) builderWithPrototype:(PBEnumValueOptions*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBEnumValueOptions*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBEnumValueOptions*) defaultInstance;
 
 - (PBEnumValueOptions_Builder*) clear;
 - (PBEnumValueOptions_Builder*) clone;
@@ -1239,9 +1239,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBServiceOptions*) defaultInstance;
-- (PBServiceOptions*) defaultInstanceForType;
+- (PBServiceOptions*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1265,8 +1265,8 @@
 + (PBServiceOptions_Builder*) builder;
 + (PBServiceOptions_Builder*) builderWithPrototype:(PBServiceOptions*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBServiceOptions*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBServiceOptions*) defaultInstance;
 
 - (PBServiceOptions_Builder*) clear;
 - (PBServiceOptions_Builder*) clone;
@@ -1284,9 +1284,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (PBMethodOptions*) defaultInstance;
-- (PBMethodOptions*) defaultInstanceForType;
+- (PBMethodOptions*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1310,8 +1310,8 @@
 + (PBMethodOptions_Builder*) builder;
 + (PBMethodOptions_Builder*) builderWithPrototype:(PBMethodOptions*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (PBMethodOptions*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (PBMethodOptions*) defaultInstance;
 
 - (PBMethodOptions_Builder*) clear;
 - (PBMethodOptions_Builder*) clone;

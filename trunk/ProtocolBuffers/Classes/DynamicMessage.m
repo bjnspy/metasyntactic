@@ -120,16 +120,16 @@
 
 
 + (PBDynamicMessage_Builder*) builderWithMessage:(id<PBMessage>) prototype {
-    return [[PBDynamicMessage_Builder builderWithType:[prototype descriptorForType]] mergeFromMessage:prototype];
+    return [[PBDynamicMessage_Builder builderWithType:[prototype descriptor]] mergeFromMessage:prototype];
 }
 
 
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
     return type;
 }
 
 
-- (PBDynamicMessage*) defaultInstanceForType {
+- (PBDynamicMessage*) defaultInstance {
     return [PBDynamicMessage defaultInstance:type];
 }
 

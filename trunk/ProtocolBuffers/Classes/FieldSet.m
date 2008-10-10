@@ -151,7 +151,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
             break;
         case PBObjectiveCTypeMessage:
             isValid = [value conformsToProtocol:@protocol(PBMessage)] &&
-            [value descriptorForType] == field.messageType;
+            [(id<PBMessage>)value descriptor] == field.messageType;
             break;
     }
 
@@ -412,7 +412,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                                    unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                                extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                          builder:(id<PBMessage_Builder>) builder {
-    PBDescriptor* type = [builder descriptorForType];
+    PBDescriptor* type = [builder descriptor];
 
     // The wire format for MessageSet is:
     //   message MessageSet {
@@ -508,7 +508,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                       extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                                 builder:(id<PBMessage_Builder>) builder
                                     tag:(int32_t) tag {
-    PBDescriptor* type = [builder descriptorForType];
+    PBDescriptor* type = [builder descriptor];
 
     if (type.options.messageSetWireFormat &&
         tag == PBWireFormatMessageSetItemTag) {
