@@ -36,6 +36,8 @@
 
 - (NSArray*) methods;
 
+- (PBMethodDescriptor*) findMethodByName:(NSString*) name;
+
 // @internal
 - (void) crossLink;
 

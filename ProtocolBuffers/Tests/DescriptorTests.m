@@ -242,40 +242,36 @@
 }
 
 
-#if 0
-public void testServiceDescriptor() throws Exception {
-    PBServiceDescriptor* service = TestService.getDescriptor();
+- (void) testServiceDescriptor {
+    PBServiceDescriptor* service = [TestService descriptor];
     
-    STAssertEqualObjects(@"TestService", service.getName());
-    STAssertEqualObjects(@"protobuf_unittest.TestService", service.getFullName());
-    STAssertEqualObjects([UnittestProtoRoot descriptor], service.file);
+    STAssertEqualObjects(@"TestService", service.name, @"");
+    STAssertEqualObjects(@"protobuf_unittest.TestService", service.fullName, @"");
+    STAssertEqualObjects([UnittestProtoRoot descriptor], service.file, @"");
     
-    STAssertEqualObjects(2, service.getMethods().size());
+    STAssertTrue(2 == service.methods.count, @"");
+
+    PBMethodDescriptor* fooMethod = [service.methods objectAtIndex:0];
+    STAssertEqualObjects(@"Foo", fooMethod.name, @"");
+    STAssertEqualObjects([FooRequest descriptor],
+                         fooMethod.inputType, @"");
+    STAssertEqualObjects([FooResponse descriptor],
+                         fooMethod.outputType, @"");
+    STAssertEqualObjects(fooMethod, [service findMethodByName:@"Foo"], @"");
     
-    MethodDescriptor fooMethod = service.getMethods().get(0);
-    STAssertEqualObjects(@"Foo", fooMethod.getName());
-    STAssertEqualObjects(UnittestProto.FooRequest.getDescriptor(),
-                 fooMethod.getInputType());
-    STAssertEqualObjects(UnittestProto.FooResponse.getDescriptor(),
-                 fooMethod.getOutputType());
-    STAssertEqualObjects(fooMethod, service.findMethodByName(@"Foo"));
+    PBMethodDescriptor* barMethod = [service.methods objectAtIndex:1];
+    STAssertEqualObjects(@"Bar", barMethod.name, @"");
+    STAssertEqualObjects([BarRequest descriptor],
+                 barMethod.inputType, @"");
+    STAssertEqualObjects([BarResponse descriptor],
+                 barMethod.outputType, @"");
+    STAssertEqualObjects(barMethod, [service findMethodByName:@"Bar"], @"");
     
-    MethodDescriptor barMethod = service.getMethods().get(1);
-    STAssertEqualObjects(@"Bar", barMethod.getName());
-    STAssertEqualObjects(UnittestProto.BarRequest.getDescriptor(),
-                 barMethod.getInputType());
-    STAssertEqualObjects(UnittestProto.BarResponse.getDescriptor(),
-                 barMethod.getOutputType());
-    STAssertEqualObjects(barMethod, service.findMethodByName(@"Bar"));
+    STAssertNil([service findMethodByName:@"NoSuchMethod"], @"");
     
-    STAssertNil(service.findMethodByName(@"NoSuchMethod"));
-    
-    for (int i = 0; i < service.getMethods().size(); i++) {
-        STAssertEqualObjects(i, service.getMethods().get(i).getIndex());
+    for (int i = 0; i < service.methods.count; i++) {
+        STAssertTrue(i == [[service.methods objectAtIndex:i] index], @"");
     }
 }
-
-
-#endif
 
 @end
