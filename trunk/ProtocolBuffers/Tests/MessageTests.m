@@ -6,11 +6,11 @@
 //  Copyright 2008 __MyCompanyName__. All rights reserved.
 //
 
-#import "MessageTest.h"
+#import "MessageTests.h"
 
 #import "Unittest.pb.h"
 
-@implementation MessageTest
+@implementation MessageTests
 
 - (TestAllTypes*) mergeSource {
     return [[[[[[TestAllTypes newBuilder]

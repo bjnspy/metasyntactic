@@ -9,7 +9,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 
-@interface MessageTest : SenTestCase {
+@interface MessageTests : SenTestCase {
 
 }
 
