@@ -38,11 +38,10 @@
 - (void) testRepeatedSetters {
     TestAllTypes_Builder* builder = [TestAllTypes builder];
     [TestUtilities setAllFields:builder];
-    /*
+    
     [TestUtilities modifyRepeatedFields:builder];
     TestAllTypes* message = [builder build];
     [TestUtilities assertRepeatedFieldsModified:message];
-     */
 }
 
 #if 0
