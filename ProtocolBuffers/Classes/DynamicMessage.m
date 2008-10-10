@@ -211,13 +211,13 @@
 }
 
 
-- (PBDynamicMessage_Builder*) createBuilder {
+- (PBDynamicMessage_Builder*) builder {
     return [PBDynamicMessage builderWithType:type];
 }
 
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type {
-    return [PBDynamicMessage builderWithType:type];
+    return [PBDynamicMessage_Builder builderWithType:type];
 }
 
 

@@ -126,7 +126,7 @@
                 // PBGeneratedExtension manually and gives it a different type.
                 // This should not happen in normal use.  But, to be nice, we'll
                 // copy the message to whatever type the caller was expecting.
-                return [[[messageDefaultInstance createBuilder] mergeFromMessage:value] build];
+                return [[[messageDefaultInstance builder] mergeFromMessage:value] build];
             }
         case PBObjectiveCTypeEnum:
             return [type performSelector:enumValueOf withObject:value];

@@ -15,6 +15,7 @@
 #import "GeneratedMessageTests.h"
 
 #import "Unittest.pb.h"
+#import "TestUtilities.h"
 
 @implementation GeneratedMessageTests
 
@@ -25,17 +26,22 @@
                [[TestAllTypes builder] defaultInstance], @"");
 }
 
+
+- (void) testAccessors {
+    TestAllTypes_Builder* builder = [TestAllTypes builder];
+    [TestUtilities setAllFields:builder];
+    TestAllTypes* message = [builder build];
+    [TestUtilities assertAllFieldsSet:message];
+}
+
+
 #if 0
+
+
 TestUtil.ReflectionTester reflectionTester =
 new TestUtil.ReflectionTester(TestAllTypes.getDescriptor(), null);
 
 
-- (void) testAccessors {
-    TestAllTypes_Builder* builder = [TestAllTypes.newBuilder();
-    TestUtil.setAllFields(builder);
-    TestAllTypes message = builder.build();
-    TestUtil.assertAllFieldsSet(message);
-    }
 
 
 public void testRepeatedSetters() throws Exception {

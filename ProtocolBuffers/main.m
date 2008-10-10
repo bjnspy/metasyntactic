@@ -13,9 +13,14 @@
 // limitations under the License.
 
 #import <SenTestingKit/SenTestingKit.h>
+
+#import "CodedInputStreamTests.h"
+#import "CoreTests.h"
 #import "DescriptorTests.h"
+#import "GeneratedMessageTests.h"
 #import "MessageTests.h"
 #import "UnknownFieldSetTest.h"
+#import "UtilitiesTests.h"
 #import "WireFormatTests.h"
 
 int main(int argc, char *argv[]) {
@@ -23,8 +28,14 @@ int main(int argc, char *argv[]) {
     
     [SenTestObserver class];
     
-    SenTestSuite *suite= [SenTestSuite testSuiteForTestCaseClass:[DescriptorTests class]];
-    [suite run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CodedInputStreamTests class]] run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CoreTests class]] run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[DescriptorTests class]] run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[GeneratedMessageTests class]] run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[MessageTests class]] run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[UnknownFieldSetTest class]] run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[UtilitiesTests class]] run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[WireFormatTests class]] run];
     
     [pool release];
     return 0;

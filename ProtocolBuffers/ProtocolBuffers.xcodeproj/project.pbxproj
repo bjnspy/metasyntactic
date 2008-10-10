@@ -101,6 +101,9 @@
 		74B320DF0E9F8E6600AAC227 /* DescriptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B320DD0E9F8E6600AAC227 /* DescriptorTests.m */; };
 		74B322670E9FAEF000AAC227 /* GeneratedMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B322660E9FAEF000AAC227 /* GeneratedMessageTests.m */; };
 		74B322680E9FAEF000AAC227 /* GeneratedMessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B322660E9FAEF000AAC227 /* GeneratedMessageTests.m */; };
+		74B323E10E9FC34D00AAC227 /* CodedInputStreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E993C0E9425AE007FD139 /* CodedInputStreamTests.m */; };
+		74B323E30E9FC36200AAC227 /* UtilitiesTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E98FC0E942186007FD139 /* UtilitiesTests.m */; };
+		74B323E40E9FC36200AAC227 /* CoreTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E1803A0E9649F600F8D0D3 /* CoreTests.m */; };
 		74B54F2E0E9AEA50008C7C2C /* PBPackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B54F2D0E9AEA50008C7C2C /* PBPackageDescriptor.m */; };
 		74B551790E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B551780E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m */; };
 		74B5517C0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */; };
@@ -603,18 +606,18 @@
 				745E993C0E9425AE007FD139 /* CodedInputStreamTests.m */,
 				74E180390E9649F600F8D0D3 /* CoreTests.h */,
 				74E1803A0E9649F600F8D0D3 /* CoreTests.m */,
-				8DEB013F0E9C620600911656 /* MicroTest.h */,
-				8DEB01400E9C620600911656 /* MicroTest.m */,
-				74B320490E9F884E00AAC227 /* MessageTests.h */,
-				74B3204A0E9F884E00AAC227 /* MessageTests.m */,
-				8DEB01700E9C657C00911656 /* UnknownFieldSetTest.h */,
-				8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */,
-				747C0AE20E9CBA61004B9278 /* WireFormatTests.h */,
-				747C0AE30E9CBA61004B9278 /* WireFormatTests.m */,
 				74B320DC0E9F8E6600AAC227 /* DescriptorTests.h */,
 				74B320DD0E9F8E6600AAC227 /* DescriptorTests.m */,
 				74B322650E9FAEF000AAC227 /* GeneratedMessageTests.h */,
 				74B322660E9FAEF000AAC227 /* GeneratedMessageTests.m */,
+				74B320490E9F884E00AAC227 /* MessageTests.h */,
+				74B3204A0E9F884E00AAC227 /* MessageTests.m */,
+				8DEB013F0E9C620600911656 /* MicroTest.h */,
+				8DEB01400E9C620600911656 /* MicroTest.m */,
+				8DEB01700E9C657C00911656 /* UnknownFieldSetTest.h */,
+				8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */,
+				747C0AE20E9CBA61004B9278 /* WireFormatTests.h */,
+				747C0AE30E9CBA61004B9278 /* WireFormatTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -735,8 +738,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				74237C810E9C7E4E00FDC6D7 /* MicroTest.m in Sources */,
+				74B323E10E9FC34D00AAC227 /* CodedInputStreamTests.m in Sources */,
 				74237C820E9C7E4E00FDC6D7 /* UnknownFieldSetTest.m in Sources */,
 				74237C830E9C7E4E00FDC6D7 /* TestUtilities.m in Sources */,
+				74B323E30E9FC36200AAC227 /* UtilitiesTests.m in Sources */,
+				74B323E40E9FC36200AAC227 /* CoreTests.m in Sources */,
 				74237C840E9C7E4E00FDC6D7 /* Unittest.pb.m in Sources */,
 				74237C850E9C7E4E00FDC6D7 /* UnittestImport.pb.m in Sources */,
 				74237C650E9C7DC000FDC6D7 /* main.m in Sources */,
