@@ -34,4 +34,7 @@
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
 + (PBDynamicMessage_Builder*) builderWithMessage:(id<PBMessage>) prototype;
 
++ (id<PBMessage>) parseFrom:(PBDescriptor*) type
+                       data:(NSData*) data;
+
 @end
