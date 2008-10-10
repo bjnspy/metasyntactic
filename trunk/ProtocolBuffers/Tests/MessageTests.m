@@ -180,22 +180,18 @@
 }
 
      
-     #if 0
-public void testUninitializedException() throws Exception {
-    try {
-        TestRequired.newBuilder().build();
-        fail("Should have thrown an exception.");
-    } catch (UninitializedMessageException e) {
-        assertEquals("Message missing required fields: a, b, c", e.getMessage());
-    }
+- (void) testUninitializedException {
+    STAssertThrows([[TestRequired_Builder builder] build], @"");
 }
 
-public void testBuildPartial() throws Exception {
+
+- (void) testBuildPartial {
     // We're mostly testing that no exception is thrown.
-    TestRequired message = TestRequired.newBuilder().buildPartial();
-    assertFalse(message.isInitialized());
+    TestRequired* message = [[TestRequired_Builder builder] buildPartial];
+    STAssertFalse(message.isInitialized, @"");
 }
 
+#if 0
 public void testNestedUninitializedException() throws Exception {
     try {
         TestRequiredForeign.newBuilder()
