@@ -24,10 +24,10 @@
 
 - (TestAllTypes*) mergeDestination {
     return [[[[[[TestAllTypes newBuilder]
-               setOptionalInt64:2]
-              setOptionalString:@"baz"]
-             setOptionalForeignMessage:[[[ForeignMessage newBuilder] setC:3] build]]
-            addRepeatedString:@"qux"]
+                setOptionalInt64:2]
+               setOptionalString:@"baz"]
+              setOptionalForeignMessage:[[[ForeignMessage newBuilder] setC:3] build]]
+             addRepeatedString:@"qux"]
             build];
 }
 
@@ -48,7 +48,7 @@
     TestAllTypes* result =
     [[[TestAllTypes newBuilderWithPrototype:self.mergeDestination]
       mergeFromTestAllTypes:self.mergeSource] build];
-
+    
     STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
 }
 
@@ -62,7 +62,7 @@
     TestAllTypes* result = [[[TestAllTypes newBuilderWithPrototype:self.mergeDestination]
                              mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
                             build];
-
+    
     STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
 }
 
@@ -73,100 +73,105 @@
     [[[PBDynamicMessage builderWithMessage:self.mergeDestination]
       mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
      build];
-
+    
     STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
 }
 
 // =================================================================
 // Required-field-related tests.
+
+- (TestRequired*) testRequiredUninitialized {
+    return [TestRequired defaultInstance];
+}
+
+- (TestRequired*) testRequiredInitialized {
+    return [[[[[TestRequired newBuilder] setA:1] setB:2] setC:3] build];
+}
+
+
+- (void) testRequired {
+    TestRequired_Builder* builder = [TestRequired newBuilder];
+    
+    STAssertFalse(builder.isInitialized, @"");
+    [builder setA:1];
+    STAssertFalse(builder.isInitialized, @"");
+    [builder setB:1];
+    STAssertFalse(builder.isInitialized, @"");
+    [builder setC:1];
+    STAssertTrue(builder.isInitialized, @"");
+}
+
+- (void) testRequiredForeign {
+    TestRequiredForeign_Builder* builder = [TestRequiredForeign newBuilder];
+    
+    STAssertTrue(builder.isInitialized, @"");
+    
+    [builder setOptionalMessage:self.testRequiredUninitialized];
+    STAssertFalse(builder.isInitialized, @"");
+    
+    [builder setOptionalMessage:self.testRequiredInitialized];
+    STAssertTrue(builder.isInitialized, @"");
+    
+    [builder addRepeatedMessage:self.testRequiredUninitialized];
+    STAssertFalse(builder.isInitialized, @"");
+    
+    [builder replaceRepeatedMessageAtIndex:0 withRepeatedMessage:self.testRequiredInitialized];
+    STAssertTrue(builder.isInitialized, @"");
+}
+
 #if 0
-private static final TestRequired TEST_REQUIRED_UNINITIALIZED =
-TestRequired.getDefaultInstance();
-private static final TestRequired TEST_REQUIRED_INITIALIZED =
-TestRequired.newBuilder().setA(1).setB(2).setC(3).build();
-
-public void testRequired() throws Exception {
-    TestRequired.Builder builder = TestRequired.newBuilder();
-    
-    assertFalse(builder.isInitialized());
-    builder.setA(1);
-    assertFalse(builder.isInitialized());
-    builder.setB(1);
-    assertFalse(builder.isInitialized());
-    builder.setC(1);
-    assertTrue(builder.isInitialized());
-}
-
-public void testRequiredForeign() throws Exception {
-    TestRequiredForeign.Builder builder = TestRequiredForeign.newBuilder();
-    
-    assertTrue(builder.isInitialized());
-    
-    builder.setOptionalMessage(TEST_REQUIRED_UNINITIALIZED);
-    assertFalse(builder.isInitialized());
-    
-    builder.setOptionalMessage(TEST_REQUIRED_INITIALIZED);
-    assertTrue(builder.isInitialized());
-    
-    builder.addRepeatedMessage(TEST_REQUIRED_UNINITIALIZED);
-    assertFalse(builder.isInitialized());
-    
-    builder.setRepeatedMessage(0, TEST_REQUIRED_INITIALIZED);
-    assertTrue(builder.isInitialized());
-}
-
 public void testRequiredExtension() throws Exception {
     TestAllExtensions.Builder builder = TestAllExtensions.newBuilder();
     
-    assertTrue(builder.isInitialized());
+    STAssertTrue(builder.isInitialized, @"");
     
     builder.setExtension(TestRequired.single, TEST_REQUIRED_UNINITIALIZED);
-    assertFalse(builder.isInitialized());
+    STAssertFalse(builder.isInitialized, @"");
     
-    builder.setExtension(TestRequired.single, TEST_REQUIRED_INITIALIZED);
-    assertTrue(builder.isInitialized());
+    builder.setExtension(TestRequired.single, self.testRequiredInitialized);
+    STAssertTrue(builder.isInitialized, @"");
     
     builder.addExtension(TestRequired.multi, TEST_REQUIRED_UNINITIALIZED);
-    assertFalse(builder.isInitialized());
+    STAssertFalse(builder.isInitialized, @"");
     
-    builder.setExtension(TestRequired.multi, 0, TEST_REQUIRED_INITIALIZED);
-    assertTrue(builder.isInitialized());
+    builder.setExtension(TestRequired.multi, 0, self.testRequiredInitialized);
+    STAssertTrue(builder.isInitialized, @"");
 }
 
 public void testRequiredDynamic() throws Exception {
     Descriptors.Descriptor descriptor = TestRequired.getDescriptor();
     DynamicMessage.Builder builder = DynamicMessage.newBuilder(descriptor);
     
-    assertFalse(builder.isInitialized());
+    STAssertFalse(builder.isInitialized, @"");
     builder.setField(descriptor.findFieldByName("a"), 1);
-    assertFalse(builder.isInitialized());
+    STAssertFalse(builder.isInitialized, @"");
     builder.setField(descriptor.findFieldByName("b"), 1);
-    assertFalse(builder.isInitialized());
+    STAssertFalse(builder.isInitialized, @"");
     builder.setField(descriptor.findFieldByName("c"), 1);
-    assertTrue(builder.isInitialized());
+    STAssertTrue(builder.isInitialized, @"");
 }
 
 public void testRequiredDynamicForeign() throws Exception {
     Descriptors.Descriptor descriptor = TestRequiredForeign.getDescriptor();
     DynamicMessage.Builder builder = DynamicMessage.newBuilder(descriptor);
     
-    assertTrue(builder.isInitialized());
+    STAssertTrue(builder.isInitialized, @"");
     
     builder.setField(descriptor.findFieldByName("optional_message"),
                      TEST_REQUIRED_UNINITIALIZED);
-    assertFalse(builder.isInitialized());
+    STAssertFalse(builder.isInitialized, @"");
     
     builder.setField(descriptor.findFieldByName("optional_message"),
-                     TEST_REQUIRED_INITIALIZED);
-    assertTrue(builder.isInitialized());
+                     self.testRequiredInitialized);
+    STAssertTrue(builder.isInitialized, @"");
     
     builder.addRepeatedField(descriptor.findFieldByName("repeated_message"),
                              TEST_REQUIRED_UNINITIALIZED);
-    assertFalse(builder.isInitialized());
+    STAssertFalse(builder.isInitialized, @"");
     
     builder.setRepeatedField(descriptor.findFieldByName("repeated_message"), 0,
-                             TEST_REQUIRED_INITIALIZED);
-    assertTrue(builder.isInitialized());
+                             self.testRequiredInitialized);
+    STAssertTrue(builder.isInitialized, @"");
 }
 
 public void testUninitializedException() throws Exception {
@@ -187,9 +192,9 @@ public void testBuildPartial() throws Exception {
 public void testNestedUninitializedException() throws Exception {
     try {
         TestRequiredForeign.newBuilder()
-        .setOptionalMessage(TEST_REQUIRED_UNINITIALIZED)
-        .addRepeatedMessage(TEST_REQUIRED_UNINITIALIZED)
-        .addRepeatedMessage(TEST_REQUIRED_UNINITIALIZED)
+        .setOptionalMessageself.testRequiredUninitialized
+        .addRepeatedMessageself.testRequiredUninitialized
+        .addRepeatedMessageself.testRequiredUninitialized
         .build();
         fail("Should have thrown an exception.");
     } catch (UninitializedMessageException e) {
@@ -212,9 +217,9 @@ public void testBuildNestedPartial() throws Exception {
     // We're mostly testing that no exception is thrown.
     TestRequiredForeign message =
     TestRequiredForeign.newBuilder()
-    .setOptionalMessage(TEST_REQUIRED_UNINITIALIZED)
-    .addRepeatedMessage(TEST_REQUIRED_UNINITIALIZED)
-    .addRepeatedMessage(TEST_REQUIRED_UNINITIALIZED)
+    .setOptionalMessageself.testRequiredUninitialized
+    .addRepeatedMessageself.testRequiredUninitialized
+    .addRepeatedMessageself.testRequiredUninitialized
     .buildPartial();
     assertFalse(message.isInitialized());
 }
@@ -231,9 +236,9 @@ public void testParseUnititialized() throws Exception {
 public void testParseNestedUnititialized() throws Exception {
     ByteString data =
     TestRequiredForeign.newBuilder()
-    .setOptionalMessage(TEST_REQUIRED_UNINITIALIZED)
-    .addRepeatedMessage(TEST_REQUIRED_UNINITIALIZED)
-    .addRepeatedMessage(TEST_REQUIRED_UNINITIALIZED)
+    .setOptionalMessageself.testRequiredUninitialized
+    .addRepeatedMessageself.testRequiredUninitialized
+    .addRepeatedMessageself.testRequiredUninitialized
     .buildPartial().toByteString();
     
     try {
