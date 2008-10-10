@@ -86,17 +86,27 @@ static PBUnknownFieldSet* defaultInstance = nil;
 
 
 + (PBUnknownFieldSet*) parseFromCodedInputStream:(PBCodedInputStream*) input {
-    return [[[PBUnknownFieldSet_Builder builder] mergeFromCodedInputStream:input] build];
+    return [[[PBUnknownFieldSet builder] mergeFromCodedInputStream:input] build];
 }
 
 
 + (PBUnknownFieldSet*) parseFromData:(NSData*) data {
-    return [[[PBUnknownFieldSet_Builder builder] mergeFromData:data] build];
+    return [[[PBUnknownFieldSet builder] mergeFromData:data] build];
 }
 
 
 + (PBUnknownFieldSet*) parseFromInputStream:(NSInputStream*) input {
-    return [[[PBUnknownFieldSet_Builder builder] mergeFromInputStream:input] build];
+    return [[[PBUnknownFieldSet builder] mergeFromInputStream:input] build];
+}
+
+
++ (PBUnknownFieldSet_Builder*) builder {
+    return [[[PBUnknownFieldSet_Builder alloc] init] autorelease];
+}
+
+
++ (PBUnknownFieldSet_Builder*) builderWithUnknownFields:(PBUnknownFieldSet*) copyFrom {
+    return [[PBUnknownFieldSet builder] mergeUnknownFields:copyFrom];
 }
 
 

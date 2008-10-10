@@ -64,7 +64,7 @@
 // numbers as allFieldsData except that each field is some other wire
 // type.
 - (NSData*) getBizarroData {
-  PBUnknownFieldSet_Builder* bizarroFields = [PBUnknownFieldSet_Builder builder];
+  PBUnknownFieldSet_Builder* bizarroFields = [PBUnknownFieldSet builder];
   
   PBField* varintField = [[PBMutableField field] addVarint:1];
   PBField* fixed32Field = [[PBMutableField field] addFixed32:1];
@@ -150,22 +150,22 @@
 
 - (void) testMergeFrom {
     PBUnknownFieldSet* set1 =
-    [[[[PBUnknownFieldSet_Builder builder]
+    [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:2] forNumber:2]
       addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
     
     PBUnknownFieldSet* set2 = 
-    [[[[PBUnknownFieldSet_Builder builder]
+    [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:1] forNumber:1]
       addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
     
     PBUnknownFieldSet* set3 =
-    [[[[PBUnknownFieldSet_Builder builder]
+    [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:1] forNumber:1]
       addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
     
     PBUnknownFieldSet* set4 = 
-    [[[[PBUnknownFieldSet_Builder builder]
+    [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:2] forNumber:2]
       addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
     
@@ -183,7 +183,7 @@
 
 - (void) testClear {
     PBUnknownFieldSet* fields = 
-    [[[[PBUnknownFieldSet_Builder builder] mergeUnknownFields:unknownFields] clear] build];
+    [[[[PBUnknownFieldSet builder] mergeUnknownFields:unknownFields] clear] build];
     STAssertEquals(fields.fields.count, (NSUInteger) 0, @"");
 }
 
@@ -199,7 +199,7 @@
     // Test mixing known and unknown fields when parsing.
     
     PBUnknownFieldSet* fields = 
-    [[[PBUnknownFieldSet_Builder builderWithUnknownFields:unknownFields] addField:[[PBMutableField field] addVarint:654321]
+    [[[PBUnknownFieldSet builderWithUnknownFields:unknownFields] addField:[[PBMutableField field] addVarint:654321]
                                                  forNumber:123456] build];
     
     NSData* data = fields.toData;
@@ -256,7 +256,7 @@
 
 - (void) testLargeVarint {
     NSData* data =
-    [[[[PBUnknownFieldSet_Builder builder] addField:[[PBMutableField field] addVarint:0x7FFFFFFFFFFFFFFFL]
+    [[[[PBUnknownFieldSet builder] addField:[[PBMutableField field] addVarint:0x7FFFFFFFFFFFFFFFL]
                                    forNumber:1] build] toData];
     
     PBUnknownFieldSet* parsed = [PBUnknownFieldSet parseFromData:data];
@@ -272,7 +272,7 @@
     STAssertNotNil(singularField, @"");
     STAssertNotNil(repeatedField, @"");
     
-    NSData* data = [[[[[PBUnknownFieldSet_Builder builder]
+    NSData* data = [[[[[PBUnknownFieldSet builder]
                        addField:[[[PBMutableField field] 
                                   addVarint:[TestAllTypes_NestedEnum BAR].number] 
                                  addVarint:5]

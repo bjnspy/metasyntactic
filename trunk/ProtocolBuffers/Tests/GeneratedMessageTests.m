@@ -30,13 +30,13 @@ TestUtil.ReflectionTester reflectionTester =
 new TestUtil.ReflectionTester(TestAllTypes.getDescriptor(), null);
 
 
-
-public void testAccessors() throws Exception {
-    TestAllTypes.Builder builder = TestAllTypes.newBuilder();
+- (void) testAccessors {
+    TestAllTypes_Builder* builder = [TestAllTypes.newBuilder();
     TestUtil.setAllFields(builder);
     TestAllTypes message = builder.build();
     TestUtil.assertAllFieldsSet(message);
-}
+    }
+
 
 public void testRepeatedSetters() throws Exception {
     TestAllTypes.Builder builder = TestAllTypes.newBuilder();

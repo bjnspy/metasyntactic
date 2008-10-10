@@ -51,16 +51,6 @@
 }
 
 
-+ (PBUnknownFieldSet_Builder*) builder {
-    return [[[PBUnknownFieldSet_Builder alloc] init] autorelease];
-}
-
-
-+ (PBUnknownFieldSet_Builder*) builderWithUnknownFields:(PBUnknownFieldSet*) copyFrom {
-    return [[PBUnknownFieldSet_Builder builder] mergeUnknownFields:copyFrom];
-}
-
-
 /**
  * Add a field to the {@code PBUnknownFieldSet}.  If a field with the same
  * number already exists, it is removed.
@@ -201,7 +191,7 @@
             [[self getFieldBuilder:number] addLengthDelimited:[input readData]];
             return true;
         case PBWireFormatStartGroup: {
-            PBUnknownFieldSet_Builder* subBuilder = [PBUnknownFieldSet_Builder builder];
+            PBUnknownFieldSet_Builder* subBuilder = [PBUnknownFieldSet builder];
             [input readUnknownGroup:number builder:subBuilder];
             [[self getFieldBuilder:number] addGroup:[subBuilder build]];
             return true;
@@ -238,128 +228,5 @@
     self.lastField = nil;
     return self;
 }
-
-#if 0
-
-
-/**
- * Builder for {@link PBUnknownFieldSet}s.
- *
- * <p>Note that this class maintains {@link PBField.Builder}s for all fields
- * in the set.  Thus, adding one element to an existing {@link PBField} does not
- * require making a copy.  This is important for efficient parsing of
- * unknown repeated fields.  However, it implies that {@link PBField}s cannot
- * be constructed independently, nor can two {@link PBUnknownFieldSet}s share
- * the same {@code PBField} object.
- *
- * <p>Use {@link PBUnknownFieldSet#newBuilder()} to construct a {@code Builder}.
- */
-public static final class Builder {
-    private Builder() {}
-
-
-
-
-
-
-    /** Reset the builder to an empty set. */
-
-
-    /**
-     * Merge the fields from {@code other} into this set.  If a field number
-     * exists in both sets, {@code other}'s values for that field will be
-     * appended to the values in this set.
-     */
-    public Builder mergeFrom(PBUnknownFieldSet other) {
-        if (other != defaultInstance()) {
-            for (Map.Entry<Integer, PBField> entry : other.fields.entrySet()) {
-                mergeField(entry.getKey(), entry.getValue());
-            }
-        }
-        return this;
-    }
-
-    /**
-     * Convenience method for merging a new field containing a single varint
-     * value.  This is used in particular when an unknown enum value is
-     * encountered.
-     */
-    public Builder mergeVarintField(int number, int32_t value) {
-        if (number == 0) {
-            throw new IllegalArgumentException("Zero is not a valid field number.");
-        }
-        getFieldBuilder(number).addVarint(value);
-        return this;
-    }
-
-
-
-    /**
-     * Get all present {@code PBField}s as an immutable {@code Map}.  If more
-     * fields are added, the changes may or may not be reflected in this map.
-     */
-    public Map<Integer, PBField> asMap() {
-        getFieldBuilder(0);  // Force lastField to be built.
-        return Collections.unmodifiableMap(fields);
-    }
-
-
-
-
-    /**
-     * Parse {@code data} as an {@code PBUnknownFieldSet} and merge it with the
-     * set being built.  This is just a small wrapper around
-     * {@link #mergeFrom(PBCodedInputStream)}.
-     */
-    public Builder mergeFrom(ByteString data)
-    throws InvalidProtocolBufferException {
-        try {
-            PBCodedInputStream input = data.newCodedInput();
-            mergeFrom(input);
-            input.checkLastTagWas(0);
-            return this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a ByteString threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-
-    /**
-     * Parse {@code data} as an {@code PBUnknownFieldSet} and merge it with the
-     * set being built.  This is just a small wrapper around
-     * {@link #mergeFrom(PBCodedInputStream)}.
-     */
-    public Builder mergeFrom(byte[] data)
-    throws InvalidProtocolBufferException {
-        try {
-            PBCodedInputStream input = PBCodedInputStream.newInstance(data);
-            mergeFrom(input);
-            input.checkLastTagWas(0);
-            return this;
-        } catch (InvalidProtocolBufferException e) {
-            throw e;
-        } catch (IOException e) {
-            throw new RuntimeException(
-                                       "Reading from a byte array threw an IOException (should " +
-                                       "never happen).", e);
-        }
-    }
-
-    /**
-     * Parse an {@code PBUnknownFieldSet} from {@code input} and merge it with the
-     * set being built.  This is just a small wrapper around
-     * {@link #mergeFrom(PBCodedInputStream)}.
-     */
-    public Builder mergeFrom(InputStream input) throws IOException {
-        PBCodedInputStream codedInput = PBCodedInputStream.newInstance(input);
-        mergeFrom(codedInput);
-        codedInput.checkLastTagWas(0);
-        return this;
-    }
-}
-#endif
 
 @end
