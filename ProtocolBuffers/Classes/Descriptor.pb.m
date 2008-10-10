@@ -680,6 +680,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   if (self = [super init]) {
     self.name = @"";
     self.package = @"";
+    self.options = [PBFileOptions defaultInstance];
   }
   return self;
 }
@@ -1236,6 +1237,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (id) init {
   if (self = [super init]) {
     self.name = @"";
+    self.options = [PBMessageOptions defaultInstance];
   }
   return self;
 }
@@ -2018,6 +2020,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
     self.typeName = @"";
     self.extendee = @"";
     self.defaultValue = @"";
+    self.options = [PBFieldOptions defaultInstance];
   }
   return self;
 }
@@ -2650,6 +2653,7 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 - (id) init {
   if (self = [super init]) {
     self.name = @"";
+    self.options = [PBEnumOptions defaultInstance];
   }
   return self;
 }
@@ -2955,6 +2959,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   if (self = [super init]) {
     self.name = @"";
     self.number = 0;
+    self.options = [PBEnumValueOptions defaultInstance];
   }
   return self;
 }
@@ -3231,6 +3236,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 - (id) init {
   if (self = [super init]) {
     self.name = @"";
+    self.options = [PBServiceOptions defaultInstance];
   }
   return self;
 }
@@ -3543,6 +3549,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
     self.name = @"";
     self.inputType = @"";
     self.outputType = @"";
+    self.options = [PBMethodOptions defaultInstance];
   }
   return self;
 }

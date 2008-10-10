@@ -77,6 +77,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForS
 - (id) init {
   if (self = [super init]) {
     self.i = 0;
+    self.msg = [ForeignMessage defaultInstance];
   }
   return self;
 }

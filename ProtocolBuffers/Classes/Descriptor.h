@@ -57,8 +57,11 @@
 - (NSArray*) extensions;
 
 - (BOOL) isExtensionNumber:(int32_t) number;
+
 - (PBFieldDescriptor*) findFieldByNumber:(int32_t) number;
 - (PBFieldDescriptor*) findFieldByName:(NSString*) name;
+- (PBDescriptor*) findNestedTypeByName:(NSString*) name;
+- (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
 
 // @internal
 - (void) crossLink;

@@ -329,6 +329,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 }
 - (id) init {
   if (self = [super init]) {
+    self.messageSet = [TestMessageSet defaultInstance];
   }
   return self;
 }
