@@ -45,4 +45,9 @@
 
 - (void) crossLink;
 
+- (PBDescriptor*) findMessageTypeByName:(NSString*) name;
+- (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
+- (PBServiceDescriptor*) findServiceByName:(NSString*) name;
+- (PBFieldDescriptor*) findExtensionByName:(NSString*) name;
+
 @end

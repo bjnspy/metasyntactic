@@ -71,8 +71,9 @@
     if (self = [super init]) {
         self.index = index_;
         self.proto = proto_;
-        self.fullName = [PBDescriptor computeFullName:file_ parent:parent_ name:proto.name];
         self.file = file_;
+        
+        self.fullName = [PBDescriptor computeFullName:file_ parent:parent_ name:proto.name];
         
         if (proto.hasType) {
             self.type = PBFieldDescriptorTypeFrom(proto.type);
