@@ -22,7 +22,6 @@
 #import "ServiceDescriptor.h"
 
 @interface PBFileDescriptor ()
-    @property (retain) PBFileDescriptorProto* proto;
     @property (retain) NSMutableArray* mutableMessageTypes;
     @property (retain) NSMutableArray* mutableExtensions;
     @property (retain) NSMutableArray* mutableEnumTypes;
@@ -61,6 +60,11 @@
 
 - (NSString*) name {
     return proto.name;
+}
+
+
+- (PBFileOptions*) options {
+    return proto.options;
 }
 
 
@@ -120,6 +124,11 @@
 
 - (NSArray*) services {
     return mutableServices;
+}
+
+
+- (NSArray*) dependencies {
+    return mutableDependencies;
 }
 
 

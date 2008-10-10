@@ -53,6 +53,7 @@ enum PBWireFormat;
 @class PBFieldSet;
 @class PBFileDescriptor;
 @class PBFileDescriptorProto;
+@class PBFileOptions;
 @class PBGeneratedExtension;
 @class PBGeneratedMessage;
 @class PBGeneratedMessage_Builder;
