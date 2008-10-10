@@ -35,25 +35,27 @@
 }
 
 
+- (void) testRepeatedSetters {
+    TestAllTypes_Builder* builder = [TestAllTypes builder];
+    [TestUtilities setAllFields:builder];
+    /*
+    [TestUtilities modifyRepeatedFields:builder];
+    TestAllTypes* message = [builder build];
+    [TestUtilities assertRepeatedFieldsModified:message];
+     */
+}
+
 #if 0
 
 
-TestUtil.ReflectionTester reflectionTester =
-new TestUtil.ReflectionTester(TestAllTypes.getDescriptor(), null);
+[TestUtilities ReflectionTester reflectionTester =
+new [TestUtilities ReflectionTester(TestAllTypes.getDescriptor(), null);
 
 
 
-
-public void testRepeatedSetters() throws Exception {
-    TestAllTypes.Builder builder = TestAllTypes.newBuilder();
-    TestUtil.setAllFields(builder);
-    TestUtil.modifyRepeatedFields(builder);
-    TestAllTypes message = builder.build();
-    TestUtil.assertRepeatedFieldsModified(message);
-}
 
 public void testRepeatedAppend() throws Exception {
-    TestAllTypes.Builder builder = TestAllTypes.newBuilder();
+    TestAllTypes_Builder builder = [TestAllTypes builder];
     
     builder.addAllRepeatedInt32(Arrays.asList(1, 2, 3, 4));
     builder.addAllRepeatedForeignEnum(Arrays.asList(ForeignEnum.FOREIGN_BAZ));
@@ -71,11 +73,11 @@ public void testRepeatedAppend() throws Exception {
 }
 
 public void testSettingForeignMessageUsingBuilder() throws Exception {
-    TestAllTypes message = TestAllTypes.newBuilder()
+    TestAllTypes message = [TestAllTypes builder]
     // Pass builder for foreign message instance.
     .setOptionalForeignMessage(ForeignMessage.newBuilder().setC(123))
     .build();
-    TestAllTypes expectedMessage = TestAllTypes.newBuilder()
+    TestAllTypes expectedMessage = [TestAllTypes builder]
     // Create expected version passing foreign message instance explicitly.
     .setOptionalForeignMessage(
                                ForeignMessage.newBuilder().setC(123).build())
@@ -85,11 +87,11 @@ public void testSettingForeignMessageUsingBuilder() throws Exception {
 }
 
 public void testSettingRepeatedForeignMessageUsingBuilder() throws Exception {
-    TestAllTypes message = TestAllTypes.newBuilder()
+    TestAllTypes message = [TestAllTypes builder]
     // Pass builder for foreign message instance.
     .addRepeatedForeignMessage(ForeignMessage.newBuilder().setC(456))
     .build();
-    TestAllTypes expectedMessage = TestAllTypes.newBuilder()
+    TestAllTypes expectedMessage = [TestAllTypes builder]
     // Create expected version passing foreign message instance explicitly.
     .addRepeatedForeignMessage(
                                ForeignMessage.newBuilder().setC(456).build())
@@ -98,72 +100,72 @@ public void testSettingRepeatedForeignMessageUsingBuilder() throws Exception {
 }
 
 public void testDefaults() throws Exception {
-    TestUtil.assertClear([TestAllTypes defaultInstance]);
-    TestUtil.assertClear(TestAllTypes.newBuilder().build());
+    [TestUtilities assertClear([TestAllTypes defaultInstance]);
+    [TestUtilities assertClear([TestAllTypes builder].build());
     
     assertEquals("\u1234",
                  TestExtremeDefaultValues.getDefaultInstance().getUtf8String());
 }
 
 public void testReflectionGetters() throws Exception {
-    TestAllTypes.Builder builder = TestAllTypes.newBuilder();
-    TestUtil.setAllFields(builder);
+    TestAllTypes_Builder builder = [TestAllTypes builder];
+    [TestUtilities setAllFields(builder);
     TestAllTypes message = builder.build();
     reflectionTester.assertAllFieldsSetViaReflection(message);
 }
 
 public void testReflectionSetters() throws Exception {
-    TestAllTypes.Builder builder = TestAllTypes.newBuilder();
+    TestAllTypes_Builder builder = [TestAllTypes builder];
     reflectionTester.setAllFieldsViaReflection(builder);
     TestAllTypes message = builder.build();
-    TestUtil.assertAllFieldsSet(message);
+    [TestUtilities assertAllFieldsSet(message);
 }
 
 public void testReflectionRepeatedSetters() throws Exception {
-    TestAllTypes.Builder builder = TestAllTypes.newBuilder();
+    TestAllTypes_Builder builder = [TestAllTypes builder];
     reflectionTester.setAllFieldsViaReflection(builder);
     reflectionTester.modifyRepeatedFieldsViaReflection(builder);
     TestAllTypes message = builder.build();
-    TestUtil.assertRepeatedFieldsModified(message);
+    [TestUtilities assertRepeatedFieldsModified(message);
 }
 
 public void testReflectionDefaults() throws Exception {
     reflectionTester.assertClearViaReflection(
                                               [TestAllTypes defaultInstance]);
     reflectionTester.assertClearViaReflection(
-                                              TestAllTypes.newBuilder().build());
+                                              [TestAllTypes builder].build());
 }
 
 // =================================================================
 // Extensions.
 
-TestUtil.ReflectionTester extensionsReflectionTester =
-new TestUtil.ReflectionTester(TestAllExtensions.getDescriptor(),
-                              TestUtil.getExtensionRegistry());
+[TestUtilities ReflectionTester extensionsReflectionTester =
+new [TestUtilities ReflectionTester(TestAllExtensions.getDescriptor(),
+                              [TestUtilities getExtensionRegistry());
 
 public void testExtensionAccessors() throws Exception {
     TestAllExtensions.Builder builder = TestAllExtensions.newBuilder();
-    TestUtil.setAllExtensions(builder);
+    [TestUtilities setAllExtensions(builder);
     TestAllExtensions message = builder.build();
-    TestUtil.assertAllExtensionsSet(message);
+    [TestUtilities assertAllExtensionsSet(message);
 }
 
 public void testExtensionRepeatedSetters() throws Exception {
     TestAllExtensions.Builder builder = TestAllExtensions.newBuilder();
-    TestUtil.setAllExtensions(builder);
-    TestUtil.modifyRepeatedExtensions(builder);
+    [TestUtilities setAllExtensions(builder);
+    [TestUtilities modifyRepeatedExtensions(builder);
     TestAllExtensions message = builder.build();
-    TestUtil.assertRepeatedExtensionsModified(message);
+    [TestUtilities assertRepeatedExtensionsModified(message);
 }
 
 public void testExtensionDefaults() throws Exception {
-    TestUtil.assertExtensionsClear(TestAllExtensions.getDefaultInstance());
-    TestUtil.assertExtensionsClear(TestAllExtensions.newBuilder().build());
+    [TestUtilities assertExtensionsClear(TestAllExtensions.getDefaultInstance());
+    [TestUtilities assertExtensionsClear(TestAllExtensions.newBuilder().build());
 }
 
 public void testExtensionReflectionGetters() throws Exception {
     TestAllExtensions.Builder builder = TestAllExtensions.newBuilder();
-    TestUtil.setAllExtensions(builder);
+    [TestUtilities setAllExtensions(builder);
     TestAllExtensions message = builder.build();
     extensionsReflectionTester.assertAllFieldsSetViaReflection(message);
 }
@@ -172,7 +174,7 @@ public void testExtensionReflectionSetters() throws Exception {
     TestAllExtensions.Builder builder = TestAllExtensions.newBuilder();
     extensionsReflectionTester.setAllFieldsViaReflection(builder);
     TestAllExtensions message = builder.build();
-    TestUtil.assertAllExtensionsSet(message);
+    [TestUtilities assertAllExtensionsSet(message);
 }
 
 public void testExtensionReflectionRepeatedSetters() throws Exception {
@@ -180,7 +182,7 @@ public void testExtensionReflectionRepeatedSetters() throws Exception {
     extensionsReflectionTester.setAllFieldsViaReflection(builder);
     extensionsReflectionTester.modifyRepeatedFieldsViaReflection(builder);
     TestAllExtensions message = builder.build();
-    TestUtil.assertRepeatedExtensionsModified(message);
+    [TestUtilities assertRepeatedExtensionsModified(message);
 }
 
 public void testExtensionReflectionDefaults() throws Exception {
@@ -212,7 +214,7 @@ public void testMultipleFilesOption() throws Exception {
     MessageWithNoOuter message =
     MessageWithNoOuter.newBuilder()
     .setNested(MessageWithNoOuter.NestedMessage.newBuilder().setI(1))
-    .addForeign(TestAllTypes.newBuilder().setOptionalInt32(1))
+    .addForeign([TestAllTypes builder].setOptionalInt32(1))
     .setNestedEnum(MessageWithNoOuter.NestedEnum.BAZ)
     .setForeignEnum(EnumWithNoOuter.BAR)
     .build();

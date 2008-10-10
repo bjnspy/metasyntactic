@@ -952,6 +952,41 @@
     return [[[[TestUtilities alloc] init] autorelease] assertClear:message];
 }
 
+/**
+ * Modify the repeated fields of {@code message} to contain the values
+ * expected by {@code assertRepeatedFieldsModified()}.
+ */
+- (void) modifyRepeatedFields:(TestAllTypes_Builder*) message {
+    [message replaceRepeatedInt32AtIndex:1 withRepeatedInt32:501];
+    [message replaceRepeatedInt64AtIndex:1 withRepeatedInt64:502];
+    [message replaceRepeatedUint32AtIndex:1 withRepeatedUint32:503];
+    [message replaceRepeatedUint64AtIndex:1 withRepeatedUint64:504];
+    [message replaceRepeatedSint32AtIndex:1 withRepeatedSint32:505];
+    [message replaceRepeatedSint64AtIndex:1 withRepeatedSint64:506];
+    [message replaceRepeatedFixed32AtIndex:1 withRepeatedFixed32:507];
+    [message replaceRepeatedFixed64AtIndex:1 withRepeatedFixed64:508];
+    [message replaceRepeatedSfixed32AtIndex:1 withRepeatedSfixed32:509];
+    [message replaceRepeatedSfixed64AtIndex:1 withRepeatedSfixed64:510];
+    [message replaceRepeatedFloatAtIndex:1 withRepeatedFloat:511];
+    [message replaceRepeatedDoubleAtIndex:1 withRepeatedDouble:512];
+    [message replaceRepeatedBoolAtIndex:1 withRepeatedBool:true];
+    [message replaceRepeatedStringAtIndex:1 withRepeatedString:@"515"];
+    [message replaceRepeatedBytesAtIndex:1 withRepeatedBytes:[TestUtilities toData:@"516"]];
+     
+    [message replaceRepeatedGroupAtIndex:1 withRepeatedGroup:[[[TestAllTypes_RepeatedGroup builder] setA:517] build]];
+    [message replaceRepeatedNestedMessageAtIndex:1 withRepeatedNestedMessage:[[[TestAllTypes_NestedMessage builder] setBb:518] build]];
+    [message replaceRepeatedForeignMessageAtIndex:1 withRepeatedForeignMessage:[[[ForeignMessage builder] setC:519] build]];
+    [message replaceRepeatedImportMessageAtIndex:1 withRepeatedImportMessage:[[[ImportMessage builder] setD:520] build]];
+    
+    [message replaceRepeatedNestedEnumAtIndex:1 withRepeatedNestedEnum:[TestAllTypes_NestedEnum FOO]];
+    [message replaceRepeatedForeignEnumAtIndex:1 withRepeatedForeignEnum:[ForeignEnum FOREIGN_FOO]];
+    [message replaceRepeatedImportEnumAtIndex:1 withRepeatedImportEnum:[ImportEnum IMPORT_FOO]];
+    
+    [message replaceRepeatedStringPieceAtIndex:1 withRepeatedStringPiece:@"524"];
+    [message replaceRepeatedCordAtIndex:1 withRepeatedCord:@"525"];
+    }
+             
+
 #if 0
 
 
@@ -963,43 +998,7 @@
 
 // -------------------------------------------------------------------
 
-/**
- * Modify the repeated fields of {@code message} to contain the values
- * expected by {@code assertRepeatedFieldsModified()}.
- */
-public static void modifyRepeatedFields(TestAllTypes.Builder message) {
-    [message setRepeatedInt32   (1, 501);
-     [message setRepeatedInt64   (1, 502);
-      [message setRepeatedUint32  (1, 503);
-       [message setRepeatedUint64  (1, 504);
-        [message setRepeatedSint32  (1, 505);
-         [message setRepeatedSint64  (1, 506);
-          [message setRepeatedFixed32 (1, 507);
-           [message setRepeatedFixed64 (1, 508);
-            [message setRepeatedSfixed32(1, 509);
-             [message setRepeatedSfixed64(1, 510);
-              [message setRepeatedFloat   (1, 511);
-               [message setRepeatedDouble  (1, 512);
-                [message setRepeatedBool    (1, true);
-                 [message setRepeatedString  (1, "515");
-                  [message setRepeatedBytes   (1, toData("516"));
-                   
-                   [message setRepeatedGroup(1,
-                       [TestAllTypes_RepeatedGroup newBuilder].setA(517) build]);
-                    [message setRepeatedNestedMessage(1,
-          [TestAllTypes_NestedMessage newBuilder].setBb(518) build]);
-                     [message setRepeatedForeignMessage(1,
-            [ForeignMessage newBuilder].setC(519) build]);
-                      [message setRepeatedImportMessage(1,
-            [ImportMessage newBuilder] setD:520] build]);
-                       
-                       [message setRepeatedNestedEnum (1, [TestAllTypes_NestedEnum FOO]);
-                        [message setRepeatedForeignEnum(1, [ForeignEnum FOREIGN_FOO]);
-                         [message setRepeatedImportEnum (1, [ImportEnum IMPORT_FOO]);
-    
-    [message setRepeatedStringPiece(1, "524");
-     [message setRepeatedCord(1, "525");
-     }
+
      
      
      
