@@ -211,36 +211,38 @@
     STAssertTrue(-1L == [[[d findFieldByName:@"large_uint64"] defaultValue] longLongValue], @"");
 }
 
-#if 0
-public void testEnumDescriptor() throws Exception {
-    PBEnumDescriptor* enumType = ForeignEnum.getDescriptor();
-    PBEnumDescriptor* nestedType = TestAllTypes.NestedEnum.getDescriptor();
+
+- (void) testEnumDescriptor {
+    PBEnumDescriptor* enumType = [ForeignEnum descriptor];
+    PBEnumDescriptor* nestedType = [TestAllTypes_NestedEnum descriptor];
     
-    STAssertEqualObjects(@"ForeignEnum", enumType.getName());
-    STAssertEqualObjects(@"protobuf_unittest.ForeignEnum", enumType.getFullName());
-    STAssertEqualObjects([UnittestProtoRoot descriptor], enumType.file);
-    STAssertNil(enumType.getContainingType());
-    STAssertEqualObjects(DescriptorProtos.EnumOptions.getDefaultInstance(),
-                 enumType.options);
+    STAssertEqualObjects(@"ForeignEnum", enumType.name, @"");
+    STAssertEqualObjects(@"protobuf_unittest.ForeignEnum", enumType.fullName, @"");
+    STAssertEqualObjects([UnittestProtoRoot descriptor], enumType.file, @"");
+    STAssertNil(enumType.containingType, @"");
+    STAssertEqualObjects([PBEnumOptions defaultInstance],
+                 enumType.options, @"");
     
-    STAssertEqualObjects(@"NestedEnum", nestedType.getName());
+    STAssertEqualObjects(@"NestedEnum", nestedType.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.TestAllTypes.NestedEnum",
-                 nestedType.getFullName());
-    STAssertEqualObjects([UnittestProtoRoot descriptor], nestedType.file);
-    STAssertEqualObjects([TestAllTypes descriptor], nestedType.getContainingType());
+                 nestedType.fullName, @"");
+    STAssertEqualObjects([UnittestProtoRoot descriptor], nestedType.file, @"");
+    STAssertEqualObjects([TestAllTypes descriptor], nestedType.containingType, @"");
     
-    EnumValueDescriptor value = ForeignEnum.FOREIGN_FOO.getValueDescriptor();
-    STAssertEqualObjects(value, enumType.getValues().get(0));
-    STAssertEqualObjects(@"FOREIGN_FOO", value.getName());
-    STAssertEqualObjects(4, value.getNumber());
-    STAssertEqualObjects(value, enumType.findValueByName(@"FOREIGN_FOO"));
-    STAssertEqualObjects(value, enumType.findValueByNumber(4));
-    STAssertNil(enumType.findValueByName(@"NO_SUCH_VALUE"));
-    for (int i = 0; i < enumType.getValues().size(); i++) {
-        STAssertEqualObjects(i, enumType.getValues().get(i).getIndex());
+    PBEnumValueDescriptor* value = [[ForeignEnum FOREIGN_FOO] valueDescriptor];
+    STAssertEqualObjects(value, [enumType.values objectAtIndex:0], @"");
+    STAssertEqualObjects(@"FOREIGN_FOO", value.name, @"");
+    STAssertEquals(4, value.number, @"");
+    STAssertEqualObjects(value, [enumType findValueByName:@"FOREIGN_FOO"], @"");
+    STAssertEqualObjects(value, [enumType findValueByNumber:4], @"");
+    STAssertNil([enumType findValueByName:@"NO_SUCH_VALUE"], @"");
+    for (int i = 0; i < enumType.values.count; i++) {
+        STAssertTrue(i == [[enumType.values objectAtIndex:i] index], @"");
     }
 }
 
+
+#if 0
 public void testServiceDescriptor() throws Exception {
     PBServiceDescriptor* service = TestService.getDescriptor();
     

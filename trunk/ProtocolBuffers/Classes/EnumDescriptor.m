@@ -125,4 +125,9 @@
     return proto.name;
 }
 
+
+- (PBEnumOptions*) options {
+    return proto.options;
+}
+
 @end
