@@ -14,8 +14,8 @@
 
 #import "GoogleDataProvider.h"
 
-#import "BoxOffice.pb.h"
 #import "Application.h"
+#import "BoxOffice.pb.h"
 #import "DateUtilities.h"
 #import "Location.h"
 #import "LookupResult.h"

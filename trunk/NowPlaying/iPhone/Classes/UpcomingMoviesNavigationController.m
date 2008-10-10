@@ -29,15 +29,18 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
-        self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] initWithNavigationController:self] autorelease];
-
-        [self pushViewController:upcomingMoviesViewController animated:NO];
-
         self.title = NSLocalizedString(@"Upcoming", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Upcoming.png"];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.upcomingMoviesViewController = [[[UpcomingMoviesViewController alloc] initWithNavigationController:self] autorelease];
+    [self pushViewController:upcomingMoviesViewController animated:NO];
 }
 
 

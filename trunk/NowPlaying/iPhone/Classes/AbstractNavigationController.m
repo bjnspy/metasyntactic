@@ -40,7 +40,6 @@
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super init]) {
         self.tabBarController = controller;
-        self.view.autoresizesSubviews = YES;
         showingSearch = NO;
     }
 
@@ -48,7 +47,18 @@
 }
 
 
+- (void) loadView {
+    [super loadView];
+    viewLoaded = YES;
+    self.view.autoresizesSubviews = YES;
+}
+
+
 - (void) refresh {
+    if (!viewLoaded) {
+        return;
+    }
+
     for (id controller in self.viewControllers) {
         if ([controller respondsToSelector:@selector(refresh)]) {
             [controller refresh];
