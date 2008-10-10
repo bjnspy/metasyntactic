@@ -65,6 +65,8 @@
 
 - (int32_t) number;
 
+- (PBFieldOptions*) options;
+
 // @internal
 - (void) crossLink;
 

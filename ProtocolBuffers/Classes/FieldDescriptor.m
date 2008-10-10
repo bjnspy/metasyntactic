@@ -117,6 +117,11 @@
 }
 
 
+- (PBFieldOptions*) options {
+    return proto.options;
+}
+
+
 - (BOOL) isExtension {
     return proto.hasExtendee;
 }
