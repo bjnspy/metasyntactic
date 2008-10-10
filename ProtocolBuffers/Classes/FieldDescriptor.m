@@ -170,6 +170,11 @@
 }
 
 
+- (BOOL) hasDefaultValue {
+    return proto.hasDefaultValue;
+}
+
+
 - (id) defaultValue {
     if (self.objectiveCType == PBObjectiveCTypeMessage) {
         @throw [NSException exceptionWithName:@"UnsupportedOperation"

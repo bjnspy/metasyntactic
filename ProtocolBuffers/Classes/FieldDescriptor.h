@@ -67,6 +67,9 @@
 
 - (PBFieldOptions*) options;
 
+- (BOOL) hasDefaultValue;
+- (id) defaultValue;
+
 // @internal
 - (void) crossLink;
 

@@ -195,23 +195,23 @@
 }
 
 
-#if 0
-public void testFieldDescriptorDefault() throws Exception {
+- (void) testFieldDescriptorDefault {
     PBDescriptor* d = [TestAllTypes descriptor];
-    STAssertFalse(d.findFieldByName(@"optional_int32").hasDefaultValue());
-    STAssertEqualObjects(0, d.findFieldByName(@"optional_int32").getDefaultValue());
-    STAssertTrue(d.findFieldByName(@"default_int32").hasDefaultValue());
-    STAssertEqualObjects(41, d.findFieldByName(@"default_int32").getDefaultValue());
+    STAssertFalse([[d findFieldByName:@"optional_int32"] hasDefaultValue], @"");
+    STAssertTrue(0 == [[[d findFieldByName:@"optional_int32"] defaultValue] intValue], @"");
+    STAssertTrue([[d findFieldByName:@"default_int32"] hasDefaultValue], @"");
+    STAssertTrue(41 == [[[d findFieldByName:@"default_int32"] defaultValue] intValue], @"");
     
-    d = TestExtremeDefaultValues.getDescriptor();
-    STAssertEqualObjects(
-                 ByteString.copyFrom(
-                                     "\0\001\007\b\f\n\r\t\013\\\'\"\u00fe".getBytes(@"ISO-8859-1")),
-                 d.findFieldByName(@"escaped_bytes").getDefaultValue());
-    STAssertEqualObjects(-1, d.findFieldByName(@"large_uint32").getDefaultValue());
-    STAssertEqualObjects(-1L, d.findFieldByName(@"large_uint64").getDefaultValue());
+    d = [TestExtremeDefaultValues descriptor];
+    //STAssertEqualObjects(
+    //             ByteString.copyFrom(
+    //                                 "\0\001\007\b\f\n\r\t\013\\\'\"\u00fe".getBytes(@"ISO-8859-1")),
+    //             d.findFieldByName(@"escaped_bytes").getDefaultValue());
+    STAssertTrue(-1 == [[[d findFieldByName:@"large_uint32"] defaultValue] longLongValue], @"");
+    STAssertTrue(-1L == [[[d findFieldByName:@"large_uint64"] defaultValue] longLongValue], @"");
 }
 
+#if 0
 public void testEnumDescriptor() throws Exception {
     PBEnumDescriptor* enumType = ForeignEnum.getDescriptor();
     PBEnumDescriptor* nestedType = TestAllTypes.NestedEnum.getDescriptor();
