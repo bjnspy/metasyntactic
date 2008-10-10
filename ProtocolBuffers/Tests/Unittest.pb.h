@@ -168,7 +168,7 @@
 - (int32_t) number;
 + (ForeignEnum*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptorForType;
+- (PBEnumDescriptor*) descriptor;
 + (PBEnumDescriptor*) descriptor;
 
 + (ForeignEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -191,7 +191,7 @@
 - (int32_t) number;
 + (TestEnumWithDupValue*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptorForType;
+- (PBEnumDescriptor*) descriptor;
 + (PBEnumDescriptor*) descriptor;
 
 + (TestEnumWithDupValue*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -216,7 +216,7 @@
 - (int32_t) number;
 + (TestSparseEnum*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptorForType;
+- (PBEnumDescriptor*) descriptor;
 + (PBEnumDescriptor*) descriptor;
 
 + (TestSparseEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -236,7 +236,7 @@
                      selector:(SEL) selector;
 
 + (PBServiceDescriptor*) descriptor;
-- (PBServiceDescriptor*) descriptorForType;
+- (PBServiceDescriptor*) descriptor;
 
 - (void) callMethod:(PBMethodDescriptor*) method
          controller:(id<PBRpcController>) controller
@@ -515,9 +515,9 @@
 - (NSString*) repeatedCordAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestAllTypes*) defaultInstance;
-- (TestAllTypes*) defaultInstanceForType;
+- (TestAllTypes*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -547,7 +547,7 @@
 - (int32_t) number;
 + (TestAllTypes_NestedEnum*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptorForType;
+- (PBEnumDescriptor*) descriptor;
 + (PBEnumDescriptor*) descriptor;
 
 + (TestAllTypes_NestedEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -561,9 +561,9 @@
 @property (readonly) int32_t bb;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestAllTypes_NestedMessage*) defaultInstance;
-- (TestAllTypes_NestedMessage*) defaultInstanceForType;
+- (TestAllTypes_NestedMessage*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -587,8 +587,8 @@
 + (TestAllTypes_NestedMessage_Builder*) builder;
 + (TestAllTypes_NestedMessage_Builder*) builderWithPrototype:(TestAllTypes_NestedMessage*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestAllTypes_NestedMessage*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestAllTypes_NestedMessage*) defaultInstance;
 
 - (TestAllTypes_NestedMessage_Builder*) clear;
 - (TestAllTypes_NestedMessage_Builder*) clone;
@@ -615,9 +615,9 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestAllTypes_OptionalGroup*) defaultInstance;
-- (TestAllTypes_OptionalGroup*) defaultInstanceForType;
+- (TestAllTypes_OptionalGroup*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -641,8 +641,8 @@
 + (TestAllTypes_OptionalGroup_Builder*) builder;
 + (TestAllTypes_OptionalGroup_Builder*) builderWithPrototype:(TestAllTypes_OptionalGroup*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestAllTypes_OptionalGroup*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestAllTypes_OptionalGroup*) defaultInstance;
 
 - (TestAllTypes_OptionalGroup_Builder*) clear;
 - (TestAllTypes_OptionalGroup_Builder*) clone;
@@ -669,9 +669,9 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestAllTypes_RepeatedGroup*) defaultInstance;
-- (TestAllTypes_RepeatedGroup*) defaultInstanceForType;
+- (TestAllTypes_RepeatedGroup*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -695,8 +695,8 @@
 + (TestAllTypes_RepeatedGroup_Builder*) builder;
 + (TestAllTypes_RepeatedGroup_Builder*) builderWithPrototype:(TestAllTypes_RepeatedGroup*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestAllTypes_RepeatedGroup*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestAllTypes_RepeatedGroup*) defaultInstance;
 
 - (TestAllTypes_RepeatedGroup_Builder*) clear;
 - (TestAllTypes_RepeatedGroup_Builder*) clone;
@@ -724,8 +724,8 @@
 + (TestAllTypes_Builder*) builder;
 + (TestAllTypes_Builder*) builderWithPrototype:(TestAllTypes*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestAllTypes*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestAllTypes*) defaultInstance;
 
 - (TestAllTypes_Builder*) clear;
 - (TestAllTypes_Builder*) clone;
@@ -1143,9 +1143,9 @@
 @property (readonly) int32_t c;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (ForeignMessage*) defaultInstance;
-- (ForeignMessage*) defaultInstanceForType;
+- (ForeignMessage*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1169,8 +1169,8 @@
 + (ForeignMessage_Builder*) builder;
 + (ForeignMessage_Builder*) builderWithPrototype:(ForeignMessage*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (ForeignMessage*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (ForeignMessage*) defaultInstance;
 
 - (ForeignMessage_Builder*) clear;
 - (ForeignMessage_Builder*) clone;
@@ -1193,9 +1193,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestAllExtensions*) defaultInstance;
-- (TestAllExtensions*) defaultInstanceForType;
+- (TestAllExtensions*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1219,8 +1219,8 @@
 + (TestAllExtensions_Builder*) builder;
 + (TestAllExtensions_Builder*) builderWithPrototype:(TestAllExtensions*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestAllExtensions*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestAllExtensions*) defaultInstance;
 
 - (TestAllExtensions_Builder*) clear;
 - (TestAllExtensions_Builder*) clone;
@@ -1242,9 +1242,9 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (OptionalGroup_extension*) defaultInstance;
-- (OptionalGroup_extension*) defaultInstanceForType;
+- (OptionalGroup_extension*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1268,8 +1268,8 @@
 + (OptionalGroup_extension_Builder*) builder;
 + (OptionalGroup_extension_Builder*) builderWithPrototype:(OptionalGroup_extension*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (OptionalGroup_extension*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (OptionalGroup_extension*) defaultInstance;
 
 - (OptionalGroup_extension_Builder*) clear;
 - (OptionalGroup_extension_Builder*) clone;
@@ -1296,9 +1296,9 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (RepeatedGroup_extension*) defaultInstance;
-- (RepeatedGroup_extension*) defaultInstanceForType;
+- (RepeatedGroup_extension*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1322,8 +1322,8 @@
 + (RepeatedGroup_extension_Builder*) builder;
 + (RepeatedGroup_extension_Builder*) builderWithPrototype:(RepeatedGroup_extension*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (RepeatedGroup_extension*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (RepeatedGroup_extension*) defaultInstance;
 
 - (RepeatedGroup_extension_Builder*) clear;
 - (RepeatedGroup_extension_Builder*) clone;
@@ -1478,9 +1478,9 @@
 @property (readonly) int32_t c;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestRequired*) defaultInstance;
-- (TestRequired*) defaultInstanceForType;
+- (TestRequired*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 + (PBGeneratedExtension*) single;
@@ -1506,8 +1506,8 @@
 + (TestRequired_Builder*) builder;
 + (TestRequired_Builder*) builderWithPrototype:(TestRequired*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestRequired*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestRequired*) defaultInstance;
 
 - (TestRequired_Builder*) clear;
 - (TestRequired_Builder*) clone;
@@ -1701,9 +1701,9 @@
 - (TestRequired*) repeatedMessageAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestRequiredForeign*) defaultInstance;
-- (TestRequiredForeign*) defaultInstanceForType;
+- (TestRequiredForeign*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1727,8 +1727,8 @@
 + (TestRequiredForeign_Builder*) builder;
 + (TestRequiredForeign_Builder*) builderWithPrototype:(TestRequiredForeign*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestRequiredForeign*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestRequiredForeign*) defaultInstance;
 
 - (TestRequiredForeign_Builder*) clear;
 - (TestRequiredForeign_Builder*) clone;
@@ -1769,9 +1769,9 @@
 @property (retain, readonly) TestAllTypes_NestedMessage* foreignNested;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestForeignNested*) defaultInstance;
-- (TestForeignNested*) defaultInstanceForType;
+- (TestForeignNested*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1795,8 +1795,8 @@
 + (TestForeignNested_Builder*) builder;
 + (TestForeignNested_Builder*) builderWithPrototype:(TestForeignNested*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestForeignNested*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestForeignNested*) defaultInstance;
 
 - (TestForeignNested_Builder*) clear;
 - (TestForeignNested_Builder*) clone;
@@ -1821,9 +1821,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestEmptyMessage*) defaultInstance;
-- (TestEmptyMessage*) defaultInstanceForType;
+- (TestEmptyMessage*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1847,8 +1847,8 @@
 + (TestEmptyMessage_Builder*) builder;
 + (TestEmptyMessage_Builder*) builderWithPrototype:(TestEmptyMessage*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestEmptyMessage*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestEmptyMessage*) defaultInstance;
 
 - (TestEmptyMessage_Builder*) clear;
 - (TestEmptyMessage_Builder*) clone;
@@ -1866,9 +1866,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestEmptyMessageWithExtensions*) defaultInstance;
-- (TestEmptyMessageWithExtensions*) defaultInstanceForType;
+- (TestEmptyMessageWithExtensions*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1892,8 +1892,8 @@
 + (TestEmptyMessageWithExtensions_Builder*) builder;
 + (TestEmptyMessageWithExtensions_Builder*) builderWithPrototype:(TestEmptyMessageWithExtensions*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestEmptyMessageWithExtensions*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestEmptyMessageWithExtensions*) defaultInstance;
 
 - (TestEmptyMessageWithExtensions_Builder*) clear;
 - (TestEmptyMessageWithExtensions_Builder*) clone;
@@ -1919,9 +1919,9 @@
 @property (readonly) int32_t bb;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestReallyLargeTagNumber*) defaultInstance;
-- (TestReallyLargeTagNumber*) defaultInstanceForType;
+- (TestReallyLargeTagNumber*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -1945,8 +1945,8 @@
 + (TestReallyLargeTagNumber_Builder*) builder;
 + (TestReallyLargeTagNumber_Builder*) builderWithPrototype:(TestReallyLargeTagNumber*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestReallyLargeTagNumber*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestReallyLargeTagNumber*) defaultInstance;
 
 - (TestReallyLargeTagNumber_Builder*) clear;
 - (TestReallyLargeTagNumber_Builder*) clone;
@@ -1982,9 +1982,9 @@
 @property (readonly) int32_t i;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestRecursiveMessage*) defaultInstance;
-- (TestRecursiveMessage*) defaultInstanceForType;
+- (TestRecursiveMessage*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2008,8 +2008,8 @@
 + (TestRecursiveMessage_Builder*) builder;
 + (TestRecursiveMessage_Builder*) builderWithPrototype:(TestRecursiveMessage*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestRecursiveMessage*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestRecursiveMessage*) defaultInstance;
 
 - (TestRecursiveMessage_Builder*) clear;
 - (TestRecursiveMessage_Builder*) clone;
@@ -2043,9 +2043,9 @@
 @property (retain, readonly) TestMutualRecursionB* bb;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestMutualRecursionA*) defaultInstance;
-- (TestMutualRecursionA*) defaultInstanceForType;
+- (TestMutualRecursionA*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2069,8 +2069,8 @@
 + (TestMutualRecursionA_Builder*) builder;
 + (TestMutualRecursionA_Builder*) builderWithPrototype:(TestMutualRecursionA*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestMutualRecursionA*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestMutualRecursionA*) defaultInstance;
 
 - (TestMutualRecursionA_Builder*) clear;
 - (TestMutualRecursionA_Builder*) clone;
@@ -2103,9 +2103,9 @@
 @property (readonly) int32_t optionalInt32;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestMutualRecursionB*) defaultInstance;
-- (TestMutualRecursionB*) defaultInstanceForType;
+- (TestMutualRecursionB*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2129,8 +2129,8 @@
 + (TestMutualRecursionB_Builder*) builder;
 + (TestMutualRecursionB_Builder*) builderWithPrototype:(TestMutualRecursionB*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestMutualRecursionB*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestMutualRecursionB*) defaultInstance;
 
 - (TestMutualRecursionB_Builder*) clear;
 - (TestMutualRecursionB_Builder*) clone;
@@ -2172,9 +2172,9 @@
 @property (retain, readonly) TestDupFieldNumber_Bar* bar;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestDupFieldNumber*) defaultInstance;
-- (TestDupFieldNumber*) defaultInstanceForType;
+- (TestDupFieldNumber*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2197,9 +2197,9 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestDupFieldNumber_Foo*) defaultInstance;
-- (TestDupFieldNumber_Foo*) defaultInstanceForType;
+- (TestDupFieldNumber_Foo*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2223,8 +2223,8 @@
 + (TestDupFieldNumber_Foo_Builder*) builder;
 + (TestDupFieldNumber_Foo_Builder*) builderWithPrototype:(TestDupFieldNumber_Foo*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestDupFieldNumber_Foo*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestDupFieldNumber_Foo*) defaultInstance;
 
 - (TestDupFieldNumber_Foo_Builder*) clear;
 - (TestDupFieldNumber_Foo_Builder*) clone;
@@ -2251,9 +2251,9 @@
 @property (readonly) int32_t a;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestDupFieldNumber_Bar*) defaultInstance;
-- (TestDupFieldNumber_Bar*) defaultInstanceForType;
+- (TestDupFieldNumber_Bar*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2277,8 +2277,8 @@
 + (TestDupFieldNumber_Bar_Builder*) builder;
 + (TestDupFieldNumber_Bar_Builder*) builderWithPrototype:(TestDupFieldNumber_Bar*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestDupFieldNumber_Bar*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestDupFieldNumber_Bar*) defaultInstance;
 
 - (TestDupFieldNumber_Bar_Builder*) clear;
 - (TestDupFieldNumber_Bar_Builder*) clone;
@@ -2306,8 +2306,8 @@
 + (TestDupFieldNumber_Builder*) builder;
 + (TestDupFieldNumber_Builder*) builderWithPrototype:(TestDupFieldNumber*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestDupFieldNumber*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestDupFieldNumber*) defaultInstance;
 
 - (TestDupFieldNumber_Builder*) clear;
 - (TestDupFieldNumber_Builder*) clone;
@@ -2348,9 +2348,9 @@
 @property (retain, readonly) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestNestedMessageHasBits*) defaultInstance;
-- (TestNestedMessageHasBits*) defaultInstanceForType;
+- (TestNestedMessageHasBits*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2375,9 +2375,9 @@
 - (ForeignMessage*) nestedmessageRepeatedForeignmessageAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
-- (TestNestedMessageHasBits_NestedMessage*) defaultInstanceForType;
+- (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2401,8 +2401,8 @@
 + (TestNestedMessageHasBits_NestedMessage_Builder*) builder;
 + (TestNestedMessageHasBits_NestedMessage_Builder*) builderWithPrototype:(TestNestedMessageHasBits_NestedMessage*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestNestedMessageHasBits_NestedMessage*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
 
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clear;
 - (TestNestedMessageHasBits_NestedMessage_Builder*) clone;
@@ -2439,8 +2439,8 @@
 + (TestNestedMessageHasBits_Builder*) builder;
 + (TestNestedMessageHasBits_Builder*) builderWithPrototype:(TestNestedMessageHasBits*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestNestedMessageHasBits*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestNestedMessageHasBits*) defaultInstance;
 
 - (TestNestedMessageHasBits_Builder*) clear;
 - (TestNestedMessageHasBits_Builder*) clone;
@@ -2507,9 +2507,9 @@
 - (NSString*) repeatedCordFieldAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestCamelCaseFieldNames*) defaultInstance;
-- (TestCamelCaseFieldNames*) defaultInstanceForType;
+- (TestCamelCaseFieldNames*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2533,8 +2533,8 @@
 + (TestCamelCaseFieldNames_Builder*) builder;
 + (TestCamelCaseFieldNames_Builder*) builderWithPrototype:(TestCamelCaseFieldNames*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestCamelCaseFieldNames*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestCamelCaseFieldNames*) defaultInstance;
 
 - (TestCamelCaseFieldNames_Builder*) clear;
 - (TestCamelCaseFieldNames_Builder*) clone;
@@ -2638,9 +2638,9 @@
 @property (readonly) Float32 myFloat;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestFieldOrderings*) defaultInstance;
-- (TestFieldOrderings*) defaultInstanceForType;
+- (TestFieldOrderings*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2664,8 +2664,8 @@
 + (TestFieldOrderings_Builder*) builder;
 + (TestFieldOrderings_Builder*) builderWithPrototype:(TestFieldOrderings*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestFieldOrderings*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestFieldOrderings*) defaultInstance;
 
 - (TestFieldOrderings_Builder*) clear;
 - (TestFieldOrderings_Builder*) clone;
@@ -2722,9 +2722,9 @@
 @property (retain, readonly) NSString* utf8String;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestExtremeDefaultValues*) defaultInstance;
-- (TestExtremeDefaultValues*) defaultInstanceForType;
+- (TestExtremeDefaultValues*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2748,8 +2748,8 @@
 + (TestExtremeDefaultValues_Builder*) builder;
 + (TestExtremeDefaultValues_Builder*) builderWithPrototype:(TestExtremeDefaultValues*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestExtremeDefaultValues*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestExtremeDefaultValues*) defaultInstance;
 
 - (TestExtremeDefaultValues_Builder*) clear;
 - (TestExtremeDefaultValues_Builder*) clone;
@@ -2797,9 +2797,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (FooRequest*) defaultInstance;
-- (FooRequest*) defaultInstanceForType;
+- (FooRequest*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2823,8 +2823,8 @@
 + (FooRequest_Builder*) builder;
 + (FooRequest_Builder*) builderWithPrototype:(FooRequest*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (FooRequest*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (FooRequest*) defaultInstance;
 
 - (FooRequest_Builder*) clear;
 - (FooRequest_Builder*) clone;
@@ -2842,9 +2842,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (FooResponse*) defaultInstance;
-- (FooResponse*) defaultInstanceForType;
+- (FooResponse*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2868,8 +2868,8 @@
 + (FooResponse_Builder*) builder;
 + (FooResponse_Builder*) builderWithPrototype:(FooResponse*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (FooResponse*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (FooResponse*) defaultInstance;
 
 - (FooResponse_Builder*) clear;
 - (FooResponse_Builder*) clone;
@@ -2887,9 +2887,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (BarRequest*) defaultInstance;
-- (BarRequest*) defaultInstanceForType;
+- (BarRequest*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2913,8 +2913,8 @@
 + (BarRequest_Builder*) builder;
 + (BarRequest_Builder*) builderWithPrototype:(BarRequest*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (BarRequest*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (BarRequest*) defaultInstance;
 
 - (BarRequest_Builder*) clear;
 - (BarRequest_Builder*) clone;
@@ -2932,9 +2932,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (BarResponse*) defaultInstance;
-- (BarResponse*) defaultInstanceForType;
+- (BarResponse*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -2958,8 +2958,8 @@
 + (BarResponse_Builder*) builder;
 + (BarResponse_Builder*) builderWithPrototype:(BarResponse*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (BarResponse*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (BarResponse*) defaultInstance;
 
 - (BarResponse_Builder*) clear;
 - (BarResponse_Builder*) clone;

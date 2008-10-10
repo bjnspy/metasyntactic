@@ -21,8 +21,8 @@
     int32_t am_memoizedSize;
 }
 
-- (PBDescriptor*) descriptorForType;
-- (id<PBMessage>) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (id<PBMessage>) defaultInstance;
 - (NSDictionary*) allFields;
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;

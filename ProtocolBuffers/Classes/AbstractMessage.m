@@ -35,7 +35,7 @@
 
 
 - (BOOL) isInitialized {
-    for (PBFieldDescriptor* field in self.descriptorForType.fields) {
+    for (PBFieldDescriptor* field in self.descriptor.fields) {
         if (field.isRequired) {
             if (![self hasField:field]) {
                 return NO;
@@ -81,7 +81,7 @@
     }
 
     PBUnknownFieldSet* unknownFields = self.unknownFields;
-    if (self.descriptorForType.options.messageSetWireFormat) {
+    if (self.descriptor.options.messageSetWireFormat) {
         [unknownFields writeAsMessageSetTo:output];
     } else {
         [unknownFields writeToCodedOutputStream:output];
@@ -125,7 +125,7 @@
     }
 
     PBUnknownFieldSet* unknownFields = self.unknownFields;
-    if (self.descriptorForType.options.messageSetWireFormat) {
+    if (self.descriptor.options.messageSetWireFormat) {
         size += unknownFields.serializedSizeAsMessageSet;
     } else {
         size += unknownFields.serializedSize;
@@ -145,7 +145,8 @@
         return NO;
     }
 
-    if (self.descriptorForType != [other descriptorForType]) {
+    id<PBMessage> otherMessage = other;
+    if (self.descriptor != [otherMessage descriptor]) {
         return NO;
     }
 
@@ -155,18 +156,18 @@
 
 - (NSUInteger) hash {
     NSUInteger hash = 41;
-    hash = (19 * hash) + self.descriptorForType.hash;
+    hash = (19 * hash) + self.descriptor.hash;
     hash = (53 * hash) + self.allFields.hash;
     return hash;
 }
 
 
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id<PBMessage>) defaultInstanceForType {
+- (id<PBMessage>) defaultInstance {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

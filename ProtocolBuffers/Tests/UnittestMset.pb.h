@@ -31,9 +31,9 @@
 }
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestMessageSet*) defaultInstance;
-- (TestMessageSet*) defaultInstanceForType;
+- (TestMessageSet*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -57,8 +57,8 @@
 + (TestMessageSet_Builder*) builder;
 + (TestMessageSet_Builder*) builderWithPrototype:(TestMessageSet*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestMessageSet*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestMessageSet*) defaultInstance;
 
 - (TestMessageSet_Builder*) clear;
 - (TestMessageSet_Builder*) clone;
@@ -80,9 +80,9 @@
 @property (retain, readonly) TestMessageSet* messageSet;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestMessageSetContainer*) defaultInstance;
-- (TestMessageSetContainer*) defaultInstanceForType;
+- (TestMessageSetContainer*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -106,8 +106,8 @@
 + (TestMessageSetContainer_Builder*) builder;
 + (TestMessageSetContainer_Builder*) builderWithPrototype:(TestMessageSetContainer*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestMessageSetContainer*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestMessageSetContainer*) defaultInstance;
 
 - (TestMessageSetContainer_Builder*) clear;
 - (TestMessageSetContainer_Builder*) clone;
@@ -136,9 +136,9 @@
 @property (readonly) int32_t i;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestMessageSetExtension1*) defaultInstance;
-- (TestMessageSetExtension1*) defaultInstanceForType;
+- (TestMessageSetExtension1*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 + (PBGeneratedExtension*) messageSetExtension;
@@ -163,8 +163,8 @@
 + (TestMessageSetExtension1_Builder*) builder;
 + (TestMessageSetExtension1_Builder*) builderWithPrototype:(TestMessageSetExtension1*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestMessageSetExtension1*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestMessageSetExtension1*) defaultInstance;
 
 - (TestMessageSetExtension1_Builder*) clear;
 - (TestMessageSetExtension1_Builder*) clone;
@@ -191,9 +191,9 @@
 @property (retain, readonly) NSString* str;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestMessageSetExtension2*) defaultInstance;
-- (TestMessageSetExtension2*) defaultInstanceForType;
+- (TestMessageSetExtension2*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 + (PBGeneratedExtension*) messageSetExtension;
@@ -218,8 +218,8 @@
 + (TestMessageSetExtension2_Builder*) builder;
 + (TestMessageSetExtension2_Builder*) builderWithPrototype:(TestMessageSetExtension2*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestMessageSetExtension2*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestMessageSetExtension2*) defaultInstance;
 
 - (TestMessageSetExtension2_Builder*) clear;
 - (TestMessageSetExtension2_Builder*) clone;
@@ -245,9 +245,9 @@
 - (RawMessageSet_Item*) itemAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (RawMessageSet*) defaultInstance;
-- (RawMessageSet*) defaultInstanceForType;
+- (RawMessageSet*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -274,9 +274,9 @@
 @property (retain, readonly) NSData* message;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (RawMessageSet_Item*) defaultInstance;
-- (RawMessageSet_Item*) defaultInstanceForType;
+- (RawMessageSet_Item*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -300,8 +300,8 @@
 + (RawMessageSet_Item_Builder*) builder;
 + (RawMessageSet_Item_Builder*) builderWithPrototype:(RawMessageSet_Item*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (RawMessageSet_Item*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (RawMessageSet_Item*) defaultInstance;
 
 - (RawMessageSet_Item_Builder*) clear;
 - (RawMessageSet_Item_Builder*) clone;
@@ -334,8 +334,8 @@
 + (RawMessageSet_Builder*) builder;
 + (RawMessageSet_Builder*) builderWithPrototype:(RawMessageSet*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (RawMessageSet*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (RawMessageSet*) defaultInstance;
 
 - (RawMessageSet_Builder*) clear;
 - (RawMessageSet_Builder*) clone;

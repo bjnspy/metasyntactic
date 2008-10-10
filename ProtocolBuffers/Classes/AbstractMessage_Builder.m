@@ -44,7 +44,7 @@
 
 
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
-    if ([other descriptorForType] != self.descriptorForType) {
+    if ([other descriptor] != self.descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage:(id<PBMessage>) can only merge messages of the same type." userInfo:nil];
     }
 
@@ -67,7 +67,7 @@
         } else if (field.objectiveCType == PBObjectiveCTypeMessage) {
             id<PBMessage> existingValue = [self getField:field];
 
-            if (existingValue == [existingValue defaultInstanceForType]) {
+            if (existingValue == [existingValue defaultInstance]) {
                 [self setField:field value:value];
             } else {
                 id value1 = [[[[existingValue createBuilder] mergeFromMessage:existingValue] mergeFromMessage:value] build];
@@ -159,12 +159,12 @@
 }
 
 
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
 
-- (id<PBMessage>) defaultInstanceForType {
+- (id<PBMessage>) defaultInstance {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

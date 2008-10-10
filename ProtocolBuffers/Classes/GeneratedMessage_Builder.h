@@ -23,7 +23,7 @@
 
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 - (NSDictionary*) allFields;
 - (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
 - (BOOL) hasField:(PBFieldDescriptor*) field;

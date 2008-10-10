@@ -98,9 +98,9 @@
 - (TestOptimizedForSize*) repeatedMessageAtIndex:(int32_t) index;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (TestEmbedOptimizedForSize*) defaultInstance;
-- (TestEmbedOptimizedForSize*) defaultInstanceForType;
+- (TestEmbedOptimizedForSize*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -124,8 +124,8 @@
 + (TestEmbedOptimizedForSize_Builder*) builder;
 + (TestEmbedOptimizedForSize_Builder*) builderWithPrototype:(TestEmbedOptimizedForSize*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (TestEmbedOptimizedForSize*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (TestEmbedOptimizedForSize*) defaultInstance;
 
 - (TestEmbedOptimizedForSize_Builder*) clear;
 - (TestEmbedOptimizedForSize_Builder*) clone;

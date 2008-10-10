@@ -33,7 +33,7 @@
 - (int32_t) number;
 + (ImportEnum*) valueOf:(int32_t) value;
 - (PBEnumValueDescriptor*) valueDescriptor;
-- (PBEnumDescriptor*) descriptorForType;
+- (PBEnumDescriptor*) descriptor;
 + (PBEnumDescriptor*) descriptor;
 
 + (ImportEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;
@@ -47,9 +47,9 @@
 @property (readonly) int32_t d;
 
 + (PBDescriptor*) descriptor;
-- (PBDescriptor*) descriptorForType;
+- (PBDescriptor*) descriptor;
 + (ImportMessage*) defaultInstance;
-- (ImportMessage*) defaultInstanceForType;
+- (ImportMessage*) defaultInstance;
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
@@ -73,8 +73,8 @@
 + (ImportMessage_Builder*) builder;
 + (ImportMessage_Builder*) builderWithPrototype:(ImportMessage*) prototype;
 
-- (PBDescriptor*) descriptorForType;
-- (ImportMessage*) defaultInstanceForType;
+- (PBDescriptor*) descriptor;
+- (ImportMessage*) defaultInstance;
 
 - (ImportMessage_Builder*) clear;
 - (ImportMessage_Builder*) clone;

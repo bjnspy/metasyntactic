@@ -290,9 +290,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "\n"
       "+ (PBDescriptor*) descriptor;\n"
-      "- (PBDescriptor*) descriptorForType;\n"
+      "- (PBDescriptor*) descriptor;\n"
       "+ ($classname$*) defaultInstance;\n"
-      "- ($classname$*) defaultInstanceForType;\n",
+      "- ($classname$*) defaultInstance;\n",
       "classname", ClassName(descriptor_));
     printer->Print(
       "- (PBFieldAccessorTable*) internalGetFieldAccessorTable;\n"
@@ -310,9 +310,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     //}
 
     printer->Print(
-      "+ ($classname$_Builder*) newBuilder;\n"
-      "- ($classname$_Builder*) newBuilderForType;\n"
-      "+ ($classname$_Builder*) newBuilderWithPrototype:($classname$*) prototype;\n",
+      "- ($classname$_Builder*) createBuilder;\n",
       "classname", ClassName(descriptor_));
 
     GenerateParseFromMethodsHeader(printer);
@@ -396,10 +394,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "+ ($classname$*) defaultInstance {\n"
       "  return default$classname$Instance;\n"
       "}\n"
-      "- ($classname$*) defaultInstanceForType {\n"
+      "- ($classname$*) defaultInstance {\n"
       "  return default$classname$Instance;\n"
       "}\n"
-      "- (PBDescriptor*) descriptorForType {\n"
+      "- (PBDescriptor*) descriptor {\n"
       "  return [$classname$ descriptor];\n"
       "}\n",
       "classname", ClassName(descriptor_));
@@ -426,10 +424,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     GenerateParseFromMethodsSource(printer);
 
     printer->Print(
-      "+ ($classname$_Builder*) newBuilder { return [[[$classname$_Builder alloc] init] autorelease]; }\n"
-      "- ($classname$_Builder*) newBuilderForType { return [$classname$ newBuilder]; }\n"
-      "+ ($classname$_Builder*) newBuilderWithPrototype:($classname$*) prototype {\n"
-      "  return [[$classname$ newBuilder] mergeFrom$classname$:prototype];\n"
+      "- ($classname$_Builder*) createBuilder {\n"
+      "  return [$classname$_Builder builder];\n"
       "}\n",
       "classname", ClassName(descriptor_));
 
@@ -533,8 +529,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void MessageGenerator::GenerateCommonBuilderMethodsHeader(io::Printer* printer) {
     printer->Print(
       "\n"
-      "- (PBDescriptor*) descriptorForType;\n"
-      "- ($classname$*) defaultInstanceForType;\n"
+      "+ ($classname$_Builder*) builder;\n"
+      "+ ($classname$_Builder*) builderWithPrototype:($classname$*) prototype;\n"
+      "\n"
+      "- (PBDescriptor*) descriptor;\n"
+      "- ($classname$*) defaultInstance;\n"
       "\n"
       "- ($classname$_Builder*) clear;\n"
       "- ($classname$_Builder*) clone;\n",
@@ -676,22 +675,22 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     //   for code size.
     printer->Print(
       "+ ($classname$*) parseFromData:(NSData*) data {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data] build];\n"
+      "  return ($classname$*)[[[$classname$_Builder builder] mergeFromData:data] build];\n"
       "}\n"
       "+ ($classname$*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromData:data extensionRegistry:extensionRegistry] build];\n"
+      "  return ($classname$*)[[[$classname$_Builder builder] mergeFromData:data extensionRegistry:extensionRegistry] build];\n"
       "}\n"
       "+ ($classname$*) parseFromInputStream:(NSInputStream*) input {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input] build];\n"
+      "  return ($classname$*)[[[$classname$_Builder builder] mergeFromInputStream:input] build];\n"
       "}\n"
       "+ ($classname$*) parseFromInputStream:(NSInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];\n"
+      "  return ($classname$*)[[[$classname$_Builder builder] mergeFromInputStream:input extensionRegistry:extensionRegistry] build];\n"
       "}\n"
       "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input] build];\n"
+      "  return ($classname$*)[[[$classname$_Builder builder] mergeFromCodedInputStream:input] build];\n"
       "}\n"
       "+ ($classname$*) parseFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {\n"
-      "  return ($classname$*)[[[$classname$ newBuilder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];\n"
+      "  return ($classname$*)[[[$classname$_Builder builder] mergeFromCodedInputStream:input extensionRegistry:extensionRegistry] build];\n"
       "}\n",
       "classname", ClassName(descriptor_));
   }
@@ -746,6 +745,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageGenerator::GenerateCommonBuilderMethodsSource(io::Printer* printer) {
     printer->Print(
+      "+ ($classname$_Builder*) builder {\n"
+      "  return [[[$classname$_Builder alloc] init] autorelease];\n"
+      "}\n"
+      "+ ($classname$_Builder*) builderWithPrototype:($classname$*) prototype {\n"
+      "  return [[$classname$_Builder builder] mergeFrom$classname$:prototype];\n"
+      "}\n"
       "- ($classname$*) internalGetResult {\n"
       "  return result;\n"
       "}\n"
@@ -754,12 +759,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return self;\n"
       "}\n"
       "- ($classname$_Builder*) clone {\n"
-      "  return ($classname$_Builder*)[[[[$classname$_Builder alloc] init] autorelease] mergeFrom$classname$:result];\n"
+      "  return [$classname$_Builder builderWithPrototype:result];\n"
       "}\n"
-      "- (PBDescriptor*) descriptorForType {\n"
+      "- (PBDescriptor*) descriptor {\n"
       "  return [$classname$ descriptor];\n"
       "}\n"
-      "- ($classname$*) defaultInstanceForType {\n"
+      "- ($classname$*) defaultInstance {\n"
       "  return [$classname$ defaultInstance];\n"
       "}\n",
       "classname", ClassName(descriptor_));
@@ -836,7 +841,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Indent();
 
     printer->Print(
-      "PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet newBuilder:self.unknownFields];\n"
+      "PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet_Builder builderWithUnknownFields:self.unknownFields];\n"
       "while (true) {\n");
     printer->Indent();
 

@@ -86,10 +86,10 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 + (TestEmbedOptimizedForSize*) defaultInstance {
   return defaultTestEmbedOptimizedForSizeInstance;
 }
-- (TestEmbedOptimizedForSize*) defaultInstanceForType {
+- (TestEmbedOptimizedForSize*) defaultInstance {
   return defaultTestEmbedOptimizedForSizeInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestEmbedOptimizedForSize descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -189,10 +189,10 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 - (TestEmbedOptimizedForSize_Builder*) clone {
   return [TestEmbedOptimizedForSize_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestEmbedOptimizedForSize descriptor];
 }
-- (TestEmbedOptimizedForSize*) defaultInstanceForType {
+- (TestEmbedOptimizedForSize*) defaultInstance {
   return [TestEmbedOptimizedForSize defaultInstance];
 }
 - (TestEmbedOptimizedForSize*) build {

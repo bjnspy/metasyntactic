@@ -177,10 +177,10 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 + (TestMessageSet*) defaultInstance {
   return defaultTestMessageSetInstance;
 }
-- (TestMessageSet*) defaultInstanceForType {
+- (TestMessageSet*) defaultInstance {
   return defaultTestMessageSetInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMessageSet descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -259,10 +259,10 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 - (TestMessageSet_Builder*) clone {
   return [TestMessageSet_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMessageSet descriptor];
 }
-- (TestMessageSet*) defaultInstanceForType {
+- (TestMessageSet*) defaultInstance {
   return [TestMessageSet defaultInstance];
 }
 - (TestMessageSet*) build {
@@ -341,10 +341,10 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 + (TestMessageSetContainer*) defaultInstance {
   return defaultTestMessageSetContainerInstance;
 }
-- (TestMessageSetContainer*) defaultInstanceForType {
+- (TestMessageSetContainer*) defaultInstance {
   return defaultTestMessageSetContainerInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMessageSetContainer descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -428,10 +428,10 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 - (TestMessageSetContainer_Builder*) clone {
   return [TestMessageSetContainer_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMessageSetContainer descriptor];
 }
-- (TestMessageSetContainer*) defaultInstanceForType {
+- (TestMessageSetContainer*) defaultInstance {
   return [TestMessageSetContainer defaultInstance];
 }
 - (TestMessageSetContainer*) build {
@@ -559,10 +559,10 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 + (TestMessageSetExtension1*) defaultInstance {
   return defaultTestMessageSetExtension1Instance;
 }
-- (TestMessageSetExtension1*) defaultInstanceForType {
+- (TestMessageSetExtension1*) defaultInstance {
   return defaultTestMessageSetExtension1Instance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMessageSetExtension1 descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -643,10 +643,10 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 - (TestMessageSetExtension1_Builder*) clone {
   return [TestMessageSetExtension1_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMessageSetExtension1 descriptor];
 }
-- (TestMessageSetExtension1*) defaultInstanceForType {
+- (TestMessageSetExtension1*) defaultInstance {
   return [TestMessageSetExtension1 defaultInstance];
 }
 - (TestMessageSetExtension1*) build {
@@ -755,10 +755,10 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 + (TestMessageSetExtension2*) defaultInstance {
   return defaultTestMessageSetExtension2Instance;
 }
-- (TestMessageSetExtension2*) defaultInstanceForType {
+- (TestMessageSetExtension2*) defaultInstance {
   return defaultTestMessageSetExtension2Instance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMessageSetExtension2 descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -839,10 +839,10 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 - (TestMessageSetExtension2_Builder*) clone {
   return [TestMessageSetExtension2_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [TestMessageSetExtension2 descriptor];
 }
-- (TestMessageSetExtension2*) defaultInstanceForType {
+- (TestMessageSetExtension2*) defaultInstance {
   return [TestMessageSetExtension2 defaultInstance];
 }
 - (TestMessageSetExtension2*) build {
@@ -941,10 +941,10 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 + (RawMessageSet*) defaultInstance {
   return defaultRawMessageSetInstance;
 }
-- (RawMessageSet*) defaultInstanceForType {
+- (RawMessageSet*) defaultInstance {
   return defaultRawMessageSetInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [RawMessageSet descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -1043,10 +1043,10 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 + (RawMessageSet_Item*) defaultInstance {
   return defaultRawMessageSet_ItemInstance;
 }
-- (RawMessageSet_Item*) defaultInstanceForType {
+- (RawMessageSet_Item*) defaultInstance {
   return defaultRawMessageSet_ItemInstance;
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [RawMessageSet_Item descriptor];
 }
 + (PBDescriptor*) descriptor {
@@ -1135,10 +1135,10 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 - (RawMessageSet_Item_Builder*) clone {
   return [RawMessageSet_Item_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [RawMessageSet_Item descriptor];
 }
-- (RawMessageSet_Item*) defaultInstanceForType {
+- (RawMessageSet_Item*) defaultInstance {
   return [RawMessageSet_Item defaultInstance];
 }
 - (RawMessageSet_Item*) build {
@@ -1263,10 +1263,10 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 - (RawMessageSet_Builder*) clone {
   return [RawMessageSet_Builder builderWithPrototype:result];
 }
-- (PBDescriptor*) descriptorForType {
+- (PBDescriptor*) descriptor {
   return [RawMessageSet descriptor];
 }
-- (RawMessageSet*) defaultInstanceForType {
+- (RawMessageSet*) defaultInstance {
   return [RawMessageSet defaultInstance];
 }
 - (RawMessageSet*) build {

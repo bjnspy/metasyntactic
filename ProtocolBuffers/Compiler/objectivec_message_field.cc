@@ -184,7 +184,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  if (result.has$capitalized_name$ &&\n"
       "      result.$name$ != [$type$ defaultInstance]) {\n"
       "    result.$name$ =\n"
-      "      [[[$type$ newBuilderWithPrototype:result.$name$] mergeFrom$type$:value] buildPartial];\n"
+      "      [[[$type$_Builder builderWithPrototype:result.$name$] mergeFrom$type$:value] buildPartial];\n"
       "  } else {\n"
       "    result.$name$ = value;\n"
       "  }\n"
@@ -227,7 +227,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "$type$_Builder* subBuilder = [$type$ newBuilder];\n"
+      "$type$_Builder* subBuilder = [$type$_Builder builder];\n"
       "if (self.has$capitalized_name$) {\n"
       "  [subBuilder mergeFrom$type$:self.$name$];\n"
       "}\n");
@@ -425,7 +425,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void RepeatedMessageFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
       printer->Print(variables_,
-        "$type$_Builder* subBuilder = [$type$ newBuilder];\n");
+        "$type$_Builder* subBuilder = [$type$_Builder builder];\n");
 
       if (descriptor_->type() == FieldDescriptor::TYPE_GROUP) {
         printer->Print(variables_,
