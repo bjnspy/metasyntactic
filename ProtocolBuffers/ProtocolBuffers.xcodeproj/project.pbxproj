@@ -97,6 +97,8 @@
 		74AD665A0E93D0C700A01FD5 /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66590E93D0C700A01FD5 /* Descriptor.pb.m */; };
 		74B3204B0E9F884E00AAC227 /* MessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3204A0E9F884E00AAC227 /* MessageTests.m */; };
 		74B3204C0E9F884E00AAC227 /* MessageTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3204A0E9F884E00AAC227 /* MessageTests.m */; };
+		74B320DE0E9F8E6600AAC227 /* DescriptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B320DD0E9F8E6600AAC227 /* DescriptorTests.m */; };
+		74B320DF0E9F8E6600AAC227 /* DescriptorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B320DD0E9F8E6600AAC227 /* DescriptorTests.m */; };
 		74B54F2E0E9AEA50008C7C2C /* PBPackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B54F2D0E9AEA50008C7C2C /* PBPackageDescriptor.m */; };
 		74B551790E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B551780E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m */; };
 		74B5517C0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */; };
@@ -288,6 +290,8 @@
 		74AD66590E93D0C700A01FD5 /* Descriptor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptor.pb.m; sourceTree = "<group>"; };
 		74B320490E9F884E00AAC227 /* MessageTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTests.h; sourceTree = "<group>"; };
 		74B3204A0E9F884E00AAC227 /* MessageTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTests.m; sourceTree = "<group>"; };
+		74B320DC0E9F8E6600AAC227 /* DescriptorTests.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DescriptorTests.h; sourceTree = "<group>"; };
+		74B320DD0E9F8E6600AAC227 /* DescriptorTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorTests.m; sourceTree = "<group>"; };
 		74B54F2C0E9AEA50008C7C2C /* PBPackageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPackageDescriptor.h; sourceTree = "<group>"; };
 		74B54F2D0E9AEA50008C7C2C /* PBPackageDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPackageDescriptor.m; sourceTree = "<group>"; };
 		74B551770E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry_DescriptorIntPair.h; sourceTree = "<group>"; };
@@ -603,6 +607,8 @@
 				8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */,
 				747C0AE20E9CBA61004B9278 /* WireFormatTests.h */,
 				747C0AE30E9CBA61004B9278 /* WireFormatTests.m */,
+				74B320DC0E9F8E6600AAC227 /* DescriptorTests.h */,
+				74B320DD0E9F8E6600AAC227 /* DescriptorTests.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -733,6 +739,7 @@
 				74A411B30E9CDD00007CF82C /* UnittestMset.pb.m in Sources */,
 				74A411B40E9CDD00007CF82C /* UnittestOptimizeFor.pb.m in Sources */,
 				74B3204C0E9F884E00AAC227 /* MessageTests.m in Sources */,
+				74B320DF0E9F8E6600AAC227 /* DescriptorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -801,6 +808,7 @@
 				74A411B60E9CDD00007CF82C /* UnittestMset.pb.m in Sources */,
 				74A411B70E9CDD00007CF82C /* UnittestOptimizeFor.pb.m in Sources */,
 				74B3204B0E9F884E00AAC227 /* MessageTests.m in Sources */,
+				74B320DE0E9F8E6600AAC227 /* DescriptorTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
