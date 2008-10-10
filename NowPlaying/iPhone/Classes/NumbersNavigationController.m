@@ -31,12 +31,17 @@
     if (self = [super initWithTabBarController:controller]) {
         self.title = NSLocalizedString(@"Numbers", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Numbers.png"];
-
-        self.viewController = [[[NumbersViewController alloc] initWithNavigationController:self] autorelease];
-        [self pushViewController:viewController animated:NO];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+
+    self.viewController = [[[NumbersViewController alloc] initWithNavigationController:self] autorelease];
+    [self pushViewController:viewController animated:NO];
 }
 
 

@@ -27,17 +27,28 @@
 }
 
 
+- (void) setViewTitle {
+    self.title = NSLocalizedString(@"Settings", nil);
+}
+
+
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
-        self.viewController = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
-
-        [self pushViewController:viewController animated:NO];
-
-        self.title = NSLocalizedString(@"Settings", nil);
+        [self setViewTitle];
         self.tabBarItem.image = [UIImage imageNamed:@"More.png"];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+
+    self.viewController = [[[SettingsViewController alloc] initWithNavigationController:self] autorelease];
+    [self pushViewController:viewController animated:NO];
+
+    [self setViewTitle];
 }
 
 

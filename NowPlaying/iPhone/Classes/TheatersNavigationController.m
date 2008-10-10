@@ -29,15 +29,18 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
-        self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
-
-        [self pushViewController:allTheatersViewController animated:NO];
-
         self.title = NSLocalizedString(@"Theaters", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Theaters.png"];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.allTheatersViewController = [[[AllTheatersViewController alloc] initWithNavigationController:self] autorelease];
+    [self pushViewController:allTheatersViewController animated:NO];
 }
 
 

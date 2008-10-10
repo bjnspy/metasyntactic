@@ -29,15 +29,18 @@
 
 - (id) initWithTabBarController:(ApplicationTabBarController*) controller {
     if (self = [super initWithTabBarController:controller]) {
-        self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
-
-        [self pushViewController:allMoviesViewController animated:NO];
-
         self.title = NSLocalizedString(@"Movies", nil);
         self.tabBarItem.image = [UIImage imageNamed:@"Movies.png"];
     }
 
     return self;
+}
+
+
+- (void) loadView {
+    [super loadView];
+    self.allMoviesViewController = [[[AllMoviesViewController alloc] initWithNavigationController:self] autorelease];
+    [self pushViewController:allMoviesViewController animated:NO];
 }
 
 
