@@ -117,7 +117,7 @@ const int UNKNOWN_TYPE_ID = 1550055;
     
     // Set up a TestMessageSet with two known messages and an unknown one.
     PBUnknownFieldSet* unknownFields =
-    [[[PBUnknownFieldSet_Builder builder] addField:[[PBMutableField field] addLengthDelimited:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]]
+    [[[PBUnknownFieldSet builder] addField:[[PBMutableField field] addLengthDelimited:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]]
                                     forNumber:UNKNOWN_TYPE_ID] build];
     
     TestMessageSet* messageSet =

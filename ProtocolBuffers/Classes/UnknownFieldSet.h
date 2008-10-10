@@ -18,11 +18,13 @@
 
 @property (retain) NSDictionary* fields;
 
-+ (PBUnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
-
 + (PBUnknownFieldSet*) defaultInstance;
 
++ (PBUnknownFieldSet*) setWithFields:(NSMutableDictionary*) fields;
 + (PBUnknownFieldSet*) parseFromData:(NSData*) data;
+
++ (PBUnknownFieldSet_Builder*) builder;
++ (PBUnknownFieldSet_Builder*) builderWithUnknownFields:(PBUnknownFieldSet*) other;
 
 - (void) writeAsMessageSetTo:(PBCodedOutputStream*) output;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;

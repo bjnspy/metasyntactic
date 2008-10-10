@@ -306,7 +306,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (TestMessageSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet_Builder builderWithUnknownFields:self.unknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -479,7 +479,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (TestMessageSetContainer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet_Builder builderWithUnknownFields:self.unknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -694,7 +694,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (TestMessageSetExtension1_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet_Builder builderWithUnknownFields:self.unknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -890,7 +890,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (TestMessageSetExtension2_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet_Builder builderWithUnknownFields:self.unknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -1189,7 +1189,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (RawMessageSet_Item_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet_Builder builderWithUnknownFields:self.unknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
@@ -1317,7 +1317,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   return [self mergeFromCodedInputStream:input extensionRegistry:[PBExtensionRegistry emptyRegistry]];
 }
 - (RawMessageSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
-  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet_Builder builderWithUnknownFields:self.unknownFields];
+  PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
   while (true) {
     int32_t tag = [input readTag];
     switch (tag) {
