@@ -193,7 +193,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
 }
 + (ImportMessage_Builder*) newBuilder { return [[[ImportMessage_Builder alloc] init] autorelease]; }
 - (ImportMessage_Builder*) newBuilderForType { return [ImportMessage newBuilder]; }
-+ (ImportMessage_Builder*) newBuilderWithImportMessage:(ImportMessage*) prototype {
++ (ImportMessage_Builder*) newBuilderWithPrototype:(ImportMessage*) prototype {
   return [[ImportMessage newBuilder] mergeFromImportMessage:prototype];
 }
 @end

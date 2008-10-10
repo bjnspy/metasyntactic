@@ -60,12 +60,14 @@
 }
 
 - (id) get:(PBGeneratedMessage*) message {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
+    NSMutableArray* array = [NSMutableArray array];
+    
+    for (id element in [super get:message]) {
+        id value = [element performSelector:valueDescriptorMethod];
+        [array addObject:value];
+    }
+    
+    return array;
 }
 
 
@@ -80,26 +82,6 @@
 
 
 - (void) addRepeated:(PBGeneratedMessage_Builder*) builder value:(id) value {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (BOOL) has:(PBGeneratedMessage*) message {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (int32_t) getRepeatedCount:(PBGeneratedMessage*) message {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (void) clear:(PBGeneratedMessage_Builder*) builder {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
-- (id<PBMessage_Builder>) newBuilder {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

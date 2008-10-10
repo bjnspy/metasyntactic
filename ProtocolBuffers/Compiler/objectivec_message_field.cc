@@ -184,7 +184,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  if (result.has$capitalized_name$ &&\n"
       "      result.$name$ != [$type$ defaultInstance]) {\n"
       "    result.$name$ =\n"
-      "      [[[$type$ newBuilderWith$type$:result.$name$] mergeFrom$type$:value] buildPartial];\n"
+      "      [[[$type$ newBuilderWithPrototype:result.$name$] mergeFrom$type$:value] buildPartial];\n"
       "  } else {\n"
       "    result.$name$ = value;\n"
       "  }\n"

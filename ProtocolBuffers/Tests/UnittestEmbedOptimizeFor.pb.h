@@ -107,7 +107,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 + (TestEmbedOptimizedForSize_Builder*) newBuilder;
 - (TestEmbedOptimizedForSize_Builder*) newBuilderForType;
-+ (TestEmbedOptimizedForSize_Builder*) newBuilderWithTestEmbedOptimizedForSize:(TestEmbedOptimizedForSize*) prototype;
++ (TestEmbedOptimizedForSize_Builder*) newBuilderWithPrototype:(TestEmbedOptimizedForSize*) prototype;
 
 + (TestEmbedOptimizedForSize*) parseFromData:(NSData*) data;
 + (TestEmbedOptimizedForSize*) parseFromData:(NSData*) data extensionRegistry:(PBExtensionRegistry*) extensionRegistry;

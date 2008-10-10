@@ -228,7 +228,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 }
 + (TestMessageSet_Builder*) newBuilder { return [[[TestMessageSet_Builder alloc] init] autorelease]; }
 - (TestMessageSet_Builder*) newBuilderForType { return [TestMessageSet newBuilder]; }
-+ (TestMessageSet_Builder*) newBuilderWithTestMessageSet:(TestMessageSet*) prototype {
++ (TestMessageSet_Builder*) newBuilderWithPrototype:(TestMessageSet*) prototype {
   return [[TestMessageSet newBuilder] mergeFromTestMessageSet:prototype];
 }
 @end
@@ -393,7 +393,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 }
 + (TestMessageSetContainer_Builder*) newBuilder { return [[[TestMessageSetContainer_Builder alloc] init] autorelease]; }
 - (TestMessageSetContainer_Builder*) newBuilderForType { return [TestMessageSetContainer newBuilder]; }
-+ (TestMessageSetContainer_Builder*) newBuilderWithTestMessageSetContainer:(TestMessageSetContainer*) prototype {
++ (TestMessageSetContainer_Builder*) newBuilderWithPrototype:(TestMessageSetContainer*) prototype {
   return [[TestMessageSetContainer newBuilder] mergeFromTestMessageSetContainer:prototype];
 }
 @end
@@ -502,7 +502,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   if (result.hasMessageSet &&
       result.messageSet != [TestMessageSet defaultInstance]) {
     result.messageSet =
-      [[[TestMessageSet newBuilderWithTestMessageSet:result.messageSet] mergeFromTestMessageSet:value] buildPartial];
+      [[[TestMessageSet newBuilderWithPrototype:result.messageSet] mergeFromTestMessageSet:value] buildPartial];
   } else {
     result.messageSet = value;
   }
@@ -604,7 +604,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 }
 + (TestMessageSetExtension1_Builder*) newBuilder { return [[[TestMessageSetExtension1_Builder alloc] init] autorelease]; }
 - (TestMessageSetExtension1_Builder*) newBuilderForType { return [TestMessageSetExtension1 newBuilder]; }
-+ (TestMessageSetExtension1_Builder*) newBuilderWithTestMessageSetExtension1:(TestMessageSetExtension1*) prototype {
++ (TestMessageSetExtension1_Builder*) newBuilderWithPrototype:(TestMessageSetExtension1*) prototype {
   return [[TestMessageSetExtension1 newBuilder] mergeFromTestMessageSetExtension1:prototype];
 }
 @end
@@ -796,7 +796,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 }
 + (TestMessageSetExtension2_Builder*) newBuilder { return [[[TestMessageSetExtension2_Builder alloc] init] autorelease]; }
 - (TestMessageSetExtension2_Builder*) newBuilderForType { return [TestMessageSetExtension2 newBuilder]; }
-+ (TestMessageSetExtension2_Builder*) newBuilderWithTestMessageSetExtension2:(TestMessageSetExtension2*) prototype {
++ (TestMessageSetExtension2_Builder*) newBuilderWithPrototype:(TestMessageSetExtension2*) prototype {
   return [[TestMessageSetExtension2 newBuilder] mergeFromTestMessageSetExtension2:prototype];
 }
 @end
@@ -988,7 +988,7 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 }
 + (RawMessageSet_Builder*) newBuilder { return [[[RawMessageSet_Builder alloc] init] autorelease]; }
 - (RawMessageSet_Builder*) newBuilderForType { return [RawMessageSet newBuilder]; }
-+ (RawMessageSet_Builder*) newBuilderWithRawMessageSet:(RawMessageSet*) prototype {
++ (RawMessageSet_Builder*) newBuilderWithPrototype:(RawMessageSet*) prototype {
   return [[RawMessageSet newBuilder] mergeFromRawMessageSet:prototype];
 }
 @end
@@ -1090,7 +1090,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 }
 + (RawMessageSet_Item_Builder*) newBuilder { return [[[RawMessageSet_Item_Builder alloc] init] autorelease]; }
 - (RawMessageSet_Item_Builder*) newBuilderForType { return [RawMessageSet_Item newBuilder]; }
-+ (RawMessageSet_Item_Builder*) newBuilderWithRawMessageSet_Item:(RawMessageSet_Item*) prototype {
++ (RawMessageSet_Item_Builder*) newBuilderWithPrototype:(RawMessageSet_Item*) prototype {
   return [[RawMessageSet_Item newBuilder] mergeFromRawMessageSet_Item:prototype];
 }
 @end

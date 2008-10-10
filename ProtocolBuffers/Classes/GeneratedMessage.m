@@ -16,9 +16,10 @@
 
 #import "GeneratedMessage.h"
 
+#import "FieldAccessor.h"
+#import "FieldAccessorTable.h"
 #import "FieldDescriptor.h"
 #import "UnknownFieldSet.h"
-
 
 @interface PBGeneratedMessage ()
 @property (retain) PBUnknownFieldSet* unknownFields;
@@ -62,7 +63,10 @@
             }
         } else {
             if ([self hasField:field]) {
-                [result setObject:[self getField:field] forKey:field];
+                id value = [self getField:field];
+                if (value != nil) {
+                    [result setObject:value forKey:field];
+                }
             }
         }
     }
@@ -72,6 +76,26 @@
 
 - (NSDictionary*) allFields {
     return [self allFieldsMutable];
+}
+
+
+- (BOOL) hasField:(PBFieldDescriptor*) field {
+    return [[self.internalGetFieldAccessorTable getField:field] has:self];
+}
+
+
+- (id) getField:(PBFieldDescriptor*) field {
+    return [[self.internalGetFieldAccessorTable getField:field] get:self];
+}
+
+
+- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
+    return [[self.internalGetFieldAccessorTable getField:field] getRepeatedCount:self];
+}
+
+
+- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
+    return [[self.internalGetFieldAccessorTable getField:field] getRepeated:self index:index];
 }
 
 @end

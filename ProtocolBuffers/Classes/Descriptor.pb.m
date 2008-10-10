@@ -509,7 +509,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 + (PBFileDescriptorSet_Builder*) newBuilder { return [[[PBFileDescriptorSet_Builder alloc] init] autorelease]; }
 - (PBFileDescriptorSet_Builder*) newBuilderForType { return [PBFileDescriptorSet newBuilder]; }
-+ (PBFileDescriptorSet_Builder*) newBuilderWithPBFileDescriptorSet:(PBFileDescriptorSet*) prototype {
++ (PBFileDescriptorSet_Builder*) newBuilderWithPrototype:(PBFileDescriptorSet*) prototype {
   return [[PBFileDescriptorSet newBuilder] mergeFromPBFileDescriptorSet:prototype];
 }
 @end
@@ -818,7 +818,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 + (PBFileDescriptorProto_Builder*) newBuilder { return [[[PBFileDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBFileDescriptorProto_Builder*) newBuilderForType { return [PBFileDescriptorProto newBuilder]; }
-+ (PBFileDescriptorProto_Builder*) newBuilderWithPBFileDescriptorProto:(PBFileDescriptorProto*) prototype {
++ (PBFileDescriptorProto_Builder*) newBuilderWithPrototype:(PBFileDescriptorProto*) prototype {
   return [[PBFileDescriptorProto newBuilder] mergeFromPBFileDescriptorProto:prototype];
 }
 @end
@@ -1176,7 +1176,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   if (result.hasOptions &&
       result.options != [PBFileOptions defaultInstance]) {
     result.options =
-      [[[PBFileOptions newBuilderWithPBFileOptions:result.options] mergeFromPBFileOptions:value] buildPartial];
+      [[[PBFileOptions newBuilderWithPrototype:result.options] mergeFromPBFileOptions:value] buildPartial];
   } else {
     result.options = value;
   }
@@ -1364,7 +1364,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 }
 + (PBDescriptorProto_Builder*) newBuilder { return [[[PBDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBDescriptorProto_Builder*) newBuilderForType { return [PBDescriptorProto newBuilder]; }
-+ (PBDescriptorProto_Builder*) newBuilderWithPBDescriptorProto:(PBDescriptorProto*) prototype {
++ (PBDescriptorProto_Builder*) newBuilderWithPrototype:(PBDescriptorProto*) prototype {
   return [[PBDescriptorProto newBuilder] mergeFromPBDescriptorProto:prototype];
 }
 @end
@@ -1464,7 +1464,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 }
 + (PBDescriptorProto_ExtensionRange_Builder*) newBuilder { return [[[PBDescriptorProto_ExtensionRange_Builder alloc] init] autorelease]; }
 - (PBDescriptorProto_ExtensionRange_Builder*) newBuilderForType { return [PBDescriptorProto_ExtensionRange newBuilder]; }
-+ (PBDescriptorProto_ExtensionRange_Builder*) newBuilderWithPBDescriptorProto_ExtensionRange:(PBDescriptorProto_ExtensionRange*) prototype {
++ (PBDescriptorProto_ExtensionRange_Builder*) newBuilderWithPrototype:(PBDescriptorProto_ExtensionRange*) prototype {
   return [[PBDescriptorProto_ExtensionRange newBuilder] mergeFromPBDescriptorProto_ExtensionRange:prototype];
 }
 @end
@@ -1923,7 +1923,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   if (result.hasOptions &&
       result.options != [PBMessageOptions defaultInstance]) {
     result.options =
-      [[[PBMessageOptions newBuilderWithPBMessageOptions:result.options] mergeFromPBMessageOptions:value] buildPartial];
+      [[[PBMessageOptions newBuilderWithPrototype:result.options] mergeFromPBMessageOptions:value] buildPartial];
   } else {
     result.options = value;
   }
@@ -2109,7 +2109,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
 }
 + (PBFieldDescriptorProto_Builder*) newBuilder { return [[[PBFieldDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBFieldDescriptorProto_Builder*) newBuilderForType { return [PBFieldDescriptorProto newBuilder]; }
-+ (PBFieldDescriptorProto_Builder*) newBuilderWithPBFieldDescriptorProto:(PBFieldDescriptorProto*) prototype {
++ (PBFieldDescriptorProto_Builder*) newBuilderWithPrototype:(PBFieldDescriptorProto*) prototype {
   return [[PBFieldDescriptorProto newBuilder] mergeFromPBFieldDescriptorProto:prototype];
 }
 @end
@@ -2590,7 +2590,7 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   if (result.hasOptions &&
       result.options != [PBFieldOptions defaultInstance]) {
     result.options =
-      [[[PBFieldOptions newBuilderWithPBFieldOptions:result.options] mergeFromPBFieldOptions:value] buildPartial];
+      [[[PBFieldOptions newBuilderWithPrototype:result.options] mergeFromPBFieldOptions:value] buildPartial];
   } else {
     result.options = value;
   }
@@ -2714,7 +2714,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 + (PBEnumDescriptorProto_Builder*) newBuilder { return [[[PBEnumDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBEnumDescriptorProto_Builder*) newBuilderForType { return [PBEnumDescriptorProto newBuilder]; }
-+ (PBEnumDescriptorProto_Builder*) newBuilderWithPBEnumDescriptorProto:(PBEnumDescriptorProto*) prototype {
++ (PBEnumDescriptorProto_Builder*) newBuilderWithPrototype:(PBEnumDescriptorProto*) prototype {
   return [[PBEnumDescriptorProto newBuilder] mergeFromPBEnumDescriptorProto:prototype];
 }
 @end
@@ -2887,7 +2887,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   if (result.hasOptions &&
       result.options != [PBEnumOptions defaultInstance]) {
     result.options =
-      [[[PBEnumOptions newBuilderWithPBEnumOptions:result.options] mergeFromPBEnumOptions:value] buildPartial];
+      [[[PBEnumOptions newBuilderWithPrototype:result.options] mergeFromPBEnumOptions:value] buildPartial];
   } else {
     result.options = value;
   }
@@ -3008,7 +3008,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 + (PBEnumValueDescriptorProto_Builder*) newBuilder { return [[[PBEnumValueDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBEnumValueDescriptorProto_Builder*) newBuilderForType { return [PBEnumValueDescriptorProto newBuilder]; }
-+ (PBEnumValueDescriptorProto_Builder*) newBuilderWithPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) prototype {
++ (PBEnumValueDescriptorProto_Builder*) newBuilderWithPrototype:(PBEnumValueDescriptorProto*) prototype {
   return [[PBEnumValueDescriptorProto newBuilder] mergeFromPBEnumValueDescriptorProto:prototype];
 }
 @end
@@ -3163,7 +3163,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   if (result.hasOptions &&
       result.options != [PBEnumValueOptions defaultInstance]) {
     result.options =
-      [[[PBEnumValueOptions newBuilderWithPBEnumValueOptions:result.options] mergeFromPBEnumValueOptions:value] buildPartial];
+      [[[PBEnumValueOptions newBuilderWithPrototype:result.options] mergeFromPBEnumValueOptions:value] buildPartial];
   } else {
     result.options = value;
   }
@@ -3287,7 +3287,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 + (PBServiceDescriptorProto_Builder*) newBuilder { return [[[PBServiceDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBServiceDescriptorProto_Builder*) newBuilderForType { return [PBServiceDescriptorProto newBuilder]; }
-+ (PBServiceDescriptorProto_Builder*) newBuilderWithPBServiceDescriptorProto:(PBServiceDescriptorProto*) prototype {
++ (PBServiceDescriptorProto_Builder*) newBuilderWithPrototype:(PBServiceDescriptorProto*) prototype {
   return [[PBServiceDescriptorProto newBuilder] mergeFromPBServiceDescriptorProto:prototype];
 }
 @end
@@ -3460,7 +3460,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   if (result.hasOptions &&
       result.options != [PBServiceOptions defaultInstance]) {
     result.options =
-      [[[PBServiceOptions newBuilderWithPBServiceOptions:result.options] mergeFromPBServiceOptions:value] buildPartial];
+      [[[PBServiceOptions newBuilderWithPrototype:result.options] mergeFromPBServiceOptions:value] buildPartial];
   } else {
     result.options = value;
   }
@@ -3594,7 +3594,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 + (PBMethodDescriptorProto_Builder*) newBuilder { return [[[PBMethodDescriptorProto_Builder alloc] init] autorelease]; }
 - (PBMethodDescriptorProto_Builder*) newBuilderForType { return [PBMethodDescriptorProto newBuilder]; }
-+ (PBMethodDescriptorProto_Builder*) newBuilderWithPBMethodDescriptorProto:(PBMethodDescriptorProto*) prototype {
++ (PBMethodDescriptorProto_Builder*) newBuilderWithPrototype:(PBMethodDescriptorProto*) prototype {
   return [[PBMethodDescriptorProto newBuilder] mergeFromPBMethodDescriptorProto:prototype];
 }
 @end
@@ -3772,7 +3772,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   if (result.hasOptions &&
       result.options != [PBMethodOptions defaultInstance]) {
     result.options =
-      [[[PBMethodOptions newBuilderWithPBMethodOptions:result.options] mergeFromPBMethodOptions:value] buildPartial];
+      [[[PBMethodOptions newBuilderWithPrototype:result.options] mergeFromPBMethodOptions:value] buildPartial];
   } else {
     result.options = value;
   }
@@ -3933,7 +3933,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
 }
 + (PBFileOptions_Builder*) newBuilder { return [[[PBFileOptions_Builder alloc] init] autorelease]; }
 - (PBFileOptions_Builder*) newBuilderForType { return [PBFileOptions newBuilder]; }
-+ (PBFileOptions_Builder*) newBuilderWithPBFileOptions:(PBFileOptions*) prototype {
++ (PBFileOptions_Builder*) newBuilderWithPrototype:(PBFileOptions*) prototype {
   return [[PBFileOptions newBuilder] mergeFromPBFileOptions:prototype];
 }
 @end
@@ -4297,7 +4297,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 }
 + (PBMessageOptions_Builder*) newBuilder { return [[[PBMessageOptions_Builder alloc] init] autorelease]; }
 - (PBMessageOptions_Builder*) newBuilderForType { return [PBMessageOptions newBuilder]; }
-+ (PBMessageOptions_Builder*) newBuilderWithPBMessageOptions:(PBMessageOptions*) prototype {
++ (PBMessageOptions_Builder*) newBuilderWithPrototype:(PBMessageOptions*) prototype {
   return [[PBMessageOptions newBuilder] mergeFromPBMessageOptions:prototype];
 }
 @end
@@ -4496,7 +4496,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 }
 + (PBFieldOptions_Builder*) newBuilder { return [[[PBFieldOptions_Builder alloc] init] autorelease]; }
 - (PBFieldOptions_Builder*) newBuilderForType { return [PBFieldOptions newBuilder]; }
-+ (PBFieldOptions_Builder*) newBuilderWithPBFieldOptions:(PBFieldOptions*) prototype {
++ (PBFieldOptions_Builder*) newBuilderWithPrototype:(PBFieldOptions*) prototype {
   return [[PBFieldOptions newBuilder] mergeFromPBFieldOptions:prototype];
 }
 @end
@@ -4755,7 +4755,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 }
 + (PBEnumOptions_Builder*) newBuilder { return [[[PBEnumOptions_Builder alloc] init] autorelease]; }
 - (PBEnumOptions_Builder*) newBuilderForType { return [PBEnumOptions newBuilder]; }
-+ (PBEnumOptions_Builder*) newBuilderWithPBEnumOptions:(PBEnumOptions*) prototype {
++ (PBEnumOptions_Builder*) newBuilderWithPrototype:(PBEnumOptions*) prototype {
   return [[PBEnumOptions newBuilder] mergeFromPBEnumOptions:prototype];
 }
 @end
@@ -4905,7 +4905,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 }
 + (PBEnumValueOptions_Builder*) newBuilder { return [[[PBEnumValueOptions_Builder alloc] init] autorelease]; }
 - (PBEnumValueOptions_Builder*) newBuilderForType { return [PBEnumValueOptions newBuilder]; }
-+ (PBEnumValueOptions_Builder*) newBuilderWithPBEnumValueOptions:(PBEnumValueOptions*) prototype {
++ (PBEnumValueOptions_Builder*) newBuilderWithPrototype:(PBEnumValueOptions*) prototype {
   return [[PBEnumValueOptions newBuilder] mergeFromPBEnumValueOptions:prototype];
 }
 @end
@@ -5055,7 +5055,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 }
 + (PBServiceOptions_Builder*) newBuilder { return [[[PBServiceOptions_Builder alloc] init] autorelease]; }
 - (PBServiceOptions_Builder*) newBuilderForType { return [PBServiceOptions newBuilder]; }
-+ (PBServiceOptions_Builder*) newBuilderWithPBServiceOptions:(PBServiceOptions*) prototype {
++ (PBServiceOptions_Builder*) newBuilderWithPrototype:(PBServiceOptions*) prototype {
   return [[PBServiceOptions newBuilder] mergeFromPBServiceOptions:prototype];
 }
 @end
@@ -5205,7 +5205,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 }
 + (PBMethodOptions_Builder*) newBuilder { return [[[PBMethodOptions_Builder alloc] init] autorelease]; }
 - (PBMethodOptions_Builder*) newBuilderForType { return [PBMethodOptions newBuilder]; }
-+ (PBMethodOptions_Builder*) newBuilderWithPBMethodOptions:(PBMethodOptions*) prototype {
++ (PBMethodOptions_Builder*) newBuilderWithPrototype:(PBMethodOptions*) prototype {
   return [[PBMethodOptions newBuilder] mergeFromPBMethodOptions:prototype];
 }
 @end

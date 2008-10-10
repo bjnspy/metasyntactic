@@ -312,7 +312,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "+ ($classname$_Builder*) newBuilder;\n"
       "- ($classname$_Builder*) newBuilderForType;\n"
-      "+ ($classname$_Builder*) newBuilderWith$classname$:($classname$*) prototype;\n",
+      "+ ($classname$_Builder*) newBuilderWithPrototype:($classname$*) prototype;\n",
       "classname", ClassName(descriptor_));
 
     GenerateParseFromMethodsHeader(printer);
@@ -428,7 +428,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(
       "+ ($classname$_Builder*) newBuilder { return [[[$classname$_Builder alloc] init] autorelease]; }\n"
       "- ($classname$_Builder*) newBuilderForType { return [$classname$ newBuilder]; }\n"
-      "+ ($classname$_Builder*) newBuilderWith$classname$:($classname$*) prototype {\n"
+      "+ ($classname$_Builder*) newBuilderWithPrototype:($classname$*) prototype {\n"
       "  return [[$classname$ newBuilder] mergeFrom$classname$:prototype];\n"
       "}\n",
       "classname", ClassName(descriptor_));
