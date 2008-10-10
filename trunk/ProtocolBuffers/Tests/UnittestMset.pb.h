@@ -120,10 +120,10 @@
 
 - (BOOL) hasMessageSet;
 - (TestMessageSet*) messageSet;
-- (id<PBMessage_Builder>) setMessageSet:(TestMessageSet*) value;
-- (id<PBMessage_Builder>) setMessageSetBuilder:(TestMessageSet_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeMessageSet:(TestMessageSet*) value;
-- (id<PBMessage_Builder>) clearMessageSet;
+- (TestMessageSetContainer_Builder*) setMessageSet:(TestMessageSet*) value;
+- (TestMessageSetContainer_Builder*) setMessageSetBuilder:(TestMessageSet_Builder*) builderForValue;
+- (TestMessageSetContainer_Builder*) mergeMessageSet:(TestMessageSet*) value;
+- (TestMessageSetContainer_Builder*) clearMessageSet;
 @end
 
 @interface TestMessageSetExtension1 : PBGeneratedMessage {

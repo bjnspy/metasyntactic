@@ -278,15 +278,15 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 - (ForeignMessage*) msg {
   return result.msg;
 }
-- (id<PBMessage_Builder>) setMsg:(ForeignMessage*) value {
+- (TestOptimizedForSize_Builder*) setMsg:(ForeignMessage*) value {
   result.hasMsg = YES;
   result.msg = value;
   return self;
 }
-- (id<PBMessage_Builder>) setMsgBuilder:(ForeignMessage_Builder*) builderForValue {
+- (TestOptimizedForSize_Builder*) setMsgBuilder:(ForeignMessage_Builder*) builderForValue {
   return [self setMsg:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeMsg:(ForeignMessage*) value {
+- (TestOptimizedForSize_Builder*) mergeMsg:(ForeignMessage*) value {
   if (result.hasMsg &&
       result.msg != [ForeignMessage defaultInstance]) {
     result.msg =
@@ -297,7 +297,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   result.hasMsg = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearMsg {
+- (TestOptimizedForSize_Builder*) clearMsg {
   result.hasMsg = NO;
   result.msg = [ForeignMessage defaultInstance];
   return self;

@@ -220,10 +220,10 @@
 
 - (BOOL) hasOptions;
 - (PBFileOptions*) options;
-- (id<PBMessage_Builder>) setOptions:(PBFileOptions*) value;
-- (id<PBMessage_Builder>) setOptionsBuilder:(PBFileOptions_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptions:(PBFileOptions*) value;
-- (id<PBMessage_Builder>) clearOptions;
+- (PBFileDescriptorProto_Builder*) setOptions:(PBFileOptions*) value;
+- (PBFileDescriptorProto_Builder*) setOptionsBuilder:(PBFileOptions_Builder*) builderForValue;
+- (PBFileDescriptorProto_Builder*) mergeOptions:(PBFileOptions*) value;
+- (PBFileDescriptorProto_Builder*) clearOptions;
 @end
 
 @interface PBDescriptorProto : PBGeneratedMessage {
@@ -396,10 +396,10 @@
 
 - (BOOL) hasOptions;
 - (PBMessageOptions*) options;
-- (id<PBMessage_Builder>) setOptions:(PBMessageOptions*) value;
-- (id<PBMessage_Builder>) setOptionsBuilder:(PBMessageOptions_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptions:(PBMessageOptions*) value;
-- (id<PBMessage_Builder>) clearOptions;
+- (PBDescriptorProto_Builder*) setOptions:(PBMessageOptions*) value;
+- (PBDescriptorProto_Builder*) setOptionsBuilder:(PBMessageOptions_Builder*) builderForValue;
+- (PBDescriptorProto_Builder*) mergeOptions:(PBMessageOptions*) value;
+- (PBDescriptorProto_Builder*) clearOptions;
 @end
 
 @interface PBFieldDescriptorProto : PBGeneratedMessage {
@@ -571,10 +571,10 @@
 
 - (BOOL) hasOptions;
 - (PBFieldOptions*) options;
-- (id<PBMessage_Builder>) setOptions:(PBFieldOptions*) value;
-- (id<PBMessage_Builder>) setOptionsBuilder:(PBFieldOptions_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptions:(PBFieldOptions*) value;
-- (id<PBMessage_Builder>) clearOptions;
+- (PBFieldDescriptorProto_Builder*) setOptions:(PBFieldOptions*) value;
+- (PBFieldDescriptorProto_Builder*) setOptionsBuilder:(PBFieldOptions_Builder*) builderForValue;
+- (PBFieldDescriptorProto_Builder*) mergeOptions:(PBFieldOptions*) value;
+- (PBFieldDescriptorProto_Builder*) clearOptions;
 @end
 
 @interface PBEnumDescriptorProto : PBGeneratedMessage {
@@ -645,10 +645,10 @@
 
 - (BOOL) hasOptions;
 - (PBEnumOptions*) options;
-- (id<PBMessage_Builder>) setOptions:(PBEnumOptions*) value;
-- (id<PBMessage_Builder>) setOptionsBuilder:(PBEnumOptions_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptions:(PBEnumOptions*) value;
-- (id<PBMessage_Builder>) clearOptions;
+- (PBEnumDescriptorProto_Builder*) setOptions:(PBEnumOptions*) value;
+- (PBEnumDescriptorProto_Builder*) setOptionsBuilder:(PBEnumOptions_Builder*) builderForValue;
+- (PBEnumDescriptorProto_Builder*) mergeOptions:(PBEnumOptions*) value;
+- (PBEnumDescriptorProto_Builder*) clearOptions;
 @end
 
 @interface PBEnumValueDescriptorProto : PBGeneratedMessage {
@@ -718,10 +718,10 @@
 
 - (BOOL) hasOptions;
 - (PBEnumValueOptions*) options;
-- (id<PBMessage_Builder>) setOptions:(PBEnumValueOptions*) value;
-- (id<PBMessage_Builder>) setOptionsBuilder:(PBEnumValueOptions_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptions:(PBEnumValueOptions*) value;
-- (id<PBMessage_Builder>) clearOptions;
+- (PBEnumValueDescriptorProto_Builder*) setOptions:(PBEnumValueOptions*) value;
+- (PBEnumValueDescriptorProto_Builder*) setOptionsBuilder:(PBEnumValueOptions_Builder*) builderForValue;
+- (PBEnumValueDescriptorProto_Builder*) mergeOptions:(PBEnumValueOptions*) value;
+- (PBEnumValueDescriptorProto_Builder*) clearOptions;
 @end
 
 @interface PBServiceDescriptorProto : PBGeneratedMessage {
@@ -792,10 +792,10 @@
 
 - (BOOL) hasOptions;
 - (PBServiceOptions*) options;
-- (id<PBMessage_Builder>) setOptions:(PBServiceOptions*) value;
-- (id<PBMessage_Builder>) setOptionsBuilder:(PBServiceOptions_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptions:(PBServiceOptions*) value;
-- (id<PBMessage_Builder>) clearOptions;
+- (PBServiceDescriptorProto_Builder*) setOptions:(PBServiceOptions*) value;
+- (PBServiceDescriptorProto_Builder*) setOptionsBuilder:(PBServiceOptions_Builder*) builderForValue;
+- (PBServiceDescriptorProto_Builder*) mergeOptions:(PBServiceOptions*) value;
+- (PBServiceDescriptorProto_Builder*) clearOptions;
 @end
 
 @interface PBMethodDescriptorProto : PBGeneratedMessage {
@@ -874,10 +874,10 @@
 
 - (BOOL) hasOptions;
 - (PBMethodOptions*) options;
-- (id<PBMessage_Builder>) setOptions:(PBMethodOptions*) value;
-- (id<PBMessage_Builder>) setOptionsBuilder:(PBMethodOptions_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptions:(PBMethodOptions*) value;
-- (id<PBMessage_Builder>) clearOptions;
+- (PBMethodDescriptorProto_Builder*) setOptions:(PBMethodOptions*) value;
+- (PBMethodDescriptorProto_Builder*) setOptionsBuilder:(PBMethodOptions_Builder*) builderForValue;
+- (PBMethodDescriptorProto_Builder*) mergeOptions:(PBMethodOptions*) value;
+- (PBMethodDescriptorProto_Builder*) clearOptions;
 @end
 
 @interface PBFileOptions : PBGeneratedMessage {

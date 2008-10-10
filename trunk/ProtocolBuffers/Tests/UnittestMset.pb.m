@@ -490,15 +490,15 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 - (TestMessageSet*) messageSet {
   return result.messageSet;
 }
-- (id<PBMessage_Builder>) setMessageSet:(TestMessageSet*) value {
+- (TestMessageSetContainer_Builder*) setMessageSet:(TestMessageSet*) value {
   result.hasMessageSet = YES;
   result.messageSet = value;
   return self;
 }
-- (id<PBMessage_Builder>) setMessageSetBuilder:(TestMessageSet_Builder*) builderForValue {
+- (TestMessageSetContainer_Builder*) setMessageSetBuilder:(TestMessageSet_Builder*) builderForValue {
   return [self setMessageSet:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeMessageSet:(TestMessageSet*) value {
+- (TestMessageSetContainer_Builder*) mergeMessageSet:(TestMessageSet*) value {
   if (result.hasMessageSet &&
       result.messageSet != [TestMessageSet defaultInstance]) {
     result.messageSet =
@@ -509,7 +509,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   result.hasMessageSet = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearMessageSet {
+- (TestMessageSetContainer_Builder*) clearMessageSet {
   result.hasMessageSet = NO;
   result.messageSet = [TestMessageSet defaultInstance];
   return self;

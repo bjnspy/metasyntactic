@@ -139,10 +139,10 @@
 
 - (BOOL) hasOptionalMessage;
 - (TestOptimizedForSize*) optionalMessage;
-- (id<PBMessage_Builder>) setOptionalMessage:(TestOptimizedForSize*) value;
-- (id<PBMessage_Builder>) setOptionalMessageBuilder:(TestOptimizedForSize_Builder*) builderForValue;
-- (id<PBMessage_Builder>) mergeOptionalMessage:(TestOptimizedForSize*) value;
-- (id<PBMessage_Builder>) clearOptionalMessage;
+- (TestEmbedOptimizedForSize_Builder*) setOptionalMessage:(TestOptimizedForSize*) value;
+- (TestEmbedOptimizedForSize_Builder*) setOptionalMessageBuilder:(TestOptimizedForSize_Builder*) builderForValue;
+- (TestEmbedOptimizedForSize_Builder*) mergeOptionalMessage:(TestOptimizedForSize*) value;
+- (TestEmbedOptimizedForSize_Builder*) clearOptionalMessage;
 
 - (NSArray*) repeatedMessageList;
 - (TestOptimizedForSize*) repeatedMessageAtIndex:(int32_t) index;

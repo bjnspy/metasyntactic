@@ -93,6 +93,8 @@
 		74A411B50E9CDD00007CF82C /* UnittestEmbedOptimizeFor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A411AD0E9CDD00007CF82C /* UnittestEmbedOptimizeFor.pb.m */; };
 		74A411B60E9CDD00007CF82C /* UnittestMset.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A411AF0E9CDD00007CF82C /* UnittestMset.pb.m */; };
 		74A411B70E9CDD00007CF82C /* UnittestOptimizeFor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A411B10E9CDD00007CF82C /* UnittestOptimizeFor.pb.m */; };
+		74A421740E9F3015007CF82C /* MessageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A421730E9F3015007CF82C /* MessageTest.m */; };
+		74A421750E9F3015007CF82C /* MessageTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 74A421730E9F3015007CF82C /* MessageTest.m */; };
 		74AD665A0E93D0C700A01FD5 /* Descriptor.pb.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66590E93D0C700A01FD5 /* Descriptor.pb.m */; };
 		74B54F2E0E9AEA50008C7C2C /* PBPackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B54F2D0E9AEA50008C7C2C /* PBPackageDescriptor.m */; };
 		74B551790E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B551780E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.m */; };
@@ -279,6 +281,8 @@
 		74A411AF0E9CDD00007CF82C /* UnittestMset.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnittestMset.pb.m; sourceTree = "<group>"; };
 		74A411B00E9CDD00007CF82C /* UnittestOptimizeFor.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UnittestOptimizeFor.pb.h; sourceTree = "<group>"; };
 		74A411B10E9CDD00007CF82C /* UnittestOptimizeFor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UnittestOptimizeFor.pb.m; sourceTree = "<group>"; };
+		74A421720E9F3015007CF82C /* MessageTest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageTest.h; sourceTree = "<group>"; };
+		74A421730E9F3015007CF82C /* MessageTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageTest.m; sourceTree = "<group>"; };
 		74AD66580E93D0C700A01FD5 /* Descriptor.pb.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Descriptor.pb.h; sourceTree = "<group>"; };
 		74AD66590E93D0C700A01FD5 /* Descriptor.pb.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Descriptor.pb.m; sourceTree = "<group>"; };
 		74B54F2C0E9AEA50008C7C2C /* PBPackageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPackageDescriptor.h; sourceTree = "<group>"; };
@@ -592,6 +596,8 @@
 				8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */,
 				747C0AE20E9CBA61004B9278 /* WireFormatTests.h */,
 				747C0AE30E9CBA61004B9278 /* WireFormatTests.m */,
+				74A421720E9F3015007CF82C /* MessageTest.h */,
+				74A421730E9F3015007CF82C /* MessageTest.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -721,6 +727,7 @@
 				74A411B20E9CDD00007CF82C /* UnittestEmbedOptimizeFor.pb.m in Sources */,
 				74A411B30E9CDD00007CF82C /* UnittestMset.pb.m in Sources */,
 				74A411B40E9CDD00007CF82C /* UnittestOptimizeFor.pb.m in Sources */,
+				74A421750E9F3015007CF82C /* MessageTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -787,6 +794,7 @@
 				74A411B50E9CDD00007CF82C /* UnittestEmbedOptimizeFor.pb.m in Sources */,
 				74A411B60E9CDD00007CF82C /* UnittestMset.pb.m in Sources */,
 				74A411B70E9CDD00007CF82C /* UnittestOptimizeFor.pb.m in Sources */,
+				74A421740E9F3015007CF82C /* MessageTest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

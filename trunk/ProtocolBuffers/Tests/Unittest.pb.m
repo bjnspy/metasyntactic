@@ -4338,15 +4338,15 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_OptionalGroup*) optionalGroup {
   return result.optionalGroup;
 }
-- (id<PBMessage_Builder>) setOptionalGroup:(TestAllTypes_OptionalGroup*) value {
+- (TestAllTypes_Builder*) setOptionalGroup:(TestAllTypes_OptionalGroup*) value {
   result.hasOptionalGroup = YES;
   result.optionalGroup = value;
   return self;
 }
-- (id<PBMessage_Builder>) setOptionalGroupBuilder:(TestAllTypes_OptionalGroup_Builder*) builderForValue {
+- (TestAllTypes_Builder*) setOptionalGroupBuilder:(TestAllTypes_OptionalGroup_Builder*) builderForValue {
   return [self setOptionalGroup:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeOptionalGroup:(TestAllTypes_OptionalGroup*) value {
+- (TestAllTypes_Builder*) mergeOptionalGroup:(TestAllTypes_OptionalGroup*) value {
   if (result.hasOptionalGroup &&
       result.optionalGroup != [TestAllTypes_OptionalGroup defaultInstance]) {
     result.optionalGroup =
@@ -4357,7 +4357,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   result.hasOptionalGroup = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearOptionalGroup {
+- (TestAllTypes_Builder*) clearOptionalGroup {
   result.hasOptionalGroup = NO;
   result.optionalGroup = [TestAllTypes_OptionalGroup defaultInstance];
   return self;
@@ -4368,15 +4368,15 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_NestedMessage*) optionalNestedMessage {
   return result.optionalNestedMessage;
 }
-- (id<PBMessage_Builder>) setOptionalNestedMessage:(TestAllTypes_NestedMessage*) value {
+- (TestAllTypes_Builder*) setOptionalNestedMessage:(TestAllTypes_NestedMessage*) value {
   result.hasOptionalNestedMessage = YES;
   result.optionalNestedMessage = value;
   return self;
 }
-- (id<PBMessage_Builder>) setOptionalNestedMessageBuilder:(TestAllTypes_NestedMessage_Builder*) builderForValue {
+- (TestAllTypes_Builder*) setOptionalNestedMessageBuilder:(TestAllTypes_NestedMessage_Builder*) builderForValue {
   return [self setOptionalNestedMessage:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeOptionalNestedMessage:(TestAllTypes_NestedMessage*) value {
+- (TestAllTypes_Builder*) mergeOptionalNestedMessage:(TestAllTypes_NestedMessage*) value {
   if (result.hasOptionalNestedMessage &&
       result.optionalNestedMessage != [TestAllTypes_NestedMessage defaultInstance]) {
     result.optionalNestedMessage =
@@ -4387,7 +4387,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   result.hasOptionalNestedMessage = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearOptionalNestedMessage {
+- (TestAllTypes_Builder*) clearOptionalNestedMessage {
   result.hasOptionalNestedMessage = NO;
   result.optionalNestedMessage = [TestAllTypes_NestedMessage defaultInstance];
   return self;
@@ -4398,15 +4398,15 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (ForeignMessage*) optionalForeignMessage {
   return result.optionalForeignMessage;
 }
-- (id<PBMessage_Builder>) setOptionalForeignMessage:(ForeignMessage*) value {
+- (TestAllTypes_Builder*) setOptionalForeignMessage:(ForeignMessage*) value {
   result.hasOptionalForeignMessage = YES;
   result.optionalForeignMessage = value;
   return self;
 }
-- (id<PBMessage_Builder>) setOptionalForeignMessageBuilder:(ForeignMessage_Builder*) builderForValue {
+- (TestAllTypes_Builder*) setOptionalForeignMessageBuilder:(ForeignMessage_Builder*) builderForValue {
   return [self setOptionalForeignMessage:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeOptionalForeignMessage:(ForeignMessage*) value {
+- (TestAllTypes_Builder*) mergeOptionalForeignMessage:(ForeignMessage*) value {
   if (result.hasOptionalForeignMessage &&
       result.optionalForeignMessage != [ForeignMessage defaultInstance]) {
     result.optionalForeignMessage =
@@ -4417,7 +4417,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   result.hasOptionalForeignMessage = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearOptionalForeignMessage {
+- (TestAllTypes_Builder*) clearOptionalForeignMessage {
   result.hasOptionalForeignMessage = NO;
   result.optionalForeignMessage = [ForeignMessage defaultInstance];
   return self;
@@ -4428,15 +4428,15 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (ImportMessage*) optionalImportMessage {
   return result.optionalImportMessage;
 }
-- (id<PBMessage_Builder>) setOptionalImportMessage:(ImportMessage*) value {
+- (TestAllTypes_Builder*) setOptionalImportMessage:(ImportMessage*) value {
   result.hasOptionalImportMessage = YES;
   result.optionalImportMessage = value;
   return self;
 }
-- (id<PBMessage_Builder>) setOptionalImportMessageBuilder:(ImportMessage_Builder*) builderForValue {
+- (TestAllTypes_Builder*) setOptionalImportMessageBuilder:(ImportMessage_Builder*) builderForValue {
   return [self setOptionalImportMessage:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeOptionalImportMessage:(ImportMessage*) value {
+- (TestAllTypes_Builder*) mergeOptionalImportMessage:(ImportMessage*) value {
   if (result.hasOptionalImportMessage &&
       result.optionalImportMessage != [ImportMessage defaultInstance]) {
     result.optionalImportMessage =
@@ -4447,7 +4447,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   result.hasOptionalImportMessage = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearOptionalImportMessage {
+- (TestAllTypes_Builder*) clearOptionalImportMessage {
   result.hasOptionalImportMessage = NO;
   result.optionalImportMessage = [ImportMessage defaultInstance];
   return self;
@@ -7844,15 +7844,15 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 - (TestRequired*) optionalMessage {
   return result.optionalMessage;
 }
-- (id<PBMessage_Builder>) setOptionalMessage:(TestRequired*) value {
+- (TestRequiredForeign_Builder*) setOptionalMessage:(TestRequired*) value {
   result.hasOptionalMessage = YES;
   result.optionalMessage = value;
   return self;
 }
-- (id<PBMessage_Builder>) setOptionalMessageBuilder:(TestRequired_Builder*) builderForValue {
+- (TestRequiredForeign_Builder*) setOptionalMessageBuilder:(TestRequired_Builder*) builderForValue {
   return [self setOptionalMessage:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeOptionalMessage:(TestRequired*) value {
+- (TestRequiredForeign_Builder*) mergeOptionalMessage:(TestRequired*) value {
   if (result.hasOptionalMessage &&
       result.optionalMessage != [TestRequired defaultInstance]) {
     result.optionalMessage =
@@ -7863,7 +7863,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   result.hasOptionalMessage = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearOptionalMessage {
+- (TestRequiredForeign_Builder*) clearOptionalMessage {
   result.hasOptionalMessage = NO;
   result.optionalMessage = [TestRequired defaultInstance];
   return self;
@@ -8093,15 +8093,15 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 - (TestAllTypes_NestedMessage*) foreignNested {
   return result.foreignNested;
 }
-- (id<PBMessage_Builder>) setForeignNested:(TestAllTypes_NestedMessage*) value {
+- (TestForeignNested_Builder*) setForeignNested:(TestAllTypes_NestedMessage*) value {
   result.hasForeignNested = YES;
   result.foreignNested = value;
   return self;
 }
-- (id<PBMessage_Builder>) setForeignNestedBuilder:(TestAllTypes_NestedMessage_Builder*) builderForValue {
+- (TestForeignNested_Builder*) setForeignNestedBuilder:(TestAllTypes_NestedMessage_Builder*) builderForValue {
   return [self setForeignNested:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeForeignNested:(TestAllTypes_NestedMessage*) value {
+- (TestForeignNested_Builder*) mergeForeignNested:(TestAllTypes_NestedMessage*) value {
   if (result.hasForeignNested &&
       result.foreignNested != [TestAllTypes_NestedMessage defaultInstance]) {
     result.foreignNested =
@@ -8112,7 +8112,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   result.hasForeignNested = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearForeignNested {
+- (TestForeignNested_Builder*) clearForeignNested {
   result.hasForeignNested = NO;
   result.foreignNested = [TestAllTypes_NestedMessage defaultInstance];
   return self;
@@ -8843,15 +8843,15 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 - (TestRecursiveMessage*) a {
   return result.a;
 }
-- (id<PBMessage_Builder>) setA:(TestRecursiveMessage*) value {
+- (TestRecursiveMessage_Builder*) setA:(TestRecursiveMessage*) value {
   result.hasA = YES;
   result.a = value;
   return self;
 }
-- (id<PBMessage_Builder>) setABuilder:(TestRecursiveMessage_Builder*) builderForValue {
+- (TestRecursiveMessage_Builder*) setABuilder:(TestRecursiveMessage_Builder*) builderForValue {
   return [self setA:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeA:(TestRecursiveMessage*) value {
+- (TestRecursiveMessage_Builder*) mergeA:(TestRecursiveMessage*) value {
   if (result.hasA &&
       result.a != [TestRecursiveMessage defaultInstance]) {
     result.a =
@@ -8862,7 +8862,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   result.hasA = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearA {
+- (TestRecursiveMessage_Builder*) clearA {
   result.hasA = NO;
   result.a = [TestRecursiveMessage defaultInstance];
   return self;
@@ -9063,15 +9063,15 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 - (TestMutualRecursionB*) bb {
   return result.bb;
 }
-- (id<PBMessage_Builder>) setBb:(TestMutualRecursionB*) value {
+- (TestMutualRecursionA_Builder*) setBb:(TestMutualRecursionB*) value {
   result.hasBb = YES;
   result.bb = value;
   return self;
 }
-- (id<PBMessage_Builder>) setBbBuilder:(TestMutualRecursionB_Builder*) builderForValue {
+- (TestMutualRecursionA_Builder*) setBbBuilder:(TestMutualRecursionB_Builder*) builderForValue {
   return [self setBb:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeBb:(TestMutualRecursionB*) value {
+- (TestMutualRecursionA_Builder*) mergeBb:(TestMutualRecursionB*) value {
   if (result.hasBb &&
       result.bb != [TestMutualRecursionB defaultInstance]) {
     result.bb =
@@ -9082,7 +9082,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   result.hasBb = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearBb {
+- (TestMutualRecursionA_Builder*) clearBb {
   result.hasBb = NO;
   result.bb = [TestMutualRecursionB defaultInstance];
   return self;
@@ -9287,15 +9287,15 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 - (TestMutualRecursionA*) a {
   return result.a;
 }
-- (id<PBMessage_Builder>) setA:(TestMutualRecursionA*) value {
+- (TestMutualRecursionB_Builder*) setA:(TestMutualRecursionA*) value {
   result.hasA = YES;
   result.a = value;
   return self;
 }
-- (id<PBMessage_Builder>) setABuilder:(TestMutualRecursionA_Builder*) builderForValue {
+- (TestMutualRecursionB_Builder*) setABuilder:(TestMutualRecursionA_Builder*) builderForValue {
   return [self setA:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeA:(TestMutualRecursionA*) value {
+- (TestMutualRecursionB_Builder*) mergeA:(TestMutualRecursionA*) value {
   if (result.hasA &&
       result.a != [TestMutualRecursionA defaultInstance]) {
     result.a =
@@ -9306,7 +9306,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   result.hasA = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearA {
+- (TestMutualRecursionB_Builder*) clearA {
   result.hasA = NO;
   result.a = [TestMutualRecursionA defaultInstance];
   return self;
@@ -9939,15 +9939,15 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 - (TestDupFieldNumber_Foo*) foo {
   return result.foo;
 }
-- (id<PBMessage_Builder>) setFoo:(TestDupFieldNumber_Foo*) value {
+- (TestDupFieldNumber_Builder*) setFoo:(TestDupFieldNumber_Foo*) value {
   result.hasFoo = YES;
   result.foo = value;
   return self;
 }
-- (id<PBMessage_Builder>) setFooBuilder:(TestDupFieldNumber_Foo_Builder*) builderForValue {
+- (TestDupFieldNumber_Builder*) setFooBuilder:(TestDupFieldNumber_Foo_Builder*) builderForValue {
   return [self setFoo:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeFoo:(TestDupFieldNumber_Foo*) value {
+- (TestDupFieldNumber_Builder*) mergeFoo:(TestDupFieldNumber_Foo*) value {
   if (result.hasFoo &&
       result.foo != [TestDupFieldNumber_Foo defaultInstance]) {
     result.foo =
@@ -9958,7 +9958,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   result.hasFoo = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearFoo {
+- (TestDupFieldNumber_Builder*) clearFoo {
   result.hasFoo = NO;
   result.foo = [TestDupFieldNumber_Foo defaultInstance];
   return self;
@@ -9969,15 +9969,15 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 - (TestDupFieldNumber_Bar*) bar {
   return result.bar;
 }
-- (id<PBMessage_Builder>) setBar:(TestDupFieldNumber_Bar*) value {
+- (TestDupFieldNumber_Builder*) setBar:(TestDupFieldNumber_Bar*) value {
   result.hasBar = YES;
   result.bar = value;
   return self;
 }
-- (id<PBMessage_Builder>) setBarBuilder:(TestDupFieldNumber_Bar_Builder*) builderForValue {
+- (TestDupFieldNumber_Builder*) setBarBuilder:(TestDupFieldNumber_Bar_Builder*) builderForValue {
   return [self setBar:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeBar:(TestDupFieldNumber_Bar*) value {
+- (TestDupFieldNumber_Builder*) mergeBar:(TestDupFieldNumber_Bar*) value {
   if (result.hasBar &&
       result.bar != [TestDupFieldNumber_Bar defaultInstance]) {
     result.bar =
@@ -9988,7 +9988,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   result.hasBar = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearBar {
+- (TestDupFieldNumber_Builder*) clearBar {
   result.hasBar = NO;
   result.bar = [TestDupFieldNumber_Bar defaultInstance];
   return self;
@@ -10435,15 +10435,15 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 - (TestNestedMessageHasBits_NestedMessage*) optionalNestedMessage {
   return result.optionalNestedMessage;
 }
-- (id<PBMessage_Builder>) setOptionalNestedMessage:(TestNestedMessageHasBits_NestedMessage*) value {
+- (TestNestedMessageHasBits_Builder*) setOptionalNestedMessage:(TestNestedMessageHasBits_NestedMessage*) value {
   result.hasOptionalNestedMessage = YES;
   result.optionalNestedMessage = value;
   return self;
 }
-- (id<PBMessage_Builder>) setOptionalNestedMessageBuilder:(TestNestedMessageHasBits_NestedMessage_Builder*) builderForValue {
+- (TestNestedMessageHasBits_Builder*) setOptionalNestedMessageBuilder:(TestNestedMessageHasBits_NestedMessage_Builder*) builderForValue {
   return [self setOptionalNestedMessage:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeOptionalNestedMessage:(TestNestedMessageHasBits_NestedMessage*) value {
+- (TestNestedMessageHasBits_Builder*) mergeOptionalNestedMessage:(TestNestedMessageHasBits_NestedMessage*) value {
   if (result.hasOptionalNestedMessage &&
       result.optionalNestedMessage != [TestNestedMessageHasBits_NestedMessage defaultInstance]) {
     result.optionalNestedMessage =
@@ -10454,7 +10454,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   result.hasOptionalNestedMessage = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearOptionalNestedMessage {
+- (TestNestedMessageHasBits_Builder*) clearOptionalNestedMessage {
   result.hasOptionalNestedMessage = NO;
   result.optionalNestedMessage = [TestNestedMessageHasBits_NestedMessage defaultInstance];
   return self;
@@ -10957,15 +10957,15 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (ForeignMessage*) messageField {
   return result.messageField;
 }
-- (id<PBMessage_Builder>) setMessageField:(ForeignMessage*) value {
+- (TestCamelCaseFieldNames_Builder*) setMessageField:(ForeignMessage*) value {
   result.hasMessageField = YES;
   result.messageField = value;
   return self;
 }
-- (id<PBMessage_Builder>) setMessageFieldBuilder:(ForeignMessage_Builder*) builderForValue {
+- (TestCamelCaseFieldNames_Builder*) setMessageFieldBuilder:(ForeignMessage_Builder*) builderForValue {
   return [self setMessageField:[builderForValue build]];
 }
-- (id<PBMessage_Builder>) mergeMessageField:(ForeignMessage*) value {
+- (TestCamelCaseFieldNames_Builder*) mergeMessageField:(ForeignMessage*) value {
   if (result.hasMessageField &&
       result.messageField != [ForeignMessage defaultInstance]) {
     result.messageField =
@@ -10976,7 +10976,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   result.hasMessageField = YES;
   return self;
 }
-- (id<PBMessage_Builder>) clearMessageField {
+- (TestCamelCaseFieldNames_Builder*) clearMessageField {
   result.hasMessageField = NO;
   result.messageField = [ForeignMessage defaultInstance];
   return self;
