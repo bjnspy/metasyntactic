@@ -177,23 +177,25 @@
                  nestedExtension.extensionScope, @"");
 }
 
-#if 0
-public void testFieldDescriptorLabel() throws Exception {
+
+- (void) testFieldDescriptorLabel {
     PBFieldDescriptor* requiredField =
-    TestRequired.getDescriptor().findFieldByName(@"a");
+    [[TestRequired descriptor] findFieldByName:@"a"];
     PBFieldDescriptor* optionalField =
-    [TestAllTypes descriptor].findFieldByName(@"optional_int32");
+    [[TestAllTypes descriptor] findFieldByName:@"optional_int32"];
     PBFieldDescriptor* repeatedField =
-    [TestAllTypes descriptor].findFieldByName(@"repeated_int32");
+    [[TestAllTypes descriptor] findFieldByName:@"repeated_int32"];
     
-    STAssertTrue(requiredField.isRequired());
-    STAssertFalse(requiredField.isRepeated());
-    STAssertFalse(optionalField.isRequired());
-    STAssertFalse(optionalField.isRepeated());
-    STAssertFalse(repeatedField.isRequired());
-    STAssertTrue(repeatedField.isRepeated());
+    STAssertTrue(requiredField.isRequired, @"");
+    STAssertFalse(requiredField.isRepeated, @"");
+    STAssertFalse(optionalField.isRequired, @"");
+    STAssertFalse(optionalField.isRepeated, @"");
+    STAssertFalse(repeatedField.isRequired, @"");
+    STAssertTrue(repeatedField.isRepeated, @"");
 }
 
+
+#if 0
 public void testFieldDescriptorDefault() throws Exception {
     PBDescriptor* d = [TestAllTypes descriptor];
     STAssertFalse(d.findFieldByName(@"optional_int32").hasDefaultValue());
