@@ -46,4 +46,6 @@
 - (PBEnumValueDescriptor*) findValueByName:(NSString*) name;
 - (PBEnumValueDescriptor*) findValueByNumber:(int32_t) number;
 
+- (PBEnumOptions*) options;
+
 @end

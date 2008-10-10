@@ -38,6 +38,7 @@ enum PBWireFormat;
 @class PBDynamicMessage_Builder;
 @class PBEnumDescriptor;
 @class PBEnumDescriptorProto;
+@class PBEnumOptions;
 @class PBEnumValueDescriptor;
 @class PBEnumValueDescriptorProto;
 @class PBExtendableBuilder;
