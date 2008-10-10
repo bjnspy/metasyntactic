@@ -191,31 +191,16 @@
     STAssertFalse(message.isInitialized, @"");
 }
 
-#if 0
-public void testNestedUninitializedException() throws Exception {
-    try {
-        TestRequiredForeign.newBuilder()
-        .setOptionalMessageself.testRequiredUninitialized
-        .addRepeatedMessageself.testRequiredUninitialized
-        .addRepeatedMessageself.testRequiredUninitialized
-        .build();
-        fail("Should have thrown an exception.");
-    } catch (UninitializedMessageException e) {
-        assertEquals(
-                     "Message missing required fields: " +
-                     "optional_message.a, " +
-                     "optional_message.b, " +
-                     "optional_message.c, " +
-                     "repeated_message[0].a, " +
-                     "repeated_message[0].b, " +
-                     "repeated_message[0].c, " +
-                     "repeated_message[1].a, " +
-                     "repeated_message[1].b, " +
-                     "repeated_message[1].c",
-                     e.getMessage());
-    }
+
+- (void) testNestedUninitializedException {
+    STAssertThrows([[[[[TestRequiredForeign_Builder builder]
+                       setOptionalMessage:self.testRequiredUninitialized]
+                      addRepeatedMessage:self.testRequiredUninitialized]
+                     addRepeatedMessage:self.testRequiredUninitialized]
+                    build], @"");
 }
 
+#if 0
 public void testBuildNestedPartial() throws Exception {
     // We're mostly testing that no exception is thrown.
     TestRequiredForeign message =
