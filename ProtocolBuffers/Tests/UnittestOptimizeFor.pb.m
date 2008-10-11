@@ -18,7 +18,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForS
     internal_static_protobuf_unittest_TestOptimizedForSize_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"I", @"Msg", nil];
-      internal_static_protobuf_unittest_TestOptimizedForSize_fieldAccessorTable = 
+      internal_static_protobuf_unittest_TestOptimizedForSize_fieldAccessorTable =
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_TestOptimizedForSize_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[TestOptimizedForSize class]
@@ -47,7 +47,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForS
     2,
   };
   NSArray* dependencies = [NSArray arrayWithObjects:[UnittestRoot descriptor], nil];
-  
+
   NSData* data = [NSData dataWithBytes:descriptorData length:261];
   PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
   return [PBFileDescriptor buildFrom:proto dependencies:dependencies];

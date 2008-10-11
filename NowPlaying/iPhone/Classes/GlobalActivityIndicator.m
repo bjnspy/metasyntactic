@@ -104,7 +104,7 @@ static NSInteger visibleBackgroundTaskCount = 0;
         if (totalBackgroundTaskCount == 0) {
             [indicator performSelectorOnMainThread:@selector(stopNetworkIndicator) withObject:nil waitUntilDone:NO];
         }
-        
+
         [NowPlayingAppDelegate refresh];
     }
     [gate unlock];

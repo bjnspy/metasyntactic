@@ -70,17 +70,17 @@
         self.index = index_;
         self.proto = proto_;
         self.file = file_;
-        
+
         self.fullName = [PBDescriptor computeFullName:file_ parent:parent_ name:proto.name];
-        
+
         if (proto.hasType) {
             self.type = PBFieldDescriptorTypeFrom(proto.type);
         }
-        
+
         if (self.number <= 0) {
             @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Field numbers must be positive integers." userInfo:nil];
         }
-        
+
         if (isExtension_) {
             if (!proto.hasExtendee) {
                 @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"FieldDescriptorProto.extendee not set for extension field." userInfo:nil];
@@ -98,10 +98,10 @@
             self.containingType = parent_;
             self.extensionScope = nil;
         }
-        
+
         [file.pool addSymbol:self];
     }
-    
+
     return self;
 }
 
@@ -206,15 +206,15 @@
             @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
         }
         self.containingType = extendee;
-        
+
         if (![self.containingType isExtensionNumber:self.number]) {
             @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
         }
     }
-    
+
     if (proto.hasTypeName) {
         id typeDescriptor = [file.pool lookupSymbol:proto.typeName relativeTo:self];
-        
+
         if (!proto.hasType) {
             // Choose field type based on symbol.
             if ([typeDescriptor isKindOfClass:[PBDescriptor class]]) {
@@ -225,13 +225,13 @@
                 @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
             }
         }
-        
+
         if (self.objectiveCType == PBObjectiveCTypeMessage) {
             if (![typeDescriptor isKindOfClass:[PBDescriptor class]]) {
                 @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
             }
             self.messageType = typeDescriptor;
-            
+
             if (proto.hasDefaultValue) {
                 @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Messages can't have default values." userInfo:nil];
             }
@@ -249,14 +249,14 @@
             @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Field with message or enum type missing type_name." userInfo:nil];
         }
     }
-    
+
     // We don't attempt to parse the default value until here because for
     // enums we need the enum type's descriptor.
     if (proto.hasDefaultValue) {
         if (self.isRepeated) {
             @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"Repeated fields cannot have default values." userInfo:nil];
         }
-        
+
         switch (self.type) {
             case PBFieldDescriptorTypeInt32:
             case PBFieldDescriptorTypeSInt32:
@@ -323,11 +323,11 @@
             }
         }
     }
-    
+
     if (!self.isExtension) {
         [file.pool addFieldByNumber:self];
     }
-    
+
     if (containingType != nil &&
         containingType.options.messageSetWireFormat) {
         if (self.isExtension) {
@@ -357,7 +357,7 @@
                                        reason:@"FieldDescriptors can only be compared to other FieldDescriptors for fields of the same message type."
                                      userInfo:nil];
     }
-    
+
     if (self.number < other.number) {
         return NSOrderedAscending;
     } else if (self.number > other.number) {

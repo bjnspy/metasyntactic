@@ -25,7 +25,7 @@
         self.underlyingStream = [NSInputStream inputStreamWithData:data_];
         blockSize = blockSize_;
     }
-    
+
     return self;
 }
 
@@ -52,7 +52,7 @@
 }
 
 
-- (BOOL) getBuffer:(uint8_t**) buffer length:(NSUInteger*)len { 
+- (BOOL) getBuffer:(uint8_t**) buffer length:(NSUInteger*)len {
     return [underlyingStream getBuffer:buffer length:len];
 }
 

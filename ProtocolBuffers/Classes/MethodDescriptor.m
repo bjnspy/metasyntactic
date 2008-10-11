@@ -46,7 +46,7 @@
     self.service = nil;
     self.inputType = nil;
     self.outputType = nil;
-    
+
     [super dealloc];
 }
 
@@ -60,12 +60,12 @@
         self.proto = proto_;
         self.file = file_;
         self.service = parent_;
-        
+
         self.fullName = [NSString stringWithFormat:@"%@.%@", parent_.fullName, proto.name];
-        
+
         [file.pool addSymbol:self];
     }
-    
+
     return self;
 }
 
@@ -94,7 +94,7 @@
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
     }
     self.inputType = inputType_;
-    
+
     id outputType_ = [file.pool lookupSymbol:proto.outputType relativeTo:self];
     if (![outputType_ isKindOfClass:[PBDescriptor class]]) {
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];

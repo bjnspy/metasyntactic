@@ -98,10 +98,10 @@
 
 
 - (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields {
-    PBUnknownFieldSet* merged = 
+    PBUnknownFieldSet* merged =
     [[[PBUnknownFieldSet builderWithUnknownFields:self.unknownFields]
       mergeUnknownFields:unknownFields] build];
-    
+
     [self setUnknownFields:merged];
     return self;
 }

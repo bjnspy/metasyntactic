@@ -54,13 +54,13 @@
         self.proto = proto_;
         self.file = file_;
         self.type = parent_;
-        
+
         self.fullName = [NSString stringWithFormat:@"%@.%@", parent_.fullName, proto.name];
-        
+
         [file.pool addSymbol:self];
         [file.pool addEnumValueByNumber:self];
     }
-    
+
     return self;
 }
 

@@ -32,7 +32,7 @@
 
 - (void) dealloc {
     self.extensions = nil;
-    
+
     [super dealloc];
 }
 
@@ -41,7 +41,7 @@
     if (self = [super init]) {
         self.extensions = [PBFieldSet set];
     }
-    
+
     return self;
 }
 

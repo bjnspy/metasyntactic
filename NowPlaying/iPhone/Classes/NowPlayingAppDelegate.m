@@ -48,7 +48,7 @@ static NowPlayingAppDelegate* appDelegate = nil;
     self.model = [NowPlayingModel model];
     self.tabBarController = [ApplicationTabBarController controllerWithAppDelegate:self];
     self.pulser = [Pulser pulserWithTarget:tabBarController action:@selector(refresh) pulseInterval:5];
-    
+
     [window addSubview:tabBarController.view];
     [window makeKeyAndVisible];
 
@@ -67,7 +67,7 @@ static NowPlayingAppDelegate* appDelegate = nil;
         [self performSelectorOnMainThread:@selector(refresh) withObject:nil waitUntilDone:NO];
         return;
     }
-    
+
     [pulser tryPulse];
 }
 

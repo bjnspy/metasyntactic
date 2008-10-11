@@ -41,7 +41,7 @@
     self.enumValueOf = 0;
     self.enumGetValueDescriptor = 0;
     self.messageDefaultInstance = 0;
-    
+
     [super dealloc];
 }
 
@@ -52,10 +52,10 @@
         if (!descriptor_.isExtension) {
             @throw [NSException exceptionWithName:@"" reason:@"PBGeneratedExtension given a regular (non-extension) field." userInfo:nil];
         }
-     
+
         self.descriptor = descriptor_;
         self.type = type_;
-        
+
         switch (descriptor.objectiveCType) {
             case PBObjectiveCTypeMessage:
                 self.messageDefaultInstance = [type performSelector:@selector(defaultInstance)];
@@ -66,7 +66,7 @@
                 break;
         }
     }
-    
+
     return self;
 }
 
@@ -160,13 +160,13 @@ public static final class PBGeneratedExtension<
 ContainingType extends PBMessage, Type> {
     // TODO(kenton):  Find ways to avoid using Java reflection within this
     //   class.  Also try to avoid suppressing unchecked warnings.
-    
+
     private PBGeneratedExtension(PBFieldDescriptor descriptor, Class type) {
 
     }
-    
-    
-    
+
+
+
     /**
      * If the extension is an embedded message or group, returns the default
      * instance of the message.
@@ -175,7 +175,7 @@ ContainingType extends PBMessage, Type> {
     public PBMessage getMessageDefaultInstance() {
         return messageDefaultInstance;
     }
-    
+
     /**
      * Convert from the type used by the reflection accessors to the type used
      * by native accessors.  E.g., for enums, the reflection accessors use
@@ -184,7 +184,7 @@ ContainingType extends PBMessage, Type> {
      */
     @SuppressWarnings("unchecked")
 
-    
+
     /**
      * Convert from the type used by the native accessors to the type used
      * by reflection accessors.  E.g., for enums, the reflection accessors use

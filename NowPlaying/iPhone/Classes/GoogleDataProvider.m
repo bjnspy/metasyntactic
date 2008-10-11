@@ -67,7 +67,7 @@
 
             releaseDate = [[NSCalendar currentCalendar] dateFromComponents:components];
         }
-        
+
         NSString* imdbAddress = [NSString stringWithFormat:@"http://www.imdb.com/title/%@", movieProto.iMDbUrl];
 
         Movie* movie = [Movie movieWithIdentifier:identifier

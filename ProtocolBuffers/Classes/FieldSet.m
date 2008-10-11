@@ -394,7 +394,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         if (tag == 0) {
             break;
         }
-        
+
         if (![self mergeFieldFromCodedInputStream:input
                                     unknownFields:unknownFields
                                 extensionRegistry:extensionRegistry
@@ -429,18 +429,18 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     // the message appears before the type ID, or where either field does not
     // appear exactly once.  However, in theory such cases are valid, so we
     // should be prepared to accept them.
-    
+
     int32_t typeId = 0;
     NSData* rawBytes = nil;  // If we encounter "message" before "typeId"
     id<PBMessage_Builder> subBuilder = nil;
     PBFieldDescriptor* field = nil;
-    
+
     while (YES) {
         int32_t tag = [input readTag];
         if (tag == 0) {
             break;
         }
-        
+
         if (tag == PBWireFormatMessageSetTypeIdTag) {
             typeId = [input readUInt32];
             // Zero is not a valid type ID.
@@ -488,9 +488,9 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
             }
         }
     }
-    
+
     [input checkLastTagWas:PBWireFormatMessageSetItemEndTag];
-    
+
     if (subBuilder != nil) {
         [builder setField:field value:[subBuilder build]];
     }

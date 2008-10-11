@@ -52,13 +52,13 @@
         NSString* camelName = [self camelName:name];
         self.itemListSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"%@List", camelName]];
         self.itemAtIndexSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"%@AtIndex:", camelName]];
-        self.replaceItemAtIndexWithItemSelector = 
+        self.replaceItemAtIndexWithItemSelector =
         [PBUtilities getSelector:[NSString stringWithFormat:@"replace%@AtIndex:with%@:", name, name]];
         self.addItemSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"add%@:", name]];
         self.addAllItemSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"addAll%@:", name]];
         self.clearItemListSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"clear%@List", name]];
     }
-    
+
     return self;
 }
 

@@ -42,7 +42,7 @@
         self.valueOfMethod = @selector(valueOfDescriptor:);
         self.valueDescriptorMethod = @selector(valueDescriptor);
     }
-    
+
     return self;
 }
 
@@ -59,12 +59,12 @@
 
 - (id) get:(PBGeneratedMessage*) message {
     NSMutableArray* array = [NSMutableArray array];
-    
+
     for (id element in [super get:message]) {
         id value = [element performSelector:valueDescriptorMethod];
         [array addObject:value];
     }
-    
+
     return array;
 }
 

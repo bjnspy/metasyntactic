@@ -38,7 +38,7 @@
     if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
         self.newBuilderMethod = @selector(newBuilder);
     }
-    
+
     return self;
 }
 

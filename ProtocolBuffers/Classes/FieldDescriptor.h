@@ -20,17 +20,17 @@
 @interface PBFieldDescriptor : NSObject<PBGenericDescriptor,NSCopying> {
 @private
     int32_t index;
-    
+
     PBFieldDescriptorProto* proto;
     NSString* fullName;
-    
+
     // TODO(cyrusn): circularity between us and our containing file
     PBFileDescriptor* file;
     PBDescriptor* extensionScope;
-    
+
     // Possibly initialized during cross-linking.
     PBFieldDescriptorType type;
-    
+
     // TODO(cyrusn): circularity between us and our containing type
     PBDescriptor* containingType;
     PBDescriptor* messageType;

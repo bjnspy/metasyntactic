@@ -23,7 +23,7 @@
   PBDescriptor* descriptor;
   TestAllTypes* allFields;
   NSData* allFieldsData;
-  
+
   // An empty message that has been parsed from allFieldsData.  So, it has
   // unknown fields of every type.
   TestEmptyMessage* emptyMessage;

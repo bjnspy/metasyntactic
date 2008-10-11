@@ -52,6 +52,6 @@ int32_t PBWireFormatGetWireFormatForFieldType(PBFieldDescriptorType type) {
         case PBFieldDescriptorTypeSInt32  : return PBWireFormatVarint;
         case PBFieldDescriptorTypeSInt64  : return PBWireFormatVarint;
     }
-    
+
     @throw [NSException exceptionWithName:@"Runtime" reason:@"There is no way to get here, but the compiler thinks otherwise." userInfo:nil];
 }

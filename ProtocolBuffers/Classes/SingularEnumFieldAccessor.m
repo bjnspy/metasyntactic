@@ -40,7 +40,7 @@
         self.valueOfMethod = @selector(valueOfDescriptor:);
         self.valueDescriptorMethod = @selector(valueDescriptor);
     }
-    
+
     return self;
 }
 

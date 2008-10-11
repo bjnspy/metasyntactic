@@ -56,7 +56,7 @@
         self.hasSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"has%@", name]];
         self.clearSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"clear%@", name]];
     }
-    
+
     return self;
 }
 
@@ -71,7 +71,7 @@
 
 - (id) get:(PBGeneratedMessage*) message {
     IMP imp = [message methodForSelector:getSelector];
-    
+
     switch (PBObjectiveCTypeFromFieldDescriptorType(self.field.type)) {
         default: {
             return imp(message, getSelector);
@@ -102,7 +102,7 @@
 
 - (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value {
     IMP imp = [builder methodForSelector:setSelector];
-    
+
     switch (PBObjectiveCTypeFromFieldDescriptorType(self.field.type)) {
         default: {
             imp(builder, setSelector, value);

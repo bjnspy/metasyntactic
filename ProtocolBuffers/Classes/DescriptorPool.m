@@ -46,7 +46,7 @@
         for (PBFileDescriptor* dependency in dependencies_) {
             [dependencies addObject:dependency.pool];
         }
-        
+
         for (PBFileDescriptor* dependency in dependencies_) {
             [self addPackage:dependency.package file:dependency];
         }
@@ -63,13 +63,13 @@
 
 - (void) addPackage:(NSString*) fullName file:(PBFileDescriptor*) file {
     NSRange dotpos = [fullName rangeOfString:@"." options:NSBackwardsSearch];
-    
+
     NSString* name = fullName;
     if (dotpos.length > 0) {
         [self addPackage:[fullName substringToIndex:dotpos.location] file:file];
         name = [fullName substringFromIndex:(dotpos.location + 1)];
     }
-    
+
     PBPackageDescriptor* packageDescriptor = [PBPackageDescriptor descriptorWithFullName:fullName name:name file:file];
     [descriptorsByName setObject:packageDescriptor forKey:fullName];
 }
@@ -96,13 +96,13 @@ BOOL isDigit(unichar c) {
     } else {
         for (int i = 0; i < name.length; i++) {
             unichar c = [name characterAtIndex:i];
-            
+
             // Non-ASCII characters are not valid in protobuf identifiers, even
             // if they are letters or digits.
             if (c >= 128) {
                 @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
             }
-            
+
             // First character must be letter or _.  Subsequent characters may
             // be letters, numbers, or digits.
             if (isLetter(c) || c == '_' ||
@@ -122,19 +122,19 @@ BOOL isDigit(unichar c) {
  */
 - (void) addSymbol:(id<PBGenericDescriptor>) descriptor {
     [self validateSymbolName:descriptor];
-    
+
     NSString* fullName = [descriptor fullName];
 
     if ([descriptorsByName objectForKey:fullName] != nil) {
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
     }
-    
+
     [descriptorsByName setObject:descriptor forKey:fullName];
 
 #if 0
     if (old != null) {
         descriptorsByName.put(fullName, old);
-        
+
         if (descriptor.getFile() == old.getFile()) {
             if (dotpos == -1) {
                 throw new DescriptorValidationException(descriptor,
@@ -158,7 +158,7 @@ BOOL isDigit(unichar c) {
 - (void) addEnumValueByNumber:(PBEnumValueDescriptor*) value {
     PBDescriptorPool_DescriptorIntPair* key = [PBDescriptorPool_DescriptorIntPair pairWithDescriptor:value.type
                                                                                               number:value.number];
-    
+
     if ([enumValuesByNumber objectForKey:key] == nil) {
         [enumValuesByNumber setObject:value forKey:key];
         // Not an error:  Multiple enum values may have the same number, but
@@ -173,14 +173,14 @@ BOOL isDigit(unichar c) {
     if (result != nil) {
         return result;
     }
-    
+
     for (PBDescriptorPool* p in dependencies) {
         result = [p.descriptorsByName objectForKey:fullName];
         if (result != nil) {
             return result;
         }
     }
-    
+
     return nil;
 }
 
@@ -188,7 +188,7 @@ BOOL isDigit(unichar c) {
 - (id<PBGenericDescriptor>) lookupSymbol:(NSString*) name
                               relativeTo:(id<PBGenericDescriptor>) relativeTo {
     // TODO(kenton):  This could be optimized in a number of ways.
-    
+
     id<PBGenericDescriptor> result = nil;
     if ([name hasPrefix:@"."]) {
         // Fully-qualified name.
@@ -201,11 +201,11 @@ BOOL isDigit(unichar c) {
         if (firstPartLength.length > 0) {
             firstPart = [name substringToIndex:firstPartLength.location];
         }
-        
+
         // We will search each parent scope of "relativeTo" looking for the
         // symbol.
         NSMutableString* scopeToTry = [NSMutableString stringWithString:[relativeTo fullName]];
-        
+
         while (YES) {
             // Chop off the last component of the scope.
             NSRange dotpos = [scopeToTry rangeOfString:@"." options:NSBackwardsSearch];
@@ -214,11 +214,11 @@ BOOL isDigit(unichar c) {
                 break;
             } else {
                 [scopeToTry setString:[scopeToTry substringToIndex:(dotpos.location + 1)]];
-                
+
                 // Append firstPart and try to find.
                 [scopeToTry appendString:firstPart];
                 result = [self findSymbol:scopeToTry];
-                
+
                 if (result != nil) {
                     if (firstPartLength.length > 0) {
                         // We only found the first part of the symbol.  Now look for
@@ -230,13 +230,13 @@ BOOL isDigit(unichar c) {
                     }
                     break;
                 }
-                
+
                 // Not found.  Remove the name so we can try again.
                 [scopeToTry setString:[scopeToTry substringToIndex:dotpos.location]];
             }
         }
     }
-    
+
     if (result == nil) {
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
     } else {
@@ -251,7 +251,7 @@ BOOL isDigit(unichar c) {
     if ([fieldsByNumber objectForKey:key] != nil) {
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
     }
-    
+
     [fieldsByNumber setObject:field forKey:key];
 }
 

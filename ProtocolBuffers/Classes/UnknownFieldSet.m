@@ -150,7 +150,7 @@ static PBUnknownFieldSet* defaultInstance = nil;
 - (NSData*) toData {
     NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
     PBCodedOutputStream* output = [PBCodedOutputStream streamWithData:data];
-    
+
     [self writeToCodedOutputStream:output];
     return data;
 }

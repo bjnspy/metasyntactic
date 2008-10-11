@@ -167,7 +167,7 @@
     if (number == 0) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Zero is not a valid field number." userInfo:nil];
     }
-    
+
     [[self getFieldBuilder:number] addVarint:value];
     return self;
 }
