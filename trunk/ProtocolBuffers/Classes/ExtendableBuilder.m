@@ -66,20 +66,14 @@
 
 
 /** Get the number of elements in a repeated extension. */
-- (int32_t) getExtensionCount:(PBGeneratedExtension*) extension {
-    return [self.internalGetResult getExtensionCount:extension];
+- (NSArray*) getRepeatedExtension:(PBGeneratedExtension*) extension {
+    return [self.internalGetResult getRepeatedExtension:extension];
 }
 
 
 /** Get the value of an extension. */
 - (id) getExtension:(PBGeneratedExtension*) extension {
     return [self.internalGetResult getExtension:extension];
-}
-
-
-/** Get one element of a repeated extension. */
-- (id)  getExtension:(PBGeneratedExtension*) extension index:(int32_t) index {
-    return [self.internalGetResult getExtension:extension index:index];
 }
 
 
