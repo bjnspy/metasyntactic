@@ -18,8 +18,8 @@
     PBFileDescriptor* file;
 }
 
-@property (retain) NSString* name;
-@property (retain) NSString* fullName;
+@property (copy) NSString* name;
+@property (copy) NSString* fullName;
 @property (retain) PBFileDescriptor* file;
 
 + (PBPackageDescriptor*) descriptorWithFullName:(NSString*) fullName

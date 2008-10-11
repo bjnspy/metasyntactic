@@ -737,7 +737,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 @end
 
 @interface TestMessageSetExtension2 ()
-@property (retain) NSString* str;
+@property (copy) NSString* str;
 @end
 
 @implementation TestMessageSetExtension2

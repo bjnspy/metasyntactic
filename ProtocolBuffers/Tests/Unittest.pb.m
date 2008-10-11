@@ -1786,7 +1786,7 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @property Float32 optionalFloat;
 @property Float64 optionalDouble;
 @property BOOL optionalBool;
-@property (retain) NSString* optionalString;
+@property (copy) NSString* optionalString;
 @property (retain) NSData* optionalBytes;
 @property (retain) TestAllTypes_OptionalGroup* optionalGroup;
 @property (retain) TestAllTypes_NestedMessage* optionalNestedMessage;
@@ -1795,8 +1795,8 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @property (retain) TestAllTypes_NestedEnum* optionalNestedEnum;
 @property (retain) ForeignEnum* optionalForeignEnum;
 @property (retain) ImportEnum* optionalImportEnum;
-@property (retain) NSString* optionalStringPiece;
-@property (retain) NSString* optionalCord;
+@property (copy) NSString* optionalStringPiece;
+@property (copy) NSString* optionalCord;
 @property (retain) NSMutableArray* mutableRepeatedInt32List;
 @property (retain) NSMutableArray* mutableRepeatedInt64List;
 @property (retain) NSMutableArray* mutableRepeatedUint32List;
@@ -1834,13 +1834,13 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @property Float32 defaultFloat;
 @property Float64 defaultDouble;
 @property BOOL defaultBool;
-@property (retain) NSString* defaultString;
+@property (copy) NSString* defaultString;
 @property (retain) NSData* defaultBytes;
 @property (retain) TestAllTypes_NestedEnum* defaultNestedEnum;
 @property (retain) ForeignEnum* defaultForeignEnum;
 @property (retain) ImportEnum* defaultImportEnum;
-@property (retain) NSString* defaultStringPiece;
-@property (retain) NSString* defaultCord;
+@property (copy) NSString* defaultStringPiece;
+@property (copy) NSString* defaultCord;
 @end
 
 @implementation TestAllTypes
@@ -10927,11 +10927,11 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 
 @interface TestCamelCaseFieldNames ()
 @property int32_t primitiveField;
-@property (retain) NSString* stringField;
+@property (copy) NSString* stringField;
 @property (retain) ForeignEnum* enumField;
 @property (retain) ForeignMessage* messageField;
-@property (retain) NSString* stringPieceField;
-@property (retain) NSString* cordField;
+@property (copy) NSString* stringPieceField;
+@property (copy) NSString* cordField;
 @property (retain) NSMutableArray* mutableRepeatedPrimitiveFieldList;
 @property (retain) NSMutableArray* mutableRepeatedStringFieldList;
 @property (retain) NSMutableArray* mutableRepeatedEnumFieldList;
@@ -11685,7 +11685,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 @end
 
 @interface TestFieldOrderings ()
-@property (retain) NSString* myString;
+@property (copy) NSString* myString;
 @property int64_t myInt;
 @property Float32 myFloat;
 @end
@@ -11968,7 +11968,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 @property int64_t largeUint64;
 @property int32_t smallInt32;
 @property int64_t smallInt64;
-@property (retain) NSString* utf8String;
+@property (copy) NSString* utf8String;
 @end
 
 @implementation TestExtremeDefaultValues

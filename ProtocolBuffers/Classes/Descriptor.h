@@ -77,7 +77,7 @@ NSArray* fields;
 
 @property int32_t index;
 @property (retain) DescriptorProto* proto;
-@property (retain) NSString* fullName;
+@property (copy) NSString* fullName;
 @property (retain) PBFileDescriptor* file;
 @property (retain) PBDescriptor* containingType;
 @property (retain) NSArray* nestedTypes;
