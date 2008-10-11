@@ -45,12 +45,12 @@
 
 - (CGSize) posterSize {
     CGSize actualSize = posterImage.size;
-    
+
     if (actualSize.width > 140) {
         actualSize.height *= 140.0 / actualSize.width;
         actualSize.width = 140;
     }
-    
+
     CGFloat adjustedHeight = 18 * (MIN(127, (int)actualSize.height) / 18);
     CGFloat ratio = adjustedHeight / actualSize.height;
 

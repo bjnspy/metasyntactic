@@ -25,7 +25,7 @@ BOOL allZeroes(NSString* string) {
             return NO;
         }
     }
-    
+
     return YES;
 }
 
@@ -56,11 +56,11 @@ BOOL isHex(unichar c) {
     if (text.length == 0) {
         @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number was blank" userInfo:nil];
     }
-    
+
     if (isblank([text characterAtIndex:0])) {
         @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Invalid character" userInfo:nil];
     }
-    
+
     if ([text hasPrefix:@"-"]) {
         if (!isSigned) {
             @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number must be positive" userInfo:nil];
@@ -85,18 +85,18 @@ BOOL isHex(unichar c) {
             result = convertUInt32ToInt32(strtoul(in_string, &out_string, 0));
         }
     }
-    
+
     // from the man pages:
     // (Thus, if *str is not `\0' but **endptr is `\0' on return, the entire
     // string was valid.)
     if (*in_string == 0 || *out_string != 0) {
         @throw [NSException exceptionWithName:@"NumberFormat" reason:@"IllegalNumber" userInfo:nil];
     }
-    
+
     if (errno == ERANGE) {
         @throw [NSException exceptionWithName:@"NumberFormat" reason:@"Number out of range" userInfo:nil];
     }
-    
+
     return result;
 }
 
@@ -167,7 +167,7 @@ int32_t digitValue(unichar c) {
  */
 + (NSData*) unescapeBytes:(NSString*) input {
     NSMutableData* result = [NSMutableData dataWithLength:input.length];
-    
+
     int32_t pos = 0;
     for (int32_t i = 0; i < input.length; i++) {
         unichar c = [input characterAtIndex:i];
@@ -199,8 +199,8 @@ int32_t digitValue(unichar c) {
                         case '\\': ((int8_t*)result.mutableBytes)[pos++] = '\\'; break;
                         case '\'': ((int8_t*)result.mutableBytes)[pos++] = '\''; break;
                         case '"' : ((int8_t*)result.mutableBytes)[pos++] = '\"'; break;
-                            
-                        case 'x': // hex escape 
+
+                        case 'x': // hex escape
                         {
                             int32_t code = 0;
                             if (i + 1 < input.length && isHex([input characterAtIndex:(i + 1)])) {
@@ -216,7 +216,7 @@ int32_t digitValue(unichar c) {
                             ((int8_t*)result.mutableBytes)[pos++] = (int8_t)code;
                             break;
                         }
-                            
+
                         default:
                             @throw [NSException exceptionWithName:@"InvalidEscape" reason:@"Invalid escape sequence" userInfo:nil];
                     }
@@ -228,7 +228,7 @@ int32_t digitValue(unichar c) {
             ((int8_t*)result.mutableBytes)[pos++] = (int8_t)c;
         }
     }
-    
+
     [result setLength:pos];
     return result;
 }

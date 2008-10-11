@@ -46,7 +46,7 @@
     self.mutableServices = nil;
     self.mutableDependencies = nil;
     self.pool = nil;
-    
+
     [super dealloc];
 }
 
@@ -75,22 +75,22 @@
         self.mutableDependencies = [NSMutableArray arrayWithArray:dependencies_];
 
         [pool addPackage:self.package file:self];
-        
+
         self.mutableMessageTypes = [NSMutableArray array];
         for (PBDescriptorProto* m in proto.messageTypeList) {
             [mutableMessageTypes addObject:[PBDescriptor descriptorWithProto:m file:self parent:nil index:mutableMessageTypes.count]];
         }
-        
+
         self.mutableEnumTypes = [NSMutableArray array];
         for (PBEnumDescriptorProto* e in proto.enumTypeList) {
             [mutableEnumTypes addObject:[PBEnumDescriptor descriptorWithProto:e file:self parent:nil index:mutableEnumTypes.count]];
         }
-        
+
         self.mutableServices = [NSMutableArray array];
         for (PBServiceDescriptorProto* s in proto.serviceList) {
             [mutableServices addObject:[PBServiceDescriptor descriptorWithProto:s file:self index:mutableServices.count]];
         }
-        
+
         self.mutableExtensions = [NSMutableArray array];
         for (PBFieldDescriptorProto* f in proto.extensionList) {
             [mutableExtensions addObject:[PBFieldDescriptor descriptorWithProto:f
@@ -171,11 +171,11 @@
     for (PBDescriptor* d in self.messageTypes) {
         [d crossLink];
     }
-    
+
     for (PBServiceDescriptor* s in self.services) {
         [s crossLink];
     }
-    
+
     for (PBFieldDescriptor* f in self.extensions) {
         [f crossLink];
     }
@@ -194,7 +194,7 @@
     if ([name rangeOfString:@"."].length > 0) {
         return nil;
     }
-    
+
     if (self.package.length > 0) {
         name = [NSString stringWithFormat:@"%@.%@", self.package, name];
     }
@@ -220,7 +220,7 @@
     if ([name rangeOfString:@"."].length > 0) {
         return nil;
     }
-    
+
     if (self.package.length > 0) {
         name = [NSString stringWithFormat:@"%@.%@", self.package, name];
     }
@@ -246,7 +246,7 @@
     if ([name rangeOfString:@"."].length > 0) {
         return nil;
     }
-    
+
     if (self.package.length > 0) {
         name = [NSString stringWithFormat:@"%@.%@", self.package, name];
     }
@@ -273,7 +273,7 @@
     if ([name rangeOfString:@"."].length > 0) {
         return nil;
     }
-    
+
     if (self.package.length > 0) {
         name = [NSString stringWithFormat:@"%@.%@", self.package, name];
     }

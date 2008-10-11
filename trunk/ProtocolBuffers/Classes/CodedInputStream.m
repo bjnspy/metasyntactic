@@ -619,7 +619,7 @@ int64_t decodeZigZag64(int64_t n) {
     if (input != nil) {
         bufferSize = [input read:buffer.mutableBytes maxLength:buffer.length];
     }
-    
+
     if (bufferSize <= 0) {
         bufferSize = 0;
         if (mustSucceed) {

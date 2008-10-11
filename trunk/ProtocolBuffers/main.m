@@ -26,9 +26,9 @@
 
 int main(int argc, char *argv[]) {
     NSAutoreleasePool* pool = [[NSAutoreleasePool alloc] init];
-    
+
     [SenTestObserver class];
-    
+
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CodedInputStreamTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CodedOutputStreamTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CoreTests class]] run];
@@ -38,7 +38,7 @@ int main(int argc, char *argv[]) {
     [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[UnknownFieldSetTest class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[UtilitiesTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[WireFormatTests class]] run];
-    
+
     [pool release];
     return 0;
 }

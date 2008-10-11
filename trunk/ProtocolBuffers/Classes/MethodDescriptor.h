@@ -21,7 +21,7 @@
     NSString* fullName;
     PBFileDescriptor* file;
     PBServiceDescriptor* service;
-    
+
     // Initialized during cross-linking.
     PBDescriptor* inputType;
     PBDescriptor* outputType;

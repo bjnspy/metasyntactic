@@ -83,13 +83,13 @@
         self.proto = proto_;
         self.file = file_;
         self.containingType = parent_;
-        
+
         self.fullName = [PBDescriptor computeFullName:file parent:parent_ name:proto.name];
-        
+
         if ([self.fullName hasPrefix:@"."]) {
             @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
         }
-        
+
         self.mutableNestedTypes = [NSMutableArray array];
         for (PBDescriptorProto* p in proto.nestedTypeList) {
             [mutableNestedTypes addObject:[PBDescriptor descriptorWithProto:p
@@ -97,12 +97,12 @@
                                                                      parent:self
                                                                       index:mutableNestedTypes.count]];
         }
-        
+
         self.mutableEnumTypes = [NSMutableArray array];
         for (PBEnumDescriptorProto* e in proto.enumTypeList) {
             [mutableEnumTypes addObject:[PBEnumDescriptor descriptorWithProto:e file:file parent:self index:mutableEnumTypes.count]];
         }
-        
+
         self.mutableFields = [NSMutableArray array];
         for (PBFieldDescriptorProto* f in proto.fieldList) {
             [mutableFields addObject:[PBFieldDescriptor descriptorWithProto:f
@@ -111,7 +111,7 @@
                                                                       index:mutableFields.count
                                                                 isExtension:NO]];
         }
-        
+
         self.mutableExtensions = [NSMutableArray array];
         for (PBFieldDescriptorProto* e in proto.extensionList) {
             [mutableExtensions addObject:[PBFieldDescriptor descriptorWithProto:e
@@ -120,10 +120,10 @@
                                                                           index:mutableExtensions.count
                                                                     isExtension:YES]];
         }
-        
+
         [file.pool addSymbol:self];
     }
-    
+
     return self;
 }
 
@@ -145,7 +145,7 @@
     return self.mutableEnumTypes;
 }
 
-    
+
 - (NSArray*) fields {
     return self.mutableFields;
 }
@@ -232,11 +232,11 @@
     for (PBDescriptor* d in self.nestedTypes) {
         [d crossLink];
     }
-    
+
     for (PBFieldDescriptor* f in self.fields) {
         [f crossLink];
     }
-    
+
     for (PBFieldDescriptor* f in self.extensions) {
         [f crossLink];
     }

@@ -44,7 +44,7 @@ property_definition(discs);
         self.format = [Utilities nonNilString:format_];
         self.discs = [Utilities nonNilString:discs_];
     }
-    
+
     return self;
 }
 

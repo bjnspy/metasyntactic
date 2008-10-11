@@ -28,7 +28,7 @@
 - (void) dealloc {
     self.descriptor = nil;
     self.number = 0;
-    
+
     [super dealloc];
 }
 
@@ -39,14 +39,14 @@
         self.descriptor = descriptor_;
         self.number = number_;
     }
-    
+
     return self;
 }
 
 
 + (PBDescriptorPool_DescriptorIntPair*) pairWithDescriptor:(id<PBGenericDescriptor>) descriptor
                                                     number:(int32_t) number {
-    return [[[PBDescriptorPool_DescriptorIntPair alloc] initWithDescriptor:descriptor 
+    return [[[PBDescriptorPool_DescriptorIntPair alloc] initWithDescriptor:descriptor
                                                                     number:number] autorelease];
 }
 
@@ -60,7 +60,7 @@
     if (![obj isKindOfClass:[PBDescriptorPool_DescriptorIntPair class]]) {
         return NO;
     }
-    
+
     PBDescriptorPool_DescriptorIntPair* other = obj;
     return descriptor == other.descriptor && number == other.number;
 }

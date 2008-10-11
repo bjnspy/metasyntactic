@@ -18,7 +18,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMess
     internal_static_protobuf_unittest_import_ImportMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"D", nil];
-      internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable = 
+      internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable =
         [[PBFieldAccessorTable tableWithDescriptor:internal_static_protobuf_unittest_import_ImportMessage_descriptor
                                         fieldNames:fieldNames
                                       messageClass:[ImportMessage class]
@@ -42,7 +42,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMess
     46,112,114,111,116,111,98,117,102,46,116,101,115,116,72,1,
   };
   NSArray* dependencies = [NSArray arrayWithObjects:nil];
-  
+
   NSData* data = [NSData dataWithBytes:descriptorData length:185];
   PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
   return [PBFileDescriptor buildFrom:proto dependencies:dependencies];

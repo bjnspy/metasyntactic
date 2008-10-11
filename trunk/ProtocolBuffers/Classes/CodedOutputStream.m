@@ -53,7 +53,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
         self.output = output_;
         self.buffer = data_;
         self.position = 0;
-        
+
         [output open];
     }
 

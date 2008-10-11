@@ -65,10 +65,10 @@
 // type.
 - (NSData*) getBizarroData {
   PBUnknownFieldSet_Builder* bizarroFields = [PBUnknownFieldSet builder];
-  
+
   PBField* varintField = [[PBMutableField field] addVarint:1];
   PBField* fixed32Field = [[PBMutableField field] addFixed32:1];
-  
+
   for (NSNumber* key in unknownFields.fields) {
     PBField* field = [unknownFields.fields objectForKey:key];
     if (field.varintList.count == 0) {
@@ -79,7 +79,7 @@
       [bizarroFields addField:fixed32Field forNumber:key.intValue];
     }
   }
-  
+
   return [[bizarroFields build] toData];
 }
 
@@ -117,14 +117,14 @@
   PBFieldDescriptor* nestedFieldDescriptor =
   [[TestAllTypes_OptionalGroup descriptor] findFieldByName:@"a"];
   STAssertTrue(nestedFieldDescriptor != nil, @"");
-  
+
   PBField* field = [self getField:@"optionalgroup"];
   STAssertTrue(1 == field.groupList.count, @"");
-  
+
   PBUnknownFieldSet* group = [field.groupList objectAtIndex:0];
   STAssertTrue(1 == group.fields.count, @"");
   STAssertTrue([group hasField:nestedFieldDescriptor.number], @"");
-  
+
   PBField* nestedField =
   [group getField:nestedFieldDescriptor.number];
   STAssertTrue(1 == nestedField.varintList.count, @"");
@@ -143,7 +143,7 @@
 - (void) testCopyFrom {
     TestEmptyMessage* message =
     [[[TestEmptyMessage builder] mergeFromMessage:emptyMessage] build];
-    
+
     STAssertEqualObjects(emptyMessage.toData, message.toData, @"");
 }
 
@@ -153,36 +153,36 @@
     [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:2] forNumber:2]
       addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
-    
-    PBUnknownFieldSet* set2 = 
+
+    PBUnknownFieldSet* set2 =
     [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:1] forNumber:1]
       addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
-    
+
     PBUnknownFieldSet* set3 =
     [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:1] forNumber:1]
       addField:[[PBMutableField field] addVarint:4] forNumber:3] build];
-    
-    PBUnknownFieldSet* set4 = 
+
+    PBUnknownFieldSet* set4 =
     [[[[PBUnknownFieldSet builder]
        addField:[[PBMutableField field] addVarint:2] forNumber:2]
       addField:[[PBMutableField field] addVarint:3] forNumber:3] build];
-    
+
     TestEmptyMessage* source1 = (id)[[[TestEmptyMessage builder] setUnknownFields:set1] build];
     TestEmptyMessage* source2 = (id)[[[TestEmptyMessage builder] setUnknownFields:set2] build];
     TestEmptyMessage* source3 = (id)[[[TestEmptyMessage builder] setUnknownFields:set3] build];
     TestEmptyMessage* source4 = (id)[[[TestEmptyMessage builder] setUnknownFields:set4] build];
-    
+
     TestEmptyMessage* destination1 = (id)[[[[TestEmptyMessage builder] mergeFromMessage:source1] mergeFromMessage:source2] build];
     TestEmptyMessage* destination2 = (id)[[[[TestEmptyMessage builder] mergeFromMessage:source3] mergeFromMessage:source4] build];
-    
+
     STAssertEqualObjects(destination1.toData, destination2.toData, @"");
 }
 
 
 - (void) testClear {
-    PBUnknownFieldSet* fields = 
+    PBUnknownFieldSet* fields =
     [[[[PBUnknownFieldSet builder] mergeUnknownFields:unknownFields] clear] build];
     STAssertEquals(fields.fields.count, (NSUInteger) 0, @"");
 }
@@ -197,17 +197,17 @@
 
 - (void) testParseKnownAndUnknown {
     // Test mixing known and unknown fields when parsing.
-    
-    PBUnknownFieldSet* fields = 
+
+    PBUnknownFieldSet* fields =
     [[[PBUnknownFieldSet builderWithUnknownFields:unknownFields] addField:[[PBMutableField field] addVarint:654321]
                                                  forNumber:123456] build];
-    
+
     NSData* data = fields.toData;
     TestAllTypes* destination = [TestAllTypes parseFromData:data];
-    
+
     [TestUtilities assertAllFieldsSet:destination];
     STAssertTrue(1 == destination.unknownFields.fields.count, @"");
-    
+
     PBField* field = [destination.unknownFields getField:123456];
     STAssertTrue(1 == field.varintList.count, @"");
     STAssertTrue(654321 == [[field.varintList objectAtIndex:0] longLongValue], @"");
@@ -217,11 +217,11 @@
 - (void) testWrongTypeTreatedAsUnknown {
     // Test that fields of the wrong wire type are treated like unknown fields
     // when parsing.
-    
+
     NSData* bizarroData = [self getBizarroData];
     TestAllTypes* allTypesMessage = [TestAllTypes parseFromData:bizarroData];
     TestEmptyMessage* emptyMessage_ = [TestEmptyMessage parseFromData:bizarroData];
-    
+
     // All fields should have been interpreted as unknown, so the debug strings
     // should be the same.
     STAssertEqualObjects(emptyMessage_.toData, allTypesMessage.toData, @"");
@@ -231,10 +231,10 @@
 - (void) testUnknownExtensions {
     // Make sure fields are properly parsed to the UnknownFieldSet even when
     // they are declared as extension numbers.
-    
+
     TestEmptyMessageWithExtensions* message =
     [TestEmptyMessageWithExtensions parseFromData:allFieldsData];
-    
+
     STAssertTrue(unknownFields.fields.count ==  message.unknownFields.fields.count, @"");
     STAssertEqualObjects(allFieldsData, message.toData, @"");
 }
@@ -243,11 +243,11 @@
 - (void) testWrongExtensionTypeTreatedAsUnknown {
     // Test that fields of the wrong wire type are treated like unknown fields
     // when parsing extensions.
-    
+
     NSData* bizarroData = [self getBizarroData];
     TestAllExtensions* allExtensionsMessage = [TestAllExtensions parseFromData:bizarroData];
     TestEmptyMessage* emptyMessage_ = [TestEmptyMessage parseFromData:bizarroData];
-    
+
     // All fields should have been interpreted as unknown, so the debug strings
     // should be the same.
     STAssertEqualObjects(emptyMessage_.toData, allExtensionsMessage.toData, @"");
@@ -258,7 +258,7 @@
     NSData* data =
     [[[[PBUnknownFieldSet builder] addField:[[PBMutableField field] addVarint:0x7FFFFFFFFFFFFFFFL]
                                    forNumber:1] build] toData];
-    
+
     PBUnknownFieldSet* parsed = [PBUnknownFieldSet parseFromData:data];
     PBField* field = [parsed getField:1];
     STAssertTrue(1 == field.varintList.count, @"");
@@ -271,10 +271,10 @@
     PBFieldDescriptor* repeatedField = [[TestAllTypes descriptor] findFieldByName:@"repeated_nested_enum"];
     STAssertNotNil(singularField, @"");
     STAssertNotNil(repeatedField, @"");
-    
+
     NSData* data = [[[[[PBUnknownFieldSet builder]
-                       addField:[[[PBMutableField field] 
-                                  addVarint:[TestAllTypes_NestedEnum BAR].number] 
+                       addField:[[[PBMutableField field]
+                                  addVarint:[TestAllTypes_NestedEnum BAR].number]
                                  addVarint:5]
                        forNumber:singularField.number]
                       addField:[[[[[PBMutableField field]
@@ -283,7 +283,7 @@
                                  addVarint:[TestAllTypes_NestedEnum BAZ].number]
                                 addVarint:6]
                       forNumber:repeatedField.number] build] toData];
-    
+
     {
         TestAllTypes* message = [TestAllTypes parseFromData:data];
         STAssertTrue([TestAllTypes_NestedEnum BAR] == message.optionalNestedEnum, @"");
@@ -292,27 +292,27 @@
                           [TestAllTypes_NestedEnum BAZ], nil];
         STAssertEqualObjects(array1,
                              message.repeatedNestedEnumList, @"");
-        
+
         STAssertEqualObjects([NSArray arrayWithObject:[NSNumber numberWithLongLong:5]],
                              [message.unknownFields getField:singularField.number].varintList, @"");
-        
+
         NSArray* array2 = [NSArray arrayWithObjects:[NSNumber numberWithLongLong:4], [NSNumber numberWithLongLong:6], nil];
         STAssertEqualObjects(array2,
                              [message.unknownFields getField:repeatedField.number].varintList, @"");
-        
+
     }
 
     {
         TestAllExtensions* message =
         [TestAllExtensions parseFromData:data extensionRegistry:[TestUtilities extensionRegistry]];
-        STAssertTrue([TestAllTypes_NestedEnum BAR] == 
+        STAssertTrue([TestAllTypes_NestedEnum BAR] ==
                      [message getExtension:[UnittestRoot optionalNestedEnumExtension]], @"");
         NSArray* array1 = [NSArray arrayWithObjects:[TestAllTypes_NestedEnum FOO], [TestAllTypes_NestedEnum BAZ], nil];
         STAssertEqualObjects(array1,
                      [message getExtension:[UnittestRoot repeatedNestedEnumExtension]], @"");
         STAssertEqualObjects([NSArray arrayWithObject:[NSNumber numberWithInt:5]],
                      [message.unknownFields getField:singularField.number].varintList, @"");
-        
+
         NSArray* array2 = [NSArray arrayWithObjects:[NSNumber numberWithInt:4], [NSNumber numberWithInt:6], nil];
         STAssertEqualObjects(array2,
                              [message.unknownFields getField:repeatedField.number].varintList, @"");

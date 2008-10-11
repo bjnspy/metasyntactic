@@ -32,13 +32,13 @@
     if (self = [super init]) {
         self.field = field_;
     }
-    
+
     return self;
 }
 
 
 - (NSString*) camelName:(NSString*) name {
-    return 
+    return
     [NSString stringWithFormat:@"%c%@",
      tolower([name characterAtIndex:0]),
      [name substringFromIndex:1]];

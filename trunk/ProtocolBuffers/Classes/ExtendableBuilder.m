@@ -42,9 +42,9 @@
     PBExtendableMessage* message = self.internalGetResult;
     [message verifyExtensionContainingType:extension];
     [message.extensions setRepeatedField:extension.descriptor
-     index:index 
+     index:index
      value:[extension singularToReflectionType:value]];
-    
+
     return self;
 }
 

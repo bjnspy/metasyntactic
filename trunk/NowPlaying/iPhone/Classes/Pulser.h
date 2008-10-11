@@ -16,7 +16,7 @@
     id target;
     SEL action;
     NSTimeInterval pulseInterval;
-    
+
     NSDate* lastPulseTime;
 }
 

@@ -28,7 +28,7 @@ PBFieldDescriptorType PBFieldDescriptorTypeFrom(PBFieldDescriptorProto_Type* typ
 PBFieldDescriptorProto_Type* PBFieldDescriptorTypeTo(PBFieldDescriptorType type) {
     switch (type) {
         case PBFieldDescriptorTypeDouble:   return [PBFieldDescriptorProto_Type TYPE_DOUBLE];
-        case PBFieldDescriptorTypeFloat:    return [PBFieldDescriptorProto_Type TYPE_FLOAT]; 
+        case PBFieldDescriptorTypeFloat:    return [PBFieldDescriptorProto_Type TYPE_FLOAT];
         case PBFieldDescriptorTypeInt64:    return [PBFieldDescriptorProto_Type TYPE_INT64];
         case PBFieldDescriptorTypeUInt64:   return [PBFieldDescriptorProto_Type TYPE_UINT64];
         case PBFieldDescriptorTypeInt32:    return [PBFieldDescriptorProto_Type TYPE_INT32];

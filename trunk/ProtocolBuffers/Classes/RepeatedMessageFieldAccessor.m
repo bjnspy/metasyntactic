@@ -25,7 +25,7 @@
 
 - (void) dealloc {
     self.newBuilderMethod = 0;
-    
+
     [super dealloc];
 }
 
@@ -37,7 +37,7 @@
     if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
         self.newBuilderMethod = @selector(newBuilder);
     }
-    
+
     return self;
 }
 

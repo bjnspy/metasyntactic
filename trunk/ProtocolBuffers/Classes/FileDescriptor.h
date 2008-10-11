@@ -20,7 +20,7 @@
     NSMutableArray* mutableEnumTypes;
     NSMutableArray* mutableServices;
     NSMutableArray* mutableDependencies;
-    
+
     // TODO(cyrusn): circularity betwen us and the pool.
     PBDescriptorPool* pool;
 }

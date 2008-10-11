@@ -60,8 +60,8 @@ PBObjectiveCType PBObjectiveCTypeFromFieldDescriptorType(PBFieldDescriptorType t
         case PBFieldDescriptorTypeSInt32:   return PBObjectiveCTypeInt32;
         case PBFieldDescriptorTypeSInt64:   return PBObjectiveCTypeInt64;
         case PBFieldDescriptorTypeEnum:     return PBObjectiveCTypeEnum;
-            
+
         default:
-            @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];   
+            @throw [NSException exceptionWithName:@"InvalidArgument" reason:@"" userInfo:nil];
     }
 }

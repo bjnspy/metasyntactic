@@ -50,7 +50,7 @@
 
 + (PBExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor
                                                      number:(int32_t) number {
-    return [[[PBExtensionRegistry_DescriptorIntPair alloc] initWithDescriptor:descriptor 
+    return [[[PBExtensionRegistry_DescriptorIntPair alloc] initWithDescriptor:descriptor
                                                                        number:number] autorelease];
 }
 

@@ -51,17 +51,17 @@
         self.index = index_;
         self.proto = proto_;
         self.file = file_;
-        
+
         self.fullName = [PBDescriptor computeFullName:file parent:nil name:proto.name];
-        
+
         self.mutableMethods = [NSMutableArray array];
         for (PBMethodDescriptorProto* m in proto.methodList) {
             [mutableMethods addObject:[PBMethodDescriptor descriptorWithProto:m file:file parent:self index:mutableMethods.count]];
         }
-        
+
         [file.pool addSymbol:self];
     }
-    
+
     return self;
 }
 

@@ -58,9 +58,9 @@
         self.proto = proto_;
         self.file = file_;
         self.containingType = parent_;
-        
+
         self.fullName = [PBDescriptor computeFullName:file_ parent:parent_ name:proto.name];
-        
+
         if (proto.valueList.count == 0) {
             // We cannot allow enums with no values because this would mean there
             // would be no valid default value for fields of this type.
@@ -71,10 +71,10 @@
         for (PBEnumValueDescriptorProto* v in proto.valueList) {
             [mutableValues addObject:[PBEnumValueDescriptor descriptorWithProto:v file:file parent:self index:mutableValues.count]];
         }
-        
+
         [file.pool addSymbol:self];
     }
-    
+
     return self;
 }
 
@@ -105,7 +105,7 @@
  */
 - (PBEnumValueDescriptor*) findValueByName:(NSString*) name {
     id result = [file.pool findSymbol:[NSString stringWithFormat:@"%@.%@", fullName, name]];
-    
+
     if (result != nil && [result isKindOfClass:[PBEnumValueDescriptor class]]) {
         return result;
     } else {

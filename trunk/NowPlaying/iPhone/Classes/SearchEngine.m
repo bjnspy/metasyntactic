@@ -68,7 +68,7 @@
 - (BOOL) arrayMatches:(NSArray*) array {
     for (NSString* text in array) {
         NSString* lowercaseText = [[Utilities asciiString:text] lowercaseString];
-                
+
         NSRange range = [lowercaseText rangeOfString:currentlyExecutingRequest.lowercaseValue];
         if (range.length > 0) {
             if (range.location > 0) {
@@ -77,7 +77,7 @@
                 if (c >= 'a' && c <= 'z') {
                     continue;
                 }
-            }   
+            }
 
             return YES;
         }

@@ -923,7 +923,7 @@ NSInteger compareTheatersByDistance(id t1, id t2, void *context) {
     }
 
     NSString* language = [[NSLocale currentLocale] objectForKey:NSLocaleLanguageCode];
-    
+
     if (options.count == 0 || [language isEqual:@"en"] || [language hasPrefix:@"en_"]) {
         synopsis = [self extraInformationForMovie:movie].synopsis;
         if (synopsis.length > 0) {

@@ -55,10 +55,10 @@
     if (self = [super init]) {
         self.extensions = extensions_;
         self.enumerator = [[extensions.fields.allKeys sortedArrayUsingSelector:@selector(compare:)] objectEnumerator];
-        
+
         [self moveNext];
     }
-    
+
     return self;
 }
 

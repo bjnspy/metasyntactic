@@ -37,7 +37,7 @@
         self.name = name_;
         self.file = file_;
     }
-    
+
     return self;
 }
 
