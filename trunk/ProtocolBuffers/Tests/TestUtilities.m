@@ -19,7 +19,7 @@
 
 @implementation TestUtilities
 
-+ (NSData*) toData:(NSString*) str {
++ (NSData*) getData:(NSString*) str {
     return [str dataUsingEncoding:NSUTF8StringEncoding];
 }
 
@@ -60,7 +60,7 @@
     [message setExtension:[UnittestRoot repeatedDoubleExtension] index:1 value:[NSNumber numberWithDouble:512.0]];
     [message setExtension:[UnittestRoot repeatedBoolExtension] index:1 value:[NSNumber numberWithBool:YES]];
     [message setExtension:[UnittestRoot repeatedStringExtension] index:1 value:@"515"];
-    [message setExtension:[UnittestRoot repeatedBytesExtension] index:1 value:[TestUtilities toData:@"516"]];
+    [message setExtension:[UnittestRoot repeatedBytesExtension] index:1 value:[TestUtilities getData:@"516"]];
 
     [message setExtension:[UnittestRoot repeatedGroupExtension] index:1 value:
      [[[RepeatedGroup_extension builder] setA:517] build]];
@@ -136,7 +136,7 @@
     STAssertTrue(112.0 == [[message getExtension:[UnittestRoot optionalDoubleExtension]] doubleValue], @"");
     STAssertTrue(YES == [[message getExtension:[UnittestRoot optionalBoolExtension]] boolValue], @"");
     STAssertEqualObjects(@"115", [message getExtension:[UnittestRoot optionalStringExtension]], @"");
-    STAssertEqualObjects([TestUtilities toData:@"116"], [message getExtension:[UnittestRoot optionalBytesExtension]], @"");
+    STAssertEqualObjects([TestUtilities getData:@"116"], [message getExtension:[UnittestRoot optionalBytesExtension]], @"");
 
     STAssertTrue(117 == [[message getExtension:[UnittestRoot optionalGroupExtension]] a], @"");
     STAssertTrue(118 == [[message getExtension:[UnittestRoot optionalNestedMessageExtension]] bb], @"");
@@ -193,7 +193,7 @@
     STAssertTrue(212.0 == [[[message getExtension:[UnittestRoot repeatedDoubleExtension]] objectAtIndex:0] doubleValue], @"");
     STAssertTrue(YES == [[[message getExtension:[UnittestRoot repeatedBoolExtension]] objectAtIndex:0] boolValue], @"");
     STAssertEqualObjects(@"215", [[message getExtension:[UnittestRoot repeatedStringExtension]] objectAtIndex:0], @"");
-    STAssertEqualObjects([TestUtilities toData:@"216"], [[message getExtension:[UnittestRoot repeatedBytesExtension]] objectAtIndex:0], @"");
+    STAssertEqualObjects([TestUtilities getData:@"216"], [[message getExtension:[UnittestRoot repeatedBytesExtension]] objectAtIndex:0], @"");
 
     STAssertTrue(217 == [[[message getExtension:[UnittestRoot repeatedGroupExtension]] objectAtIndex:0] a], @"");
     STAssertTrue(218 == [[[message getExtension:[UnittestRoot repeatedNestedMessageExtension]] objectAtIndex:0] bb], @"");
@@ -221,7 +221,7 @@
     STAssertTrue(312.0 == [[[message getExtension:[UnittestRoot repeatedDoubleExtension]] objectAtIndex:1] doubleValue], @"");
     STAssertTrue(NO == [[[message getExtension:[UnittestRoot repeatedBoolExtension]] objectAtIndex:1] boolValue], @"");
     STAssertEqualObjects(@"315", [[message getExtension:[UnittestRoot repeatedStringExtension]] objectAtIndex:1], @"");
-    STAssertEqualObjects([TestUtilities toData:@"316"], [[message getExtension:[UnittestRoot repeatedBytesExtension]] objectAtIndex:1], @"");
+    STAssertEqualObjects([TestUtilities getData:@"316"], [[message getExtension:[UnittestRoot repeatedBytesExtension]] objectAtIndex:1], @"");
 
     STAssertTrue(317 == [[[message getExtension:[UnittestRoot repeatedGroupExtension]] objectAtIndex:1] a], @"");
     STAssertTrue(318 == [[[message getExtension:[UnittestRoot repeatedNestedMessageExtension]] objectAtIndex:1] bb], @"");
@@ -274,7 +274,7 @@
     STAssertTrue(412.0 == [[message getExtension:[UnittestRoot defaultDoubleExtension]] doubleValue], @"");
     STAssertTrue(NO == [[message getExtension:[UnittestRoot defaultBoolExtension]] boolValue], @"");
     STAssertEqualObjects(@"415", [message getExtension:[UnittestRoot defaultStringExtension]], @"");
-    STAssertEqualObjects([TestUtilities toData:@"416"], [message getExtension:[UnittestRoot defaultBytesExtension]], @"");
+    STAssertEqualObjects([TestUtilities getData:@"416"], [message getExtension:[UnittestRoot defaultBytesExtension]], @"");
 
     STAssertTrue([TestAllTypes_NestedEnum FOO] == [message getExtension:[UnittestRoot defaultNestedEnumExtension]], @"");
     STAssertTrue([ForeignEnum FOREIGN_FOO] == [message getExtension:[UnittestRoot defaultForeignEnumExtension]], @"");
@@ -334,7 +334,7 @@
     STAssertTrue(212.0 == [[[message getExtension:[UnittestRoot repeatedDoubleExtension]] objectAtIndex:0] doubleValue], @"");
     STAssertTrue(YES == [[[message getExtension:[UnittestRoot repeatedBoolExtension]] objectAtIndex:0] boolValue], @"");
     STAssertEqualObjects(@"215", [[message getExtension:[UnittestRoot repeatedStringExtension]] objectAtIndex:0], @"");
-    STAssertEqualObjects([TestUtilities toData:@"216"], [[message getExtension:[UnittestRoot repeatedBytesExtension]] objectAtIndex:0], @"");
+    STAssertEqualObjects([TestUtilities getData:@"216"], [[message getExtension:[UnittestRoot repeatedBytesExtension]] objectAtIndex:0], @"");
 
     STAssertTrue(217 == [[[message getExtension:[UnittestRoot repeatedGroupExtension]] objectAtIndex:0] a], @"");
     STAssertTrue(218 == [[[message getExtension:[UnittestRoot repeatedNestedMessageExtension]] objectAtIndex:0] bb], @"");
@@ -366,7 +366,7 @@
     STAssertTrue(512.0 == [[[message getExtension:[UnittestRoot repeatedDoubleExtension]] objectAtIndex:1] doubleValue], @"");
     STAssertTrue(YES == [[[message getExtension:[UnittestRoot repeatedBoolExtension]] objectAtIndex:1] boolValue], @"");
     STAssertEqualObjects(@"515", [[message getExtension:[UnittestRoot repeatedStringExtension]] objectAtIndex:1], @"");
-    STAssertEqualObjects([TestUtilities toData:@"516"], [[message getExtension:[UnittestRoot repeatedBytesExtension]] objectAtIndex:1], @"");
+    STAssertEqualObjects([TestUtilities getData:@"516"], [[message getExtension:[UnittestRoot repeatedBytesExtension]] objectAtIndex:1], @"");
 
     STAssertTrue(517 == [[[message getExtension:[UnittestRoot repeatedGroupExtension]] objectAtIndex:1] a], @"");
     STAssertTrue(518 == [[[message getExtension:[UnittestRoot repeatedNestedMessageExtension]] objectAtIndex:1] bb], @"");
@@ -445,7 +445,7 @@
     STAssertEqualsWithAccuracy(112.0, message.optionalDouble, 0.1, @"");
     STAssertTrue(YES == message.optionalBool, @"");
     STAssertEqualObjects(@"115", message.optionalString, @"");
-    STAssertEqualObjects([TestUtilities toData:@"116"], message.optionalBytes, @"");
+    STAssertEqualObjects([TestUtilities getData:@"116"], message.optionalBytes, @"");
 
     STAssertTrue(117 == message.optionalGroup.a, @"");
     STAssertTrue(118 == message.optionalNestedMessage.bb, @"");
@@ -502,7 +502,7 @@
     STAssertEqualsWithAccuracy(212.0, [message repeatedDoubleAtIndex:0], 0.1, @"");
     STAssertTrue(YES == [message repeatedBoolAtIndex:0], @"");
     STAssertEqualObjects(@"215", [message repeatedStringAtIndex:0], @"");
-    STAssertEqualObjects([TestUtilities toData:@"216"], [message repeatedBytesAtIndex:0], @"");
+    STAssertEqualObjects([TestUtilities getData:@"216"], [message repeatedBytesAtIndex:0], @"");
 
     STAssertTrue(217 == [message repeatedGroupAtIndex:0].a, @"");
     STAssertTrue(218 == [message repeatedNestedMessageAtIndex:0].bb, @"");
@@ -530,7 +530,7 @@
     STAssertEqualsWithAccuracy(312.0, [message repeatedDoubleAtIndex:1], 0.1, @"");
     STAssertTrue(NO == [message repeatedBoolAtIndex:1], @"");
     STAssertEqualObjects(@"315", [message repeatedStringAtIndex:1], @"");
-    STAssertEqualObjects([TestUtilities toData:@"316"], [message repeatedBytesAtIndex:1], @"");
+    STAssertEqualObjects([TestUtilities getData:@"316"], [message repeatedBytesAtIndex:1], @"");
 
     STAssertTrue(317 == [message repeatedGroupAtIndex:1].a, @"");
     STAssertTrue(318 == [message repeatedNestedMessageAtIndex:1].bb, @"");
@@ -583,7 +583,7 @@
     STAssertEqualsWithAccuracy(412.0, message.defaultDouble, 0.1, @"");
     STAssertTrue(NO == message.defaultBool, @"");
     STAssertEqualObjects(@"415", message.defaultString, @"");
-    STAssertEqualObjects([TestUtilities toData:@"416"], message.defaultBytes, @"");
+    STAssertEqualObjects([TestUtilities getData:@"416"], message.defaultBytes, @"");
 
     STAssertTrue([TestAllTypes_NestedEnum FOO] == message.defaultNestedEnum, @"");
     STAssertTrue([ForeignEnum FOREIGN_FOO] == message.defaultForeignEnum, @"");
@@ -613,7 +613,7 @@
     [message setOptionalDouble:112];
     [message setOptionalBool:YES];
     [message setOptionalString:@"115"];
-    [message setOptionalBytes:[self toData:@"116"]];
+    [message setOptionalBytes:[self getData:@"116"]];
 
     [message setOptionalGroup:[[[TestAllTypes_OptionalGroup builder] setA:117] build]];
     [message setOptionalNestedMessage:[[[TestAllTypes_NestedMessage builder] setBb:118] build]];
@@ -643,7 +643,7 @@
     [message addRepeatedDouble  :212];
     [message addRepeatedBool    :YES];
     [message addRepeatedString  :@"215"];
-    [message addRepeatedBytes   :[self toData:@"216"]];
+    [message addRepeatedBytes   :[self getData:@"216"]];
 
     [message addRepeatedGroup:[[[TestAllTypes_RepeatedGroup builder] setA:217] build]];
     [message addRepeatedNestedMessage:[[[TestAllTypes_NestedMessage builder] setBb:218] build]];
@@ -672,7 +672,7 @@
     [message addRepeatedDouble  :312];
     [message addRepeatedBool    :NO];
     [message addRepeatedString  :@"315"];
-    [message addRepeatedBytes   :[self toData:@"316"]];
+    [message addRepeatedBytes   :[self getData:@"316"]];
 
     [message addRepeatedGroup:[[[TestAllTypes_RepeatedGroup builder] setA:317] build]];
     [message addRepeatedNestedMessage:[[[TestAllTypes_NestedMessage builder] setBb:318] build]];
@@ -702,7 +702,7 @@
     [message setDefaultDouble  :412];
     [message setDefaultBool    :NO];
     [message setDefaultString  :@"415"];
-    [message setDefaultBytes   :[self toData:@"416"]];
+    [message setDefaultBytes   :[self getData:@"416"]];
 
     [message setDefaultNestedEnum :[TestAllTypes_NestedEnum FOO]];
     [message setDefaultForeignEnum:[ForeignEnum FOREIGN_FOO]];
@@ -731,7 +731,7 @@
     [message setExtension:[UnittestRoot optionalDoubleExtension]  value:[NSNumber numberWithDouble:112.0]];
     [message setExtension:[UnittestRoot optionalBoolExtension]    value:[NSNumber numberWithBool:YES]];
     [message setExtension:[UnittestRoot optionalStringExtension]  value:@"115"];
-    [message setExtension:[UnittestRoot optionalBytesExtension]   value:[self toData:@"116"]];
+    [message setExtension:[UnittestRoot optionalBytesExtension]   value:[self getData:@"116"]];
 
     [message setExtension:[UnittestRoot optionalGroupExtension]
                     value:[[[OptionalGroup_extension builder] setA:117] build]];
@@ -768,7 +768,7 @@
     [message addExtension:[UnittestRoot repeatedDoubleExtension]   value:[NSNumber numberWithDouble:212.0]];
     [message addExtension:[UnittestRoot repeatedBoolExtension]     value:[NSNumber numberWithBool:YES]];
     [message addExtension:[UnittestRoot repeatedStringExtension]  value:@"215"];
-    [message addExtension:[UnittestRoot repeatedBytesExtension]   value:[self toData:@"216"]];
+    [message addExtension:[UnittestRoot repeatedBytesExtension]   value:[self getData:@"216"]];
 
     [message addExtension:[UnittestRoot repeatedGroupExtension]
                     value:[[[RepeatedGroup_extension builder] setA:217] build]];
@@ -804,7 +804,7 @@
     [message addExtension:[UnittestRoot repeatedDoubleExtension] value:[NSNumber numberWithDouble:312.0]];
     [message addExtension:[UnittestRoot repeatedBoolExtension] value:[NSNumber numberWithBool:NO]];
     [message addExtension:[UnittestRoot repeatedStringExtension] value:@"315"];
-    [message addExtension:[UnittestRoot repeatedBytesExtension] value:[self toData:@"316"]];
+    [message addExtension:[UnittestRoot repeatedBytesExtension] value:[self getData:@"316"]];
 
     [message addExtension:[UnittestRoot repeatedGroupExtension]
                     value:[[[RepeatedGroup_extension builder] setA:317] build]];
@@ -841,7 +841,7 @@
     [message setExtension:[UnittestRoot defaultDoubleExtension] value:[NSNumber numberWithDouble:412.0]];
     [message setExtension:[UnittestRoot defaultBoolExtension] value:[NSNumber numberWithBool:NO]];
     [message setExtension:[UnittestRoot defaultStringExtension] value:@"415"];
-    [message setExtension:[UnittestRoot defaultBytesExtension] value:[self toData:@"416"]];
+    [message setExtension:[UnittestRoot defaultBytesExtension] value:[self getData:@"416"]];
 
     [message setExtension:[UnittestRoot defaultNestedEnumExtension]
                     value:[TestAllTypes_NestedEnum FOO]];
@@ -1098,7 +1098,7 @@
     STAssertEqualsWithAccuracy(52e3, message.defaultDouble, 0.1, @"");
     STAssertTrue(YES == message.defaultBool, @"");
     STAssertEqualObjects(@"hello", message.defaultString, @"");
-    STAssertEqualObjects([TestUtilities toData:@"world"], message.defaultBytes, @"");
+    STAssertEqualObjects([TestUtilities getData:@"world"], message.defaultBytes, @"");
 
     STAssertTrue([TestAllTypes_NestedEnum BAR] == message.defaultNestedEnum, @"");
     STAssertTrue([ForeignEnum FOREIGN_BAR] == message.defaultForeignEnum, @"");
@@ -1251,7 +1251,7 @@
     STAssertTrue( 52e3  == [[message getExtension:[UnittestRoot defaultDoubleExtension]] doubleValue], @"");
     STAssertTrue(YES    == [[message getExtension:[UnittestRoot defaultBoolExtension]] boolValue], @"");
     STAssertEqualObjects(@"hello", [message getExtension:[UnittestRoot defaultStringExtension]], @"");
-    STAssertEqualObjects([TestUtilities toData:@"world"], [message getExtension:[UnittestRoot defaultBytesExtension]], @"");
+    STAssertEqualObjects([TestUtilities getData:@"world"], [message getExtension:[UnittestRoot defaultBytesExtension]], @"");
 
     STAssertTrue([TestAllTypes_NestedEnum BAR] ==
                  [message getExtension:[UnittestRoot defaultNestedEnumExtension]], @"");
@@ -1289,7 +1289,7 @@
     [message replaceRepeatedDoubleAtIndex:1 with:512];
     [message replaceRepeatedBoolAtIndex:1 with:YES];
     [message replaceRepeatedStringAtIndex:1 with:@"515"];
-    [message replaceRepeatedBytesAtIndex:1 with:[TestUtilities toData:@"516"]];
+    [message replaceRepeatedBytesAtIndex:1 with:[TestUtilities getData:@"516"]];
 
     [message replaceRepeatedGroupAtIndex:1 with:[[[TestAllTypes_RepeatedGroup builder] setA:517] build]];
     [message replaceRepeatedNestedMessageAtIndex:1 with:[[[TestAllTypes_NestedMessage builder] setBb:518] build]];
@@ -1359,7 +1359,7 @@
     STAssertTrue(212.0 == [message repeatedDoubleAtIndex:0], @"");
     STAssertTrue(YES == [message repeatedBoolAtIndex:0], @"");
     STAssertEqualObjects(@"215", [message repeatedStringAtIndex:0], @"");
-    STAssertEqualObjects([TestUtilities toData:@"216"], [message repeatedBytesAtIndex:0], @"");
+    STAssertEqualObjects([TestUtilities getData:@"216"], [message repeatedBytesAtIndex:0], @"");
 
     STAssertTrue(217 == [message repeatedGroupAtIndex:0].a, @"");
     STAssertTrue(218 == [message repeatedNestedMessageAtIndex:0].bb, @"");
@@ -1388,7 +1388,7 @@
     STAssertTrue(512.0 == [message repeatedDoubleAtIndex:1], @"");
     STAssertTrue(YES == [message repeatedBoolAtIndex:1], @"");
     STAssertEqualObjects(@"515", [message repeatedStringAtIndex:1], @"");
-    STAssertEqualObjects([TestUtilities toData:@"516"], [message repeatedBytesAtIndex:1], @"");
+    STAssertEqualObjects([TestUtilities getData:@"516"], [message repeatedBytesAtIndex:1], @"");
 
     STAssertTrue(517 == [message repeatedGroupAtIndex:1].a, @"");
     STAssertTrue(518 == [message repeatedNestedMessageAtIndex:1].bb, @"");

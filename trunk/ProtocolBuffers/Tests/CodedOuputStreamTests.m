@@ -243,7 +243,7 @@
 - (void) testWriteWholeMessage {
     TestAllTypes* message = [TestUtilities allSet];
 
-    NSData* rawBytes = message.toData;
+    NSData* rawBytes = message.data;
     NSData* goldenData = [TestUtilities goldenData];
     STAssertEqualObjects(rawBytes, goldenData, @"");
 

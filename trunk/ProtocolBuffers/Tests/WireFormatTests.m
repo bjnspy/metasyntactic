@@ -24,7 +24,7 @@
 - (void) testSerialization {
     TestAllTypes* message = [TestUtilities allSet];
 
-    NSData* rawBytes = message.toData;
+    NSData* rawBytes = message.data;
     STAssertTrue(rawBytes.length == message.serializedSize, @"");
 
     TestAllTypes* message2 = [TestAllTypes parseFromData:rawBytes];
@@ -39,7 +39,7 @@
     // it should work.
 
     TestAllExtensions* message = [TestUtilities allExtensionsSet];
-    NSData* rawBytes = message.toData;
+    NSData* rawBytes = message.data;
     STAssertTrue(rawBytes.length == message.serializedSize, @"");
 
     TestAllTypes* message2 = [TestAllTypes parseFromData:rawBytes];
@@ -54,7 +54,7 @@
     // it should work.
 
     TestAllTypes* message = [TestUtilities allSet];
-    NSData* rawBytes = message.toData;
+    NSData* rawBytes = message.data;
 
     PBExtensionRegistry* registry = [PBExtensionRegistry registry];
     [TestUtilities registerAllExtensions:registry];
@@ -95,7 +95,7 @@
                          setMyString:@"foo"]
                         setMyFloat:1.0]
                        setExtension:[UnittestRoot myExtensionInt] value:[NSNumber numberWithInt:23]]
-                      setExtension:[UnittestRoot myExtensionString] value:@"bar"] build] toData];
+                      setExtension:[UnittestRoot myExtensionString] value:@"bar"] build] data];
     [self assertFieldsInOrder:data];
 
     PBDescriptor* descriptor = [TestFieldOrderings descriptor];
@@ -104,7 +104,7 @@
                                  setField:[descriptor findFieldByName:@"my_string"] value:@"foo"]
                                 setField:[descriptor findFieldByName:@"my_float"] value:[NSNumber numberWithFloat:1.0]]
                                setField:[UnittestRoot myExtensionInt].descriptor value:[NSNumber numberWithInt:23]]
-                              setField:[UnittestRoot myExtensionString].descriptor value:@"bar"] build] toData];
+                              setField:[UnittestRoot myExtensionString].descriptor value:@"bar"] build] data];
 
     [self assertFieldsInOrder:dynamic_data];
 }
@@ -126,7 +126,7 @@ const int UNKNOWN_TYPE_ID = 1550055;
        setExtension:[TestMessageSetExtension2 messageSetExtension] value:[[[TestMessageSetExtension2 builder] setStr:@"foo"] build]]
       setUnknownFields:unknownFields] build];
 
-    NSData* data = messageSet.toData;
+    NSData* data = messageSet.data;
 
     // Parse back using RawMessageSet and check the contents.
     RawMessageSet* raw = [RawMessageSet parseFromData:data];
@@ -159,13 +159,13 @@ const int UNKNOWN_TYPE_ID = 1550055;
     // Set up a RawMessageSet with two known messages and an unknown one.
     RawMessageSet* raw =
     [[[[[RawMessageSet builder]
-         addItem:[[[[RawMessageSet_Item builder] setTypeId:TYPE_ID_1] setMessage:[[[[TestMessageSetExtension1 builder] setI:123] build] toData]] build]]
-        addItem:[[[[RawMessageSet_Item builder] setTypeId:TYPE_ID_2] setMessage:[[[[TestMessageSetExtension2 builder] setStr:@"foo"] build] toData]] build]]
+         addItem:[[[[RawMessageSet_Item builder] setTypeId:TYPE_ID_1] setMessage:[[[[TestMessageSetExtension1 builder] setI:123] build] data]] build]]
+        addItem:[[[[RawMessageSet_Item builder] setTypeId:TYPE_ID_2] setMessage:[[[[TestMessageSetExtension2 builder] setStr:@"foo"] build] data]] build]]
        addItem:[[[[RawMessageSet_Item builder] setTypeId:UNKNOWN_TYPE_ID] setMessage:[@"bar" dataUsingEncoding:NSUTF8StringEncoding]] build]]
       build];
 
 
-    NSData* data = raw.toData;
+    NSData* data = raw.data;
 
     // Parse as a TestMessageSet and check the contents.
     TestMessageSet* messageSet =

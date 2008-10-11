@@ -147,7 +147,7 @@ static PBUnknownFieldSet* defaultInstance = nil;
  * Serializes the message to a {@code ByteString} and returns it. This is
  * just a trivial wrapper around {@link #writeTo(PBCodedOutputStream)}.
  */
-- (NSData*) toData {
+- (NSData*) data {
     NSMutableData* data = [NSMutableData dataWithLength:self.serializedSize];
     PBCodedOutputStream* output = [PBCodedOutputStream streamWithData:data];
 

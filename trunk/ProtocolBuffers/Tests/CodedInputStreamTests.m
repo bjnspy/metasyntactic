@@ -213,7 +213,7 @@
 - (void) testReadWholeMessage {
     TestAllTypes* message = [TestUtilities allSet];
 
-    NSData* rawBytes = message.toData;
+    NSData* rawBytes = message.data;
     STAssertTrue(rawBytes.length == message.serializedSize, @"");
 
     TestAllTypes* message2 = [TestAllTypes parseFromData:rawBytes];
@@ -231,7 +231,7 @@
 /** Tests skipField(). */
 - (void) testSkipWholeMessage {
     TestAllTypes* message = [TestUtilities allSet];
-    NSData* rawBytes = message.toData;
+    NSData* rawBytes = message.data;
 
     // Create two parallel inputs.  Parse one as unknown fields while using
     // skipField() to skip each field on the other.  Expect the same tags.
@@ -268,7 +268,7 @@
     // directly from a ByteString, so that CodedInputStream uses buffered
     // reading.
     TestAllTypes* message2 =
-    [TestAllTypes parseFromInputStream:[NSInputStream inputStreamWithData:message.toData]];
+    [TestAllTypes parseFromInputStream:[NSInputStream inputStreamWithData:message.data]];
 
     STAssertEqualObjects(message.optionalBytes, message2.optionalBytes, @"");
 

@@ -24,6 +24,6 @@
 - (int32_t) serializedSize;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (void) writeToOutputStream:(NSOutputStream*) output;
-- (NSData*) toData;
+- (NSData*) data;
 - (id<PBMessage_Builder>) builder;
 @end

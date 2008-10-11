@@ -39,7 +39,7 @@
 - (void) setUp {
   self.descriptor = [TestAllTypes descriptor];
   self.allFields = [TestUtilities allSet];
-  self.allFieldsData = [allFields toData];
+  self.allFieldsData = [allFields data];
   self.emptyMessage = [TestEmptyMessage parseFromData:allFieldsData];
   self.unknownFields = emptyMessage.unknownFields;
 }
@@ -80,7 +80,7 @@
     }
   }
 
-  return [[bizarroFields build] toData];
+  return [[bizarroFields build] data];
 }
 
 // =================================================================
@@ -135,7 +135,7 @@
 - (void) testSerialize {
     // Check that serializing the UnknownFieldSet produces the original data
     // again.
-    NSData* data = [emptyMessage toData];
+    NSData* data = [emptyMessage data];
     STAssertEqualObjects(allFieldsData, data, @"");
 }
 
@@ -144,7 +144,7 @@
     TestEmptyMessage* message =
     [[[TestEmptyMessage builder] mergeFromMessage:emptyMessage] build];
 
-    STAssertEqualObjects(emptyMessage.toData, message.toData, @"");
+    STAssertEqualObjects(emptyMessage.data, message.data, @"");
 }
 
 
@@ -177,7 +177,7 @@
     TestEmptyMessage* destination1 = (id)[[[[TestEmptyMessage builder] mergeFromMessage:source1] mergeFromMessage:source2] build];
     TestEmptyMessage* destination2 = (id)[[[[TestEmptyMessage builder] mergeFromMessage:source3] mergeFromMessage:source4] build];
 
-    STAssertEqualObjects(destination1.toData, destination2.toData, @"");
+    STAssertEqualObjects(destination1.data, destination2.data, @"");
 }
 
 
@@ -202,7 +202,7 @@
     [[[PBUnknownFieldSet builderWithUnknownFields:unknownFields] addField:[[PBMutableField field] addVarint:654321]
                                                  forNumber:123456] build];
 
-    NSData* data = fields.toData;
+    NSData* data = fields.data;
     TestAllTypes* destination = [TestAllTypes parseFromData:data];
 
     [TestUtilities assertAllFieldsSet:destination];
@@ -224,7 +224,7 @@
 
     // All fields should have been interpreted as unknown, so the debug strings
     // should be the same.
-    STAssertEqualObjects(emptyMessage_.toData, allTypesMessage.toData, @"");
+    STAssertEqualObjects(emptyMessage_.data, allTypesMessage.data, @"");
 }
 
 
@@ -236,7 +236,7 @@
     [TestEmptyMessageWithExtensions parseFromData:allFieldsData];
 
     STAssertTrue(unknownFields.fields.count ==  message.unknownFields.fields.count, @"");
-    STAssertEqualObjects(allFieldsData, message.toData, @"");
+    STAssertEqualObjects(allFieldsData, message.data, @"");
 }
 
 
@@ -250,14 +250,14 @@
 
     // All fields should have been interpreted as unknown, so the debug strings
     // should be the same.
-    STAssertEqualObjects(emptyMessage_.toData, allExtensionsMessage.toData, @"");
+    STAssertEqualObjects(emptyMessage_.data, allExtensionsMessage.data, @"");
 }
 
 
 - (void) testLargeVarint {
     NSData* data =
     [[[[PBUnknownFieldSet builder] addField:[[PBMutableField field] addVarint:0x7FFFFFFFFFFFFFFFL]
-                                   forNumber:1] build] toData];
+                                   forNumber:1] build] data];
 
     PBUnknownFieldSet* parsed = [PBUnknownFieldSet parseFromData:data];
     PBField* field = [parsed getField:1];
@@ -282,7 +282,7 @@
                                   addVarint:4]
                                  addVarint:[TestAllTypes_NestedEnum BAZ].number]
                                 addVarint:6]
-                      forNumber:repeatedField.number] build] toData];
+                      forNumber:repeatedField.number] build] data];
 
     {
         TestAllTypes* message = [TestAllTypes parseFromData:data];
