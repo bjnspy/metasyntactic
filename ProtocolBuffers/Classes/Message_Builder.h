@@ -30,8 +30,7 @@
 - (id) getField:(PBFieldDescriptor*) field;
 - (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
 - (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field;
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
-- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field;
 - (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
 - (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 

@@ -201,28 +201,14 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
 }
 
 
-/** See {@link PBMessage#getRepeatedFieldCount(Descriptors.PBFieldDescriptor)}. */
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
+/** See {@link PBMessage#getRepeatedFieldC(Descriptors.PBFieldDescriptor)}. */
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
     if (!field.isRepeated) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
-                                       reason:@"getRepeatedFieldCount() can only be called on repeated fields." userInfo:nil];
+                                       reason:@"getRepeatedField can only be called on repeated fields." userInfo:nil];
     }
 
-    return [[self getField:field] count];
-}
-
-
-/** See {@link PBMessage#getRepeatedField(Descriptors.PBFieldDescriptor,int)}. */
-- (id) getRepeatedField:(PBFieldDescriptor*) field
-                  index:(int32_t) index {
-    if (!field.isRepeated) {
-        @throw [NSException exceptionWithName:@"IllegalArgument"
-                                       reason:@"getRepeatedField() can only be called on repeated fields." userInfo:nil];
-    }
-
-    NSArray* array = [self getField:field];
-    id result = [array objectAtIndex:index];
-    return result;
+    return [self getField:field];
 }
 
 

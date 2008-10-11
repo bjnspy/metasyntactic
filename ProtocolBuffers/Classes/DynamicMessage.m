@@ -160,15 +160,9 @@
 }
 
 
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
-    return [fields getRepeatedFieldCount:field];
-}
-
-
-- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
-    [self verifyContainingType:field];
-    return [fields getRepeatedField:field index:index];
+    return [fields getRepeatedField:field];
 }
 
 

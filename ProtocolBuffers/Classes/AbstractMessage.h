@@ -28,10 +28,12 @@
 - (PBDescriptor*) descriptor;
 - (id<PBMessage>) defaultInstance;
 - (NSDictionary*) allFields;
+
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
-- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
+
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field;
+
 - (PBUnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
 - (int32_t) serializedSize;

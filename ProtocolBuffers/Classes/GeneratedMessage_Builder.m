@@ -118,13 +118,8 @@
 }
 
 
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
-    return [self.internalGetResult getRepeatedFieldCount:field];
-}
-
-
-- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
-    return [self.internalGetResult getRepeatedField:field index:index];
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
+    return [self.internalGetResult getRepeatedField:field];
 }
 
 

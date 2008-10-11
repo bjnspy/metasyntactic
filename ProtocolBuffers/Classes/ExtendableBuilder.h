@@ -15,7 +15,6 @@
 #import "GeneratedMessage_Builder.h"
 
 @interface PBExtendableBuilder : PBGeneratedMessage_Builder {
-
 }
 
 - (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
