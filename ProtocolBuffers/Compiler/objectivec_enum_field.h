@@ -35,8 +35,9 @@ class EnumFieldGenerator : public FieldGenerator {
   explicit EnumFieldGenerator(const FieldDescriptor* descriptor);
   ~EnumFieldGenerator();
 
-  void GenerateFieldsHeader(io::Printer* printer) const;
-  void GeneratePropertiesHeader(io::Printer* printer) const;
+  void GenerateHasFieldHeader(io::Printer* printer) const;
+  void GenerateFieldHeader(io::Printer* printer) const;
+  void GeneratePropertyHeader(io::Printer* printer) const;
   void GenerateMembersHeader(io::Printer* printer) const;
   void GenerateBuilderMembersHeader(io::Printer* printer) const;
   void GenerateMergingCodeHeader(io::Printer* printer) const;
@@ -71,8 +72,9 @@ class RepeatedEnumFieldGenerator : public FieldGenerator {
   explicit RepeatedEnumFieldGenerator(const FieldDescriptor* descriptor);
   ~RepeatedEnumFieldGenerator();
 
-  void GenerateFieldsHeader(io::Printer* printer) const;
-  void GeneratePropertiesHeader(io::Printer* printer) const;
+  void GenerateHasFieldHeader(io::Printer* printer) const;
+  void GenerateFieldHeader(io::Printer* printer) const;
+  void GeneratePropertyHeader(io::Printer* printer) const;
   void GenerateMembersHeader(io::Printer* printer) const;
   void GenerateBuilderMembersHeader(io::Printer* printer) const;
   void GenerateMergingCodeHeader(io::Printer* printer) const;

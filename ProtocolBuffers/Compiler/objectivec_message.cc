@@ -42,6 +42,29 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       }
     };
 
+    struct FieldOrderingByType {
+      inline bool operator()(const FieldDescriptor* a, const FieldDescriptor* b) const {
+        // place collections at the end
+        if (a->is_repeated() != b->is_repeated()) {
+          return b->is_repeated();
+        }
+
+        // we want BOOL fields to be placed first.  That way they will be packed
+        // in with the 'BOOL hasFoo' fields.
+        if (a->type() == FieldDescriptor::TYPE_BOOL &&
+            b->type() != FieldDescriptor::TYPE_BOOL) {
+          return true;
+        }
+
+        if (a->type() != FieldDescriptor::TYPE_BOOL &&
+            b->type() == FieldDescriptor::TYPE_BOOL) {
+          return false;
+        }
+
+        return a->type() < b->type();
+      }
+    };
+
     struct ExtensionRangeOrdering {
       bool operator()(const Descriptor::ExtensionRange* a,
         const Descriptor::ExtensionRange* b) const {
@@ -52,13 +75,22 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     // Sort the fields of the given Descriptor by number into a new[]'d array
     // and return it.
     const FieldDescriptor** SortFieldsByNumber(const Descriptor* descriptor) {
-      const FieldDescriptor** fields =
-        new const FieldDescriptor*[descriptor->field_count()];
+      const FieldDescriptor** fields = new const FieldDescriptor*[descriptor->field_count()];
       for (int i = 0; i < descriptor->field_count(); i++) {
         fields[i] = descriptor->field(i);
       }
-      sort(fields, fields + descriptor->field_count(),
-        FieldOrderingByNumber());
+      sort(fields, fields + descriptor->field_count(), FieldOrderingByNumber());
+      return fields;
+    }
+
+    // Sort the fields of the given Descriptor by type into a new[]'d array
+    // and return it.
+    const FieldDescriptor** SortFieldsByType(const Descriptor* descriptor) {
+      const FieldDescriptor** fields = new const FieldDescriptor*[descriptor->field_count()];
+      for (int i = 0; i < descriptor->field_count(); i++) {
+        fields[i] = descriptor->field(i);
+      }
+      sort(fields, fields + descriptor->field_count(), FieldOrderingByType());
       return fields;
     }
 
@@ -228,26 +260,33 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
   void MessageGenerator::GenerateHeader(io::Printer* printer) {
+    scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByType(descriptor_));
+
     if (descriptor_->extension_range_count() > 0) {
       printer->Print(
-        "@interface $classname$ : PBExtendableMessage {\n",
+        "@interface $classname$ : PBExtendableMessage {\n"
+        "@private\n",
         "classname", ClassName(descriptor_));
     } else {
       printer->Print(
-        "@interface $classname$ : PBGeneratedMessage {\n",
+        "@interface $classname$ : PBGeneratedMessage {\n"
+        "@private\n",
         "classname", ClassName(descriptor_));
     }
 
     printer->Indent();
     for (int i = 0; i < descriptor_->field_count(); i++) {
-      field_generators_.get(descriptor_->field(i)).GenerateFieldsHeader(printer);
+      field_generators_.get(sorted_fields[i]).GenerateHasFieldHeader(printer);
+    }
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(sorted_fields[i]).GenerateFieldHeader(printer);
     }
     printer->Outdent();
 
     printer->Print("}\n");
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
-      field_generators_.get(descriptor_->field(i)).GeneratePropertiesHeader(printer);
+      field_generators_.get(descriptor_->field(i)).GeneratePropertyHeader(printer);
     }
 
     for (int i = 0; i < descriptor_->field_count(); i++) {
@@ -413,8 +452,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void MessageGenerator::GenerateMessageSerializationMethodsHeader(io::Printer* printer) {
-    scoped_array<const FieldDescriptor*> sorted_fields(
-      SortFieldsByNumber(descriptor_));
+    scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
 
     vector<const Descriptor::ExtensionRange*> sorted_extensions;
     for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
@@ -523,8 +561,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void MessageGenerator::GenerateBuilderParsingMethodsHeader(io::Printer* printer) {
-    scoped_array<const FieldDescriptor*> sorted_fields(
-      SortFieldsByNumber(descriptor_));
+    scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
 
     printer->Print(
       "- ($classname$_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input;\n"
@@ -540,8 +577,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void MessageGenerator::GenerateMessageSerializationMethodsSource(io::Printer* printer) {
-    scoped_array<const FieldDescriptor*> sorted_fields(
-      SortFieldsByNumber(descriptor_));
+    scoped_array<const FieldDescriptor*> sorted_fields(SortFieldsByNumber(descriptor_));
 
     vector<const Descriptor::ExtensionRange*> sorted_extensions;
     for (int i = 0; i < descriptor_->extension_range_count(); ++i) {
@@ -831,7 +867,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
       if (field->is_required()) {
         printer->Print(
-          "if (!self.has$capitalized_name$) {\n"
+          "if (!has$capitalized_name$) {\n"
           "  return NO;\n"
           "}\n",
           "capitalized_name", UnderscoresToCapitalizedCamelCase(field));
@@ -858,7 +894,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
               break;
             case FieldDescriptor::LABEL_OPTIONAL:
               printer->Print(vars,
-                "if (self.has$capitalized_name$) {\n"
+                "if (has$capitalized_name$) {\n"
                 "  if (!self.$name$.isInitialized) {\n"
                 "    return NO;\n"
                 "  }\n"

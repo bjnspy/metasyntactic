@@ -638,43 +638,52 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 @end
 
 @interface PBFileDescriptorProto ()
-@property BOOL hasName;
 @property (retain) NSString* name;
-@property BOOL hasPackage;
 @property (retain) NSString* package;
 @property (retain) NSMutableArray* mutableDependencyList;
 @property (retain) NSMutableArray* mutableMessageTypeList;
 @property (retain) NSMutableArray* mutableEnumTypeList;
 @property (retain) NSMutableArray* mutableServiceList;
 @property (retain) NSMutableArray* mutableExtensionList;
-@property BOOL hasOptions;
 @property (retain) PBFileOptions* options;
 @end
 
 @implementation PBFileDescriptorProto
 
-@synthesize hasName;
+- (BOOL) hasName {
+  return hasName != 0;
+}
+- (void) setHasName:(BOOL) hasName_ {
+  hasName = (hasName_ != 0);
+}
 @synthesize name;
-@synthesize hasPackage;
+- (BOOL) hasPackage {
+  return hasPackage != 0;
+}
+- (void) setHasPackage:(BOOL) hasPackage_ {
+  hasPackage = (hasPackage_ != 0);
+}
 @synthesize package;
 @synthesize mutableDependencyList;
 @synthesize mutableMessageTypeList;
 @synthesize mutableEnumTypeList;
 @synthesize mutableServiceList;
 @synthesize mutableExtensionList;
-@synthesize hasOptions;
+- (BOOL) hasOptions {
+  return hasOptions != 0;
+}
+- (void) setHasOptions:(BOOL) hasOptions_ {
+  hasOptions = (hasOptions_ != 0);
+}
 @synthesize options;
 - (void) dealloc {
-  self.hasName = NO;
   self.name = nil;
-  self.hasPackage = NO;
   self.package = nil;
   self.mutableDependencyList = nil;
   self.mutableMessageTypeList = nil;
   self.mutableEnumTypeList = nil;
   self.mutableServiceList = nil;
   self.mutableExtensionList = nil;
-  self.hasOptions = NO;
   self.options = nil;
   [super dealloc];
 }
@@ -767,7 +776,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   for (PBFieldDescriptorProto* element in self.extensionList) {
     [output writeMessage:7 value:element];
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     [output writeMessage:8 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -798,7 +807,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   for (PBFieldDescriptorProto* element in self.extensionList) {
     size += computeMessageSize(7, element);
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     size += computeMessageSize(8, self.options);
   }
   size += self.unknownFields.serializedSize;
@@ -1206,37 +1215,43 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 @end
 
 @interface PBDescriptorProto ()
-@property BOOL hasName;
 @property (retain) NSString* name;
 @property (retain) NSMutableArray* mutableFieldList;
 @property (retain) NSMutableArray* mutableExtensionList;
 @property (retain) NSMutableArray* mutableNestedTypeList;
 @property (retain) NSMutableArray* mutableEnumTypeList;
 @property (retain) NSMutableArray* mutableExtensionRangeList;
-@property BOOL hasOptions;
 @property (retain) PBMessageOptions* options;
 @end
 
 @implementation PBDescriptorProto
 
-@synthesize hasName;
+- (BOOL) hasName {
+  return hasName != 0;
+}
+- (void) setHasName:(BOOL) hasName_ {
+  hasName = (hasName_ != 0);
+}
 @synthesize name;
 @synthesize mutableFieldList;
 @synthesize mutableExtensionList;
 @synthesize mutableNestedTypeList;
 @synthesize mutableEnumTypeList;
 @synthesize mutableExtensionRangeList;
-@synthesize hasOptions;
+- (BOOL) hasOptions {
+  return hasOptions != 0;
+}
+- (void) setHasOptions:(BOOL) hasOptions_ {
+  hasOptions = (hasOptions_ != 0);
+}
 @synthesize options;
 - (void) dealloc {
-  self.hasName = NO;
   self.name = nil;
   self.mutableFieldList = nil;
   self.mutableExtensionList = nil;
   self.mutableNestedTypeList = nil;
   self.mutableEnumTypeList = nil;
   self.mutableExtensionRangeList = nil;
-  self.hasOptions = NO;
   self.options = nil;
   [super dealloc];
 }
@@ -1325,7 +1340,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   for (PBFieldDescriptorProto* element in self.extensionList) {
     [output writeMessage:6 value:element];
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     [output writeMessage:7 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -1353,7 +1368,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   for (PBFieldDescriptorProto* element in self.extensionList) {
     size += computeMessageSize(6, element);
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     size += computeMessageSize(7, self.options);
   }
   size += self.unknownFields.serializedSize;
@@ -1390,23 +1405,27 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 @end
 
 @interface PBDescriptorProto_ExtensionRange ()
-@property BOOL hasStart;
 @property int32_t start;
-@property BOOL hasEnd;
 @property int32_t end;
 @end
 
 @implementation PBDescriptorProto_ExtensionRange
 
-@synthesize hasStart;
+- (BOOL) hasStart {
+  return hasStart != 0;
+}
+- (void) setHasStart:(BOOL) hasStart_ {
+  hasStart = (hasStart_ != 0);
+}
 @synthesize start;
-@synthesize hasEnd;
+- (BOOL) hasEnd {
+  return hasEnd != 0;
+}
+- (void) setHasEnd:(BOOL) hasEnd_ {
+  hasEnd = (hasEnd_ != 0);
+}
 @synthesize end;
 - (void) dealloc {
-  self.hasStart = NO;
-  self.start = 0;
-  self.hasEnd = NO;
-  self.end = 0;
   [super dealloc];
 }
 - (id) init {
@@ -1966,58 +1985,81 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 @end
 
 @interface PBFieldDescriptorProto ()
-@property BOOL hasName;
 @property (retain) NSString* name;
-@property BOOL hasNumber;
 @property int32_t number;
-@property BOOL hasLabel;
 @property (retain) PBFieldDescriptorProto_Label* label;
-@property BOOL hasType;
 @property (retain) PBFieldDescriptorProto_Type* type;
-@property BOOL hasTypeName;
 @property (retain) NSString* typeName;
-@property BOOL hasExtendee;
 @property (retain) NSString* extendee;
-@property BOOL hasDefaultValue;
 @property (retain) NSString* defaultValue;
-@property BOOL hasOptions;
 @property (retain) PBFieldOptions* options;
 @end
 
 @implementation PBFieldDescriptorProto
 
-@synthesize hasName;
+- (BOOL) hasName {
+  return hasName != 0;
+}
+- (void) setHasName:(BOOL) hasName_ {
+  hasName = (hasName_ != 0);
+}
 @synthesize name;
-@synthesize hasNumber;
+- (BOOL) hasNumber {
+  return hasNumber != 0;
+}
+- (void) setHasNumber:(BOOL) hasNumber_ {
+  hasNumber = (hasNumber_ != 0);
+}
 @synthesize number;
-@synthesize hasLabel;
+- (BOOL) hasLabel {
+  return hasLabel != 0;
+}
+- (void) setHasLabel:(BOOL) hasLabel_ {
+  hasLabel = (hasLabel_ != 0);
+}
 @synthesize label;
-@synthesize hasType;
+- (BOOL) hasType {
+  return hasType != 0;
+}
+- (void) setHasType:(BOOL) hasType_ {
+  hasType = (hasType_ != 0);
+}
 @synthesize type;
-@synthesize hasTypeName;
+- (BOOL) hasTypeName {
+  return hasTypeName != 0;
+}
+- (void) setHasTypeName:(BOOL) hasTypeName_ {
+  hasTypeName = (hasTypeName_ != 0);
+}
 @synthesize typeName;
-@synthesize hasExtendee;
+- (BOOL) hasExtendee {
+  return hasExtendee != 0;
+}
+- (void) setHasExtendee:(BOOL) hasExtendee_ {
+  hasExtendee = (hasExtendee_ != 0);
+}
 @synthesize extendee;
-@synthesize hasDefaultValue;
+- (BOOL) hasDefaultValue {
+  return hasDefaultValue != 0;
+}
+- (void) setHasDefaultValue:(BOOL) hasDefaultValue_ {
+  hasDefaultValue = (hasDefaultValue_ != 0);
+}
 @synthesize defaultValue;
-@synthesize hasOptions;
+- (BOOL) hasOptions {
+  return hasOptions != 0;
+}
+- (void) setHasOptions:(BOOL) hasOptions_ {
+  hasOptions = (hasOptions_ != 0);
+}
 @synthesize options;
 - (void) dealloc {
-  self.hasName = NO;
   self.name = nil;
-  self.hasNumber = NO;
-  self.number = 0;
-  self.hasLabel = NO;
   self.label = nil;
-  self.hasType = NO;
   self.type = nil;
-  self.hasTypeName = NO;
   self.typeName = nil;
-  self.hasExtendee = NO;
   self.extendee = nil;
-  self.hasDefaultValue = NO;
   self.defaultValue = nil;
-  self.hasOptions = NO;
   self.options = nil;
   [super dealloc];
 }
@@ -2068,10 +2110,10 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   if (hasNumber) {
     [output writeInt32:3 value:self.number];
   }
-  if (self.hasLabel) {
+  if (hasLabel) {
     [output writeEnum:4 value:self.label.number];
   }
-  if (self.hasType) {
+  if (hasType) {
     [output writeEnum:5 value:self.type.number];
   }
   if (hasTypeName) {
@@ -2080,7 +2122,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   if (hasDefaultValue) {
     [output writeString:7 value:self.defaultValue];
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     [output writeMessage:8 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -2099,10 +2141,10 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   if (hasNumber) {
     size += computeInt32Size(3, self.number);
   }
-  if (self.hasLabel) {
+  if (hasLabel) {
     size += computeEnumSize(4, self.label.number);
   }
-  if (self.hasType) {
+  if (hasType) {
     size += computeEnumSize(5, self.type.number);
   }
   if (hasTypeName) {
@@ -2111,7 +2153,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   if (hasDefaultValue) {
     size += computeStringSize(7, self.defaultValue);
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     size += computeMessageSize(8, self.options);
   }
   size += self.unknownFields.serializedSize;
@@ -2682,25 +2724,31 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 @end
 
 @interface PBEnumDescriptorProto ()
-@property BOOL hasName;
 @property (retain) NSString* name;
 @property (retain) NSMutableArray* mutableValueList;
-@property BOOL hasOptions;
 @property (retain) PBEnumOptions* options;
 @end
 
 @implementation PBEnumDescriptorProto
 
-@synthesize hasName;
+- (BOOL) hasName {
+  return hasName != 0;
+}
+- (void) setHasName:(BOOL) hasName_ {
+  hasName = (hasName_ != 0);
+}
 @synthesize name;
 @synthesize mutableValueList;
-@synthesize hasOptions;
+- (BOOL) hasOptions {
+  return hasOptions != 0;
+}
+- (void) setHasOptions:(BOOL) hasOptions_ {
+  hasOptions = (hasOptions_ != 0);
+}
 @synthesize options;
 - (void) dealloc {
-  self.hasName = NO;
   self.name = nil;
   self.mutableValueList = nil;
-  self.hasOptions = NO;
   self.options = nil;
   [super dealloc];
 }
@@ -2749,7 +2797,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   for (PBEnumValueDescriptorProto* element in self.valueList) {
     [output writeMessage:2 value:element];
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     [output writeMessage:3 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -2765,7 +2813,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   for (PBEnumValueDescriptorProto* element in self.valueList) {
     size += computeMessageSize(2, element);
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     size += computeMessageSize(3, self.options);
   }
   size += self.unknownFields.serializedSize;
@@ -2986,28 +3034,36 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 @end
 
 @interface PBEnumValueDescriptorProto ()
-@property BOOL hasName;
 @property (retain) NSString* name;
-@property BOOL hasNumber;
 @property int32_t number;
-@property BOOL hasOptions;
 @property (retain) PBEnumValueOptions* options;
 @end
 
 @implementation PBEnumValueDescriptorProto
 
-@synthesize hasName;
+- (BOOL) hasName {
+  return hasName != 0;
+}
+- (void) setHasName:(BOOL) hasName_ {
+  hasName = (hasName_ != 0);
+}
 @synthesize name;
-@synthesize hasNumber;
+- (BOOL) hasNumber {
+  return hasNumber != 0;
+}
+- (void) setHasNumber:(BOOL) hasNumber_ {
+  hasNumber = (hasNumber_ != 0);
+}
 @synthesize number;
-@synthesize hasOptions;
+- (BOOL) hasOptions {
+  return hasOptions != 0;
+}
+- (void) setHasOptions:(BOOL) hasOptions_ {
+  hasOptions = (hasOptions_ != 0);
+}
 @synthesize options;
 - (void) dealloc {
-  self.hasName = NO;
   self.name = nil;
-  self.hasNumber = NO;
-  self.number = 0;
-  self.hasOptions = NO;
   self.options = nil;
   [super dealloc];
 }
@@ -3050,7 +3106,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   if (hasNumber) {
     [output writeInt32:2 value:self.number];
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     [output writeMessage:3 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -3066,7 +3122,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   if (hasNumber) {
     size += computeInt32Size(2, self.number);
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     size += computeMessageSize(3, self.options);
   }
   size += self.unknownFields.serializedSize;
@@ -3269,25 +3325,31 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 @end
 
 @interface PBServiceDescriptorProto ()
-@property BOOL hasName;
 @property (retain) NSString* name;
 @property (retain) NSMutableArray* mutableMethodList;
-@property BOOL hasOptions;
 @property (retain) PBServiceOptions* options;
 @end
 
 @implementation PBServiceDescriptorProto
 
-@synthesize hasName;
+- (BOOL) hasName {
+  return hasName != 0;
+}
+- (void) setHasName:(BOOL) hasName_ {
+  hasName = (hasName_ != 0);
+}
 @synthesize name;
 @synthesize mutableMethodList;
-@synthesize hasOptions;
+- (BOOL) hasOptions {
+  return hasOptions != 0;
+}
+- (void) setHasOptions:(BOOL) hasOptions_ {
+  hasOptions = (hasOptions_ != 0);
+}
 @synthesize options;
 - (void) dealloc {
-  self.hasName = NO;
   self.name = nil;
   self.mutableMethodList = nil;
-  self.hasOptions = NO;
   self.options = nil;
   [super dealloc];
 }
@@ -3336,7 +3398,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   for (PBMethodDescriptorProto* element in self.methodList) {
     [output writeMessage:2 value:element];
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     [output writeMessage:3 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -3352,7 +3414,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   for (PBMethodDescriptorProto* element in self.methodList) {
     size += computeMessageSize(2, element);
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     size += computeMessageSize(3, self.options);
   }
   size += self.unknownFields.serializedSize;
@@ -3573,34 +3635,46 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 @end
 
 @interface PBMethodDescriptorProto ()
-@property BOOL hasName;
 @property (retain) NSString* name;
-@property BOOL hasInputType;
 @property (retain) NSString* inputType;
-@property BOOL hasOutputType;
 @property (retain) NSString* outputType;
-@property BOOL hasOptions;
 @property (retain) PBMethodOptions* options;
 @end
 
 @implementation PBMethodDescriptorProto
 
-@synthesize hasName;
+- (BOOL) hasName {
+  return hasName != 0;
+}
+- (void) setHasName:(BOOL) hasName_ {
+  hasName = (hasName_ != 0);
+}
 @synthesize name;
-@synthesize hasInputType;
+- (BOOL) hasInputType {
+  return hasInputType != 0;
+}
+- (void) setHasInputType:(BOOL) hasInputType_ {
+  hasInputType = (hasInputType_ != 0);
+}
 @synthesize inputType;
-@synthesize hasOutputType;
+- (BOOL) hasOutputType {
+  return hasOutputType != 0;
+}
+- (void) setHasOutputType:(BOOL) hasOutputType_ {
+  hasOutputType = (hasOutputType_ != 0);
+}
 @synthesize outputType;
-@synthesize hasOptions;
+- (BOOL) hasOptions {
+  return hasOptions != 0;
+}
+- (void) setHasOptions:(BOOL) hasOptions_ {
+  hasOptions = (hasOptions_ != 0);
+}
 @synthesize options;
 - (void) dealloc {
-  self.hasName = NO;
   self.name = nil;
-  self.hasInputType = NO;
   self.inputType = nil;
-  self.hasOutputType = NO;
   self.outputType = nil;
-  self.hasOptions = NO;
   self.options = nil;
   [super dealloc];
 }
@@ -3647,7 +3721,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   if (hasOutputType) {
     [output writeString:3 value:self.outputType];
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     [output writeMessage:4 value:self.options];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -3666,7 +3740,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   if (hasOutputType) {
     size += computeStringSize(3, self.outputType);
   }
-  if (self.hasOptions) {
+  if (hasOptions) {
     size += computeMessageSize(4, self.options);
   }
   size += self.unknownFields.serializedSize;
@@ -3892,46 +3966,68 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 @end
 
 @interface PBFileOptions ()
-@property BOOL hasJavaPackage;
 @property (retain) NSString* javaPackage;
-@property BOOL hasJavaOuterClassname;
 @property (retain) NSString* javaOuterClassname;
-@property BOOL hasJavaMultipleFiles;
 @property BOOL javaMultipleFiles;
-@property BOOL hasOptimizeFor;
 @property (retain) PBFileOptions_OptimizeMode* optimizeFor;
-@property BOOL hasObjectivecPackage;
 @property (retain) NSString* objectivecPackage;
-@property BOOL hasObjectivecClassPrefix;
 @property (retain) NSString* objectivecClassPrefix;
 @end
 
 @implementation PBFileOptions
 
-@synthesize hasJavaPackage;
+- (BOOL) hasJavaPackage {
+  return hasJavaPackage != 0;
+}
+- (void) setHasJavaPackage:(BOOL) hasJavaPackage_ {
+  hasJavaPackage = (hasJavaPackage_ != 0);
+}
 @synthesize javaPackage;
-@synthesize hasJavaOuterClassname;
+- (BOOL) hasJavaOuterClassname {
+  return hasJavaOuterClassname != 0;
+}
+- (void) setHasJavaOuterClassname:(BOOL) hasJavaOuterClassname_ {
+  hasJavaOuterClassname = (hasJavaOuterClassname_ != 0);
+}
 @synthesize javaOuterClassname;
-@synthesize hasJavaMultipleFiles;
-@synthesize javaMultipleFiles;
-@synthesize hasOptimizeFor;
+- (BOOL) hasJavaMultipleFiles {
+  return hasJavaMultipleFiles != 0;
+}
+- (void) setHasJavaMultipleFiles:(BOOL) hasJavaMultipleFiles_ {
+  hasJavaMultipleFiles = (hasJavaMultipleFiles_ != 0);
+}
+- (BOOL) javaMultipleFiles {
+  return javaMultipleFiles != 0;
+}
+- (void) setJavaMultipleFiles:(BOOL) javaMultipleFiles_ {
+  javaMultipleFiles = (javaMultipleFiles_ != 0);
+}
+- (BOOL) hasOptimizeFor {
+  return hasOptimizeFor != 0;
+}
+- (void) setHasOptimizeFor:(BOOL) hasOptimizeFor_ {
+  hasOptimizeFor = (hasOptimizeFor_ != 0);
+}
 @synthesize optimizeFor;
-@synthesize hasObjectivecPackage;
+- (BOOL) hasObjectivecPackage {
+  return hasObjectivecPackage != 0;
+}
+- (void) setHasObjectivecPackage:(BOOL) hasObjectivecPackage_ {
+  hasObjectivecPackage = (hasObjectivecPackage_ != 0);
+}
 @synthesize objectivecPackage;
-@synthesize hasObjectivecClassPrefix;
+- (BOOL) hasObjectivecClassPrefix {
+  return hasObjectivecClassPrefix != 0;
+}
+- (void) setHasObjectivecClassPrefix:(BOOL) hasObjectivecClassPrefix_ {
+  hasObjectivecClassPrefix = (hasObjectivecClassPrefix_ != 0);
+}
 @synthesize objectivecClassPrefix;
 - (void) dealloc {
-  self.hasJavaPackage = NO;
   self.javaPackage = nil;
-  self.hasJavaOuterClassname = NO;
   self.javaOuterClassname = nil;
-  self.hasJavaMultipleFiles = NO;
-  self.javaMultipleFiles = 0;
-  self.hasOptimizeFor = NO;
   self.optimizeFor = nil;
-  self.hasObjectivecPackage = NO;
   self.objectivecPackage = nil;
-  self.hasObjectivecClassPrefix = NO;
   self.objectivecClassPrefix = nil;
   [super dealloc];
 }
@@ -3977,7 +4073,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   if (hasJavaOuterClassname) {
     [output writeString:8 value:self.javaOuterClassname];
   }
-  if (self.hasOptimizeFor) {
+  if (hasOptimizeFor) {
     [output writeEnum:9 value:self.optimizeFor.number];
   }
   if (hasJavaMultipleFiles) {
@@ -4002,7 +4098,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   if (hasJavaOuterClassname) {
     size += computeStringSize(8, self.javaOuterClassname);
   }
-  if (self.hasOptimizeFor) {
+  if (hasOptimizeFor) {
     size += computeEnumSize(9, self.optimizeFor.number);
   }
   if (hasJavaMultipleFiles) {
@@ -4331,17 +4427,24 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
 @end
 
 @interface PBMessageOptions ()
-@property BOOL hasMessageSetWireFormat;
 @property BOOL messageSetWireFormat;
 @end
 
 @implementation PBMessageOptions
 
-@synthesize hasMessageSetWireFormat;
-@synthesize messageSetWireFormat;
+- (BOOL) hasMessageSetWireFormat {
+  return hasMessageSetWireFormat != 0;
+}
+- (void) setHasMessageSetWireFormat:(BOOL) hasMessageSetWireFormat_ {
+  hasMessageSetWireFormat = (hasMessageSetWireFormat_ != 0);
+}
+- (BOOL) messageSetWireFormat {
+  return messageSetWireFormat != 0;
+}
+- (void) setMessageSetWireFormat:(BOOL) messageSetWireFormat_ {
+  messageSetWireFormat = (messageSetWireFormat_ != 0);
+}
 - (void) dealloc {
-  self.hasMessageSetWireFormat = NO;
-  self.messageSetWireFormat = 0;
   [super dealloc];
 }
 - (id) init {
@@ -4523,22 +4626,28 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 @end
 
 @interface PBFieldOptions ()
-@property BOOL hasCtype;
 @property (retain) PBFieldOptions_CType* ctype;
-@property BOOL hasExperimentalMapKey;
 @property (retain) NSString* experimentalMapKey;
 @end
 
 @implementation PBFieldOptions
 
-@synthesize hasCtype;
+- (BOOL) hasCtype {
+  return hasCtype != 0;
+}
+- (void) setHasCtype:(BOOL) hasCtype_ {
+  hasCtype = (hasCtype_ != 0);
+}
 @synthesize ctype;
-@synthesize hasExperimentalMapKey;
+- (BOOL) hasExperimentalMapKey {
+  return hasExperimentalMapKey != 0;
+}
+- (void) setHasExperimentalMapKey:(BOOL) hasExperimentalMapKey_ {
+  hasExperimentalMapKey = (hasExperimentalMapKey_ != 0);
+}
 @synthesize experimentalMapKey;
 - (void) dealloc {
-  self.hasCtype = NO;
   self.ctype = nil;
-  self.hasExperimentalMapKey = NO;
   self.experimentalMapKey = nil;
   [super dealloc];
 }
@@ -4574,7 +4683,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasCtype) {
+  if (hasCtype) {
     [output writeEnum:1 value:self.ctype.number];
   }
   if (hasExperimentalMapKey) {
@@ -4587,7 +4696,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  if (self.hasCtype) {
+  if (hasCtype) {
     size += computeEnumSize(1, self.ctype.number);
   }
   if (hasExperimentalMapKey) {

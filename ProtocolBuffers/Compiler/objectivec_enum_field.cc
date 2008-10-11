@@ -101,23 +101,25 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void EnumFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "BOOL has$capitalized_name$;\n"
-      "$storage_type$ $name$;\n");
+  void EnumFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
+    printer->Print(variables_, "BOOL has$capitalized_name$:1;\n");
   }
 
 
-  void EnumFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
+  void EnumFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
+    printer->Print(variables_, "$storage_type$ $name$;\n");
+  }
+
+
+  void EnumFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      "@property (readonly) BOOL has$capitalized_name$;\n"
+      "- (BOOL) has$capitalized_name$;\n"
       "@property (retain, readonly) $storage_type$ $name$;\n");
   }
 
 
   void EnumFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "@property BOOL has$capitalized_name$;\n"
       "@property (retain) $storage_type$ $name$;\n");
   }
 
@@ -132,21 +134,23 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void EnumFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "@synthesize has$capitalized_name$;\n"
+      "- (BOOL) has$capitalized_name$ {\n"
+      "  return has$capitalized_name$ != 0;\n"
+      "}\n"
+      "- (void) setHas$capitalized_name$:(BOOL) has$capitalized_name$_ {\n"
+      "  has$capitalized_name$ = (has$capitalized_name$_ != 0);\n"
+      "}\n"
       "@synthesize $name$;\n");
   }
 
 
   void EnumFieldGenerator::GenerateDeallocSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "self.has$capitalized_name$ = NO;\n"
-      "self.$name$ = nil;\n");
+    printer->Print(variables_, "self.$name$ = nil;\n");
   }
 
 
   void EnumFieldGenerator::GenerateInitializationSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "self.$name$ = $default$;\n");
+    printer->Print(variables_, "self.$name$ = $default$;\n");
   }
 
 
@@ -221,7 +225,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void EnumFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (self.has$capitalized_name$) {\n"
+      "if (has$capitalized_name$) {\n"
       "  [output writeEnum:$number$ value:self.$name$.number];\n"
       "}\n");
   }
@@ -233,7 +237,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void EnumFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (self.has$capitalized_name$) {\n"
+      "if (has$capitalized_name$) {\n"
       "  size += computeEnumSize($number$, self.$name$.number);\n"
       "}\n");
   }
@@ -254,13 +258,18 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void RepeatedEnumFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "NSMutableArray* $mutable_list_name$;\n");
+  void RepeatedEnumFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
   }
 
-  void RepeatedEnumFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
+
+  void RepeatedEnumFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
+    printer->Print(variables_, "NSMutableArray* $mutable_list_name$;\n");
   }
+
+
+  void RepeatedEnumFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
+  }
+
 
   void RepeatedEnumFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
     printer->Print(variables_,

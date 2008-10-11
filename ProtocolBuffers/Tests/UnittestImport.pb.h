@@ -40,10 +40,11 @@
 @end
 
 @interface ImportMessage : PBGeneratedMessage {
-  BOOL hasD;
+@private
+  BOOL hasD:1;
   int32_t d;
 }
-@property (readonly) BOOL hasD;
+- (BOOL) hasD;
 @property (readonly) int32_t d;
 
 + (PBDescriptor*) descriptor;

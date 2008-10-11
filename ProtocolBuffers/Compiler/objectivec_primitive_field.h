@@ -35,8 +35,9 @@ class PrimitiveFieldGenerator : public FieldGenerator {
   explicit PrimitiveFieldGenerator(const FieldDescriptor* descriptor);
   ~PrimitiveFieldGenerator();
 
-  void GenerateFieldsHeader(io::Printer* printer) const;
-  void GeneratePropertiesHeader(io::Printer* printer) const;
+  void GenerateHasFieldHeader(io::Printer* printer) const;
+  void GenerateFieldHeader(io::Printer* printer) const;
+  void GeneratePropertyHeader(io::Printer* printer) const;
   void GenerateMembersHeader(io::Printer* printer) const;
   void GenerateBuilderMembersHeader(io::Printer* printer) const;
   void GenerateMergingCodeHeader(io::Printer* printer) const;
@@ -71,8 +72,9 @@ class RepeatedPrimitiveFieldGenerator : public FieldGenerator {
   explicit RepeatedPrimitiveFieldGenerator(const FieldDescriptor* descriptor);
   ~RepeatedPrimitiveFieldGenerator();
 
-  void GenerateFieldsHeader(io::Printer* printer) const;
-  void GeneratePropertiesHeader(io::Printer* printer) const;
+  void GenerateHasFieldHeader(io::Printer* printer) const;
+  void GenerateFieldHeader(io::Printer* printer) const;
+  void GeneratePropertyHeader(io::Printer* printer) const;
   void GenerateMembersHeader(io::Printer* printer) const;
   void GenerateBuilderMembersHeader(io::Printer* printer) const;
   void GenerateMergingCodeHeader(io::Printer* printer) const;

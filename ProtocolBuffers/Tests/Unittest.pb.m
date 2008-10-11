@@ -1773,53 +1773,29 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @end
 
 @interface TestAllTypes ()
-@property BOOL hasOptionalInt32;
 @property int32_t optionalInt32;
-@property BOOL hasOptionalInt64;
 @property int64_t optionalInt64;
-@property BOOL hasOptionalUint32;
 @property int32_t optionalUint32;
-@property BOOL hasOptionalUint64;
 @property int64_t optionalUint64;
-@property BOOL hasOptionalSint32;
 @property int32_t optionalSint32;
-@property BOOL hasOptionalSint64;
 @property int64_t optionalSint64;
-@property BOOL hasOptionalFixed32;
 @property int32_t optionalFixed32;
-@property BOOL hasOptionalFixed64;
 @property int64_t optionalFixed64;
-@property BOOL hasOptionalSfixed32;
 @property int32_t optionalSfixed32;
-@property BOOL hasOptionalSfixed64;
 @property int64_t optionalSfixed64;
-@property BOOL hasOptionalFloat;
 @property Float32 optionalFloat;
-@property BOOL hasOptionalDouble;
 @property Float64 optionalDouble;
-@property BOOL hasOptionalBool;
 @property BOOL optionalBool;
-@property BOOL hasOptionalString;
 @property (retain) NSString* optionalString;
-@property BOOL hasOptionalBytes;
 @property (retain) NSData* optionalBytes;
-@property BOOL hasOptionalGroup;
 @property (retain) TestAllTypes_OptionalGroup* optionalGroup;
-@property BOOL hasOptionalNestedMessage;
 @property (retain) TestAllTypes_NestedMessage* optionalNestedMessage;
-@property BOOL hasOptionalForeignMessage;
 @property (retain) ForeignMessage* optionalForeignMessage;
-@property BOOL hasOptionalImportMessage;
 @property (retain) ImportMessage* optionalImportMessage;
-@property BOOL hasOptionalNestedEnum;
 @property (retain) TestAllTypes_NestedEnum* optionalNestedEnum;
-@property BOOL hasOptionalForeignEnum;
 @property (retain) ForeignEnum* optionalForeignEnum;
-@property BOOL hasOptionalImportEnum;
 @property (retain) ImportEnum* optionalImportEnum;
-@property BOOL hasOptionalStringPiece;
 @property (retain) NSString* optionalStringPiece;
-@property BOOL hasOptionalCord;
 @property (retain) NSString* optionalCord;
 @property (retain) NSMutableArray* mutableRepeatedInt32List;
 @property (retain) NSMutableArray* mutableRepeatedInt64List;
@@ -1845,97 +1821,202 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @property (retain) NSMutableArray* mutableRepeatedImportEnumList;
 @property (retain) NSMutableArray* mutableRepeatedStringPieceList;
 @property (retain) NSMutableArray* mutableRepeatedCordList;
-@property BOOL hasDefaultInt32;
 @property int32_t defaultInt32;
-@property BOOL hasDefaultInt64;
 @property int64_t defaultInt64;
-@property BOOL hasDefaultUint32;
 @property int32_t defaultUint32;
-@property BOOL hasDefaultUint64;
 @property int64_t defaultUint64;
-@property BOOL hasDefaultSint32;
 @property int32_t defaultSint32;
-@property BOOL hasDefaultSint64;
 @property int64_t defaultSint64;
-@property BOOL hasDefaultFixed32;
 @property int32_t defaultFixed32;
-@property BOOL hasDefaultFixed64;
 @property int64_t defaultFixed64;
-@property BOOL hasDefaultSfixed32;
 @property int32_t defaultSfixed32;
-@property BOOL hasDefaultSfixed64;
 @property int64_t defaultSfixed64;
-@property BOOL hasDefaultFloat;
 @property Float32 defaultFloat;
-@property BOOL hasDefaultDouble;
 @property Float64 defaultDouble;
-@property BOOL hasDefaultBool;
 @property BOOL defaultBool;
-@property BOOL hasDefaultString;
 @property (retain) NSString* defaultString;
-@property BOOL hasDefaultBytes;
 @property (retain) NSData* defaultBytes;
-@property BOOL hasDefaultNestedEnum;
 @property (retain) TestAllTypes_NestedEnum* defaultNestedEnum;
-@property BOOL hasDefaultForeignEnum;
 @property (retain) ForeignEnum* defaultForeignEnum;
-@property BOOL hasDefaultImportEnum;
 @property (retain) ImportEnum* defaultImportEnum;
-@property BOOL hasDefaultStringPiece;
 @property (retain) NSString* defaultStringPiece;
-@property BOOL hasDefaultCord;
 @property (retain) NSString* defaultCord;
 @end
 
 @implementation TestAllTypes
 
-@synthesize hasOptionalInt32;
+- (BOOL) hasOptionalInt32 {
+  return hasOptionalInt32 != 0;
+}
+- (void) setHasOptionalInt32:(BOOL) hasOptionalInt32_ {
+  hasOptionalInt32 = (hasOptionalInt32_ != 0);
+}
 @synthesize optionalInt32;
-@synthesize hasOptionalInt64;
+- (BOOL) hasOptionalInt64 {
+  return hasOptionalInt64 != 0;
+}
+- (void) setHasOptionalInt64:(BOOL) hasOptionalInt64_ {
+  hasOptionalInt64 = (hasOptionalInt64_ != 0);
+}
 @synthesize optionalInt64;
-@synthesize hasOptionalUint32;
+- (BOOL) hasOptionalUint32 {
+  return hasOptionalUint32 != 0;
+}
+- (void) setHasOptionalUint32:(BOOL) hasOptionalUint32_ {
+  hasOptionalUint32 = (hasOptionalUint32_ != 0);
+}
 @synthesize optionalUint32;
-@synthesize hasOptionalUint64;
+- (BOOL) hasOptionalUint64 {
+  return hasOptionalUint64 != 0;
+}
+- (void) setHasOptionalUint64:(BOOL) hasOptionalUint64_ {
+  hasOptionalUint64 = (hasOptionalUint64_ != 0);
+}
 @synthesize optionalUint64;
-@synthesize hasOptionalSint32;
+- (BOOL) hasOptionalSint32 {
+  return hasOptionalSint32 != 0;
+}
+- (void) setHasOptionalSint32:(BOOL) hasOptionalSint32_ {
+  hasOptionalSint32 = (hasOptionalSint32_ != 0);
+}
 @synthesize optionalSint32;
-@synthesize hasOptionalSint64;
+- (BOOL) hasOptionalSint64 {
+  return hasOptionalSint64 != 0;
+}
+- (void) setHasOptionalSint64:(BOOL) hasOptionalSint64_ {
+  hasOptionalSint64 = (hasOptionalSint64_ != 0);
+}
 @synthesize optionalSint64;
-@synthesize hasOptionalFixed32;
+- (BOOL) hasOptionalFixed32 {
+  return hasOptionalFixed32 != 0;
+}
+- (void) setHasOptionalFixed32:(BOOL) hasOptionalFixed32_ {
+  hasOptionalFixed32 = (hasOptionalFixed32_ != 0);
+}
 @synthesize optionalFixed32;
-@synthesize hasOptionalFixed64;
+- (BOOL) hasOptionalFixed64 {
+  return hasOptionalFixed64 != 0;
+}
+- (void) setHasOptionalFixed64:(BOOL) hasOptionalFixed64_ {
+  hasOptionalFixed64 = (hasOptionalFixed64_ != 0);
+}
 @synthesize optionalFixed64;
-@synthesize hasOptionalSfixed32;
+- (BOOL) hasOptionalSfixed32 {
+  return hasOptionalSfixed32 != 0;
+}
+- (void) setHasOptionalSfixed32:(BOOL) hasOptionalSfixed32_ {
+  hasOptionalSfixed32 = (hasOptionalSfixed32_ != 0);
+}
 @synthesize optionalSfixed32;
-@synthesize hasOptionalSfixed64;
+- (BOOL) hasOptionalSfixed64 {
+  return hasOptionalSfixed64 != 0;
+}
+- (void) setHasOptionalSfixed64:(BOOL) hasOptionalSfixed64_ {
+  hasOptionalSfixed64 = (hasOptionalSfixed64_ != 0);
+}
 @synthesize optionalSfixed64;
-@synthesize hasOptionalFloat;
+- (BOOL) hasOptionalFloat {
+  return hasOptionalFloat != 0;
+}
+- (void) setHasOptionalFloat:(BOOL) hasOptionalFloat_ {
+  hasOptionalFloat = (hasOptionalFloat_ != 0);
+}
 @synthesize optionalFloat;
-@synthesize hasOptionalDouble;
+- (BOOL) hasOptionalDouble {
+  return hasOptionalDouble != 0;
+}
+- (void) setHasOptionalDouble:(BOOL) hasOptionalDouble_ {
+  hasOptionalDouble = (hasOptionalDouble_ != 0);
+}
 @synthesize optionalDouble;
-@synthesize hasOptionalBool;
-@synthesize optionalBool;
-@synthesize hasOptionalString;
+- (BOOL) hasOptionalBool {
+  return hasOptionalBool != 0;
+}
+- (void) setHasOptionalBool:(BOOL) hasOptionalBool_ {
+  hasOptionalBool = (hasOptionalBool_ != 0);
+}
+- (BOOL) optionalBool {
+  return optionalBool != 0;
+}
+- (void) setOptionalBool:(BOOL) optionalBool_ {
+  optionalBool = (optionalBool_ != 0);
+}
+- (BOOL) hasOptionalString {
+  return hasOptionalString != 0;
+}
+- (void) setHasOptionalString:(BOOL) hasOptionalString_ {
+  hasOptionalString = (hasOptionalString_ != 0);
+}
 @synthesize optionalString;
-@synthesize hasOptionalBytes;
+- (BOOL) hasOptionalBytes {
+  return hasOptionalBytes != 0;
+}
+- (void) setHasOptionalBytes:(BOOL) hasOptionalBytes_ {
+  hasOptionalBytes = (hasOptionalBytes_ != 0);
+}
 @synthesize optionalBytes;
-@synthesize hasOptionalGroup;
+- (BOOL) hasOptionalGroup {
+  return hasOptionalGroup != 0;
+}
+- (void) setHasOptionalGroup:(BOOL) hasOptionalGroup_ {
+  hasOptionalGroup = (hasOptionalGroup_ != 0);
+}
 @synthesize optionalGroup;
-@synthesize hasOptionalNestedMessage;
+- (BOOL) hasOptionalNestedMessage {
+  return hasOptionalNestedMessage != 0;
+}
+- (void) setHasOptionalNestedMessage:(BOOL) hasOptionalNestedMessage_ {
+  hasOptionalNestedMessage = (hasOptionalNestedMessage_ != 0);
+}
 @synthesize optionalNestedMessage;
-@synthesize hasOptionalForeignMessage;
+- (BOOL) hasOptionalForeignMessage {
+  return hasOptionalForeignMessage != 0;
+}
+- (void) setHasOptionalForeignMessage:(BOOL) hasOptionalForeignMessage_ {
+  hasOptionalForeignMessage = (hasOptionalForeignMessage_ != 0);
+}
 @synthesize optionalForeignMessage;
-@synthesize hasOptionalImportMessage;
+- (BOOL) hasOptionalImportMessage {
+  return hasOptionalImportMessage != 0;
+}
+- (void) setHasOptionalImportMessage:(BOOL) hasOptionalImportMessage_ {
+  hasOptionalImportMessage = (hasOptionalImportMessage_ != 0);
+}
 @synthesize optionalImportMessage;
-@synthesize hasOptionalNestedEnum;
+- (BOOL) hasOptionalNestedEnum {
+  return hasOptionalNestedEnum != 0;
+}
+- (void) setHasOptionalNestedEnum:(BOOL) hasOptionalNestedEnum_ {
+  hasOptionalNestedEnum = (hasOptionalNestedEnum_ != 0);
+}
 @synthesize optionalNestedEnum;
-@synthesize hasOptionalForeignEnum;
+- (BOOL) hasOptionalForeignEnum {
+  return hasOptionalForeignEnum != 0;
+}
+- (void) setHasOptionalForeignEnum:(BOOL) hasOptionalForeignEnum_ {
+  hasOptionalForeignEnum = (hasOptionalForeignEnum_ != 0);
+}
 @synthesize optionalForeignEnum;
-@synthesize hasOptionalImportEnum;
+- (BOOL) hasOptionalImportEnum {
+  return hasOptionalImportEnum != 0;
+}
+- (void) setHasOptionalImportEnum:(BOOL) hasOptionalImportEnum_ {
+  hasOptionalImportEnum = (hasOptionalImportEnum_ != 0);
+}
 @synthesize optionalImportEnum;
-@synthesize hasOptionalStringPiece;
+- (BOOL) hasOptionalStringPiece {
+  return hasOptionalStringPiece != 0;
+}
+- (void) setHasOptionalStringPiece:(BOOL) hasOptionalStringPiece_ {
+  hasOptionalStringPiece = (hasOptionalStringPiece_ != 0);
+}
 @synthesize optionalStringPiece;
-@synthesize hasOptionalCord;
+- (BOOL) hasOptionalCord {
+  return hasOptionalCord != 0;
+}
+- (void) setHasOptionalCord:(BOOL) hasOptionalCord_ {
+  hasOptionalCord = (hasOptionalCord_ != 0);
+}
 @synthesize optionalCord;
 @synthesize mutableRepeatedInt32List;
 @synthesize mutableRepeatedInt64List;
@@ -1961,94 +2042,162 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
 @synthesize mutableRepeatedImportEnumList;
 @synthesize mutableRepeatedStringPieceList;
 @synthesize mutableRepeatedCordList;
-@synthesize hasDefaultInt32;
+- (BOOL) hasDefaultInt32 {
+  return hasDefaultInt32 != 0;
+}
+- (void) setHasDefaultInt32:(BOOL) hasDefaultInt32_ {
+  hasDefaultInt32 = (hasDefaultInt32_ != 0);
+}
 @synthesize defaultInt32;
-@synthesize hasDefaultInt64;
+- (BOOL) hasDefaultInt64 {
+  return hasDefaultInt64 != 0;
+}
+- (void) setHasDefaultInt64:(BOOL) hasDefaultInt64_ {
+  hasDefaultInt64 = (hasDefaultInt64_ != 0);
+}
 @synthesize defaultInt64;
-@synthesize hasDefaultUint32;
+- (BOOL) hasDefaultUint32 {
+  return hasDefaultUint32 != 0;
+}
+- (void) setHasDefaultUint32:(BOOL) hasDefaultUint32_ {
+  hasDefaultUint32 = (hasDefaultUint32_ != 0);
+}
 @synthesize defaultUint32;
-@synthesize hasDefaultUint64;
+- (BOOL) hasDefaultUint64 {
+  return hasDefaultUint64 != 0;
+}
+- (void) setHasDefaultUint64:(BOOL) hasDefaultUint64_ {
+  hasDefaultUint64 = (hasDefaultUint64_ != 0);
+}
 @synthesize defaultUint64;
-@synthesize hasDefaultSint32;
+- (BOOL) hasDefaultSint32 {
+  return hasDefaultSint32 != 0;
+}
+- (void) setHasDefaultSint32:(BOOL) hasDefaultSint32_ {
+  hasDefaultSint32 = (hasDefaultSint32_ != 0);
+}
 @synthesize defaultSint32;
-@synthesize hasDefaultSint64;
+- (BOOL) hasDefaultSint64 {
+  return hasDefaultSint64 != 0;
+}
+- (void) setHasDefaultSint64:(BOOL) hasDefaultSint64_ {
+  hasDefaultSint64 = (hasDefaultSint64_ != 0);
+}
 @synthesize defaultSint64;
-@synthesize hasDefaultFixed32;
+- (BOOL) hasDefaultFixed32 {
+  return hasDefaultFixed32 != 0;
+}
+- (void) setHasDefaultFixed32:(BOOL) hasDefaultFixed32_ {
+  hasDefaultFixed32 = (hasDefaultFixed32_ != 0);
+}
 @synthesize defaultFixed32;
-@synthesize hasDefaultFixed64;
+- (BOOL) hasDefaultFixed64 {
+  return hasDefaultFixed64 != 0;
+}
+- (void) setHasDefaultFixed64:(BOOL) hasDefaultFixed64_ {
+  hasDefaultFixed64 = (hasDefaultFixed64_ != 0);
+}
 @synthesize defaultFixed64;
-@synthesize hasDefaultSfixed32;
+- (BOOL) hasDefaultSfixed32 {
+  return hasDefaultSfixed32 != 0;
+}
+- (void) setHasDefaultSfixed32:(BOOL) hasDefaultSfixed32_ {
+  hasDefaultSfixed32 = (hasDefaultSfixed32_ != 0);
+}
 @synthesize defaultSfixed32;
-@synthesize hasDefaultSfixed64;
+- (BOOL) hasDefaultSfixed64 {
+  return hasDefaultSfixed64 != 0;
+}
+- (void) setHasDefaultSfixed64:(BOOL) hasDefaultSfixed64_ {
+  hasDefaultSfixed64 = (hasDefaultSfixed64_ != 0);
+}
 @synthesize defaultSfixed64;
-@synthesize hasDefaultFloat;
+- (BOOL) hasDefaultFloat {
+  return hasDefaultFloat != 0;
+}
+- (void) setHasDefaultFloat:(BOOL) hasDefaultFloat_ {
+  hasDefaultFloat = (hasDefaultFloat_ != 0);
+}
 @synthesize defaultFloat;
-@synthesize hasDefaultDouble;
+- (BOOL) hasDefaultDouble {
+  return hasDefaultDouble != 0;
+}
+- (void) setHasDefaultDouble:(BOOL) hasDefaultDouble_ {
+  hasDefaultDouble = (hasDefaultDouble_ != 0);
+}
 @synthesize defaultDouble;
-@synthesize hasDefaultBool;
-@synthesize defaultBool;
-@synthesize hasDefaultString;
+- (BOOL) hasDefaultBool {
+  return hasDefaultBool != 0;
+}
+- (void) setHasDefaultBool:(BOOL) hasDefaultBool_ {
+  hasDefaultBool = (hasDefaultBool_ != 0);
+}
+- (BOOL) defaultBool {
+  return defaultBool != 0;
+}
+- (void) setDefaultBool:(BOOL) defaultBool_ {
+  defaultBool = (defaultBool_ != 0);
+}
+- (BOOL) hasDefaultString {
+  return hasDefaultString != 0;
+}
+- (void) setHasDefaultString:(BOOL) hasDefaultString_ {
+  hasDefaultString = (hasDefaultString_ != 0);
+}
 @synthesize defaultString;
-@synthesize hasDefaultBytes;
+- (BOOL) hasDefaultBytes {
+  return hasDefaultBytes != 0;
+}
+- (void) setHasDefaultBytes:(BOOL) hasDefaultBytes_ {
+  hasDefaultBytes = (hasDefaultBytes_ != 0);
+}
 @synthesize defaultBytes;
-@synthesize hasDefaultNestedEnum;
+- (BOOL) hasDefaultNestedEnum {
+  return hasDefaultNestedEnum != 0;
+}
+- (void) setHasDefaultNestedEnum:(BOOL) hasDefaultNestedEnum_ {
+  hasDefaultNestedEnum = (hasDefaultNestedEnum_ != 0);
+}
 @synthesize defaultNestedEnum;
-@synthesize hasDefaultForeignEnum;
+- (BOOL) hasDefaultForeignEnum {
+  return hasDefaultForeignEnum != 0;
+}
+- (void) setHasDefaultForeignEnum:(BOOL) hasDefaultForeignEnum_ {
+  hasDefaultForeignEnum = (hasDefaultForeignEnum_ != 0);
+}
 @synthesize defaultForeignEnum;
-@synthesize hasDefaultImportEnum;
+- (BOOL) hasDefaultImportEnum {
+  return hasDefaultImportEnum != 0;
+}
+- (void) setHasDefaultImportEnum:(BOOL) hasDefaultImportEnum_ {
+  hasDefaultImportEnum = (hasDefaultImportEnum_ != 0);
+}
 @synthesize defaultImportEnum;
-@synthesize hasDefaultStringPiece;
+- (BOOL) hasDefaultStringPiece {
+  return hasDefaultStringPiece != 0;
+}
+- (void) setHasDefaultStringPiece:(BOOL) hasDefaultStringPiece_ {
+  hasDefaultStringPiece = (hasDefaultStringPiece_ != 0);
+}
 @synthesize defaultStringPiece;
-@synthesize hasDefaultCord;
+- (BOOL) hasDefaultCord {
+  return hasDefaultCord != 0;
+}
+- (void) setHasDefaultCord:(BOOL) hasDefaultCord_ {
+  hasDefaultCord = (hasDefaultCord_ != 0);
+}
 @synthesize defaultCord;
 - (void) dealloc {
-  self.hasOptionalInt32 = NO;
-  self.optionalInt32 = 0;
-  self.hasOptionalInt64 = NO;
-  self.optionalInt64 = 0;
-  self.hasOptionalUint32 = NO;
-  self.optionalUint32 = 0;
-  self.hasOptionalUint64 = NO;
-  self.optionalUint64 = 0;
-  self.hasOptionalSint32 = NO;
-  self.optionalSint32 = 0;
-  self.hasOptionalSint64 = NO;
-  self.optionalSint64 = 0;
-  self.hasOptionalFixed32 = NO;
-  self.optionalFixed32 = 0;
-  self.hasOptionalFixed64 = NO;
-  self.optionalFixed64 = 0;
-  self.hasOptionalSfixed32 = NO;
-  self.optionalSfixed32 = 0;
-  self.hasOptionalSfixed64 = NO;
-  self.optionalSfixed64 = 0;
-  self.hasOptionalFloat = NO;
-  self.optionalFloat = 0;
-  self.hasOptionalDouble = NO;
-  self.optionalDouble = 0;
-  self.hasOptionalBool = NO;
-  self.optionalBool = 0;
-  self.hasOptionalString = NO;
   self.optionalString = nil;
-  self.hasOptionalBytes = NO;
   self.optionalBytes = nil;
-  self.hasOptionalGroup = NO;
   self.optionalGroup = nil;
-  self.hasOptionalNestedMessage = NO;
   self.optionalNestedMessage = nil;
-  self.hasOptionalForeignMessage = NO;
   self.optionalForeignMessage = nil;
-  self.hasOptionalImportMessage = NO;
   self.optionalImportMessage = nil;
-  self.hasOptionalNestedEnum = NO;
   self.optionalNestedEnum = nil;
-  self.hasOptionalForeignEnum = NO;
   self.optionalForeignEnum = nil;
-  self.hasOptionalImportEnum = NO;
   self.optionalImportEnum = nil;
-  self.hasOptionalStringPiece = NO;
   self.optionalStringPiece = nil;
-  self.hasOptionalCord = NO;
   self.optionalCord = nil;
   self.mutableRepeatedInt32List = nil;
   self.mutableRepeatedInt64List = nil;
@@ -2074,45 +2223,12 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
   self.mutableRepeatedImportEnumList = nil;
   self.mutableRepeatedStringPieceList = nil;
   self.mutableRepeatedCordList = nil;
-  self.hasDefaultInt32 = NO;
-  self.defaultInt32 = 0;
-  self.hasDefaultInt64 = NO;
-  self.defaultInt64 = 0;
-  self.hasDefaultUint32 = NO;
-  self.defaultUint32 = 0;
-  self.hasDefaultUint64 = NO;
-  self.defaultUint64 = 0;
-  self.hasDefaultSint32 = NO;
-  self.defaultSint32 = 0;
-  self.hasDefaultSint64 = NO;
-  self.defaultSint64 = 0;
-  self.hasDefaultFixed32 = NO;
-  self.defaultFixed32 = 0;
-  self.hasDefaultFixed64 = NO;
-  self.defaultFixed64 = 0;
-  self.hasDefaultSfixed32 = NO;
-  self.defaultSfixed32 = 0;
-  self.hasDefaultSfixed64 = NO;
-  self.defaultSfixed64 = 0;
-  self.hasDefaultFloat = NO;
-  self.defaultFloat = 0;
-  self.hasDefaultDouble = NO;
-  self.defaultDouble = 0;
-  self.hasDefaultBool = NO;
-  self.defaultBool = 0;
-  self.hasDefaultString = NO;
   self.defaultString = nil;
-  self.hasDefaultBytes = NO;
   self.defaultBytes = nil;
-  self.hasDefaultNestedEnum = NO;
   self.defaultNestedEnum = nil;
-  self.hasDefaultForeignEnum = NO;
   self.defaultForeignEnum = nil;
-  self.hasDefaultImportEnum = NO;
   self.defaultImportEnum = nil;
-  self.hasDefaultStringPiece = NO;
   self.defaultStringPiece = nil;
-  self.hasDefaultCord = NO;
   self.defaultCord = nil;
   [super dealloc];
 }
@@ -2403,25 +2519,25 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   if (hasOptionalBytes) {
     [output writeData:15 value:self.optionalBytes];
   }
-  if (self.hasOptionalGroup) {
+  if (hasOptionalGroup) {
     [output writeGroup:16 value:self.optionalGroup];
   }
-  if (self.hasOptionalNestedMessage) {
+  if (hasOptionalNestedMessage) {
     [output writeMessage:18 value:self.optionalNestedMessage];
   }
-  if (self.hasOptionalForeignMessage) {
+  if (hasOptionalForeignMessage) {
     [output writeMessage:19 value:self.optionalForeignMessage];
   }
-  if (self.hasOptionalImportMessage) {
+  if (hasOptionalImportMessage) {
     [output writeMessage:20 value:self.optionalImportMessage];
   }
-  if (self.hasOptionalNestedEnum) {
+  if (hasOptionalNestedEnum) {
     [output writeEnum:21 value:self.optionalNestedEnum.number];
   }
-  if (self.hasOptionalForeignEnum) {
+  if (hasOptionalForeignEnum) {
     [output writeEnum:22 value:self.optionalForeignEnum.number];
   }
-  if (self.hasOptionalImportEnum) {
+  if (hasOptionalImportEnum) {
     [output writeEnum:23 value:self.optionalImportEnum.number];
   }
   if (hasOptionalStringPiece) {
@@ -2547,13 +2663,13 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   if (hasDefaultBytes) {
     [output writeData:75 value:self.defaultBytes];
   }
-  if (self.hasDefaultNestedEnum) {
+  if (hasDefaultNestedEnum) {
     [output writeEnum:81 value:self.defaultNestedEnum.number];
   }
-  if (self.hasDefaultForeignEnum) {
+  if (hasDefaultForeignEnum) {
     [output writeEnum:82 value:self.defaultForeignEnum.number];
   }
-  if (self.hasDefaultImportEnum) {
+  if (hasDefaultImportEnum) {
     [output writeEnum:83 value:self.defaultImportEnum.number];
   }
   if (hasDefaultStringPiece) {
@@ -2614,25 +2730,25 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   if (hasOptionalBytes) {
     size += computeDataSize(15, self.optionalBytes);
   }
-  if (self.hasOptionalGroup) {
+  if (hasOptionalGroup) {
     size += computeGroupSize(16, self.optionalGroup);
   }
-  if (self.hasOptionalNestedMessage) {
+  if (hasOptionalNestedMessage) {
     size += computeMessageSize(18, self.optionalNestedMessage);
   }
-  if (self.hasOptionalForeignMessage) {
+  if (hasOptionalForeignMessage) {
     size += computeMessageSize(19, self.optionalForeignMessage);
   }
-  if (self.hasOptionalImportMessage) {
+  if (hasOptionalImportMessage) {
     size += computeMessageSize(20, self.optionalImportMessage);
   }
-  if (self.hasOptionalNestedEnum) {
+  if (hasOptionalNestedEnum) {
     size += computeEnumSize(21, self.optionalNestedEnum.number);
   }
-  if (self.hasOptionalForeignEnum) {
+  if (hasOptionalForeignEnum) {
     size += computeEnumSize(22, self.optionalForeignEnum.number);
   }
-  if (self.hasOptionalImportEnum) {
+  if (hasOptionalImportEnum) {
     size += computeEnumSize(23, self.optionalImportEnum.number);
   }
   if (hasOptionalStringPiece) {
@@ -2758,13 +2874,13 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   if (hasDefaultBytes) {
     size += computeDataSize(75, self.defaultBytes);
   }
-  if (self.hasDefaultNestedEnum) {
+  if (hasDefaultNestedEnum) {
     size += computeEnumSize(81, self.defaultNestedEnum.number);
   }
-  if (self.hasDefaultForeignEnum) {
+  if (hasDefaultForeignEnum) {
     size += computeEnumSize(82, self.defaultForeignEnum.number);
   }
-  if (self.hasDefaultImportEnum) {
+  if (hasDefaultImportEnum) {
     size += computeEnumSize(83, self.defaultImportEnum.number);
   }
   if (hasDefaultStringPiece) {
@@ -2875,17 +2991,19 @@ static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAZ = nil;
 @end
 
 @interface TestAllTypes_NestedMessage ()
-@property BOOL hasBb;
 @property int32_t bb;
 @end
 
 @implementation TestAllTypes_NestedMessage
 
-@synthesize hasBb;
+- (BOOL) hasBb {
+  return hasBb != 0;
+}
+- (void) setHasBb:(BOOL) hasBb_ {
+  hasBb = (hasBb_ != 0);
+}
 @synthesize bb;
 - (void) dealloc {
-  self.hasBb = NO;
-  self.bb = 0;
   [super dealloc];
 }
 - (id) init {
@@ -3067,17 +3185,19 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 @end
 
 @interface TestAllTypes_OptionalGroup ()
-@property BOOL hasA;
 @property int32_t a;
 @end
 
 @implementation TestAllTypes_OptionalGroup
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
 - (void) dealloc {
-  self.hasA = NO;
-  self.a = 0;
   [super dealloc];
 }
 - (id) init {
@@ -3259,17 +3379,19 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 @end
 
 @interface TestAllTypes_RepeatedGroup ()
-@property BOOL hasA;
 @property int32_t a;
 @end
 
 @implementation TestAllTypes_RepeatedGroup
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
 - (void) dealloc {
-  self.hasA = NO;
-  self.a = 0;
   [super dealloc];
 }
 - (id) init {
@@ -5646,17 +5768,19 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 @end
 
 @interface ForeignMessage ()
-@property BOOL hasC;
 @property int32_t c;
 @end
 
 @implementation ForeignMessage
 
-@synthesize hasC;
+- (BOOL) hasC {
+  return hasC != 0;
+}
+- (void) setHasC:(BOOL) hasC_ {
+  hasC = (hasC_ != 0);
+}
 @synthesize c;
 - (void) dealloc {
-  self.hasC = NO;
-  self.c = 0;
   [super dealloc];
 }
 - (id) init {
@@ -6000,17 +6124,19 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 @end
 
 @interface OptionalGroup_extension ()
-@property BOOL hasA;
 @property int32_t a;
 @end
 
 @implementation OptionalGroup_extension
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
 - (void) dealloc {
-  self.hasA = NO;
-  self.a = 0;
   [super dealloc];
 }
 - (id) init {
@@ -6192,17 +6318,19 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 @end
 
 @interface RepeatedGroup_extension ()
-@property BOOL hasA;
 @property int32_t a;
 @end
 
 @implementation RepeatedGroup_extension
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
 - (void) dealloc {
-  self.hasA = NO;
-  self.a = 0;
   [super dealloc];
 }
 - (id) init {
@@ -6384,209 +6512,275 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 @end
 
 @interface TestRequired ()
-@property BOOL hasA;
 @property int32_t a;
-@property BOOL hasDummy2;
 @property int32_t dummy2;
-@property BOOL hasB;
 @property int32_t b;
-@property BOOL hasDummy4;
 @property int32_t dummy4;
-@property BOOL hasDummy5;
 @property int32_t dummy5;
-@property BOOL hasDummy6;
 @property int32_t dummy6;
-@property BOOL hasDummy7;
 @property int32_t dummy7;
-@property BOOL hasDummy8;
 @property int32_t dummy8;
-@property BOOL hasDummy9;
 @property int32_t dummy9;
-@property BOOL hasDummy10;
 @property int32_t dummy10;
-@property BOOL hasDummy11;
 @property int32_t dummy11;
-@property BOOL hasDummy12;
 @property int32_t dummy12;
-@property BOOL hasDummy13;
 @property int32_t dummy13;
-@property BOOL hasDummy14;
 @property int32_t dummy14;
-@property BOOL hasDummy15;
 @property int32_t dummy15;
-@property BOOL hasDummy16;
 @property int32_t dummy16;
-@property BOOL hasDummy17;
 @property int32_t dummy17;
-@property BOOL hasDummy18;
 @property int32_t dummy18;
-@property BOOL hasDummy19;
 @property int32_t dummy19;
-@property BOOL hasDummy20;
 @property int32_t dummy20;
-@property BOOL hasDummy21;
 @property int32_t dummy21;
-@property BOOL hasDummy22;
 @property int32_t dummy22;
-@property BOOL hasDummy23;
 @property int32_t dummy23;
-@property BOOL hasDummy24;
 @property int32_t dummy24;
-@property BOOL hasDummy25;
 @property int32_t dummy25;
-@property BOOL hasDummy26;
 @property int32_t dummy26;
-@property BOOL hasDummy27;
 @property int32_t dummy27;
-@property BOOL hasDummy28;
 @property int32_t dummy28;
-@property BOOL hasDummy29;
 @property int32_t dummy29;
-@property BOOL hasDummy30;
 @property int32_t dummy30;
-@property BOOL hasDummy31;
 @property int32_t dummy31;
-@property BOOL hasDummy32;
 @property int32_t dummy32;
-@property BOOL hasC;
 @property int32_t c;
 @end
 
 @implementation TestRequired
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
-@synthesize hasDummy2;
+- (BOOL) hasDummy2 {
+  return hasDummy2 != 0;
+}
+- (void) setHasDummy2:(BOOL) hasDummy2_ {
+  hasDummy2 = (hasDummy2_ != 0);
+}
 @synthesize dummy2;
-@synthesize hasB;
+- (BOOL) hasB {
+  return hasB != 0;
+}
+- (void) setHasB:(BOOL) hasB_ {
+  hasB = (hasB_ != 0);
+}
 @synthesize b;
-@synthesize hasDummy4;
+- (BOOL) hasDummy4 {
+  return hasDummy4 != 0;
+}
+- (void) setHasDummy4:(BOOL) hasDummy4_ {
+  hasDummy4 = (hasDummy4_ != 0);
+}
 @synthesize dummy4;
-@synthesize hasDummy5;
+- (BOOL) hasDummy5 {
+  return hasDummy5 != 0;
+}
+- (void) setHasDummy5:(BOOL) hasDummy5_ {
+  hasDummy5 = (hasDummy5_ != 0);
+}
 @synthesize dummy5;
-@synthesize hasDummy6;
+- (BOOL) hasDummy6 {
+  return hasDummy6 != 0;
+}
+- (void) setHasDummy6:(BOOL) hasDummy6_ {
+  hasDummy6 = (hasDummy6_ != 0);
+}
 @synthesize dummy6;
-@synthesize hasDummy7;
+- (BOOL) hasDummy7 {
+  return hasDummy7 != 0;
+}
+- (void) setHasDummy7:(BOOL) hasDummy7_ {
+  hasDummy7 = (hasDummy7_ != 0);
+}
 @synthesize dummy7;
-@synthesize hasDummy8;
+- (BOOL) hasDummy8 {
+  return hasDummy8 != 0;
+}
+- (void) setHasDummy8:(BOOL) hasDummy8_ {
+  hasDummy8 = (hasDummy8_ != 0);
+}
 @synthesize dummy8;
-@synthesize hasDummy9;
+- (BOOL) hasDummy9 {
+  return hasDummy9 != 0;
+}
+- (void) setHasDummy9:(BOOL) hasDummy9_ {
+  hasDummy9 = (hasDummy9_ != 0);
+}
 @synthesize dummy9;
-@synthesize hasDummy10;
+- (BOOL) hasDummy10 {
+  return hasDummy10 != 0;
+}
+- (void) setHasDummy10:(BOOL) hasDummy10_ {
+  hasDummy10 = (hasDummy10_ != 0);
+}
 @synthesize dummy10;
-@synthesize hasDummy11;
+- (BOOL) hasDummy11 {
+  return hasDummy11 != 0;
+}
+- (void) setHasDummy11:(BOOL) hasDummy11_ {
+  hasDummy11 = (hasDummy11_ != 0);
+}
 @synthesize dummy11;
-@synthesize hasDummy12;
+- (BOOL) hasDummy12 {
+  return hasDummy12 != 0;
+}
+- (void) setHasDummy12:(BOOL) hasDummy12_ {
+  hasDummy12 = (hasDummy12_ != 0);
+}
 @synthesize dummy12;
-@synthesize hasDummy13;
+- (BOOL) hasDummy13 {
+  return hasDummy13 != 0;
+}
+- (void) setHasDummy13:(BOOL) hasDummy13_ {
+  hasDummy13 = (hasDummy13_ != 0);
+}
 @synthesize dummy13;
-@synthesize hasDummy14;
+- (BOOL) hasDummy14 {
+  return hasDummy14 != 0;
+}
+- (void) setHasDummy14:(BOOL) hasDummy14_ {
+  hasDummy14 = (hasDummy14_ != 0);
+}
 @synthesize dummy14;
-@synthesize hasDummy15;
+- (BOOL) hasDummy15 {
+  return hasDummy15 != 0;
+}
+- (void) setHasDummy15:(BOOL) hasDummy15_ {
+  hasDummy15 = (hasDummy15_ != 0);
+}
 @synthesize dummy15;
-@synthesize hasDummy16;
+- (BOOL) hasDummy16 {
+  return hasDummy16 != 0;
+}
+- (void) setHasDummy16:(BOOL) hasDummy16_ {
+  hasDummy16 = (hasDummy16_ != 0);
+}
 @synthesize dummy16;
-@synthesize hasDummy17;
+- (BOOL) hasDummy17 {
+  return hasDummy17 != 0;
+}
+- (void) setHasDummy17:(BOOL) hasDummy17_ {
+  hasDummy17 = (hasDummy17_ != 0);
+}
 @synthesize dummy17;
-@synthesize hasDummy18;
+- (BOOL) hasDummy18 {
+  return hasDummy18 != 0;
+}
+- (void) setHasDummy18:(BOOL) hasDummy18_ {
+  hasDummy18 = (hasDummy18_ != 0);
+}
 @synthesize dummy18;
-@synthesize hasDummy19;
+- (BOOL) hasDummy19 {
+  return hasDummy19 != 0;
+}
+- (void) setHasDummy19:(BOOL) hasDummy19_ {
+  hasDummy19 = (hasDummy19_ != 0);
+}
 @synthesize dummy19;
-@synthesize hasDummy20;
+- (BOOL) hasDummy20 {
+  return hasDummy20 != 0;
+}
+- (void) setHasDummy20:(BOOL) hasDummy20_ {
+  hasDummy20 = (hasDummy20_ != 0);
+}
 @synthesize dummy20;
-@synthesize hasDummy21;
+- (BOOL) hasDummy21 {
+  return hasDummy21 != 0;
+}
+- (void) setHasDummy21:(BOOL) hasDummy21_ {
+  hasDummy21 = (hasDummy21_ != 0);
+}
 @synthesize dummy21;
-@synthesize hasDummy22;
+- (BOOL) hasDummy22 {
+  return hasDummy22 != 0;
+}
+- (void) setHasDummy22:(BOOL) hasDummy22_ {
+  hasDummy22 = (hasDummy22_ != 0);
+}
 @synthesize dummy22;
-@synthesize hasDummy23;
+- (BOOL) hasDummy23 {
+  return hasDummy23 != 0;
+}
+- (void) setHasDummy23:(BOOL) hasDummy23_ {
+  hasDummy23 = (hasDummy23_ != 0);
+}
 @synthesize dummy23;
-@synthesize hasDummy24;
+- (BOOL) hasDummy24 {
+  return hasDummy24 != 0;
+}
+- (void) setHasDummy24:(BOOL) hasDummy24_ {
+  hasDummy24 = (hasDummy24_ != 0);
+}
 @synthesize dummy24;
-@synthesize hasDummy25;
+- (BOOL) hasDummy25 {
+  return hasDummy25 != 0;
+}
+- (void) setHasDummy25:(BOOL) hasDummy25_ {
+  hasDummy25 = (hasDummy25_ != 0);
+}
 @synthesize dummy25;
-@synthesize hasDummy26;
+- (BOOL) hasDummy26 {
+  return hasDummy26 != 0;
+}
+- (void) setHasDummy26:(BOOL) hasDummy26_ {
+  hasDummy26 = (hasDummy26_ != 0);
+}
 @synthesize dummy26;
-@synthesize hasDummy27;
+- (BOOL) hasDummy27 {
+  return hasDummy27 != 0;
+}
+- (void) setHasDummy27:(BOOL) hasDummy27_ {
+  hasDummy27 = (hasDummy27_ != 0);
+}
 @synthesize dummy27;
-@synthesize hasDummy28;
+- (BOOL) hasDummy28 {
+  return hasDummy28 != 0;
+}
+- (void) setHasDummy28:(BOOL) hasDummy28_ {
+  hasDummy28 = (hasDummy28_ != 0);
+}
 @synthesize dummy28;
-@synthesize hasDummy29;
+- (BOOL) hasDummy29 {
+  return hasDummy29 != 0;
+}
+- (void) setHasDummy29:(BOOL) hasDummy29_ {
+  hasDummy29 = (hasDummy29_ != 0);
+}
 @synthesize dummy29;
-@synthesize hasDummy30;
+- (BOOL) hasDummy30 {
+  return hasDummy30 != 0;
+}
+- (void) setHasDummy30:(BOOL) hasDummy30_ {
+  hasDummy30 = (hasDummy30_ != 0);
+}
 @synthesize dummy30;
-@synthesize hasDummy31;
+- (BOOL) hasDummy31 {
+  return hasDummy31 != 0;
+}
+- (void) setHasDummy31:(BOOL) hasDummy31_ {
+  hasDummy31 = (hasDummy31_ != 0);
+}
 @synthesize dummy31;
-@synthesize hasDummy32;
+- (BOOL) hasDummy32 {
+  return hasDummy32 != 0;
+}
+- (void) setHasDummy32:(BOOL) hasDummy32_ {
+  hasDummy32 = (hasDummy32_ != 0);
+}
 @synthesize dummy32;
-@synthesize hasC;
+- (BOOL) hasC {
+  return hasC != 0;
+}
+- (void) setHasC:(BOOL) hasC_ {
+  hasC = (hasC_ != 0);
+}
 @synthesize c;
 - (void) dealloc {
-  self.hasA = NO;
-  self.a = 0;
-  self.hasDummy2 = NO;
-  self.dummy2 = 0;
-  self.hasB = NO;
-  self.b = 0;
-  self.hasDummy4 = NO;
-  self.dummy4 = 0;
-  self.hasDummy5 = NO;
-  self.dummy5 = 0;
-  self.hasDummy6 = NO;
-  self.dummy6 = 0;
-  self.hasDummy7 = NO;
-  self.dummy7 = 0;
-  self.hasDummy8 = NO;
-  self.dummy8 = 0;
-  self.hasDummy9 = NO;
-  self.dummy9 = 0;
-  self.hasDummy10 = NO;
-  self.dummy10 = 0;
-  self.hasDummy11 = NO;
-  self.dummy11 = 0;
-  self.hasDummy12 = NO;
-  self.dummy12 = 0;
-  self.hasDummy13 = NO;
-  self.dummy13 = 0;
-  self.hasDummy14 = NO;
-  self.dummy14 = 0;
-  self.hasDummy15 = NO;
-  self.dummy15 = 0;
-  self.hasDummy16 = NO;
-  self.dummy16 = 0;
-  self.hasDummy17 = NO;
-  self.dummy17 = 0;
-  self.hasDummy18 = NO;
-  self.dummy18 = 0;
-  self.hasDummy19 = NO;
-  self.dummy19 = 0;
-  self.hasDummy20 = NO;
-  self.dummy20 = 0;
-  self.hasDummy21 = NO;
-  self.dummy21 = 0;
-  self.hasDummy22 = NO;
-  self.dummy22 = 0;
-  self.hasDummy23 = NO;
-  self.dummy23 = 0;
-  self.hasDummy24 = NO;
-  self.dummy24 = 0;
-  self.hasDummy25 = NO;
-  self.dummy25 = 0;
-  self.hasDummy26 = NO;
-  self.dummy26 = 0;
-  self.hasDummy27 = NO;
-  self.dummy27 = 0;
-  self.hasDummy28 = NO;
-  self.dummy28 = 0;
-  self.hasDummy29 = NO;
-  self.dummy29 = 0;
-  self.hasDummy30 = NO;
-  self.dummy30 = 0;
-  self.hasDummy31 = NO;
-  self.dummy31 = 0;
-  self.hasDummy32 = NO;
-  self.dummy32 = 0;
-  self.hasC = NO;
-  self.c = 0;
   [super dealloc];
 }
 - (id) init {
@@ -6661,13 +6855,13 @@ static TestRequired* defaultTestRequiredInstance = nil;
   return [UnittestRoot internal_static_protobuf_unittest_TestRequired_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (!self.hasA) {
+  if (!hasA) {
     return NO;
   }
-  if (!self.hasB) {
+  if (!hasB) {
     return NO;
   }
-  if (!self.hasC) {
+  if (!hasC) {
     return NO;
   }
   return YES;
@@ -7749,26 +7943,31 @@ static TestRequired* defaultTestRequiredInstance = nil;
 @end
 
 @interface TestRequiredForeign ()
-@property BOOL hasOptionalMessage;
 @property (retain) TestRequired* optionalMessage;
 @property (retain) NSMutableArray* mutableRepeatedMessageList;
-@property BOOL hasDummy;
 @property int32_t dummy;
 @end
 
 @implementation TestRequiredForeign
 
-@synthesize hasOptionalMessage;
+- (BOOL) hasOptionalMessage {
+  return hasOptionalMessage != 0;
+}
+- (void) setHasOptionalMessage:(BOOL) hasOptionalMessage_ {
+  hasOptionalMessage = (hasOptionalMessage_ != 0);
+}
 @synthesize optionalMessage;
 @synthesize mutableRepeatedMessageList;
-@synthesize hasDummy;
+- (BOOL) hasDummy {
+  return hasDummy != 0;
+}
+- (void) setHasDummy:(BOOL) hasDummy_ {
+  hasDummy = (hasDummy_ != 0);
+}
 @synthesize dummy;
 - (void) dealloc {
-  self.hasOptionalMessage = NO;
   self.optionalMessage = nil;
   self.mutableRepeatedMessageList = nil;
-  self.hasDummy = NO;
-  self.dummy = 0;
   [super dealloc];
 }
 - (id) init {
@@ -7807,7 +8006,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  if (self.hasOptionalMessage) {
+  if (hasOptionalMessage) {
     if (!self.optionalMessage.isInitialized) {
       return NO;
     }
@@ -7820,7 +8019,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasOptionalMessage) {
+  if (hasOptionalMessage) {
     [output writeMessage:1 value:self.optionalMessage];
   }
   for (TestRequired* element in self.repeatedMessageList) {
@@ -7836,7 +8035,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  if (self.hasOptionalMessage) {
+  if (hasOptionalMessage) {
     size += computeMessageSize(1, self.optionalMessage);
   }
   for (TestRequired* element in self.repeatedMessageList) {
@@ -8063,16 +8262,19 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 @end
 
 @interface TestForeignNested ()
-@property BOOL hasForeignNested;
 @property (retain) TestAllTypes_NestedMessage* foreignNested;
 @end
 
 @implementation TestForeignNested
 
-@synthesize hasForeignNested;
+- (BOOL) hasForeignNested {
+  return hasForeignNested != 0;
+}
+- (void) setHasForeignNested:(BOOL) hasForeignNested_ {
+  hasForeignNested = (hasForeignNested_ != 0);
+}
 @synthesize foreignNested;
 - (void) dealloc {
-  self.hasForeignNested = NO;
   self.foreignNested = nil;
   [super dealloc];
 }
@@ -8107,7 +8309,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasForeignNested) {
+  if (hasForeignNested) {
     [output writeMessage:1 value:self.foreignNested];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -8117,7 +8319,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  if (self.hasForeignNested) {
+  if (hasForeignNested) {
     size += computeMessageSize(1, self.foreignNested);
   }
   size += self.unknownFields.serializedSize;
@@ -8592,23 +8794,27 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 @end
 
 @interface TestReallyLargeTagNumber ()
-@property BOOL hasA;
 @property int32_t a;
-@property BOOL hasBb;
 @property int32_t bb;
 @end
 
 @implementation TestReallyLargeTagNumber
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
-@synthesize hasBb;
+- (BOOL) hasBb {
+  return hasBb != 0;
+}
+- (void) setHasBb:(BOOL) hasBb_ {
+  hasBb = (hasBb_ != 0);
+}
 @synthesize bb;
 - (void) dealloc {
-  self.hasA = NO;
-  self.a = 0;
-  self.hasBb = NO;
-  self.bb = 0;
   [super dealloc];
 }
 - (id) init {
@@ -8820,23 +9026,28 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 @end
 
 @interface TestRecursiveMessage ()
-@property BOOL hasA;
 @property (retain) TestRecursiveMessage* a;
-@property BOOL hasI;
 @property int32_t i;
 @end
 
 @implementation TestRecursiveMessage
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
-@synthesize hasI;
+- (BOOL) hasI {
+  return hasI != 0;
+}
+- (void) setHasI:(BOOL) hasI_ {
+  hasI = (hasI_ != 0);
+}
 @synthesize i;
 - (void) dealloc {
-  self.hasA = NO;
   self.a = nil;
-  self.hasI = NO;
-  self.i = 0;
   [super dealloc];
 }
 - (id) init {
@@ -8871,7 +9082,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasA) {
+  if (hasA) {
     [output writeMessage:1 value:self.a];
   }
   if (hasI) {
@@ -8884,7 +9095,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  if (self.hasA) {
+  if (hasA) {
     size += computeMessageSize(1, self.a);
   }
   if (hasI) {
@@ -9067,16 +9278,19 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 @end
 
 @interface TestMutualRecursionA ()
-@property BOOL hasBb;
 @property (retain) TestMutualRecursionB* bb;
 @end
 
 @implementation TestMutualRecursionA
 
-@synthesize hasBb;
+- (BOOL) hasBb {
+  return hasBb != 0;
+}
+- (void) setHasBb:(BOOL) hasBb_ {
+  hasBb = (hasBb_ != 0);
+}
 @synthesize bb;
 - (void) dealloc {
-  self.hasBb = NO;
   self.bb = nil;
   [super dealloc];
 }
@@ -9111,7 +9325,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasBb) {
+  if (hasBb) {
     [output writeMessage:1 value:self.bb];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -9121,7 +9335,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  if (self.hasBb) {
+  if (hasBb) {
     size += computeMessageSize(1, self.bb);
   }
   size += self.unknownFields.serializedSize;
@@ -9278,23 +9492,28 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 @end
 
 @interface TestMutualRecursionB ()
-@property BOOL hasA;
 @property (retain) TestMutualRecursionA* a;
-@property BOOL hasOptionalInt32;
 @property int32_t optionalInt32;
 @end
 
 @implementation TestMutualRecursionB
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
-@synthesize hasOptionalInt32;
+- (BOOL) hasOptionalInt32 {
+  return hasOptionalInt32 != 0;
+}
+- (void) setHasOptionalInt32:(BOOL) hasOptionalInt32_ {
+  hasOptionalInt32 = (hasOptionalInt32_ != 0);
+}
 @synthesize optionalInt32;
 - (void) dealloc {
-  self.hasA = NO;
   self.a = nil;
-  self.hasOptionalInt32 = NO;
-  self.optionalInt32 = 0;
   [super dealloc];
 }
 - (id) init {
@@ -9329,7 +9548,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasA) {
+  if (hasA) {
     [output writeMessage:1 value:self.a];
   }
   if (hasOptionalInt32) {
@@ -9342,7 +9561,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  if (self.hasA) {
+  if (hasA) {
     size += computeMessageSize(1, self.a);
   }
   if (hasOptionalInt32) {
@@ -9525,28 +9744,36 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 @end
 
 @interface TestDupFieldNumber ()
-@property BOOL hasA;
 @property int32_t a;
-@property BOOL hasFoo;
 @property (retain) TestDupFieldNumber_Foo* foo;
-@property BOOL hasBar;
 @property (retain) TestDupFieldNumber_Bar* bar;
 @end
 
 @implementation TestDupFieldNumber
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
-@synthesize hasFoo;
+- (BOOL) hasFoo {
+  return hasFoo != 0;
+}
+- (void) setHasFoo:(BOOL) hasFoo_ {
+  hasFoo = (hasFoo_ != 0);
+}
 @synthesize foo;
-@synthesize hasBar;
+- (BOOL) hasBar {
+  return hasBar != 0;
+}
+- (void) setHasBar:(BOOL) hasBar_ {
+  hasBar = (hasBar_ != 0);
+}
 @synthesize bar;
 - (void) dealloc {
-  self.hasA = NO;
-  self.a = 0;
-  self.hasFoo = NO;
   self.foo = nil;
-  self.hasBar = NO;
   self.bar = nil;
   [super dealloc];
 }
@@ -9586,10 +9813,10 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
   if (hasA) {
     [output writeInt32:1 value:self.a];
   }
-  if (self.hasFoo) {
+  if (hasFoo) {
     [output writeGroup:2 value:self.foo];
   }
-  if (self.hasBar) {
+  if (hasBar) {
     [output writeGroup:3 value:self.bar];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -9602,10 +9829,10 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
   if (hasA) {
     size += computeInt32Size(1, self.a);
   }
-  if (self.hasFoo) {
+  if (hasFoo) {
     size += computeGroupSize(2, self.foo);
   }
-  if (self.hasBar) {
+  if (hasBar) {
     size += computeGroupSize(3, self.bar);
   }
   size += self.unknownFields.serializedSize;
@@ -9642,17 +9869,19 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
 @end
 
 @interface TestDupFieldNumber_Foo ()
-@property BOOL hasA;
 @property int32_t a;
 @end
 
 @implementation TestDupFieldNumber_Foo
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
 - (void) dealloc {
-  self.hasA = NO;
-  self.a = 0;
   [super dealloc];
 }
 - (id) init {
@@ -9834,17 +10063,19 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 @end
 
 @interface TestDupFieldNumber_Bar ()
-@property BOOL hasA;
 @property int32_t a;
 @end
 
 @implementation TestDupFieldNumber_Bar
 
-@synthesize hasA;
+- (BOOL) hasA {
+  return hasA != 0;
+}
+- (void) setHasA:(BOOL) hasA_ {
+  hasA = (hasA_ != 0);
+}
 @synthesize a;
 - (void) dealloc {
-  self.hasA = NO;
-  self.a = 0;
   [super dealloc];
 }
 - (id) init {
@@ -10211,16 +10442,19 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 @end
 
 @interface TestNestedMessageHasBits ()
-@property BOOL hasOptionalNestedMessage;
 @property (retain) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 @end
 
 @implementation TestNestedMessageHasBits
 
-@synthesize hasOptionalNestedMessage;
+- (BOOL) hasOptionalNestedMessage {
+  return hasOptionalNestedMessage != 0;
+}
+- (void) setHasOptionalNestedMessage:(BOOL) hasOptionalNestedMessage_ {
+  hasOptionalNestedMessage = (hasOptionalNestedMessage_ != 0);
+}
 @synthesize optionalNestedMessage;
 - (void) dealloc {
-  self.hasOptionalNestedMessage = NO;
   self.optionalNestedMessage = nil;
   [super dealloc];
 }
@@ -10255,7 +10489,7 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasOptionalNestedMessage) {
+  if (hasOptionalNestedMessage) {
     [output writeMessage:1 value:self.optionalNestedMessage];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -10265,7 +10499,7 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  if (self.hasOptionalNestedMessage) {
+  if (hasOptionalNestedMessage) {
     size += computeMessageSize(1, self.optionalNestedMessage);
   }
   size += self.unknownFields.serializedSize;
@@ -10692,17 +10926,11 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 @end
 
 @interface TestCamelCaseFieldNames ()
-@property BOOL hasPrimitiveField;
 @property int32_t primitiveField;
-@property BOOL hasStringField;
 @property (retain) NSString* stringField;
-@property BOOL hasEnumField;
 @property (retain) ForeignEnum* enumField;
-@property BOOL hasMessageField;
 @property (retain) ForeignMessage* messageField;
-@property BOOL hasStringPieceField;
 @property (retain) NSString* stringPieceField;
-@property BOOL hasCordField;
 @property (retain) NSString* cordField;
 @property (retain) NSMutableArray* mutableRepeatedPrimitiveFieldList;
 @property (retain) NSMutableArray* mutableRepeatedStringFieldList;
@@ -10714,17 +10942,47 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 
 @implementation TestCamelCaseFieldNames
 
-@synthesize hasPrimitiveField;
+- (BOOL) hasPrimitiveField {
+  return hasPrimitiveField != 0;
+}
+- (void) setHasPrimitiveField:(BOOL) hasPrimitiveField_ {
+  hasPrimitiveField = (hasPrimitiveField_ != 0);
+}
 @synthesize primitiveField;
-@synthesize hasStringField;
+- (BOOL) hasStringField {
+  return hasStringField != 0;
+}
+- (void) setHasStringField:(BOOL) hasStringField_ {
+  hasStringField = (hasStringField_ != 0);
+}
 @synthesize stringField;
-@synthesize hasEnumField;
+- (BOOL) hasEnumField {
+  return hasEnumField != 0;
+}
+- (void) setHasEnumField:(BOOL) hasEnumField_ {
+  hasEnumField = (hasEnumField_ != 0);
+}
 @synthesize enumField;
-@synthesize hasMessageField;
+- (BOOL) hasMessageField {
+  return hasMessageField != 0;
+}
+- (void) setHasMessageField:(BOOL) hasMessageField_ {
+  hasMessageField = (hasMessageField_ != 0);
+}
 @synthesize messageField;
-@synthesize hasStringPieceField;
+- (BOOL) hasStringPieceField {
+  return hasStringPieceField != 0;
+}
+- (void) setHasStringPieceField:(BOOL) hasStringPieceField_ {
+  hasStringPieceField = (hasStringPieceField_ != 0);
+}
 @synthesize stringPieceField;
-@synthesize hasCordField;
+- (BOOL) hasCordField {
+  return hasCordField != 0;
+}
+- (void) setHasCordField:(BOOL) hasCordField_ {
+  hasCordField = (hasCordField_ != 0);
+}
 @synthesize cordField;
 @synthesize mutableRepeatedPrimitiveFieldList;
 @synthesize mutableRepeatedStringFieldList;
@@ -10733,17 +10991,10 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 @synthesize mutableRepeatedStringPieceFieldList;
 @synthesize mutableRepeatedCordFieldList;
 - (void) dealloc {
-  self.hasPrimitiveField = NO;
-  self.primitiveField = 0;
-  self.hasStringField = NO;
   self.stringField = nil;
-  self.hasEnumField = NO;
   self.enumField = nil;
-  self.hasMessageField = NO;
   self.messageField = nil;
-  self.hasStringPieceField = NO;
   self.stringPieceField = nil;
-  self.hasCordField = NO;
   self.cordField = nil;
   self.mutableRepeatedPrimitiveFieldList = nil;
   self.mutableRepeatedStringFieldList = nil;
@@ -10837,10 +11088,10 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   if (hasStringField) {
     [output writeString:2 value:self.stringField];
   }
-  if (self.hasEnumField) {
+  if (hasEnumField) {
     [output writeEnum:3 value:self.enumField.number];
   }
-  if (self.hasMessageField) {
+  if (hasMessageField) {
     [output writeMessage:4 value:self.messageField];
   }
   if (hasStringPieceField) {
@@ -10880,10 +11131,10 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   if (hasStringField) {
     size += computeStringSize(2, self.stringField);
   }
-  if (self.hasEnumField) {
+  if (hasEnumField) {
     size += computeEnumSize(3, self.enumField.number);
   }
-  if (self.hasMessageField) {
+  if (hasMessageField) {
     size += computeMessageSize(4, self.messageField);
   }
   if (hasStringPieceField) {
@@ -11434,29 +11685,36 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 @end
 
 @interface TestFieldOrderings ()
-@property BOOL hasMyString;
 @property (retain) NSString* myString;
-@property BOOL hasMyInt;
 @property int64_t myInt;
-@property BOOL hasMyFloat;
 @property Float32 myFloat;
 @end
 
 @implementation TestFieldOrderings
 
-@synthesize hasMyString;
+- (BOOL) hasMyString {
+  return hasMyString != 0;
+}
+- (void) setHasMyString:(BOOL) hasMyString_ {
+  hasMyString = (hasMyString_ != 0);
+}
 @synthesize myString;
-@synthesize hasMyInt;
+- (BOOL) hasMyInt {
+  return hasMyInt != 0;
+}
+- (void) setHasMyInt:(BOOL) hasMyInt_ {
+  hasMyInt = (hasMyInt_ != 0);
+}
 @synthesize myInt;
-@synthesize hasMyFloat;
+- (BOOL) hasMyFloat {
+  return hasMyFloat != 0;
+}
+- (void) setHasMyFloat:(BOOL) hasMyFloat_ {
+  hasMyFloat = (hasMyFloat_ != 0);
+}
 @synthesize myFloat;
 - (void) dealloc {
-  self.hasMyString = NO;
   self.myString = nil;
-  self.hasMyInt = NO;
-  self.myInt = 0;
-  self.hasMyFloat = NO;
-  self.myFloat = 0;
   [super dealloc];
 }
 - (id) init {
@@ -11705,46 +11963,60 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 @end
 
 @interface TestExtremeDefaultValues ()
-@property BOOL hasEscapedBytes;
 @property (retain) NSData* escapedBytes;
-@property BOOL hasLargeUint32;
 @property int32_t largeUint32;
-@property BOOL hasLargeUint64;
 @property int64_t largeUint64;
-@property BOOL hasSmallInt32;
 @property int32_t smallInt32;
-@property BOOL hasSmallInt64;
 @property int64_t smallInt64;
-@property BOOL hasUtf8String;
 @property (retain) NSString* utf8String;
 @end
 
 @implementation TestExtremeDefaultValues
 
-@synthesize hasEscapedBytes;
+- (BOOL) hasEscapedBytes {
+  return hasEscapedBytes != 0;
+}
+- (void) setHasEscapedBytes:(BOOL) hasEscapedBytes_ {
+  hasEscapedBytes = (hasEscapedBytes_ != 0);
+}
 @synthesize escapedBytes;
-@synthesize hasLargeUint32;
+- (BOOL) hasLargeUint32 {
+  return hasLargeUint32 != 0;
+}
+- (void) setHasLargeUint32:(BOOL) hasLargeUint32_ {
+  hasLargeUint32 = (hasLargeUint32_ != 0);
+}
 @synthesize largeUint32;
-@synthesize hasLargeUint64;
+- (BOOL) hasLargeUint64 {
+  return hasLargeUint64 != 0;
+}
+- (void) setHasLargeUint64:(BOOL) hasLargeUint64_ {
+  hasLargeUint64 = (hasLargeUint64_ != 0);
+}
 @synthesize largeUint64;
-@synthesize hasSmallInt32;
+- (BOOL) hasSmallInt32 {
+  return hasSmallInt32 != 0;
+}
+- (void) setHasSmallInt32:(BOOL) hasSmallInt32_ {
+  hasSmallInt32 = (hasSmallInt32_ != 0);
+}
 @synthesize smallInt32;
-@synthesize hasSmallInt64;
+- (BOOL) hasSmallInt64 {
+  return hasSmallInt64 != 0;
+}
+- (void) setHasSmallInt64:(BOOL) hasSmallInt64_ {
+  hasSmallInt64 = (hasSmallInt64_ != 0);
+}
 @synthesize smallInt64;
-@synthesize hasUtf8String;
+- (BOOL) hasUtf8String {
+  return hasUtf8String != 0;
+}
+- (void) setHasUtf8String:(BOOL) hasUtf8String_ {
+  hasUtf8String = (hasUtf8String_ != 0);
+}
 @synthesize utf8String;
 - (void) dealloc {
-  self.hasEscapedBytes = NO;
   self.escapedBytes = nil;
-  self.hasLargeUint32 = NO;
-  self.largeUint32 = 0;
-  self.hasLargeUint64 = NO;
-  self.largeUint64 = 0;
-  self.hasSmallInt32 = NO;
-  self.smallInt32 = 0;
-  self.hasSmallInt64 = NO;
-  self.smallInt64 = 0;
-  self.hasUtf8String = NO;
   self.utf8String = nil;
   [super dealloc];
 }

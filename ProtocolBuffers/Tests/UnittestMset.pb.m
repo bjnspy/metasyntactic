@@ -318,16 +318,19 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 @end
 
 @interface TestMessageSetContainer ()
-@property BOOL hasMessageSet;
 @property (retain) TestMessageSet* messageSet;
 @end
 
 @implementation TestMessageSetContainer
 
-@synthesize hasMessageSet;
+- (BOOL) hasMessageSet {
+  return hasMessageSet != 0;
+}
+- (void) setHasMessageSet:(BOOL) hasMessageSet_ {
+  hasMessageSet = (hasMessageSet_ != 0);
+}
 @synthesize messageSet;
 - (void) dealloc {
-  self.hasMessageSet = NO;
   self.messageSet = nil;
   [super dealloc];
 }
@@ -359,7 +362,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetContainer_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (self.hasMessageSet) {
+  if (hasMessageSet) {
     if (!self.messageSet.isInitialized) {
       return NO;
     }
@@ -367,7 +370,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasMessageSet) {
+  if (hasMessageSet) {
     [output writeMessage:1 value:self.messageSet];
   }
   [self.unknownFields writeToCodedOutputStream:output];
@@ -377,7 +380,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   if (size != -1) return size;
 
   size = 0;
-  if (self.hasMessageSet) {
+  if (hasMessageSet) {
     size += computeMessageSize(1, self.messageSet);
   }
   size += self.unknownFields.serializedSize;
@@ -534,17 +537,19 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 @end
 
 @interface TestMessageSetExtension1 ()
-@property BOOL hasI;
 @property int32_t i;
 @end
 
 @implementation TestMessageSetExtension1
 
-@synthesize hasI;
+- (BOOL) hasI {
+  return hasI != 0;
+}
+- (void) setHasI:(BOOL) hasI_ {
+  hasI = (hasI_ != 0);
+}
 @synthesize i;
 - (void) dealloc {
-  self.hasI = NO;
-  self.i = 0;
   [super dealloc];
 }
 - (id) init {
@@ -732,16 +737,19 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 @end
 
 @interface TestMessageSetExtension2 ()
-@property BOOL hasStr;
 @property (retain) NSString* str;
 @end
 
 @implementation TestMessageSetExtension2
 
-@synthesize hasStr;
+- (BOOL) hasStr {
+  return hasStr != 0;
+}
+- (void) setHasStr:(BOOL) hasStr_ {
+  hasStr = (hasStr_ != 0);
+}
 @synthesize str;
 - (void) dealloc {
-  self.hasStr = NO;
   self.str = nil;
   [super dealloc];
 }
@@ -1029,22 +1037,27 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 @end
 
 @interface RawMessageSet_Item ()
-@property BOOL hasTypeId;
 @property int32_t typeId;
-@property BOOL hasMessage;
 @property (retain) NSData* message;
 @end
 
 @implementation RawMessageSet_Item
 
-@synthesize hasTypeId;
+- (BOOL) hasTypeId {
+  return hasTypeId != 0;
+}
+- (void) setHasTypeId:(BOOL) hasTypeId_ {
+  hasTypeId = (hasTypeId_ != 0);
+}
 @synthesize typeId;
-@synthesize hasMessage;
+- (BOOL) hasMessage {
+  return hasMessage != 0;
+}
+- (void) setHasMessage:(BOOL) hasMessage_ {
+  hasMessage = (hasMessage_ != 0);
+}
 @synthesize message;
 - (void) dealloc {
-  self.hasTypeId = NO;
-  self.typeId = 0;
-  self.hasMessage = NO;
   self.message = nil;
   [super dealloc];
 }
@@ -1077,10 +1090,10 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   return [UnittestMsetRoot internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (!self.hasTypeId) {
+  if (!hasTypeId) {
     return NO;
   }
-  if (!self.hasMessage) {
+  if (!hasMessage) {
     return NO;
   }
   return YES;
