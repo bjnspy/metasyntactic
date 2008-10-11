@@ -107,7 +107,7 @@ BOOL isHex(unichar c) {
  * and "0" to signify hexidecimal and octal numbers, respectively.
  */
 + (int32_t) parseInt32:(NSString*) text {
-    return (int32_t)[self parseInteger:text isSigned:true isLong:false];
+    return (int32_t)[self parseInteger:text isSigned:YES isLong:NO];
 }
 
 
@@ -119,7 +119,7 @@ BOOL isHex(unichar c) {
  * no unsigned integer type.
  */
 + (int32_t) parseUInt32:(NSString*) text {
-    return (int32_t)[self parseInteger:text isSigned:false isLong:false];
+    return (int32_t)[self parseInteger:text isSigned:NO isLong:NO];
 }
 
 
@@ -129,7 +129,7 @@ BOOL isHex(unichar c) {
  * and "0" to signify hexidecimal and octal numbers, respectively.
  */
 + (int64_t) parseInt64:(NSString*) text {
-    return [self parseInteger:text isSigned:true isLong:true];
+    return [self parseInteger:text isSigned:YES isLong:YES];
 }
 
 
@@ -141,7 +141,7 @@ BOOL isHex(unichar c) {
  * no unsigned long type.
  */
 + (int64_t) parseUInt64:(NSString*) text {
-    return [self parseInteger:text isSigned:false isLong:true];
+    return [self parseInteger:text isSigned:NO isLong:YES];
 }
 
 /**

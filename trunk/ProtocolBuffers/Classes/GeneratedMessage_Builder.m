@@ -166,7 +166,7 @@
 
 /**
  * Called by subclasses to parse an unknown field.
- * @return {@code true} unless the tag is an end-group tag.
+ * @return {@code YES} unless the tag is an end-group tag.
  */
 - (BOOL) parseUnknownField:(PBCodedInputStream*) input
              unknownFields:(PBUnknownFieldSet_Builder*) unknownFields

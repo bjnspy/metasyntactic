@@ -58,7 +58,7 @@
 
 - (BOOL) isEqual:(id) obj {
     if (![obj isKindOfClass:[PBDescriptorPool_DescriptorIntPair class]]) {
-        return false;
+        return NO;
     }
     
     PBDescriptorPool_DescriptorIntPair* other = obj;

@@ -678,7 +678,7 @@ int32_t computeTagSize(int32_t fieldNumber) {
  * unsigned, so it won't be sign-extended if negative.
  */
 - (void) writeRawVarint32:(int32_t) value {
-    while (true) {
+    while (YES) {
         if ((value & ~0x7F) == 0) {
             [self writeRawByte:value];
             return;
@@ -706,7 +706,7 @@ int32_t computeRawVarint32Size(int32_t value) {
 
 /** Encode and write a varint. */
 - (void) writeRawVarint64:(int64_t) value{
-    while (true) {
+    while (YES) {
         if ((value & ~0x7FL) == 0) {
             [self writeRawByte:((int32_t)value)];
             return;

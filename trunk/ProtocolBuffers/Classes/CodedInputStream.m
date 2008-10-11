@@ -122,31 +122,31 @@ const int32_t BUFFER_SIZE = 4096;
 /**
  * Reads and discards a single field, given its tag value.
  *
- * @return {@code false} if the tag is an endgroup tag, in which case
- *         nothing is skipped.  Otherwise, returns {@code true}.
+ * @return {@code NO} if the tag is an endgroup tag, in which case
+ *         nothing is skipped.  Otherwise, returns {@code YES}.
  */
 - (BOOL) skipField:(int32_t) tag {
     switch (PBWireFormatGetTagWireType(tag)) {
         case PBWireFormatVarint:
             [self readInt32];
-            return true;
+            return YES;
         case PBWireFormatFixed64:
             [self readRawLittleEndian64];
-            return true;
+            return YES;
         case PBWireFormatLengthDelimited:
             [self skipRawBytes:[self readRawVarint32]];
-            return true;
+            return YES;
         case PBWireFormatStartGroup:
             [self skipMessage];
             [self checkLastTagWas:
                             PBWireFormatMakeTag(PBWireFormatGetTagFieldNumber(tag),
                                               PBWireFormatEndGroup)];
-            return true;
+            return YES;
         case PBWireFormatEndGroup:
-            return false;
+            return NO;
         case PBWireFormatFixed32:
             [self readRawLittleEndian32];
-            return true;
+            return YES;
         default:
             @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Invalid Wire Type" userInfo:nil];
     }
@@ -158,7 +158,7 @@ const int32_t BUFFER_SIZE = 4096;
  * or until an endgroup tag, whichever comes first.
  */
 - (void) skipMessage {
-    while (true) {
+    while (YES) {
         int32_t tag = [self readTag];
         if (tag == 0 || ![self skipField:tag]) {
             return;
@@ -591,10 +591,10 @@ int64_t decodeZigZag64(int64_t n) {
 
 /**
  * Called with {@code this.buffer} is empty to read more bytes from the
- * input.  If {@code mustSucceed} is true, refillBuffer() gurantees that
+ * input.  If {@code mustSucceed} is YES, refillBuffer() gurantees that
  * either there will be at least one byte in the buffer when it returns
- * or it will throw an exception.  If {@code mustSucceed} is false,
- * refillBuffer() returns false if no more bytes were available.
+ * or it will throw an exception.  If {@code mustSucceed} is NO,
+ * refillBuffer() returns NO if no more bytes were available.
  */
 - (BOOL) refillBuffer:(BOOL) mustSucceed {
     if (bufferPos < bufferSize) {
@@ -689,13 +689,13 @@ int64_t decodeZigZag64(int64_t n) {
         // We want to use refillBuffer() and then copy from the buffer into our
         // byte array rather than reading directly into our byte array because
         // the input may be unbuffered.
-        [self refillBuffer:true];
+        [self refillBuffer:YES];
 
         while (size - pos > bufferSize) {
             memcpy(((int8_t*)bytes.mutableBytes) + pos, buffer.bytes, bufferSize);
             pos += bufferSize;
             bufferPos = bufferSize;
-            [self refillBuffer:true];
+            [self refillBuffer:YES];
         }
 
         memcpy(((int8_t*)bytes.mutableBytes) + pos, buffer.bytes, size - pos);

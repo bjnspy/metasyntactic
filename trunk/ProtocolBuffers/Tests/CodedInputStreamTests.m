@@ -239,7 +239,7 @@
     PBCodedInputStream* input2 = [PBCodedInputStream streamWithData:rawBytes];
     PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builder];
     
-    while (true) {
+    while (YES) {
         int32_t tag = [input1 readTag];
         STAssertTrue(tag == [input2 readTag], @"");
         if (tag == 0) {
