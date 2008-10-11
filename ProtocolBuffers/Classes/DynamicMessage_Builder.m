@@ -140,12 +140,12 @@
 }
 
 
-- (PBDynamicMessage_Builder*) newBuilderForField:(PBFieldDescriptor*) field {
+- (PBDynamicMessage_Builder*) createBuilder:(PBFieldDescriptor*) field {
     [self verifyContainingType:field];
 
     if (field.objectiveCType != PBObjectiveCTypeMessage) {
         @throw [NSException exceptionWithName:@"IllegalArgument"
-                                       reason:@"newBuilderForField is only valid for fields with message type."
+                                       reason:@"createBuilder is only valid for fields with message type."
                                      userInfo:nil];
     }
 

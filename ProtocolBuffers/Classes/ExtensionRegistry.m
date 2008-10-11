@@ -22,8 +22,8 @@
 
 
 @interface PBExtensionRegistry ()
-@property (retain) NSMutableDictionary* extensionsByName;
-@property (retain) NSMutableDictionary* extensionsByNumber;
+    @property (retain) NSMutableDictionary* extensionsByName;
+    @property (retain) NSMutableDictionary* extensionsByNumber;
 @end
 
 

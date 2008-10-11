@@ -23,18 +23,21 @@
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
 - (PBDescriptor*) descriptor;
 - (NSDictionary*) allFields;
-- (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
+- (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field;
+
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
-- (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
-- (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field;
 - (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
+
+- (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value;
+- (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field;
 - (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
 - (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
-- (PBUnknownFieldSet*) unknownFields;
 - (id<PBMessage_Builder>) setUnknownFields:(PBUnknownFieldSet*) unknownFields;
 - (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
+
+- (PBUnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
 
 - (BOOL) parseUnknownField:(PBCodedInputStream*) input

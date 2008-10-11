@@ -549,7 +549,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 if (defaultInstance != nil) {
                     subBuilder = [defaultInstance builder];
                 } else {
-                    subBuilder = [builder newBuilderForField:field];
+                    subBuilder = [builder createBuilder:field];
                 }
                 if (!field.isRepeated) {
                     [subBuilder mergeFromMessage:[builder getField:field]];
@@ -563,7 +563,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 if (defaultInstance != nil) {
                     subBuilder = [defaultInstance builder];
                 } else {
-                    subBuilder = [builder newBuilderForField:field];
+                    subBuilder = [builder createBuilder:field];
                 }
                 if (!field.isRepeated) {
                     [subBuilder mergeFromMessage:[builder getField:field]];

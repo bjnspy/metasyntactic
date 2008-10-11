@@ -90,7 +90,7 @@
 }
 
 
-- (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field {
+- (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field {
     return [[self.internalGetFieldAccessorTable getField:field] newBuilder];
 }
 
