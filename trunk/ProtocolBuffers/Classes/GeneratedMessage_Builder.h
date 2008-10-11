@@ -17,9 +17,6 @@
 @interface PBGeneratedMessage_Builder : PBAbstractMessage_Builder {
 }
 
-
-- (PBFieldAccessorTable*) fieldAccessorTable;
-
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
 - (PBDescriptor*) descriptor;
 - (NSDictionary*) allFields;

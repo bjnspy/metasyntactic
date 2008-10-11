@@ -50,6 +50,6 @@
 - (BOOL) has:(PBGeneratedMessage*) message;
 - (int32_t) getRepeatedCount:(PBGeneratedMessage*) message;
 - (void) clear:(PBGeneratedMessage_Builder*) builder;
-- (id<PBMessage_Builder>) newBuilder;
+- (id<PBMessage_Builder>) createBuilder;
 
 @end

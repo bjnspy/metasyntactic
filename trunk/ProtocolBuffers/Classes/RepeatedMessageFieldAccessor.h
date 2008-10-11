@@ -16,10 +16,10 @@
 
 @interface PBRepeatedMessageFieldAccessor : PBRepeatedFieldAccessor {
 @private
-    SEL newBuilderMethod;
+    SEL createBuilderMethod;
 }
 
-@property (readonly) SEL newBuilderMethod;
+@property (readonly) SEL createBuilderMethod;
 
 + (PBRepeatedMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                                 name:(NSString*) name
@@ -28,6 +28,6 @@
 
 - (void) setRepeated:(PBGeneratedMessage_Builder*) builder index:(int32_t) index value:(id) value;
 - (void) addRepeated:(PBGeneratedMessage_Builder*) builder value:(id) value;
-- (id<PBMessage_Builder>) newBuilder;
+- (id<PBMessage_Builder>) createBuilder;
 
 @end
