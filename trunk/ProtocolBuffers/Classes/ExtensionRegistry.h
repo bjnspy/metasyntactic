@@ -18,9 +18,6 @@
     NSMutableDictionary* extensionsByNumber;
 }
 
-@property (readonly, retain) NSMutableDictionary* extensionsByName;
-@property (readonly, retain) NSMutableDictionary* extensionsByNumber;
-
 + (PBExtensionRegistry*) emptyRegistry;
 + (PBExtensionRegistry*) registry;
 + (PBExtensionRegistry*) registryWithExtensionsByName:(NSMutableDictionary*) extensionsByName
