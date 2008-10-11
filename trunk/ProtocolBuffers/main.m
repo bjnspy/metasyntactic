@@ -28,10 +28,10 @@ int main(int argc, char *argv[]) {
     
     [SenTestObserver class];
     
-    //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CodedInputStreamTests class]] run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CodedInputStreamTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CoreTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[DescriptorTests class]] run];
-    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[GeneratedMessageTests class]] run];
+    //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[GeneratedMessageTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[MessageTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[UnknownFieldSetTest class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[UtilitiesTests class]] run];

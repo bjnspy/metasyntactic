@@ -109,6 +109,9 @@
 		74B5517C0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */; };
 		74B5520C0E9B149B008C7C2C /* ExtensionRegistry_DescriptorIntPair.h in Copy Headers */ = {isa = PBXBuildFile; fileRef = 74B551770E9B103C008C7C2C /* ExtensionRegistry_DescriptorIntPair.h */; };
 		74B553080E9B2227008C7C2C /* TextFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B553070E9B2227008C7C2C /* TextFormat.m */; };
+		74C8FC990EA0AA9E000AE9FA /* SmallBlockInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C8FC980EA0AA9E000AE9FA /* SmallBlockInputStream.m */; };
+		74C8FC9A0EA0AA9E000AE9FA /* SmallBlockInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C8FC980EA0AA9E000AE9FA /* SmallBlockInputStream.m */; };
+		74C8FD2B0EA0B897000AE9FA /* CodedInputStreamTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 745E993C0E9425AE007FD139 /* CodedInputStreamTests.m */; };
 		74E17BF20E95655500F8D0D3 /* ExtendableBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */; };
 		74E17DB30E95EFDA00F8D0D3 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DB20E95EFDA00F8D0D3 /* MethodDescriptor.m */; };
 		74E17DD60E95F0D900F8D0D3 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E17DD50E95F0D900F8D0D3 /* ServiceDescriptor.m */; };
@@ -307,6 +310,8 @@
 		74B5517B0E9B1074008C7C2C /* DescriptorPool_DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorPool_DescriptorIntPair.m; sourceTree = "<group>"; };
 		74B553060E9B2227008C7C2C /* TextFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFormat.h; sourceTree = "<group>"; };
 		74B553070E9B2227008C7C2C /* TextFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFormat.m; sourceTree = "<group>"; };
+		74C8FC970EA0AA9E000AE9FA /* SmallBlockInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallBlockInputStream.h; sourceTree = "<group>"; };
+		74C8FC980EA0AA9E000AE9FA /* SmallBlockInputStream.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallBlockInputStream.m; sourceTree = "<group>"; };
 		74E17B390E9561D700F8D0D3 /* ProtocolBuffers_Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProtocolBuffers_Prefix.pch; sourceTree = "<group>"; };
 		74E17BF00E95655500F8D0D3 /* ExtendableBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtendableBuilder.h; sourceTree = "<group>"; };
 		74E17BF10E95655500F8D0D3 /* ExtendableBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtendableBuilder.m; sourceTree = "<group>"; };
@@ -618,6 +623,8 @@
 				8DEB01710E9C657C00911656 /* UnknownFieldSetTest.m */,
 				747C0AE20E9CBA61004B9278 /* WireFormatTests.h */,
 				747C0AE30E9CBA61004B9278 /* WireFormatTests.m */,
+				74C8FC970EA0AA9E000AE9FA /* SmallBlockInputStream.h */,
+				74C8FC980EA0AA9E000AE9FA /* SmallBlockInputStream.m */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -753,6 +760,7 @@
 				74B3204C0E9F884E00AAC227 /* MessageTests.m in Sources */,
 				74B320DF0E9F8E6600AAC227 /* DescriptorTests.m in Sources */,
 				74B322680E9FAEF000AAC227 /* GeneratedMessageTests.m in Sources */,
+				74C8FC9A0EA0AA9E000AE9FA /* SmallBlockInputStream.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -811,9 +819,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				74C8FD2B0EA0B897000AE9FA /* CodedInputStreamTests.m in Sources */,
 				8DEB01410E9C620600911656 /* MicroTest.m in Sources */,
 				8DEB01720E9C657C00911656 /* UnknownFieldSetTest.m in Sources */,
 				8DEB017C0E9C663F00911656 /* TestUtilities.m in Sources */,
+				74C8FC990EA0AA9E000AE9FA /* SmallBlockInputStream.m in Sources */,
 				8DEB01940E9C66B900911656 /* Unittest.pb.m in Sources */,
 				8DEB01F70E9C673F00911656 /* UnittestImport.pb.m in Sources */,
 				747C0AE50E9CBA61004B9278 /* WireFormatTests.m in Sources */,

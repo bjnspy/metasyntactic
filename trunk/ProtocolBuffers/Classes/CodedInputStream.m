@@ -36,6 +36,7 @@ const int32_t BUFFER_SIZE = 4096;
 @synthesize input;
 
 - (void) dealloc {
+    [input close];
     self.buffer = nil;
     self.input = nil;
 
@@ -66,7 +67,8 @@ const int32_t BUFFER_SIZE = 4096;
     if (self = [super init]) {
         self.buffer = [NSMutableData dataWithLength:BUFFER_SIZE];
         bufferSize = 0;
-        self.input = input;
+        self.input = input_;
+        [input open];
         [self commonInit];
     }
 
@@ -612,8 +614,12 @@ int64_t decodeZigZag64(int64_t n) {
     // TODO(cyrusn): does NSInputStream behave the same as java.io.InputStream
     // when there is no more data?
     bufferPos = 0;
-    bufferSize = (input == nil) ? -1 : [input read:buffer.mutableBytes maxLength:buffer.length];
-    if (bufferSize == -1) {
+    bufferSize = 0;
+    if (input != nil) {
+        bufferSize = [input read:buffer.mutableBytes maxLength:buffer.length];
+    }
+    
+    if (bufferSize <= 0) {
         bufferSize = 0;
         if (mustSucceed) {
             @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
@@ -639,7 +645,7 @@ int64_t decodeZigZag64(int64_t n) {
  */
 - (int8_t) readRawByte {
     if (bufferPos == bufferSize) {
-        [self refillBuffer:true];
+        [self refillBuffer:YES];
     }
     int8_t* bytes = (int8_t*)buffer.bytes;
     return bytes[bufferPos++];
