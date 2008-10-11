@@ -9,6 +9,7 @@
 #import "CodedOuputStreamTests.h"
 
 #import "Unittest.pb.h"
+#import "TestUtilities.h"
 
 @implementation CodedOutputStreamTests
 
@@ -237,29 +238,25 @@
     STAssertTrue(-75123905439571256LL == encodeZigZag64(decodeZigZag64(-75123905439571256LL)), @"");
 }
 
-#if 0
-
-
-
-
 
 /** Tests writing a whole message with every field type. */
-public void testWriteWholeMessage() throws Exception {
-    TestAllTypes message = TestUtil.getAllSet();
+- (void) testWriteWholeMessage {
+    TestAllTypes* message = [TestUtilities allSet];
     
-    byte[] rawBytes = message.toByteArray();
-    assertEqualBytes(TestUtil.getGoldenMessage().toByteArray(), rawBytes);
-    
+    NSData* rawBytes = message.toData;
+    NSData* goldenData = [TestUtilities goldenData];
+    STAssertEqualObjects(rawBytes, goldenData, @"");
+
     // Try different block sizes.
     for (int blockSize = 1; blockSize < 256; blockSize *= 2) {
-        ByteArrayOutputStream rawOutput = new ByteArrayOutputStream();
-        CodedOutputStream output =
-        CodedOutputStream.newInstance(rawOutput, blockSize);
-        message.writeTo(output);
-        output.flush();
-        assertEqualBytes(rawBytes, rawOutput.toByteArray());
+        NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
+        PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput bufferSize:blockSize];
+        [message writeToCodedOutputStream:output];
+        [output flush];
+        
+        NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+        STAssertEqualObjects(rawBytes, actual, @"");
     }
 }
-#endif
 
 @end
