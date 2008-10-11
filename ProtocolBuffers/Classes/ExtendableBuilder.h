@@ -18,12 +18,17 @@
 
 }
 
-- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
-- (PBGeneratedMessage_Builder*) addExtension:(PBGeneratedExtension*) extension value:(id) value;
+- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
+- (PBExtendableBuilder*) addExtension:(PBGeneratedExtension*) extension value:(id) value;
 
-- (id)  getExtension:(PBGeneratedExtension*) extension index:(int32_t) index;
-- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
-- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension index:(int32_t) index value:(id) value;
+- (id) getExtension:(PBGeneratedExtension*) extension;
+- (id) getExtension:(PBGeneratedExtension*) extension index:(int32_t) index;
+
+- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
+- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension index:(int32_t) index value:(id) value;
+
+- (BOOL) hasExtension:(PBGeneratedExtension*) extension;
+- (PBExtendableBuilder*) clearExtension:(PBGeneratedExtension*) extension;
 
 //@protected
 - (PBExtendableMessage*) internalGetResult;

@@ -37,8 +37,6 @@
 - (id<PBMessage_Builder>) mergeUnknownFields:(PBUnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
 
-- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
-
 - (BOOL) parseUnknownField:(PBCodedInputStream*) input
              unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
          extensionRegistry:(PBExtensionRegistry*) extensionRegistry
