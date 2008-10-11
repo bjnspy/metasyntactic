@@ -309,8 +309,6 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     //   them to insure that they don't change after verification (since
     //   the PBMessage interface itself cannot enforce immutability of
     //   implementations).
-    // TODO(kenton):  Provide a function somewhere called makeDeepCopy()
-    //   which allows people to make secure deep copies of messages.
 
     NSDictionary* otherAllFields = [other allFields];
     for (PBFieldDescriptor* field in otherAllFields) {
