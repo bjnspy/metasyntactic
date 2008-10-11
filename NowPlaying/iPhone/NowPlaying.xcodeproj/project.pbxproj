@@ -103,6 +103,7 @@
 		74AD66350E92D49500A01FD5 /* DVDCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74AD66340E92D49500A01FD5 /* DVDCache.m */; };
 		74B3BCA80E2D98C700DCE835 /* ReviewsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */; };
 		74BDE3B50E7A0DAB00DE90F1 /* FileUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */; };
+		74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */; };
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
@@ -409,6 +410,8 @@
 		74B3BCA70E2D98C700DCE835 /* ReviewsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ReviewsViewController.m; sourceTree = "<group>"; };
 		74BDE3B30E7A0DAA00DE90F1 /* FileUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileUtilities.h; sourceTree = "<group>"; };
 		74BDE3B40E7A0DAA00DE90F1 /* FileUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileUtilities.m; sourceTree = "<group>"; };
+		74C571F40EA11E2F009A9432 /* AbstractFieldAccessor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractFieldAccessor.h; sourceTree = "<group>"; };
+		74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractFieldAccessor.m; sourceTree = "<group>"; };
 		74CA1E2A0DD01F430046D1CE /* TextFieldEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFieldEditorViewController.h; sourceTree = "<group>"; };
 		74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFieldEditorViewController.m; sourceTree = "<group>"; };
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
@@ -1065,6 +1068,8 @@
 		74E179F60E949D0900F8D0D3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				74C571F40EA11E2F009A9432 /* AbstractFieldAccessor.h */,
+				74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */,
 				74365DAA0E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.h */,
 				74365DAB0E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.m */,
 				74365DAC0E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.h */,
@@ -1467,6 +1472,7 @@
 				74365DB40E9B5EE800448025 /* PBPackageDescriptor.m in Sources */,
 				74365DB50E9B5EE800448025 /* TextFormat.m in Sources */,
 				74A41ACF0E9E172B007CF82C /* Pulser.m in Sources */,
+				74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
