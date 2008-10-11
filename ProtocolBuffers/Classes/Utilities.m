@@ -15,6 +15,16 @@
 #import "Utilities.h"
 
 
+@implementation PBUtilities
+
++ (SEL) getSelector:(NSString*) name {
+    return sel_getUid(name.UTF8String);
+}
+
+@end
+
+
+
 int64_t convertFloat64ToInt64(Float64 v) {
     union { Float64 f; int64_t i; } u;
     u.f = v;
