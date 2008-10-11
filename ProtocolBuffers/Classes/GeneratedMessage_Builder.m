@@ -91,7 +91,7 @@
 
 
 - (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field {
-    return [[self.fieldAccessorTable getField:field] newBuilder];
+    return [[self.fieldAccessorTable getField:field] createBuilder];
 }
 
 

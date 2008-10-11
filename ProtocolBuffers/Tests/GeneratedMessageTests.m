@@ -160,21 +160,21 @@
 
 
                                                                                                         public void testExtensionReflectionGetters() throws Exception {
-                TestAllExtensions.Builder builder = TestAllExtensions.newBuilder();
+                TestAllExtensions.Builder builder = TestAllExtensions.createBuilder();
                 [TestUtilities setAllExtensions(builder);
                 TestAllExtensions message = builder.build();
                 extensionsReflectionTester.assertAllFieldsSetViaReflection(message);
                 }
 
                 public void testExtensionReflectionSetters() throws Exception {
-                    TestAllExtensions.Builder builder = TestAllExtensions.newBuilder();
+                    TestAllExtensions.Builder builder = TestAllExtensions.createBuilder();
                     extensionsReflectionTester.setAllFieldsViaReflection(builder);
                     TestAllExtensions message = builder.build();
                     [TestUtilities assertAllExtensionsSet(message);
                     }
 
                     public void testExtensionReflectionRepeatedSetters() throws Exception {
-                        TestAllExtensions.Builder builder = TestAllExtensions.newBuilder();
+                        TestAllExtensions.Builder builder = TestAllExtensions.createBuilder();
                         extensionsReflectionTester.setAllFieldsViaReflection(builder);
                         extensionsReflectionTester.modifyRepeatedFieldsViaReflection(builder);
                         TestAllExtensions message = builder.build();
@@ -185,7 +185,7 @@
                             extensionsReflectionTester.assertClearViaReflection(
                                                                                 TestAllExtensions.getDefaultInstance());
                             extensionsReflectionTester.assertClearViaReflection(
-                                                                                TestAllExtensions.newBuilder().build());
+                                                                                TestAllExtensions.createBuilder().build());
                         }
 
 
@@ -196,8 +196,8 @@
                         public void testMultipleFilesOption() throws Exception {
                             // We mostly just want to check that things compile.
                             MessageWithNoOuter message =
-                            MessageWithNoOuter.newBuilder()
-                            .setNested(MessageWithNoOuter.NestedMessage.newBuilder().setI(1))
+                            MessageWithNoOuter.createBuilder()
+                            .setNested(MessageWithNoOuter.NestedMessage.createBuilder().setI(1))
                             .addForeign([TestAllTypes builder].setOptionalInt32(1))
                             .setNestedEnum(MessageWithNoOuter.NestedEnum.BAZ)
                             .setForeignEnum(EnumWithNoOuter.BAR)

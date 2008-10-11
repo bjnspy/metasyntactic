@@ -16,10 +16,10 @@
 
 @interface PBSingularMessageFieldAccessor : PBSingularFieldAccessor {
 @private
-    SEL newBuilderMethod;
+    SEL createBuilderMethod;
 }
 
-@property (readonly) SEL newBuilderMethod;
+@property (readonly) SEL createBuilderMethod;
 
 
 + (PBSingularMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
@@ -33,6 +33,6 @@
 - (void) addRepeated:(PBGeneratedMessage_Builder*) builder value:(id) value;
 - (int32_t) getRepeatedCount:(PBGeneratedMessage*) message;
 - (void) clear:(PBGeneratedMessage_Builder*) builder;
-- (id<PBMessage_Builder>) newBuilder;
+- (id<PBMessage_Builder>) createBuilder;
 
 @end

@@ -302,9 +302,9 @@
 
 private TestRecursiveMessage makeRecursiveMessage(int depth) {
     if (depth == 0) {
-        return TestRecursiveMessage.newBuilder().setI(5).build();
+        return TestRecursiveMessage.createBuilder().setI(5).build();
     } else {
-        return TestRecursiveMessage.newBuilder()
+        return TestRecursiveMessage.createBuilder()
         .setA(makeRecursiveMessage(depth - 1)).build();
     }
 }

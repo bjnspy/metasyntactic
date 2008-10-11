@@ -110,7 +110,7 @@
 }
 
 
-- (id<PBMessage_Builder>) newBuilder {
+- (id<PBMessage_Builder>) createBuilder {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 

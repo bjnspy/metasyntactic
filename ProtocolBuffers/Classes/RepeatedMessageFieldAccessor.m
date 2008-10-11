@@ -15,16 +15,16 @@
 #import "RepeatedMessageFieldAccessor.h"
 
 @interface PBRepeatedMessageFieldAccessor()
-    @property SEL newBuilderMethod;
+    @property SEL createBuilderMethod;
 @end
 
 
 @implementation PBRepeatedMessageFieldAccessor
 
-@synthesize newBuilderMethod;
+@synthesize createBuilderMethod;
 
 - (void) dealloc {
-    self.newBuilderMethod = 0;
+    self.createBuilderMethod = 0;
 
     [super dealloc];
 }
@@ -35,7 +35,7 @@
         messageClass:(Class) messageClass
         builderClass:(Class) builderClass {
     if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
-        self.newBuilderMethod = @selector(newBuilder);
+        self.createBuilderMethod = @selector(createBuilder);
     }
 
     return self;
@@ -63,7 +63,7 @@
 }
 
 
-- (id<PBMessage_Builder>) newBuilder {
+- (id<PBMessage_Builder>) createBuilder {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
