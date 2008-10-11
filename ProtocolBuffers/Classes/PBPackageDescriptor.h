@@ -13,14 +13,15 @@
 // limitations under the License.
 
 @interface PBPackageDescriptor : NSObject {
+@private
     NSString* name;
     NSString* fullName;
     PBFileDescriptor* file;
 }
 
-@property (copy) NSString* name;
-@property (copy) NSString* fullName;
-@property (retain) PBFileDescriptor* file;
+@property (readonly, copy) NSString* name;
+@property (readonly, copy) NSString* fullName;
+@property (readonly, retain) PBFileDescriptor* file;
 
 + (PBPackageDescriptor*) descriptorWithFullName:(NSString*) fullName
                                            name:(NSString*) name

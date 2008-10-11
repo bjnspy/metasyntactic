@@ -14,6 +14,13 @@
 
 #import "PBPackageDescriptor.h"
 
+@interface PBPackageDescriptor()
+    @property (copy) NSString* name;
+    @property (copy) NSString* fullName;
+    @property (retain) PBFileDescriptor* file;
+@end
+
+
 @implementation PBPackageDescriptor
 
 @synthesize name;
