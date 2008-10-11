@@ -24,9 +24,8 @@
 - (void) verifyExtensionContainingType:(PBGeneratedExtension*) extension;
 
 - (BOOL) hasExtension:(PBGeneratedExtension*) extension;
-- (int32_t) getExtensionCount:(PBGeneratedExtension*) extension;
 - (id) getExtension:(PBGeneratedExtension*) extension;
-- (id) getExtension:(PBGeneratedExtension*) extension index:(int32_t) index;
+- (NSArray*) getRepeatedExtension:(PBGeneratedExtension*) extension;
 
 //@protected
 - (BOOL) extensionsAreInitialized;

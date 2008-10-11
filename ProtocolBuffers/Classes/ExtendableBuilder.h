@@ -21,7 +21,7 @@
 - (PBExtendableBuilder*) addExtension:(PBGeneratedExtension*) extension value:(id) value;
 
 - (id) getExtension:(PBGeneratedExtension*) extension;
-- (id) getExtension:(PBGeneratedExtension*) extension index:(int32_t) index;
+- (NSArray*) getRepeatedExtension:(PBGeneratedExtension*) extension;
 
 - (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension value:(id) value;
 - (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension index:(int32_t) index value:(id) value;
