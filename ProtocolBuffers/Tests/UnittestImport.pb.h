@@ -51,7 +51,6 @@
 - (PBDescriptor*) descriptor;
 + (ImportMessage*) defaultInstance;
 - (ImportMessage*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;

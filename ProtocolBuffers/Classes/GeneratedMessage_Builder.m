@@ -44,14 +44,14 @@
  * class pass this in to the constructor because of bootstrapping trouble
  * with DescriptorProtos.
  */
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-    return self.internalGetResult.internalGetFieldAccessorTable;
+- (PBFieldAccessorTable*) fieldAccessorTable {
+    return [(id)self.internalGetResult fieldAccessorTable];
 }
 
 
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
     if ([other descriptor] !=
-        self.internalGetFieldAccessorTable.descriptor) {
+        self.fieldAccessorTable.descriptor) {
         @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"" userInfo:nil];
     }
 
@@ -81,7 +81,7 @@
 
 
 - (PBDescriptor*) descriptor {
-    return self.internalGetFieldAccessorTable.descriptor;
+    return self.fieldAccessorTable.descriptor;
 }
 
 
@@ -91,7 +91,7 @@
 
 
 - (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field {
-    return [[self.internalGetFieldAccessorTable getField:field] newBuilder];
+    return [[self.fieldAccessorTable getField:field] newBuilder];
 }
 
 
@@ -106,13 +106,13 @@
 
 
 - (id<PBMessage_Builder>) setField:(PBFieldDescriptor*) field value:(id) value {
-    [[self.internalGetFieldAccessorTable getField:field] set:self value:value];
+    [[self.fieldAccessorTable getField:field] set:self value:value];
     return self;
 }
 
 
 - (id<PBMessage_Builder>) clearField:(PBFieldDescriptor*) field {
-    [[self.internalGetFieldAccessorTable getField:field] clear:self];
+    [[self.fieldAccessorTable getField:field] clear:self];
     return self;
 }
 
@@ -128,13 +128,13 @@
 
 
 - (id<PBMessage_Builder>) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value {
-    [[self.internalGetFieldAccessorTable getField:field] setRepeated:self index:index value:value];
+    [[self.fieldAccessorTable getField:field] setRepeated:self index:index value:value];
     return self;
 }
 
 
 - (id<PBMessage_Builder>) addRepeatedField:(PBFieldDescriptor*) field value:(id) value {
-    [[self.internalGetFieldAccessorTable getField:field] addRepeated:self value:value];
+    [[self.fieldAccessorTable getField:field] addRepeated:self value:value];
     return self;
 }
 

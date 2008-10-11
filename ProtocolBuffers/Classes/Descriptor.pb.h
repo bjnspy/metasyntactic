@@ -60,7 +60,6 @@
 - (PBDescriptor*) descriptor;
 + (PBFileDescriptorSet*) defaultInstance;
 - (PBFileDescriptorSet*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -119,11 +118,11 @@
   NSMutableArray* mutableExtensionList;
 }
 - (BOOL) hasName;
-@property (readonly, copy) NSString* name;
+@property (retain, readonly) NSString* name;
 - (BOOL) hasPackage;
-@property (readonly, copy) NSString* package;
+@property (retain, readonly) NSString* package;
 - (BOOL) hasOptions;
-@property (readonly, retain) PBFileOptions* options;
+@property (retain, readonly) PBFileOptions* options;
 - (NSArray*) dependencyList;
 - (NSString*) dependencyAtIndex:(int32_t) index;
 - (NSArray*) messageTypeList;
@@ -139,7 +138,6 @@
 - (PBDescriptor*) descriptor;
 + (PBFileDescriptorProto*) defaultInstance;
 - (PBFileDescriptorProto*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -241,9 +239,9 @@
   NSMutableArray* mutableExtensionRangeList;
 }
 - (BOOL) hasName;
-@property (readonly, copy) NSString* name;
+@property (retain, readonly) NSString* name;
 - (BOOL) hasOptions;
-@property (readonly, retain) PBMessageOptions* options;
+@property (retain, readonly) PBMessageOptions* options;
 - (NSArray*) fieldList;
 - (PBFieldDescriptorProto*) fieldAtIndex:(int32_t) index;
 - (NSArray*) extensionList;
@@ -259,7 +257,6 @@
 - (PBDescriptor*) descriptor;
 + (PBDescriptorProto*) defaultInstance;
 - (PBDescriptorProto*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -291,7 +288,6 @@
 - (PBDescriptor*) descriptor;
 + (PBDescriptorProto_ExtensionRange*) defaultInstance;
 - (PBDescriptorProto_ExtensionRange*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -426,27 +422,26 @@
   PBFieldDescriptorProto_Type* type;
 }
 - (BOOL) hasName;
-@property (readonly, copy) NSString* name;
+@property (retain, readonly) NSString* name;
 - (BOOL) hasNumber;
 @property (readonly) int32_t number;
 - (BOOL) hasLabel;
-@property (readonly, retain) PBFieldDescriptorProto_Label* label;
+@property (retain, readonly) PBFieldDescriptorProto_Label* label;
 - (BOOL) hasType;
-@property (readonly, retain) PBFieldDescriptorProto_Type* type;
+@property (retain, readonly) PBFieldDescriptorProto_Type* type;
 - (BOOL) hasTypeName;
-@property (readonly, copy) NSString* typeName;
+@property (retain, readonly) NSString* typeName;
 - (BOOL) hasExtendee;
-@property (readonly, copy) NSString* extendee;
+@property (retain, readonly) NSString* extendee;
 - (BOOL) hasDefaultValue;
-@property (readonly, copy) NSString* defaultValue;
+@property (retain, readonly) NSString* defaultValue;
 - (BOOL) hasOptions;
-@property (readonly, retain) PBFieldOptions* options;
+@property (retain, readonly) PBFieldOptions* options;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (PBFieldDescriptorProto*) defaultInstance;
 - (PBFieldDescriptorProto*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -591,9 +586,9 @@
   NSMutableArray* mutableValueList;
 }
 - (BOOL) hasName;
-@property (readonly, copy) NSString* name;
+@property (retain, readonly) NSString* name;
 - (BOOL) hasOptions;
-@property (readonly, retain) PBEnumOptions* options;
+@property (retain, readonly) PBEnumOptions* options;
 - (NSArray*) valueList;
 - (PBEnumValueDescriptorProto*) valueAtIndex:(int32_t) index;
 
@@ -601,7 +596,6 @@
 - (PBDescriptor*) descriptor;
 + (PBEnumDescriptorProto*) defaultInstance;
 - (PBEnumDescriptorProto*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -667,17 +661,16 @@
   PBEnumValueOptions* options;
 }
 - (BOOL) hasName;
-@property (readonly, copy) NSString* name;
+@property (retain, readonly) NSString* name;
 - (BOOL) hasNumber;
 @property (readonly) int32_t number;
 - (BOOL) hasOptions;
-@property (readonly, retain) PBEnumValueOptions* options;
+@property (retain, readonly) PBEnumValueOptions* options;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (PBEnumValueDescriptorProto*) defaultInstance;
 - (PBEnumValueDescriptorProto*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -740,9 +733,9 @@
   NSMutableArray* mutableMethodList;
 }
 - (BOOL) hasName;
-@property (readonly, copy) NSString* name;
+@property (retain, readonly) NSString* name;
 - (BOOL) hasOptions;
-@property (readonly, retain) PBServiceOptions* options;
+@property (retain, readonly) PBServiceOptions* options;
 - (NSArray*) methodList;
 - (PBMethodDescriptorProto*) methodAtIndex:(int32_t) index;
 
@@ -750,7 +743,6 @@
 - (PBDescriptor*) descriptor;
 + (PBServiceDescriptorProto*) defaultInstance;
 - (PBServiceDescriptorProto*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -818,19 +810,18 @@
   PBMethodOptions* options;
 }
 - (BOOL) hasName;
-@property (readonly, copy) NSString* name;
+@property (retain, readonly) NSString* name;
 - (BOOL) hasInputType;
-@property (readonly, copy) NSString* inputType;
+@property (retain, readonly) NSString* inputType;
 - (BOOL) hasOutputType;
-@property (readonly, copy) NSString* outputType;
+@property (retain, readonly) NSString* outputType;
 - (BOOL) hasOptions;
-@property (readonly, retain) PBMethodOptions* options;
+@property (retain, readonly) PBMethodOptions* options;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (PBMethodDescriptorProto*) defaultInstance;
 - (PBMethodDescriptorProto*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -905,23 +896,22 @@
   PBFileOptions_OptimizeMode* optimizeFor;
 }
 - (BOOL) hasJavaPackage;
-@property (readonly, copy) NSString* javaPackage;
+@property (retain, readonly) NSString* javaPackage;
 - (BOOL) hasJavaOuterClassname;
-@property (readonly, copy) NSString* javaOuterClassname;
+@property (retain, readonly) NSString* javaOuterClassname;
 - (BOOL) hasJavaMultipleFiles;
 - (BOOL) javaMultipleFiles;
 - (BOOL) hasOptimizeFor;
-@property (readonly, retain) PBFileOptions_OptimizeMode* optimizeFor;
+@property (retain, readonly) PBFileOptions_OptimizeMode* optimizeFor;
 - (BOOL) hasObjectivecPackage;
-@property (readonly, copy) NSString* objectivecPackage;
+@property (retain, readonly) NSString* objectivecPackage;
 - (BOOL) hasObjectivecClassPrefix;
-@property (readonly, copy) NSString* objectivecClassPrefix;
+@property (retain, readonly) NSString* objectivecClassPrefix;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (PBFileOptions*) defaultInstance;
 - (PBFileOptions*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1020,7 +1010,6 @@
 - (PBDescriptor*) descriptor;
 + (PBMessageOptions*) defaultInstance;
 - (PBMessageOptions*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1070,15 +1059,14 @@
   PBFieldOptions_CType* ctype;
 }
 - (BOOL) hasCtype;
-@property (readonly, retain) PBFieldOptions_CType* ctype;
+@property (retain, readonly) PBFieldOptions_CType* ctype;
 - (BOOL) hasExperimentalMapKey;
-@property (readonly, copy) NSString* experimentalMapKey;
+@property (retain, readonly) NSString* experimentalMapKey;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (PBFieldOptions*) defaultInstance;
 - (PBFieldOptions*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1153,7 +1141,6 @@
 - (PBDescriptor*) descriptor;
 + (PBEnumOptions*) defaultInstance;
 - (PBEnumOptions*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1198,7 +1185,6 @@
 - (PBDescriptor*) descriptor;
 + (PBEnumValueOptions*) defaultInstance;
 - (PBEnumValueOptions*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1243,7 +1229,6 @@
 - (PBDescriptor*) descriptor;
 + (PBServiceOptions*) defaultInstance;
 - (PBServiceOptions*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1288,7 +1273,6 @@
 - (PBDescriptor*) descriptor;
 + (PBMethodOptions*) defaultInstance;
 - (PBMethodOptions*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;

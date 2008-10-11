@@ -15,11 +15,11 @@
 #import "AbstractMessage_Builder.h"
 
 @interface PBGeneratedMessage_Builder : PBAbstractMessage_Builder {
-
 }
 
 
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
+- (PBFieldAccessorTable*) fieldAccessorTable;
+
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other;
 - (PBDescriptor*) descriptor;
 - (NSDictionary*) allFields;

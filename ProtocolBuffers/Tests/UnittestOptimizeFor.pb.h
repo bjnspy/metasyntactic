@@ -95,13 +95,12 @@
 - (BOOL) hasI;
 @property (readonly) int32_t i;
 - (BOOL) hasMsg;
-@property (readonly, retain) ForeignMessage* msg;
+@property (retain, readonly) ForeignMessage* msg;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (TestOptimizedForSize*) defaultInstance;
 - (TestOptimizedForSize*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 + (PBGeneratedExtension*) testExtension;
 - (BOOL) isInitialized;

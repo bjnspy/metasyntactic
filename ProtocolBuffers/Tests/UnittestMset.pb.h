@@ -35,7 +35,6 @@
 - (PBDescriptor*) descriptor;
 + (TestMessageSet*) defaultInstance;
 - (TestMessageSet*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -78,13 +77,12 @@
   TestMessageSet* messageSet;
 }
 - (BOOL) hasMessageSet;
-@property (readonly, retain) TestMessageSet* messageSet;
+@property (retain, readonly) TestMessageSet* messageSet;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (TestMessageSetContainer*) defaultInstance;
 - (TestMessageSetContainer*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -140,7 +138,6 @@
 - (PBDescriptor*) descriptor;
 + (TestMessageSetExtension1*) defaultInstance;
 - (TestMessageSetExtension1*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 + (PBGeneratedExtension*) messageSetExtension;
 - (BOOL) isInitialized;
@@ -189,13 +186,12 @@
   NSString* str;
 }
 - (BOOL) hasStr;
-@property (readonly, copy) NSString* str;
+@property (retain, readonly) NSString* str;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (TestMessageSetExtension2*) defaultInstance;
 - (TestMessageSetExtension2*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 + (PBGeneratedExtension*) messageSetExtension;
 - (BOOL) isInitialized;
@@ -249,7 +245,6 @@
 - (PBDescriptor*) descriptor;
 + (RawMessageSet*) defaultInstance;
 - (RawMessageSet*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -275,13 +270,12 @@
 - (BOOL) hasTypeId;
 @property (readonly) int32_t typeId;
 - (BOOL) hasMessage;
-@property (readonly, retain) NSData* message;
+@property (retain, readonly) NSData* message;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (RawMessageSet_Item*) defaultInstance;
 - (RawMessageSet_Item*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
