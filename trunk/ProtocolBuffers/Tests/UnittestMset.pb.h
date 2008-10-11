@@ -189,7 +189,7 @@
   NSString* str;
 }
 - (BOOL) hasStr;
-@property (readonly, retain) NSString* str;
+@property (readonly, copy) NSString* str;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;

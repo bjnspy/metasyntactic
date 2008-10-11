@@ -638,8 +638,8 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 @end
 
 @interface PBFileDescriptorProto ()
-@property (retain) NSString* name;
-@property (retain) NSString* package;
+@property (copy) NSString* name;
+@property (copy) NSString* package;
 @property (retain) NSMutableArray* mutableDependencyList;
 @property (retain) NSMutableArray* mutableMessageTypeList;
 @property (retain) NSMutableArray* mutableEnumTypeList;
@@ -1215,7 +1215,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 @end
 
 @interface PBDescriptorProto ()
-@property (retain) NSString* name;
+@property (copy) NSString* name;
 @property (retain) NSMutableArray* mutableFieldList;
 @property (retain) NSMutableArray* mutableExtensionList;
 @property (retain) NSMutableArray* mutableNestedTypeList;
@@ -1985,13 +1985,13 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 @end
 
 @interface PBFieldDescriptorProto ()
-@property (retain) NSString* name;
+@property (copy) NSString* name;
 @property int32_t number;
 @property (retain) PBFieldDescriptorProto_Label* label;
 @property (retain) PBFieldDescriptorProto_Type* type;
-@property (retain) NSString* typeName;
-@property (retain) NSString* extendee;
-@property (retain) NSString* defaultValue;
+@property (copy) NSString* typeName;
+@property (copy) NSString* extendee;
+@property (copy) NSString* defaultValue;
 @property (retain) PBFieldOptions* options;
 @end
 
@@ -2724,7 +2724,7 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 @end
 
 @interface PBEnumDescriptorProto ()
-@property (retain) NSString* name;
+@property (copy) NSString* name;
 @property (retain) NSMutableArray* mutableValueList;
 @property (retain) PBEnumOptions* options;
 @end
@@ -3034,7 +3034,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 @end
 
 @interface PBEnumValueDescriptorProto ()
-@property (retain) NSString* name;
+@property (copy) NSString* name;
 @property int32_t number;
 @property (retain) PBEnumValueOptions* options;
 @end
@@ -3325,7 +3325,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 @end
 
 @interface PBServiceDescriptorProto ()
-@property (retain) NSString* name;
+@property (copy) NSString* name;
 @property (retain) NSMutableArray* mutableMethodList;
 @property (retain) PBServiceOptions* options;
 @end
@@ -3635,9 +3635,9 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 @end
 
 @interface PBMethodDescriptorProto ()
-@property (retain) NSString* name;
-@property (retain) NSString* inputType;
-@property (retain) NSString* outputType;
+@property (copy) NSString* name;
+@property (copy) NSString* inputType;
+@property (copy) NSString* outputType;
 @property (retain) PBMethodOptions* options;
 @end
 
@@ -3966,12 +3966,12 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 @end
 
 @interface PBFileOptions ()
-@property (retain) NSString* javaPackage;
-@property (retain) NSString* javaOuterClassname;
+@property (copy) NSString* javaPackage;
+@property (copy) NSString* javaOuterClassname;
 @property BOOL javaMultipleFiles;
 @property (retain) PBFileOptions_OptimizeMode* optimizeFor;
-@property (retain) NSString* objectivecPackage;
-@property (retain) NSString* objectivecClassPrefix;
+@property (copy) NSString* objectivecPackage;
+@property (copy) NSString* objectivecClassPrefix;
 @end
 
 @implementation PBFileOptions
@@ -4627,7 +4627,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 
 @interface PBFieldOptions ()
 @property (retain) PBFieldOptions_CType* ctype;
-@property (retain) NSString* experimentalMapKey;
+@property (copy) NSString* experimentalMapKey;
 @end
 
 @implementation PBFieldOptions

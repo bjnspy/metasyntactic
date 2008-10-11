@@ -403,7 +403,7 @@
 - (BOOL) hasOptionalBool;
 - (BOOL) optionalBool;
 - (BOOL) hasOptionalString;
-@property (readonly, retain) NSString* optionalString;
+@property (readonly, copy) NSString* optionalString;
 - (BOOL) hasOptionalBytes;
 @property (readonly, retain) NSData* optionalBytes;
 - (BOOL) hasOptionalGroup;
@@ -421,9 +421,9 @@
 - (BOOL) hasOptionalImportEnum;
 @property (readonly, retain) ImportEnum* optionalImportEnum;
 - (BOOL) hasOptionalStringPiece;
-@property (readonly, retain) NSString* optionalStringPiece;
+@property (readonly, copy) NSString* optionalStringPiece;
 - (BOOL) hasOptionalCord;
-@property (readonly, retain) NSString* optionalCord;
+@property (readonly, copy) NSString* optionalCord;
 - (BOOL) hasDefaultInt32;
 @property (readonly) int32_t defaultInt32;
 - (BOOL) hasDefaultInt64;
@@ -451,7 +451,7 @@
 - (BOOL) hasDefaultBool;
 - (BOOL) defaultBool;
 - (BOOL) hasDefaultString;
-@property (readonly, retain) NSString* defaultString;
+@property (readonly, copy) NSString* defaultString;
 - (BOOL) hasDefaultBytes;
 @property (readonly, retain) NSData* defaultBytes;
 - (BOOL) hasDefaultNestedEnum;
@@ -461,9 +461,9 @@
 - (BOOL) hasDefaultImportEnum;
 @property (readonly, retain) ImportEnum* defaultImportEnum;
 - (BOOL) hasDefaultStringPiece;
-@property (readonly, retain) NSString* defaultStringPiece;
+@property (readonly, copy) NSString* defaultStringPiece;
 - (BOOL) hasDefaultCord;
-@property (readonly, retain) NSString* defaultCord;
+@property (readonly, copy) NSString* defaultCord;
 - (NSArray*) repeatedInt32List;
 - (int32_t) repeatedInt32AtIndex:(int32_t) index;
 - (NSArray*) repeatedInt64List;
@@ -2483,15 +2483,15 @@
 - (BOOL) hasPrimitiveField;
 @property (readonly) int32_t primitiveField;
 - (BOOL) hasStringField;
-@property (readonly, retain) NSString* stringField;
+@property (readonly, copy) NSString* stringField;
 - (BOOL) hasEnumField;
 @property (readonly, retain) ForeignEnum* enumField;
 - (BOOL) hasMessageField;
 @property (readonly, retain) ForeignMessage* messageField;
 - (BOOL) hasStringPieceField;
-@property (readonly, retain) NSString* stringPieceField;
+@property (readonly, copy) NSString* stringPieceField;
 - (BOOL) hasCordField;
-@property (readonly, retain) NSString* cordField;
+@property (readonly, copy) NSString* cordField;
 - (NSArray*) repeatedPrimitiveFieldList;
 - (int32_t) repeatedPrimitiveFieldAtIndex:(int32_t) index;
 - (NSArray*) repeatedStringFieldList;
@@ -2630,7 +2630,7 @@
   NSString* myString;
 }
 - (BOOL) hasMyString;
-@property (readonly, retain) NSString* myString;
+@property (readonly, copy) NSString* myString;
 - (BOOL) hasMyInt;
 @property (readonly) int64_t myInt;
 - (BOOL) hasMyFloat;
@@ -2718,7 +2718,7 @@
 - (BOOL) hasSmallInt64;
 @property (readonly) int64_t smallInt64;
 - (BOOL) hasUtf8String;
-@property (readonly, retain) NSString* utf8String;
+@property (readonly, copy) NSString* utf8String;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
