@@ -220,7 +220,9 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                                        reason:@"getRepeatedField() can only be called on repeated fields." userInfo:nil];
     }
 
-    return [[self getField:field] objectAtIndex:index];
+    NSArray* array = [self getField:field];
+    id result = [array objectAtIndex:index];
+    return result;
 }
 
 

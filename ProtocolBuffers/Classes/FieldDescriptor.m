@@ -285,7 +285,7 @@
                 self.defaultValue = [NSNumber numberWithDouble:[proto.defaultValue doubleValue]];
                 break;
             case PBFieldDescriptorTypeBool:
-                self.defaultValue = [NSNumber numberWithBool:[@"YES" isEqual:proto.defaultValue]];
+                self.defaultValue = [NSNumber numberWithBool:[@"true" isEqual:proto.defaultValue]];
                 break;
             case PBFieldDescriptorTypeString:
                 self.defaultValue = proto.defaultValue;

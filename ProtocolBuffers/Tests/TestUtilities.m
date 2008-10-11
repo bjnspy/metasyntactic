@@ -28,6 +28,52 @@
     @throw anException;
 }
 
+
+// -------------------------------------------------------------------
+
+/**
+ * Modify the repeated extensions of {@code message} to contain the values
+ * expected by {@code assertRepeatedExtensionsModified()}.
+ */
++ (void) modifyRepeatedExtensions:(TestAllExtensions_Builder*) message {
+    [message setExtension:[UnittestProtoRoot repeatedInt32Extension] index:1 value:[NSNumber numberWithInt:501]];
+    [message setExtension:[UnittestProtoRoot repeatedInt64Extension] index:1 value:[NSNumber numberWithInt:502]];
+    [message setExtension:[UnittestProtoRoot repeatedUint32Extension] index:1 value:[NSNumber numberWithInt:503]];
+    [message setExtension:[UnittestProtoRoot repeatedUint64Extension] index:1 value:[NSNumber numberWithInt:504]];
+    [message setExtension:[UnittestProtoRoot repeatedSint32Extension] index:1 value:[NSNumber numberWithInt:505]];
+    [message setExtension:[UnittestProtoRoot repeatedSint64Extension] index:1 value:[NSNumber numberWithInt:506]];
+    [message setExtension:[UnittestProtoRoot repeatedFixed32Extension] index:1 value:[NSNumber numberWithInt:507]];
+    [message setExtension:[UnittestProtoRoot repeatedFixed64Extension] index:1 value:[NSNumber numberWithInt:508]];
+    [message setExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:1 value:[NSNumber numberWithInt:509]];
+    [message setExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:1 value:[NSNumber numberWithInt:510]];
+    [message setExtension:[UnittestProtoRoot repeatedFloatExtension] index:1 value:[NSNumber numberWithFloat:511.0]];
+    [message setExtension:[UnittestProtoRoot repeatedDoubleExtension] index:1 value:[NSNumber numberWithDouble:512.0]];
+    [message setExtension:[UnittestProtoRoot repeatedBoolExtension] index:1 value:[NSNumber numberWithBool:true]];
+    [message setExtension:[UnittestProtoRoot repeatedStringExtension] index:1 value:@"515"];
+    [message setExtension:[UnittestProtoRoot repeatedBytesExtension] index:1 value:[TestUtilities toData:@"516"]];
+    
+    [message setExtension:[UnittestProtoRoot repeatedGroupExtension] index:1 value:
+     [[[RepeatedGroup_extension builder] setA:517] build]];
+    [message setExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:1 value:
+     [[[TestAllTypes_NestedMessage builder] setBb:518] build]];
+    [message setExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:1 value:
+     [[[ForeignMessage builder] setC:519] build]];
+    [message setExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:1 value:
+     [[[ImportMessage builder] setD:520] build]];
+    
+    [message setExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:1 value:
+     [TestAllTypes_NestedEnum FOO]];
+    [message setExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:1 value:
+     [ForeignEnum FOREIGN_FOO]];
+    [message setExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:1 value:
+     [ImportEnum IMPORT_FOO]];
+    
+    [message setExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:1 value:@"524"];
+    [message setExtension:[UnittestProtoRoot repeatedCordExtension] index:1 value:@"525"];
+}
+
+
+
 /**
  * Assert (using {@code junit.framework.Assert}} that all extensions of
  * {@code message} are set to the values assigned by {@code setAllExtensions}.
@@ -230,6 +276,107 @@
 
 + (void) assertAllExtensionsSet:(TestAllExtensions*) message {
     return [[[[TestUtilities alloc] init] autorelease] assertAllExtensionsSet:message];
+}
+
+
+- (void) assertRepeatedExtensionsModified:(TestAllExtensions*) message {
+    // ModifyRepeatedFields only sets the second repeated element of each
+    // field.  In addition to verifying this, we also verify that the first
+    // element and size were *not* modified.
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedStringExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedBytesExtension]] count], @"");
+    
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedImportEnumExtension]] count], @"");
+    
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedStringPieceExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedCordExtension]] count], @"");
+    
+    STAssertTrue(201  == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension] index:0] intValue], @"");
+    STAssertTrue(202L == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension] index:0] intValue], @"");
+    STAssertTrue(203  == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension] index:0] intValue], @"");
+    STAssertTrue(204L == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension] index:0] intValue], @"");
+    STAssertTrue(205  == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension] index:0] intValue], @"");
+    STAssertTrue(206L == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension] index:0] intValue], @"");
+    STAssertTrue(207  == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension] index:0] intValue], @"");
+    STAssertTrue(208L == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension] index:0] intValue], @"");
+    STAssertTrue(209  == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:0] intValue], @"");
+    STAssertTrue(210L == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:0] intValue], @"");
+    STAssertTrue(211.0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension] index:0] floatValue], @"");
+    STAssertTrue(212.0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension] index:0] doubleValue], @"");
+    STAssertTrue(true == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension] index:0] boolValue], @"");
+    STAssertEqualObjects(@"215", [message getExtension:[UnittestProtoRoot repeatedStringExtension] index:0], @"");
+    STAssertEqualObjects([TestUtilities toData:@"216"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:0], @"");
+    
+    STAssertTrue(217 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:0] a], @"");
+    STAssertTrue(218 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:0] bb], @"");
+    STAssertTrue(219 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:0] c], @"");
+    STAssertTrue(220 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:0] d], @"");
+    
+    STAssertTrue([TestAllTypes_NestedEnum BAR] ==
+                 [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:0], @"");
+    STAssertTrue([ForeignEnum FOREIGN_BAR] ==
+                 [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:0], @"");
+    STAssertTrue([ImportEnum IMPORT_BAR] ==
+                 [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:0], @"");
+    
+    STAssertEqualObjects(@"224", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:0], @"");
+    STAssertEqualObjects(@"225", [message getExtension:[UnittestProtoRoot repeatedCordExtension] index:0], @"");
+    
+    // Actually verify the second (modified) elements now.
+    STAssertTrue(501  == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension] index:1] intValue], @"");
+    STAssertTrue(502L == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension] index:1] intValue], @"");
+    STAssertTrue(503  == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension] index:1] intValue], @"");
+    STAssertTrue(504L == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension] index:1] intValue], @"");
+    STAssertTrue(505  == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension] index:1] intValue], @"");
+    STAssertTrue(506L == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension] index:1] intValue], @"");
+    STAssertTrue(507  == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension] index:1] intValue], @"");
+    STAssertTrue(508L == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension] index:1] intValue], @"");
+    STAssertTrue(509  == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:1] intValue], @"");
+    STAssertTrue(510L == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:1] intValue], @"");
+    STAssertTrue(511.0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension] index:1] floatValue], @"");
+    STAssertTrue(512.0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension] index:1] doubleValue], @"");
+    STAssertTrue(true == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension] index:1] boolValue], @"");
+    STAssertEqualObjects(@"515", [message getExtension:[UnittestProtoRoot repeatedStringExtension] index:1], @"");
+    STAssertEqualObjects([TestUtilities toData:@"516"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:1], @"");
+    
+    STAssertTrue(517 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:1] a], @"");
+    STAssertTrue(518 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:1] bb], @"");
+    STAssertTrue(519 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:1] c], @"");
+    STAssertTrue(520 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:1] d], @"");
+    
+    STAssertTrue([TestAllTypes_NestedEnum FOO] ==
+                 [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:1], @"");
+    STAssertTrue([ForeignEnum FOREIGN_FOO] ==
+                 [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:1], @"");
+    STAssertTrue([ImportEnum IMPORT_FOO] ==
+                 [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:1], @"");
+    
+    STAssertEqualObjects(@"524", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:1], @"");
+    STAssertEqualObjects(@"525", [message getExtension:[UnittestProtoRoot repeatedCordExtension] index:1], @"");
+}
+
+
++ (void) assertRepeatedExtensionsModified:(TestAllExtensions*) message {
+    [[[[TestUtilities alloc] init] autorelease] assertRepeatedExtensionsModified:message];
 }
 
 
@@ -956,6 +1103,163 @@
     return [[[[TestUtilities alloc] init] autorelease] assertClear:message];
 }
 
+
+- (void) assertExtensionsClear:(TestAllExtensions*) message {
+    // hasBlah() should initially be false for all optional fields.
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalInt64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalUint32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalUint64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSint32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSint64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFixed32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFixed64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSfixed32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSfixed64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFloatExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalDoubleExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalBoolExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalStringExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
+    
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalGroupExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalNestedMessageExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalForeignMessageExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalImportMessageExtension]], @"");
+    
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
+    
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalCordExtension]], @"");
+    
+    // Optional fields without defaults are set to zero or something like it.
+    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalInt32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalInt64Extension]] intValue], @"");
+    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalUint32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalUint64Extension]] intValue], @"");
+    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalSint32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalSint64Extension]] intValue], @"");
+    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalFixed32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalFixed64Extension]] intValue], @"");
+    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalSfixed32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalSfixed64Extension]] intValue], @"");
+    STAssertTrue(0    == [[message getExtension:[UnittestProtoRoot optionalFloatExtension]] floatValue], @"");
+    STAssertTrue(0    == [[message getExtension:[UnittestProtoRoot optionalDoubleExtension]] doubleValue], @"");
+    STAssertTrue(false == [[message getExtension:[UnittestProtoRoot optionalBoolExtension]] boolValue], @"");
+    STAssertEqualObjects(@"", [message getExtension:[UnittestProtoRoot optionalStringExtension]], @"");
+    STAssertEqualObjects([NSData data], [message getExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
+    
+    // Embedded messages should also be clear.
+    
+    STAssertFalse([[message getExtension:[UnittestProtoRoot optionalGroupExtension]] hasA], @"");
+    STAssertFalse([[message getExtension:[UnittestProtoRoot optionalNestedMessageExtension]] hasBb], @"");
+    STAssertFalse([[message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]] hasC], @"");
+    STAssertFalse([[message getExtension:[UnittestProtoRoot optionalImportMessageExtension]] hasD], @"");
+    
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot optionalGroupExtension]] a], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot optionalNestedMessageExtension]] bb], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]] c], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot optionalImportMessageExtension]] d], @"");
+    
+    // Enums without defaults are set to the first value in the enum.
+    STAssertTrue([TestAllTypes_NestedEnum FOO] ==
+                 [message getExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
+    STAssertTrue([ForeignEnum FOREIGN_FOO] == 
+                 [message getExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
+    STAssertTrue([ImportEnum IMPORT_FOO] ==
+                 [message getExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
+    
+    STAssertEqualObjects(@"", [message getExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
+    STAssertEqualObjects(@"", [message getExtension:[UnittestProtoRoot optionalCordExtension]], @"");
+    
+    // Repeated fields are empty.
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedStringExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedBytesExtension]] count], @"");
+    
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedImportEnumExtension]] count], @"");
+    
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedStringPieceExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedCordExtension]] count], @"");
+    
+    // hasBlah() should also be false for all default fields.
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultInt32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultInt64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultUint32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultUint64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSint32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSint64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFixed32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFixed64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSfixed32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSfixed64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFloatExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultDoubleExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultBoolExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultStringExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
+    
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
+    
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultCordExtension]], @"");
+    
+    // Fields with defaults have their default values (duh).
+    STAssertTrue( 41     == [[message getExtension:[UnittestProtoRoot defaultInt32Extension]] intValue], @"");
+    STAssertTrue( 42L    == [[message getExtension:[UnittestProtoRoot defaultInt64Extension]] intValue], @"");
+    STAssertTrue( 43     == [[message getExtension:[UnittestProtoRoot defaultUint32Extension]] intValue], @"");
+    STAssertTrue( 44L    == [[message getExtension:[UnittestProtoRoot defaultUint64Extension]] intValue], @"");
+    STAssertTrue(-45     == [[message getExtension:[UnittestProtoRoot defaultSint32Extension]] intValue], @"");
+    STAssertTrue( 46L    == [[message getExtension:[UnittestProtoRoot defaultSint64Extension]] intValue], @"");
+    STAssertTrue( 47     == [[message getExtension:[UnittestProtoRoot defaultFixed32Extension]] intValue], @"");
+    STAssertTrue( 48L    == [[message getExtension:[UnittestProtoRoot defaultFixed64Extension]] intValue], @"");
+    STAssertTrue( 49     == [[message getExtension:[UnittestProtoRoot defaultSfixed32Extension]] intValue], @"");
+    STAssertTrue(-50L    == [[message getExtension:[UnittestProtoRoot defaultSfixed64Extension]] intValue], @"");
+    STAssertTrue( 51.5  == [[message getExtension:[UnittestProtoRoot defaultFloatExtension]] floatValue], @"");
+    STAssertTrue( 52e3  == [[message getExtension:[UnittestProtoRoot defaultDoubleExtension]] doubleValue], @"");
+    STAssertTrue(true    == [[message getExtension:[UnittestProtoRoot defaultBoolExtension]] boolValue], @"");
+    STAssertEqualObjects(@"hello", [message getExtension:[UnittestProtoRoot defaultStringExtension]], @"");
+    STAssertEqualObjects([TestUtilities toData:@"world"], [message getExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
+    
+    STAssertTrue([TestAllTypes_NestedEnum BAR] ==
+                 [message getExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
+    STAssertTrue([ForeignEnum FOREIGN_BAR] ==
+                 [message getExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
+    STAssertTrue([ImportEnum IMPORT_BAR] ==
+                 [message getExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
+    
+    STAssertEqualObjects(@"abc", [message getExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
+    STAssertEqualObjects(@"123", [message getExtension:[UnittestProtoRoot defaultCordExtension]], @"");
+}
+
+
++ (void) assertExtensionsClear:(TestAllExtensions*) message {
+    [[[[TestUtilities alloc] init] autorelease] assertExtensionsClear:message];
+}
+
+
 /**
  * Modify the repeated fields of {@code message} to contain the values
  * expected by {@code assertRepeatedFieldsModified()}.
@@ -1094,1297 +1398,4 @@
     [[[[TestUtilities alloc] init] autorelease] assertRepeatedFieldsModified:message];
 }
 
-#if 0
-
-
-/**
- * Set every field of {@code message} to the values expected by
- * {@code assertAllFieldsSet()}.
- */
-
-
-// -------------------------------------------------------------------
-
-
-
-
-
-
-// -------------------------------------------------------------------
-
-
-
-// ===================================================================
-// Like above, but for extensions
-
-// Java gets confused with things like assertEquals(int, Integer):  it can't
-// decide whether to call assertEquals(int, int) or assertEquals(Object,
-// Object).  So we define these methods to help it.
-private static void STAssertTrue(int a, int b) {
-    STAssertTrue(a, b);
-}
-private static void STAssertTrue(long a, long b) {
-    STAssertTrue(a, b);
-}
-private static void STAssertTrue(float a, float b) {
-    STAssertTrue(a, b, 0.0);
-}
-private static void STAssertTrue(double a, double b) {
-    STAssertTrue(a, b, 0.0);
-}
-private static void STAssertTrue(boolean a, boolean b) {
-    STAssertTrue(a, b);
-}
-private static void STAssertTrue(String a, String b) {
-    STAssertTrue(a, b);
-}
-private static void STAssertTrue(ByteString a, ByteString b) {
-    STAssertTrue(a, b);
-}
-private static void STAssertTrue(TestAllTypes_NestedEnum a,
-                               TestAllTypes_NestedEnum b) {
-    STAssertTrue(a, b);
-}
-private static void STAssertTrue(ForeignEnum a, ForeignEnum b) {
-    STAssertTrue(a, b);
-}
-private static void STAssertTrue(ImportEnum a, ImportEnum b) {
-    STAssertTrue(a, b);
-}
-
-
-
-
-
-
-// -------------------------------------------------------------------
-
-/**
- * Modify the repeated extensions of {@code message} to contain the values
- * expected by {@code assertRepeatedExtensionsModified()}.
- */
-public static void modifyRepeatedExtensions(
-                                            TestAllExtensions.Builder message) {
-    [message setExtension:[UnittestProtoRoot repeatedInt32Extension], 1, 501);
-     [message setExtension:[UnittestProtoRoot repeatedInt64Extension], 1, 502L);
-      [message setExtension:[UnittestProtoRoot repeatedUint32Extension], 1, 503);
-       [message setExtension:[UnittestProtoRoot repeatedUint64Extension], 1, 504L);
-        [message setExtension:[UnittestProtoRoot repeatedSint32Extension], 1, 505);
-         [message setExtension:[UnittestProtoRoot repeatedSint64Extension], 1, 506L);
-          [message setExtension:[UnittestProtoRoot repeatedFixed32Extension], 1, 507);
-           [message setExtension:[UnittestProtoRoot repeatedFixed64Extension], 1, 508L);
-            [message setExtension:[UnittestProtoRoot repeatedSfixed32Extension], 1, 509);
-             [message setExtension:[UnittestProtoRoot repeatedSfixed64Extension], 1, 510L);
-              [message setExtension:[UnittestProtoRoot repeatedFloatExtension], 1, 511F);
-               [message setExtension:[UnittestProtoRoot repeatedDoubleExtension], 1, 512D);
-                [message setExtension:[UnittestProtoRoot repeatedBoolExtension], 1, true);
-                 [message setExtension:[UnittestProtoRoot repeatedStringExtension], 1, "515");
-                  [message setExtension:[UnittestProtoRoot repeatedBytesExtension], 1, toData("516"));
-                   
-                   [message setExtension:[UnittestProtoRoot repeatedGroupExtension], 1,
-                    UnittestProto.RepeatedGroup_extension.newBuilder().setA(517) build]);
-                   [message setExtension:[UnittestProtoRoot repeatedNestedMessageExtension], 1,
-                    [TestAllTypes_NestedMessage newBuilder].setBb(518) build]);
-                   [message setExtension:[UnittestProtoRoot repeatedForeignMessageExtension], 1,
-                    [ForeignMessage newBuilder].setC(519) build]);
-                   [message setExtension:[UnittestProtoRoot repeatedImportMessageExtension], 1,
-                    [ImportMessage newBuilder] setD:520] build]);
-                  
-                  [message setExtension:[UnittestProtoRoot repeatedNestedEnumExtension], 1,
-                   [TestAllTypes_NestedEnum FOO]);
-                   [message setExtension:[UnittestProtoRoot repeatedForeignEnumExtension], 1,
-                    [ForeignEnum FOREIGN_FOO]);
-                    [message setExtension:[UnittestProtoRoot repeatedImportEnumExtension], 1,
-                     [ImportEnum IMPORT_FOO]);
-                     
-                     [message setExtension:[UnittestProtoRoot repeatedStringPieceExtension], 1, "524");
-                      [message setExtension:[UnittestProtoRoot repeatedCordExtension], 1, "525");
-                      }
-                      
-                      // -------------------------------------------------------------------
-                      
-                      
-                      // -------------------------------------------------------------------
-                      
-                      /**
-     * Assert (using {@code junit.framework.Assert}} that all extensions of
-     * {@code message} are cleared, and that getting the extensions returns their
-     * default values.
-     */
-                      public static void assertExtensionsClear(TestAllExtensions message) {
-        // hasBlah() should initially be false for all optional fields.
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalInt64Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalUint32Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalUint64Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSint32Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSint64Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFixed32Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFixed64Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSfixed32Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSfixed64Extension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFloatExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalDoubleExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalBoolExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalStringExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
-        
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalGroupExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalNestedMessageExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalForeignMessageExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalImportMessageExtension]], @"");
-        
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
-        
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
-        STAssertFalse([message hasExtension:[UnittestProtoRoot optionalCordExtension]], @"");
-        
-        // Optional fields without defaults are set to zero or something like it.
-        STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalInt32Extension]   ));
-                       STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalInt64Extension]   ));
-                                       STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalUint32Extension]  ));
-                                                      STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalUint64Extension]  ));
-                                                                      STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalSint32Extension]  ));
-                                                                                     STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalSint64Extension]  ));
-                                                                                                     STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalFixed32Extension] ));
-                                                                                                                    STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalFixed64Extension] ));
-                                                                                                                                    STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalSfixed32Extension]));
-                                                                                                                                                   STAssertTrue(0L, [message getExtension:[UnittestProtoRoot optionalSfixed64Extension]));
-                                                                                                                                                                   STAssertTrue(0F, [message getExtension:[UnittestProtoRoot optionalFloatExtension]   ));
-                                                                                                                                                                                   STAssertTrue(0D, [message getExtension:[UnittestProtoRoot optionalDoubleExtension]  ));
-                                                                                                                                                                                                   STAssertTrue(false, [message getExtension:[UnittestProtoRoot optionalBoolExtension]    ));
-                                                                                                                                                                                                                      STAssertTrue("", [message getExtension:[UnittestProtoRoot optionalStringExtension]  ));
-                                                                                                                                                                                                                                      STAssertTrue(ByteString.EMPTY, [message getExtension:[UnittestProtoRoot optionalBytesExtension]));
-                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                    // Embedded messages should also be clear.
-                                                                                                                                                                                                                                                                    STAssertFalse([message getExtension:[UnittestProtoRoot optionalGroupExtension]         ).hasA());
-                                                                                                                                                                                                                                                                                   STAssertFalse([message getExtension:[UnittestProtoRoot optionalNestedMessageExtension] ).hasBb());
-                                                                                                                                                                                                                                                                                                  STAssertFalse([message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]).hasC());
-                                                                                                                                                                                                                                                                                                                 STAssertFalse([message getExtension:[UnittestProtoRoot optionalImportMessageExtension] ).hasD());
-                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalGroupExtension]         .a);
-                                                                                                                                                                                                                                                                                                                                               STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalNestedMessageExtension] ).bb);
-                                                                                                                                                                                                                                                                                                                                                              STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]).c);
-                                                                                                                                                                                                                                                                                                                                                                             STAssertTrue(0, [message getExtension:[UnittestProtoRoot optionalImportMessageExtension] ).d);
-                                                                                                                                                                                                                                                                                                                                                                                            
-                                                                                                                                                                                                                                                                                                                                                                                            // Enums without defaults are set to the first value in the enum.
-                                                                                                                                                                                                                                                                                                                                                                                            STAssertTrue([TestAllTypes_NestedEnum FOO],
-                                                                                                                                                                                                                                                                                                                                                                                                       [message getExtension:[UnittestProtoRoot optionalNestedEnumExtension] ));
-                                                                                                                                                                                                                                                                                                                                                                                                        STAssertTrue([ForeignEnum FOREIGN_FOO],
-                                                                                                                                                                                                                                                                                                                                                                                                                   [message getExtension:[UnittestProtoRoot optionalForeignEnumExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                    STAssertTrue([ImportEnum IMPORT_FOO],
-                                                                                                                                                                                                                                                                                                                                                                                                                               [message getExtension:[UnittestProtoRoot optionalImportEnumExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                STAssertTrue("", [message getExtension:[UnittestProtoRoot optionalStringPieceExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                STAssertTrue("", [message getExtension:[UnittestProtoRoot optionalCordExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                // Repeated fields are empty.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedInt32Extension]   ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                               STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedInt64Extension]   ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedUint32Extension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedUint64Extension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedSint32Extension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedSint64Extension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedFixed32Extension] ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedFixed64Extension] ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedSfixed32Extension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedSfixed64Extension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedFloatExtension]   ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedDoubleExtension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedBoolExtension]    ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedStringExtension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedBytesExtension]   ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedGroupExtension]         ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedNestedMessageExtension] ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedForeignMessageExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedImportMessageExtension] ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedNestedEnumExtension]    ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedForeignEnumExtension]   ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedImportEnumExtension]    ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedStringPieceExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         STAssertTrue(0, [message getExtensionCount:[UnittestProtoRoot repeatedCordExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // hasBlah() should also be false for all default fields.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultInt32Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultInt64Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultUint32Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultUint64Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSint32Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSint64Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFixed32Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFixed64Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSfixed32Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSfixed64Extension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFloatExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultDoubleExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultBoolExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultStringExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertFalse([message hasExtension:[UnittestProtoRoot defaultCordExtension]], @"");
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        // Fields with defaults have their default values (duh).
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertTrue( 41, [message getExtension:[UnittestProtoRoot defaultInt32Extension]   ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         STAssertTrue( 42L, [message getExtension:[UnittestProtoRoot defaultInt64Extension]   ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           STAssertTrue( 43, [message getExtension:[UnittestProtoRoot defaultUint32Extension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            STAssertTrue( 44L, [message getExtension:[UnittestProtoRoot defaultUint64Extension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              STAssertTrue(-45, [message getExtension:[UnittestProtoRoot defaultSint32Extension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               STAssertTrue( 46L, [message getExtension:[UnittestProtoRoot defaultSint64Extension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 STAssertTrue( 47, [message getExtension:[UnittestProtoRoot defaultFixed32Extension] ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  STAssertTrue( 48L, [message getExtension:[UnittestProtoRoot defaultFixed64Extension] ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    STAssertTrue( 49, [message getExtension:[UnittestProtoRoot defaultSfixed32Extension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     STAssertTrue(-50L, [message getExtension:[UnittestProtoRoot defaultSfixed64Extension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       STAssertTrue( 51.5F, [message getExtension:[UnittestProtoRoot defaultFloatExtension]   ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           STAssertTrue( 52e3D, [message getExtension:[UnittestProtoRoot defaultDoubleExtension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               STAssertTrue(true, [message getExtension:[UnittestProtoRoot defaultBoolExtension]    ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 STAssertTrue("hello", [message getExtension:[UnittestProtoRoot defaultStringExtension]  ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      STAssertTrue(toData("world"), [message getExtension:[UnittestProtoRoot defaultBytesExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   STAssertTrue([TestAllTypes_NestedEnum BAR],
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              [message getExtension:[UnittestProtoRoot defaultNestedEnumExtension] ));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               STAssertTrue([ForeignEnum FOREIGN_BAR],
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          [message getExtension:[UnittestProtoRoot defaultForeignEnumExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           STAssertTrue([ImportEnum IMPORT_BAR],
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      [message getExtension:[UnittestProtoRoot defaultImportEnumExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       STAssertTrue("abc", [message getExtension:[UnittestProtoRoot defaultStringPieceExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          STAssertTrue("123", [message getExtension:[UnittestProtoRoot defaultCordExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     // -------------------------------------------------------------------
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     /**
-         * Assert (using {@code junit.framework.Assert}} that all extensions of
-         * {@code message} are set to the values assigned by {@code setAllExtensions}
-         * followed by {@code modifyRepeatedExtensions}.
-         */
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     public static void assertRepeatedExtensionsModified(
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         TestAllExtensions message) {
-            // ModifyRepeatedFields only sets the second repeated element of each
-            // field.  In addition to verifying this, we also verify that the first
-            // element and size were *not* modified.
-            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedInt32Extension]   ));
-                           STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedInt64Extension]   ));
-                                          STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedUint32Extension]  ));
-                                                         STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedUint64Extension]  ));
-                                                                        STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedSint32Extension]  ));
-                                                                                       STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedSint64Extension]  ));
-                                                                                                      STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedFixed32Extension] ));
-                                                                                                                     STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedFixed64Extension] ));
-                                                                                                                                    STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedSfixed32Extension]));
-                                                                                                                                                   STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedSfixed64Extension]));
-                                                                                                                                                                  STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedFloatExtension]   ));
-                                                                                                                                                                                 STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedDoubleExtension]  ));
-                                                                                                                                                                                                STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedBoolExtension]    ));
-                                                                                                                                                                                                               STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedStringExtension]  ));
-                                                                                                                                                                                                                              STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedBytesExtension]   ));
-                                                                                                                                                                                                                                             
-                                                                                                                                                                                                                                             STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedGroupExtension]         ));
-                                                                                                                                                                                                                                                            STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedNestedMessageExtension] ));
-                                                                                                                                                                                                                                                                           STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedForeignMessageExtension]));
-                                                                                                                                                                                                                                                                                          STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedImportMessageExtension] ));
-                                                                                                                                                                                                                                                                                                         STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedNestedEnumExtension]    ));
-                                                                                                                                                                                                                                                                                                                        STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedForeignEnumExtension]   ));
-                                                                                                                                                                                                                                                                                                                                       STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedImportEnumExtension]    ));
-                                                                                                                                                                                                                                                                                                                                                      
-                                                                                                                                                                                                                                                                                                                                                      STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedStringPieceExtension]));
-                                                                                                                                                                                                                                                                                                                                                                     STAssertTrue(2, [message getExtensionCount:[UnittestProtoRoot repeatedCordExtension]));
-                                                                                                                                                                                                                                                                                                                                                                                    
-                                                                                                                                                                                                                                                                                                                                                                                    STAssertTrue(201, [message getExtension:[UnittestProtoRoot repeatedInt32Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                     STAssertTrue(202L, [message getExtension:[UnittestProtoRoot repeatedInt64Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                       STAssertTrue(203, [message getExtension:[UnittestProtoRoot repeatedUint32Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertTrue(204L, [message getExtension:[UnittestProtoRoot repeatedUint64Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                          STAssertTrue(205, [message getExtension:[UnittestProtoRoot repeatedSint32Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                           STAssertTrue(206L, [message getExtension:[UnittestProtoRoot repeatedSint64Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             STAssertTrue(207, [message getExtension:[UnittestProtoRoot repeatedFixed32Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              STAssertTrue(208L, [message getExtension:[UnittestProtoRoot repeatedFixed64Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                STAssertTrue(209, [message getExtension:[UnittestProtoRoot repeatedSfixed32Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 STAssertTrue(210L, [message getExtension:[UnittestProtoRoot repeatedSfixed64Extension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   STAssertTrue(211F, [message getExtension:[UnittestProtoRoot repeatedFloatExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     STAssertTrue(212D, [message getExtension:[UnittestProtoRoot repeatedDoubleExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       STAssertTrue(true, [message getExtension:[UnittestProtoRoot repeatedBoolExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         STAssertTrue("215", [message getExtension:[UnittestProtoRoot repeatedStringExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            STAssertTrue(toData("216"), [message getExtension:[UnittestProtoRoot repeatedBytesExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       STAssertTrue(217, [message getExtension:[UnittestProtoRoot repeatedGroupExtension], 0.a);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertTrue(218, [message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension], 0).bb);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         STAssertTrue(219, [message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension], 0).c);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          STAssertTrue(220, [message getExtension:[UnittestProtoRoot repeatedImportMessageExtension], 0).d);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           STAssertTrue([TestAllTypes_NestedEnum BAR],
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       STAssertTrue([ForeignEnum FOREIGN_BAR],
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   STAssertTrue([ImportEnum IMPORT_BAR],
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               STAssertTrue("224", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  STAssertTrue("225", [message getExtension:[UnittestProtoRoot repeatedCordExtension], 0));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     // Actually verify the second (modified) elements now.
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     STAssertTrue(501, [message getExtension:[UnittestProtoRoot repeatedInt32Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      STAssertTrue(502L, [message getExtension:[UnittestProtoRoot repeatedInt64Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertTrue(503, [message getExtension:[UnittestProtoRoot repeatedUint32Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         STAssertTrue(504L, [message getExtension:[UnittestProtoRoot repeatedUint64Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           STAssertTrue(505, [message getExtension:[UnittestProtoRoot repeatedSint32Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            STAssertTrue(506L, [message getExtension:[UnittestProtoRoot repeatedSint64Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              STAssertTrue(507, [message getExtension:[UnittestProtoRoot repeatedFixed32Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               STAssertTrue(508L, [message getExtension:[UnittestProtoRoot repeatedFixed64Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 STAssertTrue(509, [message getExtension:[UnittestProtoRoot repeatedSfixed32Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  STAssertTrue(510L, [message getExtension:[UnittestProtoRoot repeatedSfixed64Extension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    STAssertTrue(511F, [message getExtension:[UnittestProtoRoot repeatedFloatExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      STAssertTrue(512D, [message getExtension:[UnittestProtoRoot repeatedDoubleExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertTrue(true, [message getExtension:[UnittestProtoRoot repeatedBoolExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          STAssertTrue("515", [message getExtension:[UnittestProtoRoot repeatedStringExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             STAssertTrue(toData("516"), [message getExtension:[UnittestProtoRoot repeatedBytesExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertTrue(517, [message getExtension:[UnittestProtoRoot repeatedGroupExtension], 1].a);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        STAssertTrue(518, [message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension], 1).bb);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         STAssertTrue(519, [message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension], 1).c);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          STAssertTrue(520, [message getExtension:[UnittestProtoRoot repeatedImportMessageExtension], 1).d);
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                           STAssertTrue([TestAllTypes_NestedEnum FOO],
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                      [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       STAssertTrue([ForeignEnum FOREIGN_FOO],
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   STAssertTrue([ImportEnum IMPORT_FOO],
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               STAssertTrue("524", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  STAssertTrue("525", [message getExtension:[UnittestProtoRoot repeatedCordExtension], 1));
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             // ===================================================================
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             /**
-             * Performs the same things that the methods of {@code TestUtil} do, but
-             * via the reflection interface.  This is its own class because it needs
-             * to know what descriptor to use.
-             */
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             public static class ReflectionTester {
-                private final Descriptors.Descriptor baseDescriptor;
-                private final ExtensionRegistry extensionRegistry;
-                
-                private final Descriptors.FileDescriptor file;
-                private final Descriptors.FileDescriptor importFile;
-                
-                private final Descriptors.Descriptor optionalGroup;
-                private final Descriptors.Descriptor repeatedGroup;
-                private final Descriptors.Descriptor nestedMessage;
-                private final Descriptors.Descriptor foreignMessage;
-                private final Descriptors.Descriptor importMessage;
-                
-                private final Descriptors.FieldDescriptor groupA;
-                private final Descriptors.FieldDescriptor repeatedGroupA;
-                private final Descriptors.FieldDescriptor nestedB;
-                private final Descriptors.FieldDescriptor foreignC;
-                private final Descriptors.FieldDescriptor importD;
-                
-                private final Descriptors.EnumDescriptor nestedEnum;
-                private final Descriptors.EnumDescriptor foreignEnum;
-                private final Descriptors.EnumDescriptor importEnum;
-                
-                private final Descriptors.EnumValueDescriptor nestedFoo;
-                private final Descriptors.EnumValueDescriptor nestedBar;
-                private final Descriptors.EnumValueDescriptor nestedBaz;
-                private final Descriptors.EnumValueDescriptor foreignFoo;
-                private final Descriptors.EnumValueDescriptor foreignBar;
-                private final Descriptors.EnumValueDescriptor foreignBaz;
-                private final Descriptors.EnumValueDescriptor importFoo;
-                private final Descriptors.EnumValueDescriptor importBar;
-                private final Descriptors.EnumValueDescriptor importBaz;
-                
-                /**
-                 * Construct a {@code ReflectionTester} that will expect messages using
-                 * the given descriptor.
-                 *
-                 * Normally {@code baseDescriptor} should be a descriptor for the type
-                 * {@code TestAllTypes}, defined in
-                 * {@code google/protobuf/unittest.proto}.  However, if
-                 * {@code extensionRegistry} is non-null, then {@code baseDescriptor} should
-                 * be for {@code TestAllExtensions} instead, and instead of reading and
-                 * writing normal fields, the tester will read and write extensions.
-                 * All of {@code TestAllExtensions}' extensions must be registered in the
-                 * registry.
-                 */
-                public ReflectionTester(Descriptors.Descriptor baseDescriptor,
-                                        ExtensionRegistry extensionRegistry) {
-                    this.baseDescriptor = baseDescriptor;
-                    this.extensionRegistry = extensionRegistry;
-                    
-                    this.file = baseDescriptor.getFile();
-                    STAssertTrue(1, file.getDependencies().size());
-                    this.importFile = file.getDependencies().get(0);
-                    
-                    Descriptors.Descriptor testAllTypes;
-                    if (extensionRegistry == null) {
-                        testAllTypes = baseDescriptor;
-                    } else {
-                        testAllTypes = file.findMessageTypeByName("TestAllTypes");
-                        Assert.assertNotNull(testAllTypes);
-                    }
-                    
-                    if (extensionRegistry == null) {
-                        this.optionalGroup =
-                        baseDescriptor.findNestedTypeByName("OptionalGroup");
-                        this.repeatedGroup =
-                        baseDescriptor.findNestedTypeByName("RepeatedGroup");
-                    } else {
-                        this.optionalGroup =
-                        file.findMessageTypeByName("OptionalGroup_extension");
-                        this.repeatedGroup =
-                        file.findMessageTypeByName("RepeatedGroup_extension");
-                    }
-                    this.nestedMessage = testAllTypes.findNestedTypeByName("NestedMessage");
-                    this.foreignMessage = file.findMessageTypeByName("ForeignMessage");
-                    this.importMessage = importFile.findMessageTypeByName("ImportMessage");
-                    
-                    this.nestedEnum = testAllTypes.findEnumTypeByName("NestedEnum");
-                    this.foreignEnum = file.findEnumTypeByName("ForeignEnum");
-                    this.importEnum = importFile.findEnumTypeByName("ImportEnum");
-                    
-                    Assert.assertNotNull(optionalGroup );
-                    Assert.assertNotNull(repeatedGroup );
-                    Assert.assertNotNull(nestedMessage );
-                    Assert.assertNotNull(foreignMessage);
-                    Assert.assertNotNull(importMessage );
-                    Assert.assertNotNull(nestedEnum    );
-                    Assert.assertNotNull(foreignEnum   );
-                    Assert.assertNotNull(importEnum    );
-                    
-                    this.nestedB  = nestedMessage.findFieldByName("bb");
-                    this.foreignC = foreignMessage.findFieldByName("c");
-                    this.importD  = importMessage.findFieldByName("d");
-                    this.nestedFoo = nestedEnum.findValueByName("FOO");
-                    this.nestedBar = nestedEnum.findValueByName("BAR");
-                    this.nestedBaz = nestedEnum.findValueByName("BAZ");
-                    this.foreignFoo = foreignEnum.findValueByName("FOREIGN_FOO");
-                    this.foreignBar = foreignEnum.findValueByName("FOREIGN_BAR");
-                    this.foreignBaz = foreignEnum.findValueByName("FOREIGN_BAZ");
-                    this.importFoo = importEnum.findValueByName("IMPORT_FOO");
-                    this.importBar = importEnum.findValueByName("IMPORT_BAR");
-                    this.importBaz = importEnum.findValueByName("IMPORT_BAZ");
-                    
-                    this.groupA = optionalGroup.findFieldByName("a");
-                    this.repeatedGroupA = repeatedGroup.findFieldByName("a");
-                    
-                    Assert.assertNotNull(groupA        );
-                    Assert.assertNotNull(repeatedGroupA);
-                    Assert.assertNotNull(nestedB       );
-                    Assert.assertNotNull(foreignC      );
-                    Assert.assertNotNull(importD       );
-                    Assert.assertNotNull(nestedFoo     );
-                    Assert.assertNotNull(nestedBar     );
-                    Assert.assertNotNull(nestedBaz     );
-                    Assert.assertNotNull(foreignFoo    );
-                    Assert.assertNotNull(foreignBar    );
-                    Assert.assertNotNull(foreignBaz    );
-                    Assert.assertNotNull(importFoo     );
-                    Assert.assertNotNull(importBar     );
-                    Assert.assertNotNull(importBaz     );
-                }
-                
-                /**
-                 * Shorthand to get a FieldDescriptor for a field of unittest::TestAllTypes.
-                 */
-                private Descriptors.FieldDescriptor f(String name) {
-                    Descriptors.FieldDescriptor result;
-                    if (extensionRegistry == null) {
-                        result = baseDescriptor.findFieldByName(name);
-                    } else {
-                        result = file.findExtensionByName(name + "_extension");
-                    }
-                    Assert.assertNotNull(result);
-                    return result;
-                }
-                
-                /**
-                 * Calls {@code parent.newBuilderForField()} or uses the
-                 * {@code ExtensionRegistry} to find an appropriate builder, depending
-                 * on what type is being tested.
-                 */
-                private Message.Builder newBuilderForField(
-                                                           Message.Builder parent, Descriptors.FieldDescriptor field) {
-                    if (extensionRegistry == null) {
-                        return parent.newBuilderForField(field);
-                    } else {
-                        ExtensionRegistry.ExtensionInfo extension =
-                        extensionRegistry.findExtensionByNumber(field.getContainingType(),
-                                                                field.getNumber());
-                        Assert.assertNotNull(extension);
-                        Assert.assertNotNull(extension.defaultInstance);
-                        return extension.defaultInstance.builder();
-                    }
-                }
-                
-                // -------------------------------------------------------------------
-                
-                /**
-                 * Set every field of {@code message} to the values expected by
-                 * {@code assertAllFieldsSet()}, using the {@link Message.Builder}
-                 * reflection interface.
-                 */
-                void setAllFieldsViaReflection(Message.Builder message) {
-                    [message setField(f("optional_int32"   ), 101 );
-                     [message setField(f("optional_int64"   ), 102L);
-                      [message setField(f("optional_uint32"  ), 103 );
-                       [message setField(f("optional_uint64"  ), 104L);
-                        [message setField(f("optional_sint32"  ), 105 );
-                         [message setField(f("optional_sint64"  ), 106L);
-                          [message setField(f("optional_fixed32" ), 107 );
-                           [message setField(f("optional_fixed64" ), 108L);
-                            [message setField(f("optional_sfixed32"), 109 );
-                             [message setField(f("optional_sfixed64"), 110L);
-                              [message setField(f("optional_float"   ), 111F);
-                               [message setField(f("optional_double"  ), 112D);
-                                [message setField(f("optional_bool"    ), true);
-                                 [message setField(f("optional_string"  ), "115");
-                                  [message setField(f("optional_bytes"   ), toData("116"));
-                                   
-                                   [message setField(f("optionalgroup"),
-                                                     newBuilderForField(message, f("optionalgroup"))
-                                                     .setField(groupA, 117) build]);
-                                    [message setField(f("optional_nested_message"),
-                                                      newBuilderForField(message, f("optional_nested_message"))
-                                                      .setField(nestedB, 118) build]);
-                                     [message setField(f("optional_foreign_message"),
-                                                       newBuilderForField(message, f("optional_foreign_message"))
-                                                       .setField(foreignC, 119) build]);
-                                      [message setField(f("optional_import_message"),
-                                                        newBuilderForField(message, f("optional_import_message"))
-                                                        .setField(importD, 120) build]);
-                                       
-                                       [message setField(f("optional_nested_enum" ),  nestedBaz);
-                                        [message setField(f("optional_foreign_enum"), foreignBaz);
-                                         [message setField(f("optional_import_enum" ),  importBaz);
-                                          
-                                          [message setField(f("optional_string_piece" ), "124");
-                                           [message setField(f("optional_cord" ), "125");
-                                            
-                                            // -----------------------------------------------------------------
-                                            
-                                            message.addRepeatedField(f("repeated_int32"   ), 201 );
-                                            message.addRepeatedField(f("repeated_int64"   ), 202L);
-                                            message.addRepeatedField(f("repeated_uint32"  ), 203 );
-                                            message.addRepeatedField(f("repeated_uint64"  ), 204L);
-                                            message.addRepeatedField(f("repeated_sint32"  ), 205 );
-                                            message.addRepeatedField(f("repeated_sint64"  ), 206L);
-                                            message.addRepeatedField(f("repeated_fixed32" ), 207 );
-                                            message.addRepeatedField(f("repeated_fixed64" ), 208L);
-                                            message.addRepeatedField(f("repeated_sfixed32"), 209 );
-                                            message.addRepeatedField(f("repeated_sfixed64"), 210L);
-                                            message.addRepeatedField(f("repeated_float"   ), 211F);
-                                            message.addRepeatedField(f("repeated_double"  ), 212D);
-                                            message.addRepeatedField(f("repeated_bool"    ), true);
-                                            message.addRepeatedField(f("repeated_string"  ), "215");
-                                            message.addRepeatedField(f("repeated_bytes"   ), toData("216"));
-                                            
-                                            message.addRepeatedField(f("repeatedgroup"),
-                                                                     newBuilderForField(message, f("repeatedgroup"))
-                                                                     .setField(repeatedGroupA, 217) build]);
-                                            message.addRepeatedField(f("repeated_nested_message"),
-                                                                     newBuilderForField(message, f("repeated_nested_message"))
-                                                                     .setField(nestedB, 218) build]);
-                                            message.addRepeatedField(f("repeated_foreign_message"),
-                                                                     newBuilderForField(message, f("repeated_foreign_message"))
-                                                                     .setField(foreignC, 219) build]);
-                                            message.addRepeatedField(f("repeated_import_message"),
-                                                                     newBuilderForField(message, f("repeated_import_message"))
-                                                                     .setField(importD, 220) build]);
-                                            
-                                            message.addRepeatedField(f("repeated_nested_enum" ),  nestedBar);
-                                            message.addRepeatedField(f("repeated_foreign_enum"), foreignBar);
-                                            message.addRepeatedField(f("repeated_import_enum" ),  importBar);
-                                            
-                                            message.addRepeatedField(f("repeated_string_piece" ), "224");
-                                            message.addRepeatedField(f("repeated_cord" ), "225");
-                                            
-                                            // Add a second one of each field.
-                                            message.addRepeatedField(f("repeated_int32"   ), 301 );
-                                            message.addRepeatedField(f("repeated_int64"   ), 302L);
-                                            message.addRepeatedField(f("repeated_uint32"  ), 303 );
-                                            message.addRepeatedField(f("repeated_uint64"  ), 304L);
-                                            message.addRepeatedField(f("repeated_sint32"  ), 305 );
-                                            message.addRepeatedField(f("repeated_sint64"  ), 306L);
-                                            message.addRepeatedField(f("repeated_fixed32" ), 307 );
-                                            message.addRepeatedField(f("repeated_fixed64" ), 308L);
-                                            message.addRepeatedField(f("repeated_sfixed32"), 309 );
-                                            message.addRepeatedField(f("repeated_sfixed64"), 310L);
-                                            message.addRepeatedField(f("repeated_float"   ), 311F);
-                                            message.addRepeatedField(f("repeated_double"  ), 312D);
-                                            message.addRepeatedField(f("repeated_bool"    ), false);
-                                            message.addRepeatedField(f("repeated_string"  ), "315");
-                                            message.addRepeatedField(f("repeated_bytes"   ), toData("316"));
-                                            
-                                            message.addRepeatedField(f("repeatedgroup"),
-                                                                     newBuilderForField(message, f("repeatedgroup"))
-                                                                     .setField(repeatedGroupA, 317) build]);
-                                            message.addRepeatedField(f("repeated_nested_message"),
-                                                                     newBuilderForField(message, f("repeated_nested_message"))
-                                                                     .setField(nestedB, 318) build]);
-                                            message.addRepeatedField(f("repeated_foreign_message"),
-                                                                     newBuilderForField(message, f("repeated_foreign_message"))
-                                                                     .setField(foreignC, 319) build]);
-                                            message.addRepeatedField(f("repeated_import_message"),
-                                                                     newBuilderForField(message, f("repeated_import_message"))
-                                                                     .setField(importD, 320) build]);
-                                            
-                                            message.addRepeatedField(f("repeated_nested_enum" ),  nestedBaz);
-                                            message.addRepeatedField(f("repeated_foreign_enum"), foreignBaz);
-                                            message.addRepeatedField(f("repeated_import_enum" ),  importBaz);
-                                            
-                                            message.addRepeatedField(f("repeated_string_piece" ), "324");
-                                            message.addRepeatedField(f("repeated_cord" ), "325");
-                                            
-                                            // -----------------------------------------------------------------
-                                            
-                                            [message setField(f("default_int32"   ), 401 );
-                                             [message setField(f("default_int64"   ), 402L);
-                                              [message setField(f("default_uint32"  ), 403 );
-                                               [message setField(f("default_uint64"  ), 404L);
-                                                [message setField(f("default_sint32"  ), 405 );
-                                                 [message setField(f("default_sint64"  ), 406L);
-                                                  [message setField(f("default_fixed32" ), 407 );
-                                                   [message setField(f("default_fixed64" ), 408L);
-                                                    [message setField(f("default_sfixed32"), 409 );
-                                                     [message setField(f("default_sfixed64"), 410L);
-                                                      [message setField(f("default_float"   ), 411F);
-                                                       [message setField(f("default_double"  ), 412D);
-                                                        [message setField(f("default_bool"    ), false);
-                                                         [message setField(f("default_string"  ), "415");
-                                                          [message setField(f("default_bytes"   ), toData("416"));
-                                                           
-                                                           [message setField(f("default_nested_enum" ),  nestedFoo);
-                                                            [message setField(f("default_foreign_enum"), foreignFoo);
-                                                             [message setField(f("default_import_enum" ),  importFoo);
-                                                              
-                                                              [message setField(f("default_string_piece" ), "424");
-                                                               [message setField(f("default_cord" ), "425");
-                                                               }
-                                                               
-                                                               // -------------------------------------------------------------------
-                                                               
-                                                               /**
-                     * Modify the repeated fields of {@code message} to contain the values
-                     * expected by {@code assertRepeatedFieldsModified()}, using the
-                     * {@link Message.Builder} reflection interface.
-                     */
-                                                               void modifyRepeatedFieldsViaReflection(Message.Builder message) {
-                        [message setRepeatedField(f("repeated_int32"   ), 1, 501 );
-                         [message setRepeatedField(f("repeated_int64"   ), 1, 502L);
-                          [message setRepeatedField(f("repeated_uint32"  ), 1, 503 );
-                           [message setRepeatedField(f("repeated_uint64"  ), 1, 504L);
-                            [message setRepeatedField(f("repeated_sint32"  ), 1, 505 );
-                             [message setRepeatedField(f("repeated_sint64"  ), 1, 506L);
-                              [message setRepeatedField(f("repeated_fixed32" ), 1, 507 );
-                               [message setRepeatedField(f("repeated_fixed64" ), 1, 508L);
-                                [message setRepeatedField(f("repeated_sfixed32"), 1, 509 );
-                                 [message setRepeatedField(f("repeated_sfixed64"), 1, 510L);
-                                  [message setRepeatedField(f("repeated_float"   ), 1, 511F);
-                                   [message setRepeatedField(f("repeated_double"  ), 1, 512D);
-                                    [message setRepeatedField(f("repeated_bool"    ), 1, true);
-                                     [message setRepeatedField(f("repeated_string"  ), 1, "515");
-                                      [message setRepeatedField(f("repeated_bytes"   ), 1, toData("516"));
-                                       
-                                       [message setRepeatedField(f("repeatedgroup"), 1,
-                                                                 newBuilderForField(message, f("repeatedgroup"))
-                                                                 .setField(repeatedGroupA, 517) build]);
-                                        [message setRepeatedField(f("repeated_nested_message"), 1,
-                                                                  newBuilderForField(message, f("repeated_nested_message"))
-                                                                  .setField(nestedB, 518) build]);
-                                         [message setRepeatedField(f("repeated_foreign_message"), 1,
-                                                                   newBuilderForField(message, f("repeated_foreign_message"))
-                                                                   .setField(foreignC, 519) build]);
-                                          [message setRepeatedField(f("repeated_import_message"), 1,
-                                                                    newBuilderForField(message, f("repeated_import_message"))
-                                                                    .setField(importD, 520) build]);
-                                           
-                                           [message setRepeatedField(f("repeated_nested_enum" ), 1,  nestedFoo);
-                                            [message setRepeatedField(f("repeated_foreign_enum"), 1, foreignFoo);
-                                             [message setRepeatedField(f("repeated_import_enum" ), 1,  importFoo);
-                                              
-                                              [message setRepeatedField(f("repeated_string_piece"), 1, "524");
-                                               [message setRepeatedField(f("repeated_cord"), 1, "525");
-                                               }
-                                               
-                                               // -------------------------------------------------------------------
-                                               
-                                               /**
-                         * Assert (using {@code junit.framework.Assert}} that all fields of
-                         * {@code message} are set to the values assigned by {@code setAllFields},
-                         * using the {@link Message} reflection interface.
-                         */
-                                               public void assertAllFieldsSetViaReflection(Message message) {
-                            STAssertTrue(message.hasField(f("optional_int32"   )));
-                            STAssertTrue(message.hasField(f("optional_int64"   )));
-                            STAssertTrue(message.hasField(f("optional_uint32"  )));
-                            STAssertTrue(message.hasField(f("optional_uint64"  )));
-                            STAssertTrue(message.hasField(f("optional_sint32"  )));
-                            STAssertTrue(message.hasField(f("optional_sint64"  )));
-                            STAssertTrue(message.hasField(f("optional_fixed32" )));
-                            STAssertTrue(message.hasField(f("optional_fixed64" )));
-                            STAssertTrue(message.hasField(f("optional_sfixed32")));
-                            STAssertTrue(message.hasField(f("optional_sfixed64")));
-                            STAssertTrue(message.hasField(f("optional_float"   )));
-                            STAssertTrue(message.hasField(f("optional_double"  )));
-                            STAssertTrue(message.hasField(f("optional_bool"    )));
-                            STAssertTrue(message.hasField(f("optional_string"  )));
-                            STAssertTrue(message.hasField(f("optional_bytes"   )));
-                            
-                            STAssertTrue(message.hasField(f("optionalgroup"           )));
-                            STAssertTrue(message.hasField(f("optional_nested_message" )));
-                            STAssertTrue(message.hasField(f("optional_foreign_message")));
-                            STAssertTrue(message.hasField(f("optional_import_message" )));
-                            
-                            STAssertTrue(
-                                       ((Message)message.getField(f("optionalgroup"))).hasField(groupA));
-                            STAssertTrue(
-                                       ((Message)message.getField(f("optional_nested_message")))
-                                       .hasField(nestedB));
-                            STAssertTrue(
-                                       ((Message)message.getField(f("optional_foreign_message")))
-                                       .hasField(foreignC));
-                            STAssertTrue(
-                                       ((Message)message.getField(f("optional_import_message")))
-                                       .hasField(importD));
-                            
-                            STAssertTrue(message.hasField(f("optional_nested_enum" )));
-                            STAssertTrue(message.hasField(f("optional_foreign_enum")));
-                            STAssertTrue(message.hasField(f("optional_import_enum" )));
-                            
-                            STAssertTrue(message.hasField(f("optional_string_piece")));
-                            STAssertTrue(message.hasField(f("optional_cord")));
-                            
-                            STAssertTrue(101, message.getField(f("optional_int32"   )));
-                            STAssertTrue(102L, message.getField(f("optional_int64"   )));
-                            STAssertTrue(103, message.getField(f("optional_uint32"  )));
-                            STAssertTrue(104L, message.getField(f("optional_uint64"  )));
-                            STAssertTrue(105, message.getField(f("optional_sint32"  )));
-                            STAssertTrue(106L, message.getField(f("optional_sint64"  )));
-                            STAssertTrue(107, message.getField(f("optional_fixed32" )));
-                            STAssertTrue(108L, message.getField(f("optional_fixed64" )));
-                            STAssertTrue(109, message.getField(f("optional_sfixed32")));
-                            STAssertTrue(110L, message.getField(f("optional_sfixed64")));
-                            STAssertTrue(111F, message.getField(f("optional_float"   )));
-                            STAssertTrue(112D, message.getField(f("optional_double"  )));
-                            STAssertTrue(true, message.getField(f("optional_bool"    )));
-                            STAssertTrue("115", message.getField(f("optional_string"  )));
-                            STAssertTrue(toData("116"), message.getField(f("optional_bytes")));
-                            
-                            STAssertTrue(117,
-                                       ((Message)message.getField(f("optionalgroup"))).getField(groupA));
-                            STAssertTrue(118,
-                                       ((Message)message.getField(f("optional_nested_message")))
-                                       .getField(nestedB));
-                            STAssertTrue(119,
-                                       ((Message)message.getField(f("optional_foreign_message")))
-                                       .getField(foreignC));
-                            STAssertTrue(120,
-                                       ((Message)message.getField(f("optional_import_message")))
-                                       .getField(importD));
-                            
-                            STAssertTrue( nestedBaz, message.getField(f("optional_nested_enum" )));
-                            STAssertTrue(foreignBaz, message.getField(f("optional_foreign_enum")));
-                            STAssertTrue( importBaz, message.getField(f("optional_import_enum" )));
-                            
-                            STAssertTrue("124", message.getField(f("optional_string_piece")));
-                            STAssertTrue("125", message.getField(f("optional_cord")));
-                            
-                            // -----------------------------------------------------------------
-                            
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_int32"   )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_int64"   )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_uint32"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_uint64"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sint32"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sint64"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_fixed32" )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_fixed64" )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sfixed32")));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sfixed64")));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_float"   )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_double"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_bool"    )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_string"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_bytes"   )));
-                            
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeatedgroup"           )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_nested_message" )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_foreign_message")));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_import_message" )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_nested_enum"    )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_foreign_enum"   )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_import_enum"    )));
-                            
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_string_piece")));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_cord")));
-                            
-                            STAssertTrue(201, message.getRepeatedField(f("repeated_int32"   ), 0));
-                            STAssertTrue(202L, message.getRepeatedField(f("repeated_int64"   ), 0));
-                            STAssertTrue(203, message.getRepeatedField(f("repeated_uint32"  ), 0));
-                            STAssertTrue(204L, message.getRepeatedField(f("repeated_uint64"  ), 0));
-                            STAssertTrue(205, message.getRepeatedField(f("repeated_sint32"  ), 0));
-                            STAssertTrue(206L, message.getRepeatedField(f("repeated_sint64"  ), 0));
-                            STAssertTrue(207, message.getRepeatedField(f("repeated_fixed32" ), 0));
-                            STAssertTrue(208L, message.getRepeatedField(f("repeated_fixed64" ), 0));
-                            STAssertTrue(209, message.getRepeatedField(f("repeated_sfixed32"), 0));
-                            STAssertTrue(210L, message.getRepeatedField(f("repeated_sfixed64"), 0));
-                            STAssertTrue(211F, message.getRepeatedField(f("repeated_float"   ), 0));
-                            STAssertTrue(212D, message.getRepeatedField(f("repeated_double"  ), 0));
-                            STAssertTrue(true, message.getRepeatedField(f("repeated_bool"    ), 0));
-                            STAssertTrue("215", message.getRepeatedField(f("repeated_string"  ), 0));
-                            STAssertTrue(toData("216"), message.getRepeatedField(f("repeated_bytes"), 0));
-                            
-                            STAssertTrue(217,
-                                       ((Message)message.getRepeatedField(f("repeatedgroup"), 0))
-                                       .getField(repeatedGroupA));
-                            STAssertTrue(218,
-                                       ((Message)message.getRepeatedField(f("repeated_nested_message"), 0))
-                                       .getField(nestedB));
-                            STAssertTrue(219,
-                                       ((Message)message.getRepeatedField(f("repeated_foreign_message"), 0))
-                                       .getField(foreignC));
-                            STAssertTrue(220,
-                                       ((Message)message.getRepeatedField(f("repeated_import_message"), 0))
-                                       .getField(importD));
-                            
-                            STAssertTrue( nestedBar, message.getRepeatedField(f("repeated_nested_enum" ),0));
-                            STAssertTrue(foreignBar, message.getRepeatedField(f("repeated_foreign_enum"),0));
-                            STAssertTrue( importBar, message.getRepeatedField(f("repeated_import_enum" ),0));
-                            
-                            STAssertTrue("224", message.getRepeatedField(f("repeated_string_piece"), 0));
-                            STAssertTrue("225", message.getRepeatedField(f("repeated_cord"), 0));
-                            
-                            STAssertTrue(301, message.getRepeatedField(f("repeated_int32"   ), 1));
-                            STAssertTrue(302L, message.getRepeatedField(f("repeated_int64"   ), 1));
-                            STAssertTrue(303, message.getRepeatedField(f("repeated_uint32"  ), 1));
-                            STAssertTrue(304L, message.getRepeatedField(f("repeated_uint64"  ), 1));
-                            STAssertTrue(305, message.getRepeatedField(f("repeated_sint32"  ), 1));
-                            STAssertTrue(306L, message.getRepeatedField(f("repeated_sint64"  ), 1));
-                            STAssertTrue(307, message.getRepeatedField(f("repeated_fixed32" ), 1));
-                            STAssertTrue(308L, message.getRepeatedField(f("repeated_fixed64" ), 1));
-                            STAssertTrue(309, message.getRepeatedField(f("repeated_sfixed32"), 1));
-                            STAssertTrue(310L, message.getRepeatedField(f("repeated_sfixed64"), 1));
-                            STAssertTrue(311F, message.getRepeatedField(f("repeated_float"   ), 1));
-                            STAssertTrue(312D, message.getRepeatedField(f("repeated_double"  ), 1));
-                            STAssertTrue(false, message.getRepeatedField(f("repeated_bool"    ), 1));
-                            STAssertTrue("315", message.getRepeatedField(f("repeated_string"  ), 1));
-                            STAssertTrue(toData("316"), message.getRepeatedField(f("repeated_bytes"), 1));
-                            
-                            STAssertTrue(317,
-                                       ((Message)message.getRepeatedField(f("repeatedgroup"), 1))
-                                       .getField(repeatedGroupA));
-                            STAssertTrue(318,
-                                       ((Message)message.getRepeatedField(f("repeated_nested_message"), 1))
-                                       .getField(nestedB));
-                            STAssertTrue(319,
-                                       ((Message)message.getRepeatedField(f("repeated_foreign_message"), 1))
-                                       .getField(foreignC));
-                            STAssertTrue(320,
-                                       ((Message)message.getRepeatedField(f("repeated_import_message"), 1))
-                                       .getField(importD));
-                            
-                            STAssertTrue( nestedBaz, message.getRepeatedField(f("repeated_nested_enum" ),1));
-                            STAssertTrue(foreignBaz, message.getRepeatedField(f("repeated_foreign_enum"),1));
-                            STAssertTrue( importBaz, message.getRepeatedField(f("repeated_import_enum" ),1));
-                            
-                            STAssertTrue("324", message.getRepeatedField(f("repeated_string_piece"), 1));
-                            STAssertTrue("325", message.getRepeatedField(f("repeated_cord"), 1));
-                            
-                            // -----------------------------------------------------------------
-                            
-                            STAssertTrue(message.hasField(f("default_int32"   )));
-                            STAssertTrue(message.hasField(f("default_int64"   )));
-                            STAssertTrue(message.hasField(f("default_uint32"  )));
-                            STAssertTrue(message.hasField(f("default_uint64"  )));
-                            STAssertTrue(message.hasField(f("default_sint32"  )));
-                            STAssertTrue(message.hasField(f("default_sint64"  )));
-                            STAssertTrue(message.hasField(f("default_fixed32" )));
-                            STAssertTrue(message.hasField(f("default_fixed64" )));
-                            STAssertTrue(message.hasField(f("default_sfixed32")));
-                            STAssertTrue(message.hasField(f("default_sfixed64")));
-                            STAssertTrue(message.hasField(f("default_float"   )));
-                            STAssertTrue(message.hasField(f("default_double"  )));
-                            STAssertTrue(message.hasField(f("default_bool"    )));
-                            STAssertTrue(message.hasField(f("default_string"  )));
-                            STAssertTrue(message.hasField(f("default_bytes"   )));
-                            
-                            STAssertTrue(message.hasField(f("default_nested_enum" )));
-                            STAssertTrue(message.hasField(f("default_foreign_enum")));
-                            STAssertTrue(message.hasField(f("default_import_enum" )));
-                            
-                            STAssertTrue(message.hasField(f("default_string_piece")));
-                            STAssertTrue(message.hasField(f("default_cord")));
-                            
-                            STAssertTrue(401, message.getField(f("default_int32"   )));
-                            STAssertTrue(402L, message.getField(f("default_int64"   )));
-                            STAssertTrue(403, message.getField(f("default_uint32"  )));
-                            STAssertTrue(404L, message.getField(f("default_uint64"  )));
-                            STAssertTrue(405, message.getField(f("default_sint32"  )));
-                            STAssertTrue(406L, message.getField(f("default_sint64"  )));
-                            STAssertTrue(407, message.getField(f("default_fixed32" )));
-                            STAssertTrue(408L, message.getField(f("default_fixed64" )));
-                            STAssertTrue(409, message.getField(f("default_sfixed32")));
-                            STAssertTrue(410L, message.getField(f("default_sfixed64")));
-                            STAssertTrue(411F, message.getField(f("default_float"   )));
-                            STAssertTrue(412D, message.getField(f("default_double"  )));
-                            STAssertTrue(false, message.getField(f("default_bool"    )));
-                            STAssertTrue("415", message.getField(f("default_string"  )));
-                            STAssertTrue(toData("416"), message.getField(f("default_bytes")));
-                            
-                            STAssertTrue( nestedFoo, message.getField(f("default_nested_enum" )));
-                            STAssertTrue(foreignFoo, message.getField(f("default_foreign_enum")));
-                            STAssertTrue( importFoo, message.getField(f("default_import_enum" )));
-                            
-                            STAssertTrue("424", message.getField(f("default_string_piece")));
-                            STAssertTrue("425", message.getField(f("default_cord")));
-                        }
-                                               
-                                               // -------------------------------------------------------------------
-                                               
-                                               /**
-                         * Assert (using {@code junit.framework.Assert}} that all fields of
-                         * {@code message} are cleared, and that getting the fields returns their
-                         * default values, using the {@link Message} reflection interface.
-                         */
-                                               public void assertClearViaReflection(Message message) {
-                            // has_blah() should initially be false for all optional fields.
-                            STAssertFalse(message.hasField(f("optional_int32"   )));
-                            STAssertFalse(message.hasField(f("optional_int64"   )));
-                            STAssertFalse(message.hasField(f("optional_uint32"  )));
-                            STAssertFalse(message.hasField(f("optional_uint64"  )));
-                            STAssertFalse(message.hasField(f("optional_sint32"  )));
-                            STAssertFalse(message.hasField(f("optional_sint64"  )));
-                            STAssertFalse(message.hasField(f("optional_fixed32" )));
-                            STAssertFalse(message.hasField(f("optional_fixed64" )));
-                            STAssertFalse(message.hasField(f("optional_sfixed32")));
-                            STAssertFalse(message.hasField(f("optional_sfixed64")));
-                            STAssertFalse(message.hasField(f("optional_float"   )));
-                            STAssertFalse(message.hasField(f("optional_double"  )));
-                            STAssertFalse(message.hasField(f("optional_bool"    )));
-                            STAssertFalse(message.hasField(f("optional_string"  )));
-                            STAssertFalse(message.hasField(f("optional_bytes"   )));
-                            
-                            STAssertFalse(message.hasField(f("optionalgroup"           )));
-                            STAssertFalse(message.hasField(f("optional_nested_message" )));
-                            STAssertFalse(message.hasField(f("optional_foreign_message")));
-                            STAssertFalse(message.hasField(f("optional_import_message" )));
-                            
-                            STAssertFalse(message.hasField(f("optional_nested_enum" )));
-                            STAssertFalse(message.hasField(f("optional_foreign_enum")));
-                            STAssertFalse(message.hasField(f("optional_import_enum" )));
-                            
-                            STAssertFalse(message.hasField(f("optional_string_piece")));
-                            STAssertFalse(message.hasField(f("optional_cord")));
-                            
-                            // Optional fields without defaults are set to zero or something like it.
-                            STAssertTrue(0, message.getField(f("optional_int32"   )));
-                            STAssertTrue(0L, message.getField(f("optional_int64"   )));
-                            STAssertTrue(0, message.getField(f("optional_uint32"  )));
-                            STAssertTrue(0L, message.getField(f("optional_uint64"  )));
-                            STAssertTrue(0, message.getField(f("optional_sint32"  )));
-                            STAssertTrue(0L, message.getField(f("optional_sint64"  )));
-                            STAssertTrue(0, message.getField(f("optional_fixed32" )));
-                            STAssertTrue(0L, message.getField(f("optional_fixed64" )));
-                            STAssertTrue(0, message.getField(f("optional_sfixed32")));
-                            STAssertTrue(0L, message.getField(f("optional_sfixed64")));
-                            STAssertTrue(0F, message.getField(f("optional_float"   )));
-                            STAssertTrue(0D, message.getField(f("optional_double"  )));
-                            STAssertTrue(false, message.getField(f("optional_bool"    )));
-                            STAssertTrue("", message.getField(f("optional_string"  )));
-                            STAssertTrue(ByteString.EMPTY, message.getField(f("optional_bytes")));
-                            
-                            // Embedded messages should also be clear.
-                            STAssertFalse(
-                                          ((Message)message.getField(f("optionalgroup"))).hasField(groupA));
-                            STAssertFalse(
-                                          ((Message)message.getField(f("optional_nested_message")))
-                                          .hasField(nestedB));
-                            STAssertFalse(
-                                          ((Message)message.getField(f("optional_foreign_message")))
-                                          .hasField(foreignC));
-                            STAssertFalse(
-                                          ((Message)message.getField(f("optional_import_message")))
-                                          .hasField(importD));
-                            
-                            STAssertTrue(0,
-                                       ((Message)message.getField(f("optionalgroup"))).getField(groupA));
-                            STAssertTrue(0,
-                                       ((Message)message.getField(f("optional_nested_message")))
-                                       .getField(nestedB));
-                            STAssertTrue(0,
-                                       ((Message)message.getField(f("optional_foreign_message")))
-                                       .getField(foreignC));
-                            STAssertTrue(0,
-                                       ((Message)message.getField(f("optional_import_message")))
-                                       .getField(importD));
-                            
-                            // Enums without defaults are set to the first value in the enum.
-                            STAssertTrue( nestedFoo, message.getField(f("optional_nested_enum" )));
-                            STAssertTrue(foreignFoo, message.getField(f("optional_foreign_enum")));
-                            STAssertTrue( importFoo, message.getField(f("optional_import_enum" )));
-                            
-                            STAssertTrue("", message.getField(f("optional_string_piece")));
-                            STAssertTrue("", message.getField(f("optional_cord")));
-                            
-                            // Repeated fields are empty.
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_int32"   )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_int64"   )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_uint32"  )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_uint64"  )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_sint32"  )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_sint64"  )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_fixed32" )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_fixed64" )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_sfixed32")));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_sfixed64")));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_float"   )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_double"  )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_bool"    )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_string"  )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_bytes"   )));
-                            
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeatedgroup"           )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_nested_message" )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_foreign_message")));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_import_message" )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_nested_enum"    )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_foreign_enum"   )));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_import_enum"    )));
-                            
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_string_piece")));
-                            STAssertTrue(0, message.getRepeatedFieldCount(f("repeated_cord")));
-                            
-                            // has_blah() should also be false for all default fields.
-                            STAssertFalse(message.hasField(f("default_int32"   )));
-                            STAssertFalse(message.hasField(f("default_int64"   )));
-                            STAssertFalse(message.hasField(f("default_uint32"  )));
-                            STAssertFalse(message.hasField(f("default_uint64"  )));
-                            STAssertFalse(message.hasField(f("default_sint32"  )));
-                            STAssertFalse(message.hasField(f("default_sint64"  )));
-                            STAssertFalse(message.hasField(f("default_fixed32" )));
-                            STAssertFalse(message.hasField(f("default_fixed64" )));
-                            STAssertFalse(message.hasField(f("default_sfixed32")));
-                            STAssertFalse(message.hasField(f("default_sfixed64")));
-                            STAssertFalse(message.hasField(f("default_float"   )));
-                            STAssertFalse(message.hasField(f("default_double"  )));
-                            STAssertFalse(message.hasField(f("default_bool"    )));
-                            STAssertFalse(message.hasField(f("default_string"  )));
-                            STAssertFalse(message.hasField(f("default_bytes"   )));
-                            
-                            STAssertFalse(message.hasField(f("default_nested_enum" )));
-                            STAssertFalse(message.hasField(f("default_foreign_enum")));
-                            STAssertFalse(message.hasField(f("default_import_enum" )));
-                            
-                            STAssertFalse(message.hasField(f("default_string_piece" )));
-                            STAssertFalse(message.hasField(f("default_cord" )));
-                            
-                            // Fields with defaults have their default values (duh).
-                            STAssertTrue( 41, message.getField(f("default_int32"   )));
-                            STAssertTrue( 42L, message.getField(f("default_int64"   )));
-                            STAssertTrue( 43, message.getField(f("default_uint32"  )));
-                            STAssertTrue( 44L, message.getField(f("default_uint64"  )));
-                            STAssertTrue(-45, message.getField(f("default_sint32"  )));
-                            STAssertTrue( 46L, message.getField(f("default_sint64"  )));
-                            STAssertTrue( 47, message.getField(f("default_fixed32" )));
-                            STAssertTrue( 48L, message.getField(f("default_fixed64" )));
-                            STAssertTrue( 49, message.getField(f("default_sfixed32")));
-                            STAssertTrue(-50L, message.getField(f("default_sfixed64")));
-                            STAssertTrue( 51.5F, message.getField(f("default_float"   )));
-                            STAssertTrue( 52e3D, message.getField(f("default_double"  )));
-                            STAssertTrue(true, message.getField(f("default_bool"    )));
-                            STAssertTrue("hello", message.getField(f("default_string"  )));
-                            STAssertTrue(toData("world"), message.getField(f("default_bytes")));
-                            
-                            STAssertTrue( nestedBar, message.getField(f("default_nested_enum" )));
-                            STAssertTrue(foreignBar, message.getField(f("default_foreign_enum")));
-                            STAssertTrue( importBar, message.getField(f("default_import_enum" )));
-                            
-                            STAssertTrue("abc", message.getField(f("default_string_piece")));
-                            STAssertTrue("123", message.getField(f("default_cord")));
-                        }
-                                               
-                                               // ---------------------------------------------------------------
-                                               
-                                               public void assertRepeatedFieldsModifiedViaReflection(Message message) {
-                            // ModifyRepeatedFields only sets the second repeated element of each
-                            // field.  In addition to verifying this, we also verify that the first
-                            // element and size were *not* modified.
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_int32"   )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_int64"   )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_uint32"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_uint64"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sint32"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sint64"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_fixed32" )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_fixed64" )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sfixed32")));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_sfixed64")));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_float"   )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_double"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_bool"    )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_string"  )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_bytes"   )));
-                            
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeatedgroup"           )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_nested_message" )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_foreign_message")));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_import_message" )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_nested_enum"    )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_foreign_enum"   )));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_import_enum"    )));
-                            
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_string_piece")));
-                            STAssertTrue(2, message.getRepeatedFieldCount(f("repeated_cord")));
-                            
-                            STAssertTrue(201, message.getRepeatedField(f("repeated_int32"   ), 0));
-                            STAssertTrue(202L, message.getRepeatedField(f("repeated_int64"   ), 0));
-                            STAssertTrue(203, message.getRepeatedField(f("repeated_uint32"  ), 0));
-                            STAssertTrue(204L, message.getRepeatedField(f("repeated_uint64"  ), 0));
-                            STAssertTrue(205, message.getRepeatedField(f("repeated_sint32"  ), 0));
-                            STAssertTrue(206L, message.getRepeatedField(f("repeated_sint64"  ), 0));
-                            STAssertTrue(207, message.getRepeatedField(f("repeated_fixed32" ), 0));
-                            STAssertTrue(208L, message.getRepeatedField(f("repeated_fixed64" ), 0));
-                            STAssertTrue(209, message.getRepeatedField(f("repeated_sfixed32"), 0));
-                            STAssertTrue(210L, message.getRepeatedField(f("repeated_sfixed64"), 0));
-                            STAssertTrue(211F, message.getRepeatedField(f("repeated_float"   ), 0));
-                            STAssertTrue(212D, message.getRepeatedField(f("repeated_double"  ), 0));
-                            STAssertTrue(true, message.getRepeatedField(f("repeated_bool"    ), 0));
-                            STAssertTrue("215", message.getRepeatedField(f("repeated_string"  ), 0));
-                            STAssertTrue(toData("216"), message.getRepeatedField(f("repeated_bytes"), 0));
-                            
-                            STAssertTrue(217,
-                                       ((Message)message.getRepeatedField(f("repeatedgroup"), 0))
-                                       .getField(repeatedGroupA));
-                            STAssertTrue(218,
-                                       ((Message)message.getRepeatedField(f("repeated_nested_message"), 0))
-                                       .getField(nestedB));
-                            STAssertTrue(219,
-                                       ((Message)message.getRepeatedField(f("repeated_foreign_message"), 0))
-                                       .getField(foreignC));
-                            STAssertTrue(220,
-                                       ((Message)message.getRepeatedField(f("repeated_import_message"), 0))
-                                       .getField(importD));
-                            
-                            STAssertTrue( nestedBar, message.getRepeatedField(f("repeated_nested_enum" ),0));
-                            STAssertTrue(foreignBar, message.getRepeatedField(f("repeated_foreign_enum"),0));
-                            STAssertTrue( importBar, message.getRepeatedField(f("repeated_import_enum" ),0));
-                            
-                            STAssertTrue("224", message.getRepeatedField(f("repeated_string_piece"), 0));
-                            STAssertTrue("225", message.getRepeatedField(f("repeated_cord"), 0));
-                            
-                            STAssertTrue(501, message.getRepeatedField(f("repeated_int32"   ), 1));
-                            STAssertTrue(502L, message.getRepeatedField(f("repeated_int64"   ), 1));
-                            STAssertTrue(503, message.getRepeatedField(f("repeated_uint32"  ), 1));
-                            STAssertTrue(504L, message.getRepeatedField(f("repeated_uint64"  ), 1));
-                            STAssertTrue(505, message.getRepeatedField(f("repeated_sint32"  ), 1));
-                            STAssertTrue(506L, message.getRepeatedField(f("repeated_sint64"  ), 1));
-                            STAssertTrue(507, message.getRepeatedField(f("repeated_fixed32" ), 1));
-                            STAssertTrue(508L, message.getRepeatedField(f("repeated_fixed64" ), 1));
-                            STAssertTrue(509, message.getRepeatedField(f("repeated_sfixed32"), 1));
-                            STAssertTrue(510L, message.getRepeatedField(f("repeated_sfixed64"), 1));
-                            STAssertTrue(511F, message.getRepeatedField(f("repeated_float"   ), 1));
-                            STAssertTrue(512D, message.getRepeatedField(f("repeated_double"  ), 1));
-                            STAssertTrue(true, message.getRepeatedField(f("repeated_bool"    ), 1));
-                            STAssertTrue("515", message.getRepeatedField(f("repeated_string"  ), 1));
-                            STAssertTrue(toData("516"), message.getRepeatedField(f("repeated_bytes"), 1));
-                            
-                            STAssertTrue(517,
-                                       ((Message)message.getRepeatedField(f("repeatedgroup"), 1))
-                                       .getField(repeatedGroupA));
-                            STAssertTrue(518,
-                                       ((Message)message.getRepeatedField(f("repeated_nested_message"), 1))
-                                       .getField(nestedB));
-                            STAssertTrue(519,
-                                       ((Message)message.getRepeatedField(f("repeated_foreign_message"), 1))
-                                       .getField(foreignC));
-                            STAssertTrue(520,
-                                       ((Message)message.getRepeatedField(f("repeated_import_message"), 1))
-                                       .getField(importD));
-                            
-                            STAssertTrue( nestedFoo, message.getRepeatedField(f("repeated_nested_enum" ),1));
-                            STAssertTrue(foreignFoo, message.getRepeatedField(f("repeated_foreign_enum"),1));
-                            STAssertTrue( importFoo, message.getRepeatedField(f("repeated_import_enum" ),1));
-                            
-                            STAssertTrue("524", message.getRepeatedField(f("repeated_string_piece"), 1));
-                            STAssertTrue("525", message.getRepeatedField(f("repeated_cord"), 1));
-                        }
-                                               }
-                                               
-                                               /**
-                         * @param filePath The path relative to
-                         * {@link com.google.testing.util.TestUtil#getDefaultSrcDir}.
-                         */
-                                               public static String readTextFromFile(String filePath) {
-                            return readBytesFromFile(filePath).toStringUtf8();
-                        }
-                                               
-                                               private static File getTestDataDir() {
-                            // Search each parent directory looking for "src/google/protobuf".
-                            File ancestor = new File(".");
-                            try {
-                                ancestor = ancestor.getCanonicalFile();
-                            } catch (IOException e) {
-                                throw new RuntimeException(
-                                                           "Couldn't get canonical name of working directory.", e);
-                            }
-                            while (ancestor != null && ancestor.exists()) {
-                                if (new File(ancestor, "src/google/protobuf").exists()) {
-                                    return new File(ancestor, "src/google/protobuf/testdata");
-                                }
-                                ancestor = ancestor.getParentFile();
-                            }
-                            
-                            throw new RuntimeException(
-                                                       "Could not find golden files.  This test must be run from within the " +
-                                                       "protobuf source package so that it can read test data files from the " +
-                                                       "C++ source tree.");
-                        }
-                                               
-                                               /**
-                         * @param filePath The path relative to
-                         * {@link com.google.testing.util.TestUtil#getDefaultSrcDir}.
-                         */
-                                               public static ByteString readBytesFromFile(String filename) {
-                            File fullPath = new File(getTestDataDir(), filename);
-                            try {
-                                RandomAccessFile file = new RandomAccessFile(fullPath, "r");
-                                byte[] content = new byte[(int) file.length()];
-                                file.readFully(content);
-                                return ByteString.copyFrom(content);
-                            } catch (IOException e) {
-                                // Throw a RuntimeException here so that we can call this function from
-                                // static initializers.
-                                throw new IllegalArgumentException(
-                                                                   "Couldn't read file: " + fullPath.getPath(), e);
-                            }
-                        }
-                                               
-                                               /**
-                         * Get the bytes of the "golden message".  This is a serialized TestAllTypes
-                         * with all fields set as they would be by
-                         * {@link setAllFields(TestAllTypes.Builder)}, but it is loaded from a file
-                         * on disk rather than generated dynamically.  The file is actually generated
-                         * by C++ code, so testing against it verifies compatibility with C++.
-                         */
-                                               public static ByteString getGoldenMessage() {
-                            if (goldenMessage == null) {
-                                goldenMessage = readBytesFromFile("golden_message");
-                            }
-                            return goldenMessage;
-                        }
-                                               private static ByteString goldenMessage = null;
-                                               }
-                                               
-#endif
-                                               
-                                               @end
+@end
