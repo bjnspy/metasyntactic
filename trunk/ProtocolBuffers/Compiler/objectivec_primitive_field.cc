@@ -205,20 +205,30 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void PrimitiveFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "BOOL has$capitalized_name$;\n"
-      "$storage_type$ $name$;\n");
+  void PrimitiveFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
+    printer->Print(variables_, "BOOL has$capitalized_name$:1;\n");
   }
 
 
-  void PrimitiveFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
+  void PrimitiveFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
+    if (descriptor_->type() ==  FieldDescriptor::TYPE_BOOL) {
+      printer->Print(variables_, "$storage_type$ $name$:1;\n");
+    } else {
+      printer->Print(variables_, "$storage_type$ $name$;\n");
+    }
+  }
+
+
+  void PrimitiveFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      "@property (readonly) BOOL has$capitalized_name$;\n");
+      "- (BOOL) has$capitalized_name$;\n");
 
     if (IsReferenceType(GetObjectiveCType(descriptor_))) {
       printer->Print(variables_,
         "@property (retain, readonly) $storage_type$ $name$;\n");
+    } else if (GetObjectiveCType(descriptor_) == OBJECTIVECTYPE_BOOLEAN) {
+      printer->Print(variables_,
+        "- (BOOL) $name$;\n");
     } else {
       printer->Print(variables_,
         "@property (readonly) $storage_type$ $name$;\n");
@@ -227,9 +237,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void PrimitiveFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "@property BOOL has$capitalized_name$;\n");
-
     if (IsReferenceType(GetObjectiveCType(descriptor_))) {
       printer->Print(variables_,
         "@property (retain) $storage_type$ $name$;\n");
@@ -242,21 +249,31 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void PrimitiveFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "@synthesize has$capitalized_name$;\n"
-      "@synthesize $name$;\n");
+      "- (BOOL) has$capitalized_name$ {\n"
+      "  return has$capitalized_name$ != 0;\n"
+      "}\n"
+      "- (void) setHas$capitalized_name$:(BOOL) has$capitalized_name$_ {\n"
+      "  has$capitalized_name$ = (has$capitalized_name$_ != 0);\n"
+      "}\n");
+
+    if (GetObjectiveCType(descriptor_) == OBJECTIVECTYPE_BOOLEAN) {
+      printer->Print(variables_,
+        "- (BOOL) $name$ {\n"
+        "  return $name$ != 0;\n"
+        "}\n"
+        "- (void) set$capitalized_name$:(BOOL) $name$_ {\n"
+        "  $name$ = ($name$_ != 0);\n"
+        "}\n");
+    } else {
+      printer->Print(variables_, "@synthesize $name$;\n");
+    }
   }
 
 
   void PrimitiveFieldGenerator::GenerateDeallocSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "self.has$capitalized_name$ = NO;\n");
-
     if (IsReferenceType(GetObjectiveCType(descriptor_))) {
       printer->Print(variables_,
         "self.$name$ = nil;\n");
-    } else {
-      printer->Print(variables_,
-        "self.$name$ = 0;\n");
     }
   }
 
@@ -369,12 +386,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void RepeatedPrimitiveFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "NSMutableArray* $mutable_list_name$;\n");
+  void RepeatedPrimitiveFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
   }
 
-  void RepeatedPrimitiveFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
+
+  void RepeatedPrimitiveFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
+    printer->Print(variables_, "NSMutableArray* $mutable_list_name$;\n");
+  }
+
+  void RepeatedPrimitiveFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
   }
 
 

@@ -103,23 +103,25 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void MessageFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "BOOL has$capitalized_name$;\n"
-      "$storage_type$ $name$;\n");
+  void MessageFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
+    printer->Print(variables_, "BOOL has$capitalized_name$:1;\n");
   }
 
 
-  void MessageFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
+  void MessageFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
+    printer->Print(variables_, "$storage_type$ $name$;\n");
+  }
+
+
+  void MessageFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      "@property (readonly) BOOL has$capitalized_name$;\n"
+      "- (BOOL) has$capitalized_name$;\n"
       "@property (retain, readonly) $storage_type$ $name$;\n");
   }
 
 
   void MessageFieldGenerator::GenerateExtensionSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "@property BOOL has$capitalized_name$;\n"
       "@property (retain) $storage_type$ $name$;\n");
   }
 
@@ -130,21 +132,23 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "@synthesize has$capitalized_name$;\n"
+      "- (BOOL) has$capitalized_name$ {\n"
+      "  return has$capitalized_name$ != 0;\n"
+      "}\n"
+      "- (void) setHas$capitalized_name$:(BOOL) has$capitalized_name$_ {\n"
+      "  has$capitalized_name$ = (has$capitalized_name$_ != 0);\n"
+      "}\n"
       "@synthesize $name$;\n");
   }
 
 
   void MessageFieldGenerator::GenerateDeallocSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "self.has$capitalized_name$ = NO;\n"
-      "self.$name$ = nil;\n");
+    printer->Print(variables_, "self.$name$ = nil;\n");
   }
 
 
   void MessageFieldGenerator::GenerateInitializationSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "self.$name$ = [$type$ defaultInstance];\n");
+    printer->Print(variables_, "self.$name$ = [$type$ defaultInstance];\n");
   }
 
 
@@ -243,7 +247,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageFieldGenerator::GenerateSerializationCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (self.has$capitalized_name$) {\n"
+      "if (has$capitalized_name$) {\n"
       "  [output write$group_or_message$:$number$ value:self.$name$];\n"
       "}\n");
   }
@@ -255,7 +259,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageFieldGenerator::GenerateSerializedSizeCodeSource(io::Printer* printer) const {
     printer->Print(variables_,
-      "if (self.has$capitalized_name$) {\n"
+      "if (has$capitalized_name$) {\n"
       "  size += compute$group_or_message$Size($number$, self.$name$);\n"
       "}\n");
   }
@@ -275,16 +279,20 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  RepeatedMessageFieldGenerator::~RepeatedMessageFieldGenerator() {}
-
-
-  void RepeatedMessageFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "NSMutableArray* $mutable_list_name$;\n");
+  RepeatedMessageFieldGenerator::~RepeatedMessageFieldGenerator() {
   }
 
 
-  void RepeatedMessageFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
+  void RepeatedMessageFieldGenerator::GenerateHasFieldHeader(io::Printer* printer) const {
+  }
+
+
+  void RepeatedMessageFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
+    printer->Print(variables_, "NSMutableArray* $mutable_list_name$;\n");
+  }
+
+
+  void RepeatedMessageFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
   }
 
 

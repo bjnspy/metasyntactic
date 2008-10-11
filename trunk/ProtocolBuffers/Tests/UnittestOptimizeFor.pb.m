@@ -55,22 +55,27 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForS
 @end
 
 @interface TestOptimizedForSize ()
-@property BOOL hasI;
 @property int32_t i;
-@property BOOL hasMsg;
 @property (retain) ForeignMessage* msg;
 @end
 
 @implementation TestOptimizedForSize
 
-@synthesize hasI;
+- (BOOL) hasI {
+  return hasI != 0;
+}
+- (void) setHasI:(BOOL) hasI_ {
+  hasI = (hasI_ != 0);
+}
 @synthesize i;
-@synthesize hasMsg;
+- (BOOL) hasMsg {
+  return hasMsg != 0;
+}
+- (void) setHasMsg:(BOOL) hasMsg_ {
+  hasMsg = (hasMsg_ != 0);
+}
 @synthesize msg;
 - (void) dealloc {
-  self.hasI = NO;
-  self.i = 0;
-  self.hasMsg = NO;
   self.msg = nil;
   [super dealloc];
 }
@@ -119,7 +124,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   if (hasI) {
     [output writeInt32:1 value:self.i];
   }
-  if (self.hasMsg) {
+  if (hasMsg) {
     [output writeMessage:19 value:self.msg];
   }
   [extensionWriter writeUntil:536870912 output:output];
@@ -133,7 +138,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   if (hasI) {
     size += computeInt32Size(1, self.i);
   }
-  if (self.hasMsg) {
+  if (hasMsg) {
     size += computeMessageSize(19, self.msg);
   }
   size += [self extensionsSerializedSize];

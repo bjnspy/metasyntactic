@@ -56,18 +56,21 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
 @end
 
 @interface TestEmbedOptimizedForSize ()
-@property BOOL hasOptionalMessage;
 @property (retain) TestOptimizedForSize* optionalMessage;
 @property (retain) NSMutableArray* mutableRepeatedMessageList;
 @end
 
 @implementation TestEmbedOptimizedForSize
 
-@synthesize hasOptionalMessage;
+- (BOOL) hasOptionalMessage {
+  return hasOptionalMessage != 0;
+}
+- (void) setHasOptionalMessage:(BOOL) hasOptionalMessage_ {
+  hasOptionalMessage = (hasOptionalMessage_ != 0);
+}
 @synthesize optionalMessage;
 @synthesize mutableRepeatedMessageList;
 - (void) dealloc {
-  self.hasOptionalMessage = NO;
   self.optionalMessage = nil;
   self.mutableRepeatedMessageList = nil;
   [super dealloc];
@@ -107,7 +110,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   return value;
 }
 - (BOOL) isInitialized {
-  if (self.hasOptionalMessage) {
+  if (hasOptionalMessage) {
     if (!self.optionalMessage.isInitialized) {
       return NO;
     }
@@ -120,7 +123,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
-  if (self.hasOptionalMessage) {
+  if (hasOptionalMessage) {
     [output writeMessage:1 value:self.optionalMessage];
   }
   for (TestOptimizedForSize* element in self.repeatedMessageList) {
@@ -133,7 +136,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   if (size != -1) return size;
 
   size = 0;
-  if (self.hasOptionalMessage) {
+  if (hasOptionalMessage) {
     size += computeMessageSize(1, self.optionalMessage);
   }
   for (TestOptimizedForSize* element in self.repeatedMessageList) {

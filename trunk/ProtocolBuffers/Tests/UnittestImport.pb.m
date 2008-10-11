@@ -118,17 +118,19 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
 @end
 
 @interface ImportMessage ()
-@property BOOL hasD;
 @property int32_t d;
 @end
 
 @implementation ImportMessage
 
-@synthesize hasD;
+- (BOOL) hasD {
+  return hasD != 0;
+}
+- (void) setHasD:(BOOL) hasD_ {
+  hasD = (hasD_ != 0);
+}
 @synthesize d;
 - (void) dealloc {
-  self.hasD = NO;
-  self.d = 0;
   [super dealloc];
 }
 - (id) init {
