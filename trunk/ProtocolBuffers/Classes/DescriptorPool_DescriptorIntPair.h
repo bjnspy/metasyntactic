@@ -20,7 +20,7 @@
     int32_t number;
 }
 
-@property (retain, readonly) id<PBGenericDescriptor> descriptor;
+@property (readonly, retain) id<PBGenericDescriptor> descriptor;
 @property (readonly) int32_t number;
 
 + (PBDescriptorPool_DescriptorIntPair*) pairWithDescriptor:(id<PBGenericDescriptor>) descriptor

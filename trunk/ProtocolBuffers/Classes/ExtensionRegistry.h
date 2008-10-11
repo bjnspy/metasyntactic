@@ -18,8 +18,8 @@
     NSMutableDictionary* extensionsByNumber;
 }
 
-@property (retain, readonly) NSMutableDictionary* extensionsByName;
-@property (retain, readonly) NSMutableDictionary* extensionsByNumber;
+@property (readonly, retain) NSMutableDictionary* extensionsByName;
+@property (readonly, retain) NSMutableDictionary* extensionsByNumber;
 
 + (PBExtensionRegistry*) emptyRegistry;
 + (PBExtensionRegistry*) registry;

@@ -20,10 +20,10 @@
     id nextValue;
 }
 
-@property (retain, readonly) PBFieldSet* extensions;
-@property (retain, readonly) NSEnumerator* enumerator;
-@property (retain, readonly) PBFieldDescriptor* nextKey;
-@property (retain, readonly) id nextValue;
+@property (readonly, retain) PBFieldSet* extensions;
+@property (readonly, retain) NSEnumerator* enumerator;
+@property (readonly, retain) PBFieldDescriptor* nextKey;
+@property (readonly, retain) id nextValue;
 
 + (PBExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions;
 

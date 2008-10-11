@@ -94,7 +94,7 @@
   NSMutableArray* mutableRepeatedMessageList;
 }
 - (BOOL) hasOptionalMessage;
-@property (retain, readonly) TestOptimizedForSize* optionalMessage;
+@property (readonly, retain) TestOptimizedForSize* optionalMessage;
 - (NSArray*) repeatedMessageList;
 - (TestOptimizedForSize*) repeatedMessageAtIndex:(int32_t) index;
 

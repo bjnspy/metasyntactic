@@ -19,7 +19,7 @@
     PBFieldSet* extensions;
 }
 
-@property (retain, readonly) PBFieldSet* extensions;
+@property (readonly, retain) PBFieldSet* extensions;
 
 - (void) verifyExtensionContainingType:(PBGeneratedExtension*) extension;
 

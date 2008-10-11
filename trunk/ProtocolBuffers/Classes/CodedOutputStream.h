@@ -20,9 +20,9 @@
     NSOutputStream* output;
 }
 
-@property (retain, readonly) NSMutableData* buffer;
+@property (readonly, retain) NSMutableData* buffer;
 @property (readonly) int32_t position;
-@property (retain, readonly) NSOutputStream* output;
+@property (readonly, retain) NSOutputStream* output;
 
 + (PBCodedOutputStream*) streamWithData:(NSMutableData*) data;
 + (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output;

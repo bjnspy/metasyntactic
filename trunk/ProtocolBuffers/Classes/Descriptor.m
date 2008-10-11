@@ -24,7 +24,7 @@
 @interface PBDescriptor ()
     @property int32_t index;
     @property (retain) PBDescriptorProto* proto;
-    @property (retain) NSString* fullName;
+    @property (copy) NSString* fullName;
     @property (retain) PBFileDescriptor* file;
     @property (retain) PBDescriptor* containingType;
     @property (retain) NSMutableArray* mutableNestedTypes;

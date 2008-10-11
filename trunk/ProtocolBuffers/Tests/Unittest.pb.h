@@ -403,27 +403,27 @@
 - (BOOL) hasOptionalBool;
 - (BOOL) optionalBool;
 - (BOOL) hasOptionalString;
-@property (retain, readonly) NSString* optionalString;
+@property (readonly, retain) NSString* optionalString;
 - (BOOL) hasOptionalBytes;
-@property (retain, readonly) NSData* optionalBytes;
+@property (readonly, retain) NSData* optionalBytes;
 - (BOOL) hasOptionalGroup;
-@property (retain, readonly) TestAllTypes_OptionalGroup* optionalGroup;
+@property (readonly, retain) TestAllTypes_OptionalGroup* optionalGroup;
 - (BOOL) hasOptionalNestedMessage;
-@property (retain, readonly) TestAllTypes_NestedMessage* optionalNestedMessage;
+@property (readonly, retain) TestAllTypes_NestedMessage* optionalNestedMessage;
 - (BOOL) hasOptionalForeignMessage;
-@property (retain, readonly) ForeignMessage* optionalForeignMessage;
+@property (readonly, retain) ForeignMessage* optionalForeignMessage;
 - (BOOL) hasOptionalImportMessage;
-@property (retain, readonly) ImportMessage* optionalImportMessage;
+@property (readonly, retain) ImportMessage* optionalImportMessage;
 - (BOOL) hasOptionalNestedEnum;
-@property (retain, readonly) TestAllTypes_NestedEnum* optionalNestedEnum;
+@property (readonly, retain) TestAllTypes_NestedEnum* optionalNestedEnum;
 - (BOOL) hasOptionalForeignEnum;
-@property (retain, readonly) ForeignEnum* optionalForeignEnum;
+@property (readonly, retain) ForeignEnum* optionalForeignEnum;
 - (BOOL) hasOptionalImportEnum;
-@property (retain, readonly) ImportEnum* optionalImportEnum;
+@property (readonly, retain) ImportEnum* optionalImportEnum;
 - (BOOL) hasOptionalStringPiece;
-@property (retain, readonly) NSString* optionalStringPiece;
+@property (readonly, retain) NSString* optionalStringPiece;
 - (BOOL) hasOptionalCord;
-@property (retain, readonly) NSString* optionalCord;
+@property (readonly, retain) NSString* optionalCord;
 - (BOOL) hasDefaultInt32;
 @property (readonly) int32_t defaultInt32;
 - (BOOL) hasDefaultInt64;
@@ -451,19 +451,19 @@
 - (BOOL) hasDefaultBool;
 - (BOOL) defaultBool;
 - (BOOL) hasDefaultString;
-@property (retain, readonly) NSString* defaultString;
+@property (readonly, retain) NSString* defaultString;
 - (BOOL) hasDefaultBytes;
-@property (retain, readonly) NSData* defaultBytes;
+@property (readonly, retain) NSData* defaultBytes;
 - (BOOL) hasDefaultNestedEnum;
-@property (retain, readonly) TestAllTypes_NestedEnum* defaultNestedEnum;
+@property (readonly, retain) TestAllTypes_NestedEnum* defaultNestedEnum;
 - (BOOL) hasDefaultForeignEnum;
-@property (retain, readonly) ForeignEnum* defaultForeignEnum;
+@property (readonly, retain) ForeignEnum* defaultForeignEnum;
 - (BOOL) hasDefaultImportEnum;
-@property (retain, readonly) ImportEnum* defaultImportEnum;
+@property (readonly, retain) ImportEnum* defaultImportEnum;
 - (BOOL) hasDefaultStringPiece;
-@property (retain, readonly) NSString* defaultStringPiece;
+@property (readonly, retain) NSString* defaultStringPiece;
 - (BOOL) hasDefaultCord;
-@property (retain, readonly) NSString* defaultCord;
+@property (readonly, retain) NSString* defaultCord;
 - (NSArray*) repeatedInt32List;
 - (int32_t) repeatedInt32AtIndex:(int32_t) index;
 - (NSArray*) repeatedInt64List;
@@ -1693,7 +1693,7 @@
   NSMutableArray* mutableRepeatedMessageList;
 }
 - (BOOL) hasOptionalMessage;
-@property (retain, readonly) TestRequired* optionalMessage;
+@property (readonly, retain) TestRequired* optionalMessage;
 - (BOOL) hasDummy;
 @property (readonly) int32_t dummy;
 - (NSArray*) repeatedMessageList;
@@ -1765,7 +1765,7 @@
   TestAllTypes_NestedMessage* foreignNested;
 }
 - (BOOL) hasForeignNested;
-@property (retain, readonly) TestAllTypes_NestedMessage* foreignNested;
+@property (readonly, retain) TestAllTypes_NestedMessage* foreignNested;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -1976,7 +1976,7 @@
   TestRecursiveMessage* a;
 }
 - (BOOL) hasA;
-@property (retain, readonly) TestRecursiveMessage* a;
+@property (readonly, retain) TestRecursiveMessage* a;
 - (BOOL) hasI;
 @property (readonly) int32_t i;
 
@@ -2039,7 +2039,7 @@
   TestMutualRecursionB* bb;
 }
 - (BOOL) hasBb;
-@property (retain, readonly) TestMutualRecursionB* bb;
+@property (readonly, retain) TestMutualRecursionB* bb;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -2097,7 +2097,7 @@
   TestMutualRecursionA* a;
 }
 - (BOOL) hasA;
-@property (retain, readonly) TestMutualRecursionA* a;
+@property (readonly, retain) TestMutualRecursionA* a;
 - (BOOL) hasOptionalInt32;
 @property (readonly) int32_t optionalInt32;
 
@@ -2166,9 +2166,9 @@
 - (BOOL) hasA;
 @property (readonly) int32_t a;
 - (BOOL) hasFoo;
-@property (retain, readonly) TestDupFieldNumber_Foo* foo;
+@property (readonly, retain) TestDupFieldNumber_Foo* foo;
 - (BOOL) hasBar;
-@property (retain, readonly) TestDupFieldNumber_Bar* bar;
+@property (readonly, retain) TestDupFieldNumber_Bar* bar;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -2344,7 +2344,7 @@
   TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 }
 - (BOOL) hasOptionalNestedMessage;
-@property (retain, readonly) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
+@property (readonly, retain) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -2483,15 +2483,15 @@
 - (BOOL) hasPrimitiveField;
 @property (readonly) int32_t primitiveField;
 - (BOOL) hasStringField;
-@property (retain, readonly) NSString* stringField;
+@property (readonly, retain) NSString* stringField;
 - (BOOL) hasEnumField;
-@property (retain, readonly) ForeignEnum* enumField;
+@property (readonly, retain) ForeignEnum* enumField;
 - (BOOL) hasMessageField;
-@property (retain, readonly) ForeignMessage* messageField;
+@property (readonly, retain) ForeignMessage* messageField;
 - (BOOL) hasStringPieceField;
-@property (retain, readonly) NSString* stringPieceField;
+@property (readonly, retain) NSString* stringPieceField;
 - (BOOL) hasCordField;
-@property (retain, readonly) NSString* cordField;
+@property (readonly, retain) NSString* cordField;
 - (NSArray*) repeatedPrimitiveFieldList;
 - (int32_t) repeatedPrimitiveFieldAtIndex:(int32_t) index;
 - (NSArray*) repeatedStringFieldList;
@@ -2630,7 +2630,7 @@
   NSString* myString;
 }
 - (BOOL) hasMyString;
-@property (retain, readonly) NSString* myString;
+@property (readonly, retain) NSString* myString;
 - (BOOL) hasMyInt;
 @property (readonly) int64_t myInt;
 - (BOOL) hasMyFloat;
@@ -2708,7 +2708,7 @@
   int32_t largeUint32;
 }
 - (BOOL) hasEscapedBytes;
-@property (retain, readonly) NSData* escapedBytes;
+@property (readonly, retain) NSData* escapedBytes;
 - (BOOL) hasLargeUint32;
 @property (readonly) int32_t largeUint32;
 - (BOOL) hasLargeUint64;
@@ -2718,7 +2718,7 @@
 - (BOOL) hasSmallInt64;
 @property (readonly) int64_t smallInt64;
 - (BOOL) hasUtf8String;
-@property (retain, readonly) NSString* utf8String;
+@property (readonly, retain) NSString* utf8String;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;

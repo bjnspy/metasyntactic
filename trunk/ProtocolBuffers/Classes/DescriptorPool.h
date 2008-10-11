@@ -14,16 +14,16 @@
 
 @interface PBDescriptorPool : NSObject {
 @private
-    NSMutableArray* dependencies;
-    NSMutableDictionary* descriptorsByName;
-    NSMutableDictionary* fieldsByNumber;
-    NSMutableDictionary* enumValuesByNumber;
+    NSMutableArray* mutableDependencies;
+    NSMutableDictionary* mutableDescriptorsByName;
+    NSMutableDictionary* mutableFieldsByNumber;
+    NSMutableDictionary* mutableEnumValuesByNumber;
 }
 
-@property (retain) NSMutableArray* dependencies;
-@property (retain) NSMutableDictionary* descriptorsByName;
-@property (retain) NSMutableDictionary* fieldsByNumber;
-@property (retain) NSMutableDictionary* enumValuesByNumber;
+- (NSArray*) dependencies;
+- (NSDictionary*) descriptorsByName;
+- (NSDictionary*) fieldsByNumber;
+- (NSDictionary*) enumValuesByNumber;
 
 + (PBDescriptorPool*) poolWithDependencies:(NSArray*) dependencies;
 
