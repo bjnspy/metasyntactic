@@ -30,11 +30,11 @@
 }
 
 
-- (id) initWithField:(PBFieldDescriptor*) field
+- (id) initWithField:(PBFieldDescriptor*) field_
                 name:(NSString*) name
         messageClass:(Class) messageClass
         builderClass:(Class) builderClass {
-    if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
+    if (self = [super initWithField:field_ name:name messageClass:messageClass builderClass:builderClass]) {
         self.createBuilderSelector = @selector(createBuilder);
     }
 

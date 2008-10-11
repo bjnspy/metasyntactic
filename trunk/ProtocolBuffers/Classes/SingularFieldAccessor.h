@@ -23,11 +23,6 @@
     SEL clearSelector;
 }
 
-@property (readonly) SEL getSelector;
-@property (readonly) SEL setSelector;
-@property (readonly) SEL hasSelector;
-@property (readonly) SEL clearSelector;
-
 - (id) initWithField:(PBFieldDescriptor*) field
                 name:(NSString*) name
         messageClass:(Class) messageClass

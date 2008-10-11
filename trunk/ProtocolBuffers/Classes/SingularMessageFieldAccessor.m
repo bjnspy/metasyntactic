@@ -31,11 +31,11 @@
 }
 
 
-- (id) initWithField:(PBFieldDescriptor*) field
+- (id) initWithField:(PBFieldDescriptor*) field_
                 name:(NSString*) name
         messageClass:(Class) messageClass
         builderClass:(Class) builderClass {
-    if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
+    if (self = [super initWithField:field_ name:name messageClass:messageClass builderClass:builderClass]) {
         self.createBuilderSelector = @selector(createBuilder);
     }
 
@@ -55,13 +55,13 @@
 
 
 - (Class) messageClass {
-    return [self.field.messageType class];
+    return [field.messageType class];
 }
 
 
 - (id) coerceType:(id) value {
     if ([value conformsToProtocol:@protocol(PBMessage)] &&
-        [(id<PBMessage>)value descriptor] == self.field.messageType) {
+        [(id<PBMessage>)value descriptor] == field.messageType) {
         return value;
     } else {
         // The value is not the exact right message type.  However, if it
