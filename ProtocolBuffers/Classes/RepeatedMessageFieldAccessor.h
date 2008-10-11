@@ -16,10 +16,10 @@
 
 @interface PBRepeatedMessageFieldAccessor : PBRepeatedFieldAccessor {
 @private
-    SEL createBuilderMethod;
+    SEL createBuilderSelector;
 }
 
-@property (readonly) SEL createBuilderMethod;
+@property (readonly) SEL createBuilderSelector;
 
 + (PBRepeatedMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                                 name:(NSString*) name

@@ -16,12 +16,12 @@
 
 @interface PBSingularEnumFieldAccessor : PBSingularFieldAccessor {
 @private
-    SEL valueOfMethod;
-    SEL valueDescriptorMethod;
+    SEL valueOfSelector;
+    SEL valueDescriptorSelector;
 }
 
-@property (readonly) SEL valueOfMethod;
-@property (readonly) SEL valueDescriptorMethod;
+@property (readonly) SEL valueOfSelector;
+@property (readonly) SEL valueDescriptorSelector;
 
 
 + (PBSingularEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field

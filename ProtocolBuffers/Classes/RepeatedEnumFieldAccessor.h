@@ -16,12 +16,12 @@
 
 @interface PBRepeatedEnumFieldAccessor : PBRepeatedFieldAccessor {
 @private
-    SEL valueOfMethod;
-    SEL valueDescriptorMethod;
+    SEL valueOfSelector;
+    SEL valueDescriptorSelector;
 }
 
-@property (readonly) SEL valueOfMethod;
-@property (readonly) SEL valueDescriptorMethod;
+@property (readonly) SEL valueOfSelector;
+@property (readonly) SEL valueDescriptorSelector;
 
 + (PBRepeatedEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
