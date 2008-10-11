@@ -19,9 +19,6 @@
     SEL createBuilderSelector;
 }
 
-@property (readonly) SEL createBuilderSelector;
-
-
 + (PBSingularMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                  name:(NSString*) name
                                          messageClass:(Class) messageClass
