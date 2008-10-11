@@ -250,37 +250,40 @@
     }
 }
 
-#if 0
 
-
-
-public void testReadHugeBlob() throws Exception {
+- (void) testReadHugeBlob {
     // Allocate and initialize a 1MB blob.
-    byte[] blob = new byte[1 << 20];
-    for (int i = 0; i < blob.length; i++) {
-        blob[i] = (byte)i;
+    NSMutableData* blob = [NSMutableData dataWithLength:1 << 20];
+    for (int32_t i = 0; i < blob.length; i++) {
+        ((uint8_t*)blob.mutableBytes)[i] = (uint8_t)i;
     }
     
     // Make a message containing it.
-    TestAllTypes.Builder builder = TestAllTypes.newBuilder();
-    TestUtil.setAllFields(builder);
-    builder.setOptionalBytes(ByteString.copyFrom(blob));
-    TestAllTypes message = builder.build();
+    TestAllTypes_Builder* builder = [TestAllTypes builder];
+    [TestUtilities setAllFields:builder];
+    [builder setOptionalBytes:[NSData dataWithData:blob]];
+    TestAllTypes* message = [builder build];
     
     // Serialize and parse it.  Make sure to parse from an InputStream, not
     // directly from a ByteString, so that CodedInputStream uses buffered
     // reading.
-    TestAllTypes message2 =
-    TestAllTypes.parseFrom(message.toByteString().newInput());
+    TestAllTypes* message2 = 
+    [TestAllTypes parseFromInputStream:[NSInputStream inputStreamWithData:message.toData]];
     
-    assertEquals(message.getOptionalBytes(), message2.getOptionalBytes());
+    STAssertEqualObjects(message.optionalBytes, message2.optionalBytes, @"");
     
     // Make sure all the other fields were parsed correctly.
-    TestAllTypes message3 = TestAllTypes.newBuilder(message2)
-    .setOptionalBytes(TestUtil.getAllSet().getOptionalBytes())
-    .build();
-    TestUtil.assertAllFieldsSet(message3);
+    TestAllTypes* message3 = [[[TestAllTypes builderWithPrototype:message2]
+                               setOptionalBytes:[[TestUtilities allSet] optionalBytes]] build];
+
+    [TestUtilities assertAllFieldsSet:message3];
 }
+
+#if 0
+
+
+
+
 
 public void testReadMaliciouslyLargeBlob() throws Exception {
     ByteString.Output rawOutput = ByteString.newOutput();
