@@ -15,6 +15,7 @@
 #import <SenTestingKit/SenTestingKit.h>
 
 #import "CodedInputStreamTests.h"
+#import "CodedOuputStreamTests.h"
 #import "CoreTests.h"
 #import "DescriptorTests.h"
 #import "GeneratedMessageTests.h"
@@ -28,7 +29,8 @@ int main(int argc, char *argv[]) {
     
     [SenTestObserver class];
     
-    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CodedInputStreamTests class]] run];
+    //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CodedInputStreamTests class]] run];
+    [(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CodedOutputStreamTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[CoreTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[DescriptorTests class]] run];
     //[(SenTestSuite*)[SenTestSuite testSuiteForTestCaseClass:[GeneratedMessageTests class]] run];

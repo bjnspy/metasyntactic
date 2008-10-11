@@ -24,8 +24,9 @@
 @property (readonly) int32_t position;
 @property (retain, readonly) NSOutputStream* output;
 
-+ (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output;
 + (PBCodedOutputStream*) streamWithData:(NSMutableData*) data;
++ (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output;
++ (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output bufferSize:(int32_t) bufferSize;
 
 int32_t encodeZigZag32(int32_t n);
 int64_t encodeZigZag64(int64_t n);

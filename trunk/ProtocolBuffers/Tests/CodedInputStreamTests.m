@@ -300,8 +300,6 @@
 
 #if 0
 
-
-
 private TestRecursiveMessage makeRecursiveMessage(int depth) {
     if (depth == 0) {
         return TestRecursiveMessage.newBuilder().setI(5).build();
