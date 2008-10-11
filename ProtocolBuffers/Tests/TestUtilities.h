@@ -45,4 +45,6 @@
 
 + (PBExtensionRegistry*) extensionRegistry;
 
++ (NSData*) goldenData;
+
 @end

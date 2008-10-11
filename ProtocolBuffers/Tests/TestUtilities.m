@@ -24,6 +24,16 @@
 }
 
 
++ (NSData*) goldenData {
+    NSString* path = [[NSBundle mainBundle] pathForResource:@"golden_message" ofType:nil];
+    if (path == nil) {
+        path = @"golden_message";
+    }
+    NSData* goldenData = [NSData dataWithContentsOfFile:path];
+    return goldenData;
+}
+
+
 - (void) failWithException:(NSException *) anException {
     @throw anException;
 }
