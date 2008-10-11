@@ -24,7 +24,7 @@
 - (PBDescriptor*) descriptor;
 - (id<PBMessage>) defaultInstance;
 - (NSDictionary*) allFields;
-- (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field;
+- (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field;
 
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;

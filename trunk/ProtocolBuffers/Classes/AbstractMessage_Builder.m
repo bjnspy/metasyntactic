@@ -174,7 +174,7 @@
 }
 
 
-- (id<PBMessage_Builder>) newBuilderForField:(PBFieldDescriptor*) field {
+- (id<PBMessage_Builder>) createBuilder:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
