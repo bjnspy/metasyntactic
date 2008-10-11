@@ -190,8 +190,10 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (!self.extensionsAreInitialized) return false;
-  return true;
+  if (!self.extensionsAreInitialized) {
+    return NO;
+  }
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];
@@ -356,9 +358,11 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 }
 - (BOOL) isInitialized {
   if (self.hasMessageSet) {
-    if (!self.messageSet.isInitialized) return false;
+    if (!self.messageSet.isInitialized) {
+      return NO;
+    }
   }
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasMessageSet) {
@@ -573,7 +577,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSetExtension1_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasI) {
@@ -769,7 +773,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSetExtension2_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasStr) {
@@ -963,9 +967,11 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 }
 - (BOOL) isInitialized {
   for (RawMessageSet_Item* element in self.itemList) {
-    if (!element.isInitialized) return false;
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   for (RawMessageSet_Item* element in self.itemList) {
@@ -1063,9 +1069,13 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   return [UnittestMsetProtoRoot internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (!self.hasTypeId) return false;
-  if (!self.hasMessage) return false;
-  return true;
+  if (!self.hasTypeId) {
+    return NO;
+  }
+  if (!self.hasMessage) {
+    return NO;
+  }
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasTypeId) {

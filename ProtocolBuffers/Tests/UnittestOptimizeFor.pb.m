@@ -109,8 +109,10 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   return [UnittestOptimizeForProtoRoot internal_static_protobuf_unittest_TestOptimizedForSize_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (!self.extensionsAreInitialized) return false;
-  return true;
+  if (!self.extensionsAreInitialized) {
+    return NO;
+  }
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];

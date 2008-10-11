@@ -2325,7 +2325,7 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasOptionalInt32) {
@@ -2880,7 +2880,7 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_NestedMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasBb) {
@@ -3070,7 +3070,7 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasA) {
@@ -3260,7 +3260,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasA) {
@@ -5609,7 +5609,7 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_ForeignMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasC) {
@@ -5792,8 +5792,10 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllExtensions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (!self.extensionsAreInitialized) return false;
-  return true;
+  if (!self.extensionsAreInitialized) {
+    return NO;
+  }
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];
@@ -5957,7 +5959,7 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_OptionalGroup_extension_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasA) {
@@ -6147,7 +6149,7 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_RepeatedGroup_extension_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasA) {
@@ -6573,10 +6575,16 @@ static TestRequired* defaultTestRequiredInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestRequired_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (!self.hasA) return false;
-  if (!self.hasB) return false;
-  if (!self.hasC) return false;
-  return true;
+  if (!self.hasA) {
+    return NO;
+  }
+  if (!self.hasB) {
+    return NO;
+  }
+  if (!self.hasC) {
+    return NO;
+  }
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasA) {
@@ -7712,12 +7720,16 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 }
 - (BOOL) isInitialized {
   if (self.hasOptionalMessage) {
-    if (!self.optionalMessage.isInitialized) return false;
+    if (!self.optionalMessage.isInitialized) {
+      return NO;
+    }
   }
   for (TestRequired* element in self.repeatedMessageList) {
-    if (!element.isInitialized) return false;
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasOptionalMessage) {
@@ -8002,7 +8014,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestForeignNested_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasForeignNested) {
@@ -8204,7 +8216,7 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestEmptyMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
@@ -8358,8 +8370,10 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (!self.extensionsAreInitialized) return false;
-  return true;
+  if (!self.extensionsAreInitialized) {
+    return NO;
+  }
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];
@@ -8530,7 +8544,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestReallyLargeTagNumber_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasA) {
@@ -8756,7 +8770,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestRecursiveMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasA) {
@@ -8994,7 +9008,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestMutualRecursionA_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasBb) {
@@ -9210,7 +9224,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestMutualRecursionB_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasA) {
@@ -9462,7 +9476,7 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestDupFieldNumber_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasA) {
@@ -9565,7 +9579,7 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestDupFieldNumber_Foo_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasA) {
@@ -9755,7 +9769,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestDupFieldNumber_Bar_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasA) {
@@ -10128,7 +10142,7 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasOptionalNestedMessage) {
@@ -10232,7 +10246,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   return value;
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   for (NSNumber* value in self.mutableNestedmessageRepeatedInt32List) {
@@ -10698,7 +10712,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasPrimitiveField) {
@@ -11349,8 +11363,10 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestFieldOrderings_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  if (!self.extensionsAreInitialized) return false;
-  return true;
+  if (!self.extensionsAreInitialized) {
+    return NO;
+  }
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   PBExtensionWriter* extensionWriter = [PBExtensionWriter writerWithExtensions:self.extensions];
@@ -11637,7 +11653,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_TestExtremeDefaultValues_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasEscapedBytes) {
@@ -11965,7 +11981,7 @@ static FooRequest* defaultFooRequestInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_FooRequest_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
@@ -12119,7 +12135,7 @@ static FooResponse* defaultFooResponseInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_FooResponse_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
@@ -12273,7 +12289,7 @@ static BarRequest* defaultBarRequestInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_BarRequest_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
@@ -12427,7 +12443,7 @@ static BarResponse* defaultBarResponseInstance = nil;
   return [UnittestProtoRoot internal_static_protobuf_unittest_BarResponse_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
