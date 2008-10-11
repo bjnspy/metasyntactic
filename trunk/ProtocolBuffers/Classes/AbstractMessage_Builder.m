@@ -43,7 +43,9 @@
 
 - (id<PBMessage_Builder>) mergeFromMessage:(id<PBMessage>) other {
     if ([other descriptor] != self.descriptor) {
-        @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"mergeFromMessage:(id<PBMessage>) can only merge messages of the same type." userInfo:nil];
+        @throw [NSException exceptionWithName:@"IllegalArgument"
+                                       reason:@"mergeFromMessage can only merge messages of the same type."
+                                     userInfo:nil];
     }
 
     // Note:  We don't attempt to verify that other's fields have valid

@@ -14,8 +14,12 @@
 
 #import "Message_Builder.h"
 
+/**
+ * A partial implementation of the {@link Message.Builder} interface which
+ * implements as many methods of that interface as possible in terms of
+ * other methods.
+ */
 @interface PBAbstractMessage_Builder : NSObject<PBMessage_Builder> {
-@private
 }
 
 - (PBUnknownFieldSet*) unknownFields;
