@@ -19,6 +19,11 @@
 #import "Field.h"
 #import "UnknownFieldSet_Builder.h"
 
+@interface PBUnknownFieldSet()
+    @property (retain) NSDictionary* fields;
+@end
+
+
 @implementation PBUnknownFieldSet
 
 static PBUnknownFieldSet* defaultInstance = nil;

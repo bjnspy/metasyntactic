@@ -16,14 +16,18 @@
 - (PBDescriptor*) descriptor;
 - (id<PBMessage>) defaultInstance;
 - (NSDictionary*) allFields;
+
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
 - (NSArray*) getRepeatedField:(PBFieldDescriptor*) field;
+
 - (PBUnknownFieldSet*) unknownFields;
 - (BOOL) isInitialized;
+
 - (int32_t) serializedSize;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (void) writeToOutputStream:(NSOutputStream*) output;
 - (NSData*) data;
+
 - (id<PBMessage_Builder>) builder;
 @end
