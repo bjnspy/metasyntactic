@@ -18,9 +18,6 @@
     int32_t number;
 }
 
-@property (readonly, retain) PBDescriptor* descriptor;
-@property (readonly) int32_t number;
-
 + (PBExtensionRegistry_DescriptorIntPair*) pairWithDescriptor:(PBDescriptor*) descriptor
                                                        number:(int32_t) number;
 
