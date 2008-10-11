@@ -37,6 +37,60 @@
     @throw anException;
 }
 
+
+/**
+ * Parses the given bytes using writeRawLittleEndian32() and checks
+ * that the result matches the given value.
+ */
+- (void) assertWriteLittleEndian32:(NSData*) data value:(int32_t) value {
+    NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
+    PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput];
+    [output writeRawLittleEndian32:(int32_t)value];
+    [output flush];
+    
+    NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+    STAssertEqualObjects(data, actual, @"");
+
+    // Try different block sizes.
+    for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
+        NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
+        PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput bufferSize:blockSize];
+        [output writeRawLittleEndian32:(int32_t)value];
+        [output flush];
+        
+        NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+        STAssertEqualObjects(data, actual, @"");
+    }
+}
+
+
+/**
+ * Parses the given bytes using writeRawLittleEndian64() and checks
+ * that the result matches the given value.
+ */
+- (void) assertWriteLittleEndian64:(NSData*) data value:(int64_t) value {
+    NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
+    PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput];
+    [output writeRawLittleEndian64:value];
+    [output flush];
+    
+    NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+    STAssertEqualObjects(data, actual, @"");
+    
+    // Try different block sizes.
+    for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
+        NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
+        PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput bufferSize:blockSize];
+        [output writeRawLittleEndian64:value];
+        [output flush];
+        
+        NSData* actual = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+        STAssertEqualObjects(data, actual, @"");
+    }
+}
+
+
+
 /**
  * Writes the given value using writeRawVarint32() and writeRawVarint64() and
  * checks that the result matches the given bytes.
@@ -129,129 +183,65 @@
 }
 
 
+/** Tests writeRawLittleEndian32() and writeRawLittleEndian64(). */
+- (void) testWriteLittleEndian {
+    [self assertWriteLittleEndian32:bytes(0x78, 0x56, 0x34, 0x12) value:0x12345678];
+    [self assertWriteLittleEndian32:bytes(0xf0, 0xde, 0xbc, 0x9a) value:0x9abcdef0];
+    
+    [self assertWriteLittleEndian64:
+     bytes(0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12) value:
+     0x123456789abcdef0LL];
+    [self assertWriteLittleEndian64:
+     bytes(0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a) value:
+     0x9abcdef012345678LL];
+}
+
+
+/** Test encodeZigZag32() and encodeZigZag64(). */
+- (void) testEncodeZigZag {
+    STAssertTrue(0 == encodeZigZag32( 0), @"");
+    STAssertTrue(1 == encodeZigZag32(-1), @"");
+    STAssertTrue(2 == encodeZigZag32( 1), @"");
+    STAssertTrue(3 == encodeZigZag32(-2), @"");
+    STAssertTrue(0x7FFFFFFE == encodeZigZag32(0x3FFFFFFF), @"");
+    STAssertTrue(0x7FFFFFFF == encodeZigZag32(0xC0000000), @"");
+    STAssertTrue(0xFFFFFFFE == encodeZigZag32(0x7FFFFFFF), @"");
+    STAssertTrue(0xFFFFFFFF == encodeZigZag32(0x80000000), @"");
+    
+    STAssertTrue(0 == encodeZigZag64( 0), @"");
+    STAssertTrue(1 == encodeZigZag64(-1), @"");
+    STAssertTrue(2 == encodeZigZag64( 1), @"");
+    STAssertTrue(3 == encodeZigZag64(-2), @"");
+    STAssertTrue(0x000000007FFFFFFELL == encodeZigZag64(0x000000003FFFFFFFLL), @"");
+    STAssertTrue(0x000000007FFFFFFFLL == encodeZigZag64(0xFFFFFFFFC0000000LL), @"");
+    STAssertTrue(0x00000000FFFFFFFELL == encodeZigZag64(0x000000007FFFFFFFLL), @"");
+    STAssertTrue(0x00000000FFFFFFFFLL == encodeZigZag64(0xFFFFFFFF80000000LL), @"");
+    STAssertTrue(0xFFFFFFFFFFFFFFFELL == encodeZigZag64(0x7FFFFFFFFFFFFFFFLL), @"");
+    STAssertTrue(0xFFFFFFFFFFFFFFFFLL == encodeZigZag64(0x8000000000000000LL), @"");
+    
+    // Some easier-to-verify round-trip tests.  The inputs (other than 0, 1, -1)
+    // were chosen semi-randomly via keyboard bashing.
+    STAssertTrue(0 == encodeZigZag32(decodeZigZag32(0)), @"");
+    STAssertTrue(1 == encodeZigZag32(decodeZigZag32(1)), @"");
+    STAssertTrue(-1 == encodeZigZag32(decodeZigZag32(-1)), @"");
+    STAssertTrue(14927 == encodeZigZag32(decodeZigZag32(14927)), @"");
+    STAssertTrue(-3612 == encodeZigZag32(decodeZigZag32(-3612)), @"");
+    
+    STAssertTrue(0 == encodeZigZag64(decodeZigZag64(0)), @"");
+    STAssertTrue(1 == encodeZigZag64(decodeZigZag64(1)), @"");
+    STAssertTrue(-1 == encodeZigZag64(decodeZigZag64(-1)), @"");
+    STAssertTrue(14927 == encodeZigZag64(decodeZigZag64(14927)), @"");
+    STAssertTrue(-3612 == encodeZigZag64(decodeZigZag64(-3612)), @"");
+    
+    STAssertTrue(856912304801416LL == encodeZigZag64(decodeZigZag64(856912304801416LL)), @"");
+    STAssertTrue(-75123905439571256LL == encodeZigZag64(decodeZigZag64(-75123905439571256LL)), @"");
+}
+
 #if 0
 
 
 
 
-/**
- * Parses the given bytes using writeRawLittleEndian32() and checks
- * that the result matches the given value.
- */
-private void assertWriteLittleEndian32(byte[] data, int value)
-throws Exception {
-    ByteArrayOutputStream rawOutput = new ByteArrayOutputStream();
-    CodedOutputStream output = CodedOutputStream.newInstance(rawOutput);
-    output.writeRawLittleEndian32(value);
-    output.flush();
-    assertEqualBytes(data, rawOutput.toByteArray());
-    
-    // Try different block sizes.
-    for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
-        rawOutput = new ByteArrayOutputStream();
-        output = CodedOutputStream.newInstance(rawOutput, blockSize);
-        output.writeRawLittleEndian32(value);
-        output.flush();
-        assertEqualBytes(data, rawOutput.toByteArray());
-    }
-}
-
-/**
- * Parses the given bytes using writeRawLittleEndian64() and checks
- * that the result matches the given value.
- */
-private void assertWriteLittleEndian64(byte[] data, long value)
-throws Exception {
-    ByteArrayOutputStream rawOutput = new ByteArrayOutputStream();
-    CodedOutputStream output = CodedOutputStream.newInstance(rawOutput);
-    output.writeRawLittleEndian64(value);
-    output.flush();
-    assertEqualBytes(data, rawOutput.toByteArray());
-    
-    // Try different block sizes.
-    for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
-        rawOutput = new ByteArrayOutputStream();
-        output = CodedOutputStream.newInstance(rawOutput, blockSize);
-        output.writeRawLittleEndian64(value);
-        output.flush();
-        assertEqualBytes(data, rawOutput.toByteArray());
-    }
-}
-
-/** Tests writeRawLittleEndian32() and writeRawLittleEndian64(). */
-public void testWriteLittleEndian() throws Exception {
-    assertWriteLittleEndian32(bytes(0x78, 0x56, 0x34, 0x12), 0x12345678);
-    assertWriteLittleEndian32(bytes(0xf0, 0xde, 0xbc, 0x9a), 0x9abcdef0);
-    
-    assertWriteLittleEndian64(
-                              bytes(0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12),
-                              0x123456789abcdef0L);
-    assertWriteLittleEndian64(
-                              bytes(0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a),
-                              0x9abcdef012345678L);
-}
-
-/** Test encodeZigZag32() and encodeZigZag64(). */
-public void testEncodeZigZag() throws Exception {
-    assertEquals(0, CodedOutputStream.encodeZigZag32( 0));
-    assertEquals(1, CodedOutputStream.encodeZigZag32(-1));
-    assertEquals(2, CodedOutputStream.encodeZigZag32( 1));
-    assertEquals(3, CodedOutputStream.encodeZigZag32(-2));
-    assertEquals(0x7FFFFFFE, CodedOutputStream.encodeZigZag32(0x3FFFFFFF));
-    assertEquals(0x7FFFFFFF, CodedOutputStream.encodeZigZag32(0xC0000000));
-    assertEquals(0xFFFFFFFE, CodedOutputStream.encodeZigZag32(0x7FFFFFFF));
-    assertEquals(0xFFFFFFFF, CodedOutputStream.encodeZigZag32(0x80000000));
-    
-    assertEquals(0, CodedOutputStream.encodeZigZag64( 0));
-    assertEquals(1, CodedOutputStream.encodeZigZag64(-1));
-    assertEquals(2, CodedOutputStream.encodeZigZag64( 1));
-    assertEquals(3, CodedOutputStream.encodeZigZag64(-2));
-    assertEquals(0x000000007FFFFFFEL,
-                 CodedOutputStream.encodeZigZag64(0x000000003FFFFFFFL));
-    assertEquals(0x000000007FFFFFFFL,
-                 CodedOutputStream.encodeZigZag64(0xFFFFFFFFC0000000L));
-    assertEquals(0x00000000FFFFFFFEL,
-                 CodedOutputStream.encodeZigZag64(0x000000007FFFFFFFL));
-    assertEquals(0x00000000FFFFFFFFL,
-                 CodedOutputStream.encodeZigZag64(0xFFFFFFFF80000000L));
-    assertEquals(0xFFFFFFFFFFFFFFFEL,
-                 CodedOutputStream.encodeZigZag64(0x7FFFFFFFFFFFFFFFL));
-    assertEquals(0xFFFFFFFFFFFFFFFFL,
-                 CodedOutputStream.encodeZigZag64(0x8000000000000000L));
-    
-    // Some easier-to-verify round-trip tests.  The inputs (other than 0, 1, -1)
-    // were chosen semi-randomly via keyboard bashing.
-    assertEquals(0,
-                 CodedOutputStream.encodeZigZag32(CodedInputStream.decodeZigZag32(0)));
-    assertEquals(1,
-                 CodedOutputStream.encodeZigZag32(CodedInputStream.decodeZigZag32(1)));
-    assertEquals(-1,
-                 CodedOutputStream.encodeZigZag32(CodedInputStream.decodeZigZag32(-1)));
-    assertEquals(14927,
-                 CodedOutputStream.encodeZigZag32(CodedInputStream.decodeZigZag32(14927)));
-    assertEquals(-3612,
-                 CodedOutputStream.encodeZigZag32(CodedInputStream.decodeZigZag32(-3612)));
-    
-    assertEquals(0,
-                 CodedOutputStream.encodeZigZag64(CodedInputStream.decodeZigZag64(0)));
-    assertEquals(1,
-                 CodedOutputStream.encodeZigZag64(CodedInputStream.decodeZigZag64(1)));
-    assertEquals(-1,
-                 CodedOutputStream.encodeZigZag64(CodedInputStream.decodeZigZag64(-1)));
-    assertEquals(14927,
-                 CodedOutputStream.encodeZigZag64(CodedInputStream.decodeZigZag64(14927)));
-    assertEquals(-3612,
-                 CodedOutputStream.encodeZigZag64(CodedInputStream.decodeZigZag64(-3612)));
-    
-    assertEquals(856912304801416L,
-                 CodedOutputStream.encodeZigZag64(
-                                                  CodedInputStream.decodeZigZag64(
-                                                                                  856912304801416L)));
-    assertEquals(-75123905439571256L,
-                 CodedOutputStream.encodeZigZag64(
-                                                  CodedInputStream.decodeZigZag64(
-                                                                                  -75123905439571256L)));
-}
 
 /** Tests writing a whole message with every field type. */
 public void testWriteWholeMessage() throws Exception {
