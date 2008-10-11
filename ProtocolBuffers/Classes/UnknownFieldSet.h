@@ -28,7 +28,7 @@
 
 - (void) writeAsMessageSetTo:(PBCodedOutputStream*) output;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
-- (NSData*) toData;
+- (NSData*) data;
 
 - (int32_t) serializedSize;
 - (int32_t) serializedSizeAsMessageSet;

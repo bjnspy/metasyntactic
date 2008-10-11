@@ -21,11 +21,7 @@
 @class PBExtensionRegistry;
 
 @interface TestUtilities : SenTestCase {
-
 }
-
-+ (NSData*) toData:(NSString*) str;
-
 
 + (void) setAllFields:(TestAllTypes_Builder*) message;
 + (void) setAllExtensions:(TestAllExtensions_Builder*) message;

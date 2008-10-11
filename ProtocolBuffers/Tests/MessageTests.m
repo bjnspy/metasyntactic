@@ -55,7 +55,7 @@
     [[[TestAllTypes builderWithPrototype:self.mergeDestination]
       mergeFromTestAllTypes:self.mergeSource] build];
 
-    STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
+    STAssertEqualObjects(result.data, self.mergeResult.data, @"");
 }
 
 
@@ -69,7 +69,7 @@
                              mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
                             build];
 
-    STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
+    STAssertEqualObjects(result.data, self.mergeResult.data, @"");
 }
 
 
@@ -80,7 +80,7 @@
       mergeFromMessage:[[PBDynamicMessage builderWithMessage:self.mergeSource] build]]
      build];
 
-    STAssertEqualObjects(result.toData, self.mergeResult.toData, @"");
+    STAssertEqualObjects(result.data, self.mergeResult.data, @"");
 }
 
 // =================================================================
@@ -234,7 +234,7 @@
       addRepeatedMessage:self.testRequiredUninitialized]
      buildPartial];
 
-    NSData* data = message.toData;
+    NSData* data = message.data;
 
     STAssertThrows([TestRequiredForeign parseFromData:data], @"");
 }
