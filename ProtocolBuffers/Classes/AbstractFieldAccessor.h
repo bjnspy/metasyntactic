@@ -13,11 +13,9 @@
 // limitations under the License.
 
 @interface PBAbstractFieldAccessor : NSObject {
-@private
+@protected
     PBFieldDescriptor* field;
 }
-
-@property (readonly, retain) PBFieldDescriptor* field;
 
 //@protected
 - (id) initWithField:(PBFieldDescriptor*) field;
