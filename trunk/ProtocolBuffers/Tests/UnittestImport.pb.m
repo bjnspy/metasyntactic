@@ -153,7 +153,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
   return [UnittestImportProtoRoot internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasD) {

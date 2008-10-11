@@ -469,7 +469,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   for (PBFileDescriptorProto* element in self.fileList) {
@@ -741,7 +741,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
@@ -1298,7 +1298,7 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
@@ -1432,7 +1432,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasStart) {
@@ -2046,7 +2046,7 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
@@ -2686,7 +2686,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
@@ -2985,7 +2985,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
@@ -3269,7 +3269,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   return value;
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
@@ -3575,7 +3575,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasName) {
@@ -3906,7 +3906,7 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FileOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasJavaPackage) {
@@ -4304,7 +4304,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_MessageOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (hasMessageSetWireFormat) {
@@ -4501,7 +4501,7 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_FieldOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasCtype) {
@@ -4776,7 +4776,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
@@ -4930,7 +4930,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
@@ -5084,7 +5084,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_ServiceOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];
@@ -5238,7 +5238,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   return [DescriptorProtoRoot internal_static_google_protobuf_MethodOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   [self.unknownFields writeToCodedOutputStream:output];

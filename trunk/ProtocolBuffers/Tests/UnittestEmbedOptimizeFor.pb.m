@@ -108,12 +108,16 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 }
 - (BOOL) isInitialized {
   if (self.hasOptionalMessage) {
-    if (!self.optionalMessage.isInitialized) return false;
+    if (!self.optionalMessage.isInitialized) {
+      return NO;
+    }
   }
   for (TestOptimizedForSize* element in self.repeatedMessageList) {
-    if (!element.isInitialized) return false;
+    if (!element.isInitialized) {
+      return NO;
+    }
   }
-  return true;
+  return YES;
 }
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output {
   if (self.hasOptionalMessage) {
