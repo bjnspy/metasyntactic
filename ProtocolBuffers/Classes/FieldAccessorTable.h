@@ -17,8 +17,8 @@
     NSArray* fields;
 }
 
-@property (retain, readonly) PBDescriptor* descriptor;
-@property (retain, readonly) NSArray* fields;
+@property (readonly, retain) PBDescriptor* descriptor;
+@property (readonly, retain) NSArray* fields;
 
 + (PBFieldAccessorTable*) tableWithDescriptor:(PBDescriptor*) descriptor
                                                   fieldNames:(NSArray*) fieldNames

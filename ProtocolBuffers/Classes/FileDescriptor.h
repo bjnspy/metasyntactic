@@ -25,8 +25,8 @@
     PBDescriptorPool* pool;
 }
 
-@property (retain) PBFileDescriptorProto* proto;
-@property (retain) PBDescriptorPool* pool;
+@property (readonly, retain) PBFileDescriptorProto* proto;
+@property (readonly, retain) PBDescriptorPool* pool;
 
 + (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
 

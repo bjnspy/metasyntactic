@@ -29,10 +29,10 @@
 }
 
 @property (readonly) int32_t index;
-@property (retain, readonly) PBDescriptorProto* proto;
-@property (retain, readonly) NSString* fullName;
-@property (retain, readonly) PBFileDescriptor* file;
-@property (retain, readonly) PBDescriptor* containingType;
+@property (readonly, retain) PBDescriptorProto* proto;
+@property (readonly, copy) NSString* fullName;
+@property (readonly, retain) PBFileDescriptor* file;
+@property (readonly, retain) PBDescriptor* containingType;
 
 - (NSArray*) nestedTypes;
 - (NSArray*) enumTypes;

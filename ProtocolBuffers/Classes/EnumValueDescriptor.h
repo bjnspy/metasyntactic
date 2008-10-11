@@ -25,12 +25,12 @@
 }
 
 // don't retain our backreferences.
-@property (assign, readonly) PBFileDescriptor* file;
-@property (assign, readonly) PBEnumDescriptor* type;
+@property (readonly, assign) PBFileDescriptor* file;
+@property (readonly, assign) PBEnumDescriptor* type;
 
 @property (readonly) int32_t index;
 @property (readonly, retain) PBEnumValueDescriptorProto* proto;
-@property (copy, readonly) NSString* fullName;
+@property (readonly, copy) NSString* fullName;
 
 + (PBEnumValueDescriptor*) descriptorWithProto:(PBEnumValueDescriptorProto*) proto
                                           file:(PBFileDescriptor*) file

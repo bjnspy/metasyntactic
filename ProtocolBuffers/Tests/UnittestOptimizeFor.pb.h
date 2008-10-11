@@ -95,7 +95,7 @@
 - (BOOL) hasI;
 @property (readonly) int32_t i;
 - (BOOL) hasMsg;
-@property (retain, readonly) ForeignMessage* msg;
+@property (readonly, retain) ForeignMessage* msg;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;

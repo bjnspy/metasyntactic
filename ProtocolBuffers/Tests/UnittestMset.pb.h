@@ -78,7 +78,7 @@
   TestMessageSet* messageSet;
 }
 - (BOOL) hasMessageSet;
-@property (retain, readonly) TestMessageSet* messageSet;
+@property (readonly, retain) TestMessageSet* messageSet;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -189,7 +189,7 @@
   NSString* str;
 }
 - (BOOL) hasStr;
-@property (retain, readonly) NSString* str;
+@property (readonly, retain) NSString* str;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
@@ -275,7 +275,7 @@
 - (BOOL) hasTypeId;
 @property (readonly) int32_t typeId;
 - (BOOL) hasMessage;
-@property (retain, readonly) NSData* message;
+@property (readonly, retain) NSData* message;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;

@@ -22,7 +22,7 @@
     int32_t memoizedSerializedSize;
 }
 
-@property (retain, readonly) PBUnknownFieldSet* unknownFields;
+@property (readonly, retain) PBUnknownFieldSet* unknownFields;
 
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 

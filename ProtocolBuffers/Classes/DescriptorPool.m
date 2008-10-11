@@ -20,31 +20,39 @@
 #import "FieldDescriptor.h"
 #import "PBPackageDescriptor.h"
 
+@interface PBDescriptorPool()
+    @property (retain) NSMutableArray* mutableDependencies;
+    @property (retain) NSMutableDictionary* mutableDescriptorsByName;
+    @property (retain) NSMutableDictionary* mutableFieldsByNumber;
+    @property (retain) NSMutableDictionary* mutableEnumValuesByNumber;
+@end
+
+
 @implementation PBDescriptorPool
 
-@synthesize dependencies;
-@synthesize descriptorsByName;
-@synthesize fieldsByNumber;
-@synthesize enumValuesByNumber;
+@synthesize mutableDependencies;
+@synthesize mutableDescriptorsByName;
+@synthesize mutableFieldsByNumber;
+@synthesize mutableEnumValuesByNumber;
 
 - (void) dealloc {
-    self.dependencies = nil;
-    self.descriptorsByName = nil;
-    self.fieldsByNumber = nil;
-    self.enumValuesByNumber = nil;
+    self.mutableDependencies = nil;
+    self.mutableDescriptorsByName = nil;
+    self.mutableFieldsByNumber = nil;
+    self.mutableEnumValuesByNumber = nil;
     [super dealloc];
 }
 
 
 - (id) initWithDependencies:(NSArray*) dependencies_ {
     if (self = [super init]) {
-        self.dependencies = [NSMutableArray array];
-        self.descriptorsByName = [NSMutableDictionary dictionary];
-        self.fieldsByNumber = [NSMutableDictionary dictionary];
-        self.enumValuesByNumber = [NSMutableDictionary dictionary];
+        self.mutableDependencies = [NSMutableArray array];
+        self.mutableDescriptorsByName = [NSMutableDictionary dictionary];
+        self.mutableFieldsByNumber = [NSMutableDictionary dictionary];
+        self.mutableEnumValuesByNumber = [NSMutableDictionary dictionary];
 
         for (PBFileDescriptor* dependency in dependencies_) {
-            [dependencies addObject:dependency.pool];
+            [mutableDependencies addObject:dependency.pool];
         }
 
         for (PBFileDescriptor* dependency in dependencies_) {
@@ -61,6 +69,26 @@
 }
 
 
+- (NSArray*) dependencies {
+    return mutableDependencies;
+}
+
+
+- (NSDictionary*) descriptorsByName {
+    return mutableDescriptorsByName;
+}
+
+
+- (NSDictionary*) fieldsByNumber {
+    return mutableFieldsByNumber;
+}
+
+    
+- (NSDictionary*) enumValuesByNumber {
+    return mutableEnumValuesByNumber;
+}
+
+
 - (void) addPackage:(NSString*) fullName file:(PBFileDescriptor*) file {
     NSRange dotpos = [fullName rangeOfString:@"." options:NSBackwardsSearch];
 
@@ -71,7 +99,7 @@
     }
 
     PBPackageDescriptor* packageDescriptor = [PBPackageDescriptor descriptorWithFullName:fullName name:name file:file];
-    [descriptorsByName setObject:packageDescriptor forKey:fullName];
+    [mutableDescriptorsByName setObject:packageDescriptor forKey:fullName];
 }
 
 
@@ -125,15 +153,15 @@ BOOL isDigit(unichar c) {
 
     NSString* fullName = [descriptor fullName];
 
-    if ([descriptorsByName objectForKey:fullName] != nil) {
+    if ([mutableDescriptorsByName objectForKey:fullName] != nil) {
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
     }
 
-    [descriptorsByName setObject:descriptor forKey:fullName];
+    [mutableDescriptorsByName setObject:descriptor forKey:fullName];
 
 #if 0
     if (old != null) {
-        descriptorsByName.put(fullName, old);
+        mutableDescriptorsByName.put(fullName, old);
 
         if (descriptor.getFile() == old.getFile()) {
             if (dotpos == -1) {
@@ -159,8 +187,8 @@ BOOL isDigit(unichar c) {
     PBDescriptorPool_DescriptorIntPair* key = [PBDescriptorPool_DescriptorIntPair pairWithDescriptor:value.type
                                                                                               number:value.number];
 
-    if ([enumValuesByNumber objectForKey:key] == nil) {
-        [enumValuesByNumber setObject:value forKey:key];
+    if ([mutableEnumValuesByNumber objectForKey:key] == nil) {
+        [mutableEnumValuesByNumber setObject:value forKey:key];
         // Not an error:  Multiple enum values may have the same number, but
         // we only want the first one in the map.
     }
@@ -169,13 +197,13 @@ BOOL isDigit(unichar c) {
 
 /** Find a generic descriptor by fully-qualified name. */
 - (id<PBGenericDescriptor>) findSymbol:(NSString*) fullName {
-    id<PBGenericDescriptor> result = [descriptorsByName objectForKey:fullName];
+    id<PBGenericDescriptor> result = [mutableDescriptorsByName objectForKey:fullName];
     if (result != nil) {
         return result;
     }
 
-    for (PBDescriptorPool* p in dependencies) {
-        result = [p.descriptorsByName objectForKey:fullName];
+    for (PBDescriptorPool* p in mutableDependencies) {
+        result = [p.mutableDescriptorsByName objectForKey:fullName];
         if (result != nil) {
             return result;
         }
@@ -248,26 +276,26 @@ BOOL isDigit(unichar c) {
 - (void) addFieldByNumber:(PBFieldDescriptor*) field {
     PBDescriptorPool_DescriptorIntPair* key = [PBDescriptorPool_DescriptorIntPair pairWithDescriptor:field.containingType number:field.number];
 
-    if ([fieldsByNumber objectForKey:key] != nil) {
+    if ([mutableFieldsByNumber objectForKey:key] != nil) {
         @throw [NSException exceptionWithName:@"DescriptorValidation" reason:@"" userInfo:nil];
     }
 
-    [fieldsByNumber setObject:field forKey:key];
+    [mutableFieldsByNumber setObject:field forKey:key];
 }
 
 
 #if 0
 private static final class PBDescriptorPool {
-    PBDescriptorPool(PBFileDescriptor[] dependencies) {
-        this.dependencies = new PBDescriptorPool[dependencies.length];
+    PBDescriptorPool(PBFileDescriptor[] mutableDependencies) {
+        this.mutableDependencies = new PBDescriptorPool[mutableDependencies.length];
 
-        for (int i = 0; i < dependencies.length; i++)  {
-            this.dependencies[i] = dependencies[i].pool;
+        for (int i = 0; i < mutableDependencies.length; i++)  {
+            this.mutableDependencies[i] = mutableDependencies[i].pool;
         }
 
-        for (int i = 0; i < dependencies.length; i++)  {
+        for (int i = 0; i < mutableDependencies.length; i++)  {
             try {
-                addPackage(dependencies[i].getPackage(), dependencies[i]);
+                addPackage(mutableDependencies[i].getPackage(), mutableDependencies[i]);
             } catch (DescriptorValidationException e) {
                 // Can't happen, because addPackage() only fails when the name
                 // conflicts with a non-package, but we have not yet added any
@@ -280,11 +308,11 @@ private static final class PBDescriptorPool {
 
     /** Find a generic descriptor by fully-qualified name. */
     PBGenericDescriptor findSymbol(String fullName) {
-        PBGenericDescriptor result = descriptorsByName.get(fullName);
+        PBGenericDescriptor result = mutableDescriptorsByName.get(fullName);
         if (result != null) return result;
 
-        for (int i = 0; i < dependencies.length; i++) {
-            result = dependencies[i].descriptorsByName.get(fullName);
+        for (int i = 0; i < mutableDependencies.length; i++) {
+            result = mutableDependencies[i].mutableDescriptorsByName.get(fullName);
             if (result != null) return result;
         }
 

@@ -18,8 +18,8 @@
     id<PBMessage> defaultInstance;
 }
 
-@property (retain, readonly) PBFieldDescriptor* descriptor;
-@property (retain, readonly) id<PBMessage> defaultInstance;
+@property (readonly, retain) PBFieldDescriptor* descriptor;
+@property (readonly, retain) id<PBMessage> defaultInstance;
 
 + (PBExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor;
 + (PBExtensionInfo*) infoWithDescriptor:(PBFieldDescriptor*) descriptor defaultInstance:(id<PBMessage>) defaultInstance;

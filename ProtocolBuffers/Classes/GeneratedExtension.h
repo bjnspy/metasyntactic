@@ -21,9 +21,9 @@
     id<PBMessage> messageDefaultInstance;
 }
 
-@property (retain, readonly) PBFieldDescriptor* descriptor;
-@property (retain, readonly) Class type;
-@property (retain, readonly) id<PBMessage> messageDefaultInstance;
+@property (readonly, retain) PBFieldDescriptor* descriptor;
+@property (readonly, retain) Class type;
+@property (readonly, retain) id<PBMessage> messageDefaultInstance;
 @property (readonly) SEL enumValueOf;
 @property (readonly) SEL enumGetValueDescriptor;
 

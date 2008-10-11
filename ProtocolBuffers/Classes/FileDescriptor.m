@@ -25,6 +25,8 @@
     @property (retain) NSMutableArray* mutableEnumTypes;
     @property (retain) NSMutableArray* mutableServices;
     @property (retain) NSMutableArray* mutableDependencies;
+    @property (retain) PBFileDescriptorProto* proto;
+    @property (retain) PBDescriptorPool* pool;
 @end
 
 

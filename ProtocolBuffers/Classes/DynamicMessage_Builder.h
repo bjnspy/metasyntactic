@@ -21,9 +21,9 @@
     PBUnknownFieldSet* unknownFields;
 }
 
-@property (retain, readonly) PBDescriptor* type;
-@property (retain, readonly) PBFieldSet* fields;
-@property (retain, readonly) PBUnknownFieldSet* unknownFields;
+@property (readonly, retain) PBDescriptor* type;
+@property (readonly, retain) PBFieldSet* fields;
+@property (readonly, retain) PBUnknownFieldSet* unknownFields;
 
 + (PBDynamicMessage_Builder*) builderWithType:(PBDescriptor*) type;
 

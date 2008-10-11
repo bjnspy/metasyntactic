@@ -22,9 +22,9 @@
     int32_t dm_memoizedSize;
 }
 
-@property (retain, readonly) PBDescriptor* type;
-@property (retain, readonly) PBFieldSet* fields;
-@property (retain, readonly) PBUnknownFieldSet* unknownFields;
+@property (readonly, retain) PBDescriptor* type;
+@property (readonly, retain) PBFieldSet* fields;
+@property (readonly, retain) PBUnknownFieldSet* unknownFields;
 
 + (PBDynamicMessage*) messageWithType:(PBDescriptor*) type fields:(PBFieldSet*) fields unknownFields:(PBUnknownFieldSet*) unknownFields;
 + (PBDynamicMessage*) defaultInstance:(PBDescriptor*) type;
