@@ -19,6 +19,26 @@
 
 @implementation CodedInputStreamTests
 
+- (NSData*) bytes_with_sentinel:(int32_t) unused, ... {
+    va_list list;
+    va_start(list, unused);
+    
+    NSMutableData* values = [NSMutableData dataWithCapacity:0];
+    int32_t i;
+    
+    while ((i = va_arg(list, int32_t)) != 256) {
+        NSAssert(i >= 0 && i < 256, @"");
+        uint8_t u = (uint8_t)i;
+        [values appendBytes:&u length:1];
+    }
+    
+    va_end(list);
+    
+    return values;
+}
+
+#define bytes(...) [self bytes_with_sentinel:0, __VA_ARGS__, 256]
+
 - (void) testDecodeZigZag {
     STAssertEquals( 0, decodeZigZag32(0), nil);
     STAssertEquals(-1, decodeZigZag32(1), nil);
@@ -40,8 +60,6 @@
     STAssertEquals((int64_t)0x7FFFFFFFFFFFFFFFL, decodeZigZag64(0xFFFFFFFFFFFFFFFEL), nil);
     STAssertEquals((int64_t)0x8000000000000000L, decodeZigZag64(0xFFFFFFFFFFFFFFFFL), nil);
 }
-
-
 
 
 /**
@@ -82,6 +100,42 @@
 
 
 /**
+ * Parses the given bytes using readRawLittleEndian32() and checks
+ * that the result matches the given value.
+ */
+- (void) assertReadLittleEndian32:(NSData*) data value:(int32_t) value {
+    PBCodedInputStream* input = [PBCodedInputStream streamWithData:data];
+    STAssertTrue(value == [input readRawLittleEndian32], @"");
+    
+    // Try different block sizes.
+    for (int32_t blockSize = 1; blockSize <= 16; blockSize *= 2) {
+        PBCodedInputStream* input =
+        [PBCodedInputStream streamWithInputStream:
+         [SmallBlockInputStream streamWithData:data blockSize:blockSize]];
+        STAssertTrue(value == [input readRawLittleEndian32], @"");
+    }
+}
+
+
+/**
+ * Parses the given bytes using readRawLittleEndian64() and checks
+ * that the result matches the given value.
+ */
+- (void) assertReadLittleEndian64:(NSData*) data value:(int64_t) value {
+    PBCodedInputStream* input = [PBCodedInputStream streamWithData:data];
+    STAssertTrue(value == [input readRawLittleEndian64], @"");
+    
+    // Try different block sizes.
+    for (int32_t blockSize = 1; blockSize <= 16; blockSize *= 2) {
+        PBCodedInputStream* input =
+        [PBCodedInputStream streamWithInputStream:
+         [SmallBlockInputStream streamWithData:data blockSize:blockSize]];
+        STAssertTrue(value == [input readRawLittleEndian64], @"");
+    }
+}
+
+
+/**
  * Parses the given bytes using readRawVarint32() and readRawVarint64() and
  * expects them to fail with an InvalidProtocolBufferException whose
  * description matches the given one.
@@ -97,26 +151,6 @@
     }
 }
 
-- (NSData*) bytes_with_sentinel:(int32_t) unused, ... {
-    va_list list;
-    va_start(list, unused);
-    
-    NSMutableData* values = [NSMutableData dataWithCapacity:0];
-    int32_t i;
-    
-    while ((i = va_arg(list, int32_t)) != 256) {
-        NSAssert(i >= 0 && i < 256, @"");
-        uint8_t u = (uint8_t)i;
-        [values appendBytes:&u length:1];
-    }
-    
-    va_end(list);
-    
-    return values;
-}
-
-#define bytes(...) [self bytes_with_sentinel:0, __VA_ARGS__, 256]
-
 
 - (void) testBytes {
     NSData* data = bytes(0xa2, 0x74);
@@ -124,6 +158,7 @@
     STAssertTrue(((uint8_t*)data.bytes)[0] == 0xa2, @"");
     STAssertTrue(((uint8_t*)data.bytes)[1] == 0x74, @"");
 }
+
 
 /** Tests readRawVarint32() and readRawVarint64(). */
 - (void) testReadVarint {
@@ -159,60 +194,24 @@
     [self assertReadVarintFailure:bytes(0x80)];
 }
 
-#if 0
 
-
-
-
-#endif
-
-#if 0
-/**
- * Parses the given bytes using readRawLittleEndian32() and checks
- * that the result matches the given value.
- */
-private void assertReadLittleEndian32(byte[] data, int value)
-throws Exception {
-    CodedInputStream input = CodedInputStream.newInstance(data);
-    assertEquals(value, input.readRawLittleEndian32());
+- (void) testReadLittleEndian {
+    [self assertReadLittleEndian32:bytes(0x78, 0x56, 0x34, 0x12) value:0x12345678];
+    [self assertReadLittleEndian32:bytes(0xf0, 0xde, 0xbc, 0x9a) value:0x9abcdef0];
     
-    // Try different block sizes.
-    for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
-        input = CodedInputStream.newInstance(
-                                             new SmallBlockInputStream(data, blockSize));
-        assertEquals(value, input.readRawLittleEndian32());
-    }
+    [self assertReadLittleEndian64:
+     bytes(0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12) value:
+     0x123456789abcdef0LL];
+    [self assertReadLittleEndian64:
+     bytes(0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a) value:
+     0x9abcdef012345678LL];
 }
 
-/**
- * Parses the given bytes using readRawLittleEndian64() and checks
- * that the result matches the given value.
- */
-private void assertReadLittleEndian64(byte[] data, long value)
-throws Exception {
-    CodedInputStream input = CodedInputStream.newInstance(data);
-    assertEquals(value, input.readRawLittleEndian64());
-    
-    // Try different block sizes.
-    for (int blockSize = 1; blockSize <= 16; blockSize *= 2) {
-        input = CodedInputStream.newInstance(
-                                             new SmallBlockInputStream(data, blockSize));
-        assertEquals(value, input.readRawLittleEndian64());
-    }
-}
+
+#if 0
 
 /** Tests readRawLittleEndian32() and readRawLittleEndian64(). */
-public void testReadLittleEndian() throws Exception {
-    assertReadLittleEndian32(bytes(0x78, 0x56, 0x34, 0x12), 0x12345678);
-    assertReadLittleEndian32(bytes(0xf0, 0xde, 0xbc, 0x9a), 0x9abcdef0);
-    
-    assertReadLittleEndian64(
-                             bytes(0xf0, 0xde, 0xbc, 0x9a, 0x78, 0x56, 0x34, 0x12),
-                             0x123456789abcdef0L);
-    assertReadLittleEndian64(
-                             bytes(0x78, 0x56, 0x34, 0x12, 0xf0, 0xde, 0xbc, 0x9a),
-                             0x9abcdef012345678L);
-}
+
 
 /** Test decodeZigZag32() and decodeZigZag64(). */
 public void testDecodeZigZag() throws Exception {
