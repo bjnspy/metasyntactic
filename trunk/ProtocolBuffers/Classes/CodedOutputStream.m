@@ -38,6 +38,7 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
 @synthesize position;
 
 - (void) dealloc {
+    [output close];
     self.output = nil;
     self.buffer = nil;
     self.position = 0;
@@ -52,6 +53,8 @@ const int32_t LITTLE_ENDIAN_64_SIZE = 8;
         self.output = output_;
         self.buffer = data_;
         self.position = 0;
+        
+        [output open];
     }
 
     return self;

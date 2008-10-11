@@ -729,9 +729,11 @@ int64_t decodeZigZag64(int64_t n) {
 
             int32_t pos = 0;
             while (pos < chunk.length) {
-                int32_t n = (input == nil) ? -1 :
-                [input read:(((uint8_t*)chunk.mutableBytes) + pos) maxLength:chunk.length - pos];
-                if (n == -1) {
+                int32_t n = 0;
+                if (input != nil) {
+                    n = [input read:(((uint8_t*)chunk.mutableBytes) + pos) maxLength:chunk.length - pos];
+                }
+                if (n <= 0) {
                     @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
                 }
                 totalBytesRetired += n;
