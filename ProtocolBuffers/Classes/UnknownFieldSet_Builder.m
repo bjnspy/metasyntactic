@@ -176,31 +176,31 @@
 /**
  * Parse a single field from {@code input} and merge it into this set.
  * @param tag The field's tag number, which was already parsed.
- * @return {@code false} if the tag is an engroup tag.
+ * @return {@code NO} if the tag is an engroup tag.
  */
 - (BOOL) mergeFieldFrom:(int32_t) tag input:(PBCodedInputStream*) input {
     int32_t number = PBWireFormatGetTagFieldNumber(tag);
     switch (PBWireFormatGetTagWireType(tag)) {
         case PBWireFormatVarint:
             [[self getFieldBuilder:number] addVarint:[input readInt64]];
-            return true;
+            return YES;
         case PBWireFormatFixed64:
             [[self getFieldBuilder:number] addFixed64:[input readFixed64]];
-            return true;
+            return YES;
         case PBWireFormatLengthDelimited:
             [[self getFieldBuilder:number] addLengthDelimited:[input readData]];
-            return true;
+            return YES;
         case PBWireFormatStartGroup: {
             PBUnknownFieldSet_Builder* subBuilder = [PBUnknownFieldSet builder];
             [input readUnknownGroup:number builder:subBuilder];
             [[self getFieldBuilder:number] addGroup:[subBuilder build]];
-            return true;
+            return YES;
         }
         case PBWireFormatEndGroup:
-            return false;
+            return NO;
         case PBWireFormatFixed32:
             [[self getFieldBuilder:number] addFixed32:[input readFixed32]];
-            return true;
+            return YES;
         default:
             @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
     }
@@ -212,7 +212,7 @@
  * this set.
  */
 - (PBUnknownFieldSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input {
-    while (true) {
+    while (YES) {
         int32_t tag = [input readTag];
         if (tag == 0 || ![self mergeFieldFrom:tag input:input]) {
             break;

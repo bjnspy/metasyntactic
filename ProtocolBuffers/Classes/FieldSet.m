@@ -389,7 +389,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                      unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
                  extensionRegistry:(PBExtensionRegistry*) extensionRegistry
                            builder:(id<PBMessage_Builder>) builder {
-    while (true) {
+    while (YES) {
         int32_t tag = [input readTag];
         if (tag == 0) {
             break;
@@ -435,7 +435,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
     id<PBMessage_Builder> subBuilder = nil;
     PBFieldDescriptor* field = nil;
     
-    while (true) {
+    while (YES) {
         int32_t tag = [input readTag];
         if (tag == 0) {
             break;
@@ -501,7 +501,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
  * Like {@link #mergeFrom(PBCodedInputStream, UnknownFieldSet.Builder,
  * PBExtensionRegistry, Message.Builder)}, but parses a single field.
  * @param tag The tag, which should have already been read.
- * @return {@code true} unless the tag is an end-group tag.
+ * @return {@code YES} unless the tag is an end-group tag.
  */
 + (BOOL) mergeFieldFromCodedInputStream:(PBCodedInputStream*) input
                           unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
@@ -516,7 +516,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                                         unknownFields:unknownFields
                                     extensionRegistry:extensionRegistry
                                               builder:builder];
-        return true;
+        return YES;
     }
 
     int32_t wireType = PBWireFormatGetTagWireType(tag);
@@ -579,7 +579,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
                 // drop it.
                 if (value == nil) {
                     [unknownFields mergeVarintField:fieldNumber value:rawValue];
-                    return true;
+                    return YES;
                 }
                 break;
             }
@@ -595,7 +595,7 @@ static PBFieldSet* DEFAULT_INSTANCE = nil;
         }
     }
 
-    return true;
+    return YES;
 }
 
 

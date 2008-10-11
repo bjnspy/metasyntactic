@@ -62,7 +62,7 @@
 
 - (BOOL) isEqual:(id) obj {
     if (![obj isKindOfClass:[PBExtensionRegistry_DescriptorIntPair class]]) {
-        return false;
+        return NO;
     }
 
     PBExtensionRegistry_DescriptorIntPair* other = obj;

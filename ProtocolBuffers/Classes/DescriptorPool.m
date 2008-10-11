@@ -206,7 +206,7 @@ BOOL isDigit(unichar c) {
         // symbol.
         NSMutableString* scopeToTry = [NSMutableString stringWithString:[relativeTo fullName]];
         
-        while (true) {
+        while (YES) {
             // Chop off the last component of the scope.
             NSRange dotpos = [scopeToTry rangeOfString:@"." options:NSBackwardsSearch];
             if (dotpos.length <= 0) {
@@ -272,7 +272,7 @@ private static final class PBDescriptorPool {
                 // Can't happen, because addPackage() only fails when the name
                 // conflicts with a non-package, but we have not yet added any
                 // non-packages at this point.
-                assert false;
+                assert NO;
             }
         }
     }

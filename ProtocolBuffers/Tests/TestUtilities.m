@@ -58,7 +58,7 @@
     [message setExtension:[UnittestRoot repeatedSfixed64Extension] index:1 value:[NSNumber numberWithInt:510]];
     [message setExtension:[UnittestRoot repeatedFloatExtension] index:1 value:[NSNumber numberWithFloat:511.0]];
     [message setExtension:[UnittestRoot repeatedDoubleExtension] index:1 value:[NSNumber numberWithDouble:512.0]];
-    [message setExtension:[UnittestRoot repeatedBoolExtension] index:1 value:[NSNumber numberWithBool:true]];
+    [message setExtension:[UnittestRoot repeatedBoolExtension] index:1 value:[NSNumber numberWithBool:YES]];
     [message setExtension:[UnittestRoot repeatedStringExtension] index:1 value:@"515"];
     [message setExtension:[UnittestRoot repeatedBytesExtension] index:1 value:[TestUtilities toData:@"516"]];
     
@@ -134,7 +134,7 @@
     STAssertTrue(110L == [[message getExtension:[UnittestRoot optionalSfixed64Extension]] intValue], @"");
     STAssertTrue(111.0 == [[message getExtension:[UnittestRoot optionalFloatExtension]] floatValue], @"");
     STAssertTrue(112.0 == [[message getExtension:[UnittestRoot optionalDoubleExtension]] doubleValue], @"");
-    STAssertTrue(true == [[message getExtension:[UnittestRoot optionalBoolExtension]] boolValue], @"");
+    STAssertTrue(YES == [[message getExtension:[UnittestRoot optionalBoolExtension]] boolValue], @"");
     STAssertEqualObjects(@"115", [message getExtension:[UnittestRoot optionalStringExtension]], @"");
     STAssertEqualObjects([TestUtilities toData:@"116"], [message getExtension:[UnittestRoot optionalBytesExtension]], @"");
     
@@ -191,7 +191,7 @@
     STAssertTrue(210L == [[message getExtension:[UnittestRoot repeatedSfixed64Extension] index:0] intValue], @"");
     STAssertTrue(211.0 == [[message getExtension:[UnittestRoot repeatedFloatExtension] index:0] floatValue], @"");
     STAssertTrue(212.0 == [[message getExtension:[UnittestRoot repeatedDoubleExtension] index:0] doubleValue], @"");
-    STAssertTrue(true == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:0] boolValue], @"");
+    STAssertTrue(YES == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:0] boolValue], @"");
     STAssertEqualObjects(@"215", [message getExtension:[UnittestRoot repeatedStringExtension] index:0], @"");
     STAssertEqualObjects([TestUtilities toData:@"216"], [message getExtension:[UnittestRoot repeatedBytesExtension] index:0], @"");
     
@@ -219,7 +219,7 @@
     STAssertTrue(310L == [[message getExtension:[UnittestRoot repeatedSfixed64Extension] index:1] intValue], @"");
     STAssertTrue(311.0 == [[message getExtension:[UnittestRoot repeatedFloatExtension] index:1] floatValue], @"");
     STAssertTrue(312.0 == [[message getExtension:[UnittestRoot repeatedDoubleExtension] index:1] doubleValue], @"");
-    STAssertTrue(false == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:1] boolValue], @"");
+    STAssertTrue(NO == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:1] boolValue], @"");
     STAssertEqualObjects(@"315", [message getExtension:[UnittestRoot repeatedStringExtension] index:1], @"");
     STAssertEqualObjects([TestUtilities toData:@"316"], [message getExtension:[UnittestRoot repeatedBytesExtension] index:1], @"");
     
@@ -272,7 +272,7 @@
     STAssertTrue(410L == [[message getExtension:[UnittestRoot defaultSfixed64Extension]] intValue], @"");
     STAssertTrue(411.0 == [[message getExtension:[UnittestRoot defaultFloatExtension]] floatValue], @"");
     STAssertTrue(412.0 == [[message getExtension:[UnittestRoot defaultDoubleExtension]] doubleValue], @"");
-    STAssertTrue(false == [[message getExtension:[UnittestRoot defaultBoolExtension]] boolValue], @"");
+    STAssertTrue(NO == [[message getExtension:[UnittestRoot defaultBoolExtension]] boolValue], @"");
     STAssertEqualObjects(@"415", [message getExtension:[UnittestRoot defaultStringExtension]], @"");
     STAssertEqualObjects([TestUtilities toData:@"416"], [message getExtension:[UnittestRoot defaultBytesExtension]], @"");
     
@@ -332,7 +332,7 @@
     STAssertTrue(210L == [[message getExtension:[UnittestRoot repeatedSfixed64Extension] index:0] intValue], @"");
     STAssertTrue(211.0 == [[message getExtension:[UnittestRoot repeatedFloatExtension] index:0] floatValue], @"");
     STAssertTrue(212.0 == [[message getExtension:[UnittestRoot repeatedDoubleExtension] index:0] doubleValue], @"");
-    STAssertTrue(true == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:0] boolValue], @"");
+    STAssertTrue(YES == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:0] boolValue], @"");
     STAssertEqualObjects(@"215", [message getExtension:[UnittestRoot repeatedStringExtension] index:0], @"");
     STAssertEqualObjects([TestUtilities toData:@"216"], [message getExtension:[UnittestRoot repeatedBytesExtension] index:0], @"");
     
@@ -364,7 +364,7 @@
     STAssertTrue(510L == [[message getExtension:[UnittestRoot repeatedSfixed64Extension] index:1] intValue], @"");
     STAssertTrue(511.0 == [[message getExtension:[UnittestRoot repeatedFloatExtension] index:1] floatValue], @"");
     STAssertTrue(512.0 == [[message getExtension:[UnittestRoot repeatedDoubleExtension] index:1] doubleValue], @"");
-    STAssertTrue(true == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:1] boolValue], @"");
+    STAssertTrue(YES == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:1] boolValue], @"");
     STAssertEqualObjects(@"515", [message getExtension:[UnittestRoot repeatedStringExtension] index:1], @"");
     STAssertEqualObjects([TestUtilities toData:@"516"], [message getExtension:[UnittestRoot repeatedBytesExtension] index:1], @"");
     
@@ -443,7 +443,7 @@
     STAssertTrue(110 == message.optionalSfixed64, @"");
     STAssertEqualsWithAccuracy(111.0f, message.optionalFloat, 0.1, @"");
     STAssertEqualsWithAccuracy(112.0, message.optionalDouble, 0.1, @"");
-    STAssertTrue(true == message.optionalBool, @"");
+    STAssertTrue(YES == message.optionalBool, @"");
     STAssertEqualObjects(@"115", message.optionalString, @"");
     STAssertEqualObjects([TestUtilities toData:@"116"], message.optionalBytes, @"");
     
@@ -500,7 +500,7 @@
     STAssertTrue(210 == [message repeatedSfixed64AtIndex:0], @"");
     STAssertEqualsWithAccuracy(211.0f, [message repeatedFloatAtIndex:0], 0.1, @"");
     STAssertEqualsWithAccuracy(212.0, [message repeatedDoubleAtIndex:0], 0.1, @"");
-    STAssertTrue(true == [message repeatedBoolAtIndex:0], @"");
+    STAssertTrue(YES == [message repeatedBoolAtIndex:0], @"");
     STAssertEqualObjects(@"215", [message repeatedStringAtIndex:0], @"");
     STAssertEqualObjects([TestUtilities toData:@"216"], [message repeatedBytesAtIndex:0], @"");
     
@@ -528,7 +528,7 @@
     STAssertTrue(310 == [message repeatedSfixed64AtIndex:1], @"");
     STAssertEqualsWithAccuracy(311.0f, [message repeatedFloatAtIndex:1], 0.1, @"");
     STAssertEqualsWithAccuracy(312.0, [message repeatedDoubleAtIndex:1], 0.1, @"");
-    STAssertTrue(false == [message repeatedBoolAtIndex:1], @"");
+    STAssertTrue(NO == [message repeatedBoolAtIndex:1], @"");
     STAssertEqualObjects(@"315", [message repeatedStringAtIndex:1], @"");
     STAssertEqualObjects([TestUtilities toData:@"316"], [message repeatedBytesAtIndex:1], @"");
     
@@ -581,7 +581,7 @@
     STAssertTrue(410 == message.defaultSfixed64, @"");
     STAssertEqualsWithAccuracy(411.0f, message.defaultFloat, 0.1, @"");
     STAssertEqualsWithAccuracy(412.0, message.defaultDouble, 0.1, @"");
-    STAssertTrue(false == message.defaultBool, @"");
+    STAssertTrue(NO == message.defaultBool, @"");
     STAssertEqualObjects(@"415", message.defaultString, @"");
     STAssertEqualObjects([TestUtilities toData:@"416"], message.defaultBytes, @"");
     
@@ -611,7 +611,7 @@
     [message setOptionalSfixed64:110];
     [message setOptionalFloat:111];
     [message setOptionalDouble:112];
-    [message setOptionalBool:true];
+    [message setOptionalBool:YES];
     [message setOptionalString:@"115"];
     [message setOptionalBytes:[self toData:@"116"]];
     
@@ -641,7 +641,7 @@
     [message addRepeatedSfixed64:210];
     [message addRepeatedFloat   :211];
     [message addRepeatedDouble  :212];
-    [message addRepeatedBool    :true];
+    [message addRepeatedBool    :YES];
     [message addRepeatedString  :@"215"];
     [message addRepeatedBytes   :[self toData:@"216"]];
     
@@ -670,7 +670,7 @@
     [message addRepeatedSfixed64:310];
     [message addRepeatedFloat   :311];
     [message addRepeatedDouble  :312];
-    [message addRepeatedBool    :false];
+    [message addRepeatedBool    :NO];
     [message addRepeatedString  :@"315"];
     [message addRepeatedBytes   :[self toData:@"316"]];
     
@@ -700,7 +700,7 @@
     [message setDefaultSfixed64:410];
     [message setDefaultFloat   :411];
     [message setDefaultDouble  :412];
-    [message setDefaultBool    :false];
+    [message setDefaultBool    :NO];
     [message setDefaultString  :@"415"];
     [message setDefaultBytes   :[self toData:@"416"]];
     
@@ -729,7 +729,7 @@
     [message setExtension:[UnittestRoot optionalSfixed64Extension] value:[NSNumber numberWithInt:110L]];
     [message setExtension:[UnittestRoot optionalFloatExtension]   value:[NSNumber numberWithFloat:111.0]];
     [message setExtension:[UnittestRoot optionalDoubleExtension]  value:[NSNumber numberWithDouble:112.0]];
-    [message setExtension:[UnittestRoot optionalBoolExtension]    value:[NSNumber numberWithBool:true]];
+    [message setExtension:[UnittestRoot optionalBoolExtension]    value:[NSNumber numberWithBool:YES]];
     [message setExtension:[UnittestRoot optionalStringExtension]  value:@"115"];
     [message setExtension:[UnittestRoot optionalBytesExtension]   value:[self toData:@"116"]];
     
@@ -766,7 +766,7 @@
     [message addExtension:[UnittestRoot repeatedSfixed64Extension] value:[NSNumber numberWithInt:210L]];
     [message addExtension:[UnittestRoot repeatedFloatExtension]    value:[NSNumber numberWithFloat:211.0]];
     [message addExtension:[UnittestRoot repeatedDoubleExtension]   value:[NSNumber numberWithDouble:212.0]];
-    [message addExtension:[UnittestRoot repeatedBoolExtension]     value:[NSNumber numberWithBool:true]];
+    [message addExtension:[UnittestRoot repeatedBoolExtension]     value:[NSNumber numberWithBool:YES]];
     [message addExtension:[UnittestRoot repeatedStringExtension]  value:@"215"];
     [message addExtension:[UnittestRoot repeatedBytesExtension]   value:[self toData:@"216"]];
     
@@ -802,7 +802,7 @@
     [message addExtension:[UnittestRoot repeatedSfixed64Extension] value:[NSNumber numberWithInt:310L]];
     [message addExtension:[UnittestRoot repeatedFloatExtension] value:[NSNumber numberWithFloat:311.0]];
     [message addExtension:[UnittestRoot repeatedDoubleExtension] value:[NSNumber numberWithDouble:312.0]];
-    [message addExtension:[UnittestRoot repeatedBoolExtension] value:[NSNumber numberWithBool:false]];
+    [message addExtension:[UnittestRoot repeatedBoolExtension] value:[NSNumber numberWithBool:NO]];
     [message addExtension:[UnittestRoot repeatedStringExtension] value:@"315"];
     [message addExtension:[UnittestRoot repeatedBytesExtension] value:[self toData:@"316"]];
     
@@ -839,7 +839,7 @@
     [message setExtension:[UnittestRoot defaultSfixed64Extension] value:[NSNumber numberWithInt:410L]];
     [message setExtension:[UnittestRoot defaultFloatExtension] value:[NSNumber numberWithFloat:411.0]];
     [message setExtension:[UnittestRoot defaultDoubleExtension] value:[NSNumber numberWithDouble:412.0]];
-    [message setExtension:[UnittestRoot defaultBoolExtension] value:[NSNumber numberWithBool:false]];
+    [message setExtension:[UnittestRoot defaultBoolExtension] value:[NSNumber numberWithBool:NO]];
     [message setExtension:[UnittestRoot defaultStringExtension] value:@"415"];
     [message setExtension:[UnittestRoot defaultBytesExtension] value:[self toData:@"416"]];
     
@@ -966,7 +966,7 @@
  * default values.
  */
 - (void) assertClear:(TestAllTypes*) message {
-    // hasBlah() should initially be false for all optional fields.
+    // hasBlah() should initially be NO for all optional fields.
     STAssertFalse(message.hasOptionalInt32, @"");
     STAssertFalse(message.hasOptionalInt64, @"");
     STAssertFalse(message.hasOptionalUint32, @"");
@@ -1008,7 +1008,7 @@
     STAssertTrue(0 == message.optionalSfixed64, @"");
     STAssertTrue(0 == message.optionalFloat, @"");
     STAssertTrue(0 == message.optionalDouble, @"");
-    STAssertTrue(false == message.optionalBool, @"");
+    STAssertTrue(NO == message.optionalBool, @"");
     STAssertEqualObjects(@"", message.optionalString, @"");
     STAssertEqualObjects([NSData data], message.optionalBytes, @"");
     
@@ -1059,7 +1059,7 @@
     STAssertTrue(0 == message.repeatedStringPieceList.count, @"");
     STAssertTrue(0 == message.repeatedCordList.count, @"");
     
-    // hasBlah() should also be false for all default fields.
+    // hasBlah() should also be NO for all default fields.
     STAssertFalse(message.hasDefaultInt32, @"");
     STAssertFalse(message.hasDefaultInt64, @"");
     STAssertFalse(message.hasDefaultUint32, @"");
@@ -1096,7 +1096,7 @@
     STAssertTrue(-50 == message.defaultSfixed64, @"");
     STAssertEqualsWithAccuracy(51.5, message.defaultFloat, 0.1, @"");
     STAssertEqualsWithAccuracy(52e3, message.defaultDouble, 0.1, @"");
-    STAssertTrue(true == message.defaultBool, @"");
+    STAssertTrue(YES == message.defaultBool, @"");
     STAssertEqualObjects(@"hello", message.defaultString, @"");
     STAssertEqualObjects([TestUtilities toData:@"world"], message.defaultBytes, @"");
     
@@ -1115,7 +1115,7 @@
 
 
 - (void) assertExtensionsClear:(TestAllExtensions*) message {
-    // hasBlah() should initially be false for all optional fields.
+    // hasBlah() should initially be NO for all optional fields.
     STAssertFalse([message hasExtension:[UnittestRoot optionalInt32Extension]], @"");
     STAssertFalse([message hasExtension:[UnittestRoot optionalInt64Extension]], @"");
     STAssertFalse([message hasExtension:[UnittestRoot optionalUint32Extension]], @"");
@@ -1157,7 +1157,7 @@
     STAssertTrue(0L    == [[message getExtension:[UnittestRoot optionalSfixed64Extension]] intValue], @"");
     STAssertTrue(0    == [[message getExtension:[UnittestRoot optionalFloatExtension]] floatValue], @"");
     STAssertTrue(0    == [[message getExtension:[UnittestRoot optionalDoubleExtension]] doubleValue], @"");
-    STAssertTrue(false == [[message getExtension:[UnittestRoot optionalBoolExtension]] boolValue], @"");
+    STAssertTrue(NO == [[message getExtension:[UnittestRoot optionalBoolExtension]] boolValue], @"");
     STAssertEqualObjects(@"", [message getExtension:[UnittestRoot optionalStringExtension]], @"");
     STAssertEqualObjects([NSData data], [message getExtension:[UnittestRoot optionalBytesExtension]], @"");
     
@@ -1212,7 +1212,7 @@
     STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedStringPieceExtension]] count], @"");
     STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedCordExtension]] count], @"");
     
-    // hasBlah() should also be false for all default fields.
+    // hasBlah() should also be NO for all default fields.
     STAssertFalse([message hasExtension:[UnittestRoot defaultInt32Extension]], @"");
     STAssertFalse([message hasExtension:[UnittestRoot defaultInt64Extension]], @"");
     STAssertFalse([message hasExtension:[UnittestRoot defaultUint32Extension]], @"");
@@ -1249,7 +1249,7 @@
     STAssertTrue(-50L    == [[message getExtension:[UnittestRoot defaultSfixed64Extension]] intValue], @"");
     STAssertTrue( 51.5  == [[message getExtension:[UnittestRoot defaultFloatExtension]] floatValue], @"");
     STAssertTrue( 52e3  == [[message getExtension:[UnittestRoot defaultDoubleExtension]] doubleValue], @"");
-    STAssertTrue(true    == [[message getExtension:[UnittestRoot defaultBoolExtension]] boolValue], @"");
+    STAssertTrue(YES    == [[message getExtension:[UnittestRoot defaultBoolExtension]] boolValue], @"");
     STAssertEqualObjects(@"hello", [message getExtension:[UnittestRoot defaultStringExtension]], @"");
     STAssertEqualObjects([TestUtilities toData:@"world"], [message getExtension:[UnittestRoot defaultBytesExtension]], @"");
     
@@ -1287,7 +1287,7 @@
     [message replaceRepeatedSfixed64AtIndex:1 with:510];
     [message replaceRepeatedFloatAtIndex:1 with:511];
     [message replaceRepeatedDoubleAtIndex:1 with:512];
-    [message replaceRepeatedBoolAtIndex:1 with:true];
+    [message replaceRepeatedBoolAtIndex:1 with:YES];
     [message replaceRepeatedStringAtIndex:1 with:@"515"];
     [message replaceRepeatedBytesAtIndex:1 with:[TestUtilities toData:@"516"]];
     
@@ -1357,7 +1357,7 @@
     STAssertTrue(210L == [message repeatedSfixed64AtIndex:0], @"");
     STAssertTrue(211.0 == [message repeatedFloatAtIndex:0], @"");
     STAssertTrue(212.0 == [message repeatedDoubleAtIndex:0], @"");
-    STAssertTrue(true == [message repeatedBoolAtIndex:0], @"");
+    STAssertTrue(YES == [message repeatedBoolAtIndex:0], @"");
     STAssertEqualObjects(@"215", [message repeatedStringAtIndex:0], @"");
     STAssertEqualObjects([TestUtilities toData:@"216"], [message repeatedBytesAtIndex:0], @"");
     
@@ -1386,7 +1386,7 @@
     STAssertTrue(510L == [message repeatedSfixed64AtIndex:1], @"");
     STAssertTrue(511.0 == [message repeatedFloatAtIndex:1], @"");
     STAssertTrue(512.0 == [message repeatedDoubleAtIndex:1], @"");
-    STAssertTrue(true == [message repeatedBoolAtIndex:1], @"");
+    STAssertTrue(YES == [message repeatedBoolAtIndex:1], @"");
     STAssertEqualObjects(@"515", [message repeatedStringAtIndex:1], @"");
     STAssertEqualObjects([TestUtilities toData:@"516"], [message repeatedBytesAtIndex:1], @"");
     

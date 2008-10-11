@@ -75,7 +75,7 @@
     PBCodedInputStream* input = [PBCodedInputStream streamWithData:data];
     int32_t previousTag = 0;
     
-    while (true) {
+    while (YES) {
         int32_t tag = [input readTag];
         if (tag == 0) {
             break;
