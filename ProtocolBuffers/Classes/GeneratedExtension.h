@@ -22,10 +22,7 @@
 }
 
 @property (readonly, retain) PBFieldDescriptor* descriptor;
-@property (readonly, retain) Class type;
 @property (readonly, retain) id<PBMessage> messageDefaultInstance;
-@property (readonly) SEL enumValueOf;
-@property (readonly) SEL enumGetValueDescriptor;
 
 + (PBGeneratedExtension*) extensionWithDescriptor:(PBFieldDescriptor*) descriptor
                                              type:(Class) type;
