@@ -16,10 +16,10 @@
 
 @interface PBSingularMessageFieldAccessor : PBSingularFieldAccessor {
 @private
-    SEL createBuilderMethod;
+    SEL createBuilderSelector;
 }
 
-@property (readonly) SEL createBuilderMethod;
+@property (readonly) SEL createBuilderSelector;
 
 
 + (PBSingularMessageFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field

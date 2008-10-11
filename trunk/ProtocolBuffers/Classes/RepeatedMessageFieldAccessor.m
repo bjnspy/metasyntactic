@@ -15,16 +15,16 @@
 #import "RepeatedMessageFieldAccessor.h"
 
 @interface PBRepeatedMessageFieldAccessor()
-    @property SEL createBuilderMethod;
+    @property SEL createBuilderSelector;
 @end
 
 
 @implementation PBRepeatedMessageFieldAccessor
 
-@synthesize createBuilderMethod;
+@synthesize createBuilderSelector;
 
 - (void) dealloc {
-    self.createBuilderMethod = 0;
+    self.createBuilderSelector = 0;
 
     [super dealloc];
 }
@@ -35,7 +35,7 @@
         messageClass:(Class) messageClass
         builderClass:(Class) builderClass {
     if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
-        self.createBuilderMethod = @selector(createBuilder);
+        self.createBuilderSelector = @selector(createBuilder);
     }
 
     return self;

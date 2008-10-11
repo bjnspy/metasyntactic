@@ -17,15 +17,15 @@
 #import "FieldDescriptor.h"
 
 @interface PBSingularMessageFieldAccessor()
-    @property SEL createBuilderMethod;
+    @property SEL createBuilderSelector;
 @end
 
 @implementation PBSingularMessageFieldAccessor
 
-@synthesize createBuilderMethod;
+@synthesize createBuilderSelector;
 
 - (void) dealloc {
-    self.createBuilderMethod = 0;
+    self.createBuilderSelector = 0;
 
     [super dealloc];
 }
@@ -36,7 +36,7 @@
         messageClass:(Class) messageClass
         builderClass:(Class) builderClass {
     if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
-        self.createBuilderMethod = @selector(createBuilder);
+        self.createBuilderSelector = @selector(createBuilder);
     }
 
     return self;
@@ -70,7 +70,7 @@
         // a copy of the message.
         @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 #if 0
-        id<PBMessage_Builder> builder = [messageClass performSelector:createBuilderMethod];
+        id<PBMessage_Builder> builder = [messageClass performSelector:createBuilderSelector];
         return [[builder mergeFromMessage:value] build];
 #endif
     }

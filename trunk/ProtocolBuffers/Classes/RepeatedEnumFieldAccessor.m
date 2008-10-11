@@ -16,19 +16,19 @@
 
 
 @interface PBRepeatedEnumFieldAccessor()
-    @property SEL valueOfMethod;
-    @property SEL valueDescriptorMethod;
+    @property SEL valueOfSelector;
+    @property SEL valueDescriptorSelector;
 @end
 
 
 @implementation PBRepeatedEnumFieldAccessor
 
-@synthesize valueOfMethod;
-@synthesize valueDescriptorMethod;
+@synthesize valueOfSelector;
+@synthesize valueDescriptorSelector;
 
 - (void) dealloc {
-    self.valueOfMethod = 0;
-    self.valueDescriptorMethod = 0;
+    self.valueOfSelector = 0;
+    self.valueDescriptorSelector = 0;
 
     [super dealloc];
 }
@@ -39,8 +39,8 @@
         messageClass:(Class) messageClass
         builderClass:(Class) builderClass {
     if (self = [super initWithField:field name:name messageClass:messageClass builderClass:builderClass]) {
-        self.valueOfMethod = @selector(valueOfDescriptor:);
-        self.valueDescriptorMethod = @selector(valueDescriptor);
+        self.valueOfSelector = @selector(valueOfDescriptor:);
+        self.valueDescriptorSelector = @selector(valueDescriptor);
     }
 
     return self;
@@ -61,7 +61,7 @@
     NSMutableArray* array = [NSMutableArray array];
 
     for (id element in [super get:message]) {
-        id value = [element performSelector:valueDescriptorMethod];
+        id value = [element performSelector:valueDescriptorSelector];
         [array addObject:value];
     }
 
