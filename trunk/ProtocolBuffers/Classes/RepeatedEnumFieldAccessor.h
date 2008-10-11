@@ -20,9 +20,6 @@
     SEL valueDescriptorSelector;
 }
 
-@property (readonly) SEL valueOfSelector;
-@property (readonly) SEL valueDescriptorSelector;
-
 + (PBRepeatedEnumFieldAccessor*) accessorWithField:(PBFieldDescriptor*) field
                                                              name:(NSString*) name
                                                      messageClass:(Class) messageClass

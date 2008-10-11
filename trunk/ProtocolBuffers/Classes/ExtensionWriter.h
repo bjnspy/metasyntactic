@@ -20,11 +20,6 @@
     id nextValue;
 }
 
-@property (readonly, retain) PBFieldSet* extensions;
-@property (readonly, retain) NSEnumerator* enumerator;
-@property (readonly, retain) PBFieldDescriptor* nextKey;
-@property (readonly, retain) id nextValue;
-
 + (PBExtensionWriter*) writerWithExtensions:(PBFieldSet*) extensions;
 
 - (void) writeUntil:(int32_t) end output:(PBCodedOutputStream*) output;

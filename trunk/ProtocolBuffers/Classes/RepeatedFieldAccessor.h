@@ -25,13 +25,6 @@
     SEL clearItemListSelector;
 }
 
-@property (readonly) SEL itemListSelector;
-@property (readonly) SEL itemAtIndexSelector;
-@property (readonly) SEL replaceItemAtIndexWithItemSelector;
-@property (readonly) SEL addItemSelector;
-@property (readonly) SEL addAllItemSelector;
-@property (readonly) SEL clearItemListSelector;
-
 - (id) initWithField:(PBFieldDescriptor*) field
                 name:(NSString*) name
         messageClass:(Class) messageClass
