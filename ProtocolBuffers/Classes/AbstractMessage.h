@@ -31,7 +31,6 @@
 
 - (BOOL) hasField:(PBFieldDescriptor*) field;
 - (id) getField:(PBFieldDescriptor*) field;
-
 - (NSArray*) getRepeatedField:(PBFieldDescriptor*) field;
 
 - (PBUnknownFieldSet*) unknownFields;
@@ -40,6 +39,7 @@
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
 - (void) writeToOutputStream:(NSOutputStream*) output;
 - (NSData*) toData;
+
 - (id<PBMessage_Builder>) builder;
 
 @end
