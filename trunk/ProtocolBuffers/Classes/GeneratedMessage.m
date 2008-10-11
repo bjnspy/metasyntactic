@@ -87,13 +87,8 @@
 }
 
 
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
-    return [[self.fieldAccessorTable getField:field] getRepeatedCount:self];
-}
-
-
-- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
-    return [[self.fieldAccessorTable getField:field] getRepeated:self index:index];
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
+    return [[self.fieldAccessorTable getField:field] getRepeated:self];
 }
 
 @end

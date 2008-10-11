@@ -62,7 +62,7 @@
 /** Get the number of elements in a repeated extension. */
 - (int32_t) getExtensionCount:(PBGeneratedExtension*) extension {
     [self verifyExtensionContainingType:extension];
-    return [extensions getRepeatedFieldCount:extension.descriptor];
+    return [[extensions getRepeatedField:extension.descriptor] count];
 }
 
 
@@ -81,7 +81,8 @@
 /** Get one element of a repeated extension. */
 - (id) getExtension:(PBGeneratedExtension*) extension index:(int32_t) index {
     [self verifyExtensionContainingType:extension];
-    return [extension singularFromReflectionType:[extensions getRepeatedField:extension.descriptor index:index]];
+    NSArray* array = [extensions getRepeatedField:extension.descriptor];
+    return [extension singularFromReflectionType:[array objectAtIndex:index]];
 }
 
 
@@ -146,22 +147,12 @@
 }
 
 
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
     if (field.isExtension) {
         [self verifyContainingType:field];
-        return [extensions getRepeatedFieldCount:field];
+        return [extensions getRepeatedField:field];
     } else {
-        return [super getRepeatedFieldCount:field];
-    }
-}
-
-
-- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
-    if (field.isExtension) {
-        [self verifyContainingType:field];
-        return [extensions getRepeatedField:field index:index];
-    } else {
-        return [super getRepeatedField:field index:index];
+        return [super getRepeatedField:field];
     }
 }
 

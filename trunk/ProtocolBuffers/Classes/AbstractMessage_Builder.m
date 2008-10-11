@@ -199,12 +199,7 @@
 }
 
 
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
-    @throw [NSException exceptionWithName:@"" reason:@"" userInfo:nil];
-}
-
-
-- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 

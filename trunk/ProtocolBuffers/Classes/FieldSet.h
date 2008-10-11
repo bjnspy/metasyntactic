@@ -16,9 +16,7 @@
     NSMutableDictionary* fields;
 }
 
-
 @property (retain) NSMutableDictionary* fields;
-
 
 + (void) mergeFromCodedInputStream:(PBCodedInputStream*) input
                      unknownFields:(PBUnknownFieldSet_Builder*) unknownFields
@@ -30,10 +28,8 @@
                            builder:(id<PBMessage_Builder>) builder
                                tag:(int32_t) tag;
 
-
 + (PBFieldSet*) set;
 + (PBFieldSet*) emptySet;
-
 
 - (id) initWithFields:(NSMutableDictionary*) fields;
 
@@ -45,8 +41,7 @@
 - (void) setField:(PBFieldDescriptor*) field value:(id) value;
 - (void) clearField:(PBFieldDescriptor*) field;
 
-- (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field;
-- (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index;
+- (NSArray*) getRepeatedField:(PBFieldDescriptor*) field;
 - (void) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
 - (void) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 

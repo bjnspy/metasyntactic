@@ -25,10 +25,9 @@
                                          builderClass:(Class) builderClass;
 
 - (void) set:(PBGeneratedMessage_Builder*) builder value:(id) value;
-- (id) getRepeated:(PBGeneratedMessage*) message index:(int32_t) index;
 - (void) setRepeated:(PBGeneratedMessage_Builder*) builder index:(int32_t) index value:(id) value;
 - (void) addRepeated:(PBGeneratedMessage_Builder*) builder value:(id) value;
-- (int32_t) getRepeatedCount:(PBGeneratedMessage*) message;
+- (NSArray*) getRepeated:(PBGeneratedMessage*) message;
 - (void) clear:(PBGeneratedMessage_Builder*) builder;
 - (id<PBMessage_Builder>) createBuilder;
 

@@ -82,11 +82,6 @@
 }
 
 
-- (id) getRepeated:(PBGeneratedMessage*) message index:(int32_t) index {
-    @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
-}
-
-
 - (void) setRepeated:(PBGeneratedMessage_Builder*) builder index:(int32_t) index value:(id) value {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
@@ -97,7 +92,7 @@
 }
 
 
-- (int32_t) getRepeatedCount:(PBGeneratedMessage*) message {
+- (NSArray*) getRepeated:(PBGeneratedMessage*) message {
     @throw [NSException exceptionWithName:@"NYI" reason:@"" userInfo:nil];
 }
 
