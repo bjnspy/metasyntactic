@@ -30,9 +30,6 @@
 namespace google { namespace protobuf { namespace compiler { namespace objectivec {
 
   namespace {
-
-    // TODO(kenton):  Factor out a "SetCommonFieldVariables()" to get rid of
-    //   repeat code between this and the other field types.
     void SetEnumVariables(const FieldDescriptor* descriptor,
       map<string, string>* variables) {
         const EnumValueDescriptor* default_value;
@@ -92,17 +89,17 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
         (*variables)["unboxed_value"] = unboxed_value;
     }
-
   }  // namespace
-
-  // ===================================================================
 
   EnumFieldGenerator::EnumFieldGenerator(const FieldDescriptor* descriptor)
     : descriptor_(descriptor) {
       SetEnumVariables(descriptor, &variables_);
   }
 
-  EnumFieldGenerator::~EnumFieldGenerator() {}
+
+  EnumFieldGenerator::~EnumFieldGenerator() {
+  }
+
 
   void EnumFieldGenerator::GenerateFieldsHeader(io::Printer* printer) const {
     printer->Print(variables_,
@@ -126,15 +123,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void EnumFieldGenerator::GenerateMembersHeader(io::Printer* printer) const {
-    //printer->Print(variables_,
-    //  "- (BOOL) has$capitalized_name$;\n"
-    //  "- ($storage_type$) get$capitalized_name$;\n");
   }
 
+
   void EnumFieldGenerator::GenerateMembersSource(io::Printer* printer) const {
-    //printer->Print(variables_,
-    //  "- (BOOL) has$capitalized_name$ { return has$capitalized_name$; }\n"
-    //  "- ($storage_type$) get$capitalized_name$ { return $name$_; }\n");
   }
 
 
@@ -144,11 +136,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "@synthesize $name$;\n");
   }
 
+
   void EnumFieldGenerator::GenerateDeallocSource(io::Printer* printer) const {
     printer->Print(variables_,
       "self.has$capitalized_name$ = NO;\n"
       "self.$name$ = nil;\n");
   }
+
 
   void EnumFieldGenerator::GenerateInitializationSource(io::Printer* printer) const {
     printer->Print(variables_,
@@ -198,10 +192,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
   void EnumFieldGenerator::GenerateBuildingCodeHeader(io::Printer* printer) const {
-    // Nothing to do here for enum types.
   }
+
+
   void EnumFieldGenerator::GenerateBuildingCodeSource(io::Printer* printer) const {
-    // Nothing to do here for enum types.
   }
 
 
@@ -296,13 +290,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void RepeatedEnumFieldGenerator::GenerateBuilderMembersHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      // Note:  We return an unmodifiable list because otherwise the caller
-      //   could hold on to the returned list and modify it after the message
-      //   has been built, thus mutating the message which is supposed to be
-      //   immutable.
       "- (NSArray*) $list_name$;\n"
       "- ($storage_type$) $name$AtIndex:(int32_t) index;\n"
-      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with$capitalized_name$:($storage_type$) value;\n"
+      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with:($storage_type$) value;\n"
       "- ($classname$_Builder*) add$capitalized_name$:($storage_type$) value;\n"
       "- ($classname$_Builder*) addAll$capitalized_name$:(NSArray*) values;\n"
       "- ($classname$_Builder*) clear$capitalized_name$List;\n");
@@ -348,7 +338,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- ($storage_type$) $name$AtIndex:(int32_t) index {\n"
       "  return [result $name$AtIndex:index];\n"
       "}\n"
-      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with$capitalized_name$:($storage_type$) value {\n"
+      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with:($storage_type$) value {\n"
       "  [result.$mutable_list_name$ replaceObjectAtIndex:index withObject:$boxed_value$];\n"
       "  return self;\n"
       "}\n"

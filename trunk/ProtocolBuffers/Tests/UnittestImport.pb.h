@@ -12,7 +12,7 @@
 @class ImportMessage;
 @class ImportMessage_Builder;
 
-@interface UnittestImportProtoRoot : NSObject {
+@interface UnittestImportRoot : NSObject {
 }
 + (PBFileDescriptor*) descriptor;
 + (PBFileDescriptor*) buildDescriptor;

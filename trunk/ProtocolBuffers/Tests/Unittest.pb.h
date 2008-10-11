@@ -77,7 +77,7 @@
 @class TestService;
 @class TestSparseEnum;
 
-@interface UnittestProtoRoot : NSObject {
+@interface UnittestRoot : NSObject {
 }
 + (PBFileDescriptor*) descriptor;
 + (PBFileDescriptor*) buildDescriptor;
@@ -224,12 +224,10 @@
 
 @interface TestService : NSObject<PBService> {
 }
-// @abstract
 - (void) fooWithController:(id<PBRpcController>) controller
                       request:(FooRequest*) request
                        target:(id) target
                      selector:(SEL) selector;
-// @abstract
 - (void) barWithController:(id<PBRpcController>) controller
                       request:(BarRequest*) request
                        target:(id) target

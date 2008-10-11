@@ -21,7 +21,7 @@
 @class TestMessageSetExtension2_Builder;
 @class TestMessageSet_Builder;
 
-@interface UnittestMsetProtoRoot : NSObject {
+@interface UnittestMsetRoot : NSObject {
 }
 + (PBFileDescriptor*) descriptor;
 + (PBFileDescriptor*) buildDescriptor;

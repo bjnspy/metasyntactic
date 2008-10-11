@@ -122,7 +122,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   string FileClassName(const FileDescriptor* file) {
-    return FileName(file) + "ProtoRoot";
+    return
+      file->options().objectivec_class_prefix() +
+      FileName(file) +
+      "Root";
   }
 
 
@@ -212,9 +215,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     case FieldDescriptor::TYPE_GROUP:
     case FieldDescriptor::TYPE_MESSAGE:
       return OBJECTIVECTYPE_MESSAGE;
-
-      // No default because we want the compiler to complain if any new
-      // types are added.
     }
 
     GOOGLE_LOG(FATAL) << "Can't get here.";
@@ -233,9 +233,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     case OBJECTIVECTYPE_DATA   : return "NSData";
     case OBJECTIVECTYPE_ENUM   : return NULL;
     case OBJECTIVECTYPE_MESSAGE: return NULL;
-
-      // No default because we want the compiler to complain if any new
-      // ObjectiveCTypes are added.
     }
 
     GOOGLE_LOG(FATAL) << "Can't get here.";

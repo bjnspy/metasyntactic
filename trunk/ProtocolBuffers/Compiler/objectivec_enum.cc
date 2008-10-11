@@ -87,9 +87,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "+ ($classname$*) valueOf:(int32_t) value;\n",
       "classname", ClassName(descriptor_));
 
-    // -----------------------------------------------------------------
-    // Reflection
-
     printer->Print(
       "- (PBEnumValueDescriptor*) valueDescriptor;\n"
       "- (PBEnumDescriptor*) descriptor;\n"
@@ -99,8 +96,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "\n"
       "+ ($classname$*) valueOfDescriptor:(PBEnumValueDescriptor*) desc;\n",
       "classname", ClassName(descriptor_));
-
-    // -----------------------------------------------------------------
 
     printer->Print("@end\n\n");
   }
@@ -165,10 +160,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["classname"] = ClassName(descriptor_);
       vars["name"] = SafeName(canonical_values_[i]->name());
       printer->Print(vars,
-        "+ ($classname$*) $name$ { return $classname$_$name$; }\n");
+        "+ ($classname$*) $name$ {\n"
+        "  return $classname$_$name$;\n"
+        "}\n");
     }
-
-    // -----------------------------------------------------------------
 
     for (int i = 0; i < aliases_.size(); i++) {
       map<string, string> vars;
@@ -176,10 +171,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["name"] = aliases_[i].value->name();
       vars["canonical_name"] = aliases_[i].canonical_value->name();
       printer->Print(vars,
-        "+ ($classname$*) $name$ { return [$classname$ $canonical_name$]; }\n");
+        "+ ($classname$*) $name$ {\n"
+        "  return [$classname$ $canonical_name$];\n"
+        "}\n");
     }
-
-    // -----------------------------------------------------------------
 
     printer->Print(
       "- (int32_t) number { return value; }\n"
@@ -206,9 +201,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  }\n"
       "}\n");
 
-    // -----------------------------------------------------------------
-    // Reflection
-
     printer->Print(
       "- (PBEnumValueDescriptor*) valueDescriptor {\n"
       "  return [[$classname$ descriptor].values objectAtIndex:index];\n"
@@ -219,9 +211,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "+ (PBEnumDescriptor*) descriptor {\n",
       "classname", ClassName(descriptor_));
 
-    // TODO(kenton):  Cache statically?  Note that we can't access descriptors
-    //   at module init time because it wouldn't work with descriptor.proto, but
-    //   we can cache the value the first time descriptor is called.
     if (descriptor_->containing_type() == NULL) {
       printer->Print(
         "  return [[$file$ descriptor].enumTypes objectAtIndex:$index$];\n",
@@ -260,11 +249,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "  return VALUES[desc.index];\n"
       "}\n");
 
-    // -----------------------------------------------------------------
-
     printer->Print("@end\n\n");
   }
-
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf

@@ -27,7 +27,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   ExtensionGenerator::ExtensionGenerator(string classname, const FieldDescriptor* descriptor)
     : classname_(classname),
-      descriptor_(descriptor) {
+    descriptor_(descriptor) {
   }
 
 
@@ -85,9 +85,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       break;
     }
 
-      printer->Print(vars,
-        "     $containing_type$_$name$ = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:$index$]\n"
-        "                                                       type:[$type$ class]] retain];\n");
+    printer->Print(vars,
+      "     $containing_type$_$name$ = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:$index$]\n"
+      "                                                       type:[$type$ class]] retain];\n");
   }
 }  // namespace objectivec
 }  // namespace compiler

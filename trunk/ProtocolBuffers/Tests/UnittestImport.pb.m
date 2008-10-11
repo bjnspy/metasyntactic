@@ -2,7 +2,7 @@
 
 #import "UnittestImport.pb.h"
 
-@implementation UnittestImportProtoRoot
+@implementation UnittestImportRoot
 static PBFileDescriptor* descriptor = nil;
 static PBDescriptor* internal_static_protobuf_unittest_import_ImportMessage_descriptor = nil;
 static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable = nil;
@@ -13,8 +13,8 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_import_ImportMess
   return internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable;
 }
 + (void) initialize {
-  if (self == [UnittestImportProtoRoot class]) {
-    descriptor = [[UnittestImportProtoRoot buildDescriptor] retain];
+  if (self == [UnittestImportRoot class]) {
+    descriptor = [[UnittestImportRoot buildDescriptor] retain];
     internal_static_protobuf_unittest_import_ImportMessage_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"D", nil];
@@ -77,9 +77,15 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
     ImportEnum_IMPORT_BAZ = [[ImportEnum newWithIndex:2 value:9] retain];
   }
 }
-+ (ImportEnum*) IMPORT_FOO { return ImportEnum_IMPORT_FOO; }
-+ (ImportEnum*) IMPORT_BAR { return ImportEnum_IMPORT_BAR; }
-+ (ImportEnum*) IMPORT_BAZ { return ImportEnum_IMPORT_BAZ; }
++ (ImportEnum*) IMPORT_FOO {
+  return ImportEnum_IMPORT_FOO;
+}
++ (ImportEnum*) IMPORT_BAR {
+  return ImportEnum_IMPORT_BAR;
+}
++ (ImportEnum*) IMPORT_BAZ {
+  return ImportEnum_IMPORT_BAZ;
+}
 - (int32_t) number { return value; }
 + (ImportEnum*) valueOf:(int32_t) value {
   switch (value) {
@@ -96,7 +102,7 @@ static ImportEnum* ImportEnum_IMPORT_BAZ = nil;
   return [ImportEnum descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
-  return [[UnittestImportProtoRoot descriptor].enumTypes objectAtIndex:0];
+  return [[UnittestImportRoot descriptor].enumTypes objectAtIndex:0];
 }
 + (ImportEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.type != [ImportEnum descriptor]) {
@@ -147,10 +153,10 @@ static ImportMessage* defaultImportMessageInstance = nil;
   return [ImportMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestImportProtoRoot internal_static_protobuf_unittest_import_ImportMessage_descriptor];
+  return [UnittestImportRoot internal_static_protobuf_unittest_import_ImportMessage_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestImportProtoRoot internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable];
+  return [UnittestImportRoot internal_static_protobuf_unittest_import_ImportMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -251,7 +257,9 @@ static ImportMessage* defaultImportMessageInstance = nil;
   }
 }
 - (ImportMessage_Builder*) mergeFromImportMessage:(ImportMessage*) other {
-  if (other == [ImportMessage defaultInstance]) return self;
+  if (other == [ImportMessage defaultInstance]) {
+    return self;
+  }
   if (other.hasD) {
     [self setD:other.d];
   }
@@ -263,7 +271,7 @@ static ImportMessage* defaultImportMessageInstance = nil;
 }
 - (ImportMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:

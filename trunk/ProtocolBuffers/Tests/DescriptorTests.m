@@ -20,7 +20,7 @@
 @implementation DescriptorTests
 
 - (void) testFileDescriptor {
-    PBFileDescriptor* file = [UnittestProtoRoot descriptor];
+    PBFileDescriptor* file = [UnittestRoot descriptor];
     
     STAssertEqualObjects(@"google/protobuf/unittest.proto", file.name, @"");
     STAssertEqualObjects(@"protobuf_unittest", file.package, @"");
@@ -28,7 +28,7 @@
     STAssertEqualObjects(@"UnittestProto", file.options.javaOuterClassname, @"");
     STAssertEqualObjects(@"google/protobuf/unittest.proto", file.proto.name, @"");
     
-    STAssertEqualObjects([NSArray arrayWithObject:[UnittestImportProtoRoot descriptor]],
+    STAssertEqualObjects([NSArray arrayWithObject:[UnittestImportRoot descriptor]],
                          file.dependencies, @"");
     
     PBDescriptor* messageType = [TestAllTypes descriptor];
@@ -46,7 +46,7 @@
     STAssertNil([file findEnumTypeByName:@"NoSuchType"], @"");
     STAssertNil([file findEnumTypeByName:@"protobuf_unittest.ForeignEnum"], @"");
     STAssertEqualObjects([NSArray arrayWithObject:[ImportEnum descriptor]],
-                         [[UnittestImportProtoRoot descriptor] enumTypes], @"");
+                         [[UnittestImportRoot descriptor] enumTypes], @"");
     for (int i = 0; i < file.enumTypes.count; i++) {
         STAssertTrue(i == [[file.enumTypes objectAtIndex:i] index], @"");
     }
@@ -57,20 +57,20 @@
     STAssertNil([file findServiceByName:@"NoSuchType"], @"");
     STAssertNil([file findServiceByName:@"protobuf_unittest.TestService"], @"");
     STAssertEqualObjects([NSArray array],
-                 [[UnittestImportProtoRoot descriptor] services], @"");
+                 [[UnittestImportRoot descriptor] services], @"");
     for (int i = 0; i < file.services.count; i++) {
         STAssertTrue(i == [[file.services objectAtIndex:i] index], @"");
     }
     
     PBFieldDescriptor* extension =
-    [[UnittestProtoRoot optionalInt32Extension] descriptor];
+    [[UnittestRoot optionalInt32Extension] descriptor];
     STAssertEqualObjects(extension, [file.extensions objectAtIndex:0], @"");
     STAssertEqualObjects(extension,
                          [file findExtensionByName:@"optional_int32_extension"], @"");
     STAssertNil([file findExtensionByName:@"no_such_ext"], @"");
     STAssertNil([file findExtensionByName:@"protobuf_unittest.optional_int32_extension"], @"");
     STAssertEqualObjects([NSArray array],
-                         [[UnittestImportProtoRoot descriptor] extensions], @"");
+                         [[UnittestImportRoot descriptor] extensions], @"");
     for (int i = 0; i < file.extensions.count; i++) {
         STAssertTrue(i == [[file.extensions objectAtIndex:i] index], @"");
     }
@@ -83,7 +83,7 @@
     
     STAssertEqualObjects(@"TestAllTypes", messageType.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.TestAllTypes", messageType.fullName, @"");
-    STAssertEqualObjects([UnittestProtoRoot descriptor], messageType.file, @"");
+    STAssertEqualObjects([UnittestRoot descriptor], messageType.file, @"");
     STAssertNil(messageType.containingType, @"");
     STAssertEqualObjects([PBMessageOptions defaultInstance],
                  messageType.options, @"");
@@ -92,7 +92,7 @@
     STAssertEqualObjects(@"NestedMessage", nestedType.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.TestAllTypes.NestedMessage",
                  nestedType.fullName, @"");
-    STAssertEqualObjects([UnittestProtoRoot descriptor], nestedType.file, @"");
+    STAssertEqualObjects([UnittestRoot descriptor], nestedType.file, @"");
     STAssertEqualObjects(messageType, nestedType.containingType, @"");
     
     PBFieldDescriptor* field = [messageType.fields objectAtIndex:0];
@@ -128,7 +128,7 @@
     PBFieldDescriptor* enumField = [messageType findFieldByName:@"optional_nested_enum"];
     PBFieldDescriptor* messageField = [messageType findFieldByName:@"optional_foreign_message"];
     PBFieldDescriptor* cordField = [messageType findFieldByName:@"optional_cord"];
-    PBFieldDescriptor* extension = [[UnittestProtoRoot optionalInt32Extension] descriptor];
+    PBFieldDescriptor* extension = [[UnittestRoot optionalInt32Extension] descriptor];
     PBFieldDescriptor* nestedExtension = [[TestRequired single] descriptor];
     
     STAssertEqualObjects(@"optional_int32", primitiveField.name, @"");
@@ -136,7 +136,7 @@
                  primitiveField.fullName, @"");
     STAssertEquals(1, primitiveField.number, @"");
     STAssertEqualObjects(messageType, primitiveField.containingType, @"");
-    STAssertEqualObjects([UnittestProtoRoot descriptor], primitiveField.file, @"");
+    STAssertEqualObjects([UnittestRoot descriptor], primitiveField.file, @"");
     STAssertEquals(PBFieldDescriptorTypeInt32, primitiveField.type, @"");
     STAssertEquals(PBObjectiveCTypeInt32, primitiveField.objectiveCType, @"");
     STAssertEqualObjects([PBFieldOptions defaultInstance],
@@ -167,7 +167,7 @@
     STAssertEquals(1, extension.number, @"");
     STAssertEqualObjects([TestAllExtensions descriptor],
                  extension.containingType, @"");
-    STAssertEqualObjects([UnittestProtoRoot descriptor], extension.file, @"");
+    STAssertEqualObjects([UnittestRoot descriptor], extension.file, @"");
     STAssertEquals(PBFieldDescriptorTypeInt32, extension.type, @"");
     STAssertEquals(PBObjectiveCTypeInt32, extension.objectiveCType, @"");
     STAssertEqualObjects([PBFieldOptions defaultInstance],
@@ -224,7 +224,7 @@
     
     STAssertEqualObjects(@"ForeignEnum", enumType.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.ForeignEnum", enumType.fullName, @"");
-    STAssertEqualObjects([UnittestProtoRoot descriptor], enumType.file, @"");
+    STAssertEqualObjects([UnittestRoot descriptor], enumType.file, @"");
     STAssertNil(enumType.containingType, @"");
     STAssertEqualObjects([PBEnumOptions defaultInstance],
                  enumType.options, @"");
@@ -232,7 +232,7 @@
     STAssertEqualObjects(@"NestedEnum", nestedType.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.TestAllTypes.NestedEnum",
                  nestedType.fullName, @"");
-    STAssertEqualObjects([UnittestProtoRoot descriptor], nestedType.file, @"");
+    STAssertEqualObjects([UnittestRoot descriptor], nestedType.file, @"");
     STAssertEqualObjects([TestAllTypes descriptor], nestedType.containingType, @"");
     
     PBEnumValueDescriptor* value = [[ForeignEnum FOREIGN_FOO] valueDescriptor];
@@ -253,7 +253,7 @@
     
     STAssertEqualObjects(@"TestService", service.name, @"");
     STAssertEqualObjects(@"protobuf_unittest.TestService", service.fullName, @"");
-    STAssertEqualObjects([UnittestProtoRoot descriptor], service.file, @"");
+    STAssertEqualObjects([UnittestRoot descriptor], service.file, @"");
     
     STAssertTrue(2 == service.methods.count, @"");
 

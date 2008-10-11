@@ -46,7 +46,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n",
       "classname", ClassName(descriptor_));
 
-    // Generate abstract method declarations.
     for (int i = 0; i < descriptor_->method_count(); i++) {
       const MethodDescriptor* method = descriptor_->method(i);
       map<string, string> vars;
@@ -54,7 +53,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vars["input"] = ClassName(method->input_type());
       vars["output"] = ClassName(method->output_type());
       printer->Print(vars,
-        "// @abstract\n"
         "- (void) $name$WithController:(id<PBRpcController>) controller\n"
         "                      request:($input$*) request\n"
         "                       target:(id) target\n"
@@ -66,7 +64,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "+ (PBServiceDescriptor*) descriptor;\n"
       "- (PBServiceDescriptor*) descriptor;\n");
 
-    // Generate more stuff.
     GenerateCallMethodHeader(printer);
     GenerateGetPrototypeHeader(REQUEST, printer);
     GenerateGetPrototypeHeader(RESPONSE, printer);
@@ -78,12 +75,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void ServiceGenerator::GenerateSource(io::Printer* printer) {
-    bool is_own_file = true;//descriptor_->file()->options().objectivec_multiple_files();
     printer->Print(
       "@implementation $classname$\n",
       "classname", ClassName(descriptor_));
 
-    // Generate abstract method declarations.
     for (int i = 0; i < descriptor_->method_count(); i++) {
       const MethodDescriptor* method = descriptor_->method(i);
       map<string, string> vars;
@@ -114,7 +109,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         "}\n");
     }
 
-    // Generate more stuff.
     GenerateCallMethodSource(printer);
     GenerateGetPrototypeSource(REQUEST, printer);
     GenerateGetPrototypeSource(RESPONSE, printer);
@@ -144,7 +138,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "             target:(id) target\n"
       "           selector:(SEL) selector {\n"
       "  if (method.service != self.descriptor) {\n"
-      "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"Service.callMethod given method descriptor for wrong service type.\" userInfo:nil];\n"
+      "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"callMethod: given method descriptor for wrong service type.\" userInfo:nil];\n"
       "  }\n"
       "  switch(method.index) {\n");
     printer->Indent();
@@ -189,7 +183,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       printer->Print(
         "- (id<PBMessage>) get$request_or_response$Prototype:(PBMethodDescriptor*) method {\n"
         "  if (method.service != self.descriptor) {\n"
-        "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"Service.callMethod given method descriptor for wrong service type.\" userInfo:nil];\n"
+        "    @throw [NSException exceptionWithName:@\"IllegalArgument\" reason:@\"callMethod: given method descriptor for wrong service type.\" userInfo:nil];\n"
         "  }\n"
         "  switch(method.index) {\n",
         "request_or_response", (which == REQUEST) ? "Request" : "Response");

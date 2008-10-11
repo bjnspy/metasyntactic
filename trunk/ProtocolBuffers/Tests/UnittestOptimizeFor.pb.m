@@ -2,7 +2,7 @@
 
 #import "UnittestOptimizeFor.pb.h"
 
-@implementation UnittestOptimizeForProtoRoot
+@implementation UnittestOptimizeForRoot
 static PBFileDescriptor* descriptor = nil;
 static PBDescriptor* internal_static_protobuf_unittest_TestOptimizedForSize_descriptor = nil;
 static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForSize_fieldAccessorTable = nil;
@@ -13,8 +13,8 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForS
   return internal_static_protobuf_unittest_TestOptimizedForSize_fieldAccessorTable;
 }
 + (void) initialize {
-  if (self == [UnittestOptimizeForProtoRoot class]) {
-    descriptor = [[UnittestOptimizeForProtoRoot buildDescriptor] retain];
+  if (self == [UnittestOptimizeForRoot class]) {
+    descriptor = [[UnittestOptimizeForRoot buildDescriptor] retain];
     internal_static_protobuf_unittest_TestOptimizedForSize_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"I", @"Msg", nil];
@@ -46,7 +46,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestOptimizedForS
     109,105,122,101,100,70,111,114,83,105,122,101,24,210,9,32,1,40,5,66,2,72,
     2,
   };
-  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestProtoRoot descriptor], nil];
+  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestRoot descriptor], nil];
   
   NSData* data = [NSData dataWithBytes:descriptorData length:261];
   PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
@@ -103,10 +103,10 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   return [TestOptimizedForSize descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestOptimizeForProtoRoot internal_static_protobuf_unittest_TestOptimizedForSize_descriptor];
+  return [UnittestOptimizeForRoot internal_static_protobuf_unittest_TestOptimizedForSize_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestOptimizeForProtoRoot internal_static_protobuf_unittest_TestOptimizedForSize_fieldAccessorTable];
+  return [UnittestOptimizeForRoot internal_static_protobuf_unittest_TestOptimizedForSize_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!self.extensionsAreInitialized) {
@@ -219,7 +219,9 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
   }
 }
 - (TestOptimizedForSize_Builder*) mergeFromTestOptimizedForSize:(TestOptimizedForSize*) other {
-  if (other == [TestOptimizedForSize defaultInstance]) return self;
+  if (other == [TestOptimizedForSize defaultInstance]) {
+    return self;
+  }
   if (other.hasI) {
     [self setI:other.i];
   }
@@ -234,7 +236,7 @@ static TestOptimizedForSize* defaultTestOptimizedForSizeInstance = nil;
 }
 - (TestOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
