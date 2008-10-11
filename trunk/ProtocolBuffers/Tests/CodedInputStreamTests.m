@@ -14,8 +14,9 @@
 
 #import "CodedInputStreamTests.h"
 
-#import "ProtocolBuffers.h"
+#import "Unittest.pb.h"
 #import "SmallBlockInputStream.h"
+#import "TestUtilities.h"
 
 @implementation CodedInputStreamTests
 
@@ -208,57 +209,29 @@
 }
 
 
-#if 0
-
-/** Tests readRawLittleEndian32() and readRawLittleEndian64(). */
-
-
-/** Test decodeZigZag32() and decodeZigZag64(). */
-public void testDecodeZigZag() throws Exception {
-    assertEquals( 0, CodedInputStream.decodeZigZag32(0));
-    assertEquals(-1, CodedInputStream.decodeZigZag32(1));
-    assertEquals( 1, CodedInputStream.decodeZigZag32(2));
-    assertEquals(-2, CodedInputStream.decodeZigZag32(3));
-    assertEquals(0x3FFFFFFF, CodedInputStream.decodeZigZag32(0x7FFFFFFE));
-    assertEquals(0xC0000000, CodedInputStream.decodeZigZag32(0x7FFFFFFF));
-    assertEquals(0x7FFFFFFF, CodedInputStream.decodeZigZag32(0xFFFFFFFE));
-    assertEquals(0x80000000, CodedInputStream.decodeZigZag32(0xFFFFFFFF));
-    
-    assertEquals( 0, CodedInputStream.decodeZigZag64(0));
-    assertEquals(-1, CodedInputStream.decodeZigZag64(1));
-    assertEquals( 1, CodedInputStream.decodeZigZag64(2));
-    assertEquals(-2, CodedInputStream.decodeZigZag64(3));
-    assertEquals(0x000000003FFFFFFFL,
-                 CodedInputStream.decodeZigZag64(0x000000007FFFFFFEL));
-    assertEquals(0xFFFFFFFFC0000000L,
-                 CodedInputStream.decodeZigZag64(0x000000007FFFFFFFL));
-    assertEquals(0x000000007FFFFFFFL,
-                 CodedInputStream.decodeZigZag64(0x00000000FFFFFFFEL));
-    assertEquals(0xFFFFFFFF80000000L,
-                 CodedInputStream.decodeZigZag64(0x00000000FFFFFFFFL));
-    assertEquals(0x7FFFFFFFFFFFFFFFL,
-                 CodedInputStream.decodeZigZag64(0xFFFFFFFFFFFFFFFEL));
-    assertEquals(0x8000000000000000L,
-                 CodedInputStream.decodeZigZag64(0xFFFFFFFFFFFFFFFFL));
-}
-
 /** Tests reading and parsing a whole message with every field type. */
-public void testReadWholeMessage() throws Exception {
-    TestAllTypes message = TestUtil.getAllSet();
+- (void) testReadWholeMessage {
+    TestAllTypes* message = [TestUtilities allSet];
     
-    byte[] rawBytes = message.toByteArray();
-    assertEquals(rawBytes.length, message.getSerializedSize());
+    NSData* rawBytes = message.toData;
+    STAssertTrue(rawBytes.length == message.serializedSize, @"");
     
-    TestAllTypes message2 = TestAllTypes.parseFrom(rawBytes);
-    TestUtil.assertAllFieldsSet(message2);
+    TestAllTypes* message2 = [TestAllTypes parseFromData:rawBytes];
+    [TestUtilities assertAllFieldsSet:message2];
     
     // Try different block sizes.
-    for (int blockSize = 1; blockSize < 256; blockSize *= 2) {
-        message2 = TestAllTypes.parseFrom(
-                                          new SmallBlockInputStream(rawBytes, blockSize));
-        TestUtil.assertAllFieldsSet(message2);
+    for (int32_t blockSize = 1; blockSize < 256; blockSize *= 2) {
+        message2 = [TestAllTypes parseFromInputStream:
+                    [SmallBlockInputStream streamWithData:rawBytes blockSize:blockSize]];
+        [TestUtilities assertAllFieldsSet:message2];
     }
 }
+
+
+#if 0
+
+
+
 
 /** Tests skipField(). */
 public void testSkipWholeMessage() throws Exception {
