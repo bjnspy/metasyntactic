@@ -279,32 +279,28 @@
     [TestUtilities assertAllFieldsSet:message3];
 }
 
+
+- (void) testReadMaliciouslyLargeBlob {
+    NSOutputStream* rawOutput = [NSOutputStream outputStreamToMemory];
+    PBCodedOutputStream* output = [PBCodedOutputStream streamWithOutputStream:rawOutput];
+    
+    int32_t tag = PBWireFormatMakeTag(1, PBWireFormatLengthDelimited);
+    [output writeRawVarint32:tag];
+    [output writeRawVarint32:0x7FFFFFFF];
+    uint8_t bytes[32] = { 0 };
+    [output writeRawData:[NSData dataWithBytes:bytes length:32]];
+    [output flush];
+    
+    NSData* data = [rawOutput propertyForKey:NSStreamDataWrittenToMemoryStreamKey];
+    PBCodedInputStream* input = [PBCodedInputStream streamWithData:[NSMutableData dataWithData:data]];
+    STAssertTrue(tag == [input readTag], @"");
+    
+    STAssertThrows([input readData], @"");
+}
+
 #if 0
 
 
-
-
-
-public void testReadMaliciouslyLargeBlob() throws Exception {
-    ByteString.Output rawOutput = ByteString.newOutput();
-    CodedOutputStream output = CodedOutputStream.newInstance(rawOutput);
-    
-    int tag = WireFormat.makeTag(1, WireFormat.WIRETYPE_LENGTH_DELIMITED);
-    output.writeRawVarint32(tag);
-    output.writeRawVarint32(0x7FFFFFFF);
-    output.writeRawBytes(new byte[32]);  // Pad with a few random bytes.
-    output.flush();
-    
-    CodedInputStream input = rawOutput.toByteString().newCodedInput();
-    assertEquals(tag, input.readTag());
-    
-    try {
-        input.readBytes();
-        fail("Should have thrown an exception!");
-    } catch (InvalidProtocolBufferException e) {
-        // success.
-    }
-}
 
 private TestRecursiveMessage makeRecursiveMessage(int depth) {
     if (depth == 0) {
