@@ -26,7 +26,7 @@
 }
 
 
-- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension
+- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension
                                        value:(id) value {
     PBExtendableMessage* message = self.internalGetResult;
     [message verifyExtensionContainingType:extension];
@@ -36,7 +36,7 @@
 }
 
 
-- (PBGeneratedMessage_Builder*) setExtension:(PBGeneratedExtension*) extension
+- (PBExtendableBuilder*) setExtension:(PBGeneratedExtension*) extension
                                        index:(int32_t) index
                                        value:(id) value {
     PBExtendableMessage* message = self.internalGetResult;
@@ -50,7 +50,7 @@
 
 
 /** Append a value to a repeated extension. */
-- (PBGeneratedMessage_Builder*) addExtension:(PBGeneratedExtension*) extension
+- (PBExtendableBuilder*) addExtension:(PBGeneratedExtension*) extension
                                        value:(id) value {
     PBExtendableMessage* message = self.internalGetResult;
     [message verifyExtensionContainingType:extension];
@@ -103,7 +103,7 @@ public final <Type> BuilderType setExtension(
 
 
 /** Clear an extension. */
-- (PBGeneratedMessage_Builder*) clearExtension:(PBGeneratedExtension*) extension {
+- (PBExtendableBuilder*) clearExtension:(PBGeneratedExtension*) extension {
     PBExtendableMessage* message = self.internalGetResult;
     [message verifyExtensionContainingType:extension];
     [message.extensions clearField:extension.descriptor];

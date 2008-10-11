@@ -69,6 +69,25 @@
     STAssertTrue(12 == [[message repeatedForeignMessageAtIndex:0] c], @"");
 }
 
+
+- (void) testClearExtension {
+    // clearExtension() is not actually used in TestUtil, so try it manually.
+    PBExtendableBuilder* builder1 =
+        [[TestAllExtensions builder]
+            setExtension:[UnittestProtoRoot optionalInt32Extension] value:[NSNumber numberWithInt:1]];
+    
+    STAssertTrue([builder1 hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
+    [builder1 clearExtension:[UnittestProtoRoot optionalInt32Extension]];
+    STAssertFalse([builder1 hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
+   
+    PBExtendableBuilder* builder2 =
+    [[TestAllExtensions builder]
+     addExtension:[UnittestProtoRoot repeatedInt32Extension] value:[NSNumber numberWithInt:1]];
+    
+    STAssertTrue(1 == [[builder2 getExtension:[UnittestProtoRoot repeatedInt32Extension]] count], @"");
+    [builder2 clearExtension:[UnittestProtoRoot repeatedInt32Extension]];
+    STAssertTrue(0 == [[builder2 getExtension:[UnittestProtoRoot repeatedInt32Extension]] count], @"");
+}
 #if 0
 
 
@@ -77,42 +96,6 @@ new [TestUtilities ReflectionTester(TestAllTypes.getDescriptor(), null);
 
 
 
-
-
-public void testSettingForeignMessageUsingBuilder() throws Exception {
-    TestAllTypes message = [TestAllTypes builder]
-    // Pass builder for foreign message instance.
-    .setOptionalForeignMessage(ForeignMessage.newBuilder().setC(123))
-    .build();
-    TestAllTypes expectedMessage = [TestAllTypes builder]
-    // Create expected version passing foreign message instance explicitly.
-    .setOptionalForeignMessage(
-                               ForeignMessage.newBuilder().setC(123).build())
-    .build();
-    // TODO(ngd): Upgrade to using real #equals method once implemented
-    assertEquals(expectedMessage.toString(), message.toString());
-}
-
-public void testSettingRepeatedForeignMessageUsingBuilder() throws Exception {
-    TestAllTypes message = [TestAllTypes builder]
-    // Pass builder for foreign message instance.
-    .addRepeatedForeignMessage(ForeignMessage.newBuilder().setC(456))
-    .build();
-    TestAllTypes expectedMessage = [TestAllTypes builder]
-    // Create expected version passing foreign message instance explicitly.
-    .addRepeatedForeignMessage(
-                               ForeignMessage.newBuilder().setC(456).build())
-    .build();
-    assertEquals(expectedMessage.toString(), message.toString());
-}
-
-public void testDefaults() throws Exception {
-    [TestUtilities assertClear([TestAllTypes defaultInstance]);
-    [TestUtilities assertClear([TestAllTypes builder].build());
-    
-    assertEquals("\u1234",
-                 TestExtremeDefaultValues.getDefaultInstance().getUtf8String());
-}
 
 public void testReflectionGetters() throws Exception {
     TestAllTypes_Builder builder = [TestAllTypes builder];
@@ -199,19 +182,7 @@ public void testExtensionReflectionDefaults() throws Exception {
                                                         TestAllExtensions.newBuilder().build());
 }
 
-public void testClearExtension() throws Exception {
-    // clearExtension() is not actually used in TestUtil, so try it manually.
-    assertFalse(
-                TestAllExtensions.newBuilder()
-                .setExtension(UnittestProto.optionalInt32Extension, 1)
-                .clearExtension(UnittestProto.optionalInt32Extension)
-                .hasExtension(UnittestProto.optionalInt32Extension));
-    assertEquals(0,
-                 TestAllExtensions.newBuilder()
-                 .addExtension(UnittestProto.repeatedInt32Extension, 1)
-                 .clearExtension(UnittestProto.repeatedInt32Extension)
-                 .getExtensionCount(UnittestProto.repeatedInt32Extension));
-}
+
 
 // =================================================================
 // multiple_files_test
