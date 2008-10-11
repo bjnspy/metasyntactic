@@ -2,7 +2,7 @@
 
 #import "Descriptor.pb.h"
 
-@implementation DescriptorProtoRoot
+@implementation PBDescriptorRoot
 static PBFileDescriptor* descriptor = nil;
 static PBDescriptor* internal_static_google_protobuf_FileDescriptorSet_descriptor = nil;
 static PBFieldAccessorTable* internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable = nil;
@@ -133,8 +133,8 @@ static PBFieldAccessorTable* internal_static_google_protobuf_MethodOptions_field
   return internal_static_google_protobuf_MethodOptions_fieldAccessorTable;
 }
 + (void) initialize {
-  if (self == [DescriptorProtoRoot class]) {
-    descriptor = [[DescriptorProtoRoot buildDescriptor] retain];
+  if (self == [PBDescriptorRoot class]) {
+    descriptor = [[PBDescriptorRoot buildDescriptor] retain];
     internal_static_google_protobuf_FileDescriptorSet_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"File", nil];
@@ -456,10 +456,10 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   return [PBFileDescriptorSet descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorSet_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_FileDescriptorSet_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_FileDescriptorSet_fieldAccessorTable];
 }
 - (NSArray*) fileList {
   return mutableFileList;
@@ -567,7 +567,9 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
   }
 }
 - (PBFileDescriptorSet_Builder*) mergeFromPBFileDescriptorSet:(PBFileDescriptorSet*) other {
-  if (other == [PBFileDescriptorSet defaultInstance]) return self;
+  if (other == [PBFileDescriptorSet defaultInstance]) {
+    return self;
+  }
   if (other.mutableFileList.count > 0) {
     if (result.mutableFileList == nil) {
       result.mutableFileList = [NSMutableArray array];
@@ -582,7 +584,7 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 - (PBFileDescriptorSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -700,10 +702,10 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return [PBFileDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorProto_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_FileDescriptorProto_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_FileDescriptorProto_fieldAccessorTable];
 }
 - (NSArray*) dependencyList {
   return mutableDependencyList;
@@ -881,7 +883,9 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   }
 }
 - (PBFileDescriptorProto_Builder*) mergeFromPBFileDescriptorProto:(PBFileDescriptorProto*) other {
-  if (other == [PBFileDescriptorProto defaultInstance]) return self;
+  if (other == [PBFileDescriptorProto defaultInstance]) {
+    return self;
+  }
   if (other.hasName) {
     [self setName:other.name];
   }
@@ -929,7 +933,7 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 - (PBFileDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -1023,7 +1027,9 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
   return self;
 }
 - (NSArray*) dependencyList {
-  if (result.mutableDependencyList == nil) { return [NSArray array]; }
+  if (result.mutableDependencyList == nil) {
+    return [NSArray array];
+  }
   return result.mutableDependencyList;
 }
 - (NSString*) dependencyAtIndex:(int32_t) index {
@@ -1257,10 +1263,10 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
   return [PBDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_DescriptorProto_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_DescriptorProto_fieldAccessorTable];
 }
 - (NSArray*) fieldList {
   return mutableFieldList;
@@ -1426,10 +1432,10 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   return [PBDescriptorProto_ExtensionRange descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_DescriptorProto_ExtensionRange_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -1536,7 +1542,9 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   }
 }
 - (PBDescriptorProto_ExtensionRange_Builder*) mergeFromPBDescriptorProto_ExtensionRange:(PBDescriptorProto_ExtensionRange*) other {
-  if (other == [PBDescriptorProto_ExtensionRange defaultInstance]) return self;
+  if (other == [PBDescriptorProto_ExtensionRange defaultInstance]) {
+    return self;
+  }
   if (other.hasStart) {
     [self setStart:other.start];
   }
@@ -1551,7 +1559,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 }
 - (PBDescriptorProto_ExtensionRange_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -1658,7 +1666,9 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   }
 }
 - (PBDescriptorProto_Builder*) mergeFromPBDescriptorProto:(PBDescriptorProto*) other {
-  if (other == [PBDescriptorProto defaultInstance]) return self;
+  if (other == [PBDescriptorProto defaultInstance]) {
+    return self;
+  }
   if (other.hasName) {
     [self setName:other.name];
   }
@@ -1703,7 +1713,7 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 }
 - (PBDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -2040,10 +2050,10 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
   return [PBFieldDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FieldDescriptorProto_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_FieldDescriptorProto_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_FieldDescriptorProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -2195,24 +2205,60 @@ static PBFieldDescriptorProto_Type* PBFieldDescriptorProto_Type_TYPE_SINT64 = ni
     PBFieldDescriptorProto_Type_TYPE_SINT64 = [[PBFieldDescriptorProto_Type newWithIndex:17 value:18] retain];
   }
 }
-+ (PBFieldDescriptorProto_Type*) TYPE_DOUBLE { return PBFieldDescriptorProto_Type_TYPE_DOUBLE; }
-+ (PBFieldDescriptorProto_Type*) TYPE_FLOAT { return PBFieldDescriptorProto_Type_TYPE_FLOAT; }
-+ (PBFieldDescriptorProto_Type*) TYPE_INT64 { return PBFieldDescriptorProto_Type_TYPE_INT64; }
-+ (PBFieldDescriptorProto_Type*) TYPE_UINT64 { return PBFieldDescriptorProto_Type_TYPE_UINT64; }
-+ (PBFieldDescriptorProto_Type*) TYPE_INT32 { return PBFieldDescriptorProto_Type_TYPE_INT32; }
-+ (PBFieldDescriptorProto_Type*) TYPE_FIXED64 { return PBFieldDescriptorProto_Type_TYPE_FIXED64; }
-+ (PBFieldDescriptorProto_Type*) TYPE_FIXED32 { return PBFieldDescriptorProto_Type_TYPE_FIXED32; }
-+ (PBFieldDescriptorProto_Type*) TYPE_BOOL_ { return PBFieldDescriptorProto_Type_TYPE_BOOL_; }
-+ (PBFieldDescriptorProto_Type*) TYPE_STRING { return PBFieldDescriptorProto_Type_TYPE_STRING; }
-+ (PBFieldDescriptorProto_Type*) TYPE_GROUP { return PBFieldDescriptorProto_Type_TYPE_GROUP; }
-+ (PBFieldDescriptorProto_Type*) TYPE_MESSAGE { return PBFieldDescriptorProto_Type_TYPE_MESSAGE; }
-+ (PBFieldDescriptorProto_Type*) TYPE_BYTES { return PBFieldDescriptorProto_Type_TYPE_BYTES; }
-+ (PBFieldDescriptorProto_Type*) TYPE_UINT32 { return PBFieldDescriptorProto_Type_TYPE_UINT32; }
-+ (PBFieldDescriptorProto_Type*) TYPE_ENUM { return PBFieldDescriptorProto_Type_TYPE_ENUM; }
-+ (PBFieldDescriptorProto_Type*) TYPE_SFIXED32 { return PBFieldDescriptorProto_Type_TYPE_SFIXED32; }
-+ (PBFieldDescriptorProto_Type*) TYPE_SFIXED64 { return PBFieldDescriptorProto_Type_TYPE_SFIXED64; }
-+ (PBFieldDescriptorProto_Type*) TYPE_SINT32 { return PBFieldDescriptorProto_Type_TYPE_SINT32; }
-+ (PBFieldDescriptorProto_Type*) TYPE_SINT64 { return PBFieldDescriptorProto_Type_TYPE_SINT64; }
++ (PBFieldDescriptorProto_Type*) TYPE_DOUBLE {
+  return PBFieldDescriptorProto_Type_TYPE_DOUBLE;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_FLOAT {
+  return PBFieldDescriptorProto_Type_TYPE_FLOAT;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_INT64 {
+  return PBFieldDescriptorProto_Type_TYPE_INT64;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_UINT64 {
+  return PBFieldDescriptorProto_Type_TYPE_UINT64;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_INT32 {
+  return PBFieldDescriptorProto_Type_TYPE_INT32;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_FIXED64 {
+  return PBFieldDescriptorProto_Type_TYPE_FIXED64;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_FIXED32 {
+  return PBFieldDescriptorProto_Type_TYPE_FIXED32;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_BOOL_ {
+  return PBFieldDescriptorProto_Type_TYPE_BOOL_;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_STRING {
+  return PBFieldDescriptorProto_Type_TYPE_STRING;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_GROUP {
+  return PBFieldDescriptorProto_Type_TYPE_GROUP;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_MESSAGE {
+  return PBFieldDescriptorProto_Type_TYPE_MESSAGE;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_BYTES {
+  return PBFieldDescriptorProto_Type_TYPE_BYTES;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_UINT32 {
+  return PBFieldDescriptorProto_Type_TYPE_UINT32;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_ENUM {
+  return PBFieldDescriptorProto_Type_TYPE_ENUM;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_SFIXED32 {
+  return PBFieldDescriptorProto_Type_TYPE_SFIXED32;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_SFIXED64 {
+  return PBFieldDescriptorProto_Type_TYPE_SFIXED64;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_SINT32 {
+  return PBFieldDescriptorProto_Type_TYPE_SINT32;
+}
++ (PBFieldDescriptorProto_Type*) TYPE_SINT64 {
+  return PBFieldDescriptorProto_Type_TYPE_SINT64;
+}
 - (int32_t) number { return value; }
 + (PBFieldDescriptorProto_Type*) valueOf:(int32_t) value {
   switch (value) {
@@ -2302,9 +2348,15 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
     PBFieldDescriptorProto_Label_LABEL_REPEATED = [[PBFieldDescriptorProto_Label newWithIndex:2 value:3] retain];
   }
 }
-+ (PBFieldDescriptorProto_Label*) LABEL_OPTIONAL { return PBFieldDescriptorProto_Label_LABEL_OPTIONAL; }
-+ (PBFieldDescriptorProto_Label*) LABEL_REQUIRED { return PBFieldDescriptorProto_Label_LABEL_REQUIRED; }
-+ (PBFieldDescriptorProto_Label*) LABEL_REPEATED { return PBFieldDescriptorProto_Label_LABEL_REPEATED; }
++ (PBFieldDescriptorProto_Label*) LABEL_OPTIONAL {
+  return PBFieldDescriptorProto_Label_LABEL_OPTIONAL;
+}
++ (PBFieldDescriptorProto_Label*) LABEL_REQUIRED {
+  return PBFieldDescriptorProto_Label_LABEL_REQUIRED;
+}
++ (PBFieldDescriptorProto_Label*) LABEL_REPEATED {
+  return PBFieldDescriptorProto_Label_LABEL_REPEATED;
+}
 - (int32_t) number { return value; }
 + (PBFieldDescriptorProto_Label*) valueOf:(int32_t) value {
   switch (value) {
@@ -2385,7 +2437,9 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   }
 }
 - (PBFieldDescriptorProto_Builder*) mergeFromPBFieldDescriptorProto:(PBFieldDescriptorProto*) other {
-  if (other == [PBFieldDescriptorProto defaultInstance]) return self;
+  if (other == [PBFieldDescriptorProto defaultInstance]) {
+    return self;
+  }
   if (other.hasName) {
     [self setName:other.name];
   }
@@ -2418,7 +2472,7 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
 }
 - (PBFieldDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -2673,10 +2727,10 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   return [PBEnumDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_EnumDescriptorProto_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_EnumDescriptorProto_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_EnumDescriptorProto_fieldAccessorTable];
 }
 - (NSArray*) valueList {
   return mutableValueList;
@@ -2796,7 +2850,9 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
   }
 }
 - (PBEnumDescriptorProto_Builder*) mergeFromPBEnumDescriptorProto:(PBEnumDescriptorProto*) other {
-  if (other == [PBEnumDescriptorProto defaultInstance]) return self;
+  if (other == [PBEnumDescriptorProto defaultInstance]) {
+    return self;
+  }
   if (other.hasName) {
     [self setName:other.name];
   }
@@ -2817,7 +2873,7 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 - (PBEnumDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -2979,10 +3035,10 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   return [PBEnumValueDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueDescriptorProto_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_EnumValueDescriptorProto_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_EnumValueDescriptorProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -3095,7 +3151,9 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
   }
 }
 - (PBEnumValueDescriptorProto_Builder*) mergeFromPBEnumValueDescriptorProto:(PBEnumValueDescriptorProto*) other {
-  if (other == [PBEnumValueDescriptorProto defaultInstance]) return self;
+  if (other == [PBEnumValueDescriptorProto defaultInstance]) {
+    return self;
+  }
   if (other.hasName) {
     [self setName:other.name];
   }
@@ -3113,7 +3171,7 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 - (PBEnumValueDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -3256,10 +3314,10 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   return [PBServiceDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_ServiceDescriptorProto_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_ServiceDescriptorProto_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_ServiceDescriptorProto_fieldAccessorTable];
 }
 - (NSArray*) methodList {
   return mutableMethodList;
@@ -3379,7 +3437,9 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
   }
 }
 - (PBServiceDescriptorProto_Builder*) mergeFromPBServiceDescriptorProto:(PBServiceDescriptorProto*) other {
-  if (other == [PBServiceDescriptorProto defaultInstance]) return self;
+  if (other == [PBServiceDescriptorProto defaultInstance]) {
+    return self;
+  }
   if (other.hasName) {
     [self setName:other.name];
   }
@@ -3400,7 +3460,7 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 - (PBServiceDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -3569,10 +3629,10 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   return [PBMethodDescriptorProto descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_MethodDescriptorProto_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_MethodDescriptorProto_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_MethodDescriptorProto_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -3691,7 +3751,9 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
   }
 }
 - (PBMethodDescriptorProto_Builder*) mergeFromPBMethodDescriptorProto:(PBMethodDescriptorProto*) other {
-  if (other == [PBMethodDescriptorProto defaultInstance]) return self;
+  if (other == [PBMethodDescriptorProto defaultInstance]) {
+    return self;
+  }
   if (other.hasName) {
     [self setName:other.name];
   }
@@ -3712,7 +3774,7 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 - (PBMethodDescriptorProto_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -3900,10 +3962,10 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
   return [PBFileOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FileOptions_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_FileOptions_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FileOptions_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_FileOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -4011,8 +4073,12 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
     PBFileOptions_OptimizeMode_CODE_SIZE = [[PBFileOptions_OptimizeMode newWithIndex:1 value:2] retain];
   }
 }
-+ (PBFileOptions_OptimizeMode*) SPEED { return PBFileOptions_OptimizeMode_SPEED; }
-+ (PBFileOptions_OptimizeMode*) CODE_SIZE { return PBFileOptions_OptimizeMode_CODE_SIZE; }
++ (PBFileOptions_OptimizeMode*) SPEED {
+  return PBFileOptions_OptimizeMode_SPEED;
+}
++ (PBFileOptions_OptimizeMode*) CODE_SIZE {
+  return PBFileOptions_OptimizeMode_CODE_SIZE;
+}
 - (int32_t) number { return value; }
 + (PBFileOptions_OptimizeMode*) valueOf:(int32_t) value {
   switch (value) {
@@ -4091,7 +4157,9 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
   }
 }
 - (PBFileOptions_Builder*) mergeFromPBFileOptions:(PBFileOptions*) other {
-  if (other == [PBFileOptions defaultInstance]) return self;
+  if (other == [PBFileOptions defaultInstance]) {
+    return self;
+  }
   if (other.hasJavaPackage) {
     [self setJavaPackage:other.javaPackage];
   }
@@ -4118,7 +4186,7 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
 }
 - (PBFileOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -4298,10 +4366,10 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   return [PBMessageOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_MessageOptions_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_MessageOptions_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_MessageOptions_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_MessageOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -4402,7 +4470,9 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
   }
 }
 - (PBMessageOptions_Builder*) mergeFromPBMessageOptions:(PBMessageOptions*) other {
-  if (other == [PBMessageOptions defaultInstance]) return self;
+  if (other == [PBMessageOptions defaultInstance]) {
+    return self;
+  }
   if (other.hasMessageSetWireFormat) {
     [self setMessageSetWireFormat:other.messageSetWireFormat];
   }
@@ -4414,7 +4484,7 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 }
 - (PBMessageOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -4495,10 +4565,10 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
   return [PBFieldOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FieldOptions_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_FieldOptions_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_FieldOptions_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_FieldOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -4582,8 +4652,12 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
     PBFieldOptions_CType_STRING_PIECE = [[PBFieldOptions_CType newWithIndex:1 value:2] retain];
   }
 }
-+ (PBFieldOptions_CType*) CORD { return PBFieldOptions_CType_CORD; }
-+ (PBFieldOptions_CType*) STRING_PIECE { return PBFieldOptions_CType_STRING_PIECE; }
++ (PBFieldOptions_CType*) CORD {
+  return PBFieldOptions_CType_CORD;
+}
++ (PBFieldOptions_CType*) STRING_PIECE {
+  return PBFieldOptions_CType_STRING_PIECE;
+}
 - (int32_t) number { return value; }
 + (PBFieldOptions_CType*) valueOf:(int32_t) value {
   switch (value) {
@@ -4662,7 +4736,9 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
   }
 }
 - (PBFieldOptions_Builder*) mergeFromPBFieldOptions:(PBFieldOptions*) other {
-  if (other == [PBFieldOptions defaultInstance]) return self;
+  if (other == [PBFieldOptions defaultInstance]) {
+    return self;
+  }
   if (other.hasCtype) {
     [self setCtype:other.ctype];
   }
@@ -4677,7 +4753,7 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
 }
 - (PBFieldOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -4770,10 +4846,10 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   return [PBEnumOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_EnumOptions_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_EnumOptions_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_EnumOptions_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_EnumOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -4868,7 +4944,9 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
   }
 }
 - (PBEnumOptions_Builder*) mergeFromPBEnumOptions:(PBEnumOptions*) other {
-  if (other == [PBEnumOptions defaultInstance]) return self;
+  if (other == [PBEnumOptions defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -4877,7 +4955,7 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 }
 - (PBEnumOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -4924,10 +5002,10 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   return [PBEnumValueOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueOptions_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_EnumValueOptions_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_EnumValueOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -5022,7 +5100,9 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
   }
 }
 - (PBEnumValueOptions_Builder*) mergeFromPBEnumValueOptions:(PBEnumValueOptions*) other {
-  if (other == [PBEnumValueOptions defaultInstance]) return self;
+  if (other == [PBEnumValueOptions defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5031,7 +5111,7 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 }
 - (PBEnumValueOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -5078,10 +5158,10 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   return [PBServiceOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_ServiceOptions_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_ServiceOptions_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_ServiceOptions_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_ServiceOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -5176,7 +5256,9 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
   }
 }
 - (PBServiceOptions_Builder*) mergeFromPBServiceOptions:(PBServiceOptions*) other {
-  if (other == [PBServiceOptions defaultInstance]) return self;
+  if (other == [PBServiceOptions defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5185,7 +5267,7 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 }
 - (PBServiceOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -5232,10 +5314,10 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   return [PBMethodOptions descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [DescriptorProtoRoot internal_static_google_protobuf_MethodOptions_descriptor];
+  return [PBDescriptorRoot internal_static_google_protobuf_MethodOptions_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [DescriptorProtoRoot internal_static_google_protobuf_MethodOptions_fieldAccessorTable];
+  return [PBDescriptorRoot internal_static_google_protobuf_MethodOptions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -5330,7 +5412,9 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
   }
 }
 - (PBMethodOptions_Builder*) mergeFromPBMethodOptions:(PBMethodOptions*) other {
-  if (other == [PBMethodOptions defaultInstance]) return self;
+  if (other == [PBMethodOptions defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5339,7 +5423,7 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 }
 - (PBMethodOptions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:

@@ -306,10 +306,10 @@
         TestAllExtensions* message =
         [TestAllExtensions parseFromData:data extensionRegistry:[TestUtilities extensionRegistry]];
         STAssertTrue([TestAllTypes_NestedEnum BAR] == 
-                     [message getExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
+                     [message getExtension:[UnittestRoot optionalNestedEnumExtension]], @"");
         NSArray* array1 = [NSArray arrayWithObjects:[TestAllTypes_NestedEnum FOO], [TestAllTypes_NestedEnum BAZ], nil];
         STAssertEqualObjects(array1,
-                     [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension]], @"");
+                     [message getExtension:[UnittestRoot repeatedNestedEnumExtension]], @"");
         STAssertEqualObjects([NSArray arrayWithObject:[NSNumber numberWithInt:5]],
                      [message.unknownFields getField:singularField.number].varintList, @"");
         

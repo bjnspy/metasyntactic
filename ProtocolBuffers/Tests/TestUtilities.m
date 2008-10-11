@@ -46,40 +46,40 @@
  * expected by {@code assertRepeatedExtensionsModified()}.
  */
 + (void) modifyRepeatedExtensions:(TestAllExtensions_Builder*) message {
-    [message setExtension:[UnittestProtoRoot repeatedInt32Extension] index:1 value:[NSNumber numberWithInt:501]];
-    [message setExtension:[UnittestProtoRoot repeatedInt64Extension] index:1 value:[NSNumber numberWithInt:502]];
-    [message setExtension:[UnittestProtoRoot repeatedUint32Extension] index:1 value:[NSNumber numberWithInt:503]];
-    [message setExtension:[UnittestProtoRoot repeatedUint64Extension] index:1 value:[NSNumber numberWithInt:504]];
-    [message setExtension:[UnittestProtoRoot repeatedSint32Extension] index:1 value:[NSNumber numberWithInt:505]];
-    [message setExtension:[UnittestProtoRoot repeatedSint64Extension] index:1 value:[NSNumber numberWithInt:506]];
-    [message setExtension:[UnittestProtoRoot repeatedFixed32Extension] index:1 value:[NSNumber numberWithInt:507]];
-    [message setExtension:[UnittestProtoRoot repeatedFixed64Extension] index:1 value:[NSNumber numberWithInt:508]];
-    [message setExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:1 value:[NSNumber numberWithInt:509]];
-    [message setExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:1 value:[NSNumber numberWithInt:510]];
-    [message setExtension:[UnittestProtoRoot repeatedFloatExtension] index:1 value:[NSNumber numberWithFloat:511.0]];
-    [message setExtension:[UnittestProtoRoot repeatedDoubleExtension] index:1 value:[NSNumber numberWithDouble:512.0]];
-    [message setExtension:[UnittestProtoRoot repeatedBoolExtension] index:1 value:[NSNumber numberWithBool:true]];
-    [message setExtension:[UnittestProtoRoot repeatedStringExtension] index:1 value:@"515"];
-    [message setExtension:[UnittestProtoRoot repeatedBytesExtension] index:1 value:[TestUtilities toData:@"516"]];
+    [message setExtension:[UnittestRoot repeatedInt32Extension] index:1 value:[NSNumber numberWithInt:501]];
+    [message setExtension:[UnittestRoot repeatedInt64Extension] index:1 value:[NSNumber numberWithInt:502]];
+    [message setExtension:[UnittestRoot repeatedUint32Extension] index:1 value:[NSNumber numberWithInt:503]];
+    [message setExtension:[UnittestRoot repeatedUint64Extension] index:1 value:[NSNumber numberWithInt:504]];
+    [message setExtension:[UnittestRoot repeatedSint32Extension] index:1 value:[NSNumber numberWithInt:505]];
+    [message setExtension:[UnittestRoot repeatedSint64Extension] index:1 value:[NSNumber numberWithInt:506]];
+    [message setExtension:[UnittestRoot repeatedFixed32Extension] index:1 value:[NSNumber numberWithInt:507]];
+    [message setExtension:[UnittestRoot repeatedFixed64Extension] index:1 value:[NSNumber numberWithInt:508]];
+    [message setExtension:[UnittestRoot repeatedSfixed32Extension] index:1 value:[NSNumber numberWithInt:509]];
+    [message setExtension:[UnittestRoot repeatedSfixed64Extension] index:1 value:[NSNumber numberWithInt:510]];
+    [message setExtension:[UnittestRoot repeatedFloatExtension] index:1 value:[NSNumber numberWithFloat:511.0]];
+    [message setExtension:[UnittestRoot repeatedDoubleExtension] index:1 value:[NSNumber numberWithDouble:512.0]];
+    [message setExtension:[UnittestRoot repeatedBoolExtension] index:1 value:[NSNumber numberWithBool:true]];
+    [message setExtension:[UnittestRoot repeatedStringExtension] index:1 value:@"515"];
+    [message setExtension:[UnittestRoot repeatedBytesExtension] index:1 value:[TestUtilities toData:@"516"]];
     
-    [message setExtension:[UnittestProtoRoot repeatedGroupExtension] index:1 value:
+    [message setExtension:[UnittestRoot repeatedGroupExtension] index:1 value:
      [[[RepeatedGroup_extension builder] setA:517] build]];
-    [message setExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:1 value:
+    [message setExtension:[UnittestRoot repeatedNestedMessageExtension] index:1 value:
      [[[TestAllTypes_NestedMessage builder] setBb:518] build]];
-    [message setExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:1 value:
+    [message setExtension:[UnittestRoot repeatedForeignMessageExtension] index:1 value:
      [[[ForeignMessage builder] setC:519] build]];
-    [message setExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:1 value:
+    [message setExtension:[UnittestRoot repeatedImportMessageExtension] index:1 value:
      [[[ImportMessage builder] setD:520] build]];
     
-    [message setExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:1 value:
+    [message setExtension:[UnittestRoot repeatedNestedEnumExtension] index:1 value:
      [TestAllTypes_NestedEnum FOO]];
-    [message setExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:1 value:
+    [message setExtension:[UnittestRoot repeatedForeignEnumExtension] index:1 value:
      [ForeignEnum FOREIGN_FOO]];
-    [message setExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:1 value:
+    [message setExtension:[UnittestRoot repeatedImportEnumExtension] index:1 value:
      [ImportEnum IMPORT_FOO]];
     
-    [message setExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:1 value:@"524"];
-    [message setExtension:[UnittestProtoRoot repeatedCordExtension] index:1 value:@"525"];
+    [message setExtension:[UnittestRoot repeatedStringPieceExtension] index:1 value:@"524"];
+    [message setExtension:[UnittestRoot repeatedCordExtension] index:1 value:@"525"];
 }
 
 
@@ -89,199 +89,199 @@
  * {@code message} are set to the values assigned by {@code setAllExtensions}.
  */
 - (void) assertAllExtensionsSet:(TestAllExtensions*) message {
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalInt64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalUint32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalUint64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalSint32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalSint64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalFixed32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalFixed64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalSfixed32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalSfixed64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalFloatExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalDoubleExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalBoolExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalStringExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalInt32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalInt64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalUint32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalUint64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalSint32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalSint64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalFixed32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalFixed64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalSfixed32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalSfixed64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalFloatExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalDoubleExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalBoolExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalStringExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalBytesExtension]], @"");
     
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalGroupExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalNestedMessageExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalForeignMessageExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalImportMessageExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalGroupExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalNestedMessageExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalForeignMessageExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalImportMessageExtension]], @"");
     
-    STAssertTrue([[message getExtension:[UnittestProtoRoot optionalGroupExtension]] hasA], @"");
-    STAssertTrue([[message getExtension:[UnittestProtoRoot optionalNestedMessageExtension]] hasBb], @"");
-    STAssertTrue([[message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]] hasC], @"");
-    STAssertTrue([[message getExtension:[UnittestProtoRoot optionalImportMessageExtension]] hasD], @"");
+    STAssertTrue([[message getExtension:[UnittestRoot optionalGroupExtension]] hasA], @"");
+    STAssertTrue([[message getExtension:[UnittestRoot optionalNestedMessageExtension]] hasBb], @"");
+    STAssertTrue([[message getExtension:[UnittestRoot optionalForeignMessageExtension]] hasC], @"");
+    STAssertTrue([[message getExtension:[UnittestRoot optionalImportMessageExtension]] hasD], @"");
     
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalNestedEnumExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalForeignEnumExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalImportEnumExtension]], @"");
     
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot optionalCordExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalStringPieceExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot optionalCordExtension]], @"");
     
-    STAssertTrue(101 == [[message getExtension:[UnittestProtoRoot optionalInt32Extension]] intValue], @"");
-    STAssertTrue(102L == [[message getExtension:[UnittestProtoRoot optionalInt64Extension]] intValue], @"");
-    STAssertTrue(103 == [[message getExtension:[UnittestProtoRoot optionalUint32Extension]] intValue], @"");
-    STAssertTrue(104L == [[message getExtension:[UnittestProtoRoot optionalUint64Extension]] intValue], @"");
-    STAssertTrue(105 == [[message getExtension:[UnittestProtoRoot optionalSint32Extension]] intValue], @"");
-    STAssertTrue(106L == [[message getExtension:[UnittestProtoRoot optionalSint64Extension]] intValue], @"");
-    STAssertTrue(107 == [[message getExtension:[UnittestProtoRoot optionalFixed32Extension]] intValue], @"");
-    STAssertTrue(108L == [[message getExtension:[UnittestProtoRoot optionalFixed64Extension]] intValue], @"");
-    STAssertTrue(109 == [[message getExtension:[UnittestProtoRoot optionalSfixed32Extension]] intValue], @"");
-    STAssertTrue(110L == [[message getExtension:[UnittestProtoRoot optionalSfixed64Extension]] intValue], @"");
-    STAssertTrue(111.0 == [[message getExtension:[UnittestProtoRoot optionalFloatExtension]] floatValue], @"");
-    STAssertTrue(112.0 == [[message getExtension:[UnittestProtoRoot optionalDoubleExtension]] doubleValue], @"");
-    STAssertTrue(true == [[message getExtension:[UnittestProtoRoot optionalBoolExtension]] boolValue], @"");
-    STAssertEqualObjects(@"115", [message getExtension:[UnittestProtoRoot optionalStringExtension]], @"");
-    STAssertEqualObjects([TestUtilities toData:@"116"], [message getExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
+    STAssertTrue(101 == [[message getExtension:[UnittestRoot optionalInt32Extension]] intValue], @"");
+    STAssertTrue(102L == [[message getExtension:[UnittestRoot optionalInt64Extension]] intValue], @"");
+    STAssertTrue(103 == [[message getExtension:[UnittestRoot optionalUint32Extension]] intValue], @"");
+    STAssertTrue(104L == [[message getExtension:[UnittestRoot optionalUint64Extension]] intValue], @"");
+    STAssertTrue(105 == [[message getExtension:[UnittestRoot optionalSint32Extension]] intValue], @"");
+    STAssertTrue(106L == [[message getExtension:[UnittestRoot optionalSint64Extension]] intValue], @"");
+    STAssertTrue(107 == [[message getExtension:[UnittestRoot optionalFixed32Extension]] intValue], @"");
+    STAssertTrue(108L == [[message getExtension:[UnittestRoot optionalFixed64Extension]] intValue], @"");
+    STAssertTrue(109 == [[message getExtension:[UnittestRoot optionalSfixed32Extension]] intValue], @"");
+    STAssertTrue(110L == [[message getExtension:[UnittestRoot optionalSfixed64Extension]] intValue], @"");
+    STAssertTrue(111.0 == [[message getExtension:[UnittestRoot optionalFloatExtension]] floatValue], @"");
+    STAssertTrue(112.0 == [[message getExtension:[UnittestRoot optionalDoubleExtension]] doubleValue], @"");
+    STAssertTrue(true == [[message getExtension:[UnittestRoot optionalBoolExtension]] boolValue], @"");
+    STAssertEqualObjects(@"115", [message getExtension:[UnittestRoot optionalStringExtension]], @"");
+    STAssertEqualObjects([TestUtilities toData:@"116"], [message getExtension:[UnittestRoot optionalBytesExtension]], @"");
     
-    STAssertTrue(117 == [[message getExtension:[UnittestProtoRoot optionalGroupExtension]] a], @"");
-    STAssertTrue(118 == [[message getExtension:[UnittestProtoRoot optionalNestedMessageExtension]] bb], @"");
-    STAssertTrue(119 == [[message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]] c], @"");
-    STAssertTrue(120 == [[message getExtension:[UnittestProtoRoot optionalImportMessageExtension]] d], @"");
+    STAssertTrue(117 == [[message getExtension:[UnittestRoot optionalGroupExtension]] a], @"");
+    STAssertTrue(118 == [[message getExtension:[UnittestRoot optionalNestedMessageExtension]] bb], @"");
+    STAssertTrue(119 == [[message getExtension:[UnittestRoot optionalForeignMessageExtension]] c], @"");
+    STAssertTrue(120 == [[message getExtension:[UnittestRoot optionalImportMessageExtension]] d], @"");
     
-    STAssertTrue([TestAllTypes_NestedEnum BAZ] == [message getExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
-    STAssertTrue([ForeignEnum FOREIGN_BAZ] == [message getExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
-    STAssertTrue([ImportEnum IMPORT_BAZ] == [message getExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
+    STAssertTrue([TestAllTypes_NestedEnum BAZ] == [message getExtension:[UnittestRoot optionalNestedEnumExtension]], @"");
+    STAssertTrue([ForeignEnum FOREIGN_BAZ] == [message getExtension:[UnittestRoot optionalForeignEnumExtension]], @"");
+    STAssertTrue([ImportEnum IMPORT_BAZ] == [message getExtension:[UnittestRoot optionalImportEnumExtension]], @"");
     
-    STAssertEqualObjects(@"124", [message getExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
-    STAssertEqualObjects(@"125", [message getExtension:[UnittestProtoRoot optionalCordExtension]], @"");
-    
-    // -----------------------------------------------------------------
-    
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedInt32Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedInt64Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedUint32Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedUint64Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedSint32Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedSint64Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedFixed32Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedFixed64Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedSfixed32Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedSfixed64Extension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedFloatExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedDoubleExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedBoolExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedStringExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedBytesExtension]], @"");
-    
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedGroupExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedNestedMessageExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedForeignMessageExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedImportMessageExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedNestedEnumExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedForeignEnumExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedImportEnumExtension]], @"");
-    
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedStringPieceExtension]], @"");
-    STAssertTrue(2 == [message getExtensionCount:[UnittestProtoRoot repeatedCordExtension]], @"");
-    
-    STAssertTrue(201 == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension] index:0] intValue], @"");;
-    STAssertTrue(202L == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension] index:0] intValue], @"");;
-    STAssertTrue(203 == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension] index:0] intValue], @"");;
-    STAssertTrue(204L == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension] index:0] intValue], @"");
-    STAssertTrue(205 == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension] index:0] intValue], @"");
-    STAssertTrue(206L == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension] index:0] intValue], @"");
-    STAssertTrue(207 == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension] index:0] intValue], @"");
-    STAssertTrue(208L == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension] index:0] intValue], @"");
-    STAssertTrue(209 == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:0] intValue], @"");
-    STAssertTrue(210L == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:0] intValue], @"");
-    STAssertTrue(211.0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension] index:0] floatValue], @"");
-    STAssertTrue(212.0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension] index:0] doubleValue], @"");
-    STAssertTrue(true == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension] index:0] boolValue], @"");
-    STAssertEqualObjects(@"215", [message getExtension:[UnittestProtoRoot repeatedStringExtension] index:0], @"");
-    STAssertEqualObjects([TestUtilities toData:@"216"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:0], @"");
-    
-    STAssertTrue(217 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:0] a], @"");
-    STAssertTrue(218 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:0] bb], @"");
-    STAssertTrue(219 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:0] c], @"");
-    STAssertTrue(220 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:0] d], @"");
-    
-    STAssertTrue([TestAllTypes_NestedEnum BAR] == [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:0], @"");
-    STAssertTrue([ForeignEnum FOREIGN_BAR] == [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:0], @"");
-    STAssertTrue([ImportEnum IMPORT_BAR] == [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:0], @"");
-    
-    STAssertEqualObjects(@"224", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:0], @"");
-    STAssertEqualObjects(@"225", [message getExtension:[UnittestProtoRoot repeatedCordExtension] index:0], @"");
-    
-    STAssertTrue(301 == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension] index:1] intValue], @"");
-    STAssertTrue(302L == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension] index:1] intValue], @"");
-    STAssertTrue(303 == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension] index:1] intValue], @"");
-    STAssertTrue(304L == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension] index:1] intValue], @"");
-    STAssertTrue(305 == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension] index:1] intValue], @"");
-    STAssertTrue(306L == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension] index:1] intValue], @"");
-    STAssertTrue(307 == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension] index:1] intValue], @"");
-    STAssertTrue(308L == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension] index:1] intValue], @"");
-    STAssertTrue(309 == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:1] intValue], @"");
-    STAssertTrue(310L == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:1] intValue], @"");
-    STAssertTrue(311.0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension] index:1] floatValue], @"");
-    STAssertTrue(312.0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension] index:1] doubleValue], @"");
-    STAssertTrue(false == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension] index:1] boolValue], @"");
-    STAssertEqualObjects(@"315", [message getExtension:[UnittestProtoRoot repeatedStringExtension] index:1], @"");
-    STAssertEqualObjects([TestUtilities toData:@"316"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:1], @"");
-    
-    STAssertTrue(317 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:1] a], @"");
-    STAssertTrue(318 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:1] bb], @"");
-    STAssertTrue(319 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:1] c], @"");
-    STAssertTrue(320 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:1] d], @"");
-    
-    STAssertTrue([TestAllTypes_NestedEnum BAZ] == [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:1], @"");
-    STAssertTrue([ForeignEnum FOREIGN_BAZ] == [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:1], @"");
-    STAssertTrue([ImportEnum IMPORT_BAZ] == [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:1], @"");
-    
-    STAssertEqualObjects(@"324", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:1], @"");
-    STAssertEqualObjects(@"325", [message getExtension:[UnittestProtoRoot repeatedCordExtension] index:1], @"");
+    STAssertEqualObjects(@"124", [message getExtension:[UnittestRoot optionalStringPieceExtension]], @"");
+    STAssertEqualObjects(@"125", [message getExtension:[UnittestRoot optionalCordExtension]], @"");
     
     // -----------------------------------------------------------------
     
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultInt32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultInt64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultUint32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultUint64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultSint32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultSint64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultFixed32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultFixed64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultSfixed32Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultSfixed64Extension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultFloatExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultDoubleExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultBoolExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultStringExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedInt32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedInt64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedUint32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedUint64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedSint32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedSint64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedFixed32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedFixed64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedSfixed32Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedSfixed64Extension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedFloatExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedDoubleExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedBoolExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedStringExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedBytesExtension]], @"");
     
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedGroupExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedNestedMessageExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedForeignMessageExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedImportMessageExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedNestedEnumExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedForeignEnumExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedImportEnumExtension]], @"");
     
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
-    STAssertTrue([message hasExtension:[UnittestProtoRoot defaultCordExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedStringPieceExtension]], @"");
+    STAssertTrue(2 == [message getExtensionCount:[UnittestRoot repeatedCordExtension]], @"");
     
-    STAssertTrue(401 == [[message getExtension:[UnittestProtoRoot defaultInt32Extension]] intValue], @"");
-    STAssertTrue(402L == [[message getExtension:[UnittestProtoRoot defaultInt64Extension]] intValue], @"");
-    STAssertTrue(403 == [[message getExtension:[UnittestProtoRoot defaultUint32Extension]] intValue], @"");
-    STAssertTrue(404L == [[message getExtension:[UnittestProtoRoot defaultUint64Extension]] intValue], @"");
-    STAssertTrue(405 == [[message getExtension:[UnittestProtoRoot defaultSint32Extension]] intValue], @"");
-    STAssertTrue(406L == [[message getExtension:[UnittestProtoRoot defaultSint64Extension]] intValue], @"");
-    STAssertTrue(407 == [[message getExtension:[UnittestProtoRoot defaultFixed32Extension]] intValue], @"");
-    STAssertTrue(408L == [[message getExtension:[UnittestProtoRoot defaultFixed64Extension]] intValue], @"");
-    STAssertTrue(409 == [[message getExtension:[UnittestProtoRoot defaultSfixed32Extension]] intValue], @"");
-    STAssertTrue(410L == [[message getExtension:[UnittestProtoRoot defaultSfixed64Extension]] intValue], @"");
-    STAssertTrue(411.0 == [[message getExtension:[UnittestProtoRoot defaultFloatExtension]] floatValue], @"");
-    STAssertTrue(412.0 == [[message getExtension:[UnittestProtoRoot defaultDoubleExtension]] doubleValue], @"");
-    STAssertTrue(false == [[message getExtension:[UnittestProtoRoot defaultBoolExtension]] boolValue], @"");
-    STAssertEqualObjects(@"415", [message getExtension:[UnittestProtoRoot defaultStringExtension]], @"");
-    STAssertEqualObjects([TestUtilities toData:@"416"], [message getExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
+    STAssertTrue(201 == [[message getExtension:[UnittestRoot repeatedInt32Extension] index:0] intValue], @"");;
+    STAssertTrue(202L == [[message getExtension:[UnittestRoot repeatedInt64Extension] index:0] intValue], @"");;
+    STAssertTrue(203 == [[message getExtension:[UnittestRoot repeatedUint32Extension] index:0] intValue], @"");;
+    STAssertTrue(204L == [[message getExtension:[UnittestRoot repeatedUint64Extension] index:0] intValue], @"");
+    STAssertTrue(205 == [[message getExtension:[UnittestRoot repeatedSint32Extension] index:0] intValue], @"");
+    STAssertTrue(206L == [[message getExtension:[UnittestRoot repeatedSint64Extension] index:0] intValue], @"");
+    STAssertTrue(207 == [[message getExtension:[UnittestRoot repeatedFixed32Extension] index:0] intValue], @"");
+    STAssertTrue(208L == [[message getExtension:[UnittestRoot repeatedFixed64Extension] index:0] intValue], @"");
+    STAssertTrue(209 == [[message getExtension:[UnittestRoot repeatedSfixed32Extension] index:0] intValue], @"");
+    STAssertTrue(210L == [[message getExtension:[UnittestRoot repeatedSfixed64Extension] index:0] intValue], @"");
+    STAssertTrue(211.0 == [[message getExtension:[UnittestRoot repeatedFloatExtension] index:0] floatValue], @"");
+    STAssertTrue(212.0 == [[message getExtension:[UnittestRoot repeatedDoubleExtension] index:0] doubleValue], @"");
+    STAssertTrue(true == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:0] boolValue], @"");
+    STAssertEqualObjects(@"215", [message getExtension:[UnittestRoot repeatedStringExtension] index:0], @"");
+    STAssertEqualObjects([TestUtilities toData:@"216"], [message getExtension:[UnittestRoot repeatedBytesExtension] index:0], @"");
     
-    STAssertTrue([TestAllTypes_NestedEnum FOO] == [message getExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
-    STAssertTrue([ForeignEnum FOREIGN_FOO] == [message getExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
-    STAssertTrue([ImportEnum IMPORT_FOO] == [message getExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
+    STAssertTrue(217 == [[message getExtension:[UnittestRoot repeatedGroupExtension] index:0] a], @"");
+    STAssertTrue(218 == [[message getExtension:[UnittestRoot repeatedNestedMessageExtension] index:0] bb], @"");
+    STAssertTrue(219 == [[message getExtension:[UnittestRoot repeatedForeignMessageExtension] index:0] c], @"");
+    STAssertTrue(220 == [[message getExtension:[UnittestRoot repeatedImportMessageExtension] index:0] d], @"");
     
-    STAssertEqualObjects(@"424", [message getExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
-    STAssertEqualObjects(@"425", [message getExtension:[UnittestProtoRoot defaultCordExtension]], @"");
+    STAssertTrue([TestAllTypes_NestedEnum BAR] == [message getExtension:[UnittestRoot repeatedNestedEnumExtension] index:0], @"");
+    STAssertTrue([ForeignEnum FOREIGN_BAR] == [message getExtension:[UnittestRoot repeatedForeignEnumExtension] index:0], @"");
+    STAssertTrue([ImportEnum IMPORT_BAR] == [message getExtension:[UnittestRoot repeatedImportEnumExtension] index:0], @"");
+    
+    STAssertEqualObjects(@"224", [message getExtension:[UnittestRoot repeatedStringPieceExtension] index:0], @"");
+    STAssertEqualObjects(@"225", [message getExtension:[UnittestRoot repeatedCordExtension] index:0], @"");
+    
+    STAssertTrue(301 == [[message getExtension:[UnittestRoot repeatedInt32Extension] index:1] intValue], @"");
+    STAssertTrue(302L == [[message getExtension:[UnittestRoot repeatedInt64Extension] index:1] intValue], @"");
+    STAssertTrue(303 == [[message getExtension:[UnittestRoot repeatedUint32Extension] index:1] intValue], @"");
+    STAssertTrue(304L == [[message getExtension:[UnittestRoot repeatedUint64Extension] index:1] intValue], @"");
+    STAssertTrue(305 == [[message getExtension:[UnittestRoot repeatedSint32Extension] index:1] intValue], @"");
+    STAssertTrue(306L == [[message getExtension:[UnittestRoot repeatedSint64Extension] index:1] intValue], @"");
+    STAssertTrue(307 == [[message getExtension:[UnittestRoot repeatedFixed32Extension] index:1] intValue], @"");
+    STAssertTrue(308L == [[message getExtension:[UnittestRoot repeatedFixed64Extension] index:1] intValue], @"");
+    STAssertTrue(309 == [[message getExtension:[UnittestRoot repeatedSfixed32Extension] index:1] intValue], @"");
+    STAssertTrue(310L == [[message getExtension:[UnittestRoot repeatedSfixed64Extension] index:1] intValue], @"");
+    STAssertTrue(311.0 == [[message getExtension:[UnittestRoot repeatedFloatExtension] index:1] floatValue], @"");
+    STAssertTrue(312.0 == [[message getExtension:[UnittestRoot repeatedDoubleExtension] index:1] doubleValue], @"");
+    STAssertTrue(false == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:1] boolValue], @"");
+    STAssertEqualObjects(@"315", [message getExtension:[UnittestRoot repeatedStringExtension] index:1], @"");
+    STAssertEqualObjects([TestUtilities toData:@"316"], [message getExtension:[UnittestRoot repeatedBytesExtension] index:1], @"");
+    
+    STAssertTrue(317 == [[message getExtension:[UnittestRoot repeatedGroupExtension] index:1] a], @"");
+    STAssertTrue(318 == [[message getExtension:[UnittestRoot repeatedNestedMessageExtension] index:1] bb], @"");
+    STAssertTrue(319 == [[message getExtension:[UnittestRoot repeatedForeignMessageExtension] index:1] c], @"");
+    STAssertTrue(320 == [[message getExtension:[UnittestRoot repeatedImportMessageExtension] index:1] d], @"");
+    
+    STAssertTrue([TestAllTypes_NestedEnum BAZ] == [message getExtension:[UnittestRoot repeatedNestedEnumExtension] index:1], @"");
+    STAssertTrue([ForeignEnum FOREIGN_BAZ] == [message getExtension:[UnittestRoot repeatedForeignEnumExtension] index:1], @"");
+    STAssertTrue([ImportEnum IMPORT_BAZ] == [message getExtension:[UnittestRoot repeatedImportEnumExtension] index:1], @"");
+    
+    STAssertEqualObjects(@"324", [message getExtension:[UnittestRoot repeatedStringPieceExtension] index:1], @"");
+    STAssertEqualObjects(@"325", [message getExtension:[UnittestRoot repeatedCordExtension] index:1], @"");
+    
+    // -----------------------------------------------------------------
+    
+    STAssertTrue([message hasExtension:[UnittestRoot defaultInt32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultInt64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultUint32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultUint64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultSint32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultSint64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultFixed32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultFixed64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultSfixed32Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultSfixed64Extension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultFloatExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultDoubleExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultBoolExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultStringExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultBytesExtension]], @"");
+    
+    STAssertTrue([message hasExtension:[UnittestRoot defaultNestedEnumExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultForeignEnumExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultImportEnumExtension]], @"");
+    
+    STAssertTrue([message hasExtension:[UnittestRoot defaultStringPieceExtension]], @"");
+    STAssertTrue([message hasExtension:[UnittestRoot defaultCordExtension]], @"");
+    
+    STAssertTrue(401 == [[message getExtension:[UnittestRoot defaultInt32Extension]] intValue], @"");
+    STAssertTrue(402L == [[message getExtension:[UnittestRoot defaultInt64Extension]] intValue], @"");
+    STAssertTrue(403 == [[message getExtension:[UnittestRoot defaultUint32Extension]] intValue], @"");
+    STAssertTrue(404L == [[message getExtension:[UnittestRoot defaultUint64Extension]] intValue], @"");
+    STAssertTrue(405 == [[message getExtension:[UnittestRoot defaultSint32Extension]] intValue], @"");
+    STAssertTrue(406L == [[message getExtension:[UnittestRoot defaultSint64Extension]] intValue], @"");
+    STAssertTrue(407 == [[message getExtension:[UnittestRoot defaultFixed32Extension]] intValue], @"");
+    STAssertTrue(408L == [[message getExtension:[UnittestRoot defaultFixed64Extension]] intValue], @"");
+    STAssertTrue(409 == [[message getExtension:[UnittestRoot defaultSfixed32Extension]] intValue], @"");
+    STAssertTrue(410L == [[message getExtension:[UnittestRoot defaultSfixed64Extension]] intValue], @"");
+    STAssertTrue(411.0 == [[message getExtension:[UnittestRoot defaultFloatExtension]] floatValue], @"");
+    STAssertTrue(412.0 == [[message getExtension:[UnittestRoot defaultDoubleExtension]] doubleValue], @"");
+    STAssertTrue(false == [[message getExtension:[UnittestRoot defaultBoolExtension]] boolValue], @"");
+    STAssertEqualObjects(@"415", [message getExtension:[UnittestRoot defaultStringExtension]], @"");
+    STAssertEqualObjects([TestUtilities toData:@"416"], [message getExtension:[UnittestRoot defaultBytesExtension]], @"");
+    
+    STAssertTrue([TestAllTypes_NestedEnum FOO] == [message getExtension:[UnittestRoot defaultNestedEnumExtension]], @"");
+    STAssertTrue([ForeignEnum FOREIGN_FOO] == [message getExtension:[UnittestRoot defaultForeignEnumExtension]], @"");
+    STAssertTrue([ImportEnum IMPORT_FOO] == [message getExtension:[UnittestRoot defaultImportEnumExtension]], @"");
+    
+    STAssertEqualObjects(@"424", [message getExtension:[UnittestRoot defaultStringPieceExtension]], @"");
+    STAssertEqualObjects(@"425", [message getExtension:[UnittestRoot defaultCordExtension]], @"");
 }
 
 + (void) assertAllExtensionsSet:(TestAllExtensions*) message {
@@ -293,95 +293,95 @@
     // ModifyRepeatedFields only sets the second repeated element of each
     // field.  In addition to verifying this, we also verify that the first
     // element and size were *not* modified.
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedStringExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedBytesExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedInt32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedInt64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedUint32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedUint64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedSint32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedSint64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedFixed32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedFixed64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedSfixed32Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedSfixed64Extension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedFloatExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedDoubleExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedBoolExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedStringExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedBytesExtension]] count], @"");
     
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedImportEnumExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedGroupExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedNestedMessageExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedForeignMessageExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedImportMessageExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedNestedEnumExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedForeignEnumExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedImportEnumExtension]] count], @"");
     
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedStringPieceExtension]] count], @"");
-    STAssertTrue(2 == [[message getExtension:[UnittestProtoRoot repeatedCordExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedStringPieceExtension]] count], @"");
+    STAssertTrue(2 == [[message getExtension:[UnittestRoot repeatedCordExtension]] count], @"");
     
-    STAssertTrue(201  == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension] index:0] intValue], @"");
-    STAssertTrue(202L == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension] index:0] intValue], @"");
-    STAssertTrue(203  == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension] index:0] intValue], @"");
-    STAssertTrue(204L == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension] index:0] intValue], @"");
-    STAssertTrue(205  == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension] index:0] intValue], @"");
-    STAssertTrue(206L == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension] index:0] intValue], @"");
-    STAssertTrue(207  == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension] index:0] intValue], @"");
-    STAssertTrue(208L == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension] index:0] intValue], @"");
-    STAssertTrue(209  == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:0] intValue], @"");
-    STAssertTrue(210L == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:0] intValue], @"");
-    STAssertTrue(211.0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension] index:0] floatValue], @"");
-    STAssertTrue(212.0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension] index:0] doubleValue], @"");
-    STAssertTrue(true == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension] index:0] boolValue], @"");
-    STAssertEqualObjects(@"215", [message getExtension:[UnittestProtoRoot repeatedStringExtension] index:0], @"");
-    STAssertEqualObjects([TestUtilities toData:@"216"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:0], @"");
+    STAssertTrue(201  == [[message getExtension:[UnittestRoot repeatedInt32Extension] index:0] intValue], @"");
+    STAssertTrue(202L == [[message getExtension:[UnittestRoot repeatedInt64Extension] index:0] intValue], @"");
+    STAssertTrue(203  == [[message getExtension:[UnittestRoot repeatedUint32Extension] index:0] intValue], @"");
+    STAssertTrue(204L == [[message getExtension:[UnittestRoot repeatedUint64Extension] index:0] intValue], @"");
+    STAssertTrue(205  == [[message getExtension:[UnittestRoot repeatedSint32Extension] index:0] intValue], @"");
+    STAssertTrue(206L == [[message getExtension:[UnittestRoot repeatedSint64Extension] index:0] intValue], @"");
+    STAssertTrue(207  == [[message getExtension:[UnittestRoot repeatedFixed32Extension] index:0] intValue], @"");
+    STAssertTrue(208L == [[message getExtension:[UnittestRoot repeatedFixed64Extension] index:0] intValue], @"");
+    STAssertTrue(209  == [[message getExtension:[UnittestRoot repeatedSfixed32Extension] index:0] intValue], @"");
+    STAssertTrue(210L == [[message getExtension:[UnittestRoot repeatedSfixed64Extension] index:0] intValue], @"");
+    STAssertTrue(211.0 == [[message getExtension:[UnittestRoot repeatedFloatExtension] index:0] floatValue], @"");
+    STAssertTrue(212.0 == [[message getExtension:[UnittestRoot repeatedDoubleExtension] index:0] doubleValue], @"");
+    STAssertTrue(true == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:0] boolValue], @"");
+    STAssertEqualObjects(@"215", [message getExtension:[UnittestRoot repeatedStringExtension] index:0], @"");
+    STAssertEqualObjects([TestUtilities toData:@"216"], [message getExtension:[UnittestRoot repeatedBytesExtension] index:0], @"");
     
-    STAssertTrue(217 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:0] a], @"");
-    STAssertTrue(218 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:0] bb], @"");
-    STAssertTrue(219 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:0] c], @"");
-    STAssertTrue(220 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:0] d], @"");
+    STAssertTrue(217 == [[message getExtension:[UnittestRoot repeatedGroupExtension] index:0] a], @"");
+    STAssertTrue(218 == [[message getExtension:[UnittestRoot repeatedNestedMessageExtension] index:0] bb], @"");
+    STAssertTrue(219 == [[message getExtension:[UnittestRoot repeatedForeignMessageExtension] index:0] c], @"");
+    STAssertTrue(220 == [[message getExtension:[UnittestRoot repeatedImportMessageExtension] index:0] d], @"");
     
     STAssertTrue([TestAllTypes_NestedEnum BAR] ==
-                 [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:0], @"");
+                 [message getExtension:[UnittestRoot repeatedNestedEnumExtension] index:0], @"");
     STAssertTrue([ForeignEnum FOREIGN_BAR] ==
-                 [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:0], @"");
+                 [message getExtension:[UnittestRoot repeatedForeignEnumExtension] index:0], @"");
     STAssertTrue([ImportEnum IMPORT_BAR] ==
-                 [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:0], @"");
+                 [message getExtension:[UnittestRoot repeatedImportEnumExtension] index:0], @"");
     
-    STAssertEqualObjects(@"224", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:0], @"");
-    STAssertEqualObjects(@"225", [message getExtension:[UnittestProtoRoot repeatedCordExtension] index:0], @"");
+    STAssertEqualObjects(@"224", [message getExtension:[UnittestRoot repeatedStringPieceExtension] index:0], @"");
+    STAssertEqualObjects(@"225", [message getExtension:[UnittestRoot repeatedCordExtension] index:0], @"");
     
     // Actually verify the second (modified) elements now.
-    STAssertTrue(501  == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension] index:1] intValue], @"");
-    STAssertTrue(502L == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension] index:1] intValue], @"");
-    STAssertTrue(503  == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension] index:1] intValue], @"");
-    STAssertTrue(504L == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension] index:1] intValue], @"");
-    STAssertTrue(505  == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension] index:1] intValue], @"");
-    STAssertTrue(506L == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension] index:1] intValue], @"");
-    STAssertTrue(507  == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension] index:1] intValue], @"");
-    STAssertTrue(508L == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension] index:1] intValue], @"");
-    STAssertTrue(509  == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension] index:1] intValue], @"");
-    STAssertTrue(510L == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension] index:1] intValue], @"");
-    STAssertTrue(511.0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension] index:1] floatValue], @"");
-    STAssertTrue(512.0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension] index:1] doubleValue], @"");
-    STAssertTrue(true == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension] index:1] boolValue], @"");
-    STAssertEqualObjects(@"515", [message getExtension:[UnittestProtoRoot repeatedStringExtension] index:1], @"");
-    STAssertEqualObjects([TestUtilities toData:@"516"], [message getExtension:[UnittestProtoRoot repeatedBytesExtension] index:1], @"");
+    STAssertTrue(501  == [[message getExtension:[UnittestRoot repeatedInt32Extension] index:1] intValue], @"");
+    STAssertTrue(502L == [[message getExtension:[UnittestRoot repeatedInt64Extension] index:1] intValue], @"");
+    STAssertTrue(503  == [[message getExtension:[UnittestRoot repeatedUint32Extension] index:1] intValue], @"");
+    STAssertTrue(504L == [[message getExtension:[UnittestRoot repeatedUint64Extension] index:1] intValue], @"");
+    STAssertTrue(505  == [[message getExtension:[UnittestRoot repeatedSint32Extension] index:1] intValue], @"");
+    STAssertTrue(506L == [[message getExtension:[UnittestRoot repeatedSint64Extension] index:1] intValue], @"");
+    STAssertTrue(507  == [[message getExtension:[UnittestRoot repeatedFixed32Extension] index:1] intValue], @"");
+    STAssertTrue(508L == [[message getExtension:[UnittestRoot repeatedFixed64Extension] index:1] intValue], @"");
+    STAssertTrue(509  == [[message getExtension:[UnittestRoot repeatedSfixed32Extension] index:1] intValue], @"");
+    STAssertTrue(510L == [[message getExtension:[UnittestRoot repeatedSfixed64Extension] index:1] intValue], @"");
+    STAssertTrue(511.0 == [[message getExtension:[UnittestRoot repeatedFloatExtension] index:1] floatValue], @"");
+    STAssertTrue(512.0 == [[message getExtension:[UnittestRoot repeatedDoubleExtension] index:1] doubleValue], @"");
+    STAssertTrue(true == [[message getExtension:[UnittestRoot repeatedBoolExtension] index:1] boolValue], @"");
+    STAssertEqualObjects(@"515", [message getExtension:[UnittestRoot repeatedStringExtension] index:1], @"");
+    STAssertEqualObjects([TestUtilities toData:@"516"], [message getExtension:[UnittestRoot repeatedBytesExtension] index:1], @"");
     
-    STAssertTrue(517 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension] index:1] a], @"");
-    STAssertTrue(518 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension] index:1] bb], @"");
-    STAssertTrue(519 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension] index:1] c], @"");
-    STAssertTrue(520 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension] index:1] d], @"");
+    STAssertTrue(517 == [[message getExtension:[UnittestRoot repeatedGroupExtension] index:1] a], @"");
+    STAssertTrue(518 == [[message getExtension:[UnittestRoot repeatedNestedMessageExtension] index:1] bb], @"");
+    STAssertTrue(519 == [[message getExtension:[UnittestRoot repeatedForeignMessageExtension] index:1] c], @"");
+    STAssertTrue(520 == [[message getExtension:[UnittestRoot repeatedImportMessageExtension] index:1] d], @"");
     
     STAssertTrue([TestAllTypes_NestedEnum FOO] ==
-                 [message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension] index:1], @"");
+                 [message getExtension:[UnittestRoot repeatedNestedEnumExtension] index:1], @"");
     STAssertTrue([ForeignEnum FOREIGN_FOO] ==
-                 [message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension] index:1], @"");
+                 [message getExtension:[UnittestRoot repeatedForeignEnumExtension] index:1], @"");
     STAssertTrue([ImportEnum IMPORT_FOO] ==
-                 [message getExtension:[UnittestProtoRoot repeatedImportEnumExtension] index:1], @"");
+                 [message getExtension:[UnittestRoot repeatedImportEnumExtension] index:1], @"");
     
-    STAssertEqualObjects(@"524", [message getExtension:[UnittestProtoRoot repeatedStringPieceExtension] index:1], @"");
-    STAssertEqualObjects(@"525", [message getExtension:[UnittestProtoRoot repeatedCordExtension] index:1], @"");
+    STAssertEqualObjects(@"524", [message getExtension:[UnittestRoot repeatedStringPieceExtension] index:1], @"");
+    STAssertEqualObjects(@"525", [message getExtension:[UnittestRoot repeatedCordExtension] index:1], @"");
 }
 
 
@@ -717,141 +717,141 @@
  * {@code assertAllExtensionsSet()}.
  */
 + (void) setAllExtensions:(TestAllExtensions_Builder*) message {
-    [message setExtension:[UnittestProtoRoot optionalInt32Extension]   value:[NSNumber numberWithInt:101]];
-    [message setExtension:[UnittestProtoRoot optionalInt64Extension]   value:[NSNumber numberWithInt:102L]];
-    [message setExtension:[UnittestProtoRoot optionalUint32Extension]  value:[NSNumber numberWithInt:103]];
-    [message setExtension:[UnittestProtoRoot optionalUint64Extension]  value:[NSNumber numberWithInt:104L]];
-    [message setExtension:[UnittestProtoRoot optionalSint32Extension]  value:[NSNumber numberWithInt:105]];
-    [message setExtension:[UnittestProtoRoot optionalSint64Extension]  value:[NSNumber numberWithInt:106L]];
-    [message setExtension:[UnittestProtoRoot optionalFixed32Extension] value:[NSNumber numberWithInt:107]];
-    [message setExtension:[UnittestProtoRoot optionalFixed64Extension] value:[NSNumber numberWithInt:108L]];
-    [message setExtension:[UnittestProtoRoot optionalSfixed32Extension] value:[NSNumber numberWithInt:109]];
-    [message setExtension:[UnittestProtoRoot optionalSfixed64Extension] value:[NSNumber numberWithInt:110L]];
-    [message setExtension:[UnittestProtoRoot optionalFloatExtension]   value:[NSNumber numberWithFloat:111.0]];
-    [message setExtension:[UnittestProtoRoot optionalDoubleExtension]  value:[NSNumber numberWithDouble:112.0]];
-    [message setExtension:[UnittestProtoRoot optionalBoolExtension]    value:[NSNumber numberWithBool:true]];
-    [message setExtension:[UnittestProtoRoot optionalStringExtension]  value:@"115"];
-    [message setExtension:[UnittestProtoRoot optionalBytesExtension]   value:[self toData:@"116"]];
+    [message setExtension:[UnittestRoot optionalInt32Extension]   value:[NSNumber numberWithInt:101]];
+    [message setExtension:[UnittestRoot optionalInt64Extension]   value:[NSNumber numberWithInt:102L]];
+    [message setExtension:[UnittestRoot optionalUint32Extension]  value:[NSNumber numberWithInt:103]];
+    [message setExtension:[UnittestRoot optionalUint64Extension]  value:[NSNumber numberWithInt:104L]];
+    [message setExtension:[UnittestRoot optionalSint32Extension]  value:[NSNumber numberWithInt:105]];
+    [message setExtension:[UnittestRoot optionalSint64Extension]  value:[NSNumber numberWithInt:106L]];
+    [message setExtension:[UnittestRoot optionalFixed32Extension] value:[NSNumber numberWithInt:107]];
+    [message setExtension:[UnittestRoot optionalFixed64Extension] value:[NSNumber numberWithInt:108L]];
+    [message setExtension:[UnittestRoot optionalSfixed32Extension] value:[NSNumber numberWithInt:109]];
+    [message setExtension:[UnittestRoot optionalSfixed64Extension] value:[NSNumber numberWithInt:110L]];
+    [message setExtension:[UnittestRoot optionalFloatExtension]   value:[NSNumber numberWithFloat:111.0]];
+    [message setExtension:[UnittestRoot optionalDoubleExtension]  value:[NSNumber numberWithDouble:112.0]];
+    [message setExtension:[UnittestRoot optionalBoolExtension]    value:[NSNumber numberWithBool:true]];
+    [message setExtension:[UnittestRoot optionalStringExtension]  value:@"115"];
+    [message setExtension:[UnittestRoot optionalBytesExtension]   value:[self toData:@"116"]];
     
-    [message setExtension:[UnittestProtoRoot optionalGroupExtension]
+    [message setExtension:[UnittestRoot optionalGroupExtension]
                     value:[[[OptionalGroup_extension builder] setA:117] build]];
-    [message setExtension:[UnittestProtoRoot optionalNestedMessageExtension]
+    [message setExtension:[UnittestRoot optionalNestedMessageExtension]
                     value:[[[TestAllTypes_NestedMessage builder] setBb:118] build]];
-    [message setExtension:[UnittestProtoRoot optionalForeignMessageExtension]
+    [message setExtension:[UnittestRoot optionalForeignMessageExtension]
                     value:[[[ForeignMessage builder] setC:119] build]];
-    [message setExtension:[UnittestProtoRoot optionalImportMessageExtension]
+    [message setExtension:[UnittestRoot optionalImportMessageExtension]
                     value:[[[ImportMessage builder] setD:120] build]];
     
-    [message setExtension:[UnittestProtoRoot optionalNestedEnumExtension]
+    [message setExtension:[UnittestRoot optionalNestedEnumExtension]
                     value:[TestAllTypes_NestedEnum BAZ]];
-    [message setExtension:[UnittestProtoRoot optionalForeignEnumExtension]
+    [message setExtension:[UnittestRoot optionalForeignEnumExtension]
                     value:[ForeignEnum FOREIGN_BAZ]];
-    [message setExtension:[UnittestProtoRoot optionalImportEnumExtension]
+    [message setExtension:[UnittestRoot optionalImportEnumExtension]
                     value:[ImportEnum IMPORT_BAZ]];
     
-    [message setExtension:[UnittestProtoRoot optionalStringPieceExtension]  value:@"124"];
-    [message setExtension:[UnittestProtoRoot optionalCordExtension] value:@"125"];
+    [message setExtension:[UnittestRoot optionalStringPieceExtension]  value:@"124"];
+    [message setExtension:[UnittestRoot optionalCordExtension] value:@"125"];
     
     // -----------------------------------------------------------------
     
-    [message addExtension:[UnittestProtoRoot repeatedInt32Extension]    value:[NSNumber numberWithInt:201]];
-    [message addExtension:[UnittestProtoRoot repeatedInt64Extension]    value:[NSNumber numberWithInt:202L]];
-    [message addExtension:[UnittestProtoRoot repeatedUint32Extension]   value:[NSNumber numberWithInt:203]];
-    [message addExtension:[UnittestProtoRoot repeatedUint64Extension]   value:[NSNumber numberWithInt:204L]];
-    [message addExtension:[UnittestProtoRoot repeatedSint32Extension]   value:[NSNumber numberWithInt:205]];
-    [message addExtension:[UnittestProtoRoot repeatedSint64Extension]   value:[NSNumber numberWithInt:206L]];
-    [message addExtension:[UnittestProtoRoot repeatedFixed32Extension]  value:[NSNumber numberWithInt:207]];
-    [message addExtension:[UnittestProtoRoot repeatedFixed64Extension]  value:[NSNumber numberWithInt:208L]];
-    [message addExtension:[UnittestProtoRoot repeatedSfixed32Extension] value:[NSNumber numberWithInt:209]];
-    [message addExtension:[UnittestProtoRoot repeatedSfixed64Extension] value:[NSNumber numberWithInt:210L]];
-    [message addExtension:[UnittestProtoRoot repeatedFloatExtension]    value:[NSNumber numberWithFloat:211.0]];
-    [message addExtension:[UnittestProtoRoot repeatedDoubleExtension]   value:[NSNumber numberWithDouble:212.0]];
-    [message addExtension:[UnittestProtoRoot repeatedBoolExtension]     value:[NSNumber numberWithBool:true]];
-    [message addExtension:[UnittestProtoRoot repeatedStringExtension]  value:@"215"];
-    [message addExtension:[UnittestProtoRoot repeatedBytesExtension]   value:[self toData:@"216"]];
+    [message addExtension:[UnittestRoot repeatedInt32Extension]    value:[NSNumber numberWithInt:201]];
+    [message addExtension:[UnittestRoot repeatedInt64Extension]    value:[NSNumber numberWithInt:202L]];
+    [message addExtension:[UnittestRoot repeatedUint32Extension]   value:[NSNumber numberWithInt:203]];
+    [message addExtension:[UnittestRoot repeatedUint64Extension]   value:[NSNumber numberWithInt:204L]];
+    [message addExtension:[UnittestRoot repeatedSint32Extension]   value:[NSNumber numberWithInt:205]];
+    [message addExtension:[UnittestRoot repeatedSint64Extension]   value:[NSNumber numberWithInt:206L]];
+    [message addExtension:[UnittestRoot repeatedFixed32Extension]  value:[NSNumber numberWithInt:207]];
+    [message addExtension:[UnittestRoot repeatedFixed64Extension]  value:[NSNumber numberWithInt:208L]];
+    [message addExtension:[UnittestRoot repeatedSfixed32Extension] value:[NSNumber numberWithInt:209]];
+    [message addExtension:[UnittestRoot repeatedSfixed64Extension] value:[NSNumber numberWithInt:210L]];
+    [message addExtension:[UnittestRoot repeatedFloatExtension]    value:[NSNumber numberWithFloat:211.0]];
+    [message addExtension:[UnittestRoot repeatedDoubleExtension]   value:[NSNumber numberWithDouble:212.0]];
+    [message addExtension:[UnittestRoot repeatedBoolExtension]     value:[NSNumber numberWithBool:true]];
+    [message addExtension:[UnittestRoot repeatedStringExtension]  value:@"215"];
+    [message addExtension:[UnittestRoot repeatedBytesExtension]   value:[self toData:@"216"]];
     
-    [message addExtension:[UnittestProtoRoot repeatedGroupExtension]
+    [message addExtension:[UnittestRoot repeatedGroupExtension]
                     value:[[[RepeatedGroup_extension builder] setA:217] build]];
-    [message addExtension:[UnittestProtoRoot repeatedNestedMessageExtension]
+    [message addExtension:[UnittestRoot repeatedNestedMessageExtension]
                     value:[[[TestAllTypes_NestedMessage builder] setBb:218] build]];
-    [message addExtension:[UnittestProtoRoot repeatedForeignMessageExtension]
+    [message addExtension:[UnittestRoot repeatedForeignMessageExtension]
                     value:[[[ForeignMessage builder] setC:219] build]];
-    [message addExtension:[UnittestProtoRoot repeatedImportMessageExtension]
+    [message addExtension:[UnittestRoot repeatedImportMessageExtension]
                     value:[[[ImportMessage builder] setD:220] build]];
     
-    [message addExtension:[UnittestProtoRoot repeatedNestedEnumExtension]
+    [message addExtension:[UnittestRoot repeatedNestedEnumExtension]
                     value:[TestAllTypes_NestedEnum BAR]];
-    [message addExtension:[UnittestProtoRoot repeatedForeignEnumExtension]
+    [message addExtension:[UnittestRoot repeatedForeignEnumExtension]
                     value:[ForeignEnum FOREIGN_BAR]];
-    [message addExtension:[UnittestProtoRoot repeatedImportEnumExtension]
+    [message addExtension:[UnittestRoot repeatedImportEnumExtension]
                     value:[ImportEnum IMPORT_BAR]];
     
-    [message addExtension:[UnittestProtoRoot repeatedStringPieceExtension] value:@"224"];
-    [message addExtension:[UnittestProtoRoot repeatedCordExtension] value:@"225"];
+    [message addExtension:[UnittestRoot repeatedStringPieceExtension] value:@"224"];
+    [message addExtension:[UnittestRoot repeatedCordExtension] value:@"225"];
     
     // Add a second one of each field.
-    [message addExtension:[UnittestProtoRoot repeatedInt32Extension] value:[NSNumber numberWithInt:301]];
-    [message addExtension:[UnittestProtoRoot repeatedInt64Extension] value:[NSNumber numberWithInt:302L]];
-    [message addExtension:[UnittestProtoRoot repeatedUint32Extension] value:[NSNumber numberWithInt:303]];
-    [message addExtension:[UnittestProtoRoot repeatedUint64Extension] value:[NSNumber numberWithInt:304L]];
-    [message addExtension:[UnittestProtoRoot repeatedSint32Extension] value:[NSNumber numberWithInt:305]];
-    [message addExtension:[UnittestProtoRoot repeatedSint64Extension] value:[NSNumber numberWithInt:306L]];
-    [message addExtension:[UnittestProtoRoot repeatedFixed32Extension] value:[NSNumber numberWithInt:307]];
-    [message addExtension:[UnittestProtoRoot repeatedFixed64Extension] value:[NSNumber numberWithInt:308L]];
-    [message addExtension:[UnittestProtoRoot repeatedSfixed32Extension] value:[NSNumber numberWithInt:309]];
-    [message addExtension:[UnittestProtoRoot repeatedSfixed64Extension] value:[NSNumber numberWithInt:310L]];
-    [message addExtension:[UnittestProtoRoot repeatedFloatExtension] value:[NSNumber numberWithFloat:311.0]];
-    [message addExtension:[UnittestProtoRoot repeatedDoubleExtension] value:[NSNumber numberWithDouble:312.0]];
-    [message addExtension:[UnittestProtoRoot repeatedBoolExtension] value:[NSNumber numberWithBool:false]];
-    [message addExtension:[UnittestProtoRoot repeatedStringExtension] value:@"315"];
-    [message addExtension:[UnittestProtoRoot repeatedBytesExtension] value:[self toData:@"316"]];
+    [message addExtension:[UnittestRoot repeatedInt32Extension] value:[NSNumber numberWithInt:301]];
+    [message addExtension:[UnittestRoot repeatedInt64Extension] value:[NSNumber numberWithInt:302L]];
+    [message addExtension:[UnittestRoot repeatedUint32Extension] value:[NSNumber numberWithInt:303]];
+    [message addExtension:[UnittestRoot repeatedUint64Extension] value:[NSNumber numberWithInt:304L]];
+    [message addExtension:[UnittestRoot repeatedSint32Extension] value:[NSNumber numberWithInt:305]];
+    [message addExtension:[UnittestRoot repeatedSint64Extension] value:[NSNumber numberWithInt:306L]];
+    [message addExtension:[UnittestRoot repeatedFixed32Extension] value:[NSNumber numberWithInt:307]];
+    [message addExtension:[UnittestRoot repeatedFixed64Extension] value:[NSNumber numberWithInt:308L]];
+    [message addExtension:[UnittestRoot repeatedSfixed32Extension] value:[NSNumber numberWithInt:309]];
+    [message addExtension:[UnittestRoot repeatedSfixed64Extension] value:[NSNumber numberWithInt:310L]];
+    [message addExtension:[UnittestRoot repeatedFloatExtension] value:[NSNumber numberWithFloat:311.0]];
+    [message addExtension:[UnittestRoot repeatedDoubleExtension] value:[NSNumber numberWithDouble:312.0]];
+    [message addExtension:[UnittestRoot repeatedBoolExtension] value:[NSNumber numberWithBool:false]];
+    [message addExtension:[UnittestRoot repeatedStringExtension] value:@"315"];
+    [message addExtension:[UnittestRoot repeatedBytesExtension] value:[self toData:@"316"]];
     
-    [message addExtension:[UnittestProtoRoot repeatedGroupExtension]
+    [message addExtension:[UnittestRoot repeatedGroupExtension]
                     value:[[[RepeatedGroup_extension builder] setA:317] build]];
-    [message addExtension:[UnittestProtoRoot repeatedNestedMessageExtension]
+    [message addExtension:[UnittestRoot repeatedNestedMessageExtension]
                     value:[[[TestAllTypes_NestedMessage builder] setBb:318] build]];
-    [message addExtension:[UnittestProtoRoot repeatedForeignMessageExtension]
+    [message addExtension:[UnittestRoot repeatedForeignMessageExtension]
                     value:[[[ForeignMessage builder] setC:319] build]];
-    [message addExtension:[UnittestProtoRoot repeatedImportMessageExtension]
+    [message addExtension:[UnittestRoot repeatedImportMessageExtension]
                     value:[[[ImportMessage builder] setD:320] build]];
     
-    [message addExtension:[UnittestProtoRoot repeatedNestedEnumExtension]
+    [message addExtension:[UnittestRoot repeatedNestedEnumExtension]
                     value:[TestAllTypes_NestedEnum BAZ]];
-    [message addExtension:[UnittestProtoRoot repeatedForeignEnumExtension]
+    [message addExtension:[UnittestRoot repeatedForeignEnumExtension]
                     value:[ForeignEnum FOREIGN_BAZ]];
-    [message addExtension:[UnittestProtoRoot repeatedImportEnumExtension]
+    [message addExtension:[UnittestRoot repeatedImportEnumExtension]
                     value:[ImportEnum IMPORT_BAZ]];
     
-    [message addExtension:[UnittestProtoRoot repeatedStringPieceExtension] value:@"324"];
-    [message addExtension:[UnittestProtoRoot repeatedCordExtension] value:@"325"];
+    [message addExtension:[UnittestRoot repeatedStringPieceExtension] value:@"324"];
+    [message addExtension:[UnittestRoot repeatedCordExtension] value:@"325"];
     
     // -----------------------------------------------------------------
     
-    [message setExtension:[UnittestProtoRoot defaultInt32Extension] value:[NSNumber numberWithInt:401]];
-    [message setExtension:[UnittestProtoRoot defaultInt64Extension] value:[NSNumber numberWithInt:402L]];
-    [message setExtension:[UnittestProtoRoot defaultUint32Extension] value:[NSNumber numberWithInt:403]];
-    [message setExtension:[UnittestProtoRoot defaultUint64Extension] value:[NSNumber numberWithInt:404L]];
-    [message setExtension:[UnittestProtoRoot defaultSint32Extension] value:[NSNumber numberWithInt:405]];
-    [message setExtension:[UnittestProtoRoot defaultSint64Extension] value:[NSNumber numberWithInt:406L]];
-    [message setExtension:[UnittestProtoRoot defaultFixed32Extension] value:[NSNumber numberWithInt:407]];
-    [message setExtension:[UnittestProtoRoot defaultFixed64Extension] value:[NSNumber numberWithInt:408L]];
-    [message setExtension:[UnittestProtoRoot defaultSfixed32Extension] value:[NSNumber numberWithInt:409]];
-    [message setExtension:[UnittestProtoRoot defaultSfixed64Extension] value:[NSNumber numberWithInt:410L]];
-    [message setExtension:[UnittestProtoRoot defaultFloatExtension] value:[NSNumber numberWithFloat:411.0]];
-    [message setExtension:[UnittestProtoRoot defaultDoubleExtension] value:[NSNumber numberWithDouble:412.0]];
-    [message setExtension:[UnittestProtoRoot defaultBoolExtension] value:[NSNumber numberWithBool:false]];
-    [message setExtension:[UnittestProtoRoot defaultStringExtension] value:@"415"];
-    [message setExtension:[UnittestProtoRoot defaultBytesExtension] value:[self toData:@"416"]];
+    [message setExtension:[UnittestRoot defaultInt32Extension] value:[NSNumber numberWithInt:401]];
+    [message setExtension:[UnittestRoot defaultInt64Extension] value:[NSNumber numberWithInt:402L]];
+    [message setExtension:[UnittestRoot defaultUint32Extension] value:[NSNumber numberWithInt:403]];
+    [message setExtension:[UnittestRoot defaultUint64Extension] value:[NSNumber numberWithInt:404L]];
+    [message setExtension:[UnittestRoot defaultSint32Extension] value:[NSNumber numberWithInt:405]];
+    [message setExtension:[UnittestRoot defaultSint64Extension] value:[NSNumber numberWithInt:406L]];
+    [message setExtension:[UnittestRoot defaultFixed32Extension] value:[NSNumber numberWithInt:407]];
+    [message setExtension:[UnittestRoot defaultFixed64Extension] value:[NSNumber numberWithInt:408L]];
+    [message setExtension:[UnittestRoot defaultSfixed32Extension] value:[NSNumber numberWithInt:409]];
+    [message setExtension:[UnittestRoot defaultSfixed64Extension] value:[NSNumber numberWithInt:410L]];
+    [message setExtension:[UnittestRoot defaultFloatExtension] value:[NSNumber numberWithFloat:411.0]];
+    [message setExtension:[UnittestRoot defaultDoubleExtension] value:[NSNumber numberWithDouble:412.0]];
+    [message setExtension:[UnittestRoot defaultBoolExtension] value:[NSNumber numberWithBool:false]];
+    [message setExtension:[UnittestRoot defaultStringExtension] value:@"415"];
+    [message setExtension:[UnittestRoot defaultBytesExtension] value:[self toData:@"416"]];
     
-    [message setExtension:[UnittestProtoRoot defaultNestedEnumExtension]
+    [message setExtension:[UnittestRoot defaultNestedEnumExtension]
                     value:[TestAllTypes_NestedEnum FOO]];
-    [message setExtension:[UnittestProtoRoot defaultForeignEnumExtension]
+    [message setExtension:[UnittestRoot defaultForeignEnumExtension]
                     value:[ForeignEnum FOREIGN_FOO]];
-    [message setExtension:[UnittestProtoRoot defaultImportEnumExtension]
+    [message setExtension:[UnittestRoot defaultImportEnumExtension]
                     value:[ImportEnum IMPORT_FOO]];
     
-    [message setExtension:[UnittestProtoRoot defaultStringPieceExtension] value:@"424"];
-    [message setExtension:[UnittestProtoRoot defaultCordExtension] value:@"425"];
+    [message setExtension:[UnittestRoot defaultStringPieceExtension] value:@"424"];
+    [message setExtension:[UnittestRoot defaultCordExtension] value:@"425"];
 }
 
 
@@ -860,76 +860,76 @@
  * given {@link ExtensionRegistry}.
  */
 + (void) registerAllExtensions:(PBExtensionRegistry*) registry {
-    [registry addExtension:[UnittestProtoRoot optionalInt32Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalInt64Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalUint32Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalUint64Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalSint32Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalSint64Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalFixed32Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalFixed64Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalSfixed32Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalSfixed64Extension]];
-    [registry addExtension:[UnittestProtoRoot optionalFloatExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalDoubleExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalBoolExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalStringExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalBytesExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalGroupExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalNestedMessageExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalForeignMessageExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalImportMessageExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalNestedEnumExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalForeignEnumExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalImportEnumExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalStringPieceExtension]];
-    [registry addExtension:[UnittestProtoRoot optionalCordExtension]];
+    [registry addExtension:[UnittestRoot optionalInt32Extension]];
+    [registry addExtension:[UnittestRoot optionalInt64Extension]];
+    [registry addExtension:[UnittestRoot optionalUint32Extension]];
+    [registry addExtension:[UnittestRoot optionalUint64Extension]];
+    [registry addExtension:[UnittestRoot optionalSint32Extension]];
+    [registry addExtension:[UnittestRoot optionalSint64Extension]];
+    [registry addExtension:[UnittestRoot optionalFixed32Extension]];
+    [registry addExtension:[UnittestRoot optionalFixed64Extension]];
+    [registry addExtension:[UnittestRoot optionalSfixed32Extension]];
+    [registry addExtension:[UnittestRoot optionalSfixed64Extension]];
+    [registry addExtension:[UnittestRoot optionalFloatExtension]];
+    [registry addExtension:[UnittestRoot optionalDoubleExtension]];
+    [registry addExtension:[UnittestRoot optionalBoolExtension]];
+    [registry addExtension:[UnittestRoot optionalStringExtension]];
+    [registry addExtension:[UnittestRoot optionalBytesExtension]];
+    [registry addExtension:[UnittestRoot optionalGroupExtension]];
+    [registry addExtension:[UnittestRoot optionalNestedMessageExtension]];
+    [registry addExtension:[UnittestRoot optionalForeignMessageExtension]];
+    [registry addExtension:[UnittestRoot optionalImportMessageExtension]];
+    [registry addExtension:[UnittestRoot optionalNestedEnumExtension]];
+    [registry addExtension:[UnittestRoot optionalForeignEnumExtension]];
+    [registry addExtension:[UnittestRoot optionalImportEnumExtension]];
+    [registry addExtension:[UnittestRoot optionalStringPieceExtension]];
+    [registry addExtension:[UnittestRoot optionalCordExtension]];
     
-    [registry addExtension:[UnittestProtoRoot repeatedInt32Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedInt64Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedUint32Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedUint64Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedSint32Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedSint64Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedFixed32Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedFixed64Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedSfixed32Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedSfixed64Extension]];
-    [registry addExtension:[UnittestProtoRoot repeatedFloatExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedDoubleExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedBoolExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedStringExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedBytesExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedGroupExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedNestedMessageExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedForeignMessageExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedImportMessageExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedNestedEnumExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedForeignEnumExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedImportEnumExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedStringPieceExtension]];
-    [registry addExtension:[UnittestProtoRoot repeatedCordExtension]];
+    [registry addExtension:[UnittestRoot repeatedInt32Extension]];
+    [registry addExtension:[UnittestRoot repeatedInt64Extension]];
+    [registry addExtension:[UnittestRoot repeatedUint32Extension]];
+    [registry addExtension:[UnittestRoot repeatedUint64Extension]];
+    [registry addExtension:[UnittestRoot repeatedSint32Extension]];
+    [registry addExtension:[UnittestRoot repeatedSint64Extension]];
+    [registry addExtension:[UnittestRoot repeatedFixed32Extension]];
+    [registry addExtension:[UnittestRoot repeatedFixed64Extension]];
+    [registry addExtension:[UnittestRoot repeatedSfixed32Extension]];
+    [registry addExtension:[UnittestRoot repeatedSfixed64Extension]];
+    [registry addExtension:[UnittestRoot repeatedFloatExtension]];
+    [registry addExtension:[UnittestRoot repeatedDoubleExtension]];
+    [registry addExtension:[UnittestRoot repeatedBoolExtension]];
+    [registry addExtension:[UnittestRoot repeatedStringExtension]];
+    [registry addExtension:[UnittestRoot repeatedBytesExtension]];
+    [registry addExtension:[UnittestRoot repeatedGroupExtension]];
+    [registry addExtension:[UnittestRoot repeatedNestedMessageExtension]];
+    [registry addExtension:[UnittestRoot repeatedForeignMessageExtension]];
+    [registry addExtension:[UnittestRoot repeatedImportMessageExtension]];
+    [registry addExtension:[UnittestRoot repeatedNestedEnumExtension]];
+    [registry addExtension:[UnittestRoot repeatedForeignEnumExtension]];
+    [registry addExtension:[UnittestRoot repeatedImportEnumExtension]];
+    [registry addExtension:[UnittestRoot repeatedStringPieceExtension]];
+    [registry addExtension:[UnittestRoot repeatedCordExtension]];
     
-    [registry addExtension:[UnittestProtoRoot defaultInt32Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultInt64Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultUint32Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultUint64Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultSint32Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultSint64Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultFixed32Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultFixed64Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultSfixed32Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultSfixed64Extension]];
-    [registry addExtension:[UnittestProtoRoot defaultFloatExtension]];
-    [registry addExtension:[UnittestProtoRoot defaultDoubleExtension]];
-    [registry addExtension:[UnittestProtoRoot defaultBoolExtension]];
-    [registry addExtension:[UnittestProtoRoot defaultStringExtension]];
-    [registry addExtension:[UnittestProtoRoot defaultBytesExtension]];
-    [registry addExtension:[UnittestProtoRoot defaultNestedEnumExtension]];
-    [registry addExtension:[UnittestProtoRoot defaultForeignEnumExtension]];
-    [registry addExtension:[UnittestProtoRoot defaultImportEnumExtension]];
-    [registry addExtension:[UnittestProtoRoot defaultStringPieceExtension]];
-    [registry addExtension:[UnittestProtoRoot defaultCordExtension]];
+    [registry addExtension:[UnittestRoot defaultInt32Extension]];
+    [registry addExtension:[UnittestRoot defaultInt64Extension]];
+    [registry addExtension:[UnittestRoot defaultUint32Extension]];
+    [registry addExtension:[UnittestRoot defaultUint64Extension]];
+    [registry addExtension:[UnittestRoot defaultSint32Extension]];
+    [registry addExtension:[UnittestRoot defaultSint64Extension]];
+    [registry addExtension:[UnittestRoot defaultFixed32Extension]];
+    [registry addExtension:[UnittestRoot defaultFixed64Extension]];
+    [registry addExtension:[UnittestRoot defaultSfixed32Extension]];
+    [registry addExtension:[UnittestRoot defaultSfixed64Extension]];
+    [registry addExtension:[UnittestRoot defaultFloatExtension]];
+    [registry addExtension:[UnittestRoot defaultDoubleExtension]];
+    [registry addExtension:[UnittestRoot defaultBoolExtension]];
+    [registry addExtension:[UnittestRoot defaultStringExtension]];
+    [registry addExtension:[UnittestRoot defaultBytesExtension]];
+    [registry addExtension:[UnittestRoot defaultNestedEnumExtension]];
+    [registry addExtension:[UnittestRoot defaultForeignEnumExtension]];
+    [registry addExtension:[UnittestRoot defaultImportEnumExtension]];
+    [registry addExtension:[UnittestRoot defaultStringPieceExtension]];
+    [registry addExtension:[UnittestRoot defaultCordExtension]];
 }
 
 
@@ -1116,152 +1116,152 @@
 
 - (void) assertExtensionsClear:(TestAllExtensions*) message {
     // hasBlah() should initially be false for all optional fields.
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalInt64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalUint32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalUint64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSint32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSint64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFixed32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFixed64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSfixed32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalSfixed64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalFloatExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalDoubleExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalBoolExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalStringExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalInt32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalInt64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalUint32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalUint64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalSint32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalSint64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalFixed32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalFixed64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalSfixed32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalSfixed64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalFloatExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalDoubleExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalBoolExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalStringExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalBytesExtension]], @"");
     
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalGroupExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalNestedMessageExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalForeignMessageExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalImportMessageExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalGroupExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalNestedMessageExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalForeignMessageExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalImportMessageExtension]], @"");
     
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalNestedEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalForeignEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalImportEnumExtension]], @"");
     
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot optionalCordExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalStringPieceExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot optionalCordExtension]], @"");
     
     // Optional fields without defaults are set to zero or something like it.
-    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalInt32Extension]] intValue], @"");
-    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalInt64Extension]] intValue], @"");
-    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalUint32Extension]] intValue], @"");
-    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalUint64Extension]] intValue], @"");
-    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalSint32Extension]] intValue], @"");
-    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalSint64Extension]] intValue], @"");
-    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalFixed32Extension]] intValue], @"");
-    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalFixed64Extension]] intValue], @"");
-    STAssertTrue(0     == [[message getExtension:[UnittestProtoRoot optionalSfixed32Extension]] intValue], @"");
-    STAssertTrue(0L    == [[message getExtension:[UnittestProtoRoot optionalSfixed64Extension]] intValue], @"");
-    STAssertTrue(0    == [[message getExtension:[UnittestProtoRoot optionalFloatExtension]] floatValue], @"");
-    STAssertTrue(0    == [[message getExtension:[UnittestProtoRoot optionalDoubleExtension]] doubleValue], @"");
-    STAssertTrue(false == [[message getExtension:[UnittestProtoRoot optionalBoolExtension]] boolValue], @"");
-    STAssertEqualObjects(@"", [message getExtension:[UnittestProtoRoot optionalStringExtension]], @"");
-    STAssertEqualObjects([NSData data], [message getExtension:[UnittestProtoRoot optionalBytesExtension]], @"");
+    STAssertTrue(0     == [[message getExtension:[UnittestRoot optionalInt32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestRoot optionalInt64Extension]] intValue], @"");
+    STAssertTrue(0     == [[message getExtension:[UnittestRoot optionalUint32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestRoot optionalUint64Extension]] intValue], @"");
+    STAssertTrue(0     == [[message getExtension:[UnittestRoot optionalSint32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestRoot optionalSint64Extension]] intValue], @"");
+    STAssertTrue(0     == [[message getExtension:[UnittestRoot optionalFixed32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestRoot optionalFixed64Extension]] intValue], @"");
+    STAssertTrue(0     == [[message getExtension:[UnittestRoot optionalSfixed32Extension]] intValue], @"");
+    STAssertTrue(0L    == [[message getExtension:[UnittestRoot optionalSfixed64Extension]] intValue], @"");
+    STAssertTrue(0    == [[message getExtension:[UnittestRoot optionalFloatExtension]] floatValue], @"");
+    STAssertTrue(0    == [[message getExtension:[UnittestRoot optionalDoubleExtension]] doubleValue], @"");
+    STAssertTrue(false == [[message getExtension:[UnittestRoot optionalBoolExtension]] boolValue], @"");
+    STAssertEqualObjects(@"", [message getExtension:[UnittestRoot optionalStringExtension]], @"");
+    STAssertEqualObjects([NSData data], [message getExtension:[UnittestRoot optionalBytesExtension]], @"");
     
     // Embedded messages should also be clear.
     
-    STAssertFalse([[message getExtension:[UnittestProtoRoot optionalGroupExtension]] hasA], @"");
-    STAssertFalse([[message getExtension:[UnittestProtoRoot optionalNestedMessageExtension]] hasBb], @"");
-    STAssertFalse([[message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]] hasC], @"");
-    STAssertFalse([[message getExtension:[UnittestProtoRoot optionalImportMessageExtension]] hasD], @"");
+    STAssertFalse([[message getExtension:[UnittestRoot optionalGroupExtension]] hasA], @"");
+    STAssertFalse([[message getExtension:[UnittestRoot optionalNestedMessageExtension]] hasBb], @"");
+    STAssertFalse([[message getExtension:[UnittestRoot optionalForeignMessageExtension]] hasC], @"");
+    STAssertFalse([[message getExtension:[UnittestRoot optionalImportMessageExtension]] hasD], @"");
     
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot optionalGroupExtension]] a], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot optionalNestedMessageExtension]] bb], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot optionalForeignMessageExtension]] c], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot optionalImportMessageExtension]] d], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot optionalGroupExtension]] a], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot optionalNestedMessageExtension]] bb], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot optionalForeignMessageExtension]] c], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot optionalImportMessageExtension]] d], @"");
     
     // Enums without defaults are set to the first value in the enum.
     STAssertTrue([TestAllTypes_NestedEnum FOO] ==
-                 [message getExtension:[UnittestProtoRoot optionalNestedEnumExtension]], @"");
+                 [message getExtension:[UnittestRoot optionalNestedEnumExtension]], @"");
     STAssertTrue([ForeignEnum FOREIGN_FOO] == 
-                 [message getExtension:[UnittestProtoRoot optionalForeignEnumExtension]], @"");
+                 [message getExtension:[UnittestRoot optionalForeignEnumExtension]], @"");
     STAssertTrue([ImportEnum IMPORT_FOO] ==
-                 [message getExtension:[UnittestProtoRoot optionalImportEnumExtension]], @"");
+                 [message getExtension:[UnittestRoot optionalImportEnumExtension]], @"");
     
-    STAssertEqualObjects(@"", [message getExtension:[UnittestProtoRoot optionalStringPieceExtension]], @"");
-    STAssertEqualObjects(@"", [message getExtension:[UnittestProtoRoot optionalCordExtension]], @"");
+    STAssertEqualObjects(@"", [message getExtension:[UnittestRoot optionalStringPieceExtension]], @"");
+    STAssertEqualObjects(@"", [message getExtension:[UnittestRoot optionalCordExtension]], @"");
     
     // Repeated fields are empty.
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedInt32Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedInt64Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedUint32Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedUint64Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedSint32Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedSint64Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedFixed32Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedFixed64Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedSfixed32Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedSfixed64Extension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedFloatExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedDoubleExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedBoolExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedStringExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedBytesExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedInt32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedInt64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedUint32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedUint64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedSint32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedSint64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedFixed32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedFixed64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedSfixed32Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedSfixed64Extension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedFloatExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedDoubleExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedBoolExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedStringExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedBytesExtension]] count], @"");
     
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedGroupExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedNestedMessageExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedForeignMessageExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedImportMessageExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedNestedEnumExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedForeignEnumExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedImportEnumExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedGroupExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedNestedMessageExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedForeignMessageExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedImportMessageExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedNestedEnumExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedForeignEnumExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedImportEnumExtension]] count], @"");
     
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedStringPieceExtension]] count], @"");
-    STAssertTrue(0 == [[message getExtension:[UnittestProtoRoot repeatedCordExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedStringPieceExtension]] count], @"");
+    STAssertTrue(0 == [[message getExtension:[UnittestRoot repeatedCordExtension]] count], @"");
     
     // hasBlah() should also be false for all default fields.
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultInt32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultInt64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultUint32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultUint64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSint32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSint64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFixed32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFixed64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSfixed32Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultSfixed64Extension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultFloatExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultDoubleExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultBoolExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultStringExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultInt32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultInt64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultUint32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultUint64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultSint32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultSint64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultFixed32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultFixed64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultSfixed32Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultSfixed64Extension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultFloatExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultDoubleExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultBoolExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultStringExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultBytesExtension]], @"");
     
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultNestedEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultForeignEnumExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultImportEnumExtension]], @"");
     
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
-    STAssertFalse([message hasExtension:[UnittestProtoRoot defaultCordExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultStringPieceExtension]], @"");
+    STAssertFalse([message hasExtension:[UnittestRoot defaultCordExtension]], @"");
     
     // Fields with defaults have their default values (duh).
-    STAssertTrue( 41     == [[message getExtension:[UnittestProtoRoot defaultInt32Extension]] intValue], @"");
-    STAssertTrue( 42L    == [[message getExtension:[UnittestProtoRoot defaultInt64Extension]] intValue], @"");
-    STAssertTrue( 43     == [[message getExtension:[UnittestProtoRoot defaultUint32Extension]] intValue], @"");
-    STAssertTrue( 44L    == [[message getExtension:[UnittestProtoRoot defaultUint64Extension]] intValue], @"");
-    STAssertTrue(-45     == [[message getExtension:[UnittestProtoRoot defaultSint32Extension]] intValue], @"");
-    STAssertTrue( 46L    == [[message getExtension:[UnittestProtoRoot defaultSint64Extension]] intValue], @"");
-    STAssertTrue( 47     == [[message getExtension:[UnittestProtoRoot defaultFixed32Extension]] intValue], @"");
-    STAssertTrue( 48L    == [[message getExtension:[UnittestProtoRoot defaultFixed64Extension]] intValue], @"");
-    STAssertTrue( 49     == [[message getExtension:[UnittestProtoRoot defaultSfixed32Extension]] intValue], @"");
-    STAssertTrue(-50L    == [[message getExtension:[UnittestProtoRoot defaultSfixed64Extension]] intValue], @"");
-    STAssertTrue( 51.5  == [[message getExtension:[UnittestProtoRoot defaultFloatExtension]] floatValue], @"");
-    STAssertTrue( 52e3  == [[message getExtension:[UnittestProtoRoot defaultDoubleExtension]] doubleValue], @"");
-    STAssertTrue(true    == [[message getExtension:[UnittestProtoRoot defaultBoolExtension]] boolValue], @"");
-    STAssertEqualObjects(@"hello", [message getExtension:[UnittestProtoRoot defaultStringExtension]], @"");
-    STAssertEqualObjects([TestUtilities toData:@"world"], [message getExtension:[UnittestProtoRoot defaultBytesExtension]], @"");
+    STAssertTrue( 41     == [[message getExtension:[UnittestRoot defaultInt32Extension]] intValue], @"");
+    STAssertTrue( 42L    == [[message getExtension:[UnittestRoot defaultInt64Extension]] intValue], @"");
+    STAssertTrue( 43     == [[message getExtension:[UnittestRoot defaultUint32Extension]] intValue], @"");
+    STAssertTrue( 44L    == [[message getExtension:[UnittestRoot defaultUint64Extension]] intValue], @"");
+    STAssertTrue(-45     == [[message getExtension:[UnittestRoot defaultSint32Extension]] intValue], @"");
+    STAssertTrue( 46L    == [[message getExtension:[UnittestRoot defaultSint64Extension]] intValue], @"");
+    STAssertTrue( 47     == [[message getExtension:[UnittestRoot defaultFixed32Extension]] intValue], @"");
+    STAssertTrue( 48L    == [[message getExtension:[UnittestRoot defaultFixed64Extension]] intValue], @"");
+    STAssertTrue( 49     == [[message getExtension:[UnittestRoot defaultSfixed32Extension]] intValue], @"");
+    STAssertTrue(-50L    == [[message getExtension:[UnittestRoot defaultSfixed64Extension]] intValue], @"");
+    STAssertTrue( 51.5  == [[message getExtension:[UnittestRoot defaultFloatExtension]] floatValue], @"");
+    STAssertTrue( 52e3  == [[message getExtension:[UnittestRoot defaultDoubleExtension]] doubleValue], @"");
+    STAssertTrue(true    == [[message getExtension:[UnittestRoot defaultBoolExtension]] boolValue], @"");
+    STAssertEqualObjects(@"hello", [message getExtension:[UnittestRoot defaultStringExtension]], @"");
+    STAssertEqualObjects([TestUtilities toData:@"world"], [message getExtension:[UnittestRoot defaultBytesExtension]], @"");
     
     STAssertTrue([TestAllTypes_NestedEnum BAR] ==
-                 [message getExtension:[UnittestProtoRoot defaultNestedEnumExtension]], @"");
+                 [message getExtension:[UnittestRoot defaultNestedEnumExtension]], @"");
     STAssertTrue([ForeignEnum FOREIGN_BAR] ==
-                 [message getExtension:[UnittestProtoRoot defaultForeignEnumExtension]], @"");
+                 [message getExtension:[UnittestRoot defaultForeignEnumExtension]], @"");
     STAssertTrue([ImportEnum IMPORT_BAR] ==
-                 [message getExtension:[UnittestProtoRoot defaultImportEnumExtension]], @"");
+                 [message getExtension:[UnittestRoot defaultImportEnumExtension]], @"");
     
-    STAssertEqualObjects(@"abc", [message getExtension:[UnittestProtoRoot defaultStringPieceExtension]], @"");
-    STAssertEqualObjects(@"123", [message getExtension:[UnittestProtoRoot defaultCordExtension]], @"");
+    STAssertEqualObjects(@"abc", [message getExtension:[UnittestRoot defaultStringPieceExtension]], @"");
+    STAssertEqualObjects(@"123", [message getExtension:[UnittestRoot defaultCordExtension]], @"");
 }
 
 

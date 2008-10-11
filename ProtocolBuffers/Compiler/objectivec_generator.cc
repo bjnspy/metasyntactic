@@ -52,8 +52,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     }
   }  // namespace
 
-  ObjectiveCGenerator::ObjectiveCGenerator() {}
-  ObjectiveCGenerator::~ObjectiveCGenerator() {}
+
+  ObjectiveCGenerator::ObjectiveCGenerator() {
+  }
+
+
+  ObjectiveCGenerator::~ObjectiveCGenerator() {
+  }
 
 
   bool ObjectiveCGenerator::Generate(const FileDescriptor* file,
@@ -63,11 +68,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       vector<pair<string, string> > options;
       ParseOptions(parameter, &options);
 
-      // -----------------------------------------------------------------
-      // parse generator options
-
-      // Name a file where we will write a list of generated file names, one
-      // per line.
       string output_list_file;
 
       for (int i = 0; i < options.size(); i++) {
@@ -79,14 +79,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         }
       }
 
-
-      // -----------------------------------------------------------------
-
-
       FileGenerator file_generator(file);
-      if (!file_generator.Validate(error)) {
-        return false;
-      }
 
       string filepath = FilePath(file);
 

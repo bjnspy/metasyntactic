@@ -2,7 +2,7 @@
 
 #import "UnittestEmbedOptimizeFor.pb.h"
 
-@implementation UnittestEmbedOptimizeForProtoRoot
+@implementation UnittestEmbedOptimizeForRoot
 static PBFileDescriptor* descriptor = nil;
 static PBDescriptor* internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor = nil;
 static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable = nil;
@@ -13,8 +13,8 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
   return internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable;
 }
 + (void) initialize {
-  if (self == [UnittestEmbedOptimizeForProtoRoot class]) {
-    descriptor = [[UnittestEmbedOptimizeForProtoRoot buildDescriptor] retain];
+  if (self == [UnittestEmbedOptimizeForRoot class]) {
+    descriptor = [[UnittestEmbedOptimizeForRoot buildDescriptor] retain];
     internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:@"OptionalMessage", @"RepeatedMessage", nil];
@@ -47,7 +47,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_TestEmbedOptimize
     101,115,116,46,84,101,115,116,79,112,116,105,109,105,122,101,100,70,111,
     114,83,105,122,101,66,2,72,1,
   };
-  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestOptimizeForProtoRoot descriptor], nil];
+  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestOptimizeForRoot descriptor], nil];
   
   NSData* data = [NSData dataWithBytes:descriptorData length:283];
   PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
@@ -94,10 +94,10 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   return [TestEmbedOptimizedForSize descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestEmbedOptimizeForProtoRoot internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor];
+  return [UnittestEmbedOptimizeForRoot internal_static_protobuf_unittest_TestEmbedOptimizedForSize_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestEmbedOptimizeForProtoRoot internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable];
+  return [UnittestEmbedOptimizeForRoot internal_static_protobuf_unittest_TestEmbedOptimizedForSize_fieldAccessorTable];
 }
 - (NSArray*) repeatedMessageList {
   return mutableRepeatedMessageList;
@@ -221,7 +221,9 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
   }
 }
 - (TestEmbedOptimizedForSize_Builder*) mergeFromTestEmbedOptimizedForSize:(TestEmbedOptimizedForSize*) other {
-  if (other == [TestEmbedOptimizedForSize defaultInstance]) return self;
+  if (other == [TestEmbedOptimizedForSize defaultInstance]) {
+    return self;
+  }
   if (other.hasOptionalMessage) {
     [self mergeOptionalMessage:other.optionalMessage];
   }
@@ -239,7 +241,7 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 }
 - (TestEmbedOptimizedForSize_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:

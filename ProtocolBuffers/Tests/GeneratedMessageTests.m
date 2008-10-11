@@ -74,19 +74,19 @@
     // clearExtension() is not actually used in TestUtil, so try it manually.
     PBExtendableBuilder* builder1 =
     [[TestAllExtensions builder]
-     setExtension:[UnittestProtoRoot optionalInt32Extension] value:[NSNumber numberWithInt:1]];
+     setExtension:[UnittestRoot optionalInt32Extension] value:[NSNumber numberWithInt:1]];
     
-    STAssertTrue([builder1 hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
-    [builder1 clearExtension:[UnittestProtoRoot optionalInt32Extension]];
-    STAssertFalse([builder1 hasExtension:[UnittestProtoRoot optionalInt32Extension]], @"");
+    STAssertTrue([builder1 hasExtension:[UnittestRoot optionalInt32Extension]], @"");
+    [builder1 clearExtension:[UnittestRoot optionalInt32Extension]];
+    STAssertFalse([builder1 hasExtension:[UnittestRoot optionalInt32Extension]], @"");
     
     PBExtendableBuilder* builder2 =
     [[TestAllExtensions builder]
-     addExtension:[UnittestProtoRoot repeatedInt32Extension] value:[NSNumber numberWithInt:1]];
+     addExtension:[UnittestRoot repeatedInt32Extension] value:[NSNumber numberWithInt:1]];
     
-    STAssertTrue(1 == [[builder2 getExtension:[UnittestProtoRoot repeatedInt32Extension]] count], @"");
-    [builder2 clearExtension:[UnittestProtoRoot repeatedInt32Extension]];
-    STAssertTrue(0 == [[builder2 getExtension:[UnittestProtoRoot repeatedInt32Extension]] count], @"");
+    STAssertTrue(1 == [[builder2 getExtension:[UnittestRoot repeatedInt32Extension]] count], @"");
+    [builder2 clearExtension:[UnittestRoot repeatedInt32Extension]];
+    STAssertTrue(0 == [[builder2 getExtension:[UnittestRoot repeatedInt32Extension]] count], @"");
 }
 
 

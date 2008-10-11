@@ -45,6 +45,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       }
   }
 
+
   FieldGenerator* FieldGeneratorMap::MakeGenerator(const FieldDescriptor* field) {
     if (field->is_repeated()) {
       switch (GetObjectiveCType(field)) {

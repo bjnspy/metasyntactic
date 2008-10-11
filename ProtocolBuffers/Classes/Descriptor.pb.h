@@ -43,7 +43,7 @@
 @class PBServiceOptions;
 @class PBServiceOptions_Builder;
 
-@interface DescriptorProtoRoot : NSObject {
+@interface PBDescriptorRoot : NSObject {
 }
 + (PBFileDescriptor*) descriptor;
 + (PBFileDescriptor*) buildDescriptor;

@@ -94,8 +94,8 @@
                           setMyInt:1]
                          setMyString:@"foo"]
                         setMyFloat:1.0]
-                       setExtension:[UnittestProtoRoot myExtensionInt] value:[NSNumber numberWithInt:23]] 
-                      setExtension:[UnittestProtoRoot myExtensionString] value:@"bar"] build] toData];
+                       setExtension:[UnittestRoot myExtensionInt] value:[NSNumber numberWithInt:23]] 
+                      setExtension:[UnittestRoot myExtensionString] value:@"bar"] build] toData];
     [self assertFieldsInOrder:data];
     
     PBDescriptor* descriptor = [TestFieldOrderings descriptor];
@@ -103,8 +103,8 @@
                                   setField:[descriptor findFieldByName:@"my_int"] value:[NSNumber numberWithInt:1L]]
                                  setField:[descriptor findFieldByName:@"my_string"] value:@"foo"]
                                 setField:[descriptor findFieldByName:@"my_float"] value:[NSNumber numberWithFloat:1.0]]
-                               setField:[UnittestProtoRoot myExtensionInt].descriptor value:[NSNumber numberWithInt:23]]
-                              setField:[UnittestProtoRoot myExtensionString].descriptor value:@"bar"] build] toData];
+                               setField:[UnittestRoot myExtensionInt].descriptor value:[NSNumber numberWithInt:23]]
+                              setField:[UnittestRoot myExtensionString].descriptor value:@"bar"] build] toData];
     
     [self assertFieldsInOrder:dynamic_data];
 }

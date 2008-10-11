@@ -2,78 +2,78 @@
 
 #import "Unittest.pb.h"
 
-@implementation UnittestProtoRoot
+@implementation UnittestRoot
 static PBFileDescriptor* descriptor = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalInt32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalInt64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalUint32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalUint64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalSint32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalSint64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalFixed32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalFixed64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalSfixed32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalSfixed64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalFloatExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalDoubleExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalBoolExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalStringExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalBytesExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalGroupExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalNestedMessageExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalForeignMessageExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalImportMessageExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalNestedEnumExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalForeignEnumExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalImportEnumExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalStringPieceExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_optionalCordExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedInt32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedInt64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedUint32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedUint64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedSint32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedSint64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedFixed32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedFixed64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedSfixed32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedSfixed64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedFloatExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedDoubleExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedBoolExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedStringExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedBytesExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedGroupExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedNestedMessageExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedForeignMessageExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedImportMessageExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedNestedEnumExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedForeignEnumExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedImportEnumExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedStringPieceExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_repeatedCordExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultInt32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultInt64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultUint32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultUint64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultSint32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultSint64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultFixed32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultFixed64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultSfixed32Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultSfixed64Extension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultFloatExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultDoubleExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultBoolExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultStringExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultBytesExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultNestedEnumExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultForeignEnumExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultImportEnumExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultStringPieceExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_defaultCordExtension = nil;
-static PBGeneratedExtension* UnittestProtoRoot_myExtensionString = nil;
-static PBGeneratedExtension* UnittestProtoRoot_myExtensionInt = nil;
+static PBGeneratedExtension* UnittestRoot_optionalInt32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalInt64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalUint32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalUint64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalSint32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalSint64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalFixed32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalFixed64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalSfixed32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalSfixed64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalFloatExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalDoubleExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalBoolExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalStringExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalBytesExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalGroupExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalNestedMessageExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalForeignMessageExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalImportMessageExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalNestedEnumExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalForeignEnumExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalImportEnumExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalStringPieceExtension = nil;
+static PBGeneratedExtension* UnittestRoot_optionalCordExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedInt32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedInt64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedUint32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedUint64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedSint32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedSint64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedFixed32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedFixed64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedSfixed32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedSfixed64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedFloatExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedDoubleExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedBoolExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedStringExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedBytesExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedGroupExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedNestedMessageExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedForeignMessageExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedImportMessageExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedNestedEnumExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedForeignEnumExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedImportEnumExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedStringPieceExtension = nil;
+static PBGeneratedExtension* UnittestRoot_repeatedCordExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultInt32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultInt64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultUint32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultUint64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultSint32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultSint64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultFixed32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultFixed64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultSfixed32Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultSfixed64Extension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultFloatExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultDoubleExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultBoolExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultStringExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultBytesExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultNestedEnumExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultForeignEnumExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultImportEnumExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultStringPieceExtension = nil;
+static PBGeneratedExtension* UnittestRoot_defaultCordExtension = nil;
+static PBGeneratedExtension* UnittestRoot_myExtensionString = nil;
+static PBGeneratedExtension* UnittestRoot_myExtensionInt = nil;
 static PBDescriptor* internal_static_protobuf_unittest_TestAllTypes_descriptor = nil;
 static PBFieldAccessorTable* internal_static_protobuf_unittest_TestAllTypes_fieldAccessorTable = nil;
 + (PBDescriptor*) internal_static_protobuf_unittest_TestAllTypes_descriptor {
@@ -307,147 +307,147 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
   return internal_static_protobuf_unittest_BarResponse_fieldAccessorTable;
 }
 + (void) initialize {
-  if (self == [UnittestProtoRoot class]) {
-    descriptor = [[UnittestProtoRoot buildDescriptor] retain];
-         UnittestProtoRoot_optionalInt32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:0]
+  if (self == [UnittestRoot class]) {
+    descriptor = [[UnittestRoot buildDescriptor] retain];
+         UnittestRoot_optionalInt32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:0]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalInt64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:1]
+         UnittestRoot_optionalInt64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:1]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalUint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:2]
+         UnittestRoot_optionalUint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:2]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalUint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:3]
+         UnittestRoot_optionalUint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:3]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalSint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:4]
+         UnittestRoot_optionalSint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:4]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalSint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:5]
+         UnittestRoot_optionalSint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:5]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalFixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:6]
+         UnittestRoot_optionalFixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:6]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalFixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:7]
+         UnittestRoot_optionalFixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:7]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalSfixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:8]
+         UnittestRoot_optionalSfixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:8]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalSfixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:9]
+         UnittestRoot_optionalSfixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:9]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalFloatExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:10]
+         UnittestRoot_optionalFloatExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:10]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalDoubleExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:11]
+         UnittestRoot_optionalDoubleExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:11]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalBoolExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:12]
+         UnittestRoot_optionalBoolExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:12]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_optionalStringExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:13]
+         UnittestRoot_optionalStringExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:13]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_optionalBytesExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:14]
+         UnittestRoot_optionalBytesExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:14]
                                                            type:[NSData class]] retain];
-         UnittestProtoRoot_optionalGroupExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:15]
+         UnittestRoot_optionalGroupExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:15]
                                                            type:[OptionalGroup_extension class]] retain];
-         UnittestProtoRoot_optionalNestedMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:16]
+         UnittestRoot_optionalNestedMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:16]
                                                            type:[TestAllTypes_NestedMessage class]] retain];
-         UnittestProtoRoot_optionalForeignMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:17]
+         UnittestRoot_optionalForeignMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:17]
                                                            type:[ForeignMessage class]] retain];
-         UnittestProtoRoot_optionalImportMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:18]
+         UnittestRoot_optionalImportMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:18]
                                                            type:[ImportMessage class]] retain];
-         UnittestProtoRoot_optionalNestedEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:19]
+         UnittestRoot_optionalNestedEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:19]
                                                            type:[TestAllTypes_NestedEnum class]] retain];
-         UnittestProtoRoot_optionalForeignEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:20]
+         UnittestRoot_optionalForeignEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:20]
                                                            type:[ForeignEnum class]] retain];
-         UnittestProtoRoot_optionalImportEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:21]
+         UnittestRoot_optionalImportEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:21]
                                                            type:[ImportEnum class]] retain];
-         UnittestProtoRoot_optionalStringPieceExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:22]
+         UnittestRoot_optionalStringPieceExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:22]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_optionalCordExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:23]
+         UnittestRoot_optionalCordExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:23]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_repeatedInt32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:24]
+         UnittestRoot_repeatedInt32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:24]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedInt64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:25]
+         UnittestRoot_repeatedInt64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:25]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedUint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:26]
+         UnittestRoot_repeatedUint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:26]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedUint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:27]
+         UnittestRoot_repeatedUint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:27]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedSint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:28]
+         UnittestRoot_repeatedSint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:28]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedSint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:29]
+         UnittestRoot_repeatedSint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:29]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedFixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:30]
+         UnittestRoot_repeatedFixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:30]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedFixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:31]
+         UnittestRoot_repeatedFixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:31]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedSfixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:32]
+         UnittestRoot_repeatedSfixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:32]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedSfixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:33]
+         UnittestRoot_repeatedSfixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:33]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedFloatExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:34]
+         UnittestRoot_repeatedFloatExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:34]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedDoubleExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:35]
+         UnittestRoot_repeatedDoubleExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:35]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedBoolExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:36]
+         UnittestRoot_repeatedBoolExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:36]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_repeatedStringExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:37]
+         UnittestRoot_repeatedStringExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:37]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_repeatedBytesExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:38]
+         UnittestRoot_repeatedBytesExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:38]
                                                            type:[NSData class]] retain];
-         UnittestProtoRoot_repeatedGroupExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:39]
+         UnittestRoot_repeatedGroupExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:39]
                                                            type:[RepeatedGroup_extension class]] retain];
-         UnittestProtoRoot_repeatedNestedMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:40]
+         UnittestRoot_repeatedNestedMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:40]
                                                            type:[TestAllTypes_NestedMessage class]] retain];
-         UnittestProtoRoot_repeatedForeignMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:41]
+         UnittestRoot_repeatedForeignMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:41]
                                                            type:[ForeignMessage class]] retain];
-         UnittestProtoRoot_repeatedImportMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:42]
+         UnittestRoot_repeatedImportMessageExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:42]
                                                            type:[ImportMessage class]] retain];
-         UnittestProtoRoot_repeatedNestedEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:43]
+         UnittestRoot_repeatedNestedEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:43]
                                                            type:[TestAllTypes_NestedEnum class]] retain];
-         UnittestProtoRoot_repeatedForeignEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:44]
+         UnittestRoot_repeatedForeignEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:44]
                                                            type:[ForeignEnum class]] retain];
-         UnittestProtoRoot_repeatedImportEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:45]
+         UnittestRoot_repeatedImportEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:45]
                                                            type:[ImportEnum class]] retain];
-         UnittestProtoRoot_repeatedStringPieceExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:46]
+         UnittestRoot_repeatedStringPieceExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:46]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_repeatedCordExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:47]
+         UnittestRoot_repeatedCordExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:47]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_defaultInt32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:48]
+         UnittestRoot_defaultInt32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:48]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultInt64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:49]
+         UnittestRoot_defaultInt64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:49]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultUint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:50]
+         UnittestRoot_defaultUint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:50]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultUint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:51]
+         UnittestRoot_defaultUint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:51]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultSint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:52]
+         UnittestRoot_defaultSint32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:52]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultSint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:53]
+         UnittestRoot_defaultSint64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:53]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultFixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:54]
+         UnittestRoot_defaultFixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:54]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultFixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:55]
+         UnittestRoot_defaultFixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:55]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultSfixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:56]
+         UnittestRoot_defaultSfixed32Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:56]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultSfixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:57]
+         UnittestRoot_defaultSfixed64Extension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:57]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultFloatExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:58]
+         UnittestRoot_defaultFloatExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:58]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultDoubleExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:59]
+         UnittestRoot_defaultDoubleExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:59]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultBoolExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:60]
+         UnittestRoot_defaultBoolExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:60]
                                                            type:[NSNumber class]] retain];
-         UnittestProtoRoot_defaultStringExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:61]
+         UnittestRoot_defaultStringExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:61]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_defaultBytesExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:62]
+         UnittestRoot_defaultBytesExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:62]
                                                            type:[NSData class]] retain];
-         UnittestProtoRoot_defaultNestedEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:63]
+         UnittestRoot_defaultNestedEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:63]
                                                            type:[TestAllTypes_NestedEnum class]] retain];
-         UnittestProtoRoot_defaultForeignEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:64]
+         UnittestRoot_defaultForeignEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:64]
                                                            type:[ForeignEnum class]] retain];
-         UnittestProtoRoot_defaultImportEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:65]
+         UnittestRoot_defaultImportEnumExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:65]
                                                            type:[ImportEnum class]] retain];
-         UnittestProtoRoot_defaultStringPieceExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:66]
+         UnittestRoot_defaultStringPieceExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:66]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_defaultCordExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:67]
+         UnittestRoot_defaultCordExtension = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:67]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_myExtensionString = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:68]
+         UnittestRoot_myExtensionString = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:68]
                                                            type:[NSString class]] retain];
-         UnittestProtoRoot_myExtensionInt = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:69]
+         UnittestRoot_myExtensionInt = [[PBGeneratedExtension extensionWithDescriptor:[[self descriptor].extensions objectAtIndex:69]
                                                            type:[NSNumber class]] retain];
     internal_static_protobuf_unittest_TestAllTypes_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
@@ -713,214 +713,214 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
   }
 }
 + (PBGeneratedExtension*) optionalInt32Extension {
-  return UnittestProtoRoot_optionalInt32Extension;
+  return UnittestRoot_optionalInt32Extension;
 }
 + (PBGeneratedExtension*) optionalInt64Extension {
-  return UnittestProtoRoot_optionalInt64Extension;
+  return UnittestRoot_optionalInt64Extension;
 }
 + (PBGeneratedExtension*) optionalUint32Extension {
-  return UnittestProtoRoot_optionalUint32Extension;
+  return UnittestRoot_optionalUint32Extension;
 }
 + (PBGeneratedExtension*) optionalUint64Extension {
-  return UnittestProtoRoot_optionalUint64Extension;
+  return UnittestRoot_optionalUint64Extension;
 }
 + (PBGeneratedExtension*) optionalSint32Extension {
-  return UnittestProtoRoot_optionalSint32Extension;
+  return UnittestRoot_optionalSint32Extension;
 }
 + (PBGeneratedExtension*) optionalSint64Extension {
-  return UnittestProtoRoot_optionalSint64Extension;
+  return UnittestRoot_optionalSint64Extension;
 }
 + (PBGeneratedExtension*) optionalFixed32Extension {
-  return UnittestProtoRoot_optionalFixed32Extension;
+  return UnittestRoot_optionalFixed32Extension;
 }
 + (PBGeneratedExtension*) optionalFixed64Extension {
-  return UnittestProtoRoot_optionalFixed64Extension;
+  return UnittestRoot_optionalFixed64Extension;
 }
 + (PBGeneratedExtension*) optionalSfixed32Extension {
-  return UnittestProtoRoot_optionalSfixed32Extension;
+  return UnittestRoot_optionalSfixed32Extension;
 }
 + (PBGeneratedExtension*) optionalSfixed64Extension {
-  return UnittestProtoRoot_optionalSfixed64Extension;
+  return UnittestRoot_optionalSfixed64Extension;
 }
 + (PBGeneratedExtension*) optionalFloatExtension {
-  return UnittestProtoRoot_optionalFloatExtension;
+  return UnittestRoot_optionalFloatExtension;
 }
 + (PBGeneratedExtension*) optionalDoubleExtension {
-  return UnittestProtoRoot_optionalDoubleExtension;
+  return UnittestRoot_optionalDoubleExtension;
 }
 + (PBGeneratedExtension*) optionalBoolExtension {
-  return UnittestProtoRoot_optionalBoolExtension;
+  return UnittestRoot_optionalBoolExtension;
 }
 + (PBGeneratedExtension*) optionalStringExtension {
-  return UnittestProtoRoot_optionalStringExtension;
+  return UnittestRoot_optionalStringExtension;
 }
 + (PBGeneratedExtension*) optionalBytesExtension {
-  return UnittestProtoRoot_optionalBytesExtension;
+  return UnittestRoot_optionalBytesExtension;
 }
 + (PBGeneratedExtension*) optionalGroupExtension {
-  return UnittestProtoRoot_optionalGroupExtension;
+  return UnittestRoot_optionalGroupExtension;
 }
 + (PBGeneratedExtension*) optionalNestedMessageExtension {
-  return UnittestProtoRoot_optionalNestedMessageExtension;
+  return UnittestRoot_optionalNestedMessageExtension;
 }
 + (PBGeneratedExtension*) optionalForeignMessageExtension {
-  return UnittestProtoRoot_optionalForeignMessageExtension;
+  return UnittestRoot_optionalForeignMessageExtension;
 }
 + (PBGeneratedExtension*) optionalImportMessageExtension {
-  return UnittestProtoRoot_optionalImportMessageExtension;
+  return UnittestRoot_optionalImportMessageExtension;
 }
 + (PBGeneratedExtension*) optionalNestedEnumExtension {
-  return UnittestProtoRoot_optionalNestedEnumExtension;
+  return UnittestRoot_optionalNestedEnumExtension;
 }
 + (PBGeneratedExtension*) optionalForeignEnumExtension {
-  return UnittestProtoRoot_optionalForeignEnumExtension;
+  return UnittestRoot_optionalForeignEnumExtension;
 }
 + (PBGeneratedExtension*) optionalImportEnumExtension {
-  return UnittestProtoRoot_optionalImportEnumExtension;
+  return UnittestRoot_optionalImportEnumExtension;
 }
 + (PBGeneratedExtension*) optionalStringPieceExtension {
-  return UnittestProtoRoot_optionalStringPieceExtension;
+  return UnittestRoot_optionalStringPieceExtension;
 }
 + (PBGeneratedExtension*) optionalCordExtension {
-  return UnittestProtoRoot_optionalCordExtension;
+  return UnittestRoot_optionalCordExtension;
 }
 + (PBGeneratedExtension*) repeatedInt32Extension {
-  return UnittestProtoRoot_repeatedInt32Extension;
+  return UnittestRoot_repeatedInt32Extension;
 }
 + (PBGeneratedExtension*) repeatedInt64Extension {
-  return UnittestProtoRoot_repeatedInt64Extension;
+  return UnittestRoot_repeatedInt64Extension;
 }
 + (PBGeneratedExtension*) repeatedUint32Extension {
-  return UnittestProtoRoot_repeatedUint32Extension;
+  return UnittestRoot_repeatedUint32Extension;
 }
 + (PBGeneratedExtension*) repeatedUint64Extension {
-  return UnittestProtoRoot_repeatedUint64Extension;
+  return UnittestRoot_repeatedUint64Extension;
 }
 + (PBGeneratedExtension*) repeatedSint32Extension {
-  return UnittestProtoRoot_repeatedSint32Extension;
+  return UnittestRoot_repeatedSint32Extension;
 }
 + (PBGeneratedExtension*) repeatedSint64Extension {
-  return UnittestProtoRoot_repeatedSint64Extension;
+  return UnittestRoot_repeatedSint64Extension;
 }
 + (PBGeneratedExtension*) repeatedFixed32Extension {
-  return UnittestProtoRoot_repeatedFixed32Extension;
+  return UnittestRoot_repeatedFixed32Extension;
 }
 + (PBGeneratedExtension*) repeatedFixed64Extension {
-  return UnittestProtoRoot_repeatedFixed64Extension;
+  return UnittestRoot_repeatedFixed64Extension;
 }
 + (PBGeneratedExtension*) repeatedSfixed32Extension {
-  return UnittestProtoRoot_repeatedSfixed32Extension;
+  return UnittestRoot_repeatedSfixed32Extension;
 }
 + (PBGeneratedExtension*) repeatedSfixed64Extension {
-  return UnittestProtoRoot_repeatedSfixed64Extension;
+  return UnittestRoot_repeatedSfixed64Extension;
 }
 + (PBGeneratedExtension*) repeatedFloatExtension {
-  return UnittestProtoRoot_repeatedFloatExtension;
+  return UnittestRoot_repeatedFloatExtension;
 }
 + (PBGeneratedExtension*) repeatedDoubleExtension {
-  return UnittestProtoRoot_repeatedDoubleExtension;
+  return UnittestRoot_repeatedDoubleExtension;
 }
 + (PBGeneratedExtension*) repeatedBoolExtension {
-  return UnittestProtoRoot_repeatedBoolExtension;
+  return UnittestRoot_repeatedBoolExtension;
 }
 + (PBGeneratedExtension*) repeatedStringExtension {
-  return UnittestProtoRoot_repeatedStringExtension;
+  return UnittestRoot_repeatedStringExtension;
 }
 + (PBGeneratedExtension*) repeatedBytesExtension {
-  return UnittestProtoRoot_repeatedBytesExtension;
+  return UnittestRoot_repeatedBytesExtension;
 }
 + (PBGeneratedExtension*) repeatedGroupExtension {
-  return UnittestProtoRoot_repeatedGroupExtension;
+  return UnittestRoot_repeatedGroupExtension;
 }
 + (PBGeneratedExtension*) repeatedNestedMessageExtension {
-  return UnittestProtoRoot_repeatedNestedMessageExtension;
+  return UnittestRoot_repeatedNestedMessageExtension;
 }
 + (PBGeneratedExtension*) repeatedForeignMessageExtension {
-  return UnittestProtoRoot_repeatedForeignMessageExtension;
+  return UnittestRoot_repeatedForeignMessageExtension;
 }
 + (PBGeneratedExtension*) repeatedImportMessageExtension {
-  return UnittestProtoRoot_repeatedImportMessageExtension;
+  return UnittestRoot_repeatedImportMessageExtension;
 }
 + (PBGeneratedExtension*) repeatedNestedEnumExtension {
-  return UnittestProtoRoot_repeatedNestedEnumExtension;
+  return UnittestRoot_repeatedNestedEnumExtension;
 }
 + (PBGeneratedExtension*) repeatedForeignEnumExtension {
-  return UnittestProtoRoot_repeatedForeignEnumExtension;
+  return UnittestRoot_repeatedForeignEnumExtension;
 }
 + (PBGeneratedExtension*) repeatedImportEnumExtension {
-  return UnittestProtoRoot_repeatedImportEnumExtension;
+  return UnittestRoot_repeatedImportEnumExtension;
 }
 + (PBGeneratedExtension*) repeatedStringPieceExtension {
-  return UnittestProtoRoot_repeatedStringPieceExtension;
+  return UnittestRoot_repeatedStringPieceExtension;
 }
 + (PBGeneratedExtension*) repeatedCordExtension {
-  return UnittestProtoRoot_repeatedCordExtension;
+  return UnittestRoot_repeatedCordExtension;
 }
 + (PBGeneratedExtension*) defaultInt32Extension {
-  return UnittestProtoRoot_defaultInt32Extension;
+  return UnittestRoot_defaultInt32Extension;
 }
 + (PBGeneratedExtension*) defaultInt64Extension {
-  return UnittestProtoRoot_defaultInt64Extension;
+  return UnittestRoot_defaultInt64Extension;
 }
 + (PBGeneratedExtension*) defaultUint32Extension {
-  return UnittestProtoRoot_defaultUint32Extension;
+  return UnittestRoot_defaultUint32Extension;
 }
 + (PBGeneratedExtension*) defaultUint64Extension {
-  return UnittestProtoRoot_defaultUint64Extension;
+  return UnittestRoot_defaultUint64Extension;
 }
 + (PBGeneratedExtension*) defaultSint32Extension {
-  return UnittestProtoRoot_defaultSint32Extension;
+  return UnittestRoot_defaultSint32Extension;
 }
 + (PBGeneratedExtension*) defaultSint64Extension {
-  return UnittestProtoRoot_defaultSint64Extension;
+  return UnittestRoot_defaultSint64Extension;
 }
 + (PBGeneratedExtension*) defaultFixed32Extension {
-  return UnittestProtoRoot_defaultFixed32Extension;
+  return UnittestRoot_defaultFixed32Extension;
 }
 + (PBGeneratedExtension*) defaultFixed64Extension {
-  return UnittestProtoRoot_defaultFixed64Extension;
+  return UnittestRoot_defaultFixed64Extension;
 }
 + (PBGeneratedExtension*) defaultSfixed32Extension {
-  return UnittestProtoRoot_defaultSfixed32Extension;
+  return UnittestRoot_defaultSfixed32Extension;
 }
 + (PBGeneratedExtension*) defaultSfixed64Extension {
-  return UnittestProtoRoot_defaultSfixed64Extension;
+  return UnittestRoot_defaultSfixed64Extension;
 }
 + (PBGeneratedExtension*) defaultFloatExtension {
-  return UnittestProtoRoot_defaultFloatExtension;
+  return UnittestRoot_defaultFloatExtension;
 }
 + (PBGeneratedExtension*) defaultDoubleExtension {
-  return UnittestProtoRoot_defaultDoubleExtension;
+  return UnittestRoot_defaultDoubleExtension;
 }
 + (PBGeneratedExtension*) defaultBoolExtension {
-  return UnittestProtoRoot_defaultBoolExtension;
+  return UnittestRoot_defaultBoolExtension;
 }
 + (PBGeneratedExtension*) defaultStringExtension {
-  return UnittestProtoRoot_defaultStringExtension;
+  return UnittestRoot_defaultStringExtension;
 }
 + (PBGeneratedExtension*) defaultBytesExtension {
-  return UnittestProtoRoot_defaultBytesExtension;
+  return UnittestRoot_defaultBytesExtension;
 }
 + (PBGeneratedExtension*) defaultNestedEnumExtension {
-  return UnittestProtoRoot_defaultNestedEnumExtension;
+  return UnittestRoot_defaultNestedEnumExtension;
 }
 + (PBGeneratedExtension*) defaultForeignEnumExtension {
-  return UnittestProtoRoot_defaultForeignEnumExtension;
+  return UnittestRoot_defaultForeignEnumExtension;
 }
 + (PBGeneratedExtension*) defaultImportEnumExtension {
-  return UnittestProtoRoot_defaultImportEnumExtension;
+  return UnittestRoot_defaultImportEnumExtension;
 }
 + (PBGeneratedExtension*) defaultStringPieceExtension {
-  return UnittestProtoRoot_defaultStringPieceExtension;
+  return UnittestRoot_defaultStringPieceExtension;
 }
 + (PBGeneratedExtension*) defaultCordExtension {
-  return UnittestProtoRoot_defaultCordExtension;
+  return UnittestRoot_defaultCordExtension;
 }
 + (PBGeneratedExtension*) myExtensionString {
-  return UnittestProtoRoot_myExtensionString;
+  return UnittestRoot_myExtensionString;
 }
 + (PBGeneratedExtension*) myExtensionInt {
-  return UnittestProtoRoot_myExtensionInt;
+  return UnittestRoot_myExtensionInt;
 }
 + (PBFileDescriptor*) descriptor {
   return descriptor;
@@ -1524,7 +1524,7 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_BarResponse_field
     32,1,40,5,66,17,66,13,85,110,105,116,116,101,115,116,80,114,111,116,111,
     72,1,
   };
-  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestImportProtoRoot descriptor], nil];
+  NSArray* dependencies = [NSArray arrayWithObjects:[UnittestImportRoot descriptor], nil];
   
   NSData* data = [NSData dataWithBytes:descriptorData length:12136];
   PBFileDescriptorProto* proto = [PBFileDescriptorProto parseFromData:data];
@@ -1560,9 +1560,15 @@ static ForeignEnum* ForeignEnum_FOREIGN_BAZ = nil;
     ForeignEnum_FOREIGN_BAZ = [[ForeignEnum newWithIndex:2 value:6] retain];
   }
 }
-+ (ForeignEnum*) FOREIGN_FOO { return ForeignEnum_FOREIGN_FOO; }
-+ (ForeignEnum*) FOREIGN_BAR { return ForeignEnum_FOREIGN_BAR; }
-+ (ForeignEnum*) FOREIGN_BAZ { return ForeignEnum_FOREIGN_BAZ; }
++ (ForeignEnum*) FOREIGN_FOO {
+  return ForeignEnum_FOREIGN_FOO;
+}
++ (ForeignEnum*) FOREIGN_BAR {
+  return ForeignEnum_FOREIGN_BAR;
+}
++ (ForeignEnum*) FOREIGN_BAZ {
+  return ForeignEnum_FOREIGN_BAZ;
+}
 - (int32_t) number { return value; }
 + (ForeignEnum*) valueOf:(int32_t) value {
   switch (value) {
@@ -1579,7 +1585,7 @@ static ForeignEnum* ForeignEnum_FOREIGN_BAZ = nil;
   return [ForeignEnum descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
-  return [[UnittestProtoRoot descriptor].enumTypes objectAtIndex:0];
+  return [[UnittestRoot descriptor].enumTypes objectAtIndex:0];
 }
 + (ForeignEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.type != [ForeignEnum descriptor]) {
@@ -1622,11 +1628,21 @@ static TestEnumWithDupValue* TestEnumWithDupValue_BAZ = nil;
     TestEnumWithDupValue_BAZ = [[TestEnumWithDupValue newWithIndex:2 value:3] retain];
   }
 }
-+ (TestEnumWithDupValue*) FOO1 { return TestEnumWithDupValue_FOO1; }
-+ (TestEnumWithDupValue*) BAR1 { return TestEnumWithDupValue_BAR1; }
-+ (TestEnumWithDupValue*) BAZ { return TestEnumWithDupValue_BAZ; }
-+ (TestEnumWithDupValue*) FOO2 { return [TestEnumWithDupValue FOO1]; }
-+ (TestEnumWithDupValue*) BAR2 { return [TestEnumWithDupValue BAR1]; }
++ (TestEnumWithDupValue*) FOO1 {
+  return TestEnumWithDupValue_FOO1;
+}
++ (TestEnumWithDupValue*) BAR1 {
+  return TestEnumWithDupValue_BAR1;
+}
++ (TestEnumWithDupValue*) BAZ {
+  return TestEnumWithDupValue_BAZ;
+}
++ (TestEnumWithDupValue*) FOO2 {
+  return [TestEnumWithDupValue FOO1];
+}
++ (TestEnumWithDupValue*) BAR2 {
+  return [TestEnumWithDupValue BAR1];
+}
 - (int32_t) number { return value; }
 + (TestEnumWithDupValue*) valueOf:(int32_t) value {
   switch (value) {
@@ -1643,7 +1659,7 @@ static TestEnumWithDupValue* TestEnumWithDupValue_BAZ = nil;
   return [TestEnumWithDupValue descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
-  return [[UnittestProtoRoot descriptor].enumTypes objectAtIndex:1];
+  return [[UnittestRoot descriptor].enumTypes objectAtIndex:1];
 }
 + (TestEnumWithDupValue*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.type != [TestEnumWithDupValue descriptor]) {
@@ -1696,13 +1712,27 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
     TestSparseEnum_SPARSE_G = [[TestSparseEnum newWithIndex:6 value:2] retain];
   }
 }
-+ (TestSparseEnum*) SPARSE_A { return TestSparseEnum_SPARSE_A; }
-+ (TestSparseEnum*) SPARSE_B { return TestSparseEnum_SPARSE_B; }
-+ (TestSparseEnum*) SPARSE_C { return TestSparseEnum_SPARSE_C; }
-+ (TestSparseEnum*) SPARSE_D { return TestSparseEnum_SPARSE_D; }
-+ (TestSparseEnum*) SPARSE_E { return TestSparseEnum_SPARSE_E; }
-+ (TestSparseEnum*) SPARSE_F { return TestSparseEnum_SPARSE_F; }
-+ (TestSparseEnum*) SPARSE_G { return TestSparseEnum_SPARSE_G; }
++ (TestSparseEnum*) SPARSE_A {
+  return TestSparseEnum_SPARSE_A;
+}
++ (TestSparseEnum*) SPARSE_B {
+  return TestSparseEnum_SPARSE_B;
+}
++ (TestSparseEnum*) SPARSE_C {
+  return TestSparseEnum_SPARSE_C;
+}
++ (TestSparseEnum*) SPARSE_D {
+  return TestSparseEnum_SPARSE_D;
+}
++ (TestSparseEnum*) SPARSE_E {
+  return TestSparseEnum_SPARSE_E;
+}
++ (TestSparseEnum*) SPARSE_F {
+  return TestSparseEnum_SPARSE_F;
+}
++ (TestSparseEnum*) SPARSE_G {
+  return TestSparseEnum_SPARSE_G;
+}
 - (int32_t) number { return value; }
 + (TestSparseEnum*) valueOf:(int32_t) value {
   switch (value) {
@@ -1723,7 +1753,7 @@ static TestSparseEnum* TestSparseEnum_SPARSE_G = nil;
   return [TestSparseEnum descriptor];
 }
 + (PBEnumDescriptor*) descriptor {
-  return [[UnittestProtoRoot descriptor].enumTypes objectAtIndex:2];
+  return [[UnittestRoot descriptor].enumTypes objectAtIndex:2];
 }
 + (TestSparseEnum*) valueOfDescriptor:(PBEnumValueDescriptor*) desc {
   if (desc.type != [TestSparseEnum descriptor]) {
@@ -2151,10 +2181,10 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
   return [TestAllTypes descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_fieldAccessorTable];
 }
 - (NSArray*) repeatedInt32List {
   return mutableRepeatedInt32List;
@@ -2804,9 +2834,15 @@ static TestAllTypes_NestedEnum* TestAllTypes_NestedEnum_BAZ = nil;
     TestAllTypes_NestedEnum_BAZ = [[TestAllTypes_NestedEnum newWithIndex:2 value:3] retain];
   }
 }
-+ (TestAllTypes_NestedEnum*) FOO { return TestAllTypes_NestedEnum_FOO; }
-+ (TestAllTypes_NestedEnum*) BAR { return TestAllTypes_NestedEnum_BAR; }
-+ (TestAllTypes_NestedEnum*) BAZ { return TestAllTypes_NestedEnum_BAZ; }
++ (TestAllTypes_NestedEnum*) FOO {
+  return TestAllTypes_NestedEnum_FOO;
+}
++ (TestAllTypes_NestedEnum*) BAR {
+  return TestAllTypes_NestedEnum_BAR;
+}
++ (TestAllTypes_NestedEnum*) BAZ {
+  return TestAllTypes_NestedEnum_BAZ;
+}
 - (int32_t) number { return value; }
 + (TestAllTypes_NestedEnum*) valueOf:(int32_t) value {
   switch (value) {
@@ -2874,10 +2910,10 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   return [TestAllTypes_NestedMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_NestedMessage_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_NestedMessage_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_NestedMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -2978,7 +3014,9 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
   }
 }
 - (TestAllTypes_NestedMessage_Builder*) mergeFromTestAllTypes_NestedMessage:(TestAllTypes_NestedMessage*) other {
-  if (other == [TestAllTypes_NestedMessage defaultInstance]) return self;
+  if (other == [TestAllTypes_NestedMessage defaultInstance]) {
+    return self;
+  }
   if (other.hasBb) {
     [self setBb:other.bb];
   }
@@ -2990,7 +3028,7 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 }
 - (TestAllTypes_NestedMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -3064,10 +3102,10 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   return [TestAllTypes_OptionalGroup descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_OptionalGroup_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -3168,7 +3206,9 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
   }
 }
 - (TestAllTypes_OptionalGroup_Builder*) mergeFromTestAllTypes_OptionalGroup:(TestAllTypes_OptionalGroup*) other {
-  if (other == [TestAllTypes_OptionalGroup defaultInstance]) return self;
+  if (other == [TestAllTypes_OptionalGroup defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self setA:other.a];
   }
@@ -3180,7 +3220,7 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 }
 - (TestAllTypes_OptionalGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -3254,10 +3294,10 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return [TestAllTypes_RepeatedGroup descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllTypes_RepeatedGroup_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -3358,7 +3398,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   }
 }
 - (TestAllTypes_RepeatedGroup_Builder*) mergeFromTestAllTypes_RepeatedGroup:(TestAllTypes_RepeatedGroup*) other {
-  if (other == [TestAllTypes_RepeatedGroup defaultInstance]) return self;
+  if (other == [TestAllTypes_RepeatedGroup defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self setA:other.a];
   }
@@ -3370,7 +3412,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 - (TestAllTypes_RepeatedGroup_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -3457,7 +3499,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   }
 }
 - (TestAllTypes_Builder*) mergeFromTestAllTypes:(TestAllTypes*) other {
-  if (other == [TestAllTypes defaultInstance]) return self;
+  if (other == [TestAllTypes defaultInstance]) {
+    return self;
+  }
   if (other.hasOptionalInt32) {
     [self setOptionalInt32:other.optionalInt32];
   }
@@ -3742,7 +3786,7 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 - (TestAllTypes_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -4553,7 +4597,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedInt32List {
-  if (result.mutableRepeatedInt32List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedInt32List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedInt32List;
 }
 - (int32_t) repeatedInt32AtIndex:(int32_t) index {
@@ -4582,7 +4628,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedInt64List {
-  if (result.mutableRepeatedInt64List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedInt64List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedInt64List;
 }
 - (int64_t) repeatedInt64AtIndex:(int32_t) index {
@@ -4611,7 +4659,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedUint32List {
-  if (result.mutableRepeatedUint32List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedUint32List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedUint32List;
 }
 - (int32_t) repeatedUint32AtIndex:(int32_t) index {
@@ -4640,7 +4690,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedUint64List {
-  if (result.mutableRepeatedUint64List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedUint64List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedUint64List;
 }
 - (int64_t) repeatedUint64AtIndex:(int32_t) index {
@@ -4669,7 +4721,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedSint32List {
-  if (result.mutableRepeatedSint32List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedSint32List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedSint32List;
 }
 - (int32_t) repeatedSint32AtIndex:(int32_t) index {
@@ -4698,7 +4752,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedSint64List {
-  if (result.mutableRepeatedSint64List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedSint64List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedSint64List;
 }
 - (int64_t) repeatedSint64AtIndex:(int32_t) index {
@@ -4727,7 +4783,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedFixed32List {
-  if (result.mutableRepeatedFixed32List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedFixed32List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedFixed32List;
 }
 - (int32_t) repeatedFixed32AtIndex:(int32_t) index {
@@ -4756,7 +4814,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedFixed64List {
-  if (result.mutableRepeatedFixed64List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedFixed64List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedFixed64List;
 }
 - (int64_t) repeatedFixed64AtIndex:(int32_t) index {
@@ -4785,7 +4845,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedSfixed32List {
-  if (result.mutableRepeatedSfixed32List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedSfixed32List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedSfixed32List;
 }
 - (int32_t) repeatedSfixed32AtIndex:(int32_t) index {
@@ -4814,7 +4876,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedSfixed64List {
-  if (result.mutableRepeatedSfixed64List == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedSfixed64List == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedSfixed64List;
 }
 - (int64_t) repeatedSfixed64AtIndex:(int32_t) index {
@@ -4843,7 +4907,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedFloatList {
-  if (result.mutableRepeatedFloatList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedFloatList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedFloatList;
 }
 - (Float32) repeatedFloatAtIndex:(int32_t) index {
@@ -4872,7 +4938,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedDoubleList {
-  if (result.mutableRepeatedDoubleList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedDoubleList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedDoubleList;
 }
 - (Float64) repeatedDoubleAtIndex:(int32_t) index {
@@ -4901,7 +4969,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedBoolList {
-  if (result.mutableRepeatedBoolList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedBoolList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedBoolList;
 }
 - (BOOL) repeatedBoolAtIndex:(int32_t) index {
@@ -4930,7 +5000,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedStringList {
-  if (result.mutableRepeatedStringList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedStringList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedStringList;
 }
 - (NSString*) repeatedStringAtIndex:(int32_t) index {
@@ -4959,7 +5031,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedBytesList {
-  if (result.mutableRepeatedBytesList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedBytesList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedBytesList;
 }
 - (NSData*) repeatedBytesAtIndex:(int32_t) index {
@@ -5188,7 +5262,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedStringPieceList {
-  if (result.mutableRepeatedStringPieceList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedStringPieceList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedStringPieceList;
 }
 - (NSString*) repeatedStringPieceAtIndex:(int32_t) index {
@@ -5217,7 +5293,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   return self;
 }
 - (NSArray*) repeatedCordList {
-  if (result.mutableRepeatedCordList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedCordList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedCordList;
 }
 - (NSString*) repeatedCordAtIndex:(int32_t) index {
@@ -5603,10 +5681,10 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   return [ForeignMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_ForeignMessage_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_ForeignMessage_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_ForeignMessage_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_ForeignMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -5707,7 +5785,9 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
   }
 }
 - (ForeignMessage_Builder*) mergeFromForeignMessage:(ForeignMessage*) other {
-  if (other == [ForeignMessage defaultInstance]) return self;
+  if (other == [ForeignMessage defaultInstance]) {
+    return self;
+  }
   if (other.hasC) {
     [self setC:other.c];
   }
@@ -5719,7 +5799,7 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 }
 - (ForeignMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -5786,10 +5866,10 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   return [TestAllExtensions descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllExtensions_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllExtensions_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestAllExtensions_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestAllExtensions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!self.extensionsAreInitialized) {
@@ -5890,7 +5970,9 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
   }
 }
 - (TestAllExtensions_Builder*) mergeFromTestAllExtensions:(TestAllExtensions*) other {
-  if (other == [TestAllExtensions defaultInstance]) return self;
+  if (other == [TestAllExtensions defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -5899,7 +5981,7 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 }
 - (TestAllExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -5953,10 +6035,10 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   return [OptionalGroup_extension descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_OptionalGroup_extension_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_OptionalGroup_extension_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_OptionalGroup_extension_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_OptionalGroup_extension_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -6057,7 +6139,9 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
   }
 }
 - (OptionalGroup_extension_Builder*) mergeFromOptionalGroup_extension:(OptionalGroup_extension*) other {
-  if (other == [OptionalGroup_extension defaultInstance]) return self;
+  if (other == [OptionalGroup_extension defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self setA:other.a];
   }
@@ -6069,7 +6153,7 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 }
 - (OptionalGroup_extension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -6143,10 +6227,10 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   return [RepeatedGroup_extension descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_RepeatedGroup_extension_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_RepeatedGroup_extension_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_RepeatedGroup_extension_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -6247,7 +6331,9 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
   }
 }
 - (RepeatedGroup_extension_Builder*) mergeFromRepeatedGroup_extension:(RepeatedGroup_extension*) other {
-  if (other == [RepeatedGroup_extension defaultInstance]) return self;
+  if (other == [RepeatedGroup_extension defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self setA:other.a];
   }
@@ -6259,7 +6345,7 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 }
 - (RepeatedGroup_extension_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -6569,10 +6655,10 @@ static TestRequired* defaultTestRequiredInstance = nil;
   return [TestRequired descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestRequired_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestRequired_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestRequired_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestRequired_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!self.hasA) {
@@ -6874,7 +6960,9 @@ static TestRequired* defaultTestRequiredInstance = nil;
   }
 }
 - (TestRequired_Builder*) mergeFromTestRequired:(TestRequired*) other {
-  if (other == [TestRequired defaultInstance]) return self;
+  if (other == [TestRequired defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self setA:other.a];
   }
@@ -6982,7 +7070,7 @@ static TestRequired* defaultTestRequiredInstance = nil;
 }
 - (TestRequired_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -7706,10 +7794,10 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   return [TestRequiredForeign descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestRequiredForeign_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestRequiredForeign_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestRequiredForeign_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestRequiredForeign_fieldAccessorTable];
 }
 - (NSArray*) repeatedMessageList {
   return mutableRepeatedMessageList;
@@ -7839,7 +7927,9 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
   }
 }
 - (TestRequiredForeign_Builder*) mergeFromTestRequiredForeign:(TestRequiredForeign*) other {
-  if (other == [TestRequiredForeign defaultInstance]) return self;
+  if (other == [TestRequiredForeign defaultInstance]) {
+    return self;
+  }
   if (other.hasOptionalMessage) {
     [self mergeOptionalMessage:other.optionalMessage];
   }
@@ -7860,7 +7950,7 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 }
 - (TestRequiredForeign_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -8008,10 +8098,10 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   return [TestForeignNested descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestForeignNested_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestForeignNested_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestForeignNested_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestForeignNested_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -8112,7 +8202,9 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
   }
 }
 - (TestForeignNested_Builder*) mergeFromTestForeignNested:(TestForeignNested*) other {
-  if (other == [TestForeignNested defaultInstance]) return self;
+  if (other == [TestForeignNested defaultInstance]) {
+    return self;
+  }
   if (other.hasForeignNested) {
     [self mergeForeignNested:other.foreignNested];
   }
@@ -8124,7 +8216,7 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 }
 - (TestForeignNested_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -8210,10 +8302,10 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   return [TestEmptyMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestEmptyMessage_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestEmptyMessage_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestEmptyMessage_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestEmptyMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -8308,7 +8400,9 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
   }
 }
 - (TestEmptyMessage_Builder*) mergeFromTestEmptyMessage:(TestEmptyMessage*) other {
-  if (other == [TestEmptyMessage defaultInstance]) return self;
+  if (other == [TestEmptyMessage defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -8317,7 +8411,7 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 }
 - (TestEmptyMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -8364,10 +8458,10 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   return [TestEmptyMessageWithExtensions descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestEmptyMessageWithExtensions_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!self.extensionsAreInitialized) {
@@ -8468,7 +8562,9 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
   }
 }
 - (TestEmptyMessageWithExtensions_Builder*) mergeFromTestEmptyMessageWithExtensions:(TestEmptyMessageWithExtensions*) other {
-  if (other == [TestEmptyMessageWithExtensions defaultInstance]) return self;
+  if (other == [TestEmptyMessageWithExtensions defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -8477,7 +8573,7 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 }
 - (TestEmptyMessageWithExtensions_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -8538,10 +8634,10 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   return [TestReallyLargeTagNumber descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestReallyLargeTagNumber_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestReallyLargeTagNumber_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestReallyLargeTagNumber_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -8648,7 +8744,9 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
   }
 }
 - (TestReallyLargeTagNumber_Builder*) mergeFromTestReallyLargeTagNumber:(TestReallyLargeTagNumber*) other {
-  if (other == [TestReallyLargeTagNumber defaultInstance]) return self;
+  if (other == [TestReallyLargeTagNumber defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self setA:other.a];
   }
@@ -8663,7 +8761,7 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 }
 - (TestReallyLargeTagNumber_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -8764,10 +8862,10 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   return [TestRecursiveMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestRecursiveMessage_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestRecursiveMessage_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestRecursiveMessage_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestRecursiveMessage_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -8874,7 +8972,9 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
   }
 }
 - (TestRecursiveMessage_Builder*) mergeFromTestRecursiveMessage:(TestRecursiveMessage*) other {
-  if (other == [TestRecursiveMessage defaultInstance]) return self;
+  if (other == [TestRecursiveMessage defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self mergeA:other.a];
   }
@@ -8889,7 +8989,7 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 }
 - (TestRecursiveMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -9002,10 +9102,10 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   return [TestMutualRecursionA descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestMutualRecursionA_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestMutualRecursionA_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestMutualRecursionA_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestMutualRecursionA_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -9106,7 +9206,9 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
   }
 }
 - (TestMutualRecursionA_Builder*) mergeFromTestMutualRecursionA:(TestMutualRecursionA*) other {
-  if (other == [TestMutualRecursionA defaultInstance]) return self;
+  if (other == [TestMutualRecursionA defaultInstance]) {
+    return self;
+  }
   if (other.hasBb) {
     [self mergeBb:other.bb];
   }
@@ -9118,7 +9220,7 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 }
 - (TestMutualRecursionA_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -9218,10 +9320,10 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   return [TestMutualRecursionB descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestMutualRecursionB_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestMutualRecursionB_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestMutualRecursionB_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestMutualRecursionB_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -9328,7 +9430,9 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
   }
 }
 - (TestMutualRecursionB_Builder*) mergeFromTestMutualRecursionB:(TestMutualRecursionB*) other {
-  if (other == [TestMutualRecursionB defaultInstance]) return self;
+  if (other == [TestMutualRecursionB defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self mergeA:other.a];
   }
@@ -9343,7 +9447,7 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 }
 - (TestMutualRecursionB_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -9470,10 +9574,10 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
   return [TestDupFieldNumber descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestDupFieldNumber_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestDupFieldNumber_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -9573,10 +9677,10 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   return [TestDupFieldNumber_Foo descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_Foo_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestDupFieldNumber_Foo_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_Foo_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -9677,7 +9781,9 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
   }
 }
 - (TestDupFieldNumber_Foo_Builder*) mergeFromTestDupFieldNumber_Foo:(TestDupFieldNumber_Foo*) other {
-  if (other == [TestDupFieldNumber_Foo defaultInstance]) return self;
+  if (other == [TestDupFieldNumber_Foo defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self setA:other.a];
   }
@@ -9689,7 +9795,7 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 }
 - (TestDupFieldNumber_Foo_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -9763,10 +9869,10 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   return [TestDupFieldNumber_Bar descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_Bar_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestDupFieldNumber_Bar_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestDupFieldNumber_Bar_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -9867,7 +9973,9 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   }
 }
 - (TestDupFieldNumber_Bar_Builder*) mergeFromTestDupFieldNumber_Bar:(TestDupFieldNumber_Bar*) other {
-  if (other == [TestDupFieldNumber_Bar defaultInstance]) return self;
+  if (other == [TestDupFieldNumber_Bar defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self setA:other.a];
   }
@@ -9879,7 +9987,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 - (TestDupFieldNumber_Bar_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -9966,7 +10074,9 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   }
 }
 - (TestDupFieldNumber_Builder*) mergeFromTestDupFieldNumber:(TestDupFieldNumber*) other {
-  if (other == [TestDupFieldNumber defaultInstance]) return self;
+  if (other == [TestDupFieldNumber defaultInstance]) {
+    return self;
+  }
   if (other.hasA) {
     [self setA:other.a];
   }
@@ -9984,7 +10094,7 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 - (TestDupFieldNumber_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -10136,10 +10246,10 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
   return [TestNestedMessageHasBits descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -10226,10 +10336,10 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   return [TestNestedMessageHasBits_NestedMessage descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestNestedMessageHasBits_NestedMessage_fieldAccessorTable];
 }
 - (NSArray*) nestedmessageRepeatedInt32List {
   return mutableNestedmessageRepeatedInt32List;
@@ -10350,7 +10460,9 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   }
 }
 - (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromTestNestedMessageHasBits_NestedMessage:(TestNestedMessageHasBits_NestedMessage*) other {
-  if (other == [TestNestedMessageHasBits_NestedMessage defaultInstance]) return self;
+  if (other == [TestNestedMessageHasBits_NestedMessage defaultInstance]) {
+    return self;
+  }
   if (other.mutableNestedmessageRepeatedInt32List.count > 0) {
     if (result.mutableNestedmessageRepeatedInt32List == nil) {
       result.mutableNestedmessageRepeatedInt32List = [NSMutableArray array];
@@ -10371,7 +10483,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 }
 - (TestNestedMessageHasBits_NestedMessage_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -10398,7 +10510,9 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   }
 }
 - (NSArray*) nestedmessageRepeatedInt32List {
-  if (result.mutableNestedmessageRepeatedInt32List == nil) { return [NSArray array]; }
+  if (result.mutableNestedmessageRepeatedInt32List == nil) {
+    return [NSArray array];
+  }
   return result.mutableNestedmessageRepeatedInt32List;
 }
 - (int32_t) nestedmessageRepeatedInt32AtIndex:(int32_t) index {
@@ -10506,7 +10620,9 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   }
 }
 - (TestNestedMessageHasBits_Builder*) mergeFromTestNestedMessageHasBits:(TestNestedMessageHasBits*) other {
-  if (other == [TestNestedMessageHasBits defaultInstance]) return self;
+  if (other == [TestNestedMessageHasBits defaultInstance]) {
+    return self;
+  }
   if (other.hasOptionalNestedMessage) {
     [self mergeOptionalNestedMessage:other.optionalNestedMessage];
   }
@@ -10518,7 +10634,7 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 }
 - (TestNestedMessageHasBits_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -10664,10 +10780,10 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   return [TestCamelCaseFieldNames descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestCamelCaseFieldNames_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestCamelCaseFieldNames_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestCamelCaseFieldNames_fieldAccessorTable];
 }
 - (NSArray*) repeatedPrimitiveFieldList {
   return mutableRepeatedPrimitiveFieldList;
@@ -10876,7 +10992,9 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   }
 }
 - (TestCamelCaseFieldNames_Builder*) mergeFromTestCamelCaseFieldNames:(TestCamelCaseFieldNames*) other {
-  if (other == [TestCamelCaseFieldNames defaultInstance]) return self;
+  if (other == [TestCamelCaseFieldNames defaultInstance]) {
+    return self;
+  }
   if (other.hasPrimitiveField) {
     [self setPrimitiveField:other.primitiveField];
   }
@@ -10939,7 +11057,7 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 }
 - (TestCamelCaseFieldNames_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -11133,7 +11251,9 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   return self;
 }
 - (NSArray*) repeatedPrimitiveFieldList {
-  if (result.mutableRepeatedPrimitiveFieldList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedPrimitiveFieldList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedPrimitiveFieldList;
 }
 - (int32_t) repeatedPrimitiveFieldAtIndex:(int32_t) index {
@@ -11162,7 +11282,9 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   return self;
 }
 - (NSArray*) repeatedStringFieldList {
-  if (result.mutableRepeatedStringFieldList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedStringFieldList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedStringFieldList;
 }
 - (NSString*) repeatedStringFieldAtIndex:(int32_t) index {
@@ -11248,7 +11370,9 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   return self;
 }
 - (NSArray*) repeatedStringPieceFieldList {
-  if (result.mutableRepeatedStringPieceFieldList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedStringPieceFieldList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedStringPieceFieldList;
 }
 - (NSString*) repeatedStringPieceFieldAtIndex:(int32_t) index {
@@ -11277,7 +11401,9 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
   return self;
 }
 - (NSArray*) repeatedCordFieldList {
-  if (result.mutableRepeatedCordFieldList == nil) { return [NSArray array]; }
+  if (result.mutableRepeatedCordFieldList == nil) {
+    return [NSArray array];
+  }
   return result.mutableRepeatedCordFieldList;
 }
 - (NSString*) repeatedCordFieldAtIndex:(int32_t) index {
@@ -11357,10 +11483,10 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   return [TestFieldOrderings descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestFieldOrderings_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestFieldOrderings_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestFieldOrderings_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestFieldOrderings_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!self.extensionsAreInitialized) {
@@ -11480,7 +11606,9 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
   }
 }
 - (TestFieldOrderings_Builder*) mergeFromTestFieldOrderings:(TestFieldOrderings*) other {
-  if (other == [TestFieldOrderings defaultInstance]) return self;
+  if (other == [TestFieldOrderings defaultInstance]) {
+    return self;
+  }
   if (other.hasMyString) {
     [self setMyString:other.myString];
   }
@@ -11498,7 +11626,7 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 }
 - (TestFieldOrderings_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -11647,10 +11775,10 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   return [TestExtremeDefaultValues descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_TestExtremeDefaultValues_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_TestExtremeDefaultValues_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_TestExtremeDefaultValues_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -11781,7 +11909,9 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
   }
 }
 - (TestExtremeDefaultValues_Builder*) mergeFromTestExtremeDefaultValues:(TestExtremeDefaultValues*) other {
-  if (other == [TestExtremeDefaultValues defaultInstance]) return self;
+  if (other == [TestExtremeDefaultValues defaultInstance]) {
+    return self;
+  }
   if (other.hasEscapedBytes) {
     [self setEscapedBytes:other.escapedBytes];
   }
@@ -11808,7 +11938,7 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 - (TestExtremeDefaultValues_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -11975,10 +12105,10 @@ static FooRequest* defaultFooRequestInstance = nil;
   return [FooRequest descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_FooRequest_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_FooRequest_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_FooRequest_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_FooRequest_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -12073,7 +12203,9 @@ static FooRequest* defaultFooRequestInstance = nil;
   }
 }
 - (FooRequest_Builder*) mergeFromFooRequest:(FooRequest*) other {
-  if (other == [FooRequest defaultInstance]) return self;
+  if (other == [FooRequest defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -12082,7 +12214,7 @@ static FooRequest* defaultFooRequestInstance = nil;
 }
 - (FooRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -12129,10 +12261,10 @@ static FooResponse* defaultFooResponseInstance = nil;
   return [FooResponse descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_FooResponse_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_FooResponse_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_FooResponse_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_FooResponse_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -12227,7 +12359,9 @@ static FooResponse* defaultFooResponseInstance = nil;
   }
 }
 - (FooResponse_Builder*) mergeFromFooResponse:(FooResponse*) other {
-  if (other == [FooResponse defaultInstance]) return self;
+  if (other == [FooResponse defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -12236,7 +12370,7 @@ static FooResponse* defaultFooResponseInstance = nil;
 }
 - (FooResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -12283,10 +12417,10 @@ static BarRequest* defaultBarRequestInstance = nil;
   return [BarRequest descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_BarRequest_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_BarRequest_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_BarRequest_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_BarRequest_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -12381,7 +12515,9 @@ static BarRequest* defaultBarRequestInstance = nil;
   }
 }
 - (BarRequest_Builder*) mergeFromBarRequest:(BarRequest*) other {
-  if (other == [BarRequest defaultInstance]) return self;
+  if (other == [BarRequest defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -12390,7 +12526,7 @@ static BarRequest* defaultBarRequestInstance = nil;
 }
 - (BarRequest_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -12437,10 +12573,10 @@ static BarResponse* defaultBarResponseInstance = nil;
   return [BarResponse descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_BarResponse_descriptor];
+  return [UnittestRoot internal_static_protobuf_unittest_BarResponse_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestProtoRoot internal_static_protobuf_unittest_BarResponse_fieldAccessorTable];
+  return [UnittestRoot internal_static_protobuf_unittest_BarResponse_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -12535,7 +12671,9 @@ static BarResponse* defaultBarResponseInstance = nil;
   }
 }
 - (BarResponse_Builder*) mergeFromBarResponse:(BarResponse*) other {
-  if (other == [BarResponse defaultInstance]) return self;
+  if (other == [BarResponse defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -12544,7 +12682,7 @@ static BarResponse* defaultBarResponseInstance = nil;
 }
 - (BarResponse_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -12576,7 +12714,7 @@ static BarResponse* defaultBarResponseInstance = nil;
   @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 + (PBServiceDescriptor*) descriptor {
-  return [[UnittestProtoRoot descriptor].services objectAtIndex:0];
+  return [[UnittestRoot descriptor].services objectAtIndex:0];
 }
 - (PBServiceDescriptor*) descriptor {
   return [TestService descriptor];
@@ -12587,7 +12725,7 @@ static BarResponse* defaultBarResponseInstance = nil;
              target:(id) target
            selector:(SEL) selector {
   if (method.service != self.descriptor) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Service.callMethod given method descriptor for wrong service type." userInfo:nil];
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"callMethod: given method descriptor for wrong service type." userInfo:nil];
   }
   switch(method.index) {
     case 0:
@@ -12602,7 +12740,7 @@ static BarResponse* defaultBarResponseInstance = nil;
 }
 - (id<PBMessage>) getRequestPrototype:(PBMethodDescriptor*) method {
   if (method.service != self.descriptor) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Service.callMethod given method descriptor for wrong service type." userInfo:nil];
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"callMethod: given method descriptor for wrong service type." userInfo:nil];
   }
   switch(method.index) {
     case 0:
@@ -12615,7 +12753,7 @@ static BarResponse* defaultBarResponseInstance = nil;
 }
 - (id<PBMessage>) getResponsePrototype:(PBMethodDescriptor*) method {
   if (method.service != self.descriptor) {
-    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"Service.callMethod given method descriptor for wrong service type." userInfo:nil];
+    @throw [NSException exceptionWithName:@"IllegalArgument" reason:@"callMethod: given method descriptor for wrong service type." userInfo:nil];
   }
   switch(method.index) {
     case 0:

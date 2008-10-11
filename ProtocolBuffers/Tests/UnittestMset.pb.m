@@ -2,7 +2,7 @@
 
 #import "UnittestMset.pb.h"
 
-@implementation UnittestMsetProtoRoot
+@implementation UnittestMsetRoot
 static PBFileDescriptor* descriptor = nil;
 static PBDescriptor* internal_static_protobuf_unittest_TestMessageSet_descriptor = nil;
 static PBFieldAccessorTable* internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable = nil;
@@ -53,8 +53,8 @@ static PBFieldAccessorTable* internal_static_protobuf_unittest_RawMessageSet_Ite
   return internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable;
 }
 + (void) initialize {
-  if (self == [UnittestMsetProtoRoot class]) {
-    descriptor = [[UnittestMsetProtoRoot buildDescriptor] retain];
+  if (self == [UnittestMsetRoot class]) {
+    descriptor = [[UnittestMsetRoot buildDescriptor] retain];
     internal_static_protobuf_unittest_TestMessageSet_descriptor = [[[self descriptor].messageTypes objectAtIndex:0] retain];
     {
       NSArray* fieldNames = [NSArray arrayWithObjects:nil];
@@ -184,10 +184,10 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   return [TestMessageSet descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSet_descriptor];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSet_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSet_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!self.extensionsAreInitialized) {
@@ -288,7 +288,9 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
   }
 }
 - (TestMessageSet_Builder*) mergeFromTestMessageSet:(TestMessageSet*) other {
-  if (other == [TestMessageSet defaultInstance]) return self;
+  if (other == [TestMessageSet defaultInstance]) {
+    return self;
+  }
   [self mergeUnknownFields:other.unknownFields];
   return self;
 }
@@ -297,7 +299,7 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 }
 - (TestMessageSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -351,10 +353,10 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   return [TestMessageSetContainer descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSetContainer_descriptor];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetContainer_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSetContainer_fieldAccessorTable];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetContainer_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (self.hasMessageSet) {
@@ -460,7 +462,9 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
   }
 }
 - (TestMessageSetContainer_Builder*) mergeFromTestMessageSetContainer:(TestMessageSetContainer*) other {
-  if (other == [TestMessageSetContainer defaultInstance]) return self;
+  if (other == [TestMessageSetContainer defaultInstance]) {
+    return self;
+  }
   if (other.hasMessageSet) {
     [self mergeMessageSet:other.messageSet];
   }
@@ -472,7 +476,7 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 }
 - (TestMessageSetContainer_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -571,10 +575,10 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   return [TestMessageSetExtension1 descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetExtension1_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSetExtension1_fieldAccessorTable];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetExtension1_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -675,7 +679,9 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
   }
 }
 - (TestMessageSetExtension1_Builder*) mergeFromTestMessageSetExtension1:(TestMessageSetExtension1*) other {
-  if (other == [TestMessageSetExtension1 defaultInstance]) return self;
+  if (other == [TestMessageSetExtension1 defaultInstance]) {
+    return self;
+  }
   if (other.hasI) {
     [self setI:other.i];
   }
@@ -687,7 +693,7 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 }
 - (TestMessageSetExtension1_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -767,10 +773,10 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   return [TestMessageSetExtension2 descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetExtension2_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_TestMessageSetExtension2_fieldAccessorTable];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_TestMessageSetExtension2_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   return YES;
@@ -871,7 +877,9 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
   }
 }
 - (TestMessageSetExtension2_Builder*) mergeFromTestMessageSetExtension2:(TestMessageSetExtension2*) other {
-  if (other == [TestMessageSetExtension2 defaultInstance]) return self;
+  if (other == [TestMessageSetExtension2 defaultInstance]) {
+    return self;
+  }
   if (other.hasStr) {
     [self setStr:other.str];
   }
@@ -883,7 +891,7 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 }
 - (TestMessageSetExtension2_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -953,10 +961,10 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
   return [RawMessageSet descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_RawMessageSet_descriptor];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_RawMessageSet_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_RawMessageSet_fieldAccessorTable];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_RawMessageSet_fieldAccessorTable];
 }
 - (NSArray*) itemList {
   return mutableItemList;
@@ -1063,10 +1071,10 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   return [RawMessageSet_Item descriptor];
 }
 + (PBDescriptor*) descriptor {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_RawMessageSet_Item_descriptor];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_RawMessageSet_Item_descriptor];
 }
 - (PBFieldAccessorTable*) internalGetFieldAccessorTable {
-  return [UnittestMsetProtoRoot internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable];
+  return [UnittestMsetRoot internal_static_protobuf_unittest_RawMessageSet_Item_fieldAccessorTable];
 }
 - (BOOL) isInitialized {
   if (!self.hasTypeId) {
@@ -1179,7 +1187,9 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   }
 }
 - (RawMessageSet_Item_Builder*) mergeFromRawMessageSet_Item:(RawMessageSet_Item*) other {
-  if (other == [RawMessageSet_Item defaultInstance]) return self;
+  if (other == [RawMessageSet_Item defaultInstance]) {
+    return self;
+  }
   if (other.hasTypeId) {
     [self setTypeId:other.typeId];
   }
@@ -1194,7 +1204,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 }
 - (RawMessageSet_Item_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:
@@ -1301,7 +1311,9 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   }
 }
 - (RawMessageSet_Builder*) mergeFromRawMessageSet:(RawMessageSet*) other {
-  if (other == [RawMessageSet defaultInstance]) return self;
+  if (other == [RawMessageSet defaultInstance]) {
+    return self;
+  }
   if (other.mutableItemList.count > 0) {
     if (result.mutableItemList == nil) {
       result.mutableItemList = [NSMutableArray array];
@@ -1316,7 +1328,7 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 }
 - (RawMessageSet_Builder*) mergeFromCodedInputStream:(PBCodedInputStream*) input extensionRegistry:(PBExtensionRegistry*) extensionRegistry {
   PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builderWithUnknownFields:self.unknownFields];
-  while (true) {
+  while (YES) {
     int32_t tag = [input readTag];
     switch (tag) {
       case 0:

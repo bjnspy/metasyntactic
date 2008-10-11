@@ -79,7 +79,7 @@
 @class TestService;
 @class TestSparseEnum;
 
-@interface UnittestOptimizeForProtoRoot : NSObject {
+@interface UnittestOptimizeForRoot : NSObject {
 }
 + (PBFileDescriptor*) descriptor;
 + (PBFileDescriptor*) buildDescriptor;

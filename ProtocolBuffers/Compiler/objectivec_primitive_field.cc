@@ -34,18 +34,15 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     const char* PrimitiveTypeName(ObjectiveCType type) {
       switch (type) {
-    case OBJECTIVECTYPE_INT    : return "int32_t";
-    case OBJECTIVECTYPE_LONG   : return "int64_t";
-    case OBJECTIVECTYPE_FLOAT  : return "Float32";
-    case OBJECTIVECTYPE_DOUBLE : return "Float64";
-    case OBJECTIVECTYPE_BOOLEAN: return "BOOL";
-    case OBJECTIVECTYPE_STRING : return "NSString";
-    case OBJECTIVECTYPE_DATA   : return "NSData";
-    case OBJECTIVECTYPE_ENUM   : return NULL;
-    case OBJECTIVECTYPE_MESSAGE: return NULL;
-
-      // No default because we want the compiler to complain if any new
-      // ObjectiveCTypes are added.
+        case OBJECTIVECTYPE_INT    : return "int32_t";
+        case OBJECTIVECTYPE_LONG   : return "int64_t";
+        case OBJECTIVECTYPE_FLOAT  : return "Float32";
+        case OBJECTIVECTYPE_DOUBLE : return "Float64";
+        case OBJECTIVECTYPE_BOOLEAN: return "BOOL";
+        case OBJECTIVECTYPE_STRING : return "NSString";
+        case OBJECTIVECTYPE_DATA   : return "NSData";
+        case OBJECTIVECTYPE_ENUM   : return NULL;
+        case OBJECTIVECTYPE_MESSAGE: return NULL;
       }
 
       GOOGLE_LOG(FATAL) << "Can't get here.";
@@ -72,9 +69,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
         case FieldDescriptor::TYPE_ENUM    : return "Enum"    ;
         case FieldDescriptor::TYPE_GROUP   : return "Group"   ;
         case FieldDescriptor::TYPE_MESSAGE : return "Message" ;
-
-      // No default because we want the compiler to complain if any new
-      // types are added.
       }
 
       GOOGLE_LOG(FATAL) << "Can't get here.";
@@ -95,44 +89,41 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       // Switch on cpp_type since we need to know which default_value_* method
       // of FieldDescriptor to call.
       switch (field->cpp_type()) {
-    case FieldDescriptor::CPPTYPE_INT32:  return SimpleItoa(field->default_value_int32());
-    case FieldDescriptor::CPPTYPE_UINT32: return SimpleItoa(static_cast<int32>(field->default_value_uint32()));
-    case FieldDescriptor::CPPTYPE_INT64:  return SimpleItoa(field->default_value_int64()) + "L";
-    case FieldDescriptor::CPPTYPE_UINT64: return SimpleItoa(static_cast<int64>(field->default_value_uint64())) + "L";
-    case FieldDescriptor::CPPTYPE_DOUBLE: return SimpleDtoa(field->default_value_double());
-    case FieldDescriptor::CPPTYPE_FLOAT:  return SimpleFtoa(field->default_value_float());
-    case FieldDescriptor::CPPTYPE_BOOL:   return field->default_value_bool() ? "YES" : "NO";
-    case FieldDescriptor::CPPTYPE_STRING: {
-      bool isBytes = field->type() == FieldDescriptor::TYPE_BYTES;
+        case FieldDescriptor::CPPTYPE_INT32:  return SimpleItoa(field->default_value_int32());
+        case FieldDescriptor::CPPTYPE_UINT32: return SimpleItoa(static_cast<int32>(field->default_value_uint32()));
+        case FieldDescriptor::CPPTYPE_INT64:  return SimpleItoa(field->default_value_int64()) + "L";
+        case FieldDescriptor::CPPTYPE_UINT64: return SimpleItoa(static_cast<int64>(field->default_value_uint64())) + "L";
+        case FieldDescriptor::CPPTYPE_DOUBLE: return SimpleDtoa(field->default_value_double());
+        case FieldDescriptor::CPPTYPE_FLOAT:  return SimpleFtoa(field->default_value_float());
+        case FieldDescriptor::CPPTYPE_BOOL:   return field->default_value_bool() ? "YES" : "NO";
+        case FieldDescriptor::CPPTYPE_STRING: {
+          bool isBytes = field->type() == FieldDescriptor::TYPE_BYTES;
 
-      if (!isBytes && AllPrintableAscii(field->default_value_string())) {
-        // All chars are ASCII and printable.  In this case CEscape() works
-        // fine (it will only escape quotes and backslashes).
-        // Note:  If this "optimization" is removed, DescriptorProtos will
-        //   no longer be able to initialize itself due to bootstrapping
-        //   problems.
-        return "@\"" + CEscape(field->default_value_string()) + "\"";
-      }
+          if (!isBytes && AllPrintableAscii(field->default_value_string())) {
+            // All chars are ASCII and printable.  In this case CEscape() works
+            // fine (it will only escape quotes and backslashes).
+            // Note:  If this "optimization" is removed, DescriptorProtos will
+            //   no longer be able to initialize itself due to bootstrapping
+            //   problems.
+            return "@\"" + CEscape(field->default_value_string()) + "\"";
+          }
 
-      if (isBytes && !field->has_default_value()) {
-        return "[NSData data]";
-      }
+          if (isBytes && !field->has_default_value()) {
+            return "[NSData data]";
+          }
 
-      // Escaping strings correctly for ObjectiveC and generating efficient
-      // initializers for ByteStrings are both tricky.  We can sidestep the
-      // whole problem by just grabbing the default value from the descriptor.
-      return strings::Substitute(
-        "([((PBFieldDescriptor*)[[$0 descriptor].fields objectAtIndex:$1]) defaultValue])",
-        ClassName(field->containing_type()), field->index());
-                                          }
+          // Escaping strings correctly for ObjectiveC and generating efficient
+          // initializers for ByteStrings are both tricky.  We can sidestep the
+          // whole problem by just grabbing the default value from the descriptor.
+          return strings::Substitute(
+            "([((PBFieldDescriptor*)[[$0 descriptor].fields objectAtIndex:$1]) defaultValue])",
+            ClassName(field->containing_type()), field->index());
+                                              }
 
-    case FieldDescriptor::CPPTYPE_ENUM:
-    case FieldDescriptor::CPPTYPE_MESSAGE:
-      GOOGLE_LOG(FATAL) << "Can't get here.";
-      return "";
-
-      // No default because we want the czompiler to complain if any new
-      // types are added.
+        case FieldDescriptor::CPPTYPE_ENUM:
+        case FieldDescriptor::CPPTYPE_MESSAGE:
+          GOOGLE_LOG(FATAL) << "Can't get here.";
+          return "";
       }
 
       GOOGLE_LOG(FATAL) << "Can't get here.";
@@ -201,10 +192,8 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
         (*variables)["unboxed_value"] = unboxed_value;
     }
-
   }  // namespace
 
-  // ===================================================================
 
   PrimitiveFieldGenerator::PrimitiveFieldGenerator(const FieldDescriptor* descriptor)
     : descriptor_(descriptor) {
@@ -300,7 +289,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void PrimitiveFieldGenerator::GenerateBuildingCodeHeader(io::Printer* printer) const {
-    // Nothing to do here for primitive types.
   }
 
 
@@ -345,7 +333,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
   void PrimitiveFieldGenerator::GenerateBuildingCodeSource(io::Printer* printer) const {
-      // Nothing to do here for primitive types.
   }
 
   void PrimitiveFieldGenerator::GenerateParsingCodeSource(io::Printer* printer) const {
@@ -371,7 +358,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     return BoxedPrimitiveTypeName(GetObjectiveCType(descriptor_));
   }
 
-  // ===================================================================
 
   RepeatedPrimitiveFieldGenerator::RepeatedPrimitiveFieldGenerator(const FieldDescriptor* descriptor)
     : descriptor_(descriptor) {
@@ -389,8 +375,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
   void RepeatedPrimitiveFieldGenerator::GeneratePropertiesHeader(io::Printer* printer) const {
-    //printer->Print(variables_,
-    //  "@property (retain) NSMutableArray* $name$_;\n");
   }
 
 
@@ -424,13 +408,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void RepeatedPrimitiveFieldGenerator::GenerateBuilderMembersHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      // Note:  We return an unmodifiable list because otherwise the caller
-      //   could hold on to the returned list and modify it after the message
-      //   has been built, thus mutating the message which is supposed to be
-      //   immutable.
       "- (NSArray*) $list_name$;\n"
       "- ($storage_type$) $name$AtIndex:(int32_t) index;\n"
-      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with$capitalized_name$:($storage_type$) value;\n"
+      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with:($storage_type$) value;\n"
       "- ($classname$_Builder*) add$capitalized_name$:($storage_type$) value;\n"
       "- ($classname$_Builder*) addAll$capitalized_name$:(NSArray*) values;\n"
       "- ($classname$_Builder*) clear$capitalized_name$List;\n");
@@ -460,7 +440,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   void RepeatedPrimitiveFieldGenerator::GenerateMembersSource(io::Printer* printer) const {
     printer->Print(variables_,
       "- (NSArray*) $list_name$ {\n"
-      "  return $mutable_list_name$;\n"   // note:  unmodifiable list
+      "  return $mutable_list_name$;\n"
       "}\n"
       "- ($storage_type$) $name$AtIndex:(int32_t) index {\n"
       "  id value = [$mutable_list_name$ objectAtIndex:index];\n"
@@ -470,18 +450,16 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void RepeatedPrimitiveFieldGenerator::GenerateBuilderMembersSource(io::Printer* printer) const {
     printer->Print(variables_,
-      // Note:  We return an unmodifiable list because otherwise the caller
-      //   could hold on to the returned list and modify it after the message
-      //   has been built, thus mutating the message which is supposed to be
-      //   immutable.
       "- (NSArray*) $list_name$ {\n"
-      "  if (result.$mutable_list_name$ == nil) { return [NSArray array]; }\n"
+      "  if (result.$mutable_list_name$ == nil) {\n"
+      "    return [NSArray array];\n"
+      "  }\n"
       "  return result.$mutable_list_name$;\n"
       "}\n"
       "- ($storage_type$) $name$AtIndex:(int32_t) index {\n"
       "  return [result $name$AtIndex:index];\n"
       "}\n"
-      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with$capitalized_name$:($storage_type$) value {\n"
+      "- ($classname$_Builder*) replace$capitalized_name$AtIndex:(int32_t) index with:($storage_type$) value {\n"
       "  [result.$mutable_list_name$ replaceObjectAtIndex:index withObject:$boxed_value$];\n"
       "  return self;\n"
       "}\n"
@@ -506,13 +484,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
   void RepeatedPrimitiveFieldGenerator::GenerateMergingCodeSource(io::Printer* printer) const {
-      printer->Print(variables_,
-        "if (other.$mutable_list_name$.count > 0) {\n"
-        "  if (result.$mutable_list_name$ == nil) {\n"
-        "    result.$mutable_list_name$ = [NSMutableArray array];\n"
-        "  }\n"
-        "  [result.$mutable_list_name$ addObjectsFromArray:other.$mutable_list_name$];\n"
-        "}\n");
+    printer->Print(variables_,
+      "if (other.$mutable_list_name$.count > 0) {\n"
+      "  if (result.$mutable_list_name$ == nil) {\n"
+      "    result.$mutable_list_name$ = [NSMutableArray array];\n"
+      "  }\n"
+      "  [result.$mutable_list_name$ addObjectsFromArray:other.$mutable_list_name$];\n"
+      "}\n");
   }
 
 
@@ -558,7 +536,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   string RepeatedPrimitiveFieldGenerator::GetBoxedType() const {
     return BoxedPrimitiveTypeName(GetObjectiveCType(descriptor_));
   }
-
 }  // namespace objectivec
 }  // namespace compiler
 }  // namespace protobuf
