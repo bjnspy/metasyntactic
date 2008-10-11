@@ -24,10 +24,6 @@
     PBMutableField* lastField;
 }
 
-@property (readonly, retain) NSMutableDictionary* fields;
-@property (readonly) int32_t lastFieldNumber;
-@property (readonly, retain) PBMutableField* lastField;
-
 - (PBUnknownFieldSet*) build;
 - (PBUnknownFieldSet_Builder*) mergeUnknownFields:(PBUnknownFieldSet*) other;
 
