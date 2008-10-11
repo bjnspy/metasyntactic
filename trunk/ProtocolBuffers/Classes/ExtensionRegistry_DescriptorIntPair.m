@@ -18,8 +18,8 @@
 
 
 @interface PBExtensionRegistry_DescriptorIntPair ()
-@property (retain) PBDescriptor* descriptor;
-@property int32_t number;
+    @property (retain) PBDescriptor* descriptor;
+    @property int32_t number;
 @end
 
 
