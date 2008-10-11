@@ -14,6 +14,9 @@
 
 #import "ForwardDeclarations.h"
 
+#import "FieldDescriptorType.h"
+#import "ObjectiveCType.h"
+
 #import "CodedInputStream.h"
 #import "CodedOutputStream.h"
 #import "Descriptor.h"

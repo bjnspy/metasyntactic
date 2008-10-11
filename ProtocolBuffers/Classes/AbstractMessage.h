@@ -14,6 +14,12 @@
 
 #import "Message.h"
 
+/**
+ * A partial implementation of the {@link Message} interface which implements
+ * as many methods of that interface as possible in terms of other methods.
+ *
+ * @author Cyrus Najmabadi
+ */
 @interface PBAbstractMessage : NSObject<PBMessage> {
 @private
     int32_t am_memoizedSize;

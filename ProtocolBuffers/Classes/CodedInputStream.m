@@ -21,8 +21,8 @@
 
 
 @interface PBCodedInputStream ()
-@property (retain) NSMutableData* buffer;
-@property (retain) NSInputStream* input;
+    @property (retain) NSMutableData* buffer;
+    @property (retain) NSInputStream* input;
 @end
 
 
@@ -99,7 +99,8 @@ const int32_t BUFFER_SIZE = 4096;
 
     lastTag = [self readRawVarint32];
     if (lastTag == 0) {
-        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+        // If we actually read zero, that's not a valid tag.
+        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Invalid Tag" userInfo:nil];
     }
     return lastTag;
 }
@@ -114,7 +115,7 @@ const int32_t BUFFER_SIZE = 4096;
  */
 - (void) checkLastTagWas:(int32_t) value {
     if (lastTag != value) {
-        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+        @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Invalid End Tag" userInfo:nil];
     }
 }
 
@@ -147,7 +148,7 @@ const int32_t BUFFER_SIZE = 4096;
             [self readRawLittleEndian32];
             return true;
         default:
-            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"" userInfo:nil];
+            @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"Invalid Wire Type" userInfo:nil];
     }
 }
 

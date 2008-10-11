@@ -33,6 +33,7 @@
 
 
 - (BOOL) isInitialized {
+    // Check that all required fields are present.
     for (PBFieldDescriptor* field in self.descriptor.fields) {
         if (field.isRequired) {
             if (![self hasField:field]) {
@@ -41,6 +42,7 @@
         }
     }
 
+    // Check that embedded messages are initialized.
     NSDictionary* allFields = self.allFields;
     for (PBFieldDescriptor* field in allFields) {
         if (field.objectiveCType == PBObjectiveCTypeMessage) {

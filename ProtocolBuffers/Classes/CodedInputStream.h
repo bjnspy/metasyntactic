@@ -12,10 +12,20 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "FieldDescriptorType.h"
+//#import "FieldDescriptorType.h"
 
-#import "ForwardDeclarations.h"
-
+/**
+ * Reads and decodes protocol message fields.
+ *
+ * This class contains two kinds of methods:  methods that read specific
+ * protocol message constructs and field types (e.g. {@link #readTag()} and
+ * {@link #readInt32()}) and methods that read low-level values (e.g.
+ * {@link #readRawVarint32()} and {@link #readRawBytes}).  If you are reading
+ * encoded protocol messages, you should use the former methods, but if you are
+ * reading some other format of your own design, use the latter.
+ *
+ * @author Cyrus Najmabadi
+ */
 @interface PBCodedInputStream : NSObject {
 @private
     NSMutableData* buffer;
@@ -42,9 +52,6 @@
     /** See setSizeLimit() */
     int32_t sizeLimit;
 }
-
-@property (retain, readonly) NSMutableData* buffer;
-@property (retain, readonly) NSInputStream* input;
 
 + (PBCodedInputStream*) streamWithData:(NSData*) data;
 + (PBCodedInputStream*) streamWithInputStream:(NSInputStream*) input;
