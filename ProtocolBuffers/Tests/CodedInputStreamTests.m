@@ -228,32 +228,31 @@
 }
 
 
-#if 0
-
-
-
-
 /** Tests skipField(). */
-public void testSkipWholeMessage() throws Exception {
-    TestAllTypes message = TestUtil.getAllSet();
-    byte[] rawBytes = message.toByteArray();
+- (void) testSkipWholeMessage {
+    TestAllTypes* message = [TestUtilities allSet];
+    NSData* rawBytes = message.toData;
     
     // Create two parallel inputs.  Parse one as unknown fields while using
     // skipField() to skip each field on the other.  Expect the same tags.
-    CodedInputStream input1 = CodedInputStream.newInstance(rawBytes);
-    CodedInputStream input2 = CodedInputStream.newInstance(rawBytes);
-    UnknownFieldSet.Builder unknownFields = UnknownFieldSet.newBuilder();
+    PBCodedInputStream* input1 = [PBCodedInputStream streamWithData:rawBytes];
+    PBCodedInputStream* input2 = [PBCodedInputStream streamWithData:rawBytes];
+    PBUnknownFieldSet_Builder* unknownFields = [PBUnknownFieldSet builder];
     
     while (true) {
-        int tag = input1.readTag();
-        assertEquals(tag, input2.readTag());
+        int32_t tag = [input1 readTag];
+        STAssertTrue(tag == [input2 readTag], @"");
         if (tag == 0) {
             break;
         }
-        unknownFields.mergeFieldFrom(tag, input1);
-        input2.skipField(tag);
+        [unknownFields mergeFieldFrom:tag input:input1];
+        [input2 skipField:tag];
     }
 }
+
+#if 0
+
+
 
 public void testReadHugeBlob() throws Exception {
     // Allocate and initialize a 1MB blob.
