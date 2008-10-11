@@ -56,11 +56,4 @@
                                                      file:file] autorelease];
 }
 
-#if 0
-public Message toProto()        { return file.toProto(); }
-public String getName()         { return name;           }
-public String getFullName()     { return fullName;       }
-public FileDescriptor getFile() { return file;           }
-#endif
-
 @end

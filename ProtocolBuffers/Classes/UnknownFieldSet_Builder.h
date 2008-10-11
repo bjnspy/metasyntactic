@@ -40,11 +40,4 @@
 - (PBUnknownFieldSet_Builder*) clear;
 - (PBUnknownFieldSet_Builder*) mergeField:(PBField*) field forNumber:(int32_t) number;
 
-#if 0
-- (PBUnknownFieldSet_Builder*) mergeField:(int32_t) number field:(UnknownFieldSet_Field*) field;
-- (BOOL) hasField:(int32_t) number;
-- (NSDictionary*) dictionary;
-#endif
-
-
 @end

@@ -161,28 +161,4 @@ static PBUnknownFieldSet* defaultInstance = nil;
 }
 
 
-#if 0
-
-
-/**
- * Converts the set to a string in protocol buffer text format. This is
- * just a trivial wrapper around
- * {@link TextFormat#printToString(PBUnknownFieldSet)}.
- */
-public final String toString() {
-    return TextFormat.printToString(this);
-}
-
-
-
-
-/**
- * Serializes the message and writes it to {@code output}.  This is just a
- * trivial wrapper around {@link #writeTo(PBCodedOutputStream)}.
- */
-
-
-
-}
-#endif
 @end

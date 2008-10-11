@@ -77,25 +77,6 @@
 }
 
 
-#if 0
-
-
-/** Set the value of an extension. */
-
-/** Set the value of one element of a repeated extension. */
-public final <Type> BuilderType setExtension(
-                                             GeneratedExtension<MessageType, List<Type>> extension,
-                                             int index, Type value) {
-    ExtendableMessage<MessageType> message = internalGetResult();
-    message.verifyExtensionContainingType(extension);
-    message.extensions.setRepeatedField(
-                                        extension.getDescriptor(), index,
-                                        extension.singularToReflectionType(value));
-    return (BuilderType)this;
-}
-#endif
-
-
 /** Clear an extension. */
 - (PBExtendableBuilder*) clearExtension:(PBGeneratedExtension*) extension {
     PBExtendableMessage* message = self.internalGetResult;

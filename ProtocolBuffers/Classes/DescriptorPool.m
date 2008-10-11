@@ -215,8 +215,6 @@ BOOL isDigit(unichar c) {
 
 - (id<PBGenericDescriptor>) lookupSymbol:(NSString*) name
                               relativeTo:(id<PBGenericDescriptor>) relativeTo {
-    // TODO(kenton):  This could be optimized in a number of ways.
-
     id<PBGenericDescriptor> result = nil;
     if ([name hasPrefix:@"."]) {
         // Fully-qualified name.
@@ -282,50 +280,5 @@ BOOL isDigit(unichar c) {
 
     [mutableFieldsByNumber setObject:field forKey:key];
 }
-
-
-#if 0
-private static final class PBDescriptorPool {
-    PBDescriptorPool(PBFileDescriptor[] mutableDependencies) {
-        this.mutableDependencies = new PBDescriptorPool[mutableDependencies.length];
-
-        for (int i = 0; i < mutableDependencies.length; i++)  {
-            this.mutableDependencies[i] = mutableDependencies[i].pool;
-        }
-
-        for (int i = 0; i < mutableDependencies.length; i++)  {
-            try {
-                addPackage(mutableDependencies[i].getPackage(), mutableDependencies[i]);
-            } catch (DescriptorValidationException e) {
-                // Can't happen, because addPackage() only fails when the name
-                // conflicts with a non-package, but we have not yet added any
-                // non-packages at this point.
-                assert NO;
-            }
-        }
-    }
-
-
-    /** Find a generic descriptor by fully-qualified name. */
-    PBGenericDescriptor findSymbol(String fullName) {
-        PBGenericDescriptor result = mutableDescriptorsByName.get(fullName);
-        if (result != null) return result;
-
-        for (int i = 0; i < mutableDependencies.length; i++) {
-            result = mutableDependencies[i].mutableDescriptorsByName.get(fullName);
-            if (result != null) return result;
-        }
-
-        return null;
-    }
-
-    /**
-     * Look up a descriptor by name, relative to some other descriptor.
-     * The name may be fully-qualified (with a leading '.'),
-     * partially-qualified, or unqualified.  C++-like name lookup semantics
-     * are used to search for the matching descriptor.
-     */
-
-#endif
 
 @end

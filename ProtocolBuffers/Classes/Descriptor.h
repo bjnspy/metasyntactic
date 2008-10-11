@@ -64,33 +64,4 @@
 // @internal
 - (void) crossLink;
 
-#if 0
-NSArray* fields;
-    int32_t index;
-    DescriptorProto* proto;
-    PBFileDescriptor* file;
-    PBDescriptor* containingType;
-    NSArray* nestedTypes;
-    NSArray* enumTypes;
-    NSArray* extensions;
-}
-
-@property int32_t index;
-@property (retain) DescriptorProto* proto;
-@property (copy) NSString* fullName;
-@property (retain) PBFileDescriptor* file;
-@property (retain) PBDescriptor* containingType;
-@property (retain) NSArray* nestedTypes;
-@property (retain) NSArray* enumTypes;
-@property (retain) NSArray* extensions;
-@property (retain) NSArray* fields;
-
-- (NSString*) name;
-
-- (PBDescriptor*) findNestedTypeByName:(NSString*) name;
-- (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
-
-
-#endif
-
 @end
