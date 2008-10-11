@@ -94,7 +94,7 @@
   NSMutableArray* mutableRepeatedMessageList;
 }
 - (BOOL) hasOptionalMessage;
-@property (readonly, retain) TestOptimizedForSize* optionalMessage;
+@property (retain, readonly) TestOptimizedForSize* optionalMessage;
 - (NSArray*) repeatedMessageList;
 - (TestOptimizedForSize*) repeatedMessageAtIndex:(int32_t) index;
 
@@ -102,7 +102,6 @@
 - (PBDescriptor*) descriptor;
 + (TestEmbedOptimizedForSize*) defaultInstance;
 - (TestEmbedOptimizedForSize*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;

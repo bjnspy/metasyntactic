@@ -403,27 +403,27 @@
 - (BOOL) hasOptionalBool;
 - (BOOL) optionalBool;
 - (BOOL) hasOptionalString;
-@property (readonly, copy) NSString* optionalString;
+@property (retain, readonly) NSString* optionalString;
 - (BOOL) hasOptionalBytes;
-@property (readonly, retain) NSData* optionalBytes;
+@property (retain, readonly) NSData* optionalBytes;
 - (BOOL) hasOptionalGroup;
-@property (readonly, retain) TestAllTypes_OptionalGroup* optionalGroup;
+@property (retain, readonly) TestAllTypes_OptionalGroup* optionalGroup;
 - (BOOL) hasOptionalNestedMessage;
-@property (readonly, retain) TestAllTypes_NestedMessage* optionalNestedMessage;
+@property (retain, readonly) TestAllTypes_NestedMessage* optionalNestedMessage;
 - (BOOL) hasOptionalForeignMessage;
-@property (readonly, retain) ForeignMessage* optionalForeignMessage;
+@property (retain, readonly) ForeignMessage* optionalForeignMessage;
 - (BOOL) hasOptionalImportMessage;
-@property (readonly, retain) ImportMessage* optionalImportMessage;
+@property (retain, readonly) ImportMessage* optionalImportMessage;
 - (BOOL) hasOptionalNestedEnum;
-@property (readonly, retain) TestAllTypes_NestedEnum* optionalNestedEnum;
+@property (retain, readonly) TestAllTypes_NestedEnum* optionalNestedEnum;
 - (BOOL) hasOptionalForeignEnum;
-@property (readonly, retain) ForeignEnum* optionalForeignEnum;
+@property (retain, readonly) ForeignEnum* optionalForeignEnum;
 - (BOOL) hasOptionalImportEnum;
-@property (readonly, retain) ImportEnum* optionalImportEnum;
+@property (retain, readonly) ImportEnum* optionalImportEnum;
 - (BOOL) hasOptionalStringPiece;
-@property (readonly, copy) NSString* optionalStringPiece;
+@property (retain, readonly) NSString* optionalStringPiece;
 - (BOOL) hasOptionalCord;
-@property (readonly, copy) NSString* optionalCord;
+@property (retain, readonly) NSString* optionalCord;
 - (BOOL) hasDefaultInt32;
 @property (readonly) int32_t defaultInt32;
 - (BOOL) hasDefaultInt64;
@@ -451,19 +451,19 @@
 - (BOOL) hasDefaultBool;
 - (BOOL) defaultBool;
 - (BOOL) hasDefaultString;
-@property (readonly, copy) NSString* defaultString;
+@property (retain, readonly) NSString* defaultString;
 - (BOOL) hasDefaultBytes;
-@property (readonly, retain) NSData* defaultBytes;
+@property (retain, readonly) NSData* defaultBytes;
 - (BOOL) hasDefaultNestedEnum;
-@property (readonly, retain) TestAllTypes_NestedEnum* defaultNestedEnum;
+@property (retain, readonly) TestAllTypes_NestedEnum* defaultNestedEnum;
 - (BOOL) hasDefaultForeignEnum;
-@property (readonly, retain) ForeignEnum* defaultForeignEnum;
+@property (retain, readonly) ForeignEnum* defaultForeignEnum;
 - (BOOL) hasDefaultImportEnum;
-@property (readonly, retain) ImportEnum* defaultImportEnum;
+@property (retain, readonly) ImportEnum* defaultImportEnum;
 - (BOOL) hasDefaultStringPiece;
-@property (readonly, copy) NSString* defaultStringPiece;
+@property (retain, readonly) NSString* defaultStringPiece;
 - (BOOL) hasDefaultCord;
-@property (readonly, copy) NSString* defaultCord;
+@property (retain, readonly) NSString* defaultCord;
 - (NSArray*) repeatedInt32List;
 - (int32_t) repeatedInt32AtIndex:(int32_t) index;
 - (NSArray*) repeatedInt64List;
@@ -517,7 +517,6 @@
 - (PBDescriptor*) descriptor;
 + (TestAllTypes*) defaultInstance;
 - (TestAllTypes*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -566,7 +565,6 @@
 - (PBDescriptor*) descriptor;
 + (TestAllTypes_NestedMessage*) defaultInstance;
 - (TestAllTypes_NestedMessage*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -620,7 +618,6 @@
 - (PBDescriptor*) descriptor;
 + (TestAllTypes_OptionalGroup*) defaultInstance;
 - (TestAllTypes_OptionalGroup*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -674,7 +671,6 @@
 - (PBDescriptor*) descriptor;
 + (TestAllTypes_RepeatedGroup*) defaultInstance;
 - (TestAllTypes_RepeatedGroup*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1145,7 +1141,6 @@
 - (PBDescriptor*) descriptor;
 + (ForeignMessage*) defaultInstance;
 - (ForeignMessage*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1195,7 +1190,6 @@
 - (PBDescriptor*) descriptor;
 + (TestAllExtensions*) defaultInstance;
 - (TestAllExtensions*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1244,7 +1238,6 @@
 - (PBDescriptor*) descriptor;
 + (OptionalGroup_extension*) defaultInstance;
 - (OptionalGroup_extension*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1298,7 +1291,6 @@
 - (PBDescriptor*) descriptor;
 + (RepeatedGroup_extension*) defaultInstance;
 - (RepeatedGroup_extension*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1480,7 +1472,6 @@
 - (PBDescriptor*) descriptor;
 + (TestRequired*) defaultInstance;
 - (TestRequired*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 + (PBGeneratedExtension*) single;
 + (PBGeneratedExtension*) multi;
@@ -1693,7 +1684,7 @@
   NSMutableArray* mutableRepeatedMessageList;
 }
 - (BOOL) hasOptionalMessage;
-@property (readonly, retain) TestRequired* optionalMessage;
+@property (retain, readonly) TestRequired* optionalMessage;
 - (BOOL) hasDummy;
 @property (readonly) int32_t dummy;
 - (NSArray*) repeatedMessageList;
@@ -1703,7 +1694,6 @@
 - (PBDescriptor*) descriptor;
 + (TestRequiredForeign*) defaultInstance;
 - (TestRequiredForeign*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1765,13 +1755,12 @@
   TestAllTypes_NestedMessage* foreignNested;
 }
 - (BOOL) hasForeignNested;
-@property (readonly, retain) TestAllTypes_NestedMessage* foreignNested;
+@property (retain, readonly) TestAllTypes_NestedMessage* foreignNested;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (TestForeignNested*) defaultInstance;
 - (TestForeignNested*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1823,7 +1812,6 @@
 - (PBDescriptor*) descriptor;
 + (TestEmptyMessage*) defaultInstance;
 - (TestEmptyMessage*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1868,7 +1856,6 @@
 - (PBDescriptor*) descriptor;
 + (TestEmptyMessageWithExtensions*) defaultInstance;
 - (TestEmptyMessageWithExtensions*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1921,7 +1908,6 @@
 - (PBDescriptor*) descriptor;
 + (TestReallyLargeTagNumber*) defaultInstance;
 - (TestReallyLargeTagNumber*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -1976,7 +1962,7 @@
   TestRecursiveMessage* a;
 }
 - (BOOL) hasA;
-@property (readonly, retain) TestRecursiveMessage* a;
+@property (retain, readonly) TestRecursiveMessage* a;
 - (BOOL) hasI;
 @property (readonly) int32_t i;
 
@@ -1984,7 +1970,6 @@
 - (PBDescriptor*) descriptor;
 + (TestRecursiveMessage*) defaultInstance;
 - (TestRecursiveMessage*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2039,13 +2024,12 @@
   TestMutualRecursionB* bb;
 }
 - (BOOL) hasBb;
-@property (readonly, retain) TestMutualRecursionB* bb;
+@property (retain, readonly) TestMutualRecursionB* bb;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (TestMutualRecursionA*) defaultInstance;
 - (TestMutualRecursionA*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2097,7 +2081,7 @@
   TestMutualRecursionA* a;
 }
 - (BOOL) hasA;
-@property (readonly, retain) TestMutualRecursionA* a;
+@property (retain, readonly) TestMutualRecursionA* a;
 - (BOOL) hasOptionalInt32;
 @property (readonly) int32_t optionalInt32;
 
@@ -2105,7 +2089,6 @@
 - (PBDescriptor*) descriptor;
 + (TestMutualRecursionB*) defaultInstance;
 - (TestMutualRecursionB*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2166,15 +2149,14 @@
 - (BOOL) hasA;
 @property (readonly) int32_t a;
 - (BOOL) hasFoo;
-@property (readonly, retain) TestDupFieldNumber_Foo* foo;
+@property (retain, readonly) TestDupFieldNumber_Foo* foo;
 - (BOOL) hasBar;
-@property (readonly, retain) TestDupFieldNumber_Bar* bar;
+@property (retain, readonly) TestDupFieldNumber_Bar* bar;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (TestDupFieldNumber*) defaultInstance;
 - (TestDupFieldNumber*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2202,7 +2184,6 @@
 - (PBDescriptor*) descriptor;
 + (TestDupFieldNumber_Foo*) defaultInstance;
 - (TestDupFieldNumber_Foo*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2256,7 +2237,6 @@
 - (PBDescriptor*) descriptor;
 + (TestDupFieldNumber_Bar*) defaultInstance;
 - (TestDupFieldNumber_Bar*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2344,13 +2324,12 @@
   TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 }
 - (BOOL) hasOptionalNestedMessage;
-@property (readonly, retain) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
+@property (retain, readonly) TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (TestNestedMessageHasBits*) defaultInstance;
 - (TestNestedMessageHasBits*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2380,7 +2359,6 @@
 - (PBDescriptor*) descriptor;
 + (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2483,15 +2461,15 @@
 - (BOOL) hasPrimitiveField;
 @property (readonly) int32_t primitiveField;
 - (BOOL) hasStringField;
-@property (readonly, copy) NSString* stringField;
+@property (retain, readonly) NSString* stringField;
 - (BOOL) hasEnumField;
-@property (readonly, retain) ForeignEnum* enumField;
+@property (retain, readonly) ForeignEnum* enumField;
 - (BOOL) hasMessageField;
-@property (readonly, retain) ForeignMessage* messageField;
+@property (retain, readonly) ForeignMessage* messageField;
 - (BOOL) hasStringPieceField;
-@property (readonly, copy) NSString* stringPieceField;
+@property (retain, readonly) NSString* stringPieceField;
 - (BOOL) hasCordField;
-@property (readonly, copy) NSString* cordField;
+@property (retain, readonly) NSString* cordField;
 - (NSArray*) repeatedPrimitiveFieldList;
 - (int32_t) repeatedPrimitiveFieldAtIndex:(int32_t) index;
 - (NSArray*) repeatedStringFieldList;
@@ -2509,7 +2487,6 @@
 - (PBDescriptor*) descriptor;
 + (TestCamelCaseFieldNames*) defaultInstance;
 - (TestCamelCaseFieldNames*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2630,7 +2607,7 @@
   NSString* myString;
 }
 - (BOOL) hasMyString;
-@property (readonly, copy) NSString* myString;
+@property (retain, readonly) NSString* myString;
 - (BOOL) hasMyInt;
 @property (readonly) int64_t myInt;
 - (BOOL) hasMyFloat;
@@ -2640,7 +2617,6 @@
 - (PBDescriptor*) descriptor;
 + (TestFieldOrderings*) defaultInstance;
 - (TestFieldOrderings*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2708,7 +2684,7 @@
   int32_t largeUint32;
 }
 - (BOOL) hasEscapedBytes;
-@property (readonly, retain) NSData* escapedBytes;
+@property (retain, readonly) NSData* escapedBytes;
 - (BOOL) hasLargeUint32;
 @property (readonly) int32_t largeUint32;
 - (BOOL) hasLargeUint64;
@@ -2718,13 +2694,12 @@
 - (BOOL) hasSmallInt64;
 @property (readonly) int64_t smallInt64;
 - (BOOL) hasUtf8String;
-@property (readonly, copy) NSString* utf8String;
+@property (retain, readonly) NSString* utf8String;
 
 + (PBDescriptor*) descriptor;
 - (PBDescriptor*) descriptor;
 + (TestExtremeDefaultValues*) defaultInstance;
 - (TestExtremeDefaultValues*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2799,7 +2774,6 @@
 - (PBDescriptor*) descriptor;
 + (FooRequest*) defaultInstance;
 - (FooRequest*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2844,7 +2818,6 @@
 - (PBDescriptor*) descriptor;
 + (FooResponse*) defaultInstance;
 - (FooResponse*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2889,7 +2862,6 @@
 - (PBDescriptor*) descriptor;
 + (BarRequest*) defaultInstance;
 - (BarRequest*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
@@ -2934,7 +2906,6 @@
 - (PBDescriptor*) descriptor;
 + (BarResponse*) defaultInstance;
 - (BarResponse*) defaultInstance;
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
 
 - (BOOL) isInitialized;
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;

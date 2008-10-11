@@ -44,7 +44,7 @@
 }
 
 
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable {
+- (PBFieldAccessorTable*) fieldAccessorTable {
     @throw [NSException exceptionWithName:@"ImproperSubclassing" reason:@"" userInfo:nil];
 }
 
@@ -52,7 +52,7 @@
 - (NSMutableDictionary*) allFieldsMutable {
     NSMutableDictionary* result = [NSMutableDictionary dictionary];
 
-    PBDescriptor* descriptor = [self internalGetFieldAccessorTable].descriptor;
+    PBDescriptor* descriptor = [self fieldAccessorTable].descriptor;
     for (PBFieldDescriptor* field in descriptor.fields) {
         if (field.isRepeated) {
             id value = [self getField:field];
@@ -78,22 +78,22 @@
 
 
 - (BOOL) hasField:(PBFieldDescriptor*) field {
-    return [[self.internalGetFieldAccessorTable getField:field] has:self];
+    return [[self.fieldAccessorTable getField:field] has:self];
 }
 
 
 - (id) getField:(PBFieldDescriptor*) field {
-    return [[self.internalGetFieldAccessorTable getField:field] get:self];
+    return [[self.fieldAccessorTable getField:field] get:self];
 }
 
 
 - (int32_t) getRepeatedFieldCount:(PBFieldDescriptor*) field {
-    return [[self.internalGetFieldAccessorTable getField:field] getRepeatedCount:self];
+    return [[self.fieldAccessorTable getField:field] getRepeatedCount:self];
 }
 
 
 - (id) getRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index {
-    return [[self.internalGetFieldAccessorTable getField:field] getRepeated:self index:index];
+    return [[self.fieldAccessorTable getField:field] getRepeated:self index:index];
 }
 
 @end

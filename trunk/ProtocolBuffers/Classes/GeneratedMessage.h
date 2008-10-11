@@ -24,8 +24,6 @@
 
 @property (readonly, retain) PBUnknownFieldSet* unknownFields;
 
-- (PBFieldAccessorTable*) internalGetFieldAccessorTable;
-
 - (NSDictionary*) allFields;
 
 // @protected
