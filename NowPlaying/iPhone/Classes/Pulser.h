@@ -29,6 +29,7 @@
                       action:(SEL) action
                pulseInterval:(NSTimeInterval) pulseInterval;
 
+- (void) forcePulse;
 - (void) tryPulse;
 
 @end

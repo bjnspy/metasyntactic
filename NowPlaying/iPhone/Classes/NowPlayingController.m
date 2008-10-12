@@ -174,6 +174,7 @@
 - (void) setRatings:(NSDictionary*) ratings {
     if (ratings.count > 0) {
         [self.model onRatingsUpdated];
+        [NowPlayingAppDelegate refresh];
     }
 }
 
@@ -203,7 +204,6 @@
     }
 
     [self spawnBackgroundThreads];
-    [NowPlayingAppDelegate refresh];
 }
 
 
@@ -215,7 +215,6 @@
     [self.model setSearchDate:searchDate];
     [self spawnBackgroundThreads];
     [appDelegate.tabBarController popNavigationControllersToRoot];
-    [NowPlayingAppDelegate refresh];
 }
 
 
@@ -232,7 +231,6 @@
 
 - (void) setSearchRadius:(NSInteger) radius {
     [self.model setSearchRadius:radius];
-    [NowPlayingAppDelegate refresh];
 }
 
 
@@ -243,7 +241,6 @@
 
     [self.model setRatingsProviderIndex:index];
     [self spawnRatingsLookupThread];
-    [NowPlayingAppDelegate refresh];
 }
 
 

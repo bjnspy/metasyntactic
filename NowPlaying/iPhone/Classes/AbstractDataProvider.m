@@ -21,6 +21,7 @@
 #import "LookupResult.h"
 #import "Movie.h"
 #import "MultiDictionary.h"
+#import "NowPlayingAppDelegate.h"
 #import "NowPlayingModel.h"
 #import "Performance.h"
 #import "Theater.h"
@@ -349,6 +350,7 @@
         self.synchronizationInformationData = result.synchronizationData;
         self.performancesData = [NSMutableDictionary dictionary];
         [self.model onProviderUpdated];
+        [NowPlayingAppDelegate refresh:YES];
     }
 }
 

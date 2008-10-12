@@ -71,12 +71,19 @@
         [self performSelector:@selector(tryPulse:) withObject:date afterDelay:waitTime];
         return;
     }
-
-
+    
     // ok, actually pulse.
     self.lastPulseTime = now;
     NSLog(@"Pulse at '%@' being performed at '%@'.", date, lastPulseTime);
-    [target performSelector:action];
+    [target performSelector:action];  
+}
+
+
+- (void) forcePulse {
+    NSAssert([NSThread isMainThread], @""); 
+    self.lastPulseTime = [NSDate date];
+    NSLog(@"Forced pulse at '%@'.", lastPulseTime);
+    [target performSelector:action];  
 }
 
 

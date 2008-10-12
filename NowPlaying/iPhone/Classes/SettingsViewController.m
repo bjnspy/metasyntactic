@@ -279,7 +279,6 @@
 - (void) onUseSmallFontsChanged:(id) sender {
     BOOL useSmallFonts = !self.model.useSmallFonts;
     [self.model setUseSmallFonts:useSmallFonts];
-    [NowPlayingAppDelegate refresh];
 }
 
 

@@ -28,5 +28,6 @@
 @property (retain) Pulser* pulser;
 
 + (void) refresh;
++ (void) refresh:(BOOL) force;
 
 @end
