@@ -53,7 +53,6 @@ static NowPlayingAppDelegate* appDelegate = nil;
     [window makeKeyAndVisible];
 
     self.controller = [NowPlayingController controllerWithAppDelegate:self];
-    [NowPlayingAppDelegate refresh];
 }
 
 
@@ -62,18 +61,27 @@ static NowPlayingAppDelegate* appDelegate = nil;
 }
 
 
-- (void) refresh {
+- (void) refresh:(NSNumber*) force {
     if (![NSThread isMainThread]) {
-        [self performSelectorOnMainThread:@selector(refresh) withObject:nil waitUntilDone:NO];
+        [self performSelectorOnMainThread:@selector(refresh:) withObject:force waitUntilDone:NO];
         return;
     }
 
-    [pulser tryPulse];
+    if (force.boolValue) {
+        [pulser forcePulse];
+    } else {
+        [pulser tryPulse];
+    }
+}
+
+
++ (void) refresh:(BOOL) force {
+    [appDelegate refresh:[NSNumber numberWithBool:force]];
 }
 
 
 + (void) refresh {
-    [appDelegate refresh];
+    [self refresh:NO];
 }
 
 
