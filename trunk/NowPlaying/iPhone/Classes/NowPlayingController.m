@@ -112,7 +112,7 @@
                                                                                error:NULL] objectForKey:NSFileModificationDate];
 
     if (lastLookupDate != nil) {
-        if (ABS([lastLookupDate timeIntervalSinceNow]) > (3 * ONE_DAY)) {
+        if (ABS([lastLookupDate timeIntervalSinceNow]) < (3 * ONE_DAY)) {
             return;
         }
     }
