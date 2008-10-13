@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -15,8 +16,8 @@ public class Movie implements Parcelable, Serializable {
   private final String canonicalTitle;
   private final String displayTitle;
   private final String rating;
-  private final String length; // minutes;
-  private final String releaseDate;
+  private final int length; // minutes;
+  private final Date releaseDate;
   private final String poster;
   private final String synopsis;
   private final String studio;
@@ -24,8 +25,8 @@ public class Movie implements Parcelable, Serializable {
   private final List<String> cast;
   private final List<String> genres;
 
-  private Movie(String identifier, String canonicalTitle, String displayTitle, String rating, String length,
-                String releaseDate, String poster, String synopsis, String studio, List<String> directors,
+  private Movie(String identifier, String canonicalTitle, String displayTitle, String rating, int length,
+                Date releaseDate, String poster, String synopsis, String studio, List<String> directors,
                 List<String> cast, List<String> genres) {
     this.identifier = identifier;
     this.canonicalTitle = canonicalTitle;
@@ -41,7 +42,7 @@ public class Movie implements Parcelable, Serializable {
     this.displayTitle = displayTitle;
   }
 
-  public Movie(String identifier, String title, String rating, String length, String releaseDate, String poster,
+  public Movie(String identifier, String title, String rating, int length, Date releaseDate, String poster,
                String synopsis, String studio, List<String> directors, List<String> cast, List<String> genres) {
     this(identifier, makeCanonical(title), makeDisplay(title), rating, length, releaseDate, poster, synopsis, studio,
         directors, cast, genres);
@@ -85,8 +86,8 @@ public class Movie implements Parcelable, Serializable {
     dest.writeString(canonicalTitle);
     dest.writeString(displayTitle);
     dest.writeString(rating);
-    dest.writeString(length);
-    dest.writeString(releaseDate);
+    dest.writeInt(length);
+    dest.writeValue(releaseDate);
     dest.writeString(poster);
     dest.writeString(synopsis);
     dest.writeString(studio);
@@ -102,8 +103,8 @@ public class Movie implements Parcelable, Serializable {
           String canonicalTitle = source.readString();
           String displayTitle = source.readString();
           String rating = source.readString();
-          String length = source.readString();
-          String releaseDate = source.readString();
+          int length = source.readInt();
+          Date releaseDate = (Date)source.readValue(null);
           String poster = source.readString();
           String synopsis = source.readString();
           String studio = source.readString();
