@@ -14,8 +14,9 @@
 
 #import "GenericDescriptor.h"
 
+/** Describes an enum type. */
 @interface PBEnumDescriptor : NSObject<PBGenericDescriptor> {
-@private
+ @private
     int32_t index;
     PBEnumDescriptorProto* proto;
     NSString* fullName;
@@ -41,6 +42,11 @@
 
 - (NSArray*) values;
 
+/**
+ * Find an enum value by name.
+ * @param name The unqualified name of the value (e.g. "FOO").
+ * @return the value's decsriptor, or {@code null} if not found.
+ */
 - (PBEnumValueDescriptor*) findValueByName:(NSString*) name;
 - (PBEnumValueDescriptor*) findValueByNumber:(int32_t) number;
 

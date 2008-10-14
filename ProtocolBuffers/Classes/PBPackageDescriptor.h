@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface PBPackageDescriptor : NSObject {
-@private
+ @private
     NSString* name;
     NSString* fullName;
     PBFileDescriptor* file;

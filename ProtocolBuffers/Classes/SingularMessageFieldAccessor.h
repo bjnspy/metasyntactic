@@ -15,7 +15,7 @@
 #import "SingularFieldAccessor.h"
 
 @interface PBSingularMessageFieldAccessor : PBSingularFieldAccessor {
-@private
+ @private
     SEL createBuilderSelector;
 }
 

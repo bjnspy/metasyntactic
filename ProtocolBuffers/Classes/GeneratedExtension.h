@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface PBGeneratedExtension : NSObject {
-@private
+ @private
     PBFieldDescriptor* descriptor;
     Class type;
     SEL enumValueOf;

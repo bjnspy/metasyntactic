@@ -20,7 +20,7 @@
 
 /** Describes a field of a message type. */
 @interface PBFieldDescriptor : NSObject<PBGenericDescriptor,NSCopying> {
-@private
+ @private
     int32_t index;
 
     PBFieldDescriptorProto* proto;
@@ -44,11 +44,47 @@
 @property (readonly, retain) PBFieldDescriptorProto* proto;
 @property (readonly, copy) NSString* fullName;
 @property (readonly, retain) PBFileDescriptor* file;
-@property (readonly, retain) PBDescriptor* extensionScope;
 @property (readonly) PBFieldDescriptorType type;
-@property (readonly, retain) PBDescriptor* containingType;
 @property (readonly, retain) PBDescriptor* messageType;
 @property (readonly, retain) PBEnumDescriptor* enumType;
+
+
+/**
+ * For extensions defined nested within message types, gets the outer
+ * type.  Not valid for non-extension fields.  For example, consider
+ * this {@code .proto} file:
+ * <pre>
+ *   message Foo {
+ *     extensions 1000 to max;
+ *   }
+ *   extend Foo {
+ *     optional int32 baz = 1234;
+ *   }
+ *   message Bar {
+ *     extend Foo {
+ *       optional int32 qux = 4321;
+ *     }
+ *   }
+ * </pre>
+ * Both {@code baz}'s and {@code qux}'s containing type is {@code Foo}.
+ * However, {@code baz}'s extension scope is {@code null} while
+ * {@code qux}'s extension scope is {@code Bar}.
+ */
+@property (readonly, retain) PBDescriptor* extensionScope;
+
+/**
+ * Get the field's containing type. For extensions, this is the type being
+ * extended, not the location where the extension was defined.  See
+ * {@link #getExtensionScope()}.
+ */
+@property (readonly, retain) PBDescriptor* containingType;
+
+
+/**
+ * Returns the field's default value.  Valid for all types except for
+ * messages and groups.  For all other types, the object returned is of
+ * the same class that would returned by Message.getField(this).
+ */
 @property (readonly, retain) id defaultValue;
 
 + (PBFieldDescriptor*) descriptorWithProto:(PBFieldDescriptorProto*) proto

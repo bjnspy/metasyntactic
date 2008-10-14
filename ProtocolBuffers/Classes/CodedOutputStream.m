@@ -762,8 +762,7 @@ int32_t computeRawVarint64Size(int64_t value) {
  * thus always taking 10 bytes on the wire.)
  *
  * @param n A signed 32-bit integer.
- * @return An unsigned 32-bit integer, stored in a signed int because
- *         Java has no explicit unsigned support.
+ * @return An unsigned 32-bit integer, stored in a signed int
  */
 int32_t encodeZigZag32(int32_t n) {
     // Note:  the right-shift must be arithmetic
@@ -778,8 +777,7 @@ int32_t encodeZigZag32(int32_t n) {
  * thus always taking 10 bytes on the wire.)
  *
  * @param n A signed 64-bit integer.
- * @return An unsigned 64-bit integer, stored in a signed int because
- *         Java has no explicit unsigned support.
+ * @return An unsigned 64-bit integer, stored in a signed int
  */
 int64_t encodeZigZag64(int64_t n) {
     // Note:  the right-shift must be arithmetic

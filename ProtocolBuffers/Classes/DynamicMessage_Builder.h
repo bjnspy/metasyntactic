@@ -15,7 +15,7 @@
 #import "AbstractMessage_Builder.h"
 
 @interface PBDynamicMessage_Builder : PBAbstractMessage_Builder {
-@private
+ @private
     PBDescriptor* type;
     PBFieldSet* fields;
     PBUnknownFieldSet* unknownFields;
