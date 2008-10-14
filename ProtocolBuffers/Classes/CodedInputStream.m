@@ -134,7 +134,7 @@ const int32_t BUFFER_SIZE = 4096;
             [self readRawLittleEndian64];
             return YES;
         case PBWireFormatLengthDelimited:
-            [self skipRawBytes:[self readRawVarint32]];
+            [self skipRawData:[self readRawVarint32]];
             return YES;
         case PBWireFormatStartGroup:
             [self skipMessage];
@@ -479,8 +479,7 @@ const int32_t BUFFER_SIZE = 4096;
  * negative values must be sign-extended to 64 bits to be varint encoded,
  * thus always taking 10 bytes on the wire.)
  *
- * @param n An unsigned 32-bit integer, stored in a signed int because
- *          Java has no explicit unsigned support.
+ * @param n An unsigned 32-bit integer, stored in a signed int
  * @return A signed 32-bit integer.
  */
 int32_t decodeZigZag32(int32_t n) {
@@ -494,8 +493,7 @@ int32_t decodeZigZag32(int32_t n) {
  * negative values must be sign-extended to 64 bits to be varint encoded,
  * thus always taking 10 bytes on the wire.)
  *
- * @param n An unsigned 64-bit integer, stored in a signed int because
- *          Java has no explicit unsigned support.
+ * @param n An unsigned 64-bit integer, stored in a signed int 
  * @return A signed 64-bit integer.
  */
 int64_t decodeZigZag64(int64_t n) {
@@ -665,7 +663,7 @@ int64_t decodeZigZag64(int64_t n) {
     
     if (totalBytesRetired + bufferPos + size > currentLimit) {
         // Read to the end of the stream anyway.
-        [self skipRawBytes:currentLimit - totalBytesRetired - bufferPos];
+        [self skipRawData:currentLimit - totalBytesRetired - bufferPos];
         // Then fail.
         @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
     }
@@ -768,14 +766,14 @@ int64_t decodeZigZag64(int64_t n) {
  * @throws InvalidProtocolBufferException The end of the stream or the current
  *                                        limit was reached.
  */
-- (void) skipRawBytes:(int32_t) size {
+- (void) skipRawData:(int32_t) size {
     if (size < 0) {
         @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"negativeSize" userInfo:nil];
     }
     
     if (totalBytesRetired + bufferPos + size > currentLimit) {
         // Read to the end of the stream anyway.
-        [self skipRawBytes:currentLimit - totalBytesRetired - bufferPos];
+        [self skipRawData:currentLimit - totalBytesRetired - bufferPos];
         // Then fail.
         @throw [NSException exceptionWithName:@"InvalidProtocolBuffer" reason:@"truncatedMessage" userInfo:nil];
     }

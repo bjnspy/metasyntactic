@@ -56,6 +56,11 @@
 + (PBCodedInputStream*) streamWithData:(NSData*) data;
 + (PBCodedInputStream*) streamWithInputStream:(NSInputStream*) input;
 
+/**
+ * Attempt to read a field tag, returning zero if we have reached EOF.
+ * Protocol message parsers use this to read tags, since a protocol message
+ * may legally end wherever a tag occurs, and zero is not a valid tag number.
+ */
 - (int32_t) readTag;
 - (BOOL) refillBuffer:(BOOL) mustSucceed;
 
@@ -73,24 +78,81 @@
 - (int32_t) readSInt32;
 - (int64_t) readSInt64;
 
+/**
+ * Read one byte from the input.
+ *
+ * @throws InvalidProtocolBuffer The end of the stream or the current
+ *                                        limit was reached.
+ */
 - (int8_t) readRawByte;
+
+/**
+ * Read a raw Varint from the stream.  If larger than 32 bits, discard the
+ * upper bits.
+ */
 - (int32_t) readRawVarint32;
 - (int64_t) readRawVarint64;
 - (int32_t) readRawLittleEndian32;
 - (int64_t) readRawLittleEndian64;
+
+/**
+ * Read a fixed size of bytes from the input.
+ *
+ * @throws InvalidProtocolBuffer The end of the stream or the current
+ *                                        limit was reached.
+ */
 - (NSData*) readRawData:(int32_t) size;
 
+/**
+ * Reads and discards a single field, given its tag value.
+ *
+ * @return {@code false} if the tag is an endgroup tag, in which case
+ *         nothing is skipped.  Otherwise, returns {@code true}.
+ */
 - (BOOL) skipField:(int32_t) tag;
-- (void) skipRawBytes:(int32_t) size;
+
+
+/**
+ * Reads and discards {@code size} bytes.
+ *
+ * @throws InvalidProtocolBuffer The end of the stream or the current
+ *                                        limit was reached.
+ */
+- (void) skipRawData:(int32_t) size;
+
+/**
+ * Reads and discards an entire message.  This will read either until EOF
+ * or until an endgroup tag, whichever comes first.
+ */
 - (void) skipMessage;
 
 - (int32_t) pushLimit:(int32_t) byteLimit;
 - (void) recomputeBufferSizeAfterLimit;
 - (void) popLimit:(int32_t) oldLimit;
 
+/**
+ * Decode a ZigZag-encoded 32-bit value.  ZigZag encodes signed integers
+ * into values that can be efficiently encoded with varint.  (Otherwise,
+ * negative values must be sign-extended to 64 bits to be varint encoded,
+ * thus always taking 10 bytes on the wire.)
+ *
+ * @param n An unsigned 32-bit integer, stored in a signed int.
+ * @return A signed 32-bit integer.
+ */
 int32_t decodeZigZag32(int32_t n);
+
+/**
+ * Decode a ZigZag-encoded 64-bit value.  ZigZag encodes signed integers
+ * into values that can be efficiently encoded with varint.  (Otherwise,
+ * negative values must be sign-extended to 64 bits to be varint encoded,
+ * thus always taking 10 bytes on the wire.)
+ *
+ * @param n An unsigned 64-bit integer, stored in a signed int.
+ * @return A signed 64-bit integer.
+ */
 int64_t decodeZigZag64(int64_t n);
 
+/** Read an embedded message field value from the stream. */
 - (void) readMessage:(id<PBMessage_Builder>) builder extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
 
 - (BOOL) readBool;
@@ -98,10 +160,33 @@ int64_t decodeZigZag64(int64_t n);
 - (NSData*) readData;
 
 - (void) readGroup:(int32_t) fieldNumber builder:(id<PBMessage_Builder>) builder extensionRegistry:(PBExtensionRegistry*) extensionRegistry;
+
+/**
+ * Reads a {@code group} field value from the stream and merges it into the
+ * given {@link UnknownFieldSet}.
+ */
 - (void) readUnknownGroup:(int32_t) fieldNumber builder:(PBUnknownFieldSet_Builder*) builder;
 
+/**
+ * Verifies that the last call to readTag() returned the given tag value.
+ * This is used to verify that a nested group ended with the correct
+ * end tag.
+ *
+ * @throws InvalidProtocolBuffer {@code value} does not match the
+ *                                        last tag.
+ */
 - (void) checkLastTagWas:(int32_t) value;
 
+/**
+ * Read a field of any primitive type.  Enums, groups, and embedded
+ * messages are not handled by this method.
+ *
+ * @param type Declared type of the field.
+ * @return An object representing the field's value, of the exact
+ *         type which would be returned by
+ *         {@link Message#getField(Descriptors.FieldDescriptor)} for
+ *         this field.
+ */
 - (id) readPrimitiveField:(PBFieldDescriptorType) type;
 
 @end

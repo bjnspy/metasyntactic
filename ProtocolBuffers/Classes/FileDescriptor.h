@@ -31,7 +31,20 @@
 @property (readonly, retain) PBFileDescriptorProto* proto;
 @property (readonly, retain) PBDescriptorPool* pool;
 
-+ (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies;
+/**
+ * Construct a {@code FileDescriptor}.
+ *
+ * @param proto The protocol message form of the FileDescriptor.
+ * @param dependencies {@code FileDescriptor}s corresponding to all of
+ *                     the file's dependencies, in the exact order listed
+ *                     in {@code proto}.
+ * @throws DescriptorValidation {@code proto} is not a valid
+ *           descriptor.  This can occur for a number of reasons, e.g.
+ *           because a field has an undefined type or because two messages
+ *           were defined with the same name.
+ */
++ (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto
+                   dependencies:(NSArray*) dependencies;
 
 - (NSArray*) messageTypes;
 - (NSArray*) extensions;
@@ -46,9 +59,37 @@
 
 - (void) crossLink;
 
+/**
+ * Find a message type in the file by name.  Does not find nested types.
+ *
+ * @param name The unqualified type name to look for.
+ * @return The message type's descriptor, or {@code null} if not found.
+ */
 - (PBDescriptor*) findMessageTypeByName:(NSString*) name;
+
+/**
+ * Find an enum type in the file by name.  Does not find nested types.
+ *
+ * @param name The unqualified type name to look for.
+ * @return The enum type's descriptor, or {@code null} if not found.
+ */
 - (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
+
+/**
+ * Find a service type in the file by name.
+ *
+ * @param name The unqualified type name to look for.
+ * @return The service type's descriptor, or {@code null} if not found.
+ */
 - (PBServiceDescriptor*) findServiceByName:(NSString*) name;
+
+/**
+ * Find an extension in the file by name.  Does not find extensions nested
+ * inside message types.
+ *
+ * @param name The unqualified extension name to look for.
+ * @return The extension's descriptor, or {@code null} if not found.
+ */
 - (PBFieldDescriptor*) findExtensionByName:(NSString*) name;
 
 @end
