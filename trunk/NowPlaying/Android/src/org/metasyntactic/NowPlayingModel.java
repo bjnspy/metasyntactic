@@ -8,16 +8,19 @@ import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.caches.scores.ScoresCache;
 import org.metasyntactic.caches.trailer.TrailerCache;
 import org.metasyntactic.data.FavoriteTheater;
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.difference.EditDistance;
 
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
+import java.io.File;
+import java.util.*;
 import java.util.prefs.Preferences;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -37,14 +40,22 @@ public class NowPlayingModel {
   private final Preferences preferences = Preferences.userNodeForPackage(NowPlayingModel.class);
 
   private final Object movieMapLock = new Object();
+  private Map<String,String> movieMap;
 
   private final DataProvider dataProvider = new DataProvider(this);
+  private final ScoresCache scoreCache = new ScoresCache(this);
   private final UserLocationCache userLocationCache = new UserLocationCache();
   private final TrailerCache trailerCache = new TrailerCache();
 
 
   public NowPlayingModel(Context context) {
     this.context = context;
+    movieMap = FileUtilities.readObject(movieMapFile());
+  }
+
+
+  private String movieMapFile() {
+    return new File(Application.dataDirectory, "MovieMap").getAbsolutePath();
   }
 
 
@@ -218,17 +229,55 @@ public class NowPlayingModel {
 
   private void regenerateMovieMap() {
     final List<Movie> movies = getMovies();
+    final Map<String, Score> scores = getScores();
 
     Runnable runnable = new Runnable() {
       public void run() {
-        createMovieMap();
+        createMovieMap(movies, scores);
       }
     };
     ThreadingUtilities.performOnBackgroundThread(runnable, movieMapLock, true/*visible*/);
   }
 
 
-  private void createMovieMap() {
+  private void createMovieMap(List<Movie> movies, Map<String, Score> scores) {
+    final Map<String,String> result = new LinkedHashMap<String, String>();
 
+    List<String> titles = new ArrayList<String>(scores.keySet());
+    List<String> lowercaseTitles = new ArrayList<String>();
+    for (String title : titles) {
+    lowercaseTitles.add(title.toLowerCase());
+  }
+
+    for (Movie movie : movies) {
+        String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
+      int index = EditDistance.findClosestMatchIndex(lowercaseTitle, lowercaseTitles);
+
+      if (index >= 0) {
+            String title = titles.get(index);
+        result.put(movie.getCanonicalTitle(), title);
+        }
+    }
+
+    FileUtilities.writeObject(result, movieMapFile());
+
+    Runnable runnable = new Runnable() {
+      public void run() {
+        reportMovemap(result);
+      }
+    };
+
+    ThreadingUtilities.performOnMainThread(runnable);
+  }
+
+
+  private void reportMovemap(Map<String, String> result) {
+    movieMap = result;
+    Application.refresh(true);
+  }
+
+
+  private Map<String, Score> getScores() {
+    return scoreCache.getScores();
   }
 }
