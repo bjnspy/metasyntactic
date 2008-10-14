@@ -7,7 +7,11 @@ import java.io.Serializable;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Review implements Parcelable, Serializable {
-  private final String text;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7068833926510670525L;
+	private final String text;
   private final int score;
   private final String link;
   private final String author;
