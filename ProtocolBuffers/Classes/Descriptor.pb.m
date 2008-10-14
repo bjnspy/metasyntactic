@@ -479,7 +479,9 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   for (PBFileDescriptorProto* element in self.fileList) {
@@ -516,6 +518,10 @@ static PBFileDescriptorSet* defaultPBFileDescriptorSetInstance = nil;
 - (PBFileDescriptorSet_Builder*) builder {
   return [PBFileDescriptorSet builder];
 }
+@end
+
+@interface PBFileDescriptorSet_Builder()
+@property (retain) PBFileDescriptorSet* result;
 @end
 
 @implementation PBFileDescriptorSet_Builder
@@ -783,7 +789,9 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasName) {
@@ -841,6 +849,10 @@ static PBFileDescriptorProto* defaultPBFileDescriptorProtoInstance = nil;
 - (PBFileDescriptorProto_Builder*) builder {
   return [PBFileDescriptorProto builder];
 }
+@end
+
+@interface PBFileDescriptorProto_Builder()
+@property (retain) PBFileDescriptorProto* result;
 @end
 
 @implementation PBFileDescriptorProto_Builder
@@ -1347,7 +1359,9 @@ static PBDescriptorProto* defaultPBDescriptorProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasName) {
@@ -1470,7 +1484,9 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasStart) {
@@ -1510,6 +1526,10 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
 - (PBDescriptorProto_ExtensionRange_Builder*) builder {
   return [PBDescriptorProto_ExtensionRange builder];
 }
+@end
+
+@interface PBDescriptorProto_ExtensionRange_Builder()
+@property (retain) PBDescriptorProto_ExtensionRange* result;
 @end
 
 @implementation PBDescriptorProto_ExtensionRange_Builder
@@ -1634,6 +1654,10 @@ static PBDescriptorProto_ExtensionRange* defaultPBDescriptorProto_ExtensionRange
   result.end = 0;
   return self;
 }
+@end
+
+@interface PBDescriptorProto_Builder()
+@property (retain) PBDescriptorProto* result;
 @end
 
 @implementation PBDescriptorProto_Builder
@@ -2129,7 +2153,9 @@ static PBFieldDescriptorProto* defaultPBFieldDescriptorProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasName) {
@@ -2428,6 +2454,10 @@ static PBFieldDescriptorProto_Label* PBFieldDescriptorProto_Label_LABEL_REPEATED
   };
   return VALUES[desc.index];
 }
+@end
+
+@interface PBFieldDescriptorProto_Builder()
+@property (retain) PBFieldDescriptorProto* result;
 @end
 
 @implementation PBFieldDescriptorProto_Builder
@@ -2804,7 +2834,9 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasName) {
@@ -2847,6 +2879,10 @@ static PBEnumDescriptorProto* defaultPBEnumDescriptorProtoInstance = nil;
 - (PBEnumDescriptorProto_Builder*) builder {
   return [PBEnumDescriptorProto builder];
 }
+@end
+
+@interface PBEnumDescriptorProto_Builder()
+@property (retain) PBEnumDescriptorProto* result;
 @end
 
 @implementation PBEnumDescriptorProto_Builder
@@ -3113,7 +3149,9 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasName) {
@@ -3156,6 +3194,10 @@ static PBEnumValueDescriptorProto* defaultPBEnumValueDescriptorProtoInstance = n
 - (PBEnumValueDescriptorProto_Builder*) builder {
   return [PBEnumValueDescriptorProto builder];
 }
+@end
+
+@interface PBEnumValueDescriptorProto_Builder()
+@property (retain) PBEnumValueDescriptorProto* result;
 @end
 
 @implementation PBEnumValueDescriptorProto_Builder
@@ -3405,7 +3447,9 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasName) {
@@ -3448,6 +3492,10 @@ static PBServiceDescriptorProto* defaultPBServiceDescriptorProtoInstance = nil;
 - (PBServiceDescriptorProto_Builder*) builder {
   return [PBServiceDescriptorProto builder];
 }
+@end
+
+@interface PBServiceDescriptorProto_Builder()
+@property (retain) PBServiceDescriptorProto* result;
 @end
 
 @implementation PBServiceDescriptorProto_Builder
@@ -3728,7 +3776,9 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasName) {
@@ -3774,6 +3824,10 @@ static PBMethodDescriptorProto* defaultPBMethodDescriptorProtoInstance = nil;
 - (PBMethodDescriptorProto_Builder*) builder {
   return [PBMethodDescriptorProto builder];
 }
+@end
+
+@interface PBMethodDescriptorProto_Builder()
+@property (retain) PBMethodDescriptorProto* result;
 @end
 
 @implementation PBMethodDescriptorProto_Builder
@@ -4089,7 +4143,9 @@ static PBFileOptions* defaultPBFileOptionsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasJavaPackage) {
@@ -4202,6 +4258,10 @@ static PBFileOptions_OptimizeMode* PBFileOptions_OptimizeMode_CODE_SIZE = nil;
   };
   return VALUES[desc.index];
 }
+@end
+
+@interface PBFileOptions_Builder()
+@property (retain) PBFileOptions* result;
 @end
 
 @implementation PBFileOptions_Builder
@@ -4485,7 +4545,9 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasMessageSetWireFormat) {
@@ -4522,6 +4584,10 @@ static PBMessageOptions* defaultPBMessageOptionsInstance = nil;
 - (PBMessageOptions_Builder*) builder {
   return [PBMessageOptions builder];
 }
+@end
+
+@interface PBMessageOptions_Builder()
+@property (retain) PBMessageOptions* result;
 @end
 
 @implementation PBMessageOptions_Builder
@@ -4693,7 +4759,9 @@ static PBFieldOptions* defaultPBFieldOptionsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasCtype) {
@@ -4794,6 +4862,10 @@ static PBFieldOptions_CType* PBFieldOptions_CType_STRING_PIECE = nil;
   };
   return VALUES[desc.index];
 }
+@end
+
+@interface PBFieldOptions_Builder()
+@property (retain) PBFieldOptions* result;
 @end
 
 @implementation PBFieldOptions_Builder
@@ -4968,7 +5040,9 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += self.unknownFields.serializedSize;
@@ -5002,6 +5076,10 @@ static PBEnumOptions* defaultPBEnumOptionsInstance = nil;
 - (PBEnumOptions_Builder*) builder {
   return [PBEnumOptions builder];
 }
+@end
+
+@interface PBEnumOptions_Builder()
+@property (retain) PBEnumOptions* result;
 @end
 
 @implementation PBEnumOptions_Builder
@@ -5124,7 +5202,9 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += self.unknownFields.serializedSize;
@@ -5158,6 +5238,10 @@ static PBEnumValueOptions* defaultPBEnumValueOptionsInstance = nil;
 - (PBEnumValueOptions_Builder*) builder {
   return [PBEnumValueOptions builder];
 }
+@end
+
+@interface PBEnumValueOptions_Builder()
+@property (retain) PBEnumValueOptions* result;
 @end
 
 @implementation PBEnumValueOptions_Builder
@@ -5280,7 +5364,9 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += self.unknownFields.serializedSize;
@@ -5314,6 +5400,10 @@ static PBServiceOptions* defaultPBServiceOptionsInstance = nil;
 - (PBServiceOptions_Builder*) builder {
   return [PBServiceOptions builder];
 }
+@end
+
+@interface PBServiceOptions_Builder()
+@property (retain) PBServiceOptions* result;
 @end
 
 @implementation PBServiceOptions_Builder
@@ -5436,7 +5526,9 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += self.unknownFields.serializedSize;
@@ -5470,6 +5562,10 @@ static PBMethodOptions* defaultPBMethodOptionsInstance = nil;
 - (PBMethodOptions_Builder*) builder {
   return [PBMethodOptions builder];
 }
+@end
+
+@interface PBMethodOptions_Builder()
+@property (retain) PBMethodOptions* result;
 @end
 
 @implementation PBMethodOptions_Builder
