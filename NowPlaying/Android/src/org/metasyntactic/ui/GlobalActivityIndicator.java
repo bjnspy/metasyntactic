@@ -1,5 +1,6 @@
 package org.metasyntactic.ui;
 
+import org.metasyntactic.Application;
 import static org.metasyntactic.threading.ThreadingUtilities.isBackgroundThread;
 import static org.metasyntactic.threading.ThreadingUtilities.performOnMainThread;
 
@@ -109,7 +110,7 @@ public class GlobalActivityIndicator {
         stopNetworkIndicator();
       }
 
-      //[NowPlayingAppDelegate refresh];
+      Application.refresh();
     }
   }
 }

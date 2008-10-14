@@ -1,5 +1,7 @@
 package org.metasyntactic;
 
+import org.metasyntactic.threading.ThreadingUtilities;
+
 import java.io.File;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -9,13 +11,24 @@ public class Application {
   }
 
 
-  private final static Object gate = new Object();
+  private final static Object lock = new Object();
 
   public static final String rootDirectory = "/sdcard";
   public static final String applicationDirectory = new File(rootDirectory, "NowPlaying").getAbsolutePath();
   public static final String dataDirectory = new File(applicationDirectory, "Data").getAbsolutePath();
+  public static final String trailersDirectory = new File(applicationDirectory, "Trailers").getAbsolutePath();
   public static final String userLocationsDirectory = new File(applicationDirectory, "UserLocations").getAbsolutePath();
 
+  private static Pulser pulser;
+
+  static {
+    Runnable runnable = new Runnable() {
+      public void run() {
+
+      }
+    };
+    pulser = new Pulser(runnable, 5000);
+  }
 
   private Application() {
 
@@ -26,7 +39,8 @@ public class Application {
     return new String[]{
         applicationDirectory,
         dataDirectory,
-        userLocationsDirectory
+        trailersDirectory,
+        userLocationsDirectory,
     };
   }
 
@@ -60,5 +74,25 @@ public class Application {
 
   public static boolean useKilometers() {
     return false;
+  }
+
+
+  public static void refresh() {
+    refresh(false);
+  }
+
+
+  public static void refresh(final boolean force) {
+    if (ThreadingUtilities.isBackgroundThread()) {
+      Runnable runnable = new Runnable() { public void run() { refresh(force); } };
+      ThreadingUtilities.performOnMainThread(runnable);
+      return;
+    }
+
+    if (force) {
+      pulser.forcePulse();
+    } else {
+      pulser.tryPulse();
+    }
   }
 }

@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -46,6 +47,66 @@ public class Movie implements Parcelable, Serializable {
                String synopsis, String studio, List<String> directors, List<String> cast, List<String> genres) {
     this(identifier, makeCanonical(title), makeDisplay(title), rating, length, releaseDate, poster, synopsis, studio,
         directors, cast, genres);
+  }
+
+
+  public String getIdentifier() {
+    return identifier;
+  }
+
+
+  public String getCanonicalTitle() {
+    return canonicalTitle;
+  }
+
+
+  public String getDisplayTitle() {
+    return displayTitle;
+  }
+
+
+  public String getRating() {
+    return rating;
+  }
+
+
+  public int getLength() {
+    return length;
+  }
+
+
+  public Date getReleaseDate() {
+    return releaseDate;
+  }
+
+
+  public String getPoster() {
+    return poster;
+  }
+
+
+  public String getSynopsis() {
+    return synopsis;
+  }
+
+
+  public String getStudio() {
+    return studio;
+  }
+
+
+  public List<String> getDirectors() {
+    return Collections.unmodifiableList(directors);
+  }
+
+
+  public List<String> getCast() {
+    return Collections.unmodifiableList(cast);
+  }
+
+
+  public List<String> getGenres() {
+    return Collections.unmodifiableList(genres);
   }
 
 

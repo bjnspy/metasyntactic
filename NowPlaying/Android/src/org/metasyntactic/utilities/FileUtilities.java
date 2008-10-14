@@ -14,6 +14,10 @@ public class FileUtilities {
   }
 
 
+  public static void writeObject(Object o, String fileName) {
+    writeObject(o, new File(fileName));
+  }
+
   public static void writeObject(Object o, File file) {
     try {
       ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
@@ -22,6 +26,11 @@ public class FileUtilities {
       ExceptionUtilities.log(FileUtilities.class, "writeObject", e);
       throw new RuntimeException(e);
     }
+  }
+
+
+  public static <T> T readObject(String fileName) {
+    return readObject(new File(fileName));
   }
 
 

@@ -18,7 +18,7 @@ public class Pulser {
   }
 
 
-  public void tryPulse(final Date date) {
+  private void tryPulse(final Date date) {
     if (date.before(lastPulseTime)) {
       // we sent out a pulse after this one.  just disregard this pulse
       //NSLog(@"Pulse at '%@' < last pulse at '%@'.  Disregarding.", date, lastPulseTime);
