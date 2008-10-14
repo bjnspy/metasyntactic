@@ -14,6 +14,9 @@
 
 #import "AbstractMessage_Builder.h"
 
+/**
+ * Builder for {@link DynamicMessage}s.
+ */
 @interface PBDynamicMessage_Builder : PBAbstractMessage_Builder {
  @private
     PBDescriptor* type;

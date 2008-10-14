@@ -12,6 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * A class which represents an arbitrary set of fields of some message type.
+ * This is used to implement {@link DynamicMessage}, and also to represent
+ * extensions in {@link GeneratedMessage}.  This class is package-private,
+ * since outside users should probably be using {@link DynamicMessage}.
+ *
+ * @author Cyrus Najmabadi
+ */
 @interface PBFieldSet : NSObject {
     NSMutableDictionary* fields;
 }
@@ -37,7 +45,15 @@
 - (NSDictionary*) allFields;
 
 - (BOOL) hasField:(PBFieldDescriptor*) field;
+
+/**
+ * See {@link Message#getField(Descriptors.FieldDescriptor)}.  This method
+ * returns {@code null} if the field is a singular message type and is not
+ * set; in this case it is up to the caller to fetch the message's default
+ * instance.
+ */
 - (id) getField:(PBFieldDescriptor*) field;
+
 - (void) setField:(PBFieldDescriptor*) field value:(id) value;
 - (void) clearField:(PBFieldDescriptor*) field;
 
@@ -45,7 +61,18 @@
 - (void) setRepeatedField:(PBFieldDescriptor*) field index:(int32_t) index value:(id) value;
 - (void) addRepeatedField:(PBFieldDescriptor*) field value:(id) value;
 
+/**
+ * See {@link Message#isInitialized()}.  Note:  Since {@code FieldSet}
+ * itself does not have any way of knowing about required fields that
+ * aren't actually present in the set, it is up to the caller to check
+ * that all required fields are present.
+ */
 - (BOOL) isInitialized;
+
+/**
+ * Like {@link #isInitialized()}, but also checks for the presence of
+ * all required fields in the given type.
+ */
 - (BOOL) isInitialized:(PBDescriptor*) type;
 
 - (void) writeToCodedOutputStream:(PBCodedOutputStream*) output;
