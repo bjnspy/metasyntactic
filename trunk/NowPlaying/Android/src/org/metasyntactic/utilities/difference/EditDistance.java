@@ -117,7 +117,7 @@ public class EditDistance {
     }
 
     if (bestIndex != -1 &&
-        areSimilar(list.get(bestIndex), string)) {
+        areSimilar(string, list.get(bestIndex))) {
       return bestIndex;
     }
 
@@ -132,5 +132,26 @@ public class EditDistance {
     }
 
     return list.get(index);
+  }
+
+
+  public static String findClosestMatch(String string, java.util.Collection<String> set) {
+    int bestDistance = Integer.MAX_VALUE;
+    String bestValue = null;
+
+    for (String value : set) {
+      int distance = getEditDistance(string, value);
+
+      if (distance < bestDistance) {
+        bestDistance = distance;
+        bestValue = value;
+      }
+    }
+
+    if (bestValue != null && areSimilar(string, bestValue)) {
+      return bestValue;
+    }
+
+    return null;
   }
 }

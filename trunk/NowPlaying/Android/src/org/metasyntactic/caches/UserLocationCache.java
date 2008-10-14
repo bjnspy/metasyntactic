@@ -2,6 +2,7 @@ package org.metasyntactic.caches;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.data.Location;
+import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.*;
 import org.w3c.dom.Element;
 
@@ -10,7 +11,7 @@ import java.net.URLEncoder;
 import java.util.Locale;
 
 public class UserLocationCache {
-  private final Object gate = new Object();
+  private final Object lock = new Object();
 
 
   public UserLocationCache() {
@@ -18,31 +19,31 @@ public class UserLocationCache {
 
 
   public void updateUserAddressLocation(final String userAddress) {
-    new Thread() {
+    Runnable runnable = new Runnable() {
       public void run() {
         updateUserAddressLocationBackgroundEntryPoint(userAddress);
       }
-    }.start();
+    };
+
+    ThreadingUtilities.performOnBackgroundThread(runnable, lock, true, false);
   }
 
 
   private void updateUserAddressLocationBackgroundEntryPoint(String userAddress) {
-    synchronized (gate) {
-      if (StringUtilities.isNullOrEmpty(userAddress)) {
-        return;
+    if (StringUtilities.isNullOrEmpty(userAddress)) {
+      return;
+    }
+
+    //NSAssert(![NSThread isMainThread], @"Only call this from the background");
+    Location location = locationForUserAddress(userAddress);
+
+    if (location == null) {
+      location = downloadAddressLocationFromWebService(massageAddress(userAddress));
+      if (!location.getCountry().equals(userCountryISO())) {
+        location = downloadAddressLocationFromWebService(userAddress);
       }
 
-      //NSAssert(![NSThread isMainThread], @"Only call this from the background");
-      Location location = locationForUserAddress(userAddress);
-
-      if (location == null) {
-        location = downloadAddressLocationFromWebService(massageAddress(userAddress));
-        if (!location.getCountry().equals(userCountryISO())) {
-          location = downloadAddressLocationFromWebService(userAddress);
-        }
-
-        saveLocation(location, userAddress);
-      }
+      saveLocation(location, userAddress);
     }
   }
 

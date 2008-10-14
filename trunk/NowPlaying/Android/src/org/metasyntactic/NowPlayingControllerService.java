@@ -6,6 +6,7 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
+import org.metasyntactic.threading.ThreadingUtilities;
 
 import java.util.List;
 
@@ -22,18 +23,13 @@ public class NowPlayingControllerService extends Service {
 
 
   private void update() {
-    new Thread(new Runnable() {
+    Runnable runnable = new Runnable() {
       public void run() {
-        updateBackgroundEntryPoint();
+        model.update();
       }
-    }).start();
-  }
+    };
 
-
-  private void updateBackgroundEntryPoint() {
-    synchronized (lock) {
-      model.update();
-    }
+    ThreadingUtilities.performOnBackgroundThread(runnable, lock, true, true);
   }
 
 

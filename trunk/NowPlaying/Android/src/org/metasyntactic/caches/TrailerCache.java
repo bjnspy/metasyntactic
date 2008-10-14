@@ -1,0 +1,165 @@
+package org.metasyntactic.caches;
+
+import org.metasyntactic.Application;
+import org.metasyntactic.Constants;
+import org.metasyntactic.data.Movie;
+import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.FileUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.difference.EditDistance;
+
+import java.io.File;
+import java.util.*;
+
+/** @author cyrusn@google.com (Cyrus Najmabadi) */
+public class TrailerCache {
+  private final Object lock = new Object();
+
+
+  private String trailerFileName(String title) {
+    return FileUtilities.sanitizeFileName(title);
+  }
+
+
+  private String trailerFilePath(String title) {
+    return new File(Application.trailersDirectory, title).getAbsolutePath();
+  }
+
+
+  private void deleteObsoleteTrailers(List<Movie> movies) {
+    File trailersDir = new File(Application.trailersDirectory);
+    Set<String> fileNames = new LinkedHashSet<String>(Arrays.asList(trailersDir.list()));
+
+    for (Movie movie : movies) {
+      fileNames.remove(trailerFileName(movie.getCanonicalTitle()));
+    }
+
+    long now = new Date().getTime();
+
+    for (String fileName : fileNames) {
+      File file = new File(trailersDir, fileName);
+      if (file.exists()) {
+        long writeTime = file.lastModified();
+        long span = Math.abs(writeTime - now);
+
+        if (span > (4 * Constants.ONE_WEEK)) {
+          file.delete();
+        }
+      }
+    }
+  }
+
+
+  private List<List<Movie>> getOrderedMovies(List<Movie> movies) {
+    List<Movie> moviesWithoutTrailers = new ArrayList<Movie>();
+    List<Movie> moviesWithTrailers = new ArrayList<Movie>();
+
+    long now = new Date().getTime();
+
+    for (Movie movie : movies) {
+      File file = new File(trailerFilePath(movie.getCanonicalTitle()));
+      if (!file.exists()) {
+        moviesWithoutTrailers.add(movie);
+      } else {
+        long writeTime = file.lastModified();
+        long span = Math.abs(writeTime - now);
+
+        if (span > (2 * Constants.ONE_DAY)) {
+          moviesWithTrailers.add(movie);
+        }
+      }
+    }
+
+    return Arrays.asList(moviesWithoutTrailers, moviesWithTrailers);
+  }
+
+
+  private void update(final List<Movie> movies) {
+    Runnable runnable = new Runnable() {
+      public void run() {
+        updateBackgroundEntryPoint(movies);
+      }
+    };
+    ThreadingUtilities.performOnBackgroundThread(runnable, lock, false);
+  }
+
+
+  private void updateBackgroundEntryPoint(final List<Movie> movies) {
+    deleteObsoleteTrailers(movies);
+    List<List<Movie>> orderedMovies = getOrderedMovies(movies);
+
+    String url = "http://metaboxoffice2.appspot.com/LookupTrailerListings?q=index";
+    String indexText = NetworkUtilities.downloadString(url, false);
+    if (indexText == null) {
+      return;
+    }
+
+    Map<String, List<String>> index = generateIndex(indexText);
+
+    for (List<Movie> values : orderedMovies) {
+      downloadTrailers(values, index);
+    }
+  }
+
+
+  private void downloadMovieTrailer(Movie movie, Map<String, List<String>> index) {
+    String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), index.keySet());
+    if (bestKey == null) {
+      // no trailer for this movie.  record that fact.  we'll try again later
+      FileUtilities.writeObject(new ArrayList<String>(), trailerFilePath(movie.getCanonicalTitle()));
+      return;
+    }
+
+    List<String> studioAndLocation = index.get(bestKey);
+    String studio = studioAndLocation.get(0);
+    String location = studioAndLocation.get(1);
+
+    String url = "http://metaboxoffice2.appspot.com/LookupTrailerListings?studio=" + studio + "&name=" + location;
+    String trailersString = NetworkUtilities.downloadString(url, false);
+
+    if (trailersString == null) {
+      // didn't get any data.  ignore this for now.
+      return;
+    }
+
+    List<String> trailers = Arrays.asList(trailersString.split("\n"));
+    FileUtilities.writeObject(trailers, trailerFilePath(movie.getCanonicalTitle()));
+    Application.refresh();
+  }
+
+
+  private void downloadTrailers(List<Movie> movies, Map<String, List<String>> index) {
+    for (Movie movie : movies) {
+      downloadMovieTrailer(movie, index);
+    }
+  }
+
+
+  private Map<String, List<String>> generateIndex(String indexText) {
+    Map<String, List<String>> index = new LinkedHashMap<String, List<String>>();
+
+    for (String row : indexText.split("\n")) {
+      String[] values = row.split("\t");
+      if (values.length != 3) {
+        continue;
+      }
+
+      String fullTitle = values[0];
+      String studio = values[1];
+      String location = values[2];
+
+      index.put(fullTitle.toLowerCase(), Arrays.asList(studio, location));
+    }
+
+    return index;
+  }
+
+
+  public List<String> trailersForMovie(Movie movie) {
+    List<String> trailers = FileUtilities.readObject(trailerFilePath(movie.getCanonicalTitle()));
+    if (trailers == null) {
+      return Collections.emptyList();
+    }
+    return trailers;
+  }
+}
