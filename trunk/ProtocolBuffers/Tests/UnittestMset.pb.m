@@ -202,7 +202,9 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += [self extensionsSerializedSize];
@@ -237,6 +239,10 @@ static TestMessageSet* defaultTestMessageSetInstance = nil;
 - (TestMessageSet_Builder*) builder {
   return [TestMessageSet builder];
 }
+@end
+
+@interface TestMessageSet_Builder()
+@property (retain) TestMessageSet* result;
 @end
 
 @implementation TestMessageSet_Builder
@@ -377,7 +383,9 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasMessageSet) {
@@ -414,6 +422,10 @@ static TestMessageSetContainer* defaultTestMessageSetContainerInstance = nil;
 - (TestMessageSetContainer_Builder*) builder {
   return [TestMessageSetContainer builder];
 }
+@end
+
+@interface TestMessageSetContainer_Builder()
+@property (retain) TestMessageSetContainer* result;
 @end
 
 @implementation TestMessageSetContainer_Builder
@@ -596,7 +608,9 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasI) {
@@ -633,6 +647,10 @@ static TestMessageSetExtension1* defaultTestMessageSetExtension1Instance = nil;
 - (TestMessageSetExtension1_Builder*) builder {
   return [TestMessageSetExtension1 builder];
 }
+@end
+
+@interface TestMessageSetExtension1_Builder()
+@property (retain) TestMessageSetExtension1* result;
 @end
 
 @implementation TestMessageSetExtension1_Builder
@@ -797,7 +815,9 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasStr) {
@@ -834,6 +854,10 @@ static TestMessageSetExtension2* defaultTestMessageSetExtension2Instance = nil;
 - (TestMessageSetExtension2_Builder*) builder {
   return [TestMessageSetExtension2 builder];
 }
+@end
+
+@interface TestMessageSetExtension2_Builder()
+@property (retain) TestMessageSetExtension2* result;
 @end
 
 @implementation TestMessageSetExtension2_Builder
@@ -997,7 +1021,9 @@ static RawMessageSet* defaultRawMessageSetInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   for (RawMessageSet_Item* element in self.itemList) {
@@ -1109,7 +1135,9 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasTypeId) {
@@ -1149,6 +1177,10 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
 - (RawMessageSet_Item_Builder*) builder {
   return [RawMessageSet_Item builder];
 }
+@end
+
+@interface RawMessageSet_Item_Builder()
+@property (retain) RawMessageSet_Item* result;
 @end
 
 @implementation RawMessageSet_Item_Builder
@@ -1273,6 +1305,10 @@ static RawMessageSet_Item* defaultRawMessageSet_ItemInstance = nil;
   result.message = [NSData data];
   return self;
 }
+@end
+
+@interface RawMessageSet_Builder()
+@property (retain) RawMessageSet* result;
 @end
 
 @implementation RawMessageSet_Builder

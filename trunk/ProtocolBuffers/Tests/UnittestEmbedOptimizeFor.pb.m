@@ -133,7 +133,9 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasOptionalMessage) {
@@ -173,6 +175,10 @@ static TestEmbedOptimizedForSize* defaultTestEmbedOptimizedForSizeInstance = nil
 - (TestEmbedOptimizedForSize_Builder*) builder {
   return [TestEmbedOptimizedForSize builder];
 }
+@end
+
+@interface TestEmbedOptimizedForSize_Builder()
+@property (retain) TestEmbedOptimizedForSize* result;
 @end
 
 @implementation TestEmbedOptimizedForSize_Builder

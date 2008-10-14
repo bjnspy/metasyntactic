@@ -70,7 +70,6 @@
  @private
   ImportMessage* result;
 }
-@property (retain) ImportMessage* result;
 
 - (PBDescriptor*) descriptor;
 - (ImportMessage*) defaultInstance;

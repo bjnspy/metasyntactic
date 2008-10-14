@@ -2682,7 +2682,9 @@ static TestAllTypes* defaultTestAllTypesInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasOptionalInt32) {
@@ -3044,7 +3046,9 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasBb) {
@@ -3081,6 +3085,10 @@ static TestAllTypes_NestedMessage* defaultTestAllTypes_NestedMessageInstance = n
 - (TestAllTypes_NestedMessage_Builder*) builder {
   return [TestAllTypes_NestedMessage builder];
 }
+@end
+
+@interface TestAllTypes_NestedMessage_Builder()
+@property (retain) TestAllTypes_NestedMessage* result;
 @end
 
 @implementation TestAllTypes_NestedMessage_Builder
@@ -3238,7 +3246,9 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -3275,6 +3285,10 @@ static TestAllTypes_OptionalGroup* defaultTestAllTypes_OptionalGroupInstance = n
 - (TestAllTypes_OptionalGroup_Builder*) builder {
   return [TestAllTypes_OptionalGroup builder];
 }
+@end
+
+@interface TestAllTypes_OptionalGroup_Builder()
+@property (retain) TestAllTypes_OptionalGroup* result;
 @end
 
 @implementation TestAllTypes_OptionalGroup_Builder
@@ -3432,7 +3446,9 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -3469,6 +3485,10 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
 - (TestAllTypes_RepeatedGroup_Builder*) builder {
   return [TestAllTypes_RepeatedGroup builder];
 }
+@end
+
+@interface TestAllTypes_RepeatedGroup_Builder()
+@property (retain) TestAllTypes_RepeatedGroup* result;
 @end
 
 @implementation TestAllTypes_RepeatedGroup_Builder
@@ -3570,6 +3590,10 @@ static TestAllTypes_RepeatedGroup* defaultTestAllTypes_RepeatedGroupInstance = n
   result.a = 0;
   return self;
 }
+@end
+
+@interface TestAllTypes_Builder()
+@property (retain) TestAllTypes* result;
 @end
 
 @implementation TestAllTypes_Builder
@@ -5821,7 +5845,9 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasC) {
@@ -5858,6 +5884,10 @@ static ForeignMessage* defaultForeignMessageInstance = nil;
 - (ForeignMessage_Builder*) builder {
   return [ForeignMessage builder];
 }
+@end
+
+@interface ForeignMessage_Builder()
+@property (retain) ForeignMessage* result;
 @end
 
 @implementation ForeignMessage_Builder
@@ -6008,7 +6038,9 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += [self extensionsSerializedSize];
@@ -6043,6 +6075,10 @@ static TestAllExtensions* defaultTestAllExtensionsInstance = nil;
 - (TestAllExtensions_Builder*) builder {
   return [TestAllExtensions builder];
 }
+@end
+
+@interface TestAllExtensions_Builder()
+@property (retain) TestAllExtensions* result;
 @end
 
 @implementation TestAllExtensions_Builder
@@ -6177,7 +6213,9 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -6214,6 +6252,10 @@ static OptionalGroup_extension* defaultOptionalGroup_extensionInstance = nil;
 - (OptionalGroup_extension_Builder*) builder {
   return [OptionalGroup_extension builder];
 }
+@end
+
+@interface OptionalGroup_extension_Builder()
+@property (retain) OptionalGroup_extension* result;
 @end
 
 @implementation OptionalGroup_extension_Builder
@@ -6371,7 +6413,9 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -6408,6 +6452,10 @@ static RepeatedGroup_extension* defaultRepeatedGroup_extensionInstance = nil;
 - (RepeatedGroup_extension_Builder*) builder {
   return [RepeatedGroup_extension builder];
 }
+@end
+
+@interface RepeatedGroup_extension_Builder()
+@property (retain) RepeatedGroup_extension* result;
 @end
 
 @implementation RepeatedGroup_extension_Builder
@@ -6970,7 +7018,9 @@ static TestRequired* defaultTestRequiredInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -7103,6 +7153,10 @@ static TestRequired* defaultTestRequiredInstance = nil;
 - (TestRequired_Builder*) builder {
   return [TestRequired builder];
 }
+@end
+
+@interface TestRequired_Builder()
+@property (retain) TestRequired* result;
 @end
 
 @implementation TestRequired_Builder
@@ -8032,7 +8086,9 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasOptionalMessage) {
@@ -8075,6 +8131,10 @@ static TestRequiredForeign* defaultTestRequiredForeignInstance = nil;
 - (TestRequiredForeign_Builder*) builder {
   return [TestRequiredForeign builder];
 }
+@end
+
+@interface TestRequiredForeign_Builder()
+@property (retain) TestRequiredForeign* result;
 @end
 
 @implementation TestRequiredForeign_Builder
@@ -8316,7 +8376,9 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasForeignNested) {
@@ -8353,6 +8415,10 @@ static TestForeignNested* defaultTestForeignNestedInstance = nil;
 - (TestForeignNested_Builder*) builder {
   return [TestForeignNested builder];
 }
+@end
+
+@interface TestForeignNested_Builder()
+@property (retain) TestForeignNested* result;
 @end
 
 @implementation TestForeignNested_Builder
@@ -8517,7 +8583,9 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += self.unknownFields.serializedSize;
@@ -8551,6 +8619,10 @@ static TestEmptyMessage* defaultTestEmptyMessageInstance = nil;
 - (TestEmptyMessage_Builder*) builder {
   return [TestEmptyMessage builder];
 }
+@end
+
+@interface TestEmptyMessage_Builder()
+@property (retain) TestEmptyMessage* result;
 @end
 
 @implementation TestEmptyMessage_Builder
@@ -8678,7 +8750,9 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += [self extensionsSerializedSize];
@@ -8713,6 +8787,10 @@ static TestEmptyMessageWithExtensions* defaultTestEmptyMessageWithExtensionsInst
 - (TestEmptyMessageWithExtensions_Builder*) builder {
   return [TestEmptyMessageWithExtensions builder];
 }
+@end
+
+@interface TestEmptyMessageWithExtensions_Builder()
+@property (retain) TestEmptyMessageWithExtensions* result;
 @end
 
 @implementation TestEmptyMessageWithExtensions_Builder
@@ -8859,7 +8937,9 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -8899,6 +8979,10 @@ static TestReallyLargeTagNumber* defaultTestReallyLargeTagNumberInstance = nil;
 - (TestReallyLargeTagNumber_Builder*) builder {
   return [TestReallyLargeTagNumber builder];
 }
+@end
+
+@interface TestReallyLargeTagNumber_Builder()
+@property (retain) TestReallyLargeTagNumber* result;
 @end
 
 @implementation TestReallyLargeTagNumber_Builder
@@ -9092,7 +9176,9 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -9132,6 +9218,10 @@ static TestRecursiveMessage* defaultTestRecursiveMessageInstance = nil;
 - (TestRecursiveMessage_Builder*) builder {
   return [TestRecursiveMessage builder];
 }
+@end
+
+@interface TestRecursiveMessage_Builder()
+@property (retain) TestRecursiveMessage* result;
 @end
 
 @implementation TestRecursiveMessage_Builder
@@ -9332,7 +9422,9 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasBb) {
@@ -9369,6 +9461,10 @@ static TestMutualRecursionA* defaultTestMutualRecursionAInstance = nil;
 - (TestMutualRecursionA_Builder*) builder {
   return [TestMutualRecursionA builder];
 }
+@end
+
+@interface TestMutualRecursionA_Builder()
+@property (retain) TestMutualRecursionA* result;
 @end
 
 @implementation TestMutualRecursionA_Builder
@@ -9558,7 +9654,9 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -9598,6 +9696,10 @@ static TestMutualRecursionB* defaultTestMutualRecursionBInstance = nil;
 - (TestMutualRecursionB_Builder*) builder {
   return [TestMutualRecursionB builder];
 }
+@end
+
+@interface TestMutualRecursionB_Builder()
+@property (retain) TestMutualRecursionB* result;
 @end
 
 @implementation TestMutualRecursionB_Builder
@@ -9823,7 +9925,9 @@ static TestDupFieldNumber* defaultTestDupFieldNumberInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -9922,7 +10026,9 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -9959,6 +10065,10 @@ static TestDupFieldNumber_Foo* defaultTestDupFieldNumber_FooInstance = nil;
 - (TestDupFieldNumber_Foo_Builder*) builder {
   return [TestDupFieldNumber_Foo builder];
 }
+@end
+
+@interface TestDupFieldNumber_Foo_Builder()
+@property (retain) TestDupFieldNumber_Foo* result;
 @end
 
 @implementation TestDupFieldNumber_Foo_Builder
@@ -10116,7 +10226,9 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasA) {
@@ -10153,6 +10265,10 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
 - (TestDupFieldNumber_Bar_Builder*) builder {
   return [TestDupFieldNumber_Bar builder];
 }
+@end
+
+@interface TestDupFieldNumber_Bar_Builder()
+@property (retain) TestDupFieldNumber_Bar* result;
 @end
 
 @implementation TestDupFieldNumber_Bar_Builder
@@ -10254,6 +10370,10 @@ static TestDupFieldNumber_Bar* defaultTestDupFieldNumber_BarInstance = nil;
   result.a = 0;
   return self;
 }
+@end
+
+@interface TestDupFieldNumber_Builder()
+@property (retain) TestDupFieldNumber* result;
 @end
 
 @implementation TestDupFieldNumber_Builder
@@ -10496,7 +10616,9 @@ static TestNestedMessageHasBits* defaultTestNestedMessageHasBitsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasOptionalNestedMessage) {
@@ -10603,7 +10725,9 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   for (NSNumber* value in self.mutableNestedmessageRepeatedInt32List) {
@@ -10643,6 +10767,10 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
 - (TestNestedMessageHasBits_NestedMessage_Builder*) builder {
   return [TestNestedMessageHasBits_NestedMessage builder];
 }
+@end
+
+@interface TestNestedMessageHasBits_NestedMessage_Builder()
+@property (retain) TestNestedMessageHasBits_NestedMessage* result;
 @end
 
 @implementation TestNestedMessageHasBits_NestedMessage_Builder
@@ -10803,6 +10931,10 @@ static TestNestedMessageHasBits_NestedMessage* defaultTestNestedMessageHasBits_N
   [result.mutableNestedmessageRepeatedForeignmessageList addObject:value];
   return self;
 }
+@end
+
+@interface TestNestedMessageHasBits_Builder()
+@property (retain) TestNestedMessageHasBits* result;
 @end
 
 @implementation TestNestedMessageHasBits_Builder
@@ -11122,7 +11254,9 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasPrimitiveField) {
@@ -11192,6 +11326,10 @@ static TestCamelCaseFieldNames* defaultTestCamelCaseFieldNamesInstance = nil;
 - (TestCamelCaseFieldNames_Builder*) builder {
   return [TestCamelCaseFieldNames builder];
 }
+@end
+
+@interface TestCamelCaseFieldNames_Builder()
+@property (retain) TestCamelCaseFieldNames* result;
 @end
 
 @implementation TestCamelCaseFieldNames_Builder
@@ -11769,7 +11907,9 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasMyInt) {
@@ -11813,6 +11953,10 @@ static TestFieldOrderings* defaultTestFieldOrderingsInstance = nil;
 - (TestFieldOrderings_Builder*) builder {
   return [TestFieldOrderings builder];
 }
+@end
+
+@interface TestFieldOrderings_Builder()
+@property (retain) TestFieldOrderings* result;
 @end
 
 @implementation TestFieldOrderings_Builder
@@ -12078,7 +12222,9 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasEscapedBytes) {
@@ -12130,6 +12276,10 @@ static TestExtremeDefaultValues* defaultTestExtremeDefaultValuesInstance = nil;
 - (TestExtremeDefaultValues_Builder*) builder {
   return [TestExtremeDefaultValues builder];
 }
+@end
+
+@interface TestExtremeDefaultValues_Builder()
+@property (retain) TestExtremeDefaultValues* result;
 @end
 
 @implementation TestExtremeDefaultValues_Builder
@@ -12390,7 +12540,9 @@ static FooRequest* defaultFooRequestInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += self.unknownFields.serializedSize;
@@ -12424,6 +12576,10 @@ static FooRequest* defaultFooRequestInstance = nil;
 - (FooRequest_Builder*) builder {
   return [FooRequest builder];
 }
+@end
+
+@interface FooRequest_Builder()
+@property (retain) FooRequest* result;
 @end
 
 @implementation FooRequest_Builder
@@ -12546,7 +12702,9 @@ static FooResponse* defaultFooResponseInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += self.unknownFields.serializedSize;
@@ -12580,6 +12738,10 @@ static FooResponse* defaultFooResponseInstance = nil;
 - (FooResponse_Builder*) builder {
   return [FooResponse builder];
 }
+@end
+
+@interface FooResponse_Builder()
+@property (retain) FooResponse* result;
 @end
 
 @implementation FooResponse_Builder
@@ -12702,7 +12864,9 @@ static BarRequest* defaultBarRequestInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += self.unknownFields.serializedSize;
@@ -12736,6 +12900,10 @@ static BarRequest* defaultBarRequestInstance = nil;
 - (BarRequest_Builder*) builder {
   return [BarRequest builder];
 }
+@end
+
+@interface BarRequest_Builder()
+@property (retain) BarRequest* result;
 @end
 
 @implementation BarRequest_Builder
@@ -12858,7 +13026,9 @@ static BarResponse* defaultBarResponseInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   size += self.unknownFields.serializedSize;
@@ -12892,6 +13062,10 @@ static BarResponse* defaultBarResponseInstance = nil;
 - (BarResponse_Builder*) builder {
   return [BarResponse builder];
 }
+@end
+
+@interface BarResponse_Builder()
+@property (retain) BarResponse* result;
 @end
 
 @implementation BarResponse_Builder

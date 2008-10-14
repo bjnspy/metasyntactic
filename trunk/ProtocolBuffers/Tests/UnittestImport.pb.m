@@ -171,7 +171,9 @@ static ImportMessage* defaultImportMessageInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasD) {
@@ -208,6 +210,10 @@ static ImportMessage* defaultImportMessageInstance = nil;
 - (ImportMessage_Builder*) builder {
   return [ImportMessage builder];
 }
+@end
+
+@interface ImportMessage_Builder()
+@property (retain) ImportMessage* result;
 @end
 
 @implementation ImportMessage_Builder

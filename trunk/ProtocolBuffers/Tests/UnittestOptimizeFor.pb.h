@@ -121,7 +121,6 @@
  @private
   TestOptimizedForSize* result;
 }
-@property (retain) TestOptimizedForSize* result;
 
 - (PBDescriptor*) descriptor;
 - (TestOptimizedForSize*) defaultInstance;
