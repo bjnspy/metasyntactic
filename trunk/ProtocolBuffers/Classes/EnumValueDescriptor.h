@@ -14,6 +14,12 @@
 
 #import "GenericDescriptor.h"
 
+/**
+ * Describes one value within an enum type.  Note that multiple defined
+ * values may have the same number.  In generated Java code, all values
+ * with the same number after the first become aliases of the first.
+ * However, they still have independent EnumValueDescriptors.
+ */
 @interface PBEnumValueDescriptor : NSObject<PBGenericDescriptor> {
  @private
     PBFileDescriptor* file;

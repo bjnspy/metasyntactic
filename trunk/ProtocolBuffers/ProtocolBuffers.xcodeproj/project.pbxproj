@@ -88,7 +88,7 @@
 		74C575950EA15310009A9432 /* FieldDescriptorType.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C575840EA15310009A9432 /* FieldDescriptorType.m */; };
 		74C575960EA15310009A9432 /* FileDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C575860EA15310009A9432 /* FileDescriptor.m */; };
 		74C575970EA15310009A9432 /* MethodDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C575890EA15310009A9432 /* MethodDescriptor.m */; };
-		74C575980EA15310009A9432 /* PBPackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C5758B0EA15310009A9432 /* PBPackageDescriptor.m */; };
+		74C575980EA15310009A9432 /* PackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C5758B0EA15310009A9432 /* PackageDescriptor.m */; };
 		74C575990EA15310009A9432 /* ServiceDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74C5758D0EA15310009A9432 /* ServiceDescriptor.m */; };
 		74C800000EA0F0CC000AE9FA /* ProtocolBuffers.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DC2EF5B0486A6940098B216 /* ProtocolBuffers.framework */; };
 		74C800010EA0F0CC000AE9FA /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 745E98EA0E9420B2007FD139 /* SenTestingKit.framework */; };
@@ -314,8 +314,8 @@
 		74C575870EA15310009A9432 /* GenericDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericDescriptor.h; sourceTree = "<group>"; };
 		74C575880EA15310009A9432 /* MethodDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MethodDescriptor.h; sourceTree = "<group>"; };
 		74C575890EA15310009A9432 /* MethodDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MethodDescriptor.m; sourceTree = "<group>"; };
-		74C5758A0EA15310009A9432 /* PBPackageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPackageDescriptor.h; sourceTree = "<group>"; };
-		74C5758B0EA15310009A9432 /* PBPackageDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPackageDescriptor.m; sourceTree = "<group>"; };
+		74C5758A0EA15310009A9432 /* PackageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageDescriptor.h; sourceTree = "<group>"; };
+		74C5758B0EA15310009A9432 /* PackageDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageDescriptor.m; sourceTree = "<group>"; };
 		74C5758C0EA15310009A9432 /* ServiceDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ServiceDescriptor.h; sourceTree = "<group>"; };
 		74C5758D0EA15310009A9432 /* ServiceDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ServiceDescriptor.m; sourceTree = "<group>"; };
 		74C8FC970EA0AA9E000AE9FA /* SmallBlockInputStream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallBlockInputStream.h; sourceTree = "<group>"; };
@@ -537,8 +537,8 @@
 				74C575870EA15310009A9432 /* GenericDescriptor.h */,
 				74C575880EA15310009A9432 /* MethodDescriptor.h */,
 				74C575890EA15310009A9432 /* MethodDescriptor.m */,
-				74C5758A0EA15310009A9432 /* PBPackageDescriptor.h */,
-				74C5758B0EA15310009A9432 /* PBPackageDescriptor.m */,
+				74C5758A0EA15310009A9432 /* PackageDescriptor.h */,
+				74C5758B0EA15310009A9432 /* PackageDescriptor.m */,
 				74C5758C0EA15310009A9432 /* ServiceDescriptor.h */,
 				74C5758D0EA15310009A9432 /* ServiceDescriptor.m */,
 			);
@@ -830,7 +830,7 @@
 				74C575950EA15310009A9432 /* FieldDescriptorType.m in Sources */,
 				74C575960EA15310009A9432 /* FileDescriptor.m in Sources */,
 				74C575970EA15310009A9432 /* MethodDescriptor.m in Sources */,
-				74C575980EA15310009A9432 /* PBPackageDescriptor.m in Sources */,
+				74C575980EA15310009A9432 /* PackageDescriptor.m in Sources */,
 				74C575990EA15310009A9432 /* ServiceDescriptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

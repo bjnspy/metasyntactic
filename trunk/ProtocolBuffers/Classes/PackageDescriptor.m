@@ -12,8 +12,13 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-#import "PBPackageDescriptor.h"
+#import "PackageDescriptor.h"
 
+/**
+ * Represents a package in the symbol table.  We use PackageDescriptors
+ * just as placeholders so that someone cannot define, say, a message type
+ * that has the same name as an existing package.
+ */
 @interface PBPackageDescriptor()
     @property (copy) NSString* name;
     @property (copy) NSString* fullName;
