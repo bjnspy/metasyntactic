@@ -167,7 +167,6 @@
 - (void) ratingsLookupBackgroundThreadEntryPoint {
     NSDictionary* ratings = [self ratingsLookup];
     [self performSelectorOnMainThread:@selector(setRatings:) withObject:ratings waitUntilDone:NO];
-
 }
 
 
