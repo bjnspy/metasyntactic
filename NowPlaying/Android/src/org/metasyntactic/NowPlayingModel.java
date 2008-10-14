@@ -170,4 +170,9 @@ public class NowPlayingModel {
   public List<FavoriteTheater> getFavoriteTheaters() {
     return Collections.emptyList();
   }
+
+
+  public void onDataProvidedUpdated() {
+    
+  }
 }

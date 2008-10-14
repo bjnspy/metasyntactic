@@ -1,4 +1,4 @@
-package org.metasyntactic.caches;
+package org.metasyntactic.providers;
 
 import org.metasyntactic.data.FavoriteTheater;
 import org.metasyntactic.data.Movie;

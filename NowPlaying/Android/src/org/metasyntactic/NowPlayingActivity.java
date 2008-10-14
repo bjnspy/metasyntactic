@@ -60,7 +60,6 @@ public class NowPlayingActivity extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    ThreadingUtilities.setMainThread(Thread.currentThread());
 
     setContentView(R.layout.tabs);
 

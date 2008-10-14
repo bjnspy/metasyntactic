@@ -6,7 +6,7 @@ import org.joda.time.Days;
 import org.joda.time.format.DateTimeFormat;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.caches.LookupResult;
+import org.metasyntactic.providers.LookupResult;
 import org.metasyntactic.data.*;
 import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.threading.ThreadingUtilities;
@@ -66,8 +66,9 @@ public class DataProvider {
       theaters = result.theaters;
       synchronizationData = result.synchronizationData;
       performances = result.performances;
+      model.onDataProvidedUpdated();
 //        [self.model onProviderUpdated];
-      //      [NowPlayingAppDelegate refresh:YES];
+            Application.refresh(true);
     }
   }
 
@@ -324,7 +325,7 @@ public class DataProvider {
   }
 
 
-  private List<Movie> getMovies() {
+  public List<Movie> getMovies() {
     if (movies == null) {
       movies = loadMovies();
     }
