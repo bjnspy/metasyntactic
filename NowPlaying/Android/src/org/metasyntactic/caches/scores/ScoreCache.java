@@ -7,25 +7,25 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class ScoresCache {
+public class ScoreCache {
   private final Object lock = new Object();
 
-  private final ScoresProvider rottenTomatoesScoresProvider = new RottenTomatoesScoresProvider(this);
-  private final ScoresProvider metacriticScoresProvider = new MetacriticScoresProvider(this);
-  private final ScoresProvider googleScoresProvider = new GoogleScoresProvider(this);
+  private final ScoreProvider rottenTomatoesScoreProvider = new RottenTomatoesScoreProvider(this);
+  private final ScoreProvider metacriticScoreProvider = new MetacriticScoreProvider(this);
+  private final ScoreProvider googleScoreProvider = new GoogleScoreProvider(this);
 
   private final NowPlayingModel model;
 
-  public ScoresCache(NowPlayingModel model) {
+  public ScoreCache(NowPlayingModel model) {
     this.model = model;
   }
 
 
   public Map<String, Score> getScores() {
     switch (model.getRatingsProvider()) {
-      case Google: return googleScoresProvider.getScores();
-      case Metacritic: return metacriticScoresProvider.getScores();
-      case RottenTomatoes: return rottenTomatoesScoresProvider.getScores();
+      case Google: return googleScoreProvider.getScores();
+      case Metacritic: return metacriticScoreProvider.getScores();
+      case RottenTomatoes: return rottenTomatoesScoreProvider.getScores();
       default: throw new RuntimeException();
     }
   }
@@ -41,9 +41,9 @@ public class ScoresCache {
 
   private void updateBackgroundEntryPoint() {
     switch (model.getRatingsProvider()) {
-      case Google: googleScoresProvider.update(); break;
-      case Metacritic: metacriticScoresProvider.update(); break;
-      case RottenTomatoes: rottenTomatoesScoresProvider.update(); break;
+      case Google: googleScoreProvider.update(); break;
+      case Metacritic: metacriticScoreProvider.update(); break;
+      case RottenTomatoes: rottenTomatoesScoreProvider.update(); break;
     }
   }
 

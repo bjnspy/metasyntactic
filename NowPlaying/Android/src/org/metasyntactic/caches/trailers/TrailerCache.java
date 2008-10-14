@@ -1,4 +1,4 @@
-package org.metasyntactic.caches.trailer;
+package org.metasyntactic.caches.trailers;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
