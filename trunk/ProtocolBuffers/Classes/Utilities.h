@@ -12,14 +12,6 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@interface PBUtilities : NSObject {
-}
-
-+ (SEL) getSelector:(NSString*) name;
-
-@end
-
-
 int64_t convertFloat64ToInt64(Float64 f);
 int32_t convertFloat32ToInt32(Float32 f);
 Float64 convertInt64ToFloat64(int64_t f);
