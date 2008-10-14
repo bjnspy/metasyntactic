@@ -26,29 +26,23 @@ public class ThreadingUtilities {
   }
 
 
-  public static void performOnBackgroundThread(Runnable runnable, Object lock, boolean visible) {
-    performOnBackgroundThread(runnable, lock, visible, true);
-  }
-
-
-  public static void performOnBackgroundThread(final Runnable runnable, final Object lock, final boolean visible,
-                                               final boolean lowPriority) {
+  public static void performOnBackgroundThread(final Runnable runnable, final Object lock, final boolean visible) {
     final Object lock2 = lock == null ? new Object() : lock;
 
     Thread t = new HandlerThread("") {
       public void run() {
         synchronized (lock2) {
           try {
-            GlobalActivityIndicator.addBackgroundTask(lowPriority);
+            GlobalActivityIndicator.addBackgroundTask(visible);
             runnable.run();
           } finally {
-            GlobalActivityIndicator.removeBackgroundTask(lowPriority);
+            GlobalActivityIndicator.removeBackgroundTask(visible);
           }
         }
       }
     };
 
-    if (lowPriority) {
+    if (!visible) {
       t.setPriority(Thread.MIN_PRIORITY);
     }
 

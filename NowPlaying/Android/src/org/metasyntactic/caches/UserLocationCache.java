@@ -26,7 +26,7 @@ public class UserLocationCache {
       }
     };
 
-    performOnBackgroundThread(runnable, lock, true/*visible*/, false/*lowpriority*/);
+    performOnBackgroundThread(runnable, lock, true/*visible*/);
   }
 
 

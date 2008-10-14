@@ -1,4 +1,4 @@
-package org.metasyntactic.caches;
+package org.metasyntactic.caches.trailer;
 
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
@@ -80,7 +80,7 @@ public class TrailerCache {
         updateBackgroundEntryPoint(movies);
       }
     };
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, false);
+    ThreadingUtilities.performOnBackgroundThread(runnable, lock, false/*visible*/);
   }
 
 

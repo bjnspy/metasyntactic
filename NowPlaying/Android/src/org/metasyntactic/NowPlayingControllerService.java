@@ -29,7 +29,7 @@ public class NowPlayingControllerService extends Service {
       }
     };
 
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, true, true);
+    ThreadingUtilities.performOnBackgroundThread(runnable, lock, false/*visible*/);
   }
 
 

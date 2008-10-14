@@ -1,16 +1,17 @@
 package org.metasyntactic.providers;
 
+import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.format.DateTimeFormat;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
-import org.metasyntactic.providers.LookupResult;
 import org.metasyntactic.data.*;
 import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.DateUtilities;
+import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
@@ -41,7 +42,7 @@ public class DataProvider {
     Runnable runnable = new Runnable() {
       public void run() { updateBackgroundEntryPoint(); }
     };
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, true/*visible*/, false/*low priority*/);
+    ThreadingUtilities.performOnBackgroundThread(runnable, lock, true/*visible*/);
   }
 
 
@@ -97,15 +98,15 @@ public class DataProvider {
       return null;
     }
 
+      NowPlaying.TheaterListingsProto theaterListings = null;
     try {
-      NowPlaying.TheaterListingsProto theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-
-      return processTheaterListings(theaterListings, location, theaterNames);
+      theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
+    } catch (InvalidProtocolBufferException e) {
+      ExceptionUtilities.log(DataProvider.class, "lookupLocation", e);
+      return null;
     }
-    catch (Exception e) {
-    }
 
-    return null;
+    return processTheaterListings(theaterListings, location, theaterNames);
   }
 
 

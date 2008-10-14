@@ -1,5 +1,9 @@
 package org.metasyntactic.utilities;
 
+import org.joda.time.DateTime;
+import org.joda.time.Days;
+import org.metasyntactic.Constants;
+
 import java.io.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -45,5 +49,29 @@ public class FileUtilities {
       ExceptionUtilities.log(FileUtilities.class, "readObject", e);
       throw new RuntimeException(e);
     }
+  }
+
+
+  public static boolean tooSoon(String fileName) {
+    File file = new File(fileName);
+    if (!file.exists()) {
+      return false;
+    }
+
+    DateTime now = new DateTime();
+    DateTime lastDate = new DateTime(file.lastModified());
+
+    int days = Days.daysBetween(now, lastDate).getDays();
+    if (days > 0) {
+      // different days, so definitely out of date
+      return false;
+    }
+
+    long hours = (now.getMillis() - lastDate.getMillis()) / Constants.ONE_HOUR;
+    if (hours > 8) {
+      return false;
+    }
+
+    return true;
   }
 }

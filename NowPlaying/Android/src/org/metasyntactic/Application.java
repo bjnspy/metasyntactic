@@ -15,6 +15,7 @@ public class Application {
   public static final String trailersDirectory = new File(applicationDirectory, "Trailers").getAbsolutePath();
   public static final String userLocationsDirectory = new File(applicationDirectory, "UserLocations").getAbsolutePath();
   public static final String tempDirectory = new File(applicationDirectory, "Temp").getAbsolutePath();
+  public static final String ratingsDirectory = new File(applicationDirectory, "Ratings").getAbsolutePath();
 
   private static Pulser pulser;
 
