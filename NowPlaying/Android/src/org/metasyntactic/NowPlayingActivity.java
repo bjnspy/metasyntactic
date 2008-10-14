@@ -1,15 +1,20 @@
 package org.metasyntactic;
 
+import org.metasyntactic.views.AllMoviesView;
+import org.metasyntactic.views.AllTheatersView;
+import org.metasyntactic.views.UpcomingMoviesView;
+
 import android.app.Activity;
-import android.content.*;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.TabHost;
-import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.views.AllMoviesView;
-import org.metasyntactic.views.AllTheatersView;
-import org.metasyntactic.views.UpcomingMoviesView;
 
 public class NowPlayingActivity extends Activity {
   private NowPlayingControllerWrapper controller;

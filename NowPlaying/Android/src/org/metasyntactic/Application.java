@@ -6,8 +6,6 @@ import java.io.File;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Application {
-  private final static Object lock = new Object();
-
   public static final String rootDirectory = "/sdcard";
   public static final String applicationDirectory = new File(rootDirectory, "NowPlaying").getAbsolutePath();
   public static final String dataDirectory = new File(applicationDirectory, "Data").getAbsolutePath();
