@@ -79,7 +79,6 @@
  @private
   PBFileDescriptorSet* result;
 }
-@property (retain) PBFileDescriptorSet* result;
 
 - (PBDescriptor*) descriptor;
 - (PBFileDescriptorSet*) defaultInstance;
@@ -157,7 +156,6 @@
  @private
   PBFileDescriptorProto* result;
 }
-@property (retain) PBFileDescriptorProto* result;
 
 - (PBDescriptor*) descriptor;
 - (PBFileDescriptorProto*) defaultInstance;
@@ -307,7 +305,6 @@
  @private
   PBDescriptorProto_ExtensionRange* result;
 }
-@property (retain) PBDescriptorProto_ExtensionRange* result;
 
 - (PBDescriptor*) descriptor;
 - (PBDescriptorProto_ExtensionRange*) defaultInstance;
@@ -338,7 +335,6 @@
  @private
   PBDescriptorProto* result;
 }
-@property (retain) PBDescriptorProto* result;
 
 - (PBDescriptor*) descriptor;
 - (PBDescriptorProto*) defaultInstance;
@@ -518,7 +514,6 @@
  @private
   PBFieldDescriptorProto* result;
 }
-@property (retain) PBFieldDescriptorProto* result;
 
 - (PBDescriptor*) descriptor;
 - (PBFieldDescriptorProto*) defaultInstance;
@@ -615,7 +610,6 @@
  @private
   PBEnumDescriptorProto* result;
 }
-@property (retain) PBEnumDescriptorProto* result;
 
 - (PBDescriptor*) descriptor;
 - (PBEnumDescriptorProto*) defaultInstance;
@@ -690,7 +684,6 @@
  @private
   PBEnumValueDescriptorProto* result;
 }
-@property (retain) PBEnumValueDescriptorProto* result;
 
 - (PBDescriptor*) descriptor;
 - (PBEnumValueDescriptorProto*) defaultInstance;
@@ -762,7 +755,6 @@
  @private
   PBServiceDescriptorProto* result;
 }
-@property (retain) PBServiceDescriptorProto* result;
 
 - (PBDescriptor*) descriptor;
 - (PBServiceDescriptorProto*) defaultInstance;
@@ -841,7 +833,6 @@
  @private
   PBMethodDescriptorProto* result;
 }
-@property (retain) PBMethodDescriptorProto* result;
 
 - (PBDescriptor*) descriptor;
 - (PBMethodDescriptorProto*) defaultInstance;
@@ -951,7 +942,6 @@
  @private
   PBFileOptions* result;
 }
-@property (retain) PBFileOptions* result;
 
 - (PBDescriptor*) descriptor;
 - (PBFileOptions*) defaultInstance;
@@ -1029,7 +1019,6 @@
  @private
   PBMessageOptions* result;
 }
-@property (retain) PBMessageOptions* result;
 
 - (PBDescriptor*) descriptor;
 - (PBMessageOptions*) defaultInstance;
@@ -1106,7 +1095,6 @@
  @private
   PBFieldOptions* result;
 }
-@property (retain) PBFieldOptions* result;
 
 - (PBDescriptor*) descriptor;
 - (PBFieldOptions*) defaultInstance;
@@ -1160,7 +1148,6 @@
  @private
   PBEnumOptions* result;
 }
-@property (retain) PBEnumOptions* result;
 
 - (PBDescriptor*) descriptor;
 - (PBEnumOptions*) defaultInstance;
@@ -1204,7 +1191,6 @@
  @private
   PBEnumValueOptions* result;
 }
-@property (retain) PBEnumValueOptions* result;
 
 - (PBDescriptor*) descriptor;
 - (PBEnumValueOptions*) defaultInstance;
@@ -1248,7 +1234,6 @@
  @private
   PBServiceOptions* result;
 }
-@property (retain) PBServiceOptions* result;
 
 - (PBDescriptor*) descriptor;
 - (PBServiceOptions*) defaultInstance;
@@ -1292,7 +1277,6 @@
  @private
   PBMethodOptions* result;
 }
-@property (retain) PBMethodOptions* result;
 
 - (PBDescriptor*) descriptor;
 - (PBMethodOptions*) defaultInstance;

@@ -43,7 +43,6 @@
 #import "Message_Builder.h"
 #import "MutableField.h"
 #import "ObjectiveCType.h"
-#import "ProtocolBuffers.h"
 #import "RepeatedEnumFieldAccessor.h"
 #import "RepeatedFieldAccessor.h"
 #import "RepeatedMessageFieldAccessor.h"

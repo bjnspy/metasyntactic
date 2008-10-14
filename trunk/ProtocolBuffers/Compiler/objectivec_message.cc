@@ -508,9 +508,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n",
       "classname", ClassName(descriptor_));
 
-    printer->Print(
-      "@property (retain) $classname$* result;\n",
-      "classname", ClassName(descriptor_));
+    //printer->Print(
+      //"@property (retain) $classname$* result;\n",
+      //"classname", ClassName(descriptor_));
 
     GenerateCommonBuilderMethodsHeader(printer);
     GenerateBuilderParsingMethodsHeader(printer);
@@ -695,6 +695,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void MessageGenerator::GenerateBuilderSource(io::Printer* printer) {
     printer->Print(
+      "@interface $classname$_Builder()\n"
+      "@property (retain) $classname$* result;\n"
+      "@end\n"
+      "\n"
       "@implementation $classname$_Builder\n"
       "@synthesize result;\n"
       "- (void) dealloc {\n"

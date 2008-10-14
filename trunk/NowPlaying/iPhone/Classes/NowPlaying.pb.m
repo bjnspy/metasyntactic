@@ -330,7 +330,9 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasTime) {
@@ -376,6 +378,10 @@ static ShowtimeProto* defaultShowtimeProtoInstance = nil;
 - (ShowtimeProto_Builder*) builder {
   return [ShowtimeProto builder];
 }
+@end
+
+@interface ShowtimeProto_Builder()
+@property (retain) ShowtimeProto* result;
 @end
 
 @implementation ShowtimeProto_Builder
@@ -670,7 +676,9 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   for (ShowtimeProto* element in self.showtimesList) {
@@ -713,6 +721,10 @@ static AllShowtimesProto* defaultAllShowtimesProtoInstance = nil;
 - (AllShowtimesProto_Builder*) builder {
   return [AllShowtimesProto builder];
 }
+@end
+
+@interface AllShowtimesProto_Builder()
+@property (retain) AllShowtimesProto* result;
 @end
 
 @implementation AllShowtimesProto_Builder
@@ -1102,7 +1114,9 @@ static MovieProto* defaultMovieProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasIdentifier) {
@@ -1178,6 +1192,10 @@ static MovieProto* defaultMovieProtoInstance = nil;
 - (MovieProto_Builder*) builder {
   return [MovieProto builder];
 }
+@end
+
+@interface MovieProto_Builder()
+@property (retain) MovieProto* result;
 @end
 
 @implementation MovieProto_Builder
@@ -1822,7 +1840,9 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasIdentifier) {
@@ -1886,6 +1906,10 @@ static TheaterProto* defaultTheaterProtoInstance = nil;
 - (TheaterProto_Builder*) builder {
   return [TheaterProto builder];
 }
+@end
+
+@interface TheaterProto_Builder()
+@property (retain) TheaterProto* result;
 @end
 
 @implementation TheaterProto_Builder
@@ -2269,7 +2293,9 @@ static TheaterListingsProto* defaultTheaterListingsProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   for (MovieProto* element in self.moviesList) {
@@ -2387,7 +2413,9 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto* defaultTheaterListing
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasTheater) {
@@ -2506,7 +2534,9 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasMovieIdentifier) {
@@ -2546,6 +2576,10 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
 - (TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder*) builder {
   return [TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto builder];
 }
+@end
+
+@interface TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder()
+@property (retain) TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto* result;
 @end
 
 @implementation TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto_Builder
@@ -2689,6 +2723,10 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   result.showtimes = [AllShowtimesProto defaultInstance];
   return self;
 }
+@end
+
+@interface TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder()
+@property (retain) TheaterListingsProto_TheaterAndMovieShowtimesProto* result;
 @end
 
 @implementation TheaterListingsProto_TheaterAndMovieShowtimesProto_Builder
@@ -2850,6 +2888,10 @@ static TheaterListingsProto_TheaterAndMovieShowtimesProto_MovieAndShowtimesProto
   [result.mutableMovieAndShowtimesList addObject:value];
   return self;
 }
+@end
+
+@interface TheaterListingsProto_Builder()
+@property (retain) TheaterListingsProto* result;
 @end
 
 @implementation TheaterListingsProto_Builder
@@ -3157,7 +3199,9 @@ static ReviewProto* defaultReviewProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   if (hasTitle) {
@@ -3215,6 +3259,10 @@ static ReviewProto* defaultReviewProtoInstance = nil;
 - (ReviewProto_Builder*) builder {
   return [ReviewProto builder];
 }
+@end
+
+@interface ReviewProto_Builder()
+@property (retain) ReviewProto* result;
 @end
 
 @implementation ReviewProto_Builder
@@ -3534,7 +3582,9 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
 }
 - (int32_t) serializedSize {
   int32_t size = memoizedSerializedSize;
-  if (size != -1) return size;
+  if (size != -1) {
+    return size;
+  }
 
   size = 0;
   for (ReviewProto* element in self.reviewsList) {
@@ -3571,6 +3621,10 @@ static ReviewsListProto* defaultReviewsListProtoInstance = nil;
 - (ReviewsListProto_Builder*) builder {
   return [ReviewsListProto builder];
 }
+@end
+
+@interface ReviewsListProto_Builder()
+@property (retain) ReviewsListProto* result;
 @end
 
 @implementation ReviewsListProto_Builder
