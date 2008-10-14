@@ -16,7 +16,7 @@ public class XmlUtilities {
   }
 
 
-  public static Element parseInputStream(InputStream in) throws ParserConfigurationException {
+  public static Element parseInputStream(InputStream in) {
     try {
       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
       DocumentBuilder documentBuilder = factory.newDocumentBuilder();
@@ -32,6 +32,8 @@ public class XmlUtilities {
     } catch (SAXException e) {
       ExceptionUtilities.log(XmlUtilities.class, "parseInputStream", e);
       return null;
+    } catch (ParserConfigurationException e) {
+      throw new RuntimeException(e);
     }
   }
 
