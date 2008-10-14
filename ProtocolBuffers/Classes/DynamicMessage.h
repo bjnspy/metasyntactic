@@ -14,6 +14,12 @@
 
 #import "AbstractMessage.h"
 
+/**
+ * An implementation of {@link Message} that can represent arbitrary types,
+ * given a {@link Descriptors.Descriptor}.
+ *
+ * @author Cyrus Najmabadi
+ */
 @interface PBDynamicMessage : PBAbstractMessage {
  @private
     PBDescriptor* type;

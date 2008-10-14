@@ -14,6 +14,9 @@
 
 #import "GenericDescriptor.h"
 
+/**
+ * Describes one method within a service type.
+ */
 @interface PBMethodDescriptor : NSObject<PBGenericDescriptor> {
  @private
     int32_t index;

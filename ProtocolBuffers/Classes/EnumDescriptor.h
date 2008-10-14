@@ -48,6 +48,13 @@
  * @return the value's decsriptor, or {@code null} if not found.
  */
 - (PBEnumValueDescriptor*) findValueByName:(NSString*) name;
+
+/**
+ * Find an enum value by number.  If multiple enum values have the same
+ * number, this returns the first defined value with that number.
+ * @param number The value's number.
+ * @return the value's decsriptor, or {@code null} if not found.
+ */
 - (PBEnumValueDescriptor*) findValueByNumber:(int32_t) number;
 
 - (PBEnumOptions*) options;

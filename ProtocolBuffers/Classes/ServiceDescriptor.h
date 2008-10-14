@@ -14,6 +14,7 @@
 
 #import "GenericDescriptor.h"
 
+/** Describes a service type. */
 @interface PBServiceDescriptor : NSObject<PBGenericDescriptor> {
  @private
     int32_t index;
@@ -34,6 +35,11 @@
 
 - (NSArray*) methods;
 
+/**
+ * Find a method by name.
+ * @param name The unqualified name of the method (e.g. "Foo").
+ * @return the method's decsriptor, or {@code null} if not found.
+ */
 - (PBMethodDescriptor*) findMethodByName:(NSString*) name;
 
 // @internal

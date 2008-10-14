@@ -18,7 +18,7 @@
 #import "EnumDescriptor.h"
 #import "EnumValueDescriptor.h"
 #import "FieldDescriptor.h"
-#import "PBPackageDescriptor.h"
+#import "PackageDescriptor.h"
 
 @interface PBDescriptorPool()
     @property (retain) NSMutableArray* mutableDependencies;

@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * All descriptors except {@code FileDescriptor} implement this to make
+ * {@code DescriptorPool}'s life easier.
+ */
 @protocol PBGenericDescriptor
 - (id<PBMessage>) toProto;
 - (NSString*) name;
