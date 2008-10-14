@@ -85,7 +85,7 @@
  * I.e. {@code result.descriptor.fullName()} will match {@code fullName} if
  * a match is found.
  *
- * @return Information about the extension if found, or {@code null}
+ * @return Information about the extension if found, or {@code nil}
  *         otherwise.
  */
 - (PBExtensionInfo*) findExtensionByName:(NSString*) fullName;
@@ -93,7 +93,7 @@
 /**
  * Find an extension by containing type and field number.
  *
- * @return Information about the extension if found, or {@code null}
+ * @return Information about the extension if found, or {@code nil}
  *         otherwise.
  */
 - (PBExtensionInfo*) findExtensionByNumber:(PBDescriptor*) containingType

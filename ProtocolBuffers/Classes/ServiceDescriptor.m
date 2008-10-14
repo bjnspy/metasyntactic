@@ -98,7 +98,7 @@
 /**
  * Find a method by name.
  * @param name The unqualified name of the method (e.g. "Foo").
- * @return the method's decsriptor, or {@code null} if not found.
+ * @return the method's decsriptor, or {@code nil} if not found.
  */
 - (PBMethodDescriptor*) findMethodByName:(NSString*) name {
     id result = [file.pool findSymbol:[NSString stringWithFormat:@"%@.%@", self.fullName, name]];

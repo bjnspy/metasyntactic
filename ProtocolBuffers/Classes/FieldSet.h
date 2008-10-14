@@ -48,7 +48,7 @@
 
 /**
  * See {@link Message#getField(Descriptors.FieldDescriptor)}.  This method
- * returns {@code null} if the field is a singular message type and is not
+ * returns {@code nil} if the field is a singular message type and is not
  * set; in this case it is up to the caller to fetch the message's default
  * instance.
  */
