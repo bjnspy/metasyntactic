@@ -51,10 +51,10 @@
         builderClass:(Class) builderClass {
     if (self = [super initWithField:field_]) {
         NSString* camelName = [self camelName:name];
-        self.getSelector = [PBUtilities getSelector:camelName];
-        self.setSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"set%@:", name]];
-        self.hasSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"has%@", name]];
-        self.clearSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"clear%@", name]];
+        self.getSelector = NSSelectorFromString(camelName);
+        self.setSelector = NSSelectorFromString([NSString stringWithFormat:@"set%@:", name]);
+        self.hasSelector = NSSelectorFromString([NSString stringWithFormat:@"has%@", name]);
+        self.clearSelector = NSSelectorFromString([NSString stringWithFormat:@"clear%@", name]);
     }
 
     return self;

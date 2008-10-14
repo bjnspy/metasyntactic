@@ -50,13 +50,13 @@
         builderClass:(Class) builderClass {
     if (self = [super initWithField:field_]) {
         NSString* camelName = [self camelName:name];
-        self.itemListSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"%@List", camelName]];
-        self.itemAtIndexSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"%@AtIndex:", camelName]];
+        self.itemListSelector = NSSelectorFromString([NSString stringWithFormat:@"%@List", camelName]);
+        self.itemAtIndexSelector = NSSelectorFromString([NSString stringWithFormat:@"%@AtIndex:", camelName]);
         self.replaceItemAtIndexWithItemSelector =
-        [PBUtilities getSelector:[NSString stringWithFormat:@"replace%@AtIndex:with%@:", name, name]];
-        self.addItemSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"add%@:", name]];
-        self.addAllItemSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"addAll%@:", name]];
-        self.clearItemListSelector = [PBUtilities getSelector:[NSString stringWithFormat:@"clear%@List", name]];
+        NSSelectorFromString([NSString stringWithFormat:@"replace%@AtIndex:with%@:", name, name]);
+        self.addItemSelector = NSSelectorFromString([NSString stringWithFormat:@"add%@:", name]);
+        self.addAllItemSelector = NSSelectorFromString([NSString stringWithFormat:@"addAll%@:", name]);
+        self.clearItemListSelector = NSSelectorFromString([NSString stringWithFormat:@"clear%@List", name]);
     }
 
     return self;
