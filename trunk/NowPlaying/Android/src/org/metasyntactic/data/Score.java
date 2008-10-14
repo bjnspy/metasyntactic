@@ -9,23 +9,48 @@ import java.io.Serializable;
 public class Score implements Parcelable, Serializable {
   private final String canonicalTitle;
   private final String synopsis;
-  private final String score;
+  private final String value;
   private final String provider;
   private final String identifier;
 
 
-  private Score(String canonicalTitle, String synopsis, String score, String provider, String identifier,
+  private Score(String canonicalTitle, String synopsis, String value, String provider, String identifier,
                 boolean dummy) {
     this.canonicalTitle = canonicalTitle;
     this.synopsis = synopsis;
-    this.score = score;
+    this.value = value;
     this.provider = provider;
     this.identifier = identifier;
   }
 
 
-  public Score(String title, String synopsis, String score, String provider, String identifier) {
-    this(Movie.makeCanonical(title), synopsis, score, provider, identifier, true);
+  public Score(String title, String synopsis, String value, String provider, String identifier) {
+    this(Movie.makeCanonical(title), synopsis, value, provider, identifier, true);
+  }
+
+
+  public String getCanonicalTitle() {
+    return canonicalTitle;
+  }
+
+
+  public String getSynopsis() {
+    return synopsis;
+  }
+
+
+  public String getValue() {
+    return value;
+  }
+
+
+  public String getProvider() {
+    return provider;
+  }
+
+
+  public String getIdentifier() {
+    return identifier;
   }
 
 
@@ -37,7 +62,7 @@ public class Score implements Parcelable, Serializable {
   public void writeToParcel(Parcel parcel, int i) {
     parcel.writeString(canonicalTitle);
     parcel.writeString(synopsis);
-    parcel.writeString(score);
+    parcel.writeString(value);
     parcel.writeString(provider);
     parcel.writeString(identifier);
   }

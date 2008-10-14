@@ -6,12 +6,14 @@ import android.os.Handler;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.caches.trailer.TrailerCache;
 import org.metasyntactic.data.FavoriteTheater;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
+import org.metasyntactic.threading.ThreadingUtilities;
 
 import java.util.Collections;
 import java.util.Date;
@@ -22,17 +24,19 @@ import java.util.prefs.Preferences;
 public class NowPlayingModel {
   public final static String NOW_PLAYING_MODEL_CHANGED_INTENT = "NowPlayingModelChangedIntent";
 
-  private final static String USER_LOCATION = "userLocation";
-  private final static String SEARCH_DATE = "searchDate";
+  private final static String USER_LOCATION_KEY = "userLocation";
+  private final static String SEARCH_DATE_KEY = "searchDate";
   private final static String SELECTED_TAB_INDEX_KEY = "selectedTabIndex";
   private final static String ALL_MOVIES_SELECTED_SORT_INDEX_KEY = "allMoviesSelectedSortIndex";
   private final static String ALL_THEATERS_SELECTED_SORT_INDEX_KEY = "allTheatersSelectedSortIndex";
   private final static String UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY = "upcomingMoviesSelectedSortIndex";
+  private final static String SCORE_TYPE_KEY = "scoreType";
 
 
   private final Context context;
   private final Preferences preferences = Preferences.userNodeForPackage(NowPlayingModel.class);
 
+  private final Object movieMapLock = new Object();
 
   private final DataProvider dataProvider = new DataProvider(this);
   private final UserLocationCache userLocationCache = new UserLocationCache();
@@ -74,23 +78,25 @@ public class NowPlayingModel {
     }
 
     Handler handler = new Handler();
-    Runnable runnable = new Runnable() { public void run() { update(i + 1); } };
+    Runnable runnable = new Runnable() {
+      public void run() { update(i + 1); }
+    };
     handler.postDelayed(runnable, 1000);
   }
 
 
   public String getUserLocation() {
-    return preferences.get(USER_LOCATION, "");
+    return preferences.get(USER_LOCATION_KEY, "");
   }
 
 
   public void setUserLocation(String userLocation) {
-    preferences.put(USER_LOCATION, userLocation);
+    preferences.put(USER_LOCATION_KEY, userLocation);
   }
 
 
   public Date getSearchDate() {
-    String value = preferences.get(SEARCH_DATE, "");
+    String value = preferences.get(SEARCH_DATE_KEY, "");
     if ("".equals(value)) {
       return new Date();
     }
@@ -109,7 +115,7 @@ public class NowPlayingModel {
   public void setSearchDate(Date searchDate) {
     DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
     String result = formatter.print(new DateTime(searchDate));
-    preferences.put(SEARCH_DATE, result);
+    preferences.put(SEARCH_DATE_KEY, result);
   }
 
 
@@ -157,6 +163,20 @@ public class NowPlayingModel {
   }
 
 
+  public ScoreType getRatingsProvider() {
+    String value = preferences.get(SCORE_TYPE_KEY, null);
+    if (value == null) {
+      return ScoreType.RottenTomatoes;
+    }
+
+    return ScoreType.valueOf(value);
+  }
+
+  public void setRatingsProvider(ScoreType providerType) {
+    preferences.put(SCORE_TYPE_KEY, providerType.toString());
+  }
+
+
   public List<Movie> getMovies() {
     return dataProvider.getMovies();
   }
@@ -173,6 +193,42 @@ public class NowPlayingModel {
 
 
   public void onDataProvidedUpdated() {
-    
+    regenerateMovieMap();
+    updateIMDbCache();
+    updatePosterCache();
+    updateTrailerCache();
+  }
+
+  public void onRatingsUpdated() {
+  }
+
+  private void updateTrailerCache() {
+    trailerCache.update(getMovies());
+  }
+
+
+  private void updatePosterCache() {
+  }
+
+
+  private void updateIMDbCache() {
+
+  }
+
+
+  private void regenerateMovieMap() {
+    final List<Movie> movies = getMovies();
+
+    Runnable runnable = new Runnable() {
+      public void run() {
+        createMovieMap();
+      }
+    };
+    ThreadingUtilities.performOnBackgroundThread(runnable, movieMapLock, true/*visible*/);
+  }
+
+
+  private void createMovieMap() {
+
   }
 }

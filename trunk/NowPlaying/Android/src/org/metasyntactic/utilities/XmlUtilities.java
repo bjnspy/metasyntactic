@@ -8,6 +8,9 @@ import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Collections;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class XmlUtilities {
@@ -47,7 +50,7 @@ public class XmlUtilities {
     for (int i = 0; i < list.getLength(); i++) {
       Node child = list.item(i);
       if (child.getNodeType() == Node.ELEMENT_NODE) {
-        Element childElement = (Element)child;
+        Element childElement = (Element) child;
         if (childElement.getTagName().equals(name)) {
           return childElement;
         }
@@ -72,7 +75,28 @@ public class XmlUtilities {
       return null;
     }
 
-    Text textNode = (Text)child;
+    Text textNode = (Text) child;
     return textNode.getData();
+  }
+
+
+  public static List<Element> children(Element element) {
+    if (element != null) {
+      NodeList list = element.getChildNodes();
+      if (list != null) {
+        List<Element> result = new ArrayList<Element>();
+
+        for (int i = 0; i < list.getLength(); i++) {
+          Node child = list.item(i);
+          if (child instanceof Element) {
+            result.add((Element)child);
+          }
+        }
+
+        return result;
+      }
+    }
+
+      return Collections.emptyList();
   }
 }
