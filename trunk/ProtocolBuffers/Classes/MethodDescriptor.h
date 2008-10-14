@@ -15,7 +15,7 @@
 #import "GenericDescriptor.h"
 
 @interface PBMethodDescriptor : NSObject<PBGenericDescriptor> {
-@private
+ @private
     int32_t index;
     PBMethodDescriptorProto* proto;
     NSString* fullName;

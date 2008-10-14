@@ -15,7 +15,7 @@
 #import "GenericDescriptor.h"
 
 @interface PBEnumValueDescriptor : NSObject<PBGenericDescriptor> {
-@private
+ @private
     PBFileDescriptor* file;
     PBEnumDescriptor* type;
 

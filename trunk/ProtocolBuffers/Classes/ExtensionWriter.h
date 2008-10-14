@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface PBExtensionWriter : NSObject {
-@private
+ @private
     PBFieldSet* extensions;
     NSEnumerator* enumerator;
     PBFieldDescriptor* nextKey;

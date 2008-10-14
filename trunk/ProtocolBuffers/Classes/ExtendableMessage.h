@@ -15,7 +15,7 @@
 #import "GeneratedMessage.h"
 
 @interface PBExtendableMessage : PBGeneratedMessage {
-@private
+ @private
     PBFieldSet* extensions;
 }
 

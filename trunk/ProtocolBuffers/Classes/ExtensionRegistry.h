@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface PBExtensionRegistry : NSObject {
-@private
+ @private
     NSMutableDictionary* extensionsByName;
     NSMutableDictionary* extensionsByNumber;
 }

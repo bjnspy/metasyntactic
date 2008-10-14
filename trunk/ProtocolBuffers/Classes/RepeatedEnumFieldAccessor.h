@@ -15,7 +15,7 @@
 #import "RepeatedFieldAccessor.h"
 
 @interface PBRepeatedEnumFieldAccessor : PBRepeatedFieldAccessor {
-@private
+ @private
     SEL valueOfSelector;
     SEL valueDescriptorSelector;
 }

@@ -15,7 +15,7 @@
 #import "GenericDescriptor.h"
 
 @interface PBServiceDescriptor : NSObject<PBGenericDescriptor> {
-@private
+ @private
     int32_t index;
     PBServiceDescriptorProto* proto;
     NSString* fullName;

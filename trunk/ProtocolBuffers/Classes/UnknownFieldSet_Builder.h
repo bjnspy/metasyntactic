@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface PBUnknownFieldSet_Builder : NSObject {
-@private
+ @private
     NSMutableDictionary* fields;
 
     // Optimization:  We keep around a builder for the last field that was

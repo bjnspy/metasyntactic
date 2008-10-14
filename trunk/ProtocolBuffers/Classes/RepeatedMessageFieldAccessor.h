@@ -15,7 +15,7 @@
 #import "RepeatedFieldAccessor.h"
 
 @interface PBRepeatedMessageFieldAccessor : PBRepeatedFieldAccessor {
-@private
+ @private
     SEL createBuilderSelector;
 }
 

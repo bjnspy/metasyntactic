@@ -16,7 +16,7 @@
  * Describes a {@code .proto} file, including everything defined within.
  */
 @interface PBFileDescriptor : NSObject {
-@private
+ @private
     PBFileDescriptorProto* proto;
     NSMutableArray* mutableMessageTypes;
     NSMutableArray* mutableExtensions;

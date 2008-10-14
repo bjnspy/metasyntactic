@@ -13,7 +13,7 @@
 // limitations under the License.
 
 @interface PBExtensionRegistry_DescriptorIntPair : NSObject<NSCopying> {
-@private
+ @private
     PBDescriptor* descriptor;
     int32_t number;
 }
