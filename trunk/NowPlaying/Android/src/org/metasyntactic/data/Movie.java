@@ -11,7 +11,7 @@ import java.util.List;
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Movie implements Parcelable, Serializable {
 	private static final long serialVersionUID = -1715042667960786544L;
-	
+
 	private final String identifier;
   private final String canonicalTitle;
   private final String displayTitle;
@@ -47,6 +47,30 @@ public class Movie implements Parcelable, Serializable {
     this(identifier, makeCanonical(title), makeDisplay(title), rating, length, releaseDate, poster, synopsis, studio,
         directors, cast, genres);
   }
+
+
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (!(o instanceof Movie)) {
+      return false;
+    }
+
+    Movie movie = (Movie) o;
+
+    if (canonicalTitle != null ? !canonicalTitle.equals(movie.canonicalTitle) : movie.canonicalTitle != null) {
+      return false;
+    }
+
+    return true;
+  }
+
+
+  public int hashCode() {
+    return (canonicalTitle != null ? canonicalTitle.hashCode() : 0);
+  }
+
 
   private final static String[] articles = new String[]{
       "Der", "Das", "Ein", "Eine", "The",

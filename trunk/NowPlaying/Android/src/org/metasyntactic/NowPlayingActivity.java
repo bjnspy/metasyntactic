@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.TabHost;
+import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.views.AllMoviesView;
 import org.metasyntactic.views.AllTheatersView;
 import org.metasyntactic.views.UpcomingMoviesView;
@@ -59,6 +60,8 @@ public class NowPlayingActivity extends Activity {
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
+    ThreadingUtilities.setMainThread(Thread.currentThread());
+
     setContentView(R.layout.tabs);
 
     boolean bindResult = bindService(
@@ -130,6 +133,5 @@ public class NowPlayingActivity extends Activity {
 
 
   private void refresh() {
-    System.out.println();
   }
 }
