@@ -54,7 +54,6 @@
  @private
   TestMessageSet* result;
 }
-@property (retain) TestMessageSet* result;
 
 - (PBDescriptor*) descriptor;
 - (TestMessageSet*) defaultInstance;
@@ -102,7 +101,6 @@
  @private
   TestMessageSetContainer* result;
 }
-@property (retain) TestMessageSetContainer* result;
 
 - (PBDescriptor*) descriptor;
 - (TestMessageSetContainer*) defaultInstance;
@@ -158,7 +156,6 @@
  @private
   TestMessageSetExtension1* result;
 }
-@property (retain) TestMessageSetExtension1* result;
 
 - (PBDescriptor*) descriptor;
 - (TestMessageSetExtension1*) defaultInstance;
@@ -212,7 +209,6 @@
  @private
   TestMessageSetExtension2* result;
 }
-@property (retain) TestMessageSetExtension2* result;
 
 - (PBDescriptor*) descriptor;
 - (TestMessageSetExtension2*) defaultInstance;
@@ -295,7 +291,6 @@
  @private
   RawMessageSet_Item* result;
 }
-@property (retain) RawMessageSet_Item* result;
 
 - (PBDescriptor*) descriptor;
 - (RawMessageSet_Item*) defaultInstance;
@@ -326,7 +321,6 @@
  @private
   RawMessageSet* result;
 }
-@property (retain) RawMessageSet* result;
 
 - (PBDescriptor*) descriptor;
 - (RawMessageSet*) defaultInstance;

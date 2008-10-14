@@ -121,7 +121,6 @@
  @private
   TestEmbedOptimizedForSize* result;
 }
-@property (retain) TestEmbedOptimizedForSize* result;
 
 - (PBDescriptor*) descriptor;
 - (TestEmbedOptimizedForSize*) defaultInstance;

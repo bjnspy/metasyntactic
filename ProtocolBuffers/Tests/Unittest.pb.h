@@ -584,7 +584,6 @@
  @private
   TestAllTypes_NestedMessage* result;
 }
-@property (retain) TestAllTypes_NestedMessage* result;
 
 - (PBDescriptor*) descriptor;
 - (TestAllTypes_NestedMessage*) defaultInstance;
@@ -637,7 +636,6 @@
  @private
   TestAllTypes_OptionalGroup* result;
 }
-@property (retain) TestAllTypes_OptionalGroup* result;
 
 - (PBDescriptor*) descriptor;
 - (TestAllTypes_OptionalGroup*) defaultInstance;
@@ -690,7 +688,6 @@
  @private
   TestAllTypes_RepeatedGroup* result;
 }
-@property (retain) TestAllTypes_RepeatedGroup* result;
 
 - (PBDescriptor*) descriptor;
 - (TestAllTypes_RepeatedGroup*) defaultInstance;
@@ -716,7 +713,6 @@
  @private
   TestAllTypes* result;
 }
-@property (retain) TestAllTypes* result;
 
 - (PBDescriptor*) descriptor;
 - (TestAllTypes*) defaultInstance;
@@ -1160,7 +1156,6 @@
  @private
   ForeignMessage* result;
 }
-@property (retain) ForeignMessage* result;
 
 - (PBDescriptor*) descriptor;
 - (ForeignMessage*) defaultInstance;
@@ -1209,7 +1204,6 @@
  @private
   TestAllExtensions* result;
 }
-@property (retain) TestAllExtensions* result;
 
 - (PBDescriptor*) descriptor;
 - (TestAllExtensions*) defaultInstance;
@@ -1257,7 +1251,6 @@
  @private
   OptionalGroup_extension* result;
 }
-@property (retain) OptionalGroup_extension* result;
 
 - (PBDescriptor*) descriptor;
 - (OptionalGroup_extension*) defaultInstance;
@@ -1310,7 +1303,6 @@
  @private
   RepeatedGroup_extension* result;
 }
-@property (retain) RepeatedGroup_extension* result;
 
 - (PBDescriptor*) descriptor;
 - (RepeatedGroup_extension*) defaultInstance;
@@ -1493,7 +1485,6 @@
  @private
   TestRequired* result;
 }
-@property (retain) TestRequired* result;
 
 - (PBDescriptor*) descriptor;
 - (TestRequired*) defaultInstance;
@@ -1713,7 +1704,6 @@
  @private
   TestRequiredForeign* result;
 }
-@property (retain) TestRequiredForeign* result;
 
 - (PBDescriptor*) descriptor;
 - (TestRequiredForeign*) defaultInstance;
@@ -1780,7 +1770,6 @@
  @private
   TestForeignNested* result;
 }
-@property (retain) TestForeignNested* result;
 
 - (PBDescriptor*) descriptor;
 - (TestForeignNested*) defaultInstance;
@@ -1831,7 +1820,6 @@
  @private
   TestEmptyMessage* result;
 }
-@property (retain) TestEmptyMessage* result;
 
 - (PBDescriptor*) descriptor;
 - (TestEmptyMessage*) defaultInstance;
@@ -1875,7 +1863,6 @@
  @private
   TestEmptyMessageWithExtensions* result;
 }
-@property (retain) TestEmptyMessageWithExtensions* result;
 
 - (PBDescriptor*) descriptor;
 - (TestEmptyMessageWithExtensions*) defaultInstance;
@@ -1927,7 +1914,6 @@
  @private
   TestReallyLargeTagNumber* result;
 }
-@property (retain) TestReallyLargeTagNumber* result;
 
 - (PBDescriptor*) descriptor;
 - (TestReallyLargeTagNumber*) defaultInstance;
@@ -1989,7 +1975,6 @@
  @private
   TestRecursiveMessage* result;
 }
-@property (retain) TestRecursiveMessage* result;
 
 - (PBDescriptor*) descriptor;
 - (TestRecursiveMessage*) defaultInstance;
@@ -2049,7 +2034,6 @@
  @private
   TestMutualRecursionA* result;
 }
-@property (retain) TestMutualRecursionA* result;
 
 - (PBDescriptor*) descriptor;
 - (TestMutualRecursionA*) defaultInstance;
@@ -2108,7 +2092,6 @@
  @private
   TestMutualRecursionB* result;
 }
-@property (retain) TestMutualRecursionB* result;
 
 - (PBDescriptor*) descriptor;
 - (TestMutualRecursionB*) defaultInstance;
@@ -2203,7 +2186,6 @@
  @private
   TestDupFieldNumber_Foo* result;
 }
-@property (retain) TestDupFieldNumber_Foo* result;
 
 - (PBDescriptor*) descriptor;
 - (TestDupFieldNumber_Foo*) defaultInstance;
@@ -2256,7 +2238,6 @@
  @private
   TestDupFieldNumber_Bar* result;
 }
-@property (retain) TestDupFieldNumber_Bar* result;
 
 - (PBDescriptor*) descriptor;
 - (TestDupFieldNumber_Bar*) defaultInstance;
@@ -2282,7 +2263,6 @@
  @private
   TestDupFieldNumber* result;
 }
-@property (retain) TestDupFieldNumber* result;
 
 - (PBDescriptor*) descriptor;
 - (TestDupFieldNumber*) defaultInstance;
@@ -2378,7 +2358,6 @@
  @private
   TestNestedMessageHasBits_NestedMessage* result;
 }
-@property (retain) TestNestedMessageHasBits_NestedMessage* result;
 
 - (PBDescriptor*) descriptor;
 - (TestNestedMessageHasBits_NestedMessage*) defaultInstance;
@@ -2413,7 +2392,6 @@
  @private
   TestNestedMessageHasBits* result;
 }
-@property (retain) TestNestedMessageHasBits* result;
 
 - (PBDescriptor*) descriptor;
 - (TestNestedMessageHasBits*) defaultInstance;
@@ -2506,7 +2484,6 @@
  @private
   TestCamelCaseFieldNames* result;
 }
-@property (retain) TestCamelCaseFieldNames* result;
 
 - (PBDescriptor*) descriptor;
 - (TestCamelCaseFieldNames*) defaultInstance;
@@ -2636,7 +2613,6 @@
  @private
   TestFieldOrderings* result;
 }
-@property (retain) TestFieldOrderings* result;
 
 - (PBDescriptor*) descriptor;
 - (TestFieldOrderings*) defaultInstance;
@@ -2719,7 +2695,6 @@
  @private
   TestExtremeDefaultValues* result;
 }
-@property (retain) TestExtremeDefaultValues* result;
 
 - (PBDescriptor*) descriptor;
 - (TestExtremeDefaultValues*) defaultInstance;
@@ -2793,7 +2768,6 @@
  @private
   FooRequest* result;
 }
-@property (retain) FooRequest* result;
 
 - (PBDescriptor*) descriptor;
 - (FooRequest*) defaultInstance;
@@ -2837,7 +2811,6 @@
  @private
   FooResponse* result;
 }
-@property (retain) FooResponse* result;
 
 - (PBDescriptor*) descriptor;
 - (FooResponse*) defaultInstance;
@@ -2881,7 +2854,6 @@
  @private
   BarRequest* result;
 }
-@property (retain) BarRequest* result;
 
 - (PBDescriptor*) descriptor;
 - (BarRequest*) defaultInstance;
@@ -2925,7 +2897,6 @@
  @private
   BarResponse* result;
 }
-@property (retain) BarResponse* result;
 
 - (PBDescriptor*) descriptor;
 - (BarResponse*) defaultInstance;
