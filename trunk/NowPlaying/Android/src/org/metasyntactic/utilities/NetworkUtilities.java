@@ -76,6 +76,15 @@ public class NetworkUtilities {
   }
 
 
+  public static byte[] download(String url, boolean important) {
+    try {
+      return download(new URL(url), important);
+    } catch (MalformedURLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
   public static byte[] download(URL url, boolean important) {
     try {
       mutex.lock(important);

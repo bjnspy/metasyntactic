@@ -2,6 +2,7 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.utilities.StringUtilities;
 
 import java.io.Serializable;
 
@@ -12,8 +13,18 @@ public class FavoriteTheater implements Parcelable, Serializable {
 
 
   public FavoriteTheater(String name, Location originatingLocation) {
-    this.name = name;
+    this.name = StringUtilities.nonNullString(name);
     this.originatingLocation = originatingLocation;
+  }
+
+
+  public String getName() {
+    return name;
+  }
+
+
+  public Location getOriginatingLocation() {
+    return originatingLocation;
   }
 
 
@@ -22,7 +33,7 @@ public class FavoriteTheater implements Parcelable, Serializable {
   }
 
 
-    public void writeToParcel(Parcel dest, int flags) {
+  public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(name);
     dest.writeParcelable(originatingLocation, 0);
   }

@@ -6,22 +6,23 @@ import java.io.File;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Application {
-  static {
-    createDirectories();
-  }
-
-
   private final static Object lock = new Object();
 
   public static final String rootDirectory = "/sdcard";
   public static final String applicationDirectory = new File(rootDirectory, "NowPlaying").getAbsolutePath();
   public static final String dataDirectory = new File(applicationDirectory, "Data").getAbsolutePath();
+  public static final String performancesDirectory = new File(dataDirectory, "Performances").getAbsolutePath();
   public static final String trailersDirectory = new File(applicationDirectory, "Trailers").getAbsolutePath();
   public static final String userLocationsDirectory = new File(applicationDirectory, "UserLocations").getAbsolutePath();
+  public static final String tempDirectory = new File(applicationDirectory, "Temp").getAbsolutePath();
 
   private static Pulser pulser;
 
+
   static {
+    deleteItem(new File(tempDirectory));
+    createDirectories();
+
     Runnable runnable = new Runnable() {
       public void run() {
 
@@ -29,6 +30,7 @@ public class Application {
     };
     pulser = new Pulser(runnable, 5000);
   }
+
 
   private Application() {
 
@@ -38,7 +40,9 @@ public class Application {
   private static String[] directories() {
     return new String[]{
         applicationDirectory,
+        tempDirectory,
         dataDirectory,
+        performancesDirectory,
         trailersDirectory,
         userLocationsDirectory,
     };
@@ -59,7 +63,12 @@ public class Application {
 
 
   private static void deleteDirectories() {
-    deleteItem(new File(applicationDirectory));
+    deleteDirectory(applicationDirectory);
+  }
+
+
+  public static void deleteDirectory(String directory) {
+    deleteItem(new File(directory));
   }
 
 
@@ -84,7 +93,9 @@ public class Application {
 
   public static void refresh(final boolean force) {
     if (ThreadingUtilities.isBackgroundThread()) {
-      Runnable runnable = new Runnable() { public void run() { refresh(force); } };
+      Runnable runnable = new Runnable() {
+        public void run() { refresh(force); }
+      };
       ThreadingUtilities.performOnMainThread(runnable);
       return;
     }

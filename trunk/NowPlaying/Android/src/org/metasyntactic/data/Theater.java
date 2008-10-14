@@ -2,11 +2,11 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.utilities.DateUtilities;
+import static org.metasyntactic.utilities.StringUtilities.nonNullString;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Theater implements Parcelable, Serializable {
@@ -19,15 +19,15 @@ public class Theater implements Parcelable, Serializable {
 
   private final Location location;
   private final Location originatingLocation;
-  private final List<String> movieTitles;
+  private final Set<String> movieTitles;
 
 
   public Theater(String identifier, String name, String address, String phoneNumber, Location location,
-                 Location originatingLocation, List<String> movieTitles) {
+                 Location originatingLocation, Set<String> movieTitles) {
     this.identifier = identifier;
-    this.name = name;
-    this.address = address;
-    this.phoneNumber = phoneNumber;
+    this.name = nonNullString(name);
+    this.address = nonNullString(address);
+    this.phoneNumber = nonNullString(phoneNumber);
     this.location = location;
     this.originatingLocation = originatingLocation;
     this.movieTitles = movieTitles;
@@ -87,8 +87,8 @@ public class Theater implements Parcelable, Serializable {
   }
 
 
-  public List<String> getMovieTitles() {
-    return Collections.unmodifiableList(movieTitles);
+  public Set<String> getMovieTitles() {
+    return Collections.unmodifiableSet(movieTitles);
   }
 
 
@@ -104,7 +104,7 @@ public class Theater implements Parcelable, Serializable {
     dest.writeString(phoneNumber);
     dest.writeParcelable(location, 0);
     dest.writeParcelable(originatingLocation, 0);
-    dest.writeStringList(movieTitles);
+    dest.writeStringList(new ArrayList<String>(movieTitles));
   }
 
 
@@ -121,7 +121,8 @@ public class Theater implements Parcelable, Serializable {
           List<String> movieTitles = new ArrayList<String>();
           source.readStringList(movieTitles);
 
-          return new Theater(identifier, name, address, phoneNumber, location, originatingLocation, movieTitles);
+          return new Theater(identifier, name, address, phoneNumber, location, originatingLocation,
+              new LinkedHashSet<String>(movieTitles));
         }
 
 
@@ -129,4 +130,23 @@ public class Theater implements Parcelable, Serializable {
           return new Theater[size];
         }
       };
+
+
+  public static String processShowtime(String showtime) {
+    if (DateUtilities.use24HourTime()) {
+      return showtime;
+    }
+
+    if (showtime.endsWith(" PM")) {
+      return showtime.substring(0, showtime.length() - 3) + "pm";
+    } else if (showtime.endsWith(" AM")) {
+      return showtime.substring(0, showtime.length() - 3) + "am";
+    }
+
+    if (!showtime.endsWith("am") && !showtime.endsWith("pm")) {
+      return showtime + "pm";
+    }
+
+    return showtime;
+  }
 }
