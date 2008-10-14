@@ -220,7 +220,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "classname", ClassName(descriptor_));
 
     printer->Print(
-      "@private\n"
+      " @private\n"
       "  id<PBRpcChannel> channel;\n"
       "}\n"
       "@property (retain) id<PBRpcChannel> channel;\n"

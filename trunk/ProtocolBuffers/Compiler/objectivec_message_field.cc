@@ -113,10 +113,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
+  void MessageFieldGenerator::GenerateHasPropertyHeader(io::Printer* printer) const {
+    printer->Print(variables_, "- (BOOL) has$capitalized_name$;\n");
+}
+
+
   void MessageFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "- (BOOL) has$capitalized_name$;\n"
-      "@property (retain, readonly) $storage_type$ $name$;\n");
+    printer->Print(variables_, "@property (retain, readonly) $storage_type$ $name$;\n");
   }
 
 
@@ -289,6 +292,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void RepeatedMessageFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
     printer->Print(variables_, "NSMutableArray* $mutable_list_name$;\n");
+  }
+
+
+  void RepeatedMessageFieldGenerator::GenerateHasPropertyHeader(io::Printer* printer) const {
   }
 
 

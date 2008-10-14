@@ -219,10 +219,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
-  void PrimitiveFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
-    printer->Print(variables_,
-      "- (BOOL) has$capitalized_name$;\n");
+  void PrimitiveFieldGenerator::GenerateHasPropertyHeader(io::Printer* printer) const {
+    printer->Print(variables_, "- (BOOL) has$capitalized_name$;\n");
+  }
 
+  void PrimitiveFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
     if (IsReferenceType(GetObjectiveCType(descriptor_))) {
       printer->Print(variables_,
         "@property (retain, readonly) $storage_type$ $name$;\n");
@@ -394,6 +395,11 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     printer->Print(variables_, "NSMutableArray* $mutable_list_name$;\n");
   }
 
+
+  void RepeatedPrimitiveFieldGenerator::GenerateHasPropertyHeader(io::Printer* printer) const {
+  }
+
+
   void RepeatedPrimitiveFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
   }
 
@@ -405,14 +411,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
 
   void RepeatedPrimitiveFieldGenerator::GenerateSynthesizeSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "@synthesize $mutable_list_name$;\n");
+    printer->Print(variables_, "@synthesize $mutable_list_name$;\n");
   }
 
 
   void RepeatedPrimitiveFieldGenerator::GenerateDeallocSource(io::Printer* printer) const {
-    printer->Print(variables_,
-      "self.$mutable_list_name$ = nil;\n");
+    printer->Print(variables_, "self.$mutable_list_name$ = nil;\n");
   }
 
 

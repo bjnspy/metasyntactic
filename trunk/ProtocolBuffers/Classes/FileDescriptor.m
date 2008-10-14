@@ -141,6 +141,19 @@
 }
 
 
+
+/**
+ * Construct a {@code FileDescriptor}.
+ *
+ * @param proto The protocol message form of the FileDescriptor.
+ * @param dependencies {@code FileDescriptor}s corresponding to all of
+ *                     the file's dependencies, in the exact order listed
+ *                     in {@code proto}.
+ * @throws DescriptorValidationException {@code proto} is not a valid
+ *           descriptor.  This can occur for a number of reasons, e.g.
+ *           because a field has an undefined type or because two messages
+ *           were defined with the same name.
+ */
 + (PBFileDescriptor*) buildFrom:(PBFileDescriptorProto*) proto dependencies:(NSArray*) dependencies {
     // Building decsriptors involves two steps:  translating and linking.
     // In the translation step (implemented by PBFileDescriptor's
@@ -169,6 +182,7 @@
 }
 
 
+/** Look up and cross-link all field types, etc. */
 - (void) crossLink {
     for (PBDescriptor* d in self.messageTypes) {
         [d crossLink];
@@ -236,6 +250,7 @@
     }
 }
 
+
 /**
  * Find a service type in the file by name.
  *
@@ -261,6 +276,7 @@
         return nil;
     }
 }
+
 
 /**
  * Find an extension in the file by name.  Does not find extensions nested

@@ -161,6 +161,7 @@
 }
 
 
+/** Determines if the given field number is an extension. */
 - (BOOL) isExtensionNumber:(int32_t) number {
     for (PBDescriptorProto_ExtensionRange* range in proto.extensionRangeList) {
         if (range.start <= number && number < range.end) {
@@ -171,13 +172,11 @@
 }
 
 
-- (PBFieldDescriptor*) findFieldByNumber:(int32_t) number {
-    PBDescriptorPool_DescriptorIntPair* pair =
-    [PBDescriptorPool_DescriptorIntPair pairWithDescriptor:self number:number];
-    return [file.pool.fieldsByNumber objectForKey:pair];
-}
-
-
+/**
+ * Finds a field by name.
+ * @param name The unqualified name of the field (e.g. "foo").
+ * @return The field's descriptor, or {@code null} if not found.
+ */
 - (PBFieldDescriptor*) findFieldByName:(NSString*) name {
     id result = [file.pool findSymbol:[NSString stringWithFormat:@"%@.%@", fullName, name]];
     if (result != nil && [result isKindOfClass:[PBFieldDescriptor class]]) {
@@ -185,6 +184,19 @@
     } else {
         return nil;
     }
+}
+
+
+
+/**
+ * Finds a field by field number.
+ * @param number The field number within this message type.
+ * @return The field's descriptor, or {@code null} if not found.
+ */
+- (PBFieldDescriptor*) findFieldByNumber:(int32_t) number {
+    PBDescriptorPool_DescriptorIntPair* pair =
+    [PBDescriptorPool_DescriptorIntPair pairWithDescriptor:self number:number];
+    return [file.pool.fieldsByNumber objectForKey:pair];
 }
 
 

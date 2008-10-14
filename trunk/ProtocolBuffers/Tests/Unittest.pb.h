@@ -246,7 +246,7 @@
 @end
 
 @interface TestService_Stub : TestService {
-@private
+ @private
   id<PBRpcChannel> channel;
 }
 @property (retain) id<PBRpcChannel> channel;
@@ -262,7 +262,7 @@
                        selector:(SEL) selector;@end
 
 @interface TestAllTypes : PBGeneratedMessage {
-@private
+ @private
   BOOL hasOptionalBool:1;
   BOOL hasDefaultBool:1;
   BOOL hasOptionalDouble:1;
@@ -377,92 +377,92 @@
   NSMutableArray* mutableRepeatedSint64List;
 }
 - (BOOL) hasOptionalInt32;
-@property (readonly) int32_t optionalInt32;
 - (BOOL) hasOptionalInt64;
-@property (readonly) int64_t optionalInt64;
 - (BOOL) hasOptionalUint32;
-@property (readonly) int32_t optionalUint32;
 - (BOOL) hasOptionalUint64;
-@property (readonly) int64_t optionalUint64;
 - (BOOL) hasOptionalSint32;
-@property (readonly) int32_t optionalSint32;
 - (BOOL) hasOptionalSint64;
-@property (readonly) int64_t optionalSint64;
 - (BOOL) hasOptionalFixed32;
-@property (readonly) int32_t optionalFixed32;
 - (BOOL) hasOptionalFixed64;
-@property (readonly) int64_t optionalFixed64;
 - (BOOL) hasOptionalSfixed32;
-@property (readonly) int32_t optionalSfixed32;
 - (BOOL) hasOptionalSfixed64;
-@property (readonly) int64_t optionalSfixed64;
 - (BOOL) hasOptionalFloat;
-@property (readonly) Float32 optionalFloat;
 - (BOOL) hasOptionalDouble;
-@property (readonly) Float64 optionalDouble;
 - (BOOL) hasOptionalBool;
-- (BOOL) optionalBool;
 - (BOOL) hasOptionalString;
-@property (retain, readonly) NSString* optionalString;
 - (BOOL) hasOptionalBytes;
-@property (retain, readonly) NSData* optionalBytes;
 - (BOOL) hasOptionalGroup;
-@property (retain, readonly) TestAllTypes_OptionalGroup* optionalGroup;
 - (BOOL) hasOptionalNestedMessage;
-@property (retain, readonly) TestAllTypes_NestedMessage* optionalNestedMessage;
 - (BOOL) hasOptionalForeignMessage;
-@property (retain, readonly) ForeignMessage* optionalForeignMessage;
 - (BOOL) hasOptionalImportMessage;
-@property (retain, readonly) ImportMessage* optionalImportMessage;
 - (BOOL) hasOptionalNestedEnum;
-@property (retain, readonly) TestAllTypes_NestedEnum* optionalNestedEnum;
 - (BOOL) hasOptionalForeignEnum;
-@property (retain, readonly) ForeignEnum* optionalForeignEnum;
 - (BOOL) hasOptionalImportEnum;
-@property (retain, readonly) ImportEnum* optionalImportEnum;
 - (BOOL) hasOptionalStringPiece;
-@property (retain, readonly) NSString* optionalStringPiece;
 - (BOOL) hasOptionalCord;
-@property (retain, readonly) NSString* optionalCord;
 - (BOOL) hasDefaultInt32;
-@property (readonly) int32_t defaultInt32;
 - (BOOL) hasDefaultInt64;
-@property (readonly) int64_t defaultInt64;
 - (BOOL) hasDefaultUint32;
-@property (readonly) int32_t defaultUint32;
 - (BOOL) hasDefaultUint64;
-@property (readonly) int64_t defaultUint64;
 - (BOOL) hasDefaultSint32;
-@property (readonly) int32_t defaultSint32;
 - (BOOL) hasDefaultSint64;
-@property (readonly) int64_t defaultSint64;
 - (BOOL) hasDefaultFixed32;
-@property (readonly) int32_t defaultFixed32;
 - (BOOL) hasDefaultFixed64;
-@property (readonly) int64_t defaultFixed64;
 - (BOOL) hasDefaultSfixed32;
-@property (readonly) int32_t defaultSfixed32;
 - (BOOL) hasDefaultSfixed64;
-@property (readonly) int64_t defaultSfixed64;
 - (BOOL) hasDefaultFloat;
-@property (readonly) Float32 defaultFloat;
 - (BOOL) hasDefaultDouble;
-@property (readonly) Float64 defaultDouble;
 - (BOOL) hasDefaultBool;
-- (BOOL) defaultBool;
 - (BOOL) hasDefaultString;
-@property (retain, readonly) NSString* defaultString;
 - (BOOL) hasDefaultBytes;
-@property (retain, readonly) NSData* defaultBytes;
 - (BOOL) hasDefaultNestedEnum;
-@property (retain, readonly) TestAllTypes_NestedEnum* defaultNestedEnum;
 - (BOOL) hasDefaultForeignEnum;
-@property (retain, readonly) ForeignEnum* defaultForeignEnum;
 - (BOOL) hasDefaultImportEnum;
-@property (retain, readonly) ImportEnum* defaultImportEnum;
 - (BOOL) hasDefaultStringPiece;
-@property (retain, readonly) NSString* defaultStringPiece;
 - (BOOL) hasDefaultCord;
+@property (readonly) int32_t optionalInt32;
+@property (readonly) int64_t optionalInt64;
+@property (readonly) int32_t optionalUint32;
+@property (readonly) int64_t optionalUint64;
+@property (readonly) int32_t optionalSint32;
+@property (readonly) int64_t optionalSint64;
+@property (readonly) int32_t optionalFixed32;
+@property (readonly) int64_t optionalFixed64;
+@property (readonly) int32_t optionalSfixed32;
+@property (readonly) int64_t optionalSfixed64;
+@property (readonly) Float32 optionalFloat;
+@property (readonly) Float64 optionalDouble;
+- (BOOL) optionalBool;
+@property (retain, readonly) NSString* optionalString;
+@property (retain, readonly) NSData* optionalBytes;
+@property (retain, readonly) TestAllTypes_OptionalGroup* optionalGroup;
+@property (retain, readonly) TestAllTypes_NestedMessage* optionalNestedMessage;
+@property (retain, readonly) ForeignMessage* optionalForeignMessage;
+@property (retain, readonly) ImportMessage* optionalImportMessage;
+@property (retain, readonly) TestAllTypes_NestedEnum* optionalNestedEnum;
+@property (retain, readonly) ForeignEnum* optionalForeignEnum;
+@property (retain, readonly) ImportEnum* optionalImportEnum;
+@property (retain, readonly) NSString* optionalStringPiece;
+@property (retain, readonly) NSString* optionalCord;
+@property (readonly) int32_t defaultInt32;
+@property (readonly) int64_t defaultInt64;
+@property (readonly) int32_t defaultUint32;
+@property (readonly) int64_t defaultUint64;
+@property (readonly) int32_t defaultSint32;
+@property (readonly) int64_t defaultSint64;
+@property (readonly) int32_t defaultFixed32;
+@property (readonly) int64_t defaultFixed64;
+@property (readonly) int32_t defaultSfixed32;
+@property (readonly) int64_t defaultSfixed64;
+@property (readonly) Float32 defaultFloat;
+@property (readonly) Float64 defaultDouble;
+- (BOOL) defaultBool;
+@property (retain, readonly) NSString* defaultString;
+@property (retain, readonly) NSData* defaultBytes;
+@property (retain, readonly) TestAllTypes_NestedEnum* defaultNestedEnum;
+@property (retain, readonly) ForeignEnum* defaultForeignEnum;
+@property (retain, readonly) ImportEnum* defaultImportEnum;
+@property (retain, readonly) NSString* defaultStringPiece;
 @property (retain, readonly) NSString* defaultCord;
 - (NSArray*) repeatedInt32List;
 - (int32_t) repeatedInt32AtIndex:(int32_t) index;
@@ -554,7 +554,7 @@
 @end
 
 @interface TestAllTypes_NestedMessage : PBGeneratedMessage {
-@private
+ @private
   BOOL hasBb:1;
   int32_t bb;
 }
@@ -607,7 +607,7 @@
 @end
 
 @interface TestAllTypes_OptionalGroup : PBGeneratedMessage {
-@private
+ @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -660,7 +660,7 @@
 @end
 
 @interface TestAllTypes_RepeatedGroup : PBGeneratedMessage {
-@private
+ @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -1130,7 +1130,7 @@
 @end
 
 @interface ForeignMessage : PBGeneratedMessage {
-@private
+ @private
   BOOL hasC:1;
   int32_t c;
 }
@@ -1183,7 +1183,7 @@
 @end
 
 @interface TestAllExtensions : PBExtendableMessage {
-@private
+ @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1227,7 +1227,7 @@
 @end
 
 @interface OptionalGroup_extension : PBGeneratedMessage {
-@private
+ @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -1280,7 +1280,7 @@
 @end
 
 @interface RepeatedGroup_extension : PBGeneratedMessage {
-@private
+ @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -1333,7 +1333,7 @@
 @end
 
 @interface TestRequired : PBGeneratedMessage {
-@private
+ @private
   BOOL hasA:1;
   BOOL hasDummy2:1;
   BOOL hasB:1;
@@ -1402,70 +1402,70 @@
   int32_t c;
 }
 - (BOOL) hasA;
-@property (readonly) int32_t a;
 - (BOOL) hasDummy2;
-@property (readonly) int32_t dummy2;
 - (BOOL) hasB;
-@property (readonly) int32_t b;
 - (BOOL) hasDummy4;
-@property (readonly) int32_t dummy4;
 - (BOOL) hasDummy5;
-@property (readonly) int32_t dummy5;
 - (BOOL) hasDummy6;
-@property (readonly) int32_t dummy6;
 - (BOOL) hasDummy7;
-@property (readonly) int32_t dummy7;
 - (BOOL) hasDummy8;
-@property (readonly) int32_t dummy8;
 - (BOOL) hasDummy9;
-@property (readonly) int32_t dummy9;
 - (BOOL) hasDummy10;
-@property (readonly) int32_t dummy10;
 - (BOOL) hasDummy11;
-@property (readonly) int32_t dummy11;
 - (BOOL) hasDummy12;
-@property (readonly) int32_t dummy12;
 - (BOOL) hasDummy13;
-@property (readonly) int32_t dummy13;
 - (BOOL) hasDummy14;
-@property (readonly) int32_t dummy14;
 - (BOOL) hasDummy15;
-@property (readonly) int32_t dummy15;
 - (BOOL) hasDummy16;
-@property (readonly) int32_t dummy16;
 - (BOOL) hasDummy17;
-@property (readonly) int32_t dummy17;
 - (BOOL) hasDummy18;
-@property (readonly) int32_t dummy18;
 - (BOOL) hasDummy19;
-@property (readonly) int32_t dummy19;
 - (BOOL) hasDummy20;
-@property (readonly) int32_t dummy20;
 - (BOOL) hasDummy21;
-@property (readonly) int32_t dummy21;
 - (BOOL) hasDummy22;
-@property (readonly) int32_t dummy22;
 - (BOOL) hasDummy23;
-@property (readonly) int32_t dummy23;
 - (BOOL) hasDummy24;
-@property (readonly) int32_t dummy24;
 - (BOOL) hasDummy25;
-@property (readonly) int32_t dummy25;
 - (BOOL) hasDummy26;
-@property (readonly) int32_t dummy26;
 - (BOOL) hasDummy27;
-@property (readonly) int32_t dummy27;
 - (BOOL) hasDummy28;
-@property (readonly) int32_t dummy28;
 - (BOOL) hasDummy29;
-@property (readonly) int32_t dummy29;
 - (BOOL) hasDummy30;
-@property (readonly) int32_t dummy30;
 - (BOOL) hasDummy31;
-@property (readonly) int32_t dummy31;
 - (BOOL) hasDummy32;
-@property (readonly) int32_t dummy32;
 - (BOOL) hasC;
+@property (readonly) int32_t a;
+@property (readonly) int32_t dummy2;
+@property (readonly) int32_t b;
+@property (readonly) int32_t dummy4;
+@property (readonly) int32_t dummy5;
+@property (readonly) int32_t dummy6;
+@property (readonly) int32_t dummy7;
+@property (readonly) int32_t dummy8;
+@property (readonly) int32_t dummy9;
+@property (readonly) int32_t dummy10;
+@property (readonly) int32_t dummy11;
+@property (readonly) int32_t dummy12;
+@property (readonly) int32_t dummy13;
+@property (readonly) int32_t dummy14;
+@property (readonly) int32_t dummy15;
+@property (readonly) int32_t dummy16;
+@property (readonly) int32_t dummy17;
+@property (readonly) int32_t dummy18;
+@property (readonly) int32_t dummy19;
+@property (readonly) int32_t dummy20;
+@property (readonly) int32_t dummy21;
+@property (readonly) int32_t dummy22;
+@property (readonly) int32_t dummy23;
+@property (readonly) int32_t dummy24;
+@property (readonly) int32_t dummy25;
+@property (readonly) int32_t dummy26;
+@property (readonly) int32_t dummy27;
+@property (readonly) int32_t dummy28;
+@property (readonly) int32_t dummy29;
+@property (readonly) int32_t dummy30;
+@property (readonly) int32_t dummy31;
+@property (readonly) int32_t dummy32;
 @property (readonly) int32_t c;
 
 + (PBDescriptor*) descriptor;
@@ -1676,7 +1676,7 @@
 @end
 
 @interface TestRequiredForeign : PBGeneratedMessage {
-@private
+ @private
   BOOL hasDummy:1;
   BOOL hasOptionalMessage:1;
   int32_t dummy;
@@ -1684,8 +1684,8 @@
   NSMutableArray* mutableRepeatedMessageList;
 }
 - (BOOL) hasOptionalMessage;
-@property (retain, readonly) TestRequired* optionalMessage;
 - (BOOL) hasDummy;
+@property (retain, readonly) TestRequired* optionalMessage;
 @property (readonly) int32_t dummy;
 - (NSArray*) repeatedMessageList;
 - (TestRequired*) repeatedMessageAtIndex:(int32_t) index;
@@ -1750,7 +1750,7 @@
 @end
 
 @interface TestForeignNested : PBGeneratedMessage {
-@private
+ @private
   BOOL hasForeignNested:1;
   TestAllTypes_NestedMessage* foreignNested;
 }
@@ -1805,7 +1805,7 @@
 @end
 
 @interface TestEmptyMessage : PBGeneratedMessage {
-@private
+ @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1849,7 +1849,7 @@
 @end
 
 @interface TestEmptyMessageWithExtensions : PBExtendableMessage {
-@private
+ @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1893,15 +1893,15 @@
 @end
 
 @interface TestReallyLargeTagNumber : PBGeneratedMessage {
-@private
+ @private
   BOOL hasA:1;
   BOOL hasBb:1;
   int32_t a;
   int32_t bb;
 }
 - (BOOL) hasA;
-@property (readonly) int32_t a;
 - (BOOL) hasBb;
+@property (readonly) int32_t a;
 @property (readonly) int32_t bb;
 
 + (PBDescriptor*) descriptor;
@@ -1955,15 +1955,15 @@
 @end
 
 @interface TestRecursiveMessage : PBGeneratedMessage {
-@private
+ @private
   BOOL hasI:1;
   BOOL hasA:1;
   int32_t i;
   TestRecursiveMessage* a;
 }
 - (BOOL) hasA;
-@property (retain, readonly) TestRecursiveMessage* a;
 - (BOOL) hasI;
+@property (retain, readonly) TestRecursiveMessage* a;
 @property (readonly) int32_t i;
 
 + (PBDescriptor*) descriptor;
@@ -2019,7 +2019,7 @@
 @end
 
 @interface TestMutualRecursionA : PBGeneratedMessage {
-@private
+ @private
   BOOL hasBb:1;
   TestMutualRecursionB* bb;
 }
@@ -2074,15 +2074,15 @@
 @end
 
 @interface TestMutualRecursionB : PBGeneratedMessage {
-@private
+ @private
   BOOL hasOptionalInt32:1;
   BOOL hasA:1;
   int32_t optionalInt32;
   TestMutualRecursionA* a;
 }
 - (BOOL) hasA;
-@property (retain, readonly) TestMutualRecursionA* a;
 - (BOOL) hasOptionalInt32;
+@property (retain, readonly) TestMutualRecursionA* a;
 @property (readonly) int32_t optionalInt32;
 
 + (PBDescriptor*) descriptor;
@@ -2138,7 +2138,7 @@
 @end
 
 @interface TestDupFieldNumber : PBGeneratedMessage {
-@private
+ @private
   BOOL hasA:1;
   BOOL hasFoo:1;
   BOOL hasBar:1;
@@ -2147,10 +2147,10 @@
   TestDupFieldNumber_Bar* bar;
 }
 - (BOOL) hasA;
-@property (readonly) int32_t a;
 - (BOOL) hasFoo;
-@property (retain, readonly) TestDupFieldNumber_Foo* foo;
 - (BOOL) hasBar;
+@property (readonly) int32_t a;
+@property (retain, readonly) TestDupFieldNumber_Foo* foo;
 @property (retain, readonly) TestDupFieldNumber_Bar* bar;
 
 + (PBDescriptor*) descriptor;
@@ -2173,7 +2173,7 @@
 @end
 
 @interface TestDupFieldNumber_Foo : PBGeneratedMessage {
-@private
+ @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -2226,7 +2226,7 @@
 @end
 
 @interface TestDupFieldNumber_Bar : PBGeneratedMessage {
-@private
+ @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -2319,7 +2319,7 @@
 @end
 
 @interface TestNestedMessageHasBits : PBGeneratedMessage {
-@private
+ @private
   BOOL hasOptionalNestedMessage:1;
   TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 }
@@ -2346,7 +2346,7 @@
 @end
 
 @interface TestNestedMessageHasBits_NestedMessage : PBGeneratedMessage {
-@private
+ @private
   NSMutableArray* mutableNestedmessageRepeatedInt32List;
   NSMutableArray* mutableNestedmessageRepeatedForeignmessageList;
 }
@@ -2438,7 +2438,7 @@
 @end
 
 @interface TestCamelCaseFieldNames : PBGeneratedMessage {
-@private
+ @private
   BOOL hasPrimitiveField:1;
   BOOL hasStringField:1;
   BOOL hasStringPieceField:1;
@@ -2459,16 +2459,16 @@
   NSMutableArray* mutableRepeatedEnumFieldList;
 }
 - (BOOL) hasPrimitiveField;
-@property (readonly) int32_t primitiveField;
 - (BOOL) hasStringField;
-@property (retain, readonly) NSString* stringField;
 - (BOOL) hasEnumField;
-@property (retain, readonly) ForeignEnum* enumField;
 - (BOOL) hasMessageField;
-@property (retain, readonly) ForeignMessage* messageField;
 - (BOOL) hasStringPieceField;
-@property (retain, readonly) NSString* stringPieceField;
 - (BOOL) hasCordField;
+@property (readonly) int32_t primitiveField;
+@property (retain, readonly) NSString* stringField;
+@property (retain, readonly) ForeignEnum* enumField;
+@property (retain, readonly) ForeignMessage* messageField;
+@property (retain, readonly) NSString* stringPieceField;
 @property (retain, readonly) NSString* cordField;
 - (NSArray*) repeatedPrimitiveFieldList;
 - (int32_t) repeatedPrimitiveFieldAtIndex:(int32_t) index;
@@ -2598,7 +2598,7 @@
 @end
 
 @interface TestFieldOrderings : PBExtendableMessage {
-@private
+ @private
   BOOL hasMyFloat:1;
   BOOL hasMyInt:1;
   BOOL hasMyString:1;
@@ -2607,10 +2607,10 @@
   NSString* myString;
 }
 - (BOOL) hasMyString;
-@property (retain, readonly) NSString* myString;
 - (BOOL) hasMyInt;
-@property (readonly) int64_t myInt;
 - (BOOL) hasMyFloat;
+@property (retain, readonly) NSString* myString;
+@property (readonly) int64_t myInt;
 @property (readonly) Float32 myFloat;
 
 + (PBDescriptor*) descriptor;
@@ -2669,7 +2669,7 @@
 @end
 
 @interface TestExtremeDefaultValues : PBGeneratedMessage {
-@private
+ @private
   BOOL hasSmallInt64:1;
   BOOL hasLargeUint64:1;
   BOOL hasSmallInt32:1;
@@ -2684,16 +2684,16 @@
   int32_t largeUint32;
 }
 - (BOOL) hasEscapedBytes;
-@property (retain, readonly) NSData* escapedBytes;
 - (BOOL) hasLargeUint32;
-@property (readonly) int32_t largeUint32;
 - (BOOL) hasLargeUint64;
-@property (readonly) int64_t largeUint64;
 - (BOOL) hasSmallInt32;
-@property (readonly) int32_t smallInt32;
 - (BOOL) hasSmallInt64;
-@property (readonly) int64_t smallInt64;
 - (BOOL) hasUtf8String;
+@property (retain, readonly) NSData* escapedBytes;
+@property (readonly) int32_t largeUint32;
+@property (readonly) int64_t largeUint64;
+@property (readonly) int32_t smallInt32;
+@property (readonly) int64_t smallInt64;
 @property (retain, readonly) NSString* utf8String;
 
 + (PBDescriptor*) descriptor;
@@ -2767,7 +2767,7 @@
 @end
 
 @interface FooRequest : PBGeneratedMessage {
-@private
+ @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -2811,7 +2811,7 @@
 @end
 
 @interface FooResponse : PBGeneratedMessage {
-@private
+ @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -2855,7 +2855,7 @@
 @end
 
 @interface BarRequest : PBGeneratedMessage {
-@private
+ @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -2899,7 +2899,7 @@
 @end
 
 @interface BarResponse : PBGeneratedMessage {
-@private
+ @private
 }
 
 + (PBDescriptor*) descriptor;
