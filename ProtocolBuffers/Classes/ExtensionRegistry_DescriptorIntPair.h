@@ -12,6 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/** A (GenericDescriptor, int) pair, used as a map key. */
 @interface PBExtensionRegistry_DescriptorIntPair : NSObject<NSCopying> {
  @private
     PBDescriptor* descriptor;
