@@ -40,7 +40,7 @@
 @end
 
 @interface ImportMessage : PBGeneratedMessage {
-@private
+ @private
   BOOL hasD:1;
   int32_t d;
 }

@@ -14,6 +14,20 @@
 
 #import "GenericDescriptor.h"
 
+
+/**
+ * Contains a collection of classes which describe protocol message types.
+ *
+ * Every message type has a {@link PbDescriptor}, which lists all
+ * its fields and other information about a type.  You can get a message
+ * type's descriptor by calling {@code [MessageType descriptor]}, or
+ * (given a message object of the type) {@code message.descriptor}.
+ *
+ * Descriptors are built from DescriptorProtos, as defined in
+ * {@code net/proto2/proto/descriptor.proto}.
+ *
+ * @author Cyrus Najmabadi
+ */
 @interface PBDescriptor : NSObject<PBGenericDescriptor> {
 @private
     int32_t index;
@@ -28,10 +42,37 @@
     NSMutableArray* mutableExtensions;
 }
 
+/**
+ * Get the index of this descriptor within its parent.  In other words,
+ * given a {@link FileDescriptor} {@code file}, the following is true:
+ * <pre>
+ *   for all i in [0, file.getMessageTypeCount()):
+ *     file.getMessageType(i).getIndex() == i
+ * </pre>
+ * Similarly, for a {@link Descriptor} {@code messageType}:
+ * <pre>
+ *   for all i in [0, messageType.getNestedTypeCount()):
+ *     messageType.getNestedType(i).getIndex() == i
+ * </pre>
+ */
 @property (readonly) int32_t index;
 @property (readonly, retain) PBDescriptorProto* proto;
+
+/**
+ * Get the type's fully-qualified name, within the proto language's
+ * namespace.  This differs from the Java name.  For example, given this
+ * {@code .proto}:
+ * <pre>
+ *   package foo.bar;
+ *   option java_package = "com.example.protos"
+ *   message Baz {}
+ * </pre>
+ * {@code Baz}'s full name is "foo.bar.Baz".
+ */
 @property (readonly, copy) NSString* fullName;
 @property (readonly, retain) PBFileDescriptor* file;
+
+/** If this is a nested type, get the outer descriptor, otherwise null. */
 @property (readonly, retain) PBDescriptor* containingType;
 
 - (NSArray*) nestedTypes;
@@ -56,8 +97,8 @@
 
 - (BOOL) isExtensionNumber:(int32_t) number;
 
-- (PBFieldDescriptor*) findFieldByNumber:(int32_t) number;
 - (PBFieldDescriptor*) findFieldByName:(NSString*) name;
+- (PBFieldDescriptor*) findFieldByNumber:(int32_t) number;
 - (PBDescriptor*) findNestedTypeByName:(NSString*) name;
 - (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
 

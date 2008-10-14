@@ -111,9 +111,13 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
   }
 
 
+  void EnumFieldGenerator::GenerateHasPropertyHeader(io::Printer* printer) const {
+    printer->Print(variables_, "- (BOOL) has$capitalized_name$;\n");
+  }
+
+
   void EnumFieldGenerator::GeneratePropertyHeader(io::Printer* printer) const {
     printer->Print(variables_,
-      "- (BOOL) has$capitalized_name$;\n"
       "@property (retain, readonly) $storage_type$ $name$;\n");
   }
 
@@ -264,6 +268,10 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
   void RepeatedEnumFieldGenerator::GenerateFieldHeader(io::Printer* printer) const {
     printer->Print(variables_, "NSMutableArray* $mutable_list_name$;\n");
+  }
+
+
+  void RepeatedEnumFieldGenerator::GenerateHasPropertyHeader(io::Printer* printer) const {
   }
 
 

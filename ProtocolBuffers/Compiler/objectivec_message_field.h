@@ -37,6 +37,7 @@ class MessageFieldGenerator : public FieldGenerator {
 
   void GenerateHasFieldHeader(io::Printer* printer) const;
   void GenerateFieldHeader(io::Printer* printer) const;
+  void GenerateHasPropertyHeader(io::Printer* printer) const;
   void GeneratePropertyHeader(io::Printer* printer) const;
   void GenerateMembersHeader(io::Printer* printer) const;
   void GenerateBuilderMembersHeader(io::Printer* printer) const;
@@ -74,6 +75,7 @@ class RepeatedMessageFieldGenerator : public FieldGenerator {
 
   void GenerateHasFieldHeader(io::Printer* printer) const;
   void GenerateFieldHeader(io::Printer* printer) const;
+  void GenerateHasPropertyHeader(io::Printer* printer) const;
   void GeneratePropertyHeader(io::Printer* printer) const;
   void GenerateMembersHeader(io::Printer* printer) const;
   void GenerateBuilderMembersHeader(io::Printer* printer) const;

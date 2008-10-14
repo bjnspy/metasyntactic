@@ -86,15 +86,15 @@
 @end
 
 @interface TestOptimizedForSize : PBExtendableMessage {
-@private
+ @private
   BOOL hasI:1;
   BOOL hasMsg:1;
   int32_t i;
   ForeignMessage* msg;
 }
 - (BOOL) hasI;
-@property (readonly) int32_t i;
 - (BOOL) hasMsg;
+@property (readonly) int32_t i;
 @property (retain, readonly) ForeignMessage* msg;
 
 + (PBDescriptor*) descriptor;

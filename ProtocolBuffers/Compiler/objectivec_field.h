@@ -43,6 +43,7 @@ class FieldGenerator {
 
   virtual void GenerateHasFieldHeader(io::Printer* printer) const = 0;
   virtual void GenerateFieldHeader(io::Printer* printer) const = 0;
+  virtual void GenerateHasPropertyHeader(io::Printer* printer) const = 0;
   virtual void GeneratePropertyHeader(io::Printer* printer) const = 0;
   virtual void GenerateMembersHeader(io::Printer* printer) const = 0;
   virtual void GenerateBuilderMembersHeader(io::Printer* printer) const = 0;

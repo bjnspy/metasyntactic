@@ -265,12 +265,12 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
     if (descriptor_->extension_range_count() > 0) {
       printer->Print(
         "@interface $classname$ : PBExtendableMessage {\n"
-        "@private\n",
+        " @private\n",
         "classname", ClassName(descriptor_));
     } else {
       printer->Print(
         "@interface $classname$ : PBGeneratedMessage {\n"
-        "@private\n",
+        " @private\n",
         "classname", ClassName(descriptor_));
     }
 
@@ -285,6 +285,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
 
     printer->Print("}\n");
 
+    for (int i = 0; i < descriptor_->field_count(); i++) {
+      field_generators_.get(descriptor_->field(i)).GenerateHasPropertyHeader(printer);
+    }
     for (int i = 0; i < descriptor_->field_count(); i++) {
       field_generators_.get(descriptor_->field(i)).GeneratePropertyHeader(printer);
     }
@@ -301,7 +304,6 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "- ($classname$*) defaultInstance;\n",
       "classname", ClassName(descriptor_));
     printer->Print(
-      "- (PBFieldAccessorTable*) internalGetFieldAccessorTable;\n"
       "\n",
       "fileclass", FileClassName(descriptor_->file()),
       "identifier", UniqueFileScopeIdentifier(descriptor_));
@@ -410,7 +412,7 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "+ (PBDescriptor*) descriptor {\n"
       "  return [$fileclass$ internal_$identifier$_descriptor];\n"
       "}\n"
-      "- (PBFieldAccessorTable*) internalGetFieldAccessorTable {\n"
+      "- (PBFieldAccessorTable*) fieldAccessorTable {\n"
       "  return [$fileclass$ internal_$identifier$_fieldAccessorTable];\n"
       "}\n",
       "fileclass", FileClassName(descriptor_->file()),
@@ -622,7 +624,9 @@ namespace google { namespace protobuf { namespace compiler { namespace objective
       "}\n"
       "- (int32_t) serializedSize {\n"
       "  int32_t size = memoizedSerializedSize;\n"
-      "  if (size != -1) return size;\n"
+      "  if (size != -1) {\n"
+      "    return size;\n"
+      "  }\n"
       "\n"
       "  size = 0;\n");
     printer->Indent();
