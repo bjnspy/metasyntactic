@@ -15,7 +15,7 @@
 #import "SingularFieldAccessor.h"
 
 @interface PBSingularEnumFieldAccessor : PBSingularFieldAccessor {
- @private
+  @private
     SEL valueOfSelector;
     SEL valueDescriptorSelector;
 }

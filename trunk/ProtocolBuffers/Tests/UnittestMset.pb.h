@@ -28,7 +28,7 @@
 @end
 
 @interface TestMessageSet : PBExtendableMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -51,7 +51,7 @@
 @end
 
 @interface TestMessageSet_Builder : PBExtendableBuilder {
- @private
+  @private
   TestMessageSet* result;
 }
 
@@ -71,7 +71,7 @@
 @end
 
 @interface TestMessageSetContainer : PBGeneratedMessage {
- @private
+  @private
   BOOL hasMessageSet:1;
   TestMessageSet* messageSet;
 }
@@ -98,7 +98,7 @@
 @end
 
 @interface TestMessageSetContainer_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestMessageSetContainer* result;
 }
 
@@ -125,7 +125,7 @@
 @end
 
 @interface TestMessageSetExtension1 : PBGeneratedMessage {
- @private
+  @private
   BOOL hasI:1;
   int32_t i;
 }
@@ -153,7 +153,7 @@
 @end
 
 @interface TestMessageSetExtension1_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestMessageSetExtension1* result;
 }
 
@@ -178,7 +178,7 @@
 @end
 
 @interface TestMessageSetExtension2 : PBGeneratedMessage {
- @private
+  @private
   BOOL hasStr:1;
   NSString* str;
 }
@@ -206,7 +206,7 @@
 @end
 
 @interface TestMessageSetExtension2_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestMessageSetExtension2* result;
 }
 
@@ -231,7 +231,7 @@
 @end
 
 @interface RawMessageSet : PBGeneratedMessage {
- @private
+  @private
   NSMutableArray* mutableItemList;
 }
 - (NSArray*) itemList;
@@ -257,7 +257,7 @@
 @end
 
 @interface RawMessageSet_Item : PBGeneratedMessage {
- @private
+  @private
   BOOL hasTypeId:1;
   BOOL hasMessage:1;
   int32_t typeId;
@@ -288,7 +288,7 @@
 @end
 
 @interface RawMessageSet_Item_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   RawMessageSet_Item* result;
 }
 
@@ -318,7 +318,7 @@
 @end
 
 @interface RawMessageSet_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   RawMessageSet* result;
 }
 

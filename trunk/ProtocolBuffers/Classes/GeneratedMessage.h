@@ -14,8 +14,16 @@
 
 #import "AbstractMessage.h"
 
+/**
+ * All generated protocol message classes extend this class.  This class
+ * implements most of the Message and Builder interfaces using Java reflection.
+ * Users can ignore this class and pretend that generated messages implement
+ * the Message interface directly.
+ *
+ * @author Cyrus Najmabadi
+ */
 @interface PBGeneratedMessage : PBAbstractMessage {
- @private
+  @private
     PBUnknownFieldSet* unknownFields;
 
 @protected

@@ -21,7 +21,7 @@
  * @author Cyrus Najmabadi
  */
 @interface PBAbstractMessage : NSObject<PBMessage> {
- @private
+  @private
     int32_t am_memoizedSize;
 }
 

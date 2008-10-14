@@ -12,7 +12,12 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * Users should ignore this class.  This class provides the implementation
+ * with access to the fields of a message object using Java reflection.
+ */
 @interface PBFieldAccessorTable : NSObject {
+  @private
     PBDescriptor* descriptor;
     NSArray* fields;
 }
@@ -21,9 +26,9 @@
 @property (readonly, retain) NSArray* fields;
 
 + (PBFieldAccessorTable*) tableWithDescriptor:(PBDescriptor*) descriptor
-                                                  fieldNames:(NSArray*) fieldNames
-                                                messageClass:(Class) messageClass
-                                                builderClass:(Class) builderClass;
+                                   fieldNames:(NSArray*) fieldNames
+                                 messageClass:(Class) messageClass
+                                 builderClass:(Class) builderClass;
 
 - (id<PBFieldAccessor>) getField:(PBFieldDescriptor*) field;
 

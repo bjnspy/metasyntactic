@@ -12,8 +12,14 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * Used by subclasses to serialize extensions.  Extension ranges may be
+ * interleaved with field numbers, but we must write them in canonical
+ * (sorted by field number) order.  ExtensionWriter helps us write
+ * individual ranges of extensions at once.
+ */
 @interface PBExtensionWriter : NSObject {
- @private
+  @private
     PBFieldSet* extensions;
     NSEnumerator* enumerator;
     PBFieldDescriptor* nextKey;

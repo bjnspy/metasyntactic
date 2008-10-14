@@ -29,7 +29,7 @@
  * @author Cyrus Najmabadi
  */
 @interface PBDescriptor : NSObject<PBGenericDescriptor> {
- @private
+  @private
     int32_t index;
     PBDescriptorProto* proto;
     NSString* fullName;

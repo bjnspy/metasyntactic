@@ -27,7 +27,7 @@
  * @author Cyrus Najmabadi
  */
 @interface PBCodedInputStream : NSObject {
- @private
+  @private
     NSMutableData* buffer;
     int32_t bufferSize;
     int32_t bufferSizeAfterLimit;

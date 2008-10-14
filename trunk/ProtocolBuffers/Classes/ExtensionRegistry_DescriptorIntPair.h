@@ -14,7 +14,7 @@
 
 /** A (GenericDescriptor, int) pair, used as a map key. */
 @interface PBExtensionRegistry_DescriptorIntPair : NSObject<NSCopying> {
- @private
+  @private
     PBDescriptor* descriptor;
     int32_t number;
 }

@@ -50,7 +50,7 @@
 @end
 
 @interface PBFileDescriptorSet : PBGeneratedMessage {
- @private
+  @private
   NSMutableArray* mutableFileList;
 }
 - (NSArray*) fileList;
@@ -76,7 +76,7 @@
 @end
 
 @interface PBFileDescriptorSet_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBFileDescriptorSet* result;
 }
 
@@ -103,7 +103,7 @@
 @end
 
 @interface PBFileDescriptorProto : PBGeneratedMessage {
- @private
+  @private
   BOOL hasName:1;
   BOOL hasPackage:1;
   BOOL hasOptions:1;
@@ -153,7 +153,7 @@
 @end
 
 @interface PBFileDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBFileDescriptorProto* result;
 }
 
@@ -225,7 +225,7 @@
 @end
 
 @interface PBDescriptorProto : PBGeneratedMessage {
- @private
+  @private
   BOOL hasName:1;
   BOOL hasOptions:1;
   NSString* name;
@@ -271,7 +271,7 @@
 @end
 
 @interface PBDescriptorProto_ExtensionRange : PBGeneratedMessage {
- @private
+  @private
   BOOL hasStart:1;
   BOOL hasEnd:1;
   int32_t start;
@@ -302,7 +302,7 @@
 @end
 
 @interface PBDescriptorProto_ExtensionRange_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBDescriptorProto_ExtensionRange* result;
 }
 
@@ -332,7 +332,7 @@
 @end
 
 @interface PBDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBDescriptorProto* result;
 }
 
@@ -399,7 +399,7 @@
 @end
 
 @interface PBFieldDescriptorProto : PBGeneratedMessage {
- @private
+  @private
   BOOL hasNumber:1;
   BOOL hasName:1;
   BOOL hasTypeName:1;
@@ -454,7 +454,7 @@
 @end
 
 @interface PBFieldDescriptorProto_Type : NSObject {
- @private
+  @private
   int32_t index;
   int32_t value;
 }
@@ -490,7 +490,7 @@
 @end
 
 @interface PBFieldDescriptorProto_Label : NSObject {
- @private
+  @private
   int32_t index;
   int32_t value;
 }
@@ -511,7 +511,7 @@
 @end
 
 @interface PBFieldDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBFieldDescriptorProto* result;
 }
 
@@ -573,7 +573,7 @@
 @end
 
 @interface PBEnumDescriptorProto : PBGeneratedMessage {
- @private
+  @private
   BOOL hasName:1;
   BOOL hasOptions:1;
   NSString* name;
@@ -607,7 +607,7 @@
 @end
 
 @interface PBEnumDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBEnumDescriptorProto* result;
 }
 
@@ -646,7 +646,7 @@
 @end
 
 @interface PBEnumValueDescriptorProto : PBGeneratedMessage {
- @private
+  @private
   BOOL hasNumber:1;
   BOOL hasName:1;
   BOOL hasOptions:1;
@@ -681,7 +681,7 @@
 @end
 
 @interface PBEnumValueDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBEnumValueDescriptorProto* result;
 }
 
@@ -718,7 +718,7 @@
 @end
 
 @interface PBServiceDescriptorProto : PBGeneratedMessage {
- @private
+  @private
   BOOL hasName:1;
   BOOL hasOptions:1;
   NSString* name;
@@ -752,7 +752,7 @@
 @end
 
 @interface PBServiceDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBServiceDescriptorProto* result;
 }
 
@@ -791,7 +791,7 @@
 @end
 
 @interface PBMethodDescriptorProto : PBGeneratedMessage {
- @private
+  @private
   BOOL hasName:1;
   BOOL hasInputType:1;
   BOOL hasOutputType:1;
@@ -830,7 +830,7 @@
 @end
 
 @interface PBMethodDescriptorProto_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBMethodDescriptorProto* result;
 }
 
@@ -872,7 +872,7 @@
 @end
 
 @interface PBFileOptions : PBGeneratedMessage {
- @private
+  @private
   BOOL hasJavaMultipleFiles:1;
   BOOL hasJavaPackage:1;
   BOOL hasJavaOuterClassname:1;
@@ -919,7 +919,7 @@
 @end
 
 @interface PBFileOptions_OptimizeMode : NSObject {
- @private
+  @private
   int32_t index;
   int32_t value;
 }
@@ -939,7 +939,7 @@
 @end
 
 @interface PBFileOptions_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBFileOptions* result;
 }
 
@@ -989,7 +989,7 @@
 @end
 
 @interface PBMessageOptions : PBGeneratedMessage {
- @private
+  @private
   BOOL hasMessageSetWireFormat:1;
   BOOL messageSetWireFormat:1;
 }
@@ -1016,7 +1016,7 @@
 @end
 
 @interface PBMessageOptions_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBMessageOptions* result;
 }
 
@@ -1041,7 +1041,7 @@
 @end
 
 @interface PBFieldOptions : PBGeneratedMessage {
- @private
+  @private
   BOOL hasExperimentalMapKey:1;
   BOOL hasCtype:1;
   NSString* experimentalMapKey;
@@ -1072,7 +1072,7 @@
 @end
 
 @interface PBFieldOptions_CType : NSObject {
- @private
+  @private
   int32_t index;
   int32_t value;
 }
@@ -1092,7 +1092,7 @@
 @end
 
 @interface PBFieldOptions_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBFieldOptions* result;
 }
 
@@ -1122,7 +1122,7 @@
 @end
 
 @interface PBEnumOptions : PBGeneratedMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1145,7 +1145,7 @@
 @end
 
 @interface PBEnumOptions_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBEnumOptions* result;
 }
 
@@ -1165,7 +1165,7 @@
 @end
 
 @interface PBEnumValueOptions : PBGeneratedMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1188,7 +1188,7 @@
 @end
 
 @interface PBEnumValueOptions_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBEnumValueOptions* result;
 }
 
@@ -1208,7 +1208,7 @@
 @end
 
 @interface PBServiceOptions : PBGeneratedMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1231,7 +1231,7 @@
 @end
 
 @interface PBServiceOptions_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBServiceOptions* result;
 }
 
@@ -1251,7 +1251,7 @@
 @end
 
 @interface PBMethodOptions : PBGeneratedMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1274,7 +1274,7 @@
 @end
 
 @interface PBMethodOptions_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   PBMethodOptions* result;
 }
 

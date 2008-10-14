@@ -67,7 +67,7 @@
  * @author Cyrus Najmabadi
  */
 @interface PBExtensionRegistry : NSObject {
- @private
+  @private
     NSMutableDictionary* extensionsByName;
     NSMutableDictionary* extensionsByNumber;
 }

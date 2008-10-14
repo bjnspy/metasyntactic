@@ -12,6 +12,10 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+/**
+ * Abstract interface that provides access to a single field.  This is
+ * implemented differently depending on the field type and cardinality.
+ */
 @protocol PBFieldAccessor
 - (BOOL) has:(PBGeneratedMessage*) message;
 

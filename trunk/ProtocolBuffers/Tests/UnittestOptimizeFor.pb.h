@@ -86,7 +86,7 @@
 @end
 
 @interface TestOptimizedForSize : PBExtendableMessage {
- @private
+  @private
   BOOL hasI:1;
   BOOL hasMsg:1;
   int32_t i;
@@ -118,7 +118,7 @@
 @end
 
 @interface TestOptimizedForSize_Builder : PBExtendableBuilder {
- @private
+  @private
   TestOptimizedForSize* result;
 }
 
