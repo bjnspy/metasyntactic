@@ -31,12 +31,12 @@
 
 @property (copy) NSString* identifier;
 @property (copy) NSString* canonicalTitle;
+@property (copy) NSString* displayTitle;
 @property (copy) NSString* rating;
 @property NSInteger length;
 @property (copy) NSString* imdbAddress;
 @property (copy) NSString* poster;
 @property (copy) NSString* synopsis;
-@property (copy) NSString* displayTitle;
 @property (copy) NSString* studio;
 @property (retain) NSDate* releaseDate;
 @property (retain) NSArray* directors;
