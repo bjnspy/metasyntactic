@@ -34,7 +34,7 @@ public class FileUtilities {
 
 
   public static <T> T readObject(String fileName) {
-    return readObject(new File(fileName));
+    return (T)readObject(new File(fileName));
   }
 
 
