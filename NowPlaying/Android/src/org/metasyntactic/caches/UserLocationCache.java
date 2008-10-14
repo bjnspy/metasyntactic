@@ -3,6 +3,7 @@ package org.metasyntactic.caches;
 import org.metasyntactic.Application;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.threading.ThreadingUtilities;
+import static org.metasyntactic.threading.ThreadingUtilities.performOnBackgroundThread;
 import org.metasyntactic.utilities.*;
 import org.w3c.dom.Element;
 
@@ -18,23 +19,24 @@ public class UserLocationCache {
   }
 
 
-  public void updateUserAddressLocation(final String userAddress) {
+  public void downloadUserAddressLocation(final String userAddress) {
     Runnable runnable = new Runnable() {
       public void run() {
-        updateUserAddressLocationBackgroundEntryPoint(userAddress);
+        downloadUserAddressLocationBackgroundEntryPoint(userAddress);
       }
     };
 
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, true, false);
+    performOnBackgroundThread(runnable, lock, true/*visible*/, false/*lowpriority*/);
   }
 
 
-  private void updateUserAddressLocationBackgroundEntryPoint(String userAddress) {
+  public Location downloadUserAddressLocationBackgroundEntryPoint(String userAddress) {
+    assert ThreadingUtilities.isBackgroundThread();
+
     if (StringUtilities.isNullOrEmpty(userAddress)) {
-      return;
+      return null;
     }
 
-    //NSAssert(![NSThread isMainThread], @"Only call this from the background");
     Location location = locationForUserAddress(userAddress);
 
     if (location == null) {
@@ -45,6 +47,8 @@ public class UserLocationCache {
 
       saveLocation(location, userAddress);
     }
+
+    return location;
   }
 
 

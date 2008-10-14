@@ -2,11 +2,19 @@ package org.metasyntactic;
 
 import android.content.Context;
 import android.content.Intent;
-import org.metasyntactic.caches.AddressLocationCache;
+import android.os.Handler;
+import org.joda.time.DateTime;
+import org.joda.time.format.DateTimeFormatter;
+import org.joda.time.format.ISODateTimeFormat;
+import org.metasyntactic.caches.TrailerCache;
+import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.data.FavoriteTheater;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 import java.util.prefs.Preferences;
 
@@ -15,6 +23,7 @@ public class NowPlayingModel {
   public final static String NOW_PLAYING_MODEL_CHANGED_INTENT = "NowPlayingModelChangedIntent";
 
   private final static String USER_LOCATION = "userLocation";
+  private final static String SEARCH_DATE = "searchDate";
   private final static String SELECTED_TAB_INDEX_KEY = "selectedTabIndex";
   private final static String ALL_MOVIES_SELECTED_SORT_INDEX_KEY = "allMoviesSelectedSortIndex";
   private final static String ALL_THEATERS_SELECTED_SORT_INDEX_KEY = "allTheatersSelectedSortIndex";
@@ -26,11 +35,17 @@ public class NowPlayingModel {
 
 
   private final DataProvider dataProvider = new DataProvider(this);
-  private final AddressLocationCache addressLocationCache = new AddressLocationCache();
+  private final UserLocationCache userLocationCache = new UserLocationCache();
+  private final TrailerCache trailerCache = new TrailerCache();
 
 
   public NowPlayingModel(Context context) {
     this.context = context;
+  }
+
+
+  public UserLocationCache getUserLocationCache() {
+    return userLocationCache;
   }
 
 
@@ -45,8 +60,22 @@ public class NowPlayingModel {
 
 
   public void update() {
-    dataProvider.update();
-    addressLocationCache.update();
+    update(0);
+  }
+
+
+  private void update(final int i) {
+    if (i == 0) {
+      dataProvider.update();
+    } else if (i == 1) {
+      trailerCache.update(this.getMovies());
+    } else {
+      return;
+    }
+
+    Handler handler = new Handler();
+    Runnable runnable = new Runnable() { public void run() { update(i + 1); } };
+    handler.postDelayed(runnable, 1000);
   }
 
 
@@ -57,6 +86,30 @@ public class NowPlayingModel {
 
   public void setUserLocation(String userLocation) {
     preferences.put(USER_LOCATION, userLocation);
+  }
+
+
+  public Date getSearchDate() {
+    String value = preferences.get(SEARCH_DATE, "");
+    if ("".equals(value)) {
+      return new Date();
+    }
+
+    DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
+    Date result = formatter.parseDateTime(value).toDate();
+    if (result.before(new Date())) {
+      result = new Date();
+      setSearchDate(result);
+    }
+
+    return result;
+  }
+
+
+  public void setSearchDate(Date searchDate) {
+    DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
+    String result = formatter.print(new DateTime(searchDate));
+    preferences.put(SEARCH_DATE, result);
   }
 
 
@@ -111,5 +164,10 @@ public class NowPlayingModel {
 
   public List<Theater> getTheaters() {
     return dataProvider.getTheaters();
+  }
+
+
+  public List<FavoriteTheater> getFavoriteTheaters() {
+    return Collections.emptyList();
   }
 }

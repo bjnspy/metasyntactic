@@ -74,7 +74,7 @@ public class TrailerCache {
   }
 
 
-  private void update(final List<Movie> movies) {
+  public void update(final List<Movie> movies) {
     Runnable runnable = new Runnable() {
       public void run() {
         updateBackgroundEntryPoint(movies);

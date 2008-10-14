@@ -1,6 +1,7 @@
 package org.metasyntactic.threading;
 
 import android.os.Handler;
+import android.os.HandlerThread;
 import android.os.Looper;
 import org.metasyntactic.ui.GlobalActivityIndicator;
 
@@ -34,7 +35,7 @@ public class ThreadingUtilities {
                                                final boolean lowPriority) {
     final Object lock2 = lock == null ? new Object() : lock;
 
-    Thread t = new Thread(new Runnable() {
+    Thread t = new HandlerThread("") {
       public void run() {
         synchronized (lock2) {
           try {
@@ -45,7 +46,7 @@ public class ThreadingUtilities {
           }
         }
       }
-    });
+    };
 
     if (lowPriority) {
       t.setPriority(Thread.MIN_PRIORITY);
