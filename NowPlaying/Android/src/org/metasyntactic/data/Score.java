@@ -7,7 +7,11 @@ import java.io.Serializable;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Score implements Parcelable, Serializable {
-  private final String canonicalTitle;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 6689972256500354886L;
+	private final String canonicalTitle;
   private final String synopsis;
   private final String value;
   private final String provider;
