@@ -100,28 +100,28 @@
 /**
  * Finds a field by name.
  * @param name The unqualified name of the field (e.g. "foo").
- * @return The field's descriptor, or {@code null} if not found.
+ * @return The field's descriptor, or {@code nil} if not found.
  */
 - (PBFieldDescriptor*) findFieldByName:(NSString*) name;
 
 /**
  * Finds a field by field number.
  * @param number The field number within this message type.
- * @return The field's descriptor, or {@code null} if not found.
+ * @return The field's descriptor, or {@code nil} if not found.
  */
 - (PBFieldDescriptor*) findFieldByNumber:(int32_t) number;
 
 /**
  * Finds a nested message type by name.
  * @param name The unqualified name of the nested type (e.g. "Foo").
- * @return The types's descriptor, or {@code null} if not found.
+ * @return The types's descriptor, or {@code nil} if not found.
  */
 - (PBDescriptor*) findNestedTypeByName:(NSString*) name;
 
 /**
  * Finds a nested enum type by name.
  * @param name The unqualified name of the nested type (e.g. "Foo").
- * @return The types's descriptor, or {@code null} if not found.
+ * @return The types's descriptor, or {@code nil} if not found.
  */
 - (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name;
 

@@ -202,7 +202,7 @@
  * Find a message type in the file by name.  Does not find nested types.
  *
  * @param name The unqualified type name to look for.
- * @return The message type's descriptor, or {@code null} if not found.
+ * @return The message type's descriptor, or {@code nil} if not found.
  */
 - (PBDescriptor*) findMessageTypeByName:(NSString*) name {
     // Don't allow looking up nested types.  This will make optimization
@@ -228,7 +228,7 @@
  * Find an enum type in the file by name.  Does not find nested types.
  *
  * @param name The unqualified type name to look for.
- * @return The enum type's descriptor, or {@code null} if not found.
+ * @return The enum type's descriptor, or {@code nil} if not found.
  */
 - (PBEnumDescriptor*) findEnumTypeByName:(NSString*) name {
     // Don't allow looking up nested types.  This will make optimization
@@ -255,7 +255,7 @@
  * Find a service type in the file by name.
  *
  * @param name The unqualified type name to look for.
- * @return The service type's descriptor, or {@code null} if not found.
+ * @return The service type's descriptor, or {@code nil} if not found.
  */
 - (PBServiceDescriptor*) findServiceByName:(NSString*) name {
     // Don't allow looking up nested types.  This will make optimization
@@ -283,7 +283,7 @@
  * inside message types.
  *
  * @param name The unqualified extension name to look for.
- * @return The extension's descriptor, or {@code null} if not found.
+ * @return The extension's descriptor, or {@code nil} if not found.
  */
 - (PBFieldDescriptor*) findExtensionByName:(NSString*) name {
     // Don't allow looking up nested types.  This will make optimization

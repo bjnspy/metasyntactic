@@ -53,7 +53,7 @@
  *       exact same type as would be returned by
  *       {@code getResponsePrototype(method)}.
  *   <li>If the RPC failed, the parameter to {@code done} will be
- *       {@code null}.  Further details about the failure can be found by
+ *       {@code nil}.  Further details about the failure can be found by
  *       querying {@code controller}.
  * </ul>
  */

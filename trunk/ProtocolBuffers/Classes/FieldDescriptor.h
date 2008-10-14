@@ -67,7 +67,7 @@
  *   }
  * </pre>
  * Both {@code baz}'s and {@code qux}'s containing type is {@code Foo}.
- * However, {@code baz}'s extension scope is {@code null} while
+ * However, {@code baz}'s extension scope is {@code nil} while
  * {@code qux}'s extension scope is {@code Bar}.
  */
 @property (readonly, retain) PBDescriptor* extensionScope;

@@ -101,7 +101,7 @@
 /**
  * Find an enum value by name.
  * @param name The unqualified name of the value (e.g. "FOO").
- * @return the value's decsriptor, or {@code null} if not found.
+ * @return the value's decsriptor, or {@code nil} if not found.
  */
 - (PBEnumValueDescriptor*) findValueByName:(NSString*) name {
     id result = [file.pool findSymbol:[NSString stringWithFormat:@"%@.%@", fullName, name]];
