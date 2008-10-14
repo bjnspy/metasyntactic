@@ -13,14 +13,14 @@ import java.util.Collections;
 import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public abstract class AbstractScoresProvider implements ScoresProvider {
-  private final ScoresCache parentCache;
+public abstract class AbstractScoreProvider implements ScoreProvider {
+  private final ScoreCache parentCache;
 
   private Map<String, Score> scores;
   private String hash;
 
 
-  public AbstractScoresProvider(ScoresCache parentCache) {
+  public AbstractScoreProvider(ScoreCache parentCache) {
     this.parentCache = parentCache;
   }
 

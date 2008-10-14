@@ -19,9 +19,9 @@ import java.util.Locale;
 import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class GoogleScoresProvider extends AbstractScoresProvider {
-  public GoogleScoresProvider(ScoresCache scoresCache) {
-    super(scoresCache);
+public class GoogleScoreProvider extends AbstractScoreProvider {
+  public GoogleScoreProvider(ScoreCache scoreCache) {
+    super(scoreCache);
   }
 
 
@@ -73,7 +73,7 @@ public class GoogleScoresProvider extends AbstractScoresProvider {
       try {
         theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
       } catch (InvalidProtocolBufferException e) {
-        ExceptionUtilities.log(GoogleScoresProvider.class, "lookupServerRatings", e);
+        ExceptionUtilities.log(GoogleScoreProvider.class, "lookupServerRatings", e);
         return null;
       }
 

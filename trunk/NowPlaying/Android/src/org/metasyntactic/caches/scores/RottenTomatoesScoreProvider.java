@@ -9,27 +9,27 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class MetacriticScoresProvider extends AbstractScoresProvider {
-  public MetacriticScoresProvider(ScoresCache scoresCache) {
-    super(scoresCache);
+public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
+  public RottenTomatoesScoreProvider(ScoreCache scoreCache) {
+    super(scoreCache);
   }
 
 
   protected String getProviderName() {
-    return "Metacritic";
+    return "RottenTomatoes";
   }
 
 
   protected String lookupServerHash() {
-    String address = "http://metaboxoffice2.appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
+    String address = "http://metaboxoffice2.appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
 
   protected Map<String, Score> lookupServerRatings() {
-
-    String address = "http://metaboxoffice2.appspot.com/LookupMovieRatings?q=metacritic&format=xml";
-    Element resultElement = NetworkUtilities.downloadXml(address, true);
+    Element resultElement =
+        NetworkUtilities.downloadXml("http://metaboxoffice2.appspot.com/LookupMovieRatings?q=rottentomates&format=xml",
+            true);
 
     if (resultElement != null) {
       Map<String, Score> ratings = new LinkedHashMap<String, Score>();
@@ -40,11 +40,8 @@ public class MetacriticScoresProvider extends AbstractScoresProvider {
         String synopsis = movieElement.getAttribute("synopsis");
         String value = movieElement.getAttribute("score");
 
-        if (value.equals("xx")) {
-          value = "-1";
-        }
+        Score score = new Score(title, synopsis, value, "rottentomatoes", link);
 
-        Score score = new Score(title, synopsis, value, "metacritic", link);
         ratings.put(score.getCanonicalTitle(), score);
       }
 

@@ -8,8 +8,8 @@ import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreType;
-import org.metasyntactic.caches.scores.ScoresCache;
-import org.metasyntactic.caches.trailer.TrailerCache;
+import org.metasyntactic.caches.scores.ScoreCache;
+import org.metasyntactic.caches.trailers.TrailerCache;
 import org.metasyntactic.data.FavoriteTheater;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
@@ -43,7 +43,7 @@ public class NowPlayingModel {
   private Map<String,String> movieMap;
 
   private final DataProvider dataProvider = new DataProvider(this);
-  private final ScoresCache scoreCache = new ScoresCache(this);
+  private final ScoreCache scoreCache = new ScoreCache(this);
   private final UserLocationCache userLocationCache = new UserLocationCache();
   private final TrailerCache trailerCache = new TrailerCache();
 
