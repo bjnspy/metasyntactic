@@ -2,8 +2,10 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.Application;
 
 import java.io.Serializable;
+import static java.lang.Math.*;
 
 public class Location implements Parcelable, Serializable {
   private static final long serialVersionUID = 8006943518629662020L;
@@ -15,6 +17,7 @@ public class Location implements Parcelable, Serializable {
   private final String state;
   private final String postalCode;
   private final String country;
+
 
   public Location(double latitude, double longitude, String address,
                   String city, String state, String postalCode, String country) {
@@ -63,9 +66,53 @@ public class Location implements Parcelable, Serializable {
   }
 
 
+  public static final double UNKNOWN_DISTANCE = Float.MAX_VALUE;
+  private final static double GREAT_CIRCLE_RADIUS_KILOMETERS = 6371.797;
+  private final static double GREAT_CIRCLE_RADIUS_MILES = 3438.461;
+
+
+  public double distanceTo(Location to) {
+
+    if (to == null) {
+      return UNKNOWN_DISTANCE;
+    }
+
+    double lat1 = (this.latitude / 180) * Math.PI;
+    double lng1 = (this.longitude / 180) * Math.PI;
+    double lat2 = (to.latitude / 180) * Math.PI;
+    double lng2 = (to.longitude / 180) * Math.PI;
+
+    double diff = lng1 - lng2;
+
+    if (diff < 0) {
+      diff = -diff;
+    }
+    if (diff > Math.PI) {
+      diff = 2 * Math.PI;
+    }
+
+    double distance =
+        acos(sin(lat2) * sin(lat1) +
+            cos(lat2) * cos(lat1) * cos(diff));
+
+    if (Application.useKilometers()) {
+      distance *= GREAT_CIRCLE_RADIUS_KILOMETERS;
+    } else {
+      distance *= GREAT_CIRCLE_RADIUS_MILES;
+    }
+
+//    if (distance > 200) {
+//        return UNKNOWN_DISTANCE;
+//    }
+
+    return distance;
+  }
+
+
   public int describeContents() {
     return 0;
   }
+
 
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeDouble(latitude);
@@ -76,6 +123,7 @@ public class Location implements Parcelable, Serializable {
     dest.writeString(postalCode);
     dest.writeString(country);
   }
+
 
   public static final Parcelable.Creator<Location> CREATOR =
       new Parcelable.Creator<Location>() {
@@ -89,6 +137,7 @@ public class Location implements Parcelable, Serializable {
           String country = source.readString();
           return new Location(latitude, longitude, address, city, state, postalCode, country);
         }
+
 
         public Location[] newArray(int size) {
           return new Location[size];

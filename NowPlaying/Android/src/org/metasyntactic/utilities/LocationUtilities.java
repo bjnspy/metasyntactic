@@ -1,10 +1,9 @@
 package org.metasyntactic.utilities;
 
+import org.metasyntactic.data.Location;
 import static org.metasyntactic.utilities.XmlUtilities.element;
 import static org.metasyntactic.utilities.XmlUtilities.text;
 import org.w3c.dom.Element;
-
-import java.net.MalformedURLException;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class LocationUtilities {
@@ -12,36 +11,52 @@ public class LocationUtilities {
 
   }
 
+  private static Location findLocationWithGeonames(double latitude, double longitude) {
+    String url = "http://ws.geonames.org/findNearbyPostalCodes?lat=" + latitude + "&lng=" + longitude + "&maxRows=1";
 
-  public static String reverseLookupPostalCode(double latitude, double longitude) throws MalformedURLException {
-    String postalCode = reverseLookupUSPostalCode(latitude, longitude);
-    if (StringUtilities.isNullOrEmpty(postalCode)) {
-      postalCode = reverseLookupCAPostalCode(latitude, longitude);
-    }
-    return postalCode;
-  }
-
-
-  private static String reverseLookupCAPostalCode(double latitude, double longitude) throws MalformedURLException {
-    String address = "http://geocoder.ca/?latt=" + latitude + "&longt=" + longitude + "&geoit=xml&reverse=Reverse+GeoCode+it";
-    Element geodataElement = NetworkUtilities.downloadXml(address);
-    Element postalElement = element(geodataElement, "postal");
-    return text(postalElement);
-  }
-
-
-  private static String reverseLookupUSPostalCode(double latitude, double longitude) throws MalformedURLException {
-    String address = "http://ws.geonames.org/findNearbyPostalCodes?lat=" + latitude + "&lng=" + longitude + "&maxRows=1";
-    Element geonamesElement = NetworkUtilities.downloadXml(address);
+    Element geonamesElement = NetworkUtilities.downloadXml(url, true);
     Element codeElement = element(geonamesElement, "code");
-    Element postalElement = element(codeElement, "postalCode");
-    Element countryElement = element(codeElement, "countryCode");
-    String country = text(countryElement);
+    String postalCode = text(element(codeElement, "postalcode"));
+    String country = text(element(codeElement, "countryCode"));
+
+    if (StringUtilities.isNullOrEmpty(postalCode)) {
+      return null;
+    }
 
     if ("CA".equals(country)) {
       return null;
     }
 
-    return text(postalElement);
+    String city = text(element(codeElement, "adminName1"));
+    String state = text(element(codeElement, "adminCode1"));
+
+
+    return new Location(latitude, longitude, "", city, state, postalCode, country);
+  }
+
+
+  private static Location findLocationWithGeocoder(double latitude, double longitude) {
+    String url = "http://geocoder.ca/?latt=" + latitude + "&longt=" + longitude + "&geoit=xml&reverse=Reverse+GeoCode+it";
+
+    Element geodataElement = NetworkUtilities.downloadXml(url, true);
+    String postalCode = text(element(geodataElement, "postal"));
+
+    if (StringUtilities.isNullOrEmpty(postalCode)) {
+      return null;
+    }
+
+    String city = text(element(geodataElement, "city"));
+    String state = text(element(geodataElement, "prov"));
+
+    return new Location(latitude, longitude, "", city, state, postalCode, "CA");
+  }
+
+
+  public static Location findLocation(double latitude, double longitude) {
+    Location result = findLocationWithGeonames(latitude, longitude);
+    if (result == null) {
+      result = findLocationWithGeocoder(latitude, longitude);
+    }
+    return result;
   }
 }
