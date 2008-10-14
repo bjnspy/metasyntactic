@@ -16,7 +16,7 @@
 
 /** Describes a service type. */
 @interface PBServiceDescriptor : NSObject<PBGenericDescriptor> {
- @private
+  @private
     int32_t index;
     PBServiceDescriptorProto* proto;
     NSString* fullName;

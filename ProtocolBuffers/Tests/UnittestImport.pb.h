@@ -19,7 +19,7 @@
 @end
 
 @interface ImportEnum : NSObject {
- @private
+  @private
   int32_t index;
   int32_t value;
 }
@@ -40,7 +40,7 @@
 @end
 
 @interface ImportMessage : PBGeneratedMessage {
- @private
+  @private
   BOOL hasD:1;
   int32_t d;
 }
@@ -67,7 +67,7 @@
 @end
 
 @interface ImportMessage_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   ImportMessage* result;
 }
 

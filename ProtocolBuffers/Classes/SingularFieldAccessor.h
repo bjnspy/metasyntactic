@@ -16,7 +16,7 @@
 #import "FieldAccessor.h"
 
 @interface PBSingularFieldAccessor : PBAbstractFieldAccessor<PBFieldAccessor> {
- @private
+  @private
     SEL getSelector;
     SEL setSelector;
     SEL hasSelector;

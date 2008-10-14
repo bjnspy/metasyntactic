@@ -18,7 +18,7 @@
  * Describes one method within a service type.
  */
 @interface PBMethodDescriptor : NSObject<PBGenericDescriptor> {
- @private
+  @private
     int32_t index;
     PBMethodDescriptorProto* proto;
     NSString* fullName;

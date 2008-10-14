@@ -18,7 +18,7 @@
  * Builder for {@link DynamicMessage}s.
  */
 @interface PBDynamicMessage_Builder : PBAbstractMessage_Builder {
- @private
+  @private
     PBDescriptor* type;
     PBFieldSet* fields;
     PBUnknownFieldSet* unknownFields;

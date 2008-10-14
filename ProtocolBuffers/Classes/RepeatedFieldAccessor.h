@@ -16,7 +16,7 @@
 #import "FieldAccessor.h"
 
 @interface PBRepeatedFieldAccessor : PBAbstractFieldAccessor<PBFieldAccessor> {
- @private
+  @private
     SEL itemListSelector;
     SEL itemAtIndexSelector;
     SEL replaceItemAtIndexWithItemSelector;

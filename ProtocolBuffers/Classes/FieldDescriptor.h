@@ -20,7 +20,7 @@
 
 /** Describes a field of a message type. */
 @interface PBFieldDescriptor : NSObject<PBGenericDescriptor,NSCopying> {
- @private
+  @private
     int32_t index;
 
     PBFieldDescriptorProto* proto;

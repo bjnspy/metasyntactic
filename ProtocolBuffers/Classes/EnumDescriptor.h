@@ -16,7 +16,7 @@
 
 /** Describes an enum type. */
 @interface PBEnumDescriptor : NSObject<PBGenericDescriptor> {
- @private
+  @private
     int32_t index;
     PBEnumDescriptorProto* proto;
     NSString* fullName;

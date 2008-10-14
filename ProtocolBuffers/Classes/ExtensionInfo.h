@@ -14,7 +14,7 @@
 
 /** A (Descriptor, Message) pair, returned by lookup methods. */
 @interface PBExtensionInfo : NSObject {
- @private
+  @private
     PBFieldDescriptor* descriptor;
     id<PBMessage> defaultInstance;
 }

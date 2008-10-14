@@ -154,7 +154,7 @@
 @end
 
 @interface ForeignEnum : NSObject {
- @private
+  @private
   int32_t index;
   int32_t value;
 }
@@ -175,7 +175,7 @@
 @end
 
 @interface TestEnumWithDupValue : NSObject {
- @private
+  @private
   int32_t index;
   int32_t value;
 }
@@ -198,7 +198,7 @@
 @end
 
 @interface TestSparseEnum : NSObject {
- @private
+  @private
   int32_t index;
   int32_t value;
 }
@@ -246,7 +246,7 @@
 @end
 
 @interface TestService_Stub : TestService {
- @private
+  @private
   id<PBRpcChannel> channel;
 }
 @property (retain) id<PBRpcChannel> channel;
@@ -262,7 +262,7 @@
                        selector:(SEL) selector;@end
 
 @interface TestAllTypes : PBGeneratedMessage {
- @private
+  @private
   BOOL hasOptionalBool:1;
   BOOL hasDefaultBool:1;
   BOOL hasOptionalDouble:1;
@@ -533,7 +533,7 @@
 @end
 
 @interface TestAllTypes_NestedEnum : NSObject {
- @private
+  @private
   int32_t index;
   int32_t value;
 }
@@ -554,7 +554,7 @@
 @end
 
 @interface TestAllTypes_NestedMessage : PBGeneratedMessage {
- @private
+  @private
   BOOL hasBb:1;
   int32_t bb;
 }
@@ -581,7 +581,7 @@
 @end
 
 @interface TestAllTypes_NestedMessage_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestAllTypes_NestedMessage* result;
 }
 
@@ -606,7 +606,7 @@
 @end
 
 @interface TestAllTypes_OptionalGroup : PBGeneratedMessage {
- @private
+  @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -633,7 +633,7 @@
 @end
 
 @interface TestAllTypes_OptionalGroup_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestAllTypes_OptionalGroup* result;
 }
 
@@ -658,7 +658,7 @@
 @end
 
 @interface TestAllTypes_RepeatedGroup : PBGeneratedMessage {
- @private
+  @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -685,7 +685,7 @@
 @end
 
 @interface TestAllTypes_RepeatedGroup_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestAllTypes_RepeatedGroup* result;
 }
 
@@ -710,7 +710,7 @@
 @end
 
 @interface TestAllTypes_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestAllTypes* result;
 }
 
@@ -1126,7 +1126,7 @@
 @end
 
 @interface ForeignMessage : PBGeneratedMessage {
- @private
+  @private
   BOOL hasC:1;
   int32_t c;
 }
@@ -1153,7 +1153,7 @@
 @end
 
 @interface ForeignMessage_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   ForeignMessage* result;
 }
 
@@ -1178,7 +1178,7 @@
 @end
 
 @interface TestAllExtensions : PBExtendableMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1201,7 +1201,7 @@
 @end
 
 @interface TestAllExtensions_Builder : PBExtendableBuilder {
- @private
+  @private
   TestAllExtensions* result;
 }
 
@@ -1221,7 +1221,7 @@
 @end
 
 @interface OptionalGroup_extension : PBGeneratedMessage {
- @private
+  @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -1248,7 +1248,7 @@
 @end
 
 @interface OptionalGroup_extension_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   OptionalGroup_extension* result;
 }
 
@@ -1273,7 +1273,7 @@
 @end
 
 @interface RepeatedGroup_extension : PBGeneratedMessage {
- @private
+  @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -1300,7 +1300,7 @@
 @end
 
 @interface RepeatedGroup_extension_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   RepeatedGroup_extension* result;
 }
 
@@ -1325,7 +1325,7 @@
 @end
 
 @interface TestRequired : PBGeneratedMessage {
- @private
+  @private
   BOOL hasA:1;
   BOOL hasDummy2:1;
   BOOL hasB:1;
@@ -1482,7 +1482,7 @@
 @end
 
 @interface TestRequired_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestRequired* result;
 }
 
@@ -1667,7 +1667,7 @@
 @end
 
 @interface TestRequiredForeign : PBGeneratedMessage {
- @private
+  @private
   BOOL hasDummy:1;
   BOOL hasOptionalMessage:1;
   int32_t dummy;
@@ -1701,7 +1701,7 @@
 @end
 
 @interface TestRequiredForeign_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestRequiredForeign* result;
 }
 
@@ -1740,7 +1740,7 @@
 @end
 
 @interface TestForeignNested : PBGeneratedMessage {
- @private
+  @private
   BOOL hasForeignNested:1;
   TestAllTypes_NestedMessage* foreignNested;
 }
@@ -1767,7 +1767,7 @@
 @end
 
 @interface TestForeignNested_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestForeignNested* result;
 }
 
@@ -1794,7 +1794,7 @@
 @end
 
 @interface TestEmptyMessage : PBGeneratedMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1817,7 +1817,7 @@
 @end
 
 @interface TestEmptyMessage_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestEmptyMessage* result;
 }
 
@@ -1837,7 +1837,7 @@
 @end
 
 @interface TestEmptyMessageWithExtensions : PBExtendableMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -1860,7 +1860,7 @@
 @end
 
 @interface TestEmptyMessageWithExtensions_Builder : PBExtendableBuilder {
- @private
+  @private
   TestEmptyMessageWithExtensions* result;
 }
 
@@ -1880,7 +1880,7 @@
 @end
 
 @interface TestReallyLargeTagNumber : PBGeneratedMessage {
- @private
+  @private
   BOOL hasA:1;
   BOOL hasBb:1;
   int32_t a;
@@ -1911,7 +1911,7 @@
 @end
 
 @interface TestReallyLargeTagNumber_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestReallyLargeTagNumber* result;
 }
 
@@ -1941,7 +1941,7 @@
 @end
 
 @interface TestRecursiveMessage : PBGeneratedMessage {
- @private
+  @private
   BOOL hasI:1;
   BOOL hasA:1;
   int32_t i;
@@ -1972,7 +1972,7 @@
 @end
 
 @interface TestRecursiveMessage_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestRecursiveMessage* result;
 }
 
@@ -2004,7 +2004,7 @@
 @end
 
 @interface TestMutualRecursionA : PBGeneratedMessage {
- @private
+  @private
   BOOL hasBb:1;
   TestMutualRecursionB* bb;
 }
@@ -2031,7 +2031,7 @@
 @end
 
 @interface TestMutualRecursionA_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestMutualRecursionA* result;
 }
 
@@ -2058,7 +2058,7 @@
 @end
 
 @interface TestMutualRecursionB : PBGeneratedMessage {
- @private
+  @private
   BOOL hasOptionalInt32:1;
   BOOL hasA:1;
   int32_t optionalInt32;
@@ -2089,7 +2089,7 @@
 @end
 
 @interface TestMutualRecursionB_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestMutualRecursionB* result;
 }
 
@@ -2121,7 +2121,7 @@
 @end
 
 @interface TestDupFieldNumber : PBGeneratedMessage {
- @private
+  @private
   BOOL hasA:1;
   BOOL hasFoo:1;
   BOOL hasBar:1;
@@ -2156,7 +2156,7 @@
 @end
 
 @interface TestDupFieldNumber_Foo : PBGeneratedMessage {
- @private
+  @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -2183,7 +2183,7 @@
 @end
 
 @interface TestDupFieldNumber_Foo_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestDupFieldNumber_Foo* result;
 }
 
@@ -2208,7 +2208,7 @@
 @end
 
 @interface TestDupFieldNumber_Bar : PBGeneratedMessage {
- @private
+  @private
   BOOL hasA:1;
   int32_t a;
 }
@@ -2235,7 +2235,7 @@
 @end
 
 @interface TestDupFieldNumber_Bar_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestDupFieldNumber_Bar* result;
 }
 
@@ -2260,7 +2260,7 @@
 @end
 
 @interface TestDupFieldNumber_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestDupFieldNumber* result;
 }
 
@@ -2299,7 +2299,7 @@
 @end
 
 @interface TestNestedMessageHasBits : PBGeneratedMessage {
- @private
+  @private
   BOOL hasOptionalNestedMessage:1;
   TestNestedMessageHasBits_NestedMessage* optionalNestedMessage;
 }
@@ -2326,7 +2326,7 @@
 @end
 
 @interface TestNestedMessageHasBits_NestedMessage : PBGeneratedMessage {
- @private
+  @private
   NSMutableArray* mutableNestedmessageRepeatedInt32List;
   NSMutableArray* mutableNestedmessageRepeatedForeignmessageList;
 }
@@ -2355,7 +2355,7 @@
 @end
 
 @interface TestNestedMessageHasBits_NestedMessage_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestNestedMessageHasBits_NestedMessage* result;
 }
 
@@ -2389,7 +2389,7 @@
 @end
 
 @interface TestNestedMessageHasBits_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestNestedMessageHasBits* result;
 }
 
@@ -2416,7 +2416,7 @@
 @end
 
 @interface TestCamelCaseFieldNames : PBGeneratedMessage {
- @private
+  @private
   BOOL hasPrimitiveField:1;
   BOOL hasStringField:1;
   BOOL hasStringPieceField:1;
@@ -2481,7 +2481,7 @@
 @end
 
 @interface TestCamelCaseFieldNames_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestCamelCaseFieldNames* result;
 }
 
@@ -2575,7 +2575,7 @@
 @end
 
 @interface TestFieldOrderings : PBExtendableMessage {
- @private
+  @private
   BOOL hasMyFloat:1;
   BOOL hasMyInt:1;
   BOOL hasMyString:1;
@@ -2610,7 +2610,7 @@
 @end
 
 @interface TestFieldOrderings_Builder : PBExtendableBuilder {
- @private
+  @private
   TestFieldOrderings* result;
 }
 
@@ -2645,7 +2645,7 @@
 @end
 
 @interface TestExtremeDefaultValues : PBGeneratedMessage {
- @private
+  @private
   BOOL hasSmallInt64:1;
   BOOL hasLargeUint64:1;
   BOOL hasSmallInt32:1;
@@ -2692,7 +2692,7 @@
 @end
 
 @interface TestExtremeDefaultValues_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   TestExtremeDefaultValues* result;
 }
 
@@ -2742,7 +2742,7 @@
 @end
 
 @interface FooRequest : PBGeneratedMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -2765,7 +2765,7 @@
 @end
 
 @interface FooRequest_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   FooRequest* result;
 }
 
@@ -2785,7 +2785,7 @@
 @end
 
 @interface FooResponse : PBGeneratedMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -2808,7 +2808,7 @@
 @end
 
 @interface FooResponse_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   FooResponse* result;
 }
 
@@ -2828,7 +2828,7 @@
 @end
 
 @interface BarRequest : PBGeneratedMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -2851,7 +2851,7 @@
 @end
 
 @interface BarRequest_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   BarRequest* result;
 }
 
@@ -2871,7 +2871,7 @@
 @end
 
 @interface BarResponse : PBGeneratedMessage {
- @private
+  @private
 }
 
 + (PBDescriptor*) descriptor;
@@ -2894,7 +2894,7 @@
 @end
 
 @interface BarResponse_Builder : PBGeneratedMessage_Builder {
- @private
+  @private
   BarResponse* result;
 }
 

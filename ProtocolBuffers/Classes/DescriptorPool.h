@@ -17,7 +17,7 @@
  * descriptors defined in a particular file.
  */
 @interface PBDescriptorPool : NSObject {
- @private
+  @private
     NSMutableArray* mutableDependencies;
     NSMutableDictionary* mutableDescriptorsByName;
     NSMutableDictionary* mutableFieldsByNumber;
