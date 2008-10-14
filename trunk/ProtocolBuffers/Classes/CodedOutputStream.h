@@ -14,21 +14,51 @@
 
 #import "FieldDescriptorType.h"
 
+/**
+ * Encodes and writes protocol message fields.
+ *
+ * <p>This class contains two kinds of methods:  methods that write specific
+ * protocol message constructs and field types (e.g. {@link #writeTag} and
+ * {@link #writeInt32}) and methods that write low-level values (e.g.
+ * {@link #writeRawVarint32} and {@link #writeRawBytes}).  If you are
+ * writing encoded protocol messages, you should use the former methods, but if
+ * you are writing some other format of your own design, use the latter.
+ *
+ * <p>This class is totally unsynchronized.
+ *
+ * @author Cyrus Najmabadi
+ */
 @interface PBCodedOutputStream : NSObject {
     NSMutableData* buffer;
     int32_t position;
     NSOutputStream* output;
 }
 
-//@property (readonly, retain) NSMutableData* buffer;
-//@property (readonly) int32_t position;
-//@property (readonly, retain) NSOutputStream* output;
-
 + (PBCodedOutputStream*) streamWithData:(NSMutableData*) data;
 + (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output;
 + (PBCodedOutputStream*) streamWithOutputStream:(NSOutputStream*) output bufferSize:(int32_t) bufferSize;
 
+
+/**
+ * Encode a ZigZag-encoded 32-bit value.  ZigZag encodes signed integers
+ * into values that can be efficiently encoded with varint.  (Otherwise,
+ * negative values must be sign-extended to 64 bits to be varint encoded,
+ * thus always taking 10 bytes on the wire.)
+ *
+ * @param n A signed 32-bit integer.
+ * @return An unsigned 32-bit integer, stored in a signed int.
+ */
 int32_t encodeZigZag32(int32_t n);
+
+/**
+ * Encode a ZigZag-encoded 64-bit value.  ZigZag encodes signed integers
+ * into values that can be efficiently encoded with varint.  (Otherwise,
+ * negative values must be sign-extended to 64 bits to be varint encoded,
+ * thus always taking 10 bytes on the wire.)
+ *
+ * @param n A signed 64-bit integer.
+ * @return An unsigned 64-bit integer, stored in a signed int.
+ */
 int64_t encodeZigZag64(int64_t n);
 
 int32_t computeDoubleSize(int32_t fieldNumber, Float64 value);
@@ -45,19 +75,59 @@ int32_t computeUnknownGroupSize(int32_t fieldNumber, PBUnknownFieldSet* value);
 int32_t computeMessageSize(int32_t fieldNumber, id<PBMessage> value);
 int32_t computeDataSize(int32_t fieldNumber, NSData* value);
 int32_t computeUInt32Size(int32_t fieldNumber, int32_t value);
-int32_t computeEnumSize(int32_t fieldNumber, int32_t value);
 int32_t computeSFixed32Size(int32_t fieldNumber, int32_t value);
 int32_t computeSFixed64Size(int32_t fieldNumber, int64_t value);
 int32_t computeSInt32Size(int32_t fieldNumber, int32_t value);
 int32_t computeSInt64Size(int32_t fieldNumber, int64_t value);
-int32_t computeMessageSetExtensionSize(int32_t fieldNumber, id<PBMessage> value);
-int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value);
-int32_t computeFieldSize(PBFieldDescriptorType type, int32_t number, id value);
 int32_t computeTagSize(int32_t fieldNumber);
+
+/**
+ * Compute the number of bytes that would be needed to encode a varint.
+ * {@code value} is treated as unsigned, so it won't be sign-extended if
+ * negative.
+ */
 int32_t computeRawVarint32Size(int32_t value);
 int32_t computeRawVarint64Size(int64_t value);
 
 
+/**
+ * Compute the number of bytes that would be needed to encode a
+ * field of arbitrary type, including tag, to the stream.
+ *
+ * @param type   The field's type.
+ * @param number The field's number.
+ * @param value  Object representing the field's value.  Must be of the exact
+ *               type which would be returned by
+ *               {@link Message#getField(Descriptors.FieldDescriptor)} for
+ *               this field.
+ */
+int32_t computeFieldSize(PBFieldDescriptorType type, int32_t number, id value);
+
+/**
+ * Compute the number of bytes that would be needed to encode a
+ * MessageSet extension to the stream.  For historical reasons,
+ * the wire format differs from normal fields.
+ */
+int32_t computeMessageSetExtensionSize(int32_t fieldNumber, id<PBMessage> value);
+
+/**
+ * Compute the number of bytes that would be needed to encode an
+ * unparsed MessageSet extension field to the stream.  For
+ * historical reasons, the wire format differs from normal fields.
+ */
+int32_t computeRawMessageSetExtensionSize(int32_t fieldNumber, NSData* value);
+
+/**
+ * Compute the number of bytes that would be needed to encode an
+ * enum field, including tag.  Caller is responsible for converting the
+ * enum value to its numeric value.
+ */
+int32_t computeEnumSize(int32_t fieldNumber, int32_t value);
+
+/**
+ * Flushes the stream and forces any buffered bytes to be written.  This
+ * does not flush the underlying NSOutputStream.
+ */
 - (void) flush;
 
 - (void) writeRawByte:(uint8_t) value;
@@ -67,6 +137,10 @@ int32_t computeRawVarint64Size(int64_t value);
 - (void) writeRawLittleEndian32:(int32_t) value;
 - (void) writeRawLittleEndian64:(int64_t) value;
 
+/**
+ * Encode and write a varint.  {@code value} is treated as
+ * unsigned, so it won't be sign-extended if negative.
+ */
 - (void) writeRawVarint32:(int32_t) value;
 - (void) writeRawVarint64:(int64_t) value;
 
@@ -91,14 +165,39 @@ int32_t computeRawVarint64Size(int64_t value);
 - (void) writeUnknownGroup:(int32_t) fieldNumber value:(PBUnknownFieldSet*) value;
 - (void) writeMessage:(int32_t) fieldNumber value:(id<PBMessage>) value;
 - (void) writeUInt32:(int32_t) fieldNumber value:(int32_t) value;
-- (void) writeEnum:(int32_t) fieldNumber value:(int32_t) value;
 - (void) writeSFixed32:(int32_t) fieldNumber value:(int32_t) value;
 - (void) writeSFixed64:(int32_t) fieldNumber value:(int64_t) value;
 - (void) writeSInt32:(int32_t) fieldNumber value:(int32_t) value;
 - (void) writeSInt64:(int32_t) fieldNumber value:(int64_t) value;
+
+/**
+ * Write a MessageSet extension field to the stream.  For historical reasons,
+ * the wire format differs from normal fields.
+ */
 - (void) writeMessageSetExtension:(int32_t) fieldNumber value:(id<PBMessage>) value;
+
+/**
+ * Write an unparsed MessageSet extension field to the stream.  For
+ * historical reasons, the wire format differs from normal fields.
+ */
 - (void) writeRawMessageSetExtension:(int32_t) fieldNumber value:(NSData*) value;
 
+/**
+ * Write an enum field, including tag, to the stream.  Caller is responsible
+ * for converting the enum value to its numeric value.
+ */
+- (void) writeEnum:(int32_t) fieldNumber value:(int32_t) value;
+
+/**
+ * Write a field of arbitrary type, including tag, to the stream.
+ *
+ * @param type   The field's type.
+ * @param number The field's number.
+ * @param value  Object representing the field's value.  Must be of the exact
+ *               type which would be returned by
+ *               {@link Message#getField(Descriptors.FieldDescriptor)} for
+ *               this field.
+ */ 
 - (void) writeField:(PBFieldDescriptorType) type
              number:(int32_t) number
               value:(id) value;

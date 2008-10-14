@@ -102,9 +102,9 @@ BOOL isHex(unichar c) {
 
 
 /**
- * Parse a 32-bit signed integer from the text.  Unlike the Java standard
- * {@code Integer.parseInt()}, this function recognizes the prefixes "0x"
- * and "0" to signify hexidecimal and octal numbers, respectively.
+ * Parse a 32-bit signed integer from the text.  This function recognizes
+ * the prefixes "0x" and "0" to signify hexidecimal and octal numbers, 
+ * respectively.
  */
 + (int32_t) parseInt32:(NSString*) text {
     return (int32_t)[self parseInteger:text isSigned:YES isLong:NO];
@@ -112,11 +112,9 @@ BOOL isHex(unichar c) {
 
 
 /**
- * Parse a 32-bit unsigned integer from the text.  Unlike the Java standard
- * {@code Integer.parseInt()}, this function recognizes the prefixes "0x"
- * and "0" to signify hexidecimal and octal numbers, respectively.  The
- * result is coerced to a (signed) {@code int} when returned since Java has
- * no unsigned integer type.
+ * Parse a 32-bit unsigned integer from the text.  This function recognizes
+ * the prefixes "0x" and "0" to signify hexidecimal and octal numbers, 
+ * respectively.  The result is coerced to a (signed) {@code int} when returned.
  */
 + (int32_t) parseUInt32:(NSString*) text {
     return (int32_t)[self parseInteger:text isSigned:NO isLong:NO];
@@ -124,9 +122,9 @@ BOOL isHex(unichar c) {
 
 
 /**
- * Parse a 64-bit signed integer from the text.  Unlike the Java standard
- * {@code Integer.parseInt()}, this function recognizes the prefixes "0x"
- * and "0" to signify hexidecimal and octal numbers, respectively.
+ * Parse a 64-bit signed integer from the text.  This function recognizes
+ * the prefixes "0x" and "0" to signify hexidecimal and octal numbers,
+ * respectively.
  */
 + (int64_t) parseInt64:(NSString*) text {
     return [self parseInteger:text isSigned:YES isLong:YES];
@@ -134,11 +132,10 @@ BOOL isHex(unichar c) {
 
 
 /**
- * Parse a 64-bit unsigned integer from the text.  Unlike the Java standard
- * {@code Integer.parseInt()}, this function recognizes the prefixes "0x"
- * and "0" to signify hexidecimal and octal numbers, respectively.  The
- * result is coerced to a (signed) {@code long} when returned since Java has
- * no unsigned long type.
+ * Parse a 64-bit unsigned integer from the text.  This function recognizes
+ * the prefixes "0x" and "0" to signify hexidecimal and octal numbers,
+ * respectively.  The result is coerced to a (signed) {@code long} when
+ * returned.
  */
 + (int64_t) parseUInt64:(NSString*) text {
     return [self parseInteger:text isSigned:NO isLong:YES];
