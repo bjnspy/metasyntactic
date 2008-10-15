@@ -14,10 +14,6 @@
 
 #import "GenericDescriptor.h"
 
-#import "FieldDescriptorType.h"
-#import "ObjectiveCType.h"
-
-
 /** Describes a field of a message type. */
 @interface PBFieldDescriptor : NSObject<PBGenericDescriptor,NSCopying> {
   @private
