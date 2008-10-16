@@ -331,7 +331,7 @@
                         country = location.country;
                     }
 
-#ifdef DISTRIBUTION
+#ifndef TARGET_IPHONE_SIMULATOR
                     message = [NSString stringWithFormat:@"%@, %@ %@\n%@",
                                location.city,
                                location.state,
@@ -376,7 +376,7 @@
 }
 
 
-#ifdef DEBUG
+#ifdef TARGET_IPHONE_SIMULATOR
 - (void) foo:(NSNumber*) value {
     static NSString* array[] = {
 @"35004",
@@ -29872,7 +29872,7 @@
     [self.controller setUserAddress:userAddress];
     [self.tableView reloadData];
 
-#ifdef DEBUG
+#ifdef TARGET_IPHONE_SIMULATOR
     //[self foo:[NSNumber numberWithInt:25116]];
 #endif
 }
