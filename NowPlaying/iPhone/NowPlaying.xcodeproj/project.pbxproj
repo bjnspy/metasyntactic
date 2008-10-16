@@ -43,7 +43,6 @@
 		743394110E61E52000D285F0 /* MovieOverviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743394100E61E52000D285F0 /* MovieOverviewCell.m */; };
 		74365DB20E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74365DAB0E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.m */; };
 		74365DB30E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.m in Sources */ = {isa = PBXBuildFile; fileRef = 74365DAD0E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.m */; };
-		74365DB40E9B5EE800448025 /* PBPackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74365DAF0E9B5EE800448025 /* PBPackageDescriptor.m */; };
 		74365DB50E9B5EE800448025 /* TextFormat.m in Sources */ = {isa = PBXBuildFile; fileRef = 74365DB10E9B5EE800448025 /* TextFormat.m */; };
 		743BE1FD0E3BFB3C00D19F9B /* License.txt in Resources */ = {isa = PBXBuildFile; fileRef = 743BE1FC0E3BFB3B00D19F9B /* License.txt */; };
 		743E90640DD786AA00A93DD1 /* MovieShowtimesCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 743E90630DD786AA00A93DD1 /* MovieShowtimesCell.m */; };
@@ -107,6 +106,7 @@
 		74CA1E2C0DD01F430046D1CE /* TextFieldEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1E2B0DD01F430046D1CE /* TextFieldEditorViewController.m */; };
 		74CA1F030DD0283E0046D1CE /* PickerEditorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */; };
 		74CA20B70DD0F93D0046D1CE /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74CA20B60DD0F93D0046D1CE /* AddressBook.framework */; };
+		74CCF8E70EA800AC009C7A8E /* PackageDescriptor.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CCF8E60EA800AC009C7A8E /* PackageDescriptor.m */; };
 		74CDF0CA0E64A2EE005699E9 /* UpcomingCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */; };
 		74D6F2B70DCC144D0097A984 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2B60DCC144D0097A984 /* XmlParser.m */; };
 		74D6F2BE0DCC176D0097A984 /* XmlElement.m in Sources */ = {isa = PBXBuildFile; fileRef = 74D6F2BD0DCC176D0097A984 /* XmlElement.m */; };
@@ -276,8 +276,6 @@
 		74365DAB0E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DescriptorPool_DescriptorIntPair.m; sourceTree = "<group>"; };
 		74365DAC0E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ExtensionRegistry_DescriptorIntPair.h; sourceTree = "<group>"; };
 		74365DAD0E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ExtensionRegistry_DescriptorIntPair.m; sourceTree = "<group>"; };
-		74365DAE0E9B5EE800448025 /* PBPackageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PBPackageDescriptor.h; sourceTree = "<group>"; };
-		74365DAF0E9B5EE800448025 /* PBPackageDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PBPackageDescriptor.m; sourceTree = "<group>"; };
 		74365DB00E9B5EE800448025 /* TextFormat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TextFormat.h; sourceTree = "<group>"; };
 		74365DB10E9B5EE800448025 /* TextFormat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TextFormat.m; sourceTree = "<group>"; };
 		743BE1FC0E3BFB3B00D19F9B /* License.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = License.txt; sourceTree = "<group>"; };
@@ -417,6 +415,8 @@
 		74CA1F010DD0283E0046D1CE /* PickerEditorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerEditorViewController.h; sourceTree = "<group>"; };
 		74CA1F020DD0283E0046D1CE /* PickerEditorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerEditorViewController.m; sourceTree = "<group>"; };
 		74CA20B60DD0F93D0046D1CE /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AddressBook.framework; path = System/Library/Frameworks/AddressBook.framework; sourceTree = SDKROOT; };
+		74CCF8E50EA800AC009C7A8E /* PackageDescriptor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PackageDescriptor.h; sourceTree = "<group>"; };
+		74CCF8E60EA800AC009C7A8E /* PackageDescriptor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PackageDescriptor.m; sourceTree = "<group>"; };
 		74CDF0C80E64A2EE005699E9 /* UpcomingCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UpcomingCache.h; sourceTree = "<group>"; };
 		74CDF0C90E64A2EE005699E9 /* UpcomingCache.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UpcomingCache.m; sourceTree = "<group>"; };
 		74D6F2B50DCC144D0097A984 /* XmlParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlParser.h; sourceTree = "<group>"; };
@@ -1068,14 +1068,14 @@
 		74E179F60E949D0900F8D0D3 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				74CCF8E50EA800AC009C7A8E /* PackageDescriptor.h */,
+				74CCF8E60EA800AC009C7A8E /* PackageDescriptor.m */,
 				74C571F40EA11E2F009A9432 /* AbstractFieldAccessor.h */,
 				74C571F50EA11E2F009A9432 /* AbstractFieldAccessor.m */,
 				74365DAA0E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.h */,
 				74365DAB0E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.m */,
 				74365DAC0E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.h */,
 				74365DAD0E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.m */,
-				74365DAE0E9B5EE800448025 /* PBPackageDescriptor.h */,
-				74365DAF0E9B5EE800448025 /* PBPackageDescriptor.m */,
 				74365DB00E9B5EE800448025 /* TextFormat.h */,
 				74365DB10E9B5EE800448025 /* TextFormat.m */,
 				74E17FC30E95FEFE00F8D0D3 /* ExtendableBuilder.h */,
@@ -1468,11 +1468,11 @@
 				74E17FCB0E95FEFE00F8D0D3 /* ServiceDescriptor.m in Sources */,
 				74365DB20E9B5EE800448025 /* DescriptorPool_DescriptorIntPair.m in Sources */,
 				74365DB30E9B5EE800448025 /* ExtensionRegistry_DescriptorIntPair.m in Sources */,
-				74365DB40E9B5EE800448025 /* PBPackageDescriptor.m in Sources */,
 				74365DB50E9B5EE800448025 /* TextFormat.m in Sources */,
 				74A41ACF0E9E172B007CF82C /* Pulser.m in Sources */,
 				74C571F60EA11E2F009A9432 /* AbstractFieldAccessor.m in Sources */,
 				74C577220EA4D5E6009A9432 /* NowPlaying.pb.m in Sources */,
+				74CCF8E70EA800AC009C7A8E /* PackageDescriptor.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
