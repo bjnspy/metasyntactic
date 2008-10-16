@@ -189,7 +189,7 @@
 
 - (void) reportUserLocation:(Location*) location {
     if (location == nil) {
-#ifdef DEBUG
+#ifdef TARGET_IPHONE_SIMULATOR
 #else
         UIAlertView* alert = [[[UIAlertView alloc] initWithTitle:nil
                                                          message:NSLocalizedString(@"Could not find location.", nil)
