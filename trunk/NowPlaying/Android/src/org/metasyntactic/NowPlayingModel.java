@@ -332,4 +332,9 @@ public class NowPlayingModel {
   private Map<String, Score> getScores() {
     return scoreCache.getScores();
   }
+
+
+	public List<String> getTrailers(Movie movie) {
+		return trailerCache.getTrailers(movie);
+	}
 }
