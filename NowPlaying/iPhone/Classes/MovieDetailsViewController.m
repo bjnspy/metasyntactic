@@ -90,6 +90,7 @@
     return navigationController.model;
 }
 
+
 - (void) setupActionsView {
     NSMutableArray* selectors = [NSMutableArray array];
     NSMutableArray* titles = [NSMutableArray array];

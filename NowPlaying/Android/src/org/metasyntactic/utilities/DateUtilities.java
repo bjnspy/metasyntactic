@@ -20,15 +20,15 @@ import java.util.Date;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class DateUtilities {
-  private static Date today;
+  private static DateTime today;
 
   static {
-    DateTime dt = new DateTime(new Date());
-    today = new DateTime(dt.getYear(), dt.getMonthOfYear(), dt.getDayOfMonth(), 12, 0, 0, 0).toDate();
+    DateTime dt = new DateTime();
+    today = new DateTime(dt.getYear(), dt.getMonthOfYear(), dt.getDayOfMonth(), 12, 0, 0, 0);
   }
 
 
-  public static Date getToday() {
+  public static DateTime getToday() {
     return today;
   }
 

@@ -49,7 +49,7 @@ public class Application {
       	}
       }
     };
-    pulser = new Pulser(runnable, 5000);
+    pulser = new Pulser(runnable, 5);
   }
 
 

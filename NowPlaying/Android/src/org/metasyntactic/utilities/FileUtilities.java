@@ -18,6 +18,8 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.metasyntactic.Constants;
 
+import android.os.Debug;
+
 import java.io.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -31,7 +33,8 @@ public class FileUtilities {
 		for (char c : name.toCharArray()) {
 			if ((c >= 'a' && c <= 'z') ||
 				  (c >= 'A' && c <= 'Z') ||
-				  (c >= '0' && c <= '9')) {
+				  (c >= '0' && c <= '9') ||
+				  c == ' ') {
 				result.append(c);
 			} else {
 				result.append("-" + (int)c + "-");
@@ -88,14 +91,17 @@ public class FileUtilities {
 		DateTime now = new DateTime();
 		DateTime lastDate = new DateTime(file.lastModified());
 
+		//Debug.startMethodTracing("tooSoonDaysBetween", 1 << 24);
 		int days = Days.daysBetween(now, lastDate).getDays();
+		//Debug.stopMethodTracing();
+
 		if (days > 0) {
 			// different days, so definitely out of date
 			return false;
 		}
 
 		long hours = (now.getMillis() - lastDate.getMillis()) / Constants.ONE_HOUR;
-		if (hours > 8) {
+		if (hours > 12) {
 			return false;
 		}
 
