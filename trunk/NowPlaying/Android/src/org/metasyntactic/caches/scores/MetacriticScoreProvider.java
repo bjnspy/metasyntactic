@@ -20,7 +20,6 @@ import static org.metasyntactic.utilities.XmlUtilities.children;
 import org.w3c.dom.Element;
 
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
