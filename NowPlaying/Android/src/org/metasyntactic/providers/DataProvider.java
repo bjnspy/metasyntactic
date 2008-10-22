@@ -145,8 +145,8 @@ public class DataProvider {
 				imdbAddress = "http://www.imdb.com/title/" + movieProto.getIMDbUrl();
 			}
 
-			Movie movie = new Movie(identifier, title, rating, length, releaseDate, poster, synopsis, "", directors, cast,
-					genres);
+			Movie movie = new Movie(identifier, title, rating, length, imdbAddress, releaseDate, poster, synopsis, "",
+					directors, cast, genres);
 			movieIdToMovieMap.put(identifier, movie);
 		}
 
