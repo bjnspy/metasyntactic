@@ -19,8 +19,6 @@ import org.joda.time.Days;
 import org.metasyntactic.Constants;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FileUtilities {
