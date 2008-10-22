@@ -67,11 +67,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
 
   private String loadHash() {
-    String result = FileUtilities.readObject(ratingsHashFile());
-    if (result == null) {
-      result = "";
-    }
-    return result;
+    return FileUtilities.readObject(ratingsHashFile(), "");
   }
 
 
