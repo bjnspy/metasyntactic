@@ -33,7 +33,7 @@ public class FileUtilities {
       if ((c >= 'a' && c <= 'z') ||
           (c >= 'A' && c <= 'Z') ||
           (c >= '0' && c <= '9') ||
-          c == ' ') {
+          c == ' ' || c == '-' || c == '.') {
         result.append(c);
       } else {
         result.append("-" + (int) c + "-");
@@ -66,7 +66,7 @@ public class FileUtilities {
 
   public static void writeBytes(byte[] data, File file) {
     try {
-      BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+      BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file), 1 << 13);
       out.write(data);
       out.flush();
       out.close();
@@ -83,7 +83,7 @@ public class FileUtilities {
 
 
   public static <T> T readObject(String fileName, T default_) {
-    return (T) readObject(new File(fileName), default_);
+    return readObject(new File(fileName), default_);
   }
 
 

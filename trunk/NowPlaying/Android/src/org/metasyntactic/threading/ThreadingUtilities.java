@@ -51,9 +51,9 @@ public class ThreadingUtilities {
           try {
             GlobalActivityIndicator.addBackgroundTask(visible);
             try {
-              runnable.run();
+            	runnable.run();
             } catch (RuntimeException e) {
-              throw e;
+            	throw e;
             }
           } finally {
             GlobalActivityIndicator.removeBackgroundTask(visible);
