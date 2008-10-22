@@ -41,12 +41,14 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
   protected abstract String getProviderName();
 
+
   protected NowPlayingModel getModel() {
     return parentCache.getModel();
   }
 
-  private String ratingsFile() {
-    return new File(Application.ratingsDirectory, getProviderName()).getAbsolutePath();
+
+  private File ratingsFile() {
+    return new File(Application.ratingsDirectory, getProviderName());
   }
 
 

@@ -25,12 +25,14 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import java.util.List;
 
 public class NowPlayingControllerService extends Service {
-	{
-		Application.setContext(this);
-	}
-	
+  {
+    Application.setContext(this);
+  }
+
+
   private final NowPlayingModel model = new NowPlayingModel(this);
   private final Object lock = new Object();
+
 
   @Override
   public void onCreate() {
@@ -57,6 +59,82 @@ public class NowPlayingControllerService extends Service {
   }
 
 
+  public String getUserLocation() {
+    return model.getUserLocation();
+  }
+
+
+  protected List<String> getTrailers(Movie movie) {
+    return model.getTrailers(movie);
+  }
+
+
+  public void setUserLocation(String userLocation) {
+    model.setUserLocation(userLocation);
+    update();
+  }
+
+
+  public int getSearchDistance() {
+    return model.getSearchDistance();
+  }
+
+
+  public void setSearchDistance(int searchDistance) {
+    model.setSearchDistance(searchDistance);
+  }
+
+
+  public int getSelectedTabIndex() {
+    return model.getSelectedTabIndex();
+  }
+
+
+  public void setSelectedTabIndex(int index) {
+    model.setSelectedTabIndex(index);
+  }
+
+
+  public int getAllMoviesSelectedSortIndex() {
+    return model.getAllMoviesSelecetedSortIndex();
+  }
+
+
+  public void setAllMoviesSelectedSortIndex(int index) {
+    model.setAllMoviesSelectedSortIndex(index);
+  }
+
+
+  public int getAllTheatersSelectedSortIndex() {
+    return model.getAllTheatersSelectedSortIndex();
+  }
+
+
+  public void setAllTheatersSelectedSortIndex(int index) {
+    model.setAllTheatersSelectedSortIndex(index);
+  }
+
+
+  public int getUpcomingMoviesSelectedSortIndex() {
+    return model.getUpcomingMovieSelectedSortIndex();
+  }
+
+
+  public void setUpcomingMoviesSelectedSortIndex(int index) {
+    model.setUpcomingMovieSelectedSortIndex(index);
+  }
+
+
+  public List<Movie> getMovies() {
+    return model.getMovies();
+  }
+
+
+  public List<Theater> getTheaters() {
+    return model.getTheaters();
+  }
+
+
   private final INowPlayingController.Stub binder = new INowPlayingController.Stub() {
     public String getUserLocation() throws RemoteException {
       return NowPlayingControllerService.this.getUserLocation();
@@ -66,15 +144,15 @@ public class NowPlayingControllerService extends Service {
     public void setUserLocation(String userLocation) throws RemoteException {
       NowPlayingControllerService.this.setUserLocation(userLocation);
     }
-    
-    
+
+
     public int getSearchDistance() throws RemoteException {
-    	return NowPlayingControllerService.this.getSearchDistance();
+      return NowPlayingControllerService.this.getSearchDistance();
     }
-    
-    
+
+
     public void setSearchDistance(int searchDistance) throws RemoteException {
-    	NowPlayingControllerService.this.setSearchDistance(searchDistance);
+      NowPlayingControllerService.this.setSearchDistance(searchDistance);
     }
 
 
@@ -126,84 +204,10 @@ public class NowPlayingControllerService extends Service {
     public List<Theater> getTheaters() throws RemoteException {
       return NowPlayingControllerService.this.getTheaters();
     }
-    
+
+
     public List<String> getTrailers(Movie movie) throws RemoteException {
-    	return NowPlayingControllerService.this.getTrailers(movie);
+      return NowPlayingControllerService.this.getTrailers(movie);
     }
   };
-
-
-  public String getUserLocation() {
-    return model.getUserLocation();
-  }
-
-
-  protected List<String> getTrailers(Movie movie) {
-  		return model.getTrailers(movie);
-	}
-
-
-	public void setUserLocation(String userLocation) {
-    model.setUserLocation(userLocation);
-    update();
-  }
-
-  public int getSearchDistance() {
-  	return model.getSearchDistance();
-  }
-  
-  
-  public void setSearchDistance(int searchDistance) {
-  	model.setSearchDistance(searchDistance);
-  }
-  
-
-  public int getSelectedTabIndex() {
-    return model.getSelectedTabIndex();
-  }
-
-
-  public void setSelectedTabIndex(int index) {
-    model.setSelectedTabIndex(index);
-  }
-
-
-  public int getAllMoviesSelectedSortIndex() {
-    return model.getAllMoviesSelecetedSortIndex();
-  }
-
-
-  public void setAllMoviesSelectedSortIndex(int index) {
-    model.setAllMoviesSelectedSortIndex(index);
-  }
-
-
-  public int getAllTheatersSelectedSortIndex() {
-    return model.getAllTheatersSelectedSortIndex();
-  }
-
-
-  public void setAllTheatersSelectedSortIndex(int index) {
-    model.setAllTheatersSelectedSortIndex(index);
-  }
-
-
-  public int getUpcomingMoviesSelectedSortIndex() {
-    return model.getUpcomingMovieSelectedSortIndex();
-  }
-
-
-  public void setUpcomingMoviesSelectedSortIndex(int index) {
-    model.setUpcomingMovieSelectedSortIndex(index);
-  }
-
-
-  public List<Movie> getMovies() {
-    return model.getMovies();
-  }
-
-
-  public List<Theater> getTheaters() {
-    return model.getTheaters();
-  }
 }

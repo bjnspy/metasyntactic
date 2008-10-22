@@ -16,11 +16,10 @@ package org.metasyntactic.utilities;
 
 import org.joda.time.DateTime;
 
-import java.util.Date;
-
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class DateUtilities {
   private static DateTime today;
+
 
   static {
     DateTime dt = new DateTime();

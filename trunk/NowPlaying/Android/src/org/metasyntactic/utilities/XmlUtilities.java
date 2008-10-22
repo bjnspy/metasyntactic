@@ -23,8 +23,8 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Collections;
+import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class XmlUtilities {
@@ -103,7 +103,7 @@ public class XmlUtilities {
         for (int i = 0; i < list.getLength(); i++) {
           Node child = list.item(i);
           if (child instanceof Element) {
-            result.add((Element)child);
+            result.add((Element) child);
           }
         }
 
@@ -111,6 +111,6 @@ public class XmlUtilities {
       }
     }
 
-      return Collections.emptyList();
+    return Collections.emptyList();
   }
 }

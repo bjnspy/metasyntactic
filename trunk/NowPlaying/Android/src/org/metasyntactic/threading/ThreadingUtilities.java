@@ -45,15 +45,15 @@ public class ThreadingUtilities {
 
     Thread t = new HandlerThread("") {
       @Override
-			public void run() {
-      	Looper.prepare();
+      public void run() {
+        Looper.prepare();
         synchronized (lock2) {
           try {
             GlobalActivityIndicator.addBackgroundTask(visible);
             try {
-            	runnable.run();
+              runnable.run();
             } catch (RuntimeException e) {
-            	throw e;
+              throw e;
             }
           } finally {
             GlobalActivityIndicator.removeBackgroundTask(visible);

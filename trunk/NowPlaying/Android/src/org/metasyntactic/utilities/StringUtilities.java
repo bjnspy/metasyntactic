@@ -14,6 +14,9 @@
 
 package org.metasyntactic.utilities;
 
+import java.net.URLEncoder;
+import java.io.UnsupportedEncodingException;
+
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class StringUtilities {
   private StringUtilities() {
@@ -32,5 +35,14 @@ public class StringUtilities {
     }
 
     return name;
+  }
+
+
+  public static String urlEncode(String string) {
+    try {
+      return URLEncoder.encode(string, "UTF-8");
+    } catch (UnsupportedEncodingException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

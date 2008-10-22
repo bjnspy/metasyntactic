@@ -30,20 +30,20 @@ public class RottenTomatoesScoreProvider extends AbstractScoreProvider {
 
 
   @Override
-	protected String getProviderName() {
+  protected String getProviderName() {
     return "RottenTomatoes";
   }
 
 
   @Override
-	protected String lookupServerHash() {
+  protected String lookupServerHash() {
     String address = "http://metaboxoffice2.appspot.com/LookupMovieRatings?q=rottentomatoes&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
 
   @Override
-	protected Map<String, Score> lookupServerRatings() {
+  protected Map<String, Score> lookupServerRatings() {
     Element resultElement =
         NetworkUtilities.downloadXml("http://metaboxoffice2.appspot.com/LookupMovieRatings?q=rottentomates&format=xml",
             true);

@@ -21,7 +21,6 @@ import java.util.List;
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 
 public class EditDistance {
-
   private EditDistance() {
   }
 
@@ -107,11 +106,7 @@ public class EditDistance {
 
 
   static int threshold(String string) {
-    int threshold = string.length() / 4;
-    if (threshold == 0) {
-      threshold = 1;
-    }
-    return threshold;
+    return Math.max(string.length() / 4, 1);
   }
 
 
@@ -119,10 +114,25 @@ public class EditDistance {
     int bestDistance = Integer.MAX_VALUE;
     int bestIndex = -1;
 
+    if ((bestIndex = list.indexOf(string)) != -1) {
+      return bestIndex;
+    }
+
+    if (string.length() > 4) {
+      for (int i = 0; i < list.size(); i++) {
+        String other = list.get(i);
+        if (other.length() > 4 &&
+            string.contains(other) ||
+            other.contains(string)) {
+          return i;
+        }
+      }
+    }
+
     for (int i = 0; i < list.size(); i++) {
       String value = list.get(i);
 
-      int distance = getEditDistance(string, value);
+      int distance = getEditDistance(string, value, threshold(string));
 
       if (distance < bestDistance) {
         bestIndex = i;
@@ -150,11 +160,25 @@ public class EditDistance {
 
 
   public static String findClosestMatch(String string, java.util.Collection<String> set) {
+    if (set.contains(string)) {
+      return string;
+    }
+
+    if (string.length() > 4) {
+      for (String other : set) {
+        if (other.length() > 4 &&
+            string.contains(other) ||
+            other.contains(string)) {
+          return other;
+        }
+      }
+    }
+
     int bestDistance = Integer.MAX_VALUE;
     String bestValue = null;
 
     for (String value : set) {
-      int distance = getEditDistance(string, value);
+      int distance = getEditDistance(string, value, threshold(string));
 
       if (distance < bestDistance) {
         bestDistance = distance;

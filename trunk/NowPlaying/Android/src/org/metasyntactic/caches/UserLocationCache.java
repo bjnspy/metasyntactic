@@ -21,7 +21,8 @@ import static org.metasyntactic.threading.ThreadingUtilities.performOnBackground
 import org.metasyntactic.utilities.*;
 import org.w3c.dom.Element;
 
-import java.io.*;
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Locale;
 
@@ -126,13 +127,13 @@ public class UserLocationCache {
       String postalCode = resultElement.getAttribute("zipcode");
 
       if (!StringUtilities.isNullOrEmpty(latitude) && !StringUtilities.isNullOrEmpty(longitude)) {
-      	try {
-        return new Location(Double.parseDouble(latitude), Double.parseDouble(longitude), address, city, state,
-            postalCode, country);
-      	} catch (NumberFormatException e) {
-      		ExceptionUtilities.log(UserLocationCache.class, "processResult", e);
-      		return null;
-      	}
+        try {
+          return new Location(Double.parseDouble(latitude), Double.parseDouble(longitude), address, city, state,
+              postalCode, country);
+        } catch (NumberFormatException e) {
+          ExceptionUtilities.log(UserLocationCache.class, "processResult", e);
+          return null;
+        }
       }
     }
 
@@ -176,9 +177,9 @@ public class UserLocationCache {
 
   private Location loadLocation(String address) {
     if (!StringUtilities.isNullOrEmpty(address)) {
-    	return FileUtilities.readObject(locationFile(address));
+      return FileUtilities.readObject(locationFile(address));
     }
-   
+
     return null;
   }
 

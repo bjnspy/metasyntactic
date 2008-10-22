@@ -20,7 +20,6 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
 import org.metasyntactic.data.Theater;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 

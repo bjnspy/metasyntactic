@@ -30,22 +30,22 @@ public class TrailerCache {
   private final Object lock = new Object();
 
 
-  private String trailerFileName(String title) {
-    return FileUtilities.sanitizeFileName(title);
+  private String trailerFileName(Movie movie) {
+    return FileUtilities.sanitizeFileName(movie.getCanonicalTitle());
   }
 
 
-  private String trailerFilePath(String title) {
-    return new File(Application.trailersDirectory, FileUtilities.sanitizeFileName(title)).getAbsolutePath();
+  private File trailerFilePath(Movie movie) {
+    return new File(Application.trailersDirectory, trailerFileName(movie));
   }
 
 
   private void deleteObsoleteTrailers(List<Movie> movies) {
-    File trailersDir = new File(Application.trailersDirectory);
-    Set<String> fileNames = new LinkedHashSet<String>(Arrays.asList(trailersDir.list()));
+    File trailersDir = Application.trailersDirectory;
+    Set<String> fileNames = new HashSet<String>(Arrays.asList(trailersDir.list()));
 
     for (Movie movie : movies) {
-      fileNames.remove(trailerFileName(movie.getCanonicalTitle()));
+      fileNames.remove(trailerFileName(movie));
     }
 
     long now = new Date().getTime();
@@ -71,7 +71,7 @@ public class TrailerCache {
     long now = new Date().getTime();
 
     for (Movie movie : movies) {
-      File file = new File(trailerFilePath(movie.getCanonicalTitle()));
+      File file = trailerFilePath(movie);
       if (!file.exists()) {
         moviesWithoutTrailers.add(movie);
       } else {
@@ -100,6 +100,7 @@ public class TrailerCache {
 
   private void updateBackgroundEntryPoint(final List<Movie> movies) {
     deleteObsoleteTrailers(movies);
+
     List<List<Movie>> orderedMovies = getOrderedMovies(movies);
 
     String url = "http://metaboxoffice2.appspot.com/LookupTrailerListings?q=index";
@@ -120,7 +121,7 @@ public class TrailerCache {
     String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), index.keySet());
     if (bestKey == null) {
       // no trailer for this movie.  record that fact.  we'll try again later
-      FileUtilities.writeObject(new ArrayList<String>(), trailerFilePath(movie.getCanonicalTitle()));
+      FileUtilities.writeObject(new ArrayList<String>(), trailerFilePath(movie));
       return;
     }
 
@@ -137,7 +138,7 @@ public class TrailerCache {
     }
 
     List<String> trailers = Arrays.asList(trailersString.split("\n"));
-    FileUtilities.writeObject(trailers, trailerFilePath(movie.getCanonicalTitle()));
+    FileUtilities.writeObject(trailers, trailerFilePath(movie));
     Application.refresh();
   }
 
@@ -169,11 +170,11 @@ public class TrailerCache {
   }
 
 
-	public List<String> getTrailers(Movie movie) {
-    List<String> trailers = FileUtilities.readObject(trailerFilePath(movie.getCanonicalTitle()));
+  public List<String> getTrailers(Movie movie) {
+    List<String> trailers = FileUtilities.readObject(trailerFilePath(movie));
     if (trailers == null) {
       return Collections.emptyList();
     }
     return trailers;
-	}
+  }
 }

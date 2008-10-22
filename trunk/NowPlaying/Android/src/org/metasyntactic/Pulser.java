@@ -16,9 +16,6 @@ package org.metasyntactic;
 
 import android.os.Handler;
 import android.util.Log;
-
-import java.util.Date;
-
 import org.joda.time.DateTime;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -38,7 +35,7 @@ public class Pulser {
   private void tryPulse(final DateTime date) {
     if (date.isBefore(lastPulseTime)) {
       // we sent out a pulse after this one.  just disregard this pulse
-    	Log.i(Pulser.class.getName(), "Pulse at " + date + " < last pulse at " + lastPulseTime + ". Disregarding");
+      Log.i(Pulser.class.getName(), "Pulse at " + date + " < last pulse at " + lastPulseTime + ". Disregarding");
       return;
     }
 
@@ -46,7 +43,8 @@ public class Pulser {
     DateTime nextViablePulseTime = lastPulseTime.plusSeconds(pulseIntervalSeconds);
     if (now.isBefore(nextViablePulseTime)) {
       // too soon since the last pulse.  wait until later.
-    	Log.i(Pulser.class.getName(), "Pulse at " + date + "too soon since last pulse at " + lastPulseTime + ". Will perform later.");
+      Log.i(Pulser.class.getName(),
+          "Pulse at " + date + "too soon since last pulse at " + lastPulseTime + ". Will perform later.");
       Runnable tryPulseLater = new Runnable() {
         public void run() {
           tryPulse(date);

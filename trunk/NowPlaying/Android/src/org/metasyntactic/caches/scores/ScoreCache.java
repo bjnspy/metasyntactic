@@ -30,6 +30,7 @@ public class ScoreCache {
 
   private final NowPlayingModel model;
 
+
   public ScoreCache(NowPlayingModel model) {
     this.model = model;
   }
@@ -37,12 +38,17 @@ public class ScoreCache {
 
   public Map<String, Score> getScores() {
     switch (model.getRatingsProvider()) {
-      case Google: return googleScoreProvider.getScores();
-      case Metacritic: return metacriticScoreProvider.getScores();
-      case RottenTomatoes: return rottenTomatoesScoreProvider.getScores();
-      default: throw new RuntimeException();
+      case Google:
+        return googleScoreProvider.getScores();
+      case Metacritic:
+        return metacriticScoreProvider.getScores();
+      case RottenTomatoes:
+        return rottenTomatoesScoreProvider.getScores();
+      default:
+        throw new RuntimeException();
     }
   }
+
 
   public void update() {
     Runnable runnable = new Runnable() {
@@ -53,11 +59,18 @@ public class ScoreCache {
     ThreadingUtilities.performOnBackgroundThread(runnable, lock, true/*visible*/);
   }
 
+
   private void updateBackgroundEntryPoint() {
     switch (model.getRatingsProvider()) {
-      case Google: googleScoreProvider.update(); break;
-      case Metacritic: metacriticScoreProvider.update(); break;
-      case RottenTomatoes: rottenTomatoesScoreProvider.update(); break;
+      case Google:
+        googleScoreProvider.update();
+        break;
+      case Metacritic:
+        metacriticScoreProvider.update();
+        break;
+      case RottenTomatoes:
+        rottenTomatoesScoreProvider.update();
+        break;
     }
   }
 

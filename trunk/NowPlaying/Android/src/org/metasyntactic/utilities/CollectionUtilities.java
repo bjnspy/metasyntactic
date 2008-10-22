@@ -23,15 +23,18 @@ public class CollectionUtilities {
 
   }
 
+
   public static <T> int size(Collection<T> collection) {
     return collection == null ? 0 : collection.size();
   }
 
-  public static <K,V> int size(Map<K,V> map) {
+
+  public static <K, V> int size(Map<K, V> map) {
     return map == null ? 0 : map.size();
   }
 
-  public static <K,V> boolean isEmpty(Map<K,V> map) {
+
+  public static <K, V> boolean isEmpty(Map<K, V> map) {
     return size(map) == 0;
   }
 }
