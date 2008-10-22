@@ -45,7 +45,9 @@ public class Application {
 
     Runnable runnable = new Runnable() {
       public void run() {
+      	if (context != null) {
           context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
+      	}
       }
     };
     pulser = new Pulser(runnable, 5000);
