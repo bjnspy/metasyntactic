@@ -158,15 +158,15 @@ public class NowPlayingModel {
   }
 
 
-  public Date getSearchDate() {
+  public DateTime getSearchDate() {
     String value = preferences.get(SEARCH_DATE_KEY, "");
     if ("".equals(value)) {
       return DateUtilities.getToday();
     }
 
     DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
-    Date result = formatter.parseDateTime(value).toDate();
-    if (result.before(new Date())) {
+    DateTime result = formatter.parseDateTime(value);
+    if (result.isBefore(new DateTime())) {
       result = DateUtilities.getToday();
       setSearchDate(result);
     }
@@ -175,9 +175,9 @@ public class NowPlayingModel {
   }
 
 
-  public void setSearchDate(Date searchDate) {
+  public void setSearchDate(DateTime searchDate) {
     DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
-    String result = formatter.print(new DateTime(searchDate));
+    String result = formatter.print(searchDate);
     preferences.put(SEARCH_DATE_KEY, result);
   }
 

@@ -14,6 +14,7 @@
 
 package org.metasyntactic.providers;
 
+import org.joda.time.DateTime;
 import org.metasyntactic.data.FavoriteTheater;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Performance;
@@ -32,12 +33,12 @@ public class LookupResult {
   public Map<String, Map<String, List<Performance>>> performances;
 
   // theater name -> date
-  public Map<String, Date> synchronizationData;
+  public Map<String, DateTime> synchronizationData;
 
 
   public LookupResult(List<Movie> movies, List<Theater> theaters,
                       Map<String, Map<String, List<Performance>>> performances,
-                      Map<String, Date> synchronizationData) {
+                      Map<String, DateTime> synchronizationData) {
     this.movies = movies;
     this.theaters = theaters;
     this.performances = performances;

@@ -15,63 +15,63 @@
 package org.metasyntactic;
 
 import android.os.Handler;
+import android.util.Log;
 
 import java.util.Date;
+
+import org.joda.time.DateTime;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Pulser {
   private final Runnable runnable;
-  private Date lastPulseTime;
-  private long pulseInterval;
+  private DateTime lastPulseTime;
+  private final int pulseIntervalSeconds;
 
 
-  public Pulser(Runnable runnable, long pulseInterval) {
-    this.lastPulseTime = new Date(0);
+  public Pulser(Runnable runnable, int pulseIntervalSeconds) {
+    this.lastPulseTime = new DateTime(0);
     this.runnable = runnable;
-    this.pulseInterval = pulseInterval;
+    this.pulseIntervalSeconds = pulseIntervalSeconds;
   }
 
 
-  private void tryPulse(final Date date) {
-    if (date.before(lastPulseTime)) {
+  private void tryPulse(final DateTime date) {
+    if (date.isBefore(lastPulseTime)) {
       // we sent out a pulse after this one.  just disregard this pulse
-      //NSLog(@"Pulse at '%@' < last pulse at '%@'.  Disregarding.", date, lastPulseTime);
+    	Log.i(Pulser.class.getName(), "Pulse at " + date + " < last pulse at " + lastPulseTime + ". Disregarding");
       return;
     }
 
-    Date now = new Date();
-    Date nextViablePulseTime = new Date(lastPulseTime.getTime() + pulseInterval);
-    if (now.before(nextViablePulseTime)) {
+    DateTime now = new DateTime();
+    DateTime nextViablePulseTime = lastPulseTime.plusSeconds(pulseIntervalSeconds);
+    if (now.isBefore(nextViablePulseTime)) {
       // too soon since the last pulse.  wait until later.
-      //NSLog(@"Pulse at '%@' too soon since last pulse at '%@'.  Will perform later.", date, lastPulseTime);
+    	Log.i(Pulser.class.getName(), "Pulse at " + date + "too soon since last pulse at " + lastPulseTime + ". Will perform later.");
       Runnable tryPulseLater = new Runnable() {
         public void run() {
           tryPulse(date);
         }
       };
 
-      new Handler().postAtTime(tryPulseLater, nextViablePulseTime.getTime());
+      new Handler().postAtTime(tryPulseLater, nextViablePulseTime.getMillis());
       return;
     }
 
     // ok, actually pulse.
     this.lastPulseTime = now;
-    //NSLog(@"Pulse at '%@' being performed at '%@'.", date, lastPulseTime);
+    Log.i(Pulser.class.getName(), "Pulse at " + date + " being performed at " + lastPulseTime);
     runnable.run();
   }
 
 
   public void forcePulse() {
-    //NSAssert([NSThread isMainThread], @"");
-    this.lastPulseTime = new Date();
-    //NSLog(@"Forced pulse at '%@'.", lastPulseTime);
-    //[target performSelector:action];
+    this.lastPulseTime = new DateTime();
+    Log.i(Pulser.class.getName(), "Forced pulse at: " + lastPulseTime);
     runnable.run();
   }
 
 
   public void tryPulse() {
-    //NSAssert([NSThread isMainThread], @"");
-    tryPulse(new Date());
+    tryPulse(new DateTime());
   }
 }

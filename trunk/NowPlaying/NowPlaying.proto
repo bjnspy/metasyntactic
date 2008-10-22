@@ -4,6 +4,7 @@
 // Author: cyrusn@google.com (Cyrus Najmabadi)
 
 syntax = "proto2";
+option optimize_for = SPEED;
 
 // Information about a single showtime
 message ShowtimeProto {
