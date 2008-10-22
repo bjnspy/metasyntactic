@@ -36,7 +36,7 @@ public class TrailerCache {
 
 
   private String trailerFilePath(String title) {
-    return new File(Application.trailersDirectory, title).getAbsolutePath();
+    return new File(Application.trailersDirectory, FileUtilities.sanitizeFileName(title)).getAbsolutePath();
   }
 
 
@@ -150,7 +150,7 @@ public class TrailerCache {
 
 
   private Map<String, List<String>> generateIndex(String indexText) {
-    Map<String, List<String>> index = new LinkedHashMap<String, List<String>>();
+    Map<String, List<String>> index = new HashMap<String, List<String>>();
 
     for (String row : indexText.split("\n")) {
       String[] values = row.split("\t");

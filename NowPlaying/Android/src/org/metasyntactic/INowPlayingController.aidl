@@ -21,6 +21,9 @@ interface INowPlayingController {
   String getUserLocation();
   void setUserLocation(String userLocation);
 
+  int getSearchDistance();
+  void setSearchDistance(int searchDistance);
+
   int getSelectedTabIndex();
   void setSelectedTabIndex(int index);
 

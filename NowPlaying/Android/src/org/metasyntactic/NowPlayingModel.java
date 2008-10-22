@@ -30,6 +30,7 @@ import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.DateUtilities;
 import org.metasyntactic.utilities.FileUtilities;
 import org.metasyntactic.utilities.difference.EditDistance;
 
@@ -39,10 +40,9 @@ import java.util.prefs.Preferences;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
-  public final static String NOW_PLAYING_MODEL_CHANGED_INTENT = "NowPlayingModelChangedIntent";
-
   private final static String USER_LOCATION_KEY = "userLocation";
   private final static String SEARCH_DATE_KEY = "searchDate";
+  private final static String SEARCH_DISTANCE_KEY = "searchDistance";
   private final static String SELECTED_TAB_INDEX_KEY = "selectedTabIndex";
   private final static String ALL_MOVIES_SELECTED_SORT_INDEX_KEY = "allMoviesSelectedSortIndex";
   private final static String ALL_THEATERS_SELECTED_SORT_INDEX_KEY = "allTheatersSelectedSortIndex";
@@ -65,10 +65,21 @@ public class NowPlayingModel {
   public NowPlayingModel(Context context) {
     this.context = context;
     movieMap = FileUtilities.readObject(movieMapFile());
+    
+    initializeTestValues();
   }
 
 
-  private String movieMapFile() {
+  private void initializeTestValues() {
+  	if (true) {
+  		//return;
+  	}
+  	
+  	this.setUserLocation("10009");
+	}
+
+
+	private String movieMapFile() {
     return new File(Application.dataDirectory, "MovieMap").getAbsolutePath();
   }
 
@@ -80,11 +91,6 @@ public class NowPlayingModel {
 
   public Context getContext() {
     return context;
-  }
-
-
-  public void broadcastChange() {
-    context.sendBroadcast(new Intent(NOW_PLAYING_MODEL_CHANGED_INTENT));
   }
 
 
@@ -120,16 +126,27 @@ public class NowPlayingModel {
   }
 
 
+  public int getSearchDistance() {
+    return preferences.getInt(SEARCH_DISTANCE_KEY, 5);
+  }
+
+
+  public void setSearchDistance(int searchDistance) {
+  	searchDistance = Math.min(Math.max(searchDistance, 1), 50);
+  	preferences.putInt(SEARCH_DISTANCE_KEY, searchDistance);
+  }
+
+
   public Date getSearchDate() {
     String value = preferences.get(SEARCH_DATE_KEY, "");
     if ("".equals(value)) {
-      return new Date();
+      return DateUtilities.getToday();
     }
 
     DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
     Date result = formatter.parseDateTime(value).toDate();
     if (result.before(new Date())) {
-      result = new Date();
+      result = DateUtilities.getToday();
       setSearchDate(result);
     }
 
@@ -151,7 +168,7 @@ public class NowPlayingModel {
 
   public void setSelectedTabIndex(int index) {
     preferences.putInt(SELECTED_TAB_INDEX_KEY, index);
-    broadcastChange();
+    Application.refresh();
   }
 
 
@@ -162,7 +179,7 @@ public class NowPlayingModel {
 
   public void setAllMoviesSelectedSortIndex(int index) {
     preferences.putInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, index);
-    broadcastChange();
+    Application.refresh();
   }
 
 
@@ -173,7 +190,7 @@ public class NowPlayingModel {
 
   public void setAllTheatersSelectedSortIndex(int index) {
     preferences.putInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, index);
-    broadcastChange();
+    Application.refresh();
   }
 
 
@@ -184,7 +201,7 @@ public class NowPlayingModel {
 
   public void setUpcomingMovieSelectedSortIndex(int index) {
     preferences.putInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, index);
-    broadcastChange();
+    Application.refresh();
   }
 
 
@@ -255,7 +272,7 @@ public class NowPlayingModel {
 
 
   private void createMovieMap(List<Movie> movies, Map<String, Score> scores) {
-    final Map<String,String> result = new LinkedHashMap<String, String>();
+    final Map<String,String> result = new HashMap<String, String>();
 
     List<String> titles = new ArrayList<String>(scores.keySet());
     List<String> lowercaseTitles = new ArrayList<String>();

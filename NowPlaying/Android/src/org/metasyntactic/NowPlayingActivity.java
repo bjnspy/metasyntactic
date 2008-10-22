@@ -139,7 +139,7 @@ public class NowPlayingActivity extends Activity {
   @Override
 	protected void onResume() {
     super.onResume();
-    registerReceiver(broadcastReceiver, new IntentFilter(NowPlayingModel.NOW_PLAYING_MODEL_CHANGED_INTENT));
+    registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
   }
 
 

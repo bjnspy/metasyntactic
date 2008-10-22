@@ -67,6 +67,23 @@ this.setUserLocation(_arg0);
 reply.writeNoException();
 return true;
 }
+case TRANSACTION_getSearchDistance:
+{
+data.enforceInterface(DESCRIPTOR);
+int _result = this.getSearchDistance();
+reply.writeNoException();
+reply.writeInt(_result);
+return true;
+}
+case TRANSACTION_setSearchDistance:
+{
+data.enforceInterface(DESCRIPTOR);
+int _arg0;
+_arg0 = data.readInt();
+this.setSearchDistance(_arg0);
+reply.writeNoException();
+return true;
+}
 case TRANSACTION_getSelectedTabIndex:
 {
 data.enforceInterface(DESCRIPTOR);
@@ -194,6 +211,38 @@ try {
 _data.writeInterfaceToken(DESCRIPTOR);
 _data.writeString(userLocation);
 mRemote.transact(Stub.TRANSACTION_setUserLocation, _data, _reply, 0);
+_reply.readException();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+}
+public int getSearchDistance() throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+int _result;
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+mRemote.transact(Stub.TRANSACTION_getSearchDistance, _data, _reply, 0);
+_reply.readException();
+_result = _reply.readInt();
+}
+finally {
+_reply.recycle();
+_data.recycle();
+}
+return _result;
+}
+public void setSearchDistance(int searchDistance) throws android.os.RemoteException
+{
+android.os.Parcel _data = android.os.Parcel.obtain();
+android.os.Parcel _reply = android.os.Parcel.obtain();
+try {
+_data.writeInterfaceToken(DESCRIPTOR);
+_data.writeInt(searchDistance);
+mRemote.transact(Stub.TRANSACTION_setSearchDistance, _data, _reply, 0);
 _reply.readException();
 }
 finally {
@@ -366,19 +415,23 @@ return _result;
 }
 static final int TRANSACTION_getUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 0);
 static final int TRANSACTION_setUserLocation = (IBinder.FIRST_CALL_TRANSACTION + 1);
-static final int TRANSACTION_getSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 2);
-static final int TRANSACTION_setSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 3);
-static final int TRANSACTION_getAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 4);
-static final int TRANSACTION_setAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 5);
-static final int TRANSACTION_getAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 6);
-static final int TRANSACTION_setAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 7);
-static final int TRANSACTION_getUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 8);
-static final int TRANSACTION_setUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 9);
-static final int TRANSACTION_getMovies = (IBinder.FIRST_CALL_TRANSACTION + 10);
-static final int TRANSACTION_getTheaters = (IBinder.FIRST_CALL_TRANSACTION + 11);
+static final int TRANSACTION_getSearchDistance = (IBinder.FIRST_CALL_TRANSACTION + 2);
+static final int TRANSACTION_setSearchDistance = (IBinder.FIRST_CALL_TRANSACTION + 3);
+static final int TRANSACTION_getSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 4);
+static final int TRANSACTION_setSelectedTabIndex = (IBinder.FIRST_CALL_TRANSACTION + 5);
+static final int TRANSACTION_getAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 6);
+static final int TRANSACTION_setAllMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 7);
+static final int TRANSACTION_getAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 8);
+static final int TRANSACTION_setAllTheatersSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 9);
+static final int TRANSACTION_getUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 10);
+static final int TRANSACTION_setUpcomingMoviesSelectedSortIndex = (IBinder.FIRST_CALL_TRANSACTION + 11);
+static final int TRANSACTION_getMovies = (IBinder.FIRST_CALL_TRANSACTION + 12);
+static final int TRANSACTION_getTheaters = (IBinder.FIRST_CALL_TRANSACTION + 13);
 }
 public java.lang.String getUserLocation() throws android.os.RemoteException;
 public void setUserLocation(java.lang.String userLocation) throws android.os.RemoteException;
+public int getSearchDistance() throws android.os.RemoteException;
+public void setSearchDistance(int searchDistance) throws android.os.RemoteException;
 public int getSelectedTabIndex() throws android.os.RemoteException;
 public void setSelectedTabIndex(int index) throws android.os.RemoteException;
 public int getAllMoviesSelectedSortIndex() throws android.os.RemoteException;

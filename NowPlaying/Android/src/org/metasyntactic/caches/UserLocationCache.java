@@ -126,8 +126,13 @@ public class UserLocationCache {
       String postalCode = resultElement.getAttribute("zipcode");
 
       if (!StringUtilities.isNullOrEmpty(latitude) && !StringUtilities.isNullOrEmpty(longitude)) {
+      	try {
         return new Location(Double.parseDouble(latitude), Double.parseDouble(longitude), address, city, state,
             postalCode, country);
+      	} catch (NumberFormatException e) {
+      		ExceptionUtilities.log(UserLocationCache.class, "processResult", e);
+      		return null;
+      	}
       }
     }
 
@@ -171,18 +176,9 @@ public class UserLocationCache {
 
   private Location loadLocation(String address) {
     if (!StringUtilities.isNullOrEmpty(address)) {
-      try {
-        ObjectInputStream in = new ObjectInputStream(new FileInputStream(locationFile(address)));
-        return (Location) in.readObject();
-      } catch (IOException e) {
-        ExceptionUtilities.log(UserLocationCache.class, "LoadLocation", e);
-        return null;
-      } catch (ClassNotFoundException e) {
-        ExceptionUtilities.log(UserLocationCache.class, "LoadLocation", e);
-        return null;
-      }
+    	return FileUtilities.readObject(locationFile(address));
     }
-
+   
     return null;
   }
 

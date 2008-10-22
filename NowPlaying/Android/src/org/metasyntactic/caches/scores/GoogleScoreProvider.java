@@ -28,6 +28,7 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Locale;
 import java.util.Map;
@@ -39,7 +40,8 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
   }
 
 
-  protected String getProviderName() {
+  @Override
+	protected String getProviderName() {
     return "Google";
   }
 
@@ -71,14 +73,16 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
   }
 
 
-  protected String lookupServerHash() {
+  @Override
+	protected String lookupServerHash() {
     String address = getUrl();
     address += "&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
 
-  protected Map<String, Score> lookupServerRatings() {
+  @Override
+	protected Map<String, Score> lookupServerRatings() {
     String address = getUrl();
     byte[] data = NetworkUtilities.download(address, true);
 
@@ -91,7 +95,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
         return null;
       }
 
-      Map<String, Score> ratings = new LinkedHashMap<String, Score>();
+      Map<String, Score> ratings = new HashMap<String, Score>();
 
       for (NowPlaying.MovieProto movieProto : theaterListings.getMoviesList()) {
         String identifier = movieProto.getIdentifier();

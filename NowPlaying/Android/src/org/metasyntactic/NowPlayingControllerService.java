@@ -25,6 +25,10 @@ import org.metasyntactic.threading.ThreadingUtilities;
 import java.util.List;
 
 public class NowPlayingControllerService extends Service {
+	{
+		Application.setContext(this);
+	}
+	
   private final NowPlayingModel model = new NowPlayingModel(this);
   private final Object lock = new Object();
 
@@ -61,6 +65,16 @@ public class NowPlayingControllerService extends Service {
 
     public void setUserLocation(String userLocation) throws RemoteException {
       NowPlayingControllerService.this.setUserLocation(userLocation);
+    }
+    
+    
+    public int getSearchDistance() throws RemoteException {
+    	return NowPlayingControllerService.this.getSearchDistance();
+    }
+    
+    
+    public void setSearchDistance(int searchDistance) throws RemoteException {
+    	NowPlayingControllerService.this.setSearchDistance(searchDistance);
     }
 
 
@@ -125,6 +139,15 @@ public class NowPlayingControllerService extends Service {
     update();
   }
 
+  public int getSearchDistance() {
+  	return model.getSearchDistance();
+  }
+  
+  
+  public void setSearchDistance(int searchDistance) {
+  	model.setSearchDistance(searchDistance);
+  }
+  
 
   public int getSelectedTabIndex() {
     return model.getSelectedTabIndex();

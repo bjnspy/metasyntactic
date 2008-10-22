@@ -44,11 +44,17 @@ public class ThreadingUtilities {
     final Object lock2 = lock == null ? new Object() : lock;
 
     Thread t = new HandlerThread("") {
-      public void run() {
+      @Override
+			public void run() {
+      	Looper.prepare();
         synchronized (lock2) {
           try {
             GlobalActivityIndicator.addBackgroundTask(visible);
-            runnable.run();
+            try {
+            	runnable.run();
+            } catch (RuntimeException e) {
+            	throw e;
+            }
           } finally {
             GlobalActivityIndicator.removeBackgroundTask(visible);
           }
