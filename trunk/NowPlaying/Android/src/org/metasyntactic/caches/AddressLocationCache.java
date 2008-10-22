@@ -17,6 +17,7 @@ package org.metasyntactic.caches;
 import org.metasyntactic.data.Location;
 import org.metasyntactic.data.Theater;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,7 +30,7 @@ public class AddressLocationCache {
 
 
   public static Map<Theater, Double> getTheaterDistanceMap(Location location, List<Theater> theaters) {
-    Map<Theater, Double> map = new LinkedHashMap<Theater, Double>();
+    Map<Theater, Double> map = new HashMap<Theater, Double>();
 
     for (Theater theater : theaters) {
       double d;

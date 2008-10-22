@@ -16,10 +16,15 @@ package org.metasyntactic;
 
 import org.metasyntactic.threading.ThreadingUtilities;
 
+import android.content.Context;
+import android.content.Intent;
+
 import java.io.File;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Application {
+  public final static String NOW_PLAYING_CHANGED_INTENT = "NowPlayingModelChangedIntent";
+	
   public static final String rootDirectory = "/sdcard";
   public static final String applicationDirectory = new File(rootDirectory, "NowPlaying").getAbsolutePath();
   public static final String dataDirectory = new File(applicationDirectory, "Data").getAbsolutePath();
@@ -31,15 +36,16 @@ public class Application {
   public static final String imdbDirectory = new File(applicationDirectory, "IMDb").getAbsolutePath();
 
   private static Pulser pulser;
+	private static Context context;
 
 
   static {
-    deleteItem(new File(tempDirectory));
+    deleteItem(new File(applicationDirectory));
     createDirectories();
 
     Runnable runnable = new Runnable() {
       public void run() {
-
+          context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
       }
     };
     pulser = new Pulser(runnable, 5000);
@@ -88,9 +94,15 @@ public class Application {
 
 
   private static void deleteItem(File item) {
-    for (File child : item.listFiles()) {
-      deleteItem(child);
-    }
+  	if (!item.exists()) {
+  		return;
+  	}
+ 
+  	if (item.isDirectory()) {
+  		for (File child : item.listFiles()) {
+  			deleteItem(child);
+  		}
+  	}
 
     item.delete();
   }
@@ -121,4 +133,9 @@ public class Application {
       pulser.tryPulse();
     }
   }
+
+
+	public static void setContext(Context context) {
+		Application.context = context;
+	}
 }

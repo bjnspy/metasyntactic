@@ -50,6 +50,24 @@ public class NowPlayingControllerWrapper {
     }
   }
 
+  
+  public int getSearchDistance() {
+  	try {
+  		return controller.getSearchDistance();
+  	} catch (RemoteException e) {
+  		throw new RuntimeException(e);
+  	}
+  }
+  
+  
+  public void setSearchDistance(int searchDistance) {
+  	try {
+  		controller.setSearchDistance(searchDistance);
+  	} catch (RemoteException e) {
+  		throw new RuntimeException(e);
+  	}
+  }
+  
 
   public int getSelectedTabIndex() {
     try {

@@ -27,7 +27,7 @@ import java.nio.charset.CharsetDecoder;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NetworkUtilities {
-  private static PriorityMutex mutex;
+  private static PriorityMutex mutex = new PriorityMutex();
 
 
   private NetworkUtilities() {

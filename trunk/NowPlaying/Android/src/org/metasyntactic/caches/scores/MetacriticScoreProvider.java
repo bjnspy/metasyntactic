@@ -19,6 +19,7 @@ import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.children;
 import org.w3c.dom.Element;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -29,24 +30,27 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
   }
 
 
-  protected String getProviderName() {
+  @Override
+	protected String getProviderName() {
     return "Metacritic";
   }
 
 
-  protected String lookupServerHash() {
+  @Override
+	protected String lookupServerHash() {
     String address = "http://metaboxoffice2.appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
 
-  protected Map<String, Score> lookupServerRatings() {
+  @Override
+	protected Map<String, Score> lookupServerRatings() {
 
     String address = "http://metaboxoffice2.appspot.com/LookupMovieRatings?q=metacritic&format=xml";
     Element resultElement = NetworkUtilities.downloadXml(address, true);
 
     if (resultElement != null) {
-      Map<String, Score> ratings = new LinkedHashMap<String, Score>();
+      Map<String, Score> ratings = new HashMap<String, Score>();
 
       for (Element movieElement : children(resultElement)) {
         String title = movieElement.getAttribute("title");
