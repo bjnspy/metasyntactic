@@ -40,7 +40,6 @@ public class Application {
 
 
   static {
-    deleteItem(new File(applicationDirectory));
     createDirectories();
 
     Runnable runnable = new Runnable() {

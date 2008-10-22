@@ -36,10 +36,13 @@ import org.metasyntactic.utilities.difference.EditDistance;
 
 import java.io.File;
 import java.util.*;
+import java.util.prefs.BackingStoreException;
 import java.util.prefs.Preferences;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
+	private final static String version = "1";
+	private final static String VERSION_KEY = "version";
   private final static String USER_LOCATION_KEY = "userLocation";
   private final static String SEARCH_DATE_KEY = "searchDate";
   private final static String SEARCH_DISTANCE_KEY = "searchDistance";
@@ -64,9 +67,27 @@ public class NowPlayingModel {
 
   public NowPlayingModel(Context context) {
     this.context = context;
+    
+    this.loadData();
     movieMap = FileUtilities.readObject(movieMapFile());
     
     initializeTestValues();
+  }
+  
+  
+  private void loadData() {
+  	String lastVersion = preferences.get(VERSION_KEY, "");
+  	if (!lastVersion.equals(version)) {
+  		try {
+				preferences.clear();
+			} catch (BackingStoreException e) {
+				throw new RuntimeException(e);
+			}
+			
+			Application.reset();
+			
+			preferences.put(VERSION_KEY, version);
+  	}
   }
 
 
