@@ -19,6 +19,8 @@ import org.joda.time.Days;
 import org.metasyntactic.Constants;
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FileUtilities {
@@ -27,7 +29,17 @@ public class FileUtilities {
 	}
 
 	public static String sanitizeFileName(String name) {
-		return name.replace("/", "-slash-").replace(":", "-colon-").replace("?", "-qmark-");
+		StringBuilder result = new StringBuilder();
+		for (char c : name.toCharArray()) {
+			if ((c >= 'a' && c <= 'z') ||
+				  (c >= 'A' && c <= 'Z') ||
+				  (c >= '0' && c <= '9')) {
+				result.append(c);
+			} else {
+				result.append("-" + (int)c + "-");
+			}
+		}
+		return result.toString();
 	}
 
 	public static void writeObject(Object o, String fileName) {
