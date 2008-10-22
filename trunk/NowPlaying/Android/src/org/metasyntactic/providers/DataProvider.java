@@ -18,6 +18,7 @@ import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.joda.time.Hours;
 import org.joda.time.format.DateTimeFormat;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
@@ -58,8 +59,30 @@ public class DataProvider {
 		};
 		ThreadingUtilities.performOnBackgroundThread(runnable, lock, true/* visible */);
 	}
+	
+	
+	private boolean isUpToDate() {
+		 Date lastLookupDate = getLastLookupDate();
+		 int days = Days.daysBetween(new DateTime(lastLookupDate), new DateTime(new Date())).getDays();
+		 if (days != 0) {
+			 return false;
+		 }
+		 
+		 // same date.  make sure it's been at least 12 hours
+		 int hours = Hours.hoursBetween(new DateTime(lastLookupDate), new DateTime(new Date())).getHours();
+		 if (hours > 12) {
+			 return false;
+		 }
+		 
+		 return true;
+	}
+	
 
 	private void updateBackgroundEntryPoint() {
+		if (isUpToDate()) {
+			return;
+		}
+		
 		final Location location = model.getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
 				model.getUserLocation());
 		if (location == null) {
