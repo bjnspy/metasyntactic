@@ -65,6 +65,10 @@ public class NetworkUtilities {
 
 
   private static String decode(byte[] bytes, String charset) {
+  	if (bytes == null) {
+  		return null;
+  	}
+ 
     try {
       Charset utfCharset = Charset.forName(charset);
       CharsetDecoder decoder = utfCharset.newDecoder();
@@ -112,8 +116,8 @@ public class NetworkUtilities {
   private static byte[] downloadWorker(URL url) {
     try {
       ByteArrayOutputStream out = new ByteArrayOutputStream();
-      BufferedOutputStream bufferedOut = new BufferedOutputStream(out);
-      BufferedInputStream in = new BufferedInputStream(url.openStream());
+      BufferedOutputStream bufferedOut = new BufferedOutputStream(out, 1 << 13);
+      BufferedInputStream in = new BufferedInputStream(url.openStream(), 1 << 13);
 
       byte[] bytes = new byte[1 << 16];
       int length;

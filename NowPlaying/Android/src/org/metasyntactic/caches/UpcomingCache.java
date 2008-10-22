@@ -121,16 +121,16 @@ public class UpcomingCache {
         false/*important*/
     );
 
-    processResultElement(resultElement, this.movies, this.studioKeys, this.titleKeys);
-    if (this.movies.isEmpty()) {
+    processResultElement(resultElement, movies, studioKeys, titleKeys);
+    if (movies.isEmpty()) {
       return;
     }
 
-    save(serverHash, this.movies, this.studioKeys, this.titleKeys);
+    save(serverHash, movies, studioKeys, titleKeys);
 
     Runnable runnable = new Runnable() {
       public void run() {
-        report(serverHash, UpcomingCache.this.movies, UpcomingCache.this.studioKeys, UpcomingCache.this.titleKeys);
+        report(serverHash, movies, studioKeys, titleKeys);
       }
     };
     ThreadingUtilities.performOnMainThread(runnable);

@@ -40,7 +40,7 @@ public class StringUtilities {
 
   public static String urlEncode(String string) {
     try {
-      return URLEncoder.encode(string, "UTF-8");
+      return URLEncoder.encode(string.replace('Õ', '\''), "UTF-8");
     } catch (UnsupportedEncodingException e) {
       throw new RuntimeException(e);
     }

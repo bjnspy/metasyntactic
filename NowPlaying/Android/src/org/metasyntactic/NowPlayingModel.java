@@ -131,26 +131,9 @@ public class NowPlayingModel {
 
 
   public void update() {
-    update(0);
-  }
-
-
-  private void update(final int i) {
-    if (i == 0) {
       dataProvider.update();
-    } else if (i == 1) {
       upcomingCache.update();
-    } else if (i == 2) {
       updateTrailerCache();
-    } else {
-      return;
-    }
-
-    Handler handler = new Handler();
-    Runnable runnable = new Runnable() {
-      public void run() { update(i + 1); }
-    };
-    handler.postDelayed(runnable, 1000);
   }
 
 
