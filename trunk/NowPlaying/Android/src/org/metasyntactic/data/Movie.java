@@ -25,13 +25,14 @@ import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Movie implements Parcelable, Serializable {
-	private static final long serialVersionUID = -1715042667960786544L;
+  private static final long serialVersionUID = -1715042667960786544L;
 
-	private final String identifier;
+  private final String identifier;
   private final String canonicalTitle;
   private final String displayTitle;
   private final String rating;
   private final int length; // minutes;
+  private final String imdbAddress;
   private final Date releaseDate;
   private final String poster;
   private final String synopsis;
@@ -40,13 +41,15 @@ public class Movie implements Parcelable, Serializable {
   private final List<String> cast;
   private final List<String> genres;
 
+
   private Movie(String identifier, String canonicalTitle, String displayTitle, String rating, int length,
-                Date releaseDate, String poster, String synopsis, String studio, List<String> directors,
-                List<String> cast, List<String> genres) {
+                String imdbAddress, Date releaseDate, String poster, String synopsis, String studio,
+                List<String> directors, List<String> cast, List<String> genres) {
     this.identifier = identifier;
     this.canonicalTitle = canonicalTitle;
     this.rating = rating;
     this.length = length;
+    this.imdbAddress = imdbAddress;
     this.releaseDate = releaseDate;
     this.poster = poster;
     this.synopsis = synopsis;
@@ -57,10 +60,12 @@ public class Movie implements Parcelable, Serializable {
     this.displayTitle = displayTitle;
   }
 
-  public Movie(String identifier, String title, String rating, int length, Date releaseDate, String poster,
-               String synopsis, String studio, List<String> directors, List<String> cast, List<String> genres) {
-    this(identifier, makeCanonical(title), makeDisplay(title), rating, length, releaseDate, poster, synopsis, studio,
-        directors, cast, genres);
+
+  public Movie(String identifier, String title, String rating, int length, String imdbAddress, Date releaseDate,
+               String poster, String synopsis, String studio, List<String> directors, List<String> cast,
+               List<String> genres) {
+    this(identifier, makeCanonical(title), makeDisplay(title), rating, length, imdbAddress, releaseDate, poster,
+        synopsis, studio, directors, cast, genres);
   }
 
 
@@ -156,6 +161,7 @@ public class Movie implements Parcelable, Serializable {
       "L'"
   };
 
+
   public static String makeCanonical(String title) {
     for (String article : articles) {
       if (title.endsWith(", " + article)) {
@@ -165,6 +171,7 @@ public class Movie implements Parcelable, Serializable {
 
     return title;
   }
+
 
   public static String makeDisplay(String title) {
     for (String article : articles) {
@@ -176,9 +183,11 @@ public class Movie implements Parcelable, Serializable {
     return title;
   }
 
+
   public int describeContents() {
     return 0;
   }
+
 
   public void writeToParcel(Parcel dest, int flags) {
     dest.writeString(identifier);
@@ -186,6 +195,7 @@ public class Movie implements Parcelable, Serializable {
     dest.writeString(displayTitle);
     dest.writeString(rating);
     dest.writeInt(length);
+    dest.writeString(imdbAddress);
     dest.writeValue(releaseDate);
     dest.writeString(poster);
     dest.writeString(synopsis);
@@ -195,6 +205,7 @@ public class Movie implements Parcelable, Serializable {
     dest.writeStringList(genres);
   }
 
+
   public static final Parcelable.Creator<Movie> CREATOR =
       new Parcelable.Creator<Movie>() {
         public Movie createFromParcel(Parcel source) {
@@ -203,7 +214,8 @@ public class Movie implements Parcelable, Serializable {
           String displayTitle = source.readString();
           String rating = source.readString();
           int length = source.readInt();
-          Date releaseDate = (Date)source.readValue(null);
+          String imdbAddress = source.readString();
+          Date releaseDate = (Date) source.readValue(null);
           String poster = source.readString();
           String synopsis = source.readString();
           String studio = source.readString();
@@ -214,9 +226,10 @@ public class Movie implements Parcelable, Serializable {
           List<String> genres = new ArrayList<String>();
           source.readStringList(genres);
 
-          return new Movie(identifier, canonicalTitle, displayTitle, rating, length, releaseDate, poster, synopsis,
+          return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster, synopsis,
               studio, directors, cast, genres);
         }
+
 
         public Movie[] newArray(int size) {
           return new Movie[size];
