@@ -19,6 +19,9 @@ import android.content.Intent;
 import org.metasyntactic.threading.ThreadingUtilities;
 
 import java.io.File;
+import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Application {
@@ -33,6 +36,7 @@ public class Application {
   public static final File tempDirectory = new File(applicationDirectory, "Temp");
   public static final File ratingsDirectory = new File(applicationDirectory, "Ratings");
   public static final File imdbDirectory = new File(applicationDirectory, "IMDb");
+  public static final File postersDirectory = new File(applicationDirectory, "Posters");
 
   public static final File upcomingDirectory = new File(applicationDirectory, "Upcoming");
   public static final File upcomingImdbDirectory = new File(upcomingDirectory, "IMDb");
@@ -63,21 +67,23 @@ public class Application {
   }
 
 
-  private static File[] directories() {
-    return new File[]{
-        applicationDirectory,
-        tempDirectory,
-        dataDirectory,
-        performancesDirectory,
-        trailersDirectory,
-        userLocationsDirectory,
-        imdbDirectory,
-        upcomingDirectory,
-        upcomingImdbDirectory,
-        upcomingPostersDirectory,
-        upcomingSynopsesDirectory,
-        upcomingTrailersDirectory,
-    };
+  private static List<File> directories() {
+    try {
+      List<File> directories = new ArrayList<File>();
+
+      for (Field field : Application.class.getFields()) {
+        if (field.getType() != File.class ||
+            field.get(null) == root) {
+          continue;
+        }
+
+        directories.add((File) field.get(null));
+      }
+
+      return directories;
+    } catch (IllegalAccessException e) {
+      throw new RuntimeException(e);
+    }
   }
 
 

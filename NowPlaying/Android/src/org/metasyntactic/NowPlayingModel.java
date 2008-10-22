@@ -15,13 +15,13 @@
 package org.metasyntactic;
 
 import android.content.Context;
-import android.os.Handler;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.caches.UserLocationCache;
+import org.metasyntactic.caches.posters.PosterCache;
 import org.metasyntactic.caches.scores.ScoreCache;
 import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.FavoriteTheater;
@@ -64,6 +64,7 @@ public class NowPlayingModel {
   private final UserLocationCache userLocationCache = new UserLocationCache();
   private final TrailerCache trailerCache = new TrailerCache();
   private final UpcomingCache upcomingCache = new UpcomingCache();
+  private final PosterCache posterCache = new PosterCache(this);
 
 
   public NowPlayingModel(Context context) {
@@ -122,18 +123,20 @@ public class NowPlayingModel {
 
 
   private void updatePosterCache() {
+    posterCache.update(getMovies());
   }
 
 
   private void updateIMDbCache() {
-
   }
 
 
   public void update() {
-      dataProvider.update();
-      upcomingCache.update();
-      updateTrailerCache();
+    dataProvider.update();
+    upcomingCache.update();
+    updateTrailerCache();
+    updatePosterCache();
+    scoreCache.update();
   }
 
 
