@@ -22,6 +22,7 @@ import java.util.List;
 
 /**
  * Wrapper that throws runtime exceptions instead of remoting exceptions
+ *
  * @author cyrusn@google.com (Cyrus Najmabadi)
  */
 public class NowPlayingControllerWrapper {
@@ -50,24 +51,24 @@ public class NowPlayingControllerWrapper {
     }
   }
 
-  
+
   public int getSearchDistance() {
-  	try {
-  		return controller.getSearchDistance();
-  	} catch (RemoteException e) {
-  		throw new RuntimeException(e);
-  	}
+    try {
+      return controller.getSearchDistance();
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
   }
-  
-  
+
+
   public void setSearchDistance(int searchDistance) {
-  	try {
-  		controller.setSearchDistance(searchDistance);
-  	} catch (RemoteException e) {
-  		throw new RuntimeException(e);
-  	}
+    try {
+      controller.setSearchDistance(searchDistance);
+    } catch (RemoteException e) {
+      throw new RuntimeException(e);
+    }
   }
-  
+
 
   public int getSelectedTabIndex() {
     try {

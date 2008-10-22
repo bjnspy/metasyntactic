@@ -14,8 +14,6 @@
 
 package org.metasyntactic.caches.scores;
 
-import android.os.Debug;
-
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
@@ -29,82 +27,85 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class GoogleScoreProvider extends AbstractScoreProvider {
-	public GoogleScoreProvider(ScoreCache scoreCache) {
-		super(scoreCache);
-	}
+  public GoogleScoreProvider(ScoreCache scoreCache) {
+    super(scoreCache);
+  }
 
-	@Override
-	protected String getProviderName() {
-		return "Google";
-	}
 
-	private String getUrl() {
-		Location location = getModel().getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
-				getModel().getUserLocation());
+  @Override
+  protected String getProviderName() {
+    return "Google";
+  }
 
-		if (StringUtilities.isNullOrEmpty(location.getPostalCode())) {
-			return null;
-		}
 
-		String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
+  private String getUrl() {
+    Location location = getModel().getUserLocationCache().downloadUserAddressLocationBackgroundEntryPoint(
+        getModel().getUserLocation());
 
-		//Debug.startMethodTracing("getUrlDaysBetween", 1 << 24);
-		int days = Days.daysBetween(new DateTime(), getModel().getSearchDate()).getDays();
-		//Debug.stopMethodTracing();
-		days = min(max(days, 0), 7);
+    if (StringUtilities.isNullOrEmpty(location.getPostalCode())) {
+      return null;
+    }
 
-		String address = "http://metaboxoffice2.appspot.com/LookupTheaterListings2?country=" + country + "&language="
-				+ Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude="
-				+ (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
+    String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
 
-		return address;
-	}
+    //Debug.startMethodTracing("getUrlDaysBetween", 1 << 24);
+    int days = Days.daysBetween(new DateTime(), getModel().getSearchDate()).getDays();
+    //Debug.stopMethodTracing();
+    days = min(max(days, 0), 7);
 
-	@Override
-	protected String lookupServerHash() {
-		String address = getUrl();
-		address += "&hash=true";
-		return NetworkUtilities.downloadString(address, true);
-	}
+    String address = "http://metaboxoffice2.appspot.com/LookupTheaterListings2?country=" + country + "&language="
+        + Locale.getDefault().getLanguage() + "&day=" + days + "&format=pb" + "&latitude="
+        + (int) (location.getLatitude() * 1000000) + "&longitude=" + (int) (location.getLongitude() * 1000000);
 
-	@Override
-	protected Map<String, Score> lookupServerRatings() {
-		String address = getUrl();
-		byte[] data = NetworkUtilities.download(address, true);
+    return address;
+  }
 
-		if (data != null) {
-			NowPlaying.TheaterListingsProto theaterListings = null;
-			try {
-				theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
-			} catch (InvalidProtocolBufferException e) {
-				ExceptionUtilities.log(GoogleScoreProvider.class, "lookupServerRatings", e);
-				return null;
-			}
 
-			Map<String, Score> ratings = new HashMap<String, Score>();
+  @Override
+  protected String lookupServerHash() {
+    String address = getUrl();
+    address += "&hash=true";
+    return NetworkUtilities.downloadString(address, true);
+  }
 
-			for (NowPlaying.MovieProto movieProto : theaterListings.getMoviesList()) {
-				String identifier = movieProto.getIdentifier();
-				String title = movieProto.getTitle();
-				int value = -1;
-				if (movieProto.hasScore()) {
-					value = movieProto.getScore();
-				}
 
-				Score score = new Score(title, "", "" + value, "google", identifier);
-				ratings.put(score.getCanonicalTitle(), score);
-			}
+  @Override
+  protected Map<String, Score> lookupServerRatings() {
+    String address = getUrl();
+    byte[] data = NetworkUtilities.download(address, true);
 
-			return ratings;
-		}
+    if (data != null) {
+      NowPlaying.TheaterListingsProto theaterListings = null;
+      try {
+        theaterListings = NowPlaying.TheaterListingsProto.parseFrom(data);
+      } catch (InvalidProtocolBufferException e) {
+        ExceptionUtilities.log(GoogleScoreProvider.class, "lookupServerRatings", e);
+        return null;
+      }
 
-		return null;
-	}
+      Map<String, Score> ratings = new HashMap<String, Score>();
+
+      for (NowPlaying.MovieProto movieProto : theaterListings.getMoviesList()) {
+        String identifier = movieProto.getIdentifier();
+        String title = movieProto.getTitle();
+        int value = -1;
+        if (movieProto.hasScore()) {
+          value = movieProto.getScore();
+        }
+
+        Score score = new Score(title, "", "" + value, "google", identifier);
+        ratings.put(score.getCanonicalTitle(), score);
+      }
+
+      return ratings;
+    }
+
+    return null;
+  }
 }

@@ -14,29 +14,34 @@
 
 package org.metasyntactic;
 
-import org.metasyntactic.threading.ThreadingUtilities;
-
 import android.content.Context;
 import android.content.Intent;
+import org.metasyntactic.threading.ThreadingUtilities;
 
 import java.io.File;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NowPlayingModelChangedIntent";
-	
-  public static final String rootDirectory = "/sdcard";
-  public static final String applicationDirectory = new File(rootDirectory, "NowPlaying").getAbsolutePath();
-  public static final String dataDirectory = new File(applicationDirectory, "Data").getAbsolutePath();
-  public static final String performancesDirectory = new File(dataDirectory, "Performances").getAbsolutePath();
-  public static final String trailersDirectory = new File(applicationDirectory, "Trailers").getAbsolutePath();
-  public static final String userLocationsDirectory = new File(applicationDirectory, "UserLocations").getAbsolutePath();
-  public static final String tempDirectory = new File(applicationDirectory, "Temp").getAbsolutePath();
-  public static final String ratingsDirectory = new File(applicationDirectory, "Ratings").getAbsolutePath();
-  public static final String imdbDirectory = new File(applicationDirectory, "IMDb").getAbsolutePath();
+
+  public static final File root = new File("/sdcard");
+  public static final File applicationDirectory = new File(root, "NowPlaying");
+  public static final File dataDirectory = new File(applicationDirectory, "Data");
+  public static final File performancesDirectory = new File(dataDirectory, "Performances");
+  public static final File trailersDirectory = new File(applicationDirectory, "Trailers");
+  public static final File userLocationsDirectory = new File(applicationDirectory, "UserLocations");
+  public static final File tempDirectory = new File(applicationDirectory, "Temp");
+  public static final File ratingsDirectory = new File(applicationDirectory, "Ratings");
+  public static final File imdbDirectory = new File(applicationDirectory, "IMDb");
+
+  public static final File upcomingDirectory = new File(applicationDirectory, "Upcoming");
+  public static final File upcomingImdbDirectory = new File(upcomingDirectory, "IMDb");
+  public static final File upcomingPostersDirectory = new File(upcomingDirectory, "Posters");
+  public static final File upcomingSynopsesDirectory = new File(upcomingDirectory, "Synopses");
+  public static final File upcomingTrailersDirectory = new File(upcomingDirectory, "Trailers");
 
   private static Pulser pulser;
-	private static Context context;
+  private static Context context;
 
 
   static {
@@ -44,9 +49,9 @@ public class Application {
 
     Runnable runnable = new Runnable() {
       public void run() {
-      	if (context != null) {
+        if (context != null) {
           context.sendBroadcast(new Intent(NOW_PLAYING_CHANGED_INTENT));
-      	}
+        }
       }
     };
     pulser = new Pulser(runnable, 5);
@@ -58,8 +63,8 @@ public class Application {
   }
 
 
-  private static String[] directories() {
-    return new String[]{
+  private static File[] directories() {
+    return new File[]{
         applicationDirectory,
         tempDirectory,
         dataDirectory,
@@ -67,6 +72,11 @@ public class Application {
         trailersDirectory,
         userLocationsDirectory,
         imdbDirectory,
+        upcomingDirectory,
+        upcomingImdbDirectory,
+        upcomingPostersDirectory,
+        upcomingSynopsesDirectory,
+        upcomingTrailersDirectory,
     };
   }
 
@@ -78,8 +88,8 @@ public class Application {
 
 
   private static void createDirectories() {
-    for (String name : directories()) {
-      new File(name).mkdirs();
+    for (File file : directories()) {
+      file.mkdirs();
     }
   }
 
@@ -89,21 +99,21 @@ public class Application {
   }
 
 
-  public static void deleteDirectory(String directory) {
-    deleteItem(new File(directory));
+  public static void deleteDirectory(File directory) {
+    deleteItem(directory);
   }
 
 
   private static void deleteItem(File item) {
-  	if (!item.exists()) {
-  		return;
-  	}
- 
-  	if (item.isDirectory()) {
-  		for (File child : item.listFiles()) {
-  			deleteItem(child);
-  		}
-  	}
+    if (!item.exists()) {
+      return;
+    }
+
+    if (item.isDirectory()) {
+      for (File child : item.listFiles()) {
+        deleteItem(child);
+      }
+    }
 
     item.delete();
   }
@@ -136,7 +146,7 @@ public class Application {
   }
 
 
-	public static void setContext(Context context) {
-		Application.context = context;
-	}
+  public static void setContext(Context context) {
+    Application.context = context;
+  }
 }

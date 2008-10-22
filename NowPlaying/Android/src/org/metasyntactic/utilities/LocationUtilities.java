@@ -25,6 +25,7 @@ public class LocationUtilities {
 
   }
 
+
   private static Location findLocationWithGeonames(double latitude, double longitude) {
     String url = "http://ws.geonames.org/findNearbyPostalCodes?lat=" + latitude + "&lng=" + longitude + "&maxRows=1";
 

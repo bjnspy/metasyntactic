@@ -55,6 +55,7 @@ public class PriorityMutex {
   public void unlockLow() {
   }
 
+
   public void lock(boolean high) {
     if (high) {
       lockHigh();
@@ -62,6 +63,7 @@ public class PriorityMutex {
       lockLow();
     }
   }
+
 
   public void unlock(boolean high) {
     if (high) {

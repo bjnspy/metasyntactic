@@ -14,21 +14,15 @@
 
 package org.metasyntactic;
 
-import org.metasyntactic.views.AllMoviesView;
-import org.metasyntactic.views.AllTheatersView;
-import org.metasyntactic.views.UpcomingMoviesView;
-
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.ComponentName;
-import android.content.Context;
-import android.content.Intent;
-import android.content.IntentFilter;
-import android.content.ServiceConnection;
+import android.content.*;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.TabHost;
+import org.metasyntactic.views.AllMoviesView;
+import org.metasyntactic.views.AllTheatersView;
+import org.metasyntactic.views.UpcomingMoviesView;
 
 public class NowPlayingActivity extends Activity {
   private NowPlayingControllerWrapper controller;
@@ -39,7 +33,7 @@ public class NowPlayingActivity extends Activity {
   private final BroadcastReceiver broadcastReceiver =
       new BroadcastReceiver() {
         @Override
-				public void onReceive(Context context, Intent intent) {
+        public void onReceive(Context context, Intent intent) {
           refresh();
         }
       };
@@ -137,14 +131,14 @@ public class NowPlayingActivity extends Activity {
 
 
   @Override
-	protected void onResume() {
+  protected void onResume() {
     super.onResume();
     registerReceiver(broadcastReceiver, new IntentFilter(Application.NOW_PLAYING_CHANGED_INTENT));
   }
 
 
   @Override
-	protected void onPause() {
+  protected void onPause() {
     unregisterReceiver(broadcastReceiver);
     super.onPause();
   }

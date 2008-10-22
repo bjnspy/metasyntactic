@@ -18,93 +18,122 @@ import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.metasyntactic.Constants;
 
-import android.os.Debug;
-
 import java.io.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FileUtilities {
-	private FileUtilities() {
+  private FileUtilities() {
 
-	}
+  }
 
-	public static String sanitizeFileName(String name) {
-		StringBuilder result = new StringBuilder();
-		for (char c : name.toCharArray()) {
-			if ((c >= 'a' && c <= 'z') ||
-				  (c >= 'A' && c <= 'Z') ||
-				  (c >= '0' && c <= '9') ||
-				  c == ' ') {
-				result.append(c);
-			} else {
-				result.append("-" + (int)c + "-");
-			}
-		}
-		return result.toString();
-	}
 
-	public static void writeObject(Object o, String fileName) {
-		writeObject(o, new File(fileName));
-	}
+  public static String sanitizeFileName(String name) {
+    StringBuilder result = new StringBuilder();
+    for (char c : name.toCharArray()) {
+      if ((c >= 'a' && c <= 'z') ||
+          (c >= 'A' && c <= 'Z') ||
+          (c >= '0' && c <= '9') ||
+          c == ' ') {
+        result.append(c);
+      } else {
+        result.append("-" + (int) c + "-");
+      }
+    }
+    return result.toString();
+  }
 
-	public static void writeObject(Object o, File file) {
-		try {
-			ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
-			out.writeObject(o);
-			out.flush();
-			out.close();
-		} catch (IOException e) {
-			ExceptionUtilities.log(FileUtilities.class, "writeObject", e);
-			throw new RuntimeException(e);
-		}
-	}
 
-	public static <T> T readObject(String fileName) {
-		return (T) readObject(new File(fileName));
-	}
+  public static void writeObject(Object o, String fileName) {
+    writeObject(o, new File(fileName));
+  }
 
-	public static <T> T readObject(File file) {
-		try {
-			if (!file.exists()) {
-				return null;
-			}
 
-			ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
-			T result = (T) in.readObject();
-			in.close();
-			return result;
-		} catch (IOException e) {
-			ExceptionUtilities.log(FileUtilities.class, "readObject", e);
-			return null;
-		} catch (ClassNotFoundException e) {
-			ExceptionUtilities.log(FileUtilities.class, "readObject", e);
-			throw new RuntimeException(e);
-		}
-	}
+  public static void writeObject(Object o, File file) {
+    try {
+      ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+      ObjectOutputStream out = new ObjectOutputStream(byteOut);
+      out.writeObject(o);
+      out.flush();
+      out.close();
 
-	public static boolean tooSoon(String fileName) {
-		File file = new File(fileName);
-		if (!file.exists()) {
-			return false;
-		}
+      writeBytes(byteOut.toByteArray(), file);
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "writeObject", e);
+      throw new RuntimeException(e);
+    }
+  }
 
-		DateTime now = new DateTime();
-		DateTime lastDate = new DateTime(file.lastModified());
 
-		//Debug.startMethodTracing("tooSoonDaysBetween", 1 << 24);
-		int days = Days.daysBetween(now, lastDate).getDays();
-		//Debug.stopMethodTracing();
+  public static void writeBytes(byte[] data, File file) {
+    try {
+      BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file));
+      out.write(data);
+      out.flush();
+      out.close();
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "writeObject", e);
+      throw new RuntimeException(e);
+    }
+  }
 
-		if (days > 0) {
-			// different days, so definitely out of date
-			return false;
-		}
 
-		long hours = (now.getMillis() - lastDate.getMillis()) / Constants.ONE_HOUR;
-		if (hours > 12) {
-			return false;
-		}
+  public static <T> T readObject(String fileName) {
+    return (T) readObject(fileName, null);
+  }
 
-		return true;
-	}
+
+  public static <T> T readObject(String fileName, T default_) {
+    return (T) readObject(new File(fileName), default_);
+  }
+
+
+  public static <T> T readObject(File file) {
+    return readObject(file, null);
+  }
+
+
+  public static <T> T readObject(File file, T default_) {
+    try {
+      if (!file.exists()) {
+        return default_;
+      }
+
+      ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+      T result = (T) in.readObject();
+      in.close();
+      return result;
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "readObject", e);
+      return default_;
+    } catch (ClassNotFoundException e) {
+      ExceptionUtilities.log(FileUtilities.class, "readObject", e);
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static boolean tooSoon(File file) {
+    if (!file.exists()) {
+      return false;
+    }
+
+    DateTime now = new DateTime();
+    DateTime lastDate = new DateTime(file.lastModified());
+
+    //Debug.startMethodTracing("tooSoonDaysBetween", 1 << 24);
+    int days = Days.daysBetween(now, lastDate).getDays();
+    //Debug.stopMethodTracing();
+
+    if (days > 0) {
+      // different days, so definitely out of date
+      return false;
+    }
+
+    long hours = (now.getMillis() - lastDate.getMillis()) / Constants.ONE_HOUR;
+    if (hours > 12) {
+      return false;
+    }
+
+    return true;
+  }
 }

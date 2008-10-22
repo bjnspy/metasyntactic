@@ -15,15 +15,15 @@
 package org.metasyntactic;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
-import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.TrailerCache;
-import org.metasyntactic.caches.scores.ScoreType;
+import org.metasyntactic.caches.UpcomingCache;
+import org.metasyntactic.caches.UserLocationCache;
 import org.metasyntactic.caches.scores.ScoreCache;
+import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.FavoriteTheater;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
@@ -41,8 +41,8 @@ import java.util.prefs.Preferences;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
-	private final static String version = "1";
-	private final static String VERSION_KEY = "version";
+  private final static String version = "2";
+  private final static String VERSION_KEY = "version";
   private final static String USER_LOCATION_KEY = "userLocation";
   private final static String SEARCH_DATE_KEY = "searchDate";
   private final static String SEARCH_DISTANCE_KEY = "searchDistance";
@@ -57,51 +57,52 @@ public class NowPlayingModel {
   private final Preferences preferences = Preferences.userNodeForPackage(NowPlayingModel.class);
 
   private final Object movieMapLock = new Object();
-  private Map<String,String> movieMap;
+  private Map<String, String> movieMap;
 
   private final DataProvider dataProvider = new DataProvider(this);
   private final ScoreCache scoreCache = new ScoreCache(this);
   private final UserLocationCache userLocationCache = new UserLocationCache();
   private final TrailerCache trailerCache = new TrailerCache();
+  private final UpcomingCache upcomingCache = new UpcomingCache();
 
 
   public NowPlayingModel(Context context) {
     this.context = context;
-    
-    this.loadData();
+
+    loadData();
     movieMap = FileUtilities.readObject(movieMapFile());
-    
+
     initializeTestValues();
   }
-  
-  
+
+
   private void loadData() {
-  	String lastVersion = preferences.get(VERSION_KEY, "");
-  	if (!lastVersion.equals(version)) {
-  		try {
-				preferences.clear();
-			} catch (BackingStoreException e) {
-				throw new RuntimeException(e);
-			}
-			
-			Application.reset();
-			
-			preferences.put(VERSION_KEY, version);
-  	}
+    String lastVersion = preferences.get(VERSION_KEY, "");
+    if (!lastVersion.equals(version)) {
+      try {
+        preferences.clear();
+      } catch (BackingStoreException e) {
+        throw new RuntimeException(e);
+      }
+
+      Application.reset();
+
+      preferences.put(VERSION_KEY, version);
+    }
   }
 
 
   private void initializeTestValues() {
-  	if (true) {
-  		//return;
-  	}
-  	
-  	this.setUserLocation("10009");
-	}
+    if (true) {
+      //return;
+    }
+
+    this.setUserLocation("10009");
+  }
 
 
-	private String movieMapFile() {
-    return new File(Application.dataDirectory, "MovieMap").getAbsolutePath();
+  private File movieMapFile() {
+    return new File(Application.dataDirectory, "MovieMap");
   }
 
 
@@ -115,6 +116,20 @@ public class NowPlayingModel {
   }
 
 
+  private void updateTrailerCache() {
+    trailerCache.update(getMovies());
+  }
+
+
+  private void updatePosterCache() {
+  }
+
+
+  private void updateIMDbCache() {
+
+  }
+
+
   public void update() {
     update(0);
   }
@@ -124,7 +139,9 @@ public class NowPlayingModel {
     if (i == 0) {
       dataProvider.update();
     } else if (i == 1) {
-      trailerCache.update(this.getMovies());
+      upcomingCache.update();
+    } else if (i == 2) {
+      updateTrailerCache();
     } else {
       return;
     }
@@ -153,8 +170,8 @@ public class NowPlayingModel {
 
 
   public void setSearchDistance(int searchDistance) {
-  	searchDistance = Math.min(Math.max(searchDistance, 1), 50);
-  	preferences.putInt(SEARCH_DISTANCE_KEY, searchDistance);
+    searchDistance = Math.min(Math.max(searchDistance, 1), 50);
+    preferences.putInt(SEARCH_DISTANCE_KEY, searchDistance);
   }
 
 
@@ -235,6 +252,7 @@ public class NowPlayingModel {
     return ScoreType.valueOf(value);
   }
 
+
   public void setRatingsProvider(ScoreType providerType) {
     preferences.put(SCORE_TYPE_KEY, providerType.toString());
   }
@@ -262,20 +280,8 @@ public class NowPlayingModel {
     updateTrailerCache();
   }
 
+
   public void onRatingsUpdated() {
-  }
-
-  private void updateTrailerCache() {
-    trailerCache.update(getMovies());
-  }
-
-
-  private void updatePosterCache() {
-  }
-
-
-  private void updateIMDbCache() {
-
   }
 
 
@@ -293,22 +299,22 @@ public class NowPlayingModel {
 
 
   private void createMovieMap(List<Movie> movies, Map<String, Score> scores) {
-    final Map<String,String> result = new HashMap<String, String>();
+    final Map<String, String> result = new HashMap<String, String>();
 
     List<String> titles = new ArrayList<String>(scores.keySet());
     List<String> lowercaseTitles = new ArrayList<String>();
     for (String title : titles) {
-    lowercaseTitles.add(title.toLowerCase());
-  }
+      lowercaseTitles.add(title.toLowerCase());
+    }
 
     for (Movie movie : movies) {
-        String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
+      String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
       int index = EditDistance.findClosestMatchIndex(lowercaseTitle, lowercaseTitles);
 
       if (index >= 0) {
-            String title = titles.get(index);
+        String title = titles.get(index);
         result.put(movie.getCanonicalTitle(), title);
-        }
+      }
     }
 
     FileUtilities.writeObject(result, movieMapFile());
@@ -334,7 +340,7 @@ public class NowPlayingModel {
   }
 
 
-	public List<String> getTrailers(Movie movie) {
-		return trailerCache.getTrailers(movie);
-	}
+  public List<String> getTrailers(Movie movie) {
+    return trailerCache.getTrailers(movie);
+  }
 }
