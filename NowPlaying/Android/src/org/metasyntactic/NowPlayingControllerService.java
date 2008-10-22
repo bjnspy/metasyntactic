@@ -126,6 +126,10 @@ public class NowPlayingControllerService extends Service {
     public List<Theater> getTheaters() throws RemoteException {
       return NowPlayingControllerService.this.getTheaters();
     }
+    
+    public List<String> getTrailers(Movie movie) throws RemoteException {
+    	return NowPlayingControllerService.this.getTrailers(movie);
+    }
   };
 
 
@@ -134,7 +138,12 @@ public class NowPlayingControllerService extends Service {
   }
 
 
-  public void setUserLocation(String userLocation) {
+  protected List<String> getTrailers(Movie movie) {
+  		return model.getTrailers(movie);
+	}
+
+
+	public void setUserLocation(String userLocation) {
     model.setUserLocation(userLocation);
     update();
   }

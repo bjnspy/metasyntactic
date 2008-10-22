@@ -38,4 +38,6 @@ interface INowPlayingController {
 
   List<Movie> getMovies();
   List<Theater> getTheaters();
+  
+  List<String> getTrailers(in Movie movie);
 }

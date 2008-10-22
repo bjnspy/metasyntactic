@@ -90,6 +90,7 @@ public class DataProvider {
 			Application.refresh(true);
 		}
 	}
+	
 
 	private LookupResult lookupLocation(Location location, Collection<String> theaterNames) {
 		if (isNullOrEmpty(location.getPostalCode())) {

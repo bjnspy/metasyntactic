@@ -169,11 +169,11 @@ public class TrailerCache {
   }
 
 
-  public List<String> trailersForMovie(Movie movie) {
+	public List<String> getTrailers(Movie movie) {
     List<String> trailers = FileUtilities.readObject(trailerFilePath(movie.getCanonicalTitle()));
     if (trailers == null) {
       return Collections.emptyList();
     }
     return trailers;
-  }
+	}
 }
