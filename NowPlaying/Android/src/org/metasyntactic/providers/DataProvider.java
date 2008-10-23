@@ -178,7 +178,7 @@ public class DataProvider {
         }
       }
 
-      String imdbAddress = null;
+      String imdbAddress = "";
       if (!isNullOrEmpty(movieProto.getIMDbUrl())) {
         imdbAddress = "http://www.imdb.com/title/" + movieProto.getIMDbUrl();
       }
@@ -399,12 +399,15 @@ public class DataProvider {
   private void saveResult(LookupResult result) {
     if (result.movies.size() > 0 || result.theaters.size() > 0) {
       FileUtilities.writeObject(result.movies, getMoviesFile());
+
+    	long start = System.currentTimeMillis();
       FileUtilities.writeObject(result.theaters, getTheatersFile());
+      long end = System.currentTimeMillis();
       FileUtilities.writeObject(result.synchronizationData, getSynchronizationFile());
 
       File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());
       tempFolder.mkdirs();
- 
+
       for (String theaterName : result.performances.keySet()) {
         Map<String, List<Performance>> value = result.performances.get(theaterName);
         FileUtilities.writeObject(value, getPerformancesFile(tempFolder, theaterName));

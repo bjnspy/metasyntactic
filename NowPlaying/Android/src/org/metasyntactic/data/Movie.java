@@ -17,29 +17,87 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
+import java.io.Externalizable;
+import java.io.ObjectOutput;
+import java.io.IOException;
+import java.io.ObjectInput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class Movie implements Parcelable, Serializable {
-  private static final long serialVersionUID = -1715042667960786544L;
+public class Movie implements Parcelable, Externalizable {
+  private String identifier;
+  private String canonicalTitle;
+  private String displayTitle;
+  private String rating;
+  private int length; // minutes;
+  private String imdbAddress;
+  private Date releaseDate;
+  private String poster;
+  private String synopsis;
+  private String studio;
+  private List<String> directors;
+  private List<String> cast;
+  private List<String> genres;
 
-  private final String identifier;
-  private final String canonicalTitle;
-  private final String displayTitle;
-  private final String rating;
-  private final int length; // minutes;
-  private final String imdbAddress;
-  private final Date releaseDate;
-  private final String poster;
-  private final String synopsis;
-  private final String studio;
-  private final List<String> directors;
-  private final List<String> cast;
-  private final List<String> genres;
+
+  public Movie() {
+
+  }
+
+
+  public void writeExternal(ObjectOutput objectOutput) throws IOException {
+    objectOutput.writeUTF(identifier);
+    objectOutput.writeUTF(canonicalTitle);
+    objectOutput.writeUTF(displayTitle);
+    objectOutput.writeUTF(rating);
+    objectOutput.writeInt(length);
+    objectOutput.writeUTF(imdbAddress);
+    objectOutput.writeObject(releaseDate);
+    objectOutput.writeUTF(poster);
+    objectOutput.writeUTF(synopsis);
+    objectOutput.writeUTF(studio);
+    writeList(objectOutput, directors);
+    writeList(objectOutput, cast);
+    writeList(objectOutput, genres);
+  }
+
+
+  private void writeList(ObjectOutput objectOutput, List<String> directors) throws IOException {
+    objectOutput.writeInt(directors.size());
+    for (String string : directors) {
+      objectOutput.writeUTF(string);
+    }
+  }
+
+
+  private List<String> readList(ObjectInput objectInput) throws IOException {
+    int size = objectInput.readInt();
+    List<String> list = new ArrayList<String>(size);
+    for (int i = 0; i < size; i++) {
+      list.add(objectInput.readUTF());
+    }
+    return list;
+  }
+
+
+  public void readExternal(ObjectInput objectInput) throws IOException, ClassNotFoundException {
+    identifier = objectInput.readUTF();
+    canonicalTitle = objectInput.readUTF();
+    displayTitle = objectInput.readUTF();
+    rating = objectInput.readUTF();
+    length = objectInput.readInt();
+    imdbAddress = objectInput.readUTF();
+    releaseDate = (Date)objectInput.readObject();
+    poster = objectInput.readUTF();
+    synopsis = objectInput.readUTF();
+    studio = objectInput.readUTF();
+    directors = readList(objectInput);
+    cast = readList(objectInput);
+    genres = readList(objectInput);
+  }
 
 
   private Movie(String identifier, String canonicalTitle, String displayTitle, String rating, int length,

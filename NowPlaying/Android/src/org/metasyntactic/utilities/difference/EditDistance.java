@@ -21,175 +21,171 @@ import java.util.List;
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 
 public class EditDistance {
-  private EditDistance() {
-  }
+	private EditDistance() {
+	}
 
+	public static int getEditDistance(String source, String target) {
+		return getEditDistance(source, target, -1);
+	}
 
-  public static int getEditDistance(String source, String target) {
-    return getEditDistance(source, target, -1);
-  }
+	public static int getEditDistance(String source, String target, int costThreshold) {
+		int sourceLength = StringUtilities.isNullOrEmpty(source) ? 0 : source.length();
+		int targetLength = StringUtilities.isNullOrEmpty(target) ? 0 : target.length();
 
+		if (sourceLength == 0) {
+			return targetLength;
+		}
 
-  public static int getEditDistance(String source, String target, int costThreshold) {
-    int sourceLength = StringUtilities.isNullOrEmpty(source) ? 0 : source.length();
-    int targetLength = StringUtilities.isNullOrEmpty(target) ? 0 : target.length();
+		if (targetLength == 0) {
+			return sourceLength;
+		}
 
-    if (sourceLength == 0) {
-      return targetLength;
-    }
+		if (costThreshold >= 0) {
+			int minimumTLength = sourceLength - costThreshold;
 
-    if (targetLength == 0) {
-      return sourceLength;
-    }
+			if (targetLength < minimumTLength) {
+				return Integer.MAX_VALUE;
+			}
 
-    if (costThreshold >= 0) {
-      int minimumTLength = sourceLength - costThreshold;
+			int minimumSLength = targetLength - costThreshold;
 
-      if (targetLength < minimumTLength) {
-        return Integer.MAX_VALUE;
-      }
+			if (sourceLength < minimumSLength) {
+				return Integer.MAX_VALUE;
+			}
+		}
 
-      int minimumSLength = targetLength - costThreshold;
+		int[][] matrix = new int[sourceLength + 1][targetLength + 1];
 
-      if (sourceLength < minimumSLength) {
-        return Integer.MAX_VALUE;
-      }
-    }
+		for (int i = 0; i <= sourceLength; i++) {
+			matrix[i][0] = i;
+		}
 
-    int[][] matrix = new int[sourceLength + 1][targetLength + 1];
+		for (int i = 0; i <= targetLength; i++) {
+			matrix[0][i] = i;
+		}
 
-    for (int i = 0; i <= sourceLength; i++) {
-      matrix[i][0] = i;
-    }
+		for (int i = 1; i <= sourceLength; i++) {
+			boolean rowIsUnderThreshold = (costThreshold < 0);
 
-    for (int i = 0; i <= targetLength; i++) {
-      matrix[0][i] = i;
-    }
+			char sourceI = source.charAt(i - 1);
+			for (int j = 1; j <= targetLength; j++) {
+				char targetJ = target.charAt(j - 1);
 
+				int cost = 0;
+				if (sourceI != targetJ) {
+					cost = 1;
+				}
 
-    for (int i = 1; i <= sourceLength; i++) {
-      char sourceI = source.charAt(i - 1);
-      for (int j = 1; j <= targetLength; j++) {
-        char targetJ = target.charAt(j - 1);
+				int totalCost = Math.min(cost + matrix[i - 1][j - 1], Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1));
 
-        int cost = 0;
-        if (sourceI != targetJ) {
-          cost = 1;
-        }
+				matrix[i][j] = totalCost;
 
-        matrix[i][j] =
-            Math.min(cost + matrix[i - 1][j - 1],
-                Math.min(matrix[i - 1][j] + 1, matrix[i][j - 1] + 1));
-      }
-    }
+				if (costThreshold >= 0) {
+					rowIsUnderThreshold |= (totalCost <= costThreshold);
+				}
+			}
 
-    return matrix[sourceLength][targetLength];
-  }
+			if (!rowIsUnderThreshold) {
+				return Integer.MAX_VALUE;
+			}
+		}
 
+		return matrix[sourceLength][targetLength];
+	}
 
-  public static boolean areSimilar(String s1, String s2) {
-    if (s1 == null || s2 == null) {
-      return false;
-    }
+	public static boolean areSimilar(String s1, String s2) {
+		if (s1 == null || s2 == null) {
+			return false;
+		}
 
-    if (s1.length() > 4 && s2.length() > 4) {
-      if (s1.contains(s2) ||
-          s2.contains(s1)) {
-        return true;
-      }
-    }
+		if (s1.length() > 4 && s2.length() > 4) {
+			if (s1.contains(s2) || s2.contains(s1)) {
+				return true;
+			}
+		}
 
-    int threshold = threshold(s1);
-    int diff = getEditDistance(s1, s2, threshold);
-    return (diff <= threshold);
-  }
+		int threshold = threshold(s1);
+		int diff = getEditDistance(s1, s2, threshold);
+		return (diff <= threshold);
+	}
 
+	static int threshold(String string) {
+		return Math.max(string.length() / 4, 1);
+	}
 
-  static int threshold(String string) {
-    return Math.max(string.length() / 4, 1);
-  }
+	public static int findClosestMatchIndex(String string, List<String> list) {
+		int bestDistance = Integer.MAX_VALUE;
+		int bestIndex = -1;
 
+		if ((bestIndex = list.indexOf(string)) != -1) {
+			return bestIndex;
+		}
 
-  public static int findClosestMatchIndex(String string, List<String> list) {
-    int bestDistance = Integer.MAX_VALUE;
-    int bestIndex = -1;
+		if (string.length() > 4) {
+			for (int i = 0; i < list.size(); i++) {
+				String other = list.get(i);
+				if (other.length() > 4 && string.contains(other) || other.contains(string)) {
+					return i;
+				}
+			}
+		}
 
-    if ((bestIndex = list.indexOf(string)) != -1) {
-      return bestIndex;
-    }
+		for (int i = 0; i < list.size(); i++) {
+			String value = list.get(i);
 
-    if (string.length() > 4) {
-      for (int i = 0; i < list.size(); i++) {
-        String other = list.get(i);
-        if (other.length() > 4 &&
-            string.contains(other) ||
-            other.contains(string)) {
-          return i;
-        }
-      }
-    }
+			int distance = getEditDistance(string, value, threshold(string));
 
-    for (int i = 0; i < list.size(); i++) {
-      String value = list.get(i);
+			if (distance < bestDistance) {
+				bestIndex = i;
+				bestDistance = distance;
+			}
+		}
 
-      int distance = getEditDistance(string, value, threshold(string));
+		if (bestIndex != -1 && areSimilar(string, list.get(bestIndex))) {
+			return bestIndex;
+		}
 
-      if (distance < bestDistance) {
-        bestIndex = i;
-        bestDistance = distance;
-      }
-    }
+		return -1;
+	}
 
-    if (bestIndex != -1 &&
-        areSimilar(string, list.get(bestIndex))) {
-      return bestIndex;
-    }
+	public static String findClosestMatch(String string, List<String> list) {
+		int index = findClosestMatchIndex(string, list);
+		if (index == -1) {
+			return null;
+		}
 
-    return -1;
-  }
+		return list.get(index);
+	}
 
+	public static String findClosestMatch(String string, java.util.Collection<String> set) {
+		if (set.contains(string)) {
+			return string;
+		}
 
-  public static String findClosestMatch(String string, List<String> list) {
-    int index = findClosestMatchIndex(string, list);
-    if (index == -1) {
-      return null;
-    }
+		if (string.length() > 4) {
+			for (String other : set) {
+				if (other.length() > 4 && string.contains(other) || other.contains(string)) {
+					return other;
+				}
+			}
+		}
 
-    return list.get(index);
-  }
+		int bestDistance = Integer.MAX_VALUE;
+		String bestValue = null;
 
+		for (String value : set) {
+			int distance = getEditDistance(string, value, threshold(string));
 
-  public static String findClosestMatch(String string, java.util.Collection<String> set) {
-    if (set.contains(string)) {
-      return string;
-    }
+			if (distance < bestDistance) {
+				bestDistance = distance;
+				bestValue = value;
+			}
+		}
 
-    if (string.length() > 4) {
-      for (String other : set) {
-        if (other.length() > 4 &&
-            string.contains(other) ||
-            other.contains(string)) {
-          return other;
-        }
-      }
-    }
+		if (bestValue != null && areSimilar(string, bestValue)) {
+			return bestValue;
+		}
 
-    int bestDistance = Integer.MAX_VALUE;
-    String bestValue = null;
-
-    for (String value : set) {
-      int distance = getEditDistance(string, value, threshold(string));
-
-      if (distance < bestDistance) {
-        bestDistance = distance;
-        bestValue = value;
-      }
-    }
-
-    if (bestValue != null && areSimilar(string, bestValue)) {
-      return bestValue;
-    }
-
-    return null;
-  }
+		return null;
+	}
 }
