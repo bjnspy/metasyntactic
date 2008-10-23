@@ -19,6 +19,7 @@ import android.content.Intent;
 import org.metasyntactic.threading.ThreadingUtilities;
 
 import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.List;
@@ -154,5 +155,13 @@ public class Application {
 
   public static void setContext(Context context) {
     Application.context = context;
+  }
+
+  public static File createTempFile() {
+    try {
+      return File.createTempFile("NP", null, tempDirectory);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

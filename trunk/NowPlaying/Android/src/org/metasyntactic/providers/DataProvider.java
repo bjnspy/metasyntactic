@@ -359,11 +359,7 @@ public class DataProvider {
 
 
   private List<Movie> loadMovies() {
-    List<Movie> movies = FileUtilities.readObject(getMoviesFile());
-    if (movies == null) {
-      return Collections.emptyList();
-    }
-    return movies;
+    return FileUtilities.<List<Movie>>readObject(getMoviesFile(), Collections.EMPTY_LIST);
   }
 
 

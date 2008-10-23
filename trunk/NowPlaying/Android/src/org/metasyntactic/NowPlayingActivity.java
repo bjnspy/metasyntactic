@@ -25,6 +25,8 @@ import org.metasyntactic.views.AllTheatersView;
 import org.metasyntactic.views.UpcomingMoviesView;
 
 public class NowPlayingActivity extends Activity {
+	public static NowPlayingActivity instance;
+	
   private NowPlayingControllerWrapper controller;
   private AllMoviesView allMoviesView;
   private AllTheatersView allTheatersView;
@@ -68,6 +70,10 @@ public class NowPlayingActivity extends Activity {
     return (TabHost) findViewById(R.id.tab_host);
   }
 
+  
+  public NowPlayingActivity() {
+  	instance = this;
+  }
 
   /** Called when the activity is first created. */
   @Override

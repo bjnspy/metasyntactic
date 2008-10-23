@@ -68,7 +68,7 @@ public class NetworkUtilities {
   	if (bytes == null) {
   		return null;
   	}
- 
+
     try {
       Charset utfCharset = Charset.forName(charset);
       CharsetDecoder decoder = utfCharset.newDecoder();
@@ -95,10 +95,15 @@ public class NetworkUtilities {
 
 
   public static byte[] download(String url, boolean important) {
+    if (StringUtilities.isNullOrEmpty(url)) {
+      return null;
+    }
+
     try {
       return download(new URL(url), important);
     } catch (MalformedURLException e) {
-      throw new RuntimeException(e);
+    	ExceptionUtilities.log(NetworkUtilities.class, "download", e);
+    	return null;
     }
   }
 
@@ -127,6 +132,8 @@ public class NetworkUtilities {
 
       bufferedOut.flush();
       out.flush();
+      out.close();
+      in.close();
 
       return out.toByteArray();
     } catch (IOException e) {
