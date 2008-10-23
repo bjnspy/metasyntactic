@@ -37,7 +37,7 @@ import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
-  private final static String version = "10";
+  private final static String version = "12";
   private final static String VERSION_KEY = "version";
   private final static String USER_LOCATION_KEY = "userLocation";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -225,12 +225,12 @@ public class NowPlayingModel {
   }
 
 
-  public int getUpcomingMovieSelectedSortIndex() {
+  public int getUpcomingMoviesSelectedSortIndex() {
     return preferences.getInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, 0);
   }
 
 
-  public void setUpcomingMovieSelectedSortIndex(int index) {
+  public void setUpcomingMoviesSelectedSortIndex(int index) {
     SharedPreferences.Editor editor = preferences.edit();
     editor.putInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, index);
     editor.commit();
@@ -278,12 +278,12 @@ public class NowPlayingModel {
   }
 
 
-  private Score getMovieScore(Movie movie) {
-    return scoreCache.getScore(getMovies(), movie);
+  public List<String> getTrailers(Movie movie) {
+    return trailerCache.getTrailers(movie);
   }
 
 
-  public List<String> getTrailers(Movie movie) {
-    return trailerCache.getTrailers(movie);
+  public Score getScore(Movie movie) {
+    return scoreCache.getScore(getMovies(), movie);
   }
 }

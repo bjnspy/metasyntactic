@@ -15,6 +15,7 @@
 package org.metasyntactic;
 
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.caches.scores.ScoreType;
 
@@ -43,5 +44,7 @@ interface INowPlayingController {
   List<String> getTrailers(in Movie movie);
 
   ScoreType getScoreType();
-  void setScoreProvider(in ScoreType scoreType);
+  void setScoreType(in ScoreType scoreType);
+
+  Score getScore(in Movie movie);
 }
