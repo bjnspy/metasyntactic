@@ -397,7 +397,7 @@ public class DataProvider {
       FileUtilities.writeObject(result.theaters, getTheatersFile());
       FileUtilities.writeObject(result.synchronizationData, getSynchronizationFile());
 
-      File tempFolder = new File(Application.tempDirectory.getAbsolutePath());
+      File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());
       for (String theaterName : result.performances.keySet()) {
         Map<String, List<Performance>> value = result.performances.get(theaterName);
         FileUtilities.writeObject(value, getPerformancesFile(tempFolder, theaterName));
