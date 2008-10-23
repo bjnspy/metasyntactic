@@ -1,16 +1,20 @@
 package org.metasyntactic.caches.posters;
 
-import org.joda.time.DateTime;
+import static org.metasyntactic.utilities.XmlUtilities.children;
+import static org.metasyntactic.utilities.XmlUtilities.element;
+import static org.metasyntactic.utilities.XmlUtilities.text;
+
+import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
 import org.metasyntactic.utilities.XmlUtilities;
-import static org.metasyntactic.utilities.XmlUtilities.*;
 import org.metasyntactic.utilities.difference.EditDistance;
 import org.w3c.dom.Element;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FandangoPosterDownloader {
@@ -48,9 +52,13 @@ public class FandangoPosterDownloader {
 			return;
 		}
 
-		DateTime now = new DateTime();
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+
 		String url = "http://metaboxoffice2.appspot.com/LookupTheaterListings?q=" + trimPostalCode(postalCode) + "&date="
-				+ now.getYear() + "-" + now.getMonthOfYear() + "-" + now.getDayOfMonth() + "" + "&provider=Fandango";
+				+ calendar.get(Calendar.YEAR) + "-" 
+				+ calendar.get(Calendar.MONTH) + "-"
+				+ calendar.get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
 
 		Element element = NetworkUtilities.downloadXml(url, false);
 

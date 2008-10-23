@@ -16,9 +16,6 @@ package org.metasyntactic;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormatter;
-import org.joda.time.format.ISODateTimeFormat;
 import org.metasyntactic.caches.TrailerCache;
 import org.metasyntactic.caches.UpcomingCache;
 import org.metasyntactic.caches.UserLocationCache;
@@ -32,12 +29,15 @@ import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
 import org.metasyntactic.utilities.DateUtilities;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
-  private final static String version = "6";
+  private final static String version = "8";
   private final static String VERSION_KEY = "version";
   private final static String USER_LOCATION_KEY = "userLocation";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -152,15 +152,20 @@ public class NowPlayingModel {
   }
 
 
-  public DateTime getSearchDate() {
+  public Date getSearchDate() {
     String value = preferences.getString(SEARCH_DATE_KEY, "");
     if ("".equals(value)) {
       return DateUtilities.getToday();
     }
 
-    DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
-    DateTime result = formatter.parseDateTime(value);
-    if (result.isBefore(new DateTime())) {
+    SimpleDateFormat format = new SimpleDateFormat();
+    Date result = null;
+    try {
+      result = format.parse(value);
+    } catch (ParseException e) {
+      throw new RuntimeException(e);
+    }
+    if (result.before(new Date())) {
       result = DateUtilities.getToday();
       setSearchDate(result);
     }
@@ -169,9 +174,9 @@ public class NowPlayingModel {
   }
 
 
-  public void setSearchDate(DateTime searchDate) {
-    DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
-    String result = formatter.print(searchDate);
+  public void setSearchDate(Date searchDate) {
+    SimpleDateFormat format = new SimpleDateFormat();
+    String result = format.format(searchDate);
 
     SharedPreferences.Editor editor = preferences.edit();
     editor.putString(SEARCH_DATE_KEY, result);

@@ -14,22 +14,24 @@
 
 package org.metasyntactic.caches.scores;
 
-import com.google.protobuf.InvalidProtocolBufferException;
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.metasyntactic.data.Location;
-import org.metasyntactic.data.Score;
-import org.metasyntactic.protobuf.NowPlaying;
-import org.metasyntactic.utilities.ExceptionUtilities;
-import org.metasyntactic.utilities.NetworkUtilities;
-import org.metasyntactic.utilities.StringUtilities;
-import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
-
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
+
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+
+import org.metasyntactic.data.Location;
+import org.metasyntactic.data.Score;
+import org.metasyntactic.protobuf.NowPlaying;
+import org.metasyntactic.time.Days;
+import org.metasyntactic.utilities.ExceptionUtilities;
+import org.metasyntactic.utilities.NetworkUtilities;
+import org.metasyntactic.utilities.StringUtilities;
+
+import com.google.protobuf.InvalidProtocolBufferException;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class GoogleScoreProvider extends AbstractScoreProvider {
@@ -55,7 +57,7 @@ public class GoogleScoreProvider extends AbstractScoreProvider {
     String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
 
     //Debug.startMethodTracing("getUrlDaysBetween", 1 << 24);
-    int days = Days.daysBetween(new DateTime(), getModel().getSearchDate()).getDays();
+    int days = Days.daysBetween(new Date(), getModel().getSearchDate());
     //Debug.stopMethodTracing();
     days = min(max(days, 0), 7);
 

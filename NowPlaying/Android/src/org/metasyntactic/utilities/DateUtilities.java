@@ -14,20 +14,32 @@
 
 package org.metasyntactic.utilities;
 
-import org.joda.time.DateTime;
+import java.util.Calendar;
+import java.util.Date;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class DateUtilities {
-  private static DateTime today;
+  private static Date today;
 
 
   static {
-    DateTime dt = new DateTime();
-    today = new DateTime(dt.getYear(), dt.getMonthOfYear(), dt.getDayOfMonth(), 12, 0, 0, 0);
+    Date dt = new Date();
+    Calendar c1 = Calendar.getInstance();
+    c1.setTime(dt);
+    
+    Calendar c2 = Calendar.getInstance();
+    c2.clear();
+    
+    c2.set(Calendar.YEAR, c1.get(Calendar.YEAR));
+    c2.set(Calendar.MONTH, c1.get(Calendar.MONTH));
+    c2.set(Calendar.DAY_OF_MONTH, c1.get(Calendar.DAY_OF_MONTH));
+    c2.set(Calendar.HOUR_OF_DAY, 12);
+
+    today = c2.getTime();
   }
 
 
-  public static DateTime getToday() {
+  public static Date getToday() {
     return today;
   }
 

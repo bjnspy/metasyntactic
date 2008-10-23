@@ -14,12 +14,12 @@
 
 package org.metasyntactic.utilities;
 
-import org.joda.time.DateTime;
-import org.joda.time.Days;
 import org.metasyntactic.Application;
-import org.metasyntactic.Constants;
+import org.metasyntactic.time.Days;
+import org.metasyntactic.time.Hours;
 
 import java.io.*;
+import java.util.Date;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FileUtilities {
@@ -130,17 +130,17 @@ public class FileUtilities {
       return false;
     }
 
-    DateTime now = new DateTime();
-    DateTime lastDate = new DateTime(file.lastModified());
+    Date now = new Date();
+    Date lastDate = new Date(file.lastModified());
 
-    int days = Days.daysBetween(now, lastDate).getDays();
+    int days = Days.daysBetween(now, lastDate);
     //Debug.stopMethodTracing();
 
     if (days > 0) {
       return false;
     }
 
-    long hours = (now.getMillis() - lastDate.getMillis()) / Constants.ONE_HOUR;
+    long hours = Hours.hoursBetween(now, lastDate);
     if (hours > 12) {
       return false;
     }
