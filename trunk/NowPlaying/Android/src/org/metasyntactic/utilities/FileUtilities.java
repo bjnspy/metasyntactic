@@ -43,12 +43,6 @@ public class FileUtilities {
     return result.toString();
   }
 
-/*
-  public static void writeObject(Object o, String fileName) {
-    writeObject(o, new File(fileName));
-  }
-*/
-
 
   public static void writeObject(Object o, File file) {
     try {
@@ -85,17 +79,6 @@ public class FileUtilities {
     }
   }
 
-/*
-  public static <T> T readObject(String fileName) {
-    return (T) readObject(fileName, null);
-  }
-
-
-  public static <T> T readObject(String fileName, T default_) {
-    return readObject(new File(fileName), default_);
-  }
-*/
-
 
   public static <T> T readObject(File file) {
     return readObject(file, null);
@@ -129,7 +112,7 @@ public class FileUtilities {
         return null;
       }
 
-      byte[] bytes = new byte[(int)file.length()];
+      byte[] bytes = new byte[(int) file.length()];
       FileInputStream in = new FileInputStream(file);
       in.read(bytes);
       in.close();

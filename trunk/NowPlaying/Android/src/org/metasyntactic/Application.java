@@ -157,6 +157,7 @@ public class Application {
     Application.context = context;
   }
 
+
   public static File createTempFile() {
     try {
       return File.createTempFile("NPTF", null, tempDirectory);
