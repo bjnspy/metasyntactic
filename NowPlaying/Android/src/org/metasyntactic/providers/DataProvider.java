@@ -267,7 +267,8 @@ public class DataProvider {
       // stored (but warn the user).
 
       File performancesFile = getPerformancesFile(name);
-      Map<String, List<Performance>> oldPerformances = FileUtilities.readObject(performancesFile);
+      Map<String, List<Performance>> oldPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader,
+          performancesFile);
 
       if (!oldPerformances.isEmpty()) {
         movieToShowtimesMap = oldPerformances;
@@ -352,7 +353,7 @@ public class DataProvider {
 
 
   private void setLastLookupDate() {
-    FileUtilities.writeObject("", getLastLookupDateFile());
+    FileUtilities.writeString("", getLastLookupDateFile());
   }
 
 
@@ -362,7 +363,11 @@ public class DataProvider {
 
 
   private List<Movie> loadMovies() {
-    return FileUtilities.<List<Movie>>readObject(getMoviesFile(), Collections.EMPTY_LIST);
+    List<Movie> result = FileUtilities.readPersistableList(Movie.reader, getMoviesFile());
+    if (result == null) {
+      return Collections.emptyList();
+    }
+    return result;
   }
 
 
@@ -376,7 +381,7 @@ public class DataProvider {
 
 
   private Map<String, Date> loadSynchronizationData() {
-    Map<String, Date> result = FileUtilities.readObject(getSynchronizationFile());
+    Map<String, Date> result = FileUtilities.readStringToDateMap(getSynchronizationFile());
     if (result == null) {
       return Collections.emptyMap();
     }
@@ -403,16 +408,16 @@ public class DataProvider {
 
 
   private void saveResult(LookupResult result) {
-    FileUtilities.writeObject(result.movies, getMoviesFile());
-    FileUtilities.writeObject(result.theaters, getTheatersFile());
-    FileUtilities.writeObject(result.synchronizationData, getSynchronizationFile());
-
+    FileUtilities.writePersistableCollection(result.movies, getMoviesFile());;
+    FileUtilities.writePersistableCollection(result.theaters, getTheatersFile());;
+    FileUtilities.writeStringToDateMap(result.synchronizationData, getSynchronizationFile());
+    
     File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());
     tempFolder.mkdirs();
 
     for (String theaterName : result.performances.keySet()) {
       Map<String, List<Performance>> value = result.performances.get(theaterName);
-      FileUtilities.writeObject(value, getPerformancesFile(tempFolder, theaterName));
+      FileUtilities.writeStringToListOfPersistables(value, getPerformancesFile(tempFolder, theaterName));
     }
 
     Application.deleteDirectory(Application.performancesDirectory);
@@ -424,7 +429,8 @@ public class DataProvider {
   Map<String, List<Performance>> lookupTheaterPerformances(Theater theater) {
     Map<String, List<Performance>> theaterPerformances = performances.get(theater.getName());
     if (theaterPerformances == null) {
-      theaterPerformances = FileUtilities.readObject(getPerformancesFile(theater.getName()));
+      theaterPerformances = FileUtilities.readStringToListOfPersistables(Performance.reader,
+          getPerformancesFile(theater.getName()));
       performances.put(theater.getName(), theaterPerformances);
     }
     return theaterPerformances;
@@ -444,7 +450,7 @@ public class DataProvider {
 
 
   private List<Theater> loadTheaters() {
-    List<Theater> result = FileUtilities.readObject(getTheatersFile());
+    List<Theater> result = FileUtilities.readPersistableList(Theater.reader, getTheatersFile());
     if (result == null) {
       return Collections.emptyList();
     }

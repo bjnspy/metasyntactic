@@ -51,8 +51,11 @@ public class UpcomingCache {
 
 	private String getHash() {
 		if (hash == null) {
-			hash = FileUtilities.readObject(hashFile(), "");
-		}
+			hash = FileUtilities.readString(hashFile());
+      if (hash == null) {
+        hash = "";
+      }
+    }
 
 		return hash;
 	}
@@ -60,8 +63,11 @@ public class UpcomingCache {
 
 	private List<Movie> getMovies() {
 		if (movies == null) {
-			movies = FileUtilities.<List<Movie>> readObject(moviesFile(), Collections.EMPTY_LIST);
-		}
+			movies = FileUtilities.readPersistableList(Movie.reader, moviesFile());
+      if (movies == null) {
+        movies = Collections.emptyList();
+      }
+    }
 
 		return movies;
 	}
@@ -69,8 +75,11 @@ public class UpcomingCache {
 
 	private Map<String, String> getStudioKeys() {
 		if (studioKeys == null) {
-			studioKeys = FileUtilities.<Map<String, String>> readObject(studiosFile(), Collections.EMPTY_MAP);
-		}
+			studioKeys = FileUtilities.readStringToStringMap(studiosFile());
+      if (studioKeys == null) {
+        studioKeys = Collections.emptyMap();
+      }
+    }
 
 		return studioKeys;
 	}
@@ -78,7 +87,10 @@ public class UpcomingCache {
 
 	private Map<String, String> getTitleKeys() {
 		if (titleKeys == null) {
-			titleKeys = FileUtilities.<Map<String, String>> readObject(titlesFile(), Collections.EMPTY_MAP);
+			titleKeys = FileUtilities.readStringToStringMap(titlesFile());
+      if (titleKeys == null) {
+        titleKeys = Collections.emptyMap();
+      }
 		}
 
 		return titleKeys;
@@ -177,10 +189,10 @@ public class UpcomingCache {
 
 	private void saveResults(String serverHash, List<Movie> movies, Map<String, String> studios,
 			Map<String, String> titles) {
-		FileUtilities.writeObject(serverHash, hashFile());
-		FileUtilities.writeObject(movies, moviesFile());
-		FileUtilities.writeObject(studios, studiosFile());
-		FileUtilities.writeObject(titles, titlesFile());
+		FileUtilities.writeString(serverHash, hashFile());
+		FileUtilities.writePersistableCollection(movies, moviesFile());
+		FileUtilities.writeStringToStringMap(studios, studiosFile());
+		FileUtilities.writeStringToStringMap(titles, titlesFile());
 	}
 
 
@@ -294,7 +306,7 @@ public class UpcomingCache {
 			return;
 		}
 
-		FileUtilities.writeObject(Arrays.asList(trailers), file);
+		FileUtilities.writeStringCollection(Arrays.asList(trailers), file);
 
 		Application.refresh();
 	}
@@ -315,7 +327,7 @@ public class UpcomingCache {
 			return;
 		}
 
-		FileUtilities.writeObject(synopsis, file);
+		FileUtilities.writeString(synopsis, file);
 
 		Application.refresh();
 	}
@@ -355,7 +367,7 @@ public class UpcomingCache {
 			return;
 		}
 
-		FileUtilities.writeObject(imdbAddress, file);
+		FileUtilities.writeString(imdbAddress, file);
 
 		Application.refresh();
 	}

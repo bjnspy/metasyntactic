@@ -16,17 +16,18 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.io.AbstractPersistable;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.nonNullString;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class Theater implements Parcelable, Serializable {
+public class Theater implements Parcelable, Persistable {
   private String identifier;
   private String name;
   private String address;
@@ -37,35 +38,30 @@ public class Theater implements Parcelable, Serializable {
   private Set<String> movieTitles;
 
 
-  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
-    objectOutput.writeUTF(identifier);
-    objectOutput.writeUTF(name);
-    objectOutput.writeUTF(address);
-    objectOutput.writeUTF(phoneNumber);
-    objectOutput.writeObject(location);
-    objectOutput.writeObject(originatingLocation);
-
-    objectOutput.writeInt(movieTitles.size());
-    for (String string : movieTitles) {
-      objectOutput.writeUTF(string);
-    }
+  public void persistTo(PersistableOutputStream out) throws IOException {
+    out.writeUTF(identifier);
+    out.writeUTF(name);
+    out.writeUTF(address);
+    out.writeUTF(phoneNumber);
+    out.writePersistable(location);
+    out.writePersistable(originatingLocation);
+    out.writeStringCollection(movieTitles);
   }
 
 
-  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
-    identifier = objectInput.readUTF();
-    name = objectInput.readUTF();
-    address = objectInput.readUTF();
-    phoneNumber = objectInput.readUTF();
-    location = (Location) objectInput.readObject();
-    originatingLocation = (Location) objectInput.readObject();
+  public static final Reader<Theater> reader = new AbstractPersistable.AbstractReader<Theater>() {
+    public Theater read(PersistableInputStream in) throws IOException {
+      String identifier = in.readUTF();
+      String name = in.readUTF();
+      String address = in.readUTF();
+      String phoneNumber = in.readUTF();
+      Location location = in.readPersistable(Location.reader);
+      Location originatingLocation = in.readPersistable(Location.reader);
+      Set<String> movieTitles = in.readStringSet();
 
-    movieTitles = new HashSet<String>();
-    int size = objectInput.readInt();
-    for (int i = 0; i < size; i++) {
-      movieTitles.add(objectInput.readUTF());
+      return new Theater(identifier, name, address, phoneNumber, location, originatingLocation, movieTitles);
     }
-  }
+  };
 
 
   public Theater(String identifier, String name, String address, String phoneNumber, Location location,

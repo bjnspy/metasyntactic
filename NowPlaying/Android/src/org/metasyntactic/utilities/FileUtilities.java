@@ -15,11 +15,14 @@
 package org.metasyntactic.utilities;
 
 import org.metasyntactic.Application;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.time.Days;
 import org.metasyntactic.time.Hours;
 
 import java.io.*;
-import java.util.Date;
+import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FileUtilities {
@@ -37,25 +40,337 @@ public class FileUtilities {
           c == ' ' || c == '-' || c == '.') {
         result.append(c);
       } else {
-        result.append("-" + (int) c + "-");
+        result.append('-');
+        result.append((int) c);
+        result.append('-');
       }
     }
     return result.toString();
   }
 
-
-  public static void writeObject(Object o, File file) {
+/*
+  private static Object readObject(File file) {
     try {
-      ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
-      ObjectOutputStream out = new ObjectOutputStream(byteOut);
+      byte[] bytes = readBytes(file);
+      ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
+      return in.readObject();
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    } catch (ClassNotFoundException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  private static void writeObject(Object o, File file) {
+    try {
+      ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
+      ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream(file));
       out.writeObject(o);
       out.flush();
       out.close();
 
       writeBytes(byteOut.toByteArray(), file);
     } catch (IOException e) {
-      ExceptionUtilities.log(FileUtilities.class, "writeObject", e);
       throw new RuntimeException(e);
+    }
+  }
+  */
+
+
+  public static Map<String, Date> readStringToDateMap(File file) {
+    if (!file.exists()) {
+      return null;
+    }
+
+    try {
+      PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+      Map<String, Date> result = new HashMap<String, Date>();
+
+      int size = in.readInt();
+      for (int i = 0; i < size; i++) {
+        String key = in.readUTF();
+        Date value = in.readDate();
+
+        result.put(key, value);
+      }
+
+      in.close();
+      return result;
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static void writeStringToDateMap(Map<String, Date> map, File file) {
+    try {
+      ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
+      PersistableOutputStream out = new PersistableOutputStream(byteOut);
+
+      out.writeInt(map.size());
+      for (Map.Entry<String, Date> e : map.entrySet()) {
+        out.writeUTF(e.getKey());
+        out.writeDate(e.getValue());
+      }
+
+      out.flush();
+      out.close();
+
+      writeBytes(byteOut.toByteArray(), file);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static Map<String, String> readStringToStringMap(File file) {
+    if (!file.exists()) {
+      return null;
+    }
+
+    try {
+      ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+      Map<String, String> result = new HashMap<String, String>();
+
+      int size = in.readInt();
+      for (int i = 0; i < size; i++) {
+        String key = in.readUTF();
+        String value = in.readUTF();
+
+        result.put(key, value);
+      }
+
+      in.close();
+      return result;
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static void writeStringToStringMap(Map<String, String> map, File file) {
+    try {
+      ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
+      ObjectOutputStream out = new ObjectOutputStream(byteOut);
+
+      out.writeInt(map.size());
+      for (Map.Entry<String, String> e : map.entrySet()) {
+        out.writeUTF(e.getKey());
+        out.writeUTF(e.getValue());
+      }
+
+      out.flush();
+      out.close();
+
+      writeBytes(byteOut.toByteArray(), file);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static <T extends Persistable> Map<String, T> readStringToPersistableMap(Persistable.Reader<T> reader,
+                                                                                  File file) {
+    try {
+      PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+      int size = in.readInt();
+
+      Map<String, T> result = new HashMap<String, T>(size);
+      for (int i = 0; i < size; i++) {
+        String key = in.readUTF();
+        T value = in.readPersistable(reader);
+
+        result.put(key, value);
+      }
+
+      in.close();
+
+      return result;
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static <T extends Persistable> void writeStringToPersistableMap(Map<String, T> map, File file) {
+    try {
+      ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
+      PersistableOutputStream out = new PersistableOutputStream(byteOut);
+
+      out.writeInt(map.size());
+      for (Map.Entry<String, T> e : map.entrySet()) {
+        out.writeUTF(e.getKey());
+        out.writePersistable(e.getValue());
+      }
+
+      out.flush();
+      out.close();
+
+      writeBytes(byteOut.toByteArray(), file);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static List<String> readStringList(File file) {
+    if (!file.exists()) {
+      return null;
+    }
+
+    try {
+      PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+      List<String> result = in.readStringList();
+
+      in.close();
+      return result;
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "readPersistable", e);
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static void writeStringCollection(Collection<String> collection, File file) {
+    try {
+      ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
+      PersistableOutputStream out = new PersistableOutputStream(byteOut);
+      out.writeStringCollection(collection);
+
+      out.flush();
+      out.close();
+
+      writeBytes(byteOut.toByteArray(), file);
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "readPersistable", e);
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static String readString(File file) {
+    if (!file.exists()) {
+      return null;
+    }
+    
+    try {
+      return new String(readBytes(file), "UTF-8");
+    } catch (UnsupportedEncodingException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static void writeString(String s, File file) {
+    try {
+      writeBytes(s.getBytes("UTF-8"), file);
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "writeString", e);
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static <T extends Persistable> T readPersistable(Persistable.Reader<T> reader, File file) {
+    if (!file.exists()) {
+      return null;
+    }
+
+    try {
+      PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+      T result = in.readPersistable(reader);
+
+      in.close();
+      return result;
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "readPersistable", e);
+      return null;
+    }
+  }
+
+
+  public static void writePersistable(Persistable p, File file) {
+    try {
+      ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+      PersistableOutputStream out = new PersistableOutputStream(byteOut);
+      out.writePersistable(p);
+
+      out.flush();
+      out.close();
+
+      writeBytes(byteOut.toByteArray(), file);
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "writePersistable", e);
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static <T extends Persistable> List<T> readPersistableList(Persistable.Reader<T> reader, File file) {
+    if (!file.exists()) {
+      return null;
+    }
+
+    try {
+      PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+      List<T> result = reader.readList(in);
+
+      in.close();
+      return result;
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "readPersistableList", e);
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static <T extends Persistable> void writePersistableCollection(Collection<T> collection, File file) {
+    try {
+      ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
+      PersistableOutputStream out = new PersistableOutputStream(byteOut);
+      out.writeInt(collection.size());
+      for (T t : collection) {
+        out.writePersistable(t);
+      }
+
+      out.flush();
+      out.close();
+
+      writeBytes(byteOut.toByteArray(), file);
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "writePersistableCollection", e);
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static byte[] readBytes(File file) {
+    try {
+      if (!file.exists()) {
+        return null;
+      }
+
+      int length = (int) file.length();
+
+      byte[] bytes = new byte[length];
+      FileInputStream in = new FileInputStream(file);
+
+      int start = 0;
+      while (true) {
+        int read = in.read(bytes, start, length - start);
+        if (read + start == length) {
+          break;
+        }
+
+        start += read;
+      }
+      in.close();
+
+      return bytes;
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "readBytes", e);
+      return null;
     }
   }
 
@@ -69,58 +384,14 @@ public class FileUtilities {
       File tempFile = Application.createTempFile();
       BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile), 1 << 13);
       out.write(data);
+
       out.flush();
       out.close();
 
       tempFile.renameTo(file);
     } catch (IOException e) {
-      ExceptionUtilities.log(FileUtilities.class, "writeObject", e);
+      ExceptionUtilities.log(FileUtilities.class, "writeBytes", e);
       throw new RuntimeException(e);
-    }
-  }
-
-
-  public static <T> T readObject(File file) {
-    return readObject(file, null);
-  }
-
-
-  public static <T> T readObject(File file, T default_) {
-    try {
-      byte[] bytes = readBytes(file);
-      if (bytes == null) {
-        return default_;
-      }
-
-      ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
-      T result = (T) in.readObject();
-      in.close();
-      return result;
-    } catch (IOException e) {
-      ExceptionUtilities.log(FileUtilities.class, "readObject", e);
-      return default_;
-    } catch (ClassNotFoundException e) {
-      ExceptionUtilities.log(FileUtilities.class, "readObject", e);
-      throw new RuntimeException(e);
-    }
-  }
-
-
-  public static byte[] readBytes(File file) {
-    try {
-      if (!file.exists()) {
-        return null;
-      }
-
-      byte[] bytes = new byte[(int) file.length()];
-      FileInputStream in = new FileInputStream(file);
-      in.read(bytes);
-      in.close();
-
-      return bytes;
-    } catch (IOException e) {
-      ExceptionUtilities.log(FileUtilities.class, "readObject", e);
-      return null;
     }
   }
 
@@ -146,5 +417,48 @@ public class FileUtilities {
     }
 
     return true;
+  }
+
+
+  public static <T extends Persistable> Map<String, List<T>> readStringToListOfPersistables(
+      Persistable.Reader<T> reader, File file) {
+    try {
+      PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
+      int size = in.readInt();
+
+      Map<String,List<T>> result = new HashMap<String, List<T>>(size);
+      for (int i = 0; i < size; i++) {
+        String key = in.readUTF();
+        List<T> value = reader.readList(in);
+        result.put(key, value);
+      }
+
+      in.close();
+      return result;
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+
+  public static <T extends Persistable> void writeStringToListOfPersistables(
+      Map<String, List<T>> map, File file) {
+    try {
+      ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
+      PersistableOutputStream out = new PersistableOutputStream(byteOut);
+
+      out.writeInt(map.size());
+      for (Map.Entry<String, List<T>> e : map.entrySet()) {
+        out.writeUTF(e.getKey());
+        out.writePersistableCollection(e.getValue());
+      }
+
+      out.flush();
+      out.close();
+
+      writeBytes(byteOut.toByteArray(), file);
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    }
   }
 }

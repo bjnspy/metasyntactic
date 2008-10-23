@@ -93,7 +93,7 @@ public class IMDbCache {
       String imdbAddress = NetworkUtilities.downloadString(url, false);
 
       if (!StringUtilities.isNullOrEmpty(imdbAddress)) {
-        FileUtilities.writeObject(imdbAddress, movieFilePath(movie));
+        FileUtilities.writeString(imdbAddress, movieFilePath(movie));
         Application.refresh();
       }
     }
@@ -101,6 +101,6 @@ public class IMDbCache {
 
 
   public String imdbAddressForMovie(Movie movie) {
-    return FileUtilities.readObject(movieFilePath(movie));
+    return FileUtilities.readString(movieFilePath(movie));
   }
 }

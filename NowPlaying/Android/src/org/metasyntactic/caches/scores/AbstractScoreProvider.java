@@ -64,7 +64,8 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
 
   private Map<String, Score> loadScores() {
-    Map<String, Score> result = FileUtilities.readObject(ratingsFile());
+    Map<String, Score> result =
+    	FileUtilities.readStringToPersistableMap(Score.reader, ratingsFile());
     if (result == null) {
       result = Collections.emptyMap();
     }
@@ -73,7 +74,11 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
 
   private String loadHash() {
-    return FileUtilities.readObject(hashFile(), "");
+    String string = FileUtilities.readString(hashFile());
+    if (string == null) {
+    	return "";
+    }
+    return string;
   }
 
 
@@ -130,8 +135,8 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
 
 
   private void saveResult(String serverHash, Map<String, Score> result) {
-    FileUtilities.writeObject(result, ratingsFile());
-    FileUtilities.writeObject(serverHash, hashFile());
+    FileUtilities.writeStringToPersistableMap(result, ratingsFile());
+    FileUtilities.writeString(serverHash, hashFile());
   }
 
 

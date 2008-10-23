@@ -177,7 +177,7 @@ public class UserLocationCache {
 
   private Location loadLocation(String address) {
     if (!StringUtilities.isNullOrEmpty(address)) {
-      return FileUtilities.readObject(locationFile(address));
+      return FileUtilities.readPersistable(Location.reader, locationFile(address));
     }
 
     return null;
@@ -194,6 +194,6 @@ public class UserLocationCache {
       return;
     }
 
-    FileUtilities.writeObject(location, locationFile(address));
+    FileUtilities.writePersistable(location, locationFile(address));
   }
 }

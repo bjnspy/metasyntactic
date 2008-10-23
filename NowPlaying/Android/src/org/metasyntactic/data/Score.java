@@ -16,14 +16,15 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.io.AbstractPersistable;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class Score implements Parcelable, Serializable {
+public class Score implements Parcelable, Persistable {
   private String canonicalTitle;
   private String synopsis;
   private String value;
@@ -31,22 +32,26 @@ public class Score implements Parcelable, Serializable {
   private String identifier;
 
 
-  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
-    objectOutput.writeUTF(canonicalTitle);
-    objectOutput.writeUTF(synopsis);
-    objectOutput.writeUTF(value);
-    objectOutput.writeUTF(provider);
-    objectOutput.writeUTF(identifier);
+  public void persistTo(PersistableOutputStream out) throws IOException {
+    out.writeUTF(canonicalTitle);
+    out.writeUTF(synopsis);
+    out.writeUTF(value);
+    out.writeUTF(provider);
+    out.writeUTF(identifier);
   }
 
 
-  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
-    canonicalTitle = objectInput.readUTF();
-    synopsis = objectInput.readUTF();
-    value = objectInput.readUTF();
-    provider = objectInput.readUTF();
-    identifier = objectInput.readUTF();
-  }
+  public static final Reader<Score> reader = new AbstractPersistable.AbstractReader<Score>() {
+    public Score read(PersistableInputStream in) throws IOException {
+      String canonicalTitle = in.readUTF();
+      String synopsis = in.readUTF();
+      String value = in.readUTF();
+      String provider = in.readUTF();
+      String identifier = in.readUTF();
+
+      return new Score(canonicalTitle, synopsis, value, provider, identifier);
+    }
+  };
 
 
   private Score(String canonicalTitle, String synopsis, String value, String provider, String identifier,
@@ -120,4 +125,5 @@ public class Score implements Parcelable, Serializable {
           return new Score[size];
         }
       };
+
 }
