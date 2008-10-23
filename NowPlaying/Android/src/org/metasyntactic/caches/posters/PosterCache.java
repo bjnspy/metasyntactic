@@ -83,6 +83,7 @@ public class PosterCache {
     byte[] bytes = downloadPosterWorker(movie, postalCode);
     if (bytes != null) {
       FileUtilities.writeBytes(bytes, file);
+      Application.refresh();
     }
   }
 
