@@ -16,29 +16,33 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.io.AbstractPersistable;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
 import org.metasyntactic.utilities.StringUtilities;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
-import java.io.Serializable;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class FavoriteTheater implements Parcelable, Serializable {
+public class FavoriteTheater implements Parcelable, Persistable {
   private String name;
   private Location originatingLocation;
 
 
-  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
-    objectOutput.writeUTF(name);
-    objectOutput.writeObject(originatingLocation);
+  public void persistTo(PersistableOutputStream out) throws IOException {
+    out.writeUTF(name);
+    out.writePersistable(originatingLocation);
   }
 
 
-  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
-    name = objectInput.readUTF();
-    originatingLocation = (Location) objectInput.readObject();
-  }
+  public static final Reader<FavoriteTheater> reader = new AbstractPersistable.AbstractReader<FavoriteTheater>() {
+    public FavoriteTheater read(PersistableInputStream in) throws IOException {
+      String name = in.readUTF();
+      Location originatingLocation = in.readPersistable(Location.reader);
+      return new FavoriteTheater(name, originatingLocation);
+    }
+  };
 
 
   public FavoriteTheater(String name, Location originatingLocation) {
