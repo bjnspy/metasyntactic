@@ -159,7 +159,7 @@ public class Application {
 
   public static File createTempFile() {
     try {
-      return File.createTempFile("NP", null, tempDirectory);
+      return File.createTempFile("NPTF", null, tempDirectory);
     } catch (IOException e) {
       throw new RuntimeException(e);
     }
