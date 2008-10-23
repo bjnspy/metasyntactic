@@ -132,10 +132,7 @@ public class DataProvider {
     }
 
     String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
-
-    // Debug.startMethodTracing("lookupLocationDaysBetween", 1 << 24);
     int days = Days.daysBetween(DateUtilities.getToday(), model.getSearchDate());
-    // Debug.stopMethodTracing();
 
     days = min(max(days, 0), 7);
 

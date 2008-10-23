@@ -40,20 +40,24 @@ public class ThreadingUtilities {
   }
 
 
-  public static void performOnBackgroundThread(final Runnable runnable, final Object lock, final boolean visible) {
-    final Object lock2 = lock == null ? new Object() : lock;
+  public static void performOnBackgroundThread(Runnable runnable, Object lock, boolean visible) {
+    performOnBackgroundThreadWorker(runnable, lock == null ? new Object() : lock, visible);
+  }
 
+
+  private static void performOnBackgroundThreadWorker(final Runnable runnable, final Object lock,
+                                                      final boolean visible) {
     Thread t = new HandlerThread("") {
       @Override
       public void run() {
         Looper.prepare();
-        synchronized (lock2) {
+        synchronized (lock) {
           try {
             GlobalActivityIndicator.addBackgroundTask(visible);
             try {
-            	runnable.run();
+              runnable.run();
             } catch (RuntimeException e) {
-            	throw e;
+              throw e;
             }
           } finally {
             GlobalActivityIndicator.removeBackgroundTask(visible);

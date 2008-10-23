@@ -18,218 +18,137 @@ import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
 import android.os.RemoteException;
+import org.metasyntactic.caches.scores.ScoreType;
 import org.metasyntactic.data.Movie;
+import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.threading.ThreadingUtilities;
-import org.metasyntactic.caches.scores.ScoreType;
 
 import java.util.List;
 
 public class NowPlayingControllerService extends Service {
-  {
-    Application.setContext(this);
-  }
+	{
+		Application.setContext(this);
+	}
+
+	private final NowPlayingModel model = new NowPlayingModel(this);
+	private final Object lock = new Object();
 
 
-  private final NowPlayingModel model = new NowPlayingModel(this);
-  private final Object lock = new Object();
+	@Override
+	public void onCreate() {
+		super.onCreate();
+
+		update();
+	}
 
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
+	private void update() {
+		Runnable runnable = new Runnable() {
+			public void run() {
+				model.update();
+			}
+		};
 
-    update();
-  }
-
-
-  private void update() {
-    Runnable runnable = new Runnable() {
-      public void run() {
-        model.update();
-      }
-    };
-
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, false/*visible*/);
-  }
+		ThreadingUtilities.performOnBackgroundThread(runnable, lock, false/* visible */);
+	}
 
 
-  @Override
-  public IBinder onBind(Intent arg0) {
-    return binder;
-  }
+	@Override
+	public IBinder onBind(Intent arg0) {
+		return binder;
+	}
+
+	private final INowPlayingController.Stub binder = new INowPlayingController.Stub() {
+		public String getUserLocation() throws RemoteException {
+			return model.getUserLocation();
+		}
 
 
-  public String getUserLocation() {
-    return model.getUserLocation();
-  }
+		public void setUserLocation(String userLocation) throws RemoteException {
+			model.setUserLocation(userLocation);
+			update();
+		}
 
 
-  protected List<String> getTrailers(Movie movie) {
-    return model.getTrailers(movie);
-  }
+		public int getSearchDistance() throws RemoteException {
+			return model.getSearchDistance();
+		}
 
 
-  public void setUserLocation(String userLocation) {
-    model.setUserLocation(userLocation);
-    update();
-  }
+		public void setSearchDistance(int searchDistance) throws RemoteException {
+			model.setSearchDistance(searchDistance);
+		}
 
 
-  public int getSearchDistance() {
-    return model.getSearchDistance();
-  }
+		public int getSelectedTabIndex() throws RemoteException {
+			return model.getSelectedTabIndex();
+		}
 
 
-  public void setSearchDistance(int searchDistance) {
-    model.setSearchDistance(searchDistance);
-  }
+		public void setSelectedTabIndex(int index) throws RemoteException {
+			model.setSelectedTabIndex(index);
+		}
 
 
-  public int getSelectedTabIndex() {
-    return model.getSelectedTabIndex();
-  }
+		public int getAllMoviesSelectedSortIndex() throws RemoteException {
+			return model.getAllMoviesSelecetedSortIndex();
+		}
 
 
-  public void setSelectedTabIndex(int index) {
-    model.setSelectedTabIndex(index);
-  }
+		public void setAllMoviesSelectedSortIndex(int index) throws RemoteException {
+			model.setAllMoviesSelectedSortIndex(index);
+		}
 
 
-  public int getAllMoviesSelectedSortIndex() {
-    return model.getAllMoviesSelecetedSortIndex();
-  }
+		public int getAllTheatersSelectedSortIndex() throws RemoteException {
+			return model.getAllTheatersSelectedSortIndex();
+		}
 
 
-  public void setAllMoviesSelectedSortIndex(int index) {
-    model.setAllMoviesSelectedSortIndex(index);
-  }
+		public void setAllTheatersSelectedSortIndex(int index) throws RemoteException {
+			model.setAllTheatersSelectedSortIndex(index);
+		}
 
 
-  public int getAllTheatersSelectedSortIndex() {
-    return model.getAllTheatersSelectedSortIndex();
-  }
+		public int getUpcomingMoviesSelectedSortIndex() throws RemoteException {
+			return model.getUpcomingMoviesSelectedSortIndex();
+		}
 
 
-  public void setAllTheatersSelectedSortIndex(int index) {
-    model.setAllTheatersSelectedSortIndex(index);
-  }
-
-
-  public int getUpcomingMoviesSelectedSortIndex() {
-    return model.getUpcomingMovieSelectedSortIndex();
-  }
-
-
-  public void setUpcomingMoviesSelectedSortIndex(int index) {
-    model.setUpcomingMovieSelectedSortIndex(index);
-  }
-
-
-  public List<Movie> getMovies() {
-    return model.getMovies();
-  }
-
-
-  public List<Theater> getTheaters() {
-    return model.getTheaters();
-  }
-
-
-  private void setScoreType(ScoreType scoreType) {
-    model.setScoreType(scoreType);
-    update();
-  }
-
-
-  private ScoreType getScoreType() {
-    return model.getScoreType();
-  }
-
-
-  private final INowPlayingController.Stub binder = new INowPlayingController.Stub() {
-    public String getUserLocation() throws RemoteException {
-      return NowPlayingControllerService.this.getUserLocation();
+		public void setUpcomingMoviesSelectedSortIndex(int index) throws RemoteException {
+			model.setUpcomingMoviesSelectedSortIndex(index);
     }
 
 
-    public void setUserLocation(String userLocation) throws RemoteException {
-      NowPlayingControllerService.this.setUserLocation(userLocation);
-    }
+		public List<Movie> getMovies() throws RemoteException {
+			return model.getMovies();
+		}
 
 
-    public int getSearchDistance() throws RemoteException {
-      return NowPlayingControllerService.this.getSearchDistance();
-    }
+		public List<Theater> getTheaters() throws RemoteException {
+			return model.getTheaters();
+		}
 
 
-    public void setSearchDistance(int searchDistance) throws RemoteException {
-      NowPlayingControllerService.this.setSearchDistance(searchDistance);
-    }
+		public List<String> getTrailers(Movie movie) throws RemoteException {
+			return model.getTrailers(movie);
+		}
 
 
-    public int getSelectedTabIndex() throws RemoteException {
-      return NowPlayingControllerService.this.getSelectedTabIndex();
-    }
+		public ScoreType getScoreType() throws RemoteException {
+			return model.getScoreType();
+		}
 
 
-    public void setSelectedTabIndex(int index) throws RemoteException {
-      NowPlayingControllerService.this.setSelectedTabIndex(index);
-    }
+		public void setScoreType(ScoreType scoreType) throws RemoteException {
+			model.setScoreType(scoreType);
+			update();
+		}
 
 
-    public int getAllMoviesSelectedSortIndex() throws RemoteException {
-      return NowPlayingControllerService.this.getAllMoviesSelectedSortIndex();
-    }
-
-
-    public void setAllMoviesSelectedSortIndex(int index) throws RemoteException {
-      NowPlayingControllerService.this.setAllMoviesSelectedSortIndex(index);
-    }
-
-
-    public int getAllTheatersSelectedSortIndex() throws RemoteException {
-      return NowPlayingControllerService.this.getAllTheatersSelectedSortIndex();
-    }
-
-
-    public void setAllTheatersSelectedSortIndex(int index) throws RemoteException {
-      NowPlayingControllerService.this.setAllTheatersSelectedSortIndex(index);
-    }
-
-
-    public int getUpcomingMoviesSelectedSortIndex() throws RemoteException {
-      return NowPlayingControllerService.this.getUpcomingMoviesSelectedSortIndex();
-    }
-
-
-    public void setUpcomingMoviesSelectedSortIndex(int index) throws RemoteException {
-      NowPlayingControllerService.this.setUpcomingMoviesSelectedSortIndex(index);
-    }
-
-
-    public List<Movie> getMovies() throws RemoteException {
-      return NowPlayingControllerService.this.getMovies();
-    }
-
-
-    public List<Theater> getTheaters() throws RemoteException {
-      return NowPlayingControllerService.this.getTheaters();
-    }
-
-
-    public List<String> getTrailers(Movie movie) throws RemoteException {
-      return NowPlayingControllerService.this.getTrailers(movie);
-    }
-
-
-    public ScoreType getScoreType() throws RemoteException {
-      return NowPlayingControllerService.this.getScoreType();
-    }
-
-
-    public void setScoreProvider(ScoreType scoreType) throws RemoteException {
-      NowPlayingControllerService.this.setScoreType(scoreType);
-    }
-  };
+		public Score getScore(Movie movie) throws RemoteException {
+			return model.getScore(movie);
+		}
+	};
 }
