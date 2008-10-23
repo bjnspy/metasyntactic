@@ -68,32 +68,59 @@ public class UpcomingCache {
   }
 
 
+  private Map<String, String> getStudioKeys() {
+    if (studioKeys == null) {
+      studioKeys = FileUtilities.<Map<String, String>>readObject(studiosFile(), Collections.EMPTY_MAP);
+    }
+
+    return studioKeys;
+  }
+
+
+  private Map<String, String> getTitleKeys() {
+    if (titleKeys == null) {
+      titleKeys = FileUtilities.<Map<String, String>>readObject(titlesFile(), Collections.EMPTY_MAP);
+    }
+
+    return titleKeys;
+  }
+
+
   public void update() {
-  	final List<Movie> movies = getMovies();
-  	
+    updateDetails();
+    updateIndex();
+  }
+
+
+  private void updateDetails() {
+    final List<Movie> movies = getMovies();
+    final Map<String, String> studioKeys = getStudioKeys();
+    final Map<String, String> titleKeys = getTitleKeys();
+
     Runnable runnable = new Runnable() {
       public void run() {
-        updateBackgroundEntryPoint(movies);
+        updateDetailsBackgroundEntryPoint(movies, studioKeys, titleKeys);
       }
     };
     ThreadingUtilities.performOnBackgroundThread(runnable, lock, true);
   }
 
 
-  private void updateBackgroundEntryPoint(List<Movie> oldMovies) {
-    Map<String, String> studioKeys = new HashMap<String, String>();
-    Map<String, String> titleKeys = new HashMap<String, String>();
-    List<Movie> newMovies = new ArrayList<Movie>();
-
-    updateIndex(newMovies, studioKeys, titleKeys);
-    
-    List<Movie> movies = newMovies.isEmpty() ? oldMovies : newMovies;
-    updateDetails(movies, studioKeys, titleKeys);
+  private void updateIndex() {
+    Runnable runnable = new Runnable() {
+      public void run() {
+        updateIndexBackgroundEntryPoint();
+      }
+    };
+    ThreadingUtilities.performOnBackgroundThread(runnable, lock, true);
   }
 
 
-  private void updateIndex(final List<Movie> movies, final Map<String, String> studioKeys,
-                           final Map<String, String> titleKeys) {
+  private void updateIndexBackgroundEntryPoint() {
+    final Map<String, String> studioKeys = new HashMap<String, String>();
+    final Map<String, String> titleKeys = new HashMap<String, String>();
+    final List<Movie> movies = new ArrayList<Movie>();
+
     File indexFile = hashFile();
     if (indexFile.exists()) {
       long lastModifiedTime = indexFile.lastModified();
@@ -135,12 +162,14 @@ public class UpcomingCache {
   }
 
 
-  private void report(String serverHash, List<Movie> movies, Map<String, String> studioKeys,
-                      Map<String, String> titleKeys) {
+  private void report(String serverHash, final List<Movie> movies, final Map<String, String> studioKeys,
+                      final Map<String, String> titleKeys) {
     this.hash = serverHash;
     this.movies = movies;
     this.studioKeys = studioKeys;
     this.titleKeys = titleKeys;
+
+    updateDetails();
   }
 
 
@@ -191,7 +220,8 @@ public class UpcomingCache {
   }
 
 
-  private void updateDetails(List<Movie> movies, Map<String, String> studioKeys, Map<String, String> titleKeys) {
+  private void updateDetailsBackgroundEntryPoint(List<Movie> movies, Map<String, String> studioKeys,
+                                                 Map<String, String> titleKeys) {
     if (movies.isEmpty()) {
       return;
     }
@@ -248,7 +278,7 @@ public class UpcomingCache {
     String trailersString =
         NetworkUtilities.downloadString(
             "http://metaboxoffice2.appspot.com/LookupTrailerListings?studio=" + studioKey +
-            "&name=" + titleKey, false);
+                "&name=" + titleKey, false);
 
     if (StringUtilities.isNullOrEmpty(trailersString)) {
       return;
