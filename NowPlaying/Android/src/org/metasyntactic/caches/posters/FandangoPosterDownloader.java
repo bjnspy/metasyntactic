@@ -14,85 +14,85 @@ import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FandangoPosterDownloader {
-  private static String lastPostalCode;
-  private static Map<String, String> movieNameToPosterMap;
+	private static String lastPostalCode;
+	private static Map<String, String> movieNameToPosterMap;
 
+	public static byte[] download(Movie movie, String postalCode) {
+		createMovieMap(postalCode);
 
-  public static byte[] download(Movie movie, String postalCode) {
-    createMovieMap(postalCode);
+		if (movieNameToPosterMap == null) {
+			return null;
+		}
 
-    if (movieNameToPosterMap == null) {
-      return null;
-    }
+		String key = EditDistance.findClosestMatch(movie.getCanonicalTitle(), movieNameToPosterMap.keySet());
+		if (key == null) {
+			return null;
+		}
 
-    String key = EditDistance.findClosestMatch(movie.getCanonicalTitle(), movieNameToPosterMap.keySet());
-    if (key == null) {
-      return null;
-    }
+		String posterUrl = movieNameToPosterMap.get(key);
+		int lastSlashIndex = posterUrl.lastIndexOf('/');
+		if (lastSlashIndex > 0) {
+			posterUrl = posterUrl.substring(0, lastSlashIndex) + "/"
+					+ StringUtilities.urlEncode(posterUrl.substring(lastSlashIndex + 1));
+		}
 
-    String posterUrl = movieNameToPosterMap.get(key);
-    return NetworkUtilities.download(posterUrl, false);
-  }
+		return NetworkUtilities.download(posterUrl, false);
+	}
 
+	private static void createMovieMap(String postalCode) {
+		if (StringUtilities.isNullOrEmpty(postalCode)) {
+			return;
+		}
 
-  private static void createMovieMap(String postalCode) {
-    if (StringUtilities.isNullOrEmpty(postalCode)) {
-      return;
-    }
+		if (postalCode.equals(lastPostalCode)) {
+			return;
+		}
 
-    if (postalCode.equals(lastPostalCode)) {
-      return;
-    }
+		DateTime now = new DateTime();
+		String url = "http://metaboxoffice2.appspot.com/LookupTheaterListings?q=" + trimPostalCode(postalCode) + "&date="
+				+ now.getYear() + "-" + now.getMonthOfYear() + "-" + now.getDayOfMonth() + "" + "&provider=Fandango";
 
+		Element element = NetworkUtilities.downloadXml(url, false);
 
-    DateTime now = new DateTime();
-    String url = "http://metaboxoffice2.appspot.com/LookupTheaterListings?q=" + trimPostalCode(postalCode) +
-        "&date=" + now.getYear() + "-" + now.getMonthOfYear() + "-" + now.getDayOfMonth() + "" +
-        "&provider=Fandango";
+		Map<String, String> result = processFandangoElement(element);
 
-    Element element = NetworkUtilities.downloadXml(url, false);
+		if (result != null && !result.isEmpty()) {
+			lastPostalCode = postalCode;
+		}
+	}
 
-    Map<String, String> result = processFandangoElement(element);
+	private static Map<String, String> processFandangoElement(Element element) {
+		Map<String, String> result = new HashMap<String, String>();
 
-    if (result != null && !result.isEmpty()) {
-      lastPostalCode = postalCode;
-    }
-  }
+		Element dataElement = XmlUtilities.element(element, "data");
+		Element moviesElement = XmlUtilities.element(dataElement, "movies");
 
+		for (Element movieElement : children(moviesElement)) {
+			String poster = movieElement.getAttribute("posterhref");
+			String title = Movie.makeCanonical(text(element(movieElement, "title")));
 
-  private static Map<String, String> processFandangoElement(Element element) {
-    Map<String, String> result = new HashMap<String, String>();
+			if (StringUtilities.isNullOrEmpty(poster) || StringUtilities.isNullOrEmpty(title)) {
+				continue;
+			}
 
-    Element dataElement = XmlUtilities.element(element, "data");
-    Element moviesElement = XmlUtilities.element(dataElement, "movies");
+			result.put(title, poster);
+		}
 
-    for (Element movieElement : children(moviesElement)) {
-      String poster = movieElement.getAttribute("posterhref");
-      String title = Movie.makeCanonical(text(element(movieElement, "title")));
+		if (result.isEmpty()) {
+			return null;
+		}
 
-      if (StringUtilities.isNullOrEmpty(poster) || StringUtilities.isNullOrEmpty(title)) {
-        continue;
-      }
+		movieNameToPosterMap = result;
+		return result;
+	}
 
-      result.put(title, poster);
-    }
-
-    if (result.isEmpty()) {
-      return null;
-    }
-
-    movieNameToPosterMap = result;
-    return result;
-  }
-
-
-  private static String trimPostalCode(String postalCode) {
-    StringBuffer buffer = new StringBuffer();
-    for (char c : postalCode.toCharArray()) {
-      if (Character.isLetterOrDigit(c)) {
-        buffer.append(c);
-      }
-    }
-    return buffer.toString();
-  }
+	private static String trimPostalCode(String postalCode) {
+		StringBuffer buffer = new StringBuffer();
+		for (char c : postalCode.toCharArray()) {
+			if (Character.isLetterOrDigit(c)) {
+				buffer.append(c);
+			}
+		}
+		return buffer.toString();
+	}
 }
