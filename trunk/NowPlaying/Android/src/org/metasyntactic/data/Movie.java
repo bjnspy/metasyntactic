@@ -53,7 +53,7 @@ public class Movie implements Parcelable, Persistable {
     out.writeUTF(rating);
     out.writeInt(length);
     out.writeUTF(imdbAddress);
-    out.writeObject(releaseDate);
+    out.writeDate(releaseDate);
     out.writeUTF(poster);
     out.writeUTF(synopsis);
     out.writeUTF(studio);
