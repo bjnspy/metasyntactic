@@ -14,6 +14,8 @@
 
 package org.metasyntactic.providers;
 
+import android.os.Debug;
+
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
 import org.metasyntactic.Application;
@@ -408,6 +410,7 @@ public class DataProvider {
 
 
   private void saveResult(LookupResult result) {
+  	Debug.startMethodTracing("WritingData", 1 << 25);
     FileUtilities.writePersistableCollection(result.movies, getMoviesFile());;
     FileUtilities.writePersistableCollection(result.theaters, getTheatersFile());;
     FileUtilities.writeStringToDateMap(result.synchronizationData, getSynchronizationFile());
@@ -420,6 +423,7 @@ public class DataProvider {
       FileUtilities.writeStringToListOfPersistables(value, getPerformancesFile(tempFolder, theaterName));
     }
 
+    Debug.stopMethodTracing();
     Application.deleteDirectory(Application.performancesDirectory);
     tempFolder.renameTo(Application.performancesDirectory);
     setLastLookupDate();

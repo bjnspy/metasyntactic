@@ -39,14 +39,13 @@ public class ScoreCache {
 
 
   private ScoreProvider getCurrentScoreProvider() {
-    switch (model.getRatingsProvider()) {
-      case Google:
+    if (model.getScoreType() == ScoreType.Google) {
         return googleScoreProvider;
-      case Metacritic:
+    } else if (model.getScoreType() == ScoreType.Metacritic) {
         return metacriticScoreProvider;
-      case RottenTomatoes:
+    } else if (model.getScoreType() == ScoreType.RottenTomatoes) {
         return rottenTomatoesScoreProvider;
-      default:
+    } else {
         throw new RuntimeException();
     }
   }
