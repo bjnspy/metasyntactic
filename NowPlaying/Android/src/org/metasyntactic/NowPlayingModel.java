@@ -37,7 +37,7 @@ import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
-  private final static String version = "10";
+  private final static String version = "4";
   private final static String VERSION_KEY = "version";
   private final static String USER_LOCATION_KEY = "userLocation";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -239,7 +239,7 @@ public class NowPlayingModel {
   }
 
 
-  public ScoreType getRatingsProvider() {
+  public ScoreType getScoreType() {
     String value = preferences.getString(SCORE_TYPE_KEY, null);
     if (value == null) {
       return ScoreType.RottenTomatoes;
@@ -249,9 +249,9 @@ public class NowPlayingModel {
   }
 
 
-  public void setRatingsProvider(ScoreType providerType) {
+  public void setScoreType(ScoreType scoreType) {
     SharedPreferences.Editor editor = preferences.edit();
-    editor.putString(SCORE_TYPE_KEY, providerType.toString());
+    editor.putString(SCORE_TYPE_KEY, scoreType.toString());
     editor.commit();
   }
 

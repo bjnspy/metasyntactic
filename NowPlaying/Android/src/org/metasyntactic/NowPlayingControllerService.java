@@ -21,6 +21,7 @@ import android.os.RemoteException;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.caches.scores.ScoreType;
 
 import java.util.List;
 
@@ -135,6 +136,17 @@ public class NowPlayingControllerService extends Service {
   }
 
 
+  private void setScoreType(ScoreType scoreType) {
+    model.setScoreType(scoreType);
+    update();
+  }
+
+
+  private ScoreType getScoreType() {
+    return model.getScoreType();
+  }
+
+
   private final INowPlayingController.Stub binder = new INowPlayingController.Stub() {
     public String getUserLocation() throws RemoteException {
       return NowPlayingControllerService.this.getUserLocation();
@@ -208,6 +220,16 @@ public class NowPlayingControllerService extends Service {
 
     public List<String> getTrailers(Movie movie) throws RemoteException {
       return NowPlayingControllerService.this.getTrailers(movie);
+    }
+
+
+    public ScoreType getScoreType() throws RemoteException {
+      return NowPlayingControllerService.this.getScoreType();
+    }
+
+
+    public void setScoreProvider(ScoreType scoreType) throws RemoteException {
+      NowPlayingControllerService.this.setScoreType(scoreType);
     }
   };
 }
