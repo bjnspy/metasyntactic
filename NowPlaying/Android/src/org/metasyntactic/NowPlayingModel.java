@@ -15,6 +15,7 @@
 package org.metasyntactic;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormatter;
 import org.joda.time.format.ISODateTimeFormat;
@@ -29,19 +30,14 @@ import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.data.Theater;
 import org.metasyntactic.providers.DataProvider;
-import org.metasyntactic.threading.ThreadingUtilities;
 import org.metasyntactic.utilities.DateUtilities;
-import org.metasyntactic.utilities.FileUtilities;
-import org.metasyntactic.utilities.difference.EditDistance;
 
-import java.io.File;
-import java.util.*;
-import java.util.prefs.BackingStoreException;
-import java.util.prefs.Preferences;
+import java.util.Collections;
+import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
-  private final static String version = "2";
+  private final static String version = "3";
   private final static String VERSION_KEY = "version";
   private final static String USER_LOCATION_KEY = "userLocation";
   private final static String SEARCH_DATE_KEY = "searchDate";
@@ -54,10 +50,8 @@ public class NowPlayingModel {
 
 
   private final Context context;
-  private final Preferences preferences = Preferences.userNodeForPackage(NowPlayingModel.class);
-
-  private final Object movieMapLock = new Object();
-  private Map<String, String> movieMap;
+  //private final Preferences preferences = Preferences.userNodeForPackage(NowPlayingModel.class);
+  private final SharedPreferences preferences;
 
   private final DataProvider dataProvider = new DataProvider(this);
   private final ScoreCache scoreCache = new ScoreCache(this);
@@ -69,26 +63,23 @@ public class NowPlayingModel {
 
   public NowPlayingModel(Context context) {
     this.context = context;
+    this.preferences = NowPlayingActivity.instance.getSharedPreferences(NowPlayingModel.class.getName(), 0);
 
     loadData();
-    movieMap = FileUtilities.readObject(movieMapFile());
 
     initializeTestValues();
   }
 
 
   private void loadData() {
-    String lastVersion = preferences.get(VERSION_KEY, "");
+    String lastVersion = preferences.getString(VERSION_KEY, "");
     if (!lastVersion.equals(version)) {
-      try {
-        preferences.clear();
-      } catch (BackingStoreException e) {
-        throw new RuntimeException(e);
-      }
+      SharedPreferences.Editor editor = preferences.edit();
+      editor.clear();
+      editor.putString(VERSION_KEY, version);
+      editor.commit();
 
       Application.reset();
-
-      preferences.put(VERSION_KEY, version);
     }
   }
 
@@ -99,11 +90,6 @@ public class NowPlayingModel {
     }
 
     this.setUserLocation("10009");
-  }
-
-
-  private File movieMapFile() {
-    return new File(Application.dataDirectory, "MovieMap");
   }
 
 
@@ -141,12 +127,14 @@ public class NowPlayingModel {
 
 
   public String getUserLocation() {
-    return preferences.get(USER_LOCATION_KEY, "");
+    return preferences.getString(USER_LOCATION_KEY, "");
   }
 
 
   public void setUserLocation(String userLocation) {
-    preferences.put(USER_LOCATION_KEY, userLocation);
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putString(USER_LOCATION_KEY, userLocation);
+    editor.commit();
   }
 
 
@@ -157,12 +145,15 @@ public class NowPlayingModel {
 
   public void setSearchDistance(int searchDistance) {
     searchDistance = Math.min(Math.max(searchDistance, 1), 50);
-    preferences.putInt(SEARCH_DISTANCE_KEY, searchDistance);
+
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putInt(SEARCH_DISTANCE_KEY, searchDistance);
+    editor.commit();
   }
 
 
   public DateTime getSearchDate() {
-    String value = preferences.get(SEARCH_DATE_KEY, "");
+    String value = preferences.getString(SEARCH_DATE_KEY, "");
     if ("".equals(value)) {
       return DateUtilities.getToday();
     }
@@ -181,7 +172,10 @@ public class NowPlayingModel {
   public void setSearchDate(DateTime searchDate) {
     DateTimeFormatter formatter = ISODateTimeFormat.dateTime();
     String result = formatter.print(searchDate);
-    preferences.put(SEARCH_DATE_KEY, result);
+
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putString(SEARCH_DATE_KEY, result);
+    editor.commit();
   }
 
 
@@ -191,7 +185,10 @@ public class NowPlayingModel {
 
 
   public void setSelectedTabIndex(int index) {
-    preferences.putInt(SELECTED_TAB_INDEX_KEY, index);
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putInt(SELECTED_TAB_INDEX_KEY, index);
+    editor.commit();
+
     Application.refresh();
   }
 
@@ -202,7 +199,10 @@ public class NowPlayingModel {
 
 
   public void setAllMoviesSelectedSortIndex(int index) {
-    preferences.putInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, index);
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putInt(ALL_MOVIES_SELECTED_SORT_INDEX_KEY, index);
+    editor.commit();
+
     Application.refresh();
   }
 
@@ -213,7 +213,10 @@ public class NowPlayingModel {
 
 
   public void setAllTheatersSelectedSortIndex(int index) {
-    preferences.putInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, index);
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putInt(ALL_THEATERS_SELECTED_SORT_INDEX_KEY, index);
+    editor.commit();
+
     Application.refresh();
   }
 
@@ -224,13 +227,16 @@ public class NowPlayingModel {
 
 
   public void setUpcomingMovieSelectedSortIndex(int index) {
-    preferences.putInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, index);
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putInt(UPCOMING_MOVIES_SELECTED_SORT_INDEX_KEY, index);
+    editor.commit();
+
     Application.refresh();
   }
 
 
   public ScoreType getRatingsProvider() {
-    String value = preferences.get(SCORE_TYPE_KEY, null);
+    String value = preferences.getString(SCORE_TYPE_KEY, null);
     if (value == null) {
       return ScoreType.RottenTomatoes;
     }
@@ -240,7 +246,9 @@ public class NowPlayingModel {
 
 
   public void setRatingsProvider(ScoreType providerType) {
-    preferences.put(SCORE_TYPE_KEY, providerType.toString());
+    SharedPreferences.Editor editor = preferences.edit();
+    editor.putString(SCORE_TYPE_KEY, providerType.toString());
+    editor.commit();
   }
 
 
@@ -260,69 +268,14 @@ public class NowPlayingModel {
 
 
   public void onDataProvidedUpdated() {
-    regenerateMovieMap();
     updateIMDbCache();
     updatePosterCache();
     updateTrailerCache();
   }
 
 
-  public void onRatingsUpdated() {
-  }
-
-
-  private void regenerateMovieMap() {
-    final List<Movie> movies = getMovies();
-    final Map<String, Score> scores = getScores();
-
-    Runnable runnable = new Runnable() {
-      public void run() {
-        createMovieMap(movies, scores);
-      }
-    };
-    ThreadingUtilities.performOnBackgroundThread(runnable, movieMapLock, true/*visible*/);
-  }
-
-
-  private void createMovieMap(List<Movie> movies, Map<String, Score> scores) {
-    final Map<String, String> result = new HashMap<String, String>();
-
-    List<String> titles = new ArrayList<String>(scores.keySet());
-    List<String> lowercaseTitles = new ArrayList<String>();
-    for (String title : titles) {
-      lowercaseTitles.add(title.toLowerCase());
-    }
-
-    for (Movie movie : movies) {
-      String lowercaseTitle = movie.getCanonicalTitle().toLowerCase();
-      int index = EditDistance.findClosestMatchIndex(lowercaseTitle, lowercaseTitles);
-
-      if (index >= 0) {
-        String title = titles.get(index);
-        result.put(movie.getCanonicalTitle(), title);
-      }
-    }
-
-    FileUtilities.writeObject(result, movieMapFile());
-
-    Runnable runnable = new Runnable() {
-      public void run() {
-        reportMovemap(result);
-      }
-    };
-
-    ThreadingUtilities.performOnMainThread(runnable);
-  }
-
-
-  private void reportMovemap(Map<String, String> result) {
-    movieMap = result;
-    Application.refresh(true);
-  }
-
-
-  private Map<String, Score> getScores() {
-    return scoreCache.getScores();
+  private Score getMovieScore(Movie movie) {
+    return scoreCache.getScore(getMovies(), movie);
   }
 
 

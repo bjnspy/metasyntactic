@@ -16,6 +16,7 @@ package org.metasyntactic.utilities;
 
 import org.joda.time.DateTime;
 import org.joda.time.Days;
+import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
 
 import java.io.*;
@@ -42,10 +43,11 @@ public class FileUtilities {
     return result.toString();
   }
 
-
+/*
   public static void writeObject(Object o, String fileName) {
     writeObject(o, new File(fileName));
   }
+*/
 
 
   public static void writeObject(Object o, File file) {
@@ -66,17 +68,24 @@ public class FileUtilities {
 
   public static void writeBytes(byte[] data, File file) {
     try {
-      BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(file), 1 << 13);
+      if (data == null) {
+        data = new byte[0];
+      }
+
+      File tempFile = Application.createTempFile();
+      BufferedOutputStream out = new BufferedOutputStream(new FileOutputStream(tempFile), 1 << 13);
       out.write(data);
       out.flush();
       out.close();
+
+      tempFile.renameTo(file);
     } catch (IOException e) {
       ExceptionUtilities.log(FileUtilities.class, "writeObject", e);
       throw new RuntimeException(e);
     }
   }
 
-
+/*
   public static <T> T readObject(String fileName) {
     return (T) readObject(fileName, null);
   }
@@ -85,6 +94,7 @@ public class FileUtilities {
   public static <T> T readObject(String fileName, T default_) {
     return readObject(new File(fileName), default_);
   }
+*/
 
 
   public static <T> T readObject(File file) {
@@ -94,11 +104,12 @@ public class FileUtilities {
 
   public static <T> T readObject(File file, T default_) {
     try {
-      if (!file.exists()) {
+      byte[] bytes = readBytes(file);
+      if (bytes == null) {
         return default_;
       }
 
-      ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+      ObjectInputStream in = new ObjectInputStream(new ByteArrayInputStream(bytes));
       T result = (T) in.readObject();
       in.close();
       return result;
@@ -112,6 +123,25 @@ public class FileUtilities {
   }
 
 
+  public static byte[] readBytes(File file) {
+    try {
+      if (!file.exists()) {
+        return null;
+      }
+
+      byte[] bytes = new byte[(int)file.length()];
+      FileInputStream in = new FileInputStream(file);
+      in.read(bytes);
+      in.close();
+
+      return bytes;
+    } catch (IOException e) {
+      ExceptionUtilities.log(FileUtilities.class, "readObject", e);
+      return null;
+    }
+  }
+
+
   public static boolean tooSoon(File file) {
     if (!file.exists()) {
       return false;
@@ -120,12 +150,10 @@ public class FileUtilities {
     DateTime now = new DateTime();
     DateTime lastDate = new DateTime(file.lastModified());
 
-    //Debug.startMethodTracing("tooSoonDaysBetween", 1 << 24);
     int days = Days.daysBetween(now, lastDate).getDays();
     //Debug.stopMethodTracing();
 
     if (days > 0) {
-      // different days, so definitely out of date
       return false;
     }
 

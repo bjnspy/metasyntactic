@@ -14,8 +14,10 @@
 
 package org.metasyntactic.caches.scores;
 
+import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 
+import java.util.List;
 import java.util.Map;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -24,4 +26,7 @@ public interface ScoreProvider {
 
 
   void update();
+
+
+  Score getScore(List<Movie> movies, Movie movie);
 }

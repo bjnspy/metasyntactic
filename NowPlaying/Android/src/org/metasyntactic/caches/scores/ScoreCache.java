@@ -14,11 +14,13 @@
 
 package org.metasyntactic.caches.scores;
 
+import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
+import org.metasyntactic.data.Movie;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.threading.ThreadingUtilities;
 
-import java.util.Map;
+import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ScoreCache {
@@ -36,17 +38,22 @@ public class ScoreCache {
   }
 
 
-  public Map<String, Score> getScores() {
+  private ScoreProvider getCurrentScoreProvider() {
     switch (model.getRatingsProvider()) {
       case Google:
-        return googleScoreProvider.getScores();
+        return googleScoreProvider;
       case Metacritic:
-        return metacriticScoreProvider.getScores();
+        return metacriticScoreProvider;
       case RottenTomatoes:
-        return rottenTomatoesScoreProvider.getScores();
+        return rottenTomatoesScoreProvider;
       default:
         throw new RuntimeException();
     }
+  }
+
+
+  public Score getScore(List<Movie> movies, Movie movie) {
+    return getCurrentScoreProvider().getScore(movies, movie);
   }
 
 
@@ -61,17 +68,9 @@ public class ScoreCache {
 
 
   private void updateBackgroundEntryPoint() {
-    switch (model.getRatingsProvider()) {
-      case Google:
-        googleScoreProvider.update();
-        break;
-      case Metacritic:
-        metacriticScoreProvider.update();
-        break;
-      case RottenTomatoes:
-        rottenTomatoesScoreProvider.update();
-        break;
-    }
+    getCurrentScoreProvider().update();
+
+    Application.refresh();
   }
 
 
