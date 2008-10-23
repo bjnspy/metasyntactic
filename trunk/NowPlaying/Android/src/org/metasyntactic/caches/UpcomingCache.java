@@ -35,11 +35,6 @@ public class UpcomingCache {
   }
 
 
-  private File indexFile() {
-    return new File(Application.upcomingDirectory, "Index");
-  }
-
-
   private File moviesFile() {
     return new File(Application.upcomingDirectory, "Movies");
   }
@@ -74,29 +69,32 @@ public class UpcomingCache {
 
 
   public void update() {
+  	final List<Movie> movies = getMovies();
+  	
     Runnable runnable = new Runnable() {
       public void run() {
-        updateBackgroundEntryPoint();
+        updateBackgroundEntryPoint(movies);
       }
     };
     ThreadingUtilities.performOnBackgroundThread(runnable, lock, true);
   }
 
 
-  private void updateBackgroundEntryPoint() {
-    final Map<String, String> studioKeys = new HashMap<String, String>();
-    final Map<String, String> titleKeys = new HashMap<String, String>();
-    final List<Movie> movies = new ArrayList<Movie>();
+  private void updateBackgroundEntryPoint(List<Movie> oldMovies) {
+    Map<String, String> studioKeys = new HashMap<String, String>();
+    Map<String, String> titleKeys = new HashMap<String, String>();
+    List<Movie> newMovies = new ArrayList<Movie>();
 
-
-    updateIndex(movies, studioKeys, titleKeys);
+    updateIndex(newMovies, studioKeys, titleKeys);
+    
+    List<Movie> movies = newMovies.isEmpty() ? oldMovies : newMovies;
     updateDetails(movies, studioKeys, titleKeys);
   }
 
 
   private void updateIndex(final List<Movie> movies, final Map<String, String> studioKeys,
                            final Map<String, String> titleKeys) {
-    File indexFile = indexFile();
+    File indexFile = hashFile();
     if (indexFile.exists()) {
       long lastModifiedTime = indexFile.lastModified();
 

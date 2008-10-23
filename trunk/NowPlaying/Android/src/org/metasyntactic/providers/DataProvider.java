@@ -19,7 +19,6 @@ import org.apache.commons.collections.map.MultiValueMap;
 import org.joda.time.DateTime;
 import org.joda.time.Days;
 import org.joda.time.Hours;
-import org.joda.time.Seconds;
 import org.joda.time.format.DateTimeFormat;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
@@ -151,14 +150,7 @@ public class DataProvider {
       return null;
     }
 
-    DateTime start = new DateTime();
-    LookupResult result = processTheaterListings(theaterListings, location, theaterNames);
-    DateTime stop = new DateTime();
-
-    int seconds = Seconds.secondsBetween(start, stop).getSeconds();
-    System.out.println(seconds);
-
-    return result;
+    return processTheaterListings(theaterListings, location, theaterNames);
   }
 
 
