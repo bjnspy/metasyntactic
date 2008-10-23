@@ -14,23 +14,39 @@
 
 package org.metasyntactic;
 
-import android.app.Activity;
-import android.content.*;
+import android.app.TabActivity;
+import android.content.BroadcastReceiver;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.ServiceConnection;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.view.View;
 import android.widget.TabHost;
-import org.metasyntactic.views.AllMoviesView;
+
+import org.metasyntactic.data.Movie;
 import org.metasyntactic.views.AllTheatersView;
 import org.metasyntactic.views.UpcomingMoviesView;
 
-public class NowPlayingActivity extends Activity {
+import java.util.ArrayList;
+import java.util.List;
+
+public class NowPlayingActivity extends TabActivity {
 	public static NowPlayingActivity instance;
 	
   private NowPlayingControllerWrapper controller;
-  private AllMoviesView allMoviesView;
+  //private AllMoviesView allMoviesView;
   private AllTheatersView allTheatersView;
   private UpcomingMoviesView upcomingMoviesView;
+  private List<Movie> movies = new ArrayList<Movie>();
+
+  public List<Movie> getMovies() {
+      return movies;
+  }
+
 
   private final BroadcastReceiver broadcastReceiver =
       new BroadcastReceiver() {
@@ -38,7 +54,7 @@ public class NowPlayingActivity extends Activity {
         public void onReceive(Context context, Intent intent) {
           refresh();
         }
-      };
+  };
 
 
   private final ServiceConnection serviceConnection =
@@ -63,12 +79,13 @@ public class NowPlayingActivity extends Activity {
   private void onControllerConnected() {
     int selectedTab = controller.getSelectedTabIndex();
     getTabHost().setCurrentTab(selectedTab);
+    refresh();
   }
 
 
-  private TabHost getTabHost() {
-    return (TabHost) findViewById(R.id.tab_host);
-  }
+ /* private TabHost getTabHost() {
+    return getTabHost();
+  }*/
 
   
   public NowPlayingActivity() {
@@ -80,7 +97,7 @@ public class NowPlayingActivity extends Activity {
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
 
-    setContentView(R.layout.tabs);
+    //setContentView(R.layout.tabs);
 
     boolean bindResult = bindService(
         new Intent(getBaseContext(), NowPlayingControllerService.class),
@@ -92,19 +109,15 @@ public class NowPlayingActivity extends Activity {
     }
 
     final TabHost tabs = getTabHost();
-    tabs.setup();
-
-    allMoviesView = new AllMoviesView(this);
+  
     allTheatersView = new AllTheatersView(this);
     upcomingMoviesView = new UpcomingMoviesView(this);
-
+    
+    // (todo : mjoshi) move all strings to strings.xml
     tabs.addTab(tabs.newTabSpec("movies_tab").setIndicator("Movies").setContent(
-        new TabHost.TabContentFactory() {
-          public View createTabContent(String s) {
-            return allMoviesView;
-          }
-        }));
-
+                    new Intent(this, AllMoviesActivity.class)));
+    
+   
     tabs.addTab(tabs.newTabSpec("theaters_tab").setIndicator("Theaters").setContent(
         new TabHost.TabContentFactory() {
           public View createTabContent(String s) {
@@ -135,7 +148,6 @@ public class NowPlayingActivity extends Activity {
     super.onDestroy();
   }
 
-
   @Override
   protected void onResume() {
     super.onResume();
@@ -151,5 +163,7 @@ public class NowPlayingActivity extends Activity {
 
 
   private void refresh() {
+      movies = controller.getMovies();
+      AllMoviesActivity.refresh();
   }
 }
