@@ -17,17 +17,14 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Externalizable;
-import java.io.ObjectOutput;
-import java.io.IOException;
-import java.io.ObjectInput;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class Movie implements Parcelable, Externalizable {
+public class Movie implements Parcelable, Serializable {
   private String identifier;
   private String canonicalTitle;
   private String displayTitle;
@@ -48,7 +45,7 @@ public class Movie implements Parcelable, Externalizable {
   }
 
 
-  public void writeExternal(ObjectOutput objectOutput) throws IOException {
+  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
     objectOutput.writeUTF(identifier);
     objectOutput.writeUTF(canonicalTitle);
     objectOutput.writeUTF(displayTitle);
@@ -62,6 +59,23 @@ public class Movie implements Parcelable, Externalizable {
     writeList(objectOutput, directors);
     writeList(objectOutput, cast);
     writeList(objectOutput, genres);
+  }
+
+
+  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
+    identifier = objectInput.readUTF();
+    canonicalTitle = objectInput.readUTF();
+    displayTitle = objectInput.readUTF();
+    rating = objectInput.readUTF();
+    length = objectInput.readInt();
+    imdbAddress = objectInput.readUTF();
+    releaseDate = (Date) objectInput.readObject();
+    poster = objectInput.readUTF();
+    synopsis = objectInput.readUTF();
+    studio = objectInput.readUTF();
+    directors = readList(objectInput);
+    cast = readList(objectInput);
+    genres = readList(objectInput);
   }
 
 
@@ -80,23 +94,6 @@ public class Movie implements Parcelable, Externalizable {
       list.add(objectInput.readUTF());
     }
     return list;
-  }
-
-
-  public void readExternal(ObjectInput objectInput) throws IOException, ClassNotFoundException {
-    identifier = objectInput.readUTF();
-    canonicalTitle = objectInput.readUTF();
-    displayTitle = objectInput.readUTF();
-    rating = objectInput.readUTF();
-    length = objectInput.readInt();
-    imdbAddress = objectInput.readUTF();
-    releaseDate = (Date)objectInput.readObject();
-    poster = objectInput.readUTF();
-    synopsis = objectInput.readUTF();
-    studio = objectInput.readUTF();
-    directors = readList(objectInput);
-    cast = readList(objectInput);
-    genres = readList(objectInput);
   }
 
 

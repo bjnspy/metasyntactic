@@ -17,16 +17,36 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Score implements Parcelable, Serializable {
-  private static final long serialVersionUID = 6689972256500354886L;
-  private final String canonicalTitle;
-  private final String synopsis;
-  private final String value;
-  private final String provider;
-  private final String identifier;
+  private String canonicalTitle;
+  private String synopsis;
+  private String value;
+  private String provider;
+  private String identifier;
+
+
+  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
+    objectOutput.writeUTF(canonicalTitle);
+    objectOutput.writeUTF(synopsis);
+    objectOutput.writeUTF(value);
+    objectOutput.writeUTF(provider);
+    objectOutput.writeUTF(identifier);
+  }
+
+
+  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
+    canonicalTitle = objectInput.readUTF();
+    synopsis = objectInput.readUTF();
+    value = objectInput.readUTF();
+    provider = objectInput.readUTF();
+    identifier = objectInput.readUTF();
+  }
 
 
   private Score(String canonicalTitle, String synopsis, String value, String provider, String identifier,
