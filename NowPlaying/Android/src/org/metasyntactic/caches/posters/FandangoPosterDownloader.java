@@ -51,6 +51,7 @@ public class FandangoPosterDownloader {
 		if (postalCode.equals(lastPostalCode)) {
 			return;
 		}
+		lastPostalCode = postalCode;
 
 		Calendar calendar = Calendar.getInstance();
 		calendar.setTime(new Date());
@@ -61,15 +62,10 @@ public class FandangoPosterDownloader {
 				+ calendar.get(Calendar.DAY_OF_MONTH) + "&provider=Fandango";
 
 		Element element = NetworkUtilities.downloadXml(url, false);
-
-		Map<String, String> result = processFandangoElement(element);
-
-		if (result != null && !result.isEmpty()) {
-			lastPostalCode = postalCode;
-		}
+		processFandangoElement(element);
 	}
 
-	private static Map<String, String> processFandangoElement(Element element) {
+	private static void processFandangoElement(Element element) {
 		Map<String, String> result = new HashMap<String, String>();
 
 		Element dataElement = XmlUtilities.element(element, "data");
@@ -87,11 +83,10 @@ public class FandangoPosterDownloader {
 		}
 
 		if (result.isEmpty()) {
-			return null;
+			return;
 		}
 
 		movieNameToPosterMap = result;
-		return result;
 	}
 
 	private static String trimPostalCode(String postalCode) {
