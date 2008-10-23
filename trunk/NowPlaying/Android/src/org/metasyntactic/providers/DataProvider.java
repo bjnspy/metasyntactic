@@ -32,8 +32,8 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import java.io.File;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
-import java.text.SimpleDateFormat;
 import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -93,11 +93,17 @@ public class DataProvider {
       return;
     }
 
-    final LookupResult result = lookupLocation(location, null);
+    LookupResult result = lookupLocation(location, null);
     lookupMissingFavorites(result);
 
-    saveResult(result);
+    if (result.movies.size() > 0 || result.theaters.size() > 0) {
+      reportResult(result);
+      saveResult(result);
+    }
+  }
 
+
+  private void reportResult(final LookupResult result) {
     Runnable runnable = new Runnable() {
       public void run() {
         reportResultOnMainThread(result);
@@ -108,15 +114,13 @@ public class DataProvider {
 
 
   private void reportResultOnMainThread(LookupResult result) {
-    if (result.movies.size() > 0 || result.theaters.size() > 0) {
-      movies = result.movies;
-      theaters = result.theaters;
-      synchronizationData = result.synchronizationData;
-      performances = result.performances;
-      model.onDataProvidedUpdated();
-      // [self.model onProviderUpdated];
-      Application.refresh(true);
-    }
+    movies = result.movies;
+    theaters = result.theaters;
+    synchronizationData = result.synchronizationData;
+    performances = result.performances;
+    model.onDataProvidedUpdated();
+
+    Application.refresh(true);
   }
 
 
@@ -153,7 +157,9 @@ public class DataProvider {
     return processTheaterListings(theaterListings, location, theaterNames);
   }
 
+
   private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+
 
   private Map<String, Movie> processMovies(List<NowPlaying.MovieProto> movies) {
     Map<String, Movie> movieIdToMovieMap = new HashMap<String, Movie>();
@@ -397,23 +403,21 @@ public class DataProvider {
 
 
   private void saveResult(LookupResult result) {
-    if (result.movies.size() > 0 || result.theaters.size() > 0) {
-      FileUtilities.writeObject(result.movies, getMoviesFile());
-      FileUtilities.writeObject(result.theaters, getTheatersFile());
-      FileUtilities.writeObject(result.synchronizationData, getSynchronizationFile());
+    FileUtilities.writeObject(result.movies, getMoviesFile());
+    FileUtilities.writeObject(result.theaters, getTheatersFile());
+    FileUtilities.writeObject(result.synchronizationData, getSynchronizationFile());
 
-      File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());
-      tempFolder.mkdirs();
+    File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());
+    tempFolder.mkdirs();
 
-      for (String theaterName : result.performances.keySet()) {
-        Map<String, List<Performance>> value = result.performances.get(theaterName);
-        FileUtilities.writeObject(value, getPerformancesFile(tempFolder, theaterName));
-      }
-
-      Application.deleteDirectory(Application.performancesDirectory);
-      tempFolder.renameTo(Application.performancesDirectory);
-      setLastLookupDate();
+    for (String theaterName : result.performances.keySet()) {
+      Map<String, List<Performance>> value = result.performances.get(theaterName);
+      FileUtilities.writeObject(value, getPerformancesFile(tempFolder, theaterName));
     }
+
+    Application.deleteDirectory(Application.performancesDirectory);
+    tempFolder.renameTo(Application.performancesDirectory);
+    setLastLookupDate();
   }
 
 

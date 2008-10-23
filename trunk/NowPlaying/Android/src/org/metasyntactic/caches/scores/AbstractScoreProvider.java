@@ -124,12 +124,21 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
       return;
     }
 
+    reportResult(serverHash, result);
+    saveResult(serverHash, result);
+  }
+
+
+  private void saveResult(String serverHash, Map<String, Score> result) {
     FileUtilities.writeObject(result, ratingsFile());
     FileUtilities.writeObject(serverHash, hashFile());
+  }
 
+
+  private void reportResult(final String hash, final Map<String, Score> scores) {
     Runnable runnable = new Runnable() {
       public void run() {
-        reportResultOnMainThread(serverHash, result);
+        reportResultOnMainThread(hash, scores);
       }
     };
     ThreadingUtilities.performOnMainThread(runnable);
