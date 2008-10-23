@@ -121,7 +121,7 @@ public class TrailerCache {
     String bestKey = EditDistance.findClosestMatch(movie.getCanonicalTitle().toLowerCase(), index.keySet());
     if (bestKey == null) {
       // no trailer for this movie.  record that fact.  we'll try again later
-      FileUtilities.writeObject(new ArrayList<String>(), trailerFilePath(movie));
+      FileUtilities.writeStringCollection(new ArrayList<String>(), trailerFilePath(movie));
       return;
     }
 
@@ -138,7 +138,7 @@ public class TrailerCache {
     }
 
     List<String> trailers = Arrays.asList(trailersString.split("\n"));
-    FileUtilities.writeObject(trailers, trailerFilePath(movie));
+    FileUtilities.writeStringCollection(trailers, trailerFilePath(movie));
     Application.refresh();
   }
 
@@ -171,7 +171,7 @@ public class TrailerCache {
 
 
   public List<String> getTrailers(Movie movie) {
-    List<String> trailers = FileUtilities.readObject(trailerFilePath(movie));
+    List<String> trailers = FileUtilities.readStringList(trailerFilePath(movie));
     if (trailers == null) {
       return Collections.emptyList();
     }

@@ -16,11 +16,15 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.io.AbstractPersistable;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
 
-import java.io.*;
+import java.io.IOException;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class Review implements Parcelable, Serializable {
+public class Review implements Parcelable, Persistable {
   private String text;
   private int score;
   private String link;
@@ -28,22 +32,26 @@ public class Review implements Parcelable, Serializable {
   private String source;
 
 
-  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
-    objectOutput.writeUTF(text);
-    objectOutput.writeInt(score);
-    objectOutput.writeUTF(link);
-    objectOutput.writeUTF(author);
-    objectOutput.writeUTF(source);
+  public void persistTo(PersistableOutputStream out) throws IOException {
+    out.writeUTF(text);
+    out.writeInt(score);
+    out.writeUTF(link);
+    out.writeUTF(author);
+    out.writeUTF(source);
   }
 
 
-  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
-    text = objectInput.readUTF();
-    score = objectInput.readInt();
-    link = objectInput.readUTF();
-    author = objectInput.readUTF();
-    source = objectInput.readUTF();
-  }
+  public static final Reader<Review> reader = new AbstractPersistable.AbstractReader<Review>() {
+    public Review read(PersistableInputStream in) throws IOException {
+      String text = in.readUTF();
+      int score = in.readInt();
+      String link = in.readUTF();
+      String author = in.readUTF();
+      String source = in.readUTF();
+
+      return new Review(text, score, link, author, source);
+    }
+  };
 
 
   public Review(String text, int score, String link, String author, String source) {

@@ -16,24 +16,32 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.io.AbstractPersistable;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
 
-import java.io.*;
+import java.io.IOException;
 
-public class Performance implements Parcelable, Serializable {
+public class Performance implements Parcelable, Persistable {
   private String time;
   private String url;
 
 
-  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
-    objectOutput.writeUTF(time);
-    objectOutput.writeUTF(url);
+  public void persistTo(PersistableOutputStream out) throws IOException {
+    out.writeUTF(time);
+    out.writeUTF(url);
   }
 
 
-  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
-    time = objectInput.readUTF();
-    url = objectInput.readUTF();
-  }
+  public static final Reader<Performance> reader = new AbstractPersistable.AbstractReader<Performance>() {
+    public Performance read(PersistableInputStream in) throws IOException {
+      String time = in.readUTF();
+      String url = in.readUTF();
+
+      return new Performance(time, url);
+    }
+  };
 
 
   public Performance(String time, String url) {

@@ -16,15 +16,21 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import org.metasyntactic.io.AbstractPersistable;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
 
-import java.io.*;
+import java.io.IOException;
+import java.io.ObjectInput;
+import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
-public class Movie implements Parcelable, Serializable {
+public class Movie implements Parcelable, Persistable {
   private String identifier;
   private String canonicalTitle;
   private String displayTitle;
@@ -40,38 +46,43 @@ public class Movie implements Parcelable, Serializable {
   private List<String> genres;
 
 
-  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
-    objectOutput.writeUTF(identifier);
-    objectOutput.writeUTF(canonicalTitle);
-    objectOutput.writeUTF(displayTitle);
-    objectOutput.writeUTF(rating);
-    objectOutput.writeInt(length);
-    objectOutput.writeUTF(imdbAddress);
-    objectOutput.writeObject(releaseDate);
-    objectOutput.writeUTF(poster);
-    objectOutput.writeUTF(synopsis);
-    objectOutput.writeUTF(studio);
-    writeList(objectOutput, directors);
-    writeList(objectOutput, cast);
-    writeList(objectOutput, genres);
+  public void persistTo(PersistableOutputStream out) throws IOException {
+    out.writeUTF(identifier);
+    out.writeUTF(canonicalTitle);
+    out.writeUTF(displayTitle);
+    out.writeUTF(rating);
+    out.writeInt(length);
+    out.writeUTF(imdbAddress);
+    out.writeObject(releaseDate);
+    out.writeUTF(poster);
+    out.writeUTF(synopsis);
+    out.writeUTF(studio);
+    out.writeStringCollection(directors);
+    out.writeStringCollection(cast);
+    out.writeStringCollection(genres);
   }
 
 
-  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
-    identifier = objectInput.readUTF();
-    canonicalTitle = objectInput.readUTF();
-    displayTitle = objectInput.readUTF();
-    rating = objectInput.readUTF();
-    length = objectInput.readInt();
-    imdbAddress = objectInput.readUTF();
-    releaseDate = (Date) objectInput.readObject();
-    poster = objectInput.readUTF();
-    synopsis = objectInput.readUTF();
-    studio = objectInput.readUTF();
-    directors = readList(objectInput);
-    cast = readList(objectInput);
-    genres = readList(objectInput);
-  }
+  public static final Reader<Movie> reader = new AbstractPersistable.AbstractReader<Movie>() {
+    public Movie read(PersistableInputStream in) throws IOException {
+      String identifier = in.readUTF();
+      String canonicalTitle = in.readUTF();
+      String displayTitle = in.readUTF();
+      String rating = in.readUTF();
+      int length = in.readInt();
+      String imdbAddress = in.readUTF();
+      Date releaseDate = in.readDate();
+      String poster = in.readUTF();
+      String synopsis = in.readUTF();
+      String studio = in.readUTF();
+      List<String> directors = in.readStringList();
+      List<String> cast = in.readStringList();
+      List<String> genres = in.readStringList();
+
+      return new Movie(identifier, canonicalTitle, displayTitle, rating, length, imdbAddress, releaseDate, poster,
+          synopsis, studio, directors, cast, genres);
+    }
+  };
 
 
   private void writeList(ObjectOutput objectOutput, List<String> directors) throws IOException {
@@ -286,4 +297,6 @@ public class Movie implements Parcelable, Serializable {
           return new Movie[size];
         }
       };
+
+
 }

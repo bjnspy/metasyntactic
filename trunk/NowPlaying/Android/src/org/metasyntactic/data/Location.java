@@ -17,40 +17,47 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 import org.metasyntactic.Application;
+import org.metasyntactic.io.AbstractPersistable;
+import org.metasyntactic.io.Persistable;
+import org.metasyntactic.io.PersistableInputStream;
+import org.metasyntactic.io.PersistableOutputStream;
 
-import java.io.*;
+import java.io.IOException;
 import static java.lang.Math.*;
 
-public class Location implements Parcelable, Serializable {
-  private double latitude;
-  private double longitude;
-  private String address;
-  private String city;
-  private String state;
-  private String postalCode;
-  private String country;
+public class Location implements Parcelable, Persistable {
+  private final double latitude;
+  private final double longitude;
+  private final String address;
+  private final String city;
+  private final String state;
+  private final String postalCode;
+  private final String country;
 
 
-  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
-    objectOutput.writeDouble(latitude);
-    objectOutput.writeDouble(longitude);
-    objectOutput.writeUTF(address);
-    objectOutput.writeUTF(city);
-    objectOutput.writeUTF(state);
-    objectOutput.writeUTF(postalCode);
-    objectOutput.writeUTF(country);
+  public void persistTo(PersistableOutputStream out) throws IOException {
+    out.writeDouble(latitude);
+    out.writeDouble(longitude);
+    out.writeUTF(address);
+    out.writeUTF(city);
+    out.writeUTF(state);
+    out.writeUTF(postalCode);
+    out.writeUTF(country);
   }
 
 
-  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
-    latitude = objectInput.readDouble();
-    longitude = objectInput.readDouble();
-    address = objectInput.readUTF();
-    city = objectInput.readUTF();
-    state = objectInput.readUTF();
-    postalCode = objectInput.readUTF();
-    country = objectInput.readUTF();
-  }
+  public static final Reader<Location> reader = new AbstractPersistable.AbstractReader<Location>() {
+    public Location read(PersistableInputStream in) throws IOException {
+      double latitude = in.readDouble();
+      double longitude = in.readDouble();
+      String address = in.readUTF();
+      String city = in.readUTF();
+      String state = in.readUTF();
+      String postalCode = in.readUTF();
+      String country = in.readUTF();
+      return new Location(latitude, longitude, address, city, state, postalCode, country);
+    }
+  };
 
 
   public Location(double latitude, double longitude, String address,
@@ -177,4 +184,5 @@ public class Location implements Parcelable, Serializable {
           return new Location[size];
         }
       };
+
 }
