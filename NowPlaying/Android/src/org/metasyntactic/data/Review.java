@@ -17,19 +17,33 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
+import java.io.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Review implements Parcelable, Serializable {
-  /**
-   *
-   */
-  private static final long serialVersionUID = -7068833926510670525L;
-  private final String text;
-  private final int score;
-  private final String link;
-  private final String author;
-  private final String source;
+  private String text;
+  private int score;
+  private String link;
+  private String author;
+  private String source;
+
+
+  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
+    objectOutput.writeUTF(text);
+    objectOutput.writeInt(score);
+    objectOutput.writeUTF(link);
+    objectOutput.writeUTF(author);
+    objectOutput.writeUTF(source);
+  }
+
+
+  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
+    text = objectInput.readUTF();
+    score = objectInput.readInt();
+    link = objectInput.readUTF();
+    author = objectInput.readUTF();
+    source = objectInput.readUTF();
+  }
 
 
   public Review(String text, int score, String link, String author, String source) {

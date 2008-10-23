@@ -19,21 +19,53 @@ import android.os.Parcelable;
 import org.metasyntactic.utilities.DateUtilities;
 import static org.metasyntactic.utilities.StringUtilities.nonNullString;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Theater implements Parcelable, Serializable {
-  private static final long serialVersionUID = -9055133693026699102L;
+  private String identifier;
+  private String name;
+  private String address;
+  private String phoneNumber;
 
-  private final String identifier;
-  private final String name;
-  private final String address;
-  private final String phoneNumber;
+  private Location location;
+  private Location originatingLocation;
+  private Set<String> movieTitles;
 
-  private final Location location;
-  private final Location originatingLocation;
-  private final Set<String> movieTitles;
+
+  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
+    objectOutput.writeUTF(identifier);
+    objectOutput.writeUTF(name);
+    objectOutput.writeUTF(address);
+    objectOutput.writeUTF(phoneNumber);
+    objectOutput.writeObject(location);
+    objectOutput.writeObject(originatingLocation);
+
+    objectOutput.writeInt(movieTitles.size());
+    for (String string : movieTitles) {
+      objectOutput.writeUTF(string);
+    }
+  }
+
+
+  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
+    identifier = objectInput.readUTF();
+    name = objectInput.readUTF();
+    address = objectInput.readUTF();
+    phoneNumber = objectInput.readUTF();
+    location = (Location) objectInput.readObject();
+    originatingLocation = (Location) objectInput.readObject();
+
+    movieTitles = new HashSet<String>();
+    int size = objectInput.readInt();
+    for (int i = 0; i < size; i++) {
+      movieTitles.add(objectInput.readUTF());
+    }
+  }
 
 
   public Theater(String identifier, String name, String address, String phoneNumber, Location location,

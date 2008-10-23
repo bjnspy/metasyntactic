@@ -17,13 +17,23 @@ package org.metasyntactic.data;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-import java.io.Serializable;
+import java.io.*;
 
 public class Performance implements Parcelable, Serializable {
-  private static final long serialVersionUID = -3405664393301264858L;
+  private String time;
+  private String url;
 
-  private final String time;
-  private final String url;
+
+  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
+    objectOutput.writeUTF(time);
+    objectOutput.writeUTF(url);
+  }
+
+
+  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
+    time = objectInput.readUTF();
+    url = objectInput.readUTF();
+  }
 
 
   public Performance(String time, String url) {
