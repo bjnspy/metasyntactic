@@ -40,11 +40,6 @@ public class Movie implements Parcelable, Serializable {
   private List<String> genres;
 
 
-  public Movie() {
-
-  }
-
-
   private void writeObject(ObjectOutputStream objectOutput) throws IOException {
     objectOutput.writeUTF(identifier);
     objectOutput.writeUTF(canonicalTitle);

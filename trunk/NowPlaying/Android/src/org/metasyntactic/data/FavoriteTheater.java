@@ -18,12 +18,27 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import org.metasyntactic.utilities.StringUtilities;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class FavoriteTheater implements Parcelable, Serializable {
-  private final String name;
-  private final Location originatingLocation;
+  private String name;
+  private Location originatingLocation;
+
+
+  private void writeObject(ObjectOutputStream objectOutput) throws IOException {
+    objectOutput.writeUTF(name);
+    objectOutput.writeObject(originatingLocation);
+  }
+
+
+  private void readObject(ObjectInputStream objectInput) throws IOException, ClassNotFoundException {
+    name = objectInput.readUTF();
+    originatingLocation = (Location) objectInput.readObject();
+  }
 
 
   public FavoriteTheater(String name, Location originatingLocation) {
