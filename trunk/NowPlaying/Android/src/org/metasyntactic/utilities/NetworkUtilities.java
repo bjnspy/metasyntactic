@@ -90,6 +90,9 @@ public class NetworkUtilities {
 
   private static Element downloadXml(URL url, boolean important) {
     byte[] data = download(url, important);
+    if (data == null || data.length == 0) {
+    	return null;
+    }
     return XmlUtilities.parseInputStream(new ByteArrayInputStream(data));
   }
 
