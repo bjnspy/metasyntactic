@@ -16,15 +16,13 @@ package org.metasyntactic.providers;
 
 import com.google.protobuf.InvalidProtocolBufferException;
 import org.apache.commons.collections.map.MultiValueMap;
-import org.joda.time.DateTime;
-import org.joda.time.Days;
-import org.joda.time.Hours;
-import org.joda.time.format.DateTimeFormat;
 import org.metasyntactic.Application;
 import org.metasyntactic.NowPlayingModel;
 import org.metasyntactic.data.*;
 import org.metasyntactic.protobuf.NowPlaying;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.time.Days;
+import org.metasyntactic.time.Hours;
 import org.metasyntactic.utilities.DateUtilities;
 import org.metasyntactic.utilities.ExceptionUtilities;
 import org.metasyntactic.utilities.FileUtilities;
@@ -34,6 +32,8 @@ import static org.metasyntactic.utilities.StringUtilities.isNullOrEmpty;
 import java.io.File;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -43,7 +43,7 @@ public class DataProvider {
 
   private List<Movie> movies;
   private List<Theater> theaters;
-  private Map<String, DateTime> synchronizationData;
+  private Map<String, Date> synchronizationData;
   private Map<String, Map<String, List<Performance>>> performances;
 
 
@@ -64,16 +64,16 @@ public class DataProvider {
 
 
   private boolean isUpToDate() {
-    DateTime lastLookupDate = getLastLookupDate();
+    Date lastLookupDate = getLastLookupDate();
     // Debug.startMethodTracing("isUpToDateDaysBetween", 1 << 24);
-    int days = Days.daysBetween(lastLookupDate, new DateTime()).getDays();
+    int days = Days.daysBetween(lastLookupDate, new Date());
     // Debug.stopMethodTracing();
     if (days != 0) {
       return false;
     }
 
     // same date. make sure it's been at least 12 hours
-    int hours = Hours.hoursBetween(lastLookupDate, new DateTime()).getHours();
+    int hours = Hours.hoursBetween(lastLookupDate, new Date());
     if (hours > 12) {
       return false;
     }
@@ -128,7 +128,7 @@ public class DataProvider {
     String country = isNullOrEmpty(location.getCountry()) ? Locale.getDefault().getCountry() : location.getCountry();
 
     // Debug.startMethodTracing("lookupLocationDaysBetween", 1 << 24);
-    int days = Days.daysBetween(new DateTime(DateUtilities.getToday()), new DateTime(model.getSearchDate())).getDays();
+    int days = Days.daysBetween(DateUtilities.getToday(), model.getSearchDate());
     // Debug.stopMethodTracing();
 
     days = min(max(days, 0), 7);
@@ -153,6 +153,7 @@ public class DataProvider {
     return processTheaterListings(theaterListings, location, theaterNames);
   }
 
+  private final SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 
   private Map<String, Movie> processMovies(List<NowPlaying.MovieProto> movies) {
     Map<String, Movie> movieIdToMovieMap = new HashMap<String, Movie>();
@@ -168,9 +169,13 @@ public class DataProvider {
       List<String> directors = movieProto.getDirectorList();
       List<String> cast = movieProto.getCastList();
       String releaseDateString = movieProto.getReleaseDate();
-      DateTime releaseDate = null;
+      Date releaseDate = null;
       if (releaseDateString != null && releaseDateString.length() == 10) {
-        releaseDate = DateTimeFormat.forPattern("yyyy-MM-dd").parseDateTime(releaseDateString);
+        try {
+          releaseDate = formatter.parse(releaseDateString);
+        } catch (ParseException e) {
+          throw new RuntimeException(e);
+        }
       }
 
       String imdbAddress = null;
@@ -221,7 +226,7 @@ public class DataProvider {
 
   private void processTheaterAndMovieShowtimes(
       NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto theaterAndMovieShowtimes, List<Theater> theaters,
-      Map<String, Map<String, List<Performance>>> performances, Map<String, DateTime> synchronizationData,
+      Map<String, Map<String, List<Performance>>> performances, Map<String, Date> synchronizationData,
       Location originatingLocation, Collection<String> theaterNames, Map<String, Movie> movieIdToMovieMap) {
     NowPlaying.TheaterProto theater = theaterAndMovieShowtimes.getTheater();
     String name = theater.getName();
@@ -280,7 +285,7 @@ public class DataProvider {
 
     Map<String, Map<String, List<Performance>>> performances = new HashMap<String, Map<String, List<Performance>>>();
 
-    Map<String, DateTime> synchronizationData = new HashMap<String, DateTime>();
+    Map<String, Date> synchronizationData = new HashMap<String, Date>();
 
     for (NowPlaying.TheaterListingsProto.TheaterAndMovieShowtimesProto proto : theaterAndMovieShowtimes) {
       processTheaterAndMovieShowtimes(proto, theaters, performances, synchronizationData, originatingLocation,
@@ -304,7 +309,7 @@ public class DataProvider {
     List<Movie> movies = new ArrayList<Movie>(movieIdToMovieMap.values());
     List<Theater> theaters = (List<Theater>) theatersAndPerformances[0];
     Map<String, Map<String, List<Performance>>> performances = (Map<String, Map<String, List<Performance>>>) theatersAndPerformances[1];
-    Map<String, DateTime> synchronizationData = (Map<String, DateTime>) theatersAndPerformances[2];
+    Map<String, Date> synchronizationData = (Map<String, Date>) theatersAndPerformances[2];
 
     return new LookupResult(movies, theaters, performances, synchronizationData);
   }
@@ -330,13 +335,13 @@ public class DataProvider {
   }
 
 
-  private DateTime getLastLookupDate() {
+  private Date getLastLookupDate() {
     File file = getLastLookupDateFile();
     if (!file.exists()) {
-      return new DateTime(0);
+      return new Date(0);
     }
 
-    return new DateTime(file.lastModified());
+    return new Date(file.lastModified());
   }
 
 
@@ -364,8 +369,8 @@ public class DataProvider {
   }
 
 
-  private Map<String, DateTime> loadSynchronizationData() {
-    Map<String, DateTime> result = FileUtilities.readObject(getSynchronizationFile());
+  private Map<String, Date> loadSynchronizationData() {
+    Map<String, Date> result = FileUtilities.readObject(getSynchronizationFile());
     if (result == null) {
       return Collections.emptyMap();
     }
@@ -373,7 +378,7 @@ public class DataProvider {
   }
 
 
-  private Map<String, DateTime> getSynchronizationData() {
+  private Map<String, Date> getSynchronizationData() {
     if (synchronizationData == null) {
       synchronizationData = loadSynchronizationData();
     }
@@ -398,6 +403,8 @@ public class DataProvider {
       FileUtilities.writeObject(result.synchronizationData, getSynchronizationFile());
 
       File tempFolder = new File(Application.tempDirectory, "T" + new Random().nextInt());
+      tempFolder.mkdirs();
+ 
       for (String theaterName : result.performances.keySet()) {
         Map<String, List<Performance>> value = result.performances.get(theaterName);
         FileUtilities.writeObject(value, getPerformancesFile(tempFolder, theaterName));
@@ -500,7 +507,7 @@ public class DataProvider {
   }
 
 
-  public DateTime synchronizationDateForTheater(String theaterName) {
+  public Date synchronizationDateForTheater(String theaterName) {
     return getSynchronizationData().get(theaterName);
   }
 }

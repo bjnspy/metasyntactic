@@ -16,11 +16,11 @@ package org.metasyntactic.data;
 
 import android.os.Parcel;
 import android.os.Parcelable;
-import org.joda.time.DateTime;
 
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -33,7 +33,7 @@ public class Movie implements Parcelable, Serializable {
   private final String rating;
   private final int length; // minutes;
   private final String imdbAddress;
-  private final DateTime releaseDate;
+  private final Date releaseDate;
   private final String poster;
   private final String synopsis;
   private final String studio;
@@ -43,7 +43,7 @@ public class Movie implements Parcelable, Serializable {
 
 
   private Movie(String identifier, String canonicalTitle, String displayTitle, String rating, int length,
-                String imdbAddress, DateTime releaseDate, String poster, String synopsis, String studio,
+                String imdbAddress, Date releaseDate, String poster, String synopsis, String studio,
                 List<String> directors, List<String> cast, List<String> genres) {
     this.identifier = identifier;
     this.canonicalTitle = canonicalTitle;
@@ -61,7 +61,7 @@ public class Movie implements Parcelable, Serializable {
   }
 
 
-  public Movie(String identifier, String title, String rating, int length, String imdbAddress, DateTime releaseDate,
+  public Movie(String identifier, String title, String rating, int length, String imdbAddress, Date releaseDate,
                String poster, String synopsis, String studio, List<String> directors, List<String> cast,
                List<String> genres) {
     this(identifier, makeCanonical(title), makeDisplay(title), rating, length, imdbAddress, releaseDate, poster,
@@ -94,7 +94,7 @@ public class Movie implements Parcelable, Serializable {
   }
 
 
-  public DateTime getReleaseDate() {
+  public Date getReleaseDate() {
     return releaseDate;
   }
 
@@ -215,7 +215,7 @@ public class Movie implements Parcelable, Serializable {
           String rating = source.readString();
           int length = source.readInt();
           String imdbAddress = source.readString();
-          DateTime releaseDate = (DateTime) source.readValue(null);
+          Date releaseDate = (Date) source.readValue(null);
           String poster = source.readString();
           String synopsis = source.readString();
           String studio = source.readString();

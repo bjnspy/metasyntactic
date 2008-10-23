@@ -1,8 +1,5 @@
 package org.metasyntactic.caches;
 
-import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
-import org.joda.time.format.DateTimeFormatter;
 import org.metasyntactic.Application;
 import org.metasyntactic.Constants;
 import org.metasyntactic.data.Movie;
@@ -15,6 +12,8 @@ import static org.metasyntactic.utilities.XmlUtilities.children;
 import org.w3c.dom.Element;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -22,7 +21,7 @@ public class UpcomingCache {
   private final Object lock = new Object();
   private static int identifier;
 
-  private final DateTimeFormatter formatter = DateTimeFormat.forPattern("EEE, d MMM yyyy HH:mm:ss Z");
+  private final SimpleDateFormat formatter = new SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z");
 
   private String hash;
   private List<Movie> movies;
@@ -191,7 +190,12 @@ public class UpcomingCache {
 
   private void processMovieElement(Element movieElement, List<Movie> movies, Map<String, String> studioKeys,
                                    Map<String, String> titleKeys) {
-    DateTime releaseDate = formatter.parseDateTime(movieElement.getAttribute("date"));
+    Date releaseDate = null;
+    try {
+      releaseDate = formatter.parse(movieElement.getAttribute("date"));
+    } catch (ParseException e) {
+      throw new RuntimeException(e);
+    }
     String poster = movieElement.getAttribute("poster");
     String rating = movieElement.getAttribute("rating");
     String studio = movieElement.getAttribute("studio");
