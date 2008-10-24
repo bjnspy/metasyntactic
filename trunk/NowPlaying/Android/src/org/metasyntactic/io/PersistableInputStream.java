@@ -3,6 +3,7 @@ package org.metasyntactic.io;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.util.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
@@ -12,11 +13,12 @@ public class PersistableInputStream {
 
   public PersistableInputStream(InputStream in) {
     this.in = in;
+    initializeBuffers(1 << 11);
   }
 
 
   public void close() throws IOException {
-  	in.close();
+    in.close();
   }
 
 
@@ -58,15 +60,38 @@ public class PersistableInputStream {
   }
 
 
+  private char[] chars;
+  private byte[] bytes;
+
+  private ByteBuffer byteBuffer;
+  private CharBuffer charBuffer;
+
+
+  private void initializeBuffers(int byteCount) {
+    bytes = new byte[byteCount];
+    chars = new char[byteCount / 2];
+
+    byteBuffer = ByteBuffer.wrap(bytes);
+    charBuffer = byteBuffer.asCharBuffer();
+  }
+
+
   public String readString() throws IOException {
-    int size = readInt();
+    int charCount = readInt();
+    int byteCount = charCount * 2;
 
-    byte[] bytes = new byte[size * 2];
-    readEntireArray(bytes);
+    if (byteCount > bytes.length) {
+      initializeBuffers(Math.max(byteCount, bytes.length * 2));
+    }
 
-    ByteBuffer buffer = ByteBuffer.wrap(bytes);
+    in.read(bytes, 0, byteCount);
 
-    return new String(buffer.asCharBuffer().array());
+    byteBuffer.position(0);
+    charBuffer.position(0);
+
+    charBuffer.get(chars, 0, charCount);
+
+    return new String(chars, 0, charCount);
   }
 
 

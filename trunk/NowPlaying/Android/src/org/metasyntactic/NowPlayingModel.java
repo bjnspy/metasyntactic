@@ -37,7 +37,7 @@ import java.util.List;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class NowPlayingModel {
-  private final static String version = "2";
+  private final static String version = "4";
   private final static String VERSION_KEY = "version";
   private final static String USER_LOCATION_KEY = "userLocation";
   private final static String SEARCH_DATE_KEY = "searchDate";
