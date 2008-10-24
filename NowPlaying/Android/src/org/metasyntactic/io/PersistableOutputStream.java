@@ -3,6 +3,7 @@ package org.metasyntactic.io;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
 import java.util.Collection;
 import java.util.Date;
 
@@ -10,9 +11,23 @@ import java.util.Date;
 public class PersistableOutputStream {
   private final OutputStream out;
 
+  private byte[] bytes;
+  private ByteBuffer byteBuffer;
+  private CharBuffer charBuffer;
+
+
+  private void initializeBuffers(int byteCount) {
+    bytes = new byte[byteCount];
+    byteBuffer = ByteBuffer.wrap(bytes);
+    charBuffer = byteBuffer.asCharBuffer();
+  }
+
+
   public PersistableOutputStream(OutputStream out) {
     this.out = out;
+    initializeBuffers(1 << 11);
   }
+
 
   public void close() throws IOException {
     flush();
@@ -29,6 +44,7 @@ public class PersistableOutputStream {
   private final byte[] bytes8 = new byte[8];
   private final ByteBuffer buffer4 = ByteBuffer.wrap(bytes4);
   private final ByteBuffer buffer8 = ByteBuffer.wrap(bytes8);
+
 
   public void writeInt(int i) throws IOException {
     buffer4.putInt(0, i);
@@ -49,12 +65,20 @@ public class PersistableOutputStream {
 
 
   public void writeString(String s) throws IOException {
-    writeInt(s.length());
+    int charCount = s.length();
+    int byteCount = charCount * 2;
 
-    ByteBuffer buffer = ByteBuffer.allocate(s.length() * 2);
-    buffer.asCharBuffer().put(s.toCharArray());
+    if (byteCount > bytes.length) {
+      initializeBuffers(Math.max(byteCount, bytes.length * 2));
+    }
 
-    out.write(buffer.array());
+    writeInt(charCount);
+
+    byteBuffer.position(0);
+    charBuffer.position(0);
+    charBuffer.put(s);
+
+    out.write(bytes, 0, byteCount);
   }
 
 
