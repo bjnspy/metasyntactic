@@ -26,10 +26,10 @@ public class DateUtilities {
     Date dt = new Date();
     Calendar c1 = Calendar.getInstance();
     c1.setTime(dt);
-    
+
     Calendar c2 = Calendar.getInstance();
     c2.clear();
-    
+
     c2.set(Calendar.YEAR, c1.get(Calendar.YEAR));
     c2.set(Calendar.MONTH, c1.get(Calendar.MONTH));
     c2.set(Calendar.DAY_OF_MONTH, c1.get(Calendar.DAY_OF_MONTH));

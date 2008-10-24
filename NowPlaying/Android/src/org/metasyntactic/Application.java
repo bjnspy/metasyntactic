@@ -17,6 +17,7 @@ package org.metasyntactic;
 import android.content.Context;
 import android.content.Intent;
 import org.metasyntactic.threading.ThreadingUtilities;
+import org.metasyntactic.utilities.LogUtilities;
 
 import java.io.File;
 import java.io.IOException;
@@ -27,6 +28,10 @@ import java.util.List;
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Application {
   public final static String NOW_PLAYING_CHANGED_INTENT = "NowPlayingModelChangedIntent";
+
+  public final static String host =
+      "metaboxoffice6";
+  //"metaboxoffice2";
 
   public static final File root = new File("/sdcard");
   public static final File applicationDirectory = new File(root, "NowPlaying");
@@ -40,6 +45,7 @@ public class Application {
   public static final File postersDirectory = new File(applicationDirectory, "Posters");
 
   public static final File upcomingDirectory = new File(applicationDirectory, "Upcoming");
+  public static final File upcomingCastDirectory = new File(upcomingDirectory, "Cast");
   public static final File upcomingImdbDirectory = new File(upcomingDirectory, "IMDb");
   public static final File upcomingPostersDirectory = new File(upcomingDirectory, "Posters");
   public static final File upcomingSynopsesDirectory = new File(upcomingDirectory, "Synopses");
@@ -95,14 +101,18 @@ public class Application {
 
 
   private static void createDirectories() {
+    long start = System.currentTimeMillis();
     for (File file : directories()) {
       file.mkdirs();
     }
+    LogUtilities.logTime(Application.class, "Create Directories", start);
   }
 
 
   private static void deleteDirectories() {
+    long start = System.currentTimeMillis();
     deleteDirectory(applicationDirectory);
+    LogUtilities.logTime(Application.class, "Delete Directories", start);
   }
 
 

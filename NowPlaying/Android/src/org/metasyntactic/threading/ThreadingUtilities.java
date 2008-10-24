@@ -21,59 +21,60 @@ import org.metasyntactic.ui.GlobalActivityIndicator;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ThreadingUtilities {
-	public static boolean isMainThread() {
-		return Looper.getMainLooper() == Looper.myLooper();
-	}
+  public static boolean isMainThread() {
+    return Looper.getMainLooper() == Looper.myLooper();
+  }
 
 
-	public static boolean isBackgroundThread() {
-		return !isMainThread();
-	}
+  public static boolean isBackgroundThread() {
+    return !isMainThread();
+  }
 
 
-	public static void performOnMainThread(Runnable runnable) {
-		if (isMainThread()) {
-			runnable.run();
-		} else {
-			new Handler(Looper.getMainLooper()).post(runnable);
-		}
-	}
+  public static void performOnMainThread(Runnable runnable) {
+    if (isMainThread()) {
+      runnable.run();
+    } else {
+      new Handler(Looper.getMainLooper()).post(runnable);
+    }
+  }
 
 
-	public static void performOnBackgroundThread(String name, Runnable runnable, Object lock, boolean visible) {
-		int priority = visible ? Thread.NORM_PRIORITY : Thread.MIN_PRIORITY;
-		performOnBackgroundThread(name, runnable, lock, visible, priority);	
-	}
-	
-	
-	public static void performOnBackgroundThread(String name, Runnable runnable, Object lock, boolean visible, int priority) {
-		performOnBackgroundThreadWorker(name, runnable, lock == null ? new Object() : lock, visible, priority);
-	}
+  public static void performOnBackgroundThread(String name, Runnable runnable, Object lock, boolean visible) {
+    int priority = visible ? Thread.NORM_PRIORITY : Thread.MIN_PRIORITY;
+    performOnBackgroundThread(name, runnable, lock, visible, priority);
+  }
 
 
-	private static void performOnBackgroundThreadWorker(String name, final Runnable runnable, final Object lock,
-			final boolean visible, int priority) {
-		Thread t = new HandlerThread(name) {
-			@Override
-			public void run() {
-				Looper.prepare();
-				synchronized (lock) {
-					try {
-						GlobalActivityIndicator.addBackgroundTask(visible);
-						try {
-							runnable.run();
-						} catch (RuntimeException e) {
-							throw e;
-						}
-					} finally {
-						GlobalActivityIndicator.removeBackgroundTask(visible);
-					}
-				}
-			}
-		};
+  public static void performOnBackgroundThread(String name, Runnable runnable, Object lock, boolean visible,
+                                               int priority) {
+    performOnBackgroundThreadWorker(name, runnable, lock == null ? new Object() : lock, visible, priority);
+  }
 
-		t.setPriority(priority);
 
-		t.start();
-	}
+  private static void performOnBackgroundThreadWorker(String name, final Runnable runnable, final Object lock,
+                                                      final boolean visible, int priority) {
+    Thread t = new HandlerThread(name) {
+      @Override
+      public void run() {
+        Looper.prepare();
+        synchronized (lock) {
+          try {
+            GlobalActivityIndicator.addBackgroundTask(visible);
+            try {
+              runnable.run();
+            } catch (RuntimeException e) {
+              throw e;
+            }
+          } finally {
+            GlobalActivityIndicator.removeBackgroundTask(visible);
+          }
+        }
+      }
+    };
+
+    t.setPriority(priority);
+
+    t.start();
+  }
 }

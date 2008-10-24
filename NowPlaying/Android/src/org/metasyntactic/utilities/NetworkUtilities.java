@@ -65,9 +65,9 @@ public class NetworkUtilities {
 
 
   private static String decode(byte[] bytes, String charset) {
-  	if (bytes == null) {
-  		return null;
-  	}
+    if (bytes == null) {
+      return null;
+    }
 
     try {
       Charset utfCharset = Charset.forName(charset);
@@ -91,7 +91,7 @@ public class NetworkUtilities {
   private static Element downloadXml(URL url, boolean important) {
     byte[] data = download(url, important);
     if (data == null || data.length == 0) {
-    	return null;
+      return null;
     }
     return XmlUtilities.parseInputStream(new ByteArrayInputStream(data));
   }
@@ -105,8 +105,8 @@ public class NetworkUtilities {
     try {
       return download(new URL(url), important);
     } catch (MalformedURLException e) {
-    	ExceptionUtilities.log(NetworkUtilities.class, "download", e);
-    	return null;
+      ExceptionUtilities.log(NetworkUtilities.class, "download", e);
+      return null;
     }
   }
 

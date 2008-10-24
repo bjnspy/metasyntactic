@@ -14,10 +14,10 @@
 
 package org.metasyntactic;
 
-import java.util.Date;
-
 import android.os.Handler;
 import android.util.Log;
+
+import java.util.Date;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class Pulser {
@@ -52,7 +52,7 @@ public class Pulser {
       };
 
       if (!new Handler().postDelayed(tryPulseLater, pulseIntervalSeconds * 1000)) {
-      	throw new RuntimeException();
+        throw new RuntimeException();
       }
       return;
     }

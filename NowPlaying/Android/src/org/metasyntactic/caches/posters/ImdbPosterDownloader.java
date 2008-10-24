@@ -3,15 +3,18 @@ package org.metasyntactic.caches.posters;
 import org.metasyntactic.data.Movie;
 import org.metasyntactic.utilities.NetworkUtilities;
 import org.metasyntactic.utilities.StringUtilities;
+import static org.metasyntactic.utilities.XmlUtilities.element;
+import static org.metasyntactic.utilities.XmlUtilities.text;
 import org.w3c.dom.Element;
-
-import static org.metasyntactic.utilities.XmlUtilities.*;
 
 /** @author cyrusn@google.com (Cyrus Najmabadi) */
 public class ImdbPosterDownloader {
+
+
   public static byte[] download(Movie movie) {
     return NetworkUtilities.download(getImageUrl(getImdbId(movie)), false);
   }
+
 
   private static String getImdbId(Movie movie) {
     String url =

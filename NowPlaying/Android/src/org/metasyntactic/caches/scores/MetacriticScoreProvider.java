@@ -14,6 +14,7 @@
 
 package org.metasyntactic.caches.scores;
 
+import org.metasyntactic.Application;
 import org.metasyntactic.data.Score;
 import org.metasyntactic.utilities.NetworkUtilities;
 import static org.metasyntactic.utilities.XmlUtilities.children;
@@ -37,7 +38,7 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
 
   @Override
   protected String lookupServerHash() {
-    String address = "http://metaboxoffice2.appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
+    String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml&hash=true";
     return NetworkUtilities.downloadString(address, true);
   }
 
@@ -45,7 +46,7 @@ public class MetacriticScoreProvider extends AbstractScoreProvider {
   @Override
   protected Map<String, Score> lookupServerRatings() {
 
-    String address = "http://metaboxoffice2.appspot.com/LookupMovieRatings?q=metacritic&format=xml";
+    String address = "http://" + Application.host + ".appspot.com/LookupMovieRatings?q=metacritic&format=xml";
     Element resultElement = NetworkUtilities.downloadXml(address, true);
 
     if (resultElement != null) {

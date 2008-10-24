@@ -9,9 +9,14 @@ import java.util.Set;
 public interface Persistable extends Serializable {
   void persistTo(PersistableOutputStream out) throws IOException;
 
+
   public interface Reader<T extends Persistable> {
     T read(PersistableInputStream in) throws IOException;
+
+
     List<T> readList(PersistableInputStream in) throws IOException;
+
+
     Set<T> readSet(PersistableInputStream in) throws IOException;
   }
 }

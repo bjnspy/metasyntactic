@@ -53,7 +53,7 @@ public abstract class ScoreType implements Parcelable {
 
 
   @Override
-	public String toString() {
+  public String toString() {
     return findField().getName();
   }
 
@@ -62,7 +62,7 @@ public abstract class ScoreType implements Parcelable {
     for (Field field : ScoreType.class.getFields()) {
       if (field.getName().equals(name)) {
         try {
-          return (ScoreType)field.get(null);
+          return (ScoreType) field.get(null);
         } catch (IllegalAccessException e) {
           throw new RuntimeException(e);
         }

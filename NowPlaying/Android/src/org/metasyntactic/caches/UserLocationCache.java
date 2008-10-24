@@ -22,8 +22,6 @@ import org.metasyntactic.utilities.*;
 import org.w3c.dom.Element;
 
 import java.io.File;
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.util.Locale;
 
 public class UserLocationCache {
@@ -162,16 +160,12 @@ public class UserLocationCache {
 
 
   private Location downloadAddressLocationFromWebServiceWorker(String address) {
-    try {
-      String escapedAddress = "http://metaboxoffice2.appspot.com/LookupLocation?q=" + URLEncoder.encode(address,
-          "UTF-8");
+    String escapedAddress = "http://" + Application.host + ".appspot.com/LookupLocation?q=" +
+        StringUtilities.urlEncode(address);
 
-      Element element = NetworkUtilities.downloadXml(escapedAddress, true);
+    Element element = NetworkUtilities.downloadXml(escapedAddress, true);
 
-      return processResult(element);
-    } catch (UnsupportedEncodingException e) {
-      throw new RuntimeException(e);
-    }
+    return processResult(element);
   }
 
 

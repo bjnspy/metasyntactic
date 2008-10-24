@@ -87,7 +87,7 @@ public class IMDbCache {
         continue;
       }
 
-      String url = "http://metaboxoffice2.appspot.com/LookupIMDbListings?q=" +
+      String url = "http://" + Application.host + ".appspot.com/LookupIMDbListings?q=" +
           StringUtilities.urlEncode(movie.getCanonicalTitle());
 
       String imdbAddress = NetworkUtilities.downloadString(url, false);

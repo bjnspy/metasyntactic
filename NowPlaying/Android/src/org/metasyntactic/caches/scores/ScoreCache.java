@@ -40,13 +40,13 @@ public class ScoreCache {
 
   private ScoreProvider getCurrentScoreProvider() {
     if (model.getScoreType() == ScoreType.Google) {
-        return googleScoreProvider;
+      return googleScoreProvider;
     } else if (model.getScoreType() == ScoreType.Metacritic) {
-        return metacriticScoreProvider;
+      return metacriticScoreProvider;
     } else if (model.getScoreType() == ScoreType.RottenTomatoes) {
-        return rottenTomatoesScoreProvider;
+      return rottenTomatoesScoreProvider;
     } else {
-        throw new RuntimeException();
+      throw new RuntimeException();
     }
   }
 
@@ -62,7 +62,8 @@ public class ScoreCache {
         updateBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread("Update Scores", runnable, lock, true/*visible*/, Thread.MIN_PRIORITY + 1);
+    ThreadingUtilities.performOnBackgroundThread("Update Scores", runnable, lock, true/*visible*/,
+        Thread.MIN_PRIORITY + 1);
   }
 
 
