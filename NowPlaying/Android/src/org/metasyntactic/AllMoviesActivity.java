@@ -64,9 +64,6 @@ public class AllMoviesActivity extends ListActivity {
 
         public View getView(int position, View convertView, ViewGroup viewGroup) {
             MovieViewHolder holder;
-            Log.i("AllMoviesActivity", "Movie List item at position "
-                + position + " redrawn.");
-
             if (convertView == null) {
                 convertView = mInflater.inflate(R.layout.movieview, null);
                 // Creates a MovieViewHolder and store references to the
