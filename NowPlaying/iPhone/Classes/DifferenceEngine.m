@@ -176,8 +176,8 @@
     }
 
     if (s1.length > 4 && s2.length > 4) {
-        if ([s1 rangeOfString:s2 options:NSCaseInsensitiveSearch].location != NSNotFound ||
-            [s2 rangeOfString:s1 options:NSCaseInsensitiveSearch].location != NSNotFound) {
+        if (([s1 rangeOfString:s2 options:NSCaseInsensitiveSearch].length > 0) ||
+            ([s2 rangeOfString:s1 options:NSCaseInsensitiveSearch].length > 0)) {
             return YES;
         }
     }
@@ -190,6 +190,28 @@
 
 - (NSInteger) findClosestMatchIndex:(NSString*) string
                             inArray:(NSArray*) array {
+    {
+        NSInteger index = [array indexOfObject:string];
+        if (index != NSNotFound) {
+            return index;
+        }
+    }
+    
+    {
+        if (string.length > 4) {
+            for (int i = 0; i < array.count; i++) {
+                NSString* other = [array objectAtIndex:i];
+                if (other.length > 4) {
+                    if (([string rangeOfString:other options:NSCaseInsensitiveSearch].length > 0) ||
+                        ([other rangeOfString:string options:NSCaseInsensitiveSearch].length > 0)) {
+                        return i;
+                    } 
+                }
+            }
+        }
+    }
+    
+    
     NSInteger bestDistance = INT_MAX;
     NSInteger bestIndex = -1;
 
@@ -197,7 +219,8 @@
         NSString* value = [array objectAtIndex:i];
 
         int distance = [self editDistanceFrom:string
-                                           to:value];
+                                           to:value
+                                withThreshold:[self threshold:string]];
 
         if (distance < bestDistance) {
             bestIndex = i;

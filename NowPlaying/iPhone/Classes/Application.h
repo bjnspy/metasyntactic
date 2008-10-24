@@ -34,6 +34,7 @@
 + (NSString*) dvdPostersFolder;
 
 + (NSString*) upcomingFolder;
++ (NSString*) upcomingCastFolder;
 + (NSString*) upcomingIMDbFolder;
 + (NSString*) upcomingPostersFolder;
 + (NSString*) upcomingSynopsesFolder;

@@ -212,6 +212,11 @@ static NSString* titles_key = @"Titles";
 }
 
 
+- (NSString*) castFile:(Movie*) movie {
+    return [[[Application upcomingCastFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
+}
+
+
 - (NSString*) imdbFile:(Movie*) movie {
     return [[[Application upcomingIMDbFolder] stringByAppendingPathComponent:[FileUtilities sanitizeFileName:movie.canonicalTitle]] stringByAppendingPathExtension:@"plist"];
 }
@@ -267,7 +272,7 @@ static NSString* titles_key = @"Titles";
 }
 
 
-- (void) updateSynopsis:(Movie*) movie
+- (void) updateSynopsisAndCast:(Movie*) movie
                  studio:(NSString*) studio
                   title:(NSString*) title {
     NSString* synopsisFile = [self synopsisFile:movie];
@@ -280,12 +285,29 @@ static NSString* titles_key = @"Titles";
         }
     }
 
-    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@", [Application host], studio, title];
-    NSString* synopsis = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
+    NSString* url = [NSString stringWithFormat:@"http://%@.appspot.com/LookupUpcomingListings?studio=%@&name=%@&format=2", [Application host], studio, title];
+    NSString* result = [NetworkUtilities stringWithContentsOfAddress:url important:NO];
 
+    if (result.length == 0) {
+        return;
+    }
+    
+    NSArray* components = [result componentsSeparatedByString:@"\n"];
+    if (components.count == 0) {
+        return;
+    }
+    
+    NSString* synopsis = [components objectAtIndex:0];
+    NSMutableArray* cast = [NSMutableArray arrayWithArray:components];
+    [cast removeObjectAtIndex:0];
+    
     if (synopsis.length != 0 &&
         ![synopsis hasPrefix:@"No synopsis"]) {
         [FileUtilities writeObject:synopsis toFile:synopsisFile];
+    }
+    
+    if (cast.count > 0) {
+        [FileUtilities writeObject:cast toFile:[self castFile:movie]];
     }
 }
 
@@ -317,7 +339,7 @@ static NSString* titles_key = @"Titles";
 - (void) updateDetails:(Movie*) movie studio:(NSString*) studio title:(NSString*) title {
     [self updateIMDb:movie];
     [self updatePoster:movie];
-    [self updateSynopsis:movie studio:studio title:title];
+    [self updateSynopsisAndCast:movie studio:studio title:title];
     [self updateTrailers:movie studio:studio title:title];
     [NowPlayingAppDelegate refresh];
 }
@@ -416,7 +438,17 @@ static NSString* titles_key = @"Titles";
 
 - (NSArray*) castForMovie:(Movie*) movie {
     [self createMovieMap];
-    return [[movieMap objectForKey:movie.canonicalTitle] cast];
+    NSArray* result = [[movieMap objectForKey:movie.canonicalTitle] cast];
+    if (result.count > 0) {
+        return result;
+    }
+    
+    result = [NSArray arrayWithContentsOfFile:[self castFile:movie]];
+    if (result.count > 0) {
+        return result;
+    }
+    
+    return [NSArray array];
 }
 
 
