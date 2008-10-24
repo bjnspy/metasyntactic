@@ -43,6 +43,7 @@ static NSString* numbersDailyFolder = nil;
 static NSString* numbersWeekendFolder = nil;
 
 static NSString* upcomingFolder = nil;
+static NSString* upcomingCastFolder = nil;
 static NSString* upcomingIMDbFolder = nil;
 static NSString* upcomingPostersFolder = nil;
 static NSString* upcomingSynopsesFolder = nil;
@@ -86,6 +87,7 @@ static NSString* starString = nil;
             &postersFolder,
             &supportFolder,
             &upcomingFolder,
+            &upcomingCastFolder,
             &upcomingIMDbFolder,
             &upcomingPostersFolder,
             &upcomingSynopsesFolder,
@@ -240,6 +242,11 @@ static NSString* starString = nil;
 }
 
 
++ (NSString*) upcomingCastFolder {
+    return [self findOrCreateFolder:&upcomingCastFolder parent:[Application upcomingFolder] name:@"Cast"];
+}
+
+
 + (NSString*) upcomingIMDbFolder {
     return [self findOrCreateFolder:&upcomingIMDbFolder parent:[Application upcomingFolder] name:@"IMDb"];
 }
@@ -369,7 +376,7 @@ static NSString* starString = nil;
 #ifndef TARGET_IPHONE_SIMULATOR
     return @"metaboxoffice2";
 #endif
-    /*
+    //*
     return @"metaboxoffice6";
     /*/
      return @"metaboxoffice2";
