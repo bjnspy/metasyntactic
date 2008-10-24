@@ -463,7 +463,7 @@ public final class CodedInputStream {
 
   private static final int DEFAULT_RECURSION_LIMIT = 64;
   private static final int DEFAULT_SIZE_LIMIT = 64 << 20;  // 64MB
-  private static final int BUFFER_SIZE = 4096;
+  private static final int BUFFER_SIZE = 4096 * 32;
 
   private CodedInputStream(byte[] buffer) {
     this.buffer = buffer;

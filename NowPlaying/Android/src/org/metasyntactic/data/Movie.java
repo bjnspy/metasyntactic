@@ -22,8 +22,6 @@ import org.metasyntactic.io.PersistableInputStream;
 import org.metasyntactic.io.PersistableOutputStream;
 
 import java.io.IOException;
-import java.io.ObjectInput;
-import java.io.ObjectOutput;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
@@ -47,16 +45,16 @@ public class Movie implements Parcelable, Persistable {
 
 
   public void persistTo(PersistableOutputStream out) throws IOException {
-    out.writeUTF(identifier);
-    out.writeUTF(canonicalTitle);
-    out.writeUTF(displayTitle);
-    out.writeUTF(rating);
+    out.writeString(identifier);
+    out.writeString(canonicalTitle);
+    out.writeString(displayTitle);
+    out.writeString(rating);
     out.writeInt(length);
-    out.writeUTF(imdbAddress);
+    out.writeString(imdbAddress);
     out.writeDate(releaseDate);
-    out.writeUTF(poster);
-    out.writeUTF(synopsis);
-    out.writeUTF(studio);
+    out.writeString(poster);
+    out.writeString(synopsis);
+    out.writeString(studio);
     out.writeStringCollection(directors);
     out.writeStringCollection(cast);
     out.writeStringCollection(genres);
@@ -65,16 +63,16 @@ public class Movie implements Parcelable, Persistable {
 
   public static final Reader<Movie> reader = new AbstractPersistable.AbstractReader<Movie>() {
     public Movie read(PersistableInputStream in) throws IOException {
-      String identifier = in.readUTF();
-      String canonicalTitle = in.readUTF();
-      String displayTitle = in.readUTF();
-      String rating = in.readUTF();
+      String identifier = in.readString();
+      String canonicalTitle = in.readString();
+      String displayTitle = in.readString();
+      String rating = in.readString();
       int length = in.readInt();
-      String imdbAddress = in.readUTF();
+      String imdbAddress = in.readString();
       Date releaseDate = in.readDate();
-      String poster = in.readUTF();
-      String synopsis = in.readUTF();
-      String studio = in.readUTF();
+      String poster = in.readString();
+      String synopsis = in.readString();
+      String studio = in.readString();
       List<String> directors = in.readStringList();
       List<String> cast = in.readStringList();
       List<String> genres = in.readStringList();
@@ -83,24 +81,6 @@ public class Movie implements Parcelable, Persistable {
           synopsis, studio, directors, cast, genres);
     }
   };
-
-
-  private void writeList(ObjectOutput objectOutput, List<String> directors) throws IOException {
-    objectOutput.writeInt(directors.size());
-    for (String string : directors) {
-      objectOutput.writeUTF(string);
-    }
-  }
-
-
-  private List<String> readList(ObjectInput objectInput) throws IOException {
-    int size = objectInput.readInt();
-    List<String> list = new ArrayList<String>(size);
-    for (int i = 0; i < size; i++) {
-      list.add(objectInput.readUTF());
-    }
-    return list;
-  }
 
 
   private Movie(String identifier, String canonicalTitle, String displayTitle, String rating, int length,
@@ -213,20 +193,37 @@ public class Movie implements Parcelable, Persistable {
   }
 
 
-  private final static String[] articles = new String[]{
-      "Der", "Das", "Ein", "Eine", "The",
-      "A", "An", "La", "Las", "Le",
-      "Les", "Los", "El", "Un", "Une",
-      "Una", "Il", "O", "Het", "De",
-      "Os", "Az", "Den", "Al", "En",
-      "L'"
-  };
+  private static String[] prefixArticles;
+  private static String[] suffixArticles;
+
+
+  static {
+    String[] articles = new String[]{
+        "Der", "Das", "Ein", "Eine", "The",
+        "A", "An", "La", "Las", "Le",
+        "Les", "Los", "El", "Un", "Une",
+        "Una", "Il", "O", "Het", "De",
+        "Os", "Az", "Den", "Al", "En",
+        "L'"
+    };
+
+    prefixArticles = new String[articles.length];
+    suffixArticles = new String[articles.length];
+
+    for (int i = 0; i < articles.length; i++) {
+      prefixArticles[i] = articles[i] + " ";
+      suffixArticles[i] = ", " + articles[i];
+    }
+  }
 
 
   public static String makeCanonical(String title) {
-    for (String article : articles) {
-      if (title.endsWith(", " + article)) {
-        return article + title.substring(0, title.length() - article.length() - 2);
+    for (int i = 0; i < prefixArticles.length; i++) {
+      String prefixArticle = prefixArticles[i];
+      String suffixArticle = suffixArticles[i];
+
+      if (title.endsWith(suffixArticle)) {
+        return prefixArticle + title.substring(0, title.length() - suffixArticle.length());
       }
     }
 
@@ -235,9 +232,12 @@ public class Movie implements Parcelable, Persistable {
 
 
   public static String makeDisplay(String title) {
-    for (String article : articles) {
-      if (title.startsWith(article + " ")) {
-        return title.substring(article.length() + 1) + ", " + article;
+    for (int i = 0; i < prefixArticles.length; i++) {
+      String prefixArticle = prefixArticles[i];
+      String suffixArticle = suffixArticles[i];
+
+      if (title.startsWith(prefixArticle)) {
+        return title.substring(prefixArticle.length()) + suffixArticle;
       }
     }
 

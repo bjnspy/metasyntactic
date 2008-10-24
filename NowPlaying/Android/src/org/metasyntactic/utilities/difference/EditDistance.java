@@ -63,13 +63,16 @@ public class EditDistance {
 		for (int i = 0; i <= targetLength; i++) {
 			matrix[0][i] = i;
 		}
+		
+		char[] sourceChars = source.toCharArray();
+		char[] destChars = target.toCharArray();
 
 		for (int i = 1; i <= sourceLength; i++) {
 			boolean rowIsUnderThreshold = (costThreshold < 0);
 
-			char sourceI = source.charAt(i - 1);
+			char sourceI = sourceChars[i - 1];
 			for (int j = 1; j <= targetLength; j++) {
-				char targetJ = target.charAt(j - 1);
+				char targetJ = destChars[j - 1];
 
 				int cost = 0;
 				if (sourceI != targetJ) {

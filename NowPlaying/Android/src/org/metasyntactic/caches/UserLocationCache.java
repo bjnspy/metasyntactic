@@ -41,7 +41,7 @@ public class UserLocationCache {
       }
     };
 
-    performOnBackgroundThread(runnable, lock, true/*visible*/);
+    performOnBackgroundThread("Download User Address", runnable, lock, true/*visible*/);
   }
 
 

@@ -167,7 +167,7 @@ public abstract class AbstractScoreProvider implements ScoreProvider {
           regenerateMovieMap(movies, scores);
         }
       };
-      ThreadingUtilities.performOnBackgroundThread(runnable, movieMapLock, false);
+      ThreadingUtilities.performOnBackgroundThread("Regenerate Movie Map", runnable, movieMapLock, false);
     }
 
     return scores.get(movieMap.get(movie.getCanonicalTitle()));

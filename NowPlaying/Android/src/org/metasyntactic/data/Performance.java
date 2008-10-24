@@ -29,15 +29,15 @@ public class Performance implements Parcelable, Persistable {
 
 
   public void persistTo(PersistableOutputStream out) throws IOException {
-    out.writeUTF(time);
-    out.writeUTF(url);
+    out.writeString(time);
+    out.writeString(url);
   }
 
 
   public static final Reader<Performance> reader = new AbstractPersistable.AbstractReader<Performance>() {
     public Performance read(PersistableInputStream in) throws IOException {
-      String time = in.readUTF();
-      String url = in.readUTF();
+      String time = in.readString();
+      String url = in.readString();
 
       return new Performance(time, url);
     }

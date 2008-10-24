@@ -113,7 +113,7 @@ public class UpcomingCache {
 				updateDetailsBackgroundEntryPoint(movies, studioKeys, titleKeys);
 			}
 		};
-		ThreadingUtilities.performOnBackgroundThread(runnable, lock, true);
+		ThreadingUtilities.performOnBackgroundThread("Update Upcoming Details", runnable, lock, true, Thread.MIN_PRIORITY + 1);
 	}
 
 
@@ -123,7 +123,7 @@ public class UpcomingCache {
 				updateIndexBackgroundEntryPoint();
 			}
 		};
-		ThreadingUtilities.performOnBackgroundThread(runnable, lock, true);
+		ThreadingUtilities.performOnBackgroundThread("Update Upcoming Index", runnable, lock, true, Thread.MIN_PRIORITY + 1);
 	}
 
 

@@ -33,21 +33,21 @@ public class Score implements Parcelable, Persistable {
 
 
   public void persistTo(PersistableOutputStream out) throws IOException {
-    out.writeUTF(canonicalTitle);
-    out.writeUTF(synopsis);
-    out.writeUTF(value);
-    out.writeUTF(provider);
-    out.writeUTF(identifier);
+    out.writeString(canonicalTitle);
+    out.writeString(synopsis);
+    out.writeString(value);
+    out.writeString(provider);
+    out.writeString(identifier);
   }
 
 
   public static final Reader<Score> reader = new AbstractPersistable.AbstractReader<Score>() {
     public Score read(PersistableInputStream in) throws IOException {
-      String canonicalTitle = in.readUTF();
-      String synopsis = in.readUTF();
-      String value = in.readUTF();
-      String provider = in.readUTF();
-      String identifier = in.readUTF();
+      String canonicalTitle = in.readString();
+      String synopsis = in.readString();
+      String value = in.readString();
+      String provider = in.readString();
+      String identifier = in.readString();
 
       return new Score(canonicalTitle, synopsis, value, provider, identifier);
     }

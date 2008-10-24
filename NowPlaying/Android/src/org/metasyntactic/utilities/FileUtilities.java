@@ -89,7 +89,7 @@ public class FileUtilities {
 
       int size = in.readInt();
       for (int i = 0; i < size; i++) {
-        String key = in.readUTF();
+        String key = in.readString();
         Date value = in.readDate();
 
         result.put(key, value);
@@ -110,7 +110,7 @@ public class FileUtilities {
 
       out.writeInt(map.size());
       for (Map.Entry<String, Date> e : map.entrySet()) {
-        out.writeUTF(e.getKey());
+        out.writeString(e.getKey());
         out.writeDate(e.getValue());
       }
 
@@ -130,13 +130,13 @@ public class FileUtilities {
     }
 
     try {
-      ObjectInputStream in = new ObjectInputStream(new FileInputStream(file));
+      PersistableInputStream in = new PersistableInputStream(new FileInputStream(file));
       Map<String, String> result = new HashMap<String, String>();
 
       int size = in.readInt();
       for (int i = 0; i < size; i++) {
-        String key = in.readUTF();
-        String value = in.readUTF();
+        String key = in.readString();
+        String value = in.readString();
 
         result.put(key, value);
       }
@@ -152,12 +152,12 @@ public class FileUtilities {
   public static void writeStringToStringMap(Map<String, String> map, File file) {
     try {
       ByteArrayOutputStream byteOut = new ByteArrayOutputStream(1 << 13);
-      ObjectOutputStream out = new ObjectOutputStream(byteOut);
+      PersistableOutputStream out = new PersistableOutputStream(byteOut);
 
       out.writeInt(map.size());
       for (Map.Entry<String, String> e : map.entrySet()) {
-        out.writeUTF(e.getKey());
-        out.writeUTF(e.getValue());
+        out.writeString(e.getKey());
+        out.writeString(e.getValue());
       }
 
       out.flush();
@@ -178,7 +178,7 @@ public class FileUtilities {
 
       Map<String, T> result = new HashMap<String, T>(size);
       for (int i = 0; i < size; i++) {
-        String key = in.readUTF();
+        String key = in.readString();
         T value = in.readPersistable(reader);
 
         result.put(key, value);
@@ -200,7 +200,7 @@ public class FileUtilities {
 
       out.writeInt(map.size());
       for (Map.Entry<String, T> e : map.entrySet()) {
-        out.writeUTF(e.getKey());
+        out.writeString(e.getKey());
         out.writePersistable(e.getValue());
       }
 
@@ -253,7 +253,7 @@ public class FileUtilities {
     if (!file.exists()) {
       return null;
     }
-    
+
     try {
       return new String(readBytes(file), "UTF-8");
     } catch (UnsupportedEncodingException e) {
@@ -428,7 +428,7 @@ public class FileUtilities {
 
       Map<String,List<T>> result = new HashMap<String, List<T>>(size);
       for (int i = 0; i < size; i++) {
-        String key = in.readUTF();
+        String key = in.readString();
         List<T> value = reader.readList(in);
         result.put(key, value);
       }
@@ -449,7 +449,7 @@ public class FileUtilities {
 
       out.writeInt(map.size());
       for (Map.Entry<String, List<T>> e : map.entrySet()) {
-        out.writeUTF(e.getKey());
+        out.writeString(e.getKey());
         out.writePersistableCollection(e.getValue());
       }
 

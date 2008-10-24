@@ -62,7 +62,7 @@ public class ScoreCache {
         updateBackgroundEntryPoint();
       }
     };
-    ThreadingUtilities.performOnBackgroundThread(runnable, lock, true/*visible*/);
+    ThreadingUtilities.performOnBackgroundThread("Update Scores", runnable, lock, true/*visible*/, Thread.MIN_PRIORITY + 1);
   }
 
 

@@ -50,7 +50,7 @@ public class NowPlayingControllerService extends Service {
 			}
 		};
 
-		ThreadingUtilities.performOnBackgroundThread(runnable, lock, false/* visible */);
+		ThreadingUtilities.performOnBackgroundThread("Update Model", runnable, lock, false/* visible */);
 	}
 
 

@@ -33,21 +33,21 @@ public class Review implements Parcelable, Persistable {
 
 
   public void persistTo(PersistableOutputStream out) throws IOException {
-    out.writeUTF(text);
+    out.writeString(text);
     out.writeInt(score);
-    out.writeUTF(link);
-    out.writeUTF(author);
-    out.writeUTF(source);
+    out.writeString(link);
+    out.writeString(author);
+    out.writeString(source);
   }
 
 
   public static final Reader<Review> reader = new AbstractPersistable.AbstractReader<Review>() {
     public Review read(PersistableInputStream in) throws IOException {
-      String text = in.readUTF();
+      String text = in.readString();
       int score = in.readInt();
-      String link = in.readUTF();
-      String author = in.readUTF();
-      String source = in.readUTF();
+      String link = in.readString();
+      String author = in.readString();
+      String source = in.readString();
 
       return new Review(text, score, link, author, source);
     }

@@ -39,10 +39,10 @@ public class Theater implements Parcelable, Persistable {
 
 
   public void persistTo(PersistableOutputStream out) throws IOException {
-    out.writeUTF(identifier);
-    out.writeUTF(name);
-    out.writeUTF(address);
-    out.writeUTF(phoneNumber);
+    out.writeString(identifier);
+    out.writeString(name);
+    out.writeString(address);
+    out.writeString(phoneNumber);
     out.writePersistable(location);
     out.writePersistable(originatingLocation);
     out.writeStringCollection(movieTitles);
@@ -51,10 +51,10 @@ public class Theater implements Parcelable, Persistable {
 
   public static final Reader<Theater> reader = new AbstractPersistable.AbstractReader<Theater>() {
     public Theater read(PersistableInputStream in) throws IOException {
-      String identifier = in.readUTF();
-      String name = in.readUTF();
-      String address = in.readUTF();
-      String phoneNumber = in.readUTF();
+      String identifier = in.readString();
+      String name = in.readString();
+      String address = in.readString();
+      String phoneNumber = in.readString();
       Location location = in.readPersistable(Location.reader);
       Location originatingLocation = in.readPersistable(Location.reader);
       Set<String> movieTitles = in.readStringSet();
